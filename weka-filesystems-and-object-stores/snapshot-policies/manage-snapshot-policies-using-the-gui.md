@@ -25,7 +25,7 @@ The following is a screenshot of the Snapshot Policies page with callouts highli
 * **Search for an attached filesystem:** Filter and identify specific filesystems assigned to the selected snapshot policy by entering keywords in the search bar.
 * **View a list of attached filesystems:** See all filesystems assigned with the selected snapshot policy.
 
-<div align="left"><figure><img src="../../.gitbook/assets/snap-policy-explore.png" alt=""><figcaption><p>Snapshot policies</p></figcaption></figure></div>
+<div align="left" data-with-frame="true"><figure><img src="../../.gitbook/assets/snap-policy-explore.png" alt=""><figcaption><p>Snapshot policies</p></figcaption></figure></div>
 
 **Procedure**
 
@@ -37,7 +37,7 @@ The next sections describe how to perform common tasks on this page, leveraging 
 
 This procedure guides you through creating a snapshot policy, which includes defining the policy name, description, schedule, retention settings, and optional upload configuration. Follow these steps to configure a policy tailored to your data protection requirements.
 
-<div align="left"><figure><img src="../../.gitbook/assets/snap-policy-create.png" alt="" width="563"><figcaption><p>Create a snapshot policy</p></figcaption></figure></div>
+<div align="left" data-with-frame="true"><figure><img src="../../.gitbook/assets/snap-policy-create.png" alt="" width="563"><figcaption><p>Create a snapshot policy</p></figcaption></figure></div>
 
 **Procedure**
 
@@ -65,7 +65,7 @@ The newly created snapshot policy appears in the list on the **Snapshot Policies
 
 Attaching filesystems to a snapshot policy ensures that the policy governs the creation, management, and retention of snapshots for these specific filesystems. This association helps maintain consistent data protection and recovery practices across selected filesystems.
 
-<figure><img src="../../.gitbook/assets/snap-policy-attach.gif" alt=""><figcaption><p>Attach a snapshot policy to a filesystem</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/snap-policy-attach.gif" alt=""><figcaption><p>Attach a snapshot policy to a filesystem</p></figcaption></figure></div>
 
 **Procedure**
 
@@ -80,7 +80,7 @@ The filesystem is associated with the selected snapshot policy, and the policy's
 
 Detaching filesystems from a snapshot policy can be necessary when you no longer need to associate the filesystems with the policy, either due to changes in backup strategies or system configurations. This procedure ensures that the filesystems are removed from the policy without affecting its data or storage.
 
-<figure><img src="../../.gitbook/assets/snap-policy-detach.gif" alt=""><figcaption><p>Detach a snapshot policy from a filesystem</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/snap-policy-detach.gif" alt=""><figcaption><p>Detach a snapshot policy from a filesystem</p></figcaption></figure></div>
 
 **Procedure**
 
@@ -94,7 +94,7 @@ Detaching filesystems from a snapshot policy can be necessary when you no longer
 
 Updating a snapshot policy is necessary when modifications to schedules, retention settings, or other parameters are required to align with evolving data protection needs. Regularly reviewing and updating policies ensures that they remain effective and consistent with organizational objectives.
 
-<figure><img src="../../.gitbook/assets/snap-policy-update.gif" alt=""><figcaption><p>Update a snapshot policy</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/snap-policy-update.gif" alt=""><figcaption><p>Update a snapshot policy</p></figcaption></figure></div>
 
 **Procedure**
 
@@ -114,15 +114,16 @@ You can enable or disable a policy directly from the policies list pane, for exa
 1. In the policies list pane, locate the desired policy.
 2.  Click on the current status of the policy (Enabled or Disabled).<br>
 
-    <div align="left"><figure><img src="../../.gitbook/assets/snap-policy-status.png" alt="" width="455"><figcaption></figcaption></figure></div>
-3. In the confirmation message that appears, select **Yes** to confirm the status change.\
-   ![](../../.gitbook/assets/snap-policy-disable.png)
+    <div align="center" data-with-frame="true"><figure><img src="../../.gitbook/assets/snap-policy-status.png" alt="" width="455"><figcaption></figcaption></figure></div>
+3. In the confirmation message that appears, select **Yes** to confirm the status change.
+
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/image (247).png" alt="" width="257"><figcaption></figcaption></figure></div>
 
 ## Delete a snapshot policy
 
 Snapshot policies may need to be deleted when they are no longer required, are incorrectly configured, or are replaced by updated policies. Removing unnecessary policies helps maintain a clean and manageable environment, ensuring that only relevant configurations are active.
 
-<div align="left"><figure><img src="../../.gitbook/assets/snap-policy-delete.png" alt="" width="375"><figcaption><p>Delete a snapshot policy</p></figcaption></figure></div>
+<div align="center" data-with-frame="true"><figure><img src="../../.gitbook/assets/snap-policy-delete.png" alt="" width="375"><figcaption><p>Delete a snapshot policy</p></figcaption></figure></div>
 
 **Procedure**
 

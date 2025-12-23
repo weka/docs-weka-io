@@ -46,7 +46,7 @@ If not explicitly configured by the administrator, the hot spare value is automa
 
 ## WEKA cluster reserved capacity ratio
 
-After accounting for the capacity dedicated to data protection (parity) and hot spares, an additional **10 percent** of the remaining capacity is reserved for WEKA cluster internal use.&#x20;
+After accounting for the capacity dedicated to data protection (parity) and hot spares, an additional **10 percent** of the remaining capacity is reserved for WEKA cluster internal use.
 
 ## Failure domains
 
@@ -65,17 +65,17 @@ The documentation generally assumes a homogeneous WEKA system deployment, meanin
 
 The formula for calculating the SSD net storage capacity is:
 
-<figure><img src="../.gitbook/assets/SSD_net_capacity_calculation.png" alt=""><figcaption></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/SSD_net_capacity_calculation.png" alt=""><figcaption></figcaption></figure></div>
 
 **Examples**:
 
 **Scenario 1**: A homogeneous system of 10 servers, each with 1 terabyte of raw SSD capacity (total 10TB raw capacity). The system is configured with 1 hot spare and a protection scheme of 6+2 (6 data blocks, 2 parity blocks).
 
-<figure><img src="../.gitbook/assets/SSD_net_capacity_example1.png" alt="" width="563"><figcaption></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/SSD_net_capacity_example1.png" alt="" width="563"><figcaption></figcaption></figure></div>
 
 **Scenario 2**: A homogeneous system of 20 servers, each with 1 terabyte of raw SSD capacity (total 20TB raw capacity). The system is configured with 2 hot spares and a protection scheme of 16+2 (16 data blocks, 2 parity blocks).
 
-<figure><img src="../.gitbook/assets/SSD_net_capacity_example2.png" alt="" width="563"><figcaption></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/SSD_net_capacity_example2.png" alt="" width="563"><figcaption></figcaption></figure></div>
 
 ## Performance and resilience during failures
 
@@ -103,7 +103,7 @@ In the event of serial server failures coupled with insufficient NVMe capacity t
 
 The stripe data width and the protection level (number of data and parity blocks) determine the minimum number of healthy servers required for the cluster to remain operational. This can be represented by the following formula:
 
-<figure><img src="../.gitbook/assets/Healthy_servers_calculation.png" alt="" width="531"><figcaption></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/Healthy_servers_calculation.png" alt="" width="531"><figcaption></figcaption></figure></div>
 
 **Examples:**
 
@@ -128,7 +128,7 @@ The process can be visualized in three stages:
 2. **Stage B: write blocking after a drive failure**: When a single drive fails, any new stripe that must span all failure domains can no longer be allocated if any one domain lacks sufficient space due to the failure. Even though only one drive has failed, this strict allocation requirement can effectively block new writes. This results in a disproportionate loss of writable capacity relative to the actual size of the failure, particularly noticeable in systems with fewer drives per server.
 3. **Stage C: Write recovery through failure domain folding**: To mitigate the blocked write condition, the affected storage server (failure domain) can be manually deactivated. This allows WEKA to apply failure domain folding. The system relaxes the one-domain-per-stripe rule, permitting the reuse of the same failure domain within a newly allocated stripe. This mechanism restores write capability without requiring immediate hardware replacement, ensuring continued system operation under degraded conditions.
 
-<figure><img src="../.gitbook/assets/failure_domain_folding.png" alt=""><figcaption><p>Failure domain in action (example)</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/failure_domain_folding.png" alt=""><figcaption><p>Failure domain in action (example)</p></figcaption></figure></div>
 
 [^1]: **Serial failures:** Refers to a sequence where each data rebuild finishes before another server fails, ensuring one-at-a-time failure handling.
 

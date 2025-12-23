@@ -35,7 +35,7 @@ For Google Cloud CLI, use the `gcloud auth application-default login` command to
 
 1. Go to [**get.weka.io**](http://get.weka.io) and select the **CDM** tab.
 
-<figure><img src="../.gitbook/assets/1_cdm_local_get-weka-io.png" alt=""><figcaption></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/1_cdm_local_get-weka-io.png" alt=""><figcaption></figcaption></figure></div>
 
 2. CDM Local is available as a platform-specific binary. Choose the binary that matches your target host platform for installation:
    * MacOS (Darwin):
@@ -45,7 +45,7 @@ For Google Cloud CLI, use the `gcloud auth application-default login` command to
      * Intel-based: cdm-linux-amd64
      * ARM-based: cdm-linux-arm64
 
-<figure><img src="../.gitbook/assets/CDM_download.png" alt=""><figcaption></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/CDM_download.png" alt=""><figcaption></figcaption></figure></div>
 
 ## Launch CDM Local
 
@@ -75,13 +75,13 @@ CDM Local uses Terraform to finalize the deployment of WEKA cluster resources an
     `./cdm-darwin-arm64-v1.2.0-tech-preview --state-backend=aws`
 4. **Access the CDM Local UI:** After running the binary, a browser window with the CDM Local interface opens automatically.
 
-<figure><img src="../.gitbook/assets/Screenshot 2024-10-22 at 10.31.34 AM.png" alt=""><figcaption><p>CDM Local welcome</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/Screenshot 2024-10-22 at 10.31.34 AM.png" alt=""><figcaption><p>CDM Local welcome</p></figcaption></figure></div>
 
 5. **Accept Statistic Gathering**: Select **Accept** to allow WEKA to collect statistics to enhance the system.
 6. **Deploy a Cluster**: Click **DEPLOY CLUSTER** to start deploying your first WEKA cluster.
 7. **Select Cloud Provider**: Choose your deployment cloud (AWS, Azure, or GCP) and select **Deploy**. The CDM Local dashboard appears.
 
-<figure><img src="../.gitbook/assets/Screenshot 2024-10-22 at 10.35.16 AM.png" alt=""><figcaption></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/Screenshot 2024-10-22 at 10.35.16 AM.png" alt=""><figcaption></figcaption></figure></div>
 
 ## CDM Local dashboard overview
 
@@ -93,7 +93,7 @@ The CDM dashboard consists of three main sections:
 * The configuration input panel (outlined in orange)
 * The dynamic content sidebar (outlined in teal)
 
-<figure><img src="../.gitbook/assets/5_cdm_local_interface.png" alt=""><figcaption><p>CDM Local dashboard overview</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/5_cdm_local_interface.png" alt=""><figcaption><p>CDM Local dashboard overview</p></figcaption></figure></div>
 
 ### **Workflow navigation panel**
 
@@ -116,7 +116,7 @@ The workflow navigation panel visually indicates the completeness of the configu
 
 You can navigate between different workflow pages and view associated configuration input panels by clicking the **Next** button or selecting the desired tab from the workflow navigation panel.
 
-<figure><img src="../.gitbook/assets/7_workflow_navigation (1).png" alt="" width="563"><figcaption><p>Workflow navigation panel</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/7_workflow_navigation (1).png" alt="" width="563"><figcaption><p>Workflow navigation panel</p></figcaption></figure></div>
 
 ### **Configuration input panel**
 
@@ -127,17 +127,17 @@ The configuration input panel enables customizing input fields related to the WE
 
 The following example illustrates the Basic Configuration tab, where some required fields are populated, while others remain empty. Fields lacking input are highlighted in bright red, and the red outline disappears once the user provides the necessary information.
 
-<figure><img src="../.gitbook/assets/8_configuration_input_panel.png" alt="" width="375"><figcaption><p>Configuration input panel: Basic Configuration tab showing required fields</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/8_configuration_input_panel.png" alt="" width="375"><figcaption><p>Configuration input panel: Basic Configuration tab showing required fields</p></figcaption></figure></div>
 
 Certain fields within the configuration input panel require manual user input. Other fields, such as Instance Type, WEKA Version, and Region, are provided as selectable dropdown menus.
 
 {% tabs %}
 {% tab title="Instance Type" %}
-<figure><img src="../.gitbook/assets/image (238).png" alt="" width="290"><figcaption><p>Instance Type</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/image (238).png" alt="" width="290"><figcaption><p>Instance Type</p></figcaption></figure></div>
 {% endtab %}
 
 {% tab title="Region" %}
-<figure><img src="../.gitbook/assets/image (239).png" alt="" width="290"><figcaption><p>Region</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/image (239).png" alt="" width="290"><figcaption><p>Region</p></figcaption></figure></div>
 {% endtab %}
 
 {% tab title="WEKA Version" %}
@@ -145,7 +145,7 @@ The WEKA software release dropdown menu is designed to auto-populate with the mo
 
 To enter a WEKA software release that is not listed in the dropdown, click directly in the WEKA Version input field and type the desired release. This feature is particularly useful when deploying a WEKA cluster with a customer-specific software release.
 
-<figure><img src="../.gitbook/assets/image (240).png" alt="" width="290"><figcaption><p>WEKA Version</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/image (240).png" alt="" width="290"><figcaption><p>WEKA Version</p></figcaption></figure></div>
 {% endtab %}
 {% endtabs %}
 
@@ -158,7 +158,7 @@ The dynamic content sidebar enhances user experience by displaying contextually 
 * **Purpose:** Assists users in understanding the role of specific variables or input fields in the configuration input panel.
 * **Functionality:** Automatically displays pertinent information when an input field, such as the Terraform Module Release Version, is selected. This feature covers every input field for AWS, Azure, and GCP configurations.
 
-<figure><img src="../.gitbook/assets/CDM_tf_version.png" alt=""><figcaption><p>Terraform Module Release Version</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/CDM_tf_version.png" alt=""><figcaption><p>Terraform Module Release Version</p></figcaption></figure></div>
 
 #### Real-time file representation
 
@@ -180,29 +180,29 @@ The dynamic content sidebar enhances user experience by displaying contextually 
 
 If any errors occur during the validation, a popup window appears with details about the encountered issues. Users can then correct these errors and revalidate the configuration before continuing. Once validation is successful, the file can be copied or downloaded for use in the deployment process.
 
-<figure><img src="../.gitbook/assets/Screenshot 2024-10-22 at 11.04.25 AM copy 2.png" alt=""><figcaption><p>Validation of the finalized terraform configuration file</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/Screenshot 2024-10-22 at 11.04.25 AM copy 2.png" alt=""><figcaption><p>Validation of the finalized terraform configuration file</p></figcaption></figure></div>
 
-<figure><img src="../.gitbook/assets/Screenshot 2024-10-22 at 11.06.45 AM.png" alt="" width="349"><figcaption><p>Successful validation of configuration</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/Screenshot 2024-10-22 at 11.06.45 AM.png" alt="" width="349"><figcaption><p>Successful validation of configuration</p></figcaption></figure></div>
 
 #### Download and copy the finalized terraform configuration file
 
 * **Purpose:** Enables users to download or copy the completed configuration file for local use.
 * **Functionality:** The **Download** and **Copy** button allow you to save the file locally or copy it, to manually execute the relevant Terraform `plan`, and `apply` commands for WEKA cluster deployment.
 
-<figure><img src="../.gitbook/assets/CDM_Download_and_copy.png" alt=""><figcaption><p>Download and copy the finalized</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/CDM_Download_and_copy.png" alt=""><figcaption><p>Download and copy the finalized</p></figcaption></figure></div>
 
 #### Deploy WEKA Cluster
 
 * **Purpose:** Executes the deployment of the configured WEKA cluster.
 * **Functionality:** The **CREATE** button initiates the execution of a Terraform `apply` action. If Terraform is not present on the client system, it installs in the user's home directory.
 
-<figure><img src="../.gitbook/assets/CDM_create.png" alt=""><figcaption><p>The CREATE button will deploy the configured WEKA cluster</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/CDM_create.png" alt=""><figcaption><p>The CREATE button will deploy the configured WEKA cluster</p></figcaption></figure></div>
 
 ### Modify the configuration of a deployed WEKA cluster
 
 After selecting **CREATE** or when connecting to CDM Local with at least one WEKA cluster deployed, the screen displays a list of deployed clusters.
 
-<figure><img src="../.gitbook/assets/Screenshot 2024-10-22 at 11.07.04 AM.png" alt=""><figcaption><p>List of deployed or deploying clusters known by CDM Local</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/Screenshot 2024-10-22 at 11.07.04 AM.png" alt=""><figcaption><p>List of deployed or deploying clusters known by CDM Local</p></figcaption></figure></div>
 
 Clicking on a cluster opens its configuration, allowing you to make changes. Use the **UPDATE** button, which replaces **CREATE**, to rerun the deployment configuration.
 
@@ -211,7 +211,7 @@ Clicking on a cluster opens its configuration, allowing you to make changes. Use
 * **Purpose**: Applies updates to the configuration of the deployed WEKA cluster.
 * **Functionality**: The **UPDATE** button initiates a Terraform `apply` action, enabling post-deployment changes to the cluster configuration, such as adding Protocol Servers.
 
-<figure><img src="../.gitbook/assets/CDM_update.png" alt=""><figcaption><p>The UPDATE button applies changes to the configured WEKA cluster</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/CDM_update.png" alt=""><figcaption><p>The UPDATE button applies changes to the configured WEKA cluster</p></figcaption></figure></div>
 
 ### Retrieve Information on deployed WEKA clusters
 
@@ -227,41 +227,41 @@ When clusters are listed in the CDM Local inventory, you can gather the followin
 
 During the initial build of the WEKA cluster, various cloud services collect progress information. You can retrieve the clusterization progress from the **Get Clusterization Progress** menu option.
 
-<figure><img src="../.gitbook/assets/Screenshot 2024-10-22 at 11.07.13 AM copy 3.png" alt=""><figcaption><p>Get the status of the clusterization progress</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/Screenshot 2024-10-22 at 11.07.13 AM copy 3.png" alt=""><figcaption><p>Get the status of the clusterization progress</p></figcaption></figure></div>
 
-<figure><img src="../.gitbook/assets/Screenshot 2024-10-22 at 11.23.48 AM.png" alt="" width="563"><figcaption><p>"Clusterization completed successfully" indicates the deployment is complete</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/Screenshot 2024-10-22 at 11.23.48 AM.png" alt="" width="563"><figcaption><p>"Clusterization completed successfully" indicates the deployment is complete</p></figcaption></figure></div>
 
 #### WEKA cluster status
 
 You can retrieve the status of the WEKA cluster at any time using the **Get WEKA Status** menu option.
 
-<figure><img src="../.gitbook/assets/Screenshot 2024-10-22 at 11.07.13 AM copy 4.png" alt=""><figcaption><p>Get the current status of the WEKA cluster</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/Screenshot 2024-10-22 at 11.07.13 AM copy 4.png" alt=""><figcaption><p>Get the current status of the WEKA cluster</p></figcaption></figure></div>
 
-<figure><img src="../.gitbook/assets/Screenshot 2024-10-22 at 11.24.06 AM.png" alt="" width="482"><figcaption></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/Screenshot 2024-10-22 at 11.24.06 AM.png" alt="" width="482"><figcaption></figcaption></figure></div>
 
 #### Terraform output
 
 You can retrieve the output information from running Terraform using the **Get Terraform Output** menu option.
 
-<figure><img src="../.gitbook/assets/Screenshot 2024-10-22 at 11.07.13 AM copy.png" alt=""><figcaption><p>Use CDM Local to retrieve Terraform Output</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/Screenshot 2024-10-22 at 11.07.13 AM copy.png" alt=""><figcaption><p>Use CDM Local to retrieve Terraform Output</p></figcaption></figure></div>
 
-<figure><img src="../.gitbook/assets/cdm_local_tf-output.png" alt="" width="563"><figcaption></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/cdm_local_tf-output.png" alt="" width="563"><figcaption></figcaption></figure></div>
 
 #### Password
 
 When the WEKA clusterization process finishes, a random password is generated for the 'admin' account. You can retrieve this password using the **Get Password** menu option.
 
-<figure><img src="../.gitbook/assets/Screenshot 2024-10-22 at 11.07.13 AM copy 5.png" alt=""><figcaption><p>Get the auto generated password for the 'admin' user on the WEKA cluster</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/Screenshot 2024-10-22 at 11.07.13 AM copy 5.png" alt=""><figcaption><p>Get the auto generated password for the 'admin' user on the WEKA cluster</p></figcaption></figure></div>
 
-<figure><img src="../.gitbook/assets/CDM_password.png" alt=""><figcaption></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/CDM_password.png" alt=""><figcaption></figcaption></figure></div>
 
 #### Backend IPs
 
 You can retrieve the IP addresses for backend access using the **Get Backend IPs** menu option in CDM Local.
 
-<figure><img src="../.gitbook/assets/Screenshot 2024-10-22 at 11.07.13 AM copy 6.png" alt=""><figcaption><p>Get the backend IP addresses of the WEKA cluster</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/Screenshot 2024-10-22 at 11.07.13 AM copy 6.png" alt=""><figcaption><p>Get the backend IP addresses of the WEKA cluster</p></figcaption></figure></div>
 
-<figure><img src="../.gitbook/assets/CDM_IPs.png" alt=""><figcaption><p>Backend IP address list: public (if assigned) or private</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/CDM_IPs.png" alt=""><figcaption><p>Backend IP address list: public (if assigned) or private</p></figcaption></figure></div>
 
 **Related topics**
 

@@ -51,7 +51,7 @@ In a dedicated backend configuration, user applications run on the WEKA clients,
 
 The VFS uses the WEKA POSIX driver to issue requests to the WEKA client on the host. The client communicates with the WEKA backend servers. The WEKA server Frontend, Compute, and Drive processes move data between the servers and clients in parallel.
 
-<figure><img src="../../.gitbook/assets/slurm_weka_standard_1 (2).png" alt=""><figcaption><p>Figure 1: WEKA deployed with dedicated backend servers and independent clients (conceptual diagram)</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/slurm_weka_standard_1 (2).png" alt=""><figcaption><p>Figure 1: WEKA deployed with dedicated backend servers and independent clients (conceptual diagram)</p></figcaption></figure></div>
 
 #### Converged configuration
 
@@ -59,7 +59,7 @@ In a converged configuration, each server participating in the cluster hosts use
 
 WEKA processes are allocated to designated cores on each server in the WEKA cluster through control groups. This demands careful consideration to guarantee sufficient CPUs and memory for both WEKA and user applications. For an in-depth understanding of WEKA architecture, see the [WEKA Architecture Technical Brief](https://www.weka.io/resources/technical-brief/weka-architecture-key-concepts/).
 
-<figure><img src="../../.gitbook/assets/slurm_weka_converged_2.png" alt=""><figcaption><p>Figure 2: WEKA deployed in a converged cluster (conceptual diagram).<br>The Frontend, Drive, Compute, and Management processes run on each server alongside user applications</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/slurm_weka_converged_2.png" alt=""><figcaption><p>Figure 2: WEKA deployed in a converged cluster (conceptual diagram).<br>The Frontend, Drive, Compute, and Management processes run on each server alongside user applications</p></figcaption></figure></div>
 
 #### WEKA client mount modes
 
@@ -83,7 +83,7 @@ Slurm[^2] is a robust open-source cluster management and job scheduling system t
 * Slurm database daemon (slurmdbd)
 * Slurmd daemon (slurmd)
 
-<figure><img src="../../.gitbook/assets/slurm_login_3 (1).png" alt=""><figcaption><p>Figure 3: Typical Slurm cluster consisting of a login server, controller, and several compute servers (conceptual diagram)</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/slurm_login_3 (1).png" alt=""><figcaption><p>Figure 3: Typical Slurm cluster consisting of a login server, controller, and several compute servers (conceptual diagram)</p></figcaption></figure></div>
 
 Typically, a Slurm cluster consists of one or more controller hosts that run the Slurm controller and Slurm database daemons. These are a set of compute nodes where users run their workloads and one or more login nodes used to access the cluster.
 
@@ -119,7 +119,7 @@ In either scenario, the Slurm login and compute nodes function as WEKA clients. 
 
 In the dedicated backend architecture, the WEKA filesystem is mounted on the login and compute servers, requiring a WEKA frontend process on login and compute processes for file access (Figure 4).
 
-<figure><img src="../../.gitbook/assets/slurm_weka_dedicated_backend_4 (1).png" alt=""><figcaption><p>Figure 4: Dedicated backend architecture for WEKA on a Slurm cluster (conceptual diagram)</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/slurm_weka_dedicated_backend_4 (1).png" alt=""><figcaption><p>Figure 4: Dedicated backend architecture for WEKA on a Slurm cluster (conceptual diagram)</p></figcaption></figure></div>
 
 Servers are provisioned to provide servers with compute, network, and storage resources to run the WEKA data platform.
 
@@ -131,7 +131,7 @@ In DPDK mode, at least one CPU (physical) core must be reserved for the WEKA fro
 
 * Specify a dedicated core in the mount options: `mount -o core=X …`\
   Where `X` is the specific core ID to reserve
-* Use non-dedicated cores: `mount -o num_cores=1 …` &#x20;
+* Use non-dedicated cores: `mount -o num_cores=1 …`
 
 Mounting a dedicated core is recommended for better file IO performance than non-dedicated cores.
 
@@ -143,7 +143,7 @@ The controller hosts the Slurm job scheduler, while the login and compute nodes 
 
 Relative to the dedicated backend architecture, the converged architecture requires additional compute and memory resources on the login and compute processes to support the drive, compute, and management processes. In converged deployments, the WEKA processes are typically allocated to specific cores using cgroups.
 
-<figure><img src="../../.gitbook/assets/slurm_converged_5.png" alt=""><figcaption><p>Figure 5: Converged architecture for WEKA on a Slurm cluster (conceptual diagram)</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/slurm_converged_5.png" alt=""><figcaption><p>Figure 5: Converged architecture for WEKA on a Slurm cluster (conceptual diagram)</p></figcaption></figure></div>
 
 ### What's next?
 
@@ -201,9 +201,9 @@ You can install Slurm using your package manager on RHEL and Debian-based Linux 
 
 Ensuring that the necessary packages are installed on both the controller and login instances is essential. The following are specific package requirements:
 
-* The controller instance requires packages that provide `slurmctld` and `slurmdbd`. \
+* The controller instance requires packages that provide `slurmctld` and `slurmdbd`.\
   (On Debian-based operating systems, these packages are `slurmctld` and `slurmdbd`.)
-* The login instance requires the Slurm client commands, such as `sinfo` and `squeue`. \
+* The login instance requires the Slurm client commands, such as `sinfo` and `squeue`.\
   (On Debian-based operating systems, these are provided by the `slurm-client` package.)
 
 Consider the following guidelines:
@@ -241,9 +241,9 @@ To enable a configless Slurm deployment, set `SlurmctldParameters=enable_configl
 
 Additionally, start the slurmd services with the `--conf-server host[:port]` flag to obtain Slurm configurations from slurmctld at `host[:port]`.
 
-In all strategies, the configuration files are stored in the same directory. A common choice is to use `/usr/local/etc/slurm` (this location can vary between systems).&#x20;
+In all strategies, the configuration files are stored in the same directory. A common choice is to use `/usr/local/etc/slurm` (this location can vary between systems).
 
-For non-standard locations, the slurmctld slurmd services can be launched with the `-f` flag to indicate the path to the slurm.conf file. Alternatively, if you build Slurm from the source, you can use the  [`--sysconfdir=DIR`](#user-content-fn-9)[^9]  option during the configuration stage of the build to set the default directory for the Slurm configuration files.
+For non-standard locations, the slurmctld slurmd services can be launched with the `-f` flag to indicate the path to the slurm.conf file. Alternatively, if you build Slurm from the source, you can use the [`--sysconfdir=DIR`](#user-content-fn-9)[^9] option during the configuration stage of the build to set the default directory for the Slurm configuration files.
 
 </details>
 
@@ -331,7 +331,7 @@ cpu cores : 24
 
 Continuing through the `/proc/cpuinfo` file we find a relationship between the sockets, cores, and processors that is summarized in Figure 6. Namely, the processor IDs are ordered from 0-23 on Socket 0, then 24-47 on Socket 1. Then, the second hyperthreads are numbered from 48-71 on Socket 0 and 72-95 on Socket 1.
 
-<figure><img src="../../.gitbook/assets/slurm_sockets_6.png" alt=""><figcaption><p>Figure 6: Example schematic of the socket, core, and vCPU layout on a dual-socket Intel Xeon system</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/slurm_sockets_6.png" alt=""><figcaption><p>Figure 6: Example schematic of the socket, core, and vCPU layout on a dual-socket Intel Xeon system</p></figcaption></figure></div>
 
 In this example, to reserve core 47, we see that this corresponds to vCPUs 47 and 95. In the slurm.conf file, we would then set `CpuSpecList=47,95`.
 

@@ -32,7 +32,7 @@ To support NFS file-locking, ensure the system meets the prerequisites outlined 
 2. On the left pane, select **NFS**.
 3. Select the **Settings** tab.
 
-<figure><img src="../../.gitbook/assets/wmng_NFS_Settings_tab.png" alt=""><figcaption><p>NFS Settings tab</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/wmng_NFS_Settings_tab.png" alt=""><figcaption><p>NFS Settings tab</p></figcaption></figure></div>
 
 4. In the Global Settings section, select **Update**, and do the following:
    * **Config FS**: Select the cluster-wide configuration filesystem that maintains the NFS and Kerberos configurations.
@@ -69,7 +69,7 @@ These ports are only relevant for NFSv3. The default value of 0 indicates using 
 
 5. Select **Save** to apply the settings.
 
-<figure><img src="../../.gitbook/assets/wmng_configure_default_global_settings.png" alt="" width="433"><figcaption><p>Configure global NFS settings dialog</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/wmng_configure_default_global_settings.png" alt="" width="433"><figcaption><p>Configure global NFS settings dialog</p></figcaption></figure></div>
 
 ## **Configure the NFS cluster level** <a href="#create-interface-groups" id="create-interface-groups"></a>
 
@@ -83,7 +83,7 @@ Configuring the NFS cluster level involves creating an interface group and assig
 2. On the left pane, select **NFS**.
 3. In the Configuration tab, select the **+** sign near the Interface Groups title.
 
-![Add an NFS interface group](../../.gitbook/assets/wmng_add_nfs_group_add.png)
+<div data-with-frame="true"><img src="../../.gitbook/assets/wmng_add_nfs_group_add.png" alt="Add an NFS interface group"></div>
 
 4. In the Create Interface Group dialog, set the following properties:
    * **Name**: A unique interface group name (maximum 11 characters).
@@ -91,7 +91,7 @@ Configuring the NFS cluster level involves creating an interface group and assig
    * **Subnet mask**: The subnet mask in CIDR (Classless Inter-Domain Routing) format. For example, a value of 16 equals 255.255.0.0.
 5. Select **Save**.
 
-![Create interface group dialog](../../.gitbook/assets/wmng_add_nfs_group_dialog.png)
+<div data-with-frame="true"><img src="../../.gitbook/assets/wmng_add_nfs_group_dialog.png" alt="Create interface group dialog" width="295"></div>
 
 ### Set interface group ports
 
@@ -110,11 +110,11 @@ Repeat this port setting process for each server participating in the NFS cluste
 
     Select **Save**.
 
-![Add port dialog](../../.gitbook/assets/wmng_add_nfs_group_ports_dialog.png)
+<div data-with-frame="true"><img src="../../.gitbook/assets/wmng_add_nfs_group_ports_dialog.png" alt="Add port dialog" width="285"></div>
 
-#### Example
+**Example**
 
-<figure><img src="../../.gitbook/assets/NFS_cluster_servers_example.png" alt=""><figcaption><p>Example: Three servers participate in the NFS cluster</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/NFS_cluster_servers_example.png" alt=""><figcaption><p>Example: Three servers participate in the NFS cluster</p></figcaption></figure></div>
 
 ### Remove an interface group port
 
@@ -125,7 +125,7 @@ You might need to remove an interface group due to a change in network configura
 1. In the Configuration tab, select the interface group.
 2. In the Group Ports table, select the three dots, and from the menu, select **Remove**.
 
-![Remove an interface group port](../../.gitbook/assets/wmng_add_nfs_group_ports_remove.png)
+<div align="center" data-with-frame="true"><img src="../../.gitbook/assets/wmng_add_nfs_group_ports_remove.png" alt="Remove an interface group port" width="563"></div>
 
 ### **Set interface group IPs**
 
@@ -140,7 +140,7 @@ Floating IPs are not supported in WEKA installations on Azure and GCP.
 3. In the Add Range IP dialog, set the relevant IP range.
 4. Select **Save**.
 
-![Add range IP dialog](../../.gitbook/assets/wmng_add_nfs_group_ips_dialog.png)
+<div data-with-frame="true"><img src="../../.gitbook/assets/wmng_add_nfs_group_ips_dialog.png" alt="Add range IP dialog" width="292"></div>
 
 ### Remove an interface group IP range
 
@@ -191,7 +191,7 @@ Configuring the NFS-Kerberos service integration automatically restarts the NFS 
    * **KDC Realm Admin Password**: The password of the administrative user who manages the KDC within a realm.
 4) Select **Save** to apply the changes.
 
-<figure><img src="../../.gitbook/assets/wmng_configure_Kerberos_over_AD.png" alt=""><figcaption><p>Configure Kerberos authentication over AD dialog</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/wmng_configure_Kerberos_over_AD.png" alt=""><figcaption><p>Configure Kerberos authentication over AD dialog</p></figcaption></figure></div>
 {% endtab %}
 
 {% tab title="Configure Kerberos service with MIT" %}
@@ -212,7 +212,7 @@ Configuring the NFS-Kerberos service integration automatically restarts the NFS 
    * **LDAP Port**: The port number on which the Lightweight Directory Access Protocol server listens.
 4. Select **Save** to apply the changes.
 
-<figure><img src="../../.gitbook/assets/wmng_configure_Kerberos_over_MIT.png" alt=""><figcaption><p>Configure Kerberos authentication over MIT dialog</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/wmng_configure_Kerberos_over_MIT.png" alt=""><figcaption><p>Configure Kerberos authentication over MIT dialog</p></figcaption></figure></div>
 {% endtab %}
 {% endtabs %}
 
@@ -258,7 +258,7 @@ Use this option to configure NFS to use Active Directory LDAP for ACLs when Kerb
    * **LDAP Admin Password:** The password for the administrative user.
 3. Select **Configure**.
 
-<figure><img src="../../.gitbook/assets/nfs-configure-ldap-service.png" alt=""><figcaption></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/nfs-configure-ldap-service.png" alt=""><figcaption></figcaption></figure></div>
 {% endtab %}
 
 {% tab title="Configure for OpenLDAP" %}
@@ -274,7 +274,7 @@ Use this option to configure NFS to use OpenLDAP.
    * **LDAP Port:** The port number the LDAP server listens on. Default: `389`
 3. Select **Configure**.
 
-<figure><img src="../../.gitbook/assets/nfs-configure-openldap-service.png" alt=""><figcaption></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/nfs-configure-openldap-service.png" alt=""><figcaption></figcaption></figure></div>
 {% endtab %}
 {% endtabs %}
 
@@ -288,12 +288,12 @@ Creating additional client groups helps in better organization, customization of
 
 1. In the Permissions tab, select the **+** sign near the Client Groups title.
 
-![Add a client group](../../.gitbook/assets/wmng_add_nfs_client_group_add.png)
+<div data-with-frame="true"><img src="../../.gitbook/assets/wmng_add_nfs_client_group_add.png" alt="Add a client group"></div>
 
 2. In the Create Client Group dialog, set the client group name.
 3. Select **Save**.
 
-![Create client group dialog](../../.gitbook/assets/wmng_add_nfs_client_group_dialog.png)
+<div data-with-frame="true"><img src="../../.gitbook/assets/wmng_add_nfs_client_group_dialog.png" alt="Create client group dialog" width="293"></div>
 
 ### Assign a DNS and IP to a client group
 
@@ -304,16 +304,16 @@ Assigning a DNS and IP to a client group facilitates network communication and r
 1. In the NFS configuration, select the **Permissions** tab.
 2. In the Permissions tab, select **Add DNS** for the relevant Client Group.
 
-![Manage client access groups](../../.gitbook/assets/wmng_add_nfs_client_group_dns-ip-buttons.png)
+<div data-with-frame="true"><img src="../../.gitbook/assets/wmng_add_nfs_client_group_dns-ip-buttons.png" alt="Manage client access groups"></div>
 
 3. In the Create Client Group DNS Rule dialog, set the DNS server name. Then, select **Save**.
 
-![Create client group DNS rule dialog](../../.gitbook/assets/wmng_add_nfs_client_group_dns_rule.png)
+<div data-with-frame="true"><img src="../../.gitbook/assets/wmng_add_nfs_client_group_dns_rule.png" alt="Create client group DNS rule dialog" width="294"></div>
 
 4. In the Permissions tab, select **Add IP** for the relevant Client Group.
 5. In the Create Client Group IP Rule dialog, set the IP address and bitmask. Then, select **Save**.
 
-![Create client group IP rule dialog](../../.gitbook/assets/wmng_add_nfs_client_group_ip_rule.png)
+<div data-with-frame="true"><img src="../../.gitbook/assets/wmng_add_nfs_client_group_ip_rule.png" alt="Create client group IP rule dialog" width="298"></div>
 
 ### Remove the DNS or IP of a client group
 
@@ -321,7 +321,7 @@ Assigning a DNS and IP to a client group facilitates network communication and r
 
 1. In the Permissions tab, select the **trash** symbol displayed next to the DNS or IP for the relevant Client Group.
 
-![Remove the DNS or IP of a client group](../../.gitbook/assets/wmng_add_nfs_group_ip_remove.png)
+<div data-with-frame="true"><img src="../../.gitbook/assets/wmng_add_nfs_group_ip_remove.png" alt="Remove the DNS or IP of a client group" width="279"></div>
 
 ### Create NFS client permission <a href="#create-nfs-client-permission" id="create-nfs-client-permission"></a>
 
@@ -337,7 +337,7 @@ If you create an NFS v4 client permission, verify that a global configuration fi
 
 1. In the Permissions table, select **+Create**.
 
-![Permissions table](../../.gitbook/assets/wmng_add_NFS_client_permissions.png)
+<div data-with-frame="true"><img src="../../.gitbook/assets/wmng_add_NFS_client_permissions.png" alt="Permissions table"></div>
 
 2. In the Create NFS Permission dialog, set the following properties:
    * **Client Group**: The client group to which the permissions are applied.
@@ -356,7 +356,7 @@ If you create an NFS v4 client permission, verify that a global configuration fi
    * **Anon. GID:** Anonymous group ID. Only relevant for Root and All user squashing.
 3. Select **Save**.
 
-![Create NFS permission](../../.gitbook/assets/wmng_create_nfs_permission.png)
+<div data-with-frame="true"><img src="../../.gitbook/assets/wmng_create_nfs_permission.png" alt="Create NFS permission"></div>
 
 ### Edit NFS client permission <a href="#edit-nfs-client-permission" id="edit-nfs-client-permission"></a>
 
@@ -366,7 +366,7 @@ You can edit the existing NFS permission settings for a client group. You can al
 
 1. In the Permissions table, select the three dots of the client group to edit, and select **Edit**.
 
-<figure><img src="../../.gitbook/assets/wmng_edit_nfs_permission.png" alt=""><figcaption><p>Edit a client group permissions</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/wmng_edit_nfs_permission.png" alt=""><figcaption><p>Edit a client group permissions</p></figcaption></figure></div>
 
 2. Set the relevant properties: Type, Priority, Supported Versions, Squash Root, Authentication Type, Anon. UID, and Anon. GID. Then, select **Save**.
 3. To move the priority of a client group setting to the top or bottom priority, select **Move to top priority** or **Move to bottom priority**.

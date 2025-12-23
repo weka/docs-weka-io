@@ -57,11 +57,11 @@ Select each tab in the specified order to explore the demonstrations.
 
 {% tabs %}
 {% tab title="1. Create an S3 cluster" %}
-Create an S3 cluster within the WEKA environment, specifying the servers to run the S3 protocol and establishing a logical cluster for exposing the S3 service.&#x20;
+Create an S3 cluster within the WEKA environment, specifying the servers to run the S3 protocol and establishing a logical cluster for exposing the S3 service.
 
 A predefined configuration filesystem (`.config_fs` in this demo) must exist to maintain the persisting cluster-wide protocol configurations.
 
-<figure><img src="../../.gitbook/assets/wmng_Create_S3_cluster.gif" alt=""><figcaption><p>Create an S3 cluster</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/wmng_Create_S3_cluster.gif" alt=""><figcaption><p>Create an S3 cluster</p></figcaption></figure></div>
 
 **Alternative CLI command**
 
@@ -79,7 +79,7 @@ weka s3 cluster create default .config_fs --all-servers
 {% tab title="2. Create an S3 bucket" %}
 Create of an S3 bucket, a fundamental container for storing and organizing objects within the WEKA S3 service.
 
-<figure><img src="../../.gitbook/assets/wmng_Create_S3_bucket.gif" alt=""><figcaption><p>Create an S3 bucket</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/wmng_Create_S3_bucket.gif" alt=""><figcaption><p>Create an S3 bucket</p></figcaption></figure></div>
 
 **Alternative CLI command**
 
@@ -99,7 +99,7 @@ Create a dedicated local user with S3 role and assign it with an S3 policy to fa
 
 The S3 local user name and password serve as the S3 access key and secret key, respectively for uploading and downloading objects from S3 buckets.
 
-<figure><img src="../../.gitbook/assets/wmng_create_s3_user.gif" alt=""><figcaption><p>Create a local S3 user</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/wmng_create_s3_user.gif" alt=""><figcaption><p>Create a local S3 user</p></figcaption></figure></div>
 
 **Alternative CLI commands**
 
@@ -120,7 +120,7 @@ You can implement either the self-signed certificate or a custom certificate. Th
 
 To apply your chosen certificate, download it to your client and place it in the designated folder for seamless integration.
 
-<figure><img src="../../.gitbook/assets/wmng_download_cert.gif" alt=""><figcaption></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/wmng_download_cert.gif" alt=""><figcaption></figcaption></figure></div>
 
 **Alternative CLI command**
 
@@ -130,13 +130,13 @@ weka security tls download my_path
 
 **Related topics**
 
-&#x20;[manage-the-tls-certificate-using-the-gui.md](../../security/tls-certificate-management/manage-the-tls-certificate-using-the-gui.md "mention")
+[manage-the-tls-certificate-using-the-gui.md](../../security/tls-certificate-management/manage-the-tls-certificate-using-the-gui.md "mention")
 
 [manage-the-tls-certificate-using-the-cli.md](../../security/tls-certificate-management/manage-the-tls-certificate-using-the-cli.md "mention")
 {% endtab %}
 
 {% tab title="5. Test the upload and download objects from S3 buckets" %}
-Once we have created an S3 cluster that can be accessed through a certain port (default: 9000),  a bucket, and an S3 user assigned with a policy, let's see how the client can upload and download objects from the S3 bucket.
+Once we have created an S3 cluster that can be accessed through a certain port (default: 9000), a bucket, and an S3 user assigned with a policy, let's see how the client can upload and download objects from the S3 bucket.
 
 Users can use any client application that can access the bucket through the WEKA cluster URL and port.
 
@@ -146,7 +146,7 @@ In the code snippet named `s3.py`, we set the following parameters in the `S3 = 
 
 * `endpoint_url and port`: The URL and port of the WEKA S3 cluster.
 * `aws_access_key_id`: The S3 local user name.
-* `aws_secret_access_key`:  The S3 local user password.
+* `aws_secret_access_key`: The S3 local user password.
 
 {% code overflow="wrap" %}
 ```python

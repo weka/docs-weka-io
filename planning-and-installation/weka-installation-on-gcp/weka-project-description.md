@@ -2,7 +2,7 @@
 
 The WEKA project uses internal GCP resources. A basic WEKA project includes a cluster with multiple virtual private clouds (VPCs), virtual machines (VMs), a load balancer, DNS, cloud storage, a secret manager, and other components for managing cluster resizing. Peering between all virtual networks enables functions to run across them, with each VPC connected to every other VPC in a full mesh.
 
-<figure><img src="../../.gitbook/assets/GCP_puplic_network.png" alt="" width="563"><figcaption><p>WEKA project on the GCP</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/GCP_puplic_network.png" alt="" width="563"><figcaption><p>WEKA project on the GCP</p></figcaption></figure></div>
 
 ### Resize cloud function operation
 

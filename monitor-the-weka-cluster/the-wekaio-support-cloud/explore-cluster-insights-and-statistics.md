@@ -8,13 +8,13 @@ The Local WEKA Home interface provides comprehensive multi-cluster monitoring ac
 
 To view the cluster overview, select it from the list, or select the 3-dot icon on the right and select **Open in new tab**.
 
-<figure><img src="../../.gitbook/assets/clusters-page (1).png" alt=""><figcaption><p>Clusters page</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/clusters-page (1).png" alt=""><figcaption><p>Clusters page</p></figcaption></figure></div>
 
 **Clusters graphs view**
 
 Toggle between List and Graph views using the Graphs View selector. The Graph view presents analytical visualizations of cluster distribution by version, protocol usage, installation location, network link layer (IPv4/IPv6), OBS bucket type, and reporting status (WEKA Home-connected vs. dark site installations).
 
-<figure><img src="../../.gitbook/assets/lwh_clusters_graphs_view.png" alt=""><figcaption><p><strong>Clusters graphs view</strong></p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/lwh_clusters_graphs_view.png" alt=""><figcaption><p><strong>Clusters graphs view</strong></p></figcaption></figure></div>
 
 ### Filter clusters list
 
@@ -22,19 +22,19 @@ You can filter and sort the clusters based on a range of criteria, including the
 
 For more advanced filtering options, select the **Advanced filters** icon.
 
-<figure><img src="../../.gitbook/assets/clusters-advanced-filters.png" alt=""><figcaption><p>Clusters page: Advance filters</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/clusters-advanced-filters.png" alt=""><figcaption><p>Clusters page: Advance filters</p></figcaption></figure></div>
 
 ### Download clusters report
 
 To download a report of all your clusters, select the **Download** icon.
 
-<figure><img src="../../.gitbook/assets/clusters-download-report.png" alt="" width="563"><figcaption><p>Download clusters report</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/clusters-download-report.png" alt="" width="563"><figcaption><p>Download clusters report</p></figcaption></figure></div>
 
 ## Overview
 
 The Overview page provides a consolidated dashboard of critical cluster-wide metrics and operational status. This interface displays multiple monitoring panels that facilitate rapid assessment of cluster health, configuration parameters, active alerts, system events, and performance metrics.
 
-<figure><img src="../../.gitbook/assets/cluster-overview-page.png" alt=""><figcaption><p>Cluster overview</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/cluster-overview-page.png" alt=""><figcaption><p>Cluster overview</p></figcaption></figure></div>
 
 #### Navigation
 
@@ -55,7 +55,7 @@ The Alerts panel displays severity-categorized cluster alerts with interactive d
 
 The Hardware panel provides visibility into physical and logical cluster components through the Backends and Clients tabs, displaying servers, containers, processes, drives, OBS, and link layer with relevant operational metrics. Each component supports drill-down functionality for detailed diagnostics.
 
-<figure><img src="../../.gitbook/assets/LWH_overview_panels.gif" alt=""><figcaption><p>Panel functionality</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/LWH_overview_panels.gif" alt=""><figcaption><p>Panel functionality</p></figcaption></figure></div>
 
 Additional panels provide similar drill-down functionality for their respective domains, following the same interaction pattern demonstrated in the Alerts and Hardware panels.
 
@@ -63,7 +63,7 @@ Additional panels provide similar drill-down functionality for their respective 
 
 The Events page displays the offline event data for the cluster and associated detail with each event. You can use filters to refine your search according the event severity, category, process ID, and more.
 
-<figure><img src="../../.gitbook/assets/cluster-event-view.png" alt=""><figcaption><p>Events page</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/cluster-event-view.png" alt=""><figcaption><p>Events page</p></figcaption></figure></div>
 
 ## Filesystems
 
@@ -71,7 +71,7 @@ The Filesystems page provides comprehensive information about the configured fil
 
 You have the flexibility to reorganize the display by selecting any column in the tables, and you can use filters to refine your search. For more in-depth information in JSON format, select a specific row.
 
-<figure><img src="../../.gitbook/assets/cluster-filesystems-view.png" alt=""><figcaption><p>Filesystems view with in-depth information in JSON format</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/cluster-filesystems-view.png" alt=""><figcaption><p>Filesystems view with in-depth information in JSON format</p></figcaption></figure></div>
 
 ## Topology
 
@@ -83,23 +83,23 @@ Select each tab to explore the topology screens.
 
 {% tabs %}
 {% tab title="Servers" %}
-<figure><img src="../../.gitbook/assets/cluster-topology-servers-view (1).png" alt=""><figcaption></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/cluster-topology-servers-view (1).png" alt=""><figcaption></figcaption></figure></div>
 {% endtab %}
 
 {% tab title="Containers" %}
-<figure><img src="../../.gitbook/assets/cluster-topology-containers (1).png" alt=""><figcaption></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/cluster-topology-containers (1).png" alt=""><figcaption></figcaption></figure></div>
 {% endtab %}
 
 {% tab title="Processes" %}
-<figure><img src="../../.gitbook/assets/cluster-topology-processes.png" alt=""><figcaption></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/cluster-topology-processes.png" alt=""><figcaption></figcaption></figure></div>
 {% endtab %}
 
 {% tab title="Drives" %}
-<figure><img src="../../.gitbook/assets/cluster-topology-drives.png" alt=""><figcaption></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/cluster-topology-drives.png" alt=""><figcaption></figcaption></figure></div>
 {% endtab %}
 
 {% tab title="Network Devices" %}
-<figure><img src="../../.gitbook/assets/cluster-topology-net-devices.png" alt=""><figcaption></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/cluster-topology-net-devices.png" alt=""><figcaption></figcaption></figure></div>
 {% endtab %}
 {% endtabs %}
 
@@ -113,15 +113,15 @@ Select each tab to explore the protocol screens.
 
 {% tabs %}
 {% tab title="NFS" %}
-<figure><img src="../../.gitbook/assets/cluster-protocols-nfs.png" alt=""><figcaption></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/cluster-protocols-nfs.png" alt=""><figcaption></figcaption></figure></div>
 {% endtab %}
 
 {% tab title="S3" %}
-<figure><img src="../../.gitbook/assets/cluster-protocols-s3.png" alt=""><figcaption></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/cluster-protocols-s3.png" alt=""><figcaption></figcaption></figure></div>
 {% endtab %}
 
 {% tab title="SMB" %}
-<figure><img src="../../.gitbook/assets/cluster-protocols-smb.png" alt=""><figcaption></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/cluster-protocols-smb.png" alt=""><figcaption></figcaption></figure></div>
 {% endtab %}
 {% endtabs %}
 
@@ -129,7 +129,7 @@ Select each tab to explore the protocol screens.
 
 The Settings page displays a variety of panels containing information such as traces, container uptimes, process uptimes, overrides, and more.
 
-<figure><img src="../../.gitbook/assets/cluster-settings.png" alt=""><figcaption><p>Setting page</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/cluster-settings.png" alt=""><figcaption><p>Setting page</p></figcaption></figure></div>
 
 ## Diagnostics
 
@@ -139,7 +139,7 @@ To access the file content, select the respective file.
 
 Additionally, you have the option to directly upload a diagnostics tar file. You can effortlessly locate specific information by using the search feature and its additional options.
 
-<figure><img src="../../.gitbook/assets/cluster-diagnostics.png" alt=""><figcaption><p>Diagnostics view</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/cluster-diagnostics.png" alt=""><figcaption><p>Diagnostics view</p></figcaption></figure></div>
 
 ## Admin
 
@@ -149,7 +149,7 @@ See [enforce-security-and-compliance.md](enforce-security-and-compliance.md "men
 
 The Analytics page displays the cluster configuration (similar to the Topology view) in JSON format. To locate specific information, use the search feature and its options. If you need to copy the content, click the copy icon located next to the first row.
 
-<figure><img src="../../.gitbook/assets/cluster-analytics.png" alt=""><figcaption><p>Analytics view</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/cluster-analytics.png" alt=""><figcaption><p>Analytics view</p></figcaption></figure></div>
 
 ## Tasks
 
@@ -159,7 +159,7 @@ You can further refine your task list and customize the display order of informa
 
 To access detailed information about a specific task, select its row to view it in JSON format.
 
-<figure><img src="../../.gitbook/assets/cluster-tasks.png" alt=""><figcaption><p>Tasks view</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/cluster-tasks.png" alt=""><figcaption><p>Tasks view</p></figcaption></figure></div>
 
 ## Snapshot Locators
 
@@ -173,7 +173,7 @@ The page presents the following details in a table format for each locator:
 * OBS Site: The object store site where the snapshot is stored.
 * Event Time: The timestamp of when the snapshot was created or modified.
 
-<figure><img src="../../.gitbook/assets/LWH_Snapshot_Locators.png" alt=""><figcaption><p>Snapshot Locators</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/LWH_Snapshot_Locators.png" alt=""><figcaption><p>Snapshot Locators</p></figcaption></figure></div>
 
 ## Download Usage Report and Analytics
 
@@ -222,4 +222,4 @@ The following properties are affected by anonymization:
 The anonymization option is supported with WEKA clusters of version 3.14.2 and above.
 {% endhint %}
 
-<figure><img src="../../.gitbook/assets/download_usage_analytics_reports (1).png" alt=""><figcaption><p>Download Usage Report and Analytics</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/download_usage_analytics_reports (1).png" alt=""><figcaption><p>Download Usage Report and Analytics</p></figcaption></figure></div>

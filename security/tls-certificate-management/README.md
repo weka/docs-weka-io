@@ -17,9 +17,7 @@ The system supports TLS 1.2 and higher, enforcing encrypted communication with a
 
 To establish trust with external services, such as a Key Management System (KMS), the system relies on well-known CA certificates. If a custom CA certificate is required for WEKA servers to authenticate external services, manually configure the custom CA certificate on the WEKA servers.
 
-<figure><img src="../../.gitbook/assets/Certificate_topolgy.png" alt="" width="563"><figcaption><p>TLS implementation</p></figcaption></figure>
-
-
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/Certificate_topolgy.png" alt="" width="563"><figcaption><p>TLS implementation</p></figcaption></figure></div>
 
 **Related topics**
 

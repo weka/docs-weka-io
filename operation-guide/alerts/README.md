@@ -12,14 +12,4 @@ The system provides the alert name, description, and corrective action for each 
 
 Usually, an alert is introduced alongside an equivalent event. This can help identify the point when the problematic state occurred and its root cause.
 
-![Example: active alerts page](<../../.gitbook/assets/wmng_alerts_overview (1).png>)
-
-
-
-**Related topics**
-
-[alerts.md](alerts.md "mention")
-
-[alerts-1.md](alerts-1.md "mention")
-
-[list-of-alerts-and-corrective-actions.md](list-of-alerts-and-corrective-actions.md "mention")
+<div data-with-frame="true"><img src="../../.gitbook/assets/wmng_alerts_overview (1).png" alt="Example: active alerts page"></div>

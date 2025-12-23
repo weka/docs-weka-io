@@ -12,11 +12,11 @@ You can access the REST API using one of the following methods:
   ![](../.gitbook/assets/wmng_access_rest_api.png)
 *   **WEKA static API:** Browse to [api.docs.weka.io](https://api.docs.weka.io/) and select the required REST API version from the definition selector. You can also generate client code by using the OpenAPI client generator with the corresponding .json definition file.<br>
 
-    <figure><img src="../.gitbook/assets/static_api_docs.png" alt=""><figcaption></figcaption></figure>
+    <div data-with-frame="true"><figure><img src="../.gitbook/assets/static_api_docs.png" alt=""><figcaption></figcaption></figure></div>
 
 ## Explore the REST API through the GUI
 
-<figure><img src="../.gitbook/assets/Get_started_with_REST_API.gif" alt=""><figcaption><p>Explore the REST API through the GUI</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/Get_started_with_REST_API.gif" alt=""><figcaption><p>Explore the REST API through the GUI</p></figcaption></figure></div>
 
 ## Obtain an access token
 
@@ -25,7 +25,7 @@ To use the WEKA REST API, provide an access or refresh token.
 You can generate an access or refresh for the REST API usage through the CLI or the GUI.\
 See [obtain-authentication-tokens.md](../security/obtain-authentication-tokens.md "mention").
 
-You can also call the login API to obtain access or refresh tokens through the API, providing it with a `username` and `password`.&#x20;
+You can also call the login API to obtain access or refresh tokens through the API, providing it with a `username` and `password`.
 
 If you already obtained a refresh token, you can use the `login/refresh` API to refresh the access token.
 
@@ -109,8 +109,6 @@ print(response.text)
 
 ```
 {% endcode %}
-
-
 
 **Related topics**
 

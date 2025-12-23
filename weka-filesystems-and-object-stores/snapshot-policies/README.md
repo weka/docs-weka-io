@@ -25,7 +25,7 @@ Administrators of the root organization only can configure policies to create ho
 
 The example below demonstrates how to configure a policy using the GUI. The policy schedules a snapshot every Saturday and uploads it to a local object store. Alternatively, you can use CLI commands to achieve the same result.
 
-<figure><img src="../../.gitbook/assets/snapshots-policies-overview.gif" alt=""><figcaption><p>Create a snapshot policy</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/snapshots-policies-overview.gif" alt=""><figcaption><p>Create a snapshot policy</p></figcaption></figure></div>
 
 ## General guidelines and considerations
 
@@ -42,9 +42,9 @@ The example below demonstrates how to configure a policy using the GUI. The poli
   * Consolidate policies wherever possible to reduce complexity and duplication.
 * **Monitor object store connectivity:**
   * Ensure that each filesystem is properly connected to a local or remote object store to enable seamless assignment to a snapshot policy.
-*   **Multiple schedules overlap:**&#x20;
+*   **Multiple schedules overlap:**
 
-    * When multiple schedules overlap on the same filesystem, only one snapshot is taken, following this priority:&#x20;
+    * When multiple schedules overlap on the same filesystem, only one snapshot is taken, following this priority:
       1. **Monthly** (highest priority)
       2. **Weekly**
       3. **Daily**
@@ -73,8 +73,6 @@ The example below demonstrates how to configure a policy using the GUI. The poli
 {% hint style="info" %}
 The Snapshot Policies feature replaces the external SnapTool, which will be deprecated in a future release.
 {% endhint %}
-
-
 
 **Related topics**
 

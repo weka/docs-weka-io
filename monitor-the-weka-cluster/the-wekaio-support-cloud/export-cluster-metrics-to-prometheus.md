@@ -77,7 +77,7 @@ type: total, unprovisioned, unavailable, hotSpare
 
 </details>
 
-<figure><img src="../../.gitbook/assets/Cluster_metrics_sync_with_Prometheus.png" alt=""><figcaption><p>Cluster metrics sync with Prometheus</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/Cluster_metrics_sync_with_Prometheus.png" alt=""><figcaption><p>Cluster metrics sync with Prometheus</p></figcaption></figure></div>
 
 ## Export Prometheus metrics from CWH
 
@@ -98,7 +98,7 @@ To export Prometheus metrics from CWH, implement the Prometheus API call within 
 
     The command returns Prometheus-formatted metrics cluster information.
 3. **Import the metrics into Prometheus:**
-   1. Configure Prometheus to import the exported metrics.&#x20;
+   1. Configure Prometheus to import the exported metrics.
    2. Use the Prometheus UI to visualize and monitor the metrics.
 
 {% hint style="info" %}

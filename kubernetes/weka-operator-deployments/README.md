@@ -37,7 +37,7 @@ The WEKA Operator backend deployment integrates various components within a Kube
   * **Drivers Builder**: Compiles drivers for specific WEKA versions and kernel targets, uploading them to the Distribution Service. Multiple builders can run concurrently to support the same repository.
   * **Drivers Loader**: Automatically detects missing drivers, retrieves them from the Distribution Service, and loads them using `modprobe`.
 
-<figure><img src="../../.gitbook/assets/WEKA_operator_backend_deploy.png" alt="" width="560"><figcaption><p>WEKA Operator backend deployment</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/WEKA_operator_backend_deploy.png" alt="" width="560"><figcaption><p>WEKA Operator backend deployment</p></figcaption></figure></div>
 
 ### WEKA Operator client deployment overview
 
@@ -56,7 +56,7 @@ The WEKA Operator client deployment uses the WekaClient custom resource to manag
     * **Co-located cluster requirement:** This integrated CSI deployment is only supported when the WEKA cluster and the WEKA clients reside within the same Kubernetes cluster. This is configured by referencing the WEKA cluster in the `targetCluster` field of the WekaClient CR.
 * **High availability**: The WEKA containers act as a persistent layer, enabling each pod to be safely recreated as needed. This supports high availability by ensuring continuous service even if individual pods are restarted or moved.
 
-<figure><img src="../../.gitbook/assets/WEKA_operator_client_deploy.png" alt="" width="563"><figcaption><p>WEKA Operator client deployment</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/WEKA_operator_client_deploy.png" alt="" width="563"><figcaption><p>WEKA Operator client deployment</p></figcaption></figure></div>
 
 #### WEKA Operator client-only deployment
 
@@ -212,7 +212,7 @@ kubectl apply -f weka-operator/crds
 ```
 {% endcode %}
 
-2.  **Install the WEKA Operator:** Deploy the WEKA Operator to the Kubernetes cluster. Specify the namespace, image version, and pull secret to enable WEKA’s resources. Replace the version placeholder (WEKA\_OPERATOR\_VERSION) with the actual value.&#x20;
+2.  **Install the WEKA Operator:** Deploy the WEKA Operator to the Kubernetes cluster. Specify the namespace, image version, and pull secret to enable WEKA’s resources. Replace the version placeholder (WEKA\_OPERATOR\_VERSION) with the actual value.
 
     To install WEKA Operator with the CSI plugin (from `v1.7.0`) run the following command:
 
@@ -266,7 +266,7 @@ The WEKA operator supports driver distribution deployment using the WEKA policy.
 * Core configurations
 * Container name (spec.name)
 
-#### Example 1: Minimal policy for drivers distribution (typical)
+**Example 1: Minimal policy for drivers distribution (typical)**
 
 ```yaml
 apiVersion: weka.weka.io/v1alpha1
@@ -293,7 +293,7 @@ You can use the following attributers if needed in addition to to the minimal po
 * `interval`: Defines how often to reconcile the policy.
 * `signDrivesPayload`: Configures parameters to scan and sign drives for WEKA backend containers.
 
-#### Example 2: Manual deployment of WEKA drivers distribution and builder containers
+**Example 2: Manual deployment of WEKA drivers distribution and builder containers**
 
 ```yaml
 apiVersion: weka.weka.io/v1alpha1
@@ -364,7 +364,7 @@ spec:
     preRunScript: "apt-get update && apt-get install -y gcc-12"
 ```
 
-#### Example 3: Example: WekaPolicy for enabling local drivers distribution
+**Example 3: Example: WekaPolicy for enabling local drivers distribution**
 
 {% code overflow="wrap" %}
 ```yaml
@@ -409,8 +409,6 @@ spec:
         apt-get update && apt-get install -y gcc-12
 ```
 {% endcode %}
-
-
 
 </details>
 
@@ -699,7 +697,7 @@ kubectl apply -f secret.yaml
 The WekaClient CR deploys WekaContainers across designated Kubernetes nodes, similar to a DaemonSet but without automatic pod cleanup.
 
 **WekaClient specification (reference)**\
-Key configurable fields in the `WekaClientSpec`:&#x20;
+Key configurable fields in the `WekaClientSpec`:
 
 ```go
 type WekaClientSpec struct {
@@ -899,7 +897,7 @@ After deploying the WekaCluster and WekaClient CRs:
 2. After deploying the `WekaCluster` and `WekaClient` Custom Resources (CRs), perform one of the following steps based on your WEKA Operator version.
    *   **For WEKA Operator v1.7.0 and newer:**
 
-       With newer WEKA Operator versions, the CSI plugin, necessary secrets, and a default `StorageClass` are configured automatically.&#x20;
+       With newer WEKA Operator versions, the CSI plugin, necessary secrets, and a default `StorageClass` are configured automatically.
 
        * **StorageClass naming:** A `StorageClass` is automatically created using the pattern `weka-<groupName>-<fsName>`. Any non-standard mount options will be reflected in the name (e.g., `weka-<groupName>-<fsName>-forcedirect`).
        * **Disabling auto-creation:** To prevent the automatic creation of a `StorageClass`, you can set `csi.storageClassCreationDisabled: true` in your Helm values or operator configuration.
@@ -1048,13 +1046,13 @@ Describe the pod to identify the scheduling issue (using Kubernetes native repor
 
 If the pod is blocked on `weka.io/drives`, it indicates that the operator was unable to allocate the required drives for the corresponding WekaContainer. This issue may occur if the user has requested more drives than are available on the node or if there are too many `driveContainers` already running.
 
-Ensure the  drives are signed and the number of drives corresponds to the requested in the spec of the WekaCluster.
+Ensure the drives are signed and the number of drives corresponds to the requested in the spec of the WekaCluster.
 
 If there’s an image pull failure, verify your `imagePullSecret`. Each customer must have a unique robot secret for [quay.io](http://quay.io).
 
 ### Pod in “wekafsio driver not found” loop
 
-Check the logs for this message and see  for further steps.
+Check the logs for this message and see for further steps.
 
 ### CSI not functioning
 

@@ -12,7 +12,7 @@ As data security becomes increasingly critical, WEKA provides a comprehensive se
 
 Learn about the supported security features and recommended configurations to protect sensitive data, comply with industry regulations, and reduce the risk of unauthorized access. Implementing these measures makes secure deployment and operation both straightforward and effective.
 
-<figure><img src="../.gitbook/assets/weka_security_overview.png" alt=""><figcaption><p>WEKA security overview</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/weka_security_overview.png" alt=""><figcaption><p>WEKA security overview</p></figcaption></figure></div>
 
 ***
 
@@ -138,7 +138,7 @@ Access Control List (ACL) is a list of entries that specifies which users or gro
 
 The WEKA platform supports ACLs across SMB, POSIX, and NFS, offering protocol-specific permission models and a hybrid flavor for versatile multi-protocol access.
 
-<figure><img src="../.gitbook/assets/acl.png" alt="" width="375"><figcaption></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/acl.png" alt="" width="375"><figcaption></figcaption></figure></div>
 
 **SMB ACL flavors**
 

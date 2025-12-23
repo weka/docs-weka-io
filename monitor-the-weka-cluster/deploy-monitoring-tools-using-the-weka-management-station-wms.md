@@ -10,7 +10,7 @@ The WEKA Management Station (WMS) is an installation kit similar to an OS instal
 
 The WMS can also install a WEKA cluster by deploying the WEKA Software Appliance (WSA) package on bare metal servers.
 
-<figure><img src="../.gitbook/assets/WMS_deployment.png" alt=""><figcaption><p>WEKA Management Station deployment</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/WMS_deployment.png" alt=""><figcaption><p>WEKA Management Station deployment</p></figcaption></figure></div>
 
 See the related topics to learn about the tools installed with the WMS.
 
@@ -108,7 +108,7 @@ Once you boot the server, the WEKA Management Station installs the WEKA OS (Rock
 
 Depending on network speed, this can take about 10-60 mins (or more) per server.
 
-<figure><img src="../.gitbook/assets/WMS_install_1.png" alt="" width="375"><figcaption><p>WMS installation progress</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/WMS_install_1.png" alt="" width="375"><figcaption><p>WMS installation progress</p></figcaption></figure></div>
 
 ### Configure the WMS
 
@@ -137,12 +137,12 @@ Change the port from 9090 to 8501, which is the WMS Admin port.
 2. Browse to the WMS Admin UI using the following URL:\
    `http://<WMS-hostname-or-ip>:8501`
 
-<figure><img src="../.gitbook/assets/wms_0_login.png" alt="" width="529"><figcaption><p>WMS Landing Page: Login</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/wms_0_login.png" alt="" width="529"><figcaption><p>WMS Landing Page: Login</p></figcaption></figure></div>
 
 3. If you have created a local username dedicated to WMS, as recommended, enter its credentials. Otherwise, enter the default username and password _admin_/_admin_. Then, select **Login**.\
    The Landing Page appears.
 
-<figure><img src="../.gitbook/assets/wms_1_landing_page.png" alt=""><figcaption><p>WMS Landing Page</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/wms_1_landing_page.png" alt=""><figcaption><p>WMS Landing Page</p></figcaption></figure></div>
 
 ### Change password
 
@@ -153,7 +153,7 @@ The default password is _admin_. It is recommended to change it for security rea
 1. From the left pane, select **Change Password**.
 2. Provide your current password, choose a new password, confirm the new password, and click **Reset**.
 
-<figure><img src="../.gitbook/assets/wms_2_change_password.png" alt="" width="563"><figcaption><p>Change Password</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/wms_2_change_password.png" alt="" width="563"><figcaption><p>Change Password</p></figcaption></figure></div>
 
 ### Configure the email notifications
 
@@ -176,7 +176,7 @@ Set up email notifications by configuring the SMTP Relay to enable WMS for sendi
    * **Allow Insecure TLS with SMTP Relay:** Enable TLS for an SMTP Relay with a self-signed certificate.
 3. Select **Save**.
 
-<figure><img src="../.gitbook/assets/wms_3_email_notification_settings.png" alt=""><figcaption><p>WMS Email Notification Settings</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/wms_3_email_notification_settings.png" alt=""><figcaption><p>WMS Email Notification Settings</p></figcaption></figure></div>
 
 ### Install and configure the LWH
 
@@ -192,18 +192,18 @@ Set up email notifications by configuring the SMTP Relay to enable WMS for sendi
    * **Enable email notifications (configure in the Email Notification Setting page):** Activate email notifications and set up your email server configurations in the Email Notification Settings page.
    * **Enable forwarding data to Cloud WEKA Home:** Activate this feature to send data to Cloud WEKA Home. Internet connectivity to api.home.weka.io is required for this functionality. The default setting is activated.
 
-<figure><img src="../.gitbook/assets/wms_5_configure_lwh.png" alt=""><figcaption><p>Local WEKA Home configuration (post Installation example)</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/wms_5_configure_lwh.png" alt=""><figcaption><p>Local WEKA Home configuration (post Installation example)</p></figcaption></figure></div>
 
 3. Select **Save**.\
    The WMS saves the configuration and installs the Minikube and LWH. This process can take several minutes. When the process completes, the following appears:
 
-<figure><img src="../.gitbook/assets/WMS_LWH_Minikube_installation_complete.png" alt="" width="563"><figcaption><p>LWH installation is complete</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/WMS_LWH_Minikube_installation_complete.png" alt="" width="563"><figcaption><p>LWH installation is complete</p></figcaption></figure></div>
 
 4. Retrieve the LWH Admin and Grafana passwords as follows:
    * Select **Get Admin Password**. The password appears below the button.
    * Select **Get Grafana Password**. The password appears below the button. This password only applies to the Grafana instance within LWH (not related to the Grafana instance of the WEKAmon).
 
-<figure><img src="../.gitbook/assets/WMS_GetAdminPassword.png" alt="" width="375"><figcaption><p>Admin password</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/WMS_GetAdminPassword.png" alt="" width="375"><figcaption><p>Admin password</p></figcaption></figure></div>
 
 4. Register the cluster with the LWH.
    * Choose one of the backend servers in your cluster to run the command.
@@ -247,7 +247,7 @@ The WMS can have multiple IP interfaces, such as when installed as a jump host w
    When prompted for a password, enter the Admin password retrieved in the previous steps.\
    The **LWH Cluster Overview** page opens on a new tab.
 
-<figure><img src="../.gitbook/assets/WMS_open_LWH.jpg" alt="" width="563"><figcaption><p>Open Local WEKA Home in a new tab</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/WMS_open_LWH.jpg" alt="" width="563"><figcaption><p>Open Local WEKA Home in a new tab</p></figcaption></figure></div>
 
 {% hint style="info" %}
 **Reconfiguring LWH:** If required, return to the LWH configuration page, update the configuration, and select **Save** again. The LWH configuration will be updated and restarted.
@@ -259,7 +259,7 @@ The WMS can have multiple IP interfaces, such as when installed as a jump host w
 
 1. From the left pane, select **Configure WEKAmon**.
 
-<figure><img src="../.gitbook/assets/wms_6_configurae_wekamon.png" alt=""><figcaption><p>WEKAmon Services Configuration</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/wms_6_configurae_wekamon.png" alt=""><figcaption><p>WEKAmon Services Configuration</p></figcaption></figure></div>
 
 2. Select the services you want to enable. Possible options:
    * **Enable Metrics Exporter & Grafana:** Select to activate metrics exporter and Grafana integration to visualize and analyze performance metrics seamlessly.
@@ -282,7 +282,7 @@ If DNS does not have the hostnames of the cluster, do one of the following:
 
 Once the WMS successfully logs in to the cluster, the WEKAmon installation begins. When the WEKAmon installation is completed, you can open it from the WMS Landing Page.
 
-<figure><img src="../.gitbook/assets/WMS_WEKAmon_install_completes.png" alt="" width="375"><figcaption><p>WEKAmon installation completes</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/WMS_WEKAmon_install_completes.png" alt="" width="375"><figcaption><p>WEKAmon installation completes</p></figcaption></figure></div>
 
 4. Log in to **Grafana**.\
    On the Landing Page, select **Grafana**.\
@@ -296,7 +296,7 @@ If the WEKA cluster servers are not resolvable with a DNS, resolve the server na
 
 The WMS provides a simple text editor to facilitate editing the `/etc/hosts` file.
 
-<figure><img src="../.gitbook/assets/wms_4_edit_hosts_file.png" alt=""><figcaption><p>Edit /etc/hosts</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/wms_4_edit_hosts_file.png" alt=""><figcaption><p>Edit /etc/hosts</p></figcaption></figure></div>
 
 **Procedure**
 
@@ -315,7 +315,7 @@ Snaptool is pre-installed in the `/opt/snaptool` directory and includes all the 
    Snaptool shares the same cluster login information as WEKAmon and automatically detects and re-loads its configuration when any changes are made.
 3. Select **Save**.
 
-<figure><img src="../.gitbook/assets/wms_7_snaptool_configuration.png" alt=""><figcaption><p>Snaptool Configuration</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/wms_7_snaptool_configuration.png" alt=""><figcaption><p>Snaptool Configuration</p></figcaption></figure></div>
 
 ### Download diagnostics logs
 
@@ -327,8 +327,8 @@ If errors occur during the WMS installation, download the diagnostics logs and s
 2. Select **Gather Logs** to collect the logs.
 3. Once finished, select **Download Logs** to save a local copy of the diagnostics tarball on your workstation.
 
-<figure><img src="../.gitbook/assets/wms_8_download_logs.png" alt=""><figcaption><p>Download Logs</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/wms_8_download_logs.png" alt=""><figcaption><p>Download Logs</p></figcaption></figure></div>
 
 4. Share the downloaded files with the Customer Success Team.
 
-<figure><img src="../.gitbook/assets/wms_9_downloaded_log_file_example.png" alt="" width="259"><figcaption><p>Downloaded logs example</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/wms_9_downloaded_log_file_example.png" alt="" width="259"><figcaption><p>Downloaded logs example</p></figcaption></figure></div>

@@ -54,7 +54,7 @@ A detailed site requirements document will be provided before installation, whic
 2. Connect the system to the electrical outlet.
 3. Power on the system.
 
-<figure><img src="../.gitbook/assets/wekapod_cabling_diagram.png" alt=""><figcaption><p>Connections diagram example of a WEKApod cluster with 8 servers</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/wekapod_cabling_diagram.png" alt=""><figcaption><p>Connections diagram example of a WEKApod cluster with 8 servers</p></figcaption></figure></div>
 
 ### Configure the iDRAC
 
@@ -71,7 +71,7 @@ The pre-configured IP address of the iDRAC/BMC interfaces of the backend servers
 1. Connect a crash cart (KVM) to the server.
 2. Power on or reboot the server.
 
-<figure><img src="../.gitbook/assets/idrac_1.png" alt="" width="563"><figcaption></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/idrac_1.png" alt="" width="563"><figcaption></figcaption></figure></div>
 
 3. Press **F2** when prompted to enter the **System Setup**.
 
@@ -79,23 +79,23 @@ The pre-configured IP address of the iDRAC/BMC interfaces of the backend servers
 Alternatively, you can configure these settings using the **Lifecycle Controller** (press **F10** during boot).
 {% endhint %}
 
-<figure><img src="../.gitbook/assets/idrac_2.png" alt="" width="563"><figcaption></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/idrac_2.png" alt="" width="563"><figcaption></figcaption></figure></div>
 
 4. Navigate to **Network** settings.
 
-<figure><img src="../.gitbook/assets/idrac_3.png" alt=""><figcaption></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/idrac_3.png" alt=""><figcaption></figcaption></figure></div>
 
 5. In **NETWORK SETTINGS**, ensure the NIC is enabled.
 
-<figure><img src="../.gitbook/assets/idrac_4.png" alt=""><figcaption></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/idrac_4.png" alt=""><figcaption></figcaption></figure></div>
 
 6. Scroll to the **IPV4 SETTINGS** section and configure the settings as shown in the following example according to your environment. If necessary, configure the settings in the additional sections.
 
-<figure><img src="../.gitbook/assets/idrac_5.png" alt=""><figcaption></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/idrac_5.png" alt=""><figcaption></figcaption></figure></div>
 
 7. Select **Finish** and exit the System Setup.
 
-<figure><img src="../.gitbook/assets/idrac_6.png" alt=""><figcaption></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/idrac_6.png" alt=""><figcaption></figcaption></figure></div>
 
 ### Configure the WEKA software using WMS
 
@@ -117,35 +117,35 @@ If your WEKApod system does not include a WMS server and Ethernet switch, refer 
 1. Log in on the console or through SSH as the weka user (root password: `WekaService`; weka user password: `weka.io123`).
 2. Browse the WMS Admin UI using the URL: `http://<WMS-hostname-or-ip>:8501`.
 
-<figure><img src="../.gitbook/assets/WP_WMS_1_login.png" alt="" width="563"><figcaption></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/WP_WMS_1_login.png" alt="" width="563"><figcaption></figcaption></figure></div>
 
 3. Enter username and password (default: _admin_/_admin_), and select **Login**. The Landing Page appears.
 4. Select **Deploy a WEKA Cluster** and ensure any popup blockers are disabled.
 
-<figure><img src="../.gitbook/assets/WP_WMS_2_deploy.png" alt="" width="563"><figcaption></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/WP_WMS_2_deploy.png" alt="" width="563"><figcaption></figcaption></figure></div>
 
 5. Select **WEKApod Install**.
 6. In Step 1 - Number of servers, the default **Server Count** is set to 8. If your deployment requires a different number, adjust this value as needed, then click **Next**.
 
-<figure><img src="../.gitbook/assets/WP_WMS_4_step_1.png" alt=""><figcaption></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/WP_WMS_4_step_1.png" alt=""><figcaption></figcaption></figure></div>
 
 7. In Step 2 - Verify IPMI Connectivity, the WMS automatically fills in the IPMI IPs. Ensure the IPMI/iDRAC first IP, username, and password are correct (default: root/WekaService). Click **Verify IPMI IPs** and confirm that the **Brand** column shows Dell. Then, click **Next**.
 
-<figure><img src="../.gitbook/assets/WP_WMS_5_step_2.png" alt=""><figcaption></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/WP_WMS_5_step_2.png" alt=""><figcaption></figcaption></figure></div>
 
 8. In Step 3 - Dataplane Settings, do the following:
    1. Enter the required IP information for the Dataplane network, then click **Update Dataplanes**.
    2. Ensure the Dataplanes are configured correctly, then click **Next**.
 
-<figure><img src="../.gitbook/assets/WP_WMS_6_step_3.png" alt=""><figcaption></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/WP_WMS_6_step_3.png" alt=""><figcaption></figcaption></figure></div>
 
 9. In Step 4 - Save Files and Run Validation Checks, click **Save Files and Run Validation Checks**.
 
-<figure><img src="../.gitbook/assets/WP_WMS_7_step_4.png" alt=""><figcaption></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/WP_WMS_7_step_4.png" alt=""><figcaption></figcaption></figure></div>
 
 11. Confirm that all settings are correct. Click **Download Configuration CSV File** to save the configuration, then click **Next**.
 
-<figure><img src="../.gitbook/assets/WP_WMS_8_step_4a.png" alt=""><figcaption></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/WP_WMS_8_step_4a.png" alt=""><figcaption></figcaption></figure></div>
 
 12. In Step 5 - Optional (Re)install WEKA Software, you can update the WEKA version if needed (the current version may be outdated based on the WSA version used to image the servers).\
     If you do not want to update the WEKA version, click **Next/Skip**.\
@@ -157,15 +157,15 @@ If your WEKApod system does not include a WMS server and Ethernet switch, refer 
     4. Click **Start WEKA Software Install**. This process may take a few minutes.
     5. Once the installation is complete, click **Next/Skip**.
 
-<figure><img src="../.gitbook/assets/WP_WMS_9_step_5.png" alt=""><figcaption></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/WP_WMS_9_step_5.png" alt=""><figcaption></figcaption></figure></div>
 
 13. In Step 6 - Apply OS and Dataplane settings, click **Run system configuration scripts**. This process typically takes 3-5 minutes for an 8-server cluster, but larger clusters take longer.
 
-<figure><img src="../.gitbook/assets/WP_WMS_10_step_6.png" alt=""><figcaption></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/WP_WMS_10_step_6.png" alt=""><figcaption></figcaption></figure></div>
 
 14. Optional. You can review the messages providing a summary of the installation. To display more details, click **Show Data**.
 
-<figure><img src="../.gitbook/assets/WP_WMS_14_messages.png" alt=""><figcaption></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/WP_WMS_14_messages.png" alt=""><figcaption></figcaption></figure></div>
 
 15. Upon completion of the preceding steps, proceed with the standard configuration of the cluster as outlined in [configure-the-weka-cluster-using-the-weka-configurator.md](../planning-and-installation/bare-metal/configure-the-weka-cluster-using-the-weka-configurator.md "mention").
 

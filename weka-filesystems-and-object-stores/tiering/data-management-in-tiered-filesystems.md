@@ -56,7 +56,7 @@ If the filesystem was created from a snapshot, only the data uploaded to the obj
 If tuning of the system interaction with the object store is required, such as object size, reclamation threshold numbers, or the object store space reclamation is not fast enough for the workload, contact the Customer Success Team.
 {% endhint %}
 
-<figure><img src="../../.gitbook/assets/obs_reclaim_space.png" alt=""><figcaption><p>Object store space reclamation</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/obs_reclaim_space.png" alt=""><figcaption><p>Object store space reclamation</p></figcaption></figure></div>
 
 ### View object store bucket capacity details
 
@@ -112,13 +112,13 @@ To enable upload tags, set it when adding or updating the object store bucket. F
 
 The following table indicates the additional tags WEKA adds to the object when using object tagging:
 
-<table><thead><tr><th width="212">Tag</th><th>Description</th></tr></thead><tbody><tr><td><code>wekaBlobType</code></td><td><p>The WEKA-internal type representation of the object.</p><p>Possible values:  </p><p><code>DATA</code>, <code>METADATA</code>, <code>METAMETADATA</code>, <code>LOCATOR</code>, <code>RELOCATIONS</code></p></td></tr><tr><td><code>wekaFsId</code></td><td>A unique filesystem ID (a combination of the filesystem ID and the cluster GUID).</td></tr><tr><td><code>wekaGuid</code></td><td>The cluster GUID.</td></tr><tr><td><code>wekaFsName</code></td><td>The filesystem name that uploaded this object. </td></tr></tbody></table>
+<table><thead><tr><th width="212">Tag</th><th>Description</th></tr></thead><tbody><tr><td><code>wekaBlobType</code></td><td><p>The WEKA-internal type representation of the object.</p><p>Possible values:</p><p><code>DATA</code>, <code>METADATA</code>, <code>METAMETADATA</code>, <code>LOCATOR</code>, <code>RELOCATIONS</code></p></td></tr><tr><td><code>wekaFsId</code></td><td>A unique filesystem ID (a combination of the filesystem ID and the cluster GUID).</td></tr><tr><td><code>wekaGuid</code></td><td>The cluster GUID.</td></tr><tr><td><code>wekaFsName</code></td><td>The filesystem name that uploaded this object.</td></tr></tbody></table>
 
 The object store must support S3 object-tagging and might require additional permissions to use object tagging.
 
 For example, the following extra permissions are required in AWS S3:
 
-* `s3:PutObjectTagging`&#x20;
+* `s3:PutObjectTagging`
 * `s3:DeleteObjectTagging`
 
 {% hint style="info" %}

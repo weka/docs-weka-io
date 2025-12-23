@@ -15,15 +15,15 @@ Using the GUI, you can:
 
 ## **Add** a lifecycle rule
 
-You can add a lifecycle rule to an object (bucket) that defines an expiration duration per object prefix and tags.&#x20;
+You can add a lifecycle rule to an object (bucket) that defines an expiration duration per object prefix and tags.
 
 **Procedure**
 
 1. From the S3 buckets page, select the three dots of the required bucket, and select **Lifecycle Rules**.
 
-<figure><img src="../../../.gitbook/assets/wmng_4_1_s3_add_life_cycle_rule_menu.png" alt=""><figcaption><p>Lifecycle Rules menu</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../../.gitbook/assets/wmng_4_1_s3_add_life_cycle_rule_menu.png" alt=""><figcaption><p>Lifecycle Rules menu</p></figcaption></figure></div>
 
-2\. In the Add a Lifecycle Rule dialog set the following:&#x20;
+2\. In the Add a Lifecycle Rule dialog set the following:
 
 * **Expiration days:** The minimum number of days before the object is eligible for expiration. ILM processes the object shortly after this period based on its modified timestamp, but processing may be delayed if the queue is long.
 * **Prefix:** The object prefix to which the rule applies. Wildcards are not supported.
@@ -31,17 +31,17 @@ You can add a lifecycle rule to an object (bucket) that defines an expiration du
 
 3\. Select **Save**.
 
-<figure><img src="../../../.gitbook/assets/wmng_4_1_s3_add_life_cycle_rule.png" alt=""><figcaption><p>Add a Lifecycle Rule</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../../.gitbook/assets/wmng_4_1_s3_add_life_cycle_rule.png" alt=""><figcaption><p>Add a Lifecycle Rule</p></figcaption></figure></div>
 
 ## View lifecycle rules <a href="#viewing-ilm-rules" id="viewing-ilm-rules"></a>
 
-You can view the lifecycle rules defined for a bucket and filter according to expiration days, prefixes, or tags.&#x20;
+You can view the lifecycle rules defined for a bucket and filter according to expiration days, prefixes, or tags.
 
 **Procedure**
 
 1. From the S3 buckets page, select the three dots of the required bucket, and select **Lifecycle Rules**.
 
-<figure><img src="../../../.gitbook/assets/wmng_4_1_s3_lifecycle_rules.png" alt=""><figcaption><p>View Lifecycle Rules</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../../.gitbook/assets/wmng_4_1_s3_lifecycle_rules.png" alt=""><figcaption><p>View Lifecycle Rules</p></figcaption></figure></div>
 
 ## Remove a lifecycle rule
 
@@ -52,7 +52,7 @@ You can remove a specific lifecycle rule of a specified bucket if it is no longe
 1. From the S3 buckets page, select the three dots of the required bucket, and select **Lifecycle Rules**.
 2. In the Lifecycle Rules dialog, select the three dots of the required rule and select **Remove**.
 
-<figure><img src="../../../.gitbook/assets/wmng_4_1_s3_remove_lifecycle_rule.png" alt=""><figcaption><p>Remove a lifecycle rule</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../../.gitbook/assets/wmng_4_1_s3_remove_lifecycle_rule.png" alt=""><figcaption><p>Remove a lifecycle rule</p></figcaption></figure></div>
 
 ## Remove all lifecycle rules
 
@@ -63,4 +63,4 @@ You can remove all the lifecycle rules of a specified bucket if they are no long
 1. From the S3 buckets page, select the three dots of the required bucket, and select **Lifecycle Rules**.
 2. In the Lifecycle Rules dialog, select **Clear all rules**.
 
-<figure><img src="../../../.gitbook/assets/wmng_4_1_s3_lifecycle_rule_clear_all.png" alt=""><figcaption><p>Clear all lifecycle rules</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../../.gitbook/assets/wmng_4_1_s3_lifecycle_rule_clear_all.png" alt=""><figcaption><p>Clear all lifecycle rules</p></figcaption></figure></div>

@@ -23,7 +23,7 @@ Verify that an object store bucket is available.
 2. On the **Filesystem** page, select the three dots on the right of the filesystem that you want to attach to the object store bucket. Then, from the menu, select **Attach Object Store Bucket**.
 3. On the Attach Object Store Bucket dialog, select the relevant object store bucket.
 
-![Attach object store bucket](../../.gitbook/assets/wmng\_attach\_obs.gif)
+<div data-with-frame="true"><img src="../../.gitbook/assets/wmng_attach_obs.gif" alt="Attach object store bucket"></div>
 
 ## Detach object store bucket from a filesystem
 
@@ -37,11 +37,11 @@ Detaching a local object store bucket from a filesystem migrates the filesystem 
    If the filesystem is attached to two object store buckets (one is read-only, and the other is writable), you can detach only the read-only one. The data of the detached object store bucket is migrated to the writable object store bucket.
 4. In the message that appears, to confirm the detachment, select **Yes**.
 
-![Detach an object store bucket from a filesystem](../../.gitbook/assets/wmng\_detach\_obs.gif)
+<div data-with-frame="true"><img src="../../.gitbook/assets/wmng_detach_obs.gif" alt="Detach an object store bucket from a filesystem"></div>
 
 5. If the filesystem is tiered and only one object store is attached, detaching the object store bucket opens the following message:
 
-![Detach](../../.gitbook/assets/wmng\_detach\_obs\_and\_untier.png)
+<div data-with-frame="true"><img src="../../.gitbook/assets/wmng_detach_obs_and_untier.png" alt="Detach"></div>
 
 6. Object store buckets usually expand the filesystem capacity. Un-tiering of a filesystem requires adjustment of its total capacity. Select one of the following options:
    * Increase the SSD capacity to match the current total capacity.

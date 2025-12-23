@@ -16,24 +16,24 @@ The following procedure is a vendor-specific example and is provided as a courte
 {% tab title="1. Reboot server" %}
 Reboot the server and enter the BIOS Setup.
 
-<figure><img src="../../../.gitbook/assets/sr-iov_setup_1.png" alt=""><figcaption><p>Main screen</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../../.gitbook/assets/sr-iov_setup_1.png" alt=""><figcaption><p>Main screen</p></figcaption></figure></div>
 {% endtab %}
 
 {% tab title="2. Select PCIe Configuration" %}
 From the Advanced menu, select the PCIe Configuration to display its properties.
 
-<figure><img src="../../../.gitbook/assets/sr-iov_setup_2.png" alt=""><figcaption><p>Advanced screen</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../../.gitbook/assets/sr-iov_setup_2.png" alt=""><figcaption><p>Advanced screen</p></figcaption></figure></div>
 {% endtab %}
 
 {% tab title="3. Enable SR-IOV" %}
 Select the SR-IOV support and enable it.
 
-<figure><img src="../../../.gitbook/assets/sr-iov_setup_3.png" alt=""><figcaption><p>Enable SR-IOV</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../../.gitbook/assets/sr-iov_setup_3.png" alt=""><figcaption><p>Enable SR-IOV</p></figcaption></figure></div>
 {% endtab %}
 
 {% tab title="4. Save and exit" %}
 Save the configuration changes and exit.
 
-<figure><img src="../../../.gitbook/assets/sr-iov_setup_4.png" alt=""><figcaption><p>Save and Exit</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../../.gitbook/assets/sr-iov_setup_4.png" alt=""><figcaption><p>Save and Exit</p></figcaption></figure></div>
 {% endtab %}
 {% endtabs %}

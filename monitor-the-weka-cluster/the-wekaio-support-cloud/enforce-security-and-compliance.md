@@ -19,7 +19,7 @@ The Admin page provides a comprehensive set of administrative and audit features
 
 * **Cluster API Keys**: Enable the creation of cluster-specific API keys to facilitate the use of the statistics export API for a designated cluster.
 
-<figure><img src="../../.gitbook/assets/image (244).png" alt=""><figcaption><p>Admin and cluster audit page</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/image (244).png" alt=""><figcaption><p>Admin and cluster audit page</p></figcaption></figure></div>
 
 ## Users management
 
@@ -27,7 +27,7 @@ The Users page presents the current list of users who have login access to Local
 
 To open the Users page, from the menu, select **Manage > Users**.
 
-<figure><img src="../../.gitbook/assets/manage-users (1).png" alt=""><figcaption><p>Users page</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/manage-users (1).png" alt=""><figcaption><p>Users page</p></figcaption></figure></div>
 
 ### Modify a user password
 
@@ -57,10 +57,10 @@ A user can belong to multiple groups, and in such cases, the highest level of pr
 
 To open the Groups page, from the menu, select **Manage > Groups**.
 
-<figure><img src="../../.gitbook/assets/manage-groups.png" alt=""><figcaption><p>Groups page</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/manage-groups.png" alt=""><figcaption><p>Groups page</p></figcaption></figure></div>
 
 ### Create a new group
 
 You can create new groups as required and customize role-based access control (RBAC) scoping for each group.
 
-<figure><img src="../../.gitbook/assets/manage-groups-create.png" alt=""><figcaption><p>Group Creator</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/manage-groups-create.png" alt=""><figcaption><p>Group Creator</p></figcaption></figure></div>

@@ -4,7 +4,7 @@ The WEKApod™ is a turnkey data platform appliance that delivers high-performan
 
 It is powered by the WEKA Data Platform and supports NVMe technology (POSIX, RDMA, and TCP), Magnum IO™ GPUDirect Storage (GDS), NFS, S3, and SMB protocol. The WEKApod starts with a minimum of 8 servers and scales to hundreds of servers.
 
-<figure><img src="../.gitbook/assets/WEKApod_overview.png" alt=""><figcaption><p>WEKApod overview</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/WEKApod_overview.png" alt=""><figcaption><p>WEKApod overview</p></figcaption></figure></div>
 
 #### Purpose and benefits of the WEKA data platform appliance
 

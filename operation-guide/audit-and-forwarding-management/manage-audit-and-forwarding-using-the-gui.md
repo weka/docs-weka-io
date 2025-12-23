@@ -28,7 +28,7 @@ weka audit cluster enable
 2. From the left-hand menu, select **Audit & Forwarding**.\
    The **Configuration** tab is displayed.
 
-<figure><img src="../../.gitbook/assets/Audit_configuration.png" alt=""><figcaption><p>Audit and Forwarding: Configuration tab</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/Audit_configuration.png" alt=""><figcaption><p>Audit and Forwarding: Configuration tab</p></figcaption></figure></div>
 
 ### Disable audit control
 
@@ -69,7 +69,7 @@ Define the global default for which categories of filesystem operations are audi
    * **Audit Specific Operation Types**: Select this to choose which categories of operations to audit. Turn on the toggles for the specific categories you want to monitor.
 3. Select **Save**.
 
-<figure><img src="../../.gitbook/assets/Edit_Audit_Telemetry.png" alt=""><figcaption></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/Edit_Audit_Telemetry.png" alt=""><figcaption></figcaption></figure></div>
 
 **Related topic**
 
@@ -88,7 +88,7 @@ The list of telemetry exports provides the following information:
 
 To add a new destination, select **+ Create**.
 
-<figure><img src="../../.gitbook/assets/Audit_telemetry_exports.png" alt=""><figcaption><p>Audit and Forwarding: Telemetry Exports tab</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/Audit_telemetry_exports.png" alt=""><figcaption><p>Audit and Forwarding: Telemetry Exports tab</p></figcaption></figure></div>
 
 ### Create telemetry export to Splunk
 
@@ -105,7 +105,7 @@ Use this procedure to configure the export of audit events to a Splunk HTTP Even
    * **Certificate Configuration:** The certificate to use for the connection. Select **Container Certificate** to use the default system certificate.
 4. Select **Create**.
 
-<figure><img src="../../.gitbook/assets/Create_Telemetry_Export_Splunk.png" alt=""><figcaption></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/Create_Telemetry_Export_Splunk.png" alt=""><figcaption></figcaption></figure></div>
 
 ### Create telemetry export to Amazon S3
 
@@ -125,7 +125,7 @@ Use this procedure to configure the export of audit events to an Amazon S3 bucke
    * **Certificate Configuration:** The certificate to use for the connection. Select **Container Certificate** to use the default system certificate.
 4. Select **Create**.
 
-<figure><img src="../../.gitbook/assets/Create_Telemetry_Export_S3.png" alt=""><figcaption></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/Create_Telemetry_Export_S3.png" alt=""><figcaption></figcaption></figure></div>
 
 ### Create telemetry export to Kafka
 
@@ -147,4 +147,4 @@ Use this procedure to configure the export of audit events to an Apache Kafka en
    * **Certificate Configuration:** The certificate to use for the connection. Select **Container Certificate** to use the default system certificate.
 4. Select **Create**.
 
-<figure><img src="../../.gitbook/assets/Create_Telemetry_Export_Kafka_SASL_on.png" alt=""><figcaption></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/Create_Telemetry_Export_Kafka_SASL_on.png" alt=""><figcaption></figcaption></figure></div>

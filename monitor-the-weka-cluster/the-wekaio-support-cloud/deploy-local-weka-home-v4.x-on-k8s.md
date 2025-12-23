@@ -19,7 +19,7 @@ The deployment is packaged and managed through a Helm Chart, ensuring a consiste
 
 The diagram below illustrates the overall solution architecture and how the core components interact within the Kubernetes (K8s) environment.
 
-<figure><img src="../../.gitbook/assets/LWH_4.x_on_k8s.png" alt=""><figcaption><p>Local WEKA Home v4.x solution architecture</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/LWH_4.x_on_k8s.png" alt=""><figcaption><p>Local WEKA Home v4.x solution architecture</p></figcaption></figure></div>
 
 ### Architecture components
 
@@ -181,8 +181,8 @@ The required installation method is Helm. The Operator Lifecycle Manager (OLM) m
 
 ## Deployment workflow
 
-1. **Configure Helm values:** Create a `values.yaml` file to customize your WEKA Home deployment.&#x20;
-2. **Install the LWH**: Follow one of the methods for deploying LWH on a Kubernetes environment:  standard Helm installation or ArgoCD integration.
+1. **Configure Helm values:** Create a `values.yaml` file to customize your WEKA Home deployment.
+2. **Install the LWH**: Follow one of the methods for deploying LWH on a Kubernetes environment: standard Helm installation or ArgoCD integration.
 3. **Configure networking and access:** Set up ingress or gateway service access
 
 ### Configure Helm values

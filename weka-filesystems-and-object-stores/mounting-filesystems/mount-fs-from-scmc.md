@@ -15,7 +15,7 @@ Mounting filesystems from a single stateless WEKA client to multiple clusters pr
 * **Optimized workload distribution:** Facilitates the efficient distribution of workloads across clusters, supporting scalable application deployments and enhancing system performance.
 * **Seamless integration:** The WEKA SCMC feature ensures reliable and efficient integration for stateless clients requiring access to multiple clusters.
 
-<figure><img src="../../.gitbook/assets/single_client_multi-clusters (1).png" alt=""><figcaption><p>Mount filesystems from Single Client to Multiple Clusters (SCMC)</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/single_client_multi-clusters (1).png" alt=""><figcaption><p>Mount filesystems from Single Client to Multiple Clusters (SCMC)</p></figcaption></figure></div>
 
 ### **Bandwidth division considerations in SCMC**
 
@@ -35,7 +35,7 @@ Ensure the following requirements are met:
 * Each client container must run on its port. The default ports are 14000, 14101, 14201, 14301, 14401, 14501, and 14601. Ensure these ports allow egress on the client and ingress on the cluster.
 * For DPDK, each client container must have 5 GB of free RAM, and it is recommended to have a dedicated CPU core to get optimal performance.
 
-&#x20;Mounting a filesystem without these requirements may fail or overload the WEKA client.
+Mounting a filesystem without these requirements may fail or overload the WEKA client.
 
 ## Set the client target version in the clusters
 
@@ -49,7 +49,7 @@ To upgrade the cluster to a version higher than the first major release above th
 
 #### Procedure:
 
-1. Connect to each cluster and run the following command to set the client target version.&#x20;
+1. Connect to each cluster and run the following command to set the client target version.
 
 ```bash
 weka cluster client-target-version set <version>

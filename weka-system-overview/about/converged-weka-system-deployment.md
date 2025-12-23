@@ -6,7 +6,7 @@ Unlike the standard deployment that dedicates specific servers to WEKA backends,
 
 The WEKA backend processes function collectively as a single, distributed, and scalable filesystem, leveraging the local SSDs. This filesystem is accessible to the application servers, much like in the standard WEKA system deployment. The critical distinction is that, in this configuration, WEKA backends share the same physical infrastructure as the application servers.
 
-<figure><img src="../../.gitbook/assets/Converged_weka_system.png" alt=""><figcaption><p>WEKA system in converged mode with compute and storage on the same infrastructure</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/Converged_weka_system.png" alt=""><figcaption><p>WEKA system in converged mode with compute and storage on the same infrastructure</p></figcaption></figure></div>
 
 This blend of storage and computing capabilities enhances overall performance and resource usage. However, unlike the standard deployment, where an application server failure does not impact other backends, the converged setup is affected if an application server is rebooted or experiences a failure. The N+2 (or N+4) scheme still protects the cluster and can tolerate two concurrent failures. As a result, converged WEKA deployments require more careful integration and detailed coordination between computational and storage management practices.
 

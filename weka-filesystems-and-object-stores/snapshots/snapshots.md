@@ -20,7 +20,7 @@ Using the GUI, you can:
 1. To display all snapshots, select **Manage > Snapshots** from the menu.\
    The Snapshots page opens.
 
-![View all snapshots](../../.gitbook/assets/wmng\_view\_snapshots.png)
+<div data-with-frame="true"><img src="../../.gitbook/assets/wmng_view_snapshots.png" alt="View all snapshots"></div>
 
 2\. To display a snapshot of a selected filesystem, do one of the following:
 
@@ -28,7 +28,7 @@ Using the GUI, you can:
 * From the menu, select **Manage > Filesystems**.\
   From the filesystem, select the three dots, and from the menu, select **Go To Snapshot**.
 
-![View a snapshot of a specific filesystem](../../.gitbook/assets/wmng\_fs\_go\_to\_snapshot\_animated.gif)
+<div data-with-frame="true"><img src="../../.gitbook/assets/wmng_fs_go_to_snapshot_animated.gif" alt="View a snapshot of a specific filesystem"></div>
 
 ## Create a snapshot
 
@@ -45,9 +45,9 @@ Create a directory for filesystem-level snapshots that serves as the access poin
      The Create Snapshot dialog opens.
    * From the menu, select **Manage > Filesystems**. From the Filesystems page, select the three dots, and from the menu, select **Create Snapshot** (the source filesystem is automatically set).
 
-![Create a snapshot from the Snapshots page](../../.gitbook/assets/wmng\_create\_snapshot\_animated.gif)
+<div data-with-frame="true"><img src="../../.gitbook/assets/wmng_create_snapshot_animated.gif" alt="Create a snapshot from the Snapshots page"></div>
 
-![Filesystems menu: Create a snapshot directly from a filesystem](../../.gitbook/assets/wmng\_create\_snap\_from\_fs.png)
+<div data-with-frame="true"><img src="../../.gitbook/assets/wmng_create_snap_from_fs.png" alt="Filesystems menu: Create a snapshot directly from a filesystem"></div>
 
 3. On the Create Snapshot dialog set the following properties:
    * **Name**: A unique name for the filesystem snapshot.
@@ -65,15 +65,15 @@ You can duplicate a snapshot (clone), which enables creating a writable snapshot
 **Procedure**
 
 1. From the menu, select **Manage > Snapshots**.
-2. From the Snapshots page, select the three dots of the snapshot you want to duplicate, and from the menu, select **Duplicate Snapshot**.&#x20;
+2. From the Snapshots page, select the three dots of the snapshot you want to duplicate, and from the menu, select **Duplicate Snapshot**.
 
-![Snapshots menu: Duplicate Snapshot](../../.gitbook/assets/wmng\_duplicate\_snapshot.png)
+<div data-with-frame="true"><img src="../../.gitbook/assets/wmng_duplicate_snapshot.png" alt="Snapshots menu: Duplicate Snapshot"></div>
 
 3. In the Duplicate Snapshot dialog, set the properties like you create a snapshot.\
    The source filesystem and source snapshot are already set.
 4. Select **Duplicate**.
 
-![Duplicate Snapshot dialog](../../.gitbook/assets/wmng\_duplicate\_snapshot\_dialog.png)
+<div data-with-frame="true"><img src="../../.gitbook/assets/wmng_duplicate_snapshot_dialog.png" alt="Duplicate Snapshot dialog" width="301"></div>
 
 ## Delete a snapshot
 
@@ -88,7 +88,7 @@ When deleting a snapshot, consider the following guidelines:
 2. From the Snapshots page, select the three dots of the snapshot you want to delete, and from the menu, select **Remove**.
 3. In the Deletion Of Snapshot message, select **Yes** to delete the snapshot.
 
-![Remove a snapshot](../../.gitbook/assets/wmng\_remove\_snapshot.png)
+<div data-with-frame="true"><img src="../../.gitbook/assets/wmng_remove_snapshot.png" alt="Remove a snapshot"></div>
 
 ## Restore a snapshot to a filesystem or another snapshot <a href="#restore-a-snapshot" id="restore-a-snapshot"></a>
 
@@ -105,7 +105,7 @@ If you restore the snapshot to a filesystem, make sure to stop the IO services o
 3. In the Restore To dialog, select the destination: **Filesystem** or **Snapshot**.
 4. Select **Save**.
 
-![Restore a snapshot to a filesystem ](../../.gitbook/assets/wmng\_restore\_snapshot.png)
+<div data-with-frame="true"><img src="../../.gitbook/assets/wmng_restore_snapshot.png" alt="Restore a snapshot to a filesystem"></div>
 
 ## Update a snapshot
 
@@ -118,4 +118,4 @@ You can update the snapshot name and access point properties.
 3. Modify the **Name** and **Access Point** properties as required.
 4. Select **Save**.
 
-![Edit snapshot properties](../../.gitbook/assets/wmng\_edit\_snapshot.png)
+<div data-with-frame="true"><img src="../../.gitbook/assets/wmng_edit_snapshot.png" alt="Edit snapshot properties"></div>

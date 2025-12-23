@@ -13,7 +13,7 @@ The WEKA Configurator tool facilitates cluster configuration. It performs the fo
 * Guides you through the configuration options.
 * Generates a valid configuration file that you can apply to form a WEKA cluster from a group of servers.
 
-## Before you begin&#x20;
+## Before you begin
 
 Adhere to the following concepts:
 
@@ -74,7 +74,7 @@ Adhere to the following concepts:
 
 The `wekaconfig` tool scans the environment, detects the servers, and evaluates whether the group of servers is homogeneous. The following example demonstrates a scenario where the servers do not have a homogeneous number of CPU cores.
 
-<figure><img src="../../.gitbook/assets/wekaconfig_detection.png" alt="" width="563"><figcaption><p>Example: <code>wekaconfig</code> detection results</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/wekaconfig_detection.png" alt="" width="563"><figcaption><p>Example: <code>wekaconfig</code> detection results</p></figcaption></figure></div>
 
 2. **Review the detection results:**
    1. If the detected configuration meets your requirements, press **Enter** to proceed.
@@ -82,7 +82,7 @@ The `wekaconfig` tool scans the environment, detects the servers, and evaluates 
 
 {% tabs %}
 {% tab title="1. DP Networks" %}
-The `wekaconfig` displays the data plane networks (DP Networks) detected previously.  The list under **Select DP Networks** reflects the high-speed (100Gb+) networks used for the WEKA storage traffic.
+The `wekaconfig` displays the data plane networks (DP Networks) detected previously. The list under **Select DP Networks** reflects the high-speed (100Gb+) networks used for the WEKA storage traffic.
 
 Verify that the list of networks, speed, and number of detected hosts are correct.
 
@@ -92,9 +92,9 @@ Select the required networks to configure WEKA POSIX protocol to run on.
 
 Use the arrow and Tab keys to move between the fields and sections, and the space-bar to select the value.
 
-**Note:** The green labels have entry fields. The yellow labels have read-only fields.&#x20;
+**Note:** The green labels have entry fields. The yellow labels have read-only fields.
 
-<figure><img src="../../.gitbook/assets/wekaconfig_1_networking.png" alt=""><figcaption></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/wekaconfig_1_networking.png" alt=""><figcaption></figcaption></figure></div>
 {% endtab %}
 
 {% tab title="2. HA and Multi-container" %}
@@ -112,7 +112,7 @@ Press Tab to accept value and move to the next field: Multicontainer. The defaul
 
 Press Tab to move to the lower-right. Use the arrow to move to **Next**. Then, press the space-bar.
 
-<figure><img src="../../.gitbook/assets/wekaconfig_2_HA.png" alt=""><figcaption></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/wekaconfig_2_HA.png" alt=""><figcaption></figcaption></figure></div>
 {% endtab %}
 
 {% tab title="3. BIAS and other read-only fields" %}
@@ -122,11 +122,11 @@ This page shows the following sections:
 * Bias
 * Cores details
 
-#### Host Configuration Reference
+**Host Configuration Reference**
 
 This section shows the `reference host` cores and drives configuration, and the total number of hosts (servers).
 
-#### Bias
+**Bias**
 
 The Bias options determine the optimal CPU core and memory allocation scheme.
 
@@ -134,7 +134,7 @@ The Bias options determine the optimal CPU core and memory allocation scheme.
 * **Protocols are Primary:** If you intend to use the cluster primarily or heavily with NFS, SMB, or S3 protocols, select this option. It reserves more CPU and memory (then in the first option) for the protocols .
 * **DRIVES over COMPUTE:** In high-core-count configurations (48+ cores), the standard algorithm for determining optimal core allocations may reduce the drive:core ratio in favor of additional COMPUTE cores. This bias setting favors a DRIVE core allocation of 1:1 (if possible) over additional COMPUTE cores. For advice on core allocations, consult with the Customer Success Team if you are configuring high-core-count systems.
 
-#### **Core details**
+**Core details**
 
 `wekaconfig` suggests a reasonable set of core allocations (FE/COMPUTE/DRIVES) depending on your selections. You may override these values as needed.
 
@@ -145,13 +145,13 @@ The Bias options determine the optimal CPU core and memory allocation scheme.
 
 The **Usable Weka Cores** and **Available Weka Cores** read-only fields are updated as you make changes so you can ensure you are not exceeding the number of available cores as you change any values. This is an advanced feature, and core allocation must not be changed without consulting the Customer Success Team.
 
-<figure><img src="../../.gitbook/assets/wekaconfig_3_bias.png" alt=""><figcaption></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/wekaconfig_3_bias.png" alt=""><figcaption></figcaption></figure></div>
 {% endtab %}
 
 {% tab title="4. Cluster name" %}
 Move to the Cluster Name field and set a unique name for your WEKA cluster.
 
-<figure><img src="../../.gitbook/assets/wekaconfig_4_cluster_name.png" alt=""><figcaption></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/wekaconfig_4_cluster_name.png" alt=""><figcaption></figcaption></figure></div>
 {% endtab %}
 
 {% tab title="5. Stripe and other settings" %}
@@ -166,7 +166,7 @@ These settings are in terms of servers, not SSDs. WEKA stripes over the entire s
 
 The following example shows a stripe width of 6 (4+2) on 7 servers, and one hot spare.
 
-<figure><img src="../../.gitbook/assets/wekaconfig_5_stripe.png" alt=""><figcaption></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/wekaconfig_5_stripe.png" alt=""><figcaption></figcaption></figure></div>
 {% endtab %}
 {% endtabs %}
 
@@ -332,25 +332,25 @@ To modify the drives used in the cluster, manually edit the `config.sh` file. Re
 
 * From the install directory, run `./config.sh`.
 
-<figure><img src="../../.gitbook/assets/wekaconfig_run_config.sh.png" alt="" width="563"><figcaption><p>Apply the configuration </p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/wekaconfig_run_config.sh.png" alt="" width="563"><figcaption><p>Apply the configuration</p></figcaption></figure></div>
 
 The configuration takes a few minutes and possibly longer for large clusters. See some examples of the configuration process and WEKA status.
 
 {% tabs %}
 {% tab title="Configuration starts" %}
-<figure><img src="../../.gitbook/assets/wekaconfig_conf_starts.png" alt=""><figcaption></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/wekaconfig_conf_starts.png" alt=""><figcaption></figcaption></figure></div>
 {% endtab %}
 
 {% tab title="Configuration completes" %}
-<figure><img src="../../.gitbook/assets/wekaconfig_conf1.png" alt=""><figcaption></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/wekaconfig_conf1.png" alt=""><figcaption></figcaption></figure></div>
 {% endtab %}
 
 {% tab title="WEKA status (IO not started)" %}
-<figure><img src="../../.gitbook/assets/wekaconfig_weka_status_1.png" alt=""><figcaption></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/wekaconfig_weka_status_1.png" alt=""><figcaption></figcaption></figure></div>
 {% endtab %}
 
 {% tab title="WEKA status (IO started)" %}
-<figure><img src="../../.gitbook/assets/wekaconfig_weka_status_3.png" alt=""><figcaption></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/wekaconfig_weka_status_3.png" alt=""><figcaption></figcaption></figure></div>
 {% endtab %}
 {% endtabs %}
 

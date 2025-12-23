@@ -31,7 +31,7 @@ WEKA uses a structured versioning scheme to indicate the scope and type of chang
 
 * **Upgrade direction:** Upgrades must always progress from older to newer versions.
 * **Compatibility basis:** Compatibility is determined by the release date of the target version relative to the source version.
-* **Major version upgrades:** Upgrades must follow consecutive order (for example, 4.2  → 4.3). LTS releases upgrade to Innovation, and Innovation releases upgrade to the next LTS.
+* **Major version upgrades:** Upgrades must follow consecutive order (for example, 4.2 → 4.3). LTS releases upgrade to Innovation, and Innovation releases upgrade to the next LTS.
 * **LTS upgrades:** Clusters and clients can be upgraded between consecutive LTS releases (for example, 4.2.6 and above may be upgraded to the latest minor release of 4.4).
 * **Client upgrades:** Clients are supported if they are at most one major version behind the backend. In multi-hop upgrades, such as from 4.2 to 4.4 to 5.0, clients must be upgraded before the cluster to maintain compatibility.
 * **SCMC deployments:** The client-target-version parameter must be identical across all clusters and compatible with the target backend upgrade. See [mount-fs-from-scmc.md](../weka-filesystems-and-object-stores/mounting-filesystems/mount-fs-from-scmc.md "mention").
@@ -103,18 +103,18 @@ Once you run the upgrade command in `ndu` mode, the following occurs:
 4. Rolling upgrade of the **frontend** configured with backend mode and **protocol** containers (including frontend and protocol containers hosted on a dedicated protocol server).
 
 {% hint style="info" %}
-To review the frontend containers that will be upgraded, check their configuration mode by running the following command:  `$ weka cluster process --role frontend -o containerId,hostname,mode`
+To review the frontend containers that will be upgraded, check their configuration mode by running the following command: `$ weka cluster process --role frontend -o containerId,hostname,mode`
 
 Example output:
 
-`CONTAINER ID HOSTNAME          MODE`\
-`10           DataSphere-1      backend`\
-`13           DataSphere-2      backend`\
-`14           DataSphere-3      backend`\
-`16           DataSphere-6      client`
+`CONTAINER ID HOSTNAME MODE`\
+`10 DataSphere-1 backend`\
+`13 DataSphere-2 backend`\
+`14 DataSphere-3 backend`\
+`16 DataSphere-6 client`
 {% endhint %}
 
-<figure><img src="../.gitbook/assets/NDU_process_4.2.png" alt=""><figcaption><p>NDU process at a glance</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/NDU_process_4.2.png" alt=""><figcaption><p>NDU process at a glance</p></figcaption></figure></div>
 
 **Related topics**
 
@@ -153,7 +153,7 @@ Ensure the environment meets the necessary prerequisites before proceeding with 
 
 <details>
 
-<summary>Sample list of the verification steps performed by the WEKA Upgrade Checker Tool </summary>
+<summary>Sample list of the verification steps performed by the WEKA Upgrade Checker Tool</summary>
 
 * [x] **Backend server Prerequisites and compatibility**:
   * Confirm that all backend servers meet the [prerequisites and compatibility](../planning-and-installation/prerequisites-and-compatibility.md) requirements of the target version. Address any discrepancies promptly.
@@ -214,23 +214,23 @@ After completing an upgrade, a background process initiates the conversion of me
 
 By diligently following this system readiness validation procedure, you can confidently proceed with system upgrades, minimizing risks and ensuring a smooth upgrade.
 
-{% embed url="https://youtu.be/k8sDP3U1zDI" %}
+{% embed url="https://youtu.be/k8sDP3U1zDI" fullWidth="true" %}
 Demo: WEKA Upgrade Checker
 {% endembed %}
 
 {% hint style="info" %}
 * Prioritize running the WEKA Upgrade Checker **24 hours** before any scheduled upgrades. This step is critical to identify and address any potential issues proactively.
-* Ensure **passwordless SSH access** is set up on all backend servers. This is crucial for the seamless execution of the Python script while running the WEKA Upgrade Checker.&#x20;
+* Ensure **passwordless SSH access** is set up on all backend servers. This is crucial for the seamless execution of the Python script while running the WEKA Upgrade Checker.
 {% endhint %}
 
-#### **Procedure**
+**Procedure**
 
 1. **Log in to one of the backend servers as a root user:**
    * Access the server using the appropriate credentials.
-2. **Obtain the WEKA Upgrade Checker:** \
+2. **Obtain the WEKA Upgrade Checker:**\
    Choose one of the following methods:
    * **Method A:** Direct download
-     * Clone the WEKA Upgrade Checker GIT repository with the command: \
+     * Clone the WEKA Upgrade Checker GIT repository with the command:\
        `git clone https://github.com/weka/tools.git`
    * **Method B:** Update from existing tools repository
      * If you have previously downloaded the tools repository, navigate to the **tools** directory.
@@ -244,7 +244,7 @@ Demo: WEKA Upgrade Checker
     Or
 
     * Run the Python precompiled script:\
-      &#x20;`./weka_upgrade_checker --target-version <version>`
+      `./weka_upgrade_checker --target-version <version>`
 
     Replace `<version>` with your target version. For example `4.4.4`.\
     The tool scans the backend servers and verifies the upgrade prerequisites.
@@ -256,7 +256,7 @@ Demo: WEKA Upgrade Checker
 5. **Send the log file to the Customer Success Team:**
    * The `weka_upgrade_checker.log` is located in the same directory where you ran the tool. Share the latest log file with the Customer Success Team for further analysis.
 
-### 2. Prepare the cluster for upgrade&#x20;
+### 2. Prepare the cluster for upgrade
 
 Download the new WEKA version to one of the backend servers using one of the following methods depending on the cluster deployment:
 
@@ -294,7 +294,7 @@ Use this method if the cluster environment has connectivity to [get.weka.io](htt
 
 1. From the Public Releases on the [get.weka.io](https://get.weka.io/ui/releases/), select the required release.
 2. Select the **Install** tab.
-3. From the backend server, run the `curl` command line as shown in the following example.&#x20;
+3. From the backend server, run the `curl` command line as shown in the following example.
 
 <figure><img src="../.gitbook/assets/get-weka-io-curl.png" alt=""><figcaption><p>Example: Install tab</p></figcaption></figure>
 {% endtab %}
@@ -311,7 +311,7 @@ Use this method if the cluster environment does not have connectivity to [get.we
 
 ### 3. Prepare the backend servers for upgrade (optional)
 
-When working with many backend servers, preparing them separately from the upgrade process in advance is possible to minimize the total upgrade time. For a small number of backend servers, this step is not required.&#x20;
+When working with many backend servers, preparing them separately from the upgrade process in advance is possible to minimize the total upgrade time. For a small number of backend servers, this step is not required.
 
 The preparation phase prepares all the connected backend servers for the upgrade, which includes downloading the new version and getting it ready to be applied.
 
@@ -339,7 +339,7 @@ weka local run --container drives0 --in <new-version> upgrade
 
 * Before switching the cluster to the new software release, the upgrade command distributes the new release to all cluster servers. It makes the necessary preparations, such as compiling the new `wekafs` driver.
 * If a failure occurs during the preparation, such as a disconnection of a server or failure to build a driver, the upgrade process stops, and a summary message indicates the problematic server.
-*   If cleanup issues occur during a specific upgrade phase, rerun it with the relevant option:                &#x20;
+*   If cleanup issues occur during a specific upgrade phase, rerun it with the relevant option:
 
     ```bash
     --ndu-drives-phase

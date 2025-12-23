@@ -137,8 +137,6 @@ After installation, access the Prometheus web UI to verify that it is scraping m
 3. Verify that WEKA metrics are available.
    * In the query field, type `weka_`. All WEKA metrics follow this naming convention.
 
-<figure><img src="/broken/files/5fapuvagE8UgRsSnroZH" alt=""><figcaption></figcaption></figure>
-
 #### Step 4: Access Grafana landing page
 
 Access the Grafana UI to configure the Prometheus data source and import the pre-built WEKA dashboard.
@@ -165,7 +163,7 @@ Access the Grafana UI to configure the Prometheus data source and import the pre
 
        `http://prometheus-server.prometheus.svc.cluster.local`.
 
-<figure><img src="../.gitbook/assets/Prom datasource.gif" alt=""><figcaption></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/Prom datasource.gif" alt=""><figcaption></figcaption></figure></div>
 
 5. Import the WEKA dashboard.
    1. Navigate to the [WEKA GitHub repository](https://raw.githubusercontent.com/balaramesh2/weka-metrics/refs/heads/main/weka-dashboard.json) and copy the `weka-dashboard.json` content.
@@ -175,4 +173,4 @@ Access the Grafana UI to configure the Prometheus data source and import the pre
    5. Paste the `weka-dashboard.json` content to the import box, and select **Load.**
    6. Select **Import**.
 
-<figure><img src="../.gitbook/assets/Grafboard (1).gif" alt=""><figcaption></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/Grafboard (1).gif" alt=""><figcaption></figcaption></figure></div>

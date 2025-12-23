@@ -43,7 +43,7 @@ To configure the HashiCorp Vault connection from the GUI, set the following prop
 The GUI procedure configures HashiCorp Vault for **per-filesystem encryption**, which uses the AppRole authentication method. To configure cluster-wide encryption (using either a token or AppRole), use the CLI. See [#configure-the-kms](kms-management-1.md#configure-the-kms "mention").
 {% endhint %}
 
-<div align="left"><img src="../../.gitbook/assets/4.4.2_configure_KMS_Hashicorp.png" alt="HashiCorp Vault type configuration"></div>
+<div align="left" data-with-frame="true"><img src="../../.gitbook/assets/4.4.2_configure_KMS_Hashicorp.png" alt="HashiCorp Vault type configuration"></div>
 {% endtab %}
 
 {% tab title="KMIP " %}
@@ -55,13 +55,11 @@ To configure the KMIP connection, set the following properties:
 * **Client Key:** The content of the client key PEM file.
 * **CA Certificate:** (Optional) The content of the CA certificate PEM file.
 
-<figure><img src="../../.gitbook/assets/wmng_configure_KMIP.png" alt=""><figcaption><p>KMIP type configuration </p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/wmng_configure_KMIP.png" alt=""><figcaption><p>KMIP type configuration</p></figcaption></figure></div>
 {% endtab %}
 {% endtabs %}
 
 6. Select **Save**.
-
-
 
 **Related topics**
 
@@ -77,7 +75,7 @@ To configure the KMIP connection, set the following properties:
 2. From the left pane, select **Security**.\
    The **Security** page displays the configured KMS.
 
-![View the configured KMS](../../.gitbook/assets/wmng_view_kms_settings.png)
+<div data-with-frame="true"><img src="../../.gitbook/assets/wmng_view_kms_settings.png" alt="View the configured KMS"></div>
 
 ## Update the KMS configuration
 

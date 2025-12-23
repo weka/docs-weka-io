@@ -31,11 +31,11 @@ The front view of the WEKApod server configuration is order-dependent:
 * WEKApod Nitro: A WSA server equipped with 14 X E3.S NVMe drives.
 * WMS: A WMS server equipped with 8 X 2.5-inch NVMe drives.
 
-<figure><img src="../.gitbook/assets/wekapod_front_view_10-2.5.png" alt=""><figcaption><p>Front view of the WSA server Prime (10 X 2.5-inch NVMe drives)</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/wekapod_front_view_10-2.5.png" alt=""><figcaption><p>Front view of the WSA server Prime (10 X 2.5-inch NVMe drives)</p></figcaption></figure></div>
 
-<figure><img src="../.gitbook/assets/wekapod_front_view_E3S.png" alt=""><figcaption><p>Front view of the WSA server Nitro (14 E3.S NVMe drives)</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/wekapod_front_view_E3S.png" alt=""><figcaption><p>Front view of the WSA server Nitro (14 E3.S NVMe drives)</p></figcaption></figure></div>
 
-<figure><img src="../.gitbook/assets/wekapod_front_view_8-2.5.png" alt=""><figcaption><p>Front view of the WMS server (8 X 2.5-inch NVMe drives)</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/wekapod_front_view_8-2.5.png" alt=""><figcaption><p>Front view of the WMS server (8 X 2.5-inch NVMe drives)</p></figcaption></figure></div>
 
 **Front view of the WSA and WMS servers: Ports, panels, and slots descriptions** (all configurations)
 
@@ -43,7 +43,7 @@ The front view of the WEKApod server configuration is order-dependent:
 
 ## Rear view of the WSA and WMS servers
 
-<figure><img src="../.gitbook/assets/wekapod_wsa_server_rear.png" alt=""><figcaption><p>Rear view of the WSA server</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/wekapod_wsa_server_rear.png" alt=""><figcaption><p>Rear view of the WSA server</p></figcaption></figure></div>
 
 **Rear view of the WEKApod server: Ports, panels, and slots**
 
@@ -51,7 +51,7 @@ The front view of the WEKApod server configuration is order-dependent:
 
 **Rear view of the WMS server: Ports, panels, and slots**
 
-<figure><img src="../.gitbook/assets/wekapod_wms_server_rear.png" alt=""><figcaption><p>Rear view of the WMS server</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/wekapod_wms_server_rear.png" alt=""><figcaption><p>Rear view of the WMS server</p></figcaption></figure></div>
 
 <table><thead><tr><th width="83">Item</th><th width="220">Ports, panels, and slots</th><th>Description</th></tr></thead><tbody><tr><td>1</td><td>Power supply unit (PSU1)</td><td>Primary power supply unit.</td></tr><tr><td>2</td><td>Power supply unit (PSU2)</td><td>Secondary power supply unit.</td></tr><tr><td>3</td><td>OS management Ethernet ports</td><td>1 Gbps Ethernet ports (left to right): WEKA Linux <strong>eno12399</strong>, <strong>eno12409</strong>, <strong>eno12419</strong>, and <strong>eno12429</strong>.</td></tr><tr><td>4</td><td>BMC Ethernet port</td><td>Ethernet port for in-band management (iDRAC).</td></tr></tbody></table>
 
@@ -63,6 +63,6 @@ A spreadsheet containing the corresponding Service Tag number provides details o
 
 The Information tag is a slide-out label that displays key server details, including the Service Tag, NIC, MAC address, and more. It also includes the iDRAC secure default password; however, note that the password has been reset to **WekaService** through the ID Module.
 
-<figure><img src="../.gitbook/assets/WEKApod_info_label_upper.png" alt="" width="563"><figcaption><p>Information tag upper view (pulled from the front-right of the server)</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/WEKApod_info_label_upper.png" alt="" width="563"><figcaption><p>Information tag upper view (pulled from the front-right of the server)</p></figcaption></figure></div>
 
-<figure><img src="../.gitbook/assets/WEKApod_info_label_back.png" alt="" width="563"><figcaption><p>Information tag bottom view</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/WEKApod_info_label_back.png" alt="" width="563"><figcaption><p>Information tag bottom view</p></figcaption></figure></div>

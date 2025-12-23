@@ -12,7 +12,7 @@ WEKA enables multi-tenancy by allowing multiple cluster deployments to share the
 
 The process of creating these composable clusters is efficient, taking only a few minutes. Each cluster is allocated dedicated resources, ensuring consistent performance without interference from other tenants.
 
-<figure><img src="../.gitbook/assets/weka-multi-tenancy-concept.png" alt=""><figcaption><p>WEKA composable clusters for multi-tenancy concept</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/weka-multi-tenancy-concept.png" alt=""><figcaption><p>WEKA composable clusters for multi-tenancy concept</p></figcaption></figure></div>
 
 ### Key benefits
 
@@ -28,7 +28,7 @@ The process of creating these composable clusters is efficient, taking only a fe
 2. When there are changes to WEKA custom resource definitions, the Operator applies the changes to the running Kubernetes cluster.
 3. The changes are composed sets of resources, which bring about the creation of a new cluster, perform an expansion or contraction of an existing cluster, decommission a cluster, or perform an upgrade.
 
-<figure><img src="../.gitbook/assets/weka-multi-tenancy-deplyment-glance.gif" alt=""><figcaption><p>Composable clusters for multi-tenancy deployment at a glance</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/weka-multi-tenancy-deplyment-glance.gif" alt=""><figcaption><p>Composable clusters for multi-tenancy deployment at a glance</p></figcaption></figure></div>
 
 ## Summary
 

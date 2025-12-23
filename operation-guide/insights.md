@@ -12,13 +12,13 @@ CPU insight shows the average load in the last 15 minutes and the top 10 process
 
 You can select up to three processes to show the top three RPCs that kept the process busy. You can compare the RPCs between the selected processes.
 
-<figure><img src="../.gitbook/assets/wmng_compute_cores_insight.gif" alt=""><figcaption><p>Top RPC calls of the compute cores</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/wmng_compute_cores_insight.gif" alt=""><figcaption><p>Top RPC calls of the compute cores</p></figcaption></figure></div>
 
 ### Display the top RPC calls of the compute cores
 
 1. From the left pane, select **CPU**.
 2. Select the **COMPUTE** tab.
-3. Select the compute cores you want to compare (maximum three).&#x20;
+3. Select the compute cores you want to compare (maximum three).
 
 ### Display the top RPC calls of the drive cores
 
@@ -44,7 +44,7 @@ Drives insight provides a load overview of the drives in the cluster. The view o
 
 You can compare each drive's latency with the average and other drives.
 
-<figure><img src="../.gitbook/assets/wmng_drive_insight.gif" alt=""><figcaption><p>Top drives' latency</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/wmng_drive_insight.gif" alt=""><figcaption><p>Top drives' latency</p></figcaption></figure></div>
 
 ### Display the top drives' latency
 

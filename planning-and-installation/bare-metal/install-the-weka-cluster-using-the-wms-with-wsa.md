@@ -4,7 +4,7 @@ The WEKA Management Station (WMS) is an install kit similar to an OS install dis
 
 The WMS is also used for installing the monitoring tools: Local WEKA Home (LWH), WEKAmon, and SnapTool (for details, see [deploy-monitoring-tools-using-the-weka-management-station-wms.md](../../monitor-the-weka-cluster/deploy-monitoring-tools-using-the-weka-management-station-wms.md "mention").
 
-<figure><img src="../../.gitbook/assets/WMS_and_WSA_install_cluster.png" alt=""><figcaption><p>Install the WEKA cluster using the WMS with WSA</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/WMS_and_WSA_install_cluster.png" alt=""><figcaption><p>Install the WEKA cluster using the WMS with WSA</p></figcaption></figure></div>
 
 {% hint style="info" %}
 WEKA releases WMS and WSA updates addressing critical security issues found in the underlying Linux distribution within five days of discovery and availability. Customers can update their WMS/WSA instance from the repository where these updates are provided. WEKA notifies customers when updates are available, enabling timely updates to minimize potential risks. For any questions, contact the Customer Success Team.
@@ -97,7 +97,7 @@ Once you boot the server, the WEKA Management Station installs the WEKA OS (Rock
 
 Depending on network speed, this can take about 10-60 mins (or more) per server.
 
-<figure><img src="../../.gitbook/assets/WMS_install_1.png" alt="" width="375"><figcaption><p>WMS installation progress</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/WMS_install_1.png" alt="" width="375"><figcaption><p>WMS installation progress</p></figcaption></figure></div>
 
 ### 2. Configure the WMS
 
@@ -117,7 +117,7 @@ If you don’t know the WMS hostname or IP address, go to the console and press 
 
 Change the port from 9090 to 8051, which is the WMS Admin port.
 
-<figure><img src="../../.gitbook/assets/cockpit.png" alt=""><figcaption><p>Cockpit URL (IP address of this WMS is 172.29.7.152)</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/cockpit.png" alt=""><figcaption><p>Cockpit URL (IP address of this WMS is 172.29.7.152)</p></figcaption></figure></div>
 {% endtab %}
 {% endtabs %}
 
@@ -127,12 +127,12 @@ Change the port from 9090 to 8051, which is the WMS Admin port.
 3. Browse to the WMS Admin UI using the following URL:\
    `http://<WMS-hostname-or-ip>:8501`
 
-<figure><img src="../../.gitbook/assets/WMS_login.png" alt="" width="375"><figcaption><p>WMS Admin UI: Login Page</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/WMS_login.png" alt="" width="375"><figcaption><p>WMS Admin UI: Login Page</p></figcaption></figure></div>
 
 3. Enter username and password (default: _admin_/_admin_), and select **Login**.\
    The Landing Page appears.
 
-<figure><img src="../../.gitbook/assets/WMS_landing_page.png" alt="" width="375"><figcaption><p>WMS Landing Pag</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/WMS_landing_page.png" alt="" width="375"><figcaption><p>WMS Landing Pag</p></figcaption></figure></div>
 
 ### 3. Add the WSA package to the WMS
 
@@ -144,11 +144,11 @@ Change the port from 9090 to 8051, which is the WMS Admin port.
 
 1. Go to the WMS Admin UI (landing page) and select **Deploy a WEKA Custer**.
 
-<figure><img src="../../.gitbook/assets/Deploy_a_weka_cluster_button.png" alt="" width="563"><figcaption></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/Deploy_a_weka_cluster_button.png" alt="" width="563"><figcaption></figcaption></figure></div>
 
 The WSA setup page opens.
 
-<figure><img src="../../.gitbook/assets/wsa_step_01.png" alt=""><figcaption><p>WSA Setup</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/wsa_step_01.png" alt=""><figcaption><p>WSA Setup</p></figcaption></figure></div>
 
 2. Select **Standard Install/Reset**.
 3. Open **Step 1 - Choose source ISO**, select the WSA package (ISO) you intend to deploy, and click **Next**.
@@ -163,7 +163,7 @@ The WSA packages that appear in the list are taken from `/home/weka`. You can ha
    * **Option 2: Upload CSV file to pre-populate data:**\
      If you have the environment data in a CSV file, click this option. **Step 3 - CSV File Upload** section opens. Drag or click to upload the CSV file, and click **Next**.
 
-<figure><img src="../../.gitbook/assets/WSA_step3.png" alt=""><figcaption></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/WSA_step3.png" alt=""><figcaption></figcaption></figure></div>
 
 **CSV template example**
 
@@ -183,7 +183,7 @@ IPMI_IP,Username,Password,OS_Mgmt_IP,Hostname,OS_Netmask,OS_Gateway,MTU,DNS,Host
 
 4. In **Step 4 - Number of servers to deploy**, enter a Server Count (default is 8), and click **Next**.
 
-<figure><img src="../../.gitbook/assets/WSA_step4.png" alt=""><figcaption></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/WSA_step4.png" alt=""><figcaption></figcaption></figure></div>
 
 In the following steps, if you uploaded a CSV file, the data is pre-populated. You can review the data and if no editing is necessary, select **Next**.
 
@@ -195,7 +195,7 @@ In the following steps, if you uploaded a CSV file, the data is pre-populated. Y
    * If you edited the table, click **Verify IPMI IPs** to verify that the WMS can log into the BMCs and detect the manufacturer (Brand column).
    * Verify that all is correct, and then click **Next**.
 
-<figure><img src="../../.gitbook/assets/WSA_step5.png" alt=""><figcaption></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/WSA_step5.png" alt=""><figcaption></figcaption></figure></div>
 
 6. In **Step 6 - Operating System network information**, do the following:
    * In the **OS First IP**, enter the IP address of the OS 1 Gbit management interface. It requires a consecutive set of IP addresses for the servers (typical).
@@ -204,7 +204,7 @@ In the following steps, if you uploaded a CSV file, the data is pre-populated. Y
    * Verify that the OS IP settings are correct. You can repeatedly click **Fill OS table** to make adjustments.
    * Verify that all is correct, and then click **Next**.
 
-<figure><img src="../../.gitbook/assets/wsa_step_06.png" alt=""><figcaption></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/wsa_step_06.png" alt=""><figcaption></figcaption></figure></div>
 
 7.  In **Step 7 - Dataplane settings**, do the following:
 
@@ -214,18 +214,18 @@ In the following steps, if you uploaded a CSV file, the data is pre-populated. Y
     * You can repeatedly click **Update Dataplanes** to make adjustments.
     * Verify that all is correct, and then click **Next**.
 
-    <figure><img src="../../.gitbook/assets/wsa_step_07.png" alt=""><figcaption></figcaption></figure>
+    <div data-with-frame="true"><figure><img src="../../.gitbook/assets/wsa_step_07.png" alt=""><figcaption></figcaption></figure></div>
 8.  In **Step 8 - Save configuration files and inventory**, click **Save Files** to save the configuration files, and then click **Next**.
 
-    <figure><img src="../../.gitbook/assets/WSA_step8.png" alt=""><figcaption></figcaption></figure>
+    <div data-with-frame="true"><figure><img src="../../.gitbook/assets/WSA_step8.png" alt=""><figcaption></figcaption></figure></div>
 9.  In **Step 9 - Prepare WSA ISO for installation**, click **Prepare WSA ISO for install**.\
     The WMS updates the kickstart on the ISO to match the WMS deployment data (it takes about 30 seconds).
 
-    <figure><img src="../../.gitbook/assets/WSA_step9.png" alt=""><figcaption></figcaption></figure>
+    <div data-with-frame="true"><figure><img src="../../.gitbook/assets/WSA_step9.png" alt=""><figcaption></figcaption></figure></div>
 
 When the WSA ISO preparation is completed, the output is displayed. Verify that no errors appear. Then, click **Next**.
 
-<figure><img src="../../.gitbook/assets/wsa_09_1.png" alt=""><figcaption></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/wsa_09_1.png" alt=""><figcaption></figcaption></figure></div>
 
 10. In **Step 10 - Start Installation**, do the following:
     1. Select **Confirm overwrite of all boot drive OS and data on hosts**.
@@ -233,12 +233,12 @@ When the WSA ISO preparation is completed, the output is displayed. Verify that 
         The WMS loads the WSA on the servers previously defined and starts the installation.\
         The installation can take several minutes and displays output when complete. Verify that no errors appear.
 
-        <figure><img src="../../.gitbook/assets/WSA_step10.png" alt=""><figcaption></figcaption></figure>
+        <div data-with-frame="true"><figure><img src="../../.gitbook/assets/WSA_step10.png" alt=""><figcaption></figcaption></figure></div>
 
         The installation process takes about 30 minutes, depending on several factors, such as network speed. Verify that the server’s BMC completed the restart.
 11. In **Step 11 - Run OS and Dataplane Configuration Scripts**, click **Run system configuration scripts**. This action runs scripts to configure the servers with the specified dataplane IPs and perform additional tasks, such as populating `/etc/hosts`.
 
-<figure><img src="../../.gitbook/assets/WSA_step11.png" alt=""><figcaption></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/WSA_step11.png" alt=""><figcaption></figcaption></figure></div>
 
 ## What to do next?
 

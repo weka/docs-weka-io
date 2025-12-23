@@ -35,7 +35,7 @@ The following model is reflected in the architecture illustration:
 
 This co-located model delivers high efficiency by ensuring data resides physically close to the GPU workloads that consume it, minimizing latency and eliminating the need for external storage fabrics.
 
-<figure><img src="../.gitbook/assets/NeuralMesh_Axon.png" alt=""><figcaption><p>NeuralMesh Axon deployments with compute and storage on the same infrastructure</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/NeuralMesh_Axon.png" alt=""><figcaption><p>NeuralMesh Axon deployments with compute and storage on the same infrastructure</p></figcaption></figure></div>
 
 ## Solution component architecture
 

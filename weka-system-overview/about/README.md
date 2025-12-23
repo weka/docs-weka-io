@@ -16,7 +16,7 @@ WekaFS stands out with its unique architecture, overcoming legacy systems’ sca
 
 Benefits include high performance across all IO profiles, scalable capacity, robust security, hybrid cloud support, private/public cloud backup, and cost-effective flash-disk combination. WekaFS ensures a cloud-like experience, seamlessly transitioning between on-premises and cloud environments.
 
-<figure><img src="../../.gitbook/assets/v4.1_weka_architecture.png" alt=""><figcaption><p>WekaFS combines NVMe flash with cloud object storage in a single global namespace</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/v4.1_weka_architecture.png" alt=""><figcaption><p>WekaFS combines NVMe flash with cloud object storage in a single global namespace</p></figcaption></figure></div>
 
 WekaFS functionality running in its RTOS within the Linux container (LXC) is comprised of the following software components:
 
@@ -24,11 +24,11 @@ WekaFS functionality running in its RTOS within the Linux container (LXC) is com
 * **File system computing and clustering (backend: compute):** Manages data distribution, data protection, file system metadata services, and tiering.
 * **SSD drive agent (backend: drive):** Transforms the SSD into an efficient networked device.
 * **Management process (not shown):** Manages events, CLI, statistics, and call-home capability.
-* [**Object connector** ](#user-content-fn-1)[^1]**(not shown)**[**:** Read and write to the object store.](#user-content-fn-2)[^2]
+* **Object connector** **(not shown):** Read and write to the object store.
 
 By bypassing the kernel, WekaFS achieves faster, lower-latency performance, portable across bare-metal, VM, containerized, and cloud environments. Efficient resource consumption minimizes latency and optimizes CPU usage, offering flexibility in shared or dedicated environments.
 
-<figure><img src="../../.gitbook/assets/WEKAFS_architecture_wp (1).png" alt=""><figcaption><p>WekaFS software-based storage architecture</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/WEKAFS_architecture_wp (1).png" alt=""><figcaption><p>WekaFS software-based storage architecture</p></figcaption></figure></div>
 
 WekaFS design departs from traditional NAS solutions, introducing multiple filesystems within a global namespace that share the same physical resources. Each filesystem has its unique identity, allowing customization of snapshot policies, tiering, role-based access control (RBAC), quota management, and more. Unlike other solutions, filesystem capacity adjustments are dynamic, enhancing scalability without disrupting I/O.
 
@@ -37,7 +37,3 @@ The WEKA system offers a robust, distributed, and highly scalable storage soluti
 **Related information**
 
 [WEKA Architectural Whitepaper](https://www.weka.io/resources/white-paper/wekaio-architectural-whitepaper/#intro)
-
-[^1]: 
-
-[^2]: 

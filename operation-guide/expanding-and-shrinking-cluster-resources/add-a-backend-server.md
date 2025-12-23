@@ -4,7 +4,7 @@ Expanding a cluster in a multi-container backend architecture with a new server 
 
 Adding a server to the cluster includes discovering the existing cluster resources, generating the resource files, creating containers using the resource files, and adding the SSDs to the new server.
 
-<figure><img src="../../.gitbook/assets/add_server_multi.gif" alt=""><figcaption><p>Adding a server to the cluster in a multi-container backend architecture</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/add_server_multi.gif" alt=""><figcaption><p>Adding a server to the cluster in a multi-container backend architecture</p></figcaption></figure></div>
 
 ### Before you begin
 
@@ -53,7 +53,7 @@ cd ~/tools/install/
 
 ```
 
-4. Generate the resource files with the same network devices and options as the existing WEKA cluster servers.&#x20;
+4. Generate the resource files with the same network devices and options as the existing WEKA cluster servers.
 
 ```
 ./resources_generator.py --net <net-devices> [options]
@@ -116,7 +116,7 @@ drives0    Running  False     0:09:41h  True        True        14000  25295  Re
 frontend0  Running  False     0:08:35h  True        True        14200  27911  Ready   4.2.0.153
 ```
 
-7. Configure the SSD drives on the drive container.&#x20;
+7. Configure the SSD drives on the drive container.
 
 ```
 weka cluster drive add <container-id> <device-paths>

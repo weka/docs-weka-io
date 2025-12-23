@@ -26,7 +26,7 @@ The auditing and forwarding functionality supports exporting audit events to the
 * Splunk
 * Amazon S3
 
-<figure><img src="../../.gitbook/assets/Auditing_architecture.png" alt=""><figcaption><p>Audit and forwarding architecture</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/Auditing_architecture.png" alt=""><figcaption><p>Audit and forwarding architecture</p></figcaption></figure></div>
 
 ## Audit operation types
 

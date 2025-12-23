@@ -33,11 +33,11 @@ In dark sites—environments without Internet access—updating requires a manua
 * Access to WEKA Customer Success Team if assistance is needed.
 * The WMS and WSA ISO versions is below `2.0.0` (the last three digits of the ISO file name).
 
-<figure><img src="../.gitbook/assets/wsa-wms_iso_versions.png" alt=""><figcaption><p>WSA iso file version example </p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/wsa-wms_iso_versions.png" alt=""><figcaption><p>WSA iso file version example</p></figcaption></figure></div>
 
-* **Check the existing version:**&#x20;
+* **Check the existing version:**
   * **WMS:** Log into the WMS station and run `cat /.wms-version`
-  * **WSA:**  Log into the WSA station and run `cat /.version`&#x20;
+  * **WSA:** Log into the WSA station and run `cat /.version`
 
 {% hint style="info" %}
 You can also check the version from the login message. For example:

@@ -9,7 +9,7 @@ description: >-
 
 The Local WEKA Home v3.x runs on K3s, a lightweight Kubernetes installed on a single node cluster. Customize the deployment by specifying configuration parameters in the `config.json` file.
 
-<figure><img src="../../.gitbook/assets/LWH_on_K3s.png" alt=""><figcaption><p>Local WEKA Home v3.x deployment on K3s</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/LWH_on_K3s.png" alt=""><figcaption><p>Local WEKA Home v3.x deployment on K3s</p></figcaption></figure></div>
 
 ## Workflow: Local WEKA Home deployment
 
@@ -24,11 +24,11 @@ If you have deployed the WMS and do not require IPv6 networking, follow the proc
 7. Enable the WEKA cluster to send data to the Local WEKA Home.
 8. Test the deployment.
 
-### 1.  Verify prerequisites
+### 1. Verify prerequisites
 
 Verify that the following requirements are met:
 
-* A dedicated physical server (or VM) for the installation with `systemd`.&#x20;
+* A dedicated physical server (or VM) for the installation with `systemd`.
 * The user account for installing the LWH must have root privileges.
 * Server minimum CPU core and RAM requirements:
   * Minimum 8 CPU cores and 20 GiB RAM for up to 1000 total processes.
@@ -49,7 +49,7 @@ For using other operating systems, contact the [Customer Success Team](../../sup
 
 ### 2. Prepare the physical server (or VM)
 
-1. If you added an extra disk to hold the  `/opt/wekahome` data, make sure to format and mount it.  Then ensure it is remounted on reboot.&#x20;
+1. If you added an extra disk to hold the `/opt/wekahome` data, make sure to format and mount it. Then ensure it is remounted on reboot.
 2. It's recommended to disable the _SELinux_.
 3.  If enabled, it is required to disable nm-cloud-setup and reboot the node:
 
@@ -59,7 +59,7 @@ For using other operating systems, contact the [Customer Success Team](../../sup
     ```
 4.  Ensure the following ports are open and not used by any other process. Each port is used for the process specified in the brackets. `homecli` adds firewall rules automatically during installation for supported systems `(firewalld`, `ufw)`. For any other setup, check the following ports:
 
-    `6443`   (kube-apiserver)
+    `6443` (kube-apiserver)
 
     `10259` (kube-scheduler)
 
@@ -67,9 +67,9 @@ For using other operating systems, contact the [Customer Success Team](../../sup
 
     `10250` (kubelet)
 
-    `80`        (Local WEKA Home, WEKA cluster, and web browser)
+    `80` (Local WEKA Home, WEKA cluster, and web browser)
 
-    `443`      (Local WEKA Home, WEKA cluster, and web browser)
+    `443` (Local WEKA Home, WEKA cluster, and web browser)
 5.  Ensure the following networks are trusted:
 
     1. `10.42.0.0/16` (pods)
@@ -92,7 +92,7 @@ Local WEKA Home (LWH) supports dual-stack networking, allowing communication ove
 * Ensure compatibility with IPv6-enabled client applications.
 * Future-proof LWH deployments for evolving IPv6 adoption.
 
-#### Prerequisites
+**Prerequisites**
 
 Before configuring IPv6 support, ensure the following requirements are met:
 
@@ -107,7 +107,7 @@ Before configuring IPv6 support, ensure the following requirements are met:
 Dual-stack networking must be configured during cluster creation. It cannot be enabled later if the cluster was initially deployed with IPv4-only.
 {% endhint %}
 
-#### Procedure
+**Procedure**
 
 1. Verify IPv6 readiness:
 
@@ -207,7 +207,7 @@ Replace the `cluster-cidr` and `service-cidr` values with your available network
 
 Set the domain for URL accessing the Local WEKA Home portal either by the organization domain FQDN (DNS-based) or IP address (IP-based).
 
-The URL to access the Local WEKA Home does not accept aliases of the DNS name.&#x20;
+The URL to access the Local WEKA Home does not accept aliases of the DNS name.
 
 Only the name configured in the `config.json` or passed via CLI argument `--host some.domain.com` during setup can be used for accessing the Local WEKA Home.
 
@@ -255,7 +255,7 @@ To enable the Local WEKA Home to send emails, set the SMTP details in the **smtp
 
 If your SMTP server uses a self-signed certificate, set the line `"insecure":` to `true`.
 
-Ensure to enable the SMTP relay service in your SMTP service.&#x20;
+Ensure to enable the SMTP relay service in your SMTP service.
 
 The Google SMTP server requires an [app password](https://support.google.com/mail/answer/185833?hl=en).
 
@@ -355,7 +355,7 @@ The supported proxy types include:
 4. To reload your path variable do one of the following:
    * Re-login to the server.
    * Run the following command: `source /etc/profile`
-5.  To initialize the setup, run the following command from the root user: \
+5.  To initialize the setup, run the following command from the root user:\
     `homecli local setup -c config.json`\
     \
     For a fresh installation, expect approximately 5 minutes for completion.<br>
@@ -365,13 +365,13 @@ The supported proxy types include:
     \
     **Options:**
 
-    * You can use the default configuration by running: \
+    * You can use the default configuration by running:\
       `homecli local setup`
     * Specify the network interface or bind address for the cluster using:\
       `homecli local setup --iface <interface> --ip <IP address>`
     * Set your domain name or external IP as the host with:\
-      `homecli local setup --host <host.domain.com>`&#x20;
-    * Enable HTTPS by providing a certificate and key directly to the command instead of using the  `config.json`:\
+      `homecli local setup --host <host.domain.com>`
+    * Enable HTTPS by providing a certificate and key directly to the command instead of using the `config.json`:\
       `homecli local setup --iface <interface> --tls-cert <cert.pem> --tls-key <key.pem>`
 
 <details>
@@ -447,7 +447,7 @@ Easy wekahoming!
   * **Obtain the LWH portal password:** Run the command:\
     `kubectl get secret -n home-weka-io wekahome-admin-credentials -o jsonpath='{.data.adminPassword}' | base64 -d`
   * **Obtain the Grafana portal password:** Run the command:\
-    `kubectl get secret -n home-weka-io wekahome-grafana-credentials  -o jsonpath='{.data.password}' | base64 -d`
+    `kubectl get secret -n home-weka-io wekahome-grafana-credentials -o jsonpath='{.data.password}' | base64 -d`
   * **Obtain the WEKA Home secret key:** Run the command:\
     `kubectl get secret -n home-weka-io wekahome-encryption-key -o jsonpath='{.data.encryptionKey}' | base64 -d`
 
@@ -469,7 +469,7 @@ weka cloud enable --cloud-url https://<ip or hostname of the Local WEKA Home ser
 
 ### 8. Test the deployment
 
-The WEKA cluster periodically and on-demand uploads data to the Local WEKA Home according to its information type (see [#which-information-is-uploaded-to-weka-home](./#which-information-is-uploaded-to-weka-home "mention")).&#x20;
+The WEKA cluster periodically and on-demand uploads data to the Local WEKA Home according to its information type (see [#which-information-is-uploaded-to-weka-home](./#which-information-is-uploaded-to-weka-home "mention")).
 
 1. Access the WEKA Home portal and verify that the test data appears.
 2. To trigger a test event, run `weka events trigger-event test` and verify the test event is received in the Local WEKA Home portal under the **Events** section.
@@ -484,7 +484,7 @@ The WEKA cluster periodically and on-demand uploads data to the Local WEKA Home 
 kubectl get nodes wekahome.local -o jsonpath='{.status.addresses}'
 ```
 
-Example output:&#x20;
+Example output:
 
 ```json
 [
@@ -567,7 +567,7 @@ Certain upgrades require a fresh installation, as direct in-place upgrades are n
 2. Run `bash wekahome-*.bundle`
 3. To modify the existing configuration, open the `/opt/wekahome/config/config.json` file and modify the settings. See [#id-4.-install-and-configure-local-weka-home](local-weka-home-deployment.md#id-4.-install-and-configure-local-weka-home "mention").
 4. Run `homecli local upgrade`. For an upgrade, it takes about 2 minutes.
-5. Run `kubectl get pods -n home-weka-io` and verify in the results that all pods have the status **Running** or **Completed**. \
+5. Run `kubectl get pods -n home-weka-io` and verify in the results that all pods have the status **Running** or **Completed**.\
    To wait for the pods' statuses, run `watch kubectl get pods -n home-weka-io`.
 6. Verify the Local WEKA Home is upgraded successfully. Run the following command line:\
    `helm status wekahome -n home-weka-io`
@@ -602,7 +602,7 @@ The LWH uses ports 80 for HTTP and 443 for HTTPS by default. You can reconfigure
 
 The changes take effect immediately.
 
-## Check Local WEKA Home health&#x20;
+## Check Local WEKA Home health
 
 After deploying LWH, it is essential to verify its health to ensure all components are functioning correctly. A healthy LWH means that all pods are running without issues, CPU and memory usage are within acceptable limits, and there are no critical low disk space.
 
@@ -699,7 +699,7 @@ kubectl get pods -n kube-system -o name -l app.kubernetes.io/name=traefik
 kubectl logs <pod name from previous command> -n kube-system > traefik.out
 ```
 
-### Symptom: when executing any command on the Local WEKA Home, the error “no space left” is displayed&#x20;
+### Symptom: when executing any command on the Local WEKA Home, the error “no space left” is displayed
 
 The probable cause for this issue is that the containers dir (`/var/lib/rancher/k3s`) consumes disk space.
 
@@ -756,4 +756,4 @@ homecli local collect-debug-info [archive] [--include-sensitive] [--full-disk-sc
 
 **Parameters**
 
-<table><thead><tr><th width="242">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>archive</code>*</td><td>The path and output archive file name. <br>For example: <code>/path/diag/lwh_diagnostics.tar.gz</code></td></tr><tr><td><code>include-sensitive</code></td><td>Include sensitive data in the archive. For example, value overrides.<br>Use this parameter only if required by the Customer Success Team.</td></tr><tr><td><code>full-disk-scan</code></td><td>Perform a higher level of disk scan.<br>Use this parameter only if required by the Customer Success Team.</td></tr><tr><td><code>verbose</code></td><td>Provide a higher verbosity level of the debug information.</td></tr></tbody></table>
+<table><thead><tr><th width="242">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>archive</code>*</td><td>The path and output archive file name.<br>For example: <code>/path/diag/lwh_diagnostics.tar.gz</code></td></tr><tr><td><code>include-sensitive</code></td><td>Include sensitive data in the archive. For example, value overrides.<br>Use this parameter only if required by the Customer Success Team.</td></tr><tr><td><code>full-disk-scan</code></td><td>Perform a higher level of disk scan.<br>Use this parameter only if required by the Customer Success Team.</td></tr><tr><td><code>verbose</code></td><td>Provide a higher verbosity level of the debug information.</td></tr></tbody></table>

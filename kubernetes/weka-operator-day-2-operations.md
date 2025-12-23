@@ -370,7 +370,7 @@ weka-operator-system   weka-operator-controller-manager-bcf48df44-phb75         
     <pre><code><strong>weka cluster container
     </strong></code></pre>
 2. Check the status of the WEKA containers.\
-   In the command output, locate the `STATUS` column for the relevant containers. Verify that it displays `DRAINED` for the host and backend container.&#x20;
+   In the command output, locate the `STATUS` column for the relevant containers. Verify that it displays `DRAINED` for the host and backend container.
 
 <details>
 
@@ -479,7 +479,7 @@ node/3.252.130.226 cordoned
 ```
 
 2. Evict the the workload.\
-   For example:  Drain the client k8s node to evict running pods, ensuring data is removed:
+   For example: Drain the client k8s node to evict running pods, ensuring data is removed:
 
 ```
 kubectl drain <k8s_node_ip> --delete-emptydir-data --ignore-daemonsets --force
@@ -487,7 +487,7 @@ kubectl drain <k8s_node_ip> --delete-emptydir-data --ignore-daemonsets --force
 
 <details>
 
-<summary>Example </summary>
+<summary>Example</summary>
 
 ```
 $kubectl drain 3.252.130.226 --delete-local-data --ignore-daemonsets --force
@@ -530,7 +530,7 @@ weka-operator-system   weka-operator-controller-manager-bcf48df44-lk6cx   0/2   
 
 </details>
 
-3. Force reboot all client nodes. \
+3. Force reboot all client nodes.\
    Example for one client k8s node:
 
 ```
@@ -647,7 +647,7 @@ Removing a rack or Kubernetes (k8s) node is necessary when you need to decommiss
 
 #### Procedure
 
-1. Create failure domain labels for your nodes:&#x20;
+1. Create failure domain labels for your nodes:
    1.  Label nodes with two machines per failure domain:
 
        ```bash
@@ -1100,7 +1100,7 @@ wekacontainer.weka.weka.io "cluster-dev-drive-333de17c-be86-4601-bbca-6140cab8e9
 
 4. **Verify container deletion:**
    1. Verify containers are in `PodNotRunning` status.
-   2.  Confirm no containers are running on the old node.&#x20;
+   2.  Confirm no containers are running on the old node.
 
        Look for:
 
@@ -1154,7 +1154,7 @@ node/54.73.54.127 labeled
 
 </details>
 
-6. **Sign drives on new node**:&#x20;
+6. **Sign drives on new node**:
    1.  Create a WekaManualOperation configuration to sign drives:
 
        ```yaml
@@ -1211,7 +1211,7 @@ wekamanualoperation.weka.weka.io/sign-specific-drives created
 
 </details>
 
-7.  **Verification steps**:&#x20;
+7.  **Verification steps**:
 
     1. Verify WEKA containers are rescheduled.
     2. Check that new containers are running on the new node's IP.
@@ -1602,8 +1602,6 @@ DISK ID  UUID                                  HOSTNAME         NODE ID  SIZE   
 
 ```
 
-
-
 </details>
 
 **Phase 3: Monitor container recreation**
@@ -1932,7 +1930,7 @@ Adjusting the size of a WEKA cluster ensures optimal performance and cost effici
 
 ### Expand a cluster
 
-Cluster expansion enhances system resources and storage capacity while maintaining cluster stability. This procedure describes how to expand a WEKA cluster by increasing the number of compute and drive containers.&#x20;
+Cluster expansion enhances system resources and storage capacity while maintaining cluster stability. This procedure describes how to expand a WEKA cluster by increasing the number of compute and drive containers.
 
 {% hint style="info" %}
 This procedure exemplifies an expansion of a cluster with 6 compute and 6 drive containers to a cluster with 7 compute and 7 drive containers. Each driveContainer has one driveCore.
@@ -2623,7 +2621,7 @@ Events:           <none>
 * Hot spare needed for safe removal.
 * Cannot remove containers below protection requirement.
 
-#### Related topics&#x20;
+#### Related topics
 
 [expanding-and-shrinking-cluster-resources](../operation-guide/expanding-and-shrinking-cluster-resources/ "mention")
 
@@ -3542,7 +3540,7 @@ wekacontainer.weka.weka.io/weka-drivers-builder unchanged
 
 </details>
 
-2. Delete all container pods and verify that all pods restart and reach the Running state within a few minutes. \
+2. Delete all container pods and verify that all pods restart and reach the Running state within a few minutes.\
    In the following commands replace the \* with the actual container names.
 
 ```bash
@@ -4163,7 +4161,7 @@ The WekaContainer serves as a critical persistence layer within a Kubernetes env
 
 The following diagram provides a visual overview of the WekaContainer's lifecycle in Kubernetes, illustrating the flow from creation through running states and the various paths taken during deletion. The subsequent sections elaborate on the specific states, processes, and decision points shown.
 
-<figure><img src="../.gitbook/assets/WekaContainer_Lifecycle_in_K8s.png" alt=""><figcaption><p>WekaContainer lifecycle in Kubernetes</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/WekaContainer_Lifecycle_in_K8s.png" alt=""><figcaption><p>WekaContainer lifecycle in Kubernetes</p></figcaption></figure></div>
 
 **Key deletion states**
 
@@ -4172,7 +4170,7 @@ The deletion process involves two primary states the container can enter:
 * **`Deleting`**: This state signifies a graceful shutdown process triggered by standard Kubernetes deletion or pod deletion timeouts. It involves the controlled _Deactivation_ sequence shown in the diagram before the container is removed.
 * **`Destroying`**: This state represents a forced, immediate removal, bypassing the deactivation steps. As the diagram shows, this is typically triggered by a _Cluster destroy_ event.
 
-&#x20;**Deletion triggers and paths**
+**Deletion triggers and paths**
 
 The specific path taken upon deletion depends on the trigger:
 

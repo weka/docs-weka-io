@@ -27,7 +27,7 @@ The Pay As You Go (PAYG) license was deprecated in version 4.1 and is no longer 
 1. From the menu, select **Configure > Cluster Settings**.
 2. From the Cluster Settings pane, select **License**.
 
-![WEKA cluster license status](../.gitbook/assets/wmng\_cluster\_license.png)
+<div data-with-frame="true"><img src="../.gitbook/assets/wmng_cluster_license.png" alt="WEKA cluster license status"></div>
 
 ## Display the license status using the CLI
 
@@ -35,7 +35,7 @@ You can display the license status using one of the following commands:
 
 * `weka cluster license`: Displays the license properties.
 * `weka status`: Displays the weka status, license status, and expiry date.
-* `weka alerts`: If no license is assigned to the cluster, the command displays a relevant alert.&#x20;
+* `weka alerts`: If no license is assigned to the cluster, the command displays a relevant alert.
 
 **Example: License status using the `weka cluster license` command**
 

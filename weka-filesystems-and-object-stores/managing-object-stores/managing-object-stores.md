@@ -39,17 +39,17 @@ It is not mandatory to set the Access Key and Secret Key in the **Edit Object St
 
 If you select **Enable AssumeRole API**, set also the **Role ARN** and **Role Session Name**. For details, see the [Add an object store bucket](managing-object-stores.md#add-an-object-store-bucket) topic.
 
-<figure><img src="../../.gitbook/assets/edit_local_default_obs_aws.png" alt=""><figcaption><p>Edit local default object store for AWS</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/edit_local_default_obs_aws.png" alt=""><figcaption><p>Edit local default object store for AWS</p></figcaption></figure></div>
 {% endtab %}
 
 {% tab title="GCP" %}
 It is not mandatory to set the Access Key and Secret Key in the **Edit Object Store** dialog in GCP. Google Cloud Storage is accessed using a service account attached to each Compute Engine Instance that is running WEKA software, provided that the service account has the required permissions granted by the IAM role (`storage.admin` for creating buckets. `storage.objectAdmin` for using an existing bucket ).
 
-<figure><img src="../../.gitbook/assets/edit_local_default_obs_other.png" alt=""><figcaption><p>Edit local default object store for GCP</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/edit_local_default_obs_other.png" alt=""><figcaption><p>Edit local default object store for GCP</p></figcaption></figure></div>
 {% endtab %}
 
 {% tab title="Azure" %}
-<figure><img src="../../.gitbook/assets/edit_local_default_obs_azure.png" alt=""><figcaption><p>Edit local default object store for Azure</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/edit_local_default_obs_azure.png" alt=""><figcaption><p>Edit local default object store for Azure</p></figcaption></figure></div>
 {% endtab %}
 {% endtabs %}
 
@@ -62,7 +62,7 @@ Add object store buckets to be used for tiering or snapshots.
 1. From the menu, select **Manage > Object Stores**.
 2. Select the **+Create** button.
 
-![Create object store bucket](../../.gitbook/assets/wmng_create_obs_button.png)
+<div data-with-frame="true"><img src="../../.gitbook/assets/wmng_create_obs_button.png" alt="Create object store bucket"></div>
 
 3. In the **Create Object Store Bucket** dialog, set the following:
    * **Name**: Enter a meaningful name for the bucket.
@@ -102,7 +102,7 @@ Set the following:
    * **Data Storage Class**: Configurable Amazon S3 storage classes, allowing users to optimize storage based on cost and access needs. Supports STANDARD, REDUCED\_REDUNDANCY, STANDARD\_IA, ONEZONE\_IA, INTELLIGENT\_TIERING, OUTPOSTS, GLACIER\_IR, and EXPRESS\_ONEZONE. For details, For details, see the documentation for Amazon S3 Storage Classes.
    * **Metadata Storage Class:** Configurable Amazon S3 storage classes for metadata. Supports STANDARD, REDUCED\_REDUNDANCY, STANDARD\_IA, ONEZONE\_IA, INTELLIGENT\_TIERING, OUTPOSTS, GLACIER\_IR, and EXPRESS\_ONEZONE.
 
-<figure><img src="../../.gitbook/assets/create_obs_aws_advanced.png" alt=""><figcaption><p>AWS S3 bucket creation for WEKA cluster on EC2</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/create_obs_aws_advanced.png" alt=""><figcaption><p>AWS S3 bucket creation for WEKA cluster on EC2</p></figcaption></figure></div>
 {% endtab %}
 
 {% tab title="GCP" %}
@@ -122,7 +122,7 @@ Set the following:
   * **Max concurrent Removals**: Maximum number of removals concurrently performed on this object store in a single IO node.
   * **Enable Upload Tags**: Enable tagging of uploaded objects. For details, see [object-tagging](../tiering/data-management-in-tiered-filesystems.md#object-tagging).
 
-<figure><img src="../../.gitbook/assets/create_obs_other_advanced.png" alt=""><figcaption><p>GCP S3 bucket creation</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/create_obs_other_advanced.png" alt=""><figcaption><p>GCP S3 bucket creation</p></figcaption></figure></div>
 {% endtab %}
 
 {% tab title="Azure" %}
@@ -143,7 +143,7 @@ Set the following:
    * **Data Storage Class:** Configurable Azure access storage tier, allowing users to optimize storage based on cost and access needs. Supports HOT, COOL, and COLD. For details, see the documentation for Azure Access tiers for blob data.
    * **Metadata Storage Class:** Configurable Azure access storage tier for metadata. Supports HOT, COOL, and COLD.
 
-<figure><img src="../../.gitbook/assets/create_obs_azure_advanced (1).png" alt=""><figcaption><p>Azure S3 bucket creation</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/create_obs_azure_advanced (1).png" alt=""><figcaption><p>Azure S3 bucket creation</p></figcaption></figure></div>
 {% endtab %}
 {% endtabs %}
 
@@ -164,7 +164,7 @@ The object store buckets are displayed on the **Object Stores** page. Each objec
 
 The following example shows two object store buckets.
 
-![View object store buckets](../../.gitbook/assets/wmng_view_obs_buckets.png)
+<div data-with-frame="true"><img src="../../.gitbook/assets/wmng_view_obs_buckets.png" alt="View object store buckets"></div>
 
 ## Edit an object store bucket <a href="#edit-an-object-store-bucket" id="edit-an-object-store-bucket"></a>
 
@@ -175,11 +175,11 @@ You can modify the object store bucket parameters according to your demand chang
 1. From the menu, select **Manage > Object Stores**.
 2. Select the three dots on the right of the object store you want to modify and select **Edit**.
 
-![Edit an object store bucket](../../.gitbook/assets/edit_obs_menu.png)
+<div data-with-frame="true"><img src="../../.gitbook/assets/edit_obs_menu.png" alt="Edit an object store bucket"></div>
 
 3. In the Edit Object Store Bucket dialog, modify the details, and select **Update**.
 
-![Edit an object store bucket](<../../.gitbook/assets/edit_obs_aws (1).png>)
+<div data-with-frame="true"><img src="../../.gitbook/assets/edit_obs_aws (1).png" alt="Edit an object store bucket"></div>
 
 ## Show recent operations of an object store bucket
 
@@ -192,11 +192,11 @@ The details include the operation type (download or upload), start time, executi
 1. From the menu, select **Manage > Object Stores**.
 2. Select the three dots on the right of the object store bucket you want to show its recent operation, and select **Show Recent Operations**.
 
-<figure><img src="../../.gitbook/assets/wmng_obs_show_recent_operations_menu (1).png" alt=""><figcaption><p>Show recent operations of an object store bucket</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/wmng_obs_show_recent_operations_menu (1).png" alt=""><figcaption><p>Show recent operations of an object store bucket</p></figcaption></figure></div>
 
 The recent operations page for the selected object store bucket appears. To focus on specific operations, you can sort the columns and use the filters that appear on the top of the columns.
 
-<figure><img src="../../.gitbook/assets/wmng_obs_show_recent_ops_example.png" alt=""><figcaption><p>Bucket Operations page</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/wmng_obs_show_recent_ops_example.png" alt=""><figcaption><p>Bucket Operations page</p></figcaption></figure></div>
 
 ## Delete an object store bucket
 

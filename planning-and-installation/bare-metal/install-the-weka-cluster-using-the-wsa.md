@@ -11,12 +11,10 @@ WSA is a package consisting of a base version of Linux (based on Rocky 8.6), net
 
 The WSA generally works like any OS install disk (Linux/Windows).
 
-
-
-<figure><img src="../../.gitbook/assets/WSA_overview.png" alt=""><figcaption><p>WEKA cluster installation using the WSA</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/WSA_overview.png" alt=""><figcaption><p>WEKA cluster installation using the WSA</p></figcaption></figure></div>
 
 {% hint style="warning" %}
-Do not attempt to install the WSA using PXE boot. The WSA has a specific kickstart methodology only compatible with WMS or manual boot from ISO.&#x20;
+Do not attempt to install the WSA using PXE boot. The WSA has a specific kickstart methodology only compatible with WMS or manual boot from ISO.
 {% endhint %}
 
 {% hint style="info" %}
@@ -44,7 +42,7 @@ Before deploying the WSA, adhere to the following:
 * The WEKA user password is `weka.io123`
 * If errors occur during installation and the installation halts (no error messages appear), use the system console to review the logs in `/tmp`. The primary log is `/tmp/ks-pre.log`.
 * To get a command prompt from the Installation GUI, do one of the following:
-  * On macOS, type **ctrl+option+f2**&#x20;
+  * On macOS, type **ctrl+option+f2**
   * On Windows, type **ctrl+alt+f2**.
 
 ## WSA deployment workflow
@@ -66,7 +64,7 @@ Depending on the server manufacturer, consult the documentation for the serverâ€
 
 * A workstation or laptop sent to the BMC through the web browser.
 * An SMB share in a Windows server or a Samba server.
-* An NFS share.&#x20;
+* An NFS share.
 {% endtab %}
 
 {% tab title="Create DVD or USB media" %}
@@ -78,7 +76,7 @@ Once you boot the server, the WSA installs the WEKA OS, drivers, WEKA software. 
 
 Depending on network speed, this can take about 10-60 mins (or more) per server.
 
-<figure><img src="../../.gitbook/assets/WMS_install_1.png" alt="" width="563"><figcaption></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/WMS_install_1.png" alt="" width="563"><figcaption></figcaption></figure></div>
 
 ### 2. Configure the WSA
 
@@ -142,7 +140,7 @@ Log-in to the server and run the command `weka status`.
 
 The server provides a status report indicating the system is in STEM mode, and is ready for the cluster configuration.
 
-<figure><img src="../../.gitbook/assets/WSA_STEM_mode.png" alt=""><figcaption><p>Example: weka status with STEM mode</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/WSA_STEM_mode.png" alt=""><figcaption><p>Example: weka status with STEM mode</p></figcaption></figure></div>
 
 ## What to do next?
 

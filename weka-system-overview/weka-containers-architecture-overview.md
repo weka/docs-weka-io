@@ -24,7 +24,7 @@ The WEKA system uses different types of processes, each dedicated to specific fu
 
 In the WEKA cluster, each server implements a multi-container backend architecture where containers are specialized by process type: drive, compute, or frontend.
 
-<figure><img src="../.gitbook/assets/MCB_architecture.png" alt=""><figcaption><p>MCB architecture</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/MCB_architecture.png" alt=""><figcaption><p>MCB architecture</p></figcaption></figure></div>
 
 ## Benefits of MCB architecture
 
@@ -56,7 +56,7 @@ Each server has resource limits that affect how many containers it can run and h
 * Maximum WEKA cores per server: 64
 * Maximum cores per container: 19
 * Maximum containers of any type per server: 32
-  * &#x20;Within this total, the maximum frontend containers per server is 7.
+  * Within this total, the maximum frontend containers per server is 7.
 
 {% hint style="info" %}
 When WEKA is deployed on Kubernetes as a multi-tenant solution, the limits above apply per tenant.

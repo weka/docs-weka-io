@@ -14,11 +14,11 @@ When creating an S3 cluster, the audit webhook is default enabled but not config
 2. From the Protocols pane, select **S3**.
 3. On the S3 Cluster Configuration, select the **Configure audit webhook** icon.
 
-<figure><img src="../../../.gitbook/assets/wmng_audit_webhook_button.png" alt=""><figcaption><p><strong>Configure audit webhook</strong></p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../../.gitbook/assets/wmng_audit_webhook_button.png" alt=""><figcaption><p><strong>Configure audit webhook</strong></p></figcaption></figure></div>
 
 4. On the Audit Webhook Configuration dialog, set the following:
    * **Endpoint:** The webhook endpoint URL that receives the events stream.
    * **Auth Token:** The webhook authentication token.
 5. Select **Save**.
 
-<figure><img src="../../../.gitbook/assets/wmng_audit_webhook_configuration.png" alt=""><figcaption><p>Audit Webhook Configuration</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../../.gitbook/assets/wmng_audit_webhook_configuration.png" alt=""><figcaption><p>Audit Webhook Configuration</p></figcaption></figure></div>

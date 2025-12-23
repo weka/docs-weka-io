@@ -39,8 +39,8 @@ This approach benefits several scenarios:
 * **Number of filesystems:** up to 1024
 * **Number of files or directories:** Up to 6.4 trillion (6.4 \* 10^12)
 * **Number of files in a single directory:** Up to 6.4 billion (6.4 \* 10^9)
-* **Total capacity with object store:** Up to 14 EiB&#x20;
-* **Total SSD capacity:** Up to 1 EiB&#x20;
+* **Total capacity with object store:** Up to 14 EiB
+* **Total SSD capacity:** Up to 1 EiB
 * **File size:** Up to 4 PiB
 
 ### Data reduction **in WEKA filesystems**
@@ -53,7 +53,7 @@ Data reduction applies only to user data, not metadata, on a per-filesystem basi
 
 For example, the image below shows a cluster with a total physical SSD capacity of 979.2 TB. Thanks to data reduction, the cluster achieves a Data Reduction Ratio of 2.78:1, which results in 574.6 TB of saved capacity. This saving allows the cluster to have 1.6 PB of provisioned space, which is 159% of the actual physical capacity.
 
-<figure><img src="../../.gitbook/assets/data_reduction_capacity_saving_example.png" alt="" width="422"><figcaption><p>Data reduction capacity saving</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/data_reduction_capacity_saving_example.png" alt="" width="422"><figcaption><p>Data reduction capacity saving</p></figcaption></figure></div>
 
 #### Prerequisites
 
@@ -74,7 +74,7 @@ The data reduction process during write involves the following tasks:
 2. **Compression:** The system reads the similar and unique data blocks and compresses them. The newly compressed data is then written back to the filesystem.
 3. **Defragmentation:** After data is successfully compressed, the original, uncompressed blocks are marked for deletion. A defragmentation process waits for a sufficient number of these blocks to be invalidated and then permanently deletes them, freeing up SSD capacity.
 
-<figure><img src="../../.gitbook/assets/DataReduction.gif" alt=""><figcaption><p>Data reduction process during write at a glance</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/DataReduction.gif" alt=""><figcaption><p>Data reduction process during write at a glance</p></figcaption></figure></div>
 
 The data reduction process during read involves decompressio&#x6E;**.** When a client reads compressed data, the system performs decompression inline as part of the read operation. This decompression is handled by the drive containers.
 
@@ -89,9 +89,9 @@ Key monitoring panels include:
 * **Fingerprints - Performed FP Calcs:** Displays the rate of fingerprint calculations being performed per second.
 * **Fingerprints - Skipped FP Calcs:** Shows the rate of fingerprint calculations that were skipped. An increase in skipped calculations can indicate a high system load.
 
-<figure><img src="../../.gitbook/assets/data_reduction_monitoring_2.png" alt=""><figcaption><p>Cluster CPU statistics</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/data_reduction_monitoring_2.png" alt=""><figcaption><p>Cluster CPU statistics</p></figcaption></figure></div>
 
-<figure><img src="../../.gitbook/assets/data_reduction_monitoring_1.png" alt=""><figcaption><p>Data reduction fingerprints and ingest rate</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/data_reduction_monitoring_1.png" alt=""><figcaption><p>Data reduction fingerprints and ingest rate</p></figcaption></figure></div>
 
 ### Encrypted filesystems in WEKA
 

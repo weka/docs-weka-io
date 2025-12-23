@@ -677,7 +677,7 @@ In a NeuralMesh Axon architecture, Slurm compute servers often function as Neura
 
 To ensure optimal performance and stability, you must isolate CPU and memory resources for NeuralMesh Axon processes. This prevents conflicts with Slurm-managed user workloads or daemons.
 
-<figure><img src="../.gitbook/assets/slurm_weka_dedicated_backend_4 (1).png" alt="" width="456"><figcaption><p>NeuralMesh Axon integration with Slurm</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/slurm_weka_dedicated_backend_4 (1).png" alt="" width="456"><figcaption><p>NeuralMesh Axon integration with Slurm</p></figcaption></figure></div>
 
 #### Configure Slurm for resource isolation
 

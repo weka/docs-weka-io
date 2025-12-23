@@ -2,7 +2,7 @@
 
 The Protocols Debug Level section displays the debug level for the S3 and NFS protocols only (the SMB debug level is not shown). You can change the debug level only for the configured protocols.
 
-![Protocols debug level](../../../.gitbook/assets/wmng\_protocols\_debug\_level.png)
+<div data-with-frame="true"><img src="../../../.gitbook/assets/wmng_protocols_debug_level.png" alt="Protocols debug level" width="563"></div>
 
 Using the GUI, you can:
 
@@ -36,7 +36,7 @@ The available debug levels are:
    * **Level:** Select the debug level.
    * **All servers:** If you want to apply the update on all the servers, switch to **On**. If you want to apply the update on specific servers, switch to **Off** and select the required servers.
 
-![Update S3 Debug Level](../../../.gitbook/assets/wmng\_update\_S3\_debug\_level.png)
+<div data-with-frame="true"><img src="../../../.gitbook/assets/wmng_update_S3_debug_level.png" alt="Update S3 Debug Level" width="280"></div>
 
 ## Update NFS debug level <a href="#update-nfs-debug-level" id="update-nfs-debug-level"></a>
 
@@ -59,7 +59,7 @@ The available debug levels are:
    * **Level:** Select the debug level.
    * **All servers:** If you want to apply the update on all the servers, switch to **On**. If you want to apply the update on specific servers, switch to **Off** and select the required servers.
 
-![Update NFS Debug Level](../../../.gitbook/assets/wmng\_update\_NFS\_debug\_level.png)
+<div data-with-frame="true"><img src="../../../.gitbook/assets/wmng_update_NFS_debug_level.png" alt="Update NFS Debug Level" width="283"></div>
 
 ## Update SMB debug level <a href="#update-smb-debug-level" id="update-smb-debug-level"></a>
 
@@ -80,4 +80,4 @@ The available debug levels are:
    * **Level:** Select the debug level.
    * **All servers:** If you want to apply the update on all the servers, switch to **On**. If you want to apply the update on specific servers, switch to **Off** and select the required servers.
 
-![Update SMB Debug Level](../../../.gitbook/assets/wmng\_update\_smb\_debug\_level.png)
+<div data-with-frame="true"><img src="../../../.gitbook/assets/wmng_update_smb_debug_level.png" alt="Update SMB Debug Level" width="283"></div>

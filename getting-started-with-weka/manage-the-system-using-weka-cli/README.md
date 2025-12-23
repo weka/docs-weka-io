@@ -64,7 +64,7 @@ The options that are common to many commands include:
 <table><thead><tr><th width="260.17695965807206">Option</th><th>Description</th></tr></thead><tbody><tr><td><code>-J|--json</code></td><td>Prints the raw JSON value returned by the cluster.</td></tr><tr><td><code>-H|--hostname</code></td><td>Directs the CLI to communicate with the cluster through the specified hostname or IP.</td></tr><tr><td><code>--raw-units</code></td><td>Sets the units such as capacity and bytes to be printed in their raw format, as returned by the cluster.</td></tr><tr><td><code>--UTC</code></td><td>Sets the timestamps to be printed in UTC timezone, instead of the local time of the server running the CLI command.</td></tr><tr><td><code>-f|--format</code></td><td>Specifies the format to output the result (view, csv, markdown, or JSON).</td></tr><tr><td><code>-o|--output</code></td><td>Specifies the columns to include in the output.</td></tr><tr><td><code>-s|--sort</code></td><td>Specifies the order to sort the output. May include a '+' or '-' before the column name to sort by ascending or descending order.</td></tr><tr><td><code>-F| --filter</code></td><td>Specifies the filter values for a member (without forcing it to be in the output).</td></tr><tr><td><code>--no-header</code></td><td>Indicates that the column header should not be shown when printing the output.</td></tr><tr><td><code>-C|--CONNECT-TIMEOUT</code></td><td>Modifies the default timeout used for connecting to the system via the JRPC protocol.</td></tr><tr><td><code>-T|--TIMEOUT</code></td><td>Modifies the default timeout for which the commands wait for a response before giving up.</td></tr><tr><td><code>--color</code></td><td><p>Controls the usage of color in the outputs. Possible values: <code>enabled</code>, <code>disabled</code>, or <code>auto</code><strong>.</strong></p><p><strong>Default:</strong> <code>auto</code>. It automatically determines whether to enable color based on the output destination. If the output is a terminal that supports color, it is enabled; otherwise, it is disabled.</p></td></tr></tbody></table>
 
 {% hint style="info" %}
-Throughout the documentation, the CLI mandatory parameters are marked with an asterisk (\*).&#x20;
+Throughout the documentation, the CLI mandatory parameters are marked with an asterisk (\*).
 {% endhint %}
 
 ## Commands hierarchy
@@ -260,20 +260,20 @@ Examples:
 
 {% tabs %}
 {% tab title="1. Healthy" %}
-<figure><img src="../../.gitbook/assets/weka_status_ok.png" alt=""><figcaption></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/weka_status_ok.png" alt=""><figcaption></figcaption></figure></div>
 {% endtab %}
 
 {% tab title="2. Partially protected" %}
-<figure><img src="../../.gitbook/assets/weka_status_partialy_protected.png" alt=""><figcaption></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/weka_status_partialy_protected.png" alt=""><figcaption></figcaption></figure></div>
 {% endtab %}
 
 {% tab title="3. Rebuilding" %}
-<figure><img src="../../.gitbook/assets/weka_status_rebulding.png" alt=""><figcaption></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/weka_status_rebulding.png" alt=""><figcaption></figcaption></figure></div>
 {% endtab %}
 
 {% tab title="4. Unavailable" %}
-<figure><img src="../../.gitbook/assets/weka_status_unavailable.png" alt=""><figcaption></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/weka_status_unavailable.png" alt=""><figcaption></figcaption></figure></div>
 {% endtab %}
 {% endtabs %}
 
-[^1]: The `NO_COLO`R environment variable is a  indicates that command-line applications should not produce any colored output. This is useful for users who prefer or require plain text output, such as in scripts or when using terminal environments that do not support colored text.
+[^1]: The `NO_COLO`R environment variable is a indicates that command-line applications should not produce any colored output. This is useful for users who prefer or require plain text output, such as in scripts or when using terminal environments that do not support colored text.

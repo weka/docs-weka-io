@@ -37,9 +37,7 @@ Locate the components for installing the rail kit assembly:
 * Two B6 ReadyRails sliding rail assemblies (1).
 * Two hook and loop straps (2).
 
-<figure><img src="../.gitbook/assets/wekapod_rails_00.png" alt="" width="563"><figcaption></figcaption></figure>
-
-
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/wekapod_rails_00.png" alt="" width="563"><figcaption></figcaption></figure></div>
 
 ### Installing and removing tool-less rails (square hole or round hole racks)
 
@@ -48,7 +46,7 @@ Locate the components for installing the rail kit assembly:
 3. **Engage the rail:** Push the back end of the rail until it fully seats on the vertical rack flange and the latch clicks into place. Repeat this step to position and seat the front end piece on the vertical rack flange (3).
 4. **Remove the rails:** To remove, press the latch release button at the midpoint of the end piece and unseat each rail (4).
 
-<figure><img src="../.gitbook/assets/wekapod_rails_01.png" alt="" width="524"><figcaption></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/wekapod_rails_01.png" alt="" width="524"><figcaption></figcaption></figure></div>
 
 ### Installing and removing tooled rails (threaded hole racks)
 
@@ -57,7 +55,7 @@ Locate the components for installing the rail kit assembly:
 3. **Attach the front mounting rails:** Secure the left and right mounting rails to the front vertical rack flanges using two pairs of screws (3).
 4. **Attach the rear brackets:** Slide the left and right back brackets forward against the rear vertical rack flanges and secure them using two pairs of screws (4).
 
-<figure><img src="../.gitbook/assets/wekapod_rails_02.png" alt="" width="519"><figcaption></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/wekapod_rails_02.png" alt="" width="519"><figcaption></figcaption></figure></div>
 
 ### Installing the system in a rack
 
@@ -66,7 +64,7 @@ Locate the components for installing the rail kit assembly:
 3. **Seat the rail standoffs:** Rotate the system downward until all the rail standoffs are securely seated in the J-slots (3).
 4. **Lock and insert the system:** Push the system inward until the lock levers click into place. Then, press the slide-release lock buttons on both rails and slide the system fully into the rack (4).
 
-<figure><img src="../.gitbook/assets/wekapod_rails_03.png" alt="" width="518"><figcaption></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/wekapod_rails_03.png" alt="" width="518"><figcaption></figcaption></figure></div>
 
 ### Removing the system from the rack
 
@@ -74,7 +72,7 @@ Locate the components for installing the rail kit assembly:
 2. **Unlock the levers:** Rotate each lever upward to its release position (2).
 3. **Remove the system:** Firmly grasp the sides of the system and pull it forward until the rail standoffs reach the front of the J-slots. Then, lift the system up and away from the rack and place it on a level surface (3).
 
-<figure><img src="../.gitbook/assets/wekapod_rails_04.png" alt="" width="516"><figcaption></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/wekapod_rails_04.png" alt="" width="516"><figcaption></figcaption></figure></div>
 
 ## Cable management arm (CMA) installation instructions
 
@@ -95,14 +93,14 @@ To secure the CMA for shipment in the rack, loop the tie wraps around both baske
 For larger CMAs, the tie wraps can be threaded through the inner and outer baskets and around the tray to secure them. Securing the CMA in this manner also secures your system in unstable environments.
 {% endhint %}
 
-<figure><img src="../.gitbook/assets/wekapod_rails_05.png" alt=""><figcaption></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/wekapod_rails_05.png" alt=""><figcaption></figcaption></figure></div>
 
 ### Installing and removing the cable management arm tray
 
 * **Install the tray:** Align and engage each side of the CMA tray with the receiver brackets on the inner edges of the rails. Push the tray forward until it clicks into place (1).
 * **Remove the tray:** To remove, squeeze the latch-release buttons on both sides toward the center, then pull the tray out of the receiver brackets (2).
 
-<figure><img src="../.gitbook/assets/wekapod_rails_06.png" alt=""><figcaption></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/wekapod_rails_06.png" alt=""><figcaption></figcaption></figure></div>
 
 ### Installing and removing the cable management arm
 
@@ -113,7 +111,7 @@ For larger CMAs, the tie wraps can be threaded through the inner and outer baske
    * Align the other latch on the CMA with the outermost bracket until the latch engages (2).
 4. **Remove the CMA:** To detach the CMA, press the release buttons at the top of the inner and outer latch housings to disengage both latches (3).
 
-<figure><img src="../.gitbook/assets/wekapod_rails_07.png" alt=""><figcaption></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/wekapod_rails_07.png" alt=""><figcaption></figcaption></figure></div>
 
 ### Moving the CMA Away from the CMA Tray
 
@@ -125,7 +123,7 @@ For larger CMAs, the tie wraps can be threaded through the inner and outer baske
 If the CMA is already cabled, you can extend it into the service position to access the back of the system.
 {% endhint %}
 
-<figure><img src="../.gitbook/assets/wekapod_rails_08.png" alt=""><figcaption></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/wekapod_rails_08.png" alt=""><figcaption></figcaption></figure></div>
 
 ### Cabling the System Using the CMA
 
@@ -140,4 +138,4 @@ If the CMA is already cabled, you can extend it into the service position to acc
 5. **Reposition the CMA:** Swing the CMA back into place on the tray (5).
 6. **Install the status indicator cable:** At the back of the system, install the status indicator cable and secure it by routing it through the CMA. Attach the other end of the cable to the corner of the outer CMA basket (6).
 
-<figure><img src="../.gitbook/assets/wekapod_rails_09.png" alt=""><figcaption></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/wekapod_rails_09.png" alt=""><figcaption></figcaption></figure></div>

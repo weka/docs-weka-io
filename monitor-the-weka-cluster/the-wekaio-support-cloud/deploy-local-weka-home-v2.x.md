@@ -8,7 +8,7 @@ description: >-
 
 The Local WEKA Home v2.x runs on Minikube (a lightweight Kubernetes implementation) installed on a single Docker container. You specify the configuration parameters in the config.yaml file as part of the deployment workflow.
 
-<figure><img src="../../.gitbook/assets/LWH_on_Minikube.png" alt=""><figcaption><p>Local WEKA Home v2.x deployment</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/LWH_on_Minikube.png" alt=""><figcaption><p>Local WEKA Home v2.x deployment</p></figcaption></figure></div>
 
 ## Workflow: Local WEKA Home deployment
 
@@ -299,7 +299,7 @@ apiforwarding:
 
 4. Run `./wekahome-install.sh`.\
    For new installation, it takes about 5 minutes.
-5. Run `kubectl get pods -n home-weka-io` and verify in the results that all pods have the status **Running** or **Completed**. \
+5. Run `kubectl get pods -n home-weka-io` and verify in the results that all pods have the status **Running** or **Completed**.\
    To wait for the pods statuses, run `watch kubectl get pods -n home-weka-io`.
 6. Verify the Local WEKA Home is installed successfully. Run the following command line:\
    `helm status homewekaio -n home-weka-io`
@@ -502,7 +502,7 @@ nginx:
 </details>
 
 5. Run `./wekahome-install.sh`. For an upgrade, it takes about 2 minutes.
-6. Run `kubectl get pods -n home-weka-io` and verify in the results that all pods have the status **Running** or **Completed**. \
+6. Run `kubectl get pods -n home-weka-io` and verify in the results that all pods have the status **Running** or **Completed**.\
    To wait for the pods statuses, run `watch kubectl get pods -n home-weka-io`.
 7. Verify the Local WEKA Home is upgraded successfully. Run the following command line:\
    `helm status homewekaio -n home-weka-io`
@@ -546,7 +546,7 @@ nginx:
 </details>
 
 2. Run `./wekahome-install.sh`
-3. Run `kubectl get pods -n home-weka-io` and verify in the results that all pods have the status **Running** or **Completed**. \
+3. Run `kubectl get pods -n home-weka-io` and verify in the results that all pods have the status **Running** or **Completed**.\
    To wait for the pods statuses, run `watch kubectl get pods -n home-weka-io`.
 4. Verify the Local WEKA Home is updated successfully. Run the following command line:\
    `helm status homewekaio -n home-weka-io`

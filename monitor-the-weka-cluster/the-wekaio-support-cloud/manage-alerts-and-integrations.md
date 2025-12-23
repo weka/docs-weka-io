@@ -2,7 +2,7 @@
 
 After deploying the Local WEKA Home, you can configure it to send specific alerts or events through Email (SMTP), PagerDuty, or SNMP Traps (v1/v2c/v3). For example, you can set it to email alerts to a specific address when the cluster's data protection level falls below the configured threshold.
 
-<figure><img src="../../.gitbook/assets/LWH_email_alert.jpg" alt="" width="563"><figcaption><p>WEKA Home email alert example</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/LWH_email_alert.jpg" alt="" width="563"><figcaption><p>WEKA Home email alert example</p></figcaption></figure></div>
 
 ## Set the Local WEKA Home to send events and alerts
 
@@ -17,19 +17,19 @@ Setting the Local WEKA Home to send events and alerts includes the following pro
 2. From the menu, select **Manage** > **Integrations**.
 3. On the **Integration** page, select **New**.
 
-<figure><img src="../../.gitbook/assets/lwh_integrations_new.png" alt=""><figcaption><p>Integrations page</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/lwh_integrations_new.png" alt=""><figcaption><p>Integrations page</p></figcaption></figure></div>
 
 3. On the **Create Integration** page, select one of the destinations and set the relevant values as follows:
 
 {% tabs %}
 {% tab title="PagerDuty" %}
-1. In **Name**, enter a meaningful destination name for the integration.
-2. In **Type**, select **PageDuty**.
-3. In **Routing Key**, set the routing key of your pager duty.
-4. Verify that the integration is enabled (the arrow is green).
-5. Select **Save Integration**.
+1) In **Name**, enter a meaningful destination name for the integration.
+2) In **Type**, select **PageDuty**.
+3) In **Routing Key**, set the routing key of your pager duty.
+4) Verify that the integration is enabled (the arrow is green).
+5) Select **Save Integration**.
 
-<figure><img src="../../.gitbook/assets/lwh_pd_integration.png" alt="" width="563"><figcaption><p>PagerDuty integration</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/lwh_pd_integration.png" alt="" width="563"><figcaption><p>PagerDuty integration</p></figcaption></figure></div>
 {% endtab %}
 
 {% tab title="Email" %}
@@ -39,13 +39,13 @@ Setting the Local WEKA Home to send events and alerts includes the following pro
 4. Verify that the integration is enabled (the arrow is green).
 5. Select **Save Integration**.
 
-<figure><img src="../../.gitbook/assets/lwh_email_integration.png" alt="" width="563"><figcaption><p>Email integration</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/lwh_email_integration.png" alt="" width="563"><figcaption><p>Email integration</p></figcaption></figure></div>
 {% endtab %}
 
 {% tab title="SNMP Trap" %}
 1. In **Name**, enter a meaningful destination name for the integration.
 2. In **Type**, select **SNMP Trap**.
-3. In the **Version**, select the required SNMP version to use with your SNMP-based tool.&#x20;
+3. In the **Version**, select the required SNMP version to use with your SNMP-based tool.
 4. Set the values of the properties required according to the selected version:
    * **v1:** SNMP version 1, which only requires the SNMP server hostname or IP address and a plaintext community.
    * **v2c:** SNMP version 2c, similar to SNMP v1, but adds support for 64-bit counters.
@@ -56,7 +56,7 @@ Setting the Local WEKA Home to send events and alerts includes the following pro
 6. Download the WEKA\_HOME-MIB.txt file and apply it in your SNMP system.
 7. Select **Save Integration**.
 
-<figure><img src="../../.gitbook/assets/lwh_snmp_integration.png" alt=""><figcaption><p>SNMP integration: <strong>v3_AuthPriv</strong> (v3 with authentication and privileges settings)</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/lwh_snmp_integration.png" alt=""><figcaption><p>SNMP integration: <strong>v3_AuthPriv</strong> (v3 with authentication and privileges settings)</p></figcaption></figure></div>
 {% endtab %}
 {% endtabs %}
 
@@ -65,7 +65,7 @@ Setting the Local WEKA Home to send events and alerts includes the following pro
 1. From the menu, select **Manage** > **Rules**.
 2. On the **Rules** page, select **New**.
 
-<figure><img src="../../.gitbook/assets/lwh_rules_new.png" alt=""><figcaption><p>Rules page</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/lwh_rules_new.png" alt=""><figcaption><p>Rules page</p></figcaption></figure></div>
 
 5.  On the **Create Rule** page, do the following:
 
@@ -80,8 +80,8 @@ Setting the Local WEKA Home to send events and alerts includes the following pro
 
 #### Create an event rule that sends all critical events to a predefined email
 
-<figure><img src="../../.gitbook/assets/lwh_event_rule_example (1).gif" alt=""><figcaption><p>Create an event rule example</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/lwh_event_rule_example (1).gif" alt=""><figcaption><p>Create an event rule example</p></figcaption></figure></div>
 
 #### Create an alert rule that sends all tiering connectivity alerts to a predefined email
 
-<figure><img src="../../.gitbook/assets/lwh_alert_rule_example (1).gif" alt=""><figcaption><p>Create an alert rule example</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/lwh_alert_rule_example (1).gif" alt=""><figcaption><p>Create an alert rule example</p></figcaption></figure></div>

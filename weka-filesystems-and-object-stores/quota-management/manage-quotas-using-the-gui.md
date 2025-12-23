@@ -43,7 +43,7 @@ The organization admin can set a quota on a directory. This action initiates cal
      The system sets the directory quota in the background.
 5. To monitor the directory quota setting background task, select **Monitor > Background Tasks.**
 
-<figure><img src="../../.gitbook/assets/DirectoryQuotaSetting.gif" alt=""><figcaption><p>Set a directory quota and monitor the background task</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/DirectoryQuotaSetting.gif" alt=""><figcaption><p>Set a directory quota and monitor the background task</p></figcaption></figure></div>
 
 ## View directory quotas and default quota
 
@@ -56,7 +56,7 @@ You can view existing directory quotas and the default quota that are already se
 3. Select the filesystem in which the directory quotas are already set.
 4. To view all quotas or only the exceeding quotas, select the **Exceeding quotas/All quotas** switch.
 
-<figure><img src="../../.gitbook/assets/wmng_view_dir_quotas.gif" alt=""><figcaption><p>View directory quotas and default quota</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/wmng_view_dir_quotas.gif" alt=""><figcaption><p>View directory quotas and default quota</p></figcaption></figure></div>
 
 ## Update a directory quota or default quota
 
@@ -69,7 +69,7 @@ You can update an existing directory quota or the default quota for directories.
 3. Select the filesystem in which the directory quotas are set (through the CLI).
 4. Select the three dots on the right of the required directory. From the menu, select **Update**.
 
-<figure><img src="../../.gitbook/assets/wmng_select_update_dir_quota.png" alt=""><figcaption><p>Directory Quotas</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/wmng_select_update_dir_quota.png" alt=""><figcaption><p>Directory Quotas</p></figcaption></figure></div>
 
 5. In the Quota Settings Update dialog, modify the following settings according to your needs:
    * **Hard Quota Limit:** The hard quota limit defines the maximum used capacity above the soft quota limit, which prevents writing to the directory.
@@ -78,7 +78,7 @@ You can update an existing directory quota or the default quota for directories.
    * **Grace Period:** When the soft quota limit is reached, a grace period starts. After this period, data cannot be written to the directory.
 6. Click **Save**.
 
-<figure><img src="../../.gitbook/assets/wmng_quota_setting_update.png" alt="" width="264"><figcaption><p>Quota Settings Update</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/wmng_quota_setting_update.png" alt="" width="264"><figcaption><p>Quota Settings Update</p></figcaption></figure></div>
 
 ## Remove a directory quota
 
@@ -92,7 +92,7 @@ You can remove (unset) a directory quota if it is no longer required.
 4. Select the three dots on the right of the required default quota. From the menu, select **Remove**.
 5. In the Quota Deletion message, select **Yes**.
 
-<figure><img src="../../.gitbook/assets/wmng_select_remove_dir_quota.png" alt=""><figcaption><p>Remove a default quota</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/wmng_select_remove_dir_quota.png" alt=""><figcaption><p>Remove a default quota</p></figcaption></figure></div>
 
 ## Remove the default quota for new directories
 

@@ -12,7 +12,7 @@ WEKA provides a ready-to-deploy Terraform package for installing the WEKA cluste
 
 The following diagram provides an overview of the various steps automated with the Terraform-driven provisioning of the WEKA cluster backend servers on AWS EC2 instances.
 
-<figure><img src="../../.gitbook/assets/weka_TF_for_aws.png" alt=""><figcaption><p>WEKA Terraform module deployment on AWS</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/weka_TF_for_aws.png" alt=""><figcaption><p>WEKA Terraform module deployment on AWS</p></figcaption></figure></div>
 
 ## Workflow description
 

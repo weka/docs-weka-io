@@ -58,7 +58,7 @@ Set the TTL (Time to Live) for all records assigned to the NFS servers to 0 (Zer
 
 [Round-robin DNS](https://en.wikipedia.org/wiki/Round-robin_DNS)
 
-### NFS client mount&#x20;
+### NFS client mount
 
 The NFS client mount is configured using the standard NFS stack operating system. The NFS server IP address must point to the round-robin DNS name.
 
@@ -128,13 +128,13 @@ The following Kerberos service interactions ensure secure communication between 
 5. **Service ticket delivery & extraction:** The Ticket Granting Server sends the Service Ticket and the Service Session Key to the client, who then decrypts the response and extracts these for later use.
 6. **Service access & verification:** The client generates an authenticator for the network service and sends it along with the Service Ticket to the network service, which then verifies the Service Ticket and the authenticator.
 
-<figure><img src="../../.gitbook/assets/Kerberos_process.png" alt=""><figcaption><p>Kerberos service interactions (simplified view)</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/Kerberos_process.png" alt=""><figcaption><p>Kerberos service interactions (simplified view)</p></figcaption></figure></div>
 
 {% hint style="info" %}
 This diagram illustrates the Kerberos service interactions in a simplified manner. It highlights how secure communication is established over insecure networks. Note that this is a broad representation, and actual implementations may differ.
 {% endhint %}
 
-### Scalability, load balancing, and resiliency&#x20;
+### Scalability, load balancing, and resiliency
 
 For performance scalability, add as many servers as possible to the interface group.
 
@@ -183,11 +183,9 @@ weka debug flock list <inode-id>
 
 This command outputs a list of all current locks on the specified file, enabling administrators to monitor and manage file access effectively.
 
-
-
 ## NFS service deployment high-level workflow
 
-<figure><img src="../../.gitbook/assets/NFS_deploy_workflow.png" alt=""><figcaption><p>NFS service deployment high-level workflow</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/NFS_deploy_workflow.png" alt=""><figcaption><p>NFS service deployment high-level workflow</p></figcaption></figure></div>
 
 For detailed procedures, see the related topics.
 

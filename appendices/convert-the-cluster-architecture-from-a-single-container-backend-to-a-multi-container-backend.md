@@ -16,7 +16,7 @@ In SCB, the drive, compute, and frontend processes are in the same container. In
 
 Conversion to MCB is supported from version 4.0.2 and above.
 
-<figure><img src="../.gitbook/assets/scb_to_mcb_convert.png" alt=""><figcaption><p>SCB vs. MCB</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/scb_to_mcb_convert.png" alt=""><figcaption><p>SCB vs. MCB</p></figcaption></figure></div>
 
 For more details about MCB, see the [weka-containers-architecture-overview.md](../weka-system-overview/weka-containers-architecture-overview.md "mention").
 
@@ -43,10 +43,10 @@ The conversion runs on one server at a time (rolling). It takes about 4.5 minute
 2. Download the latest [Tools Repository](https://github.com/weka/tools/tree/master). It is recommended to pull the latest version before starting the migration.
 3. Copy the following scripts from the downloaded tools repository to the **/tmp** directory on the server from which you plan to run it:
    * **All** the following conversion scripts:
-     * [MBC cluster conversion](https://github.com/weka/tools/tree/master/topics/MBC\_cluster\_conversion)
-     * [Change failure domains to manual](https://github.com/weka/tools/blob/master/postinstall/change\_failure\_domains\_to\_manual.py)
+     * [MBC cluster conversion](https://github.com/weka/tools/tree/master/topics/MBC_cluster_conversion)
+     * [Change failure domains to manual](https://github.com/weka/tools/blob/master/postinstall/change_failure_domains_to_manual.py)
      * [Protocols](https://github.com/weka/tools/blob/master/postinstall/protocols)
-   * [Resources generator](https://github.com/weka/tools/blob/master/install/resources\_generator.py) &#x20;
+   * [Resources generator](https://github.com/weka/tools/blob/master/install/resources_generator.py)
 4. Verify that all backends are up and with no rebuilds in progress.
 5. Ensure no WEKA filesystem mounts exist on the backends.\
    If required, run `umount -a -t wekafs`.
@@ -56,14 +56,14 @@ The conversion runs on one server at a time (rolling). It takes about 4.5 minute
 9. Changing the `/opt/weka/logs` loop device to 2 GB is recommended. After the MCB conversion, each container has its own set of logs, so the space required is tripled. Visit the Support Portal and search for the KB: _How-to-increase-the-size-of-opt-weka-logs_.
 10. If the cluster has network device names in the old schema, convert these names to real NIC names. To identify the network devices, run `weka cluster host net -b`. If the result shows network device names such as `host0net0`, it is the old schema.
 
-### 2.  Remove the protocol cluster configurations (if exist)
+### 2. Remove the protocol cluster configurations (if exist)
 
 If protocol cluster configurations are set, remove them if possible. Otherwise, once you convert some containers (later in this workflow), you can move the protocol containers to the converted containers.
 
 Using the `protocols` script (from the tools repository), perform the following:
 
-1. Back up the configuration of the protocol clusters.&#x20;
-2. Destroy the configuration of the protocol clusters.&#x20;
+1. Back up the configuration of the protocol clusters.
+2. Destroy the configuration of the protocol clusters.
 
 {% hint style="info" %}
 During the conversion process, the HostIDs are changed. After the conversion, manually change the HostIDs in the configuration backup file.
@@ -247,7 +247,7 @@ Successful SCB to MCB conversion example
 If you have destroyed the protocol clusters configuration before the conversion, restore them as follows:
 
 1. Open the backup file of the protocol cluster configurations created before the conversion. Search for the `HostId` lines and replace these to match the `frontend0` container HostIDs.\
-   To retrieve the new HostIDs, run the following command line: \
+   To retrieve the new HostIDs, run the following command line:\
    `weka cluster container -b | grep frontend0`.
 2. Run the `protocols` script from the `/tmp` directory.
 
@@ -292,7 +292,7 @@ On a large cluster with about 2000 clients and above, the rebuild between each M
 
 When two drives or four phase out, the conversion script goes on a loop with the error message:
 
-`“ 2023-09-04 14:55:38 mbc divider - ERROR: Error querying container status and invoking scan: The following drives did not move to the new container, ['4a7d4250-179e-42b4-ab3f-90cfcb968f64'] retrying “`&#x20;
+`“ 2023-09-04 14:55:38 mbc divider - ERROR: Error querying container status and invoking scan: The following drives did not move to the new container, ['4a7d4250-179e-42b4-ab3f-90cfcb968f64'] retrying “`
 
 This symptom occurs because the script assumes the drives belonged to the default cluster, already deleted from the host.
 
@@ -315,7 +315,7 @@ Do one of the following:
 * Before starting the conversion again, reduce the memory size of each container. When the conversion completes, change the memory size back.
 * Change the memory at the MCB conversion using the flag `-m 150`. This flag sets the RAM to 150 GiB. When the conversion completes, change the memory size back.
 
-To change the RAM  to the previous size, run the command `weka local resources` for the compute container. The drive and frontend containers do not need more memory.
+To change the RAM to the previous size, run the command `weka local resources` for the compute container. The drive and frontend containers do not need more memory.
 
 {% hint style="warning" %}
 When this error occurs, the drive container is still active, with all the drives, and the default container is stopped.

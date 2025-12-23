@@ -7,7 +7,7 @@ Using the GUI, you can:
 * [Change traces verbosity level](manage-traces-using-the-gui.md#change-traces-verbosity-level)
 * [Restore traces default settings](manage-traces-using-the-gui.md#restore-traces-default-settings)
 
-<figure><img src="../../../.gitbook/assets/wmng_traces.png" alt=""><figcaption><p>Manage traces</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../../.gitbook/assets/wmng_traces.png" alt=""><figcaption><p>Manage traces</p></figcaption></figure></div>
 
 ## Configure traces <a href="#configure-traces" id="configure-traces"></a>
 
@@ -25,7 +25,7 @@ The tracking tool collects the traces on the backends and clients and retains th
    * The maximum capacity traces can use on clients.
 5. Select **Save**.
 
-<figure><img src="../../../.gitbook/assets/wmng_configure_traces.png" alt=""><figcaption><p>Configure traces</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../../.gitbook/assets/wmng_configure_traces.png" alt="" width="284"><figcaption><p>Configure traces</p></figcaption></figure></div>
 
 ## Freeze traces <a href="#freeze-traces" id="freeze-traces"></a>
 
@@ -43,9 +43,9 @@ Sometimes you may need to investigate an issue that occurred during a certain pe
    * **Override:** If a freezing period is already set, you can override it by setting the **Override** button to **On**.
 5. Select **Save**.
 
-<figure><img src="../../../.gitbook/assets/wmng_freeze_traces.png" alt=""><figcaption><p>Freeze traces</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../../.gitbook/assets/wmng_freeze_traces.png" alt="" width="282"><figcaption><p>Freeze traces</p></figcaption></figure></div>
 
-<figure><img src="../../../.gitbook/assets/wmng_freeze_traces_result.png" alt=""><figcaption><p>Example of a freeze period</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../../.gitbook/assets/wmng_freeze_traces_result.png" alt="" width="563"><figcaption><p>Example of a freeze period</p></figcaption></figure></div>
 
 6. To clear the freeze period, select **Reset traces freeze**. Then, in the confirmation message,\
    select **Yes**.
@@ -58,13 +58,13 @@ The verbosity level determines the amount of information in the tracing data. Sw
 
 1. In the Traces section, depending on the current verbosity level (low or high), select **Change traces level to high** or **Change traces level to low**.
 
-<figure><img src="../../../.gitbook/assets/wmng_change_verbosity_level.png" alt=""><figcaption><p>Change verbosity level</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../../.gitbook/assets/wmng_change_verbosity_level.png" alt="" width="563"><figcaption><p>Change verbosity level</p></figcaption></figure></div>
 
 ## Restore traces default settings <a href="#restore-traces-default-settings" id="restore-traces-default-settings"></a>
 
 You can restore the traces configuration to its default settings as shown in the following image.
 
-<figure><img src="../../../.gitbook/assets/wmng_traces_defauly_settings.png" alt=""><figcaption><p>Traces default settings</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../../.gitbook/assets/wmng_traces_defauly_settings.png" alt="" width="375"><figcaption><p>Traces default settings</p></figcaption></figure></div>
 
 {% hint style="info" %}
 The default maximum capacity per IO-node is 50 GB and the minimum for all IO-nodes is 100 GB. The minimum free capacity is 3.22 GB

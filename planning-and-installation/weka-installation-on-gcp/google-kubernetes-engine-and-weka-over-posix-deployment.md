@@ -38,43 +38,43 @@ Follow these steps to deploy GKE in Standard mode with Ubuntu OS for the worker 
 
 1. Go to the GCP menu, select **Kubernetes Engine**, and then **Clusters**.
 
-<figure><img src="https://lh7-us.googleusercontent.com/docsz/AD_4nXe7js2-Za8ecCfalw-w36aPDcOhr0hYENsQqgUSppY_F7Pe9or1s4f1v66IIiwubpUticNNcYa_Tmg6CyWD_4RvOoDzzT_9LQKaPgly-ZRGf6PxtKYc4MGHLsFh2Fdt-WEyVLn3vDATLtXCNftjPy114YmK7pzHsCaC2OE42Q?key=pmcWhfRW5GQA1x-KXJSIuA" alt=""><figcaption></figcaption></figure>
+<div data-with-frame="true"><figure><img src="https://lh7-us.googleusercontent.com/docsz/AD_4nXe7js2-Za8ecCfalw-w36aPDcOhr0hYENsQqgUSppY_F7Pe9or1s4f1v66IIiwubpUticNNcYa_Tmg6CyWD_4RvOoDzzT_9LQKaPgly-ZRGf6PxtKYc4MGHLsFh2Fdt-WEyVLn3vDATLtXCNftjPy114YmK7pzHsCaC2OE42Q?key=pmcWhfRW5GQA1x-KXJSIuA" alt=""><figcaption></figcaption></figure></div>
 
 2. Click **CREATE** to create a new cluster.
 
-<figure><img src="https://lh7-us.googleusercontent.com/docsz/AD_4nXeWrY0z7zDdleUBG99xAOsY3l-cUgE21EWBxc1dnzumZL_vM0EzG0KJ3Br7KQYKri89UPX4-SAlT6Le48jCsXrBrdjhRNwheoug6LdqwE-Gmp8Od853-Wi2ntIcwfPTJ_Mt4E_dyrbr6_mRVevEdW1vdL3BY-rv9_lBnZ_-IQ?key=pmcWhfRW5GQA1x-KXJSIuA" alt=""><figcaption></figcaption></figure>
+<div data-with-frame="true"><figure><img src="https://lh7-us.googleusercontent.com/docsz/AD_4nXeWrY0z7zDdleUBG99xAOsY3l-cUgE21EWBxc1dnzumZL_vM0EzG0KJ3Br7KQYKri89UPX4-SAlT6Le48jCsXrBrdjhRNwheoug6LdqwE-Gmp8Od853-Wi2ntIcwfPTJ_Mt4E_dyrbr6_mRVevEdW1vdL3BY-rv9_lBnZ_-IQ?key=pmcWhfRW5GQA1x-KXJSIuA" alt=""><figcaption></figcaption></figure></div>
 
 3. If prompted, click **SWITCH TO STANDARD CLUSTER.** This mode also enables SSH access to worker nodes, which is necessary for installing the WEKA POSIX clients.
 
-<figure><img src="https://lh7-us.googleusercontent.com/docsz/AD_4nXdl3dWZ_WebOkRZtf0POFi5hXdG2x9HuBCNs65FcGPO65iIE1xvS6GqrqR8a8ANamnog77o-LrSWxBew7I6DHfHjTipsPMzO27DfeqsUlp1SWneMQtF-V1f65u8yNX8vxnH0cvMYtj3z2RxqEgqQXEJfDT2ZBnGPR77tqdo?key=pmcWhfRW5GQA1x-KXJSIuA" alt=""><figcaption></figcaption></figure>
+<div data-with-frame="true"><figure><img src="https://lh7-us.googleusercontent.com/docsz/AD_4nXdl3dWZ_WebOkRZtf0POFi5hXdG2x9HuBCNs65FcGPO65iIE1xvS6GqrqR8a8ANamnog77o-LrSWxBew7I6DHfHjTipsPMzO27DfeqsUlp1SWneMQtF-V1f65u8yNX8vxnH0cvMYtj3z2RxqEgqQXEJfDT2ZBnGPR77tqdo?key=pmcWhfRW5GQA1x-KXJSIuA" alt=""><figcaption></figcaption></figure></div>
 
-<figure><img src="https://lh7-us.googleusercontent.com/docsz/AD_4nXdiqiPkERPHqtfvdnG-0Rc4CO81EKFALcIxkq14TSSBNZZJKsrMWWrdygnag4VArNi2D9sKYuRsYPoB5dEbAndQwNMIO4MW7uNUnSSrr511U9WAXzZtB2Ywe5yB4wbiTus7SOEsjUcT8ly9soro9WIUoTyDk6D0SL3ZaMP6qQ?key=pmcWhfRW5GQA1x-KXJSIuA" alt=""><figcaption></figcaption></figure>
+<div data-with-frame="true"><figure><img src="https://lh7-us.googleusercontent.com/docsz/AD_4nXdiqiPkERPHqtfvdnG-0Rc4CO81EKFALcIxkq14TSSBNZZJKsrMWWrdygnag4VArNi2D9sKYuRsYPoB5dEbAndQwNMIO4MW7uNUnSSrr511U9WAXzZtB2Ywe5yB4wbiTus7SOEsjUcT8ly9soro9WIUoTyDk6D0SL3ZaMP6qQ?key=pmcWhfRW5GQA1x-KXJSIuA" alt=""><figcaption></figcaption></figure></div>
 
 4. Change from a regional to a zonal setup. Select the zone where the WEKA Cluster management IPs are located to ensure optimal communication and performance. This step ensures seamless communication between GKE and the WEKA cluster.
 
-<figure><img src="https://lh7-us.googleusercontent.com/docsz/AD_4nXdWO4qd8vt3kllEoS8tNKUe205TcI0eE_hCSKtrhCx_aS4H5yKUY_vDlioa4P_1vZrBjRjyEuyTCYbR1E9Rc1QTqmIztZcy-gVBwEqAtSJ74mK0itx3PWWBj7OFE1-sjKf_HOfYIvbKtsHAe6goKNvCngssARLIYQ_Vxz7pfA?key=pmcWhfRW5GQA1x-KXJSIuA" alt=""><figcaption></figcaption></figure>
+<div data-with-frame="true"><figure><img src="https://lh7-us.googleusercontent.com/docsz/AD_4nXdWO4qd8vt3kllEoS8tNKUe205TcI0eE_hCSKtrhCx_aS4H5yKUY_vDlioa4P_1vZrBjRjyEuyTCYbR1E9Rc1QTqmIztZcy-gVBwEqAtSJ74mK0itx3PWWBj7OFE1-sjKf_HOfYIvbKtsHAe6goKNvCngssARLIYQ_Vxz7pfA?key=pmcWhfRW5GQA1x-KXJSIuA" alt=""><figcaption></figcaption></figure></div>
 
 5. Adjust the node pool settings: Go to **Nodes** within the **default-pool** under **NODE POOLS** in the GKE console, and change the **Image type** to **Ubuntu with containerd (ubuntu\_containerd)**.
 
-<figure><img src="https://lh7-us.googleusercontent.com/docsz/AD_4nXfYSvYN_gCungoz6cPuIxzppBGbC9RSvMlrgr3fbtCKMKplWi6hZLmEGNWzV1qBCJGB9JF-WekXnz4xRlQxiDoeDdvmB-jmbUjNQZaQRfnsbCZKzb66IK99WE0NmDxkUWIMvM1l-vq6fzqJZqp5vgso58hH8x5-pe6MIdSxNA?key=pmcWhfRW5GQA1x-KXJSIuA" alt=""><figcaption></figcaption></figure>
+<div data-with-frame="true"><figure><img src="https://lh7-us.googleusercontent.com/docsz/AD_4nXfYSvYN_gCungoz6cPuIxzppBGbC9RSvMlrgr3fbtCKMKplWi6hZLmEGNWzV1qBCJGB9JF-WekXnz4xRlQxiDoeDdvmB-jmbUjNQZaQRfnsbCZKzb66IK99WE0NmDxkUWIMvM1l-vq6fzqJZqp5vgso58hH8x5-pe6MIdSxNA?key=pmcWhfRW5GQA1x-KXJSIuA" alt=""><figcaption></figcaption></figure></div>
 
 6. Ensure worker nodes meet a minimum configuration of 8 vCPUs and 32 GB RAM. The WEKA client requires a minimum of 2 vCPUs and 5 GB of RAM.
 
-<figure><img src="https://lh7-us.googleusercontent.com/docsz/AD_4nXcjUHQIwEBPTZABA5tgX7d8XV53-88z5b8epKIc_fX9Q9qZuRcLPpiKLsKAoCrPZmE3Hj9Se5-VNLQvFWgrb6hATRyV9UikVxUn8gfqtWZ-CLdy3CdaFQDVpAJ8q7w1OZp6MVGUDIuTr2RlnLDFOAZELVqx2nOZvlG8u5qw?key=pmcWhfRW5GQA1x-KXJSIuA" alt=""><figcaption></figcaption></figure>
+<div data-with-frame="true"><figure><img src="https://lh7-us.googleusercontent.com/docsz/AD_4nXcjUHQIwEBPTZABA5tgX7d8XV53-88z5b8epKIc_fX9Q9qZuRcLPpiKLsKAoCrPZmE3Hj9Se5-VNLQvFWgrb6hATRyV9UikVxUn8gfqtWZ-CLdy3CdaFQDVpAJ8q7w1OZp6MVGUDIuTr2RlnLDFOAZELVqx2nOZvlG8u5qw?key=pmcWhfRW5GQA1x-KXJSIuA" alt=""><figcaption></figcaption></figure></div>
 
 7. If the GKE cluster was set up in advance, deploy the WEKA cluster to the same networking VPC and subnet. Otherwise, ensure that the GKE cluster networking is configured within the same VPC and subnet as the WEKA management IPs. Aligning networking elements per the recommendation will ensure optimal performance.
 
-<figure><img src="https://lh7-us.googleusercontent.com/docsz/AD_4nXc5P1eisd6vPHVpzOSOaqtDPiZ9PxkOgozRt0oDCkKB-TXCusX3_gQQcIwHNYkU6ag-G0BaDGpPhCQZAsVEUzHYON0wfu7RIQXpiJpaBW_PKxWtcCz9_MkPgtIXpqrlAtYazbfP-pnEMlAGROKPEM_XG_iDUtVwQ3tpKfQV5Q?key=pmcWhfRW5GQA1x-KXJSIuA" alt=""><figcaption></figcaption></figure>
+<div data-with-frame="true"><figure><img src="https://lh7-us.googleusercontent.com/docsz/AD_4nXc5P1eisd6vPHVpzOSOaqtDPiZ9PxkOgozRt0oDCkKB-TXCusX3_gQQcIwHNYkU6ag-G0BaDGpPhCQZAsVEUzHYON0wfu7RIQXpiJpaBW_PKxWtcCz9_MkPgtIXpqrlAtYazbfP-pnEMlAGROKPEM_XG_iDUtVwQ3tpKfQV5Q?key=pmcWhfRW5GQA1x-KXJSIuA" alt=""><figcaption></figcaption></figure></div>
 
-<figure><img src="https://lh7-us.googleusercontent.com/docsz/AD_4nXfaaCA6140795DaNo8a0WRhUPIuVQk_hHDd1GZ8UHYlxGubV9rSC2YMYSmvA7I8RuxJA_4grBFyRldoeWv5_XJ_pT2ncMbGiRUNrXazd0gP54FK2hMLJrS5PgR1JSfA2YFU5uJ32RmJ8X5pZOh9czYvZ7X1UiBKtX2DCmt13Q?key=pmcWhfRW5GQA1x-KXJSIuA" alt=""><figcaption></figcaption></figure>
+<div data-with-frame="true"><figure><img src="https://lh7-us.googleusercontent.com/docsz/AD_4nXfaaCA6140795DaNo8a0WRhUPIuVQk_hHDd1GZ8UHYlxGubV9rSC2YMYSmvA7I8RuxJA_4grBFyRldoeWv5_XJ_pT2ncMbGiRUNrXazd0gP54FK2hMLJrS5PgR1JSfA2YFU5uJ32RmJ8X5pZOh9czYvZ7X1UiBKtX2DCmt13Q?key=pmcWhfRW5GQA1x-KXJSIuA" alt=""><figcaption></figcaption></figure></div>
 
 8. Click **CREATE** to create the cluster.
 
-<figure><img src="https://lh7-us.googleusercontent.com/docsz/AD_4nXed4i-476nzMh0I-oJuiijDuDO4i7TguldIN-boK_Y2piO2y5coz8h4yzYJg_rPA8Z1K57ksz7IeIuTvya6x-0yuJRdSknbcazfrWSNa95FLpLCSwGO0DOsmT4Gv82mvH1l-ipYgL3WVdXlZucIFCpIeVmN9wYqtsiSyu9h7g?key=pmcWhfRW5GQA1x-KXJSIuA" alt=""><figcaption></figcaption></figure>
+<div data-with-frame="true"><figure><img src="https://lh7-us.googleusercontent.com/docsz/AD_4nXed4i-476nzMh0I-oJuiijDuDO4i7TguldIN-boK_Y2piO2y5coz8h4yzYJg_rPA8Z1K57ksz7IeIuTvya6x-0yuJRdSknbcazfrWSNa95FLpLCSwGO0DOsmT4Gv82mvH1l-ipYgL3WVdXlZucIFCpIeVmN9wYqtsiSyu9h7g?key=pmcWhfRW5GQA1x-KXJSIuA" alt=""><figcaption></figcaption></figure></div>
 
-8. Wait for the cluster status to indicate **Ready** or **Green** before proceeding with further configuration or deployment tasks.
+9. Wait for the cluster status to indicate **Ready** or **Green** before proceeding with further configuration or deployment tasks.
 
-<figure><img src="https://lh7-us.googleusercontent.com/docsz/AD_4nXdVazQ4v1lXR7yEZAKt9Rqdt8YsPuBzOfjb0WAqW6H4U3AK-oJveh1wkOoHoLQwFl4E1UyRt1O_S4PcOwwY2S4_g_Llo1alkSPZvg37jAVt3m3I5uF8eAM2nGJ6lZ_E1tSx_iRYtV2_xwaDOAbaEMYBHuYdo7VWMELChHNEXQ?key=pmcWhfRW5GQA1x-KXJSIuA" alt=""><figcaption></figcaption></figure>
+<div data-with-frame="true"><figure><img src="https://lh7-us.googleusercontent.com/docsz/AD_4nXdVazQ4v1lXR7yEZAKt9Rqdt8YsPuBzOfjb0WAqW6H4U3AK-oJveh1wkOoHoLQwFl4E1UyRt1O_S4PcOwwY2S4_g_Llo1alkSPZvg37jAVt3m3I5uF8eAM2nGJ6lZ_E1tSx_iRYtV2_xwaDOAbaEMYBHuYdo7VWMELChHNEXQ?key=pmcWhfRW5GQA1x-KXJSIuA" alt=""><figcaption></figcaption></figure></div>
 
 ### 2. Set up WEKA client on existing GKE worker nodes
 
@@ -92,11 +92,11 @@ Ensure SSH access to the GKE worker nodes is available to install the WEKA clien
 
 1. Identify the names of the GKE worker nodes where the WEKA client will be installed.
 
-<figure><img src="https://lh7-us.googleusercontent.com/docsz/AD_4nXf3Aik8MJkbu4UFVBH-Mfcc4YAUm-OFES2z5UHuDkv0KbWOn3mC7K5V0CaBw_BoSwWYhot70uiOQPuHSUb7KPGnkEc6mwbwQWXG6YGYWEsJ4uABlvtAnMt1KRXXoK7xe4gxXbKIICcwVXgTWEPNVQpOpumzH4FW36iOkTWo?key=pmcWhfRW5GQA1x-KXJSIuA" alt=""><figcaption></figcaption></figure>
+<div data-with-frame="true"><figure><img src="https://lh7-us.googleusercontent.com/docsz/AD_4nXf3Aik8MJkbu4UFVBH-Mfcc4YAUm-OFES2z5UHuDkv0KbWOn3mC7K5V0CaBw_BoSwWYhot70uiOQPuHSUb7KPGnkEc6mwbwQWXG6YGYWEsJ4uABlvtAnMt1KRXXoK7xe4gxXbKIICcwVXgTWEPNVQpOpumzH4FW36iOkTWo?key=pmcWhfRW5GQA1x-KXJSIuA" alt=""><figcaption></figcaption></figure></div>
 
 2. Go to **Google Cloud Platform > Compute Engine > VM Instance** console. Locate the identified GKE worker node, select **SSH connect** from the dropdown menu, and choose **Open in browser window** to initiate the SSH connection.
 
-<figure><img src="https://lh7-us.googleusercontent.com/docsz/AD_4nXfaFLru7kgPoKpFe9FplHvpt-yQs4oWT0FlnD8zwt6U7kRx9Krn1ezVpn7H6yWmiQkn8BqEQWsUPGyzbWF8LeW5XMnLh9R3Y2Uw5x4hJMYqdyfjQ-IRaw2cutTjJCJsJj7J8hxw-wAf27wa0U_yyrtevScRS8aJN84zEvcueQ?key=pmcWhfRW5GQA1x-KXJSIuA" alt=""><figcaption></figcaption></figure>
+<div data-with-frame="true"><figure><img src="https://lh7-us.googleusercontent.com/docsz/AD_4nXfaFLru7kgPoKpFe9FplHvpt-yQs4oWT0FlnD8zwt6U7kRx9Krn1ezVpn7H6yWmiQkn8BqEQWsUPGyzbWF8LeW5XMnLh9R3Y2Uw5x4hJMYqdyfjQ-IRaw2cutTjJCJsJj7J8hxw-wAf27wa0U_yyrtevScRS8aJN84zEvcueQ?key=pmcWhfRW5GQA1x-KXJSIuA" alt=""><figcaption></figcaption></figure></div>
 
 3. To avoid CPU pinning conflicts with GKE, start the WEKA client using a stateless client mount. Authorize the SSH connection, then add the WEKA client from the existing WEKA cluster. For details, see the [adding-clients-bare-metal.md](../bare-metal/adding-clients-bare-metal.md "mention") procedure.
 

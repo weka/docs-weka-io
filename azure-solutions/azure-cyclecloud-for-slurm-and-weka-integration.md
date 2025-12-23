@@ -54,7 +54,7 @@ This architecture demonstrates how **Azure CycleCloud** integrates with the **WE
 
 By combining CycleCloud’s dynamic compute provisioning and scaling with WEKA’s advanced storage capabilities, this solution offers a robust and efficient framework for HPC and HTC applications.
 
-<figure><img src="../.gitbook/assets/Azure-CycleCloud-for-SLURM-WEKA.png" alt=""><figcaption><p>WEKA and Azure CycleCloud integration architecture</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/Azure-CycleCloud-for-SLURM-WEKA.png" alt=""><figcaption><p>WEKA and Azure CycleCloud integration architecture</p></figcaption></figure></div>
 
 ## Prerequisites
 
@@ -91,18 +91,18 @@ Create and deploy the cluster-init module on the Azure CycleCloud nodes to autom
 1.  **Log in to the Azure CycleCloud Virtual Machine (VM)**\
     Access the VM where Azure CycleCloud is installed.<br>
 
-    <figure><img src="../.gitbook/assets/CycleCloud_1-1.png" alt=""><figcaption><p><strong>Log in to the Azure CycleCloud VM</strong></p></figcaption></figure>
+    <div data-with-frame="true"><figure><img src="../.gitbook/assets/CycleCloud_1-1.png" alt=""><figcaption><p><strong>Log in to the Azure CycleCloud VM</strong></p></figcaption></figure></div>
 2.  **Retrieve the official template**\
     Browse to [https://github.com/themorey/cyclecloud-weka](https://github.com/themorey/cyclecloud-weka) and copy the URL to the clipboard.<br>
 
-    <figure><img src="../.gitbook/assets/CycleCloud_1-2 (1).png" alt=""><figcaption><p>Copy the URL from the cyclecloud-weka repository</p></figcaption></figure>
+    <div data-with-frame="true"><figure><img src="../.gitbook/assets/CycleCloud_1-2 (1).png" alt=""><figcaption><p>Copy the URL from the cyclecloud-weka repository</p></figcaption></figure></div>
 3. Clone the CycleCloud/WEKA integration template repository from GitHub to your CycleCloud instance using the previously copied URL:
 
 ```bash
 git clone https://github.com/themorey/cyclecloud-weka.git
 ```
 
-<figure><img src="../.gitbook/assets/CycleCloud_1-3.png" alt=""><figcaption><p>Clone the CycleCloud/WEKA integration template repository</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/CycleCloud_1-3.png" alt=""><figcaption><p>Clone the CycleCloud/WEKA integration template repository</p></figcaption></figure></div>
 
 3. **Import the template**\
    Navigate to the cloned repository directory and import the `slurm-weka` template into Azure CycleCloud:
@@ -114,13 +114,11 @@ cyclecloud import_template -f /home/weka/cyclecloud-weka/templates/slurm-weka.tx
 4.  **Verify the template in the CycleCloud GUI**\
     Once the template is successfully imported, it appears in the CycleCloud GUI under the templates section.<br>
 
-    <figure><img src="../.gitbook/assets/CycleCloud_1-4 (1).png" alt=""><figcaption><p>CycleCloud GUI</p></figcaption></figure>
+    <div data-with-frame="true"><figure><img src="../.gitbook/assets/CycleCloud_1-4 (1).png" alt=""><figcaption><p>CycleCloud GUI</p></figcaption></figure></div>
 5.  **Review the template configuration**\
     Click on the newly imported template. It includes a section labeled **Weka Cluster Info.** You will configure this section in a later step of this guide.<br>
 
-    <figure><img src="../.gitbook/assets/CycleCloud_1-5 (1).png" alt=""><figcaption><p>WEKA Cluster Info</p></figcaption></figure>
-
-    <br>
+    <div data-with-frame="true"><figure><img src="../.gitbook/assets/CycleCloud_1-5 (1).png" alt=""><figcaption><p>WEKA Cluster Info</p></figcaption></figure></div>
 
 ### Step 2: **Configure network parameters for DPDK**
 
@@ -135,7 +133,7 @@ For step-by-step guidance on enabling DPDK and configuring dual NICs for high-pe
 1.  **Log in to the Azure CycleCloud VM**\
     Access the VM where Azure CycleCloud is installed.<br>
 
-    <figure><img src="../.gitbook/assets/CycleCloud_1-1 (1).png" alt=""><figcaption><p>Log in to the Azure CycleCloud VM</p></figcaption></figure>
+    <div data-with-frame="true"><figure><img src="../.gitbook/assets/CycleCloud_1-1 (1).png" alt=""><figcaption><p>Log in to the Azure CycleCloud VM</p></figcaption></figure></div>
 2. **Open the CycleCloud/WEKA template**\
    Navigate to the template downloaded in [**Step 1**](azure-cyclecloud-for-slurm-and-weka-integration.md#step-1-download-the-azure-cyclecloud-weka-integration-template), and open it using a text editor.
 3.  **Modify the template to support dual NICs**\
@@ -156,7 +154,7 @@ For step-by-step guidance on enabling DPDK and configuring dual NICs for high-pe
 * If other nodes reference `[[nodearraybase]]` using `Extends = nodearraybase`, they inherit this configuration automatically.
 {% endhint %}
 
-<figure><img src="../.gitbook/assets/CycleCloud_2-2.png" alt=""><figcaption><p>Modify the template to support dual NICs</p></figcaption></figure>
+<div align="center" data-with-frame="true"><figure><img src="../.gitbook/assets/CycleCloud_2-2.png" alt=""><figcaption><p>Modify the template to support dual NICs</p></figcaption></figure></div>
 
 4. **Save and Apply the Changes**\
    Save the modified template and ensure it is uploaded to your CycleCloud instance.
@@ -197,20 +195,20 @@ Depending on your deployment, you may create separate CycleCloud specifications 
    2. Navigate to the cluster configuration you wish to edit.
    3.  Click **Edit** to modify the settings.<br>
 
-       <figure><img src="../.gitbook/assets/CycleCloud_3-2 (1).png" alt=""><figcaption><p>Edit cluster configuration in the CycleCloud GUI</p></figcaption></figure>
+       <div data-with-frame="true"><figure><img src="../.gitbook/assets/CycleCloud_3-2 (1).png" alt=""><figcaption><p>Edit cluster configuration in the CycleCloud GUI</p></figcaption></figure></div>
 2.  **Attach the cluster initialization script**
 
     1.  In the **Advanced Settings** section, scroll to the **Cluster Init** section near the bottom of the page.<br>
 
-        <figure><img src="../.gitbook/assets/CycleCloud_3-3 (1).png" alt=""><figcaption><p>Edit WEKA: Advanced Settings</p></figcaption></figure>
+        <div data-with-frame="true"><figure><img src="../.gitbook/assets/CycleCloud_3-3 (1).png" alt=""><figcaption><p>Edit WEKA: Advanced Settings</p></figcaption></figure></div>
     2. Click **Browse** and navigate to the saved script location on the CycleCloud VM.
     3.  Select the script to apply it to the desired node array.<br>
 
-        <figure><img src="../.gitbook/assets/CycleCloud_3-4 (1).png" alt=""><figcaption><p>Navigate to the saved script location</p></figcaption></figure>
+        <div data-with-frame="true"><figure><img src="../.gitbook/assets/CycleCloud_3-4 (1).png" alt=""><figcaption><p>Navigate to the saved script location</p></figcaption></figure></div>
 
     **Example configuration:** You can deploy the same script for multiple node arrays (for example, both HTC and HPC nodes) or assign unique scripts to different arrays.<br>
 
-    <figure><img src="../.gitbook/assets/CycleCloud_3-5 (1).png" alt="" width="563"><figcaption></figcaption></figure>
+    <div data-with-frame="true"><figure><img src="../.gitbook/assets/CycleCloud_3-5 (1).png" alt="" width="563"><figcaption></figcaption></figure></div>
 3. **Save changes**
    * Click **Save** and exit the **Edit Configuration** panel.
 
@@ -225,24 +223,24 @@ The **cluster-init script** used in the previous step requires specific configur
 1. **Retrieve WEKA configuration details**
    1.  **Log into the WEKA GUI**: Navigate to the **Cluster Servers** section and note the IP addresses of the WEKA backend servers.<br>
 
-       <figure><img src="../.gitbook/assets/CycleCloud_4-1 (1).png" alt=""><figcaption></figcaption></figure>
+       <div data-with-frame="true"><figure><img src="../.gitbook/assets/CycleCloud_4-1 (1).png" alt=""><figcaption></figcaption></figure></div>
    2.  **Select or create a filesystem**:
 
        1. In the WEKA GUI, go to the **Filesystems** section.
        2. Identify the filesystem you want to mount to the CycleCloud VMs. You can select an existing filesystem or create a new one for this purpose.
 
-       <figure><img src="../.gitbook/assets/CycleCloud_4-2.png" alt=""><figcaption><p>Select a filesystem</p></figcaption></figure>
+       <div data-with-frame="true"><figure><img src="../.gitbook/assets/CycleCloud_4-2.png" alt=""><figcaption><p>Select a filesystem</p></figcaption></figure></div>
 2. **Populate the WEKA Blade in CycleCloud**
    1.  **Open the WEKA Blade Configuration**: In the **CycleCloud GUI**, click **Edit** on the cluster configuration. Navigate to the **WEKA Cluster Info** section.<br>
 
-       <figure><img src="../.gitbook/assets/CycleCloud_4-3.png" alt=""><figcaption></figcaption></figure>
+       <div data-with-frame="true"><figure><img src="../.gitbook/assets/CycleCloud_4-3.png" alt=""><figcaption></figcaption></figure></div>
    2.  **Fill in the required parameters**:
 
        * **WEKA addresses**: Enter the IP addresses of the WEKA backend servers from [**Step 1**](azure-cyclecloud-for-slurm-and-weka-integration.md#step-1-download-the-azure-cyclecloud-weka-integration-template). Separate multiple IP addresses with commas.
        * **Mount point**: Specify the desired mount point for the nodes.
        * **WEKA filesystem**: Enter the name of the selected WEKA filesystem from [**Step 1**](azure-cyclecloud-for-slurm-and-weka-integration.md#workflow-integrate-azure-cyclecloud-with-weka).
 
-       <figure><img src="../.gitbook/assets/CycleCloud_4-4.png" alt=""><figcaption><p>Example configuration</p></figcaption></figure>
+       <div data-with-frame="true"><figure><img src="../.gitbook/assets/CycleCloud_4-4.png" alt=""><figcaption><p>Example configuration</p></figcaption></figure></div>
 3. **Save the configuration**
    1. Click **Save** to apply the changes.
    2. Exit the **Edit Configuration** panel and return to the CycleCloud GUI.
@@ -258,17 +256,17 @@ To validate the integration, run a SLURM job across multiple nodes and confirm t
 1. **Run a SLURM job**:
    1.  Log into the **Scheduler VM**.<br>
 
-       <figure><img src="../.gitbook/assets/CloudCycle_5-0.png" alt=""><figcaption><p>Log into the Scheduler VM</p></figcaption></figure>
+       <div data-with-frame="true"><figure><img src="../.gitbook/assets/CloudCycle_5-0.png" alt=""><figcaption><p>Log into the Scheduler VM</p></figcaption></figure></div>
    2.  Submit a SLURM job. For example, run a batch HTC job using 3 nodes:
 
        ```bash
        batch <job-script>.sh  
        ```
 
-       <figure><img src="../.gitbook/assets/CycleCloud_5-1.png" alt=""><figcaption><p>Example: Submit a SLURM job</p></figcaption></figure>
+       <div data-with-frame="true"><figure><img src="../.gitbook/assets/CycleCloud_5-1.png" alt=""><figcaption><p>Example: Submit a SLURM job</p></figcaption></figure></div>
    3.  Verify that **3 HTC nodes** are activated in CycleCloud.<br>
 
-       <figure><img src="../.gitbook/assets/CycleCloud_5-2.png" alt=""><figcaption><p>Verify 3 HTC nodes are activated in CycleCloud</p></figcaption></figure>
+       <div data-with-frame="true"><figure><img src="../.gitbook/assets/CycleCloud_5-2.png" alt=""><figcaption><p>Verify 3 HTC nodes are activated in CycleCloud</p></figcaption></figure></div>
 2.  **Monitor cluster initialization (optional)**:
 
     1. Log into one of the HTC nodes.
@@ -283,12 +281,12 @@ To validate the integration, run a SLURM job across multiple nodes and confirm t
         tail -f <script-name>  
         ```
 
-    <figure><img src="../.gitbook/assets/CycleCloud_5-3.png" alt=""><figcaption></figcaption></figure>
+    <div data-with-frame="true"><figure><img src="../.gitbook/assets/CycleCloud_5-3.png" alt=""><figcaption></figcaption></figure></div>
 3.  **Verify on the WEKA GUI**:
 
     1. Access the **WEKA GUI**.
     2. Navigate to the **Clients** section to verify that all nodes are connected and mounted to the WEKA Data Platform.
     3. Ensure all nodes display a green status, indicating successful connectivity.
 
-    <figure><img src="../.gitbook/assets/CycleCloud_5-4.png" alt=""><figcaption></figcaption></figure>
+    <div data-with-frame="true"><figure><img src="../.gitbook/assets/CycleCloud_5-4.png" alt=""><figcaption></figcaption></figure></div>
 4. Once the nodes are mounted and operational, the integration is confirmed, and you can proceed with HPC analysis.

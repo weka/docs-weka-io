@@ -31,7 +31,7 @@ If the frontend container is not deployed, then its core is instead used by the 
 
 VPC peering facilitates communication between the WEKA processes, each using its NIC. The maximum allowable number of peers within a VPC is limited to 25 by GCP (you can request GCP to increase the quota, but it depends on the GCP resources availability).
 
-<figure><img src="../../.gitbook/assets/GCP_overview.png" alt=""><figcaption><p>Server infrastructure in GCP</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/GCP_overview.png" alt=""><figcaption><p>Server infrastructure in GCP</p></figcaption></figure></div>
 
 <details>
 

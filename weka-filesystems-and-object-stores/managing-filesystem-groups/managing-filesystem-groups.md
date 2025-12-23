@@ -19,7 +19,7 @@ The filesystem groups are displayed on the **Filesystems** page. Each filesystem
 
 1. From the menu, select **Manage > Filesystems**.
 
-![Filesystem groups example](../../.gitbook/assets/wmng_view_filesystem_groups.png)
+<div data-with-frame="true"><img src="../../.gitbook/assets/wmng_view_filesystem_groups.png" alt="Filesystem groups example"></div>
 
 ## Add a filesystem group
 
@@ -34,11 +34,9 @@ A filesystem group is required when adding a filesystem. You can create more fil
    * **Drive Retention Period**: Set the period for keeping data on the SSD after it is copied to the object store. After this period, the copy of the data is deleted from the SSD.
    * **Tiering Cue**: Set the time to wait after the last update before the data is copied from the SSD and sent to the object store.
 
-![Add a filesystem group](../../.gitbook/assets/wmng_add_fsg.gif)
+<div data-with-frame="true"><img src="../../.gitbook/assets/wmng_add_fsg.gif" alt="Add a filesystem group"></div>
 
 4. Select **Create**.
-
-
 
 **Related topics**
 
@@ -57,7 +55,7 @@ You can edit the filesystem group policy according to your system requirements.
 3. Select the pencil sign right to the filesystem group name.
 4. In the **Edit Filesystem Group** dialog, update the settings as you need. (See the parameter descriptions in the [Add a filesystem group](managing-filesystem-groups.md#add-a-filesystem-group) topic.)
 
-![Edit a filesystem group](../../.gitbook/assets/wmng_edit_fsg_animated.gif)
+<div data-with-frame="true"><img src="../../.gitbook/assets/wmng_edit_fsg_animated.gif" alt="Edit a filesystem group"></div>
 
 5. Select **Update**.
 
@@ -71,6 +69,6 @@ You can delete a filesystem group no longer used by any filesystem.
 2. Select the filesystem group you want to delete.
 3. Verify that the filesystem group is not used by any filesystems (indicates 0 filesystems).
 
-![Delete a filesystem group](../../.gitbook/assets/wmng_delete_fsg.png)
+<div data-with-frame="true"><img src="../../.gitbook/assets/wmng_delete_fsg.png" alt="Delete a filesystem group" width="410"></div>
 
 5. Select the **Remove** icon. In the pop-up message, select **Yes** to delete the filesystem group.

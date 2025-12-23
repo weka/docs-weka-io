@@ -12,7 +12,7 @@ The WEKA Data Platform deployment on OCI follows a process similar to bare-metal
 
 OCI provides the necessary infrastructure components for WEKA deployment, including bare-metal compute shapes, virtual networking, and storage options. However, certain limitations exist compared to on-premises deployments, particularly regarding network configuration flexibility.
 
-<figure><img src="../.gitbook/assets/oci_architecture.png" alt=""><figcaption><p>WEKA cluster on OCI deployment</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/oci_architecture.png" alt=""><figcaption><p>WEKA cluster on OCI deployment</p></figcaption></figure></div>
 
 ## Workflow
 
@@ -115,7 +115,7 @@ Each distribution requires the installation of necessary dependencies such as Pa
 4. **Configure environment variables:**
    1. Copy the `defaults.pkr.hcl.example` file to `defaults.pkr.hcl`.
    2. Edit the file to specify required variables. For Ubuntu 24.04 or later, explicitly set:\
-      &#x20;`OpenSSH9 = true`
+      `OpenSSH9 = true`
 5. **Customize the image:**
    1. Navigate to the required OS-specific directory under `images/`.
    2.  Modify the image `.pkr.hcl` file to include the appropriate image OCID for your region and select the necessary software modules.

@@ -25,17 +25,17 @@ The System Events page provides the following details:
 
 You can select the **Advanced** switch to display internal events. This option is helpful for experts investigating internal issues.
 
-&#x20;**Procedure**
+**Procedure**
 
 1. From the menu, select **Investigate > Events**.
 
-![System events](../../.gitbook/assets/wmng_events_view.png)
+<div data-with-frame="true"><img src="../../.gitbook/assets/wmng_events_view.png" alt="System events"></div>
 
 ## Filter events
 
 You can filter the events according to the event severity, timestamp, category, or event name. You can also filter events by multiple categories and multiple event names.
 
-![Example: view all warning events (and higher severity events) related to resources](../../.gitbook/assets/wmng_events_filter_example.gif)
+<div data-with-frame="true"><img src="../../.gitbook/assets/wmng_events_filter_example.gif" alt="Example: view all warning events (and higher severity events) related to resources"></div>
 
 #### Procedures
 
@@ -47,9 +47,7 @@ You can filter the events according to the event severity, timestamp, category, 
 2. Select the required minimum severity.\
    For example, the Critical events are displayed if you select the Major severity.
 
-![](../../.gitbook/assets/wmng_events_filter_severity.png)
-
-
+<div data-with-frame="true"><img src="../../.gitbook/assets/wmng_events_filter_severity.png" alt="" width="116"></div>
 
 </details>
 
@@ -63,7 +61,7 @@ You can filter the events according to the event severity, timestamp, category, 
 4. Select **OK**.
 5. Select **Filter**.
 
-![](../../.gitbook/assets/wmng_events_filter_timestamp.png)
+<div data-with-frame="true"><img src="../../.gitbook/assets/wmng_events_filter_timestamp.png" alt="" width="265"></div>
 
 </details>
 
@@ -75,7 +73,7 @@ You can filter the events according to the event severity, timestamp, category, 
 2. In the **Filter Categories**, select the category you want to display. You can select multiple categories.
 3. Select **Filter**.
 
-![](../../.gitbook/assets/wmng_events_filter_category.png)
+<div data-with-frame="true"><img src="../../.gitbook/assets/wmng_events_filter_category.png" alt="" width="262"></div>
 
 </details>
 
@@ -87,7 +85,7 @@ You can filter the events according to the event severity, timestamp, category, 
 2. In the **Events Filter**, select the event name you want to display. You can select multiple event names.
 3. Select **Filter**.
 
-![](../../.gitbook/assets/wmng_events_filter_by_events.png)
+<div data-with-frame="true"><img src="../../.gitbook/assets/wmng_events_filter_by_events.png" alt=""></div>
 
 </details>
 
@@ -97,14 +95,12 @@ You can display events according to predefined templates based on a combination 
 
 The predefined templates include protocols, object store, cluster-wide tasks, filesystems, quota, snapshots, clients, and processes.
 
-<figure><img src="../../.gitbook/assets/wmng_predefined_template_example.gif" alt=""><figcaption><p>Display events by a predefined template</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/wmng_predefined_template_example.gif" alt=""><figcaption><p>Display events by a predefined template</p></figcaption></figure></div>
 
 **Procedure**
 
 1. In the Events page, select **Predefined Templates.**
 2. Select from the list the required template to display.
-
-
 
 **Related topic**
 

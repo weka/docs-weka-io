@@ -8,7 +8,7 @@ You can control these default values using the GUI or the CLI.
 
 Using the GUI, you can set the number of failed attempts until the account is locked and the lockout duration. You can also reset the account lockout threshold policy properties to the default values.
 
-<figure><img src="../.gitbook/assets/wmng_account_lockout.png" alt=""><figcaption><p>Account Lockout Threshold policy</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/wmng_account_lockout.png" alt=""><figcaption><p>Account Lockout Threshold policy</p></figcaption></figure></div>
 
 **Procedure**
 
@@ -20,7 +20,7 @@ Using the GUI, you can set the number of failed attempts until the account is lo
    * **Lockout Duration:** Set the lockout duration between 30 seconds to 60 minutes.
 5. Select **Save**.
 
-<figure><img src="../.gitbook/assets/wmng_set_lockout_policy.png" alt=""><figcaption><p>Set Lockout Policy</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/wmng_set_lockout_policy.png" alt=""><figcaption><p>Set Lockout Policy</p></figcaption></figure></div>
 
 6. To reset the account lockout threshold policy properties to the default values, select **Reset account lockout policy**. In the confirmation message, select **Yes**.
 
@@ -32,8 +32,8 @@ To control the default values, use the following CLI commands:
 
 **Commands options:**
 
-`set`: Sets the number of failed attempts until the account is locked (`--failed-attempts`) and the lockout duration (`--lockout-duration`).&#x20;
+`set`: Sets the number of failed attempts until the account is locked (`--failed-attempts`) and the lockout duration (`--lockout-duration`).
 
-`reset`:  Resets the number of failed attempts until the account is locked and the lockout duration to their default values.
+`reset`: Resets the number of failed attempts until the account is locked and the lockout duration to their default values.
 
 `show`: Shows the number of failed attempts until the account is locked and the lockout duration.

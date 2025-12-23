@@ -27,7 +27,7 @@ The Snapshot Policies feature replaces the SnapTool external snapshot manager. S
 
 The SnapTool runs on any Linux-based physical server or VM, communicating with the WEKA cluster via an IP connection to a WEKA host using the WEKA REST API. It can be installed as a systemd service or within a Docker container.
 
-<figure><img src="../.gitbook/assets/snaptool_deployment.png" alt=""><figcaption><p>SnapTool setup</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/snaptool_deployment.png" alt=""><figcaption><p>SnapTool setup</p></figcaption></figure></div>
 
 {% hint style="info" %}
 If you have deployed the WMS, follow the procedure in:[deploy-monitoring-tools-using-the-weka-management-station-wms.md](deploy-monitoring-tools-using-the-weka-management-station-wms.md "mention"). Otherwise, continue with this workflow.

@@ -6,7 +6,6 @@ You can open the Grafana application to view some of the various performance vis
 
 From the **Cluster Configuration** menu, select **Performance Statistics**.
 
-<figure><img src="../../.gitbook/assets/lwh_cluster_stats1.png" alt=""><figcaption></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/lwh_cluster_stats1.png" alt=""><figcaption></figcaption></figure></div>
 
-<figure><img src="../../.gitbook/assets/lwh_cluster_stats2.png" alt=""><figcaption></figcaption></figure>
-
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/lwh_cluster_stats2.png" alt=""><figcaption></figcaption></figure></div>

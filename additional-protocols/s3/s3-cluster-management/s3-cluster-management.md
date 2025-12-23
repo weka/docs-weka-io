@@ -40,7 +40,7 @@ Verify that a predefined filesystem for maintaining the persisting cluster-wide 
 
 Once the system completes configuration, the servers' statuses change from not ready (red X icon) to ready (green V icon).
 
-<figure><img src="../../../.gitbook/assets/wmng_S3_cluster_configuration (1).gif" alt=""><figcaption><p>S3 Cluster Configuration</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../../.gitbook/assets/wmng_S3_cluster_configuration (1).gif" alt=""><figcaption><p>S3 Cluster Configuration</p></figcaption></figure></div>
 
 ## Update an S3 cluster configuration
 
@@ -52,7 +52,7 @@ You can update the port and the servers to participate in the S3 cluster.
 2. From the Protocols pane, select **S3**.
 3. On the **Configuratio**n tab, select the pencil icon next to the S3 cluster configuration.
 
-![Edit an S3 cluster configuration](<../../../.gitbook/assets/wmng\_s3\_edit\_configuration\_button (1).png>)
+<div data-with-frame="true"><img src="../../../.gitbook/assets/wmng_s3_edit_configuration_button (1).png" alt="Edit an S3 cluster configuration" width="340"></div>
 
 4. Update the properties as required. Do not set port 9001.
 
@@ -62,7 +62,7 @@ Modifying the **Virtual-hosted-style Domains** parameter automatically triggers 
 
 5. Select **Save**.
 
-![Edit S3 Cluster Configuration](../../../.gitbook/assets/wmng\_S3\_edit\_configuration.png)
+<div data-with-frame="true"><img src="../../../.gitbook/assets/wmng_S3_edit_configuration.png" alt="Edit S3 Cluster Configuration"></div>
 
 ## Delete an S3 cluster configuration
 
@@ -74,6 +74,6 @@ Deleting an existing S3 cluster managed by the WEKA system does not delete the b
 2. From the Protocols pane, select **S3**.
 3. On the Configuration tab, select the trash icon next to the S3 cluster configuration.
 
-![Delete an S3 cluster configuration](<../../../.gitbook/assets/wmng\_s3\_delete\_configuration (1).png>)
+<div data-with-frame="true"><img src="../../../.gitbook/assets/wmng_s3_delete_configuration (1).png" alt="Delete an S3 cluster configuration" width="340"></div>
 
-4. In the S3 Configuration Reset message, select **Reset**.&#x20;
+4. In the S3 Configuration Reset message, select **Reset**.

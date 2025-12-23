@@ -6,7 +6,7 @@ This feature is aimed at customers who want to send events, usage, and analytics
 
 **Related topic**
 
-&#x20;[Forward data from the Local WEKA Home to the Cloud WEKA Home](local-weka-home-deployment.md#forward-data-from-the-local-weka-home-to-the-cloud-weka-home)
+[Forward data from the Local WEKA Home to the Cloud WEKA Home](local-weka-home-deployment.md#forward-data-from-the-local-weka-home-to-the-cloud-weka-home)
 
 ## API Documentation
 
@@ -16,7 +16,7 @@ To access the API documentation:
 
 1. Select the profile icon, and from the menu that appears, select User Management and create an API token.
 
-<figure><img src="../../.gitbook/assets/user-extra-links.png" alt="" width="375"><figcaption><p>Access the API Docs</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/user-extra-links.png" alt="" width="375"><figcaption><p>Access the API Docs</p></figcaption></figure></div>
 
 2. Select **API Docs** and apply the API token.
 

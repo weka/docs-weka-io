@@ -36,7 +36,7 @@ To install Terraform, we recommend following the [official installation guides](
 1. Access the AWS Management Consol&#x65;**.**
 2. In the top-right corner, search for **Account ID**.
 
-<figure><img src="../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure></div>
 
 {% hint style="info" %}
 * If deploying into a WEKA customer environment, ensure the customer understands their subscription structure.
@@ -54,15 +54,15 @@ If the IAM user lacks these permissions, update their permissions or create a ne
 1. **Access the AWS Management Console:** Log in using the account intended for the WEKA deployment.
 2. **Navigate to the IAM dashboard:** From the Services menu, select **IAM** to open the Identity and Access Management dashboard.
 
-<figure><img src="../../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure></div>
 
 3. **Locate the IAM user:** Search for the IAM user or go to the **Users** section.
 
-<figure><img src="../../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure></div>
 
 4. **Verify permissions.** Click on the user’s name to review their permissions. Ensure they have policies that grant the necessary permissions for managing AWS resources through Terraform.
 
-<figure><img src="../../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure></div>
 
 {% hint style="info" %}
 The user shown in the screenshot above has full administrative access to allow Terraform to deploy WEKA. However, it is recommended to follow the [principle of least privilege](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html#grant-least-privilege) by granting only the necessary permissions listed in [#appendix-b-terraforms-required-permissions](detailed-deployment-tutorial-weka-on-aws-using-terraform.md#appendix-b-terraforms-required-permissions "mention").
@@ -81,19 +81,19 @@ Before deploying WEKA on AWS using Terraform, ensure your AWS account has suffic
 
 1. **Access Service Quotas:** Open the AWS Management Console at [AWS Service Quotas](https://us-east-1.console.aws.amazon.com/servicequotas/home/dashboard). Use the search bar to locate the **Service Quotas** service.
 
-<figure><img src="../../.gitbook/assets/image (5).png" alt=""><figcaption></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/image (5).png" alt=""><figcaption></figcaption></figure></div>
 
 2. **Select Amazon EC2:** On the Service Quotas page, select **Amazon EC2**.
 
-<figure><img src="../../.gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure></div>
 
 3. **Identify instance type:** WEKA supports only i3en instance types for backend cluster nodes. Ensure you adjust the quota for the appropriate instance type (Spot, On-Demand, or Dedicated).
 
-<figure><img src="../../.gitbook/assets/image (7).png" alt=""><figcaption></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/image (7).png" alt=""><figcaption></figcaption></figure></div>
 
 4. **Request quota increase:** Choose the relevant instance type from the Standard categories (A, C, D, H, I, M, R, T, Z), then click **Request increase at account-level**.
 
-<figure><img src="../../.gitbook/assets/image (8).png" alt=""><figcaption></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/image (8).png" alt=""><figcaption></figcaption></figure></div>
 
 5. **Specify number of vCPUs:** In the Request quota increase form, specify the number of vCPUs you need. For example, if 150 vCPUs are required for the i3en instance family, enter this number and submit your request.
 
@@ -135,17 +135,17 @@ By default, ACLs include rules that ensure basic connectivity, such as allowing 
 
 1. Go to the VPC details page and select **Main network AC**L.
 
-<figure><img src="../../.gitbook/assets/image (9).png" alt=""><figcaption></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/image (9).png" alt=""><figcaption></figcaption></figure></div>
 
 2. From the Network ACLs page, select the **Inbound rules** and **Outbound rules**.
 
 {% tabs %}
 {% tab title="Inbound rules" %}
-<figure><img src="../../.gitbook/assets/image (10).png" alt=""><figcaption></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/image (10).png" alt=""><figcaption></figcaption></figure></div>
 {% endtab %}
 
 {% tab title="Outbound rules" %}
-<figure><img src="../../.gitbook/assets/image (11).png" alt=""><figcaption></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/image (11).png" alt=""><figcaption></figcaption></figure></div>
 {% endtab %}
 {% endtabs %}
 
@@ -159,15 +159,15 @@ If using existing resources, collect their AWS IDs as shown in the following exa
 
 {% tabs %}
 {% tab title="VPC" %}
-<figure><img src="../../.gitbook/assets/image (12).png" alt=""><figcaption><p>VPC</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/image (12).png" alt=""><figcaption><p>VPC</p></figcaption></figure></div>
 {% endtab %}
 
 {% tab title="Subnet in VPC" %}
-<figure><img src="../../.gitbook/assets/image (13).png" alt=""><figcaption><p>Subnet in VPC</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/image (13).png" alt=""><figcaption><p>Subnet in VPC</p></figcaption></figure></div>
 {% endtab %}
 
 {% tab title="Security Group in EC2" %}
-<figure><img src="../../.gitbook/assets/image (14).png" alt=""><figcaption><p>Security Group in EC2</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/image (14).png" alt=""><figcaption><p>Security Group in EC2</p></figcaption></figure></div>
 {% endtab %}
 {% endtabs %}
 
@@ -236,12 +236,12 @@ The WEKA user token grants access to WEKA binaries and is required for accessing
 1. Open a web browser and navigate to [get.weka.io](https://get.weka.io).
 2. In the upper right-hand corner, click the user’s name.
 
-<figure><img src="../../.gitbook/assets/image (15).png" alt=""><figcaption></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/image (15).png" alt=""><figcaption></figcaption></figure></div>
 
 3. From the left-hand menu, select **API Tokens**.
 4. The user’s API token displays on the screen. Use this token later in the installation process.
 
-<figure><img src="../../.gitbook/assets/image (16).png" alt=""><figcaption></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/image (16).png" alt=""><figcaption></figcaption></figure></div>
 
 ### Deploy WEKA in AWS with Terraform
 
@@ -275,7 +275,7 @@ aws configure
 
 * Fill in the required information and press **Enter**.
 
-<figure><img src="../../.gitbook/assets/aws_configure.png" alt="" width="563"><figcaption></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/aws_configure.png" alt="" width="563"><figcaption></figcaption></figure></div>
 
 5. After creating and saving the `main.tf` file, initialize the Terraform directory to ensure the proper AWS resource files are available.
 
@@ -400,11 +400,11 @@ The Terraform deployment process allows for the easy addition of instances to se
 
 1. Navigate to the EC2 Dashboard page in AWS and select **Instances (running)**.
 
-<figure><img src="../../.gitbook/assets/image (18).png" alt=""><figcaption></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/image (18).png" alt=""><figcaption></figcaption></figure></div>
 
 2. Locate the instances for the WEKA backend servers, named `<prefix>-<cluster_name>-instance-backend`.
 
-<figure><img src="../../.gitbook/assets/image (19).png" alt=""><figcaption></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/image (19).png" alt=""><figcaption></figcaption></figure></div>
 
 {% hint style="info" %}
 The `prefix` and `cluster_name` correspond to the values specified in the `main.tf` file.
@@ -412,7 +412,7 @@ The `prefix` and `cluster_name` correspond to the values specified in the `main.
 
 3. To access and manage the WEKA cluster, select any of the WEKA backend instances and note the IP address.
 
-<figure><img src="../../.gitbook/assets/image (21).png" alt=""><figcaption></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/image (21).png" alt=""><figcaption></figcaption></figure></div>
 
 4. If your subnet provides a public IP address (configured in EC2), it is listed. WEKA primarily uses private IPv4 addresses for communication. To find the primary private address, check the **Hostname type** and note the **IP address** listed.
 
@@ -483,25 +483,25 @@ The following procedure provides an example of using a Windows 10 instance.
 3. **Log In to the WEKA GUI**:
    * Log in using the username `admin` and the password obtained from AWS Secrets Manager (as described in the earlier steps).
 
-<figure><img src="../../.gitbook/assets/image (22).png" alt=""><figcaption></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/image (22).png" alt=""><figcaption></figcaption></figure></div>
 
 4. **Review the WEKA Cluster**:
 
 * **Cluster home screen**: View the cluster home screen for an overview of the system status.
 
-<figure><img src="../../.gitbook/assets/image (23).png" alt=""><figcaption></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/image (23).png" alt=""><figcaption></figcaption></figure></div>
 
 * **Cluster Backends**: Review the status and details of the backend servers within the cluster (the server names may differ from those shown in examples).
 
-<figure><img src="../../.gitbook/assets/image (24).png" alt=""><figcaption></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/image (24).png" alt=""><figcaption></figcaption></figure></div>
 
 * **Clients**: If there are any clients attached to the cluster, review their details and status.
 
-<figure><img src="../../.gitbook/assets/image (25).png" alt=""><figcaption></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/image (25).png" alt=""><figcaption></figcaption></figure></div>
 
 * **Filesystems**: Review the filesystems associated with the cluster for their status and configuration.
 
-<figure><img src="../../.gitbook/assets/image (26).png" alt=""><figcaption></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/image (26).png" alt=""><figcaption></figcaption></figure></div>
 
 ## Scaling WEKA clusters with automated workflows
 
@@ -524,11 +524,11 @@ Scaling your WEKA cluster, whether scale-out (expanding) or scale-in (contractin
 1. Navigate to the AutoScaling Group page in the AWS Management Console.
 2. Select **Edit** to adjust the desired capacity.
 
-<figure><img src="../../.gitbook/assets/image (27) (1).png" alt=""><figcaption></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/image (27) (1).png" alt=""><figcaption></figcaption></figure></div>
 
 3. Set the capacity to your preferred cluster size (for example, increase from 6 to 10 servers).
 
-<figure><img src="../../.gitbook/assets/image (28).png" alt="" width="375"><figcaption></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/image (28).png" alt="" width="375"><figcaption></figcaption></figure></div>
 
 4. Select **Update** to save the updated settings to initiate scaling operations.
 

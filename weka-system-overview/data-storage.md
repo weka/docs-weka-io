@@ -27,7 +27,7 @@ In tiered WEKA system configurations, there are various locations for data stora
 
 * Metadata is stored only on SSDs.
 * Writing new files, adding data to existing files, or modifying the content of files is performed on the SSDs, irrespective of whether the file is stored on the SSD or tiered to an object store.
-* When reading the content of a file, data can be accessed from either the SSD (if it is available on the SSD) or promoted from the object store (if it is not available on the SSD). &#x20;
+* When reading the content of a file, data can be accessed from either the SSD (if it is available on the SSD) or promoted from the object store (if it is not available on the SSD).
 
 This data management approach to data storage on one of two possible media requires system planning to ensure that the most commonly used data (hot data) resides on the SSD to ensure high performance. In contrast, less-used data (warm data) is stored on the object store.
 
@@ -61,7 +61,7 @@ When accessing data which is solely on the object store, the data must first be 
 
 Within the WEKA system, file modifications are not executed as in-place writes. Instead, they are written to a new area on the SSD, and the corresponding metadata is updated accordingly. As a result, write operations are never linked with operations on the object store. This approach ensures data integrity and efficient use of storage resources.
 
-![Data lifecycle flow](../.gitbook/assets/data\_life\_cycle\_flow.png)
+<div data-with-frame="true"><img src="../.gitbook/assets/data_life_cycle_flow.png" alt="Data lifecycle flow"></div>
 
 ## The role of SSDs in tiered configurations
 
@@ -100,8 +100,8 @@ For tiered filesystems, define the following parameters per filesystem:
 
 Define the following parameters per filesystem group:
 
-* The [Drive Retention Period Policy](../weka-filesystems-and-object-stores/tiering/advanced-time-based-policies-for-data-storage-location.md#drive-retention-period-policy) is a time-based policy which is the target time for data to be stored on an SSD after creation, modification, or access, and before release from the SSD, even if it is already tiered to the object store, for metadata processing and SSD caching purposes (this is only a target; the actual release schedule depends on the amount of available space).&#x20;
-* The [Tiering Cue Policy](../weka-filesystems-and-object-stores/tiering/advanced-time-based-policies-for-data-storage-location.md#tiering-cue-policy) is a time-based policy that determines the minimum time that data remains on an SSD before it is considered for release to the object store. As a rule of thumb, this must be configured to a third of the Retention Period, and in most cases, this works well. The Tiering Cue is important because it is pointless to tier a file about to be modified or deleted from the object store. &#x20;
+* The [Drive Retention Period Policy](../weka-filesystems-and-object-stores/tiering/advanced-time-based-policies-for-data-storage-location.md#drive-retention-period-policy) is a time-based policy which is the target time for data to be stored on an SSD after creation, modification, or access, and before release from the SSD, even if it is already tiered to the object store, for metadata processing and SSD caching purposes (this is only a target; the actual release schedule depends on the amount of available space).
+* The [Tiering Cue Policy](../weka-filesystems-and-object-stores/tiering/advanced-time-based-policies-for-data-storage-location.md#tiering-cue-policy) is a time-based policy that determines the minimum time that data remains on an SSD before it is considered for release to the object store. As a rule of thumb, this must be configured to a third of the Retention Period, and in most cases, this works well. The Tiering Cue is important because it is pointless to tier a file about to be modified or deleted from the object store.
 
 {% hint style="success" %}
 **Example**

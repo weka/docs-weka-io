@@ -23,7 +23,7 @@ S3 does not support creating buckets on filesystems with names containing the ch
 1. From the menu, select **Manage > Protocols**.
 2. From the Protocols pane, select **S3**.
 3. Select the **Buckets** tab.
-4. Select  **+Create**.
+4. Select **+Create**.
 5. In the Add S3 Bucket dialog, do the following:
    * **Bucket Name:** Set a bucket name according to the naming conventions.
    * **Filesystem:** Set the filesystem to host the bucket.
@@ -32,7 +32,7 @@ S3 does not support creating buckets on filesystems with names containing the ch
    * **Bucket Policy:** Select the policy to attach to the bucket: none, download, upload, public, or custom. If you select a custom policy, add it in JSON format.
 6. Select **Save**.
 
-![Create a bucket](../../../.gitbook/assets/Create\_S3\_bucket.gif)
+<div data-with-frame="true"><img src="../../../.gitbook/assets/Create_S3_bucket.gif" alt="Create a bucket"></div>
 
 ## View a bucket details <a href="#view-a-bucket-details" id="view-a-bucket-details"></a>
 
@@ -45,9 +45,9 @@ You can view the details of the bucket.
 3. Select the **Buckets** tab.
 4. Select the three dots of the bucket and select **View**.
 
-<figure><img src="../../../.gitbook/assets/wmng_manage_s3_bucket_menu.png" alt=""><figcaption><p>Manage a bucket menu</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../../.gitbook/assets/wmng_manage_s3_bucket_menu.png" alt=""><figcaption><p>Manage a bucket menu</p></figcaption></figure></div>
 
-<figure><img src="../../../.gitbook/assets/wmng_view_s3_bucket.png" alt=""><figcaption><p>View S3 Bucket</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../../.gitbook/assets/wmng_view_s3_bucket.png" alt=""><figcaption><p>View S3 Bucket</p></figcaption></figure></div>
 
 ## Edit a bucket hard quota <a href="#edit-a-bucket-hard-quota" id="edit-a-bucket-hard-quota"></a>
 
@@ -61,7 +61,7 @@ The hard quota determines the maximum capacity of the bucket. Initially, you can
 4. Select the three dots of the bucket and select **Edit Hard Quota**.
 5. Set the maximum capacity for the bucket. If you want to remove the hard quota setting, enter 0.
 
-<figure><img src="../../../.gitbook/assets/wmng_edit_s3_bucket_hard_quota.png" alt=""><figcaption><p>Edit S3 Bucket Quota</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../../.gitbook/assets/wmng_edit_s3_bucket_hard_quota.png" alt=""><figcaption><p>Edit S3 Bucket Quota</p></figcaption></figure></div>
 
 ## Edit a bucket policy <a href="#edit-a-bucket-policy" id="edit-a-bucket-policy"></a>
 
@@ -75,7 +75,7 @@ You can edit the bucket policy according to your needs.
 4. Select the three dots of the bucket you want to delete, and select **Edit Bucket Policy**.
 5. Select the policy to attach to the bucket: none, download, upload, public, or custom. If you select a custom policy, add it in JSON format.
 
-<figure><img src="../../../.gitbook/assets/wmng_edit_s3_bucket_policy.png" alt=""><figcaption><p>Edit S3 Bucket</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../../.gitbook/assets/wmng_edit_s3_bucket_policy.png" alt=""><figcaption><p>Edit S3 Bucket</p></figcaption></figure></div>
 
 ## Delete a bucket <a href="#remove-a-bucket" id="remove-a-bucket"></a>
 
@@ -92,7 +92,7 @@ If the intent is to keep the data files for use outside of the S3 configuration 
 3. Select the **Buckets** tab.
 4. Select the three dots of the bucket you want to delete and select **Remove**.
 
-<figure><img src="../../../.gitbook/assets/wmng_remove_bucket_message.png" alt=""><figcaption><p>Remove Bucket</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../../.gitbook/assets/wmng_remove_bucket_message.png" alt=""><figcaption><p>Remove Bucket</p></figcaption></figure></div>
 
 5. In the confirmation message, if the bucket is not empty, switch **Keep Data** to **ON**.\
    Then, select **Remove**.

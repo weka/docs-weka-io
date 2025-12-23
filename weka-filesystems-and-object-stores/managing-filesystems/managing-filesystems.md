@@ -23,7 +23,7 @@ Ensure a filesystem group is set with the required tiering policy. See [#add-a-f
 
 1. From the menu, select **Manage > Filesystems**.
 
-![View filesystems example](../../.gitbook/assets/view_fs.png)
+<div data-with-frame="true"><img src="../../.gitbook/assets/view_fs.png" alt="View filesystems example"></div>
 
 ## Create a filesystem
 
@@ -44,14 +44,14 @@ When deploying a WEKA system on a cloud platform (AWS, Azure, or GCP), the WEKA 
 1. From the menu, select **Manage > Filesystems**.
 2. Select the **+Create** button.
 
-![Create filesystem](../../.gitbook/assets/wmng_create_fs_button.png)
+<div data-with-frame="true"><img src="../../.gitbook/assets/wmng_create_fs_button.png" alt="Create filesystem"></div>
 
 3. In the **Create Filesystem** dialog, set the following:
    * **Name**: Enter a descriptive label for the filesystem, limited to 32 characters and excluding slash (`/`) or backslash (`\`).
    * **Group**: Select the filesystem group that fits your filesystem.
    * **Capacity**: Enter the storage size to provision, or select **Use All** to provision all the free capacity.
 
-<figure><img src="../../.gitbook/assets/create_fs.png" alt=""><figcaption><p>Create filesystem</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/create_fs.png" alt=""><figcaption><p>Create filesystem</p></figcaption></figure></div>
 
 4.  Optional: [**Tiering**](../tiering/advanced-time-based-policies-for-data-storage-location.md#tiering-cue-policy).\
     If tiering is required, and the following conditions are met:
@@ -69,7 +69,7 @@ When deploying a WEKA system on a cloud platform (AWS, Azure, or GCP), the WEKA 
 
     When tiering is enabled, you can also create the file system from an uploaded snapshot. For more information, see the related topics below.
 
-![Tiering](../../.gitbook/assets/wmng_fs_tiering.png)
+<div data-with-frame="true"><img src="../../.gitbook/assets/wmng_fs_tiering.png" alt="Tiering"></div>
 
 5. Optional: **Thin Provision**.\
    If Thin Provision is required, select the toggle button, and set the minimum (guaranteed) and the maximum capacity for the thin provisioned filesystem.\
@@ -77,13 +77,13 @@ When deploying a WEKA system on a cloud platform (AWS, Azure, or GCP), the WEKA 
    You can set any maximum capacity, but the available capacity depends on the actual free space of the SSD capacity.\
    Thin provisioning is mandatory when enabling data reduction.
 
-![Thin provisioning](../../.gitbook/assets/wmng_fs_thin_provisioning.png)
+<div data-with-frame="true"><img src="../../.gitbook/assets/wmng_fs_thin_provisioning.png" alt="Thin provisioning"></div>
 
 6. Optional: **Data Reduction**.\
    Data reduction can be enabled only on thin provision, non-tiered, and unencrypted filesystems on a cluster with a valid data reduction license (you can verify the data reduction license in the cluster settings). For more details, see the related topics below.\
    To enable the Data Reduction, select the toggle button.
 
-<figure><img src="../../.gitbook/assets/wmng_fs_data_reduction.png" alt=""><figcaption><p>Data reduction</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/wmng_fs_data_reduction.png" alt=""><figcaption><p>Data reduction</p></figcaption></figure></div>
 
 7. Optional: If **Audit Logging** is required for this filesystem, select the toggle button. When on, the WEKA system Forwards this filesystem's audit logs to a configured events monitoring platform, provided that cluster-wide auditing is also enabled.
 
@@ -121,11 +121,11 @@ You can modify the filesystem parameters according to your demand changes over t
 1. From the menu, select **Manage > Filesystems**.
 2. Select the three dots on the right of the filesystem you want to modify, and select **Edit**.
 
-![Filesystem menu](../../.gitbook/assets/wmng_edit_fs_menu.png)
+<div data-with-frame="true"><img src="../../.gitbook/assets/wmng_edit_fs_menu.png" alt="Filesystem menu"></div>
 
 3. In the **Edit Filesystem** dialog, modify the parameters according to your requirements. (See the parameter descriptions in the [Add a filesystem](managing-filesystems.md#add-a-filesystem) topic.)
 
-<figure><img src="../../.gitbook/assets/Edit_fs.png" alt=""><figcaption><p>Edit a filesystem</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/Edit_fs.png" alt=""><figcaption><p>Edit a filesystem</p></figcaption></figure></div>
 
 4. Select **Save**.
 
@@ -143,4 +143,4 @@ If you must also delete the data in the tiered object store bucket, see the [Del
 2. Select the three dots on the right of the filesystem you want to delete, and select **Remove**.
 3. To confirm the filesystem deletion, enter the filesystem name and select **Confirm**.
 
-![Delete a filesystem](../../.gitbook/assets/wmng_delete_fs_animated.gif)
+<div data-with-frame="true"><img src="../../.gitbook/assets/wmng_delete_fs_animated.gif" alt="Delete a filesystem"></div>

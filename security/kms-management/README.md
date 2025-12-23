@@ -53,7 +53,7 @@ For further guidance on securing HashiCorp Vault in production environments, ref
 
 ## KMS integration: cluster encryption keys
 
-The diagram illustrates WEKA's cluster encryption process, which supports both HashiCorp Vault KMS and KMIP[^1] (Key Management Interoperability Protocol). Here, we focus on HashiCorp Vault KMS for key management.
+The diagram illustrates WEKA's cluster encryption process, which supports both HashiCorp Vault KMS and KMIP (Key Management Interoperability Protocol). Here, we focus on HashiCorp Vault KMS for key management.
 
 The following steps outline the process for managing encryption keys across the WEKA cluster:
 
@@ -61,7 +61,7 @@ The following steps outline the process for managing encryption keys across the 
 2. **Encryption process:** During normal operation, encrypted FS keys are stored in the configuration table. FS keys in-memory are used for real-time encryption/decryption. After a restart, encrypted FS keys are retrieved and decrypted using the cluster key.
 3. **Rewrap operation:** The rewrap process involves decrypting the FS key, retrieving it, and then re-encrypting the FS key with a new version of the cluster key. This ensures that the FS keys remain protected with updated encryption, enhancing security based on KMS policies.
 
-<figure><img src="../../.gitbook/assets/KMS-cluster-wide (3).png" alt=""><figcaption><p>KMS integration with cluster encryption keys</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/KMS-cluster-wide (3).png" alt=""><figcaption><p>KMS integration with cluster encryption keys</p></figcaption></figure></div>
 
 ## KMS integration: per-filesystem encryption keys
 
@@ -86,7 +86,7 @@ WEKA integrates with HashiCorp Vault using the **AppRole** authentication method
 
 The following diagram illustrates how WEKA integrates with HashiCorp Vault to manage per-filesystem encryption keys:
 
-<figure><img src="../../.gitbook/assets/KMS-per-fs.png" alt=""><figcaption><p>KMS integration with per-filesystem encryption keys</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/KMS-per-fs.png" alt=""><figcaption><p>KMS integration with per-filesystem encryption keys</p></figcaption></figure></div>
 
 #### **Configuration process**
 
@@ -114,8 +114,8 @@ To create a filesystem from an uploaded snapshot originating from an encrypted s
 
 Before configuring per-filesystem encryption, you must first establish a connection between the WEKA cluster and the configured HashiCorp Vault KMS by setting up the `key-identifier` (Weka\_cluster\_key in the illustration above). Use the `weka security kms set` command to specify the `role-id` and `secret-id` for this connection. For details, see [#configure-the-kms](kms-management-1.md#configure-the-kms "mention").
 
-If there are concerns about key compromise, administrators can rewrap all filesystem keys using the  `weka security kms rewrap --all` command. \
-When the `--all` option is omitted, the system rewraps only the filesystems that use the cluster encryption key.   For details, see [#rewrap-filesystem-keys](kms-management-1.md#rewrap-filesystem-keys "mention").
+If there are concerns about key compromise, administrators can rewrap all filesystem keys using the `weka security kms rewrap --all` command.\
+When the `--all` option is omitted, the system rewraps only the filesystems that use the cluster encryption key. For details, see [#rewrap-filesystem-keys](kms-management-1.md#rewrap-filesystem-keys "mention").
 
 {% hint style="info" %}
 The configuration for per-filesystem encryption keys in KMS integration is available exclusively in the CLI.
@@ -126,5 +126,3 @@ The configuration for per-filesystem encryption keys in KMS integration is avail
 [kms-management.md](kms-management.md "mention")
 
 [kms-management-1.md](kms-management-1.md "mention")
-
-[^1]: 

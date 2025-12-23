@@ -12,7 +12,7 @@ The S3 bucket notifications feature sends real-time alerts when specific events 
 
 The system also triggers internal events to indicate operational status, such as queue overflow, queue thresholds reached or recovered, and target unavailability. It provides metrics, including notification rate, queue length, and dropped events, updated every minute for performance monitoring.
 
-<figure><img src="../../.gitbook/assets/s3_bucket_notifications.png" alt=""><figcaption><p>S3 bucket notifications</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/s3_bucket_notifications.png" alt=""><figcaption><p>S3 bucket notifications</p></figcaption></figure></div>
 
 ### How it works
 

@@ -35,7 +35,7 @@ The WEKA Configurator automatically generates the WEKA Cluster configurations (`
 
 The following illustrates a high-level deployment workflow on a group of bare metal servers.
 
-<figure><img src="../../.gitbook/assets/high_level_deployment_workflow.png" alt=""><figcaption><p>High-level deployment workflow</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/high_level_deployment_workflow.png" alt=""><figcaption><p>High-level deployment workflow</p></figcaption></figure></div>
 
 ### Deployment workflow paths summary
 
@@ -51,13 +51,13 @@ Select the path applicable to your needs.
 {% tab title="Path A: Automated with WMS and WSA" %}
 This method is the most preferable option to install the WEKA cluster assuming the prerequisites are met. For example, the bare metal servers are HPe, Dell, or Supermicro, the OS (Rocky 8.6) meets your needs, and a physical server is available for installing the WMS.
 
-<figure><img src="../../.gitbook/assets/workflow_path_A.png" alt=""><figcaption><p>Path A</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/workflow_path_A.png" alt=""><figcaption><p>Path A</p></figcaption></figure></div>
 {% endtab %}
 
 {% tab title="Path B: Automated with WSA only" %}
 If the OS (Rocky 8.6) meets your needs but the bare-metal servers are not HPe, Dell, or Supermicro, this is the second preferred option to install and configure the WEKA cluster.<br>
 
-<figure><img src="../../.gitbook/assets/workflow_path_B.png" alt=""><figcaption><p>Path B</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/workflow_path_B.png" alt=""><figcaption><p>Path B</p></figcaption></figure></div>
 {% endtab %}
 
 {% tab title="Path C: Manual installation and configuration" %}
@@ -71,7 +71,7 @@ Manually install and configure the WEKA cluster if:
 The manual installation workflow requires deep level of knowledge with WEKA architecture. Visit [WEKA U](https://learnweka.weka.io/learn/signin) for training materials (requires sign-in).
 {% endhint %}
 
-<figure><img src="../../.gitbook/assets/workflow_path_C.png" alt=""><figcaption><p>Path C</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/workflow_path_C.png" alt=""><figcaption><p>Path C</p></figcaption></figure></div>
 {% endtab %}
 {% endtabs %}
 

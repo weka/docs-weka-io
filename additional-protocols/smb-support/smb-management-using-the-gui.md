@@ -63,11 +63,11 @@ Due to cloud provider network limitations, setting a list of SMB floating IPs in
 
 5. Select **Save**.
 
-<figure><img src="../../.gitbook/assets/wmng_smb_configure_dialog_4.3.5.gif" alt=""><figcaption><p>SMB cluster configuration</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/wmng_smb_configure_dialog_4.3.5.gif" alt=""><figcaption><p>SMB cluster configuration</p></figcaption></figure></div>
 
 Once the system completes configuration, the server statuses change from not ready (❌) to ready (✅).
 
-![SMB cluster configuration example](../../.gitbook/assets/wmng_smb_configure_result.png)
+<div data-with-frame="true"><img src="../../.gitbook/assets/wmng_smb_configure_result.png" alt="SMB cluster configuration example"></div>
 
 ## Edit the SMB cluster <a href="#edit-the-smb-cluster" id="edit-the-smb-cluster"></a>
 
@@ -77,13 +77,13 @@ You can modify the encryption and IP settings according to your needs.
 
 1. In the SMB Cluster Configuration, select the **pencil** icon.
 
-<figure><img src="../../.gitbook/assets/wmng_smb_cluster_edit.png" alt="" width="338"><figcaption><p>Edit the SMB cluster</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/wmng_smb_cluster_edit.png" alt="" width="338"><figcaption><p>Edit the SMB cluster</p></figcaption></figure></div>
 
 2. In the Edit SMB Configuration dialog, do the following:
    * **Encryption:** Select one of the in-transit encryption enforcements: enabled, desired, or required.
-   * &#x20;**IPs:** List of virtual IPs (comma-separated) used as floating IPs for the SMB cluster. (Floating IPs are not supported for cloud installations.)
+   * **IPs:** List of virtual IPs (comma-separated) used as floating IPs for the SMB cluster. (Floating IPs are not supported for cloud installations.)
 
-<figure><img src="../../.gitbook/assets/wmng_edit_smb_configuration.png" alt="" width="375"><figcaption><p>Edit SMB configuration</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/wmng_edit_smb_configuration.png" alt="" width="375"><figcaption><p>Edit SMB configuration</p></figcaption></figure></div>
 
 3\. Select **Save**.
 
@@ -97,7 +97,7 @@ To enable the SMB cluster to use Active Directory to resolve the access of users
 
 <summary>Resolve the AD domain controllers</summary>
 
-Add the AD DNS configuration to every SMB protocol backend.&#x20;
+Add the AD DNS configuration to every SMB protocol backend.
 
 Follow these steps:
 
@@ -120,14 +120,14 @@ Replace `8.8.8.8` and `8.8.4.4` with the appropriate nameserver IP addresses for
 
 1. In the SMB Cluster Configuration, select **Join**.
 
-<figure><img src="../../.gitbook/assets/wmng_smb_join_ad_button (1).png" alt="" width="338"><figcaption><p>Join the SMB cluster in the Active Directory</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/wmng_smb_join_ad_button (1).png" alt="" width="338"><figcaption><p>Join the SMB cluster in the Active Directory</p></figcaption></figure></div>
 
 2. In the Join to Active Directory dialog, set the following properties:
    * **Username** and **Password**: A username and password of an account that has join privileges to the Active Directory domain. WEKA does not save these credentials. Instead, the SMB cluster creates a computer account for use.
    * **Server**: (Optional) WEKA automatically identifies an AD Domain Controller server (from `/etc/resolv.conf`) based on the AD domain name. You do not need to set the server name. In some cases, specify the AD server if required.
    * **Computers Org. Unit**: The default AD organizational unit (OU) for the computer account is the Computers directory. You can define any OU to create the computer account that the joining account has permission to, such as SMB servers or corporate computers.
 
-![Join Active Directory dialog](../../.gitbook/assets/wmng_smb_join_ad_dialog.png)
+<div data-with-frame="true"><img src="../../.gitbook/assets/wmng_smb_join_ad_dialog.png" alt="Join Active Directory dialog"></div>
 
 Once the SMB cluster joins the Active Directory domain, the join status next to the domain changes to **Joined**.
 
@@ -187,8 +187,7 @@ Repeat the following steps for every user consuming WEKA services over the SMB p
 4. Select the **Attribute Editor** tab and modify the following:
    * Locate the **gidNumber** attribute and set its value to an appropriate number or, if unknown, any numeric value between 0 and 4290000000.
    * Locate the **uidNumber** attribute and set its value to an appropriate number or, if unknown, any numeric value between 0 and 4290000000.
-
-5) Select **OK** to save the changes.
+5. Select **OK** to save the changes.
 
 </details>
 
@@ -201,39 +200,39 @@ Adding servers to the SMB cluster can provide several benefits and address vario
 * Ensure the SMB cluster is joined to an Active Directory domain.\
   See [#join-the-smb-cluster-in-the-active-directory](smb-management-using-the-gui.md#join-the-smb-cluster-in-the-active-directory "mention").
 
-#### Procedure
+**Procedure**
 
 1. On the Servers pane, select **Add**.
 2. In the Add SMB Cluster Servers dialog, select one or more available servers (a maximum of eight servers) from the list.
 3. Select **Save**.
 
-<figure><img src="../../.gitbook/assets/wmng_add_server_to_smb_cluser.png" alt=""><figcaption><p>Add servers to the SMB cluster</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/wmng_add_server_to_smb_cluser.png" alt=""><figcaption><p>Add servers to the SMB cluster</p></figcaption></figure></div>
 
 ## Remove servers from the SMB cluster <a href="#delete-the-smb-cluster" id="delete-the-smb-cluster"></a>
 
-&#x20;If the SMB cluster has more servers than you need, you can remove the server.
+If the SMB cluster has more servers than you need, you can remove the server.
 
-The minimum required number of servers in an SMB cluster is three.&#x20;
+The minimum required number of servers in an SMB cluster is three.
 
-#### Procedure
+**Procedure**
 
 1. To remove one server, select the three dots next to the server to remove and select **Remove**.
 
-<figure><img src="../../.gitbook/assets/wmng_remove_one_server.png" alt=""><figcaption><p>Remove one server from the SMB cluster</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/wmng_remove_one_server.png" alt="" width="503"><figcaption><p>Remove one server from the SMB cluster</p></figcaption></figure></div>
 
 2. To remove more than one server, select the servers to remove from the Remove SMB Cluster Servers dialog (click the **X**), and select **Save**.
 
-<figure><img src="../../.gitbook/assets/wmng_remove_few_servers.png" alt=""><figcaption><p>Remove more than one server from the SMB cluster</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/wmng_remove_few_servers.png" alt=""><figcaption><p>Remove more than one server from the SMB cluster</p></figcaption></figure></div>
 
 ## Delete the SMB cluster <a href="#delete-the-smb-cluster" id="delete-the-smb-cluster"></a>
 
 Deleting the SMB cluster resets its configuration data. Deleting an SMB cluster only applies to SMB-W.
 
-#### **Procedure**
+**Procedure**
 
 1. In the SMB Cluster Configuration, select the **trash** icon.
 
-![Delete the SMB cluster configuration](../../.gitbook/assets/wmng_smb_cluster_remove.png)
+<div data-with-frame="true"><img src="../../.gitbook/assets/wmng_smb_cluster_remove.png" alt="Delete the SMB cluster configuration" width="337"></div>
 
 2. In the SMB Configuration Reset message, select **Reset**.
 
@@ -248,7 +247,7 @@ The Shares tab displays the SMB shares created in the system. You can also custo
 3. Select the **Shares** tab.\
    You can filter the list using any column in the table.
 
-![SMB shares list](../../.gitbook/assets/wmng_smb_list_shares.png)
+<div data-with-frame="true"><img src="../../.gitbook/assets/wmng_smb_list_shares.png" alt="SMB shares list"></div>
 
 ## Add an SMB share <a href="#add-an-smb-share" id="add-an-smb-share"></a>
 
@@ -257,7 +256,7 @@ Once the SMB cluster is created, you can create SMB shares (maximum of 1024). Ea
 **Before you begin**
 
 * Ensure the SMB cluster is joined to the Active Directory. For details, see [#join-the-smb-cluster-in-the-active-directory](smb-management-using-the-gui.md#join-the-smb-cluster-in-the-active-directory "mention").
-* Ensure the filesystem is already mounted and the directory you want to share is created in the filesystem. For details, see [mounting-filesystems](../../weka-filesystems-and-object-stores/mounting-filesystems/ "mention"); &#x20;
+* Ensure the filesystem is already mounted and the directory you want to share is created in the filesystem. For details, see [mounting-filesystems](../../weka-filesystems-and-object-stores/mounting-filesystems/ "mention");
 
 **Procedure**
 
@@ -283,12 +282,12 @@ Once the SMB cluster is created, you can create SMB shares (maximum of 1024). Ea
     * **Allow Guest Access:** Select if you want guests to access without authentication.
     * **Case Sensitivity**: Enables or disables case sensitivity for the specified SMB share (default: ON). When enabled, the share distinguishes between files with the same name but different capitalization. This option applies exclusively to the SMB-W cluster.
     * **ADS:** Enables using Alternate Data Streams (ADS) on a specified SMB share.\
-      Possible values: ON, OFF (default: ON).  For **macOS clients**, if ACLs are disabled (`acl=off`), set `enable-ADS` to `off`. For **Windows clients**, when enabled, ADS data is stored in the file’s extended attributes (XAttr), which consumes XAttr space.
+      Possible values: ON, OFF (default: ON). For **macOS clients**, if ACLs are disabled (`acl=off`), set `enable-ADS` to `off`. For **Windows clients**, when enabled, ADS data is stored in the file’s extended attributes (XAttr), which consumes XAttr space.
     * **Encryption:** Select in-transit encryption enforcement of the share. The global cluster encryption settings can affect the actual encryption.
     * **Direct Object Store Sync:** Enables immediate synchronization of files to the object store, bypassing time-based file retention policies. When enabled, newly created or modified files in the share are prioritized for release without delay.
 3. Select **Save**.
 
-<figure><img src="../../.gitbook/assets/Add_SMB_share.png" alt=""><figcaption></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/Add_SMB_share.png" alt=""><figcaption></figcaption></figure></div>
 
 <details>
 
@@ -309,11 +308,11 @@ You can update some of the SMB share settings. These include encryption, hiding 
 
 1. In the Shares tab, select the three dots of the share and select **Edit**.
 
-<figure><img src="../../.gitbook/assets/wmng_edit_smb_share_button.png" alt=""><figcaption><p>Edit an SMB share</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/wmng_edit_smb_share_button.png" alt=""><figcaption><p>Edit an SMB share</p></figcaption></figure></div>
 
 2. In the Update Share Settings dialog, update the relevant properties and select **Save**.
 
-<figure><img src="../../.gitbook/assets/wmng_update_share_settings.png" alt="" width="563"><figcaption><p>Update the SMB share settings</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/wmng_update_share_settings.png" alt="" width="563"><figcaption><p>Update the SMB share settings</p></figcaption></figure></div>
 
 ## Remove an SMB share <a href="#remove-an-smb-share" id="remove-an-smb-share"></a>
 
@@ -321,7 +320,7 @@ You can update some of the SMB share settings. These include encryption, hiding 
 
 1. In the Shares tab, select the three dots of the share and select **Remove**.
 
-![Remove an SMB share](../../.gitbook/assets/wmng_smb_share_remove.png)
+<div data-with-frame="true"><img src="../../.gitbook/assets/wmng_smb_share_remove.png" alt="Remove an SMB share"></div>
 
 2. In the confirmation message that appears, select **Confirm**.\
    The removed share no longer appears in the SMB Shares list.

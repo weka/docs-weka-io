@@ -93,7 +93,7 @@ For Slurm or bare-metal configurations, manage the server state using the CLI to
     Verify the `READY FOR MAINTENANCE` column shows `False`.\
     Example output:
 
-    <figure><img src="../.gitbook/assets/cluster_server_list.png" alt=""><figcaption></figcaption></figure>
+    <div data-with-frame="true"><figure><img src="../.gitbook/assets/cluster_server_list.png" alt=""><figcaption></figcaption></figure></div>
 2.  **Request maintenance mode:** Request the server to stop gracefully.
 
     ```bash
@@ -110,7 +110,7 @@ For Slurm or bare-metal configurations, manage the server state using the CLI to
     Proceed when the `READY FOR MAINTENANCE` column shows `True`.\
     Example output:
 
-    <figure><img src="../.gitbook/assets/cluster_server_list_down.png" alt=""><figcaption></figcaption></figure>
+    <div data-with-frame="true"><figure><img src="../.gitbook/assets/cluster_server_list_down.png" alt=""><figcaption></figcaption></figure></div>
 4. **Perform maintenance:** Complete the necessary hardware or software updates.
 5.  **Verify return to service:** The processes typically restart automatically after a reboot. If the processes do not start, or the status remains `READY FOR MAINTENANCE`, access the server shell and run:
 

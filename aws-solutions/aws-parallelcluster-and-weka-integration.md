@@ -19,7 +19,7 @@ The integration of WEKA with AWS ParallelCluster using Slurm consists of two mai
 3. **Data management and tiering**\
    To optimize data handling, WEKA employs an Amazon S3 bucket for data tiering. This system ensures that data is automatically allocated to the appropriate storage tier based on access patterns and cost-efficiency considerations. Furthermore, WEKA leverages S3 for storing snapshots, providing an additional layer of data resilience and enabling robust disaster recovery.
 
-<figure><img src="../.gitbook/assets/PCluster-WEKA-Arch (1).png" alt=""><figcaption><p>Slurm based architecture with AWS ParallelCluster</p></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/PCluster-WEKA-Arch (1).png" alt=""><figcaption><p>Slurm based architecture with AWS ParallelCluster</p></figcaption></figure></div>
 
 ## Deployment workflow for AWS ParallelCluster cluster
 
@@ -52,7 +52,7 @@ aws s3 mb s3://<bucket name> --region <region>
 aws s3 ls | grep <bucket name>
 ```
 
-**Step 3:  Clone WEKA Cloud-Solutions repository and copy integrations scripts to S3**
+**Step 3: Clone WEKA Cloud-Solutions repository and copy integrations scripts to S3**
 
 1. Clone this repository and `cd` to the `aws/parallelcluster/` directory:
 
@@ -78,7 +78,7 @@ aws iam create-policy --policy-name weka-client-pcluster --policy-document file:
 
 This repository includes an example cluster template file. Follow the steps below to modify the template for your AWS environment. If you already have a cluster template, combine it with the example one provided.
 
-1. Create a copy of the example template file. &#x20;
+1. Create a copy of the example template file.
 
 ```
 cp example-pcluster-template.yaml pcluster.yaml
