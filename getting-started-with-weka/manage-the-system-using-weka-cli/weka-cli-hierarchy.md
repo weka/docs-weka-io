@@ -11,7 +11,7 @@ metaLinks:
 # WEKA CLI hierarchy
 
 {% hint style="info" %}
-CLI commands marked with two asterisks (\*\*) are new in version 5.0.2, compared to version 4.4.7.
+CLI commands marked with two asterisks (\*\*) are new in version 5.1.0, compared to version 5.0.4.
 {% endhint %}
 
 ### weka agent
@@ -33,6 +33,9 @@ weka agent
 weka alerts
    |describe
    |mute
+      |add **
+      |list **
+      |remove **
    |types
    |unmute
 ```
@@ -40,7 +43,7 @@ weka alerts
 ### **weka audit**
 
 ```
-weka audit **
+weka audit
    |cluster
       |disable
       |enable
@@ -115,7 +118,8 @@ weka cluster
         |add
         |deactivate
         |remove
-        |scan 
+        |scan
+        |identify **
     |failure-domain
     |hot-spare
     |license
@@ -132,7 +136,7 @@ weka cluster
         |set
         |show   
     |process
-    |requested-action **
+    |requested-action
         |elective-protection
         |set
     |servers
@@ -155,6 +159,11 @@ weka cluster
 ```
 weka dataservice
     |global-config
+        |set
+        |show
+    |s3-lifecycle-task **
+        |disable
+        |enable
         |set
         |show
 ```
@@ -287,8 +296,12 @@ weka interface-group
 weka local
     |diags
     |disable
+    |drive **
+       |identify
+       |list
     |enable
     |events
+    |extract-hostside
     |install-agent
     |monitoring
     |ps
@@ -300,9 +313,14 @@ weka local
         |base-port
         |cores
         |dedicate
+        |drive **
+           |add
+           |remove
+           |scan
         |export
         |failure-domain
         |fqdn
+        |hardware-monitor **
         |import
         |join-ips
         |join-secret
@@ -319,9 +337,10 @@ weka local
         |client
         |container
         |envoy
+        |ssdproxy **
         |services
         |taskmon
-        |telemetry **
+        |telemetry
         |weka
     |start  
     |status
@@ -376,6 +395,7 @@ weka nfs
         |reset
         |setup-ad
         |setup-ad-nokrb
+        |setup-onhostldap **
         |setup-openldap
         |show
     |permission
@@ -415,7 +435,12 @@ weka org
 weka s3
    |bucket
       |add
-      |remove     
+      |remove
+      |etag-alg **
+         |reset
+         |set
+      |integrity-mode **
+         |set
       |lifecycle-rule
          |add
          |list
@@ -431,11 +456,35 @@ weka s3
       |quota
          |set
          |reset
+      |sorting **
+         |reset
+         |set
    |cluster
       |audit-webhook
+         |batch-config **
          |disable
          |enable
-         |show
+         |etag-alg **
+            |reset
+         |integrity-mode **
+            |reset
+         |notification-target
+            |add
+            |cert
+               |add
+               |list
+               |remove
+            |list
+            |remove
+            |show
+            |status
+            |update
+         |performance-bucket **
+         |sorting **
+            |reset
+         |status
+         |update
+            |performance-bucket **
       |container
          |add
          |list
@@ -476,6 +525,10 @@ weka security
       |list
       |remove
       |remove-all
+   |gui-idle-timeout **
+      |restore-defaults
+      |set
+      |show
    |kms
       |rewrap
       |set
@@ -595,6 +648,7 @@ weka user
    |ldap
       |disable
       |enable
+      |refresh-imported **
       |reset
       |setup
       |setup-ad
