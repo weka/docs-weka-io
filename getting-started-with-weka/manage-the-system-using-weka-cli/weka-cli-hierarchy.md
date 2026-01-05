@@ -579,6 +579,7 @@ weka stats
 ```
 weka status
    |rebuild
+   |reduction
 ```
 
 ### weka telemetry
