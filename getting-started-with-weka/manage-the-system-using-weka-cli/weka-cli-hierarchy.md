@@ -141,6 +141,7 @@ weka cluster
         |set
     |servers
         |list
+        |requested-action
         |show
     |start-io
     |stop-io
@@ -329,7 +330,7 @@ weka local
         |net
             |add
             |remove
-        |restore    
+        |restore
     |restart
     |rm
     |run
@@ -464,37 +465,34 @@ weka s3
          |batch-config **
          |disable
          |enable
-         |etag-alg **
-            |reset
-         |integrity-mode **
-            |reset
-         |notification-target
-            |add
-            |cert
-               |add
-               |list
-               |remove
-            |list
-            |remove
-            |show
-            |status
-            |update
-         |performance-bucket **
-         |sorting **
-            |reset
-         |status
-         |update
-            |performance-bucket **
+         |show
       |container
          |add
          |list
          |remove
       |add
       |remove
+      |etag-alg **
+         |reset
+      |integrity-mode **
+         |reset
+      |notification-target
+         |add
+         |cert
+            |add
+            |list
+            |remove
+         |list
+         |remove
+         |show
+         |status
+         |update
+      |performance-bucket **
+      |sorting **
+         |reset
       |status
       |update
-  |log-level
-      |get
+         |performance-bucket **
   |policy
       |add
       |attach
@@ -620,6 +618,28 @@ weka stats
 ```
 weka status
    |rebuild
+   |reduction
+```
+
+### weka telemetry <a href="#weka-telemetry" id="weka-telemetry"></a>
+
+```
+weka telemetry
+   |exports
+      |add
+         |kafka
+         |S3
+         |splunk
+      |attach
+      |detach
+      |disable
+      |enable
+      |list
+      |remove
+      |status
+      |update
+         |S3
+         |splunk
 ```
 
 ### weka umount
