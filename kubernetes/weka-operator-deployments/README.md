@@ -135,9 +135,13 @@ Ensure that Kubernetes is correctly set up and configured to handle WEKA workloa
 
 #### **Kubernetes port requirements**
 
-Ensure ports availability according to the following table:
+The WEKA Kubernetes operator manages port allocation automatically to prevent collisions, particularly in multi-cluster environments. Starting with WEKA operator 1.10 and WEKA 5.1.0, the operator maintains a port pool starting at port 35000 and allocates a contiguous range of 260 ports per cluster. Previous versions of the WEKA operator and WEKA software allocate 500 ports for this purpose.
 
-<table><thead><tr><th width="141.87890625">Purpose</th><th width="94.94140625">Source</th><th width="120.8515625">Target</th><th width="106.94921875">Target Ports</th><th width="81.921875">Protocol</th><th width="245.01171875">Comments</th></tr></thead><tbody><tr><td>Client connection</td><td>Client</td><td>Backend</td><td>45000-65000</td><td>TCP/<br>UDP</td><td>Clients find free ports dynamically within this range. Not mandatory to define explicitly.</td></tr><tr><td>Cluster allocation</td><td>WEKA Operator</td><td>Cluster Nodes</td><td>35000-35499 (default)</td><td>TCP/<br>UDP</td><td>Default port range for cluster allocation. Each WEKA cluster requires a unique range of 500 ports (Baseport to Baseport+499). You can override this range, but you must ensure it does not conflict with other clusters.</td></tr><tr><td>Backend communication</td><td>Backend</td><td>Backend</td><td>35000-35499 (default)</td><td>TCP/<br>UDP</td><td>Default port range for internal backend communication. Each WEKA cluster requires a unique range of 500 ports (Baseport to Baseport+499). Ensure the selected port range is available across all servers.</td></tr><tr><td>Port override</td><td>Operator API</td><td>WekaCluster CR</td><td>User-defined</td><td>TCP/<br>UDP</td><td>Overrides allow specifying ports manually, mainly useful for migrating non-K8s clusters.</td></tr></tbody></table>
+WEKA clients discover and connect to services using a separate default range that starts at port 45000. The system handles these allocations internally to ensure reliability across common networking setups. Manual configuration is typically unnecessary unless specific infrastructure or policy requirements apply.
+
+**Port allocation summary**
+
+<table><thead><tr><th width="355">Component</th><th width="170">Default start port</th><th>Port range size</th></tr></thead><tbody><tr><td>WEKA Operator (v1.10+) / WEKA (v5.1.0+)</td><td>35000</td><td>260 ports per cluster</td></tr><tr><td>WEKA Operator / WEKA (previous versions)</td><td>35000</td><td>500 ports per cluster</td></tr><tr><td>WEKA client connectivity</td><td>45000</td><td>N/A</td></tr></tbody></table>
 
 #### **Kubelet requirements**
 
