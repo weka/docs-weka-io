@@ -159,7 +159,7 @@ RDMA, including RoCE, is enabled by default. To support RDMA and GDS technologie
 
 **Fallback to standard I/O**
 
-* RDMA and GDS are not supported for encrypted filesystems.
+* GDS is not supported for encrypted filesystems.
 * If any requirement for RDMA or GDS is not met, the system automatically reverts to standard I/O operations without RDMA or GDS acceleration.
 
 {% hint style="info" %}
