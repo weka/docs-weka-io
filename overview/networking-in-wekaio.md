@@ -134,7 +134,7 @@ For the RDMA/GPUDirect Storage technology to take effect, the following requirem
 * For a client:
   * GPUDirect Storage: The IB interfaces added to the Nvidia GPUDirect configuration should support RDMA.
   * RDMA: All the Infiniband Host Channel Adapters (HCA) used by WEKA must support RDMA networking.
-* Encrypted filesystems: The framework is not used for encrypted filesystems and falls back to work without RDMA/GPUDirect for IOs to encrypted filesystems.
+* Encrypted filesystems: The framework is not used for encrypted filesystems and falls back to work without GPUDirect for IOs to encrypted filesystems.
 * An HCA is considered to support RDMA networking if the following requirements are met:
   * For GPUDirect Storage only: InfiniBand network.
   * The NIC supports RDMA. See [#networking-ethernet](../install/prerequisites-and-compatibility.md#networking-ethernet "mention").
