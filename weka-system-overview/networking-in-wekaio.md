@@ -14,7 +14,7 @@ The WEKA system supports the following types of networking technologies:
 * ‌InfiniBand (IB)
 * Ethernet
 
-‌The networking infrastructure dictates the choice between the two. If a WEKA cluster is connected to both infrastructures, it is possible to connect WEKA clients from both networks to the same cluster.&#x20;
+‌The networking infrastructure dictates the choice between the two. If a WEKA cluster is connected to both infrastructures, it is possible to connect WEKA clients from both networks to the same cluster.
 
 The WEKA system networking can be configured as _performance-optimized_ or _CPU-optimized_. In [performance-optimized](networking-in-wekaio.md#performance-optimized-networking-dpdk) networking, the CPU cores are dedicated to WEKA, and the networking uses DPDK. In [CPU-optimized](networking-in-wekaio.md#cpu-optimized-networking-udp-mode) networking, the CPU cores are not dedicated to WEKA, and the networking uses DPDK (when supported by the NIC drivers) or in-kernel (UDP mode).
 
@@ -56,7 +56,7 @@ For CPU-optimized networking, WEKA can yield CPU resources to other applications
 
 #### DPDK without the core dedication
 
-For CPU-optimized networking, when [mounting filesystems using stateless clients](../weka-filesystems-and-object-stores/mounting-filesystems/#mounting-filesystems-using-stateless-clients), it is possible to use DPDK networking without dedicating cores. This mode is recommended when available and supported by the NIC drivers. The DPDK networking uses RX interrupts instead of dedicating the cores in this mode.&#x20;
+For CPU-optimized networking, when [mounting filesystems using stateless clients](../weka-filesystems-and-object-stores/mounting-filesystems/#mounting-filesystems-using-stateless-clients), it is possible to use DPDK networking without dedicating cores. This mode is recommended when available and supported by the NIC drivers. The DPDK networking uses RX interrupts instead of dedicating the cores in this mode.
 
 {% hint style="info" %}
 This mode is supported in most NIC drivers. Consult [https://doc.dpdk.org/guides/nics/overview.html](https://doc.dpdk.org/guides-18.11/nics/overview.html) for compatibility.
@@ -113,7 +113,7 @@ Network High Availability (HA) in a WEKA cluster is designed to eliminate single
 
 **Network redundancy**
 
-To achieve HA, the WEKA system requires multiple network switches with servers connected to at least two interfaces of the same type. Dual connectivity is provided either through two independent interfaces or through Link Aggregation Control Protocol (LACP) in Ethernet environments (mode 4).&#x20;
+To achieve HA, the WEKA system requires multiple network switches with servers connected to at least two interfaces of the same type. Dual connectivity is provided either through two independent interfaces or through Link Aggregation Control Protocol (LACP) in Ethernet environments (mode 4).
 
 **Interface configuration**
 
@@ -159,7 +159,7 @@ RDMA, including RoCE, is enabled by default. To support RDMA and GDS technologie
 
 **Fallback to standard I/O**
 
-* RDMA and GDS are not supported for encrypted filesystems.
+* GDS is not supported for encrypted filesystems.
 * If any requirement for RDMA or GDS is not met, the system automatically reverts to standard I/O operations without RDMA or GDS acceleration.
 
 {% hint style="info" %}

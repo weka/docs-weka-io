@@ -7,7 +7,7 @@ description: >-
 # WEKA CLI hierarchy
 
 {% hint style="info" %}
-CLI commands marked with two asterisks (\*\*) are new in version 5.0.2, compared to version 4.4.7.
+CLI commands marked with two asterisks (\*\*) are new in version 5.0.4, compared to version 4.4.10.
 {% endhint %}
 
 ### weka agent
@@ -133,6 +133,7 @@ weka cluster
         |set
     |servers
         |list
+        |requested-action **
         |show
     |start-io
     |stop-io
@@ -283,6 +284,8 @@ weka interface-group
 weka local
     |diags
     |disable
+    |drive **
+       |identify
     |enable
     |events
     |install-agent
@@ -307,7 +310,8 @@ weka local
         |net
             |add
             |remove
-        |restore    
+        |restore
+        |system-monitor **    
     |restart
     |rm
     |run
@@ -418,6 +422,10 @@ weka s3
          |remove
          |reset
       |list
+      |notification **
+         |add
+         |list
+         |remove
       |policy
          |get
          |get-json
@@ -438,6 +446,14 @@ weka s3
          |remove
       |add
       |remove
+      |notification-target **
+         |add
+         |cert
+         |list
+         |remove
+         |show
+         |status
+         |update
       |status
       |update
   |log-level
@@ -563,6 +579,27 @@ weka stats
 ```
 weka status
    |rebuild
+```
+
+### weka telemetry
+
+```
+weka telemetry **
+   |exports
+      |add
+         |kafka
+         |S3
+         |splunk
+      |attach
+      |detach
+      |disable
+      |enable
+      |list
+      |remove
+      |status
+      |update
+         |S3
+         |splunk
 ```
 
 ### weka umount
