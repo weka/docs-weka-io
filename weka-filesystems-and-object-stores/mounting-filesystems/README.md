@@ -322,8 +322,6 @@ When using WEKA mounts (`wekafs`), ensure that clients and backends use the same
 * The `-o net=<netdev>` option provides detailed control over network interfaces.
 * Selecting the appropriate configuration helps optimize performance and connectivity.
 * Consistent networking technology is essential for system reliability.
-* **Mellanox NICs:** Never specify the IP address in the `net` specification when using Mellanox NICs (single IP).
-* **IPv6 Environments:** If the join IP (the mount target) is IPv6, the management IP address is not required.
 
 ### **Configure IP, subnet, gateway, and Virtual Functions (VFs)**
 
@@ -337,25 +335,23 @@ To assign an IP address to a VF or to enable routing when the client is in a dif
 net=<netdev>/[ip]/[bits]/[gateway]
 ```
 
-`ip`, `bits`, and `gateway` are optional parameters. If these parameters are not provided, the system assigns values based on the environment:
-
-* **Cloud environment:** The system automatically deduces the IP address, subnet mask, and gateway.
-* **On-premises environment:** The system assigns values based on the cluster’s default network configuration.
-* **IPv6 environment:** For clients using IPv6, the `/64/fe80::1` configuration is only necessary if the client is on a different subnet.
-
-If the default network is not set, the system may fail to allocate an IP address for the client.
+* `ip`, `bits`, and `gateway` are optional parameters.
+* If these parameters are not provided, the WEKA system assigns values based on the environment:
+  * **Cloud environment**: The system automatically deduces the IP address, subnet mask, and gateway.
+  * **On-premises environment**: The system assigns values based on the cluster’s default network configuration.
+    * If the default network is not set, the WEKA cluster may fail to allocate an IP address for the client.
 
 {% hint style="warning" %}
-**Important:** Ensure that the **system default data networking** is configured before executing the `mount` command. For configuration details, see [#id-6.-configure-default-data-networking-optional](../../planning-and-installation/bare-metal/perform-post-configuration-procedures.md#id-6.-configure-default-data-networking-optional "mention").
+**Important:** Ensure that the **WEKA cluster default data networking** is configured before executing the `mount` command. For configuration details, see [#id-6.-configure-default-data-networking-optional](../../planning-and-installation/bare-metal/perform-post-configuration-procedures.md#id-6.-configure-default-data-networking-optional "mention").
 {% endhint %}
 
 #### **Example: Configuring VFs on a single physical network device**
 
 The following command configures VFs for a specified network device and assigns each VF to a frontend process.
 
-* The first frontend process is assigned `192.168.1.100`.
-* The second frontend process is assigned `192.168.1.101`.
-* Both IPs are configured with a 24-bit subnet mask and a default gateway of `192.168.1.254`.
+* The first frontend process is assigned **192.168.1.100**.
+* The second frontend process is assigned **192.168.1.101**.
+* Both IPs are configured with a **24-bit subnet mask** and a **default gateway of 192.168.1.254**.
 
 {% code overflow="wrap" %}
 ```bash
