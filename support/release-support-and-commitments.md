@@ -23,7 +23,7 @@ Each release cycle consists of distinct support phases. The length of each phase
 * **Proactive updates:** This phase is the first year of an LTS release. It provides new features, OS and hardware compatibility enhancements, and security updates.
 * **Critical updates:** This phase is the second year of an LTS release. It delivers essential security updates and minimal OS and hardware support.
 
-<div data-with-frame="true"><figure><img src="../.gitbook/assets/support_versions.png" alt=""><figcaption><p>Support phases</p></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/Support_phases.jpg" alt=""><figcaption><p>Support phases</p></figcaption></figure></div>
 
 ### Update and upgrade policy
 

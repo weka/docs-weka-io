@@ -13,6 +13,10 @@ WEKA operates a dual-track release model with two types of versions: Innovation 
 
 Each release in [get.weka.io](https://get.weka.io) is tagged as either **Innovation** or **LTS**.
 
+**Related topic**
+
+[release-support-and-commitments.md](../support/release-support-and-commitments.md "mention")
+
 ### Software versions
 
 WEKA uses a structured versioning scheme to indicate the scope and type of changes introduced in each release. This helps users quickly identify whether a release includes major new features, minor improvements, or incremental fixes.
