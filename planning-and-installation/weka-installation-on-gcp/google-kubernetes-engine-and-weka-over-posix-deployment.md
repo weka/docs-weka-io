@@ -106,7 +106,7 @@ Ensure SSH access to the GKE worker nodes is available to install the WEKA clien
 
 {% tabs %}
 {% tab title="Transferring SSH keys to the VM" %}
-<div data-with-frame="true"><figure><img src="../../.gitbook/assets/image (230).png" alt=""><figcaption></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/image (231).png" alt=""><figcaption></figcaption></figure></div>
 {% endtab %}
 
 {% tab title="Authorize" %}

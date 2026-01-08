@@ -1,5 +1,5 @@
 ---
-description: This page describes how to manage alerts using the GUI.
+description: View, mute, and unmute alerts to maintain cluster health.
 metaLinks:
   alternates:
     - >-
@@ -11,44 +11,61 @@ metaLinks:
 Using the GUI, you can:
 
 * [View alerts](alerts.md#view-alerts)
-* [Mute alerts](alerts.md#mute-alerts)
-* [Unmute alerts](alerts.md#unmute-alerts)
+* [Mute an alert by type](alerts.md#mute-an-alert-by-type)
+* [Mute an alert by occurrence](alerts.md#mute-an-alert-by-occurrence)
+* [Unmute an alert](alerts.md#unmute-an-alert)
 
 ## View alerts
 
-The bell icon on the top bar indicates the number of existing active alerts in the system. The alerts pane in the system dashboard also provides the name of the alerts.
+The bell icon in the top bar displays the number of currently active alerts in the system. Selecting the icon opens the alerts pane on the system dashboard, which lists the names of all active alerts.
 
-If there are no alerts (active or muted), the alerts pane is empty, and the bell does not specify any number.
+When there are no active alerts, the alerts pane is empty and the bell icon does not display a count. Muted alerts are excluded from both the alert count and the alerts pane.
 
-<div data-with-frame="true"><img src="../../.gitbook/assets/wmng_alerts_overview.png" alt="View alerts"></div>
-
-**Procedure**
-
-1. To display the alert details, select the bell icon or select any alert.
-
-<div data-with-frame="true"><img src="../../.gitbook/assets/wmng_alerts.png" alt="View alert details"></div>
-
-## Mute alerts
-
-If for any reason, it is not possible to resolve the root cause of an alert in a reasonable time and you want to hide it temporarily, you can mute the alert for a specified period. Then later, you can unmute the alert and resolve it.
-
-The system automatically unmutes the muted alerts after the expiry period.
+<div data-with-frame="true"><img src="../../.gitbook/assets/view_alerts.png" alt="View alerts"></div>
 
 **Procedure**
 
-1. On the Active Alerts page, select the bell next to the alert.
-2. Set the mute duration (number and units) and select **Mute**.
+1. Select the bell icon at the top bar or select any alert in the Alerts pane.
+2. In the Active Alerts table, review the alerts. Each alert provides description, corrective action, and severity. Muted alerts show also the muted time remaining.
+3. To display alerts with the DEBUG severity level, turn on **Show Debug Alerts**.
 
-The muted alert is moved to the Muted Alerts area. The total number of active alerts is deducted by the number of muted alerts.
+<div data-with-frame="true"><img src="../../.gitbook/assets/alert_details.png" alt="View alert details"></div>
 
-<div data-with-frame="true"><img src="../../.gitbook/assets/wmng_alerts_mute.gif" alt="Mute alerts"></div>
+## Mute an alert by type
 
-## Unmute alerts
-
-Muted alerts appear under the Muted Alerts area. You can unmute an alert manually before the expiry duration.
+Muting an alert type removes it from the active alerts list for a specified duration.
 
 **Procedure**
 
-1. Under the Muted Alerts area, select the bell of the alert you want to unmute.
+1. Select the bell icon at the top bar or select any alert in the Alerts pane.
+2. Locate the alert in the Active Alerts table.
+3. Select the **Mute** (bell) icon in the row of the general alert type.
+4. Select the **Mute Duration** and select **Mute**.
 
-<div data-with-frame="true"><img src="../../.gitbook/assets/wmng_unmute_alert.png" alt="Unmute an alert"></div>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/alert_mute_by_type.png" alt=""><figcaption><p>Mute alerts by type</p></figcaption></figure></div>
+
+## Mute an alert by occurrence
+
+Mute specific processes, containers, or servers to silence localized issues.
+
+**Procedure**
+
+1. Select the bell icon at the top bar or select any alert in the Alerts pane.
+2. Locate the specific alert instance in the Active Alerts table.
+3. Select **Mute** in the row of the specific occurrence.
+4. In the Mute dialog, select the muting level: **Process**, **Container**, or **Server**.
+5. Select the **Mute Duration** and select **Mute**.
+
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/alert_mute_by_process.png" alt=""><figcaption><p>Mute alerts by occurrence</p></figcaption></figure></div>
+
+## Unmute an alert
+
+Manual unmuting reactivates an alert before its duration expires.
+
+**Procedure**
+
+1. Locate the alert in the Muted Alerts list.
+2. To unmute by type: Select the **bell** icon next to the alert type.
+3. To unmute by occurrence: Select **Unmute** next to the specific occurrence description.
+
+<div data-with-frame="true"><img src="../../.gitbook/assets/unmute_alerts.png" alt="Unmute an alert"></div>

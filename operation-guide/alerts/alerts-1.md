@@ -21,6 +21,127 @@ Using the CLI, you can:
 
 Use this command to list all possible types of alerts that the WEKA cluster can return.
 
+<details>
+
+<summary>Example</summary>
+
+```bash
+$ weka alerts types
+AdminDefaultPassword
+AgentNotRunning
+ApproachingClientsUnavailability
+ApproachingSystemLimit
+AutoRemoveTimeoutTooLow
+AvailableMemory
+BackendNumaBalancingEnabled
+BackendVersionsMismatch
+BadDisksCapacityRatio
+BlockedJrpcMethod
+BondInterfaceCompromised
+BucketCapacityExhausting
+BucketHasNoQuorum
+BucketUnresponsive
+CPUFrequentStarvation
+CPUStarvation
+CWTaskAbortionStuck
+ChokingDetected
+ClientVersionsMismatch
+ClockSkew
+CloudHealth
+CloudStatsError
+ClusterInitializationError
+ClusterIsUpgrading
+ConfigOverridesActive
+CoreOverlapping
+DataIntegrity
+DataProtection
+DedicatedWatchdog
+DrainingStuck
+DriveCriticalWarnings
+DriveDown
+DriveEndurancePercentageUsed
+DriveEnduranceSparesRemaining
+DriveNVKVRunningLow
+DriveNeedsPhaseout
+ExceptionsDuringAlertsEvaluation
+FaultsEnabled
+FilesystemKMSError
+FilesystemsThinProvisioningLowSpace
+FilesystemsThinProvisioningReserveReached
+HangingCacheSync
+HangingClusterTasks
+HangingIos
+HighDrivesCapacity
+HighLevelOfUnreclaimedCapacityInObjectStore
+HighSSDToRAMRatio
+HotspotInodes
+IBNotEnhanced
+ImbalancedCpuUsage
+JumboConnectivity
+KMSError
+LeaderPreparedForUpgrade
+LegacyManualOverridesActive
+LicenseError
+LocalTLSCertificateExpired
+LocalTLSCertificateExpiringSoon
+LocalTLSConnectivityToNeighbors
+LongestWaitInodes
+LowDiskSpace
+ManualOverridesActive
+ManualOverridesForced
+MismatchedDriveFailureDomain
+MismatchedJoinSecrets
+NegativeUnprovisionedCapacity
+NetworkFailedToStartPorts
+NetworkInterfaceLinkDown
+NfsLocksDisabled
+NfsServiceDownAlert
+NoCgroupsConfigured
+NoClusterLicense
+NoHotSpareFailureDomains
+NodeBlacklisted
+NodeDisconnected
+NodeNetworkUnstable
+NodeRDMANotActive
+NodeTieringConnectivity
+NonTlsApisAllowed
+NotEnoughActiveDrives
+NotEnoughMemoryForFilesystemOperation
+NotEnoughSSDCapacity
+NotificationQueueHighLoad
+NotificationSendFailure
+PartialConnectivityTrackingDisabled
+PartialHugepageAllocation
+PartiallyConnectedNode
+PassedClientsAvailabilityThreshold
+PathsDegraded
+PerformanceDegradedLowRAM
+QuotasHardLimitReached
+QuotasSoftLimitReached
+RAIDCapacityExhaustion
+RequestedActionFailure
+RequestedActionTimeout
+ResourcesNotApplied
+SSDCapacityDiscrepancy
+SSDCapacityTooHigh
+SystemDefinedTLS
+TLSCertificateExpired
+TLSCertificateExpiresSoon
+TelemetryStatusFault
+TieredFilesystemOverfillingSSD
+TooManyPendingClusterwideJobs
+TraceDumperDown
+TracesDisabled
+TracesFreezePeriodActive
+UdpModePerformanceWarning
+UnstableHosts
+UnwritableDisksConfigured
+WTracerDaemonWriteIOFailures
+WTracerLostTraces
+```
+
+</details>
+
 **Command:**`weka alerts describe`
 
 Use this command to describe all the alert types the WEKA cluster can return, along with possible corrective actions for each alert.
@@ -31,11 +152,11 @@ Use this command to describe all the alert types the WEKA cluster can return, al
 
 Use the following command line to list all alerts (muted and unmuted) in the WEKA cluster:
 
-`weka alerts [--severity severity]`` ``[--muted]`
+`weka alerts [--severity severity] [--muted] [--inactive]`
 
 **Parameters**
 
-<table><thead><tr><th width="221.9609375">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>severity</code></td><td>Include event with equal and higher severity, default: WARNING Format: <code>debug</code>, <code>warning</code>, <code>minor</code>, <code>major</code> or <code>critical</code></td></tr><tr><td><code>muted</code></td><td>List muted alerts alongside unmuted ones.</td></tr></tbody></table>
+<table><thead><tr><th width="144.89453125">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>severity</code></td><td>List alerts with the specified severity level and higher. Default: <code>warning</code>. Supported values: <code>debug</code> (hidden), '<code>warning</code>' (lowest), <code>minor</code>, <code>major</code> or <code>critical</code> (highest).</td></tr><tr><td><code>muted</code></td><td>List muted alerts in addition to active alerts.</td></tr><tr><td><code>inactive</code></td><td>List alerts that recently transitioned to an inactive state.</td></tr></tbody></table>
 
 #### `weka alerts` output parameters
 
@@ -79,19 +200,73 @@ $weka alerts --format json
 
 Use the following command line to mute an alert type:
 
-`weka alerts mute <alert-type> <duration>`
+```
+weka alerts mute <alert-type> <duration> /
+[--comment comment] /
+[--process process]... /
+[--container container]... /
+[--hostname hostname]...
+```
 
 The system does not prompt muted alerts when listing active alerts. You must specify the duration in which the alert-type is muted. After the expiry of the specified duration, the system unmutes the alert-type automatically.
 
 **Parameters**
 
-<table><thead><tr><th width="226">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>alert-type</code>*</td><td>An alert-type to mute, use <code>weka alerts types</code> to list types.</td></tr><tr><td><code>duration</code>*</td><td>Expiration time for muting this alert type.<br>Format: <code>3s</code>, <code>2h</code>, <code>4m</code>, <code>1d</code>, <code>1d5h</code>, <code>1w</code>.</td></tr></tbody></table>
+<table><thead><tr><th width="179.95703125">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>alert-type</code>*</td><td>Specifies the alert type to mute. Run <code>weka alerts types</code> to list all possible types.</td></tr><tr><td><code>duration</code>*</td><td><p>Sets the duration for the mute. Examples: <code>30m</code>, <code>2h</code>, <code>1d.</code></p><p>Format: <code>3s</code>, <code>2h</code>, <code>4m</code>, <code>1d</code>, <code>1d5h</code>, <code>1w</code>, <code>infinite/unlimited</code></p></td></tr><tr><td><code>comment</code></td><td>Specifies a comment to provide context for the mute action.</td></tr><tr><td><code>process</code></td><td>Mutes alerts for specific process IDs. This parameter applies only to process-specific alerts. If omitted or used on a non-process alert, the system mutes all alerts of this type. For multiple entries, provide a comma-separated list or repeat the parameter.</td></tr><tr><td><code>container</code></td><td>Mutes alerts for specific container IDs. This parameter applies only to container-specific alerts. If omitted or used on a non-container alert, the system mutes all alerts of this type. For multiple entries, provide a comma-separated list or repeat the parameter.</td></tr><tr><td><code>hostname</code></td><td>Mutes alerts for specific hostnames. This parameter applies only to server-specific alerts. If omitted or used on a non-server alert, the system mutes all alerts of this type. For multiple entries, provide a comma-separated list or repeat the parameter.</td></tr></tbody></table>
+
+**Examples**
+
+```bash
+weka alerts mute NodeNetworkUnstable 6h --server "datasphere-*"
+weka alerts mute NodeNetworkUnstable 23m --process 261 --comment "Muted until network is stable"
+```
+
+### View muted alerts
+
+To list all currently muted alert types with their mute configuration, use the following command:
+
+`weka alerts mute list`
+
+### Add items to mute scope&#x20;
+
+**Command:** `weka alerts mute add` &#x20;
+
+Use the following command line to add more items to the mute scope for an already muted alert-type. You can add more process/container/hostname items to the existing scope. Duration and comment remain unchanged.
+
+```
+weka alerts mute add <alert-type> /
+[--process process]... /
+[--container container]... /
+[--hostname hostname]...
+```
+
+**Parameters**
+
+<table><thead><tr><th width="168.48828125">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>alert-type</code>*</td><td>Specifies the alert type to update mute scope for. Run <code>weka alerts types</code> to list all possible types.</td></tr><tr><td><code>process</code>...</td><td>Adds specific process IDs to the mute scope. This parameter applies only to process-specific alerts. For multiple entries, provide a comma-separated list or repeat the parameter.</td></tr><tr><td><code>container</code>...</td><td>Adds specific container IDs to the mute scope. Use this parameter for container-specific alerts only.For multiple entries, provide a comma-separated list or repeat the parameter.</td></tr><tr><td><code>hostname</code>...</td><td>Adds specific server names to the mute scope. Use this parameter for server-specific alerts only. For multiple entries, provide a comma-separated list or repeat the parameter.</td></tr></tbody></table>
+
+### Remove items from mute scope
+
+**Command:** `weka alerts mute remove` &#x20;
+
+Remove specific items from the mute scope of an already muted alert-type. You can remove specific\
+process, container, or hostname items from the existing scope. If all items are removed, the alert is completely unmuted.
+
+```
+weka alerts mute remove <alert-type> /
+[--process process]... /
+[--container container]... /
+[--hostname hostname]...
+```
+
+**Parameters**
+
+<table><thead><tr><th width="163.90625">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>alert-type</code>*</td><td>Specifies the alert type to remove from mute scope. Run <code>weka alerts types</code> to list all possible types.</td></tr><tr><td><code>process</code>...</td><td>Removes specific process IDs from the mute scope. This parameter applies only to process-specific alerts. For multiple entries, provide a comma-separated list or repeat the parameter.</td></tr><tr><td><code>container</code>...</td><td>Removes specific container IDs from the mute scope. Use this parameter for container-specific alerts only. Provide a comma-separated list or repeat the parameter for multiple IDs.</td></tr><tr><td><code>hostname</code>...</td><td>Removes specific server names from the mute scope. Use this parameter for server-specific alerts only. Provide a comma-separated list or repeat the parameter for multiple names.</td></tr></tbody></table>
 
 ## **Unmute alerts**
 
 **Command:** `weka alerts unmute`
 
-Use the following command line to unmute a muted alert-type:
+Use the following command line to unmute a muted Alert Type:
 
 `weka alerts unmute <alert-type>`
 
