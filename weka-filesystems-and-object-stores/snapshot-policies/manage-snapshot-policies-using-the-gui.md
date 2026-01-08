@@ -122,7 +122,7 @@ You can enable or disable a policy directly from the policies list pane, for exa
 
 3. In the confirmation message that appears, select **Yes** to confirm the status change.
 
-<div align="center" data-with-frame="true"><figure><img src="../../.gitbook/assets/image (155).png" alt="" width="257"><figcaption></figcaption></figure></div>
+<div align="center" data-with-frame="true"><figure><img src="../../.gitbook/assets/image (247).png" alt="" width="257"><figcaption></figcaption></figure></div>
 
 ## Delete a snapshot policy
 

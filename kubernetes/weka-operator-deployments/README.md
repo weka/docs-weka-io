@@ -141,7 +141,7 @@ WEKA clients discover and connect to services using a separate default range tha
 
 **Port allocation summary**
 
-<table><thead><tr><th width="355">Component</th><th width="170">Default start port</th><th>Port range size</th></tr></thead><tbody><tr><td>WEKA Operator (v1.10+) / WEKA (v5.1.0+)</td><td>35000</td><td>260 ports per cluster</td></tr><tr><td>WEKA Operator / WEKA (previous versions)</td><td>35000</td><td>500 ports per cluster</td></tr><tr><td>WEKA client connectivity</td><td>45000</td><td>N/A</td></tr></tbody></table>
+<table><thead><tr><th width="355">Component</th><th width="170">Default start port</th><th>Port range size</th></tr></thead><tbody><tr><td>WEKA Operator (v1.10+) / WEKA (v5.1.0+)</td><td>35000</td><td>260 ports per cluster</td></tr><tr><td>WEKA Operator / WEKA (previous versions)</td><td>35000</td><td>500 ports per cluster</td></tr><tr><td>WEKA client connectivity</td><td>45000</td><td></td></tr></tbody></table>
 
 #### **Kubelet requirements**
 
