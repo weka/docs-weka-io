@@ -24,13 +24,12 @@ A persistent cluster-wide configuration filesystem is required for the protocol'
 
 ### **Interface groups**
 
-An interface group is a configuration framework designed to optimize resiliency among NFS servers. It enables the seamless migration of IP addresses, known as floating IPs, from an unhealthy server to a healthy one, ensuring continuous and uninterrupted service availability.
+An interface group provides resilience and high availability for NFS services by enabling transparent failover between NFS servers.
 
-An interface group consists of the following:
-
-* A collection of WEKA servers with a network port for each server, where all the ports must be associated with the same subnets. For resiliency, a minimum of two NFS servers are required.
-* A collection of floating IPs to support the NFS protocol on specified servers and NICs. All IP addresses are required to be within the same subnet, and the servers must already have static IP addresses on those NICs within that subnet.
-* A routing configuration for the IPs. The IP addresses must comply with the IP network configuration.
+* **Resilience:** An interface group requires a minimum of two WEKA servers to ensure continuous NFS availability. If a server becomes unavailable, its floating IPs automatically migrate to a healthy server in the group.
+* **Server membership:** An interface group consists of a set of WEKA servers, each with a designated network port. All ports must be associated with the same subnet.
+* **Floating IP management:** The group includes one or more floating IP addresses used by the NFS service. All floating IPs must reside in the same subnet, and each server must already have a static IP configured on the corresponding network interface.
+* **Routing configuration:** Floating IPs must comply with the network routing configuration to ensure proper reachability and failover behavior.
 
 {% hint style="info" %}
 Floating IPs are supported on AWS but not on Azure, GCP, and OCI cloud environments.

@@ -11,19 +11,21 @@ SMB (Server Message Block) is a network file-sharing protocol that facilitates c
 
 WEKA SMB-W is an implementation of an SMB protocol enabling Windows, Linux CIFS, and macOS clients to access WEKA storage services with support for multi-protocol concurrent file access through SMB stack.
 
-## Key features of SMB in WEKA
+## Key features of SMB-W
 
 The SMB-W stack is designed for scalability, resilience, and distributed performance.
 
-* **Scalability**: WEKA supports an SMB-W cluster consisting of 3 to 8 servers, each running the SMB gateway service. The backend can be any WEKA filesystem, with no limitations on size or performance.
-* **Resilience**: SMB-W provides clustered file access with transparent failover. If a server fails, another server in the cluster automatically takes over operations, maintaining high availability.
-* **Distribution**: All servers in the SMB-W cluster manage SMB filesystems concurrently. Performance scales with added hardware. SMB-W supports SMB Multichannel and SMB Direct, delivering advanced throughput and reliability.
+* **Scalability**: An SMB-W cluster runs on a minimum of three and up to eight WEKA servers, each hosting the SMB gateway service. The SMB backend can be any WEKA filesystem, which scales independently in capacity and performance.
+* **Resilience**: SMB-W delivers clustered file access with transparent failover. If a server becomes unavailable, another server in the cluster automatically assumes ownership, preserving service continuity.
+*   **Distribution**: All servers in the SMB-W cluster serve SMB workloads concurrently.
+
+    Performance scales linearly as servers are added. SMB-W supports SMB Multichannel and SMB Direct to maximize throughput and reliability.
 
 ### Advanced capabilities of SMB-W
 
 * **SMB multichannel:** Enhances performance by leveraging multiple network connections simultaneously. Supported for properly configured SMB clients.
 * **High availability and failover:** If an SMB-W container becomes isolated from the cluster, it stops automatically. Other servers take over its operations. (To manually restart a stopped container, run: `weka local restart smbw`).
-*   **SMB Direct:** Enables SMB over RDMA (Remote Direct Memory Access) for reduced latency and improved performance.&#x20;
+*   **SMB Direct:** Enables SMB over RDMA (Remote Direct Memory Access) for reduced latency and improved performance.
 
     To enable SMB Direct, ensure the following prerequisites are met:
 
@@ -92,7 +94,7 @@ Ensure that a dedicated filesystem exists for storing persistent protocol config
 
 **Workflow**
 
-1. **Configure SMB-W cluster**:  Define the WEKA system servers that will participate in the SMB-W cluster and specify the Active Directory (AD) domain name.\
+1. **Configure SMB-W cluster**: Define the WEKA system servers that will participate in the SMB-W cluster and specify the Active Directory (AD) domain name.\
    In on-premises deployments, you can configure a pool of public IP addresses distributed across the SMB-W cluster. If a server fails, its IP addresses are reassigned to other servers in the cluster to maintain availability.
 2. **Join the SMB-W cluster to the Active Directory domain:** Connect the WEKA system to the target AD domain. This includes required pre-configuration in AD and post-configuration in both the DNS Manager and Active Directory Users and Computers.
 3. **Create SMB shares and set permissions:** Create the required shares and directories. By default, filesystem permissions are `root:root` with 755 access and must initially be set using a WEKA filesystem or NFS mount.
