@@ -15,13 +15,15 @@ SMB (Server Message Block) is a network file-sharing protocol that facilitates c
 
 WEKA SMB-W is an implementation of an SMB protocol enabling Windows, Linux CIFS, and macOS clients to access WEKA storage services with support for multi-protocol concurrent file access through SMB stack.
 
-## Key features of SMB in WEKA
+## Key features of SMB-W
 
 The SMB-W stack is designed for scalability, resilience, and distributed performance.
 
-* **Scalability**: WEKA supports an SMB-W cluster consisting of 3 to 8 servers, each running the SMB gateway service. The backend can be any WEKA filesystem, with no limitations on size or performance.
-* **Resilience**: SMB-W provides clustered file access with transparent failover. If a server fails, another server in the cluster automatically takes over operations, maintaining high availability.
-* **Distribution**: All servers in the SMB-W cluster manage SMB filesystems concurrently. Performance scales with added hardware. SMB-W supports SMB Multichannel and SMB Direct, delivering advanced throughput and reliability.
+* **Scalability**: An SMB-W cluster runs on a minimum of three and up to eight WEKA servers, each hosting the SMB gateway service. The SMB backend can be any WEKA filesystem, which scales independently in capacity and performance.
+* **Resilience**: SMB-W delivers clustered file access with transparent failover. If a server becomes unavailable, another server in the cluster automatically assumes ownership, preserving service continuity.
+*   **Distribution**: All servers in the SMB-W cluster serve SMB workloads concurrently.
+
+    Performance scales linearly as servers are added. SMB-W supports SMB Multichannel and SMB Direct to maximize throughput and reliability.
 
 ### Advanced capabilities of SMB-W
 

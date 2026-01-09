@@ -1,5 +1,4 @@
 ---
-description: This page describes how to set up, update, monitor, and delete an S3 cluster.
 metaLinks:
   alternates:
     - >-
@@ -8,12 +7,20 @@ metaLinks:
 
 # S3 cluster management
 
-## Considerations
+## S3 considerations
 
-* **Performance and scalability:** The S3 service is delivered through WEKA cluster containers and exhibits near-linear scaling as additional S3 containers join the cluster. Both throughput and concurrency scale proportionally with cluster size. In well-sized deployments, S3 performance can reach millions of requests per second on medium-sized clusters (\~30 servers) and tens of millions of requests per second on larger clusters (\~100 servers).
-* **Redundancy:** A minimum of two containers is required for the S3 cluster to ensure redundancy and fault tolerance. However, creating a single-container S3 cluster is possible, so there will be no redundancy.
-* **Cluster-wide configuration filesystem:** Verify that the dedicated filesystem for persistent protocol configurations is created. If not, create it. For details, see [#dedicated-filesystem-requirement-for-persistent-protocol-configurations](../../additional-protocols-overview.md#dedicated-filesystem-requirement-for-persistent-protocol-configurations "mention").
-* **Interfaces:** The S3 protocol can be accessed using the assigned port (default: 9000) on all configured interfaces on each WEKA server where the protocol is enabled. It does not use dedicated or floating IPs.
+The WEKA S3 service is designed for scalable performance and resilient operation across distributed containers.
+
+* **Performance and scalability:** The S3 service runs in WEKA cluster containers and scales near-linearly as additional containers join the cluster. \
+  Throughput and concurrency increase proportionally with cluster size. In appropriately sized deployments, performance reaches millions of requests per second on medium clusters (approximately 30 servers) and tens of millions on larger clusters (approximately 100 servers).
+* **Redundancy:** The S3 service requires a minimum of two containers to provide redundancy and fault tolerance. A single-container deployment is supported when redundancy is not required.
+* **Configuration filesystem:** The S3 service requires a dedicated filesystem to persist protocol configuration across the cluster. Verify that this filesystem exists before enabling the S3 service (see the related topic below).
+* **Interfaces and access:** The S3 service is accessible through the assigned port (default: 9000) on all configured interfaces of each WEKA server where the protocol is enabled.\
+  S3 does not use dedicated or floating IP addresses.
+
+**Related topic**
+
+&#x20;[#dedicated-filesystem-requirement-for-persistent-protocol-configurations](../../additional-protocols-overview.md#dedicated-filesystem-requirement-for-persistent-protocol-configurations "mention").
 
 ## Round-robin DNS or load balancer **configuration**
 
