@@ -16,7 +16,7 @@ TOTAL_429_RQ|Total 429 requests|Requests
 TOTAL_4xx_RQ|Total 4xx requests|Requests
 TOTAL_5xx_RQ|Total 5xx requests|Requests
 
-## Assert Failures
+## Assert failures
 
 **Type** | **Description** | **Units**
 -|-|-
@@ -27,6 +27,7 @@ ASSERTION_FAILURES_KILL_FIBER|Assertion failures count with "KILL_FIBER" behavio
 ASSERTION_FAILURES_KILL_NODE_OOM|Assertion failures count with "KILL_NODE_OOM" behaviour|Assertion failures
 ASSERTION_FAILURES_KILL_NODE_WITH_CORE_DUMP|Assertion failures count with "KILL_NODE_WITH_CORE_DUMP" behaviour|Assertion failures
 ASSERTION_FAILURES_KILL_NODE|Assertion failures count with "KILL_NODE" behaviour|Assertion failures
+ASSERTION_FAILURES_STALL_AND_KILL_BUCKET|Assertion failures count with "STALL_AND_KILL_BUCKET" behaviour|Assertion failures
 ASSERTION_FAILURES_STALL_AND_KILL_NODE|Assertion failures count with "STALL_AND_KILL_NODE" behaviour|Assertion failures
 ASSERTION_FAILURES_STALL|Assertion failures count with "STALL" behaviour|Assertion failures
 ASSERTION_FAILURES_THROW_EXCEPTION|Assertion failures count with "THROW_EXCEPTION" behaviour|Assertion failures
@@ -37,34 +38,41 @@ ASSERTION_FAILURES|Assertion failures count of all available types|Assertion fai
 **Type** | **Description** | **Units**
 -|-|-
 GP_GETATTR_CACHE_MISS|Number of general purpose getAttr cache misses per second|Ops/Sec
-GP_GETATTR|Number of general purpose getAttr calls per second|Ops/Sec
+GP_GETATTR|Number of general-purpose getAttr calls per second|Ops/Sec
 
 ## Audit
 
 **Type** | **Description** | **Units**
 -|-|-
-AUDIT_ACQUIRE_CHARTER|Number of audit traces created for ACQUIRE_CHARTER|Audits
-AUDIT_CREATE_DIRENT|Number of audit traces created for CREATE_DIRENT|Audits
-AUDIT_CREATE_INODE|Number of audit traces created for CREATE_INODE|Audits
-AUDIT_CREATE_OPEN_DIRENT|Number of audit traces created for CREATE_OPEN_DIRENT|Audits
-AUDIT_CREATE_UNLINKED_INODE|Number of audit traces created for CREATE_UNLINKED_INODE|Audits
-AUDIT_DEREFERENCE_DIRENT|Number of audit traces created for DEREFERENCE_DIRENT|Audits
+AUDIT_ACQUIRE_CHARTER|Number of audits traces created for ACQUIRE_CHARTER|Audits
+AUDIT_ATOMIC_OPEN|Number of audit traces created for ATOMIC_OPEN|Audits
+AUDIT_CREATE_DIRENT|Number of audits traces created for CREATE_DIRENT|Audits
+AUDIT_CREATE_INODE|Number of audits traces created for CREATE_INODE|Audits
+AUDIT_CREATE_OPEN_DIRENT|Number of audits traces created for CREATE_OPEN_DIRENT|Audits
+AUDIT_CREATE_UNLINKED_INODE|Number of audits traces created for CREATE_UNLINKED_INODE|Audits
+AUDIT_DEREFERENCE_DIRENT|Number of audits traces created for DEREFERENCE_DIRENT|Audits
+AUDIT_DIRCLOSE|Number of audit traces created for DIRCLOSE|Audits
+AUDIT_DIROPEN|Number of audits traces created for DIROPEN|Audits
+AUDIT_FILECLOSE|Number of audit traces created for FILECLOSE|Audits
+AUDIT_FILEOPEN|Number of audit traces created for FILEOPEN|Audits
 AUDIT_GET_ATTR|Number of audit traces created for GET_ATTR|Audits
 AUDIT_GET_XATTR|Number of audit traces created for GET_XATTR|Audits
-AUDIT_HEARTBEAT|Number of audit traces created for HEARTBEAT|Audits
+AUDIT_HEARTBEAT|Number of audits traces created for HEARTBEAT|Audits
 AUDIT_LINK|Number of audit traces created for LINK|Audits
 AUDIT_LIST_XATTR|Number of audit traces created for LIST_XATTR|Audits
 AUDIT_MOUNT|Number of audit traces created for MOUNT|Audits
-AUDIT_READDIR|Number of audit traces created for READDIR|Audits
-AUDIT_READLINK|Number of audit traces created for READLINK|Audits
+AUDIT_READDIR|Number of audits traces created for READDIR|Audits
+AUDIT_READLINK|Number of audits traces created for READLINK|Audits
 AUDIT_REMOVE_XATTR|Number of audit traces created for REMOVE_XATTR|Audits
 AUDIT_RENAME|Number of audit traces created for RENAME|Audits
 AUDIT_SET_ATTR|Number of audit traces created for SET_ATTR|Audits
 AUDIT_SET_XATTR|Number of audit traces created for SET_XATTR|Audits
 AUDIT_UMOUNT|Number of audit traces created for UMOUNT|Audits
-AUDIT_UNLINK_DIR|Number of audit traces created for UNLINK_DIR|Audits
-AUDIT_UNLINK_FILE|Number of audit traces created for UNLINK_FILE|Audits
+AUDIT_UNKNOWN|Number of audits traces created for UNKNOWN|Audits
+AUDIT_UNLINK_DIR|Number of audits traces created for UNLINK_DIR|Audits
+AUDIT_UNLINK_FILE|Number of audits traces created for UNLINK_FILE|Audits
 AUDITS|Number of audits traces created for all types|Audits
+FE_AUDIT_ENCRYPTION_FAILURES|Number of failures to encrypt audit entities|Failures
 
 ## Audit Enhancer Statistics
 
@@ -79,34 +87,46 @@ CACHE_PRELOAD_HITS|Number of cache hits when trying to preload|Entries
 CACHE_PRELOAD_MISSES|Number of cache misses when trying to preload|Entries
 CACHE_RESOLVE_HITS|Number of cache hits to resolve|Entries
 CACHE_RESOLVE_MISSES|Number of cache misses when trying to resolve|Entries
-ENHANCE_BACKEND_CALL_AVG_TIME|Per backend call average time|hnsecs
-ENHANCE_BACKEND_CALL_MAX_TIME|Per backend call maximum time|hnsecs
-ENHANCE_BACKEND_CALL_MIN_TIME|Per backend call minimum time|hnsecs
-ENHANCE_BACKEND_CALL_TOTAL_TIME|Total backend call time|hnsecs
+DECRYPT_FILENAME_API_INVOCATION_AVG_TIME|Average decrypt filename API invocation time|Microseconds
+DECRYPT_FILENAME_API_INVOCATION_MAX_TIME|Maximum decrypt filename API invocation time|Microseconds
+DECRYPT_FILENAME_API_INVOCATION_MIN_TIME|Minimum decrypt filename API invocation time|Microseconds
+DECRYPT_FILENAME_API_INVOCATION_TOTAL_TIME|Total decrypt filename API invocation time|Microseconds
+DECRYPT_FILENAME_PER_BATCH_AVG_ENTRIES|Average entries in a decrypt filename batch|Entries/Batch
+DECRYPT_FILENAME_PER_BATCH_MAX_ENTRIES|Maximum entries in a decrypt filename batch|Entries/Batch
+DECRYPT_FILENAME_PER_BATCH_MIN_ENTRIES|Minimum entries in a decrypt filename batch|Entries/Batch
+DECRYPT_FILENAME_REQUESTS_FAIL|Number of decrypt filename requests failed|Requests failed
+DECRYPT_FILENAME_REQUESTS_SUCCESS|Number of decrypt filename requests succeeded|Requests succeeded
+DECRYPT_FILENAME_REQUESTS|Number of decrypt filename requests|Requests
+DECRYPT_FILENAME_SLEEP_TIME|Sleep time when decrypt filename API fails|Microseconds
+DECRYPT_FILENAME_TOTAL_ENTRIES|Total filename entries decrypted|Entries
+ENHANCE_BACKEND_CALL_AVG_TIME|Per backend call average time|Microseconds
+ENHANCE_BACKEND_CALL_MAX_TIME|Per backend call maximum time|Microseconds
+ENHANCE_BACKEND_CALL_MIN_TIME|Per backend call minimum time|Microseconds
+ENHANCE_BACKEND_CALL_TOTAL_TIME|Total backend call time|Microseconds
 ENHANCE_RESOLVE_PATH_ATTEMPTS_COUNT|Number of resolve paths|Count
-ENHANCE_RESOLVE_PATH_AVG_TIME|Average resolve path time|hnsecs
-ENHANCE_RESOLVE_PATH_MAX_TIME|Maximum resolve path time|hnsecs
-ENHANCE_RESOLVE_PATH_MIN_TIME|Minimum resolve path time|hnsecs
-ENHANCE_RESOLVE_PATH_TOTAL_TIME|Total resolve path time|hnsecs
-ENHANCE_SLEEP_TIME|Sleep time when backend call fails|hnsecs
+ENHANCE_RESOLVE_PATH_AVG_TIME|Average resolve path time|Microseconds
+ENHANCE_RESOLVE_PATH_MAX_TIME|Maximum resolve path time|Microseconds
+ENHANCE_RESOLVE_PATH_MIN_TIME|Minimum resolve path time|Microseconds
+ENHANCE_RESOLVE_PATH_TOTAL_TIME|Total resolve path time|Microseconds
+ENHANCE_SLEEP_TIME|Sleep time when backend call fails|Microseconds
 ENHANCER_BATCH_COUNT|Total batch count|Batches
 ENHANCER_ENHANCED_TOTAL_ENTRIES|Total entries enhanced|Entries
 ENHANCER_PER_BATCH_AVG_ENTRIES|Average entries in a batch|Entries/Batch
 ENHANCER_PER_BATCH_MAX_ENTRIES|Maximum entries in a batch|Entries/Batch
 ENHANCER_PER_BATCH_MIN_ENTRIES|Minimum entries in a batch|Entries/Batch
 INODES_TO_RESOLVE_NAME|Number of inodes to resolve name|Inodes
-NAME_RESOLVE_FAIL_NAME_NOT_IN_CACHE|Number of times a path could not be resolved, as one of the directory names was not in the cache|Failed path resolves
+NAME_RESOLVE_FAIL_NAME_NOT_IN_CACHE|Number of times a path could not be resolved, as one of the directory names was not in cache|Failed path resolves
 NAME_RESOLVE_REQUESTS_FAIL|Number of resolve name queries failed|Requests failed
-NAME_RESOLVE_REQUESTS_SUCCESS|Number of resolved name queries succeeded|Requests succeeded
+NAME_RESOLVE_REQUESTS_SUCCESS|Number of resolve name queries succeeded|Requests succeeded
 NAME_RESOLVE_REQUESTS|Number of resolve name queries issued to backend|Requests
-PER_BATCH_ENHANCE_AVG_TIME|Per batch enhance average processing time|hnsecs
-PER_BATCH_ENHANCE_MAX_TIME|Per batch enhance maximum processing time|hnsecs
-PER_BATCH_ENHANCE_MIN_TIME|Per batch enhance minimum processing time|hnsecs
-PER_BATCH_ENHANCE_PRELOAD_AVG_TIME|Per batch enhance average preload time|hnsecs
-PER_BATCH_ENHANCE_PRELOAD_MAX_TIME|Per batch enhance maximum preload time|hnsecs
-PER_BATCH_ENHANCE_PRELOAD_MIN_TIME|Per batch enhance minimum preload time|hnsecs
-PER_BATCH_ENHANCE_PRELOAD_TOTAL_TIME|Total enhance preload time|hnsecs
-PER_BATCH_ENHANCE_TOTAL_TIME|Total enhance batch processing time|hnsecs
+PER_BATCH_ENHANCE_AVG_TIME|Per batch enhance average processing time|Microseconds
+PER_BATCH_ENHANCE_MAX_TIME|Per batch enhance maximum processing time|Microseconds
+PER_BATCH_ENHANCE_MIN_TIME|Per batch enhance minimum processing time|Microseconds
+PER_BATCH_ENHANCE_PRELOAD_AVG_TIME|Per batch enhance average preload time|Microseconds
+PER_BATCH_ENHANCE_PRELOAD_MAX_TIME|Per batch enhance maximum preload time|Microseconds
+PER_BATCH_ENHANCE_PRELOAD_MIN_TIME|Per batch enhance minimum preload time|Microseconds
+PER_BATCH_ENHANCE_PRELOAD_TOTAL_TIME|Total enhance preload time|Microseconds
+PER_BATCH_ENHANCE_TOTAL_TIME|Total enhance batch processing time|Microseconds
 PRELOAD_CACHE_COUNT|Number of cache preloads|Number of attempts
 
 ## Block Cache
@@ -132,6 +152,7 @@ BLOCK_PARTIAL_WRITES|Number of partial block writes|Writes
 
 **Type** | **Description** | **Units**
 -|-|-
+BAD_JOURNAL_ID_CHECKSUM|Number of journals that failed to load due to invalid JournalId checksum|Ops/Sec
 BUCKET_SESSION_VALIDATION_LATENCY|Average latency of bucket session validation|Microseconds
 BUCKET_SESSION_VALIDATIONS|Number of bucket session validations per second|RPCs/Sec
 BUCKET_START_TIME|Duration of bucket activation on step up|Startups
@@ -149,6 +170,7 @@ HASH_BLOCKS_COUNT|Difference in number of HASH blocks|Blocks
 INODE_BLOCKS_COUNT|Difference in number of INODE blocks|Blocks
 INTEGRITY_ISSUES|Number of filesystem integrity issues detected|Issues
 JOURNAL_BLOCKS_COUNT|Difference in number of JOURNAL blocks|Blocks
+JOURNALS_WITH_INVALID_RAFTTERMS|Number of journals with invalid raft-terms|JournalBlocks/Sec
 NOOP_JOURNALS|Number of NOOP journals|Ops/Sec
 NOOP_REPLAYS|Number of NOOP replays|Ops
 ODH_COLLISIONS_ACCESS_CLOCK_STATES|Number of ODH items created with colliding hash in ACCESS_CLOCK_STATES ODH|Collisions
@@ -185,23 +207,24 @@ REGISTRY_L2_BLOCKS_COUNT|Difference in number of REGISTRY_L2 blocks|Blocks
 REGISTRY_SEARCHES_COUNT|Number of registry searches per second|Queries/Sec
 REJECTED_STALE_PUT_BLOCKS_FALSE_POSITIVES|Number of putBlocks RPCs falsely rejected due to stale serial number|RPCs/Sec
 REJECTED_STALE_PUT_BLOCKS|Number of putBlocks RPCs rejected due to stale serial number|RPCs/Sec
-RESIDENT_BLOCKS_COUNT|Number of blocks in the resident blocks table|Blocks
-SINGLE_HOP_MISMATCH_RECOVERY|Number of single-hop read prefix mismatch recoveries|Issues
-SINGLE_HOP_RDMA_MISMATCH_DPDK_FALLBACK|Number of single-hop read prefix mismatch RDMA failures |Issues
+RESIDENT_BLOCKS_COUNT|Number of blocks in resident blocks table|Blocks
+SINGLE_HOP_MISMATCH_RECOVERY|Number of single hop read prefix mismatch recoveries|Issues
+SINGLE_HOP_RDMA_MISMATCH_DPDK_FALLBACK|Number of single hop read prefix mismatch RDMA fail|Issues
 SINGLE_HOP_WRITE_ATTEMPTS|Number of single hop write attempts|Ops/Sec
+SINGLE_HOP_WRITE_BAD_CSUM|Number of single hop write operation (BAD_CSUM) per second|Ops/Sec
 SINGLE_HOP_WRITE_BYTES|Total single hop write bytes|Bytes/Sec
-SINGLE_HOP_WRITE_FAILURES|Number of single-hop write operation failures per second|Ops/Sec
-SINGLE_HOP_WRITES_BAD_CSUM|Number of single hop write operation (BAD_CSUM) per second|Ops/Sec
-SINGLE_HOP_WRITES_FE_CALLBACK_FAIL|Number of single hop write operation (FE_CALLBACK_FAIL) per second|Ops/Sec
-SINGLE_HOP_WRITES_FE_FAILOVER|Number of single hop write operation (FE_FAILOVER) per second|Ops/Sec
-SINGLE_HOP_WRITES_MANUAL_OVERRIDE_DENY|Number of single hop write operation (MANUAL_OVERRIDE_DENY) per second|Ops/Sec
-SINGLE_HOP_WRITES_NO_BYPASSING_STRIPES|Number of single hop write operation (NO_BYPASSING_STRIPES) per second|Ops/Sec
-SINGLE_HOP_WRITES_OTHER_ERROR|Number of single hop write operation (OTHER_ERROR) per second|Ops/Sec
-SINGLE_HOP_WRITES_SKIP|Number of single-hop write operations (SKIP) per second|Ops/Sec
-SINGLE_HOP_WRITES_SSD_FAIL|Number of single hop write operation (SSD_FAIL) per second|Ops/Sec
-SINGLE_HOP_WRITES_SUCCESS|Number of single-hop write operations (SUCCESS) per second|Ops/Sec
-SINGLE_HOP_WRITES_TOO_MANY_PLACEMENTS|Number of single hop write operation (TOO_MANY_PLACEMENTS) per second|Ops/Sec
-SINGLE_HOP_WRITES_UNEXPECTED_FAIL|Number of single hop write operation (UNEXPECTED_FAIL) per second|Ops/Sec
+SINGLE_HOP_WRITE_CLIENT_TOO_OLD|Number of single hop write operation (CLIENT_TOO_OLD) per second|Ops/Sec
+SINGLE_HOP_WRITE_FAILURES|Number of single hop write operation failures per second|Ops/Sec
+SINGLE_HOP_WRITE_FE_CALLBACK_FAIL|Number of single hop write operation (FE_CALLBACK_FAIL) per second|Ops/Sec
+SINGLE_HOP_WRITE_FE_FAILOVER|Number of single hop write operation (FE_FAILOVER) per second|Ops/Sec
+SINGLE_HOP_WRITE_MANUAL_OVERRIDE_DENY|Number of single hop write operation (MANUAL_OVERRIDE_DENY) per second|Ops/Sec
+SINGLE_HOP_WRITE_NO_BYPASSING_STRIPES|Number of single hop write operation (NO_BYPASSING_STRIPES) per second|Ops/Sec
+SINGLE_HOP_WRITE_OTHER_ERROR|Number of single hop write operation (OTHER_ERROR) per second|Ops/Sec
+SINGLE_HOP_WRITE_SKIP|Number of single hop write operations (SKIP) per second|Ops/Sec
+SINGLE_HOP_WRITE_SSD_FAIL|Number of single hop write operation (SSD_FAIL) per second|Ops/Sec
+SINGLE_HOP_WRITE_SUCCESS|Number of single hop write operations (SUCCESS) per second|Ops/Sec
+SINGLE_HOP_WRITE_TOO_MANY_PLACEMENTS|Number of single hop write operation (TOO_MANY_PLACEMENTS) per second|Ops/Sec
+SINGLE_HOP_WRITE_UNEXPECTED_FAIL|Number of single hop write operation (UNEXPECTED_FAIL) per second|Ops/Sec
 SNAPSHOT_CREATION_TIME|Time to complete a snapshot creation|Snapshots
 SPATIAL_DIGEST_BLOCKS_COUNT|Difference in number of SPATIAL_DIGEST blocks|Blocks
 SPATIAL_SQUELCH_BLOCKS_COUNT|Difference in number of SPATIAL_SQUELCH blocks|Blocks
@@ -318,11 +341,11 @@ boxSize|Box sizes histogram|Segments
 CLUSTERIZE_CALLS|Clusterize Calls|Calls/Sec
 CLUSTERIZE_TIME|Average time to clusterize|Milliseconds
 COMPRESS_TASK_CALLS|Compress Task Calls|Calls/Sec
-COMPRESS_TASK_TIME|Average time to complete the compress task|Milliseconds
+COMPRESS_TASK_TIME|Average time to complete compress task|Milliseconds
 COMPRESSED_DELTA_SIZE|Average size of new compressed delta segments|Bytes
 COMPRESSED_ETERNAL_SINGLE_SIZE|Average size of new compressed eternal-single segments|Bytes
 COMPRESSED_REF_ABLE_SIZE|Average size of new compressed referencable segments|Bytes
-COMPRESSED_SELF_DELTA_SIZE|Average self-compressed size of new delta segments|Bytes
+COMPRESSED_SELF_DELTA_SIZE|Average self-compress size of new delta segments|Bytes
 COMPRESSED_SIZE|Average size of new compressed segments|Bytes
 CROSS_BLOCKS_READ_ERRS|Number of failed reads due to wrong crossBlocks flag|Reads/Sec
 DELTA_BACKPTR_COLLISIONS|Number of times delta blocks with the same backptr were encountered during GC|Blocks/Sec
@@ -349,7 +372,7 @@ HISTORY_READ_ERRS|Number of failed reference reads from history|Reads/Sec
 historyLogHist|historyLogHist|Segments
 historySegsInSliceShard|History segments in slice shard|Segments
 improvedFrom|Similarity improvements old values|Segments
-improvedTo|Similarity improvements, new values|Segments
+improvedTo|Similarity improvements new values|Segments
 INGEST_PERFORMED_FP_CALCS|Delayed data-reduction fingerprint calculations performed during ingest|Blocks/Sec
 INGEST_START_CALLS|Ingest Start Calls|Calls/Sec
 INGEST_START_TIME|Average time to start ingest|Milliseconds
@@ -357,7 +380,7 @@ inheritedRefs|Inherited Refs|Segments
 intoFilter|Segments inserted into filter|Segments
 MEMORY_HISTORY_TRUNCATES|Number of History Truncations due to low memory|Reads/Sec
 NEW_DELTAS_FROM_HISTORY|Number of new delta blocks created with references from history|Blocks/Sec
-NEW_DELTAS_FROM_INGEST|Number of new delta blocks created with references from the same ingest batch|Blocks/Sec
+NEW_DELTAS_FROM_INGEST|Number of new delta blocks created with references from same ingest batch|Blocks/Sec
 NEW_DELTAS|Number of new delta blocks created|Blocks
 NEW_ETERNAL_SINGLES|Number of new eternal single blocks created|Blocks/Sec
 NEW_INCOMPRESSIBLE_DELTAS|Number of new incompressible delta segments ingested|Blocks/Sec
@@ -374,7 +397,7 @@ REFERENCE_RELOCS|Number of reference blocks relocated by GC|Blocks/Sec
 refsBySource|Refs by ref source|Refs
 REJECTED_INGESTS|Number of ingests rejected by the extent|Blocks/Sec
 REJECTED_RELOCATES|Number of relocation rejected by the extent|Blocks/Sec
-REPLACED_FP_CALCS|Block re-writes replacing the data for fingerprint calculations|Blocks/Sec
+REPLACED_FP_CALCS|Block rewrites replacing the data for fingerprint calculations|Blocks/Sec
 SCRUBBED_PLACEMENTS|Number of scrubbed placeents|Placements/Sec
 SEGMENT_PROMOTES_BYTES|Number of segment bytes promoted by GC|Bytes/Sec
 SEGMENT_PROMOTES|Promoted Compressed Blocks|Blocks
@@ -399,7 +422,7 @@ DIFFLIST_GET_MANIFEST_PER_GETLIST_LATENCY|Average latency of getDifflist getmani
 DIFFLIST_GET_MANIFEST_PER_GETLIST_OPS|Number of getDifflist getmanifest per getdifflist|Ops/Sec
 DIFFLIST_GET_OPS|Number of getDifflist|Ops/Sec
 DIFFLIST_RESOLVE_PATH_BATCH_LATENCY|Average latency of getDifflist resolve-path per batch|Microseconds
-DIFFLIST_RESOLVE_PATH_BATCH_OPS|Number of getDifflist resolve-path per batch |Ops/Sec
+DIFFLIST_RESOLVE_PATH_BATCH_OPS|Number of getDifflist resolve-path per batch|Ops/Sec
 DIFFLIST_RESOLVEPATH_LATENCY|Average latency of getDifflist resolvepath|Microseconds
 DIFFLIST_RESOLVEPATH_OPS|Number of getDifflist resolvepath|Ops/Sec
 QUOTA_TASK_ADD_DIR_ENTRIES|Number of entries added for directory quota task|Ops
@@ -420,7 +443,7 @@ QUOTAS_MARKED|Number of directory quotas marked|Quotas
 
 **Type** | **Description** | **Units**
 -|-|-
-TOTAL_COUNCIL_CLEANUPS|The number of times a bucket council's toRemove/toAdd field member was cleared|Bucket council cleanups
+TOTAL_COUNCIL_CLEANUPS|The number of times a bucket council toRemove/toAdd field member was cleared|Bucket council cleanups
 TOTAL_COUNCIL_REDISTRIBUTIONS|The number of times a bucket council was changed for any bucket|Bucket council redistributions
 
 ## ExecTime
@@ -462,7 +485,7 @@ OBS_EXTENTS_PREFETCH|Number of extents prefetched from object-store per second|E
 OBS_FREED|Number of bytes freed from disk because they are in the object-store per second|Bytes/Sec
 OBS_IMMEDIATE_RELEASE_FREED|Number of bytes freed from disk due to immediate release per second|Bytes/Sec
 OBS_INODES_PREFETCH|Number of files prefetched from object-store per second|Ops/Sec
-OBS_INODES_RELEASE|Number of files released to object store per second|Ops/Sec
+OBS_INODES_RELEASE|Number of file released to object-store per second|Ops/Sec
 OBS_ONGOING_RECLAMATIONS|Number of ongoing reclamations|Ops
 OBS_POLICY_FREED|Number of bytes freed from disk due to policy per second|Bytes/Sec
 OBS_PROMOTE_EXTENT_WRITE_LATENCY|Average latency of extent promote writes|Microseconds
@@ -489,9 +512,9 @@ STOW_SERIALIZED_EXTENT_DESCS|Number of extent descriptors uploaded|Extent Descri
 STOW_SERIALIZED_EXTENT_REDIRECTS|Number of extent descriptors uploaded that redirect to previous snapshot|Extent Descriptors
 TIERED_FS_BREAKING_POLICY|Number of tiered filesystems breaking policy|Activations
 TIMEOUT_DOWNLOADS|Number of timed out downloads per second|Ops/Sec
-TIMEOUT_OPERATIONS|Total number of timed-out operations per second|Ops/Sec
+TIMEOUT_OPERATIONS|Total number of timed out operations per second|Ops/Sec
 TIMEOUT_UPLOADS|Number of timed out uploads per second|Ops/Sec
-UNEXPECTED_BLOCK_VERSION_POST_UPGRADE|Number of unexpected block versions found after upgrade completed|Occurrences
+UNEXPECTED_BLOCK_VERSION_POST_UPGRADE|Number of unexpected block version found after upgrade completed|Occurrences
 UPLOAD_CHOKING_LATENCY|Average latency of waiting for upload choking budget|Microseconds
 UPLOAD_LATENCY|Average latency of uploads|Microseconds
 UPLOADS|Number of upload attempts per second|Ops/Sec
@@ -538,7 +561,7 @@ JRPC_SERVER_CALLS_CLIENT_DOES_NOT_SUPPORT_QOS|The number of JRPC calls made from
 JRPC_SERVER_CALLS_CLIENT_SUPPORTS_QOS|The number of JRPC calls made from a client that supports JRPC QoS|Requests/Sec
 JRPC_SERVER_CALLS_QOS_DECLINED|The number of JRPC calls where server returns TOO_MANY_REQUESTS (QoS declined to run a method)|Requests/Sec
 JRPC_SERVER_PROCESSING_AVG|The average time the JRPC server processed the JRPC requests.|Microseconds
-JRPC_SERVER_PROCESSING_TIME|The number of JRPC requests processed by the server per time range.|Requests
+JRPC_SERVER_PROCESSING_TIME|The number of JRPC requests processed by the server for each time range.|Requests
 
 ## Memory
 
@@ -573,6 +596,9 @@ GW_MAC_RESOLVE_SUCCESSES|Number of times we succeeded in ARP resolving the gatew
 INVALID_FIRST_FRAGMENT|Number of times we got an invalid first fragment|Packets/Sec
 MBUF_DUP_COUNT|Number of Duplicate mbufs found|Occurrences
 MBUF_DUP_ITER|Duplicate mbuf check completions|Occurrences
+MBUF_POOL_EMERGENCY_FREE_CALLBACKS|Number of times emergency free callbacks were triggered|Callbacks/Sec
+MBUF_POOL_FREE_CALLBACKS|Number of times free callbacks were triggered|Callbacks/Sec
+MISSED_CSUM_MBUFS|Number of MBUFs which should have had hardware checksum, but were missed|Packets/Sec
 NDP_DAD_RECV_ADDR_CONFLICTS|NDP DAD Receive Address Conflict Detected|Packets/Sec
 NDP_DAD_RECV_NO_CONFLICTS|NDP DAD Receive No Conflict|Packets/Sec
 NODE_RECONNECTED|Number of reconnections|Reconnects/Sec
@@ -583,7 +609,7 @@ PACKETS_NEEDING_ALIGN|Number of packets received that needed alignment adjustmen
 PACKETS_NEEDING_COMBINE|Number of packets received that needed buffer combining|Packets/Sec
 PACKETS_PUMPED|Number of packets received in each call to recvPackets|Batches
 PACKETS_RX_EXTMBUF|Number of packets received with external mbuf|Packets
-PACKETS_VLAN_INSERTED_HW|Number of packets sent with hardware inserted VLAN tag|Packets/Sec
+PACKETS_VLAN_INSERTED_HW|Number of packets sent with hardware-inserted VLAN tag|Packets/Sec
 PACKETS_VLAN_INSERTED_SW|Number of packets sent with software-inserted VLAN tag|Packets/Sec
 PACKETS_VLAN_STRIPPED_HW|Number of packets received with hardware stripped VLAN tag|Packets/Sec
 PACKETS_VLAN_STRIPPED_SW|Number of packets received with software stripped VLAN tag|Packets/Sec
@@ -605,16 +631,18 @@ PUMP_DURATION|Duration of each pump|Requests
 PUMP_INTERVAL|Interval between pumps|Requests
 PUMPS_TXQ_FULL|Number of times we couldn't send any new packets to the NIC queue|Pumps/Sec
 PUMPS_TXQ_PARTIAL|Number of times we only sent some of our queued packets to the NIC queue|Pumps/Sec
-RDMA_ADD_CHUNK_FAILURES|Number of RDMA cookie setting failures |Failures/Sec
+RDMA_ADD_CHUNK_FAILURES|Number of RDMA cookie setting failures|Failures/Sec
 RDMA_AHCACHE_POPULATIONS|Number of RDMA RDMA AH cache population attempts|Attempts/Sec
+RDMA_BAD_CSUM|Number of RDMA requests with incorrect and then fixed checksums|Failures/Sec
 RDMA_BINDING_FAILOVERS|Number of RDMA High-Availability fail-overs|Fail-overs/Sec
 RDMA_CANCELED_COMPLETIONS|Number of RDMA completions that were canceled|Completions/Sec
 RDMA_CLIENT_BINDING_INVALIDATIONS|Number of RDMA client binding invalidations|Invalidations/Sec
 RDMA_COMP_DURATION|Histogram of RDMA completion duration times|Requests
 RDMA_COMP_FAILURES|Number of RDMA requests that were completed with an error|Failures/Sec
-RDMA_COMP_LATENCY|Average time of RDMA requests completion|Microseconds
+RDMA_COMP_LATENCY|Average time of RDMA request completion|Microseconds
 RDMA_COMP_STATUSES|Histogram of RDMA completion statuses|Completions/Sec
 RDMA_COMPLETIONS|Number of RDMA requests that were completed|Completions/Sec
+RDMA_CSUM_REGISTER_FAILURES|Number of RDMA submit failures due to checksum registration error|Failures/Sec
 RDMA_FAILED_AHCACHE_POPULATIONS|Number of failed RDMA AH cache population attempts|Failed Attempts/Sec
 RDMA_FALLBACK_WHILE_AH_POPULATE|Number of fallbacks from RDMA due to AH cache population in progress|Fallbacks/Sec
 RDMA_NET_ERR_RETRY_EXCEEDED|Number of RDMA requests with error retries exceeded|Occurrences/Sec
@@ -681,7 +709,7 @@ ZERO_CSUM|Number of checksum zero received|Packets/Sec
 JOINING_FENCED_REASON_COUNTS|Counts of reasons JOINING nodes were fenced|Occurrences/Sec
 JOINING_TO_UP_TRANSITIONS|Number of nodes transitioned from JOINING to UP.|Nodes
 SYNC_TO_JOIN_FAILURE_COUNTS|Counts of SYNCING to JOINING failures categorized by reason|Occurrences/Sec
-SYNCING_TO_JOINING_TRANSITIONS|Number of nodes transitioned from SYNCING to JOINING|Nodes
+SYNCING_TO_JOINING_TRANSITIONS|Number of nodes transitioned from SYNCING to JOINING.|Nodes
 UP_FENCED_REASON_COUNTS|Counts of reasons UP nodes were fenced|Occurrences/Sec
 
 ## Object Storage
@@ -857,7 +885,7 @@ STATFS_LATENCY|Average latency of STATFS operations|Microseconds
 STATFS_OPS|Number of STATFS operations per second|Ops/Sec
 SYMLINK_LATENCY|Average latency of SYMLINK operations|Microseconds
 SYMLINK_OPS|Number of SYMLINK operations per second|Ops/Sec
-THROUGHPUT|Number of bytes read/writes per second|Bytes/Sec
+THROUGHPUT|Number of read/write bytes per second|Bytes/Sec
 UNLINK_LATENCY|Average latency of UNLINK operations|Microseconds
 UNLINK_OPS|Number of UNLINK operations per second|Ops/Sec
 WRITE_BYTES|Number of byte writes per second|Bytes/Sec
@@ -870,9 +898,9 @@ WRITES|Number of write operations per second|Ops/Sec
 **Type** | **Description** | **Units**
 -|-|-
 DIRECT_READ_SIZES_RATE|The number of O_DIRECT reads per each read size range per second|Reads
-DIRECT_READ_SIZES|The number of O_DIRECT reads per each read size range|Reads
-DIRECT_WRITE_SIZES_RATE|The number of O_DIRECT writes per each read size range per second|Writes
-DIRECT_WRITE_SIZES|The number of O_DIRECT writes per each read size range|Writes
+DIRECT_READ_SIZES|The number of O_DIRECT reads for each read size range|Reads
+DIRECT_WRITE_SIZES_RATE|The number of O_DIRECT writes for each read size range per second|Writes
+DIRECT_WRITE_SIZES|The number of O_DIRECT writes for each read size range|Writes
 DOORBELL_RING_COUNT|The number of times the driver queue's doorbell was ringed|Ops
 FAILED_1HOP_READS|Number of failed single hop reads per second|Ops/Sec
 FILEATOMICOPEN_LATENCY|Average latency of FILEATOMICOPEN operations|Microseconds
@@ -919,15 +947,15 @@ READ_BYTES_1HOP|Number of bytes read per second via single hop|Bytes/Sec
 READ_BYTES|Number of bytes read per second|Bytes/Sec
 READ_CHECKSUM_ERRORS|The number of times the driver's checksum validation failed upon the read's content|Ops
 READ_CORRUPTIONS_DETECTED_IN_1HOP|The number of corrupt data blocks encountered during 1-hop read|Ops
-READ_DURATION|The number of reads per time duration|Reads
+READ_DURATION|The number of reads per each time duration|Reads
 READ_LATENCY_NO_QOS|Average latency of READ operations without QoS delay|Microseconds
 READ_LATENCY|Average latency of READ operations|Microseconds
 READ_PARENT_SELINUX_ATTRIBUTE|The number of times we could not get SELinux attribute from parent|Ops
 READ_QOS_DELAY|Average QoS delay for READ operations|Microseconds
 READ_RDMA_SIZES_RATE|The number of RDMA reads per each read size range per second|Reads
-READ_RDMA_SIZES|The number of RDMA reads per each read size range|Reads
-READ_SIZES_RATE|The number of reads per read size range per second|Reads
-READ_SIZES|The number of reads per each read size range|Reads
+READ_RDMA_SIZES|The number of RDMA reads for each read size range|Reads
+READ_SIZES_RATE|The number of reads per each read size range per second|Reads
+READ_SIZES|The number of reads for each read size range|Reads
 READDIR_LATENCY|Average latency of READDIR operations|Microseconds
 READDIR_OPS|Number of READDIR operations per second|Ops/Sec
 READDIR_QOS_DELAY|Average QoS delay for READDIR operations|Microseconds
@@ -953,17 +981,17 @@ SETATTR_QOS_DELAY|Average QoS delay for SETATTR operations|Microseconds
 SETXATTR_LATENCY|Average latency of SETXATTR operations|Microseconds
 SETXATTR_OPS|Number of SETXATTR operations per second|Ops/Sec
 SETXATTR_QOS_DELAY|Average QoS delay for SETXATTR operations|Microseconds
-SINGLE_HOP_WRITE_ATTEMPTS|Number of single-hop write operation attempts per second|Ops/Sec
+SINGLE_HOP_WRITE_ATTEMPTS|Number of single hop write operation attempts per second|Ops/Sec
 SINGLE_HOP_WRITE_PUT_BLOCKS_RDMA_FAILURES|Number of single hop write putBlock calls per second that failed RDMA|Calls/Sec
-SINGLE_HOP_WRITE_RDMA_FAILURES|Number of single-hop write operations per second that failed RDMA|Ops/Sec
+SINGLE_HOP_WRITE_RDMA_FAILURES|Number of single hop write operations writes per second that failed RDMA|Ops/Sec
 SINGLE_HOP_WRITE_RETRY_NO_RDMA|Number of single hop writes per second that were retried without RDMA|Ops/Sec
-SINGLE_HOP_WRITE_SKIPS_DISABLED|Number of single-hop write operation skips (DISABLED) per second|Ops/Sec
+SINGLE_HOP_WRITE_SKIPS_DISABLED|Number of single hop write operation skips (DISABLED) per second|Ops/Sec
 SINGLE_HOP_WRITE_SKIPS_EXTERNAL_RDMA|Number of single hop write operation skips (EXTERNAL_RDMA) per second|Ops/Sec
 SINGLE_HOP_WRITE_SKIPS_MAX_CONCURRENCY|Number of single hop write operation skips (MAX_CONCURRENCY) per second|Ops/Sec
 SINGLE_HOP_WRITE_SKIPS_PARTIAL_BLOCKS|Number of single hop write operation skips (PARTIAL_BLOCKS) per second|Ops/Sec
 SINGLE_HOP_WRITE_SKIPS_SMALL_WRITE|Number of single hop write operation skips (SMALL_WRITE) per second|Ops/Sec
 SINGLE_HOP_WRITE_SKIPS_UNINIT_CHECKSUM|Number of single hop write operation skips (UNINIT_CHECKSUM) per second|Ops/Sec
-SINGLE_HOP_WRITE_SKIPS|Number of single-hop write operation skips per second|Ops/Sec
+SINGLE_HOP_WRITE_SKIPS|Number of single hop write operation skips per second|Ops/Sec
 SKIPPED_1HOP_READS_DISABLED|Number of skipped single hop reads per second because it is disabled|Ops/Sec
 SKIPPED_1HOP_READS_EXTERNAL_RDMA_SPARSE|Number of skipped single hop reads per second because it is a sparse read on external RDMA|Ops/Sec
 SKIPPED_1HOP_READS_GET_EXTENT_FAILED|Number of skipped single hop reads per second due to get extent failed|Ops/Sec
@@ -975,16 +1003,16 @@ SKIPPED_1HOP_READS_TOO_SMALL|Number of skipped single hop reads per second becau
 STATFS_LATENCY|Average latency of STATFS operations|Microseconds
 STATFS_OPS|Number of STATFS operations per second|Ops/Sec
 STATFS_QOS_DELAY|Average QoS delay for STATFS operations|Microseconds
-SUCCEEDED_1HOP_READS|Number of successful single hop reads per second|Ops/Sec
+SUCCEEDED_1HOP_READS|Number of succesfull single hop reads per second|Ops/Sec
 SYMLINK_LATENCY|Average latency of SYMLINK operations|Microseconds
 SYMLINK_OPS|Number of SYMLINK operations per second|Ops/Sec
 SYMLINK_QOS_DELAY|Average QoS delay for SYMLINK operations|Microseconds
-THROUGHPUT|Number of read/write bytes per second|Bytes/Sec
+THROUGHPUT|Number of byte read/writes per second|Bytes/Sec
 UNLINK_LATENCY|Average latency of UNLINK operations|Microseconds
 UNLINK_OPS|Number of UNLINK operations per second|Ops/Sec
 UNLINK_QOS_DELAY|Average QoS delay for UNLINK operations|Microseconds
 WRITE_BYTES|Number of byte writes per second|Bytes/Sec
-WRITE_DURATION|The number of writes per time duration|Writes
+WRITE_DURATION|The number of writes per each time duration|Writes
 WRITE_LATENCY_NO_QOS|Average latency of WRITE operations without QoS delay|Microseconds
 WRITE_LATENCY|Average latency of WRITE operations|Microseconds
 WRITE_QOS_DELAY|Average QoS delay for WRITE operations|Microseconds
@@ -1002,9 +1030,9 @@ WRITES|Number of write operations per second|Ops/Sec
 READ_BYTES|Total read bytes per filesystem|Bytes/Sec
 READ_LATENCY|Average latency of read operations per filesystem|Microseconds
 READS|Number of read operations per second per filesystem|Ops/Sec
-THROUGHPUT|Number of bytes read/writes per second per filesystem|Bytes/Sec
+THROUGHPUT|Number of read/write bytes per second per filesystem|Bytes/Sec
 WRITE_BYTES|Total write bytes per filesystem|Bytes/Sec
-WRITE_LATENCY|Average latency of write operations per filesystem |Microseconds
+WRITE_LATENCY|Average latency of write operations per filesystem|Microseconds
 WRITES|Number of write operations per second per filesystem|Ops/Sec
 
 ## Operations (NFS)
@@ -1051,7 +1079,7 @@ STATFS_LATENCY|Average latency of STATFS operations|Microseconds
 STATFS_OPS|Number of STATFS operations per second|Ops/Sec
 SYMLINK_LATENCY|Average latency of SYMLINK operations|Microseconds
 SYMLINK_OPS|Number of SYMLINK operations per second|Ops/Sec
-THROUGHPUT|Number of bytes read/writes per second|Bytes/Sec
+THROUGHPUT|Number of byte read/writes per second|Bytes/Sec
 WRITE_BYTES|Number of byte writes per second|Bytes/Sec
 WRITE_DURATION|The number of writes per completion duration|Writes
 WRITE_LATENCY|Average latency of WRITE operations|Microseconds
@@ -1361,6 +1389,7 @@ FS_READ_BYTES|Total Read Bytes per FS|Bytes/Sec
 FS_RQ|Total Requests per FS|Ops
 FS_STATUS|Count HTTP Status Code per FS|Ops
 FS_WRITE_BYTES|Total Write Bytes per FS|Bytes/Sec
+NOTIFICATION_LOST|Total notification lost per notification target|Notifications
 TOTAL_BUCKET_CREATE_OPS|Total bucket create operations per second|Ops/Sec
 TOTAL_BUCKET_DELETE_OPS|Total bucket delete operations per second|Ops/Sec
 TOTAL_BUCKET_LIST_OPS|Total bucket list operations per second|Ops/Sec
@@ -1369,13 +1398,13 @@ TOTAL_BUCKET_LIST_OPS|Total bucket list operations per second|Ops/Sec
 
 **Type** | **Description** | **Units**
 -|-|-
-AVG_1xx_RQ|Average 1xx replies per second|Ops/Sec
-AVG_2xx_RQ|Average 2xx replies per second|Ops/Sec
-AVG_3xx_RQ|Average 3xx replies per second|Ops/Sec
-AVG_429_RQ|Average 429 replies per second|Ops/Sec
-AVG_4xx_RQ|Average 4xx replies per second|Ops/Sec
-AVG_503_RQ|Average 503 replies per second|Ops/Sec
-AVG_5xx_RQ|Average 5xx replies per second|Ops/Sec
+AVG_1xx_RQ|Average 1xx replies per second (deprecated)|Ops/Sec
+AVG_2xx_RQ|Average 2xx replies per second (deprecated)|Ops/Sec
+AVG_3xx_RQ|Average 3xx replies per second (deprecated)|Ops/Sec
+AVG_429_RQ|Average 429 replies per second (deprecated)|Ops/Sec
+AVG_4xx_RQ|Average 4xx replies per second (deprecated)|Ops/Sec
+AVG_503_RQ|Average 503 replies per second (deprecated)|Ops/Sec
+AVG_5xx_RQ|Average 5xx replies per second (deprecated)|Ops/Sec
 SLB_1xx_RQ|1xx responses to traffic originating from adjacent SLBs|Ops
 SLB_2xx_RQ|2xx responses to traffic originating from adjacent SLBs|Ops
 SLB_3xx_RQ|3xx responses to traffic originating from adjacent SLBs|Ops
@@ -1402,14 +1431,14 @@ TOTAL_tx_reset_RQ|Total Envoy TX Reset Connection replies|Ops
 REPORTED_MMAP_ALLOC_MEM|Memory allocated through reportedMmaps, in bytes.|Bytes
 REPORTED_MMAP_ALLOCS|Number of reported mmap allocations|Allocations
 REPORTED_MMAP_DEALLOCS|Number of reported mmap deallocations|Deallocations
-REPORTED_MMAP_RESERVED_MEM|Memory reserved for reportedMmaps, in bytes.|Bytes
+REPORTED_MMAP_RESERVED_MEM|Memory reserved for reportedMmaps, in bytes|Bytes
 
 ## Processes
 
 **Type** | **Description** | **Units**
 -|-|-
-ABRUPT_EXITS|Tracks the number of times a process exits unexpectedly|Abrupt process exits
-PEER_CONFIGURE_FAILURES|Tracks the number of times a process fails to configure a peer for synchronization|Peer configure failures
+ABRUPT_EXITS|How many abrupt exits of a process (node) occurred|Abrupt process exits
+PEER_CONFIGURE_FAILURES|How many times the node failed to configure peers to sync with them|Peer configure failures
 
 ## RAFT
 
@@ -1459,6 +1488,8 @@ RAID_READ_FREE|Read Free|Occurences
 RAID_READ_IOS|Raw read blocks performed by the RAID|Blocks/Sec
 RAID_STALE_WRITES_DETECTED|Stale write detected in read|Occurrences
 RAID_STALE_WRITES_REPROTECTIONS|Stale write reprotections in read|Occurrences
+RAID_WRITE_PlacementSpace0|Blocks written by spaces|Blocks/Sec
+RAID_WRITE_PlacementSpaceN|Blocks written by spaces|Blocks/Sec
 WRONG_DRIVE_DELTAS|Delta segments are written to the wrong drive|Blocks/Sec
 WRONG_DRIVE_REFS|Reference segments are written to the wrong drive|Blocks/Sec
 
@@ -1505,7 +1536,7 @@ NODE_POLL_TIME|Time of scheduler stats polling.|usecs
 NODE_RUN_PERCENTAGE|Percentage of time process is running|percentage
 NODE_RUN_TIME|Time process is running.|usecs
 NODE_WAIT_PERCENTAGE|Percentage of time process is waiting on waitqueue|percentage
-NODE_WAIT_TIME|The Time the process is waiting on the wait queue.|usecs
+NODE_WAIT_TIME|The Time process is waiting on the wait queue.|usecs
 ObsBucketManagement_CAPACITY|Number of data structures allocated to the ObsBucketManagement pool|Structs
 ObsBucketManagement_STRUCT_SIZE|Number of bytes in each struct of the ObsBucketManagement pool|Bytes
 ObsBucketManagement_USED|Number of structs in the ObsBucketManagement pool that are currently being used|Structs
@@ -1526,8 +1557,8 @@ SSD_CAPACITY|Number of data structures allocated to the SSD pool|Structs
 SSD_STRUCT_SIZE|Number of bytes in each struct of the SSD pool|Bytes
 SSD_USED|Number of structs in the SSD pool that are currently being used|Structs
 STEP_CYCLES|Histogram of time spent in a fiber|Fiber steps
-THREAD_POOL_DEFERRED_TASK_CYCLES|Number of cycles the thread pool spent running deferred tasks|Cycles/Sec
-THREAD_POOL_FLEX_TASK_CYCLES|Number of cycles the thread pool spent running flex tasks|Cycles/Sec
+THREAD_POOL_DEFERRED_TASK_CYCLES|Number of cycles thread pool spent running deferred tasks|Cycles/Sec
+THREAD_POOL_FLEX_TASK_CYCLES|Number of cycles thread pool spent running flex tasks|Cycles/Sec
 THREAD_POOL_QUEUED_FLEX_TASKS_AVG_RUNTIME|Average runtime of deferred flex tasks run on thread pool|Cycles
 THREAD_POOL_TASK_INVOCATIONS|Number of tasks run by thread pool|Invocations/Sec
 TimedCallback_CAPACITY|Number of data structures allocated to the TimedCallback pool|Structs
@@ -1557,9 +1588,9 @@ CLIENT_MISSING_ENCRYPTION_KEY|Number of times the client was missing an encrypti
 CLIENT_RECEIVED_EXCEPTIONS|Number of exceptions received by the client|Calls/Sec
 CLIENT_RECEIVED_RESPONSES|Number of responses received by the client|Calls/Sec
 CLIENT_RECEIVED_TIMEOUTS|Number of timeouts experienced by the client|Calls/Sec
-CLIENT_ROUNDTRIP_AVG_LOW| Round-trip average of client low-priority RPC calls|Microseconds
-CLIENT_ROUNDTRIP_AVG_NORM| Round-trip average of client normal priority RPC calls|Microseconds
-CLIENT_ROUNDTRIP_AVG| Round-trip average of client normal and low priority RPC calls|Microseconds
+CLIENT_ROUNDTRIP_AVG_LOW|Roundtrip average of client low-priority RPC calls|Microseconds
+CLIENT_ROUNDTRIP_AVG_NORM|Roundtrip average of client normal priority RPC calls|Microseconds
+CLIENT_ROUNDTRIP_AVG|Round-trip average of client normal and low-priority RPC calls|Microseconds
 CLIENT_RPC_CALLS_DOWNGRADED|Number of client-downgraded RPC calls|RPC/Sec
 CLIENT_RPC_CALLS_LOW|Number of low-priority RPC calls|RPC/Sec
 CLIENT_RPC_CALLS_NORM|Number of normal priority RPC calls|RPC/Sec
@@ -1568,6 +1599,7 @@ CLIENT_SENT_REQUESTS|Number of requests sent by the client|Calls/Sec
 DEUS_EX_MBUF_LIMITED|Number of RPCs slow down due to low MBuf reserves|Ops/Sec
 DEUS_EX_NO_FIBERS|Number of RPCs put in DeusEx due to lack of global fibers|Ops/Sec
 DEUS_EX_NOT_EMPTY|Number of RPCs put in DeusEx to preserve RPC order|Ops/Sec
+DEUS_EX_OVERLOADED|Number of RPCs rejected as overloaded by Deus Ex|Ops/Sec
 DEUS_EX_RPC_MAX_FIBERS|Number of RPCs put in DeusEx due to RPC max fibers|Ops/Sec
 FIRST_RESULTS|Number of first results per second|Ops/Sec
 MBUF_LIMITED_SLEEP|Number of times wait due to low MBuf reserves|Actions/Sec
@@ -1605,7 +1637,7 @@ NUM_INVENTED_STRIPES_DISCARD_BLOCKS|Number of blocks that were discarded due to 
 NUM_INVENTED_STRIPES_DISCARDS|Number of times we discarded all scrubber work due to invented stripes|Occurrences/Sec
 NUM_SCRUBBER_DISCARD_INTERMEDIATES|Number of times we discarded all intermediate scrubber work|Occurrences/Sec
 NUM_SMW_DISCARDED_BLOCKS|Number of SMW'd blocks that were discarded|Blocks/Sec
-NUM_SMW_DISCARDS|Number of times we discarded scrubber SMW work|Occurrences/Sec
+NUM_SMW_DISCARDS|Number of times we discarded scrubber SMW work| Occurrences/Sec
 NUM_STRIPE_SKIPPED_NOT_FULLY_READ|Number of stripes skipped since stripe is not fully read|Occurrences
 PLACEMENT_SELECTION_LATENCY|Average latency of scrubbed placement selection|Micros
 RAID_PLACEMENT_SCANS_COMPLETED|Number of placement scan completions|Occurrences
@@ -1636,7 +1668,7 @@ SFU_USED_STRIPES|Number of used stripes that were scrubbed-false-used|Stripes/Se
 SOURCE_READS|Number of source/committed superset blocks directly read by the scrubber|Blocks/Sec
 STRIPE_DATA_IS_BLOCK_USED_LATENCY|Average latency of isBlockUsed during stripe verification|Micros
 STRIPE_DATA_IS_BLOCK_USED|Number of isBlockUsed during stripe verification|Blocks/Sec
-TARGET_COPIED_CHUNKS|Number of chunks that were copied to the target by the scrubber|Chunks/Sec
+TARGET_COPIED_CHUNKS|Number of chunks that were copied to target by the scrubber|Chunks/Sec
 UPDATE_PLACEMENT_INFO_LATENCY|Average latency of updating the placement info quorum|Micros
 UPDATE_PLACEMENT_INFO|Number of times we ran updatePlacementInfo|Occurrences/Sec
 WONT_CLEAN_COPYING|Number of actually dirty blocks that ScrubMissingWrites refused to clean because they will be moved to target anyway|Blocks/Sec
@@ -1651,38 +1683,74 @@ WRITES_CALLED|Number of blocks that were written|Blocks/Sec
 -|-|-
 BLOCKS_PER_DESQUELCH|Number of squelch blocks per desquelch|Desquelches
 EXTENT_DESQUELCHES_NUM|Number of desquelches|Times
+EXTENT_DIGEST_BLOCKS_READ|Number of digest blocks read for registry initialization|Blocks
+EXTENT_REGISTRY_BLOCKS_READ|Number of registry blocks read|Blocks
+EXTENT_SQUELCH_BLOCKS_READ_FOR_DIGEST|Number of squelch blocks read for registry initialization|Blocks
 EXTENT_SQUELCH_BLOCKS_READ|Number of squelch blocks desquelched|Blocks
 HASH_DESQUELCHES_NUM|Number of desquelches|Times
+HASH_DIGEST_BLOCKS_READ|Number of digest blocks read for registry initialization|Blocks
+HASH_REGISTRY_BLOCKS_READ|Number of registry blocks read|Blocks
+HASH_SQUELCH_BLOCKS_READ_FOR_DIGEST|Number of squelch blocks read for registry initialization|Blocks
 HASH_SQUELCH_BLOCKS_READ|Number of squelch blocks desquelched|Blocks
 INODE_DESQUELCHES_NUM|Number of desquelches|Times
+INODE_DIGEST_BLOCKS_READ|Number of digest blocks read for registry initialization|Blocks
+INODE_REGISTRY_BLOCKS_READ|Number of registry blocks read|Blocks
+INODE_SQUELCH_BLOCKS_READ_FOR_DIGEST|Number of squelch blocks read for registry initialization|Blocks
 INODE_SQUELCH_BLOCKS_READ|Number of squelch blocks desquelched|Blocks
 JOURNAL_DESQUELCHES_NUM|Number of desquelches|Times
+JOURNAL_DIGEST_BLOCKS_READ|Number of digest blocks read for registry initialization|Blocks
+JOURNAL_REGISTRY_BLOCKS_READ|Number of registry blocks read|Blocks
+JOURNAL_SQUELCH_BLOCKS_READ_FOR_DIGEST|Number of squelch blocks read for registry initialization|Blocks
 JOURNAL_SQUELCH_BLOCKS_READ|Number of squelch blocks desquelched|Blocks
 MAX_BLOCKS_WITH_TEMPORAL_SQUELCH_ITEMS_IN_BUCKET|Number of blocks with temporal squelch items in bucket|Blocks
-MAX_TEMPORAL_SQUELCH_ITEMS_IN_BUCKET|Number of temporal squelch items in bucket|Squelch items
+MAX_TEMPORAL_SQUELCH_ITEMS_IN_BUCKET|Number temporal squelch items in bucket|Squelch items
 ODL_DESQUELCHES_NUM|Number of desquelches|Times
+ODL_DIGEST_BLOCKS_READ|Number of digest blocks read for registry initialization|Blocks
 ODL_PAYLOAD_DESQUELCHES_NUM|Number of desquelches|Times
+ODL_PAYLOAD_DIGEST_BLOCKS_READ|Number of digest blocks read for registry initialization|Blocks
+ODL_PAYLOAD_REGISTRY_BLOCKS_READ|Number of registry blocks read|Blocks
+ODL_PAYLOAD_SQUELCH_BLOCKS_READ_FOR_DIGEST|Number of squelch blocks read for registry initialization|Blocks
 ODL_PAYLOAD_SQUELCH_BLOCKS_READ|Number of squelch blocks desquelched|Blocks
+ODL_REGISTRY_BLOCKS_READ|Number of registry blocks read|Blocks
+ODL_SQUELCH_BLOCKS_READ_FOR_DIGEST|Number of squelch blocks read for registry initialization|Blocks
 ODL_SQUELCH_BLOCKS_READ|Number of squelch blocks desquelched|Blocks
 REGISTRY_L1_DESQUELCHES_NUM|Number of desquelches|Times
+REGISTRY_L1_DIGEST_BLOCKS_READ|Number of digest blocks read for registry initialization|Blocks
+REGISTRY_L1_REGISTRY_BLOCKS_READ|Number of registry blocks read|Blocks
+REGISTRY_L1_SQUELCH_BLOCKS_READ_FOR_DIGEST|Number of squelch blocks read for registry initialization|Blocks
 REGISTRY_L1_SQUELCH_BLOCKS_READ|Number of squelch blocks desquelched|Blocks
 REGISTRY_L2_DESQUELCHES_NUM|Number of desquelches|Times
+REGISTRY_L2_DIGEST_BLOCKS_READ|Number of digest blocks read for registry initialization|Blocks
+REGISTRY_L2_REGISTRY_BLOCKS_READ|Number of registry blocks read|Blocks
+REGISTRY_L2_SQUELCH_BLOCKS_READ_FOR_DIGEST|Number of squelch blocks read for registry initialization|Blocks
 REGISTRY_L2_SQUELCH_BLOCKS_READ|Number of squelch blocks desquelched|Blocks
 SPATIAL_DIGEST_DESQUELCHES_NUM|Number of desquelches|Times
+SPATIAL_DIGEST_DIGEST_BLOCKS_READ|Number of digest blocks read for registry initialization|Blocks
+SPATIAL_DIGEST_REGISTRY_BLOCKS_READ|Number of registry blocks read|Blocks
+SPATIAL_DIGEST_SQUELCH_BLOCKS_READ_FOR_DIGEST|Number of squelch blocks read for registry initialization|Blocks
 SPATIAL_DIGEST_SQUELCH_BLOCKS_READ|Number of squelch blocks desquelched|Blocks
 SPATIAL_SQUELCH_DESQUELCHES_NUM|Number of desquelches|Times
+SPATIAL_SQUELCH_DIGEST_BLOCKS_READ|Number of digest blocks read for registry initialization|Blocks
+SPATIAL_SQUELCH_REGISTRY_BLOCKS_READ|Number of registry blocks read|Blocks
+SPATIAL_SQUELCH_SQUELCH_BLOCKS_READ_FOR_DIGEST|Number of squelch blocks read for registry initialization|Blocks
 SPATIAL_SQUELCH_SQUELCH_BLOCKS_READ|Number of squelch blocks desquelched|Blocks
 SUPERBLOCK_DESQUELCHES_NUM|Number of desquelches|Times
+SUPERBLOCK_DIGEST_BLOCKS_READ|Number of digest blocks read for registry initialization|Blocks
+SUPERBLOCK_REGISTRY_BLOCKS_READ|Number of registry blocks read|Blocks
+SUPERBLOCK_SQUELCH_BLOCKS_READ_FOR_DIGEST|Number of squelch blocks read for registry initialization|Blocks
 SUPERBLOCK_SQUELCH_BLOCKS_READ|Number of squelch blocks desquelched|Blocks
 TEMPORAL_SQUELCH_DESQUELCHES_NUM|Number of desquelches|Times
+TEMPORAL_SQUELCH_DIGEST_BLOCKS_READ|Number of digest blocks read for registry initialization|Blocks
+TEMPORAL_SQUELCH_REGISTRY_BLOCKS_READ|Number of registry blocks read|Blocks
+TEMPORAL_SQUELCH_SQUELCH_BLOCKS_READ_FOR_DIGEST|Number of squelch blocks read for registry initialization|Blocks
 TEMPORAL_SQUELCH_SQUELCH_BLOCKS_READ|Number of squelch blocks desquelched|Blocks
 
 ## SSD
 
 **Type** | **Description** | **Units**
 -|-|-
-CLEAN_CHUNK_SKIPPED|Number of clean chunks skipped |Chunks
-DRIVE_ACTIVE_IOS|The number of in-flight IOs against the SSD during sampling|IOs
+CLEAN_CHUNK_SKIPPED|Number of clean chunks skips|Chunks
+DRIVE_ACTIVE_IOS|The number of in-flight IO against the SSD during sampling|IOs
 DRIVE_AER_RECEIVED|Number of AER reports|reports
 DRIVE_CANCELLED_COMPLETED_BLOCKS|Drive cancelled completed blocks|Blocks/Sec
 DRIVE_CANCELLED_NOT_SUBMITTED_BLOCKS|Drive cancelled not submitted blocks|Blocks/Sec
@@ -1765,7 +1833,7 @@ NVME_SMART_USED_PERCENTAGE|Vendor-specific estimate of the percentage of NVM sub
 NVME_SMART_WARNING_COMPOSITE_TEMP_TIME|The time spent in warning composite temperature state|Minutes
 SPDK_CUSE_CMDS_BLOCKED|Number of SPDK CUSE commands blocked|Count
 SPDK_CUSE_CMDS_FAILED|Number of SPDK CUSE commands failed|Count
-SPDK_CUSE_CMDS_INPROGRESS|Number of SPDK CUSE commands in progress |Count
+SPDK_CUSE_CMDS_INPROGRESS|Number of SPDK CUSE commands in-progress|Count
 SPDK_CUSE_CMDS_ISSUED|Number of SPDK CUSE commands issued|Count
 SPDK_CUSE_CMDS_SUCCEEDED|Number of SPDK CUSE commands succeeded|Count
 SSD_BLOCKS_READ|Number of blocks read from the SSD service|Blocks/Sec
@@ -1809,7 +1877,7 @@ TIMES_QUERIED|Number of times the process was queried for stats (not including m
 **Type** | **Description** | **Units**
 -|-|-
 TOTAL_ADDED_FILES|Total number of files added|Files
-TOTAL_BUFFER_RECEIVED_BYTES|Total number of bytes received by vector buffers|Bytes
+TOTAL_BUFFER_RECEIVED_BYTES|Total number of bytes received to vector buffers|Bytes
 TOTAL_BUFFER_RECEIVED_EVENTS|Total number of events received to vector buffers|Events
 TOTAL_BUFFER_SENT_BYTES|Total number of bytes sent to vector buffers|Bytes
 TOTAL_BUFFER_SENT_EVENTS|Total number of events sent to vector buffers|Events
@@ -1825,8 +1893,8 @@ TOTAL_UNWATCHED_FILES|Total number of files unwatched|Files
 
 **Type** | **Description** | **Units**
 -|-|-
-UNLINK_LOG_APPEND_DENIALS|Number of rejects for adding new entry due to ODH marked as non-clean |Denials
-UNLINK_LOG_UNEXPECTED_ODH_INDEX_CHANGE|Number of unexpected ODH index changes|Occurrences
+UNLINK_LOG_APPEND_DENIALS|Number of rejects for add a new entry due to ODH marked as non-clean |Denials
+UNLINK_LOG_UNEXPECTED_ODH_INDEX_CHANGE|Number of unexpected ODH index changes| Occurrences
 
 ## WTracer Daemon Stats
 
@@ -1846,7 +1914,7 @@ DAEMON_TIME_SPENT_ENHANCER|Time spent in the wtracer daemon enhancer|hnsecs
 **Type** | **Description** | **Units**
 -|-|-
 DUMPER_ACTIVE_AREAS|Number of areas dumpers currently have active|Areas
-DUMPER_ACTIVE_HISTOGRAMS|Number of histogram dumpers currently active|Histograms
+DUMPER_ACTIVE_HISTOGRAMS|Number of histogram dumpers currently have active|Histograms
 DUMPER_BYTES_OUT|Number of bytes the dumper outputs to files|Bytes/Sec
 DUMPER_ENTRIES_OUT|Number of entries the dumper outputs to files|Entries/Sec
 DUMPER_ERRORS|Total number of errors dumper triggered|Errors
