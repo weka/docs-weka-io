@@ -227,7 +227,6 @@
   * [Optimize support and data management](monitor-the-weka-cluster/the-wekaio-support-cloud/optimize-support-and-data-management.md)
   * [Export cluster metrics to Prometheus](monitor-the-weka-cluster/the-wekaio-support-cloud/export-cluster-metrics-to-prometheus.md)
 * [Set up WEKAmon for external monitoring](monitor-the-weka-cluster/external-monitoring.md)
-* [Set up the SnapTool external snapshots manager](monitor-the-weka-cluster/snapshot-management.md)
 * [Monitor WEKA clusters in Kubernetes with Prometheus and Grafana](monitor-the-weka-cluster/monitor-weka-clusters-in-kubernetes-with-prometheus-and-grafana.md)
 
 ## Kubernetes

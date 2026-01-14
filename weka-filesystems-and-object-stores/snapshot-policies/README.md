@@ -74,10 +74,6 @@ The example below demonstrates how to configure a policy using the GUI. The poli
     * **DST starts (clocks move forward):** The system creates snapshots scheduled in the skipped hour (for example, 2:00 AM to 3:00 AM) after the corresponding duration in the skipped interval, immediately following clock adjustment. For example, if a snapshot is scheduled for 2:15 AM, the system creates it at 3:15 AM. The system skips any other snapshot for the same schedule between 2:15 AM and 3:15 AM.
     * **DST ends (clocks move back):** The system does not duplicate snapshots scheduled in the repeated hour (for example, 1:00 AM to 2:00 AM), because the system already created them during the first pass.
 
-{% hint style="info" %}
-The Snapshot Policies feature replaces the external SnapTool, which will be deprecated in a future release.
-{% endhint %}
-
 **Related topics**
 
 [snapshots](../snapshots/ "mention")
