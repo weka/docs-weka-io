@@ -27,7 +27,6 @@ cgroups (Control Groups) is a Linux kernel feature that allows you to limit, pri
 
 **WEKA requirements:**
 
-* **Backends and clients serving protocols:** Must run on an OS with cgroupsV1 support. cgroupsV2 is supported on backends and clients but is incompatible with protocol cluster deployments.
 * **cgroups mode compatibility:** When setting up cgroups on clients or backends, ensure that the cgroups configuration (whether using cgroupsV1 or cgroupsV2) aligns with the operating system's capabilities and configuration.
 
 ### cgroups configuration and compatibility
@@ -40,7 +39,7 @@ The cgroups setting includes the following modes:
 
 * `auto`: WEKA tries using cgroupsV1 (default). If it fails, the cgroups is set to none automatically.
 * `force`: WEKA uses cgroupsV1. If the OS does not support it, WEKA fails.
-* `force_v2`: WEKA uses cgroupsV2. If the OS does not support it, WEKA fails. This mode is not supported in protocol cluster deployments.
+* `force_v2`: WEKA uses cgroupsV2. If the OS does not support it, WEKA fails.
 * `none`: WEKA never uses cgroups, even if it runs on an OS with cgroupsV1.
 
 ### Set the cgroups mode during the client or backend installation

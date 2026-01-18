@@ -383,7 +383,7 @@ Use the following command to clear the NFS LDAP configuration:
 
 **Parameters**
 
-<table><thead><tr><th width="189">Name</th><th width="438">Value</th><th>Default</th></tr></thead><tbody><tr><td><code>force</code></td><td>When used, it forces the action to proceed without further confirmation. Typically used when the service is configured.</td><td>Not used</td></tr><tr><td><code>no-restart</code></td><td>When used, it prevents NFS-W containers from restarting to apply changes.</td><td>Not used</td></tr></tbody></table>
+<table><thead><tr><th width="147.52734375">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>force</code></td><td>When used, it forces the action to proceed without further confirmation. Typically used when the service is configured.</td></tr><tr><td><code>no-restart</code></td><td>When used, it prevents NFS-W containers from restarting to apply changes.</td></tr></tbody></table>
 
 ### Show Kerberos registration information
 
@@ -407,11 +407,7 @@ Use the following command to clear the NFS Kerberos service configuration:
 
 **Parameters**
 
-<table><thead><tr><th width="189">Name</th><th width="407">Value</th><th>Default</th></tr></thead><tbody><tr><td><code>force</code></td><td>When used, it forces the action to proceed without further confirmation. Typically used when the service is configured or registered.<br>Use this flag only to clear the configuration created by a previous call to <code>weka nfs kerberos service setup</code> succeeded.</td><td>False</td></tr><tr><td><code>no-restart</code></td><td>Prevents NFS-W containers from restarting when applying changes.</td><td>False</td></tr></tbody></table>
-
-{% hint style="warning" %}
-In a successful operation, the system automatically restarts the NFS containers, leading to a temporary disruption in the IO service for connected NFS clients. However, if you want to avoid restarting the NFS-W containers, add the `--no-restart` option to the command line.
-{% endhint %}
+<table><thead><tr><th width="137.328125">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>force</code></td><td>When used, it forces the action to proceed without further confirmation. Typically used when the service is configured or registered.<br>Use this flag only to clear the configuration created by a previous call to <code>weka nfs kerberos service setup</code> succeeded.<br><strong>Default:</strong> False.</td></tr><tr><td><code>no-restart</code></td><td><p>Prevents automatic restart of NFS-W containers after applying the configuration changes.</p><p><strong>Default:</strong> False. Containers restart automatically to apply changes.</p><p><strong>Important</strong>: Omitting this flag will cause a service disruption for active NFS clients during the container restart.</p></td></tr></tbody></table>
 
 ### Update Kerberos configuration during maintenance mode
 
@@ -496,7 +492,17 @@ Use the following command to configure NFS to use LDAP for ACLs only when Kerber
 
 **Parameters**
 
-<table><thead><tr><th width="259">Parameter</th><th width="375">Description</th><th>Default</th></tr></thead><tbody><tr><td><code>server-name</code>*</td><td>AD server name.</td><td></td></tr><tr><td><code>ldap-domain</code>*</td><td>AD domain.</td><td></td></tr><tr><td><code>nfs-service-name</code>*</td><td><p>NFS FQDN service name.</p><p>Maximum 20 characters for hostname in FQDN.</p></td><td></td></tr><tr><td><code>admin-user-name</code>*</td><td>AD Admin Name</td><td></td></tr><tr><td><code>admin-user-password</code></td><td>AD Admin password</td><td></td></tr><tr><td><code>force</code></td><td>Force this action when Active Directory LDAP client is already setup.</td><td>False</td></tr><tr><td><code>no-restart</code></td><td>Don't restart the NFS-W containers to apply changes.</td><td>False</td></tr></tbody></table>
+<table><thead><tr><th width="202.46875">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>server-name</code>*</td><td>AD server name.</td></tr><tr><td><code>ldap-domain</code>*</td><td>AD domain.</td></tr><tr><td><code>nfs-service-name</code>*</td><td><p>NFS FQDN service name.</p><p>Maximum 20 characters for hostname in FQDN.</p></td></tr><tr><td><code>admin-user-name</code>*</td><td>AD Admin Name</td></tr><tr><td><code>admin-user-password</code></td><td>AD Admin password</td></tr><tr><td><code>force</code></td><td>Force this action when Active Directory LDAP client is already setup.<br><strong>Default:</strong> False.</td></tr><tr><td><code>no-restart</code></td><td><p>Prevents automatic restart of NFS-W containers after applying the configuration changes.</p><p><strong>Default:</strong> False. Containers restart automatically to apply changes.</p><p><strong>Important</strong>: Omitting this flag will cause a service disruption for active NFS clients during the container restart.</p></td></tr></tbody></table>
+
+### Set host-based LDAP resolution for NFS
+
+**Command:** `weka nfs ldap setup-onhostldap`
+
+Use this command to enable NFS group resolution through the server's local LDAP client rather than through the WEKA system directly. This approach is particularly valuable when users belong to more than 16 groups, as it leverages host-level identity providers like SSSD (System Security Services Daemon) to handle group membership lookups.
+
+`weka nfs ldap setup-onhostldap <ldap-domain> [--no-restart]`
+
+<table><thead><tr><th width="208.60546875">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>ldap-domain</code>*</td><td>Specifies the LDAP domain for the on-host LDAP client to use for user and group resolution.</td></tr><tr><td><code>no-restart</code></td><td><p>Prevents automatic restart of NFS-W containers after applying the configuration changes.</p><p><strong>Default:</strong> Containers restart automatically to apply changes.</p><p><strong>Important</strong>: Omitting this flag will cause a service disruption for active NFS clients during the container restart.</p></td></tr></tbody></table>
 
 ## **Manage the NFS export level (permissions)**
 
