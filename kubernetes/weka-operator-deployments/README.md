@@ -62,6 +62,12 @@ The WEKA Operator client deployment uses the WekaClient custom resource to manag
 
 If the WEKA cluster is outside the Kubernetes cluster but you have workloads inside Kubernetes, you can deploy a WEKA client within the Kubernetes cluster to connect to the external WEKA cluster.
 
+#### Client Pod CLI restrictions
+
+Cluster-level WEKA CLI commands are supported only from the Compute or Drives pods.
+
+The WEKA Operator client and application client pods operate with restricted permissions intended for data-path access only. Running cluster CLI commands, such as `weka status`, from these contexts is not supported and results in authorization errors.
+
 ## Deployment workflow
 
 1. Obtain setup information.
