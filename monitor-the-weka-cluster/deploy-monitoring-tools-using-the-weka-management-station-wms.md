@@ -1,16 +1,20 @@
 ---
 description: >-
-  Deploy the monitoring tools, LWH, WEKAmon, and SnapTool, using the WEKA
-  Management Station (WMS) in an on-premises environment.
+  Deploy the monitoring tools, LWH, and WEKAmon, using the WEKA Management
+  Station (WMS) in an on-premises environment.
 ---
 
 # Deploy monitoring tools using the WEKA Management Station (WMS)
 
-The WEKA Management Station (WMS) is an installation kit similar to an OS installation disk that simplifies the installation and configuration of the Local WEKA Home (LWH), WEKAmon, and SnapTool in an on-premises environment. The WMS installs the WEKA OS, drivers, and WEKA software automatically and unattended.
+The WEKA Management Station (WMS) is an installation kit similar to an OS installation disk that simplifies the installation and configuration of the Local WEKA Home (LWH), and WEKAmon in an on-premises environment. The WMS installs the WEKA OS, drivers, and WEKA software automatically and unattended.
 
 The WMS can also install a WEKA cluster by deploying the WEKA Software Appliance (WSA) package on bare metal servers.
 
-<div data-with-frame="true"><figure><img src="../.gitbook/assets/WMS_deployment.png" alt=""><figcaption><p>WEKA Management Station deployment</p></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/WMS_overview.jpg" alt=""><figcaption><p>WEKA Management Station deployment</p></figcaption></figure></div>
+
+{% hint style="info" %}
+The Snapshot Policies feature replaces the SnapTool external snapshot manager (deprecated). Snapshot Policies offer greater flexibility and improved control for creating and managing snapshots. See [snapshot-policies](../weka-filesystems-and-object-stores/snapshot-policies/ "mention").
+{% endhint %}
 
 See the related topics to learn about the tools installed with the WMS.
 
@@ -19,8 +23,6 @@ See the related topics to learn about the tools installed with the WMS.
 [the-wekaio-support-cloud](the-wekaio-support-cloud/ "mention")
 
 [external-monitoring.md](external-monitoring.md "mention")
-
-[snapshot-management.md](snapshot-management.md "mention")
 
 [bare-metal](../planning-and-installation/bare-metal/ "mention")
 
@@ -67,8 +69,7 @@ Before deploying the WMS, adhere to the following:
 5. [Install and configure the LWH](deploy-monitoring-tools-using-the-weka-management-station-wms.md#install-and-configure-the-lwh).
 6. [Configure the WEKAmon](deploy-monitoring-tools-using-the-weka-management-station-wms.md#configure-the-wekamon).
 7. [Edit the hosts file](deploy-monitoring-tools-using-the-weka-management-station-wms.md#edit-the-hosts-file).
-8. [Configure the Snaptool](deploy-monitoring-tools-using-the-weka-management-station-wms.md#configure-the-snaptool).
-9. [Download logs](deploy-monitoring-tools-using-the-weka-management-station-wms.md#download-logs).
+8. [Download logs](deploy-monitoring-tools-using-the-weka-management-station-wms.md#download-logs).
 
 ### Install the WMS
 
@@ -264,7 +265,7 @@ The WMS can have multiple IP interfaces, such as when installed as a jump host w
 2. Select the services you want to enable. Possible options:
    * **Enable Metrics Exporter & Grafana:** Select to activate metrics exporter and Grafana integration to visualize and analyze performance metrics seamlessly.
    * **Enable Quota Exporter & Notifications:** Select to enable the WEKAmon to send notifications for soft storage quotas.
-   * **Enable Snaptool:** Select to activate the snapshots manager, facilitating scheduled snapshots and automated operations.
+   * **Enable Snaptool:** The Snaptool is deprecated. Do not select it. The Snapshot Policies feature replaces the Snaptool.
    * **Enable WEKAmon Log Storage:** Select this option to enable long-term event storage within WEKAmon.
 
 {% hint style="info" %}
@@ -303,19 +304,6 @@ The WMS provides a simple text editor to facilitate editing the `/etc/hosts` fil
 1. From the left pane, select **Edit Hosts File**.
 2. Add the IP addresses of the cluster servers. Type, copy, and paste as in any other simple text editor.
 3. Select **Save**.
-
-### Configure the Snaptool
-
-Snaptool is pre-installed in the `/opt/snaptool` directory and includes all the containers, so there is no need to download anything. Only configuration is required.
-
-**Procedure**
-
-1. From the left pane, select **Snaptool Configuration**.
-2. In the Snaptool Configuration Editor, if required, you can update the configuration. For details, see [#edit-the-configuration-in-the-snaptool.yml-file](snapshot-management.md#edit-the-configuration-in-the-snaptool.yml-file "mention").\
-   Snaptool shares the same cluster login information as WEKAmon and automatically detects and re-loads its configuration when any changes are made.
-3. Select **Save**.
-
-<div data-with-frame="true"><figure><img src="../.gitbook/assets/wms_7_snaptool_configuration.png" alt=""><figcaption><p>Snaptool Configuration</p></figcaption></figure></div>
 
 ### Download diagnostics logs
 

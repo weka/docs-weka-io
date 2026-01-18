@@ -70,10 +70,6 @@ The example below demonstrates how to configure a policy using the GUI. The poli
     * **DST start (clocks move forward):** Snapshots in the skipped hour (for example, 1:15 AM to 2:00 AM) are not created. For example, after a snapshot at 1:00 AM, the next one is at 2:15 AM.
     * **DST end (clocks move back):** Snapshots in the repeated hour (for example, 1:15 AM to 2:00 AM) are not duplicated, as they are already created during the first pass.
 
-{% hint style="info" %}
-The Snapshot Policies feature replaces the external SnapTool, which will be deprecated in a future release.
-{% endhint %}
-
 **Related topics**
 
 [snapshots](../snapshots/ "mention")
