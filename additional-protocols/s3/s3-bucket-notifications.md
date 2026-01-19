@@ -217,7 +217,7 @@ weka s3 bucket notification remove <bucket-name> \
 | ---------------------------------- | --------------- |
 | Number of targets per cluster      | 3               |
 | Number of rules per bucket         | 10              |
-| Total number of rules per cluster  | 5000            |
+| Total number of rules per cluster  | 1000            |
 | Certificate name length            | 32 characters   |
 | Target name length                 | 64 characters   |
 | SASL username length               | 256 characters  |
