@@ -49,13 +49,31 @@ Local WEKA Home offers the following features and capabilities, categorized as f
 
 <div data-with-frame="true"><figure><img src="../../.gitbook/assets/LWH_overview.gif" alt=""><figcaption><p>Local WEKA Home application overview</p></figcaption></figure></div>
 
-## Deployment overview
+## Local WEKA Home deployment options
 
-You can deploy Local WEKA Home (LWH) using one of the following environment-specific options:
+Explore the supported environment options for deploying Local WEKA Home (LWH). Choose the deployment method based on the LWH version and the specific scale requirements of your environment.
 
-* **Deploy Local WEKA Home v4.x on K8s:** Deploying LWH on K8s supports scale-out environments and large cluster configurations. This architecture uses Kubernetes' orchestration capabilities for high availability, automated recovery, and simplified lifecycle management of the LWH components.
-* **Deploy Local WEKA Home v3.x on K3s:** Local WEKA Home v3.x runs on K3s, a lightweight Kubernetes installed on a single-node cluster. You can customize the deployment by specifying configuration parameters in the `config.json` file.
-* **Deploy Local WEKA Home v2.x on Minikube:** Local WEKA Home v2.x runs on Minikube, a lightweight Kubernetes implementation, installed on a single Docker container. You specify the configuration parameters in the `config.yaml` file as part of the deployment workflow.
+#### Deployment environment compatibility
+
+The following table lists the supported LWH versions for each deployment environment:
+
+| Deployment environment | Supported LWH Versions | Configuration file |
+| ---------------------- | ---------------------- | ------------------ |
+| Kubernetes (K8s)       | 4.x and above          | `values.yaml`      |
+| K3s                    | 3.x, 4.x and above     | `config.json`      |
+| Minikube               | 2.x                    | `config.yaml`      |
+
+#### Deploy Local WEKA Home on K8s
+
+Deploy LWH on K8s to support scale-out environments and large cluster configurations. This architecture uses Kubernetes orchestration capabilities for high availability, automated recovery, and simplified lifecycle management of the LWH components. This deployment method supports LWH version 4.x and above. You can customize the deployment by specifying configuration parameters in the `values.yaml` file.
+
+#### Deploy Local WEKA Home on K3s
+
+Deploy LWH on K3s for a lightweight Kubernetes implementation installed on a single-node cluster. This deployment method supports LWH versions 3.x, 4.x and above. You can customize the deployment by specifying configuration parameters in the `config.json` file.
+
+#### Deploy Local WEKA Home on Minikube
+
+Deploy LWH on Minikube for a lightweight Kubernetes implementation installed on a single Docker container. This deployment method supports LWH version 2.x. You can customize the deployment by specifying configuration parameters in the  `config.yaml` file.
 
 **Related topics**
 

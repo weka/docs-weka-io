@@ -1,12 +1,12 @@
 ---
 description: >-
-  Learn how to deploy, upgrade, configure, and troubleshoot Local WEKA Home v2x
-  on Minikube, an on-premises, observability solution for WEKA clusters.
+  Deploy, upgrade, and manage Local WEKA Home (LWH) v2.x on Minikube, an
+  on-premises, observability solution for WEKA clusters.
 ---
 
-# Deploy Local WEKA Home v2.x on Minikube
+# Deploy Local WEKA Home on Minikube
 
-The Local WEKA Home v2.x runs on Minikube (a lightweight Kubernetes implementation) installed on a single Docker container. You specify the configuration parameters in the config.yaml file as part of the deployment workflow.
+LWH v2.x runs on Minikube (a lightweight Kubernetes implementation) installed on a single Docker container. You specify the configuration parameters in the config.yaml file as part of the deployment workflow.
 
 <div data-with-frame="true"><figure><img src="../../.gitbook/assets/LWH_on_Minikube.png" alt=""><figcaption><p>Local WEKA Home v2.x deployment</p></figcaption></figure></div>
 

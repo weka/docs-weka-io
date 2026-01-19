@@ -1,122 +1,53 @@
 ---
 description: >-
-  Learn how to deploy, upgrade, configure, and troubleshoot Local WEKA Home v4.x
-  on Kubernetes (K8s), an on-premises, scalable observability solution for WEKA
-  clusters.
+  Manage the deployment, upgrade, and maintenance of Local WEKA Home (LWH) on
+  Kubernetes (K8s) cluster. This deployment method provides a scalable,
+  on-premises observability solution for WEKA clusters.
 ---
 
-# Deploy Local WEKA Home v4.x on K8s
+# Deploy Local WEKA Home on K8s
 
 ## Overview
 
-The Local WEKA Home (LWH) deployment provides an on-premises observability and monitoring solution for WEKA clusters, designed for organizations that prefer to operate within their own infrastructure instead of relying on the WEKA-hosted cloud service. By running on a Kubernetes (K8s) cluster, this deployment model offers enhanced scalability, resilience, and control over system resources and data.
+The LWH deployment provides an on-premises observability and monitoring solution for WEKA clusters. Organizations use this model to operate within their own infrastructure instead of relying on the WEKA-hosted cloud service. Running on a K8s cluster offers enhanced scalability, resilience, and control over system resources and data.
 
-Deploying LWH on K8s enables support for scale-out environments and large cluster configurations, unlike the lightweight k3s-based packages that are optimized for single-server or minimal setups. This architecture leverages Kubernetes' orchestration capabilities for high availability, automated recovery, and simplified lifecycle management of the LWH components.
+Deploying LWH on K8s supports scale-out environments and large cluster configurations. This architecture leverages Kubernetes orchestration capabilities for high availability, automated recovery, and simplified lifecycle management of the LWH components.
 
-The deployment is packaged and managed through a Helm Chart, ensuring a consistent, reproducible, and upgradeable installation process.
+{% hint style="info" %}
+Deployment on K8s is supported for LWH version 4.x and above.
+{% endhint %}
+
+The deployment is managed through a configuration file to ensure a consistent, reproducible, and upgradeable installation process.
 
 ## Solution architecture
 
-The diagram below illustrates the overall solution architecture and how the core components interact within the Kubernetes (K8s) environment.
+The following diagram illustrates the solution architecture and the interaction between core components within the K8s environment:
 
 <div data-with-frame="true"><figure><img src="../../.gitbook/assets/LWH_4.x_on_k8s.png" alt=""><figcaption><p>Local WEKA Home v4.x solution architecture</p></figcaption></figure></div>
 
 ### Architecture components
 
-The Local WEKA Home v4.x solution ingests data from registered WEKA clusters and processes it through several key layers:
+The LWH v4.x solution ingests data from registered WEKA clusters and processes it through the following layers:
 
-#### **1. Data ingestion layer**
+The LWH v4.x solution ingests data from registered WEKA clusters and processes it through the following layers:
 
-**WEKA Clusters** send metrics, events, and alerts to the Local WEKA Home (LWH) API endpoints. Each cluster registers with LWH by providing public keys and cluster information during the initial connection.
-
-#### **2. API and ingress layer**
-
-**API components** handle HTTP ingestion and routing through various services:
-
-* Support multiple ingress controllers: ALB, Traefik, and Nginx.
-* Alternatively, use aggregated **Envoy-based gateway service** for simplified routing to underlying services.
-* Can be exposed as NodePorts (HTTP or HTTPS) for compatibility with different K8s networking configurations.
-* API endpoints receive data from WEKA clusters and forward it to the persistent queue layer.
-
-#### **3. Processing layer**
-
-**NATS (persistent queues)** provides durable message storage and buffering:
-
-* Runs with 3 replicas by default for high availability.
-* Stores incoming API calls from WEKA clusters before database ingestion.
-* Uses JetStream for persistent file storage backed by CSI storage.
-* Configured to handle up to 100,000 nodes in the default installation.
-* Ensures no data loss during processing spikes or downstream service interruptions.
-
-**Worker Services** process data from NATS queues:
-
-* **Stats Workers**: Process statistical data and metrics from WEKA clusters.
-  * Configured with autoscaling (default: scales based on load).
-  * Default deployment: \~40 cores required for processing 40,000 nodes.
-  * Each WEKA process generates approximately 2,000 time series.
-* **Other Workers**: Handle events, alerts, and rule evaluation.
-
-#### **4. Storage layer**
-
-The storage layer consists of multiple specialized databases:
-
-**Postgres Database (maindb, eventsdb, supportdb)**
-
-* Stores cluster metadata and registration information.
-* Maintains public keys provided by WEKA clusters during registration.
-* Persists event and alert data.
-* Holds system configurations and user-defined rules.
-* Single instance deployment (not redundant) with fast failover capability.
-
-**Victoria Metrics Cluster (Primary: for WEKA data)**
-
-* Stores raw time-series metrics from WEKA clusters.
-* Converts metrics into Prometheus format.
-* Consists of three component types:
-  * **vmstorage**: Persistent storage nodes for time-series data.
-  * **vminsert**: Ingestion endpoints for writing metrics.
-  * **vmselect**: Query endpoints for reading metrics.
-* Default configuration supports up to 80,000 nodes.
-* Scalable through CPU, memory adjustments, or increasing stateful set size.
-
-**Victoria Metrics Monitoring Cluster (Secondary: for internal monitoring)**
-
-* Smaller instance dedicated to application and K8s-level monitoring.
-* Monitors VM cluster health, application metrics, and node performance.
-* Consists of the same three component types (vmstorage, vmselect, vminsert).
-* Independent from the primary metrics cluster.
-
-#### **5. User interface layer**
-
-**Grafana Dashboard**
-
-* Provides visualization interface for metrics and system health.
-* Pre-configured dashboards for WEKA cluster monitoring.
-* Backed by persistent storage for custom dashboard configurations.
-
-**Rules engine and UI**
-
-* Configurable through the LWH UI.
-* Enables users to define conditions that trigger integrations:
-  * **PagerDuty**: For critical events requiring immediate attention.
-  * **Slack/Email**: For events requiring active tracking without paging.
-  * **S3 Export**: For long-term event archival.
-* Supports rules for both WEKA-provided alerts/events and Virtual Events/Alerts.
-* Virtual events and alerts are derived conditions based on ingested data patterns, not explicitly sent by WEKA clusters (pre-defined, non-configurable).
+1. **Data ingestion layer:** WEKA clusters send metrics, events, and alerts to LWH API endpoints.
+2. **API and ingress layer:** Handles HTTP ingestion and routing. It supports multiple ingress controllers (ALB, Traefik, or Nginx) and can use an Envoy-based gateway service. API endpoints receive data and forward it to the persistent queue layer.
+3. **Processing layer:** Uses NATS (persistent queues) for durable message storage and buffering. Worker services consume messages from these queues to process statistical data, events, and alerts.
+4. **Storage layer:** Consists of specialized databases including a Postgres Database for metadata and a Victoria Metrics Cluster for raw time-series metrics. A secondary Victoria Metrics instance is used for internal application monitoring.
+5. **User interface layer:** Provides a Grafana Dashboard for visualization and an LWH UI for managing rules and configurations.
 
 ### Data flow
 
-1. **WEKA clusters** send statistics, events, and alerts to API endpoints.
-2. **API components** authenticate and validate incoming data.
-3. Data is ingested into **NATS persistent queues** for reliable buffering.
-4. **Worker services** consume messages from queues and process them.
-5. Processed data is written to appropriate databases:
-   * Metrics → Victoria Metrics Cluster (primary).
-   * Events/Alerts → Postgres (eventsdb).
-   * Cluster metadata → Postgres (maindb).
-6. **Rules engine** evaluates conditions and triggers configured integrations.
-7. **Grafana** queries Victoria Metrics and Postgres for visualization.
-8. **Victoria Metrics Monitoring** tracks the health of all LWH components.
+1. WEKA clusters send statistics, events, and alerts to API endpoints.
+2. API components authenticate and validate incoming data.
+3. Data is ingested into NATS persistent queues for reliable buffering.
+4. Worker services consume messages from queues and process them.
+5. Processed data is written to the appropriate databases:
+   * Metrics are stored in the Victoria Metrics Cluster.
+   * Events, alerts, and cluster metadata are stored in the Postgres Database.
+6. The rules engine evaluates conditions and triggers configured integrations.
+7. Grafana queries the databases to provide visual health and performance data.
 
 ## Sizing and scaling guidelines
 
