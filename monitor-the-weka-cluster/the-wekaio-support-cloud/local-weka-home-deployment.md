@@ -1,19 +1,27 @@
 ---
 description: >-
-  Learn how to deploy, upgrade, configure, and troubleshoot Local WEKA Home v3x
-  on a lightweight Kubernetes (K3s), an on-premises, observability solution for
-  WEKA clusters.
+  Manage the deployment, upgrade, and maintenance of Local WEKA Home (LWH) on
+  K3s. This single-node architecture provides an on-premises observability
+  solution for WEKA clusters.
 metaLinks:
   alternates:
     - >-
       https://app.gitbook.com/s/0yXyIrnroN3zIG3qa4W3/monitor-the-weka-cluster/the-wekaio-support-cloud/local-weka-home-deployment
 ---
 
-# Deploy Local WEKA Home v3.x on K3s
+# Deploy Local WEKA Home on K3s
 
-The Local WEKA Home v3.x runs on K3s, a lightweight Kubernetes installed on a single node cluster. Customize the deployment by specifying configuration parameters in the `config.json` file.
+The LWH deployment provides an on-premises observability and monitoring solution for WEKA clusters. Organizations use this model to operate within their own infrastructure instead of relying on the WEKA-hosted cloud service. Running on K3s offers a simplified, lightweight Kubernetes environment that provides control over system resources and data.
 
-<div data-with-frame="true"><figure><img src="../../.gitbook/assets/LWH_on_K3s.png" alt=""><figcaption><p>Local WEKA Home v3.x deployment on K3s</p></figcaption></figure></div>
+Deploying LWH on K3s supports single-node cluster configurations optimized for small to medium environments. This architecture utilizes a streamlined Kubernetes distribution to provide automated recovery and simplified lifecycle management of the LWH components.
+
+{% hint style="info" %}
+Deployment on K3s is supported for LWH versions 3.x, 4.x, and above.
+{% endhint %}
+
+The deployment is managed through a configuration file to ensure a consistent, reproducible, and upgradeable installation process.
+
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/LWH_on_K3s.png" alt=""><figcaption><p>Local WEKA Home deployment on K3s</p></figcaption></figure></div>
 
 ## Workflow: Local WEKA Home deployment
 
