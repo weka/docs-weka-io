@@ -10,9 +10,9 @@ metaLinks:
 
 # Set up a Data Services container for background tasks
 
-The Data Services container runs tasks in the background, particularly those that can be resource-intensive. At present, it runs the [Quota Coloring](#user-content-fn-1)[^1] task. In upcoming releases, it will handle additional tasks that consume significant resources.
+The Data Services container runs tasks in the background, particularly those that can be resource-intensive. It runs the [Quota Coloring](#user-content-fn-1)[^1] task and the [S3 lifecycle management](#user-content-fn-2)[^2] tasks.
 
-Running these tasks in the background ensures your CLI remains accessible and responsive without consuming compute resources. This strategy enhances performance, efficiency, and scalability when managing quotas. If a task is interrupted, it automatically resumes, providing reliability.
+Running these tasks in the background ensures your CLI remains accessible and responsive without consuming compute resources. This strategy enhances performance, efficiency, and scalability when managing quotas and S3 lifecycle rules. If a task is interrupted, it automatically resumes, providing reliability.
 
 {% hint style="warning" %}
 If the Data Services container is not operational, the quota coloring task reverts to the previous implementation and runs in a single process. This could result in the CLI hanging for an extended period. Therefore, ensuring the Data Services container runs is crucial to prevent this situation.
@@ -21,6 +21,8 @@ If the Data Services container is not operational, the quota coloring task rever
 To improve data service performance, you can set up multiple Data Service containers, one per WEKA server.
 
 After setting up the Data Service container, you can manage it like any other container within the cluster. If there’s a need to adjust its resources, use the `weka cluster container resources` or `weka local resources` commands. For more details, see [expansion-of-specific-resources.md](../expanding-and-shrinking-cluster-resources/expansion-of-specific-resources.md "mention").
+
+## **Set up Data Services container**
 
 **Before you begin**
 
@@ -56,9 +58,9 @@ weka local setup container --name <container_name> --base-port <base-port> --joi
 ```
 {% endcode %}
 
-Parameters:
+**Parameters:**
 
-<table><thead><tr><th width="255">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>name</code>*</td><td>The Data Services container name. Set<code>dataserv0</code> to avoid confusion.</td></tr><tr><td><code>only-dataserv-cores</code>*</td><td>Creates a Data Services container. This parameter is mandatory.</td></tr><tr><td><code>base-port</code></td><td>If a base-port is not specified, the Data Services container may still initialize as it attempts to allocate an available port range and could succeed. However, for optimal operation, it is recommended to provide the base port externally.</td></tr><tr><td><code>join-ips</code>*</td><td>Specify the management IP of one of the servers in the cluster to join.</td></tr><tr><td><code>management-ips</code></td><td>This is optional. If not provided, it automatically takes the management IP of the server.</td></tr><tr><td><code>memory</code></td><td>Configure the container memory to be allocated for huge pages. It is recommended to set it to 1.5 GB.</td></tr><tr><td><code>allow-mix-setting</code></td><td>This option enables using specified core IDs, even when containers with AUTO core ID allocation run on the same server. It is required if the core allocation is not explicitly specified.</td></tr></tbody></table>
+<table><thead><tr><th width="255">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>name</code>*</td><td>The Data Services container name. Set <code>dataserv0</code> to avoid confusion.</td></tr><tr><td><code>only-dataserv-cores</code>*</td><td>Creates a Data Services container. This parameter is mandatory.</td></tr><tr><td><code>base-port</code></td><td>If a base-port is not specified, the Data Services container may still initialize as it attempts to allocate an available port range and could succeed. However, for optimal operation, it is recommended to provide the base port externally.</td></tr><tr><td><code>join-ips</code>*</td><td>Specify the management IP of one of the servers in the cluster to join.</td></tr><tr><td><code>management-ips</code></td><td>This is optional. If not provided, it automatically takes the management IP of the server.</td></tr><tr><td><code>memory</code></td><td>Configure the container memory to be allocated for huge pages. It is recommended to set it to 1.5 GB.</td></tr><tr><td><code>allow-mix-setting</code></td><td>This option enables using specified core IDs, even when containers with AUTO core ID allocation run on the same server. It is required if the core allocation is not explicitly specified.</td></tr></tbody></table>
 
 <details>
 
@@ -175,6 +177,66 @@ PROCESS ID  HOSTNAME      CONTAINER  IPS             STATUS  RELEASE  ROLES     
 
 </details>
 
+## Set up S3 lifecycle task management
+
+After setting up the Data Services container, you can enable and configure S3 lifecycle task management to automate object expiration in S3 buckets.
+
+#### Enable S3 lifecycle task management
+
+Run the following command to enable the S3 lifecycle task manager:
+
+```bash
+weka dataservice s3-lifecycle-task enable
+```
+
+#### Configure S3 lifecycle task settings (optional)
+
+You can customize the S3 lifecycle task manager behavior using the following command:
+
+```bash
+weka dataservice s3-lifecycle-task set [--max-tasks <max-tasks>] [--interval <interval>]
+```
+
+**Parameters:**
+
+<table><thead><tr><th width="181">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>--max-tasks</code></td><td><p>Maximum number of concurrent S3 lifecycle tasks that can run simultaneously.</p><p>Default: 4</p></td></tr><tr><td><code>--interval</code></td><td><p>Interval between lifecycle task manager runs. </p><p>Accepts time format: <code>3s</code>, <code>2h</code>, <code>4m</code>, <code>1d</code>, <code>1d5h</code>, <code>1w</code>, <code>infinite</code>, or <code>unlimited</code>. Default: 60 seconds</p></td></tr></tbody></table>
+
+**Example:** Set maximum concurrent tasks to 6 and interval to 5 minutes
+
+```bash
+weka dataservice s3-lifecycle-task set --max-tasks 6 --interval 5m
+```
+
+#### View S3 lifecycle task configuration
+
+To view the current S3 lifecycle task manager configuration, run:
+
+```bash
+weka dataservice s3-lifecycle-task show
+```
+
+Example output:
+
+```
+S3 Lifecycle Task Manager Status
+  Status: Enabled
+  Max Concurrent Tasks: 4
+  Interval (seconds): 60
+```
+
+#### Disable S3 lifecycle task management
+
+To disable the S3 lifecycle task manager, run:
+
+<pre class="language-bash"><code class="lang-bash"><strong>weka dataservice s3-lifecycle-task disable
+</strong></code></pre>
+
+{% hint style="info" %}
+Disabling the task manager prevents new lifecycle tasks from being scheduled. Any currently running tasks will complete, but no new tasks will start until theS3 lifecycle task manager is re-enabled.
+{% endhint %}
+
 [^1]: **What is quota coloring?**
 
     During the procedure of setting or unsetting a directory quota, the Data Services container creates a background task referred to as `QUOTA_COLORING`. This task scans the entire directory tree and assigns the quota ID to each file and directory within the tree.
+
+[^2]: S3 lifecycle task management to automate object expiration in S3 buckets.

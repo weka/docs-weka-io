@@ -27,13 +27,13 @@ WEKA uses a structured versioning scheme to indicate the scope and type of chang
 
 * **Major version:** The major version represents substantial changes, such as new features, architectural updates, or significant enhancements.
   * Defined by the first two numbers in the version string.
-  * Example: In 4.4.9, the major version is 4.4.
+  * Example: In 5.0.4, the major version is 5.0.
 * **Minor version:** The minor version reflects smaller updates, such as bug fixes, performance improvements, or minor feature additions.
   * Defined by the third number in the version string.
-  * Example: In 4.4.9, the minor version is 9.
+  * Example: In 5.0.4, the minor version is 4.
 * **Build number:** The build number (fourth component, if present) identifies incremental builds.
   * Used for hotfixes or release candidates that address specific issues without altering core functionality.
-  * Example: In 4.4.9.130, the build number is 130.
+  * Example: 5.0.4.384, the build number is 384.
 
 ## Version compatibility guidelines
 
@@ -285,7 +285,7 @@ weka version get <version>
 weka version prepare <version>
 ```
 
-Where: \<version> is the target WEKA version, for example: `5.0.3`.
+Where: \<version> is the target WEKA version, for example: `5.0.4`.
 
 If the distribution server does not contain the target WEKA version, add the option `--from` to the command, and specify the [get.weka.io](https://get.weka.io/ui/releases/) distribution site, along with the token.
 
@@ -472,10 +472,10 @@ weka local run -C drives0 --in 4.2.0.78 upgrade --mode=clients-upgrade --client-
 
 Once the upgrade is complete, verify that the cluster is in the new version by running the `weka status` command.
 
-**Example:** The following is returned when the system is upgraded to version 5.0.1:
+**Example:** The following is returned when the system is upgraded to version 5.0.4:
 
 ```
 # weka status
-Weka v5.0.1
+Weka v5.0.4
 ...
 ```

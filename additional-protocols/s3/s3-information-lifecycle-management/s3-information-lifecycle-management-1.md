@@ -27,7 +27,7 @@ Use the following command line to add a lifecycle rule:
 
 **Parameters**
 
-<table><thead><tr><th width="189">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>bucket</code>*</td><td>Name of the S3 bucket.</td></tr><tr><td><code>expiry-days</code>*</td><td>The minimum number of days before the object is eligible for expiration. ILM processes the object shortly after this period based on its modified timestamp, but processing may be delayed if the queue is long.<br>Minimum: 1 day</td></tr><tr><td><code>prefix</code></td><td>The object prefix to which the rule applies. Wildcards are not supported.</td></tr><tr><td><code>tags</code></td><td>Key value pair of object tags to apply the rule to.<br>Pairs of key values: <code>'&#x3C;k1>=&#x3C;v1>&#x26;&#x3C;k2=&#x3C;v2>'</code></td></tr></tbody></table>
+<table><thead><tr><th width="189">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>bucket</code>*</td><td>S3 bucket name.</td></tr><tr><td><code>expiry-days</code>*</td><td>The minimum number of days before the object is eligible for expiration. ILM processes the object shortly after this period based on its modified timestamp, but processing may be delayed if the queue is long.<br>Minimum: 1 day</td></tr><tr><td><code>prefix</code></td><td><p>The object prefix to which the rule applies.</p><p>Wildcards are not supported.</p></td></tr><tr><td><code>tags</code></td><td>Key value pair of object tags to apply the rule to.<br>Pairs of key values: <code>'&#x3C;k1>=&#x3C;v1>&#x26;&#x3C;k2=&#x3C;v2>'</code></td></tr></tbody></table>
 
 ## View lifecycle rules <a href="#viewing-ilm-rules" id="viewing-ilm-rules"></a>
 
