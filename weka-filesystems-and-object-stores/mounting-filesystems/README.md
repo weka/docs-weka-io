@@ -159,7 +159,7 @@ This setup ensures that the stateless client operates with restricted privileges
 
 ## Mount command options
 
-Each mount option can be passed by an individual `-o` flag to `mount.`
+Explore the mount options available for WEKA filesystems. Pass each option using an individual `-o` flag to the `mount` command.
 
 ### For all clients types
 
@@ -170,6 +170,14 @@ Each mount option can be passed by an individual `-o` flag to `mount.`
 You can remount using the mount options marked as `Remount Supported` in the above table (`mount -o remount)`.
 
 When a mount option has been explicitly changed, you must set it again in the remount operation to ensure it retains its value. For example, if you mount with `ro`, a remount without it changes the mount option to the default `rw`. If you mount with `rw`, it is not required to re-specify the mount option because this is the default.
+
+#### Remount operations and stateless client container restarts
+
+Any `mount -o remount` operation triggers a restart of the WEKA client container to reinitialize the client with the requested configuration. Remounting does not apply changes dynamically, regardless of the option specified. This behavior applies to all mount options for stateless clients.
+
+The restart is an expected and controlled operation. Active I/O pauses while the client container restarts. Applications performing I/O during this interval can experience service disruption until the client fully recovers and normal operation resumes.
+
+**Operational guidance:** Plan all remount operations as disruptive events. Execute remounts during a maintenance window to avoid impacting active workloads and to ensure predictable operational behavior.
 
 ### **Additional mount options using the stateless clients feature**
 
@@ -230,7 +238,7 @@ When running in AWS, the instance IAM role must provide permissions to several A
 Memory allocation for a client is predefined. To change the memory allocation, contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md#contact-customer-success-team).
 {% endhint %}
 
-### Remount options for stateless clients
+### Remount operations for stateless clients
 
 Mount options explicitly marked as `Remount Supported` can be modified using the `mount -o remount` command. During a remount operation:
 

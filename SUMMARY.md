@@ -271,6 +271,7 @@
 
 ## Support
 
+* [Release support and commitments](support/release-support-and-commitments.md)
 * [Get support for your WEKA system](support/getting-support-for-your-weka-system.md)
 * [Diagnostics management](support/diagnostics-management/README.md)
   * [Traces management](support/diagnostics-management/traces-management/README.md)

@@ -1,7 +1,7 @@
 ---
 description: >-
-  This tool simplifies managing BIOS settings across multiple servers, ensuring
-  consistency and reducing manual configuration efforts.
+  The BIOS tool simplifies managing BIOS settings across multiple servers,
+  ensuring consistency and reducing manual configuration efforts.
 ---
 
 # BIOS tool
@@ -10,7 +10,7 @@ description: >-
 
 The `bios_tool` is a command-line utility designed to manage BIOS settings on WEKA servers. It lets administrators view, set, and correct BIOS configurations across multiple servers. This tool is crucial for ensuring that servers in a cluster are properly configured and compliant with desired BIOS settings, using pre-defined configuration files or command-line inputs.
 
-You can find the BIOS tool on GitHub at: [https://github.com/weka/tools/tree/master/bios\_tool](https://github.com/weka/tools/tree/master/bios\_tool).
+You can find the BIOS tool on GitHub at: [https://github.com/weka/tools/tree/master/bios\_tool](https://github.com/weka/tools/tree/master/bios_tool).
 
 ### Features
 
