@@ -43,11 +43,31 @@ The following requirements must be met:
 
 ## Operating system
 
+{% tabs %}
+{% tab title="Support policy" %}
+#### Manage operating system and kernel lifecycle
+
+Maintain system reliability by following the WEKA support policy for Linux distributions. This policy applies to WEKA software on customer-managed Linux servers in on-premises and cloud environments.
+
 {% hint style="info" %}
-Every effort is made to support upcoming releases of the operating systems in the lists within one quarter (three months) of their respective General Availability (GA) dates. When an operating system version is deprecated, WEKA will cease to ensure its software continues to work with that operating system version.
+This policy excludes Linux distributions bundled as part of the WEKA Software Appliance (WSA).
 {% endhint %}
 
-{% tabs %}
+**Lifecycle definitions**
+
+* **End of Support (EoS):** The date a vendor stops providing routine updates and patches.
+* **End of Life (EoL):** The date a vendor ceases all standard support and maintenance for a distribution or kernel version.
+
+**Lifecycle stages**
+
+* **General Availability (GA):** WEKA aims to support new GA releases within three months of the vendor release date. After addition to the supported list, these versions receive full support, including certification, ongoing validation, and defect remediation aligned to the [release-support-and-commitments.md](../support/release-support-and-commitments.md "mention").
+* **End of Support and End of Life:** After a vendor EoS date, WEKA stops active testing and validation. Field issues receive best-effort remediation. If vendor backports are unavailable, fixes may require upgrading to a supported version. Plan migrations before the vendor EoL date.
+
+**Support verification**
+
+Verify that both the kernel and operating system versions appear as supported in the backends, clients, and kernel tabs. These components require independent verification. If  a custom operating system or kernel is required, contact the [Customer Success Team](../support/getting-support-for-your-weka-system.md#contact-customer-success-team).
+{% endtab %}
+
 {% tab title="Backends" %}
 * **Rocky Linux:**
   * 9.4, 9.3, 9.2, 9.1, 9.0
