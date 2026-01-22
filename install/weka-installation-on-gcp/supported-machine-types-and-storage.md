@@ -7,7 +7,7 @@ The following table provides the supported machine types (VM instance) for backe
 <table><thead><tr><th width="183">Machine series</th><th>Machine types</th></tr></thead><tbody><tr><td>C2</td><td>c2-standard-8, c2-standard-16</td></tr></tbody></table>
 
 {% hint style="info" %}
-* Each machine type supports 1, 2, 4, or 8 local SSD drives. Each drive has 375 GB (maximum 3 TB per instance). These drives are not individual SSDs but partitions locally to the physical server.
+* WEKA supports deploying the C2 machine type with 2, 4, or 8 local SSD drives. Each drive has 375 GB (maximum 3 TB per instance). These drives are not individual SSDs but partitions locally to the physical server.
 * The data in a WEKA cluster is protected with N+2 or N+4. However, use snap-to-object if the data needs further protection from multiple server failures.
 * The C2 series may not be available in your chosen [GCP region](https://cloud.google.com/compute/docs/regions-zones).&#x20;
 {% endhint %}
