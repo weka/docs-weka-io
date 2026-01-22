@@ -85,8 +85,7 @@ Using the API is a two-step process that supports parallel processing, enabling 
 
 **Before you begin**
 
-* Ensure at least one `dataserv` container is configured and running.
-* Enable the DiffList feature by running the `weka debug override add --key snapshot_difflist.enabled` command.
+Ensure at least one `dataserv` container is configured and running.
 
 **Procedure**
 
