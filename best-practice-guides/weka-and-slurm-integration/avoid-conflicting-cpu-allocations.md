@@ -1,22 +1,34 @@
-# Avoid conflicting CPU allocations
+# Manage CPU allocations for WEKA and Slurm
 
-In a WEKA and Slurm integration, efficient CPU allocation is crucial to prevent conflicts between the WEKA filesystem and Slurm job scheduling. Improper CPU allocation can lead to performance degradation, CPU starvation, or resource contention. This section outlines best practices to ensure WEKA and Slurm coexist harmoniously by carefully managing CPUsets and NUMA node allocations.
+Configure efficient CPU allocation to prevent conflicts between the WEKA filesystem and Slurm job scheduling. Improper CPU allocation can lead to performance degradation, CPU starvation, or resource contention.
+
+Follow these steps to ensure WEKA and Slurm coexist by managing CPUsets and NUMA node allocations.
 
 ### 1. Disable WEKA CPUset isolation
 
 Ensure that WEKA's default CPUset isolation is disabled to avoid conflicts with Slurm.
 
 ```bash
-[root@example01 ~]# grep 'isolate_cpusets=' /etc/wekaio/service.conf
+grep 'isolate_cpusets=' /etc/wekaio/service.conf
+```
+
+**Example result:**
+
+```bash
 isolate_cpusets = false
 ```
 
 ### 2. Verify hyperthreading and NUMA configuration
 
-Verify your system's hyperthreading and NUMA configuration. Typically, hyperthreading is disabled in most Slurm-managed environments. In this example, hyperthreading is disabled, and there are four NUMA nodes.
+Verify the hyperthreading and NUMA configuration of the server. Hyperthreading is typically disabled in Slurm-managed environments.
 
 ```bash
-[root@example01 ~]# lscpu | egrep 'Thread|NUMA'
+lscpu | egrep 'Thread|NUMA'
+```
+
+**Example result:** In this example, hyperthreading is disabled (1 thread per core), and there are four NUMA nodes.
+
+```bash
 Thread(s) per core:  1
 NUMA node(s):        4
 NUMA node0 CPU(s):   0-13
@@ -27,31 +39,53 @@ NUMA node3 CPU(s):   42-55
 
 ### 3. Identify the NUMA node of the dataplane network interface
 
-Determine the NUMA node associated with the dataplane network interface. For instance, `ib0` is located in NUMA node 1.
+Determine the NUMA node associated with the dataplane network interface.
 
 ```bash
-[root@example01 ~]# cat /sys/class/net/ib0/device/numa_node
+cat /sys/class/net/ib0/device/numa_node
+```
+
+**Example result:** In this example, the interface `ib0` is located in NUMA node 1.
+
+```bash
 1
-[root@example01 ~]# cat /sys/class/net/ib0/device/local_cpulist
+```
+
+Verify the local CPU list for the interface:
+
+```bash
+cat /sys/class/net/ib0/device/local_cpulist
+```
+
+**Example result:**
+
+```bash
 14-27
 ```
 
 ### 4. Assign CPU cores to WEKA
 
-When mounting the WEKA filesystem, specify the CPU cores for the WEKA client to use. These cores should be in the same NUMA node as the network interface.
+When you mount the WEKA filesystem, specify the CPU cores for the WEKA client.
 
-Avoid using core 0. Typically, the last cores in the NUMA node are chosen. For example:
+* Select cores located in the same NUMA node as the network interface.
+* Avoid using core 0.
+* Select the last cores in the NUMA node.
 
 {% code overflow="wrap" %}
 ```bash
-[root@example01 ~]# mount -t wekafs -o core=24,core=25,core=26,core=27,net=ib0 /mnt/wekafs
+mount -t wekafs -o core=24,core=25,core=26,core=27,net=ib0 /mnt/wekafs
 ```
 {% endcode %}
 
-After mounting, confirm the cores and network interfaces used by WEKA:
+Run the following command to confirm the cores and network interfaces used by WEKA:
 
 ```bash
-[root@example01 ~]# weka local resources | head
+weka local resources | head
+```
+
+**Example result:**
+
+```bash
 ROLES       NODE ID  CORE ID
 MANAGEMENT  0        <auto>
 FRONTEND    1        24
@@ -65,12 +99,17 @@ ib0         0000:4b:00.0                        19
 
 ### 5. Configure Slurm to exclude WEKA's cores
 
-Configure Slurm to exclude WEKA's cores from those available for user jobs by setting the `CPUSpecList` parameter.
+Configure Slurm to exclude the cores assigned to WEKA from user jobs by setting the `CPUSpecList` parameter.
 
-Verify the configuration with:
+Run the following command to verify the configuration:
 
 ```bash
-[root@example01 ~]# scontrol show node $(hostname -s) | grep CPUSpecList
+scontrol show node $(hostname -s) | grep CPUSpecList
+```
+
+**Example result:**
+
+```bash
 CoreSpecCount=4 CPUSpecList=24-27 MemSpecLimit=20480
 ```
 
@@ -78,25 +117,44 @@ CoreSpecCount=4 CPUSpecList=24-27 MemSpecLimit=20480
 
 Ensure that the Slurm CPUset excludes the cores assigned to the WEKA client.
 
+**WEKA client:**
+
 ```bash
-[root@example01 ~]# grep "" /sys/fs/cgroup/cpuset/weka-client/*cpus
+grep "" /sys/fs/cgroup/cpuset/weka-client/*cpus
+```
+
+**Example result:**
+
+```bash
 /sys/fs/cgroup/cpuset/weka-client/cpuset.cpus:24-27
 /sys/fs/cgroup/cpuset/weka-client/cpuset.effective_cpus:24-27
+```
 
-[root@example01 ~]# grep "" /sys/fs/cgroup/cpuset/slurm/system/*cpus
+**Slurm:**
+
+```bash
+grep "" /sys/fs/cgroup/cpuset/slurm/system/*cpus
+```
+
+**Example result:**
+
+```bash
 /sys/fs/cgroup/cpuset/slurm/system/cpuset.cpus:0-23,28-55
 /sys/fs/cgroup/cpuset/slurm/system/cpuset.effective_cpus:0-23,28-55
 ```
 
 ### 7. Manage hyperthreading
 
-If hyperthreading is enabled, identify the sibling CPUs and include them in both the WEKA mount options and Slurm’s `CPUSpecList`. For clarity, even though WEKA automatically reserves these CPUs, explicitly specifying them can help avoid potential issues.
+If hyperthreading is enabled, identify the sibling CPUs and include them in both the WEKA mount options and the Slurm `CPUSpecList`. Although WEKA automatically reserves these CPUs, explicit specification helps prevent potential issues.
 
-In this example, hyperthreading is disabled, so no additional CPUs are required:
+```bash
+grep /sys/devices/system/cpu/*/topology/thread_siblings_list | egrep 'cpu24|cpu25|cpu26|cpu27'
+```
+
+Example result:
 
 {% code overflow="wrap" %}
 ```bash
-[root@example01 ~]# grep "" /sys/devices/system/cpu/*/topology/thread_siblings_list | egrep 'cpu24|cpu25|cpu26|cpu27'
 /sys/devices/system/cpu/cpu24/topology/thread_siblings_list:24
 /sys/devices/system/cpu/cpu25/topology/thread_siblings_list:25
 /sys/devices/system/cpu/cpu26/topology/thread_siblings_list:26
@@ -106,51 +164,84 @@ In this example, hyperthreading is disabled, so no additional CPUs are required:
 
 ### 8. Address logical and physical CPU index mismatch
 
-In certain situations, environmental factors like BIOS or hypervisor settings may cause discrepancies between logical CPU numbers and the physical or OS-assigned numbers. This can result in the Slurm CPUset mistakenly including CPUs that should be reserved for the WEKA client, potentially leading to resource conflicts such as CPU starvation.
+Environmental factors, such as BIOS or hypervisor settings, may cause discrepancies between logical CPU numbers and physical or OS-assigned numbers. This mismatch can result in the Slurm CPUset mistakenly including CPUs that must remain reserved for the WEKA client.
 
-For example, if the CPUset configuration shows that Slurm is not correctly excluding the WEKA-assigned CPUs, you might see something like this, where CPUs 56, 58, 60, and 62 are listed in _both_ CPUsets, which will cause conflicts:
+**Identify conflicts**
+
+If the CPUset configuration shows that Slurm does not correctly exclude the WEKA-assigned CPUs, you might observe an overlap. In the following troubleshooting example, WEKA is assigned physical cores 56-63, but they appear in the Slurm CPUset, causing conflicts.
+
+**WEKA:**
 
 ```bash
-[root@example01 ~]# grep "" /sys/fs/cgroup/cpuset/weka*/cpuset.effective_cpus
+grep "" /sys/fs/cgroup/cpuset/weka*/cpuset.effective_cpus
+```
+
+**Example result:**
+
+```bash
 56-63
-[root@example01 ~]# grep "" /sys/fs/cgroup/cpuset/slurm/system/cpuset.effective_cpus
+```
+
+**Slurm:**
+
+```bash
+grep "" /sys/fs/cgroup/cpuset/slurm/system/cpuset.effective_cpus
+```
+
+**Example result:**
+
+```bash
 0-48,50,52,54,56,58,60,62
 ```
 
-The issue may arise from non-sequential CPU numbering, where CPUs are interleaved between NUMA nodes:
+This issue often arises from non-sequential CPU numbering where CPUs are interleaved between NUMA nodes:
 
 ```bash
-[root@example01 ~]# lscpu | egrep 'Thread|NUMA'
+lscpu | egrep 'Thread|NUMA'
+```
+
+**Example result:**
+
+```bash
 Thread(s) per core:  1
 NUMA node(s):        2
-NUMA node0 CPU(s):   0,2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,32,34,36,38,40,42,44,46,48,50,52,54,56,58,60,62
-NUMA node1 CPU(s):   1,3,5,7,9,11,13,15,17,19,21,23,25,27,29,31,33,35,37,39,41,43,45,47,49,51,53,55,57,59,61,63
+NUMA node0 CPU(s):   0,2,4,6,8,10,...52,54,56,58,60,62
+NUMA node1 CPU(s):   1,3,5,7,9,11,...53,55,57,59,61,63
 ```
 
-To address this, do the following:
+**Resolve index mismatches**
 
-1. Ensure that the WEKA agent's `isolate_cpuset=false` setting is applied (see [Step 1](avoid-conflicting-cpu-allocations.md#id-1.-disable-weka-cpuset-isolation)), and that the agent has been restarted.
-2. Use `hwloc-ls` or `lstopo-no-graphics` to map the logical index (L#) to the physical/OS index (P#) for the CPUs assigned to WEKA. If the logical and physical indexes don’t match, use the logical index numbers in Slurm’s `CPUSpecList` parameter.
+To address this mismatch, perform the following actions:
 
-{% hint style="info" %}
-Before starting any Weka container or mounting WekaFS filesystems, ensure that you examine the output of `hwloc-ls` or `lstopo-no-graphics`. This step is critical as it verifies the logical index numbers provided by these user-space tools. Failure to perform this check may result in incorrect logical index mappings, which can lead to configuration or performance issues.
+1. Ensure that the WEKA agent `isolate_cpuset=false` setting is applied (see Step 1) and that you restart the agent.
+2. Use `hwloc-ls` or `lstopo-no-graphics` to map the logical index (L#) to the physical/OS index (P#) for the CPUs assigned to WEKA.
+
+{% hint style="warning" %}
+**Important:** Before you start any WEKA container or mount WEKA filesystems, verify the output of `hwloc-ls` or `lstopo-no-graphics`. Failure to perform this check can result in incorrect logical index mappings, leading to configuration or performance issues.
 {% endhint %}
 
-In this example, the output indicates a mismatch between the L# and P#:
+Use the following command to verify the logical index numbers provided by user-space tools:
 
 ```bash
-[root@example01 ~]# weka local resources | egrep 'FRONTEND' | awk '{print "hwloc-ls | grep P\\#"$3}' | bash
-      L2 L#28 (2048KB) + L1d L#28 (48KB) + L1i L#28 (32KB) + Core L#28 + PU L#28 (P#56)
-      L2 L#29 (2048KB) + L1d L#29 (48KB) + L1i L#29 (32KB) + Core L#29 + PU L#29 (P#58)
-      L2 L#30 (2048KB) + L1d L#30 (48KB) + L1i L#30 (32KB) + Core L#30 + PU L#30 (P#60)
-      L2 L#31 (2048KB) + L1d L#31 (48KB) + L1i L#31 (32KB) + Core L#31 + PU L#31 (P#62)
-      L2 L#60 (2048KB) + L1d L#60 (48KB) + L1i L#60 (32KB) + Core L#60 + PU L#60 (P#57)
-      L2 L#61 (2048KB) + L1d L#61 (48KB) + L1i L#61 (32KB) + Core L#61 + PU L#61 (P#59)
-      L2 L#62 (2048KB) + L1d L#62 (48KB) + L1i L#62 (32KB) + Core L#62 + PU L#62 (P#61)
-      L2 L#63 (2048KB) + L1d L#63 (48KB) + L1i L#63 (32KB) + Core L#63 + PU L#63 (P#63)
+weka local resources | awk '/FRONTEND/ {print "hwloc-ls | grep --color -w \"P#"$3"\""}' | bash
 ```
 
-Although WEKA uses _physical_ cores `56-63`, set Slurm’s `CPUSpecList` to `28-31,60-63` to correctly allocate the CPUs based on their _logical_ index.
+**Example result:** The following output indicates a mismatch between the Logical Index (L#) and Physical Index (P#):
+
+```bash
+L2 L#28 (2048KB) + L1d L#28 (48KB) + L1i L#28 (32KB) + Core L#28 + PU L#28 (P#56)
+L2 L#29 (2048KB) + L1d L#29 (48KB) + L1i L#29 (32KB) + Core L#29 + PU L#29 (P#58)
+L2 L#30 (2048KB) + L1d L#30 (48KB) + L1i L#30 (32KB) + Core L#30 + PU L#30 (P#60)
+L2 L#31 (2048KB) + L1d L#31 (48KB) + L1i L#31 (32KB) + Core L#31 + PU L#31 (P#62)
+L2 L#60 (2048KB) + L1d L#60 (48KB) + L1i L#60 (32KB) + Core L#60 + PU L#60 (P#57)
+L2 L#61 (2048KB) + L1d L#61 (48KB) + L1i L#61 (32KB) + Core L#61 + PU L#61 (P#59)
+L2 L#62 (2048KB) + L1d L#62 (48KB) + L1i L#62 (32KB) + Core L#62 + PU L#62 (P#61)
+L2 L#63 (2048KB) + L1d L#63 (48KB) + L1i L#63 (32KB) + Core L#63 + PU L#63 (P#63)
+```
+
+If the logical and physical indexes do not match, use the logical index numbers in the Slurm `CPUSpecList` parameter.
+
+In this example, although WEKA uses physical cores **56-63**, you must set the Slurm `CPUSpecList` to **28-31,60-63** to correctly allocate the CPUs based on their logical index.
 
 **Related information**
 
