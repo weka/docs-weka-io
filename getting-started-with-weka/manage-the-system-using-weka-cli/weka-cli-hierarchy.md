@@ -98,7 +98,7 @@ weka cluster
           |add
           |remove
        |remove
-       |requested-action
+       |requested-action **
        |resources
        |restore
     |add
@@ -128,9 +128,6 @@ weka cluster
         |set
         |show   
     |process
-    |requested-action **
-        |elective-protection
-        |set
     |servers
         |list
         |requested-action **
