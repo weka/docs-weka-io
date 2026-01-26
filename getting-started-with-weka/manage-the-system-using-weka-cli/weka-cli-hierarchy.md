@@ -136,9 +136,6 @@ weka cluster
         |set
         |show   
     |process
-    |requested-action
-        |elective-protection
-        |set
     |servers
         |list
         |requested-action
