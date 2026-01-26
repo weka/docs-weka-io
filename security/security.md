@@ -288,7 +288,7 @@ A bucket policy is a JSON document that you attach directly to an S3 bucket. It 
 
 The WEKA system supports the use of SELinux (Security-Enhanced Linux) on its clients. SELinux is a security architecture in the Linux kernel that enforces mandatory access control (MAC) policies defined by a system administrator.
 
-You can enable SELinux on a client server using one of the following methods:
+You can enable SELinux on a client using one of the following methods:
 
 * **For the current session**: To enable SELinux in `Enforcing` mode temporarily, run the following command on the client: `sudo setenforce Enforcing`
 *   **For persistent configuration:** To enable SELinux persistently across system reboots, edit the
