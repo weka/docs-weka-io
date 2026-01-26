@@ -7,7 +7,7 @@ description: >-
 # Prerequisites and compatibility
 
 {% hint style="warning" %}
-**Important:** The versions mentioned on the prerequisites and compatibility page apply to the WEKA system's **latest minor version** (4.4.**X**). For information on new features and supported prerequisites released with each minor version, refer to the relevant release notes available at [get.weka.io](https://get.weka.io/).
+**Important:** The versions mentioned on the prerequisites and compatibility page apply to the WEKA system's **latest minor version** (5.0.**X**). For information on new features and supported prerequisites released with each minor version, refer to the relevant release notes available at [get.weka.io](https://get.weka.io/).
 
 Check the release notes for details about any updates or changes accompanying the latest releases.
 {% endhint %}
