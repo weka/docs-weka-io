@@ -19,10 +19,9 @@ OCI provides the necessary infrastructure components for WEKA deployment, includ
 The deployment process includes the following main phases:
 
 1. Prepare OCI bare metal infrastructure for WEKA.
-2. Install add-ons using templates for OCI HPC Images.
-3. Install WEKA on the OCI bare metal infrastructure.
-4. Configure the WEKA cluster.
-5. Add clients.
+2. Install WEKA on the OCI bare metal infrastructure.
+3. Configure the WEKA cluster.
+4. Add clients.
 
 {% hint style="warning" %}
 WEKA strongly recommends that you coordinate and obtain approval from OCI personnel before deploying any WEKA systems on OCI. This coordination ensures your deployment will be compatible with OCI's architecture and comply with cloud resource management policies.
@@ -84,57 +83,8 @@ VCN capacity planning must account for both WEKA Data Platform and high-performa
    5. Configure network interfaces:
       * Create a primary NIC on the management subnet.
       * Create a secondary NIC on the high-performance subnet.
-5. **Install OFED drivers:**
-   1. Install drivers compatible with your NIC and OS combination:
-      * For production with WEKA 4.4.x, use: [https://linux.mellanox.com/public/repo/mlnx\_ofed/5.9-0.5.6.0/](https://linux.mellanox.com/public/repo/mlnx_ofed/5.9-0.5.6.0/)
-      * For widest compatibility across all WEKA releases: [https://linux.mellanox.com/public/repo/mlnx\_ofed/5.4-3.4.0.0/](https://linux.mellanox.com/public/repo/mlnx_ofed/5.4-3.4.0.0/)
-   2. Select the appropriate OS version link, then download and install the RPM/DEB package on each bare-metal server running WEKA Data Platform.
 
-### 2. Install add-ons using templates for OCI HPC Images
-
-The **oci-hpc-images** repository provides a set of Packer and Ansible-based templates designed to automate the creation of high-performance computing (HPC) images on Oracle Cloud Infrastructure (OCI). These templates support multiple operating systems and are optimized for OCI environments, enabling users to efficiently deploy consistent and reproducible HPC-ready images.
-
-#### Supported platforms
-
-The templates include specific installation instructions for the following Linux distributions:
-
-* Oracle Linux 8
-* Ubuntu 22.04
-* Ubuntu 24.04
-
-Each distribution requires the installation of necessary dependencies such as Packer, Python, and Ansible, and the configuration of a Python virtual environment to isolate and manage dependencies.
-
-**Procedure**
-
-1. **Access the repository:** [OCI HPC Images Repository](https://github.com/oracle-quickstart/oci-hpc-images/tree/main).
-2. **Install required tools:** Install packer, tmux, python, and supporting packages specified in the repository. Commands vary by OS version and are provided explicitly for each supported platform.
-3. **Configure Python environment:**
-   1. Create and activate a Python virtual environment (`packer_env`).
-   2. Upgrade `pip` and `setuptools`.
-   3. Install a specific version of `ansible-core`.
-   4. Use `ansible-galaxy` to install required roles as specified in `requirements.yml`.
-4. **Configure environment variables:**
-   1. Copy the `defaults.pkr.hcl.example` file to `defaults.pkr.hcl`.
-   2. Edit the file to specify required variables. For Ubuntu 24.04 or later, explicitly set:\
-      &#x20;`OpenSSH9 = true`
-5. **Customize the image:**
-   1. Navigate to the required OS-specific directory under `images/`.
-   2.  Modify the image `.pkr.hcl` file to include the appropriate image OCID for your region and select the necessary software modules.
-
-       OCIDs for various regions can be found at the [Oracle Cloud Infrastructure Image Documentation](https://docs.oracle.com/en-us/iaas/images/).
-6. **Build the image:**
-   1.  Due to the potentially long build time, it is recommended to use a `tmux` session to ensure the process continues if the terminal disconnects:
-
-       `tmux new`
-   2. Initialize and build the image using the following commands:\
-      Replace `<image-name>` with the specific file name matching your configuration and target OS. The following command is an example for Ubuntu-22.
-
-```
-packer init images/Ubuntu-22/<image-name>.pkr.hcl
-packer build -var-file="defaults.pkr.hcl" images/Ubuntu-22/<image-name>.pkr.hcl
-```
-
-### 3. Install WEKA on the OCI bare metal infrastructure
+### 2. Install WEKA on the OCI bare metal infrastructure
 
 1. Download the WEKA software. See [obtaining-the-weka-install-file.md](bare-metal/obtaining-the-weka-install-file.md "mention").
 2.  Install the WEKA software.
@@ -144,7 +94,7 @@ packer build -var-file="defaults.pkr.hcl" images/Ubuntu-22/<image-name>.pkr.hcl
 
     Once completed, the WEKA software is installed on all the allocated servers and runs in stem mode (no cluster is attached).
 
-### 4. Configure the WEKA cluster
+### 3. Configure the WEKA cluster
 
 1. Use the resources generator to create configuration files (`drives0.json`, `compute0.json`, and `frontend0.json`) in the **/tmp** directory of each server.
 2. Create containers using these configuration files on all cluster servers.
@@ -162,7 +112,7 @@ Refer to the related topics for detailed instructions on each step.
 
 [perform-post-configuration-procedures.md](bare-metal/perform-post-configuration-procedures.md "mention").
 
-### 5. Add clients or use converged mode
+### 4. Add clients or use converged mode
 
 Depending on your deployment mode, you can choose one of the following options to access the WEKA filesystem:
 
