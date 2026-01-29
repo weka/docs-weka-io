@@ -29,7 +29,7 @@ There is a difference between single-client performance to aggregated performanc
 
 ## The FIO tool
 
-The [FIO tool](https://linux.die.net/man/1/fio) is a generic open-source storage performance testing tool that can be defined as described [here](https://fio.readthedocs.io/en/latest/fio\_doc.html). In this documentation, the usage of FIO version 3.20 is assumed.
+The [FIO tool](https://linux.die.net/man/1/fio) is a generic open-source storage performance testing tool that can be defined as described [here](https://fio.readthedocs.io/en/latest/fio_doc.html). In this documentation, the usage of FIO version 3.20 is assumed.
 
 All FIO testing is done using the client/server capabilities of FIO. This makes multiple-client testing easier since FIO reports aggregated results for all clients under the test. Single-client tests are run the same way to keep the results consistent.
 
@@ -540,5 +540,5 @@ fio --client=clients.txt FIOmaster.txt
 mpiexec -f clients.txt -np 1088 mdtest -v -N 136 -i 3 -n 18382 -F -u -d /mnt/weka/mdtest
 ```
 
-{% file src="../../.gitbook/assets/FIOmaster (1).txt" %}
+{% file src="../../.gitbook/assets/FIOmaster.txt" %}
 
