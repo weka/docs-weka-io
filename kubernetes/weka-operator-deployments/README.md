@@ -66,128 +66,250 @@ The WEKA Operator client deployment uses the WekaClient custom resource to manag
 
 If the WEKA cluster is outside the Kubernetes cluster but you have workloads inside Kubernetes, you can deploy a WEKA client within the Kubernetes cluster to connect to the external WEKA cluster.
 
+#### Client Pod CLI restrictions
+
+Cluster-level WEKA CLI commands are supported only from the Compute or Drive pods.
+
+The WEKA Operator client and application client pods operate with restricted permissions intended for data-path access only. Running cluster CLI commands, such as `weka status`, from these contexts is not supported and results in authorization errors.
+
+***
+
 ## Deployment workflow
 
-1. Obtain setup information.
-2. Prepare Kubernetes environment.
-3. Set up driver distribution.
-4. Discover drives for WEKA cluster provisioning.
-5. Install the WEKA Operator.
-6. Install the WekaCluster and WekaClient custom resources.
+1. **Obtain setup information:** Collect registry credentials and version tags.
+2. **Prepare Kubernetes environment:** Configure servers, huge pages, and kubelet policies.
+3. **Install the WEKA Operator:** Deploy the controller and define drive type ratios.
+4. **Manage driver distribution:** Configure local or external driver building services.
+5. **Discover and sign drives:** Identify physical storage and configure sharing policies.
+6. **Provision WEKA resources:** Deploy the WekaCluster (backend) and WekaClient (frontend).
+7. **Manage resources and label propagation:** Monitor the health of your WEKA resources.
+8. **Manage the WEKA cluster management proxy:** Access WEKA management and service endpoints using Kubernetes Ingress resources.&#x20;
+9. **Perform post-deployment storage configuration:** Configure the CSI plugin and storage classes based on your operator version to enable persistent volume provisioning.
 
 ### 1. Obtain setup information
 
-Before deploying the WEKA Operator in your Kubernetes environment, contact the WEKA Customer Success Team to obtain the necessary setup information.
+Identify and record the credentials required to pull WEKA container images and the specific version tags for your deployment.
 
-You need the following credentials to proceed with the deployment:
+**Before you begin**
 
-* Container repository (quay.io)
-  * Image pull secrets and Docker:
-    * `QUAY_USERNAME`: `example_user`
-    * `QUAY_PASSWORD`: `example_password`
-    * `QUAY_SECRET_KEY`: `quay-io-robot-secret`
-* WEKA Operator version and image version tag
-  * For the most current operator and image versions, refer to the WEKA Operator page at [https://get.weka.io/ui/operator](https://get.weka.io/ui/operator). From there, you can obtain the latest `WEKA_OPERATOR_VERSION` and `WEKA_IMAGE_VERSION_TAG`.
+Contact the WEKA Customer Success Team to receive your authorized registry credentials.
 
-Gathering this information in advance provides all the required values to complete the deployment workflow efficiently. Use these values to replace the placeholders in the setup files.
+**Procedure**
+
+1. Access [get.weka.io/ui/operator](https://get.weka.io/ui/operator) to identify the latest `WEKA_OPERATOR_VERSION` and `WEKA_IMAGE_VERSION_TAG`.
+2. Record the following credentials for your image pull secret:
+   * Registry: `quay.io`
+   * QUAY\_USERNAME
+   * QUAY\_PASSWORD
+   * QUAY\_SECRET\_KEY: Typically `quay-io-robot-secret`.
+
+{% hint style="info" %}
+Replace all placeholders in your setup files with these values to ensure a consistent deployment.
+{% endhint %}
+
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/get-weka-io_weka-operator_example.jpg" alt=""><figcaption><p>Example: WEKA Operator page on get.weka.io </p></figcaption></figure></div>
 
 ### 2. Prepare Kubernetes environment
 
-Ensure the following requirements are met:
+Ensure the infrastructure meets the performance and resiliency requirements of the WEKA data plane.
 
-* Local server requirements
-* Kubernetes cluster and node requirements
-* Kubernetes port requirements
-* Kubelet requirements
-* Image pull secrets requirements
-* Set up control plane with HA
+#### Local server requirements
 
-#### **Local server requirements**
+Ensure access to a server for manual helm installation, unless using a higher-level deployment tool such as Argo CD.
 
-1. Ensure access to a server for manual `helm install`, unless a higher-level tool (for example, Argo CD) is used.
-
-{% code overflow="wrap" %}
 ```bash
-curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 && chmod 700 get_helm.sh &&./get_helm.sh
+curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 && chmod 700 get_helm.sh && ./get_helm.sh
 ```
-{% endcode %}
 
-#### **Kubernetes cluster and node requirements**
+#### **Control plane high availability**
 
-Ensure that Kubernetes is correctly set up and configured to handle WEKA workloads.
+Configure the Kubernetes control plane for high availability (HA) to match WEKA resiliency. HA depends on `etcd` quorum.
 
-* Minimum Kubernetes version: 1.25
-* Minimum OpenShift version: 4.17
+* **Quorum rule:** `etcd` requires an odd number of members (N) and tolerates failures up to (N-1)/2.
+* **Recommendation:** Use five or nine `etcd` members for production storage backends.
 
-1. **Kernel headers**: Ensure kernel headers on each node match the kernel version.
-2. **Storage**: Allocate storage on `/opt/k8s-weka` for WEKA containers.\
-   Estimate: \~20 GiB per WEKA container + 10 GiB per CPU core in use.
-3. **Huge pages configuration**:
-   * **Compute core**: 3 GiB of huge pages
-   * **Drive core**: 1.5 GiB of huge pages
-   * **Client core**: 1.5 GiB of huge pages\
-     Check current huge pages with command:\
-     `grep Huge /proc/meminfo`
-   * Add the appropriate number of huge pages:\
-     `sudo sysctl -w vm.nr_hugepages=3000`
-   * Set huge pages to persist through reboots:\
-     `sudo sh -c 'echo "vm.nr_hugepages = 3000" >> /etc/sysctl.conf'`
+{% hint style="info" %}
+Consider using an external `etcd` cluster or distributing control plane components across multiple failure domains. For more information, see the official [Kubernetes HA topology guidance](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/ha-topology/).
+{% endhint %}
 
-#### **Kubernetes port requirements**
+#### **Node hardware and software requirements**
 
-The WEKA Kubernetes operator manages port allocation automatically to prevent collisions, particularly in multi-cluster environments. Starting with WEKA operator 1.10 and WEKA 5.1.0, the operator maintains a port pool starting at port 35000 and allocates a contiguous range of 260 ports per cluster. Previous versions of the WEKA operator and WEKA software allocate 500 ports for this purpose.
+Verify that every node in the cluster adheres to these specifications:
 
-WEKA clients discover and connect to services using a separate default range that starts at port 45000. The system handles these allocations internally to ensure reliability across common networking setups. Manual configuration is typically unnecessary unless specific infrastructure or policy requirements apply.
+* **Kubernetes version:** 1.25 or later (OpenShift 4.17 or later).
+* **Storage allocation:** Reserve \~20 GiB per WEKA container plus 10 GiB per allocated CPU core in `/opt/k8s-weka`.
+* **Kernel headers:** Ensure kernel headers exactly match the running kernel version to allow driver compilation.
+
+#### Configure HugePages for Kubernetes worker nodes
+
+Configure HugePages on worker nodes to ensure the WEKA process has the required memory allocation for high-performance data operations.
+
+**Memory allocation requirements**
+
+The WEKA process requires dedicated memory in the form of HugePages. The allocation size depends on the drive capacity and the number of CPU cores assigned to the process.
+
+* **Server capacity:** The sum of the usable capacity of all drives assigned to the server and allocated for WEKA.
+* **Cores for WEKA:** The number of CPU cores dedicated to the WEKA process on the container.
+* **WEKA Container factor:** The standard  allocation of 1.7 GiB of hugePages on per WEKA container.
+* **Metadata ratio:** The relationship between metadata requirements and HugePages consumption. The default value is 1000. You can increase this up to 2000 to preserve non-HugePages Resident Set Size based on server memory availability.
+* **Headroom:** A 10% multiplier (1.1) to account for memory fragmentation and operational variance.
+
+**HugePages calculation reference**
+
+Use the following formula to determine the required memory:
+
+$$
+\text{Total GiB} = \left( \frac{\text{Server capacity}}{\text{Ratio}} + \text{Cores for WEKA} \times 1.7 \right) \times 1.1
+$$
+
+To calculate the total required HugePages:
+
+1. Convert the Total GiB value to MiB by multiplying by 1024.
+2. Divide the result by 2 to get the total number of 2 MiB HugePages needed.
+
+**Example calculation**
+
+The following example demonstrates how to calculate the required HugePages for a high-performance server configuration.
+
+Server specifications:
+
+* CPU cores: 64 total.
+* Cores for WEKA: 63 cores dedicated to the WEKA process.
+* Storage configuration: 16 drives, each with 15.3 TiB.
+* Server capacity: 244.8 TiB usable capacity (250,675 GiB).
+
+Step-by-step calculation:
+
+1. Calculate total GiB:
+
+$$
+\left( \frac{250,675GiB}{1000} + 63 \times 1.7 GiB\right) \times 1.1 = 393.55 GiB
+$$
+
+2. Convert to MiB:
+
+$$
+393.55GiB \times 1024 = 402,998MiB
+$$
+
+3. Calculate the total required HugePages (2 MiB per HugePage):
+
+$$
+402,998MiB \div 2MiB = 201499
+$$
+
+Final requirement: 201,500 HugePages (rounded up).
+
+**Apply HugePages settings**
+
+Before you begin:
+
+* Identify the number of drives and CPU cores allocated to WEKA on the server.
+* Ensure you have root or sudo permissions on the worker nodes.
+
+Procedure:
+
+1.  Check the current HugePages status on the server:
+
+    ```bash
+    grep Huge /proc/meminfo
+    ```
+2.  Apply the required HugePages value:
+
+    ```bash
+    sudo sysctl -w vm.nr_hugepages=201500
+    ```
+3.  Persist the setting to ensure it remains active after a reboot:
+
+    ```bash
+    sudo sh -c 'echo "vm.nr_hugepages = 201500" >> /etc/sysctl.conf'
+    ```
+
+#### **Identify Kubernetes port requirements**
+
+Manage port allocations for the WEKA Operator and client services to ensure reliable network communication. The WEKA Operator automates port allocation to prevent collisions within multi-cluster environments.
+
+Starting with WEKA Operator 1.10 and WEKA 5.1.0, the operator maintains a port pool starting at port 35000. It allocates a contiguous range of 260 ports per cluster. Earlier versions of the operator and WEKA software allocate 500 ports for this purpose.
+
+WEKA clients discover and connect to services using a separate default range that starts at port 45000. The system handles these allocations internally. Manual configuration is typically unnecessary unless specific infrastructure or policy requirements apply.
 
 **Port allocation summary**
 
-<table><thead><tr><th width="355">Component</th><th width="170">Default start port</th><th>Port range size</th></tr></thead><tbody><tr><td>WEKA Operator (v1.10+) / WEKA (v5.1.0+)</td><td>35000</td><td>260 ports per cluster</td></tr><tr><td>WEKA Operator / WEKA (previous versions)</td><td>35000</td><td>500 ports per cluster</td></tr><tr><td>WEKA client connectivity</td><td>45000</td><td></td></tr></tbody></table>
+<table><thead><tr><th width="355">Component</th><th width="170">Default start port</th><th>Port range size</th></tr></thead><tbody><tr><td>WEKA Operator (v1.10+) / WEKA (v5.1.0+)</td><td>35000</td><td>260 ports per cluster</td></tr><tr><td>WEKA Operator / WEKA (previous versions)</td><td>35000</td><td>500 ports per cluster</td></tr><tr><td>WEKA client connectivity</td><td>45000</td><td>Internal allocation</td></tr></tbody></table>
 
-#### **Kubelet requirements**
+#### Configure **Kubelet requirements**
 
-1. **Identify the Kubelet ConfigMap:** Find the name of the ConfigMap that defines the Kubelet configuration for your worker nodes, typically located in the `kube-system` namespace.
+Configure the Kubelet CPU Manager with a static policy to ensure predictable, high-performance behavior for WEKA data-plane processes. This setting enables Kubernetes to assign dedicated CPU cores to Guaranteed-QoS pods, which prevents CPU contention and eliminates scheduler jitter.
 
-```bash
-kubectl get cm -A | grep kubelet
-```
+**Before you begin**
 
-2. **Open the ConfigMap for editing:** Use the identified ConfigMap name (`<kubelet-configmap-name>`) to open it for editing within the `kube-system` namespace.
+Identify the location of the Kubelet configuration file on each worker node.
 
-```bash
-kubectl edit cm -n kube-system <kubelet-configmap-name>
-```
+* **kubeadm clusters:** The configuration is typically located at `/var/lib/kubelet/config.yaml` and managed via the `kube-system/kubelet-config` ConfigMap.
+* **Other systems:** Check the `--config=` flag in the Kubelet command line by running `ps -ef | grep kubelet` or `systemctl status kubelet`.
 
-3. **Add or update CPU management settings:** Within the opened editor, locate the kubelet section and add or update the following key settings to enable static CPU management and reserve CPU `0` for the system:
+**Procedure**
+
+1. Apply static core allocation to each worker node separately.
+2. Edit the Kubelet configuration file to include the `static` policy and reserve a CPU for system processes.
+
+<details>
+
+<summary>Example: Kubelet configuration for static core allocation</summary>
+
+In this example, static CPU management is enabled and CPU 0 (represented as 1000m) is reserved for the system to ensure the WEKA data-plane pods do not compete with OS processes.
 
 ```yaml
-kubelet:
-  ...
-  reservedSystemCPUs: "0"
-  cpuManagerPolicy: static
+apiVersion: kubelet.config.k8s.io/v1beta1
+kind: KubeletConfiguration
+# ... 
+# Enable static CPU allocation
+cpuManagerPolicy: "static"
+systemReserved:
+  cpu: "1000m" 
 ```
 
-#### **Image pull secrets requirements**
+</details>
 
-* Set up Kubernetes secrets for secure image pulling across namespaces. Apply the secret in all namespaces where WEKA resources are deployed.
-* Verify that namespaces are defined and do not overlap to avoid configuration conflicts.
+**Related information**
 
-**Example:**
+[Control CPU Management Policies on the Node](https://kubernetes.io/docs/tasks/administer-cluster/cpu-management-policies/)
 
-The following example creates a secret for quay.io authentication for both the `weka-operator-system` namespace and the `default` namespace. Repeat as necessary for namespaces. Replace the placeholders with the actual values.
+#### Configure image pull secrets
+
+Set up Kubernetes secrets to enable secure image pulling from the WEKA container registry. These secrets must exist in every namespace where WEKA resources are deployed to avoid authorization failures.
+
+**Before you begin**
+
+Identify your QUAY\_USERNAME, QUAY\_PASSWORD, and the desired QUAY\_SECRET\_KEY name obtained during the setup information phase.
+
+**Procedure**
+
+1. Define the target namespaces and ensure they do not overlap to prevent configuration conflicts.
+2. Create the secret for `quay.io` authentication in both the `weka-operator-system` and the default namespaces. Repeat this process for any additional namespaces as required.
+
+<details>
+
+<summary>Example: Creating secrets for quay.io</summary>
 
 ```bash
-export QUAY_USERNAME='QUAY_USERNAME' # Replace with the actual value
-export QUAY_PASSWORD='QUAY_PASSWORD' # Replace with the actual value
+# Set environment variables for the session
+export QUAY_USERNAME='your_username'
+export QUAY_PASSWORD='your_password'
 
+# Create the operator namespace
 kubectl create ns weka-operator-system
-kubectl create secret docker-registry QUAY_SECRET_KEY \ # Replace with the actual value
+
+# Create the secret in the operator namespace
+kubectl create secret docker-registry quay-io-robot-secret \
   --docker-server=quay.io \
   --docker-username=$QUAY_USERNAME \
   --docker-password=$QUAY_PASSWORD \
   --docker-email=$QUAY_USERNAME \
   --namespace=weka-operator-system
 
-kubectl create secret docker-registry QUAY_SECRET_KEY \ # Replace with the actual value
+# Create the secret in the default namespace
+kubectl create secret docker-registry quay-io-robot-secret \
   --docker-server=quay.io \
   --docker-username=$QUAY_USERNAME \
   --docker-password=$QUAY_PASSWORD \
@@ -195,75 +317,115 @@ kubectl create secret docker-registry QUAY_SECRET_KEY \ # Replace with the actua
   --namespace=default
 ```
 
-#### Set up control plane with HA
-
-Ensure the Kubernetes control plane is configured for high availability (HA) to match the overall resiliency of a WEKA deployment.
-
-A highly available control plane depends on `etcd` quorum tolerance.
-
-* `etcd` requires an odd number of members, represented as N.
-* It can tolerate failures up to (N-1)/2 members.
-* Production setups typically use at least five or nine `etcd` members to align with high-availability storage backends.
-
-Consider using an external `etcd` cluster or distributing control-plane components across multiple failure domains.
-
-For more information, see the official [Kubernetes HA topology guidance](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/ha-topology/).
+</details>
 
 ### 3. Install the WEKA Operator
 
-1. **Apply WEKA Custom Resource Definitions (CRDs):** Download and apply the WEKA Operator CRDs to define WEKA-specific resources in Kubernetes. Replace the version placeholder (WEKA\_OPERATOR\_VERSION) with the actual value.
+Manage the lifecycle of WEKA resources by installing the WEKA Operator. This process involves applying Custom Resource Definitions (CRDs) and deploying the operator controller with specific configurations for the Container Storage Interface (CSI) and drive types.
 
-{% code overflow="wrap" %}
+**Before you begin**
+
+* Ensure the QUAY\_SECRET\_KEY is created in the weka-operator-system namespace.
+* Verify that helm and kubectl are installed on your server.
+
+**Procedure**
+
+1. **Apply the WEKA CRDs:** Download and apply the definitions required for the Kubernetes API to recognize WEKA resources. Replace \<WEKA\_OPERATOR\_VERSION> with your specific version.
+
 ```bash
 helm pull oci://quay.io/weka.io/helm/weka-operator --untar --version <WEKA_OPERATOR_VERSION>
 kubectl apply -f weka-operator/crds
 ```
-{% endcode %}
 
-2.  **Install the WEKA Operator:** Deploy the WEKA Operator to the Kubernetes cluster. Specify the namespace, image version, and pull secret to enable WEKA’s resources. Replace the version placeholder (WEKA\_OPERATOR\_VERSION) with the actual value.
+2. **Define drive allocation ratios:** Starting with version **1.10**, you must specify the ratio between QLC and TLC drive types. This is essential for Hybrid Flash environments. Use the following parameters according to your storage configuration:
 
-    To install WEKA Operator with the CSI plugin (from `v1.7.0`) run the following command:
+<table><thead><tr><th width="182">Storage configuration</th><th width="359">Parameter value</th><th>Result</th></tr></thead><tbody><tr><td><strong>Hybrid Flash</strong></td><td><code>--set driveTypeRatio='{tlc: 4, qlc: 1}'</code></td><td>Allocates 1/5 capacity to QLC and 4/5 to TLC.</td></tr><tr><td><strong>Single drive type</strong></td><td><code>--set driveTypeRatio='{qlc: 0}'</code></td><td>Disables hybrid allocation.</td></tr></tbody></table>
+
+3. **Deploy the WEKA Operator:** Execute the Helm command to install the operator. For versions **1.7.0** and later, include the CSI plugin enablement flag.
 
 ```bash
 helm upgrade --create-namespace \
     --install weka-operator oci://quay.io/weka.io/helm/weka-operator \
     --namespace weka-operator-system \
     --version <WEKA_OPERATOR_VERSION> \
-    --set csi.installationEnabled=true
+    --set csi.installationEnabled=true \
+    --set driveTypeRatio='{tlc: 4, qlc: 1}'
 ```
 
-For earlier versions of the WEKA Operator, omit the `--set csi.installationEnabled=true` from the command.
+{% hint style="info" %}
+For operator versions earlier than 1.7.0, omit the `--set csi.installationEnabled=true` parameter.
+{% endhint %}
 
-3. **Verify the installation:** Run the following: `kubectl -n weka-operator-system get pod`\
-   The returned results should look similar to this:
+4. **Verify the installation:** Ensure the operator pod is running.
+
+```bash
+kubectl -n weka-operator-system get pod
+```
+
+The expected output show the weka-operator-controller-manager with a **Running** status.
 
 ```
 NAME                                               READY  STATUS  RESTARTS   AGE
 weka-operator-controller-manager-564bfd6b49-p6k7d   2/2   Running     0      13s
 ```
 
-### 4. Set up driver distribution
+### 4. Manage driver distribution
 
-Driver distribution applies to client and backend entities.
+Configure the distribution of WEKA drivers to both client and backend entities. The WEKA Operator provides a streamlined mechanism to build and serve drivers, ensuring compatibility across different kernel versions and architectures.
 
-1. **Verify driver distribution prerequisites**:
-   1. Ensure a WEKA-compatible image (`weka-in-container`) is accessible through the registry and has the necessary credentials (`imagePullSecret`).
-   2. Define node selection criteria, especially for the Driver Builder role, to match the kernel requirements of target nodes.
-2.  **Set up the driver distribution service and driver builder:** Driver distribution is typically included as part of the operator installation process. Therefore, it is not necessary to install drivers separately. To build and distribute WEKA drivers, the standard approach involves deploying the following components:
+**Before you begin**
 
-    * **drivers-builder container:** One container per combination of Weka version, kernel version, and architecture.
-    * **drivers-dist container:** A single container responsible for serving the compiled drivers.
-    * **Service:** Exposes the drivers-dist container.
+* **External service recommendation:** WEKA recommends using the external driver distribution service at [https://drivers.weka.io](https://drivers.weka.io) for most use cases. This service covers common operating systems and kernel versions.
+* **Local distribution:** If you operate in an air-gapped environment or use a custom OS build, you must configure a local driver distribution service.
+* **Registry access:** Ensure a WEKA-compatible image (`weka-in-container`) is accessible in your registry with a valid `imagePullSecret`.
+* **Version matching:** The image versions used in the builder containers must match the target WekaClient and WekaCluster versions. If LTS image tag is available, use it.
 
-    This setup supports scenarios such as handling multiple kernel versions and executing custom pre-run scripts.Important notes:
+**Local driver distribution components**
 
-    * Deploy multiple drivers-builder containers only if you need to support multiple kernel versions or multiple WEKA versions.
-    * Replace placeholder versions with your target WekaClient and WekaCluster versions.
-    * The image versions used in the builder containers must match the corresponding WEKA versions.
+To build and distribute drivers locally, the system deploys the following components:
+
+* **drivers-builder:** One process per combination of WEKA version, kernel version, and architecture.
+* **drivers-dist:** A single process responsible for serving compiled drivers.
+* **Service:** A Kubernetes Service that exposes the drivers-dist process.
+
+**Procedure**
+
+1. **Define node selection:** Ensure that `nodeSelector` or `nodeAffinity` matches nodes that meet the kernel requirements for the target build.
+2. **Create the distribution policy:** For WEKA Operator 1.6.0 and later, use a WekaPolicy to automate the deployment of these components.
+
+{% code title="weka-drivers.yaml" %}
+```yaml
+apiVersion: weka.weka.io/v1alpha1
+kind: WekaPolicy
+metadata:
+  name: weka-drivers
+  namespace: weka-operator-system
+spec:
+  type: enable-local-drivers-distribution
+  image: quay.io/weka.io/weka-in-container:5.1.0 # Use the target 5.x LTS version
+  imagePullSecret: "quay-io-robot-secret"
+  payload:
+    driverDistPayload:
+      builderPreRunScript: "apt-get update && apt-get install -y gcc-12"
+    interval: 1m
+  nodeSelector:
+    weka.io/supports-backends: "true"
+```
+{% endcode %}
+
+3. Apply the configuration: Save the manifest as `weka-drivers.yaml` and apply it to the cluster.
+
+```bash
+kubectl apply -f weka-drivers.yaml
+```
+
+**Reference: WekaPolicy attributes**
+
+<table><thead><tr><th width="194.0234375">Attribute</th><th>Description</th></tr></thead><tbody><tr><td><code>image</code></td><td>The WEKA container image used for the distributor and default builder.</td></tr><tr><td><code>interval</code></td><td>How often the operator reconciles the policy.<br>Default: 1m</td></tr><tr><td><code>builderPreRunScript</code></td><td>Optional script to run (for example, installing a compiler) before the build.</td></tr><tr><td><code>ensureImages</code></td><td>List of additional WEKA images to prebuild drivers for.</td></tr></tbody></table>
 
 <details>
 
-<summary>Driver distribution service for WEKA Operator using WekaPolicy, starting from version 1.6.0</summary>
+<summary>Examples: Driver distribution service for WEKA Operator using WekaPolicy, starting from version 1.6.0</summary>
 
 The WEKA operator supports driver distribution deployment using the WEKA policy. When a valid policy is applied, the operator automatically creates the required resources as shown in the examples.
 
@@ -283,10 +445,11 @@ metadata:
   name: weka-drivers
   namespace: weka-operator-system
 spec:
-  image: quay.io/weka.io/weka-in-container:4.4.5.118-k8s.4
+  image: quay.io/weka.io/weka-in-container:5.1.0
   imagePullSecret:  "quay-io-robot-secret"
   payload:
-    driverDistPayload: {}
+    driverDistPayload: 
+      builderPreRunScript: "apt-get update && apt-get install -y gcc-12"
     interval: 1m
   nodeSelector:
     weka.io/supports-backends: "true"
@@ -313,7 +476,7 @@ metadata:
     app: weka-drivers-dist
 spec:
   agentPort: 60001
-  image: quay.io/weka.io/weka-in-container:4.4.2.144-k8s
+  image: quay.io/weka.io/weka-in-container:5.1.0
   imagePullSecret: "quay-io-robot-secret"
   mode: "drivers-dist"
   name: dist
@@ -341,7 +504,7 @@ metadata:
   namespace: weka-operator-system
 spec:
   agentPort: 60001
-  image: quay.io/weka.io/weka-in-container:4.4.2.157-k8s
+  image: quay.io/weka.io/weka-in-container:5.1.0
   imagePullSecret: "quay-io-robot-secret"
   mode: "drivers-builder"
   name: dist # WEKA container name
@@ -358,7 +521,7 @@ metadata:
   namespace: weka-operator-system
 spec:
   agentPort: 60001
-  image: quay.io/weka.io/weka-in-container:4.4.2.157-k8s
+  image: quay.io/weka.io/weka-in-container:5.1.0
   imagePullSecret: "quay-io-robot-secret"
   mode: "drivers-builder"
   name: dist # WEKA container name
@@ -384,7 +547,7 @@ metadata:
 spec:
   type: "enable-local-drivers-distribution"
   # Base image used for the drivers-dist container; also used as the default for driver builders
-  image: "quay.io/weka.io/weka-in-container:4.4.5.118-k8s.4" # Replace with the target Weka image version
+  image: "quay.io/weka.io/weka-in-container:5.1.0 # Replace with the target Weka image version
   imagePullSecret: "quay-io-robot-secret" # Replace with your image pull secret for accessing the image registry
   tolerations:
   - key: "example-key"
@@ -396,8 +559,8 @@ spec:
       # List of additional Weka images for which drivers should be prebuilt
       # These are in addition to any images detected from existing WekaCluster/WekaClient resources
       ensureImages:
-        - "quay.io/weka.io/weka-in-container:4.4.2.157-k8s.2" # Example image for proactive driver build
-        - "quay.io/weka.io/weka-in-container:4.4.5.118-k8s.4" # Another example
+        - "quay.io/weka.io/weka-in-container:5.1.0" # Example image for proactive driver build
+        - "quay.io/weka.io/weka-in-container:5.1.0" # Another example
       # Node selectors defining where builder containers can be scheduled
       # Builders run on nodes matching both these selectors and the discovered kernel/architecture
       nodeSelectors:
@@ -420,162 +583,46 @@ spec:
 
 </details>
 
-<details>
+### 5. Discover and sign drives
 
-<summary>Driver distribution service for WEKA Operator version 1.4.x</summary>
+Identify and prepare physical storage devices for use within the WEKA cluster. This process ensures all drives are uniquely identified, healthy, and ready for integration.
 
-```yaml
-apiVersion: weka.weka.io/v1alpha1
-kind: WekaContainer
-metadata:
-  name: weka-drivers-dist
-  namespace: default
-  labels:
-    app: weka-drivers-dist
-spec:
-  agentPort: 60001
-  image: quay.io/weka.io/weka-in-container:<WEKA_IMAGE_VERSION_TAG> # Replace with the actual value
-  imagePullSecret: "<QUAY_SECRET_KEY>" # Replace with the actual value
-  mode: "drivers-dist"
-  name: dist
-  numCores: 1
-  port: 60002
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: weka-drivers-dist
-  namespace: default
-spec:
-  type: ClusterIP
-  ports:
-    - name: weka-drivers-dist
-      port: 60002
-      targetPort: 60002
-  selector:
-    app: weka-drivers-dist
----
-apiVersion: weka.weka.io/v1alpha1
-kind: WekaContainer
-metadata:
-  name: weka-drivers-builder
-  namespace: default
-spec:
-  agentPort: 60001
-  image: quay.io/weka.io/weka-in-container:<WEKA_IMAGE_VERSION_TAG> # Replace with the actual value
-  imagePullSecret: "<QUAY_SECRET_KEY>" # Replace with the actual value
-  mode: "drivers-loader"
-  name: dist 
-  numCores: 1
-  port: 60002
-```
+The discovery process performs the following actions:
 
-</details>
-
-{% hint style="info" %}
-Ensure that `nodeSelector` or `nodeAffinity` aligns with the kernel requirements of the build nodes.
-{% endhint %}
-
-3. Save the manifest above to `weka-driver.yaml` , and apply it:\
-   `kubectl apply -f weka-driver.yaml`
-
-### 5. Discover drives for WEKA cluster provisioning
-
-To provision drives for a WEKA cluster, each drive must go through a discovery process. This process ensures that all drives are correctly identified, accessible, and ready for use within the cluster.
-
-The discovery process involves the following key actions:
-
-* **Node updates during discovery**
-  * Each node is annotated with a list of known serial IDs for all drives accessible to the operator, providing a unique identifier for each drive.
-  * An extended resource, `weka.io/drives`, is created to indicate the number of drives that are ready and available on each node.
-* **Available drives**
-  * Only healthy, unblocked drives are marked as available. Drives that are manually flagged due to issues such as corruption or other unrecoverable errors are excluded from the available pool to ensure cluster stability.
-
-**Drive discovery steps**
-
-1. **Sign drives**\
-   Each drive receives a WEKA-specific signature, marking it as ready for discovery and integration into the cluster.
-2. **Discover drives**\
-   The signed drives are detected and prepared for cluster operations. If drives already have the WEKA signature, only the discovery step is required to verify and track them in the cluster.
+* **Node annotation:** Each node is updated with a list of known serial IDs for all accessible drives.
+* **Resource creation:** An extended resource, `weka.io/drives`, is created on each node to indicate the count of ready drives.
+* **Health verification:** Only healthy, unblocked drives are marked as available. Drives with errors or manual blocks are excluded to maintain cluster stability.
 
 **Drive discovery methods**
 
-The WEKA system supports two primary methods for drive discovery:
+Identify the appropriate method for your environment:
 
-* **WekaManualOperation**\
-  A one-time operation that performs both drive signing and discovery, suitable for manual provisioning.
-* **WekaPolicy**\
-  An automated, policy-driven approach that performs periodic discovery across all matching nodes. The `WekaPolicy` method operates on an event-driven model, initiating discovery immediately when relevant changes (such as node updates or drive additions) are detected.
+* **WekaManualOperation:** A one-time action that signs and discovers drives. Use this for initial manual provisioning.
+* **WekaPolicy:** An automated approach that performs periodic discovery. It initiates discovery immediately when it detects node updates or hardware additions.
 
-**Operations examples**
+**Procedure**
 
-<details>
+1. **Define drive sharing and signing:** Apply a WekaPolicy to sign compatible drives. For WEKA 5.1.0 and Operator 1.10, enable drive sharing to support composable clusters.
 
-<summary>Sign drives using the WekaPolicy starting from WEKA Operator 1.6.x</summary>
-
-Drive containers will be scheduled on nodes with available signed drives.
-
-To identify drives that can be used by WEKA and sign them, apply the following policy:
-
+{% code title="sign-drives.yaml" %}
 ```yaml
 apiVersion: weka.weka.io/v1alpha1
 kind: WekaPolicy
 metadata:
   name: sign-drives
-  namespace: weka-operator-system # Replace with your namespace
+  namespace: weka-operator-system
 spec:
   type: sign-drives
   payload:
     signDrivesPayload:
       type: "all-not-root"
+      shared: true # Enables drive sharing for WEKA 5.1.0 and Operator 1.10
 ```
+{% endcode %}
 
-**Drive selection types:**
+2. **Initiate discovery:** Use a WekaManualOperation to detect signed drives across the cluster. Replace placeholders with your recorded version and secret key.
 
-* `all-not-root`: Signs all block devices except the root device.
-* `aws-all`: AWS-specific, detects NVMe devices by AWS PCI identifiers.
-* `device-paths`: Lists specific device paths. Each node presents its subset of this list.
-
-</details>
-
-<details>
-
-<summary>Sign specific drives manually in WEKA Operator 1.4.x</summary>
-
-```yaml
-apiVersion: weka.weka.io/v1alpha1
-kind: WekaManualOperation
-metadata:
-  name: sign-specific-drives
-  namespace: weka-operator-system
-spec:
-  action: "sign-drives"
-  image: quay.io/weka.io/weka-in-container:WEKA_IMAGE_VERSION_TAG # Replace with the actual value
-  imagePullSecret: "QUAY_SECRET_KEY"  \ # Replace with the actual value
-  payload:
-    signDrivesPayload:
-      type: device-paths
-      nodeSelector:
-	      weka.io/supports-backends: "true"
-      devicePaths:
-        - /dev/nvme0n1
-        - /dev/nvme1n1
-        - /dev/nvme2n1
-        - /dev/nvme3n1
-        - /dev/nvme4n1
-        - /dev/nvme5n1
-        - /dev/nvme6n1
-        - /dev/nvme7n1
-```
-
-</details>
-
-<details>
-
-<summary>Discover drives</summary>
-
-The following example initiates a drive discovery operation:
-
+{% code title="discover-drives.yaml" %}
 ```yaml
 apiVersion: weka.weka.io/v1alpha1
 kind: WekaManualOperation
@@ -584,103 +631,102 @@ metadata:
   namespace: weka-operator-system
 spec:
   action: "discover-drives"
-  image: quay.io/weka.io/weka-in-container:WEKA_IMAGE_VERSION_TAG # Replace with the actual value
-  imagePullSecret: "QUAY_SECRET_KEY" # Replace with the actual value
+  image: quay.io/weka.io/weka-in-container:5.1.0
+  imagePullSecret: "quay-io-robot-secret"
   payload:
     discoverDrivesPayload:
       nodeSelector:
-	      weka.io/supports-backends: "true"
-```
-
-Key fields:
-
-* `nodeSelector` (payload): Limits the operation to specific nodes.
-* `tolerations` (spec): Supports Kubernetes tolerations for high-level objects like WekaCluster and WekaClient. Only `tolerations` are supported for WekaManualOperation, WekaContainer, and WekaPolicy.
-
-</details>
-
-### 6. Install the WekaCluster and WekaClient custom resources
-
-This procedure provides step-by-step instructions for deploying the WekaCluster and WekaClient Custom Resources (CRs) in a Kubernetes cluster. Follow these procedures in sequence if both components are required. Begin with the **WekaCluster CR**, then create the necessary **client secret**, and finally deploy the **WekaClient CR**.
-
-#### Step 1: Install the WekaCluster CR
-
-To deploy a WEKA cluster backend using the WekaCluster CR, perform the following:
-
-1. Prerequisites:
-   1. Ensure the **driver distribution service** is configured. This is the same service used by WEKA clients. See [#id-4.-set-up-driver-distribution](./#id-4.-set-up-driver-distribution "mention").
-   2. Use either the `WekaManualOperation` (recommended for initial deployments) or `WekaPolicy` to sign and discover drives. See [#id-5.-discover-drives-for-weka-cluster-provisioning](./#id-5.-discover-drives-for-weka-cluster-provisioning "mention").
-2.  Create a manifest file (for example, weka-cluster.yaml) with the required configuration:
-
-    ```yaml
-    apiVersion: weka.weka.io/v1alpha1
-    kind: WekaCluster
-    metadata:
-      name: cluster-dev
-      namespace: default
-    spec:
-      template: dynamic
-      dynamicTemplate:
-        computeContainers: 6
-        driveContainers: 6
-        numDrives: 1
-      image: quay.io/weka.io/weka-in-container:WEKA_IMAGE_VERSION_TAG # Replace with actual image tag
-      nodeSelector:
         weka.io/supports-backends: "true"
-      driversDistService: "https://weka-drivers-dist.weka-operator-system.svc.cluster.local:60002"
-      imagePullSecret: "QUAY_SECRET_KEY" # Replace with the actual secret
-      network:
-        udpMode: true
-        ethDevice: br-ex
-    ```
-
-<details>
-
-<summary>WekaCluster key parameters and configurations</summary>
-
-* **template**: Only `dynamic` is currently supported. Future templates will include `capacity` and `performance`.
-*   **dynamicTemplate**: Configure dynamic settings for compute and drive containers within this template.
-
-    ```yaml
-    dynamicTemplate:
-      computeContainers: <number>
-      driveContainers: <number>
-      numDrives: <number>
-    ```
-* **image**, **imagePullSecret**, **driversDistService**, **nodeSelector**, **tolerations**, **rawTolerations**, and **network** are configured similarly to the WekaClient CR.
-* **roleNodeSelector**: Defines scheduling by role (compute, drive, s3) through a map of node selectors.
-*   **WekaHome Configuration**: Sets the WekaHome endpoint and certificate.
-
-    ```yaml
-    wekaHome:
-      endpoint: "https://custom-domain.lan:30443"
-      cacertSecret: "weka-home-cacert"
-    ```
-* **ipv6**: Enables IPv6 (default is false).
-* **additionalMemory**: Adds memory per role beyond default allocations.
-* **ports**: Override default port assignments if needed, such as for cluster migration.
-* **operatorSecretRef** and **expandEndpoints**: Parameters used exclusively for migration, supporting migration-by-healing from a non-K8s environment to K8s.
-* **Hugepages Offsets**: Specifies offsets for hugepage allocations for drives, compute, and S3 (for example, `driveHugepagesOffset`).
-
-</details>
-
-3. Apply the WekaCluster CR:
-
 ```
+{% endcode %}
+
+3. **Verify discovery:** Confirm that the `weka.io/drives` extended resource is present on the target nodes.
+
+**Reference: Drive selection types**
+
+<table><thead><tr><th width="185">Name</th><th>Description</th></tr></thead><tbody><tr><td><code>all-not-root</code></td><td>Signs all detected block devices except the root device.</td></tr><tr><td><code>aws-all</code></td><td>Detects NVMe devices using AWS PCI identifiers.</td></tr><tr><td><code>device-paths</code></td><td>Targets specific device paths listed in the manifest.</td></tr></tbody></table>
+
+### 6. Provision WEKA resources
+
+Deploy the WekaCluster and WekaClient Custom Resources (CRs) to provision the backend storage and connect your Kubernetes nodes.
+
+Perform these steps in sequence:
+
+1. Install the WekaCluster CR.
+2. Create the WEKA cluster client secret.
+3. Install the WekaClient CR.
+
+#### 1. Install the WekaCluster CR
+
+Provision the WEKA cluster backend using the WekaCluster CR. This resource defines the storage containers, drive configurations, and networking for the cluster.
+
+**Before you begin**
+
+* **Drive discovery:** Ensure you have signed and discovered drives.
+* **Driver distribution:** Verify the driver distribution service is accessible. WEKA recommends the external service at [https://drivers.weka.io](https://drivers.weka.io/).
+* **Drive sharing:** If using WEKA 5.1.0 and Operator 1.10 onwards, use the `containerSize` parameter instead of `numDrives`.
+
+**Procedure**
+
+1. Create a manifest file named `weka-cluster.yaml`.
+2. Configure the resource using the following template. Replace the image tag and secret key placeholders with your recorded values.
+
+{% code title="weka-cluster.yaml" %}
+```yaml
+apiVersion: weka.weka.io/v1alpha1
+kind: WekaCluster
+metadata:
+  name: cluster-dev
+  namespace: default
+spec:
+  template: dynamic
+  dynamicTemplate:
+    computeContainers: 6
+    driveContainers: 6
+    # Use containerSize for WEKA 5.1.0+ with drive sharing
+    containerSize: 1000 
+  image: quay.io/weka.io/weka-in-container:5.1.0
+  nodeSelector:
+    weka.io/supports-backends: "true"
+  driversDistService: "https://drivers.weka.io"
+  imagePullSecret: "quay-io-robot-secret"
+  network:
+    udpMode: true
+```
+{% endcode %}
+
+3. Apply the manifest:
+
+```bash
 kubectl apply -f weka-cluster.yaml
 ```
 
-#### Step 2: Create WEKA cluster client secret
+**Reference: WekaCluster parameters**
 
-Before deploying a WekaClient CR, create a Kubernetes Secret with credentials required to join the WEKA cluster.
+Identify and configure the parameters for the WekaCluster Custom Resource (CR) to define the backend storage environment.
 
-1. Prepare the secret YAML: Create a file named secret.yaml:
+<table><thead><tr><th width="210.73046875">Name</th><th>Description</th></tr></thead><tbody><tr><td><code>template</code></td><td>Specifies the deployment template. Currently, only dynamic is supported.<br><strong>Default:</strong> dynamic</td></tr><tr><td><code>dynamicTemplate</code></td><td>Defines the scale of the cluster, including the number of computeContainers, driveContainers, and <code>numDrives</code> (or <code>containerSize</code> for v1.10+).</td></tr><tr><td><code>image</code></td><td>The WEKA container image version to deploy.</td></tr><tr><td><code>imagePullSecret</code></td><td>The Kubernetes secret name used to authenticate with the image registry.</td></tr><tr><td><code>driversDistService</code></td><td>The URL of the driver distribution service (e.g., <a href="https://drivers.weka.io/">https://drivers.weka.io</a>).</td></tr><tr><td><code>nodeSelector</code></td><td>A map of key-value pairs used to select the nodes for the cluster pods.</td></tr><tr><td><code>roleNodeSelector</code></td><td>Defines specific node scheduling for compute, drive, and s3 roles.</td></tr><tr><td><code>wekaHome</code></td><td>Configures the endpoint and <code>cacertSecret</code> for WEKA Home connectivity.</td></tr><tr><td><code>ipv6</code></td><td>Enables or disables IPv6 networking.</td></tr><tr><td><code>additionalMemory</code></td><td>Specifies additional memory allocation per role beyond the default.<br>Default: 0</td></tr><tr><td><code>ports</code></td><td>Overrides default port assignments, typically used for cluster migration.</td></tr><tr><td><code>operatorSecretRef</code></td><td>Reference to a secret used for migration-by-healing from non-Kubernetes environments.</td></tr><tr><td><code>expandEndpoints</code></td><td>Enables endpoint expansion during migration scenarios.<br>Default: false</td></tr><tr><td><code>hugepagesOffsets</code></td><td>Specifies memory offsets for hugepage allocations (e.g., driveHugepagesOffset).</td></tr><tr><td><code>tolerations</code></td><td>A list of strings that expand to standard Kubernetes tolerations.</td></tr><tr><td><code>rawTolerations</code></td><td>A list of structured Kubernetes toleration objects for advanced scheduling.</td></tr><tr><td><code>network</code></td><td>Configures networking modes, such as <code>udpMode</code> or specific <code>ethDevice</code> settings.</td></tr></tbody></table>
 
+#### 2. Create the WEKA cluster client secret
+
+Create a Kubernetes Secret containing the credentials required for clients to join the WEKA cluster.
+
+**Before you begin**
+
+Obtain the `org`, `join-secret`, `password`, and `username` from your WEKA backend.
+
+**Procedure**
+
+1. Encode each credential value to **base64**.
+   * **Linux/macOS example:** `echo -n 'my_password' | base64`
+2. Create a file named `secret.yaml` and populate it with the encoded values.
+
+{% code title="secret.yaml" %}
 ```yaml
 apiVersion: v1
 kind: Secret
 metadata:
-  name: weka-cluster-dev  # The wekaSecretRef in the WekaClient CR must much this secret name
+  name: weka-cluster-dev
   namespace: weka-operator-system
 type: Opaque
 data:
@@ -689,232 +735,136 @@ data:
   password: <base64-encoded-password>
   username: <base64-encoded-username>
 ```
+{% endcode %}
 
-{% hint style="info" %}
-Replace all placeholder with base64-encoded values provided by your WEKA backend.
-{% endhint %}
+3. Apply the secret:
 
-2. Apply the secret:
-
-```
+```bash
 kubectl apply -f secret.yaml
 ```
 
-#### Step 3: Install the WekaClient CR
+#### 3. Install the WekaClient CR
 
-The WekaClient CR deploys WekaContainers across designated Kubernetes nodes, similar to a DaemonSet but without automatic pod cleanup.
+Deploy the WekaClient Custom Resource (CR) to manage WEKA containers across designated Kubernetes nodes. The WekaClient CR operates similarly to a DaemonSet, provisioning individual pods that maintain a persistent data-plane layer for your workloads.
 
-**WekaClient specification (reference)**\
-Key configurable fields in the `WekaClientSpec`:
+**Before you begin**
 
-```go
-type WekaClientSpec struct {
-    Image               string            `json:"image"`                   // Image to be used for WekaContainer
-    ImagePullSecret     string            `json:"imagePullSecret,omitempty"` // Secret for pulling the image
-    Port                int               `json:"port,omitempty"`           // If unset (0), WEKA selects a free port from PortRange
-    AgentPort           int               `json:"agentPort,omitempty"`      // If unset (0), WEKA selects a free port from PortRange
-    PortRange           *PortRange        `json:"portRange,omitempty"`      // Used for dynamic port allocation
-    NodeSelector        map[string]string `json:"nodeSelector,omitempty"`   // Specifies nodes for deployment
-    WekaSecretRef       string            `json:"wekaSecretRef,omitempty"`  // Reference to Weka secret
-    NetworkSelector     NetworkSelector   `json:"network,omitempty"`        // Defines network configuration
-    DriversDistService  string            `json:"driversDistService,omitempty"` // URL for driver distribution service
-    DriversLoaderImage  string            `json:"driversLoaderImage,omitempty"` // Image for drivers loader
-    JoinIps             []string          `json:"joinIpPorts,omitempty"`    // IPs to join for cluster setup
-    TargetCluster       ObjectReference   `json:"targetCluster,omitempty"`  // Reference to target cluster
-    CpuPolicy           CpuPolicy         `json:"cpuPolicy,omitempty"`      // CPU policy, e.g., "auto," "shared," "dedicated," etc.
-    CoresNumber         int               `json:"coresNum,omitempty"`       // Number of cores to use
-    CoreIds             []int             `json:"coreIds,omitempty"`        // Specific core IDs to use
-    TracesConfiguration *TracesConfiguration `json:"tracesConfiguration,omitempty"` // Trace settings
-    Tolerations         []string          `json:"tolerations,omitempty"`    // Tolerations for nodes
-    RawTolerations      []v1.Toleration   `json:"rawTolerations,omitempty"` // Detailed toleration settings
-    AdditionalMemory    int               `json:"additionalMemory,omitempty"` // Additional memory allocation
-    WekaHomeConfig      WekahomeClientConfig  `json:"wekaHomeConfig,omitempty"` // Deprecated field
-    WekaHome            *WekahomeClientConfig `json:"wekaHome,omitempty"`       // Deprecated field
-    UpgradePolicy       UpgradePolicy     `json:"upgradePolicy,omitempty"`   // Policy for handling upgrades
-}
-```
+* **Label nodes:** Apply the following label to every worker node intended to host WEKA client pods: `kubectl label nodes <node-name> weka.io/supports-clients=true`
+* **Verify secrets:** Ensure a Kubernetes Secret (for example, weka-cluster-dev) exists in the `weka-operator-system` namespace. The secret must contain base64-encoded cluster credentials (`org`, `join-secret`, `password`, and `username`).
+* **Identify drivers service:** Identify whether you are using the external driver distribution service ([https://drivers.weka.io](https://drivers.weka.io)) or a local service endpoint.
 
-<details>
+**Procedure**
 
-<summary>WekaClient key parameters and configurations</summary>
+1. Create a manifest file named `weka-client.yaml`.
+2. Configure the WekaClient resource based on your environment. Use the targetCluster field for internal Kubernetes-managed clusters or joinIpPorts for clusters external to the environment.
 
-* **image**: Specifies the image to use for the container.
-* **imagePullSecret**: Defines the secret to use for pulling the image, which is propagated into the pod.
-* **port** and **agentPort**:
-  * **agentPort**: A single port used by the agent.
-  * **port**: Represents a range of 100 ports. This range may be reduced in the future, as it is not fully utilized by clients and is shared on the WEKA side.
-*   **portRange**:\
-    Instead of specifying individual ports, a range can be defined. The operator automatically finds an available port instead of using the same one across all servers.
+**Example: Internal cluster connection**
 
-    ```yaml
-    portRange:
-      basePort: 45000
-    ```
-* **nodeSelector**: Selects the node where the WekaContainer will be scheduled.
-*   **network**: Defines the network device for WEKA to use. By default, WEKA runs in UDP mode if no network device is specified. If using an Ethernet device, specify the device name (for example, `mlnx0`).
-
-    ```yaml
-    network:
-      ethDevice: mlnx0
-    ```
-* **driversDistService**:\
-  A reference to the distribution service for drivers.
-*   **joinIpPorts**: Used when the WEKA cluster and WEKA clients are not in the same Kubernetes cluster.
-
-    ```yaml
-    joinIpPorts: ["10.0.1.168:16101"]
-    ```
-*   **targetCluster**: Used when the WEKA cluster and WEKA clients are in the same Kubernetes cluster.
-
-    ```yaml
-    targetCluster:
-      name: cluster-dev
-      namespace: default
-    ```
-* **coresNum**: Specifies the number of full cores to use for each WekaContainer.
-* **cpuPolicy**:\
-  Default value is `auto`, which automatically detects whether nodes are running with hyperthreading and allocates cores accordingly.
-  * **Example**: 2 WEKA cores = 2 full cores, reserving 5 hyperthreads for a pod.
-  * **coreIds**: Used in combination with `cpuPolicy: manual` for manual core allocation.\
-    **Note**: Unless advised by WEKA support, avoid using any policy other than `auto`.
-* **tracesConfiguration**: Configures trace capacity allocations.
-*   **tolerations** and **rawTolerations**:
-
-    * **tolerations**: A list of strings that expand to `NoSchedule` and `NoExecution` tolerations for existing keys.
-    * **rawTolerations**: A list of Kubernetes toleration objects.
-
-    ```yaml
-    tolerations:
-      - simple-toleration
-      - another-one
-    rawTolerations:
-      - key: "dedicated"
-        operator: "Equal"
-        value: "weka-cluster"
-        effect: "NoSchedule"
-    ```
-* **additionalMemory**: Specifies additional memory in megabytes for cases when default memory allocation is insufficient.\
-  **Note**: Default memory allocations are typically set for 90%+ utilization.
-*   **wekaHome**: Configures the Weka home directory to use. Defaults to the Weka cloud home.\
-    The primary configuration of Weka home is in the `WekaCluster` CR, but WekaClient can also specify a `cacert` for the client. This certificate is placed on client pods to connect to Weka Home.
-
-    ```yaml
-    wekaHome:
-      cacertSecret: "weka-home-cacert"
-    ```
-* **upgradePolicy**:\
-  Defines how the WekaContainers are upgraded.
-  * **rolling** (default): WekaContainers are updated one by one.
-  * **manual**: WekaContainers are set to a new version, but the pod is not deleted until manually triggered. This gives the user control over when to update.
-  * **all-at-once**: All WekaContainers are upgraded simultaneously after the image is changed.
-*   **gracefulDestroyDuration**:\
-    Specifies the duration for which the cluster remains in a paused state, keeping local data and drive allocations while deleting all pods.
-
-    * **Default**: 24 hours.
-    * **Note**: In case of accidental cluster deletion, override this duration with a larger value and contact Weka support for recovery procedures. This is a safety measure, not a pause/unpause feature.
-
-    To override the graceful destroy duration:
-
-{% code overflow="wrap" %}
-```
-kubectl patch WekaCluster cluster-dev -n weka-operator-system --type='merge' -p='{"status":{"overrideGracefulDestroyDuration": "10000h"}}' --subresource=status
-```
-{% endcode %}
-
-To release the cluster (allow full deletion):
-
-{% code overflow="wrap" %}
-```
-kubectl patch WekaCluster cluster-dev -n weka-operator-system --type='merge' -p='{"status":{"overrideGracefulDestroyDuration": "0"}}' --subresource=status
-```
-{% endcode %}
-
-</details>
-
-{% hint style="info" %}
-**Label propagation behavior:** All labels are automatically propagated from parent objects to the child objects they create. The propagation behavior is as follows:
-
-* WekaContainer propagates labels to the corresponding Pods.
-* WekaCluster propagates labels to the WekaContainer objects it creates.
-* WekaPolicy propagates labels to the WekaContainer objects it creates.
-* WekaClient propagates labels to the WekaContainer objects it creates.
-{% endhint %}
-
-<details>
-
-<summary>Example: Connect to an internal WEKA cluster</summary>
-
+{% code title="weka-client.yaml" %}
 ```yaml
 apiVersion: weka.weka.io/v1alpha1
 kind: WekaClient
 metadata:
   name: cluster-dev-clients
 spec:
-  image: quay.io/weka.io/weka-in-container:WEKA_IMAGE_PLACEHOLDER
-  imagePullSecret: "QUAY_SECRET_KEY" # Replace with the actual value
+  image: quay.io/weka.io/weka-in-container:5.1.0
+  imagePullSecret: "quay-io-robot-secret"
   driversDistService: "https://weka-drivers-dist.weka-operator-system.svc.cluster.local:60002"
   portRange:
     basePort: 46000
   nodeSelector:
     weka.io/supports-clients: "true"
-  wekaSecretRef: weka-cluster-dev # Must match secret name created using secret yaml 
+  wekaSecretRef: weka-cluster-dev
   targetCluster:
     name: cluster-dev
     namespace: default
-  network:
-    ethDevice: mlnx0
 ```
+{% endcode %}
 
-</details>
+**Example: External cluster connection**
 
-<details>
-
-<summary>Example: Connect to an external WEKA cluster</summary>
-
-<pre class="language-yaml"><code class="lang-yaml"><strong>apiVersion: weka.weka.io/v1alpha1
-</strong>kind: WekaClient
+{% code title="weka-client.yaml" %}
+```yaml
+apiVersion: weka.weka.io/v1alpha1
+kind: WekaClient
 metadata:
   name: cluster-dev-clients
 spec:
-  image: quay.io/weka.io/weka-in-container:WEKA_IMAGE_PLACEHOLDER
-  imagePullSecret: "QUAY_SECRET_KEY" # Replace with the actual value
-  driversDistService: "https://weka-drivers-dist.weka-operator-system.svc.cluster.local:60002"
+  image: quay.io/weka.io/weka-in-container:5.1.0
+  imagePullSecret: "quay-io-robot-secret"
+  driversDistService: "https://drivers.weka.io"
   portRange:
     basePort: 46000
   nodeSelector:
     weka.io/supports-clients: "true"
-  wekaSecretRef: weka-cluster-dev # Must match secret name created using secret yaml 
-  joinIpPorts: ["10.0.2.137:16101"] # Replace with backend or LB IP:port
+  wekaSecretRef: weka-cluster-dev 
+  joinIpPorts: ["10.0.2.137:16101"]
   network:
     ethDevice: mlnx0
-</code></pre>
-
-</details>
-
-Apply the manifest:
-
 ```
+{% endcode %}
+
+3. Apply the manifest.
+
+```bash
 kubectl apply -f weka-client.yaml
 ```
 
-#### Step 4: Next steps
+**Reference: WekaClient parameters**
 
-After deploying the WekaCluster and WekaClient CRs:
+Identify the configurable fields within the WekaClient specification to customize your deployment.
 
-1. Monitor their status using `kubectl get wekaClusters` and `kubectl get wekaClients`.
-2. After deploying the `WekaCluster` and `WekaClient` Custom Resources (CRs), perform one of the following steps based on your WEKA Operator version.
-   *   **For WEKA Operator v1.7.0 and newer:**
+<table><thead><tr><th width="212.390625">Name</th><th>Description</th></tr></thead><tbody><tr><td><code>image</code></td><td>The WEKA container image version to deploy.</td></tr><tr><td><code>imagePullSecret</code></td><td>Secret name used to authenticate with the image registry.</td></tr><tr><td><code>port</code></td><td>Defines a range of 100 ports for the container.<br>Default: Dynamic</td></tr><tr><td><code>agentPort</code></td><td>Specifies a single port used by the agent process.<br>Default: Dynamic</td></tr><tr><td><code>portRange</code></td><td>Defines a basePort (for example, 45000) for automatic allocation.</td></tr><tr><td><code>nodeSelector</code></td><td>Selects the nodes where WEKA containers are scheduled.</td></tr><tr><td><code>network</code></td><td>Defines the network device (for example, mlnx0) or defaults to UDP mode.<br>Default: </td></tr><tr><td><code>driversDistService</code></td><td>URL for the driver distribution service.</td></tr><tr><td><code>targetCluster</code></td><td>Reference to a WekaCluster CR within the same environment.</td></tr><tr><td><code>joinIpPorts</code></td><td>IP addresses used to join a cluster outside the local environment.</td></tr><tr><td><code>wekaSecretRef</code></td><td>Reference to the Kubernetes Secret containing cluster credentials.</td></tr><tr><td><code>coresNum</code></td><td>Number of physical CPU cores to allocate to each container.<br>Default: 1</td></tr><tr><td><code>cpuPolicy</code></td><td>Defines core allocation behavior (auto, manual, shared, dedicated).<br>Default: auto</td></tr><tr><td><code>upgradePolicy</code></td><td>Sets the upgrade strategy (rolling, manual, all-at-once).<br>Default: rolling</td></tr><tr><td><code>gracefulDestroyDuration</code></td><td>Pause duration for local data/drive allocations during pod deletion.<br>Default: 24H</td></tr></tbody></table>
 
-       With newer WEKA Operator versions, the CSI plugin, necessary secrets, and a default `StorageClass` are configured automatically.
+### 7. Manage resources and label propagation
 
-       * **StorageClass naming:** A `StorageClass` is automatically created using the pattern `weka-<groupName>-<fsName>`. Any non-standard mount options will be reflected in the name (e.g., `weka-<groupName>-<fsName>-forcedirect`).
-       * **Disabling auto-creation:** To prevent the automatic creation of a `StorageClass`, you can set `csi.storageClassCreationDisabled: true` in your Helm values or operator configuration.
-       * **Next steps:** You can now proceed to create a Persistent Volume Claim (PVC) or define additional `StorageClass` objects. For instructions, see the [dynamic-and-static-provisioning.md](../../appendices/weka-csi-plugin/dynamic-and-static-provisioning.md "mention") topic.
-   *   **For WEKA Operator v1.6.2 and older:**
+Monitor the health of your WEKA resources and understand how configuration metadata flows through the system.
 
-       If you are using an older WEKA Operator (v1.6.2 and below) or are not using the `targetCluster` parameter, you must install the CSI plugin manually.
+**Label propagation**
 
-       * **Next steps:** Proceed to the [weka-csi-plugin](../../appendices/weka-csi-plugin/ "mention") for complete installation instructions.
+The WEKA Operator automatically propagates labels from parent objects to children to maintain consistent metadata across the environment:
+
+* WekaClient > WekaContainer > Pod
+* WekaPolicy > WekaContainer
+* WekaCluster > WekaContainer
+
+**Resource monitoring**
+
+Run the following commands to verify the status of your deployment:
+
+* Monitor cluster status: `kubectl get wekaClusters`
+* Monitor client status: `kubectl get wekaClients`
+
+### 8. Manage the WEKA cluster management proxy
+
+Access WEKA management and service endpoints using Kubernetes Ingress resources. WEKA exposes these endpoints to provide a unified interface for system administration and monitoring.
+
+To enable external access, the Kubernetes environment typically requires the following infrastructure:
+
+* **Ingress controller:** A controller such as NGINX or Traefik to manage incoming traffic.
+* **External connectivity:** A load balancer or equivalent mechanism to route traffic from outside the cluster.
+* **DNS resolution:** Configured hostnames that resolve to the Ingress controller's external IP.
+* **TLS termination:** Optional platform-managed certificate management for secure HTTPS communication.
+
+**Ingress configuration**
+
+WEKA simplifies basic setups by managing Ingress configuration through a single `ingressClass` setting. For advanced or highly customized networking scenarios, you can wrap or modify the service using standard Kubernetes Ingress resources.
+
+{% hint style="info" %}
+WEKA does not install or configure Ingress controllers, external load balancers, DNS records, or TLS certificates. These components remain the responsibility of the platform administrator.
+{% endhint %}
+
+### 9. Perform post-deployment storage configuration
+
+Configure the CSI plugin and storage classes based on your operator version to enable persistent volume provisioning.
+
+<table><thead><tr><th width="170.171875">Operator version</th><th width="246.9453125">Behavior</th><th>Required action</th></tr></thead><tbody><tr><td>v1.7.0 and newer</td><td>CSI plugin and StorageClass are configured automatically.</td><td>Proceed to create a Persistent Volume Claim (PVC).<br>See <a data-mention href="../../appendices/weka-csi-plugin/dynamic-and-static-provisioning.md">dynamic-and-static-provisioning.md</a>.</td></tr><tr><td>v1.6.2 and older</td><td>CSI plugin requires manual installation.</td><td>Manually install the WEKA CSI Plugin. See <a data-mention href="../../appendices/weka-csi-plugin/">weka-csi-plugin</a>.</td></tr></tbody></table>
+
+{% hint style="info" %}
+For v1.7.0+, the operator creates storage classes following the pattern `weka-<groupName>-<fsName>`. To disable this, set `csi.storageClassCreationDisabled: true` in your Helm values.
+{% endhint %}
+
+***
 
 ## Upgrade the WEKA Operator
 
@@ -940,6 +890,8 @@ Upgrading the WEKA Operator involves updating the Operator and managing `wekaCli
    * **Create a new builder**: For each WEKA version, create a new builder instance with an updated `wekaContainer` meta name that corresponds to the new version. This ensures that clients and resources linked to specific kernel versions can continue to operate without conflicts.
    * **Cleanup outdated builders**: Once the upgrade is validated and previous versions are no longer needed, you can delete outdated builder instances associated with those older versions. This cleanup step optimizes resources but allows you to maintain multiple builder instances if supporting different kernel versions is required.
 
+***
+
 ## Delete a WekaCluster
 
 When you delete a WekaCluster, the system enforces a 24-hour grace period before completing the removal. To expedite this process and delete the cluster immediately, you can set the graceful destroy duration to zero before initiating the deletion.
@@ -964,6 +916,8 @@ When you delete a WekaCluster, the system enforces a 24-hour grace period before
 
     * `<cluster name>`: Specifies the name of the WekaCluster you want to delete.
     * `<cluster namespace>`: Specifies the namespace where the cluster is located.
+
+***
 
 ## Best practices
 
@@ -1044,6 +998,8 @@ weka-operator-system   weka-dsc-34.242.2.16                                     
 
 This view provides a quick status overview, showing progress and resource allocation at a glance.
 
+***
+
 ## Troubleshooting
 
 This section provides guidance for resolving common deployment issues with WEKA Operator.
@@ -1065,6 +1021,8 @@ Check the logs for this message and see for further steps.
 ### CSI not functioning
 
 Ensure the `nodeSelector` configurations on both the CSI installation and the WekaClient match.
+
+***
 
 ## Appendix: Kubernetes Glossary
 

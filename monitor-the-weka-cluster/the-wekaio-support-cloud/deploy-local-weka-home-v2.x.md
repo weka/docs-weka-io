@@ -1,7 +1,7 @@
 ---
 description: >-
-  Deploy, upgrade, and manage Local WEKA Home (LWH) v2.x on Minikube, an
-  on-premises, observability solution for WEKA clusters.
+  Learn how to deploy, upgrade, configure, and troubleshoot Local WEKA Home v2x
+  on Minikube, an on-premises, observability solution for WEKA clusters.
 metaLinks:
   alternates:
     - >-
