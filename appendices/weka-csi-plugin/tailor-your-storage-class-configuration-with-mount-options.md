@@ -6,9 +6,7 @@ description: >-
 
 # Configure storage class mount options
 
-## Custom mount options
-
-Manage how WEKA volumes are presented to pods by defining mount options in the StorageClass. These options are key-value pairs that modify default filesystem behavior to optimize performance and data management for containerized workloads.
+Manage how WEKA volumes are presented to pods by defining mount options in the StorageClass. These options are comma-separated `key-value` pairs and flags that modify default filesystem behavior to optimize performance and data management for containerized workloads.
 
 * **Mount options:** Settings applied during volume mounting that influence caching, data integrity, and filesystem limits.
 * **Performance optimization:** Strategies to enhance read-heavy or write-intensive workloads by adjusting parameters like `readcache` or `noatime`.
@@ -32,85 +30,78 @@ Define and apply custom mount options to optimize storage behavior for specific 
 **Procedure**
 
 1. Create the StorageClass:
-   1. Create a YAML file named `storageclass-wekafs-mountoptions.yaml`.
-   2. Add the following configuration to define the custom mount options:
+   * Create a YAML file named `storageclass-wekafs-mountoptions.yaml`.
+   *   Add the following configuration:
 
-```yaml
-apiVersion: storage.k8s.io/v1
-kind: StorageClass
-metadata:
-  name: storageclass-wekafs-mountoptions
-provisioner: csi.weka.io
-parameters:
-  mountOptions: "rw,relatime,readcache,noatime,readahead_kb=32768,dentry_max_age_positive=1000,dentry_max_age_negative=0"
-```
+       ```yaml
+       apiVersion: storage.k8s.io/v1
+       kind: StorageClass
+       metadata:
+         name: storageclass-wekafs-mountoptions
+       provisioner: csi.weka.io
+       parameters:
+         mountOptions: "rw,relatime,readcache,noatime,readahead_kb=32768,dentry_max_age_positive=1000,dentry_max_age_negative=0"
+       ```
+   *   Apply the StorageClass:
 
-&#x20;      c. Apply the StorageClass:
-
-```bash
-kubectl apply -f storageclass-wekafs-mountoptions.yaml
-```
-
+       ```bash
+       kubectl apply -f storageclass-wekafs-mountoptions.yaml
+       ```
 2. Create the CSI secret:
-   * Apply the secret to provide necessary credentials for the CSI Plugin (see example in: [../common/csi-wekafs-api-secret.yaml](https://github.com/weka/csi-wekafs/blob/main/examples/common/csi-wekafs-api-secret.yaml)):
+   *   Apply the secret to provide credentials for the CSI Plugin (example: [../common/csi-wekafs-api-secret.yaml](https://github.com/weka/csi-wekafs/blob/main/examples/common/csi-wekafs-api-secret.yaml)):
 
-```bash
-kubectl apply -f ../common/csi-wekafs-api-secret.yaml
-```
-
+       ```bash
+       kubectl apply -f ../common/csi-wekafs-api-secret.yaml
+       ```
 3. Provision a new volume:
-   * Apply your Persistent Volume Claim (PVC) manifest that references the new StorageClass:
+   *   Apply your Persistent Volume Claim (PVC) manifest that references the new StorageClass:
 
-```bash
-kubectl apply -f <FILE>.yaml
-```
-
+       ```bash
+       kubectl apply -f <FILE>.yaml
+       ```
 4. Deploy the application:
-   1. Create a deployment manifest file named `csi-app-fs-mountoptions.yaml`.
-   2. Define the container and reference the PVC:
+   * Create a deployment manifest file named `csi-app-fs-mountoptions.yaml`.
+   *   Define the container and reference the PVC:
 
-```yaml
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: csi-app-fs-mountoptions
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: csi-app-fs-mountoptions
-  template:
-    metadata:
-      labels:
-        app: csi-app-fs-mountoptions
-    spec:
-      containers:
-      - name: csi-app-fs-mountoptions
-        image: <YOUR_IMAGE>
-        volumeMounts:
-        - mountPath: "/data"
-          name: wekafs-volume
-      volumes:
-      - name: wekafs-volume
-        persistentVolumeClaim:
-          claimName: pvc-wekafs-fs-mountoptions
-```
+       ```yaml
+       apiVersion: apps/v1
+       kind: Deployment
+       metadata:
+         name: csi-app-fs-mountoptions
+       spec:
+         replicas: 1
+         selector:
+           matchLabels:
+             app: csi-app-fs-mountoptions
+         template:
+           metadata:
+             labels:
+               app: csi-app-fs-mountoptions
+           spec:
+             containers:
+             - name: csi-app-fs-mountoptions
+               image: <YOUR_IMAGE>
+               volumeMounts:
+               - mountPath: "/data"
+                 name: wekafs-volume
+             volumes:
+             - name: wekafs-volume
+               persistentVolumeClaim:
+                 claimName: pvc-wekafs-fs-mountoptions
+       ```
+   *   Deploy the application:
 
-&#x20;       c. Deploy the application:
-
-```bash
-kubectl apply -f csi-app-fs-mountoptions.yaml
-```
-
+       ```bash
+       kubectl apply -f csi-app-fs-mountoptions.yaml
+       ```
 5. Validate the mount settings:
-   1. Access the application Process to check the mount status:
+   *   Access the application pod to check the mount status:
 
-```bash
-kubectl exec csi-app-fs-mountoptions -- mount -t wekafs
-```
+       ```bash
+       kubectl exec csi-app-fs-mountoptions -- mount -t wekafs
+       ```
+   *   Verify the output displays the configured options:
 
-&#x20;      b. Verify the output displays the configured options:
-
-```bash
-`csivol-pvc-15a45f20-Z72GJXDCEWQ5 on /data type wekafs (rw,relatime,readcache,noatime,readahead_kb=32768,dentry_max_age_positive=1000,dentry_max_age_negative=0)`
-```
+       ```bash
+       csivol-pvc-15a45f20-Z72GJXDCEWQ5 on /data type wekafs (rw,relatime,readcache,noatime,readahead_kb=32768,dentry_max_age_positive=1000,dentry_max_age_negative=0)
+       ```
