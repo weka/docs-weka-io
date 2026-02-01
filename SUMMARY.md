@@ -284,7 +284,7 @@
 * [WEKA CSI Plugin](appendices/weka-csi-plugin/README.md)
   * [Deployment](appendices/weka-csi-plugin/deployment.md)
   * [Storage class configurations](appendices/weka-csi-plugin/storage-class-configurations.md)
-  * [Tailor your storage class configuration with mount options](appendices/weka-csi-plugin/tailor-your-storage-class-configuration-with-mount-options.md)
+  * [Configure storage class mount options](appendices/weka-csi-plugin/tailor-your-storage-class-configuration-with-mount-options.md)
   * [Dynamic and static provisioning](appendices/weka-csi-plugin/dynamic-and-static-provisioning.md)
   * [Launch an application using WEKA as the POD's storage](appendices/weka-csi-plugin/launch-an-application-using-weka-as-the-pods-storage.md)
   * [Configure topology-aware volume provisioning](appendices/weka-csi-plugin/configure-topology-aware-volume-provisioning.md)

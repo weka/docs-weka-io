@@ -554,7 +554,7 @@ spec:
     signDrivesPayload:
       type: device-paths
       nodeSelector:
-	      weka.io/supports-backends: "true"
+        weka.io/supports-backends: "true"
       devicePaths:
         - /dev/nvme0n1
         - /dev/nvme1n1
