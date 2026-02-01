@@ -1,149 +1,109 @@
 ---
-description: Leverage mount options for tailored storage control with the CSI Plugin.
+description: >-
+  Configure the WEKA CSI Plugin to use specific mount options for tailored
+  storage control.
 ---
 
-# Tailor your storage class configuration with mount options
+# Configure storage class mount options
 
-## **Overview**
+## Custom mount options
 
-The CSI Plugin empowers you with **mount options**, allowing you to customize how WEKA volumes are presented to pods. This enables granular control over storage behavior, optimizing performance and data management for containerized workloads.
+Manage how WEKA volumes are presented to pods by defining mount options in the StorageClass. These options are comma-separated `key-value` pairs and flags that modify default filesystem behavior to optimize performance and data management for containerized workloads.
 
-Mount options are key-value pairs specified during volume mounting that modify the default filesystem or storage provider behavior. These settings influence caching, data integrity, filesystem limits, and more.
+* **Mount options:** Settings applied during volume mounting that influence caching, data integrity, and filesystem limits.
+* **Performance optimization:** Strategies to enhance read-heavy or write-intensive workloads by adjusting parameters like `readcache` or `noatime`.
+* **Data integrity:** Settings that ensure consistency and reliability for sensitive applications.
 
-**When to use mount options:**
+#### Supported mount options
 
-* **Tailor performance:** Optimize caching strategies for read-heavy or write-intensive workloads (`noatime`, `readcache`).
-* **Enhance data integrity:** Enforce data consistency and reliability (example: `sync`).
-* **Troubleshoot issues:** Fine-tune settings to resolve performance bottlenecks or compatibility problems.
+The CSI Plugin supports standard mount options except for the read-only (ro) option. Use the following table to identify appropriate settings for your workload.
 
-### **Standard mount options and use cases**
+<table><thead><tr><th width="167">Name</th><th>Description</th><th>Use case</th></tr></thead><tbody><tr><td><code>sync</code></td><td>Forces data writes to disk before the mount completes.</td><td>Databases requiring high integrity.</td></tr><tr><td><code>noatime</code></td><td>Disables access timestamp updates.</td><td>Reduces write amplification.</td></tr><tr><td><code>nodev</code></td><td>Prevents the use of device nodes.</td><td>Security-sensitive environments.</td></tr><tr><td><code>noexec</code></td><td>Disallows program execution on the volume.</td><td>Security-focused deployments.</td></tr><tr><td><code>atime</code></td><td>Enables access time recording.</td><td>Monitoring file access patterns.</td></tr><tr><td><code>diratime</code></td><td>Enables directory access time recording.</td><td>Tracking directory access.</td></tr><tr><td><code>relatime</code></td><td>Updates access times relative to modification times.</td><td>Improved performance.</td></tr><tr><td><code>data=ordered</code></td><td>Ensures sequential writes flush to disk immediately.</td><td>Strict write ordering.</td></tr></tbody></table>
 
-The CSI Plugin supports all standard mount options except the read-only (`ro`) option. The following table briefly lists the supported mount options for convenience.
+## Apply custom mount options using the CSI Plugin
 
-| Option         | Description                                                | Use cases                                        |
-| -------------- | ---------------------------------------------------------- | ------------------------------------------------ |
-| `sync`         | Ensure data is written to disk before mount                | Database workloads requiring high data integrity |
-| `noatime`      | Disable write timestamp updates                            | Reduce write amplification, improve performance  |
-| `nodev`        | Disallow device nodes                                      | Security-sensitive environments                  |
-| `noexec`       | Disallow program execution                                 | Security-focused deployments                     |
-| `atime`        | Enable access time recording                               | Monitor file access patterns                     |
-| `diratime`     | Enable directory access time recording                     | Track directory access time                      |
-| `relatime`     | Update access and modification times relative to stat time | Reduce write amplification, improve performance  |
-| `data=ordered` | Ensure sequential writes are flushed to disk immediately   | Databases requiring strict write ordering        |
+Define and apply custom mount options to optimize storage behavior for specific applications.
 
-## **Set custom mount options with CSI Plugin**
+**Before you begin**
 
-This example procedure demonstrates how to set custom mount options using the WEKA CSI Plugin.
+* Ensure the Kubernetes environment is accessible.
+* Install and configure the kubectl command-line tool.
 
-#### **Prerequisites:**
+**Procedure**
 
-* The Kubernetes environment is set up and accessible.
-* The kubectl command-line tool is installed and configured.
+1. Create the StorageClass:
+   * Create a YAML file named `storageclass-wekafs-mountoptions.yaml`.
+   *   Add the following configuration:
 
-#### **Procedure:**
+       ```yaml
+       apiVersion: storage.k8s.io/v1
+       kind: StorageClass
+       metadata:
+         name: storageclass-wekafs-mountoptions
+       provisioner: csi.weka.io
+       parameters:
+         mountOptions: "rw,relatime,readcache,noatime,readahead_kb=32768,dentry_max_age_positive=1000,dentry_max_age_negative=0"
+       ```
+   *   Apply the StorageClass:
 
-1.  **Create StorageClass:**
+       ```bash
+       kubectl apply -f storageclass-wekafs-mountoptions.yaml
+       ```
+2. Create the CSI secret:
+   *   Apply the secret to provide credentials for the CSI Plugin (example: [../common/csi-wekafs-api-secret.yaml](https://github.com/weka/csi-wekafs/blob/main/examples/common/csi-wekafs-api-secret.yaml)):
 
-    a. Open or create a YAML file for your StorageClass definition (for example, `storageclass-wekafs-mountoptions.yaml`).
+       ```bash
+       kubectl apply -f ../common/csi-wekafs-api-secret.yaml
+       ```
+3. Provision a new volume:
+   *   Apply your Persistent Volume Claim (PVC) manifest that references the new StorageClass:
 
-    b. Add the following content to define the StorageClass with custom mount options:
+       ```bash
+       kubectl apply -f <FILE>.yaml
+       ```
+4. Deploy the application:
+   * Create a deployment manifest file named `csi-app-fs-mountoptions.yaml`.
+   *   Define the container and reference the PVC:
 
-    <pre class="language-yaml" data-overflow="wrap"><code class="lang-yaml">apiVersion: storage.k8s.io/v1
-    kind: StorageClass
-    metadata:
-      name: storageclass-wekafs-mountoptions
-    provisioner: csi.weka.io
-    parameters:
-      mountOptions: "rw,relatime,readcache,noatime,readahead_kb=32768,dentry_max_age_positive=1000,dentry_max_age_negative=0"
-    </code></pre>
+       ```yaml
+       apiVersion: apps/v1
+       kind: Deployment
+       metadata:
+         name: csi-app-fs-mountoptions
+       spec:
+         replicas: 1
+         selector:
+           matchLabels:
+             app: csi-app-fs-mountoptions
+         template:
+           metadata:
+             labels:
+               app: csi-app-fs-mountoptions
+           spec:
+             containers:
+             - name: csi-app-fs-mountoptions
+               image: <YOUR_IMAGE>
+               volumeMounts:
+               - mountPath: "/data"
+                 name: wekafs-volume
+             volumes:
+             - name: wekafs-volume
+               persistentVolumeClaim:
+                 claimName: pvc-wekafs-fs-mountoptions
+       ```
+   *   Deploy the application:
 
-````
-c. Apply the StorageClass using the following command:
+       ```bash
+       kubectl apply -f csi-app-fs-mountoptions.yaml
+       ```
+5. Validate the mount settings:
+   *   Access the application pod to check the mount status:
 
-```bash
-kubectl apply -f storageclass-wekafs-mountoptions.yaml
-```
-````
+       ```bash
+       kubectl exec csi-app-fs-mountoptions -- mount -t wekafs
+       ```
+   *   Verify the output displays the configured options:
 
-2\. **Create CSI secret:**\
-a. Execute the following command to create a CSI secret named `csi-wekafs-api-secret` (located in [../common/csi-wekafs-api-secret.yaml](https://github.com/weka/csi-wekafs/blob/main/examples/common/csi-wekafs-api-secret.yaml)):
-
-````
-```bash
-kubectl apply -f ../common/csi-wekafs-api-secret.yaml
-```
-
-This step ensures that the necessary credentials are available for the CSI Plugin.
-````
-
-3\. **Provision a new volume:**
-
-````
-Apply the StorageClass to provision a new volume. Use the following command:
-
-```bash
-kubectl apply -f <FILE>.yaml
-```
-
-* Replace `<FILE>` with the path to your YAML file containing the Persistent Volume Claim (PVC) definition.
-````
-
-4\. **Create application:**
-
-````
-a. Create an application manifest file (for example, `csi-app-fs-mountoptions.yaml`) or use an existing one.
-
-b. In the manifest, specify the PVC with the custom mount options:
-
-```yaml
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: csi-app-fs-mountoptions
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: csi-app-fs-mountoptions
-  template:
-    metadata:
-      labels:
-        app: csi-app-fs-mountoptions
-    spec:
-      containers:
-      - name: csi-app-fs-mountoptions
-        image: <YOUR_IMAGE>
-        volumeMounts:
-        - mountPath: "/data"
-          name: wekafs-volume
-      volumes:
-      - name: wekafs-volume
-        persistentVolumeClaim:
-          claimName: pvc-wekafs-fs-mountoptions
-```
-
-* Replace `<YOUR_IMAGE>` with the desired container image.
-
-c. Deploy the application:
-
-```bash
-kubectl apply -f csi-app-fs-mountoptions.yaml
-```
-````
-
-5\. **Attach and validate:**
-
-````
-Attach to the application pod:
-
-```bash
-kubectl exec csi-app-fs-mountoptions -- mount -t wekafs
-```
-
-b. Verify that the output resembles to the following example:
-
-```bash
-csivol-pvc-15a45f20-Z72GJXDCEWQ5 on /data type wekafs (rw,relatime,readcache,noatime,readahead_kb=32768,dentry_max_age_positive=1000,dentry_max_age_negative=0)
-
-```
-````
+       ```bash
+       csivol-pvc-15a45f20-Z72GJXDCEWQ5 on /data type wekafs (rw,relatime,readcache,noatime,readahead_kb=32768,dentry_max_age_positive=1000,dentry_max_age_negative=0)
+       ```
