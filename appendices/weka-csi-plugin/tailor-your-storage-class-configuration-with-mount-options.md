@@ -6,13 +6,17 @@ description: >-
 
 # Configure storage class mount options
 
-## Custom mount options
+## Overview
 
-Manage how WEKA volumes are presented to pods by defining mount options in the StorageClass. These options are comma-separated `key-value` pairs and flags that modify default filesystem behavior to optimize performance and data management for containerized workloads.
+The CSI Plugin exposes mount options that control how WEKA volumes are presented to pods. These options provide fine-grained control over storage behavior, enabling performance tuning and predictable data management for containerized workloads.
 
-* **Mount options:** Settings applied during volume mounting that influence caching, data integrity, and filesystem limits.
-* **Performance optimization:** Strategies to enhance read-heavy or write-intensive workloads by adjusting parameters like `readcache` or `noatime`.
-* **Data integrity:** Settings that ensure consistency and reliability for sensitive applications.
+Mount options are `key–value` pairs and flags specified at volume mount time. They override default filesystem behavior and affect caching, data integrity, and filesystem limits.
+
+Use mount options to:
+
+* **Optimize performance:** Adjust caching and access semantics for read-heavy or write-intensive workloads (for example, `noatime`, `readcache`).
+* **Enforce data integrity:** Apply stricter consistency and reliability guarantees (for example, `sync`).
+* **Resolve issues:** Tune mount behavior to address performance bottlenecks or compatibility constraints.
 
 #### Supported mount options
 
