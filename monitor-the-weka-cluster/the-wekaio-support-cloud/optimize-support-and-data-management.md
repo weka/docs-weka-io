@@ -13,7 +13,7 @@ This feature is aimed at customers who want to send events, usage, and analytics
 
 **Related topic**
 
-[Forward data from the Local WEKA Home to the Cloud WEKA Home](local-weka-home-deployment.md#forward-data-from-the-local-weka-home-to-the-cloud-weka-home)
+[Forward data from the Local WEKA Home to the Cloud WEKA Home](local-weka-home-deployment/#forward-data-from-the-local-weka-home-to-the-cloud-weka-home)
 
 ## API Documentation
 

@@ -73,6 +73,6 @@ Once a CA certificate is set, you can:
 
 **Related topic**
 
-[local-weka-home-deployment.md](../../monitor-the-weka-cluster/the-wekaio-support-cloud/local-weka-home-deployment.md "mention")
+[local-weka-home-deployment](../../monitor-the-weka-cluster/the-wekaio-support-cloud/local-weka-home-deployment/ "mention")
 
 [deploy-local-weka-home-v2.x.md](../../monitor-the-weka-cluster/the-wekaio-support-cloud/deploy-local-weka-home-v2.x.md "mention")
