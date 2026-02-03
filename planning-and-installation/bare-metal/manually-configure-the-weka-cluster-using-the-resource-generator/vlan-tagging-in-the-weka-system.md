@@ -24,52 +24,43 @@ Use the following procedure on each WEKA backend and each WEKA stateful client. 
 
 **Procedure**
 
-1.  **Assign a VLAN tag to a network interface**\
-    Associate a VLAN tag with a NIC using the following command:
+1. Associate the VLAN with the network interface using one of the following methods based on your naming preference:
 
-    ```sql
-    weka local resources net add <nic> --vlan <tag>  
-    ```
+{% tabs %}
+{% tab title="Option A" %}
+Assign a tag to a specific device:
 
-    Example:
-
-    ```sql
-    weka local resources net add mlnx0 --vlan 501  
-    ```
-2.  **Add a VLAN interface**\
-    Infer the VLAN tag by adding a VLAN interface:
-
-    ```sql
-    weka local resources net add vlan<tag>  
-    ```
-
-    Example:
-
-    ```sql
-    weka local resources net add vlan501  
-    ```
-3. **Apply configuration changes**\
-   Restart all containers to apply the VLAN configuration updates.
-
-## Confirm which tagged VLAN is attached to the interfaces
-
-To determine which tagged VLANs are configured, query the local resources of a container using a command like this:
-
-```
-weka local resources -C <containername>
-```
+`weka local resources net add <nic> --vlan <tag>`&#x20;
 
 Example:
 
-```bash
-weka local resources -C drives0
-```
+`weka local resources net add mlnx0 --vlan 501`
+{% endtab %}
 
-You can also display the cluster container network data with this command by requesting verbose output with `-v` to list the VLAN ID or by using syntax like  `-o id,hostname,name,ips,vlan`:
+{% tab title="Option B" %}
+Add a dedicated VLAN interface where the tag is inferred from the name:
 
-```
-weka cluster container net -v
-```
+`weka local resources net add vlan<tag>`&#x20;
+
+Example:
+
+`weka local resources net add vlan501`
+{% endtab %}
+{% endtabs %}
+
+2. Restart all containers on the server to apply the network configuration updates.<br>
+
+## Confirm which tagged VLAN is attached to the interfaces
+
+To determine which tagged VLANs are configured, query the local resources of a container using the command:
+
+`weka local resources -C <containername>`
+
+Example: `weka local resources -C drives0`
+
+You can also display the cluster container network data with this command by requesting verbose output with `-v` to list the VLAN ID or by using syntax like `-o id,hostname,name,ips,vlan`:
+
+`weka cluster container net -v`
 
 ## Mount filesystems with tagged VLANs
 
@@ -77,17 +68,11 @@ When running a mount command on a WEKA stateless client where the backends have 
 
 ### **Basic VLAN tagging**
 
-Mount a filesystem with a specified NIC and VLAN tag:
+Mount a filesystem with a specified NIC and VLAN tag:\
+`mount -o net=<nic>/vlan@<tag> <backendip/filesystem> <mountpoint>`
 
-```bash
-mount -o net=<nic>/vlan@<tag> <backendip/filesystem> <mountpoint>
-```
-
-Example:
-
-```bash
-mount -o net=mlnx0/vlan@501 10.10.0.10/default /mnt/weka
-```
+Example:\
+`mount -o net=mlnx0/vlan@501 10.10.0.10/default /mnt/weka`
 
 ### **Extended network configuration**
 
