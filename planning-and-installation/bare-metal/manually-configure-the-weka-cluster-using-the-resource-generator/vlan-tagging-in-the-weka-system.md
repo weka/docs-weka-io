@@ -24,32 +24,31 @@ Use the following procedure on each WEKA backend and each WEKA stateful client. 
 
 **Procedure**
 
-1.  **Assign a VLAN tag to a network interface**\
-    Associate a VLAN tag with a NIC using the following command:
+1. Associate the VLAN with the network interface using one of the following methods based on your naming preference:
 
-    ```sql
-    weka local resources net add <nic> --vlan <tag>  
-    ```
+{% tabs %}
+{% tab title="Option A" %}
+Assign a tag to a specific device:
 
-    Example:
+`weka local resources net add <nic> --vlan <tag>`&#x20;
 
-    ```sql
-    weka local resources net add mlnx0 --vlan 501  
-    ```
-2.  **Add a VLAN interface**\
-    Infer the VLAN tag by adding a VLAN interface:
+Example:
 
-    ```sql
-    weka local resources net add vlan<tag>  
-    ```
+`weka local resources net add mlnx0 --vlan 501`
+{% endtab %}
 
-    Example:
+{% tab title="Option B" %}
+Add a dedicated VLAN interface where the tag is inferred from the name:
 
-    ```sql
-    weka local resources net add vlan501  
-    ```
-3. **Apply configuration changes**\
-   Restart all containers to apply the VLAN configuration updates.
+`weka local resources net add vlan<tag>`&#x20;
+
+Example:
+
+`weka local resources net add vlan501`
+{% endtab %}
+{% endtabs %}
+
+2. Restart all containers on the server to apply the network configuration updates.
 
 ## Confirm which tagged VLAN is attached to the interfaces
 
