@@ -211,6 +211,7 @@
 * [Upgrade WEKA versions](operation-guide/upgrading-weka-versions.md)
 * [Manage WEKA drivers](operation-guide/manage-weka-drivers.md)
 * [Drivers distribution service](operation-guide/drivers-distribution-service.md)
+* [Drive sharing](operation-guide/drive-sharing.md)
 
 ## Monitor the WEKA Cluster
 
