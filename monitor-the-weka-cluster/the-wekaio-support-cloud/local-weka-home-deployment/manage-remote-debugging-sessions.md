@@ -1,6 +1,6 @@
 ---
 description: >-
-  Configure and control secure, real-time access for WEKA Customer success Team
+  Configure and control secure, real-time access for WEKA Customer Success Team
   to troubleshoot cluster issues using homecli on K3s deployment.
 ---
 
