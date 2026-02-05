@@ -67,9 +67,11 @@ This portal encompasses all documentation essential for comprehending and operat
 
 **Additional protocols:** Learn about the supported protocols—NFS, SMB, and S3—for accessing data stored in a WEKA filesystem.
 
-**Operation guide:** Navigate through various system operations, including events, statistics, user management, upgrades, expansion, and more.
+**Security:** Learn about the supported security features and recommended configurations to protect sensitive data, comply with industry regulations, and reduce the risk of unauthorized access.
 
 **Licensing:** Gain insights into the system licensing options.
+
+**Operation guide:** Navigate through various system operations, including events, statistics, user management, upgrades, expansion, and more.
 
 **Monitor the cluster:** Deploy the WEKA Management Server (WMS) alongside tools like Local WEKA Home, WEKAmon, and SnapTool to effectively monitor your WEKA cluster.
 

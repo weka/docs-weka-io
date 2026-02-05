@@ -211,7 +211,7 @@
 * [Drivers distribution service](operation-guide/drivers-distribution-service.md)
 * [Drive sharing](operation-guide/drive-sharing.md)
 
-## Monitor the WEKA Cluster
+## Monitor the Cluster <a href="#monitor-the-weka-cluster" id="monitor-the-weka-cluster"></a>
 
 * [Deploy monitoring tools using the WEKA Management Station (WMS)](monitor-the-weka-cluster/deploy-monitoring-tools-using-the-weka-management-station-wms.md)
 * [WEKA Home - The WEKA support cloud](monitor-the-weka-cluster/the-wekaio-support-cloud/README.md)
