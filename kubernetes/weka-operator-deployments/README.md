@@ -77,6 +77,10 @@ The WEKA Operator client and application client pods operate with restricted per
 5. Install the WEKA Operator.
 6. Install the WekaCluster and WekaClient custom resources.
 
+{% hint style="info" %}
+WEKA Operator currently supports only x86 architecture.
+{% endhint %}
+
 ### 1. Obtain setup information
 
 Before deploying the WEKA Operator in your Kubernetes environment, contact the WEKA Customer Success Team to obtain the necessary setup information.
