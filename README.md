@@ -24,12 +24,12 @@ metaLinks:
     - https://app.gitbook.com/s/0yXyIrnroN3zIG3qa4W3/
 ---
 
-# NeuralMesh™ by WEKA Documentation
+# NeuralMesh™ by WEKA documentation
 
 Welcome to the NeuralMesh documentation portal, your comprehensive guide to the latest version of NeuralMesh by WEKA. Whether you're a newcomer or a seasoned user, explore topics from system fundamentals to advanced optimization strategies for AI and data-intensive workloads.
 
 {% hint style="warning" %}
-**Important:** This documentation applies to the WEKA system's **latest minor version** (5.1.**X**). For information on new features and supported prerequisites released with each minor version, refer to the relevant release notes available at [get.weka.io](https://get.weka.io/).
+**Important:** This documentation applies to the **latest minor version** (5.1.**X**). For information on new features and supported prerequisites released with each minor version, refer to the relevant release notes available at [get.weka.io](https://get.weka.io/).
 
 Check the release notes for details about any updates or changes accompanying the latest releases.
 {% endhint %}

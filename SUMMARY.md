@@ -1,13 +1,11 @@
 # Table of contents
 
-* [NeuralMesh™ by WEKA Documentation](README.md)
+* [NeuralMesh™ by WEKA documentation](README.md)
   * [Documentation revision history](readme/documentation-revision-history.md)
 
-## WEKA System Overview
+## System Overview <a href="#weka-system-overview" id="weka-system-overview"></a>
 
-* [Introduction](weka-system-overview/about/README.md)
-  * [WEKA system functionality features](weka-system-overview/about/weka-system-functionality-features.md)
-  * [Converged WEKA system deployment](weka-system-overview/about/converged-weka-system-deployment.md)
+* [Introduction](weka-system-overview/about.md)
 * [Cluster capacity and redundancy management](weka-system-overview/cluster-capacity-and-redundancy-management.md)
 * [Filesystems, object stores, and filesystem groups](weka-system-overview/filesystems/README.md)
   * [Cluster and filesystem capacity counter definitions](weka-system-overview/filesystems/cluster-and-filesystem-capacity-counter-definitions.md)
@@ -20,23 +18,23 @@
 ## Planning and Installation
 
 * [Prerequisites and compatibility](planning-and-installation/prerequisites-and-compatibility.md)
-* [WEKA cluster installation on bare metal servers](planning-and-installation/bare-metal/README.md)
-  * [Plan the WEKA system hardware requirements](planning-and-installation/bare-metal/planning-a-weka-system-installation.md)
-  * [Obtain the WEKA installation packages](planning-and-installation/bare-metal/obtaining-the-weka-install-file.md)
-  * [Install the WEKA cluster using the WMS with WSA](planning-and-installation/bare-metal/install-the-weka-cluster-using-the-wms-with-wsa.md)
-  * [Install the WEKA cluster using the WSA](planning-and-installation/bare-metal/install-the-weka-cluster-using-the-wsa.md)
-  * [Manually install OS and WEKA on servers](planning-and-installation/bare-metal/manually-install-os-and-weka-on-servers/README.md)
+* [System installation on bare metal servers](planning-and-installation/bare-metal/README.md)
+  * [Plan system hardware requirements](planning-and-installation/bare-metal/planning-a-weka-system-installation.md)
+  * [Obtain the installation packages](planning-and-installation/bare-metal/obtaining-the-weka-install-file.md)
+  * [Install the cluster using the WMS with WSA](planning-and-installation/bare-metal/install-the-weka-cluster-using-the-wms-with-wsa.md)
+  * [Install the cluster using the WSA](planning-and-installation/bare-metal/install-the-weka-cluster-using-the-wsa.md)
+  * [Manually install OS and system on servers](planning-and-installation/bare-metal/manually-install-os-and-weka-on-servers/README.md)
     * [Safe server shutdown](planning-and-installation/bare-metal/manually-install-os-and-weka-on-servers/safe-server-shutdown.md)
-  * [Manually prepare the system for WEKA configuration](planning-and-installation/bare-metal/setting-up-the-hosts/README.md)
+  * [Manually prepare the system for configuration](planning-and-installation/bare-metal/setting-up-the-hosts/README.md)
     * [Broadcom adapter setup for WEKA system](planning-and-installation/bare-metal/setting-up-the-hosts/broadcom-adapter-setup-for-weka-system.md)
     * [Enable the SR-IOV](planning-and-installation/bare-metal/setting-up-the-hosts/sr-iov-enablement.md)
-  * [Configure the WEKA cluster using the WEKA Configurator](planning-and-installation/bare-metal/configure-the-weka-cluster-using-the-weka-configurator.md)
-  * [Manually configure the WEKA cluster using the resources generator](planning-and-installation/bare-metal/manually-configure-the-weka-cluster-using-the-resource-generator/README.md)
+  * [Configure the cluster using the WEKA Configurator](planning-and-installation/bare-metal/configure-the-weka-cluster-using-the-weka-configurator.md)
+  * [Manually configure the cluster using the resources generator](planning-and-installation/bare-metal/manually-configure-the-weka-cluster-using-the-resource-generator/README.md)
     * [VLAN tagging in the WEKA system](planning-and-installation/bare-metal/manually-configure-the-weka-cluster-using-the-resource-generator/vlan-tagging-in-the-weka-system.md)
   * [Perform post-configuration procedures](planning-and-installation/bare-metal/perform-post-configuration-procedures.md)
-  * [Add clients to an on-premises WEKA cluster](planning-and-installation/bare-metal/adding-clients-bare-metal.md)
-* [WEKA Cloud Deployment Manager Web (CDM Web) User Guide](planning-and-installation/weka-cdm-web-user-guide.md)
-* [WEKA Cloud Deployment Manager Local (CDM Local) User Guide](planning-and-installation/weka-cdm-local-user-manager.md)
+  * [Add clients to a bare-metal cluster](planning-and-installation/bare-metal/adding-clients-bare-metal.md)
+* [Cloud Deployment Manager Web (CDM Web) User Guide](planning-and-installation/weka-cdm-web-user-guide.md)
+* [Cloud Deployment Manager Local (CDM Local) User Guide](planning-and-installation/weka-cdm-local-user-manager.md)
 * [WEKA installation on AWS](planning-and-installation/aws/README.md)
   * [Terraform-AWS-WEKA module description](planning-and-installation/aws/aws-weka-terraform-deployment-module-description.md)
   * [Deployment on AWS using Terraform](planning-and-installation/aws/deployment-on-aws-using-terraform.md)
@@ -72,7 +70,7 @@
 * [NeuralMesh Axon deployment](neuralmesh-axon/neuralmesh-axon-deployment.md)
 * [NeuralMesh Axon maintenance](neuralmesh-axon/neuralmesh-axon-maintenance.md)
 
-## Getting Started with WEKA
+## Getting Started with NeuralMesh <a href="#getting-started-with-weka" id="getting-started-with-weka"></a>
 
 * [Manage the system using the WEKA GUI](getting-started-with-weka/manage-the-system-using-weka-gui.md)
 * [Manage the system using the WEKA CLI](getting-started-with-weka/manage-the-system-using-weka-cli/README.md)
@@ -84,10 +82,10 @@
 
 ## Performance
 
-* [WEKA performance tests](performance/testing-weka-system-performance/README.md)
+* [System performance tests](performance/testing-weka-system-performance/README.md)
   * [Performance test environment configurations](performance/testing-weka-system-performance/test-environment-details.md)
 
-## WEKA Filesystems & Object Stores
+## Filesystems & Object Stores <a href="#weka-filesystems-and-object-stores" id="weka-filesystems-and-object-stores"></a>
 
 * [Manage object stores](weka-filesystems-and-object-stores/managing-object-stores/README.md)
   * [Manage object stores using the GUI](weka-filesystems-and-object-stores/managing-object-stores/managing-object-stores.md)
@@ -154,7 +152,7 @@
 
 ## Security
 
-* [WEKA security overview](security/security.md)
+* [Security overview](security/security.md)
 * [Obtain authentication tokens](security/obtain-authentication-tokens.md)
 * [Manage token expiration](security/manage-token-expiration.md)
 * [Manage account lockout threshold policy](security/account-lockout-threshold-policy-management.md)

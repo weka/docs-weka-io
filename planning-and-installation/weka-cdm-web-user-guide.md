@@ -5,11 +5,11 @@ metaLinks:
       https://app.gitbook.com/s/0yXyIrnroN3zIG3qa4W3/planning-and-installation/weka-cdm-web-user-guide
 ---
 
-# WEKA Cloud Deployment Manager Web (CDM Web) User Guide
+# Cloud Deployment Manager Web (CDM Web) User Guide
 
 ## Overview
 
-The WEKA Cloud Deployment Manager Web (CDM Web) simplifies the deployment of WEKA clusters in the AWS, Azure, and GCP public cloud environments. Leveraging WEKA’s validated Terraform deployment modules, the CDM provides a user-friendly interface to guide users through the initial configuration process.
+The Cloud Deployment Manager Web (CDM Web) simplifies the deployment of WEKA clusters in the AWS, Azure, and GCP public cloud environments. Leveraging WEKA’s validated Terraform deployment modules, the CDM provides a user-friendly interface to guide users through the initial configuration process.
 
 Key features of the CDM Web:
 

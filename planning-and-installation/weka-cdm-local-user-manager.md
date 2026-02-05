@@ -5,11 +5,11 @@ metaLinks:
       https://app.gitbook.com/s/0yXyIrnroN3zIG3qa4W3/planning-and-installation/weka-cdm-local-user-manager
 ---
 
-# WEKA Cloud Deployment Manager Local (CDM Local) User Guide
+# Cloud Deployment Manager Local (CDM Local) User Guide
 
 ## Overview
 
-The WEKA Cloud Deployment Manager Local (CDM Local) offers a locally installed solution for deploying WEKA clusters in AWS, Azure, and GCP public cloud environments. Like CDM Web, it leverages WEKA’s validated Terraform deployment modules and provides a user-friendly interface to guide users through the configuration process. However, CDM Local adds new features tailored for users who prefer a local installation, including public cloud environment configuration polling, validation, and deployment execution, which is not available in CDM Web.
+The Cloud Deployment Manager Local (CDM Local) offers a locally installed solution for deploying WEKA clusters in AWS, Azure, and GCP public cloud environments. Like CDM Web, it leverages WEKA’s validated Terraform deployment modules and provides a user-friendly interface to guide users through the configuration process. However, CDM Local adds new features tailored for users who prefer a local installation, including public cloud environment configuration polling, validation, and deployment execution, which is not available in CDM Web.
 
 Key features of CDM Local:
 
