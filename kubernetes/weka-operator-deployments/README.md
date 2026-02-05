@@ -86,6 +86,10 @@ The WEKA Operator client and application client pods operate with restricted per
 8. **Manage the WEKA cluster management proxy:** Access WEKA management and service endpoints using Kubernetes Ingress resources.&#x20;
 9. **Perform post-deployment storage configuration:** Configure the CSI plugin and storage classes based on your operator version to enable persistent volume provisioning.
 
+{% hint style="info" %}
+WEKA Operator currently supports only x86 architecture.
+{% endhint %}
+
 ### 1. Obtain setup information
 
 Identify and record the credentials required to pull WEKA container images and the specific version tags for your deployment.
