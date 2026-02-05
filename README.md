@@ -28,6 +28,14 @@ metaLinks:
 
 Welcome to the NeuralMesh documentation portal, your comprehensive guide to the latest version of NeuralMesh by WEKA. Whether you're a newcomer or a seasoned user, explore topics from system fundamentals to advanced optimization strategies for AI and data-intensive workloads.
 
+{% hint style="info" %}
+**Terminology and deployment model**
+
+NeuralMesh™ by WEKA introduces a new deployment approach built on the WEKA data platform.
+
+In this documentation, references to WEKA denote the underlying software components and interfaces used by NeuralMesh. Core functionality, APIs, and packages remain consistent.
+{% endhint %}
+
 {% hint style="warning" %}
 **Important:** This documentation applies to the **latest minor version** (5.1.**X**). For information on new features and supported prerequisites released with each minor version, refer to the relevant release notes available at [get.weka.io](https://get.weka.io/).
 
