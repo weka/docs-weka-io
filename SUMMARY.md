@@ -9,10 +9,10 @@
 * [Cluster capacity and redundancy management](weka-system-overview/cluster-capacity-and-redundancy-management.md)
 * [Filesystems, object stores, and filesystem groups](weka-system-overview/filesystems/README.md)
   * [Cluster and filesystem capacity counter definitions](weka-system-overview/filesystems/cluster-and-filesystem-capacity-counter-definitions.md)
-* [WEKA networking](weka-system-overview/networking-in-wekaio.md)
+* [Networking](weka-system-overview/networking-in-wekaio.md)
 * [Data lifecycle management overview](weka-system-overview/data-storage.md)
 * [WEKA client and mount modes](weka-system-overview/weka-client-and-mount-modes.md)
-* [WEKA containers architecture overview](weka-system-overview/weka-containers-architecture-overview.md)
+* [Cluster architecture overview](weka-system-overview/weka-containers-architecture-overview.md)
 * [Glossary](weka-system-overview/glossary.md)
 
 ## Planning and Installation
