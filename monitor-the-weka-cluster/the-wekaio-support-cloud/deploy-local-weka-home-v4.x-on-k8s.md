@@ -122,7 +122,7 @@ Create a `values.yaml` file to customize your WEKA Home deployment. This file ov
 
 The following example highlights common adjustments, particularly for specifying a WEKA storage class for persistent volumes and using `nodeSelector` to schedule pods onto specific nodes (such as those running WEKA clients).
 
-Refer to the complete `values.yaml` file in the [WEKA Home Helm Chart repository](https://www.google.com/search?q=https://github.com/weka/gohome/blob/main/charts/wekahome/values.yaml) for a full list of available parameters.
+Refer to the complete `values.yaml` file in the [WEKA Home Helm Chart repository](https://github.com/weka/gohome/blob/v4.4.0/charts/wekahome/values.yaml) for a full list of available parameters.
 
 <details>
 
