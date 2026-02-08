@@ -138,9 +138,9 @@ Removing an existing SMB cluster managed by the WEKA system does not delete the 
 
 Use these commands to add or remove containers from the SMB cluster.
 
-`weka smb cluster container add [--containers-id containers-id]...`
+`weka smb cluster container add [--container-ids container-ids]...`
 
-`weka smb cluster container remove [--containers-id containers-id]...`
+`weka smb cluster container remove [--container-ids container-ids]...`
 
 {% hint style="info" %}
 This operation might take some time to complete. During that time, SMB IOs are stalled.
@@ -148,7 +148,7 @@ This operation might take some time to complete. During that time, SMB IOs are s
 
 **Parameters**
 
-<table><thead><tr><th width="287">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>containers-id</code>*</td><td>Container IDs of containers with a frontend process to serve the SMB service.<br>Specify a comma-separated list with a minimum of 3 containers.</td></tr></tbody></table>
+<table><thead><tr><th width="287">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>containers-ids</code>*</td><td>Container IDs of containers with a frontend process to serve the SMB service.<br>Specify a comma-separated list with a minimum of 3 containers.</td></tr></tbody></table>
 
 ## Configure trusted domains <a href="#configure-trusted-domains" id="configure-trusted-domains"></a>
 
