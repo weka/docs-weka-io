@@ -3149,6 +3149,7 @@ You can update the following WekaCluster parameters:
 * RawTolerations (spec.RawTolerations)
 * DriversDistService (spec.DriversDistService)
 * ImagePullSecret (spec.ImagePullSecret)
+* Upgrade WEKA cluster version (spec.image)
 
 After completing each of the following procedures, all pods restart within a few minutes to apply the new configuration.
 
@@ -3173,6 +3174,8 @@ After completing each of the following procedures, all pods restart within a few
     kubectl delete pod <wekacontainer-pod-name>
     ```
 4. Verify that the memory values have been updated to the new settings.
+
+
 
 #### Procedure: Update Tolerations
 
@@ -3234,6 +3237,20 @@ After completing each of the following procedures, all pods restart within a few
     kubectl delete pod <wekacontainer-pod-name>
     ```
 
+#### Procedure: Upgrade WEKA cluster version
+
+1.  Open your cluster.yaml file and update the WEKA cluster image value:
+
+    ```yaml
+    spec: 
+      image: "new-weka-version-tag" # example: quay.io/weka.io/weka-in-container:5.1.0.22
+    ```
+2.  Apply the updated configuration:
+
+    ```bash
+    kubectl apply -f cluster.yaml
+    ```
+
 #### Troubleshooting
 
 If pods do not restart automatically or the new configuration is not applied, verify:
@@ -3262,6 +3279,7 @@ You can update the following WekaClient parameters:
 * CoresNumber (spec.CoresNumber)
 * Tolerations (spec.Tolerations)
 * RawTolerations (spec.RawTolerations)
+* Upgrade WEKA client version (spec.image)
 
 After completing each of the following procedures, all pods restart within a few minutes to apply the new configuration.
 
@@ -3377,11 +3395,10 @@ This procedure demonstrates how to migrate from specific port and agentPort conf
 
 1.  Deploy the initial client configuration with specific ports:
 
-    ```yaml
-    spec:
-      port: 45001
+    <pre class="language-yaml"><code class="lang-yaml"><strong>spec:
+    </strong>  port: 45001
       agentPort: 45000
-    ```
+    </code></pre>
 2.  Apply the initial configuration:
 
     ```bash
@@ -3433,6 +3450,20 @@ This procedure demonstrates how to migrate from specific port and agentPort conf
 
     ```bash
     kubectl delete pod <client-pod-name>
+    ```
+
+#### Procedure: Upgrade WEKA client version
+
+1.  Open your client.yaml file and update the WEKA client image value:
+
+    ```yaml
+    spec: 
+      image: "new-weka-version-tag" # example: quay.io/weka.io/weka-in-container:5.1.0.22
+    ```
+2.  Apply the updated configuration:
+
+    ```bash
+    kubectl apply -f cluster.yaml
     ```
 
 #### Troubleshooting

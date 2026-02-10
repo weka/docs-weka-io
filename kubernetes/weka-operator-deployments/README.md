@@ -342,9 +342,10 @@ kubectl apply -f weka-operator/crds
 ```
 
 2. **Define drive allocation ratios:** Starting with version **1.10**, you must specify the ratio between QLC and TLC drive types. This is essential for Hybrid Flash environments. Use the following parameters according to your storage configuration:
-
-<table><thead><tr><th width="182">Storage configuration</th><th width="359">Parameter value</th><th>Result</th></tr></thead><tbody><tr><td><strong>Hybrid Flash</strong></td><td><code>--set driveTypeRatio='{tlc: 4, qlc: 1}'</code></td><td>Allocates 1/5 capacity to QLC and 4/5 to TLC.</td></tr><tr><td><strong>Single drive type</strong></td><td><code>--set driveTypeRatio='{qlc: 0}'</code></td><td>Disables hybrid allocation.</td></tr></tbody></table>
-
+   * **Hybrid Flash:** `--set driveSharing.driveTypesRatio='{tlc: 9, qlc: 1}'`\
+     Result: Allocates 1/10 capacity to QLC and 9/10 to TLC.
+   * **Single drive type:** `--set driveSharing.drivesTypesRatio='{qlc: 0}'`\
+     Result: Disables hybrid allocation.
 3. **Deploy the WEKA Operator:** Execute the Helm command to install the operator. For versions **1.7.0** and later, include the CSI plugin enablement flag.
 
 ```bash
