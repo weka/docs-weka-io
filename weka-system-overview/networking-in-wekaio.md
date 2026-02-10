@@ -9,7 +9,7 @@ metaLinks:
       https://app.gitbook.com/s/0yXyIrnroN3zIG3qa4W3/weka-system-overview/networking-in-wekaio
 ---
 
-# WEKA networking
+# Networking
 
 ## Overview
 
@@ -39,7 +39,7 @@ Before proceeding, it is important to understand several key terms used in this 
 
 DPDK implementations are available from several sources. OS vendors like [Red Hat](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/virtualization_deployment_and_administration_guide/sect-pci_devices-pci_passthrough) and [Ubuntu](https://help.ubuntu.com/lts/serverguide/DPDK.html) provide DPDK implementations through distribution channels. [Mellanox OpenFabrics Enterprise Distribution for Linux](https://www.mellanox.com/page/products_dyn?product_family=26) (Mellanox OFED), a suite of libraries, tools, and drivers supporting Mellanox NICs, offers its own DPDK implementation.
 
-The WEKA system relies on the DPDK implementation provided by Mellanox OFED on servers equipped with Mellanox NICs. For servers equipped with Intel NICs, DPDK support is through the Intel driver for the card.‌
+The WEKA system relies on the DPDK implementation provided by Mellanox OFED on servers equipped with Mellanox NICs.
 
 #### SR-IOV
 
