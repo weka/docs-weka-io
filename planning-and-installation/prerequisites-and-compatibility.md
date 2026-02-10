@@ -26,7 +26,7 @@ For cloud-based installations, WEKA supports a minimal configuration of **6 serv
 
 ## CPU
 
-<table><thead><tr><th width="338">CPU family/architecture</th><th width="210">Supported on backends</th><th>Supported on clients</th></tr></thead><tbody><tr><td>2013 Intel® Core™ processor family and later</td><td><span data-gb-custom-inline data-tag="emoji" data-code="1f44d">👍</span><br>Dual-socket</td><td><span data-gb-custom-inline data-tag="emoji" data-code="1f44d">👍</span><br>Dual-socket</td></tr><tr><td>AMD EPYC™ processor families 2nd (Rome), 3rd (Milan-X), and 4th (Genoa) Generations</td><td><span data-gb-custom-inline data-tag="emoji" data-code="1f44d">👍</span><br>Single-socket</td><td><span data-gb-custom-inline data-tag="emoji" data-code="1f44d">👍</span> <br>Single-socket and dual-socket</td></tr><tr><td>ARM (AArch64)</td><td></td><td><span data-gb-custom-inline data-tag="emoji" data-code="1f44d">👍</span><br>Nvidia Grace</td></tr></tbody></table>
+<table><thead><tr><th width="338">CPU family/architecture</th><th width="210">Supported on backends</th><th>Supported on clients</th></tr></thead><tbody><tr><td>2013 Intel® Core™ processor family and later</td><td><span data-gb-custom-inline data-tag="emoji" data-code="1f44d">👍</span><br>Dual-socket</td><td><span data-gb-custom-inline data-tag="emoji" data-code="1f44d">👍</span><br>Dual-socket</td></tr><tr><td>AMD EPYC™ processor families 2nd (Rome), 3rd (Milan-X), and 4th (Genoa) Generations</td><td><span data-gb-custom-inline data-tag="emoji" data-code="1f44d">👍</span><br>Single-socket</td><td><span data-gb-custom-inline data-tag="emoji" data-code="1f44d">👍</span> <br>Single-socket and dual-socket</td></tr><tr><td>ARM (AArch64)</td><td></td><td><span data-gb-custom-inline data-tag="emoji" data-code="1f44d">👍</span><br>NVIDIA Grace</td></tr></tbody></table>
 
 {% hint style="info" %}
 The following requirements must be met:
@@ -290,48 +290,59 @@ The following network adapters support Ethernet and SR-IOV VF for clients only:
 * Broadcom BCM957508-P2100G
 * Broadcom BCM957608-P2200G
 
+### OFED drivers
+
+OFED is not required for standard Ethernet deployments. OFED is required only when using LACP on a single NIC with dual ports to enable proper load balancing between the ports. This requirement is driven by the NIC networking stack, not by WEKA.
+
+{% hint style="info" %}
+OFED is not a WEKA dependency. When required, it is due to NIC driver behavior needed to support LACP load balancing.
+{% endhint %}
+
 ### Ethernet drivers and configurations
 
 {% tabs %}
 {% tab title="Ethernet drivers" %}
-*   **Supported Mellanox OFED versions for the Ethernet NICs:**
+**Supported Mellanox OFED versions for the Ethernet NICs:**
 
-    * 24.04-0.7.0.0
-    * 23.10-0.5.5.0
-    * 23.04-1.1.3.0
-    * 5.9-0.5.6.0
-    * 5.8-1.1.2.1 LTS
-    * 5.8-3.0.7.0
-    * 5.7-1.0.2.0
-    * 5.6-2.0.9.0
-    * 5.6-1.0.3.3
-    * 5.4-3.5.8.0 LTS
-    * 5.4-3.4.0.0 LTS
-    * 5.1-2.6.2.0
-    * 5.1-2.5.8.0
+* 24.04
+* 23.10
+* 23.04
+* 5.9
 
-    **Note:** Subsequent OFED minor versions are expected to be compatible with Nvidia hardware due to Nvidia's commitment to backwards compatibility.
-* **Supported ENA drivers:**
-  * 1.0.2 - 2.0.2
-  * A current driver from an official OS repository is recommended
-* **Supported ixgbevf drivers:**
-  * 3.2.2 - 4.1.2
-  * A current driver from an official OS repository is recommended
-* **Supported Intel 40 drivers:**
-  * 3.0.1-k - 4.1.0
-  * A current driver from an official OS repository is recommended
-* **Supported ice drivers:**
-  * 1.9.11
-* **Supported Broadcom drivers**:
-  * 228: Minimum required for 100/200 Gbps 57508 NIC
-  * 231: Minimum required for 200/400 Gbps 57608 NIC
+{% hint style="info" %}
+Subsequent OFED minor versions are expected to be compatible with NVIDIA hardware due to NVIDIA's commitment to backward compatibility.
+{% endhint %}
+
+**Supported ENA drivers:**
+
+* 1.0.2 - 2.0.2
+* A current driver from an official OS repository is recommended
+
+**Supported ixgbevf drivers:**
+
+* 3.2.2 - 4.1.2
+* A current driver from an official OS repository is recommended
+
+**Supported Intel 40 drivers:**
+
+* 3.0.1-k - 4.1.0
+* A current driver from an official OS repository is recommended
+
+**Supported ice drivers:**
+
+* 1.9.11
+
+**Supported Broadcom drivers**:
+
+* 228: Minimum required for 100/200 Gbps 57508 NIC
+* 231: Minimum required for 200/400 Gbps 57608 NIC
 {% endtab %}
 
 {% tab title="Ethernet configurations" %}
-* **Ethernet speeds:**
-  * 400 GbE / 200 GbE / 100 GbE / 50GbE / 40 GbE / 25 GbE / 10 GbE.
 * **NICs bonding:**
   * Supports bonding dual ports on the same NVIDIA Mellanox NIC using mode 4 (LACP) to enhance redundancy and performance.
+* **Ethernet speeds:**
+  * 400 GbE / 200 GbE / 100 GbE / 50GbE / 40 GbE / 25 GbE / 10 GbE.
 * **IEEE 802.1Q VLAN encapsulation:**
   * Supports VLAN tagging with a single VLAN tag on NVIDIA Mellanox NICs.
 * **VXLAN:**
@@ -351,7 +362,7 @@ The following network adapters support Ethernet and SR-IOV VF for clients only:
   * Use a single IP address for all purposes.
 
 {% hint style="info" %}
-When assigning a network device to the WEKA system, no other application can create VFs on that device.Ethernet configurations
+When assigning a network device to the WEKA system, no other application can create VFs on that device.
 {% endhint %}
 {% endtab %}
 {% endtabs %}
@@ -360,20 +371,14 @@ When assigning a network device to the WEKA system, no other application can cre
 
 {% tabs %}
 {% tab title="InfiniBand drivers" %}
-WEKA supports the following Nvidia major OFED versions for the InfiniBand adapters:
+WEKA supports the following NVIDIA major OFED versions for the InfiniBand adapters:
 
 * 24.04
 * 23.10
 * 23.04
-* 5.9
-* 5.8
-* 5.7
-* 5.6
-* 5.4
-* 5.1
 
 {% hint style="info" %}
-Subsequent OFED minor versions are expected to be compatible with Nvidia hardware due to Nvidia's commitment to backwards compatibility.
+Subsequent OFED minor versions are expected to be compatible with NVIDIA hardware due to NVIDIA's commitment to backward compatibility.
 {% endhint %}
 {% endtab %}
 
