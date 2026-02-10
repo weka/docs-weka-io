@@ -16,6 +16,8 @@ Check the release notes for details about any updates or changes accompanying th
 In certain instances, WEKA collaborates with Strategic Server Partners to conduct platform qualifications alongside complementary components. If you have any inquiries, contact your designated WEKA representative.
 {% endhint %}
 
+***
+
 ## Minimal server configuration for a WEKA cluster
 
 The minimal configuration for a new WEKA cluster installation is **8 servers**. This ensures optimal performance, resilience, and scalability for most deployments.
@@ -24,9 +26,11 @@ The minimal configuration for a new WEKA cluster installation is **8 servers**. 
 For cloud-based installations, WEKA supports a minimal configuration of **6 servers** to accommodate the unique requirements of cloud environments.
 {% endhint %}
 
+***
+
 ## CPU
 
-<table><thead><tr><th width="356">CPU family/architecture</th><th width="202">Supported on backends</th><th>Supported on clients</th></tr></thead><tbody><tr><td>Intel Xeon E5 v3 (Haswell) through Xeon 6 (Granite Rapids / Sierra Forest) with up to 256 total CPU cores</td><td><span data-gb-custom-inline data-tag="emoji" data-code="1f44d">👍</span><br>Dual-socket</td><td><span data-gb-custom-inline data-tag="emoji" data-code="1f44d">👍</span><br>Single-socket and dual-socket</td></tr><tr><td>AMD EPYC™ processor families 2nd (Rome) through 5th (Turin) Generations with up to 256 total CPU cores</td><td><span data-gb-custom-inline data-tag="emoji" data-code="1f44d">👍</span><br>Single-socket</td><td><span data-gb-custom-inline data-tag="emoji" data-code="1f44d">👍</span><br>Single-socket and dual-socket</td></tr><tr><td>ARM (AArch64) - Nvidia Grace single or dual-processor with up to 144 total CPU cores</td><td></td><td><span data-gb-custom-inline data-tag="emoji" data-code="1f44d">👍</span><br>Nvidia Grace</td></tr></tbody></table>
+<table><thead><tr><th width="356">CPU family/architecture</th><th width="202">Supported on backends</th><th>Supported on clients</th></tr></thead><tbody><tr><td>Intel Xeon E5 v3 (Haswell) through Xeon 6 (Granite Rapids / Sierra Forest) with up to 256 total CPU cores</td><td><span data-gb-custom-inline data-tag="emoji" data-code="1f44d">👍</span><br>Dual-socket</td><td><span data-gb-custom-inline data-tag="emoji" data-code="1f44d">👍</span><br>Single-socket and dual-socket</td></tr><tr><td>AMD EPYC™ processor families 2nd (Rome) through 5th (Turin) Generations with up to 256 total CPU cores</td><td><span data-gb-custom-inline data-tag="emoji" data-code="1f44d">👍</span><br>Single-socket</td><td><span data-gb-custom-inline data-tag="emoji" data-code="1f44d">👍</span><br>Single-socket and dual-socket</td></tr><tr><td>ARM (AArch64) - NVIDIA Grace single or dual-processor with up to 144 total CPU cores</td><td></td><td><span data-gb-custom-inline data-tag="emoji" data-code="1f44d">👍</span><br>NVIDIA Grace</td></tr></tbody></table>
 
 {% hint style="info" %}
 The following requirements must be met:
@@ -36,10 +40,14 @@ The following requirements must be met:
 * AVX2[^3] is enabled.
 {% endhint %}
 
+***
+
 ## Memory
 
 * Sufficient memory to support the WEKA system needs as described in [memory requirements](bare-metal/planning-a-weka-system-installation.md#memory-resource-planning).
 * More memory support for the OS kernel or any other application.
+
+***
 
 ## Operating system
 
@@ -175,6 +183,8 @@ The following kernel versions are supported:
 As of version 4.3.2, RHEL 7.X and CentOS 7.X are no longer supported due to their end-of-life status. If you need assistance upgrading your operating system, contact the [Customer Success Team](../support/getting-support-for-your-weka-system.md#contact-customer-success-team) for guidance.
 {% endhint %}
 
+***
+
 ## WEKA installation directory
 
 * **WEKA installation directory**:
@@ -197,6 +207,8 @@ As of version 4.3.2, RHEL 7.X and CentOS 7.X are no longer supported due to thei
   * Allocate an additional 10 GB per core used by WEKA.
 * **Filesystem requirement**:
   * Set a separate filesystem on a separate partition for `/opt/weka`.
+
+***
 
 ## Networking
 
@@ -223,8 +235,8 @@ When the Linux operating system is configured with `iommu=1`, IOMMU is enabled s
 {% hint style="info" %}
 Shared networking configuration for NIC models:
 
-* NVIDIA NICs: When implementing Shared Networking (Single IP), Virtual Functions (VFs) are not required.
-* Broadcom NICs: VFs must be configured when deploying Shared Networking architecture.
+* **NVIDIA NICs:** When implementing Shared Networking (Single IP), Virtual Functions (VFs) are not required.
+* **Broadcom NICs:** VFs must be configured when deploying Shared Networking architecture.
 {% endhint %}
 
 *   **Mixed networks**
@@ -285,43 +297,49 @@ The following network adapters support Ethernet and SR-IOV VF for clients only:
 * Broadcom BCM957508-P2100G
 * Broadcom BCM957608-P2200G
 
+### OFED drivers
+
+OFED is not required for standard Ethernet deployments. OFED is required only when using LACP on a single NIC with dual ports to enable proper load balancing between the ports. This requirement is driven by the NIC networking stack, not by WEKA.
+
+{% hint style="info" %}
+OFED is not a WEKA dependency. When required, it is due to NIC driver behavior needed to support LACP load balancing.
+{% endhint %}
+
 ### Ethernet drivers and configurations
 
 {% tabs %}
 {% tab title="Ethernet drivers" %}
-*   **Supported Mellanox OFED versions for the Ethernet NICs:**
+**Supported Mellanox OFED versions for the Ethernet NICs:**
 
-    * 24.04-0.7.0.0
-    * 23.10-0.5.5.0
-    * 23.04-1.1.3.0
-    * 5.9-0.5.6.0
-    * 5.8-1.1.2.1 LTS
-    * 5.8-3.0.7.0
-    * 5.7-1.0.2.0
-    * 5.6-2.0.9.0
-    * 5.6-1.0.3.3
-    * 5.4-3.5.8.0 LTS
-    * 5.4-3.4.0.0 LTS
-    * 5.1-2.6.2.0
-    * 5.1-2.5.8.0
+* 24.04
+* 23.10
+* 23.04
 
-    **Note:** Subsequent OFED minor versions are expected to be compatible with Nvidia hardware due to Nvidia's commitment to backwards compatibility.
-* **Supported ENA drivers:**
-  * 1.0.2 - 2.0.2
-  * A current driver from an official OS repository is recommended
-* **Supported ixgbevf drivers:**
-  * 3.2.2 - 4.1.2
-  * A current driver from an official OS repository is recommended
-* **Supported Broadcom drivers**:
-  * 228: Minimum required for 100/200 Gbps 57508 NIC
-  * 231: Minimum required for 200/400 Gbps 57608 NIC
+{% hint style="info" %}
+Subsequent OFED minor versions are expected to be compatible with NVIDIA hardware due to NVIDIA's commitment to backward compatibility.
+{% endhint %}
+
+**Supported ENA drivers:**
+
+* 1.0.2 - 2.0.2
+* A current driver from an official OS repository is recommended
+
+**Supported ixgbevf drivers:**
+
+* 3.2.2 - 4.1.2
+* A current driver from an official OS repository is recommended
+
+**Supported Broadcom drivers**:
+
+* 228: Minimum required for 100/200 Gbps 57508 NIC
+* 231: Minimum required for 200/400 Gbps 57608 NIC
 {% endtab %}
 
 {% tab title="Ethernet configurations" %}
-* **Ethernet speeds:**
-  * 400 GbE / 200 GbE / 100 GbE / 50GbE / 40 GbE / 25 GbE / 10 GbE.
 * **NICs bonding:**
   * Supports bonding dual ports on the same NVIDIA Mellanox NIC using mode 4 (LACP) to enhance redundancy and performance.
+* **Ethernet speeds:**
+  * 400 GbE / 200 GbE / 100 GbE / 50GbE / 40 GbE / 25 GbE / 10 GbE.
 * **IEEE 802.1Q VLAN encapsulation:**
   * Supports VLAN tagging with a single VLAN tag on NVIDIA Mellanox NICs.
 * **VXLAN:**
@@ -350,31 +368,25 @@ When assigning a network device to the WEKA system, no other application can cre
 
 {% tabs %}
 {% tab title="InfiniBand drivers" %}
-WEKA supports the following Nvidia major OFED versions for the InfiniBand adapters:
+WEKA supports the following NVIDIA major OFED versions for the InfiniBand adapters:
 
 * 24.04
 * 23.10
 * 23.04
-* 5.9
-* 5.8
-* 5.7
-* 5.6
-* 5.4
-* 5.1
 
 {% hint style="info" %}
-Subsequent OFED minor versions are expected to be compatible with Nvidia hardware due to Nvidia's commitment to backwards compatibility.
+Subsequent OFED minor versions are expected to be compatible with NVIDIA hardware due to NVIDIA's commitment to backward compatibility.
 {% endhint %}
 {% endtab %}
 
 {% tab title="InfiniBand configurations" %}
 WEKA supports the following InfiniBand configurations:
 
-* InfiniBand speeds: Determined by the InfiniBand adapter supported speeds (FDR / EDR / HDR / NDR).
-* Subnet manager: Configured to 4092.
-* One WEKA system IP address for management and data plane.
-* PKEYs: One partition key is supported by WEKA.
-* Redundant InfiniBand ports can be used for both HA and higher bandwidth.
+* **InfiniBand speeds:** Determined by the InfiniBand adapter supported speeds (FDR / EDR / HDR / NDR).
+* **Subnet manager:** Configured to 4092.
+* **IP address:** One WEKA system IP address for management and data plane.
+* **PKEYs:** One partition key is supported by WEKA.
+* **Ports:** Redundant InfiniBand ports can be used for both HA and higher bandwidth.
 
 {% hint style="info" %}
 If it is necessary to change PKEYs, contact the [Customer Success Team](../support/getting-support-for-your-weka-system.md#contacting-weka-technical-support-team).
@@ -392,9 +404,13 @@ Right-scroll the table to view all columns.
 
 <table><thead><tr><th width="211">Purpose</th><th width="124">Source</th><th width="135">Target</th><th width="228">Target Ports</th><th width="135">Protocol</th><th width="352">Comments</th></tr></thead><tbody><tr><td>WEKA server traffic for bare-metal deployments</td><td>All WEKA backend IPs</td><td>All WEKA backend IPs</td><td>14000-14100 (drives)<br>14200-14300 (frontend)<br>14300-14400 (compute)</td><td>TCP and UDP<br>TCP and UDP<br>TCP and UDP</td><td>These ports are the default for the Resources Generator for the first three containers. You can customize the ports.</td></tr><tr><td>WEKA client traffic</td><td>Client host IPs</td><td>All WEKA backend IPs</td><td>14000-14100 (drives)<br>14300-14400 (compute)</td><td>TCP and UDP<br>TCP and UDP</td><td>These ports are the default. You can customize the ports.</td></tr><tr><td>WEKA backend to client traffic</td><td>All WEKA backend IPs</td><td>Client host IPs</td><td>14000-14100 (frontend)</td><td>TCP and UDP</td><td>These ports are the default. You can customize the ports.</td></tr><tr><td>WEKA SSH management traffic</td><td>All WEKA backend IPs</td><td>All WEKA backend IPs</td><td>22</td><td>TCP</td><td></td></tr><tr><td>WEKA server traffic for cloud deployments</td><td>All WEKA backend IPs</td><td>All WEKA backend IPs</td><td><p>14000-14100 (drives)</p><p>15000-15100 (compute)</p><p>16000-16100 (frontend)</p></td><td>TCP and UDP<br>TCP and UDP<br>TCP and UDP</td><td>These ports are the default. You can customize the ports.</td></tr><tr><td>WEKA client traffic (on cloud)</td><td>Client host IPs</td><td>All WEKA backend IPs</td><td><p>14000-14100 (drives)</p><p>15000-15100 (compute)</p></td><td>TCP and UDP<br>TCP and UDP</td><td>These ports are the default. You can customize the ports.</td></tr><tr><td>WEKA backend to client traffic (on cloud)</td><td>All WEKA backend IPs</td><td>Client host IPs</td><td>14000-14100 (frontend)</td><td>TCP and UDP</td><td>These ports are the default. You can customize the ports.</td></tr><tr><td>WEKA GUI access</td><td>Admin workstation IPs</td><td>All WEKA management IPs</td><td>14000</td><td>TCP</td><td>User web browser IP</td></tr><tr><td>NFS</td><td>NFS client IPs</td><td>WEKA NFS backend IPs</td><td>2049<br>&#x3C;mountd port></td><td>TCP and UDP<br>TCP and UDP</td><td>You can set the <code>mountd</code> port using the command: <code>weka nfs global-config set --mountd-port</code></td></tr><tr><td>NFSv3 (used for locking)</td><td>NFS client IPs</td><td>WEKA NFS backend IPs</td><td>46999 (status monitor)<br>47000 (lock manager)</td><td>TCP and UDP</td><td></td></tr><tr><td>SMB/SMB-W</td><td>SMB client IPs</td><td>WEKA SMB backend IPs</td><td>139<br>445</td><td>TCP<br>TCP</td><td></td></tr><tr><td>SMB-W</td><td>All WEKA SMB-W backend IPs</td><td>All WEKA SMB-W backend IPs</td><td>2224</td><td>TCP</td><td>This port is required for internal clustering processes.</td></tr><tr><td>SMB/SMB-W</td><td>WEKA SMB backend IPs</td><td>All Domain Controllers for the selected Active Directory Domain</td><td><p>88</p><p>389<br>464<br>636<br>3268<br>3269</p></td><td>TCP and UDP<br>TCP and UDP<br>TCP and UDP<br>TCP and UDP<br>TCP and UDP<br>TCP and UDP</td><td>These ports are required for SMB/SMB-W to use Active Directory as the identity source. Furthermore, every Domain Controller within the selected AD domain must be accessible from the WEKA SMB servers.</td></tr><tr><td>SMB/SMB-W</td><td>WEKA SMB backend IPs</td><td>DNS servers</td><td>53</td><td>TCP and UDP</td><td></td></tr><tr><td>S3</td><td>S3 client IPs</td><td>WEKA S3 backend IPs</td><td>9000</td><td>TCP</td><td>This port is the default. You can customize the port.</td></tr><tr><td>wekatester</td><td>All WEKA backend IPs</td><td>All WEKA backend IPs</td><td>8501<br>9090</td><td>TCP<br>TCP</td><td>Port 8501 is used by wekanetperf.</td></tr><tr><td>WEKA Management Station</td><td>User web browser IP</td><td>WEKA Management Station IP</td><td><p>80 &#x3C;LWH></p><p>443 &#x3C;LWH></p><p>3000 &#x3C;mon></p><p>7860 &#x3C;admin UI></p><p>8760 &#x3C;deploy></p><p>8090 &#x3C;snap></p><p>8501 &#x3C;mgmt><br>9090 &#x3C;mgmt></p><p>9091 &#x3C;mon><br>9093 &#x3C;alerts></p></td><td><p>HTTP</p><p>HTTPS</p><p>TCP</p><p>TCP</p><p>TCP</p><p>TCP<br>TCP</p><p>TCP<br>TCP</p></td><td></td></tr><tr><td>Cloud WEKA Home, Local WEKA Home</td><td>All WEKA backend IPs</td><td>Cloud WEKA Home or<br>Local WEKA Home</td><td>80<br>443</td><td>HTTP<br>HTTPS</td><td><p>Open according to the directions in the deployment scenario:<br>- WEKA server IPs to CWH or LWH.<br>- LWH to CWH (if forwarding data from LWH to CWH)<br>Endpoint URLs:</p><ul><li><code>api.home.weka.io</code></li><li><code>get.weka.io</code></li></ul></td></tr><tr><td>Client telemetry and statistics</td><td>WEKA client IPs</td><td>Cloud WEKA Home or<br>Local WEKA Home</td><td>80<br>443</td><td>HTTP<br>HTTPS</td><td>Lack of connectivity prevents client-related statistics from being reported.</td></tr><tr><td>Troubleshooting by the Customer Success Team (CST)</td><td>All WEKA backend IPs</td><td>CST remote access</td><td>4000<br>4001</td><td>TCP<br>TCP</td><td></td></tr><tr><td>Traces remote viewer</td><td>All WEKA backend IPs</td><td>CST remote access</td><td>443</td><td>TCP</td><td></td></tr><tr><td>KMS: Hashicorp Vault</td><td>All WEKA backend IPs</td><td>Hashicorp Vault server</td><td>8200<br>8201</td><td>TCP<br>TCP</td><td>Default vault ports: 8200 is configurable for client requests, while 8201 (base_port+1) handles internal cluster communication.</td></tr><tr><td>KMS: KMIP</td><td>All WEKA backend IPs</td><td>KMIP server</td><td>5696</td><td>TCP</td><td>The default KMIP port, 5696, is configurable. Per the KMIP specification, servers must use this port when operating with the <a data-footnote-ref href="#user-content-fn-8">TTLV</a> encoding format.</td></tr></tbody></table>
 
+***
+
 ## HA
 
 See [#high-availability](../weka-system-overview/networking-in-wekaio.md#high-availability "mention")
+
+***
 
 ## SSD requirements
 
@@ -409,6 +425,8 @@ Review the requirements for SSDs used in a WEKA cluster.
 {% hint style="info" %}
 To get the best performance, ensure [TRIM](https://en.wikipedia.org/wiki/Trim_\(computing\)) is supported by the device and enabled in the operating system.
 {% endhint %}
+
+***
 
 ## Object store
 
@@ -451,6 +469,8 @@ The object store must adhere to the [Amazon S3 data consistency model](https://d
 
 * **Strong read-after-write consistency:** A `GET` request for an object that occurs after a successful `PUT` request has created that object must immediately return the new object's data.
 * **Eventual consistency:** `PUT` requests that overwrite existing objects, or `DELETE` requests, are eventually consistent. This means that a subsequent `GET` request might temporarily return the older version of the data before the update or deletion has fully propagated across the system.
+
+***
 
 ## Virtual Machines
 
@@ -495,6 +515,8 @@ GCP: [supported-machine-types-and-storage.md](weka-installation-on-gcp/supported
 **Related information**
 
 For additional information and how-to articles, search the WEKA Knowledge Base in the [WEKA support portal](http://support.weka.io) or contact the [Customer Success Team](../support/getting-support-for-your-weka-system.md#contacting-weka-technical-support-team).
+
+***
 
 ## KMS
 
