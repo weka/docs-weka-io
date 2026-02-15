@@ -2,23 +2,6 @@
 description: Version 5.1
 cover: .gitbook/assets/doc_neuralmesh_banner3.gif
 coverY: 0
-layout:
-  width: default
-  cover:
-    visible: true
-    size: hero
-  title:
-    visible: true
-  description:
-    visible: true
-  tableOfContents:
-    visible: true
-  outline:
-    visible: true
-  pagination:
-    visible: true
-  metadata:
-    visible: true
 metaLinks:
   alternates:
     - https://app.gitbook.com/s/0yXyIrnroN3zIG3qa4W3/

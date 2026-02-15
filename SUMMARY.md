@@ -166,6 +166,7 @@
 * [Manage CIDR-based security policies](security/manage-cidr-based-security-policies.md)
 * [Manage login banner](security/manage-the-login-banner.md)
 * [Secure cluster membership with join secret authentication](security/secure-cluster-membership-with-join-secret-authentication.md)
+* [Security hardening](security/security-hardening.md)
 
 ## Licensing
 

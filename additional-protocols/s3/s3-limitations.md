@@ -20,6 +20,10 @@ The difference between the styles is subtle but significant. When using a URL to
 
 The addressing style used to construct the request is determined by the S3 client sending the request.
 
+{% hint style="info" %}
+Ensure S3 clients support HTTP 1.1 or higher. WEKA S3 requires this protocol version for compatibility.
+{% endhint %}
+
 ## Supported S3 APIs
 
 The following standard S3 APIs are supported:
