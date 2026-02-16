@@ -48,9 +48,11 @@ Understanding data placement in a tiered system clarifies how WEKA balances perf
 
 #### **Metadata residency**
 
-Metadata resides exclusively on SSDs and never moves to object store. This includes directory structures, file attributes, timestamps, permissions, and internal indexes used to locate data.
+Metadata resides exclusively on SSDs and is never tiered to the object store. This includes directory structures, file attributes, timestamps, permissions, and internal indexes used to locate data.
 
-Keeping metadata on SSDs ensures that filesystem traversal operations—such as listing directories, checking file existence, and reading attributes—remain fast, regardless of whether the file data resides on SSD or in object store. This design enables navigation of massive filesystems with billions of files at SSD speeds.
+Maintaining metadata on SSD ensures that filesystem traversal operations, such as listing directories, verifying file existence, and reading attributes, consistently deliver SSD-level performance. This applies regardless of whether the associated file data resides on SSD or in the object store.
+
+This design enables efficient navigation of very large filesystems, including environments containing billions of files, while preserving predictable and low-latency metadata access.
 
 #### **Write operations**
 
@@ -58,20 +60,16 @@ Write operations in tiered systems always target SSDs first. Creating new files,
 
 WEKA never writes directly to object store to avoid high latency in the write path. Instead, writes complete quickly on SSD, and the system manages the background process of copying data to object store based on configured policies.
 
-#### **Data modifications**
-
-WEKA handles modifications by writing new data to fresh space on SSD rather than overwriting existing data in place. The metadata updates to point to this new location.
-
-Consequently, modifications always occur at SSD speed, even if the original file data was tiered to object store. The old version may remain in object store (supporting snapshot functionality), while the new version resides on SSD.
-
 #### **Read operations and promotion**
 
-Read operations access data from either tier, depending on its location:
+Read operations access data from either storage tier based on the data’s current location:
 
-* **SSD resident data:** If data resides on SSD (because it has not yet tiered or is cached), the read completes at SSD speed.
-* **Object store resident data:** If data exists only in object store, WEKA automatically retrieves it through a process called promotion. The system fetches the data, places it on SSD, and serves it to the application.
+* **SSD resident data:** If the data resides on SSD (for example, because it has not been tiered or remains cached), the read operation completes at SSD performance.
+* **Object store resident data:** If the data exists only in the object store (OBS), WEKA retrieves the requested data and attempts to promote it to SSD. The scope of promotion depends on current system activity and resource availability. In optimal conditions, the entire dataset is promoted; however, promotion may be partial.
 
-Subsequent reads of the promoted data complete at SSD speed. This mechanism ensures transparency. That is, applications access files through standard POSIX operations without tracking data location, while WEKA manages the complexity behind the scenes. The primary observable difference is latency during the first access to object-stored data.
+Subsequent reads are served from SSD only if the relevant data has been fully promoted. If promotion is incomplete, additional reads may still access the object store. Promotion is therefore a performance optimization rather than a guarantee that all retrieved data will reside on SSD.
+
+This process is transparent to applications. Files are accessed through standard POSIX operations without requiring awareness of data location. The primary observable difference is increased latency during the initial access to data that resides in the object store.
 
 ### Intelligent chunk-level management
 
@@ -97,27 +95,44 @@ Identifying these states clarifies system behavior. SSD-cached data ensures low-
 
 ### Core data movement processes
 
-Data movement between states relies on three distinct processes: **Tiering, Releasing**, and **Promoting**, that WEKA executes automatically based on configured policies and system conditions.
+Data movement between storage states is governed by tiering, which is the overarching lifecycle mechanism that manages transitions between SSD and object store. Tiering consists of three primary processes:
 
-![Data lifecycle flow](../.gitbook/assets/data_life_cycle_flow.png)
+* **Demoting** (SSD → SSD-cached)
+* **Releasing** (SSD-cached → Object store only)
+* **Fetching** (Object store → Active read path, with potential promotion to SSD)
 
-#### **Tiering**
+These processes execute automatically according to configured policies and real-time system conditions.
 
-Tiering is the process of copying data from the SSD to object store, creating a duplicate copy that transitions data from the SSD-only to the SSD-cached state.
+![Tiering processes](../.gitbook/assets/tiering_processes.png)
 
-The Tiering Cue policy controls the timing of this process. It specifies the wait time after data is written before initiating the copy to object store. This waiting period accommodates workflows where data is modified or deleted shortly after creation. By waiting, WEKA avoids the resource overhead of tiering data that may soon change or be deleted. Tiering occurs as a background operation and does not affect data availability or application access.
+#### Demoting
 
-#### **Releasing**
+Demoting is the process of copying data from SSD to the object store, creating a duplicate copy while retaining the SSD copy. This transitions data from the SSD-only state to the SSD-cached state.
 
-Releasing is the process of removing data from the SSD after it has been safely tiered to object store. This transitions data from the SSD-cached to the object store only state.
+The Tiering Cue policy controls when demotion begins. It defines the delay between data write completion and the start of the copy operation to the object store. This delay prevents unnecessary object-store writes for data that may be modified or deleted shortly after creation.
 
-The release process occurs when the system requires SSD space for new data and determines that older cached data can be removed without significantly impacting performance. The Retention Period policy influences the timing, specifying how long tiered data should remain cached on the SSD. However, available SSD capacity strongly influences release timing; if data is written faster than the SSD can accommodate, the system releases data earlier than the Retention Period suggests to prevent the SSD from filling completely.
+Demotion runs as a background operation and does not affect application access or data availability.
 
-#### **Promoting**
+#### Releasing
 
-Promoting is the process of retrieving data from object store and placing it back on the SSD. This is triggered by application access to data in the object store only state.
+Releasing removes data from SSD after it has been successfully demoted (copied) to the object store, transitioning it from the SSD-cached state to the object store–only state.
 
-When a user accesses a file released from the SSD, WEKA automatically fetches the data from object store, places it on the SSD, and serves the read request. The promoted data remains on the SSD with a fresh timestamp, effectively restarting its lifecycle. Subsequent accesses to this data are fast because the promotion restores it to the SSD.
+Releasing can occur due to either of two independent triggers:
+
+* **SSD space pressure:** When the system requires SSD capacity for new or active data, it may release cached data to free space.
+* **Retention Period expiration:** When the configured Retention Period elapses, cached data becomes eligible for release, even if there is no immediate SSD capacity constraint.
+
+These triggers operate independently. Data may be released because the retention timer expired, because SSD space is needed, or due to a combination of both factors.
+
+#### Fetching (with potential promotion)
+
+Fetching occurs when an application accesses data that resides only in the object store. The system retrieves the requested data to satisfy the read operation.
+
+During fetching, the system may attempt to promote the retrieved data back to SSD. Promotion is opportunistic and depends on current workload and resource availability. In optimal conditions, the entire dataset is promoted; however, promotion may be partial.
+
+Subsequent reads are served from SSD only if the relevant data has been fully promoted. If promotion is incomplete, later reads may still require access to the object store. Promotion is therefore a performance optimization rather than a guarantee.
+
+Fetched or promoted data that is placed on SSD receives a refreshed lifecycle state and may later undergo demotion and release according to policy.
 
 ## Role of SSDs in tiered systems
 
@@ -146,12 +161,6 @@ In tiered systems, distinguishing between total filesystem capacity and SSD capa
 * **Total filesystem capacity:** Represents the maximum amount of data the filesystem can hold across both tiers (SSD and object store). For example, a 100 TB filesystem can store up to 100 TB of data, distributed between the tiers based on policies and access patterns.
 * **SSD capacity:** Represents the working space allocated for recently written or frequently accessed data, metadata, and caching. This is typically significantly smaller than the total filesystem capacity. For example, a system might allocate 25 TB of SSD capacity within a 100 TB filesystem, relying on object store for the remaining 75 TB.
 
-**Filesystem capacity limits vs. SSD utilization**
-
-A filesystem can report as full even when the SSD tier retains available space.
-
-Consider a 100 TB filesystem with 25 TB of allocated SSD capacity. If the system stores 100 TB of data, most of which has tiered to object store, the SSD might only contain 20 TB of cached data. Despite the available SSD space, the system prevents further writes because the total filesystem capacity limit has been reached.
-
 **Role of reserved SSD capacity**
 
 SSD space remains reserved for essential functions, even when not fully utilized for data storage. This reservation ensures resources are available for:
@@ -159,8 +168,6 @@ SSD space remains reserved for essential functions, even when not fully utilized
 * **Metadata processing:** Storing directory structures and file attributes.
 * **Write staging:** Accepting new writes at high speed before tiering.
 * **Read caching:** Accommodating data promoted from object store upon access.
-
-To write additional data when the total capacity limit is reached, either delete existing files to free space or increase the total filesystem capacity allocation. Increasing the total capacity allows more data storage, with the additional volume residing in object store.
 
 ## Data lifecycle management policies
 
@@ -197,10 +204,10 @@ Configure lifecycle policies at the filesystem group level to align with specifi
 
 ### Bypassing standard lifecycle policies
 
-While time-based policies manage data lifecycle for most workflows, WEKA provides mechanisms for immediate action when needed:
+While time-based policies manage most data workflows, WEKA provides mechanisms for immediate action when needed:
 
-* **Snap-To-Object**: Forces data to tier immediately to object store, bypassing standard tiering policies. Useful for backup workflows requiring immediate object store writes.
-* **Object-store direct mount** (`obs_direct`): Bypasses SSD cache for specific mount points. Writes are released immediately to object store. Reads access object store directly. Ideal for bulk imports that bypass SSD cache.
+* **Snap-to-Object:** Forces data to tier immediately to the object store. It uploads metadata only and does not count toward SSD or primary storage capacity, making it ideal for backup workflows that require rapid persistence without affecting storage metrics.
+* **Object-store direct mount (`obs_direct`):** Bypasses the SSD cache for specific mount points. Writes go directly to the object store, and reads access object storage directly. Ideal for bulk imports that need to bypass SSD caching.
 
 **Related topics**
 

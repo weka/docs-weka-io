@@ -98,7 +98,7 @@ After copying to the object store, data enters the read cache state, existing on
 
 **Release process:** When cached data exceeds the retention period, the system releases it by removing the SSD copy while preserving the object store copy. This frees SSD capacity for newer data. The system prioritizes releasing the oldest cached data first.
 
-**Promotion on access:** Accessing released data retrieves it from the object store. The system automatically promotes the data back to the SSD, assigning it a new timestamp. This ensures frequently accessed data remains on the SSD, regardless of age.
+**Read-path cache promotion:** When accessed, released data is retrieved from the object store and automatically promoted to the SSD read cache. The system assigns the chunk a new access timestamp to track recency. Once cached, the chunk persists on the SSD and is not re-uploaded to the object store unless explicitly rewritten or evicted during cache reclamation. This mechanism ensures that frequently accessed data remains in the high-performance SSD cache tier, independent of the data's original write time.
 
 ### Object storage space reclamation
 
@@ -123,21 +123,24 @@ Operational constraints can force the system to deviate from configured policies
 
 ### Time-based data management
 
-The system organizes data temporally to manage releases efficiently when SSD capacity is limited. This organization relies on a mechanism known as the 7-interval process.
+The system organizes data temporally to manage releases efficiently when SSD capacity is limited. This organization relies on a mechanism known as the 8-interval process.
 
-**The 7-interval process:** The system groups data into time-based intervals to track data age and access recency (referred to as _temperature_ in the diagram). It maintains a rolling window of intervals, designated as Interval 0 through Interval 6, on the SSD.
+**The 8-interval process:** The system groups data into time-based intervals to track data age and access recency, referred to as temperature. It maintains a rolling window of intervals, designated as Interval 0 through Interval 7, on the SSD.
 
-* **Interval calculation:** The duration of a single interval is calculated as one-quarter of the configured Drive Retention Period.
-  * **Example 1:** A 20-day retention period results in 5-day intervals.
-  * **Example 2:** A 40-day retention period results in 10-day intervals.
-* **Data aging:** New or recently accessed data belongs to Interval 0 (the hottest data). As time passes, this data ages and moves sequentially to higher intervals (Interval 1, Interval 2, and so on).
-* **Retention window:** The system effectively tracks data across these 7 intervals. Since the retention period is covered by the first 4 intervals (4 x 1/4), the additional intervals (4 through 6) function as a buffer, retaining data on the SSD beyond the minimum policy requirement if capacity allows.
+**Interval calculation:** The duration of a single interval is calculated as one-quarter of the configured Drive Retention Period.
+
+* Example 1: A 20-day retention period results in 5-day intervals.
+* Example 2: A 40-day retention period results in 10-day intervals.
+
+**Data aging:** New or recently accessed data belongs to Interval 0, which represents the hottest data. As time passes, this data ages and moves sequentially to higher intervals, such as Interval 1, Interval 2, and so on.
+
+**Retention window:** The system effectively tracks data across these 8 intervals. Since the retention period is covered by the first 4 intervals (4 x 1/4), the additional intervals (Interval 4 through Interval 7) function as a buffer. This buffer retains data on the SSD beyond the minimum policy requirement if capacity allows.
 
 **Release granularity:** The system makes release decisions at the interval level rather than the file level. When the system requires SSD space, it releases the oldest complete interval to the object store. This coarse-grained approach tracks and manages billions of files efficiently across storage servers.
 
-**Implications:** Release granularity implies inherent imprecision in the effective drive retention period. For example, with a 20-day retention period (5-day intervals), the system might retain data for 25 to 35 days, depending on interval alignment and available capacity. While the system guarantees the release of data significantly older than the target, the exact retention varies within the margin of the interval size.
+**Implications:** Release granularity implies inherent imprecision in the effective drive retention period. For example, with a 20-day retention period consisting of 5-day intervals, the system might retain data for 20 to 40 days, depending on interval alignment and available capacity. While the system guarantees the release of data significantly older than the target, the exact retention varies within the margin of the interval size.
 
-<div data-with-frame="true"><figure><img src="../.gitbook/assets/7-interval_data_aging.png" alt=""><figcaption><p><strong>The 7-interval data aging process</strong></p></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/interval_data_aging.jpg" alt=""><figcaption><p><strong>The 8-interval data aging process</strong></p></figcaption></figure></div>
 
 ### High write rates and capacity limits
 
