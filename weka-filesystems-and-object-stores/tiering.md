@@ -12,11 +12,16 @@ metaLinks:
 
 ## Tiered storage overview
 
-WEKA tiered storage combines high-speed SSD performance with object storage scalability. It automatically optimizes data placement to manage costs without sacrificing speed.
+WEKA tiered storage combines high-speed SSD performance with object storage scalability, automatically optimizing data placement to manage costs without sacrificing speed.
 
-Active data resides on the SSD tier for maximum performance. Inactive data moves to the object storage tier for cost efficiency. This architecture provides scalable capacity while maintaining SSD-like performance for the active working set.
+**Data vs. metadata handling:** Tiering applies exclusively to file data content. All filesystem metadata, including directory structures, file attributes, and permissions, remains permanently pinned on the SSD tier. This ensures that metadata operations, such as file lookups and directory listings, always perform at sub-millisecond speeds, regardless of where the actual data resides.
 
-The system automates data movement based on configured policies. Administrators define time-based rules, and the system manages the transition between tiers. This capability eliminates the need for manual file migration or classification.
+**Automated lifecycle:**
+
+* **Active data:** Resides on the SSD tier for maximum IOPS and throughput.
+* **Inactive data:** Automatically moves to the object storage tier for cost efficiency once the configured retention period expires.
+
+The system automates this movement based on administrator-defined policies, eliminating the need for manual file migration or complex data classification workflows.
 
 **Related information**
 
@@ -123,24 +128,11 @@ Operational constraints can force the system to deviate from configured policies
 
 ### Time-based data management
 
-The system organizes data temporally to manage releases efficiently when SSD capacity is limited. This organization relies on a mechanism known as the 8-interval process.
+The system organizes data temporally to manage releases efficiently when SSD capacity is limited. Data is divided into 8 time-based intervals, allowing the system to release the oldest data first when space is needed.
 
-**The 8-interval process:** The system groups data into time-based intervals to track data age and access recency, referred to as temperature. It maintains a rolling window of intervals, designated as Interval 0 through Interval 7, on the SSD.
+Due to the imprecision of these internal interval boundaries, the actual retention period on SSD may be up to twice as long as the configured Drive Retention Period. For example, with a 20-day retention policy, data might remain on the SSD for up to 40 days, depending on available capacity and interval alignment.
 
-**Interval calculation:** The duration of a single interval is calculated as one-quarter of the configured Drive Retention Period.
-
-* Example 1: A 20-day retention period results in 5-day intervals.
-* Example 2: A 40-day retention period results in 10-day intervals.
-
-**Data aging:** New or recently accessed data belongs to Interval 0, which represents the hottest data. As time passes, this data ages and moves sequentially to higher intervals, such as Interval 1, Interval 2, and so on.
-
-**Retention window:** The system effectively tracks data across these 8 intervals. Since the retention period is covered by the first 4 intervals (4 x 1/4), the additional intervals (Interval 4 through Interval 7) function as a buffer. This buffer retains data on the SSD beyond the minimum policy requirement if capacity allows.
-
-**Release granularity:** The system makes release decisions at the interval level rather than the file level. When the system requires SSD space, it releases the oldest complete interval to the object store. This coarse-grained approach tracks and manages billions of files efficiently across storage servers.
-
-**Implications:** Release granularity implies inherent imprecision in the effective drive retention period. For example, with a 20-day retention period consisting of 5-day intervals, the system might retain data for 20 to 40 days, depending on interval alignment and available capacity. While the system guarantees the release of data significantly older than the target, the exact retention varies within the margin of the interval size.
-
-<div data-with-frame="true"><figure><img src="../.gitbook/assets/interval_data_aging.jpg" alt=""><figcaption><p><strong>The 8-interval data aging process</strong></p></figcaption></figure></div>
+The system makes release decisions at the interval level rather than the file level. When the system requires SSD space, it releases the oldest complete interval to the object store. This coarse-grained approach efficiently tracks and manages billions of files across storage servers.
 
 ### High write rates and capacity limits
 
@@ -152,7 +144,7 @@ A constraint scenario occurs when data write rates exceed the SSD capacity requi
 
 Consider a cluster with 100 TB of SSD capacity and a configured 20-day retention policy. If the workload writes 8 TB of new data daily, the SSD reaches capacity in approximately 12.5 days (100 TB/8 TB/day).
 
-To prevent the SSD from filling, the system releases the oldest data intervals (starting with Interval 0) early. This effectively reduces the actual retention period to approximately 10–15 days. While applications continue to function normally, data older than this effective period moves to the object store sooner than configured. Accessing this data incurs object storage latency.
+To prevent the SSD from filling, the system releases the oldest data intervals early. This effectively reduces the actual retention period to approximately 10–15 days. While applications continue to function normally, data older than this effective period moves to the object store sooner than configured. Accessing this data incurs object storage latency.
 
 **Resolution options:**
 
@@ -184,7 +176,7 @@ Effective management of a tiered WEKA system requires visibility into capacity u
 
 ### View capacity and reclamation status
 
-The `weka fs tier capacity` command provides insights into data residence in the object store, active versus reclaimable data, and the automatic space reclamation threshold. Running the command without arguments displays statistics for all tiered filesystems. Add the `--filesystem` option to filter the output for a specific filesystem.
+The `weka fs tier capacity` command provides insights into data residence in the object store, active versus reclaimable data, and the automatic space reclamation low and high thresholds (7% and 13%). Running the command without arguments displays statistics for all tiered filesystems. Add the `--filesystem` option to filter the output for a specific filesystem.
 
 **Example:**
 
@@ -234,12 +226,12 @@ The command output reveals the file's lifecycle state based on which storage tie
 
 **1. Before tiering (SSD write-cache)**
 
-Freshly written or modified data resides exclusively on the SSD. The file has not yet tiered to the object store.
+This is the initial state for any new or modified data. The data resides exclusively on the SSD to ensure maximum write performance. At this stage, the file is considered "hot" and has not yet been asynchronously pushed to the backend object store.
 
-* **Capacity in SSD (write-cache):** Matches file size.
-* **Capacity in Object Storage:** 0 B.
+* **Capacity in SSD (write-cache):** The total amount of high-performance SSD space currently occupied by new or modified data blocks that are pending tiering.
+* **Capacity in object store:** 0 B, as the data has not yet been replicated to the backend storage.
 
-**Example:**
+**Example:** In this scenario, a 102.39 MB file has been written to the filesystem but the tiering process to the object store has not yet commenced.
 
 ```bash
 $ weka fs tier location image
@@ -249,12 +241,17 @@ image  regular    102.39 MB  102.39 MB                      0 B                 
 
 **2. Tiered and retained (SSD read-cache + object store)**
 
-The file has successfully tiered to the object store but remains cached on the SSD because the Drive Retention Period has not passed. This state provides data protection (copy in object store) with high-performance access (copy on SSD).
+A file enters this state when its data resides in the object store for long-term protection but is also present on the SSD for performance. This can happen in two ways:
 
-* **Capacity in SSD (read-cache):** Matches file size.
-* **Capacity in object store:** Matches file size.
+* **Retention:** The file has successfully tiered to the object store, but the Drive Retention Period has not yet elapsed, keeping the local copy active.
+* **Promotion:** The file was previously residing only in the object store, but a recent "read" operation triggered a promotion, caching the data back onto the SSD.
 
-**Example:**
+This state provides maximum data protection (durable copy in object storage) while maintaining low-latency access (local copy on SSD).
+
+* **Capacity in SSD (read-cache):** The total amount of physical SSD space currently occupied by the file's data blocks.
+* **Capacity in object store:** The total footprint of the file's data as stored in the backend bucket/container.
+
+**Example:**  In this scenario, a 102.39 MB file is fully protected in the object store but remains fully accessible on the SSD flash layer.
 
 ```bash
 $ weka fs tier location image
@@ -264,12 +261,16 @@ image  regular    102.39 MB  0 B                            102.39 MB           
 
 **3. Released (object store only)**
 
-The retention period has passed. The system has released the SSD copy to free up high-performance capacity for new data. The file exists only in the object store. Accessing this file incurs latency as the system fetches it back to the SSD.
+A file enters this state once the Drive Retention Period has expired and the local SSD copy has been evicted to free up high-performance space for other frequently used data. The file remains fully protected and accessible, but its primary residence is now the object store.
 
-* **Capacity in SSD:** 0 B.
-* **Capacity in object store:** Matches file size.
+{% hint style="info" %}
+Accessing a file in this state triggers a "promotion," where the system fetches the data back from the object store to the SSD, temporarily increasing latency for the initial read.
+{% endhint %}
 
-**Example**
+* **Capacity in SSD (Write/Read Cache):** 0 B, as no data blocks are currently occupying physical space on the local SSD layer.
+* **Capacity in Object Store:** The total footprint of the file's data as stored in the backend bucket/container.
+
+**Example:** In this scenario, the 102.39 MB file has been successfully tiered and the local cache has been cleared.
 
 ```bash
 $ weka fs tier location image
@@ -289,7 +290,7 @@ When you attach an object store, the default behavior maintains the current file
 
 **Data management behavior**
 
-Upon reconfiguration to a tiered filesystem, the system treats all existing data as belonging to interval 0. The system manages this data according to the [7-interval process](#user-content-fn-1)[^1]. Consequently, the release process for data created before the reconfiguration occurs in an arbitrary order and does not depend on creation timestamps.
+Upon reconfiguration to a tiered filesystem, the system treats all existing data as a single baseline group for the purpose of tiering. This data is managed according to the standard background processes. However, because it was written before the policy change, the system releases the SSD copy in a system-optimized, arbitrary order. Consequently, the release process for this pre-existing data does not follow original creation or modification timestamps.
 
 ### Transition from tiered to SSD-only filesystems
 
@@ -379,14 +380,14 @@ cat file-list | xargs -P32 -n200 weka fs tier release
 
 ### Direct object store mount (`obs_direct`)
 
-The `obs_direct` mount option enables a special operational mode that bypasses retention policies entirely.
+The `obs_direct` mount option enables a special operational mode that bypasses retention policies.
 
 **System behavior:**
 
-* **Writes:** Data written through this mount point is prioritized for immediate release to object storage, preventing it from consuming SSD cache space.
+* **Writes:** Data is initially written to the SSD and immediately scheduled for release to the object store. This means data temporarily consumes SSD write-cache space during transit. If the Object Store (OBS) ingest speed is slower than the incoming write rate, this can lead to SSD cache pressure or performance bottlenecks.
 * **Reads:** Data is retrieved from object storage to serve the request and is immediately released again without being cached on the SSD.
 
-**Use case:** Use this mode for bulk data imports (migrations) where the target destination is object storage. It ensures incoming data flows to the object store without filling the SSD cache.
+**Use case:** Use this mode for bulk data imports (migrations) where the target destination is object storage. It ensures incoming data flows to the object store without occupying the SSD cache long-term.
 
 {% hint style="warning" %}
 **Important:** Do not use `obs_direct` for ongoing application access. Because this mode disables caching, every read request triggers a retrieval from object storage. For cloud deployments (for example, AWS S3), repeated reads of the same file generate excessive retrieval charges. Use this option only for the duration of the import task.
@@ -414,7 +415,3 @@ You can enable tagging when adding or updating an object store bucket.
 * **Platform support:** The object store must support S3 object tagging.
 * **Permissions:** For example, AWS S3 requires the `s3:PutObjectTagging` and `s3:DeleteObjectTagging` permissions.
 * **Cost:** Cloud service providers may charge additional fees for using object tagging.
-
-[^1]: The system groups data into time-based intervals to track data age and temperature. It maintains a rolling window of intervals, designated as Interval 0 through Interval 6, on the SSD.
-
-    See [Time-based data management](tiering.md#time-based-data-management).
