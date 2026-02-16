@@ -1354,7 +1354,6 @@ spec:
   numCores: 1
   numDrives: 2
   state: active
-  upgradePolicyType: manual
   wekaSecretRef:
     secretKeyRef:
       key: weka-operator-2bf91f1c-8a71-4b62-b177-78d3ba7eb4b0
