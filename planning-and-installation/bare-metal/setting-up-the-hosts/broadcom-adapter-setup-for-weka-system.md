@@ -15,7 +15,7 @@ This guidance applies to environments using Broadcom adapters. Adapter setup pro
 
 The following table lists the hardware requirements for Broadcom adapters.
 
-<table><thead><tr><th width="192.89453125">Component</th><th>Requirement</th></tr></thead><tbody><tr><td>Broadcom adapter</td><td>Confirm compatibility with WEKA-supported models. See <a data-mention href="../../prerequisites-and-compatibility.md#networking-ethernet">#networking-ethernet</a>.</td></tr><tr><td>Virtual Function count</td><td>The adapter must support a sufficient number of VFs to match the WEKA core count per server.</td></tr><tr><td>SR-IOV enabled</td><td><p>The system BIOS and NIC BIOS must support and enable SR-IOV.</p><p></p><p>See<a data-mention href="sr-iov-enablement.md">sr-iov-enablement.md</a>.</p></td></tr><tr><td>IOMMU disabled</td><td><p>WEKA backend servers and clients with Broadcom NICs do not support IOMMU. You must disable IOMMU before installing the cluster. </p><p>To disable IOMMU, update the kernel boot parameters to include <code>intel_iommu=off</code> or <code>amd_iommu=off</code>, depending on the CPU type.</p></td></tr></tbody></table>
+<table><thead><tr><th width="192.89453125">Component</th><th>Requirement</th></tr></thead><tbody><tr><td>Broadcom adapter</td><td>Confirm compatibility with WEKA-supported models. See <a data-mention href="../../prerequisites-and-compatibility.md#networking-ethernet">#networking-ethernet</a>.</td></tr><tr><td>Virtual Function count</td><td>The adapter must support a sufficient number of VFs to match the WEKA core count per server.</td></tr><tr><td>SR-IOV enabled</td><td><p>The system BIOS and NIC BIOS must support and enable SR-IOV.</p><p>See<a data-mention href="sr-iov-enablement.md">sr-iov-enablement.md</a>.</p></td></tr><tr><td>IOMMU disabled</td><td><p>WEKA backend servers and clients with Broadcom NICs do not support IOMMU. You must disable IOMMU before installing the cluster.</p><p>To disable IOMMU, update the kernel boot parameters to include <code>intel_iommu=off</code> or <code>amd_iommu=off</code>, depending on the CPU type.</p></td></tr></tbody></table>
 
 ## Software prerequisites
 
@@ -48,7 +48,7 @@ Follow this procedure to set up your Broadcom NICs for use with the WEKA system.
     ```
 
     Replace `<ID>` with the appropriate device identifier. The `-value` `0x40` is the hexadecimal representation of 64. If a server has more than 64 IO cores, you must adjust this value to match the core count.
-3.  **Enable TruFlow and offload features:** Run the following commands to ensure that TruFlow and other performance offload features are enabled on the NIC: <mark style="color:purple;">**\[TBD: is this step still required?]**</mark>
+3.  **Enable TruFlow and offload features:** Run the following commands to ensure that TruFlow and other performance offload features are enabled on the NIC:
 
     ```
     niccli -dev <ID> nvmsetoption -name enable_truflow -scope 0 -value 1
