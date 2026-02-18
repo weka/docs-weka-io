@@ -163,9 +163,10 @@ The following kernel versions are supported:
 
 **SELinux**
 
-* SELinux is supported in both `permissive` and `enforcing` modes.
+* Supported only on clients.
+* Supported in both `permissive` and `enforcing` modes.
   * `The targeted` policy is supported.
-  * The `mls` policy is not supported yet.
+  * The `mls` policy is not supported.
 
 {% hint style="info" %}
 - To set the SELinux security context for files, use the `-o acl` in the mount command, and define the `wekafs` to use extended attributes in the SELinux policy configuration (`fs_use_xattr`).
