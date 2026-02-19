@@ -46,7 +46,7 @@ Tiered configurations allow the provisioning of a much larger total filesystem c
 
 Understanding data placement in a tiered system clarifies how WEKA balances performance and cost.
 
-#### **Metadata residency**
+### **Metadata residency**
 
 Metadata resides exclusively on SSDs and is never tiered to the object store. This includes directory structures, file attributes, timestamps, permissions, and internal indexes used to locate data.
 
@@ -54,22 +54,20 @@ Maintaining metadata on SSD ensures that filesystem traversal operations, such a
 
 This design enables efficient navigation of very large filesystems, including environments containing billions of files, while preserving predictable and low-latency metadata access.
 
-#### **Write operations**
+### **Write operations**
 
 Write operations in tiered systems always target SSDs first. Creating new files, appending to existing files, or modifying content occurs at SSD speeds.
 
 WEKA never writes directly to object store to avoid high latency in the write path. Instead, writes complete quickly on SSD, and the system manages the background process of copying data to object store based on configured policies.
 
-#### **Read operations and promotion**
+### **Read operations and promotion**
 
 Read operations access data from either storage tier based on the data’s current location:
 
 * **SSD resident data:** If the data resides on SSD (for example, because it has not been tiered or remains cached), the read operation completes at SSD performance.
 * **Object store resident data:** If the data exists only in the object store (OBS), WEKA retrieves the requested data and attempts to promote it to SSD. The scope of promotion depends on current system activity and resource availability. In optimal conditions, the entire dataset is promoted; however, promotion may be partial.
 
-Subsequent reads are served from SSD only if the relevant data has been fully promoted. If promotion is incomplete, additional reads may still access the object store. Promotion is therefore a performance optimization rather than a guarantee that all retrieved data will reside on SSD.
-
-This process is transparent to applications. Files are accessed through standard POSIX operations without requiring awareness of data location. The primary observable difference is increased latency during the initial access to data that resides in the object store.
+The system performs coordinated reads by serving all locally available data from the SSD while simultaneously fetching any missing segments from the object store. In this model, the SSD acts as a transparent cache layer. The system does not wait for full promotion to complete before using the local fragments to accelerate the request.
 
 ### Intelligent chunk-level management
 
@@ -83,56 +81,65 @@ The chunk-level approach enhances large file management. For database files wher
 
 Chunk-level granularity minimizes data movement. Modifying a specific section of a file, such as 10 MB within a 100 GB file, triggers a rewrite only for the modified chunks. These chunks restart their lifecycle on the SSD. Unchanged chunks maintain their current lifecycle on the SSD or object store. This approach avoids the resource cost of reprocessing the entire file when only a small portion changes.
 
-### Data lifecycle states
+### Data placement conditions
 
-In a tiered configuration, data progresses through three distinct states representing its current storage location. These states apply to data chunks rather than entire files, meaning a single file can simultaneously have chunks in different states.
+In a tiered configuration, data progresses through three placement conditions that reflect where it currently resides across storage tiers.
 
-* **SSD-only:** Represents newly created or recently modified data residing exclusively on SSDs. This is the initial state for all data entering the system before it is copied to object store.
-* **SSD-cached:** Represents data existing in both the SSD and object store tiers. After the tiering process copies data to object store, the SSD copy serves as a cache to ensure fast access, while the object store copy provides authoritative long-term retention. Data often remains in this state for significant periods to optimize read performance.
-* **Object store only:** Represents data released from the SSD after its cache retention period expires. The data resides solely in object store. Accessing this data triggers a promotion process to restore it to the SSD. This state maximizes storage efficiency but incurs higher latency during the initial read.
+These conditions apply at the data-chunk level rather than the file level. As a result, a single file may simultaneously contain chunks in different placement conditions.
 
-Identifying these states clarifies system behavior. SSD-cached data ensures low-latency reads. Conversely, accessing data in the object-store-only state requires fetching it from object store, resulting in initial latency before subsequent accesses return to SSD speeds.
+* **SSD-only:** Represents newly created or recently modified data residing exclusively in the SSD tier. This is the initial placement for all data entering the system before it is copied to the object store tier.
+* **SSD-cached:** Represents data that exists in both the SSD tier and the object store tier. After tiering copies data to the object store, the SSD copy continues to provide low-latency access, while the object store copy provides durable capacity storage. Data may remain in this condition for extended periods to optimize performance.
+* **Object-store-only:** Represents data that has been removed from the SSD tier after its retention eligibility or capacity-based release. The data resides solely in the object store tier. Accessing this data requires retrieval from the object store, which may introduce initial read latency.
 
-### Core data movement processes
+Understanding these placement conditions clarifies system behavior:
 
-Data movement between storage states is governed by tiering, which is the overarching lifecycle mechanism that manages transitions between SSD and object store. Tiering consists of three primary processes:
+* Data present in the SSD tier supports low-latency reads.
+* Data residing only in the object store tier must be retrieved before access performance returns to SSD-level speeds.
+* Tiering continuously evaluates and adjusts data placement according to policy and system conditions.
 
-* **Demoting** (SSD → SSD-cached)
-* **Releasing** (SSD-cached → Object store only)
-* **Fetching** (Object store → Active read path, with potential promotion to SSD)
+### Tiering processes
 
-These processes execute automatically according to configured policies and real-time system conditions.
+Tiering is the automated mechanism that moves data between storage tiers. In an object-store configuration, tiering governs how data transitions between the SSD tier and the object store tier over time.
+
+Object-store tiering consists of four core processes:
+
+1. Write to SSD
+2. Demotion
+3. Release
+4. Fetch
+
+These processes operate automatically based on configured policies and real-time system conditions.
 
 ![Tiering processes](../.gitbook/assets/tiering_processes.png)
 
-#### Demoting
+#### Write to SSD
 
-Demoting is the process of copying data from SSD to the object store, creating a duplicate copy while retaining the SSD copy. This transitions data from the SSD-only state to the SSD-cached state.
+All new data is written to the SSD tier. This ensures low-latency write performance and immediate availability. After write completion, data becomes eligible for tiering operations.
 
-The Tiering Cue policy controls when demotion begins. It defines the delay between data write completion and the start of the copy operation to the object store. This delay prevents unnecessary object-store writes for data that may be modified or deleted shortly after creation.
+#### Demotion
 
-Demotion runs as a background operation and does not affect application access or data availability.
+Demotion copies data from the SSD tier to the object store tier while retaining the SSD copy. After demotion completes, data exists in both tiers.
 
-#### Releasing
+The Tiering Cue policy controls when demotion begins. It defines the delay between write completion and initiation of the copy operation to the object store. This delay helps avoid unnecessary object-store writes for data that may be modified or deleted shortly after creation.
 
-Releasing removes data from SSD after it has been successfully demoted (copied) to the object store, transitioning it from the SSD-cached state to the object store–only state.
+Demotion runs as a background process and does not interrupt data access.
 
-Releasing can occur due to either of two independent triggers:
+#### Release
 
-* **SSD space pressure:** When the system requires SSD capacity for new or active data, it may release cached data to free space.
-* **Retention Period expiration:** When the configured Retention Period elapses, cached data becomes eligible for release, even if there is no immediate SSD capacity constraint.
+Release removes the SSD copy after the object store copy has been successfully created. Following release, data resides only in the object store tier.
 
-These triggers operate independently. Data may be released because the retention timer expired, because SSD space is needed, or due to a combination of both factors.
+Release may occur due to:
 
-#### Fetching (with potential promotion)
+* SSD capacity requirements, or
+* Expiration of the configured retention period.
 
-Fetching occurs when an application accesses data that resides only in the object store. The system retrieves the requested data to satisfy the read operation.
+These triggers operate independently and may act together.
 
-During fetching, the system may attempt to promote the retrieved data back to SSD. Promotion is opportunistic and depends on current workload and resource availability. In optimal conditions, the entire dataset is promoted; however, promotion may be partial.
+#### Fetch
 
-Subsequent reads are served from SSD only if the relevant data has been fully promoted. If promotion is incomplete, later reads may still require access to the object store. Promotion is therefore a performance optimization rather than a guarantee.
+Fetch occurs when data residing only in the object store tier is accessed. The system retrieves the requested data to satisfy the read operation.
 
-Fetched or promoted data that is placed on SSD receives a refreshed lifecycle state and may later undergo demotion and release according to policy.
+Depending on system conditions and policy, the retrieved data may be placed back on the SSD tier. This placement is opportunistic and intended to improve subsequent access performance.
 
 ## Role of SSDs in tiered systems
 
@@ -204,10 +211,38 @@ Configure lifecycle policies at the filesystem group level to align with specifi
 
 ### Bypassing standard lifecycle policies
 
-While time-based policies manage most data workflows, WEKA provides mechanisms for immediate action when needed:
+While time-based policies govern typical tiering behavior, the system provides mechanisms for situations that require immediate or policy-independent data movement.
 
-* **Snap-to-Object:** Forces data to tier immediately to the object store. It uploads metadata only and does not count toward SSD or primary storage capacity, making it ideal for backup workflows that require rapid persistence without affecting storage metrics.
-* **Object-store direct mount (`obs_direct`):** Bypasses the SSD cache for specific mount points. Writes go directly to the object store, and reads access object storage directly. Ideal for bulk imports that need to bypass SSD caching.
+#### **Snap to Object**
+
+Snap to Object forces data to tier immediately to the object store tier.
+
+When triggered, the system uploads:
+
+* All associated metadata, and
+* Any data that is not yet present in the object store.
+
+Metadata stored in the object store is not accounted toward object-store capacity usage.
+
+Snap to Object is commonly used in backup or rapid-persistence workflows where data must be made durable in the object store immediately, without waiting for standard tiering delays.
+
+#### **Object-store direct mount (`obs_direct`)**
+
+Object-store direct mount modifies the standard tiering flow for specific mount points.
+
+*   **Write behavior:**&#x20;
+
+    * Data is written to the SSD tier first.
+    * It is immediately scheduled for upload to the object store tier.
+    * After successful upload, the data is promptly released from SSD.
+
+    This minimizes SSD residency time while preserving the system’s write-path integrity.
+*   **Read behavior:**
+
+    * Reads retrieve data directly from the object store tier.
+    * Retrieved data is not promoted to the SSD tier.
+
+    This mode is suitable for workflows such as large-scale data ingestion or bulk imports where SSD caching is not required and capacity efficiency is prioritized.
 
 **Related topics**
 

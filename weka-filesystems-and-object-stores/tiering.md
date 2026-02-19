@@ -83,7 +83,7 @@ Understanding the lifecycle of data in a tiered system helps predict performance
 
 All data written to a tiered filesystem initially lands on the SSD tier. The system does not write directly to the object store, ensuring write completion at SSD latency.
 
-Upon ingestion, the system assigns a creation timestamp to the data. This timestamp serves as the reference for subsequent tiering decisions. At this stage, the data resides exclusively on the SSD (write-cache state).
+Upon ingestion, the system assigns a creation timestamp to the data. This timestamp serves as the reference for subsequent tiering decisions. At this stage, the data resides exclusively on the SSD (write-cache).
 
 **Chunk-level management:** The system tracks modifications at a fine granularity, maintaining timestamps per data chunk (up to 1 MB) rather than per file. When an application modifies a specific chunk within a large file, only that chunk’s timestamp is refreshed.
 
@@ -99,7 +99,7 @@ Once the Tiering Cue period expires for a chunk, the system begins copying that 
 
 ### Retention and release
 
-After copying to the object store, data enters the read cache state, existing on both the SSD and the object store. The SSD copy remains available for fast access according to the configured Drive Retention Period.
+After copying to the object store, data enters the read-cache placement condition, existing on both the SSD and the object store. The SSD copy remains available for fast access according to the configured Drive Retention Period.
 
 **Release process:** When cached data exceeds the retention period, the system releases it by removing the SSD copy while preserving the object store copy. This frees SSD capacity for newer data. The system prioritizes releasing the oldest cached data first.
 
@@ -170,9 +170,9 @@ The Tiering Cue policy defines when data becomes _eligible_ for tiering, not whe
 
 Policy violations and early releases occur specifically due to capacity or throughput constraints on the retention side (how long data stays cached), never due to the tiering cue itself.
 
-## Monitor system state
+## Monitor system status
 
-Effective management of a tiered WEKA system requires visibility into capacity utilization, space reclamation status, and data distribution. Use the available tools to monitor the system state and interpret the metrics.
+Effective management of a tiered WEKA system requires visibility into capacity utilization, space reclamation status, and data distribution. Use the available tools to monitor the system status and interpret the metrics.
 
 ### View capacity and reclamation status
 
@@ -220,38 +220,42 @@ weka fs tier location <path> [paths...]
 * `[paths...]`: Space-separated list of paths to investigate.
 * `*` (Wildcard): Retrieves location information for all files in a specific directory (for example, `weka fs tier location /mnt/data/*`).
 
-#### Lifecycle location states
+#### Data lifecycle placement conditions
 
-The command output reveals the file's lifecycle state based on which storage tier consumes capacity.
+The command output reveals the file's placement condition based on which storage tier consumes capacity.
 
 **1. Before tiering (SSD write-cache)**
 
-This is the initial state for any new or modified data. The data resides exclusively on the SSD to ensure maximum write performance. At this stage, the file is considered "hot" and has not yet been asynchronously pushed to the backend object store.
+This is the initial placement condition for any new or modified data. The data resides exclusively on the SSD to ensure maximum write performance. At this stage, the file is considered frequently accessed and has not yet been asynchronously pushed to the backend object store.
 
 * **Capacity in SSD (write-cache):** The total amount of high-performance SSD space currently occupied by new or modified data blocks that are pending tiering.
+* **Capacity in SSD (read-cache):** 0 B, as the data has not yet been replicated to the backend storage.
 * **Capacity in object store:** 0 B, as the data has not yet been replicated to the backend storage.
 
 **Example:** In this scenario, a 102.39 MB file has been written to the filesystem but the tiering process to the object store has not yet commenced.
 
+{% code fullWidth="false" %}
 ```bash
 $ weka fs tier location image
 PATH   FILE TYPE  FILE SIZE  CAPACITY IN SSD (WRITE-CACHE)  CAPACITY IN SSD (READ-CACHE)  CAPACITY IN OBJECT STORAGE
 image  regular    102.39 MB  102.39 MB                      0 B                           0 B
 ```
+{% endcode %}
 
-**2. Tiered and retained (SSD read-cache + object store)**
+**2. Tiered and retained storage (SSD read-cache + object store)**
 
-A file enters this state when its data resides in the object store for long-term protection but is also present on the SSD for performance. This can happen in two ways:
+This condition occurs when a file's data is stored long-term in an object store while also residing on an SSD for enhanced performance. This happens in two cases:
 
-* **Retention:** The file has successfully tiered to the object store, but the Drive Retention Period has not yet elapsed, keeping the local copy active.
-* **Promotion:** The file was previously residing only in the object store, but a recent "read" operation triggered a promotion, caching the data back onto the SSD.
+* **Retention:** The file is moved to the object store, but the Drive Retention Period keeps a local SSD copy.
+* **Promotion:** A file previously only in the object store is cached on the SSD after a "read" operation.
 
-This state provides maximum data protection (durable copy in object storage) while maintaining low-latency access (local copy on SSD).
+This placement ensures data protection with a durable object store copy and low-latency access from the local SSD.
 
-* **Capacity in SSD (read-cache):** The total amount of physical SSD space currently occupied by the file's data blocks.
-* **Capacity in object store:** The total footprint of the file's data as stored in the backend bucket/container.
+* **Capacity in SSD (write-cache):** 0 B. No SSD space currently occupied.
+* **SSD capacity (read-cache):** The total physical SSD space occupied by the file's data blocks.
+* **Object store capacity:** The file's data footprint in the backend bucket/container.
 
-**Example:**  In this scenario, a 102.39 MB file is fully protected in the object store but remains fully accessible on the SSD flash layer.
+**Example:** A 102.39 MB file is securely stored in the object store while easily accessible on the SSD flash layer.
 
 ```bash
 $ weka fs tier location image
@@ -261,16 +265,16 @@ image  regular    102.39 MB  0 B                            102.39 MB           
 
 **3. Released (object store only)**
 
-A file enters this state once the Drive Retention Period has expired and the local SSD copy has been evicted to free up high-performance space for other frequently used data. The file remains fully protected and accessible, but its primary residence is now the object store.
+Once the Drive Retention Period expires, and the local SSD copy is removed to free up high-performance space, the file transitions to its primary residence in the object store. It remains fully protected and accessible.
 
 {% hint style="info" %}
-Accessing a file in this state triggers a "promotion," where the system fetches the data back from the object store to the SSD, temporarily increasing latency for the initial read.
+When accessing a file in this condition, a "promotion" occurs. The system retrieves the data from the object store to the SSD, which temporarily increases latency for the initial read.
 {% endhint %}
 
-* **Capacity in SSD (Write/Read Cache):** 0 B, as no data blocks are currently occupying physical space on the local SSD layer.
-* **Capacity in Object Store:** The total footprint of the file's data as stored in the backend bucket/container.
+* **Capacity in SSD (write-cache/read cache):** 0 B, as no data blocks are currently occupying physical space on the local SSD layer.
+* **Capacity in object store:** The total footprint of the file's data as stored in the backend bucket/container.
 
-**Example:** In this scenario, the 102.39 MB file has been successfully tiered and the local cache has been cleared.
+**Example:** A 102.39 MB file has been tiered, and the local cache has been cleared successfully.
 
 ```bash
 $ weka fs tier location image
@@ -329,7 +333,7 @@ weka fs tier fetch <path> [--verbose]
 
 #### Batch fetching
 
-To fetch large directory trees efficiently, combine the command with Unix tools to parallelize the operation:
+To fetch large directory trees efficiently, for example, combine the command with Unix tools to parallelize the operation.&#x20;
 
 ```bash
 find -L <directory_path> -type f | xargs -r -n512 -P64 weka fs tier fetch -v
@@ -384,8 +388,8 @@ The `obs_direct` mount option enables a special operational mode that bypasses r
 
 **System behavior:**
 
-* **Writes:** Data is initially written to the SSD and immediately scheduled for release to the object store. This means data temporarily consumes SSD write-cache space during transit. If the Object Store (OBS) ingest speed is slower than the incoming write rate, this can lead to SSD cache pressure or performance bottlenecks.
-* **Reads:** Data is retrieved from object storage to serve the request and is immediately released again without being cached on the SSD.
+* **Writes:** Data is initially written to the SSD and immediately scheduled for release to the object store. This means data temporarily consumes SSD write-cache space during transit.
+* **Reads:** Data is retrieved from object storage to serve the request and not promoted to SSD.
 
 **Use case:** Use this mode for bulk data imports (migrations) where the target destination is object storage. It ensures incoming data flows to the object store without occupying the SSD cache long-term.
 
