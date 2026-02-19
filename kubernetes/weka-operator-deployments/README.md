@@ -924,6 +924,88 @@ When you delete a WekaCluster, the system enforces a 24-hour grace period before
 
 ***
 
+## **Migrate a WEKA client to a Kubernetes Operator-controlled client**
+
+To migrate a WEKA client running directly on a worker node to a Kubernetes Operator-controlled client, select either the container name override approach or a clean installation based on your environment's needs. Choose the container name override approach for minimal operational impact, or opt for a clean installation if you prefer a fresh environment without legacy components.
+
+#### Migrate with container name override
+
+This approach smoothly migrates the WEKA client without interrupting workloads by using container name overrides.
+
+**Before you begin**
+
+* Ensure the environment does not use local mounts.
+* To prevent client duplication conflicts, ensure that quick manual removal of containers are possible.
+* Anticipate a maximum of two minutes of I/O stalls during the switchover process.
+* When WEKA modifies cgroups, the CPU cores allocated aren't automatically freed. To reclaim them in Kubernetes, typically a node reboot is needed, although a Kubernetes service restart may sometimes capture these resources based on specific settings. Until a reboot is executed, CPUs remain double allocated.
+
+**Procedure**
+
+1.  **Identify the standalone container name:** Run the following command on the worker node to locate the active WEKA client container.<br>
+
+    ```bash
+    weka local ps
+    ```
+
+    \
+    Example output:
+
+    ```bash
+    CONTAINER  STATE    DISABLED  UPTIME     MONITORING  PERSISTENT   PORT     PID  STATUS  VERSION    LAST FAILURE
+    client     Running  False     14:02:13h  True        False       14000  166663  Ready  4.4.9.130
+    ```
+
+    Note the name in the CONTAINER column, for example, `client`.
+2. **Configure the deployment manifest:**&#x20;
+   1. Update the `wekaclients` YAML file with the exact container name identified in the previous step.
+   2.  Insert the name into the `overrides` section under the `WekaClient` spec:
+
+
+
+       ```yaml
+       overrides:
+         wekaContainerName: <client_container_name>
+       ```
+3. **Apply the configuration:** Deploy the updated WEKA client file to the Kubernetes cluster to initiate the Operator-based client.
+4. **Remove the standalone container:** Run the following commands on the worker node immediately after applying the new configuration. Complete these steps within **two minutes** to avoid crashes caused by duplicate clients.
+   * **Stop the container:** `weka local stop <container_name>` (use `--force` if needed)
+   * **Remove the container:** `weka local rm <container_name>`
+5.  **Service cleanup:** After a successful deployment, if the legacy WEKA service it is no longer required, remove it from the Kubernetes worker node that runs WEKA client manually.<br>
+
+    ```bash
+    weka agent uninstall --force
+    ```
+
+#### Migrate with a clean installation
+
+This approach evicts the workload from the node and performs a clean installation of the WEKA client through the Kubernetes Operator, ensuring a fresh environment without requiring a container name override.
+
+**Before you begin**
+
+* Ensure the cluster has sufficient resources to handle workloads during node eviction.
+* The environment must not use local mounts. Use only CSI.
+* This procedure may cause a temporary disruption to the node being migrated. Anticipate up to two minutes of I/O delays during the switchover process as the Operator-based client establishes connectivity.
+
+**Procedure**
+
+1. **Evict the node:** Use the Kubernetes eviction process to move all running pods to other healthy worker nodes in the cluster. This prevents data access errors for active applications during the client removal.
+2.  **Uninstall the standalone client:** Log in to the k8s worker node that runs WEKA client and remove the existing WEKA service and its components. Use the following command to ensure a complete cleanup.<br>
+
+    ```bash
+    weka agent uninstall --force
+    ```
+
+
+3.  **Verify container removal:** Ensure no legacy WEKA processes remain active on the node. Run:<br>
+
+    ```bash
+    weka local ps
+    ```
+
+    Confirm that no WEKA containers are running.
+4. **Install the Operator-managed client:** Apply the `wekaclients` YAML manifest to the cluster. The Operator now manages the new container lifecycle, eliminating the need for the `wekaContainerName` override.
+5. **Monitor the switchover:** Observe the system as the Operator pulls the necessary images and starts the client processes.
+
 ## Best practices
 
 ### Preloading images

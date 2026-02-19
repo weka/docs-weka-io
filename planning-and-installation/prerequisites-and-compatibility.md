@@ -142,7 +142,8 @@ The following kernel versions are supported:
 
 **SELinux**
 
-* SELinux is supported in both `permissive` and `enforcing` modes.
+* Supported only on clients.
+* Supported in both `permissive` and `enforcing` modes.
   * `The targeted` policy is supported.
   * The `mls` policy is not supported yet.
 
