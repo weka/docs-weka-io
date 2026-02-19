@@ -1,14 +1,14 @@
 ---
 description: >-
-  WEKA implements a comprehensive security framework with multiple controls to
-  ensure secure communication and protect user data in the WEKA cluster.
+  The system implements a comprehensive security framework with multiple
+  controls to ensure secure communication and protect user data in the cluster.
 ---
 
-# WEKA security overview
+# System security overview
 
 ## Introduction
 
-As data security becomes increasingly critical, WEKA provides a comprehensive security framework to ensure the confidentiality, integrity, and availability of your data.
+As data security becomes increasingly critical, the system provides a comprehensive security framework to ensure the confidentiality, integrity, and availability of your data.
 
 Learn about the supported security features and recommended configurations to protect sensitive data, comply with industry regulations, and reduce the risk of unauthorized access. Implementing these measures makes secure deployment and operation both straightforward and effective.
 

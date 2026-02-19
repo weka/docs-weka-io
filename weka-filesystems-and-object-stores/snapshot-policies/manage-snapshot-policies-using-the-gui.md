@@ -117,7 +117,7 @@ You can enable or disable a policy directly from the policies list pane, for exa
     <div align="center" data-with-frame="true"><figure><img src="../../.gitbook/assets/snap-policy-status.png" alt="" width="455"><figcaption></figcaption></figure></div>
 3. In the confirmation message that appears, select **Yes** to confirm the status change.
 
-<div data-with-frame="true"><figure><img src="../../.gitbook/assets/image (247).png" alt="" width="257"><figcaption></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/image.png" alt="" width="257"><figcaption></figcaption></figure></div>
 
 ## Delete a snapshot policy
 

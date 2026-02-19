@@ -1,26 +1,24 @@
 # Table of contents
 
-* [WEKA documentation](README.md)
+* [NeuralMesh™ by WEKA documentation](README.md)
   * [Documentation revision history](readme/documentation-revision-history.md)
 
-## WEKA System Overview
+## System Overview <a href="#weka-system-overview" id="weka-system-overview"></a>
 
-* [Introduction](weka-system-overview/about/README.md)
-  * [WEKA system functionality features](weka-system-overview/about/weka-system-functionality-features.md)
-  * [Converged WEKA system deployment](weka-system-overview/about/converged-weka-system-deployment.md)
+* [Introduction](weka-system-overview/about.md)
 * [Cluster capacity and redundancy management](weka-system-overview/cluster-capacity-and-redundancy-management.md)
 * [Filesystems, object stores, and filesystem groups](weka-system-overview/filesystems/README.md)
   * [Cluster and filesystem capacity counter definitions](weka-system-overview/filesystems/cluster-and-filesystem-capacity-counter-definitions.md)
-* [WEKA networking](weka-system-overview/networking-in-wekaio.md)
+* [Networking](weka-system-overview/networking-in-wekaio.md)
 * [Data lifecycle management](weka-system-overview/data-storage.md)
 * [WEKA client and mount modes](weka-system-overview/weka-client-and-mount-modes.md)
-* [WEKA containers architecture overview](weka-system-overview/weka-containers-architecture-overview.md)
+* [Cluster architecture overview](weka-system-overview/weka-containers-architecture-overview.md)
 * [Glossary](weka-system-overview/glossary.md)
 
 ## Planning and Installation
 
 * [Prerequisites and compatibility](planning-and-installation/prerequisites-and-compatibility.md)
-* [WEKA cluster installation on bare metal servers](planning-and-installation/bare-metal/README.md)
+* [System installation on bare metal servers](planning-and-installation/bare-metal/README.md)
   * [Plan the WEKA system hardware requirements](planning-and-installation/bare-metal/planning-a-weka-system-installation.md)
   * [Obtain the WEKA installation packages](planning-and-installation/bare-metal/obtaining-the-weka-install-file.md)
   * [Install the WEKA cluster using the WMS with WSA](planning-and-installation/bare-metal/install-the-weka-cluster-using-the-wms-with-wsa.md)
@@ -35,16 +33,16 @@
     * [VLAN tagging in the WEKA system](planning-and-installation/bare-metal/manually-configure-the-weka-cluster-using-the-resource-generator/vlan-tagging-in-the-weka-system.md)
   * [Perform post-configuration procedures](planning-and-installation/bare-metal/perform-post-configuration-procedures.md)
   * [Add clients to an on-premises WEKA cluster](planning-and-installation/bare-metal/adding-clients-bare-metal.md)
-* [WEKA Cloud Deployment Manager Web (CDM Web) User Guide](planning-and-installation/weka-cdm-web-user-guide.md)
-* [WEKA Cloud Deployment Manager Local (CDM Local) User Guide](planning-and-installation/weka-cdm-local-user-manager.md)
-* [WEKA installation on AWS](planning-and-installation/aws/README.md)
+* [Cloud Deployment Manager Web (CDM Web) User Guide](planning-and-installation/weka-cdm-web-user-guide.md)
+* [Cloud Deployment Manager Local (CDM Local) User Guide](planning-and-installation/weka-cdm-local-user-manager.md)
+* [System installation on AWS](planning-and-installation/aws/README.md)
   * [Terraform-AWS-WEKA module description](planning-and-installation/aws/aws-weka-terraform-deployment-module-description.md)
   * [Deployment on AWS using Terraform](planning-and-installation/aws/deployment-on-aws-using-terraform.md)
   * [Required services and supported regions](planning-and-installation/aws/required-services-and-supported-regions.md)
   * [Supported EC2 instance types using Terraform](planning-and-installation/aws/supported-ec2-instance-types.md)
   * [WEKA cluster auto-scaling in AWS](planning-and-installation/aws/weka-cluster-auto-scaling-in-aws.md)
   * [Detailed deployment tutorial: WEKA on AWS using Terraform](planning-and-installation/aws/detailed-deployment-tutorial-weka-on-aws-using-terraform.md)
-* [WEKA installation on Azure](planning-and-installation/weka-installation-on-azure/README.md)
+* [System installation on Azure](planning-and-installation/weka-installation-on-azure/README.md)
   * [Azure-WEKA deployment Terraform package description](planning-and-installation/weka-installation-on-azure/azure-weka-terraform-package-description.md)
   * [Deployment on Azure using Terraform](planning-and-installation/weka-installation-on-azure/deployment-on-azure-using-terraform.md)
   * [Required services and supported regions](planning-and-installation/weka-installation-on-azure/required-services-and-supported-regions.md)
@@ -53,7 +51,7 @@
   * [Add clients to a WEKA cluster on Azure](planning-and-installation/weka-installation-on-azure/add-clients.md)
   * [Troubleshooting](planning-and-installation/weka-installation-on-azure/troubleshooting.md)
   * [Detailed deployment tutorial: WEKA on Azure using Terraform](planning-and-installation/weka-installation-on-azure/detailed-deployment-tutorial-weka-on-azure-using-terraform.md)
-* [WEKA installation on GCP](planning-and-installation/weka-installation-on-gcp/README.md)
+* [System installation on GCP](planning-and-installation/weka-installation-on-gcp/README.md)
   * [WEKA project description](planning-and-installation/weka-installation-on-gcp/weka-project-description.md)
   * [GCP-WEKA deployment Terraform package description](planning-and-installation/weka-installation-on-gcp/gcp-terraform-package-description.md)
   * [Deployment on GCP using Terraform](planning-and-installation/weka-installation-on-gcp/deployment-on-gcp-using-terraform.md)
@@ -64,7 +62,7 @@
   * [Troubleshooting](planning-and-installation/weka-installation-on-gcp/troubleshooting.md)
   * [Detailed deployment tutorial: WEKA on GCP using Terraform](planning-and-installation/weka-installation-on-gcp/detailed-deployment-tutorial-weka-on-gcp-using-terraform.md)
   * [Google Kubernetes Engine and WEKA over POSIX deployment](planning-and-installation/weka-installation-on-gcp/google-kubernetes-engine-and-weka-over-posix-deployment.md)
-* [WEKA installation on OCI](planning-and-installation/weka-installation-on-oci.md)
+* [System installation on OCI](planning-and-installation/weka-installation-on-oci.md)
 
 ## NeuralMesh Axon
 
@@ -72,22 +70,22 @@
 * [NeuralMesh Axon deployment](neuralmesh-axon/neuralmesh-axon-deployment.md)
 * [NeuralMesh Axon maintenance](neuralmesh-axon/neuralmesh-axon-maintenance.md)
 
-## Getting Started with WEKA
+## Getting Started with NeuralMesh <a href="#getting-started-with-weka" id="getting-started-with-weka"></a>
 
-* [Manage the system using the WEKA GUI](getting-started-with-weka/manage-the-system-using-weka-gui.md)
-* [Manage the system using the WEKA CLI](getting-started-with-weka/manage-the-system-using-weka-cli/README.md)
+* [Manage the system using the GUI](getting-started-with-weka/manage-the-system-using-weka-gui.md)
+* [Manage the system using the CLI](getting-started-with-weka/manage-the-system-using-weka-cli/README.md)
   * [WEKA CLI hierarchy](getting-started-with-weka/manage-the-system-using-weka-cli/weka-cli-hierarchy.md)
   * [CLI reference guide](getting-started-with-weka/manage-the-system-using-weka-cli/cli-reference-guide.md)
 * [Perform a basic IO sanity check](getting-started-with-weka/performing-the-first-io.md)
-* [Getting started with WEKA REST API](getting-started-with-weka/getting-started-with-weka-rest-api.md)
-* [WEKA REST API and equivalent CLI commands](getting-started-with-weka/weka-rest-api-and-equivalent-cli-commands.md)
+* [Getting started with REST API](getting-started-with-weka/getting-started-with-weka-rest-api.md)
+* [REST API and equivalent CLI commands](getting-started-with-weka/weka-rest-api-and-equivalent-cli-commands.md)
 
 ## Performance
 
-* [WEKA performance tests](performance/testing-weka-system-performance/README.md)
+* [System performance tests](performance/testing-weka-system-performance/README.md)
   * [Performance test environment configurations](performance/testing-weka-system-performance/test-environment-details.md)
 
-## WEKA Filesystems & Object Stores
+## Filesystems & Object Stores <a href="#weka-filesystems-and-object-stores" id="weka-filesystems-and-object-stores"></a>
 
 * [Manage object stores](weka-filesystems-and-object-stores/managing-object-stores/README.md)
   * [Manage object stores using the GUI](weka-filesystems-and-object-stores/managing-object-stores/managing-object-stores.md)
@@ -158,7 +156,7 @@
 
 ## Security
 
-* [WEKA security overview](security/security.md)
+* [System security overview](security/security.md)
 * [Obtain authentication tokens](security/obtain-authentication-tokens.md)
 * [Manage token expiration](security/manage-token-expiration.md)
 * [Manage account lockout threshold policy](security/account-lockout-threshold-policy-management.md)
@@ -217,7 +215,7 @@
 * [Manage WEKA drivers](operation-guide/manage-weka-drivers.md)
 * [Drivers distribution service](operation-guide/drivers-distribution-service.md)
 
-## Monitor the WEKA Cluster
+## Monitor the Cluster <a href="#monitor-the-weka-cluster" id="monitor-the-weka-cluster"></a>
 
 * [Deploy monitoring tools using the WEKA Management Station (WMS)](monitor-the-weka-cluster/deploy-monitoring-tools-using-the-weka-management-station-wms.md)
 * [WEKA Home - The WEKA support cloud](monitor-the-weka-cluster/the-wekaio-support-cloud/README.md)

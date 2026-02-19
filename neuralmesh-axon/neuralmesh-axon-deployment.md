@@ -9,7 +9,9 @@ description: >-
 
 ## NeuralMesh Axon deployment overview
 
-NeuralMesh Axon offers a flexible deployment model, supporting both Slurm and Kubernetes runtime environments. regardless of the deployment method, specific infrastructure configurations are required to ensure high performance and stability.
+NeuralMesh Axon offers a flexible deployment model, supporting both Slurm and Kubernetes runtime environments.
+
+Regardless of the deployment method, specific infrastructure configurations are required to ensure high performance and stability.
 
 ### Infrastructure prerequisites
 
