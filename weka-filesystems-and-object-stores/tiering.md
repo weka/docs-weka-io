@@ -279,7 +279,7 @@ When accessing a file in this condition, a "promotion" occurs. The system retrie
 ```bash
 $ weka fs tier location image
 PATH   FILE TYPE  FILE SIZE  CAPACITY IN SSD (WRITE-CACHE)  CAPACITY IN SSD (READ-CACHE)  CAPACITY IN OBJECT STORAGE
-image  regular    102.39 MB  0 B                            0 B                      
+image  regular    102.39 MB  0 B                            0 B                           102.39 MB
 ```
 
 ## Transition between tiered and SSD-only filesystems

@@ -65,7 +65,7 @@ WEKA never writes directly to object store to avoid high latency in the write pa
 Read operations access data from either storage tier based on the data’s current location:
 
 * **SSD resident data:** If the data resides on SSD (for example, because it has not been tiered or remains cached), the read operation completes at SSD performance.
-* **Object store resident data:** If the data exists only in the object store (OBS), WEKA retrieves the requested data and attempts to promote it to SSD. The scope of promotion depends on current system activity and resource availability. In optimal conditions, the entire dataset is promoted; however, promotion may be partial.
+* **Object store resident data:** If the requested data exists only in the object store (OBS), WEKA retrieves it from OBS to satisfy the read request. The system may cache the retrieved data on SSD to accelerate subsequent access, depending on current activity and resource availability. If the data is not cached (or only partially cached), subsequent reads are served directly from OBS.
 
 The system performs coordinated reads by serving all locally available data from the SSD while simultaneously fetching any missing segments from the object store. In this model, the SSD acts as a transparent cache layer. The system does not wait for full promotion to complete before using the local fragments to accelerate the request.
 
