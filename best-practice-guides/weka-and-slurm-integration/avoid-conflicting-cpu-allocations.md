@@ -151,7 +151,7 @@ If hyperthreading is enabled, identify the sibling CPUs and include them in both
 grep /sys/devices/system/cpu/*/topology/thread_siblings_list | egrep 'cpu24|cpu25|cpu26|cpu27'
 ```
 
-Example result:
+**Example result:**
 
 {% code overflow="wrap" %}
 ```bash

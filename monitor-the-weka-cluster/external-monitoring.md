@@ -20,7 +20,7 @@ You can set up WEKAmon independently of the WEKA GUI's built-in monitoring.
 
 If you already use Grafana and Prometheus for other products, you can integrate WEKAmon to visualize all monitoring data on a unified dashboard.
 
-<div data-with-frame="true"><img src="../.gitbook/assets/image (153).png" alt="WEKA monitoring data on the Grafana dashboard example"></div>
+<div data-with-frame="true"><img src="../.gitbook/assets/image (152).png" alt="WEKA monitoring data on the Grafana dashboard example"></div>
 
 {% hint style="info" %}
 If you have deployed the WMS, follow the procedure in:[deploy-monitoring-tools-using-the-weka-management-station-wms.md](deploy-monitoring-tools-using-the-weka-management-station-wms.md "mention"). Otherwise, continue with this workflow.

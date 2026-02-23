@@ -43,7 +43,7 @@ The organization admin can set a quota on a directory. This action initiates cal
      The system sets the directory quota in the background.
 5. To monitor the directory quota setting background task, select **Monitor > Background Tasks.**
 
-<div data-with-frame="true"><figure><img src="../../.gitbook/assets/DirectoryQuotaSetting.gif" alt=""><figcaption><p>Set a directory quota and monitor the background task</p></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/obs_reclaim_space (1).png" alt=""><figcaption><p>Set a directory quota and monitor the background task</p></figcaption></figure></div>
 
 ## View directory quotas and default quota
 

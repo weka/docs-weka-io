@@ -133,11 +133,11 @@ Certain fields within the configuration input panel require manual user input. O
 
 {% tabs %}
 {% tab title="Instance Type" %}
-<div data-with-frame="true"><figure><img src="../.gitbook/assets/image (239).png" alt="" width="290"><figcaption><p>Instance Type</p></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/image (238).png" alt="" width="290"><figcaption><p>Instance Type</p></figcaption></figure></div>
 {% endtab %}
 
 {% tab title="Region" %}
-<div data-with-frame="true"><figure><img src="../.gitbook/assets/image (240).png" alt="" width="290"><figcaption><p>Region</p></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/image (239).png" alt="" width="290"><figcaption><p>Region</p></figcaption></figure></div>
 {% endtab %}
 
 {% tab title="WEKA Version" %}
@@ -145,7 +145,7 @@ The WEKA software release dropdown menu is designed to auto-populate with the mo
 
 To enter a WEKA software release that is not listed in the dropdown, click directly in the WEKA Version input field and type the desired release. This feature is particularly useful when deploying a WEKA cluster with a customer-specific software release.
 
-<div data-with-frame="true"><figure><img src="../.gitbook/assets/image (241).png" alt="" width="290"><figcaption><p>WEKA Version</p></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/image (240).png" alt="" width="290"><figcaption><p>WEKA Version</p></figcaption></figure></div>
 {% endtab %}
 {% endtabs %}
 

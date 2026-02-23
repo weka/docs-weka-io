@@ -1,5 +1,5 @@
 ---
-description: This page describes how to view and manage filesystem groups using the CLI.
+description: Configure filesystem groups and tiering policies using the CLI.
 ---
 
 # Manage filesystem groups using the CLI
@@ -61,4 +61,4 @@ Use the following command line to delete a filesystem group:
 
 To learn about the tiring policy, see:
 
-[tiering](../tiering/ "mention")
+[tiering.md](../tiering.md "mention")

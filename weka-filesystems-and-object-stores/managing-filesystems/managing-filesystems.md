@@ -53,21 +53,19 @@ When deploying a WEKA system on a cloud platform (AWS, Azure, or GCP), the WEKA 
 
 <div data-with-frame="true"><figure><img src="../../.gitbook/assets/create_fs.png" alt=""><figcaption><p>Create filesystem</p></figcaption></figure></div>
 
-4.  Optional: [**Tiering**](../tiering/advanced-time-based-policies-for-data-storage-location.md#tiering-cue-policy).\
+4.  Optional: **Tiering**.\
     If tiering is required, and the following conditions are met:
 
     * An object store bucket is already defined.
     * Data reduction is not enabled.
 
-    Then, enable tiering by selecting the Tiering toggle and specifying the following details:
+    Then, turn on the **Tiering** toggle and specify the following:
 
     * **Object Store Bucket:** Select a predefined object store bucket from the list.
     * **Drive Capacity:** Enter the SSD capacity to provision, or select **Use All** to allocate all available free capacity.
     * **Total Capacity:** Enter the total capacity of the object store bucket, including the drive capacity.
 
-    **Best practice:** Use a 1:4 ratio between the drive capacity and total capacity, as shown in the example below.
-
-    When tiering is enabled, you can also create the file system from an uploaded snapshot. For more information, see the related topics below.
+    **Best practice:** Use a 1:4 ratio between the drive capacity and total capacity, as shown in the example below. When tiering is enabled, you can also create the filesystem from an uploaded snapshot. For more information, see the related topics below.
 
 <div data-with-frame="true"><img src="../../.gitbook/assets/wmng_fs_tiering.png" alt="Tiering"></div>
 
@@ -81,7 +79,7 @@ When deploying a WEKA system on a cloud platform (AWS, Azure, or GCP), the WEKA 
 
 6. Optional: **Data Reduction**.\
    Data reduction can be enabled only on thin provision, non-tiered, and unencrypted filesystems on a cluster with a valid data reduction license (you can verify the data reduction license in the cluster settings). For more details, see the related topics below.\
-   To enable the Data Reduction, select the toggle button.
+   To enable the Data Reduction, turn on the toggle button.
 
 <div data-with-frame="true"><figure><img src="../../.gitbook/assets/wmng_fs_data_reduction.png" alt=""><figcaption><p>Data reduction</p></figcaption></figure></div>
 
@@ -107,6 +105,8 @@ To use the **Audit Logging** option, ensure the **Audit and Forwarding** feature
 [kms-management](../../security/kms-management/ "mention")
 
 [overview.md](../../licensing/overview.md "mention")
+
+[tiering.md](../tiering.md "mention")
 
 [#data-reduction-in-weka-filesystems](../../weka-system-overview/filesystems/#data-reduction-in-weka-filesystems "mention")
 

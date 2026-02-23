@@ -7,7 +7,7 @@ description: >-
 
 # Cluster and filesystem capacity counter definitions
 
-## Cluster capacity counter definitions&#x20;
+## Cluster capacity counter definitions
 
 * **SSD capacity counters**:
   * **USED SSD**: Total SSD space currently in use, including both data and metadata.
@@ -22,7 +22,7 @@ description: >-
   * **FREE TOTAL**: Remaining space available in the filesystem for storing data and metadata.
   * **AVAILABLE TOTAL**: Total allocated space across both SSD and object store tiers.
 * **Data reduction counters:**
-  * **DATA REDUCTION RATIO (DRR):** Data reduction efficiency, calculated as: \
+  * **DATA REDUCTION RATIO (DRR):** Data reduction efficiency, calculated as:\
     USED SSD (DATA) / REDUCED SIZE OF DATA.
   * **USED SSD PENDING DATA REDUCTION:** Amount of data written to SSD that is awaiting data reduction processing.
   * **REDUCED SIZE OF PROCESSED DATA:** Total SSD space occupied post data reduction processing.
@@ -68,9 +68,9 @@ DATA REDUCTION FACTOR: 3.75
 
 [data-storage.md](../data-storage.md "mention")
 
-[advanced-time-based-policies-for-data-storage-location.md](../../weka-filesystems-and-object-stores/tiering/advanced-time-based-policies-for-data-storage-location.md "mention")
+[Broken link](/broken/pages/-LxWGVbB9iYC1u6AKg_O "mention")
 
-[data-management-in-tiered-filesystems.md](../../weka-filesystems-and-object-stores/tiering/data-management-in-tiered-filesystems.md "mention")
+[Broken link](/broken/pages/-M4D3-jpP94VjWGvg4Am "mention")
 
 [managing-filesystems](../../weka-filesystems-and-object-stores/managing-filesystems/ "mention")
 

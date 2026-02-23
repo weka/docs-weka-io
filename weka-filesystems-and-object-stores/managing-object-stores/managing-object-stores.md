@@ -98,7 +98,7 @@ Set the following:
    * **Max concurrent Downloads**: Maximum number of downloads concurrently performed on this object store in a single IO node.
    * **Max concurrent Uploads**: Maximum number of uploads concurrently performed on this object store in a single IO node.
    * **Max concurrent Removals**: Maximum number of removals concurrently performed on this object store in a single IO node.
-   * **Enable Upload Tags**: Enable tagging of uploaded objects. For details, see [object-tagging](../tiering/data-management-in-tiered-filesystems.md#object-tagging).
+   * **Enable Upload Tags**: Enable tagging of uploaded objects. For details, see [object-tagging](/broken/pages/-M4D3-jpP94VjWGvg4Am#object-tagging).
    * **Data Storage Class**: Configurable Amazon S3 storage classes, allowing users to optimize storage based on cost and access needs. Supports STANDARD, REDUCED\_REDUNDANCY, STANDARD\_IA, ONEZONE\_IA, INTELLIGENT\_TIERING, OUTPOSTS, GLACIER\_IR, and EXPRESS\_ONEZONE. For details, For details, see the documentation for Amazon S3 Storage Classes.
    * **Metadata Storage Class:** Configurable Amazon S3 storage classes for metadata. Supports STANDARD, REDUCED\_REDUNDANCY, STANDARD\_IA, ONEZONE\_IA, INTELLIGENT\_TIERING, OUTPOSTS, GLACIER\_IR, and EXPRESS\_ONEZONE.
 
@@ -120,7 +120,7 @@ Set the following:
   * **Max concurrent Downloads**: Maximum number of downloads concurrently performed on this object store in a single IO node.
   * **Max concurrent Uploads**: Maximum number of uploads concurrently performed on this object store in a single IO node.
   * **Max concurrent Removals**: Maximum number of removals concurrently performed on this object store in a single IO node.
-  * **Enable Upload Tags**: Enable tagging of uploaded objects. For details, see [object-tagging](../tiering/data-management-in-tiered-filesystems.md#object-tagging).
+  * **Enable Upload Tags**: Enable tagging of uploaded objects. For details, see [object-tagging](/broken/pages/-M4D3-jpP94VjWGvg4Am#object-tagging).
 
 <div data-with-frame="true"><figure><img src="../../.gitbook/assets/create_obs_other_advanced.png" alt=""><figcaption><p>GCP S3 bucket creation</p></figcaption></figure></div>
 {% endtab %}
@@ -139,7 +139,7 @@ Set the following:
    * **Max concurrent Downloads**: Maximum number of downloads concurrently performed on this object store in a single IO node.
    * **Max concurrent Uploads**: Maximum number of uploads concurrently performed on this object store in a single IO node.
    * **Max concurrent Removals**: Maximum number of removals concurrently performed on this object store in a single IO node.
-   * **Enable Upload Tags**: Enable tagging of uploaded objects. For details, see [object-tagging](../tiering/data-management-in-tiered-filesystems.md#object-tagging).
+   * **Enable Upload Tags**: Enable tagging of uploaded objects. For details, see [object-tagging](/broken/pages/-M4D3-jpP94VjWGvg4Am#object-tagging).
    * **Data Storage Class:** Configurable Azure access storage tier, allowing users to optimize storage based on cost and access needs. Supports HOT, COOL, and COLD. For details, see the documentation for Azure Access tiers for blob data.
    * **Metadata Storage Class:** Configurable Azure access storage tier for metadata. Supports HOT, COOL, and COLD.
 

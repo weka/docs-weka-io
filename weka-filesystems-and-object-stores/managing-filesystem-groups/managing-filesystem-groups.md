@@ -1,5 +1,5 @@
 ---
-description: This page describes how to view and manage filesystem groups using the GUI.
+description: Configure filesystem groups and tiering policies using the GUI.
 ---
 
 # Manage filesystem groups using the GUI
@@ -38,11 +38,9 @@ A filesystem group is required when adding a filesystem. You can create more fil
 
 4. Select **Create**.
 
-**Related topics**
+**Related topic**
 
-To learn more about the drive retention period and tiering cue, se&#x65;**:**
-
-[advanced-time-based-policies-for-data-storage-location.md](../tiering/advanced-time-based-policies-for-data-storage-location.md "mention")
+[#data-lifecycle-policy-controls](../tiering.md#data-lifecycle-policy-controls "mention") (to learn more about the drive retention period and tiering cue)
 
 ## Edit a filesystem group
 

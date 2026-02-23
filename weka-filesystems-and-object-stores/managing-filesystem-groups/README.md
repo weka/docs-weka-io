@@ -1,17 +1,17 @@
 ---
-description: This page provides an overview about managing filesystem groups.
+description: >-
+  Configure centralized tiering policies to enforce data lifecycle rules across
+  multiple filesystems.
 ---
 
 # Manage filesystem groups
 
-A filesystem group in the WEKA system is used specifically to manage tiering policies for filesystems. It defines key parameters, including the drive retention period and the tiering queue time, which determine how and when data is tiered.
+A filesystem group functions as a policy engine for tiered storage, enforcing consistent data lifecycle rules across multiple filesystems. By grouping filesystems, you centrally manage how data transitions between the high-performance SSD tier and the object store.
 
-When you add a filesystem, it must be associated with a filesystem group to apply these tiering behaviors. The WEKA system supports up to eight filesystem groups, allowing flexibility in managing tiering policies across different filesystems.
+**Lifecycle policy enforcement:** The filesystem group serves as the centralized configuration point for the tiering cue and the drive retention period. These settings dictate the timing for copying data to the object store and releasing it from the SSD cache. Any change to a group's configuration immediately applies the updated lifecycle policies to all its member filesystems.
+
+**Association requirements:** To enable tiering, every filesystem must be associated with a filesystem group. The WEKA system supports up to eight distinct filesystem groups, allowing you to define and maintain separate tiering strategies for different workload types within the same cluster.
 
 **Related topics**
 
-[filesystems](../../weka-system-overview/filesystems/ "mention")
-
-[managing-filesystem-groups.md](managing-filesystem-groups.md "mention")
-
-[manage-filesystem-groups-using-the-cli.md](manage-filesystem-groups-using-the-cli.md "mention")
+[tiering.md](../tiering.md "mention")
