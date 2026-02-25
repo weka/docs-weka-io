@@ -263,6 +263,7 @@
   * [Manage CPU allocations for WEKA and Slurm](best-practice-guides/weka-and-slurm-integration/avoid-conflicting-cpu-allocations.md)
 * [Best practices for WEKA stateless client and Kubernetes](best-practice-guides/best-practices-for-weka-stateless-client-and-kubernetes.md)
 * [Storage expansion best practice](best-practice-guides/storage-expansion-best-practice.md)
+* [Maximize GPU infrastructure resilience with NeuralMesh AXON](best-practice-guides/maximize-gpu-infrastructure-resilience-with-neuralmesh-axon.md)
 
 ## Support
 
@@ -290,7 +291,6 @@
   * [NFS transport failback](appendices/weka-csi-plugin/nfs-transport-failback.md)
   * [Upgrade legacy persistent volumes for capacity enforcement](appendices/weka-csi-plugin/upgrade-legacy-persistent-volumes-for-capacity-enforcement.md)
   * [Troubleshooting](appendices/weka-csi-plugin/troubleshooting.md)
-* [Convert cluster to multi-container backend](appendices/convert-the-cluster-architecture-from-a-single-container-backend-to-a-multi-container-backend.md)
 * [Create a client image](appendices/create-a-client-image.md)
 * [Update WMS and WSA](appendices/update-wms-and-wsa.md)
 * [BIOS tool](appendices/bios-tool.md)
