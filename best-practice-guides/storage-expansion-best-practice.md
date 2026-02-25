@@ -41,5 +41,5 @@ In a heterogeneous cluster, ensuring the new failure domain has the same total p
 * For performance in heterogeneous clusters, ensure new drives can handle twice the throughput of older drives.
 
 {% hint style="warning" %}
-Contact the Product Management team (pm@weka.io) for approval and guidance in such heterogeneous scenarios.
+Contact your WEKA account team for approval and guidance in such heterogeneous scenarios.
 {% endhint %}

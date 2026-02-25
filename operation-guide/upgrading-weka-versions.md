@@ -80,15 +80,6 @@ WEKA uses a structured versioning scheme to indicate the scope and type of chang
 
 </details>
 
-{% hint style="warning" %}
-The source system must be set up in MCB architecture. If not, contact the [Customer Success Team](../support/getting-support-for-your-weka-system.md#contact-customer-success-team) to convert the cluster architecture to MCB. See [convert-the-cluster-architecture-from-a-single-container-backend-to-a-multi-container-backend.md](../appendices/convert-the-cluster-architecture-from-a-single-container-backend-to-a-multi-container-backend.md "mention").\
-This workflow is only intended for professional services.
-{% endhint %}
-
-{% hint style="warning" %}
-Customers running WEKA clusters on AWS with **auto-scaling groups** must contact the [Customer Success Team](../support/getting-support-for-your-weka-system.md#contact-customer-success-team) before converting the cluster to MCB.
-{% endhint %}
-
 ## What is a non-disruptive upgrade (NDU)
 
 In MCB architecture, each container serves a single type of process, drive, frontend, or compute function. Therefore, upgrading one container at a time (rolling upgrade) is possible while the remaining containers continue serving the clients.
