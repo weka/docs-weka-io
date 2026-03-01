@@ -9,7 +9,7 @@ description: >-
 
 ## Converged storage and compute with NeuralMesh AXON
 
-NeuralMesh AXON enables the the NeuralMesh process to run as a server directly on GPU-based systems. This design uses local NVMe devices, system memory, specific CPU cores, and network interfaces to instantiate a storage cluster within the same physical footprint as the GPU servers.
+NeuralMesh AXON enables the NeuralMesh process to run as a server directly on GPU-based systems. This design uses local NVMe devices, system memory, specific CPU cores, and network interfaces to instantiate a storage cluster within the same physical footprint as the GPU servers.
 
 By eliminating the need for dedicated storage hardware, organizations reduce data center footprints and improve resource usage, while also removing network bottlenecks to customer data. However, this convergence introduces unique availability challenges.
 
