@@ -241,17 +241,12 @@ reclaimPolicy: Delete
 volumeBindingMode: Immediate
 allowVolumeExpansion: true
 parameters:
-  volumeType: weka/v2  # this line can be ommitted completely
-
-  # name of an EMPTY filesystem to provision volumes on
-  filesystemName: default
-
-  # name of the secret that stores API credentials for a cluster
-  # change the name of secret to match secret of a particular cluster (if you have several Weka clusters)
-  csi.storage.k8s.io/provisioner-secret-name: &secretName csi-wekafs-api-secret
-  # change the name of the namespace in which the cluster API credentials
-  csi.storage.k8s.io/provisioner-secret-namespace: &secretNamespace csi-wekafs
-  # do not change anything below this line, or set to same parameters as above
+  volumeType: weka/v2  
+    filesystemName: default # A name for provisioning volumes on an empty filesystem
+  # Identify the secret storing API credentials for your cluster.
+  csi.storage.k8s.io/provisioner-secret-name: &secretName csi-wekafs-api-secret # Rename the secret to correspond with the specific secret of a particular Weka cluster, especially if multiple Weka clusters are present.
+  csi.storage.k8s.io/provisioner-secret-namespace: &secretNamespace csi-wekafs # Update the namespace name associated with the cluster API credentials.
+  # Keep the section below unchanged or use the parameters specified above.
   csi.storage.k8s.io/controller-publish-secret-name: *secretName
   csi.storage.k8s.io/controller-publish-secret-namespace: *secretNamespace
   csi.storage.k8s.io/controller-expand-secret-name: *secretName
@@ -307,25 +302,20 @@ Adhere to the following:
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
-  name: storageclass-wekafs-fs-api
+  name: storageclass-wekafs-fs-encrypted-api
 provisioner: csi.weka.io
 reclaimPolicy: Delete
 volumeBindingMode: Immediate
 allowVolumeExpansion: true
 parameters:
-  volumeType: weka/v2  # this line can be ommitted completely
-
-  # name of the filesystem group to create FS in.
-  filesystemGroupName: default
-  # minimum size of filesystem to create (preallocate space for snapshots and derived volumes)
-  initialFilesystemSizeGB: "100"
-
-  # name of the secret that stores API credentials for a cluster
-  # change the name of secret to match secret of a particular cluster (if you have several Weka clusters)
-  csi.storage.k8s.io/provisioner-secret-name: &secretName csi-wekafs-api-secret
-  # change the name of the namespace in which the cluster API credentials
-  csi.storage.k8s.io/provisioner-secret-namespace: &secretNamespace csi-wekafs
-  # do not change anything below this line, or set to same parameters as above
+  volumeType: weka/v2
+  encryptionEnabled: "true" # Encrypt the filesystems created by the CSI plugin. This requires a KMS server configured on the WEKA cluster.
+  filesystemGroupName: default  # Enter the name of the filesystem group where the filesystem will be created.
+  initialFilesystemSizeGB: "100" # Minimum filesystem size to allocate (include space for snapshots and volumes).
+  csi.storage.k8s.io/provisioner-secret-name: &secretName csi-wekafs-api-secret # Secret name for API credentials storage in a cluster.
+  # Adjust the secret name to align with the secret for the specific WEKA cluster you are working on.
+  csi.storage.k8s.io/provisioner-secret-namespace: &secretNamespace csi-wekafs # Update the namespace containing the cluster API credentials.
+  # Keep the section below unchanged or use the parameters specified above.
   csi.storage.k8s.io/controller-publish-secret-name: *secretName
   csi.storage.k8s.io/controller-publish-secret-namespace: *secretNamespace
   csi.storage.k8s.io/controller-expand-secret-name: *secretName
@@ -346,7 +336,7 @@ parameters:
 
 <summary>Apply the yaml file</summary>
 
-```
+```bash
 # apply the storageclass.yaml file
 $ kubectl apply -f storageclass-wekafs-fs-api.yaml
 storageclass.storage.k8s.io/storageclass-wekafs-fs-api created
@@ -367,4 +357,4 @@ Adhere to the following:
 
 #### filesystem-backed StorageClass **parameters**
 
-<table><thead><tr><th width="282">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>volumeType</code></td><td><p>The CSI Plugin volume type.</p><p>For filesystem-backed StorageClass configurations, use <code>weka/v2</code>.</p></td></tr><tr><td><code>filesystemGroupName</code></td><td>The name of the WEKA filesystem to create filesystems as Kubernetes volumes.<br>The filesystem group must exist on the WEKA cluster.</td></tr><tr><td><code>initialFilesystemSizeGB</code></td><td><p>The default size to create new filesystems.<br>Set this parameter in the following cases:</p><ul><li>When the PVC requested size is smaller than the specified value.</li><li>For additional space required by snapshots of a volume or snapshot-backed volumes derived from this filesystem.</li></ul></td></tr><tr><td><code>csi.storage.k8s.io/provisioner-secret-name</code></td><td><p>Name of the K8s secret. For example, <code>csi-wekafs-api-secret</code>.</p><p>It is recommended to use a trust anchor definition to avoid mistakes because the same value must be specified in the additional parameters below, according to the CSI specifications.<br>Format: see <em>Example: storageclass-wekafs-snap-api.yaml</em> above (the additional parameters appear at the end of the example).</p></td></tr><tr><td><code>csi.storage.k8s.io/provisioner-secret-namespace</code></td><td><p>The namespace the secret is located in.</p><p>The secret must be located in a different namespace than the installed CSI Plugin.</p><p>It is recommended to use a trust anchor definition to avoid mistakes because the same value must be specified in the additional parameters according to the CSI specifications.<br>Format: see <em>Example: storageclass-wekafs-fs-api.yaml</em> above (the additional parameters appear at the end of the example).</p></td></tr></tbody></table>
+<table><thead><tr><th width="428">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>volumeType</code></td><td><p>The CSI Plugin volume type.</p><p>For filesystem-backed StorageClass configurations, use <code>weka/v2</code>.</p></td></tr><tr><td><code>encryptionEnabled</code></td><td>Encrypt the filesystems created by the CSI plugin. This requires a KMS server configured on the WEKA cluster.</td></tr><tr><td><code>filesystemGroupName</code></td><td>The name of the WEKA filesystem to create filesystems as Kubernetes volumes.<br>The filesystem group must exist on the WEKA cluster.</td></tr><tr><td><code>initialFilesystemSizeGB</code></td><td><p>The default size to create new filesystems.<br>Set this parameter in the following cases:</p><ul><li>When the PVC requested size is smaller than the specified value.</li><li>For additional space required by snapshots of a volume or snapshot-backed volumes derived from this filesystem.</li></ul></td></tr><tr><td><code>csi.storage.k8s.io/provisioner-secret-name</code></td><td><p>Name of the K8s secret. For example, <code>csi-wekafs-api-secret</code>.</p><p>It is recommended to use a trust anchor definition to avoid mistakes because the same value must be specified in the additional parameters below, according to the CSI specifications.<br>Format: see <em>Example: storageclass-wekafs-snap-api.yaml</em> above (the additional parameters appear at the end of the example).</p></td></tr><tr><td><code>csi.storage.k8s.io/provisioner-secret-namespace</code></td><td><p>The namespace the secret is located in.</p><p>The secret must be located in a different namespace than the installed CSI Plugin.</p><p>It is recommended to use a trust anchor definition to avoid mistakes because the same value must be specified in the additional parameters according to the CSI specifications.<br>Format: see <em>Example: storageclass-wekafs-fs-api.yaml</em> above (the additional parameters appear at the end of the example).</p></td></tr></tbody></table>
