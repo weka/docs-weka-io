@@ -19,6 +19,12 @@ The WEKA Operator automates tasks, enables periodic maintenance, and ensures rob
 **Target audience:** This guide is intended exclusively for experienced Kubernetes cluster administrators. It provides detailed procedures for deploying the WEKA Operator on a Kubernetes cluster that meets the specified requirements in the [#id-2.-prepare-kubernetes-environment](./#id-2.-prepare-kubernetes-environment "mention") section.
 {% endhint %}
 
+### Versions compatibility
+
+The following matrix outlines the minimum version requirements for specific features when managed through the WEKA Kubernetes Operator. To ensure stability, always verify that your WEKA cluster and Operator versions are aligned.
+
+<table><thead><tr><th width="150">Feature</th><th width="201">Operator (min. version)</th><th width="230">WEKA Cluster (min. version)</th><th>Status</th></tr></thead><tbody><tr><td>S3</td><td>v1.7</td><td>4.4</td><td>Supported</td></tr><tr><td>NFS</td><td>—</td><td>—</td><td>Not supported</td></tr><tr><td>Audit</td><td>—</td><td>—</td><td>Not supported</td></tr><tr><td>SMB-W</td><td>—</td><td>—</td><td>Not supported</td></tr><tr><td>Data Services</td><td>—</td><td>—</td><td>Not supported</td></tr></tbody></table>
+
 ### WEKA Operator backend deployment overview
 
 The WEKA Operator backend deployment integrates various components within a Kubernetes cluster to deploy, manage, and scale the WEKA Data Platform effectively.

@@ -32,8 +32,8 @@ Some of the examples contain version-specific information. The software is updat
 
 ## 1. Install NIC drivers <a href="#install-nic-drivers" id="install-nic-drivers"></a>
 
-* For Mellanox OFED setup, see [NVIDIA Documentation - Installing Mellanox OFED](https://docs.nvidia.com/networking/display/mlnxofedv461000/installing+mellanox+ofed).
-* For Intel NIC setup, see [Latest Drivers & Software downloads](https://www.intel.com/content/www/us/en/products/sku/210969/intel-ethernet-network-adapter-e8102cqda2/downloads.html).
+* For Mellanox OFED setup, see NVIDIA Documentation.
+* For Intel NIC setup, see [Latest Drivers & Software Downloads](https://www.intel.com/content/www/us/en/products/sku/210969/intel-ethernet-network-adapter-e8102cqda2/downloads.html).
 
 ## 2. Enable SR-IOV <a href="#enable-sr-iov" id="enable-sr-iov"></a>
 
