@@ -8,7 +8,7 @@ metaLinks:
       https://app.gitbook.com/s/0yXyIrnroN3zIG3qa4W3/planning-and-installation/bare-metal/setting-up-the-hosts
 ---
 
-# Manually prepare the system for WEKA configuration
+# Manually prepare the system for configuration
 
 Once the hardware and software prerequisites are met, prepare the backend servers and clients for the WEKA system configuration.
 
@@ -36,7 +36,7 @@ Some of the examples contain version-specific information. The software is updat
 
 ## 1. Install NIC drivers <a href="#install-nic-drivers" id="install-nic-drivers"></a>
 
-For Mellanox OFED setup, see [NVIDIA Documentation - Installing Mellanox OFED](https://docs.nvidia.com/networking/display/mlnxofedv461000/installing+mellanox+ofed).
+For Mellanox OFED setup, see NVIDIA Documentation.
 
 ## 2. Enable SR-IOV <a href="#enable-sr-iov" id="enable-sr-iov"></a>
 
