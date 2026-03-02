@@ -16,10 +16,7 @@ Using the CLI, you can:
 
 **Command**: `weka fs quota set-default`
 
-Before using this command, ensure the following requirements are met:
-
-* A mount point to the relevant filesystem is set.
-* Deploy at least one Data Services container before setting any quotas. If not running, quota operations defaults to single-process mode, potentially causing CLI to hang for extended periods. See [set-up-a-data-services-container-for-background-tasks.md](../../operation-guide/background-tasks/set-up-a-data-services-container-for-background-tasks.md "mention").
+Before using this command, ensure that a mount point to the relevant filesystem is set.
 
 Default quotas apply to newly created subdirectories, not the directory or existing children.
 
