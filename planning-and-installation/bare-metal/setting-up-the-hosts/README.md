@@ -32,7 +32,7 @@ Some of the examples contain version-specific information. The software is updat
 
 ## 1. Install NIC drivers <a href="#install-nic-drivers" id="install-nic-drivers"></a>
 
-For Mellanox OFED setup, see [NVIDIA Documentation - Installing Mellanox OFED](https://docs.nvidia.com/networking/display/mlnxofedv461000/installing+mellanox+ofed).
+For Mellanox OFED setup, see NVIDIA Documentation.
 
 ## 2. Enable SR-IOV <a href="#enable-sr-iov" id="enable-sr-iov"></a>
 
@@ -44,7 +44,7 @@ Enabling Single Root I/O Virtualization (SR-IOV) is mandatory when deploying cli
 
 ## 3. Set up ConnectX cards
 
-1.  **Configure firmware parameters:** All ConnectX ports used directly with WEKA  servers and clients require specific firmware settings for optimal performance. Set the following non-default parameters:
+1.  **Configure firmware parameters:** All ConnectX ports used directly with WEKA servers and clients require specific firmware settings for optimal performance. Set the following non-default parameters:
 
     * `ADVANCED_PCI_SETTINGS=1`
     * `PCI_WR_ORDERING=1`
@@ -58,7 +58,7 @@ Enabling Single Root I/O Virtualization (SR-IOV) is mandatory when deploying cli
    If applicable, set the port mode with the following command, where 1=InfiniBand and 2=Ethernet:\
    `mlxconfig -y -d /dev/mst/<dev> set LINK_TYPE_P<1,2>=<1,2>`\
    \
-   For example, the following command sets port 2 to InfiniBand:  `mlxconfig -y -d /dev/mst/<dev> set LINK_TYPE_P2=1`<br>
+   For example, the following command sets port 2 to InfiniBand: `mlxconfig -y -d /dev/mst/<dev> set LINK_TYPE_P2=1`<br>
 3. **Reboot the system:** A reboot is required after applying the firmware settings to ensure the changes take effect.
 
 **Related information**
@@ -289,10 +289,10 @@ Verify the connection is up with all the non-default partition attributes set:
 The following is an example of configuring `ignore-carrier` on systems that use NetworkManager on Rocky Linux 8. The exact steps may vary depending on your operating system and its specific network configuration tools. Always refer to your system’s official documentation for accurate information.
 {% endhint %}
 
-1. Open the  `/etc/NetworkManager/NetworkManager.conf` file to edit it.
+1. Open the `/etc/NetworkManager/NetworkManager.conf` file to edit it.
 2. Under the `[main]` section, add one of the following lines depending on the operating system:
    * For some versions of Rocky Linux, RHEL, and CentOS: `ignore-carrier=*`
-   * For some other versions:  `ignore-carrier=<device-name1>,<device-name2>`. \
+   * For some other versions: `ignore-carrier=<device-name1>,<device-name2>`.\
      Replace `<device-name1>,<device-name2>` with the actual device names you want to apply this setting to.
 
 Example for RockyLinux and RHEL 8.7:
