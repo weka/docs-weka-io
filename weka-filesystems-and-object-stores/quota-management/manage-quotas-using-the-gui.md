@@ -26,12 +26,12 @@ Default quotas apply to newly created subdirectories, not the directory or exist
 
 ## Set directory quota
 
-The organization admin can set a quota on a directory. This action initiates calculating the current directory usage in a background task. Once this calculation is complete, the quota is considered.
+The organization admin can set a quota on a directory, which triggers a background task to calculate the current usage. Once this calculation is finished, the quota takes effect.
 
 **Before you begin**
 
-* To set a quota on a directory, a mount point to the relevant filesystem is necessary. The quota set command mustn’t be interrupted until the quota accounting process is finished.
-* Deploy at least one Data Services container before setting any quotas. If not running, quota operations defaults to single-process mode, potentially causing CLI to hang for extended periods. See [set-up-a-data-services-container-for-background-tasks.md](../../operation-guide/background-tasks/set-up-a-data-services-container-for-background-tasks.md "mention").<br>
+* To apply a quota to a directory, ensure there is a mount point for the relevant filesystem. Do not interrupt the quota set command until the quota accounting process is complete.
+* Ensure a Data Services container is deployed before setting a directory quota. If not active, quota operations default to single-process mode, which might cause the CLI to hang for extended periods.See [set-up-a-data-services-container-for-background-tasks.md](../../operation-guide/background-tasks/set-up-a-data-services-container-for-background-tasks.md "mention").<br>
 
 **Procedure**
 
