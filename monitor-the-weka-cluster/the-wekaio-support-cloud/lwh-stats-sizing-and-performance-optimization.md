@@ -65,12 +65,12 @@ To ensure safe usage at 70%, round up to 2 replicas.
 
 Modify the Helm configuration for either Kubernetes (K8s) or K3s to support high stats throughput by defining resource requests, limits, and autoscaling parameters.
 
-* **K8s Helm values:** Manage performance tuning in K8s environments through a `values.yaml` file. Define overrides within the `api` and  `workers` sections to govern resources for the entire cluster. Use the Helm CLI to apply these settings and update the deployment state.
+* **K8s Helm values:** Manage performance tuning in K8s environments through a `values.yaml` file. Define overrides within the `api` and `workers` sections to govern resources for the entire cluster. Use the Helm CLI to apply these settings and update the deployment state.
 * **K3s configuration JSON:** Manage performance tuning in K3s environments, typically running on a WEKA Management Station (WMS) or a dedicated server. Define overrides within the `helmOverrides` block of the `/opt/wekahome/config/config.json` file. The `homecli local upgrade` command ingests this JSON to apply the specified CPU and memory limits to the local containers.
 
 <details>
 
-<summary>Example for K8s: <code>api and workers</code> sections with default values</summary>
+<summary>Example for K8s: <code>api</code> and <code>workers</code> sections with default values</summary>
 
 ```yaml
 api:
