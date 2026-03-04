@@ -221,6 +221,7 @@
     * [Manage remote debugging sessions on K8s](monitor-the-weka-cluster/the-wekaio-support-cloud/deploy-local-weka-home-v4.x-on-k8s/manage-remote-debugging-sessions-on-k8s.md)
   * [Deploy Local WEKA Home on K3s](monitor-the-weka-cluster/the-wekaio-support-cloud/local-weka-home-deployment/README.md)
     * [Manage remote debugging sessions on K3s](monitor-the-weka-cluster/the-wekaio-support-cloud/local-weka-home-deployment/manage-remote-debugging-sessions-on-k3s.md)
+  * [LWH stats: sizing and performance optimization](monitor-the-weka-cluster/the-wekaio-support-cloud/lwh-stats-sizing-and-performance-optimization.md)
   * [Deploy Local WEKA Home on Minikube](monitor-the-weka-cluster/the-wekaio-support-cloud/deploy-local-weka-home-v2.x.md)
   * [Explore cluster insights](monitor-the-weka-cluster/the-wekaio-support-cloud/explore-cluster-insights-and-statistics.md)
   * [Explore performance statistics in Grafana](monitor-the-weka-cluster/the-wekaio-support-cloud/explore-performance-statistics-in-grafana.md)

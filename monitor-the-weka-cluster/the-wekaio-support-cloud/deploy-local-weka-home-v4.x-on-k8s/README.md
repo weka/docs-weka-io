@@ -33,8 +33,6 @@ The diagram below illustrates the overall solution architecture and how the core
 
 The LWH v4.x solution ingests data from registered WEKA clusters and processes it through the following layers:
 
-The LWH v4.x solution ingests data from registered WEKA clusters and processes it through the following layers:
-
 1. **Data ingestion layer:** WEKA clusters send metrics, events, and alerts to LWH API endpoints.
 2. **API and ingress layer:** Handles HTTP ingestion and routing. It supports multiple ingress controllers (ALB, Traefik, or Nginx) and can use an Envoy-based gateway service. API endpoints receive data and forward it to the persistent queue layer.
 3. **Processing layer:** Uses NATS (persistent queues) for durable message storage and buffering. Worker services consume messages from these queues to process statistical data, events, and alerts.
@@ -55,31 +53,38 @@ The LWH v4.x solution ingests data from registered WEKA clusters and processes i
 
 ## Sizing and scaling guidelines
 
-Explore the sizing guidelines and scaling behavior for a Local WEKA Home deployment.
+Determine the resource requirements and scaling behavior for a Local WEKA Home (LWH) deployment to ensure consistent performance across the platform.
 
-A good starting point for estimation is one CPU core for every 1,000 WEKA processes (including management processes).
+#### **Scaling fundamentals**
 
-The default LWH installation supports approximately 40,000 WEKA processes (cores, backends, and clients). The actual number may vary based on the backend size and the backend-to-client ratio. Each WEKA process generates an average of 2,000 time series.
+The load on LWH scales linearly with the number of unique (`host_id`, `node_id`) metric pairs. These pairs represent the intersection of every monitored server and every active WEKA process.
 
-The primary performance metrics are the number of statistics messages and time series processed. For simplicity, you can base your sizing on the total number of WEKA processes, as other metrics tend to scale proportionally. However, some tuning may be necessary depending on your specific setup.
+* **Metric pair:** The primary unit of measure for stats processing capacity.
+* **WEKA process:** Includes cores, backends, clients, and management processes. On average, a cluster generates metric pairs at a 1:1 ratio with its total process count.
+
+#### **Deployment estimation**
+
+For initial planning, use the following guidelines to ensure the stats workers can handle the ingestion and processing load with sufficient headroom.
+
+* **Baseline capacity:** Supports up to 40,000 WEKA processes by default.
+* **CPU core estimate:** Allocate approximately 2 CPU cores for every 1,000 WEKA processes.
+* **Time series density:** Each process typically generates 2,000 unique time series.
+
+For high stats throughput, use the detailed sizing formulas in [lwh-stats-sizing-and-performance-optimization.md](../lwh-stats-sizing-and-performance-optimization.md "mention").
 
 #### Component scaling behavior
 
-* **API and Worker components:** These use default autoscaling settings that support up to 100,000 processes. These components scale based on the current load.
-* **VM Cluster (VictoriaMetrics):** The cluster is configured by default to handle up to 80,000 processes. For higher loads, you may need to adjust CPU, memory, or the stateful set size.
-* **NATS:** This is configured by default to manage up to 100,000 processes.
-* **Postgres:** The Postgres database typically has low utilization and is not deployed redundantly by default. This design relies on:
-  * Infrequent upgrades.
-  * A strong consistency model.
-  * Quick failover, assuming fast CSI reattachment (which is very fast with the WEKA filesystem).
+LWH components are pre-configured to handle standard production loads. Adjustments are only required when approaching the limits of the default installation.
+
+<table data-header-hidden><thead><tr><th width="185.3636474609375">Component</th><th width="179.6363525390625">Default capacity</th><th>Scaling behavior</th></tr></thead><tbody><tr><td>API and Workers</td><td>100,000 processes</td><td>Scale dynamically based on load using Horizontal Pod Autoscaling (HPA).</td></tr><tr><td>VictoriaMetrics (VM)</td><td>80,000 processes</td><td>Operates as a stateful set. High loads may require manual adjustment of CPU, memory, or shard count.</td></tr><tr><td>NATS</td><td>100,000 processes</td><td>Managed through the STATS stream. Default limit is 3 GiB.</td></tr><tr><td>Postgres</td><td>N/A</td><td>Typically maintains low utilization. Relies on quick failover and fast CSI reattachment via the WEKA filesystem.</td></tr></tbody></table>
 
 #### Key tuning parameters
 
-While the defaults handle common loads, you may need to tune the following parameters for very large or small deployments:
+While the defaults handle common loads, tune the following parameters for very large or small deployments:
 
-* **VMCluster:** Adjust the CPU, memory, shard count, or capacity. You can often reduce these resources for smaller deployments.
-* **Stats workers:** The default memory setting is 1GiB, which might be insufficient for very high loads. As a guideline, processing stats for \~40,000 processes requires approximately 40 cores (hyperthreads).
-* **Worker autoscaling:** To prevent the Horizontal Pod Autoscaler (HPA) from resetting during redeployments, set `workers.stats.autoscaling.minReplicas` to match your baseline usage.
+* **VMCluster:** Adjust the CPU, memory, shard count, or capacity. You can reduce these resources for smaller deployments to save infrastructure costs.
+* **Stats workers:** The default memory setting is 1 GiB. Processing statistics for approximately 40,000 processes requires approximately 40 CPU cores (hyperthreads).
+* **Worker autoscaling:** To prevent the HPA from resetting during redeployments, set `workers.stats.autoscaling.minReplicas`  to match your calculated baseline usage.
 
 ## Prerequisites
 
@@ -192,13 +197,47 @@ api:
       filesystem:
         persistence:
           storageClass: storageclass-wekafs-dir-api
-
+  stats:
+     replicas: 1
+     resources:
+       requests:
+         memory: 200Mi
+         cpu: 200m
+       limits:
+         memory: 1000Mi
+         cpu: 1000m
+     autoscaling:
+       enabled: true
+       minReplicas: 1
+       maxReplicas: 10
 workers:
   stats:
-    # Adjust replica count based on cluster size and load
-    replicas: 15
+    enabled: true
+    replicas: 1
+    resources:
+      requests:
+        memory: 200Mi
+        cpu: 1000m
+      limits:
+        memory: 1000Mi
+        cpu: 2000m
     autoscaling:
-      minReplicas: 15
+      enabled: true
+      minReplicas: 1
+      maxReplicas: 300
+  forwarding:
+    replicas: 1
+    resources:
+      requests:
+        memory: "200Mi"
+        cpu: 100m
+      limits:
+        memory: "400Mi"
+        cpu: 500m
+    autoscaling:
+      enabled: true
+      minReplicas: 1
+      maxReplicas: 10
 
 # -----------------------------------------------------------------
 # NATS Jetstream Configuration

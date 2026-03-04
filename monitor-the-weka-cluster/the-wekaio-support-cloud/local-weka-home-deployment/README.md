@@ -380,10 +380,85 @@ The default PVC capacity for remote session recordings is 10 GiB ( `10Gi`). To i
 
 </details>
 
+<details>
+
+<summary>Helm Overrides for high stats throughput</summary>
+
+For high stats throughput, use the detailed sizing formulas in [lwh-stats-sizing-and-performance-optimization.md](../lwh-stats-sizing-and-performance-optimization.md "mention").
+
+```json
+{
+  "helmOverrides": {
+    "api": {
+      "stats": {
+        "replicas": 1,
+        "resources": {
+          "requests": {
+            "memory": "200Mi",
+            "cpu": "200m"
+          },
+          "limits": {
+            "memory": "400Mi",
+            "cpu": "400m"
+          }
+        },
+        "autoscaling": {
+          "enabled": true,
+          "minReplicas": 1,
+          "maxReplicas": 10
+        }
+      }
+    },
+    "workers": {
+      "stats": {
+        "replicas": 1,
+        "resources": {
+          "requests": {
+            "memory": "200Mi",
+            "cpu": "1000m"
+          },
+          "limits": {
+            "memory": "1000Mi",
+            "cpu": "2000m"
+          }
+        },
+        "autoscaling": {
+          "enabled": true,
+          "minReplicas": 2,
+          "maxReplicas": 30
+        }
+      },
+      "forwarding": {
+        "replicas": 1,
+        "resources": {
+          "requests": {
+            "memory": "200Mi",
+            "cpu": "100m"
+          },
+          "limits": {
+            "memory": "400Mi",
+            "cpu": "500m"
+          }
+        },
+        "autoscaling": {
+          "enabled": true,
+          "minReplicas": 1,
+          "maxReplicas": 10
+        }
+      }
+    }
+  }
+}
+```
+
+</details>
+
 4. To reload your path variable do one of the following:
-   * Re-login to the server.
-   * Run the following command: `source /etc/profile`
-5.  To initialize the setup, run the following command from the root user:\
+
+* Re-login to the server.
+* Run the following command: `source /etc/profile`
+
+4.  To initialize the setup, run the following command from the root user:\
     `homecli local setup -c config.json`\
     \
     For a fresh installation, expect approximately 5 minutes for completion.<br>
@@ -621,7 +696,7 @@ The LWH uses ports 80 for HTTP and 443 for HTTPS by default. You can reconfigure
 
 1.  Run the following command to edit the `traefik` service configuration that manages ingress traffic for LWH:
 
-    ```
+    ```shellscript
     kubectl -n kube-system edit svc traefik
     ```
 2. In the configuration file that opens, locate the entries for `port: 80` and `port: 443`.
