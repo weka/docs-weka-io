@@ -387,13 +387,9 @@ nmcli connection modify ib1 ipv4.routing-rules "priority 102 from 10.10.10.101 t
 
 **View network configuration**
 
-Run the following command. to view the current network configuration, including interfaces, IP addresses, routes, and DNS settings.
+Run the `nmcli` commands to view the current network configuration, including interfaces, IP addresses, routes, and DNS settings.
 
-```
-nmcli -
-```
-
-The command returns a detailed list of all network interfaces and their status.
+<table><thead><tr><th width="290.3636474609375">Goal</th><th>Command</th></tr></thead><tbody><tr><td>Full details (IP, DNS, routes)</td><td><code>nmcli device show</code></td></tr><tr><td>Brief status</td><td><code>nmcli device status</code></td></tr><tr><td>Active connections </td><td><code>nmcli connection show --active</code></td></tr><tr><td>Specific device</td><td><code>nmcli device show eth0</code></td></tr></tbody></table>
 
 **Example**
 

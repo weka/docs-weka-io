@@ -237,6 +237,7 @@
 * [Composable clusters for multi-tenancy in Kubernetes](kubernetes/composable-clusters-for-multi-tenancy-in-kubernetes.md)
 * [WEKA Operator deployments](kubernetes/weka-operator-deployments/README.md)
   * [Deploy the WEKA client on Amazon EKS](kubernetes/weka-operator-deployments/deploy-the-weka-client-on-amazon-eks.md)
+  * [Migrate standalone CSI to WEKA Operator-embedded](kubernetes/weka-operator-deployments/migrate-standalone-csi-to-weka-operator-embedded.md)
 * [WEKA Operator day-2 operations](kubernetes/weka-operator-day-2-operations.md)
 
 ## WEKApod

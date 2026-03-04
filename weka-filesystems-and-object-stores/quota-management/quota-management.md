@@ -48,7 +48,7 @@ Use the following command to set a directory quota:
 
 `weka fs quota set <path> [--soft soft] [--hard hard] [--grace grace] [--owner owner] [--filesystem filesystem] [--snap-name snap-name] [--color color]`
 
-#### **Parameters**
+**Parameters**
 
 <table><thead><tr><th width="166">Name</th><th width="440.92578125">Value</th><th>Default</th></tr></thead><tbody><tr><td><code>path</code>*</td><td>Path to the directory to set the quota.<br>The relevant filesystem must be mounted when setting the quota.</td><td>​</td></tr><tr><td><code>soft</code></td><td>Soft quota limit.<br>Exceeding this number is displayed as an exceeded quota, but it is not enforced until the <code>grace</code> period is over.<br>The capacity can be in decimal or binary units.<br>Format: <code>1GB</code>, <code>1TB</code>, <code>1GiB</code>, <code>1TiB</code>, <code>unlimited</code></td><td><code>unlimited</code></td></tr><tr><td><code>hard</code></td><td>Hard quota limit.<br>Exceeding this number does not allow more writes before clearing some space in the directory.<br>The capacity can be in decimal or binary units.<br>Format: <code>1GB</code>, <code>1TB</code>, <code>1GiB</code>, <code>1TiB</code>, <code>unlimited</code></td><td><code>unlimited</code></td></tr><tr><td><code>grace</code></td><td>Specify the grace period before the soft limit is treated as a hard limit.<br>Format: <code>1d</code>, <code>1w</code>, <code>unlimited</code></td><td><code>unlimited</code></td></tr><tr><td><code>owner</code></td><td>A unique string identifying the directory owner (can be a name, email, slack ID, etc.) This owner will be shown in the quota report and can be notified upon exceeding the quota.<br>Supports up to 48 characters.</td><td></td></tr><tr><td><code>filesystem</code></td><td>Specifies the target filesystem for applying the quota. Use this parameter when the quota must be enforced outside of a mount point, or in cases where the POSIX user does not have direct access to the directory through a mounted path.<br>For requirement details, see <a data-mention href="./#guidelines-for-quota-management">#guidelines-for-quota-management</a>.</td><td></td></tr><tr><td><code>snap-name</code></td><td>Name of the writable snapshot. Use this parameter to set a quota outside the mount point.</td><td></td></tr></tbody></table>
 
@@ -60,7 +60,7 @@ Use the following command to list the directory quotas (by default, only exceedi
 
 `weka fs quota list [filesystem] [--snap-name snap-name] [--path path] [--under under] [--over over] [--quick] [--all]`
 
-#### **Parameters**
+**Parameters**
 
 <table><thead><tr><th width="192">Name</th><th width="389">Value</th><th>Default</th></tr></thead><tbody><tr><td><code>filesystem</code></td><td>Filesystem name. Use this parameter to display a quota report only on the specified filesystem.</td><td>All filesystems</td></tr><tr><td><code>snap-name</code></td><td>Displays the quota report from the time of the snapshot.<br>It must be a valid snapshot name and be given along with the corresponding filesystem.</td><td></td></tr><tr><td><code>path</code></td><td>Path to a directory. Shows quota report only on the specified directory.<br>The relevant filesystem must be mounted in the server running the query.</td><td></td></tr><tr><td><code>under</code></td><td>A path to a directory under a wekafs mount.<br>The relevant filesystem must be mounted in the server running the query.</td><td></td></tr><tr><td><code>over</code></td><td>Shows only quotas over this percentage of usage.<br>Possible values: <code>0</code>-<code>100</code></td><td></td></tr><tr><td><code>quick</code></td><td>Do not resolve inode to a path. Provides quicker results if the report contains many entries.</td><td>False</td></tr><tr><td><code>all</code></td><td>Shows all the quotas, not just the exceeding ones.</td><td>False</td></tr></tbody></table>
 
@@ -80,7 +80,7 @@ Use the following command to unset a default quota of a directory:
 
 `weka fs quota unset-default <path>`
 
-#### **Parameters**
+**Parameters**
 
 <table><thead><tr><th width="244">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>path</code>*</td><td>Path to the directory to set the quota.<br>The relevant filesystem must be mounted when setting the quota.</td></tr></tbody></table>
 
@@ -92,6 +92,6 @@ Use the following command to reset a directory quota:
 
 `weka fs quota reset <path>`
 
-#### **Parameters**
+**Parameters**
 
 <table><thead><tr><th width="244">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>path</code>*</td><td>Path to the directory to unset the quota.<br>The relevant filesystem must be mounted when setting the quota.</td></tr></tbody></table>

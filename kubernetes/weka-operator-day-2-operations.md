@@ -24,6 +24,8 @@ WEKA Operator day-2 operations maintain and optimize WEKA environments in Kubern
   * Configuration updates
   * Pod rotation
   * Token secret management
+  * Pause and resume WEKA cluster for maintenance
+  * Cancel a cluster deletion
 * **WekaContainer lifecycle management**
 
 Administrators execute both planned maintenance and emergency responses while following standardized procedures to ensure high availability and minimize service disruption.
@@ -59,7 +61,7 @@ Hardware maintenance operations ensure cluster reliability and performance throu
 
 Each procedure follows established protocols to maintain system stability and minimize service disruption during maintenance activities. The documented procedures enable administrators to execute both planned maintenance and emergency responses while preserving data integrity and system performance.
 
-### **Before you begin**
+### Before you begin
 
 Before performing any hardware maintenance or replacement tasks, ensure you have:
 
@@ -3174,8 +3176,6 @@ After completing each of the following procedures, all pods restart within a few
     ```
 4. Verify that the memory values have been updated to the new settings.
 
-
-
 #### Procedure: Update Tolerations
 
 1.  Open your cluster.yaml file and update the toleration values:
@@ -3929,7 +3929,7 @@ TQzlFckNpV19CVWtsV3NTaUk4cHhLXzZEcDNIVXV6OFpyYXVmVmtnbXNMeUlOMjFfQy1jUlFaQlBH
 
 #### Step 2: Create the Kubernetes secret
 
-#### Option A: Using YAML template
+**Option A: Using YAML template**
 
 Create a YAML file with the following template, replacing the placeholder values:
 
@@ -3957,7 +3957,7 @@ type: Opaque
 * **namespace**: Use `default` or specify your target namespace
 {% endhint %}
 
-#### Option B: Copy from existing secret
+**Option B: Copy from existing secret**
 
 To preserve existing credentials, export the current secret and modify only the token:
 
@@ -4043,7 +4043,7 @@ spec:
 
 Remove any existing client instances and ensure no pods are actively using WEKA storage on the target node.
 
-#### Remove active workloads
+**Remove active workloads**
 
 1.  **Identify pods using Weka on the target node:**
 
@@ -4056,7 +4056,7 @@ Remove any existing client instances and ensure no pods are actively using WEKA 
     kubectl delete pod <pod-name>
     ```
 
-#### Remove existing WekaClient
+**Remove existing WekaClient**
 
 1.  **List current WekaClient instances:**
 
@@ -4069,7 +4069,7 @@ Remove any existing client instances and ensure no pods are actively using WEKA 
     kubectl delete wekaclient -n weka-operator-system <client-name>
     ```
 
-#### Deploy new WekaClient
+**Deploy new WekaClient**
 
 Create a new WekaClient configuration that references your updated secret:
 
@@ -4148,7 +4148,7 @@ csi-wekafs-node-8q472                    3/3     Running   0              3s
 
 #### Troubleshooting
 
-#### CSI Pods in CrashLoopBackOff
+**CSI Pods in CrashLoopBackOff**
 
 If CSI pods remain in a failed state after the WekaClient is running, manually restart them:
 
@@ -4156,7 +4156,7 @@ If CSI pods remain in a failed state after the WekaClient is running, manually r
 kubectl delete pod -n csi-wekafs <csi-pod-name>
 ```
 
-#### Token validation
+**Token validation**
 
 To verify your token is working correctly, check the WekaClient logs:
 
@@ -4164,7 +4164,7 @@ To verify your token is working correctly, check the WekaClient logs:
 kubectl logs -n <namespace> <wekaclient-pod-name>
 ```
 
-#### Secret verification
+**Secret verification**
 
 Confirm your secret contains the correct base64-encoded values:
 
@@ -4187,7 +4187,106 @@ kubectl get secret <secret-name> -n <namespace> -o yaml
 * Regularly rotate tokens as part of your security policy
 * Monitor and audit secret access and modifications
 
-***
+### Pause and resume WEKA cluster for maintenance
+
+Pause all containers in a WEKA cluster gracefully while preserving configuration and data. This process is used for planned maintenance windows where all I/O activity must halt without removing the cluster.
+
+Understand how state changes affect the environment:
+
+* **Data integrity**: No data is deleted during a pause.
+* **Propagation:** The state automatically propagates to any WekaClient resources that reference the cluster through `spec.targetCluster` during the client's next reconciliation cycle.
+* **Logic:** The `overrides.paused` field on the WekaCluster resource controls this state.
+
+#### **Before you begin**
+
+Run `weka cluster stop-io` manually. The operator does not perform this step automatically.
+
+#### **Procedure**
+
+1. Open the WekaCluster resource specification.
+2. Locate the `spec.overrides.paused` field.
+3. Set the field value based on the desired behavior:
+   * **Not set** (field omitted): No propagation. The cluster does not enforce a pause state on containers.
+   * **`true`:** Paused.
+   * **`false`:** Containers that were paused by this field transition back to active. Containers in other states are not affected.
+4. Apply the updated configuration to the cluster.
+5. When maintenance is done, change `spec.overrides.paused`  back to `false`.
+
+**Examples**
+
+{% tabs %}
+{% tab title="Pause a cluster" %}
+**Pause a cluster**
+
+1. Run `weka cluster stop-io` on the cluster.
+2. Apply the following change to your `WekaCluster` manifest:
+
+```yaml
+apiVersion: weka.weka.io/v1alpha1
+kind: WekaCluster
+metadata:
+  name: my-cluster
+spec:
+  overrides:
+    paused: true
+```
+
+The cluster status changes to Paused as containers are stopped in sequence.
+{% endtab %}
+
+{% tab title="Resume a cluster" %}
+**Resume a cluster**
+
+Set `paused` to `false` to return paused containers to active state:
+
+```yaml
+apiVersion: weka.weka.io/v1alpha1
+kind: WekaCluster
+metadata:
+  name: my-cluster
+spec:
+  overrides:
+    paused: false
+```
+
+To remove cluster-level pause control entirely, delete the `overrides.paused` field from the manifest.
+{% endtab %}
+{% endtabs %}
+
+### Cancel a cluster deletion
+
+Cancel a cluster deletion process to recover the WEKA cluster before the destruction period expires.
+
+The WekaCluster custom resource uses a graceful destroy period to provide a recovery window after a deletion is initiated. During this period, the system pauses the cluster containers instead of removing them immediately.
+
+* To stop the destruction process, set the `spec.overrides.cancelDeletion` flag to `true` before this timeout expires.&#x20;
+* For environments where immediate removal is preferred, such as testing or development, set `spec.gracefulDestroyDuration` to `0s` to bypass the waiting period.
+
+#### **Before you begin**
+
+* Verify the cluster is still within the `gracefulDestroyDuration` window.
+* Ensure you have permissions to edit the WekaCluster custom resource.
+
+#### **Procedure**
+
+1.  **Edit the cluster resource:** Open the WekaCluster configuration for the target cluster.
+
+    ```bash
+    kubectl edit wekacluster <cluster-name> -n <namespace>
+    ```
+2.  **Apply the cancellation flag:** Navigate to the `spec.overrides` section and set `cancelDeletion` to `true`.
+
+    ```yaml
+    spec:
+      overrides:
+        cancelDeletion: true
+    ```
+3. **Save and exit:** Save the changes to the resource. The Operator detects the update and resumes the cluster containers.
+4.  **Verify cluster health:** Check the status of the cluster to ensure it returns to a **Ready** or **Running** state.
+
+    ```bash
+    kubectl get wekacluster <cluster-name> -n <namespace>
+    ```
 
 ## WekaContainer lifecycle management
 
