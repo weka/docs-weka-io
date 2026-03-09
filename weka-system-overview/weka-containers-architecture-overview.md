@@ -37,7 +37,7 @@ Each server implements a multi-container backend architecture where containers a
   * Supports individual container rollback without impacting cluster operations
   * Maintains continuous network control plane access throughout the upgrade process, ensuring uninterrupted client service
 * **Optimized hardware utilization:**
-  * Supports up to 64 cores per server
+  * Supports up to 512 cores per server
   * Multiple containers per process type
   * Flexible core allocation across containers
   * Up to 19 cores per container
@@ -57,9 +57,9 @@ Each server implements a multi-container backend architecture where containers a
 
 Each server has resource limits that affect how many containers it can run and how cores are allocated:
 
-* Maximum cores per server: 64
+* Maximum cores per server: 512
 * Maximum cores per container: 19
-* Maximum containers of any type per server: 32
+* Maximum containers of any type per server: 128
   * Within this total, the maximum frontend containers per server is 7.
 
 {% hint style="info" %}
