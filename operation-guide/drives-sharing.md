@@ -1,7 +1,7 @@
 ---
 description: >-
   Share access to physical NVMe devices among multiple Drive IO processes
-  through a centralized SSD Proxy process by dividing a single physical drives
+  through a centralized SSD Proxy process by dividing a single physical drive
   into multiple virtual drives.
 ---
 
