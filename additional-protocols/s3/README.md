@@ -69,7 +69,7 @@ A predefined configuration filesystem (`.config_fs` in this demo) must exist to 
 **Alternative CLI command**
 
 ```
-weka s3 cluster create default .config_fs --all-servers
+weka s3 cluster add default .config_fs --all-servers
 ```
 
 **Related topics**
@@ -203,8 +203,8 @@ Hello World!
 As a quick workflow guide, here is a summary of the CLI commands for configuring your S3 cluster and implementing the desired settings:
 
 ```
-weka s3 cluster create default .config_fs --all-servers
-weka s3 bucket create mybucket
+weka s3 cluster add default .config_fs --all-servers
+weka s3 bucket add mybucket
 weka user add S3_user S3
 weka s3 policy attach readwrite S3user
 weka security tls download mypath
