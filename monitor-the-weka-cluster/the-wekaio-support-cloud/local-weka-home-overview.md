@@ -19,7 +19,7 @@ The Local WEKA Home serves the following key functions:
 * **Event management:** It receives events from the WEKA cluster, stores them locally, and allows event querying and filtering.
 * **Multi-cluster monitoring:** It allows you to monitor multiple clusters within your organization.
 * **Cluster overview:** The Local WEKA Home displays a comprehensive overview of your clusters and allows you to drill down into cluster telemetry data.
-* **Alerting:** It triggers specific alerts based on predefined rules and supports integrated delivery methods, including Email (SMTP), SNMP, and PagerDuty.
+* **Alerting:** It triggers specific alerts based on predefined rules and supports integrated delivery methods, including Email (SMTP), SNMP, PagerDuty, and Syslog.
 * **Diagnostics support:** The Local WEKA Home receives support files (diagnostics) from the WEKA cluster, stores them, and makes them accessible for remote viewing by the Customer Success Team.
 * **Usage and performance insights:** It receives usage, analytics, and performance statistics from the WEKA cluster, stores, displays, and enables querying and filtering this data.
 
@@ -38,7 +38,7 @@ Local WEKA Home offers the following features and capabilities, categorized as f
 #### **Alerting and integrations**
 
 * **Custom rules:** Create custom rules for specific events and alerts and route them to predefined integrations.
-* **Custom integrations:** Create destinations where you want alerts and events defined in the Rules page to be sent. These can be Email, PagerDuty, and SNMP Traps.
+* **Custom integrations:** Create destinations where you want alerts and events defined in the Rules page to be sent. These can be Email, SNMP, PagerDuty, and Syslog.
 
 **Security and compliance controls**
 
