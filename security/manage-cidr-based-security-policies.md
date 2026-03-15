@@ -29,7 +29,7 @@ When implementing CIDR-based security policies in WEKA, consider the following:
 * **Active mounts remain unaffected**: Client revocation is disabled, meaning any changes to policies do not impact active mounts. This ensures ongoing connections remain stable until they are manually disconnected.
 * **Policy order matters**: The order in which policies are attached determines the filtering sequence. For example, if the first policy denies access from IP1 and IP2, and the second policy allows IP1, the first policy takes precedence, overriding subsequent policies. Always review the order to ensure the desired access control.
 * **Default access behavior**: Clients without a related policy are allowed by default. To secure your organization or filesystem, always include a final policy that denies access to all other IPs after attaching the necessary policies.
-* **Policies guidelines:**
+* **Policies behavior:**
   * Policies with WEKA roles can only be attached to organizations.
   * Policies with a read-only flag can only be attached to filesystems.
   * Join cluster policies can only contain an IP range.
