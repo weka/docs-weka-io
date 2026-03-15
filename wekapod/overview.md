@@ -41,7 +41,7 @@ Each section guides you through key processes to ensure a smooth setup and opera
 
 **Related topics**
 
-[Broken link](/broken/spaces/lGKb8DZItQx3Jy6unw5f/pages/-L7TwaXK8WXHrDNFJCT4 "mention")
+[WEKA Data Platform introduction](https://app.gitbook.com/s/lGKb8DZItQx3Jy6unw5f/weka-system-overview/about "mention")
 
 [Broken link](/broken/pages/KEOEQRdsKM2PB9lTiaPg "mention")
 

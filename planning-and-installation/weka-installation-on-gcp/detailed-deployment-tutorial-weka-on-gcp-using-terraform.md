@@ -44,9 +44,9 @@ It is essential for the customer to understand their subscription structure for 
 
 ### User account privileges
 
-Ensure that the GCP IAM user has the permissions outlined in [Appendix A](/broken/spaces/lGKb8DZItQx3Jy6unw5f/pages/vYVuas1zajWpEB1w6r2T#appendix-a-required-permissions-that-terraform-needs) to perform the necessary operations for a successful WEKA deployment on GCP using Terraform. The IAM user must be able to create, modify, and delete GCP resources as specified by the Terraform configuration files used in the WEKA deployment.
+Ensure that the GCP IAM user has the permissions outlined in [Appendix A](https://app.gitbook.com/s/lGKb8DZItQx3Jy6unw5f/planning-and-installation/weka-installation-on-gcp/detailed-deployment-tutorial-weka-on-gcp-using-terraform#appendix-a-required-permissions-that-terraform-needs) to perform the necessary operations for a successful WEKA deployment on GCP using Terraform. The IAM user must be able to create, modify, and delete GCP resources as specified by the Terraform configuration files used in the WEKA deployment.
 
-If the current IAM user lacks the permissions detailed in [Appendix A](/broken/spaces/lGKb8DZItQx3Jy6unw5f/pages/vYVuas1zajWpEB1w6r2T#appendix-a-required-permissions-that-terraform-needs), either update the user's permissions or create a new IAM user with the required privileges.
+If the current IAM user lacks the permissions detailed in [Appendix A](https://app.gitbook.com/s/lGKb8DZItQx3Jy6unw5f/planning-and-installation/weka-installation-on-gcp/detailed-deployment-tutorial-weka-on-gcp-using-terraform#appendix-a-required-permissions-that-terraform-needs), either update the user's permissions or create a new IAM user with the required privileges.
 
 **Verify GCP IAM user permissions**
 
@@ -61,7 +61,7 @@ If the current IAM user lacks the permissions detailed in [Appendix A](/broken/s
 <div data-with-frame="true"><figure><img src="../../.gitbook/assets/image (202).png" alt=""><figcaption></figcaption></figure></div>
 
 5. Click on the user's **Security insights** to review their permissions.
-6. Ensure that the user possesses the permissions listed in [Appendix A](/broken/spaces/lGKb8DZItQx3Jy6unw5f/pages/vYVuas1zajWpEB1w6r2T#appendix-a-required-permissions-that-terraform-needs), which are necessary for managing GCP resources through Terraform.
+6. Ensure that the user possesses the permissions listed in [Appendix A](https://app.gitbook.com/s/lGKb8DZItQx3Jy6unw5f/planning-and-installation/weka-installation-on-gcp/detailed-deployment-tutorial-weka-on-gcp-using-terraform#appendix-a-required-permissions-that-terraform-needs), which are necessary for managing GCP resources through Terraform.
 
 <div data-with-frame="true"><figure><img src="../../.gitbook/assets/image (203).png" alt=""><figcaption></figcaption></figure></div>
 
