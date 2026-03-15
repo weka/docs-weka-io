@@ -18,14 +18,15 @@ LWH v2.x runs on Minikube (a lightweight Kubernetes implementation) installed on
 
 If you have deployed the WMS, follow the procedure:. Otherwise, perform the following workflow:
 
-1. [Verify prerequisites](deploy-local-weka-home-v2.x.md#id-1.-verify-prerequisites).
-2. [Prepare the physical server (or VM)](deploy-local-weka-home-v2.x.md#id-2.-prepare-the-physical-server-or-vm).
-3. [Download the Local WEKA Home and Minikube packages](deploy-local-weka-home-v2.x.md#id-3.-download-the-local-weka-home-and-minikube-packages).
-4. [Install the Minikube](deploy-local-weka-home-v2.x.md#id-4.-install-the-minikube).
-5. [Install and configure the Local WEKA Home](deploy-local-weka-home-v2.x.md#id-5.-install-and-configure-the-local-weka-home).
-6. [Access the Local WEKA Home portal and Grafana](deploy-local-weka-home-v2.x.md#id-6.-access-the-local-weka-home-portal-and-grafana).
-7. [Enable the Local WEKA cluster to send data to the Cloud WEKA Home](deploy-local-weka-home-v2.x.md#id-7.-enable-the-local-weka-cluster-to-send-data-to-the-cloud-weka-home).
-8. [Test the deployment](deploy-local-weka-home-v2.x.md#id-8.-test-the-deployment).
+1. Verify prerequisites.
+2. Prepare the physical server (or VM).
+3. Apply hardening to the LWH server.
+4. Download the Local WEKA Home and Minikube packages.
+5. Install the Minikube.
+6. Install and configure the Local WEKA Home.
+7. Access the Local WEKA Home portal and Grafana.
+8. Enable the Local WEKA cluster to send data to the Cloud WEKA Home.
+9. Test the deployment.
 
 ### 1. Verify prerequisites
 
@@ -98,14 +99,18 @@ If you forward data from the Local WEKA Home to the Cloud WEKA Home, ensure the 
     If the returned value of the HugePages\_Total is higher than 0, run the following to disable the HugePages:\
     `echo 0 > /proc/sys/vm/nr_hugepages`
 
-### 3. Download the Local WEKA Home and Minikube packages
+### 3. Apply security hardening to the LWH server
+
+Configure the server to meet WEKA security standards before deploying the LWH software. See [#hardened-configuration-for-local-weka-home](local-weka-home-overview.md#hardened-configuration-for-local-weka-home "mention").
+
+### 4. Download the Local WEKA Home and Minikube packages
 
 Download the latest packages of the following to the dedicated physical server (or VM):
 
 * **Local WEKA Home v2.x:** [https://get.weka.io/ui/lwh/download](https://get.weka.io/ui/lwh/download).
 * **Minikube for Local WEKA Home:** `curl -OL https://home-weka-io-offline-packages-dev.s3.eu-west-1.amazonaws.com/weka_minikube.tar.gz`
 
-### 4. Install the Minikube
+### 5. Install the Minikube
 
 1. Unpack the Minikube package:\
    `tar xvf <file name>`
@@ -137,7 +142,7 @@ If the minikube installation fails, do one of the following:
 * Run the command `minikube logs`. A log file is created in `/tmp` directory. Open the log file and search for the reason.
 {% endhint %}
 
-### 5. Install and configure the Local WEKA Home
+### 6. Install and configure the Local WEKA Home
 
 1. Unpack the Local WEKA Home package:\
    `tar xvf <file name>`
@@ -370,7 +375,7 @@ Easy wekahoming!
 
 </details>
 
-### 6. Access the Local WEKA Home portal and Grafana
+### 7. Access the Local WEKA Home portal and Grafana
 
 * The Local WEKA Home URL is `https://<your_domain>`
 * The Grafana URL of the Local WEKA Home is `https://<your_domain>/stats/`
@@ -383,14 +388,14 @@ Easy wekahoming!
 * To obtain the secret key of the Local WEKA Home portal, run the following command:\
   `kubectl get secret -n home-weka-io weka-home-encryption -o jsonpath='{.data.encryption_secret_key}' | base64 -d`
 
-### 7. Enable the Local WEKA cluster to send data to the Cloud WEKA Home
+### 8. Enable the Local WEKA cluster to send data to the Cloud WEKA Home
 
 By default, the WEKA cluster is set to send information to the public instance of WEKA Home. To get the information in the Local WEKA Home, set the URL of the Local WEKA Home in the WEKA cluster.
 
 Connect to the WEKA cluster and run the following command:\
 `weka cloud enable --cloud-url https://<ip or hostname of the Local Weka Home server>`
 
-### 8. Test the deployment
+### 9. Test the deployment
 
 The WEKA cluster uploads data to the Local WEKA Home periodically and on-demand according to its information type (see [#which-information-is-uploaded-to-weka-home](./#which-information-is-uploaded-to-weka-home "mention")).
 

@@ -121,9 +121,10 @@ The required installation method is Helm. The Operator Lifecycle Manager (OLM) m
 
 ## Deployment workflow
 
-1. **Configure Helm values:** Create a `values.yaml` file to customize your WEKA Home deployment.
-2. **Install the LWH**: Follow one of the methods for deploying LWH on a Kubernetes environment: standard Helm installation or ArgoCD integration.
-3. **Configure networking and access:** Set up ingress or gateway service access
+1. **Apply security hardening to the LWH server:** Configure the server to meet WEKA security standards before deploying the LWH software. See [#hardened-configuration-for-local-weka-home](../local-weka-home-overview.md#hardened-configuration-for-local-weka-home "mention").
+2. **Configure Helm values:** Create a `values.yaml` file to customize your WEKA Home deployment.
+3. **Install the LWH**: Follow one of the methods for deploying LWH on a Kubernetes environment: standard Helm installation or ArgoCD integration.
+4. **Configure networking and access:** Set up ingress or gateway service access
 
 ### Configure Helm values
 

@@ -30,11 +30,12 @@ If you have deployed the WMS and do not require IPv6 networking, follow [deploy-
 1. Verify prerequisites.
 2. Prepare the physical server (or VM).
 3. Configure IPv6 (optional).
-4. Download the Local WEKA Home bundle.
-5. Install and configure the Local WEKA Home.
-6. Access the Local WEKA Home portal and Grafana.
-7. Enable the WEKA cluster to send data to the Local WEKA Home.
-8. Test the deployment.
+4. Apply security hardening to the LWH server.
+5. Download the Local WEKA Home bundle.
+6. Install and configure the Local WEKA Home.
+7. Access the Local WEKA Home portal and Grafana.
+8. Enable the WEKA cluster to send data to the Local WEKA Home.
+9. Test the deployment.
 
 ### 1. Verify prerequisites
 
@@ -161,11 +162,15 @@ Replace the `cluster-cidr` and `service-cidr` values with your available network
 
 4. Validate the IPv6 configuration **after** the LWH deployment (see [#ipv6-validation](./#ipv6-validation "mention")).
 
-### 4. Download the Local WEKA Home bundle
+### 4. Apply security hardening to the LWH server
+
+Configure the server to meet WEKA security standards before deploying the LWH software. See [#hardened-configuration-for-local-weka-home](../local-weka-home-overview.md#hardened-configuration-for-local-weka-home "mention").
+
+### 5. Download the Local WEKA Home bundle
 
 Download the latest [Local WEKA Home bundle](https://get.weka.io/ui/lwh/download) (v3.0 or above) to the dedicated server or VM.
 
-### 5. Install and configure Local WEKA Home
+### 6. Install and configure Local WEKA Home
 
 1. Run the Local WEKA Home setup bundle as a root user (where `*` is wekahome version):\
    `bash wekahome-*.bundle`
@@ -539,7 +544,7 @@ Easy wekahoming!
 
 </details>
 
-### 6. Access the Local WEKA Home portal and Grafana
+### 7. Access the Local WEKA Home portal and Grafana
 
 * **URLs:**
   * **LWH portal:** `https://<your_domain>`
@@ -554,7 +559,7 @@ Easy wekahoming!
   * **Obtain the WEKA Home secret key:** Run the command:\
     `kubectl get secret -n home-weka-io wekahome-encryption-key -o jsonpath='{.data.encryptionKey}' | base64 -d`
 
-### 7. Enable the WEKA cluster to send information to the Local WEKA Home
+### 8. Enable the WEKA cluster to send information to the Local WEKA Home
 
 By default, the WEKA cluster is set to send information to the public instance of WEKA Home. To get the information in the Local WEKA Home, connect to the WEKA cluster and run one of the following commands depending on the configuration:
 
@@ -570,7 +575,7 @@ weka cloud enable --cloud-url http://<ip or hostname of the Local WEKA Home serv
 weka cloud enable --cloud-url https://<ip or hostname of the Local WEKA Home server> 
 ```
 
-### 8. Test the deployment
+### 9. Test the deployment
 
 The WEKA cluster periodically and on-demand uploads data to the Local WEKA Home according to its information type (see [#which-information-is-uploaded-to-weka-home](../#which-information-is-uploaded-to-weka-home "mention")).
 
@@ -668,7 +673,7 @@ Certain upgrades require a fresh installation, as direct in-place upgrades are n
 
 1. Download the latest [Local WEKA Home bundle](https://get.weka.io/ui/lwh/download) to the dedicated physical server (or VM).
 2. Run `bash wekahome-*.bundle`
-3. To modify the existing configuration, open the `/opt/wekahome/config/config.json` file and modify the settings. See [#id-5.-install-and-configure-local-weka-home](./#id-5.-install-and-configure-local-weka-home "mention").
+3. To modify the existing configuration, open the `/opt/wekahome/config/config.json` file and modify the settings. See [#id-6.-install-and-configure-local-weka-home](./#id-6.-install-and-configure-local-weka-home "mention").
 4. Run `homecli local upgrade`. For an upgrade, it takes about 2 minutes.
 5. Run `kubectl get pods -n home-weka-io` and verify in the results that all pods have the status **Running** or **Completed**.\
    To wait for the pods' statuses, run `watch kubectl get pods -n home-weka-io`.
@@ -681,7 +686,7 @@ If there is a change in the TLS certificates, SMTP server in your environment, o
 
 **Procedure**
 
-1. Open the `/opt/wekahome/config/config.json` file and modify the settings. See [#id-5.-install-and-configure-local-weka-home](./#id-5.-install-and-configure-local-weka-home "mention").
+1. Open the `/opt/wekahome/config/config.json` file and modify the settings. See [#id-6.-install-and-configure-local-weka-home](./#id-6.-install-and-configure-local-weka-home "mention").
 2. Run `homecli local upgrade`
 3. Run `kubectl get pods -n home-weka-io` and verify in the results that all pods have the status **Running** or **Completed**.\
    To wait for the pods' statuses, run `watch kubectl get pods -n home-weka-io`.

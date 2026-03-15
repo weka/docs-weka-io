@@ -87,6 +87,16 @@ Deploy LWH on Minikube for a lightweight Kubernetes implementation installed on 
 
 [deploy-local-weka-home-v2.x.md](deploy-local-weka-home-v2.x.md "mention")
 
+## Security hardening for Local WEKA Home
+
+Understand the technical impact of specific kernel configurations on the LWH environment.
+
+* **IP forwarding:** Enables the server to forward traffic between internal networks or containers. Setting `net.ipv4.ip_forward` to `1` is essential for LWH service connectivity.
+* **Packet redirect sending:** A function where a router or server informs a host of a better route. Disabling `send_redirects` prevents the server from acting as a router in a way that could be exploited for unauthorized traffic redirection.
+* **Reverse path filtering:** A security check that validates the source address of packets. Using the loose mode (`rp_filter=2`) allows the server to accept packets from different interfaces, which prevents valid traffic from being dropped in environments with asymmetric routing.
+* **Source routed packets:** Packets that contain a specified path to their destination. Rejecting these packets prevents attackers from bypassing security measures or routing traffic through untrusted paths.
+* **World-writable paths:** Files or directories that any user on the system can modify. Restricting these paths prevents unauthorized processes from altering application data or injecting malicious code.
+
 ## Local WEKA Home application overview
 
 ### Sign in to Local WEKA Home
