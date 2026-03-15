@@ -25,7 +25,11 @@ When implementing CIDR-based security policies in WEKA, consider the following:
 * **Active mounts remain unaffected**: Client revocation is disabled, meaning any changes to policies do not impact active mounts. This ensures ongoing connections remain stable until they are manually disconnected.
 * **Policy order matters**: The order in which policies are attached determines the filtering sequence. For example, if the first policy denies access from IP1 and IP2, and the second policy allows IP1, the first policy takes precedence, overriding subsequent policies. Always review the order to ensure the desired access control.
 * **Default access behavior**: Clients without a related policy are allowed by default. To secure your organization or filesystem, always include a final policy that denies access to all other IPs after attaching the necessary policies.
-* **Policy capacity:**&#x20;
+* **Policies behavior:**
+  * Policies with WEKA roles can only be attached to organizations.
+  * Policies with a read-only flag can only be attached to filesystems.
+  * Join cluster policies can only contain an IP range.
+* **Policy capacity:**
   * 16 policies can be assigned per organization.
   * 16 policies can be assigned per filesystem.
   * 8 policies are allowed per client or backend join.
@@ -130,7 +134,7 @@ weka security policy duplicate <policy> <name>
 
 <table><thead><tr><th width="204">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>policy</code>*</td><td>Name or ID of the security policy to duplicate.</td></tr><tr><td><code>name</code>*</td><td>Name of the new security policy. (up to 64 alphanumeric characters, hyphens (-), underscores (_), and periods (.), starting with a letter)</td></tr></tbody></table>
 
-Example:&#x20;
+Example:
 
 ```
 weka security policy duplicate sourcePolicy newPolicyName
@@ -174,7 +178,7 @@ weka security policy test [--role role] [--ip ip] [--join] [<policy>]...
 
 <table><thead><tr><th width="193">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>policy</code>...</td><td>Policies to evaluate, with access verified in the order listed.</td></tr><tr><td><code>role</code></td><td>Simulate effect of policies on API access from the given user role. (format: <code>clusteradmin</code>, <code>orgadmin</code>, <code>regular</code>, <code>readonly</code> or <code>s3</code>)</td></tr><tr><td><code>ip</code></td><td>IP address to evaluate as the source address.</td></tr><tr><td><code>join</code></td><td>Simulate effect of policies when joining the cluster.</td></tr></tbody></table>
 
-Example:&#x20;
+Example:
 
 ```
 weka security policy test policy1 policy2 policy3 --ip 10.2.1.0 --role clusteradmin
@@ -282,7 +286,7 @@ The command `weka org` also displays the attached policies for each organization
 
 Command: `weka org security policy set`
 
-Use the following command to set security policies for an organization, replacing the existing list of policies. If setting multiple policies, separate each with a space.&#x20;
+Use the following command to set security policies for an organization, replacing the existing list of policies. If setting multiple policies, separate each with a space.
 
 ```
 weka org security policy set <org> [<policies>]...
@@ -372,7 +376,7 @@ weka fs security policy set <fs-name> [<policies>]...
 
 <table><thead><tr><th width="237">Parameter</th><th>Description</th></tr></thead><tbody><tr><td>fs-name*</td><td>Filesystem name.</td></tr><tr><td><code>policies</code>...</td><td>Security policy names or IDs to set for a filesystem, space separated.</td></tr></tbody></table>
 
-Example to apply two security policies to a filesystem named <kbd>fs0</kbd>:&#x20;
+Example to apply two security policies to a filesystem named <kbd>fs0</kbd>:
 
 ```
 weka fs security policy set fs0 fs0allow denyall
@@ -396,7 +400,7 @@ weka fs security policy reset <fs-name>
 
 **Command:** `weka fs security policy attach`
 
-Use the following command to attach additional security policies to the specified filesystem. If attaching multiple policies, separate each with a space.&#x20;
+Use the following command to attach additional security policies to the specified filesystem. If attaching multiple policies, separate each with a space.
 
 ```
 weka fs security policy attach <fs-name> [<policies>]...
@@ -410,7 +414,7 @@ weka fs security policy attach <fs-name> [<policies>]...
 
 **Command:** `weka fs security policy detach`
 
-Use the following command to detach (remove) security policies from a filesystem. If detaching multiple policies, separate each with a space.&#x20;
+Use the following command to detach (remove) security policies from a filesystem. If detaching multiple policies, separate each with a space.
 
 ```
 weka fs security policy detach <fs-name> [<policies>]...
@@ -491,7 +495,7 @@ weka org security policy attach root allow-backend-admins allow-admin-workstatio
 
 This example demonstrates how to provide read-only access to filesystems from specific networks.
 
-**Scenario:** Allow read-only access to a filesystem from a data analysis network (172.16.0.0/12) while maintaining full access control for other roles.
+**Scenario:** Allow read-only access to a filesystem from a data analysis network (172.16.0.0/12).
 
 1. **Create read-only access policy:** Create a policy allowing readonly role access from the analysis network:
 
@@ -500,7 +504,7 @@ This example demonstrates how to provide read-only access to filesystems from sp
 weka security policy add readonly-analysis-network \
    --action allow \
    --ips 172.16.0.0/12 \
-   --roles readonly
+   --read-only true
 ```
 {% endcode %}
 
@@ -512,6 +516,6 @@ weka fs security policy attach data-warehouse readonly-analysis-network
 ```
 {% endcode %}
 
-**Result:** Users with the `readonly` role can access the "data-warehouse" filesystem from the analysis network for read-only operations.
+**Result:** Users have read-only access to the `data-warehouse` filesystem from the IP range 172.16.0.0/12.
 
 [^1]: Classless Inter-Domain Routing
