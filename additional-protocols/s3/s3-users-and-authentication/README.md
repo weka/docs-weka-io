@@ -1,7 +1,8 @@
 ---
 description: >-
-  This page describes how to gain and obtain access permissions to the S3
-  protocol.
+  Manage access to the S3 API using WEKA local or centralized LDAP integrated
+  credentials. Every entity interacting with WEKA S3 API must have an assigned
+  S3 role and an attached IAM policy.
 metaLinks:
   alternates:
     - >-
@@ -10,71 +11,50 @@ metaLinks:
 
 # S3 users and authentication
 
-## S3 user role
+## S3 authentication methods
 
-A user with an S3 user role must access the WEKA cluster through the S3 protocol and run S3 commands and S3 APIs. The S3 user operates within the limits of the IAM policy attached to it.
+The system supports two methods for authenticating S3 requests:
 
-When accessing data with S3 and other protocols (such as POSIX), you can control the POSIX UID/GID of the underlying file representation of objects created with specific S3 user access/secret keys.
+* **Local S3 authentication:** Create and manage S3 credentials directly within the cluster. For local entities, the username acts as the Access Key and the password acts as the Secret Key.
+* **S3 LDAP authentication:** Integrate an existing LDAP directory to manage access centrally. Users authenticate with LDAP credentials through a dedicated API to retrieve dynamically generated S3 key pairs.
 
-Use `--posix-uid` and `--posix-gid` flags for a local user with an S3 user role.
+## S3 user permissions
 
-{% hint style="info" %}
-The S3 user name and password serve as the S3 access key and secret key, respectively.
-{% endhint %}
+Access to the S3 API requires an S3 user role. The system enforces the following permission structure:
+
+* **IAM policy requirement:** A Cluster Admin must attach an S3 IAM policy to any account that needs S3 access. Without an active policy, the user cannot run S3 commands or API calls.
+* **Policy types:** Admins may attach pre-defined policies or create custom ones using the [AWS Policy Generator](https://awspolicygen.s3.amazonaws.com/policygen.html).
+* **Policy size:** IAM policies are limited to 2KB. Contact the [Customer Success Team](../../../support/getting-support-for-your-weka-system.md) if a larger policy is required.
+* **Identity mapping:** To maintain consistency across protocols, use the `--posix-uid` and `--posix-gid` flags for local users. This controls the POSIX attributes of the underlying file representation for objects created by that user.
+
+## Temporary credentials and service accounts
+
+For specific workflows requiring restricted or automated access, use one of the following identity types:
+
+**IAM temporary credentials (STS)**
+
+Once a user has an attached IAM policy, they can use the AssumeRole API to obtain Security Token Service (STS) credentials.
+
+* **Components:** The API returns an access key, secret key, and session token.
+* **Scope:** Permissions are derived from the user's primary IAM policy. You can provide a more restrictive policy during the request to further limit access.
+* **Automation:** Many S3 clients and SDKs natively support the AssumeRole API. When provided with a key pair, they automatically request and regenerate a new STS token before the previous one expires.
+* **Revocation:** If STS credentials become compromised, delete the parent S3 user. This action permanently invalidates all active STS credentials and session tokens linked to that account.
+
+**S3 service accounts**
+
+Service accounts are permanent child identities of a single parent S3 user.
+
+* **Inheritance:** Each service account inherits privileges from the parent user's IAM policy.
+* **Restriction:** You can attach an optional IAM policy to a service account to restrict it to a subset of the parent's actions.
+* **Management:** Only an S3 user can manage service accounts. A single user can create up to 100 service accounts. This management is performed exclusively through the CLI.
+* **Persistence:** Unlike STS, service accounts do not expire.
 
 **Related topics**
 
-[#create-users](../../../operation-guide/user-management/#create-users "mention")
+[configure-s3-ldap-authentication.md](configure-s3-ldap-authentication.md "mention")
 
 [#creating-a-new-iam-policies-1](s3-users-and-authentication.md#creating-a-new-iam-policies-1 "mention")
 
-## IAM policy
-
-Once an S3 user is created, the Cluster Admin must attach an IAM policy to allow this user to operate (within the policy limits). Without an attached IAM policy, the S3 user cannot run any S3 command or API.
-
-The Cluster Admin can attach to an S3 user one of the following:
-
-* A pre-defined policy
-* A new custom policy
-
-To create a custom policy, you can use _AWS Policy Generator_ and select `IAM Policy` as the policy type and `Amazon S3` as the AWS service.
-
-{% hint style="info" %}
-The IAM policy size is limited to 2KB. If a larger policy is required, contact the [Customer Success Team](../../../support/getting-support-for-your-weka-system.md).
-{% endhint %}
-
-**Related information**
-
-[AWS Policy Generator](https://awspolicygen.s3.amazonaws.com/policygen.html)
-
-## IAM temporary credentials (STS)
-
-Once an S3 user is created and an IAM policy is attached, the Assume Role command can be used to obtain temporary credentials to access the S3 API.
-
-The result of calling the API is an access key, secret key, and session token that can be used to access S3 APIs. The permissions for the temporary credentials are the permissions induced by the user's IAM policy. Furthermore, it is possible to supply a different IAM policy (with reduced capabilities only) for the temporary credentials request.
-
-{% hint style="warning" %}
-If the STS credentials are compromised, revoke them by deleting the associated S3 user. This action will invalidate all STS credentials linked to that user.
-{% endhint %}
-
-{% hint style="info" %}
-Some S3 clients and SDKs, when provided with an access key and secret key pair, automatically support the AssumeRole API. They use STS credentials and automatically regenerate a new STS when the previous one expires.
-{% endhint %}
-
-## S3 service accounts
-
-S3 service accounts are child identities of a single parent S3 user. Each service account inherits its privileges based on the IAM policies attached to its parent user. S3 service accounts also support an optionally attached IAM policy that restricts its access to a _subset_ of the actions and resources available to the parent user (S3 APIs and S3-related CLI commands).
-
-S3 service accounts enable the management of specific object store buckets and S3 APIs (as defined by the IAM policy) without relying on the S3 user administrative action.
-
-Unlike IAM temporary credentials (STS), the S3 service account is not temporary and has no expiration date. It is used to manage the object store buckets and S3 APIs.
-
-Only an S3 user can manage S3 service accounts (Cluster Admin cannot). An S3 user can create up to 100 S3 service accounts. Managing S3 service accounts is only available through the CLI.
-
-**Related topics**
-
-[s3-users-and-authentication.md](s3-users-and-authentication.md "mention")
-
-[s3-users-and-authentication-1.md](s3-users-and-authentication-1.md "mention")
+&#x20;[user-management](../../../operation-guide/user-management/ "mention")
 
 [#supported-s3-apis](../s3-limitations.md#supported-s3-apis "mention")
