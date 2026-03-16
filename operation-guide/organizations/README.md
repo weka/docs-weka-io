@@ -64,7 +64,6 @@ Managed exclusively by the Organization Admin:
 * Filesystems (including encryption)&#x20;
 * Object store buckets
 * LDAP server configuration
-* NFS exports and client permissions
 * User management for their specific organization
 
 {% hint style="info" %}
