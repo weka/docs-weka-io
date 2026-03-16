@@ -120,6 +120,10 @@ WEKA supports Kerberos authentication for NFS using AD and Kerberos MIT:
 * **Active Directory (AD):** NFS integrates with Active Directory (AD), which includes built-in Kerberos services. WEKA interacts with the AD using the Kerberos protocol to authenticate service requests among trusted devices.
 * **Kerberos MIT:** NFS integrates with Kerberos MIT, implementing the Kerberos protocol, which uses secret-key cryptography for authentication across insecure networks. This protocol is widely standardized and utilized.
 
+{% hint style="info" %}
+**Realm consistency:** To use Kerberos with the NFS service, the NFS service, the NFS clients, and the Key Distribution Center (KDC) must all reside within the same Kerberos realm.
+{% endhint %}
+
 #### Kerberos service interactions basic outline
 
 The following Kerberos service interactions ensure secure communication between the client and the WEKA NFS server:
