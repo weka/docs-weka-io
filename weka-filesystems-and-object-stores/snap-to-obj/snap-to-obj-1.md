@@ -15,7 +15,7 @@ Using the CLI, you can:
 * [Upload a snapshot](snap-to-obj-1.md#upload-a-snapshot)
 * [Create a filesystem from an uploaded snapshot](snap-to-obj-1.md#create-a-filesystem-from-an-uploaded-snapshot)
 * [Manage synchronous snapshots](snap-to-obj-1.md#manage-synchronous-snapshots)
-* [Recover from a remote snapshot](snap-to-obj-1.md#recover-from-a-remote-snapshot)
+* [Recover a filesystem from a remote snapshot](snap-to-obj-1.md#recover-a-filesystem-from-a-remote-snapshot)
 
 ## Upload a snapshot
 
@@ -59,9 +59,15 @@ Due to the bandwidth characteristics and potential costs when interacting with r
 
 The workflow to manage the synchronous snapshots includes:
 
-1. Upload snapshots using, for example, the snapshots scheduler. See [snapshots](../snapshots/ "mention").
+1. Upload snapshots using, for example, the snapshots scheduler.
 2. Download the synchronous snapshot (described below).
-3. Restore a specific snapshot to a filesystem. See [#restore-a-snapshot-to-a-filesystem-or-another-snapshot](../snapshots/snapshots-1.md#restore-a-snapshot-to-a-filesystem-or-another-snapshot "mention").
+3. Restore a specific snapshot to a filesystem. See
+
+**Related topics**
+
+[snapshots](../snapshots/ "mention")
+
+&#x20;[#restore-a-snapshot-to-a-filesystem-or-another-snapshot](../snapshots/snapshots-1.md#restore-a-snapshot-to-a-filesystem-or-another-snapshot "mention")
 
 ### Download a synchronous snapshot
 
@@ -81,24 +87,50 @@ If you need to download a snapshot earlier than the latest downloaded one, for e
 
 <table><thead><tr><th width="304">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>file-system</code>*</td><td>Name of the filesystem.</td></tr><tr><td><code>locator</code>*</td><td>Object store locator obtained from a previously successful snapshot upload.</td></tr></tbody></table>
 
-If you need to pause and resume the download process, use the command: `weka cluster task pause / resume`. To abort the download process, delete the downloaded snapshot directly. For details, see [background-tasks](../../operation-guide/background-tasks/ "mention").
+If you need to pause and resume the download process, use the command: `weka cluster task pause / resume`. To abort the download process, delete the downloaded snapshot directly.
 
 **Related topics**
 
 [#synchronous-snapshots](./#synchronous-snapshots "mention")
 
-## Recover from a remote snapshot
+&#x20;[background-tasks](../../operation-guide/background-tasks/ "mention")
 
-When recovering a snapshot residing on a remote object store, it is required to define the object store bucket containing the snapshot as a local bucket.
+## Recover a filesystem from a remote snapshot
 
-A remote object store has restrictions over the download, and we want to use a different local object store due to the QoS reasons explained in [Manage object stores](../managing-object-stores/#overview).
+Recover a filesystem by defining a remote object store bucket as a local bucket. This process ensures high performance and bypasses download restrictions associated with remote object stores by utilizing local Quality of Service (QoS) configurations.
 
-To recover a snapshot residing on a remote object store, create a new filesystem from this snapshot as follows:
+**Before you begin**
 
-1. Add a new local object-store, using `weka fs tier obs add` CLI command.
-2. Add a local object-store bucket, referring to the bucket containing the snapshot to recover, using `weka fs tier s3 add.`
-3. Download the filesystem, using `weka fs download.`
-4. If the recovered filesystem should also be tiered, add a local object store bucket for tiering using `weka fs tier s3 add.`
-5. Detach the initial object store bucket from the filesystem.
-6. Assuming you want a remote backup to this filesystem, attach a remote bucket to the filesystem.
-7. Remove the local object store bucket and local object store created for this procedure.
+* Identify the remote object store bucket name and credentials.
+* Ensure the WEKA cluster has network connectivity to the remote object store.
+* Verify sufficient licensing for the new filesystem capacity.
+
+**Procedure**
+
+1.  Add a new local object store:
+
+    ```bash
+    weka fs tier obs add <name> <type> <hostname>
+    ```
+2.  Add a local object store bucket that refers to the bucket containing the remote snapshot:
+
+    ```bash
+    weka fs tier s3 add <name> <obs-name> <bucket> <access-key> <secret-key>
+    ```
+3.  Download the filesystem:
+
+    ```bash
+    weka fs download <fs-name> <bucket-name> <snapshot-name>
+    ```
+4.  If the recovered filesystem requires tiering, add a local object store bucket for data storage:
+
+    ```bash
+    weka fs tier s3 add <tier-bucket-name> <obs-name> <bucket> <access-key> <secret-key>
+    ```
+5. Detach the initial recovery bucket from the filesystem.
+6. If a remote backup is required for this filesystem, attach a remote bucket.
+7. Remove the temporary local object store bucket and the local object store used for the recovery.
+
+**Related topic**
+
+[managing-object-stores](../managing-object-stores/ "mention")
