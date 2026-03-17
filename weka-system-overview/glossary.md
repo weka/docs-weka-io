@@ -11,7 +11,7 @@ metaLinks:
 
 ## **Access Time (atime)**
 
-Access time, often called "atime," is a file system metadata attribute that tracks the most recent instance when a file was accessed or read. This attribute is essential for monitoring and managing file usage, as it records when a file was last opened or viewed by a user or an application.
+Access time, often called `atime`, is a file system metadata attribute that tracks the most recent instance when a file was accessed or read. This attribute is essential for monitoring and managing file usage, as it records when a file was last opened or viewed by a user or an application.
 
 In the WEKA filesystem, the atime is updated locally on the container where the read operation took place, and this update is subsequently propagated to the cluster after the user closes the file. This update process doesn't occur immediately and may take up to 60 minutes to reflect the actual access time.
 
@@ -28,6 +28,14 @@ The WEKA agent is software installed on user application servers that need acces
 ### Backend server
 
 A backend server in the context of WEKA is a server equipped with SSD drives and running the WEKA software. These servers are dedicated to the WEKA system, offering services to clients. A storage cluster is formed by a group of such backend servers, collectively providing storage and processing capabilities within the WEKA infrastructure.
+
+### Birth time (birthtime)
+
+Birth time, often called `birthtime` or `btime`, is a file system metadata attribute that records the original creation time of a file. Unlike access time (`atime`), modification time (`mtime`), or change time (`ctime`), the birthtime typically records the original creation time and is not updated by normal read or metadata operations.
+
+In the WEKA filesystem, `birthtime` provides a reliable timestamp that reflects when the file was first created. This attribute is particularly valuable for data management, migration, and auditing workflows that require the preservation of original creation metadata to ensure data integrity and accurate historical tracking.
+
+Birthtime support depends on underlying system and tool compatibility. When available, it appears in the output of commands such as stat, alongside other file timestamps.
 
 ## C
 
@@ -49,25 +57,25 @@ A WEKA configuration in which WEKA backend containers run on the same server wit
 
 ## D
 
-### Data Retention Period
+### Data retention period
 
 The target period of time for tiered data to be retained on an SSD.
 
-### Data Stripe Width
+### Data stripe width
 
 The number of data blocks in each logical data protection group.
 
-### Dedicated Deployment
+### Dedicated deployment
 
 A WEKA configuration that dedicates complete servers and all of their allocated resources to WEKA backends, as opposed to a converged deployment.
 
 ## F
 
-### Failure Domain
+### Failure domain
 
 A collection of hardware components that can fail together due to a single root cause.
 
-### Filesystem Group
+### Filesystem group
 
 A collection of filesystems that share a common tiering policy to object-store.
 
@@ -81,7 +89,7 @@ It is the collection of WEKA software that runs on a client and accesses storage
 
 The term "host" is deprecated. See [#container](glossary.md#container "mention").
 
-### Hot Data
+### Hot data
 
 Frequently used data (as opposed to warm data), usually residing on SSDs.
 
@@ -101,7 +109,7 @@ The term "machine" is deprecated. See [#server](glossary.md#server "mention").
 
 ## N
 
-### Net Capacity
+### Net capacity
 
 Amount of space available for user data on SSDs in a configured WEKA system.
 
@@ -125,7 +133,7 @@ POSIX (Portable Operating System Interface) is a set of standards established by
 
 A software instance that WEKA uses to run and manage the filesystem. Processes are dedicated to managing different functions such as (1) NVMe Drives and IO to the drives, (2) compute processes for filesystems and cluster-level functions and IO from clients, (3) frontend processes for POSIX client access and sending IO to the compute process and (4) management processes for managing the overall cluster.
 
-### Provisioned Capacity
+### Provisioned capacity
 
 The total capacity that is assigned to filesystems. This includes both SSD and object store capacity.
 
@@ -139,7 +147,7 @@ Promoting refers to the action of moving data from a lower-tier storage, typical
 
 ## R
 
-### Raw Capacity
+### Raw capacity
 
 Total SSD capacity owned by the user.
 
@@ -147,7 +155,7 @@ Total SSD capacity owned by the user.
 
 See [#promoting](glossary.md#promoting "mention").
 
-### Retention Period
+### Retention period
 
 The designated time duration for data to be stored on SSDs before releasing from the SSDs to an object store.
 
@@ -165,7 +173,7 @@ A physical or virtual server that has hardware resources allocated to it and sof
 
 SR-IOV (Single Root I/O Virtualization) is a technology that enables a single physical resource to be leveraged as multiple virtual resources. In essence, SR-IOV facilitates the partitioning of a single hardware component into distinct virtual functions, each operating independently. Correspondingly, the term Virtual Function (VF) aligns with SR-IOV, referring to these individualized virtualized entities. This technology is particularly valuable in optimizing resource utilization and enhancing the efficiency of virtualized environments.
 
-### Stem Mode
+### Stem mode
 
 Stem Mode in WEKA refers to the installed and running software that has not yet been attached to a cluster.
 
@@ -175,7 +183,7 @@ Snap-To-Object is a WEKA feature facilitating the uploading of snapshots to obje
 
 ## T
 
-### Tiered WEKA Configuration
+### Tiered WEKA configuration
 
 A tiered WEKA configuration combines SSDs and object stores for data storage.
 
@@ -183,13 +191,13 @@ A tiered WEKA configuration combines SSDs and object stores for data storage.
 
 Tiering is the dynamic process of copying data from an SSD to an object store while retaining the original copy on the SSD. This optimization strategy balances performance and cost considerations by keeping frequently accessed data on the high-performance SSD and moving less accessed data to a more economical object store.
 
-### Tiering Cue
+### Tiering cue
 
 Tiering Cue refers to the minimum duration that must elapse before considering data migration from an SSD to an object store. This time threshold is crucial in the context of data tiering strategies, where the decision to move data between different storage tiers is based on factors such as access frequency, performance requirements, and cost considerations. The Tiering Cue helps establish a timeframe for evaluating whether data should be transitioned from the faster but potentially more expensive SSD storage to the object store, which may offer more cost-effective, albeit slower, storage.
 
 ## U
 
-### Unprovisioned Capacity
+### Unprovisioned capacity
 
 Unprovisioned capacity refers to the storage space that is currently unused and available for the creation of new filesystems or data storage allocations. This term indicates the portion of storage resources that have not been assigned or allocated to any specific purpose, making it ready and waiting to be provisioned for new file systems or data storage needs.
 
@@ -201,6 +209,6 @@ Virtual Function (VF) in the context of WEKA typically denotes the creation of m
 
 ## W
 
-### Warm Data
+### Warm data
 
 Warm data is less frequently accessed or utilized data, unlike hot data, and is typically stored in an object store. This term is used to describe information that is accessed less regularly but remains relevant for specific use cases. Storing warm data on an object store allows for efficient management of data resources, providing a balance between accessibility and storage costs.
