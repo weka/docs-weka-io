@@ -299,6 +299,10 @@ OFED is not required for standard Ethernet deployments. OFED is required only wh
 OFED is not a WEKA dependency. When required, it is due to NIC driver behavior needed to support LACP load balancing.
 {% endhint %}
 
+{% hint style="warning" %}
+DOCA-OFED 3.1.0 or later is incompatible with WEKA backends and clients using CX-7 NICs. Instead, use the Mellanox OFED version provided below or the OFED drivers included with your distribution.
+{% endhint %}
+
 ### Ethernet drivers and configurations
 
 {% tabs %}
