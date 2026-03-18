@@ -262,7 +262,7 @@ Integrating Kerberos with AD involves the following:
 
 Use the following command to register the Kerberos with Microsoft Active Directory:
 
-`weka nfs kerberos registration setup-ad <nfs-service-name> <realm-admin-name> [realm-admin-passwd] [--force] [--restart]`
+`weka nfs kerberos registration setup-ad <nfs-service-name> <realm-admin-name> [realm-admin-passwd] [--base-ou base-ou] [--force] [--restart]`
 
 **Example**
 
@@ -274,7 +274,7 @@ weka nfs kerberos registration setup-ad myservicename.test.example.com myrealmad
 
 **Parameters**
 
-<table><thead><tr><th width="231">Name</th><th width="407">Value</th><th>Default</th></tr></thead><tbody><tr><td><code>nfs-service-name</code>*</td><td>This refers to the complete domain name for a specific NFS server.</td><td></td></tr><tr><td><code>realm-admin-name</code>*</td><td>The username of an administrator who has access to the LDAP directory. This user manages the KDC within a realm.</td><td></td></tr><tr><td><code>realm-admin-passwd</code></td><td>This parameter is for the password of the administrative user who manages the KDC within a realm.<br>It’s not stored in the configuration for security reasons. If it’s not provided during setup, the system asks for it. The entered password isn’t shown on the screen to protect privacy and security.</td><td></td></tr><tr><td><code>force</code></td><td>When used, it forces the action to proceed without further confirmation. Typically used when the service is configured or registered.</td><td>Not used</td></tr><tr><td><code>restart</code></td><td>When used, the command restarts the NFS-W containers after the changes are applied.</td><td>Not used</td></tr></tbody></table>
+<table><thead><tr><th width="231">Name</th><th width="384">Value</th><th>Default</th></tr></thead><tbody><tr><td><code>nfs-service-name</code>*</td><td>This refers to the complete domain name for a specific NFS server.</td><td></td></tr><tr><td><code>realm-admin-name</code>*</td><td>The username of an administrator who has access to the LDAP directory. This user manages the KDC within a realm.</td><td></td></tr><tr><td><code>realm-admin-passwd</code></td><td>This parameter is for the password of the administrative user who manages the KDC within a realm.<br>It’s not stored in the configuration for security reasons. If it’s not provided during setup, the system asks for it. The entered password isn’t shown on the screen to protect privacy and security.</td><td></td></tr><tr><td><code>base-ou</code></td><td>LDAP base OU for account creation.<br>This allows admins to create a defined path such as <code>OU=Weka,OU=Servers</code> instead of using the default <code>CN=Computers</code> container.</td><td><code>CN=Computers</code></td></tr><tr><td><code>force</code></td><td>When used, it forces the action to proceed without further confirmation. Typically used when the service is configured or registered.</td><td>Not used</td></tr><tr><td><code>restart</code></td><td>When used, the command restarts the NFS-W containers after the changes are applied.</td><td>Not used</td></tr></tbody></table>
 
 #### Set up Kerberos to use AD LDAP
 
@@ -488,11 +488,11 @@ reader-user-password
 
 Use the following command to configure NFS to use LDAP for ACLs only when Kerberos is not in use:
 
-`weka nfs ldap setup-ad-nokrb <server-name> <ldap-domain> <nfs-service-name> <admin-user-name> [admin-user-password] [--force] [--no-restart]`
+`weka nfs ldap setup-ad-nokrb <server-name> <ldap-domain> <nfs-service-name> <admin-user-name> [admin-user-password] [--base-ou base-ou] [--force] [--no-restart]`
 
 **Parameters**
 
-<table><thead><tr><th width="259">Parameter</th><th width="375">Description</th><th>Default</th></tr></thead><tbody><tr><td><code>server-name</code>*</td><td>AD server name.</td><td></td></tr><tr><td><code>ldap-domain</code>*</td><td>AD domain.</td><td></td></tr><tr><td><code>nfs-service-name</code>*</td><td><p>NFS FQDN service name.</p><p>Maximum 20 characters for hostname in FQDN.</p></td><td></td></tr><tr><td><code>admin-user-name</code>*</td><td>AD Admin Name</td><td></td></tr><tr><td><code>admin-user-password</code></td><td>AD Admin password</td><td></td></tr><tr><td><code>force</code></td><td>Force this action when Active Directory LDAP client is already setup.</td><td>False</td></tr><tr><td><code>no-restart</code></td><td>Don't restart the NFS-W containers to apply changes.</td><td>False</td></tr></tbody></table>
+<table><thead><tr><th width="259">Parameter</th><th width="353">Description</th><th>Default</th></tr></thead><tbody><tr><td><code>server-name</code>*</td><td>AD server name.</td><td></td></tr><tr><td><code>ldap-domain</code>*</td><td>AD domain.</td><td></td></tr><tr><td><code>nfs-service-name</code>*</td><td><p>NFS FQDN service name.</p><p>Maximum 20 characters for hostname in FQDN.</p></td><td></td></tr><tr><td><code>admin-user-name</code>*</td><td>AD Admin Name</td><td></td></tr><tr><td><code>admin-user-password</code></td><td>AD Admin password</td><td></td></tr><tr><td><code>base-ou</code></td><td>LDAP base OU for account creation.<br>This allows admins to create a defined path such as <code>OU=Weka,OU=Servers</code> instead of using the default <code>CN=Computers</code> container.</td><td><code>CN=Computers</code></td></tr><tr><td><code>force</code></td><td>Force this action when Active Directory LDAP client is already setup.</td><td>False</td></tr><tr><td><code>no-restart</code></td><td>Don't restart the NFS-W containers to apply changes.</td><td>False</td></tr></tbody></table>
 
 ## **Manage the NFS export level (permissions)**
 
