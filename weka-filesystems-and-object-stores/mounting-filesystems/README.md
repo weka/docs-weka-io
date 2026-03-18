@@ -165,9 +165,38 @@ Each mount option can be passed by an individual `-o` flag to `mount.`
 
 ### Remount of general options
 
-You can remount using the mount options marked as `Remount Supported` in the above table (`mount -o remount)`.
+To remount using the specified options, use the `mount -o remount` command. Options marked as **Remount supported** in the tables above and below are usable. If you have explicitly set a mount option previously, ensure you include it during remounting to maintain its state. For instance, if you initially mount with `ro` (read-only), omitting it during remounting will switch it to the default `rw` (read-write). Conversely, if you start with `rw`, you don’t need to specify it again during remounting, as it is the default setting.
 
-When a mount option has been explicitly changed, you must set it again in the remount operation to ensure it retains its value. For example, if you mount with `ro`, a remount without it changes the mount option to the default `rw`. If you mount with `rw`, it is not required to re-specify the mount option because this is the default.
+**Operational guidance:** Plan all remount operations as disruptive events. Execute remounts during a maintenance window to avoid impacting active workloads and to ensure predictable operational behavior.
+
+### Remount operations and client container restarts
+
+When using the `mount -o remount` command, it is important to understand which options apply dynamically and which trigger a restart of the WEKA client container.
+
+**Standard remount operations**
+
+Most standard mount options (such as `rw`, `ro`, `noatime`, `nodev`, `nosuid`, and similar options) apply immediately without restarting the client container. These operations do not interrupt active I/O to the filesystem.
+
+**Stateless client and operational parameter remounts**
+
+A specific set of stateless client mount options define the fundamental operational parameters of the client (for example, memory allocation, CPU core affinity, QoS limits). Changing any of these specific options using remount triggers a planned restart of the client container to apply the new configuration.
+
+This restart is an expected behavior for these specific options and causes a temporary pause in active I/O. Applications performing I/O during the remount may experience a brief "resource temporarily unavailable" or similar error before resuming normal operation once the container is back online.
+
+It is highly recommended to schedule remount operations that modify these parameters during a maintenance window to minimize the impact on active user workloads.
+
+The following options trigger a client container restart:
+
+* `dpdk_base_memory_mb`
+* `qos_max_ops`
+* `qos_max_throughput_mbps`
+* `qos_preferred_throughput_mbps`
+* `dedicated_mode`
+* `reserve_1g_hugepages`
+* `remove_after_secs`
+* `core`
+* `num_cores`
+* `memory_mb`
 
 ### **Additional mount options using the stateless clients feature**
 
