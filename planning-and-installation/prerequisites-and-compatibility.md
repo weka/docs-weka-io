@@ -6,6 +6,8 @@ description: >-
 
 # Prerequisites and compatibility
 
+
+
 {% hint style="warning" %}
 **Important:** The versions mentioned on the prerequisites and compatibility page apply to the WEKA system's **latest minor version** (5.0.**X**). For information on new features and supported prerequisites released with each minor version, refer to the relevant release notes available at [get.weka.io](https://get.weka.io/).
 
@@ -137,22 +139,27 @@ Verify that both the kernel and operating system versions appear as supported in
   * 8.14
 {% endtab %}
 
-{% tab title="Kernel" %}
-The following kernel versions are supported:
+{% tab title="Supported kernels versions" %}
+Identify the kernel requirements for the WEKA system to ensure platform stability and data integrity across the environment. Confirm that both the kernel version and the operating system version are listed as supported. These are distinct components with their own compatibility considerations.
 
-* 6.14
-* 6.8
-* 6.0 to 6.5
-* 5.3 to 5.19
-* 4.4.0-1106 to 4.19
-* 3.10
+**Kernel compatibility matrix**
+
+The following table lists the supported kernel versions for WEKA servers. The range of supported versions is inclusive.
+
+<table><thead><tr><th width="192">Kernel version</th><th>Supported operating systems</th></tr></thead><tbody><tr><td>6.14</td><td>All supported distributions</td></tr><tr><td>6.12</td><td>Amazon Linux 2023 only</td></tr><tr><td>6.8</td><td>All supported distributions</td></tr><tr><td>6.0 to 6.5</td><td>All supported distributions</td></tr><tr><td>5.3 to 5.19</td><td>Various distributions (see notes for Amazon Linux 2)</td></tr><tr><td>4.4.0-1106 to 4.19</td><td>Various distributions</td></tr><tr><td>3.10</td><td>Legacy distributions</td></tr></tbody></table>
 
 {% hint style="info" %}
-- Kernels 5.15 and higher are not supported with Amazon Linux 2 (AL2) operating system.
-- It is recommended to turn off auto kernel updates, so it will not get upgraded to an unsupported version.
-- Confirm that both the kernel version and the operating system version are listed as supported, as these are distinct components with their own compatibility considerations.
-- For clarity, the range of supported versions is inclusive.
+Kernels 5.15 and higher are not supported with the Amazon Linux 2 (AL2) operating system.
 {% endhint %}
+
+**Kernel update requirements**
+
+Manage the server environment to maintain a validated state. Preventing unintended upgrades ensures the WEKA process remains compatible with the underlying kernel.
+
+* **Disable automatic updates:** Turn off automatic kernel updates to prevent the server from upgrading to an unsupported version.
+* **Verify versioning:** Ensure the kernel version and operating system version are both explicitly listed as supported before any manual upgrade.
+* **Exclude kernel packages:** Configure the package manager to ignore kernel-related updates by adding `exclude=kernel*` to the configuration file (for example: `/etc/dnf/dnf.conf` or `/etc/yum.conf`).
+* **Validate configuration:** Run a check-update command to confirm the package manager no longer targets kernel packages for installation.
 {% endtab %}
 
 {% tab title="Configuration" %}
@@ -164,8 +171,7 @@ The following kernel versions are supported:
 
 #### SELinux
 
-* Supported only on clients.
-* Supported in both `permissive` and `enforcing` modes.
+* SELinux is supported in both `permissive` and `enforcing` modes.
   * `The targeted` policy is supported.
   * The `mls` policy is not supported yet.
 
