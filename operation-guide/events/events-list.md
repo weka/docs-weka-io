@@ -42,81 +42,94 @@ description: >-
 
 ### Clustering
 
-| **Type**                            | **Severity** | **Description**                                                                                |
-| ----------------------------------- | ------------ | ---------------------------------------------------------------------------------------------- |
-| AllBucketsResponsive                | INFO         | All compute resources are responding.                                                          |
-| BucketRandomizerSwap                | INFO         | Bucket randomizer performed agents swap                                                        |
-| BucketRedist                        | INFO         | The buckets were redistributed in the cluster                                                  |
-| ClientConnected                     | INFO         | Client connected                                                                               |
-| ClientDisconnected                  | INFO         | Client disconnected                                                                            |
-| ClientRemoved                       | INFO         | Start removing a disconnected client from the cluster.                                         |
-| ClientsUnavailable                  | CRITICAL     | Some clients are unavailable because too many backends are down.                               |
-| ClockSkewedHostJoin                 | MINOR        | The container (host) cannot join because of a clock skew.                                      |
-| ClusteringFailure                   | MINOR        | Conainer clustering failed.                                                                    |
-| ClusterInitializationFailed         | MAJOR        | The cluster initialization is failed.                                                          |
-| ClusterInitialized                  | INFO         | The cluster is successfully initialized.                                                       |
-| ConfigChangeSetsSliderFull          | MINOR        | Configuration changeset slider is full while the process (node) is pulling the configuration.  |
-| ConfigGenerationHasNoFirstChunk     | MINOR        | Applying a partial configuration generation is prohibited.                                     |
-| ConfigSnapshotPulled                | MINOR        | Configuration snapshot is pulled.                                                              |
-| DoubleUnmatchingMachineIdentifier   | MAJOR        | There is a container with same Agent-Machine-ID, but different SMBIOS UID.                     |
-| GrimReaperFencingNode               | MINOR        | A partially connected process (node) is selected to be fenced by the grim-reaper.              |
-| HostActivated                       | INFO         | Host configuration change                                                                      |
-| HostAdded                           | INFO         | Host configuration change                                                                      |
-| HostAdding                          | INFO         | Host configuration change                                                                      |
-| HostDeactivated                     | INFO         | Host configuration change                                                                      |
-| HostDeactivating                    | INFO         | Host configuration change                                                                      |
-| HostDrained                         | INFO         | Host configuration change                                                                      |
-| HostDraining                        | INFO         | Host configuration change                                                                      |
-| HostRemoved                         | INFO         | Host configuration change                                                                      |
-| HostRemoving                        | INFO         | Host configuration change                                                                      |
-| HostRemovingFailed                  | INFO         | Host configuration change                                                                      |
-| LeaderChanged                       | WARNING      | The cluster leader has changed.                                                                |
-| LeaderSteppingUpAfterUpgrade        | INFO         | The cluster leader is stepping up after upgrade                                                |
-| NodeNetworkUnstable                 | MAJOR        | A process (node) with an unstable network is detected.                                         |
-| NodePartiallyConnected              | MINOR        | A partially connected process (node) was removed.                                              |
-| NodeRejoined                        | INFO         | The process (node) has rejoined the cluster.                                                   |
-| NodesNotInExpectedState             | MAJOR        | Some processes (nodes) are not in the expected state.                                          |
-| NodeUnreachable                     | MINOR        | An unreachable process (node) was removed.                                                     |
-| OperationTookTooLong                | WARNING      | The operation took too long.                                                                   |
-| PersistentUnresponsiveBuckets       | CRITICAL     | Some compute resources are not responding for more than {longUnresponsivenessMinutes} minutes. |
-| PreviousCluster                     | INFO         | This host was part of another cluster before                                                   |
-| RejoinFailureReport                 | MINOR        | Containers (nodes) failed to rejoin.                                                           |
-| UnresponsiveBuckets                 | MAJOR        | Some compute resources are not responding.                                                     |
-| WrongConfigSignatureForRaftSnapshot | MINOR        | Tried to load a RAFT snapshot with an unsupported configuration root snapshot signature.       |
-| WrongSchemaVersionForRaftSnapshot   | MINOR        | Tried to load a RAFT snapshot with an unsupported schema version.                              |
+| **Type**                                  | **Severity** | **Description**                                                                                |
+| ----------------------------------------- | ------------ | ---------------------------------------------------------------------------------------------- |
+| AllBucketsResponsive                      | INFO         | All compute resources are responding.                                                          |
+| BucketRandomizerSwap                      | INFO         | Bucket randomizer performed agents swap                                                        |
+| BucketRedist                              | INFO         | The buckets were redistributed in the cluster                                                  |
+| BucketRowHasStaleNodeId                   | INFO         | Bucket has stale node id                                                                       |
+| ClientConnected                           | INFO         | Client connected                                                                               |
+| ClientDisconnected                        | INFO         | Client disconnected                                                                            |
+| ClientRemoved                             | INFO         | Start removing a disconnected client from the cluster.                                         |
+| ClientsUnavailable                        | CRITICAL     | Some clients are unavailable because too many backends are down.                               |
+| ClockSkewedHostJoin                       | MINOR        | The container (host) cannot join because of a clock skew.                                      |
+| ClusteringFailure                         | MINOR        | Conainer clustering failed.                                                                    |
+| ClusterInitializationFailed               | MAJOR        | The cluster initialization is failed.                                                          |
+| ClusterInitialized                        | INFO         | The cluster is successfully initialized.                                                       |
+| ClusterLeaderInsufficientPeerConnectivity | INFO         | The cluster leader has connectivity issues with too many peers.                                |
+| ConfigChangeSetsSliderFull                | MINOR        | Configuration changeset slider is full while the process (node) is pulling the configuration.  |
+| ConfigGenerationHasNoFirstChunk           | MINOR        | Applying a partial configuration generation is prohibited.                                     |
+| ConfigSnapshotPulled                      | MINOR        | Configuration snapshot is pulled.                                                              |
+| DoubleUnmatchingMachineIdentifier         | MAJOR        | There is a container with same Agent-Machine-ID, but different SMBIOS UID.                     |
+| GrimReaperFencingNode                     | MINOR        | A partially connected process (node) is selected to be fenced by the grim-reaper.              |
+| HostActivated                             | INFO         | Host configuration change                                                                      |
+| HostAdded                                 | INFO         | Host configuration change                                                                      |
+| HostAdding                                | INFO         | Host configuration change                                                                      |
+| HostDeactivated                           | INFO         | Host configuration change                                                                      |
+| HostDeactivating                          | INFO         | Host configuration change                                                                      |
+| HostDrained                               | INFO         | Host configuration change                                                                      |
+| HostDraining                              | INFO         | Host configuration change                                                                      |
+| HostRemoved                               | INFO         | Host configuration change                                                                      |
+| HostRemoving                              | INFO         | Host configuration change                                                                      |
+| HostRemovingFailed                        | INFO         | Host configuration change                                                                      |
+| LeaderChanged                             | WARNING      | The cluster leader has changed.                                                                |
+| LeaderSteppingUpAfterUpgrade              | INFO         | The cluster leader is stepping up after upgrade                                                |
+| NodeNetworkUnstable                       | MAJOR        | A process (node) with an unstable network is detected.                                         |
+| NodePartiallyConnected                    | MINOR        | A partially connected process (node) was removed.                                              |
+| NodeRejoined                              | INFO         | The process (node) has rejoined the cluster.                                                   |
+| NodesNotInExpectedState                   | MAJOR        | Some processes (nodes) are not in the expected state.                                          |
+| NodeUnreachable                           | MINOR        | An unreachable process (node) was removed.                                                     |
+| OperationTookTooLong                      | WARNING      | The operation took too long.                                                                   |
+| PersistentUnresponsiveBuckets             | CRITICAL     | Some compute resources are not responding for more than {longUnresponsivenessMinutes} minutes. |
+| PreviousCluster                           | INFO         | This host was part of another cluster before                                                   |
+| RejoinFailureReport                       | MINOR        | Containers (nodes) failed to rejoin.                                                           |
+| UnresponsiveBuckets                       | MAJOR        | Some compute resources are not responding.                                                     |
+| WrongConfigSignatureForRaftSnapshot       | MINOR        | Tried to load a RAFT snapshot with an unsupported configuration root snapshot signature.       |
+| WrongSchemaVersionForRaftSnapshot         | MINOR        | Tried to load a RAFT snapshot with an unsupported schema version.                              |
 
 ### Config
 
-| **Type**                                                     | **Severity** | **Description**                                                         |
-| ------------------------------------------------------------ | ------------ | ----------------------------------------------------------------------- |
-| BlockTaskStateChanged                                        | DEBUG        | Block task state changed.                                               |
-| CachedSnapshotIsNewerThanStreamed                            | INFO         | The streamed snapshot is older than the cached snapshot.                |
-| CachedSnapshotIsOlderThanStreamed                            | INFO         | Requested snapshot doesn't exist yet.                                   |
-| CannotAddAnotherContainerWithTheSameMachineId                | MAJOR        | Too many containers with the same machine ID.                           |
-| CannotAddAnotherFeContainerWithTheSameMachineId              | MAJOR        | Too many FE containers with the same machine ID.                        |
-| ClientTargetVersionChange                                    | INFO         | Client target version has been set                                      |
-| ConfigAddedKeyManually                                       | INFO         | A configuration value is added manually by the cluster administrator.   |
-| ConfigCapabilityFormatChanged!"max\_supported\_test\_format" | INFO         | Cluster capability max\_supported\_test\_format has been updated        |
-| ConfigOverridden                                             | INFO         | A configuration value is overridden by the cluster administrator.       |
-| ConfigOverrideChanged                                        | INFO         | A config override is changed.                                           |
-| ConfigOverrideDiscarded                                      | WARNING      | A config override was disabled automatically.                           |
-| ConfigPropagationTookTooLong                                 | MAJOR        | Config propagation took too long.                                       |
-| ConfigRemovedKeyManually                                     | INFO         | A configuration value is removed manually by the cluster administrator. |
-| ContainerBlacklistToggle                                     | MAJOR        | A container is blacklisted/removedFromBlacklist.                        |
-| DirectoryQuotasDisabled                                      | INFO         | Directory quotas were disabled                                          |
-| DirectoryQuotasEnabled                                       | INFO         | Directory Quotas were enabled                                           |
-| HostRequestedActionChange                                    | INFO         | Host requested action changed.                                          |
-| IOStatusChanged                                              | INFO         | IO status changed.                                                      |
-| LeaderIterationTooSlow                                       | MAJOR        | Leader iteration took too long between iterations.                      |
-| LoginBannerCleared                                           | INFO         | Login banner has been cleared                                           |
-| LoginBannerDisabled                                          | INFO         | Login banner disabled                                                   |
-| LoginBannerEnabled                                           | INFO         | Login banner enabled                                                    |
-| LoginBannerSet                                               | INFO         | Login banner has been set                                               |
-| ProcessBlacklistToggle                                       | MAJOR        | A process is blacklisted/removedFromBlacklist.                          |
-| ProcessLimitExpanded                                         | INFO         | Process limit expanded to allow 24-bits of node ID                      |
-| TooManyContainersWithSameMachineId                           | MAJOR        | Too many containers with the same machine ID.                           |
-| UpgradeBlockTaskStartInvoked                                 | DEBUG        | Block task upgrade task start invoked.                                  |
-| WrongVersionForRaftSnapshot                                  | MINOR        | Tried to load a RAFT snapshot with an unsupported version.              |
+| **Type**                                                     | **Severity** | **Description**                                                                                    |
+| ------------------------------------------------------------ | ------------ | -------------------------------------------------------------------------------------------------- |
+| BlockTaskStateChanged                                        | DEBUG        | Block task state changed.                                                                          |
+| CachedSnapshotIsNewerThanStreamed                            | INFO         | The streamed snapshot is older than the cached snapshot.                                           |
+| CachedSnapshotIsOlderThanStreamed                            | INFO         | Requested snapshot doesn't exist yet.                                                              |
+| CannotAddAnotherContainerWithTheSameMachineId                | WARNING      | Too many containers with the same machine ID.                                                      |
+| ClientTargetVersionChange                                    | INFO         | Client target version has been set                                                                 |
+| ConfigAddedKeyManually                                       | INFO         | A configuration value is added manually by the cluster administrator.                              |
+| ConfigCapabilityFormatChanged!"max\_supported\_test\_format" | INFO         | Cluster capability max\_supported\_test\_format has been updated                                   |
+| ConfigOverridden                                             | INFO         | A configuration value is overridden by the cluster administrator.                                  |
+| ConfigOverrideChanged                                        | INFO         | A config override is changed.                                                                      |
+| ConfigOverrideDiscarded                                      | WARNING      | A config override was disabled automatically.                                                      |
+| ConfigPropagationToBackendsDurationCritical                  | CRITICAL     | Config propagation to backend nodes taking too long - beyond critical threshold - aborting leader. |
+| ConfigPropagationToBackendsTakingTooLong                     | MINOR        | Config propagation to backend nodes taking too long (still ongoing).                               |
+| ConfigPropagationToBackendsTookTooLong                       | MINOR        | Config propagation to backend nodes took too long.                                                 |
+| ConfigPropagationToClientsDurationCritical                   | CRITICAL     | Config propagation to client nodes taking too long - beyond critical threshold - aborting leader.  |
+| ConfigPropagationToClientsTakingTooLong                      | MINOR        | Config propagation to client nodes taking too long (still ongoing).                                |
+| ConfigPropagationToClientsTookTooLong                        | MINOR        | Config propagation to client nodes took too long.                                                  |
+| ConfigRemovedKeyManually                                     | INFO         | A configuration value is removed manually by the cluster administrator.                            |
+| ContainerBlacklistToggle                                     | INFO         | A container is blacklisted/removedFromBlacklist.                                                   |
+| DirectoryQuotasDisabled                                      | INFO         | Directory quotas were disabled                                                                     |
+| DirectoryQuotasEnabled                                       | INFO         | Directory Quotas were enabled                                                                      |
+| EncounteredEntryWithNewVersionInRaftLog                      | MINOR        | Encountered a RAFT entry RAFT log with a newer version than mine.                                  |
+| FetchLocalStateNoDrainTooLongReport                          | MAJOR        | The node cannot manage to drain the local-state changes queue of some overlay children.            |
+| HostRequestedActionChange                                    | INFO         | Host requested action changed.                                                                     |
+| IOStatusChanged                                              | INFO         | IO status changed.                                                                                 |
+| LeaderIterationGapTooLong                                    | MAJOR        | Time gap between end of previous leader iteration and start of current iteration is too long.      |
+| LeaderIterationRuntimeTooLong                                | MAJOR        | Leader iteration execution time was too long.                                                      |
+| LoginBannerCleared                                           | INFO         | Login banner has been cleared                                                                      |
+| LoginBannerDisabled                                          | INFO         | Login banner disabled                                                                              |
+| LoginBannerEnabled                                           | INFO         | Login banner enabled                                                                               |
+| LoginBannerSet                                               | INFO         | Login banner has been set                                                                          |
+| ProcessBlacklistToggle                                       | INFO         | A process is blacklisted/removedFromBlacklist.                                                     |
+| ProcessLimitExpanded                                         | INFO         | Process limit expanded to allow 24-bits of node ID                                                 |
+| QueryRangeErrorBucketNodeNotInConfig                         | MAJOR        | Unknown NodeId in a config bucket (Ref 499822)                                                     |
+| QueryRangeErrorCriticalBucketNodeNotInConfig                 | MAJOR        | Unknown NodeId in config bucket (Ref 499822)                                                       |
+| QueryRangeErrorQueriedBucketNotFound                         | MAJOR        | BucketHasNoQuorumMonitor got an unknown BucketId (Ref 499822)                                      |
+| QueryRangeErrorQueriedDownNodeNotFound                       | MAJOR        | BucketHasNoQuorumMonitor got an unknown NodeId (Ref 499822)                                        |
+| QueryRangeErrorRangeErrorException                           | MAJOR        | BucketHasNoQuorumMonitor got a RangeError exception (Ref 499822)                                   |
+| UpgradeBlockTaskStartInvoked                                 | DEBUG        | Block task upgrade task start invoked.                                                             |
+| WrongVersionForRaftSnapshot                                  | MINOR        | Tried to load a RAFT snapshot with an unsupported version.                                         |
 
 ### Custom
 
@@ -170,91 +183,94 @@ description: >-
 
 ### Filesystem
 
-| **Type**                                   | **Severity** | **Description**                                                                                                                                              |
-| ------------------------------------------ | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| BlockReadFailure                           | CRITICAL     | Failed to read a block                                                                                                                                       |
-| BlockSeekFinished                          | MAJOR        | Block seek finished                                                                                                                                          |
-| BlockSeekStarted                           | MAJOR        | Block seek started for a secondary metadata block that could not be read                                                                                     |
-| BrokenFile                                 | MAJOR        | File metadata corruption                                                                                                                                     |
-| CacheFlushHanging                          | MAJOR        | Host is hanging while trying to sync a file's write cache to the cluster                                                                                     |
-| CheckingTimeoutForFSCK                     | MAJOR        | During integrity check a timeout occurred; some checks may have been skipped                                                                                 |
-| ChecksumErrorInBackgroundWrite             | MAJOR        | Checksum error detected by SSD node in a committing block                                                                                                    |
-| ChecksumErrorInCommit                      | MAJOR        | Checksum error detected by SSD node in a committing block                                                                                                    |
-| ChecksumErrorInWrite                       | CRITICAL     | Checksum error detected by COMPUTE node in a write                                                                                                           |
-| ClusterwideJobAborting                     | INFO         | Clusterwide Job configuration change                                                                                                                         |
-| ClusterwideJobAdded                        | INFO         | Clusterwide Job configuration change                                                                                                                         |
-| ClusterwideJobRemoved                      | INFO         | Clusterwide Job configuration change                                                                                                                         |
-| CWTaskTemplateFinished                     | INFO         | A cluster wide task (CWTask) template finished.                                                                                                              |
-| DefaultDirectoryQuotaSet                   | INFO         | A default directory quota was set                                                                                                                            |
-| DefaultDirectoryQuotaUnset                 | INFO         | A default directory quota was unset                                                                                                                          |
-| DestageBlocked                             | CRITICAL     | Destage of a bucket cannot start                                                                                                                             |
-| DestageHanging                             | CRITICAL     | Destage of a bucket is hanging                                                                                                                               |
-| DirectoryQuotaSet                          | INFO         | The directory quota was set                                                                                                                                  |
-| DirectoryQuotaUnset                        | INFO         | The directory quota was unset                                                                                                                                |
-| DumpSnapHashCompleted                      | INFO         | Finished a snap hash manifest scan                                                                                                                           |
-| FailedToAddClusterwideJob                  | MAJOR        | Failed to add clusterwide job because the queue has reached maximum limit                                                                                    |
-| FailedToSplitSliceNoRetry                  | CRITICAL     | Failed to split a directory slice - wont retry                                                                                                               |
-| FilesystemAdded                            | INFO         | Filesystem configuration change                                                                                                                              |
-| FilesystemDeleted                          | INFO         | Filesystem configuration change                                                                                                                              |
-| FilesystemDownloadStarted                  | INFO         | Filesystem download started                                                                                                                                  |
-| FilesystemGroupAdded                       | INFO         | Filesystem group configuration change                                                                                                                        |
-| FilesystemGroupDeleted                     | INFO         | Filesystem group configuration change                                                                                                                        |
-| FilesystemGroupUpdated                     | INFO         | Filesystem group configuration change                                                                                                                        |
-| FilesystemRemoved                          | INFO         | Filesystem configuration change                                                                                                                              |
-| FilesystemUpdated                          | INFO         | Filesystem configuration change                                                                                                                              |
-| FlockSyncHanging                           | CRITICAL     | A bucket cannot finish flock resync with all the clients                                                                                                     |
-| ForcedBucketStepdown                       | MINOR        | Bucket forced to step down                                                                                                                                   |
-| FreeBlockStillUsed                         | CRITICAL     | Found a block falsely marked as free                                                                                                                         |
-| FsCapacityLimitReached                     | WARNING      | Filesystem capacity limit has been reached                                                                                                                   |
-| HangingBackendIosDetected                  | CRITICAL     | Some IOs are hanging.                                                                                                                                        |
-| HangingBackendIosNoLongerDetected          | INFO         | IOs are no longer hanging.                                                                                                                                   |
-| HangingBucketStepDown                      | WARNING      | Bucket step-down is hanging                                                                                                                                  |
-| HangingDirectorySplit                      | MAJOR        | Directory split hasn't any made progress for a long time                                                                                                     |
-| HangingDriverFrontendIosDetected           | CRITICAL     | Some IOs are hanging.                                                                                                                                        |
-| HangingDriverFrontendIosNoLongerDetected   | INFO         | IOs are no longer hanging.                                                                                                                                   |
-| HangingNFSFrontendIosDetected              | CRITICAL     | Some IOs are hanging.                                                                                                                                        |
-| HangingNFSFrontendIosNoLongerDetected      | INFO         | IOs are no longer hanging.                                                                                                                                   |
-| IntegrityCheckFinished                     | DEBUG        | Integrity check has finished.                                                                                                                                |
-| IntegrityCheckIssueCritical                | CRITICAL     | Found a data integrity issue (Critical)                                                                                                                      |
-| IntegrityCheckIssueCriticalNoDedup         | CRITICAL     | Found a data integrity issue (Critical)                                                                                                                      |
-| IntegrityCheckIssueDebug                   | DEBUG        | Found a data integrity issue (Debug)                                                                                                                         |
-| IntegrityCheckIssueDebugNoDedup            | DEBUG        | Found a data integrity issue (Debug)                                                                                                                         |
-| IntegrityCheckIssueMajor                   | MAJOR        | Found a data integrity issue (Major)                                                                                                                         |
-| IntegrityCheckIssueMajorNoDedup            | MAJOR        | Found a data integrity issue (Major)                                                                                                                         |
-| IntegrityCheckIssueMinor                   | MINOR        | Found a data integrity issue (Minor)                                                                                                                         |
-| IntegrityCheckIssueMinorNoDedup            | MINOR        | Found a data integrity issue (Minor)                                                                                                                         |
-| IntegrityCheckIssueWarning                 | WARNING      | Found a data integrity issue (Warning)                                                                                                                       |
-| IntegrityCheckIssueWarningNoDedup          | WARNING      | Found a data integrity issue (Warning)                                                                                                                       |
-| IntegrityCheckStarted                      | DEBUG        | Integrity check has started.                                                                                                                                 |
-| IntegrityCheckTransientIssue               | DEBUG        | Found a transient state which is expected to be encountered. Can be ignored, unless it persists. In which case a non transient issue event will be produced  |
-| IntegrityCheckTransientIssueNoDedup        | DEBUG        | Found a transient state which is expected to be encountered. Can be ignored, unless it persists. In which case, a non transient issue event will be produced |
-| ManualOverrideStall                        | WARNING      | A service has been manually overridden and stalled.                                                                                                          |
-| MetadataCommitQueueHang                    | MINOR        | Bucket step down due to hanging metadata commit queue                                                                                                        |
-| ObjectStoreAttachedToFilesystem            | INFO         | The object store is attached to the filesystem.                                                                                                              |
-| ObjectStoreFinishedDetachingFromFilesystem | INFO         | The object store finished detaching from the filesystem.                                                                                                     |
-| ObjectStoreStartedDetachingFromFilesystem  | INFO         | The object store started detaching from the filesystem.                                                                                                      |
-| QuotaGraceExpired                          | WARNING      | Directory soft capacity quota has been reached and grace period expired                                                                                      |
-| QuotaHardLimitReached                      | WARNING      | Directory hard capacity quota has been reached                                                                                                               |
-| RAIDMDReadFailureInSnaphashDump            | WARNING      | Failed to read metadata block from RAID when dumping the snapshot manifest                                                                                   |
-| SnapshotContentCopied                      | INFO         | Snapshot content copied                                                                                                                                      |
-| SnapshotCreated                            | INFO         | Snapshot created                                                                                                                                             |
-| SnapshotCreationFailed                     | MAJOR        | Snapshot creation failed                                                                                                                                     |
-| SnapshotDeleted                            | INFO         | Snapshot deleted                                                                                                                                             |
-| SnapshotDownloadStarted                    | INFO         | Snapshot download started                                                                                                                                    |
-| SnapshotFilesystemRestored                 | INFO         | Filesystem restored from snapshot                                                                                                                            |
-| SnapshotParamsUpdated                      | INFO         | Snapshot updated                                                                                                                                             |
-| SnapshotPolicyAdded                        | INFO         | Snapshot policy configuration change                                                                                                                         |
-| SnapshotPolicyAttached                     | INFO         | The snapshot policy is attached to the filesystem                                                                                                            |
-| SnapshotPolicyDeleted                      | INFO         | Snapshot policy configuration change                                                                                                                         |
-| SnapshotPolicyDetached                     | INFO         | The snapshot policy is detached from the filesystem                                                                                                          |
-| SnapshotPolicyUpdated                      | INFO         | Snapshot policy configuration change                                                                                                                         |
-| SnapshotUploadFailed                       | MAJOR        | Snapshot upload failed                                                                                                                                       |
-| SnapshotUploadFinished                     | INFO         | Snapshot upload finished                                                                                                                                     |
-| SnapshotUploadStarted                      | INFO         | Snapshot upload started                                                                                                                                      |
-| SquelchBlockIdSetAbortedFlushed            | DEBUG        | While setting a squelch block's block id for upgrade was already changed to invalid                                                                          |
-| SquelchBlockIdSetAbortedRewritten          | WARNING      | While setting a squelch block's block id for upgrade was already rewritten to something else                                                                 |
-| SuperblockUnreadable                       | CRITICAL     | Superblock of a bucket could not be loaded                                                                                                                   |
-| UnflushedOpOnDeletingSnapview              | MAJOR        | Unflushed IO on a deleting snapshot                                                                                                                          |
+| **Type**                                   | **Severity** | **Description**                                                                                                                                             |
+| ------------------------------------------ | ------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| BlockReadFailure                           | CRITICAL     | Failed to read a block                                                                                                                                      |
+| BlockSeekFinished                          | MAJOR        | Block seek finished                                                                                                                                         |
+| BlockSeekStarted                           | MAJOR        | Block seek started for a secondary metadata block that could not be read                                                                                    |
+| BrokenFile                                 | MAJOR        | File metadata corruption                                                                                                                                    |
+| CacheFlushHanging                          | MAJOR        | Host is hanging while trying to sync a file's write cache to the cluster                                                                                    |
+| CharterNotificationDropped                 | MAJOR        | Dropped a charter notification to an unresponsive client                                                                                                    |
+| CheckingTimeoutForFSCK                     | MAJOR        | During integrity check a timeout occurred; some checks may have been skipped                                                                                |
+| ChecksumErrorInBackgroundWrite             | MAJOR        | Checksum error detected by SSD node in a committing block                                                                                                   |
+| ChecksumErrorInCommit                      | MAJOR        | Checksum error detected by SSD node in a committing block                                                                                                   |
+| ChecksumErrorInWrite                       | CRITICAL     | Checksum error detected by COMPUTE node in a write                                                                                                          |
+| ChokingBlockingIOs                         | MAJOR        | Backend choking is now blocking IOs                                                                                                                         |
+| ClusterwideJobAborting                     | INFO         | Clusterwide Job configuration change                                                                                                                        |
+| ClusterwideJobAdded                        | INFO         | Clusterwide Job configuration change                                                                                                                        |
+| ClusterwideJobRemoved                      | INFO         | Clusterwide Job configuration change                                                                                                                        |
+| CWTaskTemplateFinished                     | INFO         | A cluster wide task (CWTask) template finished.                                                                                                             |
+| DefaultDirectoryQuotaSet                   | INFO         | A default directory quota was set                                                                                                                           |
+| DefaultDirectoryQuotaUnset                 | INFO         | A default directory quota was unset                                                                                                                         |
+| DestageBlocked                             | CRITICAL     | Destage of a bucket cannot start                                                                                                                            |
+| DestageBlockedByOperation                  | MAJOR        | A mutating operation is stalling and preventing destage from making progress                                                                                |
+| DestageHanging                             | CRITICAL     | Destage of a bucket is hanging                                                                                                                              |
+| DirectoryQuotaSet                          | INFO         | The directory quota was set                                                                                                                                 |
+| DirectoryQuotaUnset                        | INFO         | The directory quota was unset                                                                                                                               |
+| DumpSnapHashCompleted                      | INFO         | Finished a snap hash manifest scan                                                                                                                          |
+| FailedToAddClusterwideJob                  | MAJOR        | Failed to add clusterwide job because the queue has reached maximum limit                                                                                   |
+| FailedToSplitSliceNoRetry                  | CRITICAL     | Failed to split a directory slice - wont retry                                                                                                              |
+| FilesystemAdded                            | INFO         | Filesystem configuration change                                                                                                                             |
+| FilesystemDeleted                          | INFO         | Filesystem configuration change                                                                                                                             |
+| FilesystemDownloadStarted                  | INFO         | Filesystem download started                                                                                                                                 |
+| FilesystemGroupAdded                       | INFO         | Filesystem group configuration change                                                                                                                       |
+| FilesystemGroupDeleted                     | INFO         | Filesystem group configuration change                                                                                                                       |
+| FilesystemGroupUpdated                     | INFO         | Filesystem group configuration change                                                                                                                       |
+| FilesystemRemoved                          | INFO         | Filesystem configuration change                                                                                                                             |
+| FilesystemUpdated                          | INFO         | Filesystem configuration change                                                                                                                             |
+| FlockSyncHanging                           | CRITICAL     | A bucket cannot finish flock resync with all the clients                                                                                                    |
+| ForcedBucketStepdown                       | MINOR        | Bucket forced to step down                                                                                                                                  |
+| FreeBlockStillUsed                         | CRITICAL     | Found a block falsely marked as free                                                                                                                        |
+| FsCapacityLimitReached                     | WARNING      | Filesystem capacity limit has been reached                                                                                                                  |
+| HangingBackendIosDetected                  | CRITICAL     | Some IOs are hanging.                                                                                                                                       |
+| HangingBackendIosNoLongerDetected          | INFO         | IOs are no longer hanging.                                                                                                                                  |
+| HangingBucketStepDown                      | WARNING      | Bucket step-down is hanging                                                                                                                                 |
+| HangingDirectorySplit                      | MAJOR        | Directory split hasn't any made progress for a long time                                                                                                    |
+| HangingDriverFrontendIosDetected           | CRITICAL     | Some IOs are hanging.                                                                                                                                       |
+| HangingDriverFrontendIosNoLongerDetected   | INFO         | IOs are no longer hanging.                                                                                                                                  |
+| HangingNFSFrontendIosDetected              | CRITICAL     | Some IOs are hanging.                                                                                                                                       |
+| HangingNFSFrontendIosNoLongerDetected      | INFO         | IOs are no longer hanging.                                                                                                                                  |
+| IntegrityCheckFinished                     | DEBUG        | Integrity check has finished.                                                                                                                               |
+| IntegrityCheckIssueCritical                | CRITICAL     | Found a data integrity issue (Critical)                                                                                                                     |
+| IntegrityCheckIssueCriticalNoDedup         | CRITICAL     | Found a data integrity issue (Critical)                                                                                                                     |
+| IntegrityCheckIssueDebug                   | DEBUG        | Found a data integrity issue (Debug)                                                                                                                        |
+| IntegrityCheckIssueDebugNoDedup            | DEBUG        | Found a data integrity issue (Debug)                                                                                                                        |
+| IntegrityCheckIssueMajor                   | MAJOR        | Found a data integrity issue (Major)                                                                                                                        |
+| IntegrityCheckIssueMajorNoDedup            | MAJOR        | Found a data integrity issue (Major)                                                                                                                        |
+| IntegrityCheckIssueMinor                   | MINOR        | Found a data integrity issue (Minor)                                                                                                                        |
+| IntegrityCheckIssueMinorNoDedup            | MINOR        | Found a data integrity issue (Minor)                                                                                                                        |
+| IntegrityCheckIssueWarning                 | WARNING      | Found a data integrity issue (Warning)                                                                                                                      |
+| IntegrityCheckIssueWarningNoDedup          | WARNING      | Found a data integrity issue (Warning)                                                                                                                      |
+| IntegrityCheckStarted                      | DEBUG        | Integrity check has started.                                                                                                                                |
+| IntegrityCheckTransientIssue               | DEBUG        | Found a transient state which is expected to be encountered. Can be ignored, unless it persists. In which case a non transient issue event will be produced |
+| IntegrityCheckTransientIssueNoDedup        | DEBUG        | Found a transient state which is expected to be encountered. Can be ignored, unless it persists. In which case a non transient issue event will be produced |
+| ManualOverrideStall                        | WARNING      | A service has been manually overridden and stalled.                                                                                                         |
+| MetadataCommitQueueHang                    | MINOR        | Bucket step down due to hanging metadata commit queue                                                                                                       |
+| ObjectStoreAttachedToFilesystem            | INFO         | The object store is attached to the filesystem.                                                                                                             |
+| ObjectStoreFinishedDetachingFromFilesystem | INFO         | The object store finished detaching from the filesystem.                                                                                                    |
+| ObjectStoreStartedDetachingFromFilesystem  | INFO         | The object store started detaching from the filesystem.                                                                                                     |
+| QuotaGraceExpired                          | WARNING      | Directory soft capacity quota has been reached and grace period expired                                                                                     |
+| QuotaHardLimitReached                      | WARNING      | Directory hard capacity quota has been reached                                                                                                              |
+| RAIDMDReadFailureInSnaphashDump            | WARNING      | Failed to read metadata block from RAID when dumping the snapshot manifest                                                                                  |
+| SnapshotContentCopied                      | INFO         | Snapshot content copied                                                                                                                                     |
+| SnapshotCreated                            | INFO         | Snapshot created                                                                                                                                            |
+| SnapshotCreationFailed                     | MAJOR        | Snapshot creation failed                                                                                                                                    |
+| SnapshotDeleted                            | INFO         | Snapshot deleted                                                                                                                                            |
+| SnapshotDownloadStarted                    | INFO         | Snapshot download started                                                                                                                                   |
+| SnapshotFilesystemRestored                 | INFO         | Filesystem restored from snapshot                                                                                                                           |
+| SnapshotParamsUpdated                      | INFO         | Snapshot updated                                                                                                                                            |
+| SnapshotPolicyAdded                        | INFO         | Snapshot policy configuration change                                                                                                                        |
+| SnapshotPolicyAttached                     | INFO         | The snapshot policy is attached to the filesystem                                                                                                           |
+| SnapshotPolicyDeleted                      | INFO         | Snapshot policy configuration change                                                                                                                        |
+| SnapshotPolicyDetached                     | INFO         | The snapshot policy is detached from the filesystem                                                                                                         |
+| SnapshotPolicyUpdated                      | INFO         | Snapshot policy configuration change                                                                                                                        |
+| SnapshotUploadFailed                       | MAJOR        | Snapshot upload failed                                                                                                                                      |
+| SnapshotUploadFinished                     | INFO         | Snapshot upload finished                                                                                                                                    |
+| SnapshotUploadStarted                      | INFO         | Snapshot upload started                                                                                                                                     |
+| SquelchBlockIdSetAbortedFlushed            | DEBUG        | While setting a squelch block's block id for upgrade was already changed to invalid                                                                         |
+| SquelchBlockIdSetAbortedRewritten          | WARNING      | While setting a squelch block's block id for upgrade was already rewritten to something else                                                                |
+| SuperblockUnreadable                       | CRITICAL     | Superblock of a bucket could not be loaded                                                                                                                  |
+| UnflushedOpOnDeletingSnapview              | MAJOR        | Unflushed IO on a deleting snapshot                                                                                                                         |
 
 ### InterfaceGroup
 
@@ -308,43 +324,47 @@ description: >-
 
 ### Network
 
-| **Type**                    | **Severity** | **Description**                                                                              |
-| --------------------------- | ------------ | -------------------------------------------------------------------------------------------- |
-| ClientNodeDisconnected      | INFO         | A client disconnected from the cluster.                                                      |
-| CloudMoveIpFail             | MINOR        | Move IP on cloud failed.                                                                     |
-| DefaultDataNetworkingChange | INFO         | The default data networking configuration has changed.                                       |
-| DpdkIBQkeyMismatch          | MAJOR        | DPDK IB qkey Mismatch                                                                        |
-| DpdkInitFailed              | MINOR        | DPDK initialization failed                                                                   |
-| DpdkPoolSummary             | DEBUG        | Summary of DPDK pool status                                                                  |
-| FipIsNoLongerOnDevice       | MAJOR        | IP is no longer on device.                                                                   |
-| HangingRPCs                 | MAJOR        | Some RPCs are hanging too long.                                                              |
-| HugepagesAllocationFailure  | MINOR        | Hugepages allocation failure.                                                                |
-| IONodeCannotFetchConfig     | WARNING      | The IO node cannot join the cluster for too long.                                            |
-| L6PacketFormatNotInSync     | MAJOR        | L6 packet format not in sync with process limits flags, indicates a non fatal internal error |
-| MemoryAllocFailed           | MINOR        | Memory allocation failed                                                                     |
-| MemoryClaimFailed           | MINOR        | Memory claim failed                                                                          |
-| MemoryMigratedAfterPin      | MAJOR        | Hugepage mapping migrated after it was pinned                                                |
-| MemoryMigratedBeforePin     | MINOR        | Hugepage mapping migrated before it was pinned                                               |
-| MemoryPinningIoctlFailed    | MINOR        | Memory pinning ioctl failed                                                                  |
-| MgmtNodeCannotFetchConfig   | WARNING      | The management process (node) cannot join the cluster for too long.                          |
-| NetDeviceLinkDown           | MINOR        | Network interface DOWN                                                                       |
-| NetDeviceLinkUp             | MINOR        | Network interface UP                                                                         |
-| NetSlaveDeviceLinkDown      | MINOR        | Network slave interface DOWN                                                                 |
-| NetSlaveDeviceLinkUp        | MINOR        | Network slave interface UP                                                                   |
-| NetworkBan                  | MAJOR        | Ban Network Peer                                                                             |
-| NetworkPortConfigFail       | MINOR        | Network port configuration failed.                                                           |
-| NetworkPortDead             | MAJOR        | Network Port hasn't passed packets for a long period of time, it is likely dead              |
-| NetworkUnban                | INFO         | Unban Network Peer                                                                           |
-| NICNotFound                 | INFO         | NIC not found when initializing                                                              |
-| NoConnectivityToLivingNode  | MAJOR        | A process (node) is disconnected from living peers.                                          |
-| NodeCannotJoinCluster       | WARNING      | The process (node) cannot join the cluster for too long.                                     |
-| NodeCannotSendJumboFrames   | MINOR        | A process (node) cannot send jumbo packets.                                                  |
-| NodeDisconnected            | MINOR        | A process (node) disconnected from cluster.                                                  |
-| NoHardwareWatchdog          | MAJOR        | No hardware watchdog found                                                                   |
-| NoJumboFrames               | MINOR        | The network does not allow jumbo packets through.                                            |
-| RDMAClientDisabled          | MINOR        | RDMA optimization disabled                                                                   |
-| RDMAClientEnabled           | MINOR        | RDMA optimization enabled                                                                    |
-| RDMADeviceDead              | MAJOR        | RDMA device did not recieve completions for a long period of time, it is likely dead         |
+| **Type**                     | **Severity** | **Description**                                                                              |
+| ---------------------------- | ------------ | -------------------------------------------------------------------------------------------- |
+| ArpServerDuplicateIPDetected | CRITICAL     | ARP server duplicate IP detected.                                                            |
+| ArpServerFailedToApplyRule   | CRITICAL     | ARP server failed to apply rules.                                                            |
+| ArpServerFailedToInitialize  | CRITICAL     | ARP server failed to initialize.                                                             |
+| ClientNodeDisconnected       | WARNING      | A client disconnected from cluster.                                                          |
+| CloudMoveIpFail              | MINOR        | Move IP on cloud failed.                                                                     |
+| DefaultDataNetworkingChange  | INFO         | The default data networking configuration has changed.                                       |
+| DpdkIBQkeyMismatch           | MAJOR        | DPDK IB qkey Mismatch                                                                        |
+| DpdkInitFailed               | MINOR        | DPDK initialization failed                                                                   |
+| DpdkIovaModeNotDetermined    | MAJOR        | DPDK is not able to find a common iova-mode                                                  |
+| DpdkPoolSummary              | DEBUG        | Summary of DPDK pool status                                                                  |
+| FipIsNoLongerOnDevice        | MAJOR        | IP is no longer on device.                                                                   |
+| HangingRPCs                  | MAJOR        | Some RPCs are hanging too long.                                                              |
+| HugepagesAllocationFailure   | MINOR        | Hugepages allocation failure.                                                                |
+| IONodeCannotFetchConfig      | WARNING      | The IO node cannot join the cluster for too long.                                            |
+| L6PacketFormatNotInSync      | WARNING      | L6 packet format not in sync with process limits flags, indicates a non fatal internal error |
+| MemoryAllocFailed            | MINOR        | Memory allocation failed                                                                     |
+| MemoryClaimFailed            | MINOR        | Memory claim failed                                                                          |
+| MemoryMigratedAfterPin       | MAJOR        | Hugepage mapping migrated after it was pinned                                                |
+| MemoryMigratedBeforePin      | MINOR        | Hugepage mapping migrated before it was pinned                                               |
+| MemoryPinningIoctlFailed     | MINOR        | Memory pinning ioctl failed                                                                  |
+| MgmtNodeCannotFetchConfig    | WARNING      | The management process (node) cannot join the cluster for too long.                          |
+| NetDeviceLinkDown            | MINOR        | Network interface DOWN                                                                       |
+| NetDeviceLinkUp              | MINOR        | Network interface UP                                                                         |
+| NetSlaveDeviceLinkDown       | MINOR        | Network slave interface DOWN                                                                 |
+| NetSlaveDeviceLinkUp         | MINOR        | Network slave interface UP                                                                   |
+| NetworkBan                   | MAJOR        | Ban Network Peer                                                                             |
+| NetworkPortConfigFail        | MINOR        | Network port configuration failed.                                                           |
+| NetworkPortDead              | MAJOR        | Network Port hasn't passed packets for a long period of time, it is likely dead              |
+| NetworkUnban                 | INFO         | Unban Network Peer                                                                           |
+| NICNotFound                  | INFO         | NIC not found when initializing                                                              |
+| NoConnectivityToLivingNode   | MAJOR        | A process (node) is disconnected from living peers.                                          |
+| NodeCannotJoinCluster        | WARNING      | The process (node) cannot join the cluster for too long.                                     |
+| NodeCannotSendJumboFrames    | MINOR        | A process (node) cannot send jumbo packets.                                                  |
+| NodeDisconnected             | MINOR        | A process (node) disconnected from cluster.                                                  |
+| NoHardwareWatchdog           | MAJOR        | No hardware watchdog found                                                                   |
+| NoJumboFrames                | MINOR        | The network does not allow jumbo packets through.                                            |
+| RDMAClientDisabled           | MINOR        | RDMA optimization disabled                                                                   |
+| RDMAClientEnabled            | MINOR        | RDMA optimization enabled                                                                    |
+| RDMADeviceDead               | MAJOR        | RDMA device did not recieve completions for a long period of time, it is likely dead         |
 
 ### NFS
 
@@ -381,8 +401,8 @@ description: >-
 | NodeExceptionExit    | MAJOR        | A process (node) exited with an exception.          |
 | NodeKernelStack      | WARNING      | Kernel stack of node before reset                   |
 | NodeSignalExit       | MAJOR        | A process (node) existed due to receiving a signal. |
-| NodeStarted          | INFO         | A process (node) started.                           |
-| NodeStopped          | INFO         | A process (node) stopped.                           |
+| NodeStarted          | DEBUG        | A process (node) started.                           |
+| NodeStopped          | DEBUG        | A process (node) stopped.                           |
 | NodeTraceback        | WARNING      | Traceback of node before reset                      |
 | SoftAssertionFailed  | MAJOR        | Assertion failed (soft).                            |
 
@@ -426,7 +446,7 @@ description: >-
 | **Type**                          | **Severity** | **Description**                                                   |
 | --------------------------------- | ------------ | ----------------------------------------------------------------- |
 | IndexChangeDuringStream           | INFO         | The RAFT index changed during the streaming of the raft snapshot. |
-| OutOfMemoryErrorOnLeadershipAgent | MAJOR        | Out of memory error on the leadership agent.                      |
+| OutOfMemoryErrorOnLeadershipAgent | CRITICAL     | Out of memory error on the leadership agent.                      |
 
 ### Raid
 
@@ -453,11 +473,14 @@ description: >-
 | QuorumGenerationNumberBug            | WARNING      | An issue with the advancement of the applied quorum generation number report from a bucket.                                                  |
 | RaidReadFreeBlock                    | MAJOR        | RAID had read a block marked as free                                                                                                         |
 | RaidScrubbingRateUpdated             | INFO         | RAID scrubber limit updated                                                                                                                  |
-| RaidSpaceFull                        | MINOR        | A RAID Space is full.                                                                                                                        |
+| RaidSpaceFull                        | MAJOR        | A RAID Space is full.                                                                                                                        |
 | RaidsStarted                         | INFO         | RAIDs started.                                                                                                                               |
 | RepairedCorruptDataFromDrive         | CRITICAL     | Detected corrupt data from drive\[s]. The system will rewrite with the correct data.                                                         |
 | ScrubberHanging                      | MAJOR        | RAID Scrubber is hanging on placement                                                                                                        |
 | SingleHopReadCorruptionDetected      | MINOR        | Single-hop read corruption detected.                                                                                                         |
+| SoulDeserializationFailed            | MINOR        | Failed to deserialize bucket soul during startup                                                                                             |
+| SoulSerializationFailed              | MINOR        | Failed to serialize bucket soul during graceful shutdown                                                                                     |
+| SoulValidationFailed                 | INFO         | Bucket soul validation failed during startup                                                                                                 |
 | SwitchPlacementHanging               | MINOR        | An active placement to write to is not available because of capacity constraints or disk failures.                                           |
 | TooFewActiveFailureDomains           | MAJOR        | Too few active failure domains.                                                                                                              |
 | TooManyFailures                      | MAJOR        | Too many failures and some of the data is unavailable.                                                                                       |
@@ -477,7 +500,7 @@ description: >-
 | DisabledNumaBalancing                      | INFO         | Disabled NUMA Balancing                                            |
 | DriverLoaded                               | INFO         | Driver attached                                                    |
 | FailedToLoadDriver                         | WARNING      | Failed to load the wekafs driver                                   |
-| HangingHTTPRequest                         | MAJOR        | Hanging HTTP request detected.                                     |
+| HangingHTTPRequest                         | MINOR        | Hanging HTTP request detected.                                     |
 | HttpServerFibersExhausted                  | MAJOR        | Hanging HTTP requests exhausted all available fibers               |
 | HugepagesAllocated                         | INFO         | Hugepages allocated                                                |
 | HugepagesAllocationRetries                 | WARNING      | Hugepages allocation retried                                       |
@@ -600,31 +623,35 @@ description: >-
 
 ### System
 
-| **Type**                           | **Severity** | **Description**                                                     |
-| ---------------------------------- | ------------ | ------------------------------------------------------------------- |
-| BlockTaskAborted                   | INFO         | The bucket task was aborted successfully.                           |
-| BlockTaskComplete                  | INFO         | A bucket task completed successfully.                               |
-| BucketsCreated                     | INFO         | The system has created buckets.                                     |
-| ClusterTaskAborted                 | INFO         | Cluster task aborted                                                |
-| ClusterTaskAborting                | INFO         | Cluster task started aborting                                       |
-| ClusterTaskPaused                  | INFO         | Cluster task paused                                                 |
-| ClusterTaskResumed                 | INFO         | Cluster task resumed                                                |
-| ClusterTasksCpuLimitUpdated        | INFO         | Cluster tasks CPU limit set.                                        |
-| ClusterwideTaskChanged             | DEBUG        | The cluster-wide task has changed.                                  |
-| DataServiceTaskFailedWithError     | MINOR        | Data service task failure                                           |
-| DataServiceTaskWaitingForChildTask | INFO         | Data service task waiting                                           |
-| DsShardViewChanged                 | INFO         | There is a change in the data service shard view                    |
-| HaveEnoughSSDCapacity              | MINOR        | Sufficient SSD capacity exists for all the provisioned filesystems. |
-| IOStarted                          | INFO         | The system has started.                                             |
-| IOStopped                          | INFO         | The system has stopped.                                             |
-| NotEnoughSSDCapacity               | CRITICAL     | Need more SSD capacity for all the provisioned filesystems.         |
-| QOSConfigReset                     | INFO         | QoS configuration reset                                             |
-| QOSConfigSet                       | INFO         | QoS configuration set                                               |
-| StartIORequested                   | INFO         | The user has requested to start the IO.                             |
-| StopIORequested                    | INFO         | The user has requested to stop the IO.                              |
-| SystemInfoReport                   | INFO         | The management process (node) started, reporting OS info.           |
-| ThreadPoolCanNotStartThread        | MINOR        | The reactor's thread pool failed to start a thread.                 |
-| TooManyFibers                      | MINOR        | Too many fiber allocations.                                         |
+| **Type**                           | **Severity** | **Description**                                                                                          |
+| ---------------------------------- | ------------ | -------------------------------------------------------------------------------------------------------- |
+| BlockTaskAborted                   | INFO         | The bucket task was aborted successfully.                                                                |
+| BlockTaskComplete                  | INFO         | A bucket task completed successfully.                                                                    |
+| BucketsCreated                     | INFO         | The system has created buckets.                                                                          |
+| ClusterTaskAborted                 | INFO         | Cluster task aborted                                                                                     |
+| ClusterTaskAborting                | INFO         | Cluster task started aborting                                                                            |
+| ClusterTaskPaused                  | INFO         | Cluster task paused                                                                                      |
+| ClusterTaskResumed                 | INFO         | Cluster task resumed                                                                                     |
+| ClusterTasksCpuLimitUpdated        | INFO         | Cluster tasks CPU limit set.                                                                             |
+| ClusterwideTaskChanged             | DEBUG        | The cluster wide task has changed.                                                                       |
+| DataServiceTaskFailedWithError     | MINOR        | Data service task failure                                                                                |
+| DataServiceTaskWaitingForChildTask | INFO         | Data service task waiting                                                                                |
+| DsShardViewChanged                 | INFO         | There is a change in the data service shard view                                                         |
+| GcHighExecutionTime                | MINOR        | GC execution time percent of total time is too high.                                                     |
+| GcTooManyScans                     | MINOR        | Too many GC scans in a short period.                                                                     |
+| HaveEnoughSSDCapacity              | MINOR        | Sufficient SSD capacity exists for all the provisioned filesystems.                                      |
+| IOStarted                          | INFO         | The system has started.                                                                                  |
+| IOStopped                          | INFO         | The system has stopped.                                                                                  |
+| LeaderFailedToReachBaseline        | CRITICAL     | Reports from too many processes in the cluster failed to reach the newly elected cluster leader in time. |
+| NotEnoughSSDCapacity               | CRITICAL     | Need more SSD capacity for all the provisioned filesystems.                                              |
+| QOSConfigReset                     | INFO         | QoS configuration reset                                                                                  |
+| QOSConfigSet                       | INFO         | QoS configuration set                                                                                    |
+| SleepyDeusExFiber                  | MAJOR        | A deus-ex worker fiber is sleepy, which is a likely indication of a deadlock                             |
+| StartIORequested                   | INFO         | The user has requested to start the IO.                                                                  |
+| StopIORequested                    | INFO         | The user has requested to stop the IO.                                                                   |
+| SystemInfoReport                   | INFO         | The management process (node) started, reporting OS info.                                                |
+| ThreadPoolCanNotStartThread        | MINOR        | The reactor's thread pool failed to start a thread.                                                      |
+| TooManyFibers                      | MINOR        | Too many fiber allocations.                                                                              |
 
 ### Telemetry
 
@@ -653,36 +680,38 @@ description: >-
 | TracesFreezeOnEventOfInterest      | MAJOR        | Traces have been frozen on event of interest |
 | TracesFreezePeriodReset            | INFO         | Traces freeze period has been reset          |
 | TracesFreezePeriodSet              | INFO         | Traces freeze period has been set            |
+| TracesVerbosityLevelChange         | MAJOR        | The Traces Verbosity level has been modified |
 
 ### Upgrade
 
-| **Type**                    | **Severity** | **Description**                                    |
-| --------------------------- | ------------ | -------------------------------------------------- |
-| CleanupUpgradePhaseSkipped  | MAJOR        | Skipped Cleanup in Upgrade Phase: {currentPhase}.  |
-| ClientUpgradeRequested      | INFO         | A client upgrade is requested.                     |
-| ComputeUpgradeFinished      | INFO         | The compute containers upgrade has finished.       |
-| ComputeUpgradeInvoked       | INFO         | The compute containers upgrade has started.        |
-| ComputeUpgradeStarted       | INFO         | The compute containers upgrade has started.        |
-| ContainerUpgradeFailed      | MAJOR        | Container upgrade failed.                          |
-| ContainerUpgradeFinished    | INFO         | Container upgrade finished.                        |
-| ContainerUpgradeStarted     | INFO         | Container upgrade started.                         |
-| DataservUpgradeFinished     | INFO         | The dataserv containers upgrade has finished.      |
-| DataservUpgradeStarted      | INFO         | The dataserv containers upgrade has started.       |
-| DrivesUpgradeFinished       | INFO         | The drives containers upgrade has finished.        |
-| DrivesUpgradeStarted        | INFO         | The drives containers upgrade has started.         |
-| ExternalUpgradeCancelled    | INFO         | The external upgrade has being cancelled.          |
-| ExternalUpgradeFinished     | INFO         | The external upgrade has finished.                 |
-| ExternalUpgradeStarting     | INFO         | An external upgrade has started.                   |
-| FailureDomainUpgradeStarted | INFO         | Started to upgrade containers of a failure domain. |
-| FinishedExternalHostUpgrade | INFO         | The external server (host) upgrade has finished.   |
-| FrontendUpgradeFinished     | INFO         | The frontend containers upgrade has finished.      |
-| FrontendUpgradeStarted      | INFO         | The frontend containers upgrade has started.       |
-| StartingExternalHostUpgrade | INFO         | The external server (host) upgrade has started.    |
-| TargetVersionChange         | DEBUG        | Target version has changed.                        |
-| UpgradePaused               | INFO         | Upgrade paused.                                    |
-| UpgradeResumed              | INFO         | Upgrade resumed.                                   |
-| UpgradeStatusChange         | DEBUG        | Upgrade status has changed.                        |
-| WekaVersionDowngraded       | WARNING      | The cluster is running a lower version.            |
+| **Type**                     | **Severity** | **Description**                                          |
+| ---------------------------- | ------------ | -------------------------------------------------------- |
+| CleanupUpgradePhaseSkipped   | MAJOR        | Skipped Cleanup in Upgrade Phase: {currentPhase}.        |
+| ClientUpgradeRequested       | INFO         | A client upgrade is requested.                           |
+| ComputeUpgradeFinished       | INFO         | The compute containers upgrade has finished.             |
+| ComputeUpgradeInvoked        | INFO         | The compute containers upgrade has started.              |
+| ComputeUpgradeStarted        | INFO         | The compute containers upgrade has started.              |
+| ContainerUpgradeFailed       | MAJOR        | Container upgrade failed.                                |
+| ContainerUpgradeFinished     | INFO         | Container upgrade finished.                              |
+| ContainerUpgradeStarted      | INFO         | Container upgrade started.                               |
+| DataservUpgradeFinished      | INFO         | The dataserv containers upgrade has finished.            |
+| DataservUpgradeStarted       | INFO         | The dataserv containers upgrade has started.             |
+| DrivesUpgradeFinished        | INFO         | The drives containers upgrade has finished.              |
+| DrivesUpgradeStarted         | INFO         | The drives containers upgrade has started.               |
+| EventGeneratorTestWithReport | INFO         | An event for the Event Generator Utility, with reporting |
+| ExternalUpgradeCancelled     | INFO         | The external upgrade has being cancelled.                |
+| ExternalUpgradeFinished      | INFO         | The external upgrade has finished.                       |
+| ExternalUpgradeStarting      | INFO         | An external upgrade has started.                         |
+| FailureDomainUpgradeStarted  | INFO         | Started to upgrade containers of a failure domain.       |
+| FinishedExternalHostUpgrade  | INFO         | The external server (host) upgrade has finished.         |
+| FrontendUpgradeFinished      | INFO         | The frontend containers upgrade has finished.            |
+| FrontendUpgradeStarted       | INFO         | The frontend containers upgrade has started.             |
+| StartingExternalHostUpgrade  | INFO         | The external server (host) upgrade has started.          |
+| TargetVersionChange          | DEBUG        | Target version has changed.                              |
+| UpgradePaused                | INFO         | Upgrade paused.                                          |
+| UpgradeResumed               | INFO         | Upgrade resumed.                                         |
+| UpgradeStatusChange          | DEBUG        | Upgrade status has changed.                              |
+| WekaVersionDowngraded        | WARNING      | The cluster is running a lower version.                  |
 
 ### User
 
