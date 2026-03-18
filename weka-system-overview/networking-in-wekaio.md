@@ -109,33 +109,39 @@ While WEKA backend servers must include DPDK and SR-IOV, WEKA clients in applica
 
 ## Network **High Availability** <a href="#high-availability" id="high-availability"></a>
 
-Network High Availability (HA) in a WEKA cluster is designed to eliminate single points of failure by leveraging redundancy across network components. This configuration ensures the system remains operational even in the event of hardware or connection failures.
+Network High Availability (HA) in a WEKA cluster is designed to eliminate single point of failure by leveraging redundancy across network components. This configuration ensures the system remains operational even in the event of hardware or connection failures.
 
-**Network redundancy**
+### Network redundancy
 
-To achieve HA, the WEKA system requires multiple network switches with servers connected to at least two interfaces of the same type. Dual connectivity is provided either through two independent interfaces or through Link Aggregation Control Protocol (LACP) in Ethernet environments (mode 4).&#x20;
+To achieve HA, the system requires multiple network switches with servers connected to at least two interfaces of the same type. Dual connectivity is provided either through two independent interfaces or through Link Aggregation Control Protocol (LACP) in Ethernet environments (mode 4).
 
-**Interface configuration**
+### Interface configuration
 
-* **Non-LACP configuration**: Each server uses two network interfaces for redundancy and bandwidth enhancement. This approach doubles the number of IP addresses required on backend containers and IO processes.
-*   **LACP configuration (Ethernet-only)**: LACP aggregates interfaces on a single Mellanox NIC for improved reliability and load balancing in Ethernet-only setups.
+* **Non-LACP configuration:** Each server uses two network interfaces for redundancy and bandwidth enhancement. This approach doubles the number of IP addresses required on backend containers and IO processes.
+* **LACP configuration (Ethernet-only):** LACP aggregates interfaces on a single Mellanox NIC for improved reliability and load balancing in Ethernet-only setups.\
+  Specifications and requirements:
+  * LACP is not supported with Virtual Functions (VFs).
+  * The NIC must be set to HW\_LAG (IEEE 802.3ad) with `queue_affinity` enabled and hashing disabled.
+  * At least two WEKA processes must use DPDK.
+  * The switch must support IEEE 802.3ad in active/active mode.
 
-    Specifications and requirements:
-
-    * LACP is not supported with Virtual Functions (VFs).
-    * NIC must be set to `HW_LAG` (IEEE 802.3ad) with `queue_affinity` enabled and hashing disabled.
-    * At least two WEKA processes must use DPDK.
-    * Switch must support IEEE 802.3ad in active/active mode.
-
-**Failover and load balancing**
+### Failover and load balancing
 
 Network HA ensures reliability and optimizes load balancing through failover and failback mechanisms. These mechanisms operate independently for InfiniBand and Ethernet networks. If an interface fails, another interface of the same type (InfiniBand or Ethernet) seamlessly takes over the workload.
 
-{% hint style="info" %}
-**Mixed-mode behavior:** In a cluster with servers equipped with both Ethernet and InfiniBand connections, the system remains operational even if a single server loses one of its connections. However, that server is excluded from participating in cluster-level operations. The cluster will continue I/O operations unless all servers lose connectivity on **either** the Ethernet or InfiniBand network; in that case, I/O operations will pause.
-{% endhint %}
+#### **Same-subnet failover**
 
-**Traffic optimization**
+When multiple network interfaces are configured on the same subnet for high availability, the default Linux kernel behavior can be problematic. If one interface fails, the kernel may not automatically failover to the remaining active paths, disrupting traffic.
+
+To enhance resilience in these configurations, the WEKA system enables the `net.ipv{4,6}.conf.all.ignore_routes_with_linkdown` system control by default. This setting instructs the kernel to ignore routes associated with an interface that has a link-down event.
+
+This approach provides more reliable and automatic failover, making the system more resilient in configurations where source-based routing (SBR) is not implemented or is misconfigured. While SBR remains the recommended and most robust solution for managing multi-interface traffic, this default setting improves system behavior in a wider range of network setups. As a result, the system's high availability is enhanced when deploying multiple interfaces on a single subnet.
+
+#### **Mixed-mode behavior**
+
+In a cluster with servers equipped with both Ethernet and InfiniBand connections, the system remains operational even if a single server loses one of its connections. However, that server is excluded from participating in cluster-level operations. The cluster will continue I/O operations unless all servers lose connectivity on either the Ethernet or InfiniBand network; in that case, I/O operations will pause.
+
+### Traffic optimization
 
 To optimize network traffic, the WEKA system can be configured to prioritize intra-switch communication over inter-switch links (ISL). This can be achieved by labeling connections using the `label` parameter in the `weka cluster container net add` command, which helps route data efficiently within the cluster.
 
