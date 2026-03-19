@@ -74,11 +74,13 @@ Setting the Local WEKA Home to send events and alerts includes the following pro
 5. In **Protocol**, choose a transport protocol:
    * **UDP:** Sends plain messages with a newline terminator. Delivers on a best-effort basis. This is the default.
    * **TCP:** Uses RFC 5425 octet-counted framing (`{length} {message}`). Ensures reliable delivery.
-   * **TLS:** Functions like TCP but with TLS 1.2+ encryption. Validates the server certificate against the system CA store.
+   * **TLS:** Operates like TCP but with TLS 1.2+ encryption. It verifies the server certificate using the system's CA store. You can provide a custom CA certificate for internal or private CAs. Alternatively, choose **Skip TLS Verification** to bypass certificate validation. The CA certificate is validated before saving the integration.
 6. Ensure the integration is enabled (indicated by a green arrow).
 7. Select **Save Integration**.
 
-<div data-with-frame="true"><figure><img src="../../.gitbook/assets/LWH_syslog_integration.png" alt="" width="552"><figcaption><p>Syslog integration</p></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/LWH_syslog_integration.png" alt="" width="552"><figcaption><p>Syslog integration (UDP)</p></figcaption></figure></div>
+
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/LWH_Syslog_integration_TLS.png" alt="" width="540"><figcaption><p>Syslog integration (TLS)</p></figcaption></figure></div>
 {% endtab %}
 {% endtabs %}
 
