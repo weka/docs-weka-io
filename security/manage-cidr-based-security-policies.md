@@ -497,7 +497,7 @@ This example demonstrates how to provide read-only access to filesystems from sp
 
 **Scenario:** Allow read-only access to a filesystem from a data analysis network (172.16.0.0/12).
 
-1. **Create read-only access policy:** Create a policy allowing readonly role access from the analysis network:
+1. **Create read-only access policy:** Create a policy allowing readonly access from the analysis network:
 
 {% code overflow="wrap" %}
 ```bash
