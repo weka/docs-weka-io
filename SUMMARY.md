@@ -238,6 +238,7 @@
 * [Composable clusters for multi-tenancy in Kubernetes](kubernetes/composable-clusters-for-multi-tenancy-in-kubernetes.md)
 * [WEKA Operator deployments](kubernetes/weka-operator-deployments/README.md)
   * [Set up protocols on K8s with WEKA Operator](kubernetes/weka-operator-deployments/set-up-protocols-on-k8s-with-weka-operator.md)
+  * [Set up audit logs on K8s with WEKA Operator](kubernetes/weka-operator-deployments/set-up-audit-logs-on-k8s-with-weka-operator.md)
   * [Deploy the WEKA client on Amazon EKS](kubernetes/weka-operator-deployments/deploy-the-weka-client-on-amazon-eks.md)
   * [Migrate standalone CSI to WEKA Operator-embedded](kubernetes/weka-operator-deployments/migrate-standalone-csi-to-weka-operator-embedded.md)
   * [Weka Operator secrets management](kubernetes/weka-operator-deployments/weka-operator-secrets-management.md)
