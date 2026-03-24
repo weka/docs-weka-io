@@ -237,6 +237,7 @@
 
 * [Composable clusters for multi-tenancy in Kubernetes](kubernetes/composable-clusters-for-multi-tenancy-in-kubernetes.md)
 * [WEKA Operator deployments](kubernetes/weka-operator-deployments/README.md)
+  * [Driver management with the WEKA Operator](kubernetes/weka-operator-deployments/driver-management-with-the-weka-operator.md)
   * [Set up protocols on K8s with WEKA Operator](kubernetes/weka-operator-deployments/set-up-protocols-on-k8s-with-weka-operator.md)
   * [Set up audit logs on K8s with WEKA Operator](kubernetes/weka-operator-deployments/set-up-audit-logs-on-k8s-with-weka-operator.md)
   * [Deploy the WEKA client on Amazon EKS](kubernetes/weka-operator-deployments/deploy-the-weka-client-on-amazon-eks.md)

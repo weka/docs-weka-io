@@ -89,7 +89,7 @@ The WEKA Operator client and application client pods operate with restricted per
 5. **Discover and sign drives:** Identify physical storage and configure sharing policies.
 6. **Provision WEKA resources:** Deploy the WekaCluster (backend) and WekaClient (frontend).
 7. **Manage resources and label propagation:** Monitor the health of your WEKA resources.
-8. **Manage the WEKA cluster management proxy:** Access WEKA management and service endpoints using Kubernetes Ingress resources.&#x20;
+8. **Manage the WEKA cluster management proxy:** Access WEKA management and service endpoints using Kubernetes Ingress resources.
 9. **Perform post-deployment storage configuration:** Configure the CSI plugin and storage classes based on your operator version to enable persistent volume provisioning.
 
 {% hint style="info" %}
@@ -117,7 +117,7 @@ Contact the WEKA Customer Success Team to receive your authorized registry crede
 Replace all placeholders in your setup files with these values to ensure a consistent deployment.
 {% endhint %}
 
-<div data-with-frame="true"><figure><img src="../../.gitbook/assets/get-weka-io_weka-operator_example.jpg" alt=""><figcaption><p>Example: WEKA Operator page on get.weka.io </p></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/get-weka-io_weka-operator_example.jpg" alt=""><figcaption><p>Example: WEKA Operator page on get.weka.io</p></figcaption></figure></div>
 
 ### 2. Prepare Kubernetes environment
 
@@ -160,7 +160,7 @@ The WEKA process requires dedicated memory in the form of HugePages. The allocat
 
 * **Server capacity:** The sum of the usable capacity of all drives assigned to the server and allocated for WEKA.
 * **Cores for WEKA:** The number of CPU cores dedicated to the WEKA process on the container.
-* **WEKA Container factor:** The standard  allocation of 1.7 GiB of hugePages on per WEKA container.
+* **WEKA Container factor:** The standard allocation of 1.7 GiB of hugePages on per WEKA container.
 * **Metadata ratio:** The relationship between metadata requirements and HugePages consumption. The default value is 1000. You can increase this up to 2000 to preserve non-HugePages Resident Set Size based on server memory availability.
 * **Headroom:** A 10% multiplier (1.1) to account for memory fragmentation and operational variance.
 
@@ -382,27 +382,43 @@ weka-operator-controller-manager-564bfd6b49-p6k7d   2/2   Running     0      13s
 
 ### 4. Manage driver distribution
 
-Configure the distribution of WEKA drivers to both client and backend entities. The WEKA Operator provides a streamlined mechanism to build and serve drivers, ensuring compatibility across different kernel versions and architectures.
+The WEKA Operator manages the distribution of WEKA drivers to client and backend processes, ensuring compatibility across kernel versions and architectures. It does this by either downloading pre-built drivers or compiling them locally.
+
+Use the `driversDistService` attribute to configure the driver distribution service.
+
+**Pre-built drivers (recommended)**
+
+For most deployments, use pre-built drivers sourced directly from the WEKA driver registry at `drivers.weka.io`. This approach requires no additional build infrastructure.
+
+**Local driver builder**
+
+A local driver builder is required in any of the following cases:
+
+* You are using a customized image.
+* You are operating in an air-gapped environment.
+* Your system cannot access external sources.
+
+For architectural details, see [Driver management with the WEKA Operator](driver-management-with-the-weka-operator.md).
 
 **Before you begin**
 
-* **External service recommendation:** WEKA recommends using the external driver distribution service at [https://drivers.weka.io](https://drivers.weka.io) for most use cases. This service covers common operating systems and kernel versions.
-* **Local distribution:** If you operate in an air-gapped environment or use a custom OS build, you must configure a local driver distribution service.
-* **Registry access:** Ensure a WEKA-compatible image (`weka-in-container`) is accessible in your registry with a valid `imagePullSecret`.
-* **Version matching:** The image versions used in the builder containers must match the target WekaClient and WekaCluster versions. If LTS image tag is available, use it.
+* **External service:** WEKA recommends the registry at `https://drivers.weka.io` for standard Linux distributions and supported kernels.
+* **Local distribution:** Configure a local distribution service for air-gapped environments or custom OS builds.
+* **Registry access:** Ensure a WEKA-compatible image (`weka-in-container`) and a valid `imagePullSecret` are accessible.
+* **Version matching:** Builder container versions must match the target WEKA version.
 
 **Local driver distribution components**
 
-To build and distribute drivers locally, the system deploys the following components:
+To build and serve drivers within the cluster, the operator deploys the following:
 
-* **drivers-builder:** One process per combination of WEKA version, kernel version, and architecture.
-* **drivers-dist:** A single process responsible for serving compiled drivers.
-* **Service:** A Kubernetes Service that exposes the drivers-dist process.
+* **Drivers-Builder:** Compiles the kernel module for specific WEKA and kernel version combinations.
+* **Drivers-Dist:** An internal HTTP server that stores and serves the compiled driver packages.
+* **Service:** A Kubernetes Service that exposes the Drivers-Dist at a stable internal endpoint.
 
 **Procedure**
 
-1. **Define node selection:** Ensure that `nodeSelector` or `nodeAffinity` matches nodes that meet the kernel requirements for the target build.
-2. **Create the distribution policy:** For WEKA Operator 1.6.0 and later, use a WekaPolicy to automate the deployment of these components.
+1. **Define node selection:** Use a `nodeSelector` to identify the target Kubernetes nodes that require the driver.
+2. **Create the distribution policy:** Use a `WekaPolicy` (for WEKA Operator 1.6.0+) to deploy the local driver distribution service.
 
 {% code title="weka-drivers.yaml" %}
 ```yaml
@@ -424,7 +440,7 @@ spec:
 ```
 {% endcode %}
 
-3. Apply the configuration: Save the manifest as `weka-drivers.yaml` and apply it to the cluster.
+3. **Apply the configuration:** Save and apply the manifest to the cluster.
 
 ```bash
 kubectl apply -f weka-drivers.yaml
@@ -432,7 +448,7 @@ kubectl apply -f weka-drivers.yaml
 
 **Reference: WekaPolicy attributes**
 
-<table><thead><tr><th width="194.0234375">Attribute</th><th>Description</th></tr></thead><tbody><tr><td><code>image</code></td><td>The WEKA container image used for the distributor and default builder.</td></tr><tr><td><code>interval</code></td><td>How often the operator reconciles the policy.<br>Default: 1m</td></tr><tr><td><code>builderPreRunScript</code></td><td>Optional script to run (for example, installing a compiler) before the build.</td></tr><tr><td><code>ensureImages</code></td><td>List of additional WEKA images to prebuild drivers for.</td></tr></tbody></table>
+<table><thead><tr><th width="194.0234375">Attribute</th><th>Description</th></tr></thead><tbody><tr><td><code>image</code></td><td>The WEKA container image used for the distributor and default builder.</td></tr><tr><td><code>interval</code></td><td>How often the operator reconciles the policy (default: 1m).</td></tr><tr><td><code>builderPreRunScript</code></td><td>Optional script to run (for example, installing a compiler) before the build.</td></tr></tbody></table>
 
 <details>
 
@@ -825,7 +841,7 @@ kubectl apply -f weka-client.yaml
 
 Identify the configurable fields within the WekaClient specification to customize your deployment.
 
-<table><thead><tr><th width="212.390625">Name</th><th>Description</th></tr></thead><tbody><tr><td><code>image</code></td><td>The WEKA container image version to deploy.</td></tr><tr><td><code>imagePullSecret</code></td><td>Secret name used to authenticate with the image registry.</td></tr><tr><td><code>port</code></td><td>Defines a range of 100 ports for the container.<br>Default: Dynamic</td></tr><tr><td><code>agentPort</code></td><td>Specifies a single port used by the agent process.<br>Default: Dynamic</td></tr><tr><td><code>portRange</code></td><td>Defines a basePort (for example, 45000) for automatic allocation.</td></tr><tr><td><code>nodeSelector</code></td><td>Selects the nodes where WEKA containers are scheduled.</td></tr><tr><td><code>network</code></td><td>Defines the network device (for example, mlnx0) or defaults to UDP mode.<br>Default: </td></tr><tr><td><code>driversDistService</code></td><td>URL for the driver distribution service.</td></tr><tr><td><code>targetCluster</code></td><td>Reference to a WekaCluster CR within the same environment.</td></tr><tr><td><code>joinIpPorts</code></td><td>IP addresses used to join a cluster outside the local environment.</td></tr><tr><td><code>wekaSecretRef</code></td><td>Reference to the Kubernetes Secret containing cluster credentials.</td></tr><tr><td><code>coresNum</code></td><td>Number of physical CPU cores to allocate to each container.<br>Default: 1</td></tr><tr><td><code>cpuPolicy</code></td><td>Defines core allocation behavior (auto, manual, shared, dedicated).<br>Default: auto</td></tr><tr><td><code>upgradePolicy</code></td><td>Sets the upgrade strategy (rolling, manual, all-at-once).<br>Default: rolling</td></tr><tr><td><code>gracefulDestroyDuration</code></td><td>Pause duration for local data/drive allocations during pod deletion.<br>Default: 24H</td></tr></tbody></table>
+<table><thead><tr><th width="212.390625">Name</th><th>Description</th></tr></thead><tbody><tr><td><code>image</code></td><td>The WEKA container image version to deploy.</td></tr><tr><td><code>imagePullSecret</code></td><td>Secret name used to authenticate with the image registry.</td></tr><tr><td><code>port</code></td><td>Defines a range of 100 ports for the container.<br>Default: Dynamic</td></tr><tr><td><code>agentPort</code></td><td>Specifies a single port used by the agent process.<br>Default: Dynamic</td></tr><tr><td><code>portRange</code></td><td>Defines a basePort (for example, 45000) for automatic allocation.</td></tr><tr><td><code>nodeSelector</code></td><td>Selects the nodes where WEKA containers are scheduled.</td></tr><tr><td><code>network</code></td><td>Defines the network device (for example, mlnx0) or defaults to UDP mode.<br>Default:</td></tr><tr><td><code>driversDistService</code></td><td>URL for the driver distribution service.</td></tr><tr><td><code>targetCluster</code></td><td>Reference to a WekaCluster CR within the same environment.</td></tr><tr><td><code>joinIpPorts</code></td><td>IP addresses used to join a cluster outside the local environment.</td></tr><tr><td><code>wekaSecretRef</code></td><td>Reference to the Kubernetes Secret containing cluster credentials.</td></tr><tr><td><code>coresNum</code></td><td>Number of physical CPU cores to allocate to each container.<br>Default: 1</td></tr><tr><td><code>cpuPolicy</code></td><td>Defines core allocation behavior (auto, manual, shared, dedicated).<br>Default: auto</td></tr><tr><td><code>upgradePolicy</code></td><td>Sets the upgrade strategy (rolling, manual, all-at-once).<br>Default: rolling</td></tr><tr><td><code>gracefulDestroyDuration</code></td><td>Pause duration for local data/drive allocations during pod deletion.<br>Default: 24H</td></tr></tbody></table>
 
 ### 7. Manage resources and label propagation
 
@@ -962,11 +978,9 @@ This approach smoothly migrates the WEKA client without interrupting workloads b
     ```
 
     Note the name in the CONTAINER column, for example, `client`.
-2. **Configure the deployment manifest:**&#x20;
+2. **Configure the deployment manifest:**
    1. Update the `wekaclients` YAML file with the exact container name identified in the previous step.
    2.  Insert the name into the `overrides` section under the `WekaClient` spec:
-
-
 
        ```yaml
        overrides:
@@ -1000,8 +1014,6 @@ This approach evicts the workload from the node and performs a clean installatio
     ```bash
     weka agent uninstall --force
     ```
-
-
 3.  **Verify container removal:** Ensure no legacy WEKA processes remain active on the node. Run:<br>
 
     ```bash
