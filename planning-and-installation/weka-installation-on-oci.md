@@ -4,7 +4,7 @@ description: >-
   bare-metal installation with cloud-specific considerations.
 ---
 
-# WEKA installation on OCI
+# System installation on OCI
 
 ## Overview
 
@@ -74,7 +74,6 @@ VCN capacity planning must account for both WEKA Data Platform and high-performa
       * BM.DenseIO.E5.128
       * BM.HPC.E5.144
       * BM.GPU.H100, BM.GPU.H200, and BM.GPU.A100
-      * VM.Standard.E5.Flex
    4. Configure the boot volume:
       * Access the **Size and Performance** settings panel for the boot volume.
       * Switch to **Custom Configuration** mode.
