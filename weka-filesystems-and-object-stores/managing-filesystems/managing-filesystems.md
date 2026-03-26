@@ -42,6 +42,7 @@ When deploying a WEKA system on a cloud platform (AWS, Azure, or GCP), the WEKA 
 * If tiering is required, verify that an object store bucket is set.
 * If audit logging required, verify that the Audit and Forwarding feature is enabled and configured.
 * If encryption is required, verify that a KMS is configured.
+* If data reduction is required, ensure the filesystem is not encrypted.
 
 **Procedure**
 
