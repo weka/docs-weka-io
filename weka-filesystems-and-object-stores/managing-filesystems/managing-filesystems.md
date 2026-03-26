@@ -42,7 +42,6 @@ When deploying a WEKA system on a cloud platform (AWS, Azure, or GCP), the WEKA 
 * If tiering is required, verify that an object store bucket is set.
 * If audit logging required, verify that the Audit and Forwarding feature is enabled and configured.
 * If encryption is required, verify that a KMS is configured.
-* If data reduction is required, ensure the filesystem is not encrypted.
 
 **Procedure**
 
@@ -82,13 +81,25 @@ When deploying a WEKA system on a cloud platform (AWS, Azure, or GCP), the WEKA 
    You can set any maximum capacity, but the available capacity depends on the actual free space of the SSD capacity.\
    Thin provisioning is mandatory when enabling data reduction.
 
-<div data-with-frame="true"><img src="../../.gitbook/assets/wmng_fs_thin_provisioning.png" alt="Thin provisioning"></div>
+<div data-with-frame="true"><img src="../../.gitbook/assets/fs_thin_provisioning.png" alt="Thin provisioning"></div>
 
-6. Optional: **Data Reduction**.\
-   Data reduction can be enabled only on thin provision, non-tiered, and unencrypted filesystems on a cluster with a valid data reduction license (you can verify the data reduction license in the cluster settings). For more details, see the related topics below.\
-   To enable the Data Reduction, select the toggle button.
+6.  Optional: **Data Reduction**.
 
-<div data-with-frame="true"><figure><img src="../../.gitbook/assets/wmng_fs_data_reduction.png" alt=""><figcaption><p>Data reduction</p></figcaption></figure></div>
+    Data reduction can be enabled only when all of the following conditions are met:
+
+    * Filesystem is **thin provisioned**
+    * Filesystem is **non-tiered**
+    * Filesystem is **unencrypted**
+    *   Cluster has a **valid data reduction license**
+
+        * The license status can be verified in the cluster settings
+
+        For more details, see the related topics below.
+
+    \
+    To enable the Data Reduction, select the toggle button.
+
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/fs_data_reduction.png" alt=""><figcaption><p>Data reduction</p></figcaption></figure></div>
 
 7. Optional: If **Audit Logging** is required for this filesystem, select the toggle button. When on, the WEKA system Forwards this filesystem's audit logs to a configured events monitoring platform, provided that cluster-wide auditing is also enabled.
 
