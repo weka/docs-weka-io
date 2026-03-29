@@ -452,7 +452,7 @@ weka security policy add allow-cluster-admins-backend \
 2. **Attach policy to the root organization:** Attach the policy to the root organization to enforce it cluster-wide:
 
 ```bash
-weka security policy attach root allow-cluster-admins-backend
+weka org security policy attach root allow-cluster-admins-backend
 ```
 
 **Result:** Only users with the `clusteradmin` role connecting from IP addresses within the 10.10.0.0/16 range can access the cluster. All other connections are implicitly denied.
