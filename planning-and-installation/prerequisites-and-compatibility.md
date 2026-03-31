@@ -52,6 +52,30 @@ Every effort is made to support upcoming releases of the operating systems in th
 {% endhint %}
 
 {% tabs %}
+{% tab title="Support policy" %}
+#### Manage operating system and kernel lifecycle
+
+Maintain system reliability by following the WEKA support policy for Linux distributions. This policy applies to WEKA software on customer-managed Linux servers in on-premises and cloud environments.
+
+{% hint style="info" %}
+This policy excludes Linux distributions bundled as part of the WEKA Software Appliance (WSA).
+{% endhint %}
+
+**Lifecycle definitions**
+
+* **End of Support (EoS):** The date a vendor stops providing routine updates and patches.
+* **End of Life (EoL):** The date a vendor ceases all standard support and maintenance for a distribution or kernel version.
+
+**Lifecycle stages**
+
+* **General Availability (GA):** WEKA aims to support new GA releases within three months of the vendor release date. After addition to the supported list, these versions receive full support, including certification, ongoing validation, and defect remediation aligned to the [release-support-and-commitments.md](../support/release-support-and-commitments.md "mention").
+* **End of Support and End of Life:** After a vendor EoS date, WEKA stops active testing and validation. Field issues receive best-effort remediation. If vendor backports are unavailable, fixes may require upgrading to a supported version. Plan migrations before the vendor EoL date.
+
+**Support verification**
+
+Verify that both the kernel and operating system versions appear as supported in the backends, clients, and kernel tabs. These components require independent verification. If  a custom operating system or kernel is required, contact the [Customer Success Team](../support/getting-support-for-your-weka-system.md#contact-customer-success-team).
+{% endtab %}
+
 {% tab title="Backends" %}
 * **Rocky Linux:**
   * 9.4, 9.3, 9.2, 9.1, 9.0
@@ -59,8 +83,8 @@ Every effort is made to support upcoming releases of the operating systems in th
 * **RHEL:**
   * 9.5, 9.4, 9.3, 9.2, 9.1, 9.0
   * 8.10, 8.9, 8.8, 8.7, 8.6, 8.5, 8.4, 8.3, 8.2, 8.1, 8.0
-* **CentOS:**
-  * 8.5, 8.4, 8.3, 8.2, 8.1, 8.0
+* **CentOS Stream:**
+  * 8.5, 8.4, 8.3, 8.2, 8.1
 * **Ubuntu:**
   * 24.04
   * 22.04
@@ -80,8 +104,8 @@ Every effort is made to support upcoming releases of the operating systems in th
 * **RHEL:**
   * 9.7, 9.6, 9.5, 9.4, 9.3, 9.2, 9.1, 9.0
   * 8.10, 8.9, 8.8, 8.7, 8.6, 8.5, 8.4, 8.3, 8.2, 8.1, 8.0
-* **CentOS:**
-  * 8.5, 8.4, 8.3, 8.2, 8.1, 8.0
+* **CentOS Stream:**
+  * 8.5, 8.4, 8.3, 8.2, 8.1
 * **Ubuntu:**
   * 24.04
   * 22.04
@@ -155,7 +179,12 @@ The following kernel versions are supported:
 {% endtabs %}
 
 {% hint style="info" %}
-As of version 4.3.2, RHEL 7.X and CentOS 7.X are no longer supported due to their end-of-life status. If you need assistance upgrading your operating system, contact the [Customer Success Team](../support/getting-support-for-your-weka-system.md#contact-customer-success-team) for guidance.
+**Operating system support notice:**
+
+* Starting with version 4.3.2, Red Hat Enterprise Linux 7.X and CentOS Linux 7.X are not supported due to end-of-life (EOL).
+* Starting with version 5.0, CentOS Stream 8.0 and CentOS Linux 8.0, 8.1. 8.2, 8.3 are not supported due to end-of-life (EOL).
+
+For upgrade guidance, contact the [Customer Success Team](../support/getting-support-for-your-weka-system.md#contact-customer-success-team).
 {% endhint %}
 
 ## WEKA installation directory
