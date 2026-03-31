@@ -83,8 +83,8 @@ Verify that both the kernel and operating system versions appear as supported in
 * **RHEL:**
   * 9.5, 9.4, 9.3, 9.2, 9.1, 9.0
   * 8.10, 8.9, 8.8, 8.7, 8.6, 8.5, 8.4, 8.3, 8.2, 8.1, 8.0
-* **CentOS:**
-  * 8.5, 8.4, 8.3, 8.2, 8.1, 8.0
+* **CentOS Stream:**
+  * 8.5, 8.4, 8.3, 8.2, 8.1
 * **Ubuntu:**
   * 24.04
   * 22.04
@@ -104,8 +104,8 @@ Verify that both the kernel and operating system versions appear as supported in
 * **RHEL:**
   * 9.5, 9.4, 9.3, 9.2, 9.1, 9.0
   * 8.10, 8.9, 8.8, 8.7, 8.6, 8.5, 8.4, 8.3, 8.2, 8.1, 8.0
-* **CentOS:**
-  * 8.5, 8.4, 8.3, 8.2, 8.1, 8.0
+* **CentOS Stream:**
+  * 8.5, 8.4, 8.3, 8.2, 8.1
 * **Ubuntu:**
   * 24.04
   * 22.04
@@ -181,7 +181,12 @@ The following kernel versions are supported:
 {% endtabs %}
 
 {% hint style="info" %}
-As of version 4.3.2, RHEL 7.X and CentOS 7.X are no longer supported due to their end-of-life status. If you need assistance upgrading your operating system, contact the [Customer Success Team](../support/getting-support-for-your-weka-system.md#contact-customer-success-team) for guidance.
+**Operating system support notice:**
+
+* Starting with version 4.3.2, Red Hat Enterprise Linux 7.X and CentOS Linux 7.X are not supported due to end-of-life (EOL).
+* Starting with version 5.0, CentOS Stream 8.0 and CentOS Linux 8.0, 8.1. 8.2, 8.3 are not supported due to end-of-life (EOL).
+
+For upgrade guidance, contact the [Customer Success Team](../support/getting-support-for-your-weka-system.md#contact-customer-success-team).
 {% endhint %}
 
 ***
