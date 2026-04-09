@@ -321,6 +321,7 @@ DOCA-OFED 3.1.0 or later is incompatible with WEKA backends and clients using CX
 {% tab title="Ethernet drivers" %}
 **Supported Mellanox OFED versions for the Ethernet NICs:**
 
+* 24.10
 * 24.04
 * 23.10
 * 23.04
@@ -380,6 +381,7 @@ When assigning a network device to the WEKA system, no other application can cre
 {% tab title="InfiniBand drivers" %}
 WEKA supports the following Nvidia major OFED versions for the InfiniBand adapters:
 
+* 24.10
 * 24.04
 * 23.10
 * 23.04
