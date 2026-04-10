@@ -129,7 +129,7 @@ Ensure `auditd` is installed and active. Configure rules to capture the followin
 * **Export destinations:** Configure WEKA to forward audit logs to external systems for retention and analysis.
 * **WEKA cluster auditing to S3:** Export logs to a secured S3 bucket.
 * **S3 Bucket notifications to Kafka:** Stream S3 events to a Kafka topic using SASL authentication.
-* **Splunk for S3 orotocol auditing:** Use the HTTP Event Collector (HEC).
+* **Splunk for S3 protocol auditing:** Use the HTTP Event Collector (HEC).
   * **S3 protocol auditing:** WEKA logs S3 operations (e.g., `PutObject`, `GetObject`). Logs include the `remotehost` (client IP), `userAgent`, and `bucket` name for tracking unauthorized access.
 
 ## Mandatory Access Control (MAC)
