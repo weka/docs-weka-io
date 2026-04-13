@@ -26,7 +26,7 @@
   * [Manually install OS and system on servers](planning-and-installation/bare-metal/manually-install-os-and-weka-on-servers/README.md)
     * [Safe server shutdown](planning-and-installation/bare-metal/manually-install-os-and-weka-on-servers/safe-server-shutdown.md)
   * [Manually prepare the system for configuration](planning-and-installation/bare-metal/setting-up-the-hosts/README.md)
-    * [Broadcom adapter setup for WEKA system](planning-and-installation/bare-metal/setting-up-the-hosts/broadcom-adapter-setup-for-weka-system.md)
+    * [Broadcom adapter setup for WEKA clients](planning-and-installation/bare-metal/setting-up-the-hosts/broadcom-adapter-setup-for-weka-system.md)
     * [Enable the SR-IOV](planning-and-installation/bare-metal/setting-up-the-hosts/sr-iov-enablement.md)
   * [Configure the cluster using the WEKA Configurator](planning-and-installation/bare-metal/configure-the-weka-cluster-using-the-weka-configurator.md)
   * [Manually configure the cluster using the resources generator](planning-and-installation/bare-metal/manually-configure-the-weka-cluster-using-the-resource-generator/README.md)
