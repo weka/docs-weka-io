@@ -17,24 +17,24 @@ To enable a WEKA client to use Broadcom adapters, ensure the server has the appr
    1. Enable SR-IOV in both the BIOS and the NIC settings. See [sr-iov-enablement.md](sr-iov-enablement.md "mention").
    2. For official support, Broadcom NICs operate optimally with a maximum of 40 cores. Although environments with up to 50 cores might still work, it is recommended to adhere to the 40-core limit.
 2. **Download software bundle**: Access Broadcom's download center and download the software bundle onto the target server. Carefully review the instructions included in the bundle.
-3. **Installation instructions:** Follow these steps to compile and install the required components:
-   1. **bnxt\_en driver**:
-      * Download the `bnxt_en` driver from the [Broadcom download center](https://www.broadcom.com/support/download-center).
-        * Follow the provided instructions to compile and install it.
-        * Ensure you are using this version instead of the default driver from your Linux distribution.
-   2. **SliFF driver**:
-      * Compile and install according to the provided instructions.
-   3. **NICCLI command line utility**:
-      * Follow the specific instructions to compile and set up this utility.
-   4. **Non-inbox driver**:
-      * Ensure this driver is compiled and installed as per the given guidelines.
+3.  **Installation instructions:** Follow these steps to compile and install the required components:
 
-Make sure each component is appropriately configured after installation for optimal functionality.
+    1. **bnxt\_en driver**:
+       * Download the `bnxt_en` driver from the [Broadcom download center](https://www.broadcom.com/support/download-center).
+         * Follow the provided instructions to compile and install it.
+         * Ensure you are using this version instead of the default driver from your Linux distribution.
+    2. **SliFF driver**:
+       * Compile and install according to the provided instructions.
+    3. **NICCLI command line utility**:
+       * Follow the specific instructions to compile and set up this utility.
+    4. **Non-inbox driver**:
+       * Ensure this driver is compiled and installed as per the given guidelines.
 
-1. **Post-installation steps**: After installation, run one of the following commands based on the Linux distribution:
+    Make sure each component is appropriately configured after installation for optimal functionality.
+4. **Post-installation steps**: After installation, run one of the following commands based on the Linux distribution:
    * `dracut -f`
    * `update-initramfs -u`
-2. **Reboot the server**: Reboot the server to apply the changes.
+5. **Reboot the server**: Reboot the server to apply the changes.
 
 ## **Install the firmware**
 
