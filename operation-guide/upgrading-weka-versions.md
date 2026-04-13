@@ -382,7 +382,8 @@ Learn the available methods for upgrading clients to a new software version.
   * [**Remote trigger**](upgrading-weka-versions.md#upgrade-clients-in-batches-via-remote-trigger)**:** An administrative action performed from the backend servers to trigger hot upgrades on specific client(s).
 * **Remount-based upgrade:** An alternative method where a client automatically upgrades following a remount of all mounted wekafs on a client  or reboot.
 * **Persistent client coordination:** A dedicated client acting as a protocol gateway manages containers with `allow-protocols true`. During upgrades, it coordinates with backend servers to maintain continuous protocol service availability.
-* **Multi-cluster clients:** For stateless clients mounted on multiple clusters, the client container version aligns with the `client-target-version` set in the cluster. For details. see [mount-fs-from-scmc.md](../weka-filesystems-and-object-stores/mounting-filesystems/mount-fs-from-scmc.md "mention").
+* **Multi-cluster clients:** Perform online upgrades locally for clients without unmounting filesystems.\
+  Related topic: [mount-fs-from-scmc.md](../weka-filesystems-and-object-stores/mounting-filesystems/mount-fs-from-scmc.md "mention").
 
 #### Upgrade a client locally
 
