@@ -26,7 +26,7 @@
   * [Install the WEKA cluster using the WSA](planning-and-installation/bare-metal/install-the-weka-cluster-using-the-wsa.md)
   * [Manually install OS and WEKA on servers](planning-and-installation/bare-metal/manually-install-os-and-weka-on-servers.md)
   * [Manually prepare the system for WEKA configuration](planning-and-installation/bare-metal/setting-up-the-hosts/README.md)
-    * [Broadcom NIC requirements for WEKA system](planning-and-installation/bare-metal/setting-up-the-hosts/broadcom-adapter-setup-for-weka-system.md)
+    * [Broadcom NIC requirements for WEKA clients](planning-and-installation/bare-metal/setting-up-the-hosts/broadcom-adapter-setup-for-weka-system.md)
     * [Enable the SR-IOV](planning-and-installation/bare-metal/setting-up-the-hosts/sr-iov-enablement.md)
   * [Configure the WEKA cluster using the WEKA Configurator](planning-and-installation/bare-metal/configure-the-weka-cluster-using-the-weka-configurator.md)
   * [Manually configure the WEKA cluster using the resources generator](planning-and-installation/bare-metal/manually-configure-the-weka-cluster-using-the-resource-generator/README.md)
