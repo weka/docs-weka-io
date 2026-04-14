@@ -1,25 +1,37 @@
----
-hidden: true
----
-
 # Broadcom adapter setup for WEKA system
 
-Before a WEKA system can use a Broadcom adapters, the server must have the necessary drivers and firmware from Broadcom's download center.
+To enable a WEKA client to use Broadcom adapters, ensure the server has the appropriate drivers and firmware downloaded from Broadcom's website.
+
+## Broadcom NIC deployment guidelines and prerequisites
+
+* **Deployment:** Only supported for **WEKA clients**.
+* **Core limits:** Official support for configurations with a maximum of 40 cores. Configurations up to 50 cores may work, but are unsupported above 40.
+* **Virtualization:** Not supported for guest VMs on KVM or VMware.
+* **SR-IOV:** Ensure SR-IOV is enabled in both the BIOS and NIC settings. See [sr-iov-enablement.md](sr-iov-enablement.md "mention").
 
 ## **Set up the drivers and software**
 
 **Procedure:**
 
-1. **Prerequisites:** Enable SR-IOV in both the BIOS and the NIC settings. See [sr-iov-enablement.md](sr-iov-enablement.md "mention").
-2. **Download software bundle**: Access Broadcom's download center and download the software bundle onto the target server. Carefully review the instructions included in the bundle.
-3. **Compile and install**: Follow the provided instructions to compile and install the following components:
-   * `bnxt_en` driver.
-   * `sliff` driver.
-   * `niccli` command line utility.
-4. **Post-installation steps**: After installation, run one of the following commands based on the Linux distribution:
+1. **Download software bundle**: Access Broadcom's download center and download the software bundle onto the target server. Carefully review the instructions included in the bundle.
+2.  **Installation instructions:** Follow these steps to compile and install the required components:
+
+    1. **bnxt\_en driver**:
+       * Download the `bnxt_en` driver from the [Broadcom download center](https://www.broadcom.com/support/download-center).
+         * Follow the provided instructions to compile and install it.
+         * Ensure you are using this version instead of the default driver from your Linux distribution.
+    2. **SliFF driver**:
+       * Compile and install according to the provided instructions.
+    3. **NICCLI command line utility**:
+       * Follow the specific instructions to compile and set up this utility.
+    4. **Non-inbox driver**:
+       * Ensure this driver is compiled and installed as per the given guidelines.
+
+    Make sure each component is appropriately configured after installation for optimal functionality.
+3. **Post-installation steps**: After installation, run one of the following commands based on the Linux distribution:
    * `dracut -f`
    * `update-initramfs -u`
-5. **Reboot the server**: Reboot the server to apply the changes.
+4. **Reboot the server**: Reboot the server to apply the changes.
 
 ## **Install the firmware**
 
@@ -95,7 +107,7 @@ The adapter is ready for use by the WEKA system.
 
 Convert a dual-port 100 Gbps Broadcom P2100G adapter into a single-port 200 Gbps configuration by consolidating both ports. This mode is optimal for high-throughput applications requiring maximum bandwidth on a single interface.
 
-#### Procedure
+**Procedure**
 
 1.  **Determine NIC index:** Run the following command to list all installed NICs and determine the correct index (`<index>`) of the target P2100G adapter:
 
