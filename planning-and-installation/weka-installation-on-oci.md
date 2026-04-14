@@ -19,9 +19,10 @@ OCI provides the necessary infrastructure components for WEKA deployment, includ
 The deployment process includes the following main phases:
 
 1. Prepare OCI bare metal infrastructure for WEKA.
-2. Install WEKA on the OCI bare metal infrastructure.
-3. Configure the WEKA cluster.
-4. Add clients.
+2. Install add-ons using templates for OCI HPC Images.
+3. Install WEKA on the OCI bare metal infrastructure.
+4. Configure the WEKA cluster.
+5. Add clients.
 
 {% hint style="warning" %}
 WEKA strongly recommends that you coordinate and obtain approval from OCI personnel before deploying any WEKA systems on OCI. This coordination ensures your deployment will be compatible with OCI's architecture and comply with cloud resource management policies.
@@ -78,11 +79,19 @@ VCN capacity planning must account for both WEKA Data Platform and high-performa
       * Access the **Size and Performance** settings panel for the boot volume.
       * Switch to **Custom Configuration** mode.
       * Using the performance slider, set the VPUs/GB ratio to a minimum of **40**. Consider increasing this value beyond 40 VPUs/GB during periods of elevated cluster activity, because performance traces are stored on this boot volume.
-   5. Configure network interfaces:
-      * Create a primary NIC on the management subnet.
-      * Create a secondary NIC on the high-performance subnet.
+   5. Configure network interfaces.
 
-### 2. Install WEKA on the OCI bare metal infrastructure
+### 2. Install add-ons using templates for OCI HPC Images
+
+Provision compute instances using a supported Oracle Cloud Infrastructure (OCI) system image. This ensures compatibility and a consistent baseline for deployment.
+
+Supported images:
+
+* Oracle Linux 8
+* Ubuntu 22.04
+* Ubuntu 24.04
+
+### 3. Install WEKA on the OCI bare metal infrastructure
 
 1. Download the WEKA software. See [obtaining-the-weka-install-file.md](bare-metal/obtaining-the-weka-install-file.md "mention").
 2.  Install the WEKA software.
@@ -92,7 +101,7 @@ VCN capacity planning must account for both WEKA Data Platform and high-performa
 
     Once completed, the WEKA software is installed on all the allocated servers and runs in stem mode (no cluster is attached).
 
-### 3. Configure the WEKA cluster
+### 4. Configure the WEKA cluster
 
 1. Use the resources generator to create configuration files (`drives0.json`, `compute0.json`, and `frontend0.json`) in the **/tmp** directory of each server.
 2. Create containers using these configuration files on all cluster servers.
@@ -110,7 +119,7 @@ Refer to the related topics for detailed instructions on each step.
 
 [perform-post-configuration-procedures.md](bare-metal/perform-post-configuration-procedures.md "mention").
 
-### 4. Add clients or use converged mode
+### 5. Add clients or use converged mode
 
 Depending on your deployment mode, you can choose one of the following options to access the WEKA filesystem:
 
