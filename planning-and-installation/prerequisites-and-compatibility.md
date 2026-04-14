@@ -303,6 +303,10 @@ The following network adapters support Ethernet and SR-IOV VF for clients only:
 * Broadcom BCM957508-P2100G
 * Broadcom BCM957608-P2200G
 
+{% hint style="info" %}
+Broadcom NICs are unsupported for guest VMs on KVM or VMware.
+{% endhint %}
+
 ### OFED drivers
 
 OFED is not required for standard Ethernet deployments. OFED is required only when using LACP on a single NIC with dual ports to enable proper load balancing between the ports. This requirement is driven by the NIC networking stack, not by WEKA.

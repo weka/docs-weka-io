@@ -9,15 +9,19 @@ metaLinks:
 
 To enable a WEKA client to use Broadcom adapters, ensure the server has the appropriate drivers and firmware downloaded from Broadcom's website.
 
+## Broadcom NIC deployment guidelines and prerequisites
+
+* **Deployment:** Only supported for **WEKA clients**.
+* **Core limits:** Official support for configurations with a maximum of 40 cores. Configurations up to 50 cores may work, but are unsupported above 40.
+* **Virtualization:** Not supported for guest VMs on KVM or VMware.
+* **SR-IOV:** Ensure SR-IOV is enabled in both the BIOS and NIC settings. See [sr-iov-enablement.md](sr-iov-enablement.md "mention").
+
 ## **Set up the drivers and software**
 
 **Procedure:**
 
-1. **Prerequisites:**
-   1. Enable SR-IOV in both the BIOS and the NIC settings. See [sr-iov-enablement.md](sr-iov-enablement.md "mention").
-   2. For official support, Broadcom NICs operate optimally with a maximum of 40 cores. Although environments with up to 50 cores might still work, it is recommended to adhere to the 40-core limit.
-2. **Download software bundle**: Access Broadcom's download center and download the software bundle onto the target server. Carefully review the instructions included in the bundle.
-3.  **Installation instructions:** Follow these steps to compile and install the required components:
+1. **Download software bundle**: Access Broadcom's download center and download the software bundle onto the target server. Carefully review the instructions included in the bundle.
+2.  **Installation instructions:** Follow these steps to compile and install the required components:
 
     1. **bnxt\_en driver**:
        * Download the `bnxt_en` driver from the [Broadcom download center](https://www.broadcom.com/support/download-center).
@@ -31,10 +35,10 @@ To enable a WEKA client to use Broadcom adapters, ensure the server has the appr
        * Ensure this driver is compiled and installed as per the given guidelines.
 
     Make sure each component is appropriately configured after installation for optimal functionality.
-4. **Post-installation steps**: After installation, run one of the following commands based on the Linux distribution:
+3. **Post-installation steps**: After installation, run one of the following commands based on the Linux distribution:
    * `dracut -f`
    * `update-initramfs -u`
-5. **Reboot the server**: Reboot the server to apply the changes.
+4. **Reboot the server**: Reboot the server to apply the changes.
 
 ## **Install the firmware**
 
