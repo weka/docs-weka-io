@@ -26,21 +26,20 @@ In the WEKA Home portal, the Customer Success Team can view the cluster’s stat
 
 <div data-with-frame="true"><figure><img src="../../.gitbook/assets/wekahome_overview.png" alt=""><figcaption><p>WEKA clusters and clients connected to WEKA Home</p></figcaption></figure></div>
 
-## Which information is uploaded to WEKA Home?
+## Cloud WEKA Home data collection
 
-The WEKA cluster periodically and on-demand uploads various information types to Cloud WEKA Home. The retention period for all the following is 14 days.
+Analyze cluster performance and health using data uploaded to Cloud WEKA Home.
 
-**Periodic uploads:**
+#### Data upload types
 
-* **Alerts:** Alerts indicate problematic ongoing states that are impacting the cluster. Alerts are uploaded immediately when a cluster container (host) creates an alert.
-* **Events:** Events contain relevant information for the WEKA cluster and customer environment. Triggered by a customer or an environmental change, events can be informational, indicate an issue with the cluster, or a previously resolved issue. Events are uploaded immediately when a cluster container creates an event.
-* **Statistics:** Statistics help analyze the WEKA system performance and determine the source of any issue. The uploaded statistics information includes a subset of the complete list available from the cluster, such as IOPS, throughput, latency, metadata, and block size. Statistics are uploaded every minute from each container.
-* **Usage reports:** Usage reports provide metrics for interface groups, containers, processes (nodes), drives, status, version, and filesystems. Usage reports are uploaded every minute.
-* **Analytics:** Analytics provide metrics for the cluster configuration, including drives, filesystem settings, containers, network devices, nodes, protocols, and more. Analytics are uploaded every 30 minutes.
+The WEKA cluster uploads specific datasets to Cloud WEKA Home based on the following schedules:
 
-**On-demand uploads:**
-
-* **Diagnostics (support files):** These are uploaded on-demand from the container that collected the diagnostics.
+* **Alerts:** Real-time indicators of issues affecting the cluster, triggered instantly by containers. No history is retained.
+* **Events:** Records of environmental changes or cluster status updates. Containers upload events immediately. The retention is 30 days.
+* **Statistics:** Performance metrics including IOPS, throughput, latency, metadata, and block size. Each container uploads a subset of available statistics every minute. The retention is 1 year during which the data resolution decreases over time to optimize storage. For example, while the system stores raw data for 14 days, it aggregates that data into 1-hour intervals after 180 days.
+* **Usage Reports:** Metrics are available for interface groups, containers, processes, drives, status, version, and filesystems. Data uploads occur every minute, with a real-time display only (no history retention).
+* **Analytics:** This system provides real-time configuration data for drives, filesystem settings, network devices, and protocols. Uploads occur every 30 minutes with no history retention.
+* **Diagnostics (support files):** Uploaded **on-demand** from the container that collected the diagnostics. The retention is 1 year.
 
 {% hint style="info" %}
 **WEKA Home data privacy notice:** WEKA Home is committed to safeguarding your data privacy. To ensure the confidentiality and security of your information, the WEKA Home support cloud explicitly excludes the following from upload and collection:
@@ -50,7 +49,7 @@ The WEKA cluster periodically and on-demand uploads various information types to
 * User passwords
 {% endhint %}
 
-## Upload information from the WEKA cluster to the WEKA Home
+## Upload information from the WEKA cluster to WEKA Home
 
 Uploading information to WEKA Home from the WEKA cluster backend servers and clients is essential for the Customer Success Team to provide practical assistance. If client connectivity cannot be configured, enabling upload information from the backend servers is still beneficial.
 
