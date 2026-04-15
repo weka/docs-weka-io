@@ -367,13 +367,13 @@ Enabling the Low Latency Queue (LLQ) improves data processing efficiency in AWS 
 
 ### 6. Upgrade the clients
 
-Manage client upgrades to ensure software alignment with the backend clusters. From version 5.x onward, the client upgrade is an online process that does not require unmounting filesystems. You can trigger the client upgrade remotely from the backends while the clients remain active.
+Manage client upgrades to ensure software alignment with the backend clusters. The client upgrade is an online process that does not require unmounting filesystems. You can trigger the client upgrade remotely from the backends while the clients remain active.
 
 #### Client upgrade types
 
 Learn the available methods for upgrading clients to a new software version.
 
-* **Hot upgrade:** The primary method for 5.x versions. It allows clients to remain mounted and operational throughout the client software update.
+* **Hot upgrade:** It allows clients to remain mounted and operational throughout the client software update.
   * [**Local (on-client) trigger**](upgrading-weka-versions.md#upgrade-a-client-locally): An administrative action performed from the client itself to perform hot upgrade.
   * [**Remote trigger**](upgrading-weka-versions.md#upgrade-clients-in-batches-via-remote-trigger)**:** An administrative action performed from the backend servers to trigger hot upgrades on specific client(s).
 * **Remount-based upgrade:** An alternative method where a client automatically upgrades following a remount of all mounted wekafs on a client  or reboot.
@@ -400,7 +400,7 @@ Update the software of a single stateless or persistent client by connecting dir
 2.  Update the agent software.
 
     ```bash
-    weka version set --agent-only 5.x.y
+    weka version set --agent-only <target-version>
     ```
 3.  Upgrade the client containers. For a client connected to a single cluster, run:
 
@@ -448,7 +448,7 @@ The following command upgrades two clients in two sequential batches, with each 
 
 {% code overflow="wrap" %}
 ```bash
-weka local run -C drives0 --in 5.1.0 upgrade --mode=clients-upgrade --client-rolling-batch-size 1
+weka local run -C drives0 --in <target-version> upgrade --mode=clients-upgrade --client-rolling-batch-size 1
 ```
 {% endcode %}
 
@@ -457,11 +457,3 @@ weka local run -C drives0 --in 5.1.0 upgrade --mode=clients-upgrade --client-rol
 ### 7. Check the status after the upgrade
 
 Once the upgrade is complete, verify that the cluster is in the new version by running the `weka status` command.
-
-{% hint style="success" %}
-**Example:** The following is returned when the system is upgraded to version 4.4.0:
-
-`# weka status`  \
-`Weka v4.4.0`   \
-`...`
-{% endhint %}
