@@ -262,6 +262,10 @@ weka-operator-system   weka-operator-controller-manager-bcf48df44-lk6cx   2/2   
 
 A force reboot may be necessary when a machine becomes unresponsive or encounters a critical error that cannot be resolved through standard troubleshooting. This task ensures the machine restarts and resumes normal operation.
 
+This procedure assumes a dedicated topology where backend nodes (running drive and compute pods) and client nodes run on separate Kubernetes nodes. If your cluster uses an **Axon topology**  where backend and client pods run on the same nodes, do not perform phases 6–8.
+
+For a worker node in Axon topology, complete phases 1–5 for each node you want to reboot. Draining the node evicts all WEKA pods in a single pass.
+
 #### **Procedure**
 
 **Phase 1:** [#perform-standard-verification-steps](weka-operator-day-2-operations.md#perform-standard-verification-steps "mention").
@@ -467,6 +471,10 @@ DISK ID  UUID                                  HOSTNAME        NODE ID  SIZE    
 
 Ensure all the pods, weka containers and the cluster is in a healthy state (`Fully Protected`) and IO operations are running (`STARTED`). Monitor the redistribution progress and alerts.
 
+{% hint style="info" %}
+The following phases (6-8) do not apply to **Axon topology**.
+{% endhint %}
+
 **Phase 6: Cordon and drain all client k8s nodes.**
 
 To cordon and drain a node, run the following commands. Replace `<k8s_node_IP>` with the target k8s node's IP address.
@@ -603,6 +611,10 @@ weka-operator-system   weka-operator-controller-manager-bcf48df44-lk6cx   2/2   
 **Phase 7: Force a reboot on all client k8s nodes.**\
 Use the `reboot -f` command to force a reboot on each client k8s node.
 
+{% hint style="warning" %}
+Restart only one backend container at a time. Ensure it reaches **Ready** status before moving on to the next.
+{% endhint %}
+
 Example for one client k8s node:
 
 ```
@@ -650,6 +662,17 @@ See examples in [#perform-standard-verification-steps](weka-operator-day-2-opera
 ### Remove a rack or Kubernetes node
 
 Removing a rack or Kubernetes (k8s) node is necessary when you need to decommission hardware, replace failed components, or reconfigure your cluster. This procedure guides you through safely removing nodes without disrupting your system operations.
+
+#### Before you begin
+
+1. Verify a spare backend node exists and is labeled:
+
+```bash
+kubectl get nodes -l weka.io/supports-backends=true
+```
+
+2. Confirm at least one node beyond the minimum cluster size appears in the output before proceeding. If no spare exists, the removal stalls silently and the operator drains the target node but have available targets to reschedule the containers.
+3. Verify spare signed NVMe drives are available on the spare node before initiating removal, as the operator attempts to provision drives on the replacement node immediately after rescheduling.
 
 #### Procedure
 
@@ -3843,7 +3866,7 @@ weka-operator-system weka-operator-controller-manager-569444c54c-48kkj:
 
 ### Create token secret for WekaClient
 
-WekaClient tokens used for cluster authentication have a limited lifespan and will eventually expire. This guide walks you through the process of generating a new token, encoding it properly, and creating the necessary Kubernetes secret to maintain WekaClient connectivity.
+Tokens used for authenticating WekaClient clusters have a finite lifespan and will expire. This guide provides instructions on generating a new token, encoding it correctly, and creating the required Kubernetes secret to ensure ongoing WekaClient connectivity.
 
 #### Prerequisites
 

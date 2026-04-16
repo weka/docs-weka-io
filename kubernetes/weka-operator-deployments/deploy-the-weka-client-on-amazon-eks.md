@@ -1,197 +1,245 @@
 ---
 description: >-
-  Deploy the WEKA client on an existing Amazon EKS cluster to enable Kubernetes
-  workloads to access the WEKA filesystem.
+  Deploy the WEKA operator on a cloud-managed Kubernetes service to mount WEKA
+  filesystems from application pods running in a managed cluster.
 metaLinks:
   alternates:
     - >-
       https://app.gitbook.com/s/0yXyIrnroN3zIG3qa4W3/kubernetes/weka-operator-deployments/deploy-the-weka-client-on-amazon-eks
 ---
 
-# Deploy the WEKA client on Amazon EKS
+# Deploy WEKA on managed Kubernetes services
 
-The WEKA client enables Kubernetes workloads on Amazon EKS to connect to and access a WEKA cluster deployed in AWS. Client pods are managed using Kubernetes custom resources and require coordination with the WEKA Operator for installation and lifecycle management.
+## Supported configurations
 
-#### Prerequisites
+The following table describes the support levels for different cloud services:
 
-1. **Verify network access to the WEKA driver distribution service:** Ensure that the deployment environment has network access to `https://drivers.weka.io`. The WEKA client pods automatically download the required driver components from this public distribution service to interface with the WEKA filesystem. For more information, see [drivers-distribution-service.md](../../operation-guide/drivers-distribution-service.md "mention").
-2. **Verify security groups and** [**NACL**](#user-content-fn-1)[^1] **configuration:** The WEKA client requires the ports specified in the following topics:
-   * [#required-ports](../../planning-and-installation/prerequisites-and-compatibility.md#required-ports "mention") (in the **WEKA Prerequisites and compatibility** topic).
-   * [#kubernetes-port-requirements](./#kubernetes-port-requirements "mention") (in the **WEKA Operator deployment** topic).
-3. **Obtain setup information:** Contact the [WEKA Customer Success Team](../../support/getting-support-for-your-weka-system.md) to obtain the necessary setup information. You need the following credentials to proceed with the deployment:
-   * Container repository (quay.io)
-     * Image pull secrets and Docker:
-       * `QUAY_USERNAME`: `example_user`
-       * `QUAY_PASSWORD`: `example_password`
-   *   WEKA Operator version and image version tag
+<table><thead><tr><th width="120">Cloud service</th><th width="110">Instance type</th><th width="133">WekaCluster (backends)</th><th width="127">WekaClient: UDP</th><th width="117">WekaClient: DPDK</th><th width="140">NIC provisioning for DPDK</th></tr></thead><tbody><tr><td>Amazon EKS</td><td>VM</td><td>Not supported</td><td>Supported</td><td>Supported</td><td>Operator creates and attaches NICs automatically</td></tr><tr><td>Oracle OKE</td><td>Bare metal</td><td>Supported</td><td>Supported</td><td>Supported</td><td>Manual</td></tr><tr><td>Oracle OKE</td><td>VM</td><td>Not supported</td><td>Supported</td><td>Supported</td><td>Operator verifies required number of NICs</td></tr><tr><td>Google GKE</td><td>VM</td><td>Not supported</td><td>Supported</td><td>Not Supported</td><td></td></tr><tr><td>Azure AKS</td><td>VM</td><td>Not supported</td><td>Supported</td><td>Not Supported</td><td> </td></tr></tbody></table>
 
-       * For the most current operator and image versions, refer to the WEKA Operator page at [https://get.weka.io/ui/operator](https://get.weka.io/ui/operator). From there, you can obtain the latest `WEKA_OPERATOR_VERSION` and `WEKA_IMAGE_VERSION_TAG`.
+## Prerequisites
 
-       Gathering this information in advance provides all the required values to complete the deployment workflow efficiently. Use these values to replace the placeholders in the setup files.
-4. **A deployed WEKA cluster is required:** Use the same subnets and security groups from the WEKA cluster when configuring the EKS environment for client deployment. For guidance on deploying the WEKA cluster with Terraform, see [Broken link](/broken/pages/y2EAY4cv7TM3FfMR45Jv "mention").
-5. **EKS deployment prerequisites:** Configure the EKS cluster with the following global settings:
-   * **IAM Role and policy configuration:** Configure the appropriate IAM roles and policies for both the EKS cluster and its worker nodes:
-   *   **Cluster IAM role**
+Ensure the following conditions are met for all supported cloud environments:
 
-       Attach the IAM role associated with the EKS cluster:
+* A WEKA cluster is deployed and reachable from the managed Kubernetes nodes if deploying only `WekaClient`.
+* Network access to `https://drivers.weka.io` is available from all Kubernetes nodes.
+* Quay.io credentials (`QUAY_USERNAME` and `QUAY_PASSWORD`) are obtained from WEKA Customer Success.
+* Security groups and network ACLs align with the WEKA operator deployment requirements.
 
-       * AmazonEKSBlockStoragePolicy
-       * AmazonEKSClusterPolicy
-       * AmazonEKSComputePolicy
-       * AmazonEKSLoadBalancingPolicy
-       * AmazonEKSNetworkingPolicy
+## Node configuration
 
-       (These policies are included when using the recommended IAM role: **EKS - Auto Cluster**.)
-   *   **Node group IAM role**\
-       Attach the IAM role for the managed node groups, which host the worker nodes running the WEKA operator:
+Enable static CPU allocation and reserve core 0 on each client node. Reserve 1.5 GiB using hugepages for the client core.
 
-       * AmazonEC2ContainerRegistryPullOnly
-       * AmazonEKSWorkerNodeMinimalPolicy
+1.  Configure the Kubelet:
 
-       Additionally, to ensure proper networking functionality, attach the following policy:
+    ```bash
+    CONFIG_PATH="/etc/kubernetes/kubelet/kubelet-config.json"
+    cat <<< $(jq '.systemReserved.cpu = "1"' "$CONFIG_PATH") > "$CONFIG_PATH"
+    cat <<< $(jq '.cpuManagerPolicy = "static"' "$CONFIG_PATH") > "$CONFIG_PATH"
+    ```
+2.  Restart the Kubelet:
 
-       * AmazonEKS\_CNI\_Policy
+    ```bash
+    sudo systemctl restart kubelet
+    ```
+3.  Set up Hugepages:
 
-       (These policies are included in the recommended IAM role: **EKS - Auto Node**.)
-   * **CPU allocation**
-     * Enable the Static CPU allocation.
-     * Reserve Core 0.
-   * **Hugepages allocation**
-     * Reserve 1.5 GiB for the client core.
+    ```bash
+    cat <<EOF > /etc/systemd/system/hugepages.service
+    [Unit]
+    Description=Hugepages
 
-<details>
+    [Service]
+    Type=oneshot
+    ExecStart=/bin/sh -c 'echo "hugepagesStr" > /sys/kernel/mm/hugepages/hugepages-2048kB/nr_hugepages;'
+    RemainAfterExit=yes
 
-<summary>Example: How to set up CPU allocation and hugepages</summary>
+    [Install]
+    WantedBy=multi-user.target
+    EOF
+    systemctl daemon-reload
+    systemctl enable hugepages
+    systemctl restart hugepages
+    ```
 
-Add to the worker nodes launch template the following sections:
+## Cloud-specific configuration
 
-{% code overflow="wrap" %}
-```bash
-#Set up core alloaction
-CONFIG_PATH="/etc/kubernetes/kubelet/kubelet-config.json"
-cat <<< $(jq '.systemReserved.cpu = "1"' "$CONFIG_PATH") > "$CONFIG_PATH"
-cat <<< $(jq '.cpuManagerPolicy = "static"' "$CONFIG_PATH") > "$CONFIG_PATH"
+### Amazon EKS
 
-#Set up hupepages
-if [ $(cat /sys/kernel/mm/hugepages/hugepages-2048kB/nr_hugepages) == "` + hugepagesStr + `" ]; then
- echo hugepages already set
-else
-cat <<EOF > /etc/systemd/system/hugepages.service
+Configure IAM roles and node-level resources before deploying the operator.
 
-[Unit]
-Description=Hugepages
+Cluster IAM role policies:
 
-[Service]
-Type=oneshot
-ExecStart=/bin/sh -c 'echo "` + hugepagesStr + `" > /sys/kernel/mm/hugepages/hugepages-2048kB/nr_hugepages;'
-RemainAfterExit=yes
+* AmazonEKSBlockStoragePolicy
+* AmazonEKSClusterPolicy
+* AmazonEKSComputePolicy
+* AmazonEKSLoadBalancingPolicy
+* AmazonEKSNetworkingPolicy
 
-[Install]
-WantedBy=multi-user.target
-EOF
-systemctl daemon-reload
-systemctl enable hugepages
-systemctl restart hugepages
-fi
-```
-{% endcode %}
+Node group IAM role policies:
 
-</details>
+* AmazonEC2ContainerRegistryPullOnly
+* AmazonEKSWorkerNodeMinimalPolicy
+* AmazonEKS\_CNI\_Policy
 
-#### Procedure
+Use the same subnets and security groups as the WEKA cluster when configuring the Amazon EKS node group.
 
-1. **Label the EKS nodes:** Label EKS worker nodes intended for WEKA client deployment. Apply the label to each node designated to host WEKA client pods.
+### Oracle OKE
+
+Bare metal instances are recommended for WekaCluster (backend) deployments and for production DPDK workloads. To provision the Oracle OKE cluster infrastructure, use the `terraform-oci-oke` Terraform module.
+
+### Google GKE
+
+Create a `gcloud-credentials` Kubernetes secret to grant the operator access to GCP APIs. The operator mounts this secret into the driver-builder pod at `/var/secrets/google` and sets `GOOGLE_APPLICATION_CREDENTIALS=/var/secrets/google/service-account.json`.
+
+1.  Create a GCP service account key:
+
+    ```bash
+    gcloud iam service-accounts keys create service-account.json \
+      --iam-account=<SA_NAME>@<PROJECT_ID>.iam.gserviceaccount.com
+    ```
+2.  Create the Kubernetes secret:
+
+    Ensure the key inside the secret is named `service-account.json`.
+
+    ```bash
+    kubectl create secret generic gcloud-credentials \
+      --from-file=service-account.json=./service-account.json \
+      --namespace=weka-operator-system
+    ```
+
+Currently only UDP mode is supported
+
+### Azure AKS
+
+Azure AKS supports WekaClient in UDP mode.&#x20;
+
+## Deploy the WEKA client
+
+#### 1. Label Kubernetes nodes
+
+Apply the WEKA client support label to each worker node that runs WEKA client pods:
 
 ```bash
 kubectl label nodes <node-name> weka.io/supports-clients=true
 ```
 
-2. **Create namespaces and configure Quay authentication**: Set up the required Kubernetes namespaces (`weka-operator-system` and `default`), and create a Docker registry secret to authenticate access to WEKA container images hosted on Quay:
+#### 2. Create namespaces and configure authentication
+
+Create the required namespace and Quay.io image pull secrets for the system and default namespaces:
 
 ```bash
 kubectl create namespace weka-operator-system
 
 kubectl create secret docker-registry quay-io-robot-secret \
-   --docker-server=quay.io \
-   --docker-username=$QUAY_USERNAME \
-   --docker-password=$QUAY_PASSWORD \
-   --docker-email=$QUAY_USERNAME \
-   --namespace=weka-operator-system
-   
+  --docker-server=quay.io \
+  --docker-username=$QUAY_USERNAME \
+  --docker-password=$QUAY_PASSWORD \
+  --docker-email=$QUAY_USERNAME \
+  --namespace=weka-operator-system
+
 kubectl create secret docker-registry quay-io-robot-secret \
-   --docker-server=quay.io \
-   --docker-username=$QUAY_USERNAME \
-   --docker-password=$QUAY_PASSWORD \
-   --docker-email=$QUAY_USERNAME \
-   --namespace=default
+  --docker-server=quay.io \
+  --docker-username=$QUAY_USERNAME \
+  --docker-password=$QUAY_PASSWORD \
+  --docker-email=$QUAY_USERNAME \
+  --namespace=default
 ```
 
-3. **Install the WEKA Operator:** Install the WEKA Operator using the official Helm chart:
+#### 3. Install the WEKA Operator
+
+Use the Helm command appropriate for the cloud environment.
+
+For Amazon EKS, Oracle OKE, and Azure AKS:
 
 ```bash
 helm upgrade \
   --install weka-operator oci://quay.io/weka.io/helm/weka-operator \
   --namespace weka-operator-system \
-  --version v1.6.2 \
+  --version v1.10.5 \
   --set imagePullSecret=quay-io-robot-secret
 ```
 
-4. **Configure NICs:** Create the `ensure-nics.yaml` manifest to enable multi-NIC support on selected nodes:
+For Google GKE:
 
-{% code title="ensure-nics.yaml" %}
-```yaml
-apiVersion: weka.weka.io/v1alpha1
-kind: WekaPolicy
-metadata:
-  name: ensure-nics-policy
-  namespace: weka-operator-system
-spec:
-  type: "ensure-nics"
-  image: quay.io/weka.io/weka-in-container:4.4.5.118-k8s.4
-  imagePullSecret: "quay-io-robot-secret"
-  payload:
-    ensureNICsPayload:
-      type: aws
+```bash
+helm upgrade \
+  --install weka-operator oci://quay.io/weka.io/helm/weka-operator \
+  --namespace weka-operator-system \
+  --version v1.10.5 \
+  --set imagePullSecret=quay-io-robot-secret \
+  --set "nodeAgent.persistencePaths=/mnt/stateful_partition/k8s-weka" \
+  --set "gkeCompatibility.gkeServiceAccountSecret=gcloud-credentials" \
+  --set "gkeCompatibility.disableDriverSigning=true"
+```
+
+#### 4. Configure network interfaces
+
+The `ensure-nics` WekaPolicy configures additional network interfaces for DPDK mode. Skip this step for UDP-only deployments.
+
+On Amazon EKS, the operator creates and attaches NICs automatically. On Oracle OKE, the operator verifies that the required NICs are available. For Google GKE and Azure AKS, pre-create the NICs on the nodes before applying the policy.
+
+1.  Create the `ensure-nics.yaml` manifest:
+
+    ```yaml
+    apiVersion: weka.weka.io/v1alpha1
+    kind: WekaPolicy
+    metadata:
+      name: ensure-nics-policy
+      namespace: weka-operator-system
+    spec:
+      type: "ensure-nics"
+      image: quay.io/weka.io/weka-in-container:4.4.5.118-k8s.4
+      imagePullSecret: "quay-io-robot-secret"
+      payload:
+        ensureNICsPayload:
+          type: aws
       nodeSelector:
-        support-client: "true"
+        weka.io/supports-clients: "true"
       dataNICsNumber: 2
-```
-{% endcode %}
+    ```
+2.  Apply the manifest:
 
-Apply the manifest:
+    ```bash
+    kubectl apply -f ensure-nics.yaml
+    ```
 
-```
-kubectl apply -f ensure-nics.yaml
-```
+#### 5. Deploy the WEKA client
 
-5. **Deploy the WEKA client resource:** Define the WEKA client custom resource. Replace the `joinIpPorts` value with a valid IP or ALB DNS of the deployed WEKA cluster:
+1.  Create the `weka-client.yaml` manifest:
 
-{% code title="weka-client.yaml" %}
-```yaml
-apiVersion: weka.weka.io/v1alpha1
-kind: WekaClient
-metadata:
-  name: cluster-dev-clients
-  namespace: default
-spec:
-  image: quay.io/weka.io/weka-in-container:4.4.5.118-k8s.4
-  imagePullSecret: "quay-io-robot-secret"
-  driversDistService: "https://drivers.weka.io"
-  portRange:
-    basePort: 46000
-  nodeSelector:
-    weka.io/supports-clients: "true"
-  joinIpPorts: ["10.0.76.143:14000"]
-  coresNum: 4
-```
-{% endcode %}
+    Replace `<weka-cluster-ip>` with the IP address or load balancer DNS name of the WEKA cluster.
 
-Apply the manifest:
+    ```yaml
+    apiVersion: weka.weka.io/v1alpha1
+    kind: WekaClient
+    metadata:
+      name: cluster-clients
+      namespace: default
+    spec:
+      image: quay.io/weka.io/weka-in-container:4.4.5.118-k8s.4
+      imagePullSecret: "quay-io-robot-secret"
+      driversDistService: "https://drivers.weka.io"
+      portRange:
+        basePort: 46000
+      nodeSelector:
+        weka.io/supports-clients: "true"
+      joinIpPorts: ["<weka-cluster-ip>:14000"]
+      coresNum: 4
+    ```
+2.  Apply the manifest:
 
-```
-kubectl apply -f weka-client.yaml
-```
+    ```bash
+    kubectl apply -f weka-client.yaml
+    ```
 
-6. **Install a CSI plugin:** Follow the procedures in [weka-csi-plugin](../../appendices/weka-csi-plugin/ "mention").
+#### 6. Install the CSI plugin
 
-[^1]: Network Access Control List
+Complete the deployment by installing the WEKA CSI plugin. Refer to the CSI plugin installation instructions for detailed steps.
+
+## Deploy WekaCluster on Oracle OKE
+
+Oracle OKE with bare metal instances supports full WekaCluster deployment in addition to\
+WekaClient. The WEKA Operator manages the full lifecycle of both backend and client pods on Oracle OKE.
+
+You can use the [terraform-oci-oke](https://github.com/weka/terraform-oci-oke) module to provision\
+the Oracle OKE cluster before installing the WEKA Operator.

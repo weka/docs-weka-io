@@ -147,7 +147,7 @@ Consider using an external `etcd` cluster or distributing control plane componen
 Verify that every node in the cluster adheres to these specifications:
 
 * **Kubernetes version:** 1.25 or later (OpenShift 4.17 or later).
-* **Storage allocation:** Reserve \~20 GiB per WEKA container plus 10 GiB per allocated CPU core in `/opt/k8s-weka`.
+* **Storage allocation:** Reserve \~20 GiB per WEKA container plus 10 GiB per allocated CPU core in `/opt/k8s-weka`. Do not use NFS or network-attached storage.
 * **Kernel headers:** Ensure kernel headers exactly match the running kernel version to allow driver compilation.
 
 #### Configure HugePages for Kubernetes worker nodes
@@ -247,39 +247,79 @@ WEKA clients discover and connect to services using a separate default range tha
 
 <table><thead><tr><th width="355">Component</th><th width="170">Default start port</th><th>Port range size</th></tr></thead><tbody><tr><td>WEKA Operator (v1.10+) / WEKA (v5.1.0+)</td><td>35000</td><td>260 ports per cluster</td></tr><tr><td>WEKA Operator / WEKA (previous versions)</td><td>35000</td><td>500 ports per cluster</td></tr><tr><td>WEKA client connectivity</td><td>45000</td><td>Internal allocation</td></tr></tbody></table>
 
-#### Configure **Kubelet requirements**
+## Configure Kubelet requirements
 
-Configure the Kubelet CPU Manager with a static policy to ensure predictable, high-performance behavior for WEKA data-plane processes. This setting enables Kubernetes to assign dedicated CPU cores to Guaranteed-QoS pods, which prevents CPU contention and eliminates scheduler jitter.
+Ensure predictable, high-performance behavior for WEKA data-plane processes by configuring the Kubelet CPU Manager with a static policy. This configuration enables Kubernetes to assign dedicated CPU cores to Guaranteed-QoS pods, which prevents CPU contention and eliminates scheduler jitter.
 
-**Before you begin**
+On Kubernetes v1.32 and later, enable `strict-cpu-reservation` to extend this protection to Burstable and Best Effort pods. Without this option, pods in those QoS classes can schedule onto reserved cores and reduce WEKA IO throughput under load.
 
-Identify the location of the Kubelet configuration file on each worker node.
+### Identify HyperThreading sibling cores
 
-* **kubeadm clusters:** The configuration is typically located at `/var/lib/kubelet/config.yaml` and managed via the `kube-system/kubelet-config` ConfigMap.
-* **Other systems:** Check the `--config=` flag in the Kubelet command line by running `ps -ef | grep kubelet` or `systemctl status kubelet`.
+Each physical core has two logical CPUs on hyperthreaded systems. Include both logical CPUs from the same physical core in `reservedSystemCPUs` to ensure isolation. Reserving only one logical CPU leaves the physical core shared and defeats the isolation.
 
-**Procedure**
+Do not treat CPUs on different sockets with the same core index as siblings. Siblings are the logical CPUs listed for the same physical core on the same server topology.
 
-1. Apply static core allocation to each worker node separately.
-2. Edit the Kubelet configuration file to include the `static` policy and reserve a CPU for system processes.
+Run the following commands to identify the real sibling pairs on the server:
 
-<details>
+```bash
+lscpu -e=cpu,core,socket,node
 
-<summary>Example: Kubelet configuration for static core allocation</summary>
+cat /sys/devices/system/cpu/cpu*/topology/thread_siblings_list
+```
 
-In this example, static CPU management is enabled and CPU 0 (represented as 1000m) is reserved for the system to ensure the WEKA data-plane pods do not compete with OS processes.
+Example output for a 48-logical-CPU, 2-socket server:
+
+```bash
+CPU  CORE  SOCKET  NODE
+0    0     0       0
+1    1     0       0
+2    2     0       0
+...
+24   0     1       0
+25   1     1       0
+26   2     1       0
+...
+```
+
+In this example, logical CPUs `0` and `24` have the same core index on different sockets, but they are not HyperThreading siblings. If `thread_siblings_list` shows pairs such as `1,25` and `2,26`, reserving those physical cores for the WEKA client means reserving `1,2,25,26`.
+
+### Configure the Kubelet
+
+Apply the configuration to each worker node separately.
+
+1. Edit the Kubelet configuration file to add the settings shown in the following example.
+2. Set `reservedSystemCPUs` to include at least one physical core (both logical CPUs) for the OS, plus the cores assigned to the WEKA client and their HyperThreading siblings.
+3. Save the file and restart the Kubelet:
+
+```bash
+systemctl restart kubelet
+```
+
+#### Example: Kubelet configuration for static CPU allocation with strict reservation
+
+In this example, one physical core is reserved for the OS and four physical cores are reserved for the WEKA client. The `reservedSystemCPUs` list includes both logical CPUs for each reserved physical core. `strict-cpu-reservation` prevents all pod QoS classes from scheduling onto reserved cores.
 
 ```yaml
 apiVersion: kubelet.config.k8s.io/v1beta1
 kind: KubeletConfiguration
-# ... 
-# Enable static CPU allocation
 cpuManagerPolicy: "static"
-systemReserved:
-  cpu: "1000m" 
+reservedSystemCPUs: "0,1-4,24-28"
+featureGates:
+  CPUManagerPolicyOptions: "true"
+  CPUManagerPolicyAlphaOptions: "true"   # requires Kubernetes v1.32 or later
+cpuManagerPolicyOptions:
+  strict-cpu-reservation: "true"
 ```
 
-</details>
+Adjust the `reservedSystemCPUs` list to match the actual sibling pairs reported by `lscpu -e` and `thread_siblings_list`. Reserve additional OS cores on larger or busier containers.
+
+{% hint style="info" %}
+`CPUManagerPolicyAlphaOptions` and `strict-cpu-reservation` require Kubernetes v1.32 or later. Omit the `featureGates` and `cpuManagerPolicyOptions` blocks on earlier versions. Without strict reservation, Burstable and Best Effort pods use reserved cores under load, which reduces WEKA IO throughput.
+{% endhint %}
+
+**Related topic**
+
+[best-practices-for-weka-stateless-client-and-kubernetes.md](../../best-practice-guides/best-practices-for-weka-stateless-client-and-kubernetes.md "mention")
 
 **Related information**
 
@@ -328,6 +368,102 @@ kubectl create secret docker-registry quay-io-robot-secret \
 ```
 
 </details>
+
+## Configure failure domains
+
+Ensure high availability and data protection by grouping backend nodes into failure domains. A failure domain (FD) represents a set of processes that share a common physical risk, such as a rack, power circuit, or network switch. By defining these domains, the system ensures that data and parity blocks from the same stripe are distributed across different physical groups. If an entire failure domain fails, the cluster reconstructs the missing data from the remaining domains.
+
+### Select a failure domain mode
+
+Choose the distribution mode that matches your physical infrastructure risks.
+
+<table><thead><tr><th width="161">Mode</th><th>Function</th><th>Usage</th></tr></thead><tbody><tr><td>Implicit (default)</td><td>Assigns every process as its own independent failure domain.</td><td>Deployments with no shared infrastructure risks between containers.</td></tr><tr><td>Explicit</td><td>Groups processes into named domains based on physical node labels.</td><td>Deployments where containers share a rack, switch, or power source.</td></tr></tbody></table>
+
+### Determine stripe width and domain count
+
+Coordinate the number of failure domains with the stripe width and protection level during cluster formation. Stripe width and protection levels are permanent once set. Use the following constraint to prevent data loss:
+
+* Blocks lost during FD failure = stripe width / number of failure domains
+* This value must not exceed the parity block count (P).
+
+#### Minimum healthy server requirements
+
+The stripe data width and protection level determine the minimum number of healthy servers required to remain operational.
+
+| Stripe configuration | Minimum healthy serve |
+| -------------------- | --------------------- |
+| 5+2                  | 4                     |
+| 16+ 2                | 9                     |
+| 5+4                  | 3                     |
+| 16+4                 | 5                     |
+
+### Configure failure domains in Kubernetes
+
+Define how the operator identifies failure domains by modifying the `WekaCluster` custom resource (CR).
+
+#### Map a single node label
+
+Assign nodes to failure domains using a specific Kubernetes label key.
+
+**Procedure**
+
+1.  Label every backend node with a physical grouping value:
+
+    ```bash
+    kubectl label nodes <node-name> weka.io/failure-domain=<rack-id>
+    ```
+2.  Configure the `failureDomain` field in the `WekaCluster` CR:
+
+    ```yaml
+    spec:
+      failureDomain:
+        label: "weka.io/failure-domain"
+        skew: 1
+    ```
+
+    * `label`: The node label key identifying the failure domain.
+    * `skew`: The permitted difference in container count between domains.
+
+#### Use composite topology labels
+
+Combine existing Kubernetes topology labels, such as zone and rack, into a compound failure domain identity.
+
+**Procedure**
+
+1.  Identify the existing labels on your nodes:
+
+    ```bash
+    kubectl get nodes --show-labels
+    ```
+2.  Add the `compositeLabels` list to the `WekaCluster` CR:
+
+    ```yaml
+    spec:
+      failureDomain:
+        compositeLabels:
+          - "topology.kubernetes.io/zone"
+          - "rack"
+    ```
+
+    The operator combines these values. For example, a node in zone `us-east-1a` on `rack-1` becomes failure domain `us-east-1a/rack-1`.
+
+### Verify the configuration
+
+Confirm the distribution of containers across the defined domains.
+
+**Procedure**
+
+1.  Apply the CR changes:
+
+    ```bash
+    kubectl apply -f wekacluster.yaml
+    ```
+2.  Check the container status:
+
+    ```bash
+    weka cluster container
+    ```
+3. Verify that the `FAILURE DOMAIN` column displays your custom label values instead of `AUTO`.
 
 ### 3. Install the WEKA Operator
 
@@ -398,7 +534,7 @@ A local driver builder is required in any of the following cases:
 * You are operating in an air-gapped environment.
 * Your system cannot access external sources.
 
-For architectural details, see [Driver management with the WEKA Operator](driver-management-with-the-weka-operator.md).
+For architectural details, see [driver-management-with-the-weka-operator.md](driver-management-with-the-weka-operator.md "mention").
 
 **Before you begin**
 
