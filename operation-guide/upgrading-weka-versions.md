@@ -371,13 +371,13 @@ Enabling the Low Latency Queue (LLQ) improves data processing efficiency in AWS 
 
 ### 6. Upgrade the clients
 
-Manage client upgrades to ensure software alignment with the backend clusters. From version 5.x onward, the client upgrade is an online process that does not require unmounting filesystems. You can trigger the client upgrade remotely from the backends while the clients remain active.
+Manage client upgrades to ensure software alignment with the backend clusters. The client upgrade is an online process that does not require unmounting filesystems. You can trigger the client upgrade remotely from the backends while the clients remain active.
 
 #### Client upgrade types
 
 Learn the available methods for upgrading clients to a new software version.
 
-* **Hot upgrade:** The primary method for 5.x versions. It allows clients to remain mounted and operational throughout the client software update.
+* **Hot upgrade:** Allows clients to remain mounted and operational throughout the client software update.
   * [**Local (on-client) trigger**](upgrading-weka-versions.md#upgrade-a-client-locally): An administrative action performed from the client itself to perform hot upgrade.
   * [**Remote trigger**](upgrading-weka-versions.md#upgrade-clients-in-batches-via-remote-trigger)**:** An administrative action performed from the backend servers to trigger hot upgrades on specific client(s).
 * **Remount-based upgrade:** An alternative method where a client automatically upgrades following a remount of all mounted wekafs on a client  or reboot.
@@ -404,7 +404,7 @@ Update the software of a single stateless or persistent client by connecting dir
 2.  Update the agent software.
 
     ```bash
-    weka version set --agent-only 5.x.y
+    weka version set --agent-only <target-version>
     ```
 3.  Upgrade the client containers. For a client connected to a single cluster, run:
 
@@ -450,13 +450,33 @@ Reference the following table for parameters used with the `weka local run upgra
 
 The following command upgrades two clients in two sequential batches, with each batch containing one client:
 
-{% code overflow="wrap" %}
+{% code overflow="wrap" fullWidth="true" %}
 ```bash
-weka local run -C drives0 --in 5.1.0 upgrade --mode=clients-upgrade --client-rolling-batch-size 1
+[root@datasphere-0 ~] 2026-04-19 10:54:31 $ weka cluster container -c
+CONTAINER ID HOSTNAME     CONTAINER IPS            STATUS RELEASE FAILURE DOMAIN CORES MEMORY  LAST FAILURE UPTIME
+13           datasphere-6 client    10.108.238.92  UP     5.0.2                  1     1.46 GB              0:02:03h
+19           datasphere-5 client    10.108.173.211 UP     5.0.2                  1     1.46 GB              0:01:17h
+
+[root@datasphere-0 ~] 2026-04-19 10:54:36 $ weka local run -C drives0 --in 5.1.0.605 upgrade --mode=clients-upgrade --client-rolling-batch-size 1
+10:54:43.590859 Downloading version to all hosts
+...
+10:56:41.926738     datasphere-6:client is ready
+10:56:41.752582     datasphere-5:client is ready
+10:56:43.754066 ==== Starting upgrade of client containers ====
+
+10:56:43.767649 Starting upgrade of client containers: batch 1/2
+10:56:43.767701 Starting upgrade of datasphere-5:client to 5.1.0.605
+...
+10:57:16.812206 Finished upgrade of datasphere-5:client to 5.1.0.605
+
+10:57:16.826624 Starting upgrade of client containers: batch 2/2
+10:57:16.826671 Starting upgrade of datasphere-6:client to 5.1.0.605
+...
+10:57:46.872312 Finished upgrade of datasphere-6:client to 5.1.0.605
+
+10:57:46.887661 ==== Finished upgrade of client containers ====
 ```
 {% endcode %}
-
-<figure><img src="../.gitbook/assets/multiple_clients_upgrade_example.png" alt=""><figcaption><p>Upgrade one client per batch example</p></figcaption></figure>
 
 ### 7. Check the status after the upgrade
 
