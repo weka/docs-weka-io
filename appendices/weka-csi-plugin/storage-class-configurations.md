@@ -355,6 +355,18 @@ Adhere to the following:
 * You can use the same secret for multiple storage classes, as long as the credentials are valid to access the filesystem.
 * You can use several secret data files for different organizations on the same WEKA cluster, or for different WEKA clusters spanning across the same Kubernetes cluster.
 
+#### Enable filesystem encryption with WEKA CSI plugin
+
+To encrypt filesystems provisioned by the CSI plugin, set `encryptionEnabled: "true"` in the filesystem-backed StorageClass. This ensures encrypted filesystems are created for each provisioned persistent volume.
+
+This feature requires WEKA CSI Plugin version 2.0 or later, and a configured KMS server on the WEKA cluster is essential before provisioning encrypted volumes.
+
+This encryption is only applicable to filesystem-backed StorageClass configurations. Directory-backed and snapshot-backed storage classes do not support the `encryptionEnabled` setting.
+
+{% hint style="warning" %}
+Provisioning encrypted volumes without configuring a KMS server in the WEKA cluster leads to provisioning failures. Ensure KMS is set up before creating encrypted storage classes. For more information, see [kms-management](../../security/kms-management/ "mention").
+{% endhint %}
+
 #### filesystem-backed StorageClass **parameters**
 
 <table><thead><tr><th width="428">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>volumeType</code></td><td><p>The CSI Plugin volume type.</p><p>For filesystem-backed StorageClass configurations, use <code>weka/v2</code>.</p></td></tr><tr><td><code>encryptionEnabled</code></td><td>Encrypt the filesystems created by the CSI plugin. This requires a KMS server configured on the WEKA cluster.</td></tr><tr><td><code>filesystemGroupName</code></td><td>The name of the WEKA filesystem to create filesystems as Kubernetes volumes.<br>The filesystem group must exist on the WEKA cluster.</td></tr><tr><td><code>initialFilesystemSizeGB</code></td><td><p>The default size to create new filesystems.<br>Set this parameter in the following cases:</p><ul><li>When the PVC requested size is smaller than the specified value.</li><li>For additional space required by snapshots of a volume or snapshot-backed volumes derived from this filesystem.</li></ul></td></tr><tr><td><code>csi.storage.k8s.io/provisioner-secret-name</code></td><td><p>Name of the K8s secret. For example, <code>csi-wekafs-api-secret</code>.</p><p>It is recommended to use a trust anchor definition to avoid mistakes because the same value must be specified in the additional parameters below, according to the CSI specifications.<br>Format: see <em>Example: storageclass-wekafs-snap-api.yaml</em> above (the additional parameters appear at the end of the example).</p></td></tr><tr><td><code>csi.storage.k8s.io/provisioner-secret-namespace</code></td><td><p>The namespace the secret is located in.</p><p>The secret must be located in a different namespace than the installed CSI Plugin.</p><p>It is recommended to use a trust anchor definition to avoid mistakes because the same value must be specified in the additional parameters according to the CSI specifications.<br>Format: see <em>Example: storageclass-wekafs-fs-api.yaml</em> above (the additional parameters appear at the end of the example).</p></td></tr></tbody></table>
