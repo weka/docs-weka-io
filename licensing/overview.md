@@ -27,7 +27,7 @@ The Pay As You Go (PAYG) license was deprecated in version 4.1 and is no longer 
 1. From the menu, select **Configure > Cluster Settings**.
 2. From the Cluster Settings pane, select **License**.
 
-<div data-with-frame="true"><img src="../.gitbook/assets/wmng_cluster_license.png" alt="WEKA cluster license status"></div>
+<div data-with-frame="true"><img src="../.gitbook/assets/License_status.png" alt="WEKA cluster license status"></div>
 
 ## Display the license status using the CLI
 
