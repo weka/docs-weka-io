@@ -38,10 +38,16 @@ When managing quotas, adhere to the following guidelines and requirements:
 * **Quota coloring:**
   * When setting or unsetting a directory quota, a background process called `QUOTA_COLORING` runs. This process scans the entire directory tree and assigns the quota ID to all files and directories under it.
   * Configure at least one Data Services container to run this process in the background to maintain system performance. For details, see [set-up-a-data-services-container-for-background-tasks.md](../../operation-guide/background-tasks/set-up-a-data-services-container-for-background-tasks.md "mention").
+* **Quotas and hard links:**
+  * Set quotas before creating hard links to ensure accurate quota accounting.
+  * When a quota is set on a directory, files with two or more existing hard links are excluded from quota accounting. The system cannot verify that all links reside within the same quota boundary.
+  * Use files with a single hard link in quota-controlled directories to ensure accurate tracking.
+  * Quota rules apply only to newly created hard links. Pre-existing hard links are unaffected.
+  * Keep all hard links to a file within the same quota boundary to ensure consistent behavior.
 * **Nested quotas**:
   * Quotas can be defined within nested directories, up to four levels deep.
   * Over-provisioning is supported under the same directory quota tree.
-  * Example:
+  * Examples:
     * `/home` directory has a 1 TiB quota.
     * 200 user directories under `/home`, each with a 10 GiB quota.
     * This setup exceeds 1 TiB in total child quotas but is valid. The parent quota always takes precedence and is enforced across all subdirectories.
@@ -50,9 +56,6 @@ When managing quotas, adhere to the following guidelines and requirements:
   * Moving files into or out of quota-enforced directories triggers `EXDEV` (cross-device link error).
   * Applications must fall back to a copy-and-delete workflow: copy the file to the new location, then delete the original.
   * Standard tools such as `mv` in Linux handle this automatically.
-* **Quotas and hard links**:
-  * Once a directory has a quota, only newly created hard links are included in quota accounting.
-  * Pre-existing hard links remain unaffected.
 * **Restoring filesystems**:
   * Restoring a filesystem from a snapshot reverts quotas to their configuration at the time of the snapshot.
 * **Creating new filesystems**:
