@@ -1,7 +1,7 @@
 ---
 description: >-
-  Discover WEKA's support policies, proactive approach, and helpful tips for a
-  seamless start.
+  Get help from the WEKA Customer Success Team, choose the right severity level,
+  and prepare the information needed for faster resolution.
 metaLinks:
   alternates:
     - >-
@@ -10,63 +10,89 @@ metaLinks:
 
 # Get support for your WEKA system
 
-## Contact Customer Success Team
+Get help from the WEKA Customer Success Team for outages, performance issues, and product questions.
 
-WEKA provides a 24/7 technical support service according to WEKA's technical support policy (provided on-demand) based on the inquiry classification (severity level).
+### Before you begin
 
-Choose the classification option to access detailed information and necessary steps for further action.
+* Create an account in the [Support Portal](https://support.weka.io/).
+* Enable [WEKA Home - The WEKA support cloud](../monitor-the-weka-cluster/the-wekaio-support-cloud/) for each licensed cluster, if possible.
+* Collect the cluster version, deployment type, impacted filesystem or protocol, and the time the issue started.
+* Note any recent changes such as upgrades, network changes, or workload changes.
+* Upload diagnostics if you can. For details, see [Diagnostics management](diagnostics-management/).
+
+{% hint style="info" %}
+WEKA provides remote support as part of the SLA.
+
+The SLA applies to WEKA software issues. Hardware-related issues depend on the hardware provider response and timelines.
+{% endhint %}
+
+### Choose a severity level
+
+Select the severity that matches the current business impact:
+
+* **Severity 1:** A service outage or critical issue that stops business operations or risks data integrity.
+* **Severity 2:** A major degradation or performance issue that impacts production.
+* **Severity 3:** A limited feature issue or minor system impairment.
+* **Severity 4:** A question, documentation issue, or product improvement request.
+
+### Open a support case
+
+1. Identify the severity level.
+2. Choose the contact method that matches the severity.
+3. Include the key environment and impact details in the ticket.
 
 {% tabs %}
 {% tab title="Severity 1" %}
-**Severity 1**: Indicates system-wide outages that critically impair business operations, potentially causing significant productivity loss, financial impact, or data integrity risks.
+For a Severity 1 issue, call WEKA Support and open a ticket in the Support Portal.
 
-Do one of the following:
+1. Call **+1 (844) 392-0665**.
+2. Leave a voicemail if the call is not answered immediately. It is routed to the active support team.
+3. Open a ticket in the [Support Portal](https://support.weka.io/) and select **Severity 1**.
+4. Add the business impact, start time, and affected environment to the ticket.
 
-* **Call WEKA support number: +1 (844) 392-0665:** Leave a voice message, which is directed to the active support personnel.
-* **Open a ticket in the Support Portal**: To get started, sign up as a user in the Support Portal: [support.weka.io](http://support.weka.io/) (if not done yet). Then, open a ticket and select the _Severity 1_ classification.\
-  \
-  You can monitor tickets and receive timely notifications and updates whenever any changes occur to the tickets.
+Track ticket updates in the Support Portal.
 {% endtab %}
 
 {% tab title="Severity levels 2, 3, and 4" %}
-Severity levels:
+For Severity 2, Severity 3, and Severity 4 issues, use the Support Portal or email.
 
-* **Severity 2**: Significant service degradation or performance issues.
-* **Severity 3**: Limited feature functionality or minor system impairments.
-* **Severity 4**: Inquiries and potential product improvement suggestions.
+1. Open a ticket in the [Support Portal](https://support.weka.io/).
+2. Select the severity that matches the issue impact.
+3. Add the cluster details, observed behavior, and recent changes.
 
-Do one of the following:
+You can also send email to [support@weka.io](mailto:support@weka.io). Email creates a ticket in the Support Portal automatically.
 
-* **Open a ticket in the Support Porta**l: To get started, sign up as a user in the Support Portal: [support.weka.io](http://support.weka.io/) (if not done yet). Then, open a ticket and select the appropriate classification according to the issue severity.\
-  \
-  You can track tickets and receive notifications and updates when there are changes to the tickets.
-* **Send an email to** [**support@weka.io**](mailto:support@weka.io): To get started, sign up as a user in the Support Portal: [support.weka.io](http://support.weka.io/) (if not done yet). When you send an email, it automatically creates a ticket in the Support Portal. Problem notifications sent via email are not considered critical.
+Do not use email for critical Severity 1 issues.
 
 {% hint style="info" %}
-If you have a feature request, contact your sales team to submit the request.
+For feature requests, contact your sales team.
 {% endhint %}
 {% endtab %}
 {% endtabs %}
 
-{% hint style="info" %}
-WEKA provides only remote support as part of its SLA.
+### Prepare information for faster resolution
 
-The SLA detailed in the technical support policy is for WEKA software issues. Issues caused by faulty hardware depend on the hardware provider, and WEKA is not responsible for the hardware provider's timelines and response time.
-{% endhint %}
+Include the following details in every support case:
 
-## Recommended preparations for getting support
+* Cluster version and deployment type.
+* Affected filesystem, protocol, or workload.
+* Exact time the issue started.
+* Error messages, alerts, or user-visible symptoms.
+* Recent changes in software, hardware, network, or workload.
+* Whether diagnostics were uploaded to WEKA Home.
 
-* Upload information from the WEKA cluster to Weka Home for each provisioned cluster.
-* Create an account on the Weka Support Portal [support.weka.io](http://support.weka.io/). This account allows you to submit and check the status of tickets and browse our online knowledge base.
+### Escalate an active case
 
-**Related topic**
+Escalate an active case if the business impact increases or you need management attention.
 
-[the-wekaio-support-cloud](../monitor-the-weka-cluster/the-wekaio-support-cloud/ "mention")
+1. Call **+1 (844) 392-0665**.
+2. Select the escalation option or leave a voicemail.
+3. Include the ticket number and the reason for the escalation.
 
-## Escalation
+WEKA uses a follow-the-sun support model. An available manager handles the escalation based on time zone coverage.
 
-If you find our response to be unsatisfactory or believe that there is potential for improvement, you have the option to escalate the incident to our management team.
+### Related topics
 
-To initiate the escalation process, please contact WEKA Support at +1 (844) 392-0665 and select the escalation option. You can leave a voicemail stating your request for escalation of the issue.
-
-Depending on the time of day and their respective time zones, your escalation request will be directed to one of our executive managers. We operate on a "follow the sun" approach, ensuring that one of our executive managers is available to address your escalation request.
+* [WEKA Home - The WEKA support cloud](../monitor-the-weka-cluster/the-wekaio-support-cloud/)
+* [Diagnostics management](diagnostics-management/)
+* [Release support and commitments](release-support-and-commitments.md)
