@@ -46,7 +46,7 @@ To support NFS file-locking, ensure the system meets the prerequisites outlined 
      * **None:** No ACL enforcement or updates, regardless of existing POSIX ACLs.
      * **POSIX** (default): Enforces POSIX ACLs, compatible across protocols, but loses NFSv4's finer granularity.
      * **NFSv4**: Enforces NFSv4 ACLs directly, retaining full granularity, but lacks interoperability with other protocols. (The **NFSv4** flavor is experimental and is not recommended to be used in production environments.)
-     * **Hybrid**: Combines both POSIX and NFSv4 ACLs to support interoperability. NFS ensures consistency between the two ACL types, and if any inconsistency arises, POSIX ACL is used for enforcement.
+     * **Hybrid**: Combines both POSIX and NFSv4 ACLs to support interoperability. NFS ensures consistency between the two ACL flavors, and if any inconsistency arises, POSIX ACL is used for enforcement.
    *   **Authentication Type**: Enable the authentication types that can be used when setting the NFS client permissions.\
        Possible values:
 

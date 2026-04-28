@@ -73,14 +73,14 @@ Access Control List (ACL) in NFS (Network File System) provide fine-grained cont
 To enable ACL functionality, you must configure LDAP to manage user and group information.
 {% endhint %}
 
-**ACL types in NFS**
+**ACL flavors in NFS**
 
-NFS supports the following ACL types:
+NFS supports the following ACL flavors:
 
 * **None**: No ACL enforcement or updates occur, even if POSIX ACLs exist on a file or directory. This flavor is used when ACL management is unnecessary.
 * **POSIX**: NFS enforces POSIX ACLs, ensuring compatibility with other protocols. However, the finer granularity of NFSv4 ACLs is lost when mapped to POSIX ACLs. This option is suitable for environments requiring basic ACL management across multiple protocols.
 * **NFSv4**: NFSv4 ACLs are enforced directly, without mapping to POSIX ACLs. This flavor preserves the full granularity of NFSv4 ACLs but does not support interoperability with other protocols. ACLs are stored as extended attributes and mapped to user and group IDs (UID/GID). Use NFSv4 when full NFSv4 ACL granularity is required, and interoperability with other protocols is not a concern.
-* **Hybrid**: This flavor combines both POSIX and NFSv4 ACLs to support interoperability. NFS ensures consistency between the two ACL types, and if any inconsistency arises, POSIX ACL is used for enforcement. Hybrid is ideal for environments requiring both interoperability and full NFSv4 ACL functionality.
+* **Hybrid**: This flavor combines both POSIX and NFSv4 ACLs to support interoperability. NFS ensures consistency between the two ACL flavors, and if any inconsistency arises, POSIX ACL is used for enforcement. Hybrid is ideal for environments requiring both interoperability and full NFSv4 ACL functionality.
 
 {% hint style="info" %}
 **NFSv3 and ACLs:** The NFSv3 implementation does not support ACLs. Access control for NFSv3 clients is enforced by the underlying filesystem using standard POSIX file permissions.
@@ -95,11 +95,15 @@ ACL configuration and management in NFS can be done through various interfaces:
 * **Configuration filesystem**:\
   ACL flavors and related configurations are tracked in the global configuration filesystem, ensuring consistent management of permissions across the system.
 
+{% hint style="info" %}
+**ACL flavors and shared filesystems:** NFS exports backed by the same filesystem must use the same ACL flavor. To use ACL flavors (POSIX, NFSv4, or Hybrid), ensure all exports on that filesystem use NFSv4.
+{% endhint %}
+
 **Upgrading and ACLs**
 
 When upgrading, the default ACL flavor for all permissions sets to **POSIX**. ACLs are enabled by default. To ensure proper ACL functionality, both `.config_fs` and LDAP must be configured.
 
-### NFS integration with Kerberos service
+## NFS integration with Kerberos service
 
 WEKA facilitates the seamless integration of NFS with an existing Kerberos service. This integration enables clients' authentication, data integrity, and data privacy over the wire when interacting with the NFS server, ensuring robust security even across untrusted networks.
 
@@ -113,7 +117,7 @@ The Kerberos security levels are:
 NFS exports created before configuring Kerberos are not updated automatically when using Kerberos. The Authenticator Type must be modified to one of the Kerberos types to leverage the Kerberos advantages.
 {% endhint %}
 
-#### Kerberos LDAP configurations
+### Kerberos LDAP configurations
 
 WEKA supports Kerberos authentication for NFS using AD and Kerberos MIT:
 
@@ -124,7 +128,7 @@ WEKA supports Kerberos authentication for NFS using AD and Kerberos MIT:
 **Realm consistency:** To use Kerberos with the NFS service, the NFS service, the NFS clients, and the Key Distribution Center (KDC) must all reside within the same Kerberos realm.
 {% endhint %}
 
-#### Kerberos service interactions basic outline
+### Kerberos service interactions basic outline
 
 The following Kerberos service interactions ensure secure communication between the client and the WEKA NFS server:
 
@@ -141,7 +145,7 @@ The following Kerberos service interactions ensure secure communication between 
 This diagram illustrates the Kerberos service interactions in a simplified manner. It highlights how secure communication is established over insecure networks. Note that this is a broad representation, and actual implementations may differ.
 {% endhint %}
 
-### Scalability, load balancing, and resiliency
+## Scalability, load balancing, and resiliency
 
 For performance scalability, add as many servers as possible to the interface group.
 
@@ -151,11 +155,11 @@ When different clients resolve the DNS name into an IP service, each receives a 
 
 To ensure service resilience, if a server fails, the system reassigns all IP addresses associated with the failed server to other servers using GARP[^2] network messages. The clients then reconnect to the new servers without any reconfiguration or service interruption.
 
-### NFS file-locking support
+## NFS file-locking support
 
 WEKA supports NFS byte-range [advisory locking](#user-content-fn-3)[^3] for NFS versions 3, 4, and 4.1. This mechanism ensures synchronized access to files in a networked environment by allowing multiple processes to coordinate access to shared files. It helps maintain data integrity and consistency by preventing concurrent modifications that could lead to data corruption. WEKA’s implementation is interoperable with POSIX byte-range advisory locks, enabling compatibility and coordination between NFS clients and WEKA’s filesystem.
 
-#### NFS file-locking prerequisites for NFSv3
+### NFS file-locking prerequisites for NFSv3
 
 * **Port prerequisites:** Ports used by the `nlockmgr` and `status` services must be open on the clients and WEKA servers. Use **one** of the following methods to meet this requirement:
   *   Disable and stop `firewalld` using the commands:
