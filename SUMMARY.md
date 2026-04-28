@@ -171,8 +171,8 @@
 
 ## Licensing
 
-* [License overview](licensing/overview.md)
-* [Classic license](licensing/classic-licensing.md)
+* [Licensing overview](licensing/overview.md)
+* [Apply a classic license](licensing/classic-licensing.md)
 
 ## Operation Guide
 

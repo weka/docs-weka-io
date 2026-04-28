@@ -72,10 +72,6 @@ DATA REDUCTION FACTOR: 3.75
 
 [data-storage.md](../data-storage.md "mention")
 
-[Broken link](/broken/pages/-LxWGVbB9iYC1u6AKg_O "mention")
-
-[Broken link](/broken/pages/-M4D3-jpP94VjWGvg4Am "mention")
-
 [managing-filesystems](../../weka-filesystems-and-object-stores/managing-filesystems/ "mention")
 
 [^1]: **Total**: Represents the amount used by the filesystem, not across storage tiers. SSD cache usage changes as data moves between SSD and OBS.
