@@ -29,15 +29,27 @@ Select your version from the dropdown menu located at the top of the left-hand n
 
 <div align="left" data-with-frame="true"><figure><img src=".gitbook/assets/version_selector.jpg" alt="" width="169"><figcaption></figcaption></figure></div>
 
-## **Get answers from NeuralMesh documentation with Sevii AI**
+## Get answers from Ask AI
 
-Sevii AI quickly delivers answers from NeuralMesh documentation. Type your question and click <img src=".gitbook/assets/sevii-button.png" alt="" data-size="line">.\
-For the best results, ask clear, context-rich questions.
+Use the built-in **Ask AI** feature to get answers directly from the documentation. Select **Ask or search** at the top right of any page, type your question, and Ask AI returns a detailed answer based on the documentation content.
 
-{% @sevii-ai/sevii-gitbook %}
+Each answer includes:
+
+* **Follow-up questions** to help you explore related topics.
+* **Source links** at the bottom of the answer panel, pointing to the documentation pages used to generate the response.
+
+For the best results, ask clear, specific questions.
+
+<details>
+
+<summary>See how it works</summary>
+
+{% embed url="https://youtu.be/K_Bogag0vKI" %}
+
+</details>
 
 {% hint style="info" %}
-Sevii AI-powered assistant, is built into the documentation to support your search experience. However, it might provide inaccurate information. Always use the **Ask or search** options at the top right to find and verify answers directly from the source.
+Ask AI is built into the documentation to support your search experience. It might provide inaccurate information. Always verify answers by following the source links included in each response.
 {% endhint %}
 
 ## About NeuralMesh documentation
