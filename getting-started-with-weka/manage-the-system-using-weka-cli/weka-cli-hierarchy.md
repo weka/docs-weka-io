@@ -11,7 +11,7 @@ metaLinks:
 # WEKA CLI hierarchy
 
 {% hint style="info" %}
-CLI commands marked with two asterisks (\*\*) are new in version 5.1.0, compared to version 5.0.4.
+CLI commands marked with two asterisks (\*\*) are new in version 5.1.20, compared to version 5.0.4.
 {% endhint %}
 
 ### weka agent
@@ -23,6 +23,7 @@ weka agent
       |install
       |uninstall
    |install-agent
+   |restart **
    |update-containers
    |uninstall
 ```
@@ -74,6 +75,28 @@ weka cloud
    |update
    |upload-rate   
       |set
+```
+
+### weka catalog \*\*
+
+```
+weka catalog
+   |cluster
+      |add
+      |remove
+      |status
+      |update
+   |config
+      |set
+      |show
+   |fs
+      |disable
+      |enable
+      |status
+   |metadata
+      |delete
+      |scan
+      |show
 ```
 
 ### **weka cluster**
@@ -135,7 +158,7 @@ weka cluster
         |reset
         |set
         |show   
-    |network-space
+    |network-space **
         |add
         |remove
         |show-usage
@@ -230,6 +253,8 @@ weka fs
             |show
             |update
      |quota
+        |disable-users
+        |enable-users
         |list
         |list-default
         |set
@@ -472,6 +497,14 @@ weka s3
          |status
          |update
       |performance-bucket **
+      |oidc **
+         |add **
+         |remove **
+         |show **
+         |update **
+      |setup **
+         |show **
+         |update **
       |sorting **
          |reset
       |status
@@ -626,7 +659,7 @@ weka telemetry
          |splunk
 ```
 
-### **weka** tenant
+### **weka** tenant \*\*
 
 ```
 weka tenant
