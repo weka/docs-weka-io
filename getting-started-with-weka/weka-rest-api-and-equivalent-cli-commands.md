@@ -158,7 +158,7 @@ Related information: [cluster-capacity-and-redundancy-management.md](../weka-sys
 
 Related information:
 
-* [Broken link](/broken/pages/-LBJvd2jB8hUJhPLHHmk "mention")
+* [filesystems-object-stores-and-filesystem-groups](../weka-system-overview/filesystems-object-stores-and-filesystem-groups/ "mention")
 * [managing-filesystems](../weka-filesystems-and-object-stores/managing-filesystems/ "mention")
 * [attaching-detaching-object-stores-to-from-filesystems](../weka-filesystems-and-object-stores/attaching-detaching-object-stores-to-from-filesystems/ "mention")
 
