@@ -14,7 +14,7 @@ When you add a filesystem, it must be associated with a filesystem group to appl
 
 **Related topics**
 
-[filesystems](../../weka-system-overview/filesystems/ "mention")
+[Filesystems, object stores, and filesystem groups](../../weka-system-overview/filesystems-object-stores-and-filesystem-groups/)
 
 [managing-filesystem-groups.md](managing-filesystem-groups.md "mention")
 

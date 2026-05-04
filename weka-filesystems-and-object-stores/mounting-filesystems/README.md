@@ -91,7 +91,7 @@ Once the WEKA agent is installed, you can create and configure mounts using the 
 
 **Authentication**
 
-To restrict mounting to only WEKA authenticated users, set the `--auth-required` flag to `yes` for the filesystem. For more information, refer to [organizations-2.md](../../operation-guide/organizations/organizations-2.md "mention").
+To restrict mounting to only WEKA authenticated users, set the `--auth-required` flag to `yes` for the filesystem. For more information, refer to [Broken link](/broken/pages/sL8r2o6E4aM1LQqoL3Kf "mention").
 
 ### **Set a stateless client with restricted operations on an Isolated port**
 

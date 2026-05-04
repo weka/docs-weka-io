@@ -3,15 +3,11 @@ description: >-
   Understand the key capacity counters for effective storage management,
   including space utilization, availability, and data reduction across SSDs and
   object storage.
-metaLinks:
-  alternates:
-    - >-
-      https://app.gitbook.com/s/0yXyIrnroN3zIG3qa4W3/weka-system-overview/filesystems/cluster-and-filesystem-capacity-counter-definitions
 ---
 
 # Cluster and filesystem capacity counter definitions
 
-## Cluster capacity counter definitions
+## Cluster and filesystem capacity counter definitions
 
 * **SSD capacity counters**:
   * **USED SSD**: Total SSD space currently in use, including both data and metadata.
@@ -68,10 +64,10 @@ DATA REDUCTION FACTOR: 3.75
 
 **Related topics**
 
-[.](./ "mention")
+[Filesystems, object stores, and filesystem groups](./)
 
-[data-storage.md](../data-storage.md "mention")
+[Data lifecycle management overview](../data-storage.md)
 
-[managing-filesystems](../../weka-filesystems-and-object-stores/managing-filesystems/ "mention")
+[Manage filesystems](../../weka-filesystems-and-object-stores/managing-filesystems/)
 
 [^1]: **Total**: Represents the amount used by the filesystem, not across storage tiers. SSD cache usage changes as data moves between SSD and OBS.

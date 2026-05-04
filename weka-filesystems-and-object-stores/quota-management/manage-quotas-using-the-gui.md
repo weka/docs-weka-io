@@ -26,7 +26,7 @@ Default quotas apply to newly created subdirectories, not the directory or exist
 
 ## Set directory quota
 
-The organization admin can set a quota on a directory, which triggers a background task to calculate the current usage. Once this calculation is finished, the quota takes effect.
+The tenant admin can set a quota on a directory, which triggers a background task to calculate the current usage. Once this calculation is finished, the quota takes effect.
 
 **Before you begin**
 

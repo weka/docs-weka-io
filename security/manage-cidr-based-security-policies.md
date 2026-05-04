@@ -258,7 +258,7 @@ weka security policy join reset [--client] [--backend]
 
 <table><thead><tr><th width="195">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>client</code></td><td>Apply policies to clients.</td></tr><tr><td><code>backend</code></td><td>Apply policies to backends.</td></tr></tbody></table>
 
-## Manage organization security policies using the CLI
+## Manage tenant-level security policies
 
 Once security policies are defined, you can perform the following tasks at the organization level:
 

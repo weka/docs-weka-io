@@ -1,26 +1,22 @@
 ---
 description: >-
-  This page describes the three entity types relevant to data storage in the
-  WEKA system.
-metaLinks:
-  alternates:
-    - >-
-      https://app.gitbook.com/s/0yXyIrnroN3zIG3qa4W3/weka-system-overview/filesystems
+  Learn how filesystems, object stores, and filesystem groups work together to
+  organize storage capacity, tiering, and policy in a WEKA cluster.
 ---
 
 # Filesystems, object stores, and filesystem groups
 
-## **Introduction to WEKA** filesystems
+## Storage entities overview
 
-A WEKA filesystem functions as a virtual storage entity that distributes data across all servers in the cluster. Unlike traditional filesystems bound to physical storage devices, it operates as a root directory with configurable space limitations, independent of specific physical components within the WEKA system.
+Filesystems, object stores, and filesystem groups define how WEKA organizes storage capacity, data placement, and policy. A filesystem presents data to applications. A filesystem group defines the shared capacity and tiering boundaries for its member filesystems. An object store extends capacity for tiered data and snapshot workflows.
 
-WEKA supports up to 1024 filesystems, automatically distributing them across all SSDs and CPU cores assigned to the cluster. This distribution enables instantaneous operations for both filesystem creation and resizing, eliminating traditional operational constraints.
+* **Filesystem:** A logical storage namespace that distributes data across the cluster.
+* **Object store:** An external storage tier that stores warm data and snapshots.
+* **Filesystem group:** A shared policy boundary that controls how member filesystems use capacity and tiering.
 
-Each filesystem must belong to a filesystem group, which defines its capacity boundaries. For filesystems in tiered groups, additional parameters apply, including total capacity limits and SSD capacity thresholds. This hierarchical organization enables precise resource allocation and management.
+Every filesystem belongs to one filesystem group. Tiered filesystems can attach object store buckets according to the policies and limits defined for that group.
 
-The combined SSD capacity utilized by individual filesystems cannot exceed the total SSD net capacity allocated for filesystem use. This architectural constraint ensures consistent performance and reliable resource distribution throughout the WEKA system.
-
-### Thin provisioning **in WEKA filesystems**
+### Thin provisioning **in** WEKA filesystems
 
 Thin provisioning is a method of SSD capacity allocation where administrators define two key values for each filesystem:
 
@@ -47,7 +43,7 @@ This approach benefits several scenarios:
 * **Total SSD capacity:** Up to 1 EiB
 * **File size:** Up to 4 PiB
 
-### Data reduction **in WEKA filesystems**
+### Data reduction **in** WEKA filesystems
 
 Data reduction is a cluster-wide feature that you can activate for individual filesystems. This feature uses block-variable differential compression and advanced deduplication techniques across all enabled filesystems. The result is a significant reduction in the storage capacity required for user data, which can lead to substantial cost savings. The capacity savings from a data reduction-enabled filesystem are returned to the cluster, not to the filesystem itself.
 
@@ -109,9 +105,9 @@ Data encryption settings can only be configured during the initial creation of a
 
 **Related topics**
 
-[kms-management](../../security/kms-management/ "mention")
+[Manage KMS](../../security/kms-management/)
 
-### Metadata limitations **in WEKA filesystems**
+### Metadata limitations **in** WEKA filesystems
 
 In addition to the capacity constraints, each filesystem in WEKA has specific limitations on metadata. The overall system-wide metadata cap depends on the SSD capacity allocated to the WEKA system and the RAM resources allocated to the WEKA system processes.
 
@@ -147,7 +143,47 @@ Given its finite capacity, exercise caution when using lengthy or complex ACLs a
 
 When encountering a message indicating the file size exceeds the limit allowed and cannot be saved, carefully decide which data to retain. Strategic planning and selective use of ACLs and ADS contribute to optimizing performance and stability.
 
-## **Introduction to** object stores
+### Quality of Service (QoS)
+
+Quality of Service (QoS) is a set of mechanisms that manages and prioritizes system resources, ensuring consistent performance and preventing any single entity from overwhelming cluster resources.
+
+**QoS control levels**
+
+WEKA provides multiple resource management layers to prevent noisy neighbors from impacting critical workloads:
+
+* **Tenant level:** Administrators can configure the QoS after tenant creation. QoS ensures a specific tenant is capped at a defined performance threshold, regardless of how many filesystems the tenant owns.
+* **Filesystem level:** Administrators can define QoS settings when adding or updating a filesystem. Use this to prioritize specific project or department workloads.
+* **Client level:** Limits can be set at the client level through mount options, though the client's own network hardware may constrain these limits.
+
+**Related topics**
+
+[Multi-tenancy cluster-level administration](../../operation-guide/weka-native-multi-tenancy-management/multi-tenancy-cluster-level-administration.md#manage-tenant-quality-of-service)
+
+[Manage filesystems using the CLI](../../weka-filesystems-and-object-stores/managing-filesystems/managing-filesystems-1.md#add-a-filesystem)
+
+[Mount filesystems](../../weka-filesystems-and-object-stores/mounting-filesystems/#additional-mount-options-using-the-stateless-clients-feature)
+
+**Performance parameters**
+
+QoS is configured through two CLI parameters: one that limits the total number of I/O operations per second (IOPS), and one that limits bandwidth (throughput). Both parameters apply as aggregate limits across read and write operations, which cannot be restricted independently.
+
+**Enforcement and throttling**
+
+When a filesystem or tenant reaches its defined QoS limit, the system throttles traffic to keep it within the configured parameters.
+
+* **Dynamic adjustment:** Setting a limit to `0` removes the cap, allowing unlimited performance based on available physical resources.
+* **Hierarchical enforcement:** If a tenant and a filesystem both have QoS limits, the system enforces the more restrictive limit. For example, the total throughput of all filesystems within a tenant cannot exceed the tenant's overall QoS limit.
+
+**Fair distribution**
+
+When multiple clients or processes are throttled simultaneously, the system applies a fairness logic that divides available performance capacity equally among all active participants. This ensures that lower-demand processes receive their fair share of allocated bandwidth or IOPS, rather than distributing resources proportionally to demand.
+
+**Considerations**
+
+* **Bursting:** QoS supports bursting control, allowing a filesystem to temporarily exceed its defined limit. This is useful in scenarios where multiple clients start simultaneously and require short-term additional throughput.
+* **Interface availability:** QoS settings are fully manageable through the CLI, but are not available in the WEKA GUI or the REST API.
+
+## Object stores overview
 
 Within the WEKA system, object stores are an optional external storage medium strategically designed to store warm data. These object stores, employed in tiered WEKA system configurations, can be cloud-based, located in the same location as the WEKA cluster, or at a remote location.
 
@@ -161,13 +197,13 @@ Moreover, the connectivity between filesystems and object store buckets extends 
 
 **Related topics**
 
-[managing-object-stores](../../weka-filesystems-and-object-stores/managing-object-stores/ "mention")
+[Manage object stores](../../weka-filesystems-and-object-stores/managing-object-stores/)
 
-[data-storage.md](../data-storage.md "mention")
+[Data lifecycle management overview](../data-storage.md)
 
-[snap-to-obj](../../weka-filesystems-and-object-stores/snap-to-obj/ "mention")
+[Snap-To-Object](../../weka-filesystems-and-object-stores/snap-to-obj/)
 
-## **Introduction to f**ilesystem groups
+## Filesystem groups overview
 
 Within the WEKA system, the organization of filesystems takes place through the creation of filesystem groups, with a maximum limit set at eight groups.
 
@@ -175,4 +211,4 @@ Each of these filesystem groups comes equipped with tiering control parameters. 
 
 **Related topics**
 
-[managing-filesystem-groups](../../weka-filesystems-and-object-stores/managing-filesystem-groups/ "mention")
+[Manage filesystem groups](../../weka-filesystems-and-object-stores/managing-filesystem-groups/)

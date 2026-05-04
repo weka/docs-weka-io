@@ -124,7 +124,7 @@ To use the **Audit Logging** option, ensure the **Audit and Forwarding** feature
 
 [overview.md](../../licensing/overview.md "mention")
 
-[#data-reduction-in-weka-filesystems](../../weka-system-overview/filesystems/#data-reduction-in-weka-filesystems "mention")
+[Filesystems, object stores, and filesystem groups](../../weka-system-overview/filesystems-object-stores-and-filesystem-groups/#data-reduction-in-weka-filesystems)
 
 [#create-a-filesystem-from-an-uploaded-snapshot](../snap-to-obj/snap-to-obj.md#create-a-filesystem-from-an-uploaded-snapshot "mention")
 

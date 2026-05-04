@@ -14,13 +14,13 @@ metaLinks:
 
 The WEKA system offers multiple layers where you can limit capacity usage:
 
-* **Organization level**: You can monitor an organization’s usage (SSD and total) and restrict usage with quotas per organization. This feature can be used for charge-backs based on the capacity used or allocated by SSD or object store data. For more details, see [organizations](../../operation-guide/organizations/ "mention").
+* **Tenant level**: You can monitor a tenant’s usage (SSD and total) and restrict usage with quotas per tenant. This feature can be used for charge-backs based on the capacity used or allocated by SSD or object store data. For more details, see [multi-tenancy-cluster-level-administration.md](../../operation-guide/weka-native-multi-tenancy-management/multi-tenancy-cluster-level-administration.md "mention").
 * **Filesystem level**: Allocate a unique filesystem for each department or project.
 * **Directory level**: Assign a unique quota for each project directory (beneficial when users are involved in multiple projects) or for each user’s home directory.
 
-In the context of directory quotas, the organization admin can set a quota on a directory. This action initiates calculating the current directory usage in a background task. Once this calculation is complete, the quota is considered.
+In the context of directory quotas, the tenant admin can set a quota on a directory. This action initiates calculating the current directory usage in a background task. Once this calculation is complete, the quota is considered.
 
-The organization admin’s role in setting quotas is to inform and restrict users from overusing the filesystem capacity. In this regard, only data that the user controls is considered. Therefore, the quota does not include the overhead of protection bits and snapshots. However, it accounts for the data and metadata of files in the directory, irrespective of whether they are tiered.
+The tenant admin’s role in setting quotas is to inform and restrict users from overusing the filesystem capacity. In this regard, only data that the user controls is considered. Therefore, the quota does not include the overhead of protection bits and snapshots. However, it accounts for the data and metadata of files in the directory, irrespective of whether they are tiered.
 
 ## Guidelines for quota management
 
@@ -31,7 +31,7 @@ When managing quotas, adhere to the following guidelines and requirements:
   * The quota set command must run to completion without interruption, as it triggers quota accounting.
 * **Quota setting using mount points:**
   * The POSIX user running the command must have access to the target directory within the mount point.
-  * This requirement applies even if the user has elevated privileges (for example, Organization Admin or higher).
+  * This requirement applies even if the user has elevated privileges (for example, tenant admin or higher).
 * **Quota setting without directory access:**
   * If the POSIX user does not have access to the target directory, use the `--filesystem` flag.
   * Provide the path to the directory relative to the root of the target filesystem.

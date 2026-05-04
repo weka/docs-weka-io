@@ -135,6 +135,11 @@ weka cluster
         |reset
         |set
         |show   
+    |network-space
+        |add
+        |remove
+        |show-usage
+        |update
     |process
     |servers
         |list
@@ -409,24 +414,6 @@ weka nfs
            |ip
 ```
 
-### **weka org**
-
-```
-weka org
-   |add
-   |remove
-   |rename
-   |security
-      |policy
-         |attach
-         |detach
-         |list
-         |reset
-         |set
-      |revoke-tokens
-   |set-quota   
-```
-
 ### **weka s3**
 
 ```
@@ -637,6 +624,29 @@ weka telemetry
       |update
          |S3
          |splunk
+```
+
+### **weka** tenant
+
+```
+weka tenant
+   |add
+   |remove
+   |network-space
+      |add
+      |remove
+   |rename
+   |security
+      |policy
+         |attach
+         |detach
+         |list
+         |reset
+         |set
+      |revoke-tokens
+   |set-qos
+   |set-quota
+   |update  
 ```
 
 ### weka umount

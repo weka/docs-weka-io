@@ -66,8 +66,8 @@ Use XOS as a standalone license if the cluster operates exclusively as an S3 tar
 **Related topics**
 
 * [Apply a classic license](classic-licensing.md)
-* [Filesystems, object stores, and filesystem groups](../weka-system-overview/filesystems/#data-reduction-in-weka-filesystems)
-* [Cluster and filesystem capacity counter definitions](../weka-system-overview/filesystems/cluster-and-filesystem-capacity-counter-definitions.md)
+* [Filesystems, object stores, and filesystem groups](../weka-system-overview/filesystems-object-stores-and-filesystem-groups/#data-reduction-in-weka-filesystems)
+* [Cluster and filesystem capacity counter definitions](../weka-system-overview/filesystems-object-stores-and-filesystem-groups/cluster-and-filesystem-capacity-counter-definitions.md)
 
 ## Display the license status
 

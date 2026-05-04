@@ -17,7 +17,7 @@ Using the GUI, you can:
 
 ## Manage local users
 
-Local users are created in the local system instead of domain users that the organization's User Directory manages. You can create up to 1152 local users to work with a WEKA system cluster.
+Local users are created in the local system instead of domain users that the tenant's User Directory manages. You can create up to 1152 local users to work with a WEKA system cluster.
 
 <div data-with-frame="true"><img src="../../.gitbook/assets/wmng_local_users.png" alt="User Management: Local Users page"></div>
 
@@ -50,7 +50,7 @@ You can modify the role of a local user but not your role (the signed-in user). 
 
 ### Change a local user password
 
-As a Cluster Admin or Organization Admin, you can change the password of a local user and revoke the user's tokens.
+As a Cluster Admin or Tenant Admin, you can change the password of a local user and revoke the user's tokens.
 
 {% hint style="info" %}
 To regain access to the system after changing the password, the user must re-authenticate using the new password.
@@ -107,9 +107,9 @@ In the confirmation message, select **Yes**.
 
 ## Configure LDAP/AD in WEKA
 
-You can set the user access to the WEKA system from the organization user directory by Lightweight Directory Access Protocol (LDAP) or Active Directory (AD).
+You can set the user access to the WEKA system from the tenant user directory by Lightweight Directory Access Protocol (LDAP) or Active Directory (AD).
 
-Integrate the WEKA system with your organization's user directory using either Lightweight Directory Access Protocol (LDAP) or Active Directory (AD) for centralized user authentication. This allows users to access the WEKA system with their existing credentials.
+Integrate the WEKA system with your tenant's user directory using either Lightweight Directory Access Protocol (LDAP) or Active Directory (AD) for centralized user authentication. This allows users to access the WEKA system with their existing credentials.
 
 From the menu, navigate to Configure > User Management and select the User Directory tab. The system displays options to configure either LDAP or Active Directory.
 
