@@ -23,22 +23,26 @@ To enhance security, WEKA does not store any data that could reconstruct the KMS
 
 {% include "../../.gitbook/includes/supported-kms-types.md" %}
 
+{% hint style="info" %}
+In context of WEKA KMS OpenBao Vault is compatible with HashiCorp Vault. Any reference to HashiCorp Vault throughout the documentation, also apply to OpenBao Vault.
+{% endhint %}
+
 ### **KMS encryption models**
 
-WEKA supports two primary models for KMS integration.
+WEKA supports two primary models for KMS integration.&#x20;
 
 #### **Cluster encryption key**
 
 In this model, a single encryption key from the KMS serves as the master key for the entire WEKA cluster. All individual filesystem keys are encrypted (wrapped) by this cluster key.
 
-For HashiCorp Vault integration, this model supports two authentication methods:
+For HashiCorp Vault or OpenBao Vault integration, this model supports two authentication methods:
 
 * **Token-based authentication:** Uses a Vault token for authentication.
 * **AppRole authentication:** Uses a **Role ID** and **Secret ID** for more structured, automated authentication.
 
 #### **Per-filesystem encryption keys**
 
-This model, available exclusively with HashiCorp Vault, allows each filesystem to have its own unique encryption key sourced from the KMS. This approach provides enhanced data isolation, which is ideal for multi-tenant environments where each tenant requires a distinct, customer-controlled encryption key.
+This model, available exclusively with HashiCorp Vault or OpenBao Vault, allows each filesystem to have its own unique encryption key sourced from the KMS. This approach provides enhanced data isolation, which is ideal for multi-tenant environments where each tenant requires a distinct, customer-controlled encryption key.
 
 This configuration requires using **AppRole authentication**. Filesystems can share authentication credentials if they are in the same KMS namespace, or you can use cluster-level credentials for key access.
 
@@ -52,11 +56,11 @@ To ensure seamless operations and safeguard your data, adhere to the following b
 * **KMS method verification:** Familiarize yourself with the specific methods your KMS uses for key security, unsealing, and recovery. Different systems have distinct processes; for example, HashiCorp Vault can enable [auto-unsealing](https://developer.hashicorp.com/vault/tutorials/auto-unseal/autounseal-aws-kms) using a trusted service. Understanding these mechanisms is essential for efficient recovery and key management.
 * **Snapshot backup:** When using Snap-To-Object, ensure that encrypted filesystem keys are backed up to an object store. This provides an additional layer of protection in case the WEKA system configuration is compromised.
 
-For further guidance on securing HashiCorp Vault in production environments, refer to the [Production Hardening](https://learn.hashicorp.com/vault/operations/production-hardening) documentation.
+For further guidance on securing HashiCorp Vault or OpenBao Vault in production environments, refer to the [HashiCorp Vault Production Hardening](https://learn.hashicorp.com/vault/operations/production-hardening) or [OpenBao Vault Post Installation Hardening](https://openbao.org/docs/install/#post-installation-hardening)  documentation.
 
 ## KMS integration: cluster encryption keys
 
-The diagram illustrates WEKA's cluster encryption process, which supports both HashiCorp Vault KMS and KMIP (Key Management Interoperability Protocol). Here, we focus on HashiCorp Vault KMS for key management.
+The diagram illustrates WEKA's cluster encryption process supported on all supported KMS types. This example focuses on HashiCorp Vault for key management.
 
 The following steps outline the process for managing encryption keys across the WEKA cluster:
 
@@ -68,7 +72,7 @@ The following steps outline the process for managing encryption keys across the 
 
 ## KMS integration: per-filesystem encryption keys
 
-In multi-tenant environments, such as clusters offering POSIX or S3 services to multiple customers, strong data isolation is essential. To meet this requirement, WEKA extends its KMS integration to support per-filesystem encryption keys using HashiCorp Vault. This enables each tenant to use a distinct, customer-controlled encryption key.
+In multi-tenant environments, such as clusters offering POSIX or S3 services to multiple customers, strong data isolation is essential. To meet this requirement, WEKA extends its KMS integration to support per-filesystem encryption keys using HashiCorp Vault or OpenBao Vault. This enables each tenant to use a distinct, customer-controlled encryption key.
 
 #### Why use per-filesystem encryption keys?
 
@@ -83,7 +87,7 @@ In multi-tenant deployments, isolating encryption keys by tenant ensures that no
 
 #### Authentication method
 
-WEKA integrates with HashiCorp Vault using the **AppRole** authentication method, enabling each filesystem to use a distinct, revokable identity for secure key access. This design is critical for ensuring tenant-level isolation and key management flexibility.
+WEKA integrates with HashiCorp Vault or OpenBao Vault using the **AppRole** authentication method, enabling each filesystem to use a distinct, revokable identity for secure key access. This design is critical for ensuring tenant-level isolation and key management flexibility.
 
 #### Architecture overview
 
