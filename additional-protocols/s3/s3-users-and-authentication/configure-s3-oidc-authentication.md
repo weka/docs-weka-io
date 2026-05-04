@@ -36,18 +36,13 @@ Both patterns use the same `AssumeRoleWithWebIdentity` STS call. When a token in
 
 ### Key concepts
 
-**OIDC provider configuration.** Configure WEKA with the discovery URL of the IdP. WEKA uses the provider metadata to validate tokens. If your IdP requires application credentials to resolve identity metadata, supply a client ID, client secret, and tenant ID.
+**OIDC provider configuration.** Configure WEKA with the discovery URL of the IdP. WEKA uses the provider metadata to validate tokens.
 
 **IAM policies.** Policies define which S3 actions are permitted on which resources. They follow the same JSON structure used by AWS IAM. You create policies in WEKA and associate them with identities or roles.
 
-**Role-to-policy mapping.** For service principal authentication, WEKA reads the configured roles claim in the JWT and looks for a WEKA IAM policy whose name exactly matches each role value. Matching is case-sensitive. No additional mapping is required. Create the policy in WEKA with the same name as the role value in the IdP.
+**Role-to-policy mapping.** WEKA reads the configured roles claim in the JWT and looks for a WEKA IAM policy whose name exactly matches each role value. Matching is case-sensitive. No additional mapping is required. Create the policy in WEKA with the same name as the role value in the IdP.
 
 **Temporary credentials and expiry.** WEKA automatically removes expired STS-issued temporary users in a background cleanup routine. No manual cleanup is required.
-
-**Pre-signed URLs.** Applications can generate pre-signed URLs to grant time-limited access to specific S3 operations without exposing credentials. WEKA supports two types:
-
-* **Object-level URLs** authorize a single operation on a single object.
-* **Policy-scoped tokens** embed an IAM policy document in the query string and authorize multiple actions across all objects under a given key prefix.
 
 ## Configure WEKA S3 with OIDC
 
@@ -59,7 +54,6 @@ Configure WEKA S3 to accept federated identities from an OIDC-compliant identity
   * OIDC discovery URL (the `.well-known/openid-configuration` endpoint for your tenant).
   * Roles claim name: the JWT field that contains the role values (default: `roles`).
 * Determine the IAM policy names you need and the S3 permissions each should grant.
-* For service principal authentication, confirm that each role value defined in the IdP exactly matches the name of the IAM policy you create in WEKA. Matching is case-sensitive.
 * Confirm you have a WEKA user with the **Cluster Admin** role.
 
 **Procedure**
