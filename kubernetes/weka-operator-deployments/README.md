@@ -831,15 +831,15 @@ Provision the WEKA cluster backend using the WekaCluster CR. This resource defin
 
 **Procedure**
 
-1. Create a manifest file named `weka-cluster.yaml`.
-2. Configure the resource using the following template. Replace the image tag and secret key placeholders with your recorded values.
+1. **Create a manifest file** named `weka-cluster.yaml`.
+2. **Configure the resource:** Replace the image tag and secret key placeholders with your recorded values.
 
 {% code title="weka-cluster.yaml" %}
 ```yaml
 apiVersion: weka.weka.io/v1alpha1
 kind: WekaCluster
 metadata:
-  name: cluster-dev
+  name: weka-cluster-dev
   namespace: default
 spec:
   template: dynamic
@@ -858,7 +858,38 @@ spec:
 ```
 {% endcode %}
 
-3. Apply the manifest:
+3. **Optional: Configure a pre-start-io script:**
+
+If your cluster requires settings that cannot be applied through standard configuration — for example, overriding the default bucket count on a small or non-standard cluster — set `spec.overrides.postFormClusterScript` in the manifest before applying it.
+
+The Operator runs this script once, after the cluster forms and before `start-io`. Use it only when no standard configuration option achieves the required result.
+
+Example:
+
+{% code title="weka-cluster.yaml" %}
+```yaml
+apiVersion: weka.weka.io/v1alpha1
+kind: WekaCluster
+metadata:
+  name: weka-cluster-dev
+spec:
+  overrides:
+    postFormClusterScript: |
+      weka debug jrpc cluster_configure_internal buckets_number=280
+```
+{% endcode %}
+
+To inspect the field definition, run:
+
+```bash
+kubectl explain wekacluster.spec.overrides.postFormClusterScript
+```
+
+{% hint style="info" %}
+**Important:** `postFormClusterScript` runs privileged debug commands on a cluster that is not yet serving I/O. Validate the script on a non-production cluster before applying it to production.
+{% endhint %}
+
+4. **Apply the manifest:**
 
 ```bash
 kubectl apply -f weka-cluster.yaml
@@ -868,7 +899,7 @@ kubectl apply -f weka-cluster.yaml
 
 Identify and configure the parameters for the WekaCluster Custom Resource (CR) to define the backend storage environment.
 
-<table><thead><tr><th width="210.73046875">Name</th><th>Description</th></tr></thead><tbody><tr><td><code>template</code></td><td>Specifies the deployment template. Currently, only dynamic is supported.<br><strong>Default:</strong> dynamic</td></tr><tr><td><code>dynamicTemplate</code></td><td>Defines the scale of the cluster, including the number of computeContainers, driveContainers, and <code>numDrives</code> (or <code>containerCapacity</code> for v1.10+).</td></tr><tr><td><code>image</code></td><td>The WEKA container image version to deploy.</td></tr><tr><td><code>imagePullSecret</code></td><td>The Kubernetes secret name used to authenticate with the image registry.</td></tr><tr><td><code>driversDistService</code></td><td>The URL of the driver distribution service (e.g., <a href="https://drivers.weka.io/">https://drivers.weka.io</a>).</td></tr><tr><td><code>nodeSelector</code></td><td>A map of key-value pairs used to select the nodes for the cluster pods.</td></tr><tr><td><code>roleNodeSelector</code></td><td>Defines specific node scheduling for compute, drive, and s3 roles.</td></tr><tr><td><code>wekaHome</code></td><td>Configures the endpoint and <code>cacertSecret</code> for WEKA Home connectivity.</td></tr><tr><td><code>ipv6</code></td><td>Enables or disables IPv6 networking.</td></tr><tr><td><code>additionalMemory</code></td><td>Specifies additional memory allocation per role beyond the default.<br>Default: 0</td></tr><tr><td><code>ports</code></td><td>Overrides default port assignments, typically used for cluster migration.</td></tr><tr><td><code>operatorSecretRef</code></td><td>Reference to a secret used for migration-by-healing from non-Kubernetes environments.</td></tr><tr><td><code>expandEndpoints</code></td><td>Enables endpoint expansion during migration scenarios.<br>Default: false</td></tr><tr><td><code>hugepagesOffsets</code></td><td>Specifies memory offsets for hugepage allocations (e.g., driveHugepagesOffset).</td></tr><tr><td><code>tolerations</code></td><td>A list of strings that expand to standard Kubernetes tolerations.</td></tr><tr><td><code>rawTolerations</code></td><td>A list of structured Kubernetes toleration objects for advanced scheduling.</td></tr><tr><td><code>network</code></td><td>Configures networking modes, such as <code>udpMode</code> or specific <code>ethDevice</code> settings.</td></tr></tbody></table>
+<table><thead><tr><th width="210.73046875">Name</th><th>Description</th></tr></thead><tbody><tr><td><code>template</code></td><td>Specifies the deployment template. Currently, only dynamic is supported.<br><strong>Default:</strong> dynamic</td></tr><tr><td><code>dynamicTemplate</code></td><td>Defines the scale of the cluster, including the number of computeContainers, driveContainers, and <code>numDrives</code> (or <code>containerCapacity</code> for v1.10+).</td></tr><tr><td><code>image</code></td><td>The WEKA container image version to deploy.</td></tr><tr><td><code>imagePullSecret</code></td><td>The Kubernetes secret name used to authenticate with the image registry.</td></tr><tr><td><code>driversDistService</code></td><td>The URL of the driver distribution service (e.g., <a href="https://drivers.weka.io/">https://drivers.weka.io</a>).</td></tr><tr><td><code>nodeSelector</code></td><td>A map of key-value pairs used to select the nodes for the cluster pods.</td></tr><tr><td><code>roleNodeSelector</code></td><td>Defines specific node scheduling for compute, drive, and s3 roles.</td></tr><tr><td><code>wekaHome</code></td><td>Configures the endpoint and <code>cacertSecret</code> for WEKA Home connectivity.</td></tr><tr><td><code>ipv6</code></td><td>Enables or disables IPv6 networking.</td></tr><tr><td><code>additionalMemory</code></td><td>Specifies additional memory allocation per role beyond the default.<br>Default: 0</td></tr><tr><td><code>ports</code></td><td>Overrides default port assignments, typically used for cluster migration.</td></tr><tr><td><code>operatorSecretRef</code></td><td>Reference to a secret used for migration-by-healing from non-Kubernetes environments.</td></tr><tr><td><code>expandEndpoints</code></td><td>Enables endpoint expansion during migration scenarios.<br>Default: false</td></tr><tr><td><code>hugepagesOffsets</code></td><td>Specifies memory offsets for hugepage allocations (e.g., driveHugepagesOffset).</td></tr><tr><td><code>tolerations</code></td><td>A list of strings that expand to standard Kubernetes tolerations.</td></tr><tr><td><code>rawTolerations</code></td><td>A list of structured Kubernetes toleration objects for advanced scheduling.</td></tr><tr><td><code>network</code></td><td>Configures networking modes, such as <code>udpMode</code> or specific <code>ethDevice</code> settings.</td></tr><tr><td><code>overrides</code></td><td>Advanced overrides applied during cluster creation. Includes <code>postFormClusterScript</code>, a script run after cluster formation and before start-io, used for low-level tuning such as bucket count adjustment.</td></tr></tbody></table>
 
 #### 2. Create the WEKA cluster client secret
 
@@ -939,7 +970,7 @@ spec:
     weka.io/supports-clients: "true"
   wekaSecretRef: weka-cluster-dev
   targetCluster:
-    name: cluster-dev
+    name: weka-cluster-dev
     namespace: default
 ```
 {% endcode %}

@@ -262,7 +262,7 @@ weka-operator-system   weka-operator-controller-manager-bcf48df44-lk6cx   2/2   
 
 A force reboot may be necessary when a machine becomes unresponsive or encounters a critical error that cannot be resolved through standard troubleshooting. This task ensures the machine restarts and resumes normal operation.
 
-This procedure assumes a dedicated topology where backend nodes (running drive and compute pods) and client nodes run on separate Kubernetes nodes. If your cluster uses an **Axon topology**  where backend and client pods run on the same nodes, do not perform phases 6–8.
+This procedure assumes a dedicated topology where backend nodes (running drive and compute pods) and client nodes run on separate Kubernetes nodes. If your cluster uses an **Axon topology** where backend and client pods run on the same nodes, do not perform phases 6–8.
 
 For a worker node in Axon topology, complete phases 1–5 for each node you want to reboot. Draining the node evicts all WEKA pods in a single pass.
 
@@ -4210,6 +4210,42 @@ kubectl get secret <secret-name> -n <namespace> -o yaml
 * Regularly rotate tokens as part of your security policy
 * Monitor and audit secret access and modifications
 
+### Configure trace retention
+
+Configure trace retention on a Kubernetes-managed WEKA cluster by adding a `tracesConfiguration` block to the WekaCluster custom resource (CR). The operator applies the settings cluster-wide and propagates them to attached stateless clients automatically.
+
+**Before you begin**
+
+Do not run `weka cluster` commands to configure trace retention on a Kubernetes-managed deployment. These commands take effect only when `dumperConfigMode` is set to `cluster`. The operator manages `dumperConfigMode` automatically and sets it to `auto`.
+
+**Procedure**
+
+Add the `tracesConfiguration` block under `spec` in the WekaCluster CR:
+
+```yaml
+spec:
+  tracesConfiguration:
+    ensureFreeSpace: <value in GiB>
+    maxCapacityPerIoNode: <value in GiB>
+```
+
+Where:
+
+* `ensureFreeSpace`: Minimum free space, in GiB, the cluster preserves on each I/O process. Required
+* `maxCapacityPerIoNode`: Maximum total trace capacity, in GiB, per I/O process. Default: 10 GiB
+
+#### Override retention on a stateless client
+
+Cluster-level retention applies to stateless clients automatically. To override retention on a specific client, run:
+
+```bash
+weka debug traces retention set --client-ensure-free <value>GiB --client-max <value>GiB
+```
+
+**Related topic**
+
+[traces-management](../support/diagnostics-management/traces-management/ "mention").
+
 ### Pause and resume WEKA cluster for maintenance
 
 Pause all containers in a WEKA cluster gracefully while preserving configuration and data. This process is used for planned maintenance windows where all I/O activity must halt without removing the cluster.
@@ -4233,7 +4269,7 @@ Run `weka cluster stop-io` manually. The operator does not perform this step aut
    * **`true`:** Paused.
    * **`false`:** Containers that were paused by this field transition back to active. Containers in other states are not affected.
 4. Apply the updated configuration to the cluster.
-5. When maintenance is done, change `spec.overrides.paused`  back to `false`.
+5. When maintenance is done, change `spec.overrides.paused` back to `false`.
 
 **Examples**
 
@@ -4282,7 +4318,7 @@ Cancel a cluster deletion process to recover the WEKA cluster before the destruc
 
 The WekaCluster custom resource uses a graceful destroy period to provide a recovery window after a deletion is initiated. During this period, the system pauses the cluster containers instead of removing them immediately.
 
-* To stop the destruction process, set the `spec.overrides.cancelDeletion` flag to `true` before this timeout expires.&#x20;
+* To stop the destruction process, set the `spec.overrides.cancelDeletion` flag to `true` before this timeout expires.
 * For environments where immediate removal is preferred, such as testing or development, set `spec.gracefulDestroyDuration` to `0s` to bypass the waiting period.
 
 #### **Before you begin**
