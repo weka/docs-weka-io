@@ -5,7 +5,7 @@ metaLinks:
       https://app.gitbook.com/s/0yXyIrnroN3zIG3qa4W3/planning-and-installation/bare-metal/install-the-weka-cluster-using-the-wms-with-wsa
 ---
 
-# Install the WEKA cluster using the WMS with WSA
+# Install the cluster using the WMS with WSA
 
 The WEKA Management Station (WMS) is an install kit similar to an OS install disk that simplifies the installation and configuration of the WEKA cluster in an on-premises environment by deploying the WEKA Software Appliance (WSA) package on bare metal servers. The WMS installs the WEKA OS, drivers, and WEKA software automatically and unattended.
 
@@ -23,9 +23,7 @@ For the update procedure, see [update-wms-and-wsa.md](../../appendices/update-wm
 
 Using the WMS with WSA to install a WEKA cluster requires a physical server (or VM) that meets the following requirements:
 
-* **Boot drives:** One or two identical boot drives as an installation target.
-  * A system with two identical boot drives has the OS installed on mirrored partitions (LVM).
-  * A system with one drive has a simple partition.
+* **Boot drives:** Two identical boot drives as an installation target.
 * **Minimum boot drive capacity:**
   * If not configuring LWH: SSD 141 GB (131 GiB).
   * If configuring LWH: See the SSD-backed storage requirements section in [#1.-verify-prerequisites](../../monitor-the-weka-cluster/the-wekaio-support-cloud/local-weka-home-deployment/#1.-verify-prerequisites "mention").

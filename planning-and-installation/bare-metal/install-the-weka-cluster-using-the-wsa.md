@@ -9,7 +9,7 @@ metaLinks:
       https://app.gitbook.com/s/0yXyIrnroN3zIG3qa4W3/planning-and-installation/bare-metal/install-the-weka-cluster-using-the-wsa
 ---
 
-# Install the WEKA cluster using the WSA
+# Install the cluster using the WSA
 
 WSA is a package consisting of a base version of Linux (based on Rocky 8.6), network drivers and other required packages, WEKA software, and various diagnostic and configuration tools. Using the WSA facilitates the post-installation administration, security, and other KB updates controlled and distributed by WEKA, following a Long Term Support (LTS) plan.
 
@@ -31,9 +31,7 @@ For the update procedure, see [update-wms-and-wsa.md](../../appendices/update-wm
 
 A physical server that meets the following requirements:
 
-* **Boot drives:** One or two identical boot drives as an installation target.
-  * A system with two identical boot drives has the OS installed on mirrored partitions (LVM).
-  * A system with one drive has a simple partition.
+* **Boot drives:** Two identical boot drives as an installation target.
 * **Minimum boot drive capacity:** 125 GB (to support the pre-defined disk partition map).
 * **Boot type:** UEFI.
 

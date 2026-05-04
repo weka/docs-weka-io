@@ -189,26 +189,26 @@ For upgrade guidance, contact the [Customer Success Team](../support/getting-sup
 
 ## WEKA installation directory
 
-* **WEKA installation directory**:
-  * The WEKA installation directory must be set to `/opt/weka`.
-  * Use a direct path; symbolic links (symlinks) are not supported.
-  * The `/opt/weka` directory is critical for proper WEKA operation. If it resides on shared storage, the storage must be highly available.
-* **Boot drive minimum requirements**:
-  * Capacity: NVMe SSD with 960 GB capacity
+* **Installation directory**:
+  * Set the WEKA installation directory directly to `/opt/weka`.
+  * Avoid using symbolic links. They are not supported.
+  * Ensure `/opt/weka` resides on high availability storage if it's shared.
+* **Boot drive requirements**:
+  * Type and quantity: 2 NVMe SSDs
+  * Capacity: 960 GB each
   * Durability: 1 DWPD (Drive Writes Per Day)
   * Write throughput: 1 GB/s
-* **Boot drive considerations**:
+* **Boot drive setup**:
+  * Dedicate one boot drive for the OS and the other for the `/opt/weka` directory.
   * Do not share the boot drive.
   * Do not mount using NFS.
   * Do not use a RAM drive remotely.
-  * If two boot drives are available:
-    * It is recommended to dedicate one boot drive for the OS and the other for the `/opt/weka` directory.
-    * Do not use software RAID to have two boot drives.
-* **Software required space**:
-  * Ensure that at least 26 GB is available for the WEKA system installation.
+  * Do not use software RAID to have two boot drives.
+* **Storage space requirements**:
+  * Ensure a minimum of 26 GB is available for the WEKA installation.
   * Allocate an additional 10 GB per core used by WEKA.
-* **Filesystem requirement**:
-  * Set a separate filesystem on a separate partition for `/opt/weka`.
+* **Filesystem configuration:**
+  * Create a separate filesystem on a dedicated partition for `/opt/weka`.
 
 ## Networking
 
