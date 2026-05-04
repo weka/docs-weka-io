@@ -115,6 +115,9 @@
 * [Quota management](weka-filesystems-and-object-stores/quota-management/README.md)
   * [Manage quotas using the GUI](weka-filesystems-and-object-stores/quota-management/manage-quotas-using-the-gui.md)
   * [Manage quotas using the CLI](weka-filesystems-and-object-stores/quota-management/quota-management.md)
+* [Data catalog](weka-filesystems-and-object-stores/data-catalog/README.md)
+  * [Configure data catalog](weka-filesystems-and-object-stores/data-catalog/configure-data-catalog.md)
+  * [Analyze storage distribution](weka-filesystems-and-object-stores/data-catalog/analyze-storage-distribution.md)
 
 ## Additional Protocols
 
