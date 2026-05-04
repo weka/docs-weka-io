@@ -35,7 +35,7 @@ The license size in TB must equal or exceed the total usable capacity of all NVM
 
 XPS consumption changes when adding or removing NVMe drives or virtual hot spares. If the usable capacity rounded up to the nearest TB exceeds the license value, the cluster reports a license conflict.
 
-<div data-with-frame="true"><figure><img src="../.gitbook/assets/image (244) (1).png" alt=""><figcaption><p>XPS capacity calculation</p></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/image (244).png" alt=""><figcaption><p>XPS capacity calculation</p></figcaption></figure></div>
 
 ## DPO capacity
 
