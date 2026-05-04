@@ -64,7 +64,7 @@ This portal encompasses all documentation essential for comprehending and operat
 
 **Performance:** Explore the results of FIO performance tests on the NeuralMesh filesystem, ensuring optimal system performance for AI training, inference, and data-intensive workloads.
 
-**Filesystems & object stores:** Understand the role and management of file systems, object stores, file system groups, and key-management systems within NeuralMesh configurations. Learn about integrated tiering and the single namespace architecture.
+**Filesystems & object stores:** Understand the role and management of file systems, object stores, file system groups, and key-management systems within NeuralMesh configurations. Learn about integrated tiering, the single namespace architecture, and the data catalog for indexing and querying filesystem metadata at scale.
 
 **Additional protocols:** Learn about the supported protocols—NFS, SMB, and S3—for accessing data stored in a WEKA filesystem.
 
@@ -72,7 +72,7 @@ This portal encompasses all documentation essential for comprehending and operat
 
 **Licensing:** Gain insights into the system licensing options.
 
-**Operation guide:** Navigate through various system operations, including events, statistics, user management, upgrades, expansion, and more.
+**Operation guide:** Navigate through various system operations, including events, statistics, user management, multi-tenancy, upgrades, expansion, and more.
 
 **Monitor the cluster:** Deploy the WEKA Management Server (WMS) alongside tools like Local WEKA Home, WEKAmon, and SnapTool to effectively monitor your WEKA cluster.
 
