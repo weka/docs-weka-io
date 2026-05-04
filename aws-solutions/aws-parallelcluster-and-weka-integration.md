@@ -26,7 +26,7 @@ The integration of WEKA with AWS ParallelCluster using Slurm consists of two mai
 3. **Data management and tiering**\
    To optimize data handling, WEKA employs an Amazon S3 bucket for data tiering. This system ensures that data is automatically allocated to the appropriate storage tier based on access patterns and cost-efficiency considerations. Furthermore, WEKA leverages S3 for storing snapshots, providing an additional layer of data resilience and enabling robust disaster recovery.
 
-<div data-with-frame="true"><figure><img src="../.gitbook/assets/PCluster-WEKA-Arch (1).png" alt=""><figcaption><p>Slurm based architecture with AWS ParallelCluster</p></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/PCluster-WEKA-Arch.png" alt=""><figcaption><p>Slurm based architecture with AWS ParallelCluster</p></figcaption></figure></div>
 
 ## Deployment workflow for AWS ParallelCluster cluster
 

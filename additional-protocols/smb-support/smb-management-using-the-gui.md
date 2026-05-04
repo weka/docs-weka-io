@@ -124,7 +124,7 @@ Replace `8.8.8.8` and `8.8.4.4` with the appropriate nameserver IP addresses for
 
 1. In the SMB Cluster Configuration, select **Join**.
 
-<div data-with-frame="true"><figure><img src="../../.gitbook/assets/wmng_smb_join_ad_button (1).png" alt="" width="338"><figcaption><p>Join the SMB cluster in the Active Directory</p></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/wmng_smb_join_ad_button.png" alt="" width="338"><figcaption><p>Join the SMB cluster in the Active Directory</p></figcaption></figure></div>
 
 2. In the Join to Active Directory dialog, set the following properties:
    * **Username** and **Password**: A username and password of an account that has join privileges to the Active Directory domain. WEKA does not save these credentials. Instead, the SMB cluster creates a computer account for use.

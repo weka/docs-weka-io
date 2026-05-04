@@ -139,7 +139,7 @@ For step-by-step guidance on enabling DPDK and configuring dual NICs for high-pe
 1.  **Log in to the Azure CycleCloud VM**\
     Access the VM where Azure CycleCloud is installed.<br>
 
-    <div data-with-frame="true"><figure><img src="../.gitbook/assets/CycleCloud_1-1 (1).png" alt=""><figcaption><p>Log in to the Azure CycleCloud VM</p></figcaption></figure></div>
+    <div data-with-frame="true"><figure><img src="../.gitbook/assets/CycleCloud_1-1.png" alt=""><figcaption><p>Log in to the Azure CycleCloud VM</p></figcaption></figure></div>
 2. **Open the CycleCloud/WEKA template**\
    Navigate to the template downloaded in [**Step 1**](azure-cyclecloud-for-slurm-and-weka-integration.md#step-1-download-the-azure-cyclecloud-weka-integration-template), and open it using a text editor.
 3.  **Modify the template to support dual NICs**\

@@ -126,7 +126,7 @@ The WEKA user token provides access to the WEKA binaries and is used to access g
 1. In a web browser, navigate to [get.weka.io](https://get.weka.io/).
 2. Select the user's name located in the upper right-hand corner of the page.
 
-<div data-with-frame="true"><figure><img src="../../.gitbook/assets/image (15) (1).png" alt=""><figcaption></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/image (15).png" alt=""><figcaption></figcaption></figure></div>
 
 2. From the column on the left-hand side of the page, select **API Tokens**. The user’s API token is displayed. Note it for using it later in the installation process.
 

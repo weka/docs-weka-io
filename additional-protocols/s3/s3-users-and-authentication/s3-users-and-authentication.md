@@ -145,7 +145,7 @@ Use the following command line to detach an IAM policy from an S3 user:‌‌
 
 **Parameters**
 
-<table><thead><tr><th width="247">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>user</code>*</td><td>Name of a local WEKA S3 user.</td></tr></tbody></table>
+<table><thead><tr><th width="204">Name</th><th>Description</th></tr></thead><tbody><tr><td><code>user</code>*</td><td>Name of a local WEKA S3 user.</td></tr></tbody></table>
 
 ## Generate a temporary security token
 
@@ -157,12 +157,12 @@ Use the following command line to generate a temporary security token:
 
 **Parameters**
 
-<table><thead><tr><th width="186">Name</th><th width="349">Value</th><th>Default</th></tr></thead><tbody><tr><td><code>access-key</code>*</td><td>A local WEKA S3 user access key</td><td></td></tr><tr><td><code>secret-key</code></td><td>A local WEKA S3 user secret key</td><td>If not supplied, the command prompts to supply the secret-key.</td></tr><tr><td><code>policy-file</code></td><td>Path to a custom JSON file representing an IAM policy for anonymous access.<br>You cannot gain additional capabilities to the IAM policy attached to this S3 user.<br>See <a href="../s3-limitations.md#supported-policy-actions">Supported Policy Actions</a>.</td><td>​</td></tr><tr><td><code>duration</code>*</td><td>Duration for the token validity.<br>Possible values between 15 minutes and 1 week. Format: <code>900s</code>, <code>60m</code>, <code>2d</code>, <code>1w</code></td><td>​</td></tr></tbody></table>
+<table><thead><tr><th width="159">Name</th><th width="349">Description</th><th>Default</th></tr></thead><tbody><tr><td><code>access-key</code>*</td><td>A local WEKA S3 user access key</td><td></td></tr><tr><td><code>secret-key</code></td><td>A local WEKA S3 user secret key</td><td>If not supplied, the command prompts to supply the secret-key.</td></tr><tr><td><code>policy-file</code></td><td>Path to a custom JSON file representing an IAM policy for anonymous access.<br>You cannot gain additional capabilities to the IAM policy attached to this S3 user.<br>See <a href="../s3-limitations.md#supported-policy-actions">Supported Policy Actions</a>.</td><td>​</td></tr><tr><td><code>duration</code>*</td><td>Duration for the token validity.<br>Possible values between 15 minutes and 1 week. Format: <code>900s</code>, <code>60m</code>, <code>2d</code>, <code>1w</code></td><td>​</td></tr></tbody></table>
 
 An example response:
 
 ```
 Access-Key: JR9O0U6V42KLPFQDO2Z3
-Secret-Key: wM0QMWuQ04WHlByj2SlEyuNrWoliMaCoVPmRsKbH
-Session-Token: eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJhY2Nlc3NLZXkiOiJKUjlPMFU2VjQyS0xQRlFETzJaMyIsImV4cCI6NjA0ODAwMDAwMDAwMDAwLCJwb2xpY3kiOiJyZWFkd3JpdGUifQ.-rzf78OHdKv-25NFls1SaUvNKST5SoVSG8iR2hQrTQC1K05ZZlHBFfU-6N3_boF9c5P70y5Pa10YBHseh4DkVA
+Secret-Key: wM0Q.............VPmRsKbH
+Session-Token: eyJhbGciOiJI........Pa10YBHseh4DkVA
 ```

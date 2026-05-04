@@ -15,7 +15,7 @@ The Local WEKA Home interface provides comprehensive multi-cluster monitoring ac
 
 To view the cluster overview, select it from the list, or select the 3-dot icon on the right and select **Open in new tab**.
 
-<div data-with-frame="true"><figure><img src="../../.gitbook/assets/clusters-page (1).png" alt=""><figcaption><p>Clusters page</p></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/clusters-page.png" alt=""><figcaption><p>Clusters page</p></figcaption></figure></div>
 
 **Clusters graphs view**
 

@@ -2,9 +2,7 @@
 description: Version 5.1
 cover: .gitbook/assets/doc_neuralmesh_banner3.gif
 coverY: 0
-metaLinks:
-  alternates:
-    - https://app.gitbook.com/s/0yXyIrnroN3zIG3qa4W3/
+metaLinks: {}
 ---
 
 # NeuralMesh™ by WEKA documentation
@@ -25,7 +23,7 @@ In this documentation, references to WEKA denote the underlying software compone
 Check the release notes for details about any updates or changes accompanying the latest releases.
 {% endhint %}
 
-Select your version from the dropdown menu located at the top of the left-hand navigation bar.&#x20;
+Select your version from the dropdown menu located at the top of the left-hand navigation bar.
 
 <div align="left" data-with-frame="true"><figure><img src=".gitbook/assets/version_selector.jpg" alt="" width="169"><figcaption></figcaption></figure></div>
 

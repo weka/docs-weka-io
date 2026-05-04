@@ -531,7 +531,7 @@ Scaling your WEKA cluster, whether scale-out (expanding) or scale-in (contractin
 1. Navigate to the AutoScaling Group page in the AWS Management Console.
 2. Select **Edit** to adjust the desired capacity.
 
-<div data-with-frame="true"><figure><img src="../../.gitbook/assets/image (27) (1).png" alt=""><figcaption></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/image (27).png" alt=""><figcaption></figcaption></figure></div>
 
 3. Set the capacity to your preferred cluster size (for example, increase from 6 to 10 servers).
 

@@ -137,6 +137,7 @@
     * [Manage S3 users and authentication using the CLI](additional-protocols/s3/s3-users-and-authentication/s3-users-and-authentication.md)
     * [Manage S3 service accounts using the CLI](additional-protocols/s3/s3-users-and-authentication/s3-users-and-authentication-1.md)
     * [Configure S3 LDAP authentication](additional-protocols/s3/s3-users-and-authentication/configure-s3-ldap-authentication.md)
+    * [Configure S3 OIDC authentication](additional-protocols/s3/s3-users-and-authentication/configure-s3-oidc-authentication.md)
   * [S3 lifecycle rules management](additional-protocols/s3/s3-information-lifecycle-management/README.md)
     * [Manage S3 lifecycle rules using the GUI](additional-protocols/s3/s3-information-lifecycle-management/s3-information-lifecycle-management.md)
     * [Manage S3 lifecycle rules using the CLI](additional-protocols/s3/s3-information-lifecycle-management/s3-information-lifecycle-management-1.md)
