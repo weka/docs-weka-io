@@ -18,20 +18,18 @@ Adding a server to the cluster includes discovering the existing cluster resourc
 1. Review the system dashboard and ensure that the system is operational and does not indicate any alarms.
 2. Discover the number of cores for each container type in the cluster server.
 
-```
+```bash
 weka local resources -C drives0 |grep -c DRIVES 
 
 weka local resources -C compute0 |grep -c COMPUTE
 
 weka local resources -C frontend0 |grep -c FRONTEND
-
 ```
 
 3. Discover the Management IPs of one of the containers. In a high-availability system, more than one IP exists.
 
-```
+```bash
 weka local resources -C drives0 | grep "Management IPs"
-
 ```
 
 4. Ensure that the new backend server meets the requirements and is available for installation.
@@ -46,25 +44,22 @@ To learn how about the options of the commands in the following procedure, see t
 1. Install the WEKA software on the new backend server.
 2. Remove the default container from the new backend server.
 
-```
+```bash
 weka local stop default && weka local rm -f default
-
 ```
 
 3. Download the WEKA tools from the GitHub repository.
 
-```
+```bash
 cd ~
 git clone https://github.com/weka/tools/
 cd ~/tools/install/
-
 ```
 
 4. Generate the resource files with the same network devices and options as the existing WEKA cluster servers.
 
-```
+```bash
 ./resources_generator.py --net <net-devices> [options]
-
 ```
 
 <details>
@@ -72,9 +67,8 @@ cd ~/tools/install/
 <summary>Example of high-availability system with two network devices</summary>
 
 {% code overflow="wrap" %}
-```
+```bash
 ./resources_generator.py --net ens4 ens5 --compute-dedicated-cores 3 --drive-dedicated-cores 2 --frontend-dedicated-cores 2
-
 ```
 {% endcode %}
 
@@ -88,9 +82,8 @@ Add to the `--net` option the following for each network device:\
 `<net device name>/<net device IP>/<net mask>/<gateway IP>`
 
 {% code overflow="wrap" %}
-```
+```bash
 ./resources_generator.py --net enp197s0np0/172.25.5.132/16/172.25.5.2 enp129s0np0/172.25.6.132/16/172.25.5.2 --compute-dedicated-cores 12 --drive-dedicated-cores 12 --frontend-dedicated-cores 1
-
 ```
 {% endcode %}
 
@@ -102,21 +95,22 @@ Add to the `--net` option the following for each network device:\
     * `management-ips`: Specify the management IP of the new server joining the cluster. For high availability, provide two or more comma-separated IPs.
     * `join-ips`: Specify the management IP of an existing cluster server.
 
+    If the server has RDMA-capable network adapters, add `--scan-rdma` to each container setup command to automatically discover and configure them without specifying device names explicitly.<br>
+
     Run the following commands:
 
-<pre data-overflow="wrap"><code><strong>weka local setup container --name drives0 --resources-path &#x3C;path>/drives0.json --management-ips=&#x3C;management IPs of the new server> --join-ips=&#x3C;management IP of the existing server>
+<pre class="language-bash" data-overflow="wrap"><code class="lang-bash"><strong>weka local setup container --name drives0 --resources-path &#x3C;path>/drives0.json --management-ips=&#x3C;management IPs of the new server> --join-ips=&#x3C;management IP>
 </strong>
-weka local setup container --name compute0 --resources-path &#x3C;path>/compute0.json --management-ips=&#x3C;management IPs of the new server> --join-ips=&#x3C;management IP of the existing server>
+weka local setup container --name compute0 --resources-path &#x3C;path>/compute0.json --management-ips=&#x3C;management IPs of the new server> --join-ips=&#x3C;management IP>
 
-weka local setup container --name frontend0 --resources-path &#x3C;path>/frontend0.json --management-ips=&#x3C;management IPs of the new server> --join-ips=&#x3C;management IP of the existing server>
-
+weka local setup container --name frontend0 --resources-path &#x3C;path>/frontend0.json --management-ips=&#x3C;management IPs of the new server> --join-ips=&#x3C;management IP>
 </code></pre>
 
 6. Verify that the server is added to the cluster successfully.\
    Run `weka local ps`.
 
-```
-[root@weka8 ~]# weka local ps
+```bash
+weka local ps
 CONTAINER  STATE    DISABLED  UPTIME    MONITORING  PERSISTENT  PORT   PID    STATUS  VERSION    LAST FAILURE
 compute0   Running  False     0:09:08h  True        True        14300  26441  Ready   4.2.0.153
 drives0    Running  False     0:09:41h  True        True        14000  25295  Ready   4.2.0.153
@@ -125,9 +119,8 @@ frontend0  Running  False     0:08:35h  True        True        14200  27911  Re
 
 7. Configure the SSD drives on the drive container.
 
-```
+```bash
 weka cluster drive add <container-id> <device-paths>
-
 ```
 
 **Related topics**

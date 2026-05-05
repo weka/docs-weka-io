@@ -110,6 +110,10 @@ While WEKA backend servers must include DPDK and SR-IOV, WEKA clients in applica
   * SR-IOV: Enabled in BIOS.
 * **UDP clients:**
   * Use a shared networking (single IP) for all purposes.
+* **Servers with mixed adapter roles (IP-only, IP and RDMA, or RDMA-only):**
+  * IP address for management and data plane: Required only on adapters assigned the IP-only or IP and RDMA role.
+  * RDMA-only adapters do not require an IP address in the WEKA data plane.
+  * SR-IOV: Required only on adapters that carry DPDK-based IP traffic.
 
 ## Network **High Availability** <a href="#high-availability" id="high-availability"></a>
 
@@ -151,15 +155,25 @@ When RDMA and GDS are enabled, the WEKA system automatically uses the RDMA data 
 
 By leveraging RDMA and GDS, you can achieve enhanced performance. A UDP client, which doesn't require dedicating a core to the WEKA system, can deliver significantly higher performance. Additionally, a DPDK client can experience an extra performance boost, or you can assign fewer cores to the WEKA system while maintaining the same level of performance in DPDK mode.
 
+**Adapter roles for RDMA-capable interfaces**
+
+When a server includes RDMA-capable network adapters, each adapter can be assigned one of the following roles that define how it handles traffic:
+
+<table><thead><tr><th width="168">Role</th><th>Description</th></tr></thead><tbody><tr><td>IP-only</td><td>Handles management and data-path IP traffic. RDMA is not used on this adapter.</td></tr><tr><td>IP and RDMA</td><td>Handles both IP traffic and RDMA operations.</td></tr><tr><td>RDMA-only</td><td>Dedicated exclusively to RDMA traffic. Does not carry IP traffic.</td></tr></tbody></table>
+
+Assigning dedicated roles allows you to isolate RDMA traffic from IP traffic, improving network utilization and predictability. Adapters without RDMA capability can coexist on the same server when assigned to the IP-only role.
+
+RDMA-capable adapters can be discovered and configured automatically during container setup using the `--scan-rdma` flag, without specifying device names explicitly.
+
 ### Requirements and considerations for RDMA and GDS support
 
 RDMA, including RoCE, is enabled by default. To support RDMA and GDS technologies, the following requirements and considerations must be met:
 
 * **Cluster requirements**
-  * **RDMA networking:** All servers within the cluster must be equipped with RDMA-capable networking interfaces.
+  * **RDMA networking:** Servers that use RDMA networking must include at least one RDMA-capable network adapter. Adapters without RDMA capability can coexist on the same server when explicitly assigned to the IP-only role.
 * **Client requirements**
   * **GDS support:** The InfiniBand or Ethernet interfaces included in the GDS configuration must support RDMA networking.
-  * **RDMA support:** All InfiniBand and Ethernet interfaces used by WEKA must support RDMA networking.
+  * **RDMA support:** All InfiniBand and Ethernet interfaces assigned the IP and RDMA or RDMA-only role must support RDMA networking. Interfaces assigned the IP-only role do not require RDMA capability.
 
 **Fallback to standard I/O**
 
