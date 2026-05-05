@@ -25,7 +25,7 @@ Check the release notes for details about any updates or changes accompanying th
 
 Select your version from the dropdown menu located at the top of the left-hand navigation bar.
 
-<div align="left" data-with-frame="true"><figure><img src=".gitbook/assets/version_selector.jpg" alt="" width="169"><figcaption></figcaption></figure></div>
+<div align="left" data-with-frame="true"><figure><img src=".gitbook/assets/5.1_version_selector.png" alt="" width="169"><figcaption></figcaption></figure></div>
 
 ## Get answers from Ask AI
 
