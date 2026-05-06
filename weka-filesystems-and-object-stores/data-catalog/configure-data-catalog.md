@@ -64,10 +64,12 @@ Configure the infrastructure and filesystems required to activate catalog servic
     	--allow-mix-setting
     </code></pre>
 3. **Initialize the catalog services:**
-   1.  Add the newly created `dataserv` container IDs to the catalog cluster.
+   1.  Add the newly created `dataserv` container IDs to the catalog cluster. You can specify the container IDs or provide the `--all-servers` flag.
 
        ```bash
        weka catalog cluster add .indexfs --containers <ID1>,<ID2>,<ID3>,<ID4>,<ID5>
+       #or
+       weka catalog cluster add .indexfs --all-servers
        ```
    2.  Check if the catalog services are active:
 
@@ -115,7 +117,7 @@ Configure the infrastructure and filesystems required to activate catalog servic
        ```bash
        Indexing enabled: true
        Index filesystem: .indexfs (ID: FSId<4>)
-       Coordinator: gokul-catalog-3 (ID: HostId<23>)
+       Coordinator: test-catalog (ID: HostId<23>)
        IP: 10.121.43.123
        Port: 14511
        Indexing interval: 1d 0:00:00h
@@ -143,7 +145,10 @@ Resolve issues related to container deployment and catalog services operations b
 
 <summary>Container with name already exists</summary>
 
-**Resolution:** If a container exists but is not functional, remove it manually by running `weka local stop <name>` and `weka local rm <name>`. Re-run the script after removal.
+**Resolution:**
+
+1. If a container exists but is not functional, remove it manually by running `weka local stop <name>` and `weka local rm <name>`.
+2. Re-run the script after removal.
 
 </details>
 
@@ -155,7 +160,6 @@ Resolve issues related to container deployment and catalog services operations b
 
 * Network connectivity to the cluster leader process.
 * The accuracy of the `--join-ips` value.
-* Container logs through `weka local ps` and `weka local logs <name>`.
 
 </details>
 
@@ -165,7 +169,26 @@ Resolve issues related to container deployment and catalog services operations b
 
 <summary>Catalog cluster status shows inactive</summary>
 
-**Resolution:** Run `weka catalog cluster status` to check the state. Verify all data service containers are in the UP state by running `weka cluster container`. Restart any failed containers using `weka local stop <name>` and `weka local start <name>`.
+**Resolution:**
+
+1. Check the cluster state:
+
+```bash
+weka catalog cluster status
+```
+
+2. Verify that all data service containers are in the `UP` state:
+
+```bash
+weka cluster container
+```
+
+3. For any failed container, SSH to the server and restart it:
+
+```bash
+weka local stop <name>
+weka local start <name>
+```
 
 </details>
 
@@ -173,7 +196,11 @@ Resolve issues related to container deployment and catalog services operations b
 
 <summary>Indexing does not progress</summary>
 
-**Resolution:** Verify indexing is enabled by checking the `Indexing` column in `weka catalog fs status`. Check the index interval with `weka catalog config show`. Ensure the catalog services have a sufficient number of servers configured and running with active status.
+**Resolution:**
+
+1. Verify indexing is enabled by checking the `Indexing` column in `weka catalog fs status`.&#x20;
+2. Check the index interval with `weka catalog config show`.
+3. Ensure the catalog services have a sufficient number of servers configured and running with active status.
 
 </details>
 
@@ -181,7 +208,10 @@ Resolve issues related to container deployment and catalog services operations b
 
 <summary>Catalog tasks are stuck or slow</summary>
 
-**Resolution:** Run `weka cluster task --show-catalog` to view the progress of each ingestion phase. Identify the phase with the longest elapsed time and investigate resource availability on those specific containers.
+**Resolution:**
+
+1. Run `weka cluster task --show-catalog` to view the progress of each ingestion phase.
+2. Identify the phase with the longest elapsed time and investigate resource availability on those specific containers.
 
 </details>
 
@@ -271,7 +301,7 @@ Displays the catalog configuration settings, including the index filesystem stat
 $ weka catalog config show
 Indexing enabled: true
 Index filesystem: .indexfs (ID: FSId<4>)
-Coordinator: gokul-catalog-3 (ID: HostId<23>)
+Coordinator: test-catalog (ID: HostId<23>)
 IP: 10.121.43.123
 Port: 14511
 Indexing interval: 0:30:00h
@@ -391,7 +421,7 @@ Review and adjust catalog resource allocations every 6–9 months to account for
 
 The following considerations apply to all deployment sizes:
 
-* The catalog assigns data service containers automatically. No manual intervention is required.
+* The catalog supports selective manual assignment of data service containers or automatic assignment of all backend servers. Coordinator and worker servers cannot be assigned manually.
 * Deploy one data service container per server.
 * Disk sizing for the index filesystem depends on the snapshot retention period configured with `--retention-period`.
 
@@ -680,7 +710,7 @@ Query file count and total size grouped by file extension types across the files
 }
 ```
 
-### Get data by file size ranges&#x20;
+### Get data by file size ranges
 
 Query file distribution grouped by size ranges, from 0–1 KB up to 10 TB and above.
 
