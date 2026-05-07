@@ -46,15 +46,11 @@ Before using this command, ensure that a mount point to the relevant filesystem 
 
 A default user quota is automatically applied to any new user who starts consuming space in the filesystem. Use the following command to set it:
 
-bash
-
 ```bash
 weka fs quota set-default --type user --soft <soft-limit> --hard <hard-limit> <path>
 ```
 
 **Example:** Set a default 90 GB soft limit and a 100 GB hard limit for all new users writing to `/mnt/default`:
-
-bash
 
 ```bash
 weka fs quota set-default --type user --soft 90GB --hard 100GB /mnt/default
@@ -160,8 +156,6 @@ weka fs quota list --type user
 ```
 
 To list user quotas for a specific filesystem:
-
-bash
 
 ```bash
 weka fs quota list <filesystem-name> --type user --all
