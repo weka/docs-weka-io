@@ -132,8 +132,8 @@ Configure the infrastructure and filesystems required to activate catalog servic
 
     Supported time units:
 
-    * `--index-interval`: Accepts values in seconds, minutes, hours, days, or weeks (for example: `30s`, `10m`, `2h`, `1d5h`). Valid range: `30m`–`7d`.
-    * `--retention-period`: Accepts values in seconds, minutes, hours, days, or weeks (for example: `90m`, `12h`, `7d`, `1d5h`). Must be at least `--index-interval` and no more than `366d`.
+    * `--index-interval`: Accepts values in minutes, hours, or days (for example: `30m`, `2h`, `1d5h` , `3d8h30m`, `7d`). Valid range: `30m`–`7d`.
+    * `--retention-period`: Accepts values in minutes, hours, or days (for example: `30d, 45d, 90d, 180d or 366d`). Must be at least `--index-interval` and no more than `366d`.
 
 ### Troubleshoot catalog deployment issues
 
