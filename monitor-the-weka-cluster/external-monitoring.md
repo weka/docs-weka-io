@@ -53,8 +53,10 @@ For the WEKAmon host to communicate with the WEKA cluster, a security token is n
 
 Perform the following steps on an **existing host with access to the WEKA CLI**, for example, on a WEKA backend server.
 
-1. **Create a dedicated user:** Create a unique local username (for example, `wekamon`) for WEKAmon. The unique username is displayed in the event logs, making the identification and troubleshooting of issues easier. Then, assign the ClusterAdmin or OrgAdmin role.\
-   Example: `weka user add wekamon clusteradmin`
+1. **Create a dedicated user:** Create a unique local username (for example, `wekamon`) for WEKAmon. The unique username is displayed in the event logs, making identification and troubleshooting easier. Then, assign the appropriate role based on your use case:
+   * **ReadOnly**: Sufficient for standard monitoring use cases, including statistics collection, filesystem allocation and usage reporting, events, and alerts. Use this role if WEKAmon is deployed for read-only observability or billing purposes. \
+     Example: `weka user add wekamon readonly`
+   * **ClusterAdmin or OrgAdmin**: Required only if your WEKAmon deployment performs management actions, such as muting or unmuting alerts or resetting statistics retention. Example: `weka user add wekamon clusteradmin`
 2. **Generate an authentication token for the user:** Run the following command:\
    `weka user login wekamon --path wekamon-authtoken.json`
 3. **Transfer the token:** Copy the `wekamon-authtoken.json` file to the WEKAmon management server. It will later be placed in a specific directory on that host.
