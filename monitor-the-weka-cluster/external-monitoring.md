@@ -83,12 +83,10 @@ Authentication requires a WEKA cluster user and token.
 
 Perform the following steps on an **existing host with access to the WEKA CLI**, for example, on a WEKA backend server.
 
-1. Create a dedicated user with ClusterAdmin or OrgAdmin role. This username is displayed in the event logs, making the identification and troubleshooting of issues easier. For example:
-
-```bash
-weka user add wekamon clusteradmin
-```
-
+1. Create a unique local username (for example, `wekamon`) for WEKAmon. The unique username is displayed in the event logs, making identification and troubleshooting easier. Then, assign the appropriate role based on your use case:
+   * **ReadOnly**: Sufficient for standard monitoring use cases, including statistics collection, filesystem allocation and usage reporting, events, and alerts. Use this role if WEKAmon is deployed for read-only observability or billing purposes. \
+     Example: `weka user add wekamon readonly`
+   * **ClusterAdmin or TenantAdmin**: Required only if your WEKAmon deployment performs management actions, such as muting or unmuting alerts or resetting statistics retention. Example: `weka user add wekamon clusteradmin`
 2. Generate an authentication token for the user:
 
 ```bash
@@ -117,7 +115,7 @@ mkdir /opt/weka-mon/.weka
 mv ~/wekamon-authtoken.json /opt/weka-mon/.weka/auth-token.json
 ```
 
-4. Ensure appropriate ownership and permissions are set:&#x20;
+4. Ensure appropriate ownership and permissions are set:
 
 ```bash
 chown root:root /opt/weka-mon/.weka/auth-token.json
@@ -174,7 +172,7 @@ If the statistic you want to get is in a Category that is commented out, also un
 
 #### 5. Configure quota-export.yml (optional)
 
-This step is required if monitoring filesystem quotas.&#x20;
+This step is required if monitoring filesystem quotas.
 
 1. Edit:
 
@@ -208,7 +206,7 @@ docker-compose up -d
 docker ps
 ```
 
-Expected containers:&#x20;
+Expected containers:
 
 * grafana
 * prometheus
@@ -267,7 +265,7 @@ Ensure:
 **Procedure**
 
 1. **Obtain dashboard files from the WEKAmon package:** `weka-mon/var_lib_grafana/dashboards`.
-2. **Import dashboards into Grafana:**&#x20;
+2. **Import dashboards into Grafana:**
    1. Open Grafana UI.
    2. Navigate to **Dashboards > Import**.
    3. Upload JSON files.
@@ -420,7 +418,7 @@ loki:
 
 ### **Exporter and loki parameters**
 
-<table><thead><tr><th width="218">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>listen_port</code></td><td>Do not change the Prometheus listening port unless the Prometheus configuration is updated.</td></tr><tr><td><code>timeout</code></td><td>Specify the maximum wait time in seconds for an API response. The default value is usually adequate.</td></tr><tr><td><code>backends_only</code></td><td>Run exclusively on WEKA backend servers.</td></tr><tr><td><code>max_procs</code> and <code>max_threads_per_proc</code></td><td><p><strong>Scaling behavior:</strong></p><p>The scaling behavior ensures that if the total number of hosts (servers and clients) exceeds the <code>max_threads_per_proc</code>, the system  initiates additional processes as needed.</p><p><strong>Example:</strong></p><p>In a cluster configuration with 80 WEKA servers and 200 compute nodes, totaling 280 hosts, and using a default <code>max_threads_per_proc</code> of 100, it will operate with 3 processes since 280 / 100 approximately equals 3.</p><p><strong>Recommendation:</strong></p><p>For optimal performance, allocate at least 1 core per process. Therefore, for the given example, ensure there are at least 4 available cores on the hosting server or virtual machine.</p></td></tr><tr><td><p><code>loki:</code></p><p>  <code>host</code></p></td><td>When using the WEKAmon setup, keep the hostname unchanged. If you wish to disable sending events to Loki, leave the field blank.</td></tr><tr><td><p><code>loki:</code></p><p>  <code>port</code></p></td><td>Don't change the port when using the WEKAmon setup.</td></tr></tbody></table>
+<table><thead><tr><th width="218">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>listen_port</code></td><td>Do not change the Prometheus listening port unless the Prometheus configuration is updated.</td></tr><tr><td><code>timeout</code></td><td>Specify the maximum wait time in seconds for an API response. The default value is usually adequate.</td></tr><tr><td><code>backends_only</code></td><td>Run exclusively on WEKA backend servers.</td></tr><tr><td><code>max_procs</code> and <code>max_threads_per_proc</code></td><td><p><strong>Scaling behavior:</strong></p><p>The scaling behavior ensures that if the total number of hosts (servers and clients) exceeds the <code>max_threads_per_proc</code>, the system initiates additional processes as needed.</p><p><strong>Example:</strong></p><p>In a cluster configuration with 80 WEKA servers and 200 compute nodes, totaling 280 hosts, and using a default <code>max_threads_per_proc</code> of 100, it will operate with 3 processes since 280 / 100 approximately equals 3.</p><p><strong>Recommendation:</strong></p><p>For optimal performance, allocate at least 1 core per process. Therefore, for the given example, ensure there are at least 4 available cores on the hosting server or virtual machine.</p></td></tr><tr><td><p><code>loki:</code></p><p><code>host</code></p></td><td>When using the WEKAmon setup, keep the hostname unchanged. If you wish to disable sending events to Loki, leave the field blank.</td></tr><tr><td><p><code>loki:</code></p><p><code>port</code></p></td><td>Don't change the port when using the WEKAmon setup.</td></tr></tbody></table>
 
 {% hint style="info" %}
 In a cluster with 1000 servers, the exporter attempts to allocate one server per thread, ensuring the number of processes does not exceed the `max_procs` parameter. If necessary, it assigns multiple servers to a single thread by doubling or tripling them.
