@@ -17,7 +17,7 @@ The WEKA system offers multiple layers where you can limit capacity usage:
 * **Tenant level**: Monitor tenant usage, including SSD and total capacity, and restrict usage with quotas per tenant. Use this quota for chargebacks based on consumed or allocated SSD or object store capacity. See [multi-tenancy-cluster-level-administration.md](../../operation-guide/weka-native-multi-tenancy-management/multi-tenancy-cluster-level-administration.md "mention").
 * **Filesystem level**: Allocate a unique filesystem for each department or project.
 * **Directory level**: Assign a unique quota for each project directory (beneficial when users are involved in multiple projects) or for each user’s home directory.
-* **User and group level:** Assign a quota per user (UID) or per group (GID) to limit total capacity consumed across the entire filesystem, regardless of which directories a user writes to. User and group quotas complement directory quotas: when both apply to a write operation, the most restrictive limit is enforced.
+* **User and group level:** Assign a quota per user (UID) or per group (GID) to limit the total capacity consumed across the entire filesystem, regardless of which directories the user writes to. User and group quotas complement directory quotas: when both apply to a write operation, the most restrictive limit takes effect. User and group quota management is available through the CLI only.
 
 A tenant administrator can set a quota on a directory. This action initiates calculating the current directory usage in a background task. Once this calculation is complete, the quota is considered.
 
@@ -77,10 +77,12 @@ When managing quotas, adhere to the following guidelines and requirements.
 * Restoring a filesystem from a snapshot reverts quotas to their configuration at the time of the snapshot.
 * Creating a new filesystem from a snap-to-object does not preserve the original quotas.
 
-## Integration with the `df` utility
+## Integration with the `df` utility for directory quotas
 
-By default, when a hard quota is set on a directory, the `df` utility interprets it as the directory's total capacity, displaying the usage percentage (`use%`) relative to the quota. This helps users understand their usage and proximity to the quota limit.
+By default, when a hard quota is set on a directory, the `df` utility interprets it as the directory's total capacity and displays the usage percentage (`use%`) relative to that quota. This helps users understand their storage usage and proximity to the quota limit.
+
+This integration applies to directory quotas only. It is not available for user or group level quotas.
 
 {% hint style="info" %}
-The integrated behavior of the `df` utility with quotas is a global setting in the WEKA system. To modify this global behavior to instead use soft quotas or ignore quotas, contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md#contact-customer-success-team).
+The `df` utility integration with quotas is a global setting in the WEKA system. To change this global behavior to use soft quotas or to ignore quotas instead, contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md#contact-customer-success-team).
 {% endhint %}

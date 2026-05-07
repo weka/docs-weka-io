@@ -71,7 +71,7 @@ Configure the infrastructure and filesystems required to activate catalog servic
        #or
        weka catalog cluster add .indexfs --all-servers
        ```
-   2.  Check if the catalog services are active:
+   2.  Wait for 30 seconds and then check if the catalog services are active:
 
        ```bash
        weka catalog cluster status
@@ -132,8 +132,8 @@ Configure the infrastructure and filesystems required to activate catalog servic
 
     Supported time units:
 
-    * `--index-interval`: s (seconds), m (minutes), h (hours) (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited).
-    * `--retention-period`: m (minutes), h (hours), d (days) (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited).
+    * `--index-interval`: Accepts values in seconds, minutes, hours, days, or weeks (for example: `30s`, `10m`, `2h`, `1d5h`). Valid range: `30m`–`7d`.
+    * `--retention-period`: Accepts values in seconds, minutes, hours, days, or weeks (for example: `90m`, `12h`, `7d`, `1d5h`). Must be at least `--index-interval` and no more than `366d`.
 
 ### Troubleshoot catalog deployment issues
 
