@@ -255,11 +255,11 @@ On Kubernetes v1.32 and later, enable `strict-cpu-reservation` to extend this pr
 
 ### Identify HyperThreading sibling cores
 
-Each physical core has two logical CPUs on hyperthreaded systems. Include both logical CPUs from the same physical core in `reservedSystemCPUs` to ensure isolation. Reserving only one logical CPU leaves the physical core shared and defeats the isolation.
+On hyperthreaded systems, each physical core exposes two logical CPUs. Include both logical\
+CPUs from the same physical core in `reservedSystemCPUs` to ensure full isolation. Reserving\
+only one logical CPU of a physical core leaves that core shared and defeats the isolation.
 
-Do not treat CPUs on different sockets with the same core index as siblings. Siblings are the logical CPUs listed for the same physical core on the same server topology.
-
-Run the following commands to identify the real sibling pairs on the server:
+Run the following commands to identify the sibling pairs on the node:
 
 ```bash
 lscpu -e=cpu,core,socket,node
@@ -267,28 +267,49 @@ lscpu -e=cpu,core,socket,node
 cat /sys/devices/system/cpu/cpu*/topology/thread_siblings_list
 ```
 
-Example output for a 48-logical-CPU, 2-socket server:
+Example output for a 12-logical-CPU, single-socket server with HyperThreading enabled:
 
-```bash
+```
 CPU  CORE  SOCKET  NODE
 0    0     0       0
 1    1     0       0
 2    2     0       0
-...
-24   0     1       0
-25   1     1       0
-26   2     1       0
-...
+3    3     0       0
+4    4     0       0
+5    5     0       0
+6    0     0       0
+7    1     0       0
+8    2     0       0
+9    3     0       0
+10   4     0       0
+11   5     0       0
 ```
 
-In this example, logical CPUs `0` and `24` have the same core index on different sockets, but they are not HyperThreading siblings. If `thread_siblings_list` shows pairs such as `1,25` and `2,26`, reserving those physical cores for the WEKA client means reserving `1,2,25,26`.
+In this example, there are 6 physical cores and 12 logical CPUs. CPUs that share the same\
+`CORE` and `SOCKET` values are HyperThreading siblings:
+
+<table><thead><tr><th width="179">Physical core</th><th width="225">Logical CPU (thread 0)</th><th>Logical CPU (thread 1, HT sibling)</th></tr></thead><tbody><tr><td>0</td><td>0</td><td>6</td></tr><tr><td>1</td><td>1</td><td>7</td></tr><tr><td>2</td><td>2</td><td>8</td></tr><tr><td>3</td><td>3</td><td>9</td></tr><tr><td>4</td><td>4</td><td>10</td></tr><tr><td>5</td><td>5</td><td>11</td></tr></tbody></table>
+
+The `thread_siblings_list` confirms these pairs directly:
+
+```
+/sys/devices/system/cpu/cpu0/topology/thread_siblings_list  → 0,6
+/sys/devices/system/cpu/cpu1/topology/thread_siblings_list  → 1,7
+... 
+```
+
+{% hint style="info" %}
+Do not treat CPUs on different sockets with the same core index as siblings.\
+Siblings share the same physical core on the same socket. Always verify pairs using\
+`thread_siblings_list` rather than relying on the `CORE` column alone.
+{% endhint %}
 
 ### Configure the Kubelet
 
 Apply the configuration to each worker node separately.
 
 1. Edit the Kubelet configuration file to add the settings shown in the following example.
-2. Set `reservedSystemCPUs` to include at least one physical core (both logical CPUs) for the OS, plus the cores assigned to the WEKA client and their HyperThreading siblings.
+2. Set `reservedSystemCPUs` to include at least one physical core for the OS. If HyperThreading is enabled, include both logical CPUs for that core.
 3. Save the file and restart the Kubelet:
 
 ```bash
@@ -297,21 +318,23 @@ systemctl restart kubelet
 
 #### Example: Kubelet configuration for static CPU allocation with strict reservation
 
-In this example, one physical core is reserved for the OS and four physical cores are reserved for the WEKA client. The `reservedSystemCPUs` list includes both logical CPUs for each reserved physical core. `strict-cpu-reservation` prevents all pod QoS classes from scheduling onto reserved cores.
+In this example, physical core 0 is reserved for the OS. `reservedSystemCPUs` includes both\
+logical CPUs of that core (CPU 0 and its HT sibling, CPU 6). `strict-cpu-reservation`\
+prevents all pod QoS classes from scheduling onto reserved cores.<br>
 
 ```yaml
 apiVersion: kubelet.config.k8s.io/v1beta1
 kind: KubeletConfiguration
 cpuManagerPolicy: "static"
-reservedSystemCPUs: "0,1-4,24-28"
+reservedSystemCPUs: "0,6"
 featureGates:
   CPUManagerPolicyOptions: "true"
-  CPUManagerPolicyAlphaOptions: "true"   # requires Kubernetes v1.32 or later
+  CPUManagerPolicyAlphaOptions: "true"  
 cpuManagerPolicyOptions:
   strict-cpu-reservation: "true"
 ```
 
-Adjust the `reservedSystemCPUs` list to match the actual sibling pairs reported by `lscpu -e` and `thread_siblings_list`. Reserve additional OS cores on larger or busier containers.
+Adjust `reservedSystemCPUs` to match the actual sibling pairs reported by `thread_siblings_list` on your node. Reserve additional physical cores, including both logical CPUs for each core, when OS or platform workloads require more capacity.
 
 {% hint style="info" %}
 `CPUManagerPolicyAlphaOptions` and `strict-cpu-reservation` require Kubernetes v1.32 or later. Omit the `featureGates` and `cpuManagerPolicyOptions` blocks on earlier versions. Without strict reservation, Burstable and Best Effort pods use reserved cores under load, which reduces WEKA IO throughput.
