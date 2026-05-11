@@ -1107,6 +1107,23 @@ Upgrading the WEKA Operator involves updating the Operator and managing `wekaCli
    * **Create a new builder**: For each WEKA version, create a new builder instance with an updated `wekaContainer` meta name that corresponds to the new version. This ensures that clients and resources linked to specific kernel versions can continue to operate without conflicts.
    * **Cleanup outdated builders**: Once the upgrade is validated and previous versions are no longer needed, you can delete outdated builder instances associated with those older versions. This cleanup step optimizes resources but allows you to maintain multiple builder instances if supporting different kernel versions is required.
 
+### Upgrade the ssdproxy version
+
+Upgrade the ssdproxy image to apply a fix independently of the WekaCluster, or to align ssdproxy with the cluster version after a cluster upgrade.
+
+ssdproxy operates independently of the WekaCluster version. Each Kubernetes node can run its own ssdproxy version, and pods at different versions can coexist. Because ssdproxy has no persistent local data, restarting on a new image is safe as long as the previous proxy stopped cleanly.
+
+**How the operator selects the ssdproxy image**
+
+When the operator creates an ssdproxy `WekaContainer`, it selects the image in the following order:
+
+1. The `driveSharing.ssdProxy.imageOverride` Helm value, if set (requires Operator 1.12.0 or later).
+2. The WekaCluster `spec.image`.
+
+The override applies only to new ssdproxy `WekaContainer` resources. To apply the new image to existing resources, recreate them.
+
+ssdproxy `WekaContainer` resources are named `weka-drives-proxy-<node-name>` in the `weka-operator-system` namespace.
+
 ***
 
 ## Delete a WekaCluster
