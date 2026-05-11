@@ -54,16 +54,35 @@ Configure the infrastructure and filesystems required to activate catalog servic
     ```bash
     weka fs add .indexfs default 500GB
     ```
-2.  **Deploy data service containers:** Create one container on each backend server. You can use the same name on all servers or increment the name across servers (for example, `dataserv0`, `dataserv1`, and so on).
+2.  **Deploy data service containers:**&#x20;
 
-    <pre class="language-bash" data-overflow="wrap"><code class="lang-bash">sudo weka local setup container \\
-    	--name dataservN \\
-    	--base-port 14400 \\
-    	--join-ips &#x3C;CLUSTER_LEADER_IP> \\
-    	--only-dataserv-cores \\
-    	--allow-mix-setting
+    Run the following command on each server, whether dedicated backend servers or existing backend servers:
+
+    ```bash
+    sudo weka local setup container \
+      --name dataservN \
+      --base-port 14400 \
+      --join-ips <CLUSTER_LEADER_IP> \
+      --only-dataserv-cores \
+      --allow-mix-setting
+    ```
+
+    You can use the same name on all servers or increment it across servers (for example, `dataserv0`, `dataserv1`, and so on).<br>
+
+    **Dedicated backend servers only:** To avoid impact on client workload I/Os, also run the following command on each dedicated backend server to add a frontend container (existing backend servers already contain frontend containers):
+
+    <pre class="language-bash" data-overflow="wrap"><code class="lang-bash">sudo weka local setup container \
+       --name frontend0 \
+       --cores 1 \
+       --frontend-dedicated-cores 1 \
+       --join-ips &#x3C;CLUSTER_LEADER_IP> \
+       --net &#x3C;INTERFACE>
     </code></pre>
-3. **Initialize the catalog services:**
+3.  Set **global configuration of data service** container by running the following command on any of the cluster servers.
+
+    <pre class="language-bash" data-overflow="wrap"><code class="lang-bash">weka dataservice global-config set --config-fs .config_fs
+    </code></pre>
+4. **Initialize the catalog services:**
    1.  Add the newly created `dataserv` container IDs to the catalog cluster. You can specify the container IDs or provide the `--all-servers` flag.
 
        ```bash
@@ -87,7 +106,7 @@ Configure the infrastructure and filesystems required to activate catalog servic
        catalog-worker-5     21            sphere-5  dataserv0  10.121.10.21   active  WORKER
        catalog-worker-6     24            sphere-6  dataserv0  10.121.97.143  active  WORKER
        ```
-4. **Enable indexing:**
+5. **Enable indexing:**
    1.  Enable the catalog feature on your specified filesystem. Replace `fs-name` with the name of the filesystem you want to index.
 
        ```bash
@@ -124,7 +143,7 @@ Configure the infrastructure and filesystems required to activate catalog servic
        Retention period: 30d 0:00:00h
        Max ingest tasks: 1
        ```
-5.  **Configure index interval and snapshot retention period:** Adjust these settings to match your workload needs. They dictate how often data is indexed and the duration for which point-in-time snapshots are kept. By default, the `--index-interval` is set to 1 day, and the `--retention-period` is 30 days. Use the following command to update these configurations:
+6.  **Configure index interval and snapshot retention period:** Adjust these settings to match your workload needs. They dictate how often data is indexed and the duration for which point-in-time snapshots are kept. By default, the `--index-interval` is set to 1 day, and the `--retention-period` is 30 days. Use the following command to update these configurations:
 
     ```shell
     weka catalog config update --index-interval <time> --retention-period <time>
@@ -134,6 +153,10 @@ Configure the infrastructure and filesystems required to activate catalog servic
 
     * `--index-interval`: Accepts values in minutes, hours, or days (for example: `30m`, `2h`, `1d5h` , `3d8h30m`, `7d`). Valid range: `30m`–`7d`.
     * `--retention-period`: Accepts values in minutes, hours, or days (for example: `30d, 45d, 90d, 180d or 366d`). Must be at least `--index-interval` and no more than `366d`.
+
+{% hint style="info" %}
+The duration of the initial Data Catalog snapshot creation is proportional to the total number of objects (files and directories) in the filesystem. For approximate baseline and differential snapshot creation times, refer to **Sizing for baseline indexing time** below. The Data Catalog UI remains unpopulated until the first snapshot has been successfully created.
+{% endhint %}
 
 ### Troubleshoot catalog deployment issues
 
