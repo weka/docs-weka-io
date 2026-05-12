@@ -20,7 +20,7 @@ The system processes lifecycle rules using a scalable, distributed architecture.
 
 ### Key features and considerations
 
-* **Customizable object expiration**: Define rules to automatically expire objects based on prefixes and tags, providing precise control over data retention.
+* **Customizable object expiration**: Define rules to automatically expire objects based on age, prefixes and tags, providing precise control over data retention. ILM rules are processed and enforced by the Dataservice container.
 * **Scalable distributed processing**: Lifecycle tasks run as distributed background jobs across Data Service containers, enabling efficient processing of large object volumes.
 * **Rule capacity**: Apply up to 10 rules per bucket and 5,000 rules cluster-wide to address diverse data lifecycle requirements.
 * **Priority handling**: When multiple rules apply to the same object, the rule with the earliest expiration takes precedence. For example, if rule A applies to objects with a certain prefix and expires after 200 days, while rule B applies to a subset of the same prefix and expires after 30 days, then rule B takes precedence. As a result, rule A is only partially applicable.
