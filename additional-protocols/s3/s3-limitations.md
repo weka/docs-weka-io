@@ -29,9 +29,6 @@ Ensure S3 clients support HTTP 1.1 or higher. WEKA S3 requires this protocol ver
 WEKA S3 supports non-posix compliant object keys (for example, [`https://company.com/id`](https://company.com/id)), expanding compatibility with AWS S3–native applications.
 
 * **Standard keys:** Maintain full multi-protocol interoperability; keys map directly to standard posix filenames in the WEKA filesystem..
-
-
-
 * **Non-posix compliant keys:** Keys cannot be represented with identical names in the filesystem view. These objects also remain fully accessible as POSIX files and other protocols, however under alternative naming convention that represents and is derived from the original S3 keys.
 
 This allows organizations to integrate applications using non-posix compliant keys as identifiers, without requiring changes to naming conventions, while still preserving cross-protocol access.
@@ -96,14 +93,13 @@ The following standard S3 APIs are supported for bucket and object management:
 
 ## Object naming limitations
 
+WEKA follows AWS S3 object naming conventions with the following limitations.
+
 * **Key length:** Object key names can be up to 1024 characters long.
-* **Prefixes:** An object prefix cannot begin with a forward slash (`/`).
-* **Directories:** A forward slash (`/`) added after the first character is interpreted as a directory.
-* **Segment length:** Directory segments are limited to 255 characters.
-* **Compatibility:** Ensure the object key name is compatible with protocols other than S3 by avoiding special characters that are unsupported in those protocols.
+* **Nested objects:** An object and a slash-extended variant of its name cannot coexist. For example, `a` and `a/b` cannot exist in the same bucket at the same time.
 
 {% hint style="info" %}
-- For naming convention details, see [Creating object key names](https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-keys.html) (AWS portal).
+- For AWS naming convention details, see [Creating object key names](https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-keys.html) (AWS portal).
 - Ensure the object key name is also compatible with protocols other than S3. Specifically, avoid special characters that might be unsupported in the other protocols.
 {% endhint %}
 
