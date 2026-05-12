@@ -77,7 +77,7 @@ If you forward data from the Local WEKA Home to the Cloud WEKA Home, ensure the 
 
 ### 3. Download the Local WEKA Home bundle
 
-Download the latest [Local WEKA Home bundle](https://get.weka.io/ui/lwh/download) (v3.0 or above) to the dedicated server or VM.
+Download the latest [Local WEKA Home](https://get.weka.io/ui/lwh) (v3.0 or above) to the dedicated server or VM.
 
 ### 4. Install and configure Local WEKA Home
 
