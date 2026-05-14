@@ -233,6 +233,7 @@
   * [Enforce security and compliance](monitor-the-weka-cluster/the-wekaio-support-cloud/enforce-security-and-compliance.md)
   * [Optimize support and data management](monitor-the-weka-cluster/the-wekaio-support-cloud/optimize-support-and-data-management.md)
   * [Export cluster metrics to Prometheus](monitor-the-weka-cluster/the-wekaio-support-cloud/export-cluster-metrics-to-prometheus.md)
+  * [NeuralMesh Observe overview](monitor-the-weka-cluster/the-wekaio-support-cloud/neuralmesh-observe-overview.md)
 * [Set up WEKAmon for external monitoring](monitor-the-weka-cluster/external-monitoring.md)
 * [Monitor WEKA clusters in Kubernetes with Prometheus and Grafana](monitor-the-weka-cluster/monitor-weka-clusters-in-kubernetes-with-prometheus-and-grafana.md)
 

@@ -24,6 +24,8 @@ WEKA Home provides the following main features:
 
 In the WEKA Home portal, the Customer Success Team can view the cluster’s statistics, state of health, consolidated view of events, and diagnostics for various triaging activities. The team can offer a comprehensive 24x7x365 support view of all customer systems sending telemetry data.
 
+WEKA Home also powers NeuralMesh Observe, the customer-facing observability platform that presents the same telemetry data through multi-cluster dashboards, performance charts, and intelligent alerting. For details, see [neuralmesh-observe-overview.md](neuralmesh-observe-overview.md "mention").
+
 <div data-with-frame="true"><figure><img src="../../.gitbook/assets/wekahome_overview.png" alt=""><figcaption><p>WEKA clusters and clients connected to WEKA Home</p></figcaption></figure></div>
 
 ## Cloud WEKA Home data collection
@@ -64,6 +66,8 @@ Uploading information to WEKA Home from the WEKA cluster backend servers and cli
 2. To upload diagnostics collected by the cluster, run the `weka diags upload` command.
 
 **Related topics**
+
+[neuralmesh-observe-overview.md](neuralmesh-observe-overview.md "mention")
 
 [list-of-alerts-and-corrective-actions.md](../../operation-guide/alerts/list-of-alerts-and-corrective-actions.md "mention")
 
