@@ -64,7 +64,7 @@ NeuralMesh Axon requires specific infrastructure configurations for both Linux s
   * Jumbo frames enabled: 9k MTU for Ethernet, 4k MTU for Infiniband.
   * Source Based Routing policies applied to each dataplane network device.
 * **Hardware requirements:** Deploy servers that meet these specifications:
-  * **CPU architecture**: AMD (single socket required) or Intel (dual-socket supported).
+  * **CPU architecture**: AMD (single socket required), Intel (dual-socket supported), or NVIDIA Grace (ARM).
   * **CPU allocation**: Contention-free CPU allocation for each NUMA domain.
   * **Memory**: Sufficient RAM to allocate [HugeTLB pages](#user-content-fn-1)[^1] at runtime. For details, see [#memory-resource-planning](../planning-and-installation/bare-metal/planning-a-weka-system-installation.md#memory-resource-planning "mention").
   * **Storage**: Adequate NVME capacity for the selected protection scheme.
@@ -90,7 +90,7 @@ Kubernetes deployments use NeuralMesh Axon Core releases that are one major vers
   * Latest date-versioned release: OFED 24.04-0.7.0.0.
   * Latest semantic-versioned release: OFED 5.9-0.5.6.0.
 
-For more details, see [#ethernet-drivers-and-configurations](../planning-and-installation/prerequisites-and-compatibility.md#ethernet-drivers-and-configurations "mention") \
+For more details, see [#ethernet-drivers-and-configurations](../planning-and-installation/prerequisites-and-compatibility.md#ethernet-drivers-and-configurations "mention")\
 and [#networking-infiniband](../planning-and-installation/prerequisites-and-compatibility.md#networking-infiniband "mention").
 
 **ENA drivers**
@@ -111,14 +111,14 @@ Configure SELinux support for NeuralMesh Axon clusters hosted in a Kubernetes ru
 
 1. **Install the SELinux policy on the Kubernetes nodes:** Apply the policy package to each node participating in the NeuralMesh Axon system using the files from the public GitHub repository.
    1. Clone the repository:\
-      &#x20;`git clone https://github.com/weka/csi-wekafs.git`&#x20;
+      `git clone https://github.com/weka/csi-wekafs.git`
    2. Copy the SELinux files to the relevant nodes (example using `pdcp`):\
-      &#x20;`pdcp -w neuralmesh-axon-[001-200] -r csi-wekafs/selinux ~/`&#x20;
-   3. Install the SELinux module (example using `pdsh`): \
-      `pdsh -w neuralmesh-axon-[001-200] "sudo semodule -i ~/selinux/csi-wekafs.pp"` \
-      This command defines a new SELinux boolean labeled `container_use_wekafs`. \
+      `pdcp -w neuralmesh-axon-[001-200] -r csi-wekafs/selinux ~/`
+   3. Install the SELinux module (example using `pdsh`):\
+      `pdsh -w neuralmesh-axon-[001-200] "sudo semodule -i ~/selinux/csi-wekafs.pp"`\
+      This command defines a new SELinux boolean labeled `container_use_wekafs`.\
       If the `container_use_wekafs` boolean does not appear in the list, compile the policy package that matches the target Linux server. See [#install-a-custom-selink-p](../appendices/weka-csi-plugin/add-selinux-support.md#install-a-custom-selink-p "mention").
-   4. Enable the SELinux boolean: \
+   4. Enable the SELinux boolean:\
       `pdsh -w neuralmesh-axon-[001-200] "sudo setsebool container_use_wekafs=on"`
 2.  **Update the WEKA Operator definition:** Update the definition file with the SELinux support flag set to either `mixed` or `enforced`.
 
