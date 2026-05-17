@@ -20,8 +20,8 @@ Administrators control the full tenant lifecycle, creation, configuration, and r
 
 A network space defines a cluster-level network boundary, including a VLAN ID and an IP range. After the administrator creates the network space, it can be assigned to a specific tenant to provide isolated datapath endpoints.
 
-{% hint style="warning" %}
-The system uses an internal proxy within the APIPA[^1] IP range (**169.254.0.0/16**). Avoid using this IP range when configuring the network space. To use the internal IP range, contact the Customer Success team to override it.
+{% hint style="info" %}
+The system uses an internal proxy with a default NAT subnet of **198.18.0.0/16**. This range reduces the likelihood of IP address conflicts in customer environments. Each network namespace receives an IP address allocated from this range. To use a different internal IP range, contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md) to override the default.
 {% endhint %}
 
 #### **GUI procedure**
@@ -32,7 +32,7 @@ The system uses an internal proxy within the APIPA[^1] IP range (**169.254.0.0/1
     <div data-with-frame="true"><figure><img src="../../.gitbook/assets/mt_create_net_space_button.png" alt=""><figcaption></figcaption></figure></div>
 3. Provide network space details:
    * **Network Space Name:** Enter a unique name for the network space (for example, `Eng_net`).
-   * **VLAN ID:** Enter the VLAN ID assigned to this network boundary (for example,  `100`).
+   * **VLAN ID:** Enter the VLAN ID assigned to this network boundary (for example, `100`).
 4. Choose one of the following methods to define the network range.
 
 {% tabs %}
@@ -85,9 +85,7 @@ Cluster administrators can update the network boundaries of an existing network 
     * Modify the IP Range using either CIDR Notation or IP Range as described in the creation procedure.
     * Update the Gateway or Netmask (Bits) if the subnet routing or size has changed.
 
-
-
-    <div data-with-frame="true"><figure><img src="../../.gitbook/assets/mt_edit_net_space.png" alt=""><figcaption><p>Edit network </p></figcaption></figure></div>
+    <div data-with-frame="true"><figure><img src="../../.gitbook/assets/mt_edit_net_space.png" alt=""><figcaption><p>Edit network</p></figcaption></figure></div>
 5. Click **Save**.
 
 #### CLI alternative
@@ -126,7 +124,7 @@ weka cluster network-space remove <name>
 
 **Parameters**
 
-<table><thead><tr><th width="199">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>name</code></td><td> Network space name.</td></tr></tbody></table>
+<table><thead><tr><th width="199">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>name</code></td><td>Network space name.</td></tr></tbody></table>
 
 ## Create a tenant environment
 
@@ -193,8 +191,6 @@ To modify an existing tenant's resource limits or security configurations, use t
     * Enforce Filesystem Authentication
     * Enforce Network Space Access
 
-
-
     <div data-with-frame="true"><figure><img src="../../.gitbook/assets/mt_edit_tenant.png" alt=""><figcaption><p>Edit tenant</p></figcaption></figure></div>
 5. Click **Save**.
 
@@ -242,7 +238,7 @@ weka tenant update <tenant> [--enforce-fs-authentication enforce-fs-authenticati
 
 ## Remove a tenant
 
-Deleting a tenant is a permanent action that removes the tenant and its associated configuration. Before proceeding, ensure that the tenant no longer contains active filesystems or S3 buckets.  &#x20;
+Deleting a tenant is a permanent action that removes the tenant and its associated configuration. Before proceeding, ensure that the tenant no longer contains active filesystems or S3 buckets.
 
 #### **GUI procedure**
 
@@ -300,7 +296,3 @@ weka tenant set-qos <tenant> [--max-throughput max-throughput] [--max-iops max-i
 **Related topic**
 
 [Broken link](/broken/pages/-LBJvd2jB8hUJhPLHHmk#quality-of-service-qos "mention")
-
-[^1]: APIPA (Automatic Private IP Addressing) uses the range **169.254.0.0/16** (169.254.0.0 – 169.254.255.255).
-
-    It is automatically assigned by an operating system when a device cannot obtain an IP address from a DHCP server, allowing limited local network communication without manual configuration.
