@@ -806,27 +806,9 @@ spec:
 ```
 {% endcode %}
 
-2. **Initiate discovery:** Use a WekaManualOperation to detect signed drives across the cluster. Replace placeholders with your recorded version and secret key.
 
-{% code title="discover-drives.yaml" %}
-```yaml
-apiVersion: weka.weka.io/v1alpha1
-kind: WekaManualOperation
-metadata:
-  name: discover-drives
-  namespace: weka-operator-system
-spec:
-  action: "discover-drives"
-  image: quay.io/weka.io/weka-in-container:5.1.0
-  imagePullSecret: "quay-io-robot-secret"
-  payload:
-    discoverDrivesPayload:
-      nodeSelector:
-        weka.io/supports-backends: "true"
-```
-{% endcode %}
 
-3. **Verify discovery:** Confirm that the `weka.io/drives` extended resource is present on the target nodes.
+2. **Verify discovery:** Confirm that the `weka.io/drives` extended resource is present on the target nodes.
 
 **Reference: Drive selection types**
 
