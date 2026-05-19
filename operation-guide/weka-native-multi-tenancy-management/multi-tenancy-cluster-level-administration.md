@@ -33,24 +33,12 @@ The system uses an internal proxy with a default NAT subnet of **198.18.0.0/16**
 3. Provide network space details:
    * **Network Space Name:** Enter a unique name for the network space (for example, `Eng_net`).
    * **VLAN ID:** Enter the VLAN ID assigned to this network boundary (for example, `100`).
-4. Choose one of the following methods to define the network range.
+4. In the **IP Range** section, provide the following:
+   1. **IP Range:** Enter the starting and ending IP addresses for the network space. If the UI shows a CIDR notation option, do not use it.
+   2. **Netmask (Bits):** Provide the subnet mask bits (for example, `24`). Default: 16.
+   3. **Gateway:** Provide an optional default gateway IP address to specify the routing exit point for traffic leaving the local network space. The gateway must be visible from all IPs in range.
 
-{% tabs %}
-{% tab title="CIDR Notation" %}
-* Specify a network address followed by an integer (for example, `/24`) to specify the CIDR prefix length, which defines the subnet size for the given IP address range.
-* Provide an optional default gateway IP address to specify the routing exit point for traffic leaving the local network space. The gateway must be visible from all IPs in range.
-
-<div data-with-frame="true"><figure><img src="../../.gitbook/assets/mt_create_net_space_CIDR.png" alt=""><figcaption><p>Create network space by CIDR notation</p></figcaption></figure></div>
-{% endtab %}
-
-{% tab title="IP Range" %}
-* Specify the starting and ending IP addresses to set the network boundaries.
-* Provide the subnet mask by entering the number of bits (for example, `24`). This number represents the CIDR prefix length, defining the subnet size for the specified IP address range.
-* Provide an optional default gateway IP address to specify the routing exit point for traffic leaving the local network space. The gateway must be visible from all IPs in range.
-
-<div data-with-frame="true"><figure><img src="../../.gitbook/assets/mt_create_net_space_IP.png" alt=""><figcaption><p>Create network space by IP range</p></figcaption></figure></div>
-{% endtab %}
-{% endtabs %}
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/mt_network_space.png" alt=""><figcaption><p>Create network space by IP range</p></figcaption></figure></div>
 
 5. Select **Save**.
 
@@ -79,13 +67,10 @@ Cluster administrators can update the network boundaries of an existing network 
 3.  Locate the target network space, select the **Actions** menu (three vertical dots), and select **Edit**.<br>
 
     <div data-with-frame="true"><figure><img src="../../.gitbook/assets/mt_edit_net_space_button.png" alt=""><figcaption></figcaption></figure></div>
-4.  Modify the network space properties as needed. For detailed information on these fields, refer to the network space creation procedure:
-
-    * Update the VLAN ID if required.
-    * Modify the IP Range using either CIDR Notation or IP Range as described in the creation procedure.
-    * Update the Gateway or Netmask (Bits) if the subnet routing or size has changed.
-
-    <div data-with-frame="true"><figure><img src="../../.gitbook/assets/mt_edit_net_space.png" alt=""><figcaption><p>Edit network</p></figcaption></figure></div>
+4. Modify the network space properties as needed. For detailed information on these fields, refer to the network space creation procedure:
+   * Update the VLAN ID if required.
+   * Modify the IP Range as described in the creation procedure.
+   * Update the Gateway or Netmask (Bits) if the subnet routing or size has changed.
 5. Click **Save**.
 
 #### CLI alternative
