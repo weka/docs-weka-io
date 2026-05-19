@@ -15,6 +15,10 @@ SMB (Server Message Block) is a network file-sharing protocol that facilitates c
 
 WEKA SMB-W is an implementation of an SMB protocol enabling Windows, Linux CIFS, and macOS clients to access WEKA storage services with support for multi-protocol concurrent file access through SMB stack.
 
+{% hint style="info" %}
+To deploy SMB-W on Kubernetes with the WEKA Operator, see [Set up protocols on K8s with WEKA Operator](../../kubernetes/weka-operator-deployments/set-up-protocols-on-k8s-with-weka-operator.md).
+{% endhint %}
+
 ## Key features of SMB-W
 
 The SMB-W stack is designed for scalability, resilience, and distributed performance.

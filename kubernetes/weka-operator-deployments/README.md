@@ -20,16 +20,16 @@ By integrating WEKA's high-performance storage into Kubernetes, the Operator sup
 The WEKA Operator automates tasks, enables periodic maintenance, and ensures robust cluster management. This setup provides resilience and scalability across the cluster. With its persistent, high-performance data layer, the WEKA Operator enables efficient management of large datasets, ensuring scalability and efficiency.
 
 {% hint style="info" %}
-**Target audience:** This guide is intended exclusively for experienced Kubernetes cluster administrators. It provides detailed procedures for deploying the WEKA Operator on a Kubernetes cluster that meets the specified requirements in the [#id-2.-prepare-kubernetes-environment](./#id-2.-prepare-kubernetes-environment "mention") section.
+**Target audience:** This guide is intended exclusively for experienced Kubernetes cluster administrators. It provides detailed procedures for deploying the WEKA Operator on a Kubernetes cluster.
 {% endhint %}
 
-### Versions compatibility
+## Versions compatibility
 
 The following matrix outlines the minimum version requirements for specific features when managed through the WEKA Kubernetes Operator. To ensure stability, always verify that your WEKA cluster and Operator versions are aligned.
 
-<table><thead><tr><th width="150">Feature</th><th width="201">Operator (min. version)</th><th width="230">WEKA Cluster (min. version)</th><th>Status</th></tr></thead><tbody><tr><td>S3</td><td>v1.7</td><td>4.4</td><td>Supported</td></tr><tr><td>NFS</td><td>v1.10</td><td>5.1.0</td><td>Supported</td></tr><tr><td>Audit</td><td>v1.10</td><td>5.1.0</td><td>Supported</td></tr><tr><td>SMB-W</td><td>—</td><td>—</td><td>Not supported</td></tr><tr><td>Data Services</td><td>—</td><td>—</td><td>Not supported</td></tr></tbody></table>
+<table><thead><tr><th width="150">Feature</th><th width="201">Operator (min. version)</th><th width="230">WEKA Cluster (min. version)</th><th>Status</th></tr></thead><tbody><tr><td>S3</td><td>v1.7</td><td>4.4</td><td>Supported</td></tr><tr><td>NFS</td><td>v1.10</td><td>5.1.0</td><td>Supported</td></tr><tr><td>Audit</td><td>v1.10</td><td>5.1.0</td><td>Supported</td></tr><tr><td>SMB-W</td><td>v1.11</td><td>5.1.20</td><td>Supported</td></tr><tr><td>Data Services</td><td>—</td><td>—</td><td>Not supported</td></tr></tbody></table>
 
-### WEKA Operator backend deployment overview
+## WEKA Operator backend deployment overview
 
 The WEKA Operator backend deployment integrates various components within a Kubernetes cluster to deploy, manage, and scale the WEKA Data Platform effectively.
 
@@ -49,7 +49,7 @@ The WEKA Operator backend deployment integrates various components within a Kube
 
 <div data-with-frame="true"><figure><img src="../../.gitbook/assets/WEKA_operator_backend_deploy.png" alt="" width="560"><figcaption><p>WEKA Operator backend deployment</p></figcaption></figure></div>
 
-### WEKA Operator client deployment overview
+## WEKA Operator client deployment overview
 
 The WEKA Operator client deployment uses the WekaClient custom resource to manage WEKA containers across a set of designated nodes, similar to a DaemonSet. Each WekaClient instance provisions WEKA containers as individual pods, creating a persistent layer that supports high availability by allowing safe pod recreation when necessary.
 
@@ -68,17 +68,107 @@ The WEKA Operator client deployment uses the WekaClient custom resource to manag
 
 <div data-with-frame="true"><figure><img src="../../.gitbook/assets/WEKA_operator_client_deploy.png" alt="" width="563"><figcaption><p>WEKA Operator client deployment</p></figcaption></figure></div>
 
-#### WEKA Operator client-only deployment
+## WEKA Operator client-only deployment
 
 If the WEKA cluster is outside the Kubernetes cluster but you have workloads inside Kubernetes, you can deploy a WEKA client within the Kubernetes cluster to connect to the external WEKA cluster.
 
-#### Client Pod CLI restrictions
+## Client Pod CLI restrictions
 
 Cluster-level WEKA CLI commands are supported only from the Compute or Drive pods.
 
 The WEKA Operator client and application client pods operate with restricted permissions intended for data-path access only. Running cluster CLI commands, such as `weka status`, from these contexts is not supported and results in authorization errors.
 
+## Kubernetes Glossary
+
+<details>
+
+<summary>Kubernetes Glossary</summary>
+
+Learning Kubernetes is outside the scope of this document. This glossary covers essential Kubernetes components and concepts to support understanding of the environment. It is provided for convenience only and does not replace the requirement for Kubernetes knowledge and experience.
+
+**Pod**
+
+A Pod is the smallest, most basic deployable unit in Kubernetes. It represents a single instance of a running process in a cluster, typically containing one or more containers that share storage, network, and a single IP address. Pods are usually ephemeral; when they fail, a new Pod is created to replace them.
+
+**Node**
+
+A Node is a physical or virtual machine that serves as a worker in a Kubernetes cluster, running Pods and providing the necessary compute resources. Each Node is managed by the Kubernetes control plane and runs components like kubelet, kube-proxy, and a container runtime.
+
+**Namespace**
+
+A Namespace is a Kubernetes resource that divides a cluster into virtual sub-clusters, allowing for isolated environments within a single physical cluster. Namespaces help organize resources, manage permissions, and enable resource quotas within a cluster.
+
+**Label**
+
+Labels are key-value pairs attached to Kubernetes objects, like Pods and Nodes, used for identification and grouping. Labels facilitate organizing, selecting, and operating on resources, such as scheduling workloads based on specific node labels.
+
+**Taint**
+
+Taints are properties applied to nodes to restrict the schedule of pods. A taint on a Node prevents Pods without a matching toleration from being scheduled there. Taints often prevent certain workloads from running on specific Nodes unless explicitly permitted.
+
+**Toleration**
+
+A Toleration is a property of Pods that enables them to be scheduled on Nodes with matching taints. Tolerations work with taints to control, which workloads can run on specific Nodes in the cluster.
+
+**Affinity and Anti-Affinity**
+
+Affinity rules allow administrators to specify which Nodes or other Pods a given Pod should run nearby. Anti-affinity rules define the opposite: which Pods should not be scheduled near each other. These rules help with optimal resource allocation and reliability.
+
+**Selector**
+
+Selectors are expressions that enable filtering and selecting specific resources within the Kubernetes API. Node selectors, for example, specify the Nodes on which a Pod can run by matching their labels.
+
+**Deployment**
+
+A Deployment is a higher-level object for managing and scaling applications in Kubernetes. It defines the desired state for Pods and ensures they are created, updated, and scaled to maintain that state.
+
+**DaemonSet**
+
+A DaemonSet ensures that a specific Pod runs on all (or some) Nodes in the cluster, often used for tasks like logging, monitoring, or networking, where each Node requires the same component.
+
+**ReplicaSet**
+
+A ReplicaSet ensures a specified number of replicas of a Pod are running at any given time, allowing for redundancy and high availability. It is often managed by a Deployment, which abstracts the ReplicaSet management.
+
+**Service**
+
+A Service is an abstraction that defines a logical set of Pods and provides a stable network endpoint for access. It enables reliable communication between different Pods or external services, regardless of the individual Pods’ IP addresses.
+
+**ConfigMap**
+
+A ConfigMap is a Kubernetes resource used to store application configuration data. It separates configuration from application code, enabling easy updates without redeploying the entire application.
+
+**Secret**
+
+A Secret is a Kubernetes object used to store sensitive information, such as passwords, tokens, or keys. Like ConfigMaps, secrets are designed for confidential data, and Kubernetes provides mechanisms for securely managing and accessing them.
+
+**Persistent Volume (PV)**
+
+A Persistent Volume is a storage resource in Kubernetes that exists independently of any particular Pod. PVs provide long-term storage that persists beyond the lifecycle of individual Pods.
+
+**Persistent Volume Claim (PVC)**
+
+A Persistent Volume Claim is a request for storage made by a Pod. PVCs allow Pods to use persistent storage resources, which are dynamically or statically provisioned in the cluster.
+
+**Ingress**
+
+Ingress is a Kubernetes resource that manages external access to services within a cluster, typically via HTTP/HTTPS. Ingress enables load balancing, SSL termination, and routing to various services based on the request path.
+
+**Container Runtime**
+
+The container runtime is the underlying software that runs containers on a Node. Kubernetes supports multiple container runtimes, such as Docker, containers, and CRI-O.
+
+**Operator**
+
+An Operator is a method of packaging, deploying, and managing a Kubernetes application or service. It often provides automated management and monitoring for complex applications in Kubernetes clusters.
+
+</details>
+
 ***
+
+
+
+2. **Verify discovery:** Confirm that the `weka.io/drives` extended resource is present on the target nodes.
 
 ## Deployment workflow
 
@@ -247,13 +337,13 @@ WEKA clients discover and connect to services using a separate default range tha
 
 <table><thead><tr><th width="355">Component</th><th width="170">Default start port</th><th>Port range size</th></tr></thead><tbody><tr><td>WEKA Operator (v1.10+) / WEKA (v5.1.0+)</td><td>35000</td><td>260 ports per cluster</td></tr><tr><td>WEKA Operator / WEKA (previous versions)</td><td>35000</td><td>500 ports per cluster</td></tr><tr><td>WEKA client connectivity</td><td>45000</td><td>Internal allocation</td></tr></tbody></table>
 
-## Configure Kubelet requirements
+#### Configure Kubelet requirements
 
 Ensure predictable, high-performance behavior for WEKA data-plane processes by configuring the Kubelet CPU Manager with a static policy. This configuration enables Kubernetes to assign dedicated CPU cores to Guaranteed-QoS pods, which prevents CPU contention and eliminates scheduler jitter.
 
 On Kubernetes v1.32 and later, enable `strict-cpu-reservation` to extend this protection to Burstable and Best Effort pods. Without this option, pods in those QoS classes can schedule onto reserved cores and reduce WEKA IO throughput under load.
 
-### Identify HyperThreading sibling cores
+#### Identify HyperThreading sibling cores
 
 On hyperthreaded systems, each physical core exposes two logical CPUs. Include both logical\
 CPUs from the same physical core in `reservedSystemCPUs` to ensure full isolation. Reserving\
@@ -304,7 +394,7 @@ Siblings share the same physical core on the same socket. Always verify pairs us
 `thread_siblings_list` rather than relying on the `CORE` column alone.
 {% endhint %}
 
-### Configure the Kubelet
+#### Configure the Kubelet
 
 Apply the configuration to each worker node separately.
 
@@ -316,7 +406,7 @@ Apply the configuration to each worker node separately.
 systemctl restart kubelet
 ```
 
-#### Example: Kubelet configuration for static CPU allocation with strict reservation
+**Example: Kubelet configuration for static CPU allocation with strict reservation**
 
 In this example, physical core 0 is reserved for the OS. `reservedSystemCPUs` includes both\
 logical CPUs of that core (CPU 0 and its HT sibling, CPU 6). `strict-cpu-reservation`\
@@ -392,24 +482,24 @@ kubectl create secret docker-registry quay-io-robot-secret \
 
 </details>
 
-## Configure failure domains
+#### Configure failure domains
 
 Ensure high availability and data protection by grouping backend nodes into failure domains. A failure domain (FD) represents a set of processes that share a common physical risk, such as a rack, power circuit, or network switch. By defining these domains, the system ensures that data and parity blocks from the same stripe are distributed across different physical groups. If an entire failure domain fails, the cluster reconstructs the missing data from the remaining domains.
 
-### Select a failure domain mode
+**Select a failure domain mode**
 
 Choose the distribution mode that matches your physical infrastructure risks.
 
 <table><thead><tr><th width="161">Mode</th><th>Function</th><th>Usage</th></tr></thead><tbody><tr><td>Implicit (default)</td><td>Assigns every process as its own independent failure domain.</td><td>Deployments with no shared infrastructure risks between containers.</td></tr><tr><td>Explicit</td><td>Groups processes into named domains based on physical node labels.</td><td>Deployments where containers share a rack, switch, or power source.</td></tr></tbody></table>
 
-### Determine stripe width and domain count
+**Determine stripe width and domain count**
 
 Coordinate the number of failure domains with the stripe width and protection level during cluster formation. Stripe width and protection levels are permanent once set. Use the following constraint to prevent data loss:
 
 * Blocks lost during FD failure = stripe width / number of failure domains
 * This value must not exceed the parity block count (P).
 
-#### Minimum healthy server requirements
+**Minimum healthy server requirements**
 
 The stripe data width and protection level determine the minimum number of healthy servers required to remain operational.
 
@@ -420,11 +510,11 @@ The stripe data width and protection level determine the minimum number of healt
 | 5+4                  | 3                     |
 | 16+4                 | 5                     |
 
-### Configure failure domains in Kubernetes
+#### Configure failure domains in Kubernetes
 
 Define how the operator identifies failure domains by modifying the `WekaCluster` custom resource (CR).
 
-#### Map a single node label
+**Map a single node label**
 
 Assign nodes to failure domains using a specific Kubernetes label key.
 
@@ -447,7 +537,7 @@ Assign nodes to failure domains using a specific Kubernetes label key.
     * `label`: The node label key identifying the failure domain.
     * `skew`: The permitted difference in container count between domains.
 
-#### Use composite topology labels
+**Use composite topology labels**
 
 Combine existing Kubernetes topology labels, such as zone and rack, into a compound failure domain identity.
 
@@ -470,7 +560,7 @@ Combine existing Kubernetes topology labels, such as zone and rack, into a compo
 
     The operator combines these values. For example, a node in zone `us-east-1a` on `rack-1` becomes failure domain `us-east-1a/rack-1`.
 
-### Verify the configuration
+**Verify the configuration**
 
 Confirm the distribution of containers across the defined domains.
 
@@ -806,9 +896,27 @@ spec:
 ```
 {% endcode %}
 
+2. **Initiate discovery:** Use a WekaManualOperation to detect signed drives across the cluster. Replace placeholders with your recorded version and secret key.
 
+{% code title="discover-drives.yaml" %}
+```yaml
+apiVersion: weka.weka.io/v1alpha1
+kind: WekaManualOperation
+metadata:
+  name: discover-drives
+  namespace: weka-operator-system
+spec:
+  action: "discover-drives"
+  image: quay.io/weka.io/weka-in-container:5.1.0
+  imagePullSecret: "quay-io-robot-secret"
+  payload:
+    discoverDrivesPayload:
+      nodeSelector:
+        weka.io/supports-backends: "true"
+```
+{% endcode %}
 
-2. **Verify discovery:** Confirm that the `weka.io/drives` extended resource is present on the target nodes.
+3. **Verify discovery:** Confirm that the `weka.io/drives` extended resource is present on the target nodes.
 
 **Reference: Drive selection types**
 
@@ -1069,7 +1177,7 @@ For v1.7.0+, the operator creates storage classes following the pattern `weka-<g
 
 Upgrading the WEKA Operator involves updating the Operator and managing `wekaClient` configurations to ensure all client pods operate on the latest version. Additionally, each WEKA version requires a new builder instance with a unique `wekaContainer` metadata name, ensuring compatibility and streamlined management of version-specific resources.
 
-**Procedure:**
+**Procedure**
 
 1. **Upgrade the WEKA Operator**\
    Follow the steps in [Install the WEKA Operator](./#id-3.-install-the-weka-operator) using the latest version. Re-running the installation process with the updated version upgrades the WEKA Operator without requiring additional setup.
@@ -1089,7 +1197,9 @@ Upgrading the WEKA Operator involves updating the Operator and managing `wekaCli
    * **Create a new builder**: For each WEKA version, create a new builder instance with an updated `wekaContainer` meta name that corresponds to the new version. This ensures that clients and resources linked to specific kernel versions can continue to operate without conflicts.
    * **Cleanup outdated builders**: Once the upgrade is validated and previous versions are no longer needed, you can delete outdated builder instances associated with those older versions. This cleanup step optimizes resources but allows you to maintain multiple builder instances if supporting different kernel versions is required.
 
-### Upgrade the ssdproxy version
+***
+
+## Upgrade the ssdproxy version
 
 Upgrade the ssdproxy image to apply a fix independently of the WekaCluster, or to align ssdproxy with the cluster version after a cluster upgrade.
 
@@ -1315,91 +1425,3 @@ Check the logs for this message and see for further steps.
 ### CSI not functioning
 
 Ensure the `nodeSelector` configurations on both the CSI installation and the WekaClient match.
-
-***
-
-## Appendix: Kubernetes Glossary
-
-<details>
-
-<summary>Kubernetes Glossary</summary>
-
-Learning Kubernetes is outside the scope of this document. This glossary covers essential Kubernetes components and concepts to support understanding of the environment. It is provided for convenience only and does not replace the requirement for Kubernetes knowledge and experience.
-
-**Pod**
-
-A Pod is the smallest, most basic deployable unit in Kubernetes. It represents a single instance of a running process in a cluster, typically containing one or more containers that share storage, network, and a single IP address. Pods are usually ephemeral; when they fail, a new Pod is created to replace them.
-
-**Node**
-
-A Node is a physical or virtual machine that serves as a worker in a Kubernetes cluster, running Pods and providing the necessary compute resources. Each Node is managed by the Kubernetes control plane and runs components like kubelet, kube-proxy, and a container runtime.
-
-**Namespace**
-
-A Namespace is a Kubernetes resource that divides a cluster into virtual sub-clusters, allowing for isolated environments within a single physical cluster. Namespaces help organize resources, manage permissions, and enable resource quotas within a cluster.
-
-**Label**
-
-Labels are key-value pairs attached to Kubernetes objects, like Pods and Nodes, used for identification and grouping. Labels facilitate organizing, selecting, and operating on resources, such as scheduling workloads based on specific node labels.
-
-**Taint**
-
-Taints are properties applied to nodes to restrict the schedule of pods. A taint on a Node prevents Pods without a matching toleration from being scheduled there. Taints often prevent certain workloads from running on specific Nodes unless explicitly permitted.
-
-**Toleration**
-
-A Toleration is a property of Pods that enables them to be scheduled on Nodes with matching taints. Tolerations work with taints to control, which workloads can run on specific Nodes in the cluster.
-
-**Affinity and Anti-Affinity**
-
-Affinity rules allow administrators to specify which Nodes or other Pods a given Pod should run nearby. Anti-affinity rules define the opposite: which Pods should not be scheduled near each other. These rules help with optimal resource allocation and reliability.
-
-**Selector**
-
-Selectors are expressions that enable filtering and selecting specific resources within the Kubernetes API. Node selectors, for example, specify the Nodes on which a Pod can run by matching their labels.
-
-**Deployment**
-
-A Deployment is a higher-level object for managing and scaling applications in Kubernetes. It defines the desired state for Pods and ensures they are created, updated, and scaled to maintain that state.
-
-**DaemonSet**
-
-A DaemonSet ensures that a specific Pod runs on all (or some) Nodes in the cluster, often used for tasks like logging, monitoring, or networking, where each Node requires the same component.
-
-**ReplicaSet**
-
-A ReplicaSet ensures a specified number of replicas of a Pod are running at any given time, allowing for redundancy and high availability. It is often managed by a Deployment, which abstracts the ReplicaSet management.
-
-**Service**
-
-A Service is an abstraction that defines a logical set of Pods and provides a stable network endpoint for access. It enables reliable communication between different Pods or external services, regardless of the individual Pods’ IP addresses.
-
-**ConfigMap**
-
-A ConfigMap is a Kubernetes resource used to store application configuration data. It separates configuration from application code, enabling easy updates without redeploying the entire application.
-
-**Secret**
-
-A Secret is a Kubernetes object used to store sensitive information, such as passwords, tokens, or keys. Like ConfigMaps, secrets are designed for confidential data, and Kubernetes provides mechanisms for securely managing and accessing them.
-
-**Persistent Volume (PV)**
-
-A Persistent Volume is a storage resource in Kubernetes that exists independently of any particular Pod. PVs provide long-term storage that persists beyond the lifecycle of individual Pods.
-
-**Persistent Volume Claim (PVC)**
-
-A Persistent Volume Claim is a request for storage made by a Pod. PVCs allow Pods to use persistent storage resources, which are dynamically or statically provisioned in the cluster.
-
-**Ingress**
-
-Ingress is a Kubernetes resource that manages external access to services within a cluster, typically via HTTP/HTTPS. Ingress enables load balancing, SSL termination, and routing to various services based on the request path.
-
-**Container Runtime**
-
-The container runtime is the underlying software that runs containers on a Node. Kubernetes supports multiple container runtimes, such as Docker, containers, and CRI-O.
-
-**Operator**
-
-An Operator is a method of packaging, deploying, and managing a Kubernetes application or service. It often provides automated management and monitoring for complex applications in Kubernetes clusters.
-
-</details>

@@ -8,9 +8,9 @@ metaLinks:
       https://app.gitbook.com/s/0yXyIrnroN3zIG3qa4W3/kubernetes/weka-operator-day-2-operations
 ---
 
-# WEKA Operator day-2 operations
+# WEKA Operator operations
 
-WEKA Operator day-2 operations maintain and optimize WEKA environments in Kubernetes clusters by focusing in these core areas:
+WEKA Operator operations maintain and optimize WEKA environments in Kubernetes clusters by focusing in these core areas:
 
 * **Observability and monitoring**
   * Scraping and visualizing metrics with standard Kubernetes monitoring tools such as Prometheus and Grafana.
