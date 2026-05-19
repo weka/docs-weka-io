@@ -27,6 +27,8 @@ The expansion and shrinking procedures include:
 * Modify the memory size allocated to the WEKA cluster.
 * Modify the network resources assigned to the WEKA cluster (not required frequently).
 
+To interpret container lifecycle and health during these operations, see [Container state and status fields](container-state-and-status-fields.md).
+
 ## Expansion considerations
 
 The expansion procedures are similar to the _WEKA installation on bare metal_ procedures but require specific attention to the following considerations when planning the expansion:
@@ -44,9 +46,9 @@ To calculate the capacity of the WEKA cluster after expansion, see [#ssd-net-sto
 
 **Related topics**
 
-[bare-metal](../../planning-and-installation/bare-metal/ "mention")
-
-[weka-containers-architecture-overview.md](../../weka-system-overview/weka-containers-architecture-overview.md "mention")
+* [System installation on bare metal servers](../../planning-and-installation/bare-metal/)
+* [Cluster architecture overview](../../weka-system-overview/weka-containers-architecture-overview.md)
+* [Container state and status fields](container-state-and-status-fields.md)
 
 ## What happens after expansion or shrinking?
 

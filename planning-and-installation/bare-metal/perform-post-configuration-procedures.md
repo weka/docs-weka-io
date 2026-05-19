@@ -106,6 +106,10 @@ HOST ID  HOSTNAME  CONTAINER  IPS             STATUS  RELEASE   FAILURE DOMAIN  
 
 </details>
 
+**Related topic**
+
+[container-state-and-status-fields.md](../../operation-guide/expanding-and-shrinking-cluster-resources/container-state-and-status-fields.md "mention")
+
 ### Check cluster container resources
 
 **Command:** `weka cluster container resources`
@@ -244,7 +248,9 @@ DISK ID  UUID                                  HOSTNAME  NODE ID  SIZE        ST
 
 The `weka status` command displays the overall status of the WEKA cluster.
 
-For details, see [#cluster-status](../../getting-started-with-weka/manage-the-system-using-weka-cli/#cluster-status "mention").
+**Related topic**
+
+&#x20;[#cluster-status](../../getting-started-with-weka/manage-the-system-using-weka-cli/#cluster-status "mention")
 
 ## 5. Bypass the proxy server (optional)
 
@@ -284,7 +290,7 @@ Use the following command to configure default data networking:
 
 **Parameters**
 
-<table><thead><tr><th width="195">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>range</code>*</td><td><p>A range of IP addresses reserved for dynamic allocation across the entire cluster..<br>Format: <code>A.B.C.D-E</code></p><p>Example: <code>10.10.0.1-100</code></p></td></tr><tr><td><code>netmask-bits</code>*</td><td>Number of bits in the netmask that define a network ID in CIDR notation.</td></tr><tr><td><code>gateway</code></td><td>The IP address assigned to the default routing gateway. It is imperative that the gateway resides within the same IP network as defined by the specified range and netmask-bits.<br>This parameter is not applicable to InfiniBand (IB) or Layer 2 (L2) non-routable networks.</td></tr></tbody></table>
+<table><thead><tr><th width="158">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>range</code>*</td><td><p>A range of IP addresses reserved for dynamic allocation across the entire cluster..<br>Format: <code>A.B.C.D-E</code></p><p>Example: <code>10.10.0.1-100</code></p></td></tr><tr><td><code>netmask-bits</code>*</td><td>Number of bits in the netmask that define a network ID in CIDR notation.</td></tr><tr><td><code>gateway</code></td><td>The IP address assigned to the default routing gateway. It is imperative that the gateway resides within the same IP network as defined by the specified range and netmask-bits.<br>This parameter is not applicable to InfiniBand (IB) or Layer 2 (L2) non-routable networks.</td></tr></tbody></table>
 
 **View current settings:** To view the current default data networking settings, use the command:\
 `weka cluster default-net`

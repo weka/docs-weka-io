@@ -204,6 +204,7 @@
   * [Add a backend server](operation-guide/expanding-and-shrinking-cluster-resources/add-a-backend-server.md)
   * [Expand specific resources of a container](operation-guide/expanding-and-shrinking-cluster-resources/expansion-of-specific-resources.md)
   * [Shrink a cluster](operation-guide/expanding-and-shrinking-cluster-resources/shrinking-a-cluster.md)
+  * [Container state and status fields](operation-guide/expanding-and-shrinking-cluster-resources/container-state-and-status-fields.md)
 * [Background tasks](operation-guide/background-tasks/README.md)
   * [Set up a Data Services container for background tasks](operation-guide/background-tasks/set-up-a-data-services-container-for-background-tasks.md)
   * [Manage background tasks using the GUI](operation-guide/background-tasks/manage-background-tasks-using-the-gui.md)
