@@ -6,9 +6,9 @@ description: >-
 
 # Container state and status fields
 
-Use these fields to separate cluster intent from live process health during maintenance, expansion, deactivation, and troubleshooting.
+Use the `state` and `status` fields together to understand both the intended lifecycle of a container and the current health of its internal processes. These fields help identify whether a container is operating normally, transitioning between administrative operations, or experiencing connectivity or process failures.
 
-* `state`: the container lifecycle requested by the cluster.
+* `state`: the container lifecycle.
 * `status`: the current health of the container's internal processes.
 
 The values can differ. For example, a container can remain `ACTIVE` in `state` while reporting `DOWN` in `status`. Read both fields together to get a complete picture of a container's condition.
@@ -47,7 +47,7 @@ GET /containers/{uid}
 
 ### `state`: Administrative lifecycle
 
-`state` tracks the lifecycle of the container as directed by the cluster.
+`state` tracks the container lifecycle managed by the cluster leader.
 
 <table><thead><tr><th width="197">Value</th><th>Description</th></tr></thead><tbody><tr><td><code>ACTIVE</code></td><td>The container is a full participating member of the cluster.</td></tr><tr><td><code>ADDING</code></td><td>The container is joining the cluster for the first time.</td></tr><tr><td><code>DEACTIVATING</code></td><td>The cluster has received a deactivation request and is processing it. The container is winding down its cluster participation.</td></tr><tr><td><code>INACTIVE</code></td><td>The container is deactivated. It remains registered but contributes no resources.</td></tr><tr><td><code>DRAINING</code></td><td>The cluster is moving data and responsibilities away from the container before it can be safely deactivated or removed.</td></tr><tr><td><code>DRAINED</code></td><td>Draining is complete. The container holds no cluster data or responsibilities and can be safely deactivated or removed.</td></tr><tr><td><code>REMOVING</code></td><td>The container is being permanently removed from the cluster.</td></tr></tbody></table>
 
