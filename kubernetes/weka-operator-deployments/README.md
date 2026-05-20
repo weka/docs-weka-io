@@ -166,10 +166,6 @@ An Operator is a method of packaging, deploying, and managing a Kubernetes appli
 
 ***
 
-
-
-2. **Verify discovery:** Confirm that the `weka.io/drives` extended resource is present on the target nodes.
-
 ## Deployment workflow
 
 1. **Obtain setup information:** Collect registry credentials and version tags.
