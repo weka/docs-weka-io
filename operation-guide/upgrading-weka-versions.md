@@ -222,6 +222,32 @@ Demo: WEKA Upgrade Checker
 * Ensure **passwordless SSH access** is set up on all backend servers. This is crucial for the seamless execution of the Python script while running the WEKA Upgrade Checker.
 {% endhint %}
 
+**Before you begin**
+
+If the data catalog service is running, disable indexing before upgrading.
+
+Run the following command to check the catalog indexing status:
+
+```
+weka catalog config show
+```
+
+If `index-enabled` is `true`, disable indexing before proceeding with the upgrade:
+
+```
+weka catalog config update --index-enabled false
+```
+
+After the upgrade completes, re-enable indexing:
+
+```
+weka catalog config update --index-enabled true
+```
+
+{% hint style="info" %}
+A future release of the WEKA Upgrade Checker Tool will include this check automatically.
+{% endhint %}
+
 **Procedure**
 
 1. **Log in to one of the backend servers as a root user:**
@@ -380,7 +406,7 @@ Learn the available methods for upgrading clients to a new software version.
 * **Hot upgrade:** Allows clients to remain mounted and operational throughout the client software update.
   * [**Local (on-client) trigger**](upgrading-weka-versions.md#upgrade-a-client-locally): An administrative action performed from the client itself to perform hot upgrade.
   * [**Remote trigger**](upgrading-weka-versions.md#upgrade-clients-in-batches-via-remote-trigger)**:** An administrative action performed from the backend servers to trigger hot upgrades on specific client(s).
-* **Remount-based upgrade:** An alternative method where a client automatically upgrades following a remount of all mounted wekafs on a client  or reboot.
+* **Remount-based upgrade:** An alternative method where a client automatically upgrades following a remount of all mounted wekafs on a client or reboot.
 * **Persistent client coordination:** A dedicated client acting as a protocol gateway manages containers with `allow-protocols true`. During upgrades, it coordinates with backend servers to maintain continuous protocol service availability.
 * **Multi-cluster clients:** Perform online upgrades locally for clients without unmounting filesystems.\
   Related topic: [mount-fs-from-scmc.md](../weka-filesystems-and-object-stores/mounting-filesystems/mount-fs-from-scmc.md "mention").
