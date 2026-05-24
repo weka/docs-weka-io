@@ -213,7 +213,7 @@ After completing an upgrade, a background process initiates the conversion of me
 
 By diligently following this system readiness validation procedure, you can confidently proceed with system upgrades, minimizing risks and ensuring a smooth upgrade.
 
-{% embed url="https://youtu.be/k8sDP3U1zDI" fullWidth="true" %}
+{% embed url="https://youtu.be/d1m2bzE_uCY" %}
 Demo: WEKA Upgrade Checker
 {% endembed %}
 
