@@ -219,8 +219,6 @@ Demo: WEKA Upgrade Checker
 
 **Before you begin**
 
-**Before you begin**
-
 1. Run the WEKA Upgrade Checker at least **24 hours** before the scheduled upgrade.
 2. Ensure **passwordless SSH access** is configured on all backend servers.
 3. If the data catalog service is running, disable indexing before upgrading.
@@ -288,7 +286,7 @@ weka version get <version>
 weka version prepare <version>
 ```
 
-Where: \<version> is the target WEKA version, for example: `5.0.4`.
+Where: \<version> is the target WEKA version, for example: `5.1.21`.
 
 If the distribution server does not contain the target WEKA version, add the option `--from` to the command, and specify the [get.weka.io](https://get.weka.io/ui/releases/) distribution site, along with the token.
 
@@ -334,7 +332,7 @@ weka local run --container drives0 --in <new-version> upgrade --distribute-versi
 
 Where:
 
-`<new-version>`: Specify the new version. For example, `5.0.3`.
+`<new-version>`: Specify the new version. For example, `5.1.21`.
 
 ### 4. Upgrade the backend servers
 
