@@ -11,7 +11,7 @@ metaLinks:
 # WEKA CLI hierarchy
 
 {% hint style="info" %}
-CLI commands marked with two asterisks (\*\*) are new in version 5.1.20, compared to version 5.0.4.
+CLI commands marked with two asterisks (\*\*) are new in version 5.1.21, compared to version 5.0.4.
 {% endhint %}
 
 ### weka agent

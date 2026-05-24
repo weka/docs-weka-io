@@ -48,7 +48,10 @@ Use the following command to add a network space:
 
 {% code overflow="wrap" %}
 ```bash
-weka cluster network-space add <name> [--vlan vlan] [--range range] [--gateway gateway] [--netmask-bits netmask-bits]
+weka cluster network-space add <name> [--vlan vlan]
+                                      [--range range]
+                                      [--gateway gateway]
+                                      [--netmask-bits netmask-bits]
 ```
 {% endcode %}
 
@@ -79,7 +82,11 @@ Use the following command to update a network space by its ID:
 
 {% code overflow="wrap" %}
 ```bash
-weka cluster network-space update <id> [--name name] [--vlan vlan] [--range range] [--gateway gateway] [--netmask-bits netmask-bits]
+weka cluster network-space update <id> [--name name]
+                                       [--vlan vlan]
+                                       [--range range]
+                                       [--gateway gateway]
+                                       [--netmask-bits netmask-bits]
 ```
 {% endcode %}
 
@@ -143,11 +150,13 @@ During creation, you can assign multiple network spaces to a single tenant. This
 
 #### CLI alternative
 
-{% code overflow="wrap" %}
 ```bash
-weka tenant add <name> <username> [--ssd-quota ssd-quota] [--total-quota total-quota] [--enforce-fs-authentication enforce-fs-authentication] [--enforce-mount-netspace-access enforce-mount-netspace-access] [--network-spaces network-spaces]...
+weka tenant add <name> <username> [--ssd-quota ssd-quota]
+                                  [--total-quota total-quota]
+                                  [--enforce-fs-authentication enforce-fs-authentication]
+                                  [--enforce-mount-netspace-access enforce-mount-netspace-access]
+                                  [--network-spaces network-spaces]...
 ```
-{% endcode %}
 
 {% hint style="info" %}
 The CLI prompt requires the password after running the command.
@@ -194,12 +203,14 @@ A network space must be created in advance by a ClusterAdmin. You cannot assign 
 
 {% code overflow="wrap" %}
 ```bash
-weka tenant network-space add [--tenant tenant] [<network-spaces>]...
+weka tenant network-space add [--tenant tenant]
+                              [<network-spaces>]...
 ```
 {% endcode %}
 
 ```bash
-weka tenant network-space remove [--tenant tenant] [<network-spaces>]...
+weka tenant network-space remove [--tenant tenant]
+                                 [<network-spaces>]...
 ```
 
 **Parameters**
@@ -209,7 +220,8 @@ weka tenant network-space remove [--tenant tenant] [<network-spaces>]...
 **Update tenant quotas**
 
 ```bash
-weka tenant set-quota <tenant> [--ssd-quota <ssd-quota>] [--total-quota <total-quota>]
+weka tenant set-quota <tenant> [--ssd-quota <ssd-quota>]
+                               [--total-quota <total-quota>]
 ```
 
 **Parameters**
@@ -220,7 +232,8 @@ weka tenant set-quota <tenant> [--ssd-quota <ssd-quota>] [--total-quota <total-q
 
 {% code overflow="wrap" %}
 ```bash
-weka tenant update <tenant> [--enforce-fs-authentication enforce-fs-authentication] [--enforce-mount-netspace-access enforce-mount-netspace-access]
+weka tenant update <tenant> [--enforce-fs-authentication enforce-fs-authentication]
+                            [--enforce-mount-netspace-access enforce-mount-netspace-access]
 ```
 {% endcode %}
 
@@ -277,7 +290,8 @@ Modify a tenant's performance limits to control resource consumption and ensure 
 
 {% code overflow="wrap" %}
 ```bash
-weka tenant set-qos <tenant> [--max-throughput max-throughput] [--max-iops max-iops]
+weka tenant set-qos <tenant> [--max-throughput max-throughput]
+                             [--max-iops max-iops]
 ```
 {% endcode %}
 
@@ -293,7 +307,7 @@ As a tenant administrator, you can configure dedicated S3 settings for a specifi
 
 Ensure you are logged in with tenant administrator privileges.
 
-**Procedure**
+#### **GUI procedure**
 
 1. Select **Manage > Protocols**.
 2. On the S3 Cluster Configuration page, select the plus (+) icon.
@@ -304,3 +318,11 @@ Ensure you are logged in with tenant administrator privileges.
 4. Select **Save**.
 
 <div data-with-frame="true"><figure><img src="../../.gitbook/assets/tenant_s3_setting.png" alt="" width="346"><figcaption><p>Configure tenant S3 settings</p></figcaption></figure></div>
+
+#### CLI alternative
+
+```bash
+weka s3 cluster setup update [--default-fs-name default-fs-name]
+                             [--anonymous-posix-uid anonymous-posix-uid]
+                             [--anonymous-posix-gid anonymous-posix-gid]
+```
