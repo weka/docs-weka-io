@@ -217,32 +217,18 @@ By diligently following this system readiness validation procedure, you can conf
 Demo: WEKA Upgrade Checker
 {% endembed %}
 
-{% hint style="info" %}
-* Prioritize running the WEKA Upgrade Checker **24 hours** before any scheduled upgrades. This step is critical to identify and address any potential issues proactively.
-* Ensure **passwordless SSH access** is set up on all backend servers. This is crucial for the seamless execution of the Python script while running the WEKA Upgrade Checker.
-{% endhint %}
+**Before you begin**
 
 **Before you begin**
 
-If the data catalog service is running, disable indexing before upgrading.
-
-Run the following command to check the catalog indexing status:
-
-```
-weka catalog config show
-```
-
-If `index-enabled` is `true`, disable indexing before proceeding with the upgrade:
-
-```
-weka catalog config update --index-enabled false
-```
-
-After the upgrade completes, re-enable indexing:
-
-```
-weka catalog config update --index-enabled true
-```
+1. Run the WEKA Upgrade Checker at least **24 hours** before the scheduled upgrade.
+2. Ensure **passwordless SSH access** is configured on all backend servers.
+3. If the data catalog service is running, disable indexing before upgrading.
+   1. Run the following command to check the catalog indexing status: `weka catalog config show`
+   2. If `index-enabled` is `true`, disable indexing before proceeding with the upgrade:\
+      `weka catalog config update --index-enabled false`
+   3. After the upgrade completes, re-enable indexing: \
+      `weka catalog config update --index-enabled true`
 
 {% hint style="info" %}
 A future release of the WEKA Upgrade Checker Tool will include this check automatically.
@@ -271,7 +257,7 @@ A future release of the WEKA Upgrade Checker Tool will include this check automa
     * Run the Python precompiled script:\
       `./weka_upgrade_checker --target-version <version>`
 
-    Replace `<version>` with your target version. For example `4.4.4`.\
+    Replace `<version>` with your target version. For example `5.1.21`.\
     The tool scans the backend servers and verifies the upgrade prerequisites.
 4. **Review the results:**
    * Pay attention to the following indicators:
