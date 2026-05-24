@@ -32,10 +32,20 @@ Local users are accounts created directly in the WEKA system, as distinct from d
    * **Password:** Set a password according to the requirements. The password must contain at least 8 characters: an uppercase letter, a lowercase letter, and a number or a special character.
    * **Confirm Password:** Type the same password again.
    * **Role:** Select the role for the local user.\
-     The S3 user role is available only when an S3 cluster is configured. If you select the S3 user role, also select the relevant S3 policy and, optionally, the [POSIX UID](#user-content-fn-1)[^1] and [POSIX GID](#user-content-fn-2)[^2]**.** For role details, see [#role-descriptions](./#role-descriptions "mention").
+     The S3 user role is available only when an S3 cluster is configured. If you select the S3 user role, also select the relevant S3 policy and, optionally, the [POSIX UID](#user-content-fn-1)[^1] and [POSIX GID](#user-content-fn-2)[^2]**.** If an S3 policy is attached during user creation, the system generates the S3 access key and secret key automatically. For role details, see [User roles and permissions](./).
 4. Select **Save**.
 
-<div data-with-frame="true"><img src="../../.gitbook/assets/create_user (1).png" alt="Create a new user dialog" width="352"></div>
+{% tabs %}
+{% tab title="Create S3 user example" %}
+If you create an S3 user and attach an S3 policy, the system generates an S3 access key and secret key and displays them once. Copy and store them securely before closing the dialog. These credentials are used for S3 API access. They are not the WEKA account username and password. If the S3 key pair is lost, use [**Reset S3 Credentials**](user-management.md#reset-s3-credentials) to generate a new pair.
+
+<figure><img src="../../.gitbook/assets/create_s3_user.gif" alt=""><figcaption></figcaption></figure>
+{% endtab %}
+
+{% tab title="Create TenantAdmin user example" %}
+<div data-with-frame="true"><img src="../../.gitbook/assets/create_user (1).png" alt="Create TenantAdmin user example" width="352"></div>
+{% endtab %}
+{% endtabs %}
 
 ### Edit a local user
 
@@ -51,10 +61,10 @@ You can modify the role of a local user but not your role (the signed-in user). 
 
 ### Change a local user password
 
-As a Cluster Admin or Tenant Admin, you can change the password of a local user and revoke the user's tokens.
+As a Cluster Admin or Tenant Admin, you can change the password of a local user and revoke the user's tokens. After the password change, the user must sign in again with the new password.
 
 {% hint style="info" %}
-To regain access to the system after changing the password, the user must re-authenticate using the new password.
+This action changes only the WEKA account password. It does not change S3 API credentials. To rotate S3 API credentials, select **Reset S3 Credentials** from the user menu. See [#reset-s3-credentials](user-management.md#reset-s3-credentials "mention").
 {% endhint %}
 
 **Procedure**
@@ -81,6 +91,29 @@ You can change your password at any time.
 
 2. In the Change Password dialog, set the properties described in the [Change a local user password](user-management.md#change-a-local-user-password) topic.
 3. Select **Save**.
+
+### Reset S3 credentials
+
+Cluster Admin and Tenant Admin can reset the S3 access key and secret key of a local S3 user from the GUI. Resetting the credentials immediately invalidates the existing credentials. Applications or services using these credentials lose S3 access until updated with the new credentials.
+
+**Before you begin**
+
+* Ensure the target user has the **S3 user** role.
+* Use this GUI procedure only as Cluster Admin or Tenant Admin.
+
+If you are signed in as an S3 user, reset your own S3 credentials from the CLI:
+
+```bash
+weka s3 user keys-generate
+```
+
+**Procedure**
+
+1. In the **Local Users** tab, select the three dots next to the S3 user, then select **Reset S3 Credentials**.
+2. In the confirmation dialog, select **Yes** to proceed or **No** to close without changes.
+3. Copy the new access key and secret key immediately. The system displays them only once.
+
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/reset_s3_credentials.gif" alt=""><figcaption><p>Reset S3 credentials</p></figcaption></figure></div>
 
 ### Revoke local user tokens
 

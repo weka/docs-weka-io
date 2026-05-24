@@ -17,6 +17,7 @@ With the CLI, you can:
 * [Delete an IAM policy](s3-users-and-authentication.md#creating-a-new-iam-policies)
 * [Attach a policy to an S3 user](s3-users-and-authentication.md#creating-a-new-iam-policies-1)
 * [Detach a policy from an S3 user](s3-users-and-authentication.md#creating-a-new-iam-policies-1-1)
+* [Manage S3 credentials](s3-users-and-authentication.md#manage-s3-credentials)
 * [Generate a temporary security token](s3-users-and-authentication.md#generate-a-temporary-security-token)
 
 ## View existing IAM policies
@@ -135,17 +136,69 @@ Use the following command line to attach an IAM policy to an S3 user:‌
 
 <table><thead><tr><th width="248">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>policy</code>*</td><td>Name of an existing IAM policy.</td></tr><tr><td><code>user</code>*</td><td>Name of a local WEKA S3 user.</td></tr></tbody></table>
 
+If the user does not already have S3 credentials, the system creates them automatically when the policy is attached. The secret key is displayed once and must be saved immediately.
+
+**Example**
+
+```bash
+weka s3 policy attach readwrite alice
+```
+
 ## Detach a policy from an S3 user <a href="#creating-a-new-iam-policies-1" id="creating-a-new-iam-policies-1"></a>
 
 **Command:** `weka s3 policy detach`
 
 Use the following command line to detach an IAM policy from an S3 user:‌‌
 
-`weka s3 policy detach <user>`‌‌
+`weka s3 policy detach <policy> <user>`‌‌
 
 **Parameters**
 
-<table><thead><tr><th width="204">Name</th><th>Description</th></tr></thead><tbody><tr><td><code>user</code>*</td><td>Name of a local WEKA S3 user.</td></tr></tbody></table>
+<table><thead><tr><th width="204">Name</th><th>Description</th></tr></thead><tbody><tr><td><code>policy</code>*</td><td>Name of the IAM policy to detach.</td></tr><tr><td><code>user</code>*</td><td>Name of a local WEKA S3 user.</td></tr></tbody></table>
+
+Detaching a policy removes S3 data access, but keeps the existing S3 access key and secret key. If you later attach any S3 policy again, the same key pair is used.
+
+**Example**
+
+```bash
+weka s3 policy detach readwrite alice
+```
+
+## Manage S3 credentials
+
+Manage S3 API credentials separately from the WEKA account password.
+
+### Regenerate your own S3 credentials
+
+**Command:** `weka s3 user keys-generate`
+
+Use this command to regenerate your own S3 access key and secret key.
+
+```bash
+weka s3 user keys-generate
+```
+
+### Regenerate S3 credentials for another user
+
+**Command:** `weka s3 user keys-generate --user <username>`
+
+Use this command as an administrator to regenerate credentials for a specific user.
+
+```bash
+weka s3 user keys-generate --user alice
+```
+
+Behavioral notes:
+
+* Attaching an S3 policy grants S3 access and auto-creates credentials if needed.
+* Detaching an S3 policy removes S3 access, but preserves the credentials.
+* Each S3 access key includes the tenant identifier for correct multi-tenant routing.
+
+If the user has no attached S3 policy, the command fails:
+
+```
+error: S3 API credentials can only be generated for users with an S3 policy attached.
+```
 
 ## Generate a temporary security token
 

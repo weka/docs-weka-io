@@ -21,6 +21,10 @@ Using the GUI, you can:
 
 You can add a lifecycle rule to an object (bucket) that defines an expiration duration per object prefix and tags.
 
+**Before you begin**
+
+In multi-tenant deployments, lifecycle rules apply only to buckets in the current tenant. The lifecycle crawler runs across all tenants automatically.
+
 **Procedure**
 
 1. From the S3 buckets page, select the three dots of the required bucket, and select **Lifecycle Rules**.

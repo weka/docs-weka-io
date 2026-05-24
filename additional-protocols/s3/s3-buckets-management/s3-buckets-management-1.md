@@ -29,15 +29,23 @@ Use the following command line to add an S3 bucket:
 S3 does not support creating buckets on filesystems with names containing the characters ' ', '`(`', '`)`', or '`&`'. Verify that the filesystem name excludes these characters. Rename the filesystem if needed before creating the S3 bucket.
 {% endhint %}
 
+Bucket names must be unique across the entire cluster. If the name is already in use, the command returns a message to choose another name.
+
 **Parameters**
 
-<table><thead><tr><th>Name</th><th width="329">Value</th><th>Default</th></tr></thead><tbody><tr><td><code>name</code>*</td><td>The name for the S3 bucket to add.<br>Refer to the <a href="../s3-limitations.md#buckets">Bucket Naming Limitations</a> section.</td><td></td></tr><tr><td><code>policy</code></td><td>The name of a pre-defined bucket policy for anonymous access.<br>Possible values: <code>none</code>, <code>download</code>, <code>upload</code>, <code>public</code>.</td><td><code>none</code></td></tr><tr><td><code>policy-json</code></td><td>A path to a custom policy JSON file representing an S3 bucket policy for anonymous access.</td><td></td></tr><tr><td><code>hard-quota</code></td><td>Hard quota for the S3 bucket.<br>You can only set on a new bucket without existing data. You cannot set it when using <code>existing-path</code> to an existing directory with data.</td><td></td></tr><tr><td><code>fs-name</code></td><td>Existing filesystem name to create the bucket within.<br>Possible values: <code>fs-name</code>, <code>fs-id</code>.</td><td>The default filesystem specified when creating the S3 cluster.</td></tr><tr><td><code>fs-id</code></td><td>Existing filesystem ID to create the bucket within.<br>Possible values: <code>fs-name</code>, <code>fs-id</code>.</td><td>The default filesystem specified when creating the S3 cluster.</td></tr><tr><td><code>existing-path</code></td><td>Existing directory path relative to the filesystem root to expose a bucket from.</td><td></td></tr></tbody></table>
+<table><thead><tr><th width="164">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>name</code>*</td><td>The name for the S3 bucket to add.<br>Refer to the <a href="../s3-limitations.md#buckets">Bucket Naming Limitations</a> section.</td></tr><tr><td><code>policy</code></td><td>The name of a pre-defined bucket policy for anonymous access.<br>Possible values: <code>none</code>, <code>download</code>, <code>upload</code>, <code>public</code>.<br>Default: <code>none</code></td></tr><tr><td><code>policy-json</code></td><td>A path to a custom policy JSON file representing an S3 bucket policy for anonymous access.</td></tr><tr><td><code>hard-quota</code></td><td>Hard quota for the S3 bucket.<br>You can only set on a new bucket without existing data. You cannot set it when using <code>existing-path</code> to an existing directory with data.</td></tr><tr><td><code>fs-name</code></td><td>Existing filesystem name to create the bucket within.<br>If omitted, the system uses the tenant default filesystem first and then the cluster default filesystem. If neither default is configured, the command fails unless you specify <code>fs-name</code> or <code>fs-id</code>.</td></tr><tr><td><code>fs-id</code></td><td>Existing filesystem ID to create the bucket within.<br>If omitted, the system uses the tenant default filesystem first and then the cluster default filesystem. If neither default is configured, the command fails unless you specify <code>fs-name</code> or <code>fs-id</code>.</td></tr><tr><td><code>existing-path</code></td><td>Existing directory path relative to the filesystem root to expose a bucket from.</td></tr></tbody></table>
 
 ## List buckets
 
 **Command:** `weka s3 bucket list`
 
 Use this command to list existing buckets.
+
+In multi-tenant deployments, this command lists only buckets in the current tenant. Buckets from other tenants are hidden, regardless of admin role.
+
+{% hint style="info" %}
+This behavior differs from non-multi-tenant deployments, where all buckets on the cluster were visible to all users. Tenant 0, also called the root tenant, follows the same tenant-scoped visibility model.
+{% endhint %}
 
 ## Set a bucket quota
 
@@ -49,7 +57,7 @@ Use the following command line to set an S3 bucket quota:
 
 **Parameters**
 
-<table><thead><tr><th width="215">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>bucket-name</code>*</td><td>The name of an existing S3 bucket.</td></tr><tr><td><code>hard-quota</code>*</td><td>Hard quota for the S3 bucket.<br>You can only set it initially on an empty bucket. Calling this command on a bucket that already has a quota changes the quota limitation.</td></tr></tbody></table>
+<table><thead><tr><th width="186">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>bucket-name</code>*</td><td>The name of an existing S3 bucket.</td></tr><tr><td><code>hard-quota</code>*</td><td>Hard quota for the S3 bucket.<br>You can only set it initially on an empty bucket. Calling this command on a bucket that already has a quota changes the quota limitation.</td></tr></tbody></table>
 
 ## Reset a bucket quota
 
@@ -71,7 +79,7 @@ Use this command to remove an existing bucket from the filesystem only if the bu
 
 **Parameters**
 
-<table><thead><tr><th width="215">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>name</code>*</td><td>The name of an existing S3 bucket.</td></tr><tr><td><code>unlink</code></td><td><p>Detaches the bucket from the S3 configuration and keeps the data and metadata in place. Consequently, you can recreate the bucket while preserving the data and metadata (see <code>weka s3 bucket create</code> using the <code>existing-path</code> option).</p><p>Note: If the intent is to keep the data files for use outside of the S3 configuration and delete only the S3 metadata, contact the Customer Success Team for assistance.</p></td></tr></tbody></table>
+<table><thead><tr><th width="184">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>name</code>*</td><td>The name of an existing S3 bucket.</td></tr><tr><td><code>unlink</code></td><td><p>Detaches the bucket from the S3 configuration and keeps the data and metadata in place. Consequently, you can recreate the bucket while preserving the data and metadata (see <code>weka s3 bucket create</code> using the <code>existing-path</code> option).</p><p>Note: If the intent is to keep the data files for use outside of the S3 configuration and delete only the S3 metadata, contact the Customer Success Team for assistance.</p></td></tr></tbody></table>
 
 ## Manage bucket policies
 
@@ -218,7 +226,7 @@ Use the following command line to set a pre-defined bucket policy:
 
 **Parameters**
 
-<table><thead><tr><th width="249">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>bucket-name</code>*</td><td>Name of an existing S3 bucket.</td></tr><tr><td><code>bucket-policy</code>*</td><td>Name of a pre-defined bucket policy for anonymous access.<br>Possible values: <code>none</code>, <code>download</code>, <code>upload</code>, <code>public</code>.</td></tr></tbody></table>
+<table><thead><tr><th width="228">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>bucket-name</code>*</td><td>Name of an existing S3 bucket.</td></tr><tr><td><code>bucket-policy</code>*</td><td>Name of a pre-defined bucket policy for anonymous access.<br>Possible values: <code>none</code>, <code>download</code>, <code>upload</code>, <code>public</code>.</td></tr></tbody></table>
 
 ### Set a custom bucket policy
 
@@ -266,7 +274,7 @@ Use the following command line to set a custom bucket policy:
 
 **Parameters**
 
-<table><thead><tr><th width="256">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>bucket-name</code>*</td><td>Name of an existing S3 bucket.</td></tr><tr><td><code>policy-file</code>*</td><td>A path to a custom JSON file representing an S3 bucket policy for anonymous access.<br>Wildcards (such as <code>s3:*</code>) are not allowed as an <code>Action</code> in the custom policy file.<br>See <a href="../s3-limitations.md#supported-policy-actions">Supported Policy Actions</a>.</td></tr></tbody></table>
+<table><thead><tr><th width="215">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>bucket-name</code>*</td><td>Name of an existing S3 bucket.</td></tr><tr><td><code>policy-file</code>*</td><td>A path to a custom JSON file representing an S3 bucket policy for anonymous access.<br>Wildcards (such as <code>s3:*</code>) are not allowed as an <code>Action</code> in the custom policy file.<br>See <a href="../s3-limitations.md#supported-policy-actions">Supported Policy Actions</a>.</td></tr></tbody></table>
 
 ### View a bucket policy
 
@@ -278,7 +286,7 @@ Use the following command line to view an S3 bucket policy name/JSON:
 
 **Parameters**
 
-<table><thead><tr><th width="256">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>bucket-name</code>*</td><td>Name of an existing S3 bucket.</td></tr></tbody></table>
+<table><thead><tr><th width="219">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>bucket-name</code>*</td><td>Name of an existing S3 bucket.</td></tr></tbody></table>
 
 ### Unset a bucket policy
 
@@ -290,4 +298,4 @@ Use the following command line to unset an S3 bucket policy:
 
 **Parameters**
 
-<table data-header-hidden><thead><tr><th width="317">Name</th><th>Value</th></tr></thead><tbody><tr><td><strong>Name</strong></td><td><strong>Value</strong></td></tr><tr><td><code>bucket-name</code>*</td><td>Name of an existing S3 bucket.</td></tr></tbody></table>
+<table><thead><tr><th width="227">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>bucket-name</code>*</td><td>Name of an existing S3 bucket.</td></tr></tbody></table>

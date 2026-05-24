@@ -45,7 +45,7 @@ Terraform is the primary tool for deploying WEKA on Azure.
 
 <img src="../../.gitbook/assets/Terraform_overview.png" alt="" data-size="original">
 
-#### How does Terraform work?
+**How does Terraform work?**
 
 A deployment with Terraform involves three phases:
 

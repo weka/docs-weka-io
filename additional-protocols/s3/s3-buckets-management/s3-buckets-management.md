@@ -22,6 +22,14 @@ Using the GUI, you can:
 
 S3 does not support creating buckets on filesystems with names containing the characters ' ', '`(`', '`)`', or '`&`'. Verify that the filesystem name excludes these characters. Rename the filesystem if needed before creating the S3 bucket.
 
+In multi-tenant deployments, the **Buckets** tab shows only buckets in the current tenant. Buckets from other tenants are not visible, regardless of admin role.
+
+Bucket names must be unique across the entire cluster. If the name is already in use, the GUI returns the following error:
+
+```
+This name cannot be used, please choose another name.
+```
+
 **Procedure**
 
 1. From the menu, select **Manage > Protocols**.
@@ -30,11 +38,15 @@ S3 does not support creating buckets on filesystems with names containing the ch
 4. Select **+Create**.
 5. In the Add S3 Bucket dialog, do the following:
    * **Bucket Name:** Set a bucket name according to the naming conventions.
-   * **Filesystem:** Set the filesystem to host the bucket.
+   * **Filesystem:** Set the filesystem to host the bucket. If the tenant has a default filesystem, the system uses it first. If not, the system uses the cluster default filesystem. If neither default is configured, select a filesystem explicitly or the operation fails.
    * **Use Existing Directory:** If you want to expose an existing directory, set its path. Make sure that the directory is not below the hierarchy of the already configured S3 bucket.
    * **Hard Quota:** Set the maximum capacity for the bucket. If you want to remove the hard quota setting, enter 0.
    * **Bucket Policy:** Select the policy to attach to the bucket: none, download, upload, public, or custom. If you select a custom policy, add it in JSON format.
 6. Select **Save**.
+
+{% hint style="info" %}
+Tenant 0, also called the root tenant, follows the same tenant-scoped bucket visibility behavior.
+{% endhint %}
 
 <div data-with-frame="true"><img src="../../../.gitbook/assets/Create_S3_bucket.gif" alt="Create a bucket"></div>
 

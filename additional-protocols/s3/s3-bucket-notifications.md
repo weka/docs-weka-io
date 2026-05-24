@@ -18,6 +18,20 @@ The system also triggers internal events to indicate operational status, such as
 
 <div data-with-frame="true"><figure><img src="../../.gitbook/assets/s3_bucket_notifications.png" alt=""><figcaption><p>S3 bucket notifications</p></figcaption></figure></div>
 
+### Multi-tenant behavior
+
+In multi-tenant deployments, notification rules are tenant-scoped and notification targets are cluster-wide.
+
+* TenantAdmin can create, update, and remove rules for buckets in the tenant.
+* ClusterAdmin manages notification targets for the cluster.
+* Tenants can view only their own bucket rules.
+
+<table><thead><tr><th width="435">Operation</th><th>Who can perform it</th></tr></thead><tbody><tr><td>Add, update, or remove a notification target</td><td>ClusterAdmin only</td></tr><tr><td>View notification targets</td><td>ClusterAdmin only</td></tr><tr><td>Add, update, or remove a notification rule on a bucket</td><td>TenantAdmin within the tenant</td></tr><tr><td>View notification rules</td><td>TenantAdmin for the tenant's buckets</td></tr></tbody></table>
+
+{% hint style="warning" %}
+Notification targets are shared cluster resources. Multiple tenants can attach rules to the same target. Events from different tenants can flow through the same Kafka topic or webhook endpoint. Per-target tenant isolation is not available in this release.
+{% endhint %}
+
 ### How it works
 
 * The system monitors S3 bucket events and sends them to configured targets.

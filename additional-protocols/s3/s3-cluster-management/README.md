@@ -11,16 +11,26 @@ metaLinks:
 
 The WEKA S3 service is designed for scalable performance and resilient operation across distributed containers.
 
-* **Performance and scalability:** The S3 service runs in WEKA cluster containers and scales near-linearly as additional containers join the cluster. \
+* **Performance and scalability:** The S3 service runs in WEKA cluster containers and scales near-linearly as additional containers join the cluster.\
   Throughput and concurrency increase proportionally with cluster size. In appropriately sized deployments, performance reaches millions of requests per second on medium clusters (approximately 30 servers) and tens of millions on larger clusters (approximately 100 servers).
 * **Redundancy:** The S3 service requires a minimum of two containers to provide redundancy and fault tolerance. A single-container deployment is supported when redundancy is not required.
 * **Configuration filesystem:** The S3 service requires a dedicated filesystem to persist protocol configuration across the cluster. Verify that this filesystem exists before enabling the S3 service (see the related topic below).
 * **Interfaces and access:** The S3 service is accessible through the assigned port (default: 9000) on all configured interfaces of each WEKA server where the protocol is enabled.\
   S3 does not use dedicated or floating IP addresses.
 
-**Related topic**
+## Per-tenant S3 configuration
 
-&#x20;[#dedicated-filesystem-requirement-for-persistent-protocol-configurations](../../additional-protocols-overview.md#dedicated-filesystem-requirement-for-persistent-protocol-configurations "mention").
+Manage S3 bucket placement and anonymous access identity using cluster-wide settings with limited tenant overrides.
+
+* **Configuration scope:** The S3 cluster configuration defines cluster-wide settings such as the service port and the default filesystem. Tenants cannot override these settings. Tenants can override only the anonymous POSIX UID and GID for their own workloads. Tenant 0 uses the cluster-level anonymous POSIX UID and GID values.
+
+When a bucket creation request does not specify a filesystem, the system resolves the target filesystem using the tenant's default filesystem. To create a bucket this way, ensure the tenant has a default filesystem configured.
+
+**Related topics**
+
+[#update-per-tenant-s3-configuration](s3-cluster-management-1.md#update-per-tenant-s3-configuration "mention")
+
+[#dedicated-filesystem-requirement-for-persistent-protocol-configurations](../../additional-protocols-overview.md#dedicated-filesystem-requirement-for-persistent-protocol-configurations "mention").
 
 ## Round-robin DNS or load balancer **configuration**
 

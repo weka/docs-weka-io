@@ -113,7 +113,7 @@ Terraform is an open-source project from HashiCorp. It creates and manages resou
 
 <img src="../../.gitbook/assets/Terraform_overview.png" alt="" data-size="original">
 
-#### How does Terraform work?
+**How does Terraform work?**
 
 A deployment with Terraform involves three phases:
 

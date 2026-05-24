@@ -100,7 +100,7 @@ weka s3 bucket create my_bucket
 {% tab title="3. Create a local S3 user " %}
 Create a dedicated local user with S3 role and assign it with an S3 policy to facilitate secure access to S3 resources.
 
-The S3 local user name and password serve as the S3 access key and secret key, respectively for uploading and downloading objects from S3 buckets.
+When you create an S3 user in the GUI, the system generates an S3 access key and secret key and displays them once. Copy and store them securely for S3 client access.
 
 <div data-with-frame="true"><figure><img src="../../.gitbook/assets/wmng_create_s3_user.gif" alt=""><figcaption><p>Create a local S3 user</p></figcaption></figure></div>
 
@@ -148,8 +148,8 @@ This example demonstrates using Boto3[^4], the official Python client of AWS.
 In the code snippet named `s3.py`, we set the following parameters in the `S3 = boto3 resource` section:
 
 * `endpoint_url and port`: The URL and port of the WEKA S3 cluster.
-* `aws_access_key_id`: The S3 local user name.
-* `aws_secret_access_key`: The S3 local user password.
+* `aws_access_key_id`: The generated S3 access key.
+* `aws_secret_access_key`: The generated S3 secret key.
 
 {% code overflow="wrap" %}
 ```python
@@ -165,8 +165,8 @@ config = Config(
 
 s3 = boto3.resource('s3',
                     endpoint_url='https://ari:9000',
-                    aws_access_key_id='S3_user1',
-                    aws_secret_access_key='S3_user1',
+                    aws_access_key_id='REPLACE_WITH_ACCESS_KEY',
+                    aws_secret_access_key='REPLACE_WITH_SECRET_KEY',
                     config=config)
 
 try:

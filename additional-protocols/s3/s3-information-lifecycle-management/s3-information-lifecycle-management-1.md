@@ -17,6 +17,10 @@ Using the CLI, you can:
 * [Remove a lifecycle rule](s3-information-lifecycle-management-1.md#remove-a-lifecycle-rule)
 * [Reset the lifecycle rules of a bucket](s3-information-lifecycle-management-1.md#reset-ilm-rules-of-a-bucket)
 
+{% hint style="info" %}
+In multi-tenant deployments, lifecycle rules are scoped to the tenant in which they are defined. Rules apply only to buckets owned by that tenant. The lifecycle crawler runs cluster-wide across all tenants automatically. No additional configuration is required per tenant.
+{% endhint %}
+
 ## Add a lifecycle rule
 
 **Command:** `weka s3 bucket lifecycle-rule add`

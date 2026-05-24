@@ -30,10 +30,10 @@ Verify that a predefined filesystem for maintaining the persisting cluster-wide 
 2. From the Protocols pane, select **S3**.
 3. On the Configuration tab, select **Configure**.
 4. In the S3 Cluster Configuration dialog, set the following properties:
-   * **Filesystem**: The filesystem to use for the S3 service. When adding a bucket, it is created in this filesystem by default.
+   * **Filesystem**: The cluster default filesystem for the S3 service. Bucket creation uses this filesystem for Tenant 0 for tenants that do not define a tenant default filesystem.
    * **Port**: Default 9000. If required, modify the port through which the cluster exposes the S3 service. Do not set port 9001.
-   * **Anonymous Posix UID:** If required, modify the POSIX UID assigned to anonymous users.
-   * **Anonymous Posix GID:** If required, modify the POSIX GID assigned to anonymous users.
+   * **Anonymous Posix UID:** The cluster default POSIX UID assigned to anonymous or public S3 access. Tenants can override this value for their own workloads.
+   * **Anonymous Posix GID:** The cluster default POSIX GID assigned to anonymous or public S3 access. Tenants can override this value for their own workloads.
    * **All servers**: To use all available servers for the S3 configuration, switch on **All servers**. If new servers are deployed later, they do not automatically participate in the S3 cluster.\
      To use specific servers, switch off **All servers**, and select one or more of the available servers from the list to participate in the S3 cluster.
    * **Virtual-hosted-style Domains:** Using the HTTP host header, virtual-hosted-style domains enable addressing the S3 bucket in a REST API request. The bucket name is part of the domain name in the URL. For the domain name, use DNS-compatible values.\
@@ -42,13 +42,15 @@ Verify that a predefined filesystem for maintaining the persisting cluster-wide 
 5. In the **Config Filesystem**, select the filesystem used for persisting S3 cluster-wide configuration.
 6. Select **Save**.
 
+TenantAdmin can configure tenant-specific overrides for the default filesystem and anonymous POSIX UID and GID within the tenant boundary by using the CLI.
+
 Once the system completes configuration, the servers' statuses change from not ready (red X icon) to ready (green V icon).
 
-<div data-with-frame="true"><figure><img src="../../../.gitbook/assets/wmng_S3_cluster_configuration (1).gif" alt=""><figcaption><p>S3 Cluster Configuration</p></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src="../../../.gitbook/assets/S3_cluster_config (1).png" alt=""><figcaption><p>S3 Cluster Configuration</p></figcaption></figure></div>
 
 ## Update an S3 cluster configuration
 
-You can update the port and the servers to participate in the S3 cluster.
+You can update the cluster defaults, the port, and the servers that participate in the S3 cluster.
 
 **Procedure**
 
@@ -60,13 +62,15 @@ You can update the port and the servers to participate in the S3 cluster.
 
 4. Update the properties as required. Do not set port 9001.
 
+The **Filesystem**, **Anonymous Posix UID**, and **Anonymous Posix GID** values remain cluster-level defaults. Tenant-specific overrides are configured separately.
+
 {% hint style="warning" %}
 Modifying the **Virtual-hosted-style Domains** parameter automatically triggers a restart of all S3 containers, resulting in I/O disruption.
 {% endhint %}
 
 5. Select **Save**.
 
-<div data-with-frame="true"><img src="../../../.gitbook/assets/wmng_S3_edit_configuration.png" alt="Edit S3 Cluster Configuration"></div>
+<div data-with-frame="true"><img src="../../../.gitbook/assets/edit_s3_cluster (1).png" alt="Edit S3 Cluster Configuration" width="351"></div>
 
 ## Delete an S3 cluster configuration
 

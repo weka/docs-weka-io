@@ -159,7 +159,7 @@ The CLI prompt requires the password after running the command.
 
 ## Edit a tenant environment
 
-To modify an existing tenant's resource limits or security configurations, use the **Edit Tenant** dialog. While a cluster administrator can update quotas and network settings, the Tenant Name, Tenant Admin Username, and password fields are fixed and cannot be modified once the tenant is created.
+To modify an existing tenant's resource limits, security configuration, or S3 defaults, use the **Edit Tenant** dialog. While a cluster administrator can update quotas, network settings, and tenant-level S3 settings, the Tenant Name, Tenant Admin Username, and password fields are fixed and cannot be modified once the tenant is created.
 
 #### **GUI procedure**
 
@@ -175,9 +175,16 @@ To modify an existing tenant's resource limits or security configurations, use t
     * Network Spaces
     * Enforce Filesystem Authentication
     * Enforce Network Space Access
+    * **S3 settings:** Set the tenant-specific S3 defaults:
+      * **Default filesystem:** Filesystem used when a bucket is created through the S3 API without an explicit filesystem.
+      * **Anonymous UID/GID:** POSIX identity assigned to anonymous or public S3 access for this tenant.
 
     <div data-with-frame="true"><figure><img src="../../.gitbook/assets/mt_edit_tenant.png" alt=""><figcaption><p>Edit tenant</p></figcaption></figure></div>
 5. Click **Save**.
+
+{% hint style="info" %}
+These settings extend the existing S3 defaults to the tenant scope. Use them when different tenants require different bucket placement or anonymous identity mapping.
+{% endhint %}
 
 #### CLI alternative
 
@@ -278,6 +285,22 @@ weka tenant set-qos <tenant> [--max-throughput max-throughput] [--max-iops max-i
 
 <table><thead><tr><th width="220">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>tenant</code>*</td><td>The name or ID of the tenant.</td></tr><tr><td><code>max-throughput</code></td><td>The maximum total throughput allowed for the tenant per second. Use a number with capacity units in Decimal or Binary: for example, 200GiB or 500GB.</td></tr><tr><td><code>max-iops</code></td><td>The maximum total I/O operations allowed for the tenant per second. Use a number without units: for example, 500000.</td></tr></tbody></table>
 
-**Related topic**
+## Configure tenant S3 settings
 
-[Broken link](/broken/pages/-LBJvd2jB8hUJhPLHHmk#quality-of-service-qos "mention")
+As a tenant administrator, you can configure dedicated S3 settings for a specific tenant. This includes defining a default filesystem for buckets created through the S3 API and assigning an anonymous POSIX User ID (UID) and Group ID (GID) for anonymous or public S3 access.
+
+**Before you begin**
+
+Ensure you are logged in with tenant administrator privileges.
+
+**Procedure**
+
+1. Select **Manage > Protocols**.
+2. On the S3 Cluster Configuration page, select the plus (+) icon.
+3. In the **Configure Tenant S3 Settings** dialog, configure the following fields:
+   * **Default Filesystem:** Select the filesystem to use as a fallback when buckets are created through the S3 API.
+   * **Anonymous Posix UID:** Enter the POSIX User ID to assign for identity mapping during anonymous or public S3 access. The default value is 65534.
+   * **Anonymous Posix GID:** Enter the POSIX Group ID to assign for identity mapping during anonymous or public S3 access. The default value is 65534.
+4. Select **Save**.
+
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/tenant_s3_setting.png" alt="" width="346"><figcaption><p>Configure tenant S3 settings</p></figcaption></figure></div>

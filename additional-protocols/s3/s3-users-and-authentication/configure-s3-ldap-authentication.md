@@ -31,6 +31,8 @@ Perform these tasks to create, update, or revoke S3 credentials using LDAP authe
 
 To authenticate an LDAP user and generate a new S3 key pair, execute a POST request.
 
+Use the tenant-aware URL when you want to import the LDAP user directly into a specific tenant.
+
 {% code overflow="wrap" %}
 ```bash
 curl -u "ldap_user:ldap_password" -X POST https://<weka_cluster_address>:14000/api/v2/s3/<TenantID>/ldapImportUser -k
@@ -38,8 +40,16 @@ curl -u "ldap_user:ldap_password" -X POST https://<weka_cluster_address>:14000/a
 {% endcode %}
 
 {% hint style="info" %}
-`<TenantID>` is optional. If omitted, the request defaults to Tenant 0 for backward compatibility. This applies to all LDAP import requests (POST, PUT, and DELETE).
+`<TenantID>` is optional. If omitted, the request defaults to Tenant 0 for backward compatibility. This applies to all LDAP import requests.
 {% endhint %}
+
+Use the backward-compatible URL when you want to target Tenant 0 explicitly by omission:
+
+{% code overflow="wrap" %}
+```bash
+curl -u "ldap_user:ldap_password" -X POST https://<weka_cluster_address>:14000/api/v2/s3/ldapImportUser -k
+```
+{% endcode %}
 
 The response returns a randomly generated access key and secret key.
 
@@ -53,6 +63,14 @@ curl -u "ldap_user:ldap_password" -X PUT https://<weka_cluster_address>:14000/ap
 ```
 {% endcode %}
 
+Backward-compatible Tenant 0 variant:
+
+{% code overflow="wrap" %}
+```bash
+curl -u "ldap_user:ldap_password" -X PUT https://<weka_cluster_address>:14000/api/v2/s3/ldapImportUser -k
+```
+{% endcode %}
+
 The existing access key and secret key remain unchanged.
 
 #### Revoke S3 access
@@ -63,6 +81,14 @@ To permanently delete the S3 account and credentials, execute a DELETE request.
 ```bash
 curl -u "ldap_user:ldap_password" -X DELETE https://<weka_cluster_address>:14000/api/v2/s3/<TenantID>/ldapImportUser -k
 
+```
+{% endcode %}
+
+Backward-compatible Tenant 0 variant:
+
+{% code overflow="wrap" %}
+```bash
+curl -u "ldap_user:ldap_password" -X DELETE https://<weka_cluster_address>:14000/api/v2/s3/ldapImportUser -k
 ```
 {% endcode %}
 

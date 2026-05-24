@@ -47,7 +47,7 @@ The GCP Console is already installed with Terraform by default. It is the primar
 
 <img src="../../.gitbook/assets/Terraform_overview.png" alt="" data-size="original">
 
-#### How does Terraform work?
+**How does Terraform work?**
 
 A deployment with Terraform involves three phases:
 

@@ -36,6 +36,10 @@ Before using S3 lifecycle rules management, ensure you have:
 * A configured Data Services container (DataServ) with the configuration filesystem set.
 * Enabled S3 lifecycle task manager using: `weka dataservice s3-lifecycle-task enable`
 
+{% hint style="info" %}
+In multi-tenant deployments, ILM rules are scoped to the tenant in which they are defined. Rules apply only to buckets owned by that tenant. The lifecycle crawler runs cluster-wide across all tenants automatically. No additional configuration is required per tenant.
+{% endhint %}
+
 **Related topics**
 
 [set-up-a-data-services-container-for-background-tasks.md](../../../operation-guide/background-tasks/set-up-a-data-services-container-for-background-tasks.md "mention")

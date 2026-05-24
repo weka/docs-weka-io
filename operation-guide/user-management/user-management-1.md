@@ -123,6 +123,30 @@ Use the following command to change a local user password:
 * To regain access to the system after changing the password, the user must re-authenticate using the new password.
 {% endhint %}
 
+### Reset your own S3 credentials &#x20;
+
+Reset the S3 API credentials for your user account by generating a new access key and secret key.
+
+**Before you begin**
+
+Confirm that you have existing S3 credentials. If you also need to reset your WEKA account password, note that the two operations are independent. Resetting your WEKA account password does not affect S3 credentials.
+
+**Procedure**
+
+1. Run the following command:
+
+```bash
+weka s3 user keys-generate
+```
+
+2. At the prompt, review the message and type `yes` to confirm, or `no` to cancel.
+
+The system generates and displays a new access key and secret key for your S3 API access.
+
+**Result**
+
+Your new S3 credentials are displayed. Store the secret key securely, as it is not retrievable after the session ends.
+
 ## Revoke user access
 
 **Command:** `weka user revoke-tokens`
