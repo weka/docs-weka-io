@@ -55,39 +55,39 @@ For on-premises planning, it is possible to consult with the Customer Success Te
 
 ### Backend servers memory requirements
 
-The total per server memory requirements is the sum of the following requirements:
+The total per server memory requirements are the sum of the following requirements:
 
-<table><thead><tr><th width="247">Purpose</th><th>Per-server memory</th></tr></thead><tbody><tr><td>Fixed</td><td>2.8 GB</td></tr><tr><td>Frontend processes</td><td>2.2 GB x # of Frontend processes</td></tr><tr><td>Compute processes</td><td>3.9 GB x # of Compute processes</td></tr><tr><td>Drive processes</td><td>2 GB x # of Drive processes</td></tr><tr><td>SSD capacity management</td><td>(Total SSD Raw Capacity / Number of Servers / 2,000) + (Number of Cores x 3 GB)</td></tr><tr><td>Operating System</td><td>The maximum between 8 GB and 2% from the total RAM</td></tr><tr><td>Additional protocols (NFS/SMB/S3)</td><td>16 GB</td></tr><tr><td>RDMA</td><td>2 GB</td></tr><tr><td>Metadata (pointers)</td><td>20 Bytes x # Metadata units per server<br>See <a href="/broken/pages/-LBJvd2jB8hUJhPLHHmk#metadata-calculations">Metadata units calculation</a>.</td></tr><tr><td>Dedicated Data Services container</td><td><p>If you intend to add a <a data-footnote-ref href="#user-content-fn-1">Data Services container for background tasks</a>, it requires additional memory:</p><ul><li>3.5 GB (without dedicated core)</li><li>5.5 GB (with dedicated core)</li></ul></td></tr></tbody></table>
+<table><thead><tr><th width="247">Purpose</th><th>Per-server memory</th></tr></thead><tbody><tr><td>Fixed</td><td>2.61 GiB</td></tr><tr><td>Frontend processes</td><td>2.05 GiB × # of Frontend processes</td></tr><tr><td>Compute processes</td><td>3.63 GiB × # of Compute processes</td></tr><tr><td>Drive processes</td><td>1.86 GiB × # of Drive processes</td></tr><tr><td>SSD capacity management</td><td>(Total SSD raw capacity in GiB ÷ Number of Servers ÷ 2,000) + (Number of Cores × 2.79 GiB)</td></tr><tr><td>Operating System</td><td>The maximum between 7.45 GiB and 2% of the total RAM</td></tr><tr><td>Additional protocols (NFS/SMB/S3)</td><td>14.9 GiB</td></tr><tr><td>RDMA</td><td>1.86 GiB</td></tr><tr><td>Metadata (pointers)</td><td>20 Bytes × # Metadata units per server<br>See <a href="/broken/pages/-LBJvd2jB8hUJhPLHHmk#metadata-calculations">Metadata units calculation</a>.</td></tr><tr><td>Dedicated Data Services container</td><td><p>If you intend to add a <a data-footnote-ref href="#user-content-fn-1">Data Services container for background tasks</a>, it requires additional memory:</p><ul><li>3.26 GiB (without dedicated core)</li><li>5.12 GiB (with dedicated core)</li></ul></td></tr></tbody></table>
 
 {% hint style="warning" %}
-Contact the Customer Success Team to explore options for configurations requiring more than 384 GB of memory per server.
+Contact the Customer Success Team to explore options for configurations requiring more than 357.6 GiB of memory per server.
 {% endhint %}
 
 #### Example 1: A system with large files
 
 A system with 16 servers with the following details:
 
-* Fixed: 2.8 GB\
+* Fixed: 2.61 GiB\
   Number of Frontend processes: 1
 * Number of Compute processes: 13
 * Number of Drive processes: 6
-* Total raw capacity: 983 TB (983,000 GB)
-* Total net capacity: 725 TB
+* Total raw capacity: 915,490.1 GiB
+* Total net capacity: 675,208.9 GiB
 * NFS/SMB services
 * RDMA
 * Average file size: 1 MB (potentially up to 755 million files for all servers; \~47 million files per server)
 
 Calculations:
 
-* Frontend processes: 1 x 2.2 = 2.2 GB
-* Compute processes: 13 x 3.9 = 50.7 GB
-* Drive processes: 6 x 2 = 12 GB
-* SSD capacity management: 983,000 GB / 16 / 2000 + 20 x 3 GB = \~90.7 GB
-* Additional protocols = 16 GB
-* RDMA = 2 GB
-* Metadata: 20 Bytes x 47 million files x 2 units = \~1.9 GB
+* Frontend processes: 1 × 2.05 = 2.05 GiB
+* Compute processes: 13 × 3.63 = 47.2 GiB
+* Drive processes: 6 × 1.86 = 11.2 GiB
+* SSD capacity management: 915,490.1 GiB ÷ 16 ÷ 2,000 + 20 × 2.79 GiB = \~84.5 GiB
+* Additional protocols = 14.9 GiB
+* RDMA = 1.86 GiB
+* Metadata: 20 Bytes × 47 million files × 2 units = \~1.8 GiB
 
-Total memory requirement per server = 2.8 + 2.2 + 50.7 + 12 + 90.7 + 16 + 2 + 1.9 = \~178.3 GB
+Total memory requirement per server = 2.61 + 2.05 + 47.2 + 11.2 + 84.5 + 14.9 + 1.86 + 1.8 = \~166.1 GiB
 
 #### Example 2: A system with small files
 
@@ -98,9 +98,9 @@ For an average file size of 64 KB, the number of files is potentially up to:
 * \~12 billion files for all servers.
 * \~980 million files per server.
 
-Required memory for metadata: 20 Bytes x 980 million files x 1 unit = \~19.6 GB
+Required memory for metadata: 20 Bytes × 980 million files × 1 unit = \~18.3 GiB
 
-Total memory requirement per server = 2.8 + 2.2 + 50.7 + 12 + 90.7 + 16 + 2 + 19.6 = \~196 GB
+Total memory requirement per server = 2.61 + 2.05 + 47.2 + 11.2 + 84.5 + 14.9 + 1.86 + 18.3 = \~182.6 GiB
 
 {% hint style="info" %}
 The memory requirements are conservative and can be reduced in some situations, such as in systems with mostly large files or a system with files 4 KB in size. Contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md#contact-customer-success-team) to receive an estimate for your specific configuration.
@@ -108,7 +108,48 @@ The memory requirements are conservative and can be reduced in some situations, 
 
 ### Client's memory requirements
 
-The WEKA software on a client requires 5 GB minimum additional memory.
+The minimum memory requirement for a WEKA client is 5 GiB. This minimum supports a single frontend (FE) process with a minimal HugePages allocation, but limits the number of concurrent I/Os WEKA can perform.
+
+For a typical client deployment, the total memory requirement is the sum of the following:
+
+<table><thead><tr><th width="284">Purpose</th><th>Per-client memory</th></tr></thead><tbody><tr><td>Base</td><td>3 GiB</td></tr><tr><td>Frontend (FE) processes</td><td>2.5 GiB × number of FE processes</td></tr><tr><td>HugePages (configured)</td><td>Container HugePages ÷ number of FE processes</td></tr><tr><td>HugePages (default)</td><td>1.4 GiB × number of FE processes</td></tr><tr><td>OS and kernel cache</td><td>See note below</td></tr></tbody></table>
+
+{% hint style="info" %}
+The WEKA client uses the Linux kernel page cache to accelerate read and write operations. The kernel cache grows to fill available memory, so leaving additional RAM beyond the WEKA process requirements improves I/O performance. The recommended headroom matches the working set size of your workload, though this varies by application. Leave as much free RAM as the system allows.
+{% endhint %}
+
+**Example 1: Client with default HugePages**
+
+A client with the following details:
+
+* Number of FE processes: 2
+
+Calculations:
+
+* Base: 3 GiB
+* FE processes: 2× 2.5 = 5 GiB
+* HugePages: 1.4 x 2 = 2.8 GiB
+
+Total WEKA process memory = 3 + 5 + 2.8 = **10.8 GiB**, plus additional RAM for OS and kernel cache.
+
+**Example 2: Client with configured HugePages**
+
+A client with the following details:
+
+* Number of FE processes: 2
+* Configured HugePages: 6 GiB
+
+Calculations:
+
+* Base: 3 GiB
+* FE processes: 2 × 2.5 = 5 GiB
+* Effective HugePages memory: 6 ÷ 2 = 3 GiB
+
+Total WEKA process memory = 3 + 5 + 3 = **11 GiB**, plus additional RAM for the OS and kernel cache.
+
+{% hint style="warning" %}
+Clients running workloads that consume all available RAM, such as Slurm jobs with no memory reservation, leave no RAM for the kernel cache. This results in degraded I/O performance even for workloads that are not I/O intensive. Reserve sufficient RAM for the OS and kernel cache outside of job schedulers. For Slurm-specific guidance, see[weka-and-slurm-integration](../../best-practice-guides/weka-and-slurm-integration/ "mention").
+{% endhint %}
 
 ## CPU resource planning
 
@@ -133,7 +174,7 @@ Plan the number of physical cores dedicated to the WEKA software according to th
   * Leave enough cores for the container serving the protocol if it runs on the same server.
 * Allocate enough cores to support performance targets.
   * Generally, use 1 drive process per SSD for up to 6 SSDs and 1 drive process per 2 SSDs for more, with a ratio of 2 compute processes per drive process.
-  * For finer tuning, please contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md#contact-customer-success-team).
+  * For finer tuning, contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md#contact-customer-success-team).
 * Allocate enough memory to match core allocation, as discussed above.
 * Running other applications on the same server (converged WEKA system deployment) is supported. For details, contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md#contact-customer-success-team).
 
