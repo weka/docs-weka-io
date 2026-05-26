@@ -34,7 +34,6 @@
   * [Perform post-configuration procedures](planning-and-installation/bare-metal/perform-post-configuration-procedures.md)
   * [Add clients to a bare-metal cluster](planning-and-installation/bare-metal/adding-clients-bare-metal.md)
 * [Cloud Deployment Manager Web (CDM Web) User Guide](planning-and-installation/weka-cdm-web-user-guide.md)
-* [Cloud Deployment Manager Local (CDM Local) User Guide](planning-and-installation/weka-cdm-local-user-manager.md)
 * [WEKA installation on AWS](planning-and-installation/aws/README.md)
   * [Terraform-AWS-WEKA module description](planning-and-installation/aws/aws-weka-terraform-deployment-module-description.md)
   * [Deployment on AWS using Terraform](planning-and-installation/aws/deployment-on-aws-using-terraform.md)
