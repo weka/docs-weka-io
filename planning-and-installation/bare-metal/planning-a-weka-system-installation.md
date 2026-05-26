@@ -148,7 +148,7 @@ Calculations:
 Total WEKA process memory = 3 + 5 + 3 = **11 GiB**, plus additional RAM for the OS and kernel cache.
 
 {% hint style="warning" %}
-Clients running workloads that consume all available RAM, such as Slurm jobs with no memory reservation, leave no RAM for the kernel cache. This results in degraded I/O performance even for workloads that are not I/O intensive. Reserve sufficient RAM for the OS and kernel cache outside of job schedulers. For Slurm-specific guidance, see[weka-and-slurm-integration](../../best-practice-guides/weka-and-slurm-integration/ "mention").
+Clients running workloads that consume all available RAM, such as Slurm jobs with no memory reservation, leave no RAM for the kernel cache. This results in degraded I/O performance even for workloads that are not I/O intensive. Reserve sufficient RAM for the OS and kernel cache outside of job schedulers. For Slurm-specific guidance, see [weka-and-slurm-integration](../../best-practice-guides/weka-and-slurm-integration/ "mention").
 {% endhint %}
 
 ## CPU resource planning
