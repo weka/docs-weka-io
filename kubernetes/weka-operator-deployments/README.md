@@ -592,12 +592,11 @@ helm pull oci://quay.io/weka.io/helm/weka-operator --untar --version <WEKA_OPERA
 kubectl apply -f weka-operator/crds
 ```
 
-2. **Define drive allocation ratios:** Starting with version **1.10**, you must specify the ratio between QLC and TLC drive types. This is essential for Hybrid Flash environments. Use the following parameters according to your storage configuration:
-   * **Hybrid Flash:** `--set driveSharing.driveTypesRatio='{tlc: 9, qlc: 1}'`\
-     Result: Allocates 1/10 capacity to QLC and 9/10 to TLC.
-   * **Single drive type:** `--set driveSharing.drivesTypesRatio='{qlc: 0}'`\
-     Result: Disables hybrid allocation.
-3. **Deploy the WEKA Operator:** Execute the Helm command to install the operator. For versions **1.7.0** and later, include the CSI plugin enablement flag.
+2. **Deploy the WEKA Operator:** Run the Helm command that matches your operator version and storage layout.
+   * **Operator version 1.7.0 and later:** Include `--set csi.installationEnabled=true`.
+   * **Operator version 1.10 and later:** Set `driveSharing.driveTypesRatio` for your drive layout.
+
+**Example: Hybrid Flash**
 
 ```bash
 helm upgrade --create-namespace \
@@ -605,14 +604,29 @@ helm upgrade --create-namespace \
     --namespace weka-operator-system \
     --version <WEKA_OPERATOR_VERSION> \
     --set csi.installationEnabled=true \
-    --set driveTypeRatio='{tlc: 4, qlc: 1}'
+    --set driveSharing.driveTypesRatio='{tlc: 9, qlc: 1}'
 ```
 
+This setting allocates 9/10 capacity to TLC and 1/10 to QLC.
+
+**Example: Single drive type**
+
+```bash
+helm upgrade --create-namespace \
+    --install weka-operator oci://quay.io/weka.io/helm/weka-operator \
+    --namespace weka-operator-system \
+    --version <WEKA_OPERATOR_VERSION> \
+    --set csi.installationEnabled=true \
+    --set driveSharing.driveTypesRatio='{qlc: 0}'
+```
+
+This setting disables Hybrid Flash allocation.
+
 {% hint style="info" %}
-For operator versions earlier than 1.7.0, omit the `--set csi.installationEnabled=true` parameter.
+For operator versions earlier than 1.7.0, omit the `--set csi.installationEnabled=true` parameter. For operator versions earlier than 1.10, omit the `driveSharing.driveTypesRatio` parameter.
 {% endhint %}
 
-4. **Verify the installation:** Ensure the operator pod is running.
+3. **Verify the installation:** Ensure the operator pod is running.
 
 ```bash
 kubectl -n weka-operator-system get pod
