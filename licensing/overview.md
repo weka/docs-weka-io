@@ -21,21 +21,21 @@ Apply these licensing rules:
 
 WEKA uses a modular licensing model where specific editions serve as the foundation, while add-ons provide supplemental functionality.
 
-<table><thead><tr><th width="104">License</th><th width="228">Full name</th><th width="125">Type</th><th>Description</th></tr></thead><tbody><tr><td>XPS</td><td>Extreme Performance and Scale Edition</td><td>Core</td><td>Required for on-premises deployments to enable maximum performance on a single primary cluster.</td></tr><tr><td>XCL</td><td>Extreme Cloud License</td><td>Core</td><td>Required for every WEKA cloud deployment.</td></tr><tr><td>DPO</td><td>Data Protection Option</td><td>Add-on</td><td>Requires an XPS license to enable advanced backup, recovery, and tiering to third-party object stores.</td></tr><tr><td>XOS</td><td>Extreme Performance Object Edition</td><td>Add-on / Standalone</td><td>Enables the cluster to operate as a high-performance object store through the S3 protocol.</td></tr><tr><td>DEO</td><td>Data Efficiency Option</td><td>Add-on</td><td>Requires an XPS license to enable cluster-wide data reduction per filesystem.</td></tr></tbody></table>
+<table><thead><tr><th width="100">License</th><th width="181">Full name</th><th width="115">Type</th><th>Description</th></tr></thead><tbody><tr><td>XPS</td><td>Extreme Performance and Scale Performance Edition</td><td>Core</td><td>Flash-tier license for on-premises environments that includes POSIX, S3, SMB, NFS, and GDS protocol support. Includes local snapshot capability.</td></tr><tr><td>XCL</td><td>Extreme Performance and Scale Hybrid Cloud Edition</td><td>Core</td><td>Flash-tier license for hybrid cloud environments that includes POSIX, S3, SMB, NFS, and GDS protocol support. Includes local snapshot capability and local Snap-To-Object capability for one local object store repository.</td></tr><tr><td>DPO</td><td>WEKA Data Protection Option</td><td>Add-on</td><td>Add-on data protection license for XPS and XOS deployments. Includes tiering, local and remote Snap-To-Object, synchronous snapshots, and secure backup.</td></tr><tr><td>XOS</td><td>Extreme Performance Object Edition</td><td>Standalone / Add-on</td><td>Use XOS as an alternative to XPS if the cluster operates exclusively as an S3 target. Use XOS with DPO if the cluster also needs to offload snapshots to a third-party object store. Includes local snapshot capability.</td></tr><tr><td>DEO</td><td>Data Efficiency Option</td><td>Add-on</td><td>Add-on data efficiency license for XPS deployments. Enables cluster-wide data reduction on a per-filesystem basis.</td></tr></tbody></table>
 
 ## License properties
 
 Identify the key attributes and capacity limits defined within each license.
 
-<table><thead><tr><th width="198">Property</th><th>Description</th></tr></thead><tbody><tr><td><strong>Cluster GUID</strong></td><td>Unique identifier assigned during cluster installation.</td></tr><tr><td><strong>Expiry date</strong></td><td>End of the licensed usage period.</td></tr><tr><td><strong>Usable capacity</strong></td><td>Licensed usable capacity in TB.</td></tr><tr><td><strong>Object-store capacity</strong></td><td>Licensed object-store capacity for DPO and XOS licenses.</td></tr><tr><td><strong>Data Efficiency Option</strong></td><td>Shows whether the DEO license is enabled or disabled.</td></tr></tbody></table>
+<table><thead><tr><th width="198">Property</th><th>Description</th></tr></thead><tbody><tr><td><strong>Cluster GUID</strong></td><td>Unique identifier assigned during cluster installation.</td></tr><tr><td><strong>Expiry date</strong></td><td>End of the licensed usage period.</td></tr><tr><td><strong>Usable capacity</strong></td><td>Licensed usable flash capacity in TB.</td></tr><tr><td><strong>Object-store capacity</strong></td><td>Licensed object-store capacity for DPO license.</td></tr><tr><td><strong>Data Efficiency Option</strong></td><td>Shows whether the DEO license is enabled or disabled.</td></tr></tbody></table>
 
-## XPS and XCL capacity
+## XPS, XCL and XOS capacity
 
 The license size in TB must equal or exceed the total usable capacity of all NVMe flash drives in the cluster, rounded up to the nearest TB. Usable capacity is the space available for filesystems after accounting for erasure encoding, hot spares, and reserved overhead.
 
-XPS consumption changes when adding or removing NVMe drives or virtual hot spares. If the usable capacity rounded up to the nearest TB exceeds the license value, the cluster reports a license conflict.
+Consumption changes when adding or removing NVMe drives or virtual hot spares. If the usable capacity rounded up to the nearest TB exceeds the license value, the cluster reports a license conflict.
 
-<div data-with-frame="true"><figure><img src="../.gitbook/assets/image (244).png" alt=""><figcaption><p>XPS capacity calculation</p></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/image (244).png" alt=""><figcaption><p>XPS capacity calculation example</p></figcaption></figure></div>
 
 ## DPO capacity
 
@@ -61,7 +61,7 @@ $$
 
 XOS capacity is calculated identically to XPS. The license size must equal or exceed the total usable capacity of all NVMe flash drives in the cluster, rounded up to the nearest TB.
 
-Use XOS as a standalone license if the cluster operates exclusively as an S3 target. Use XOS with DPO if the cluster also needs to offload snapshots to a third-party object store.
+Use XOS as an alternative license if the cluster operates exclusively as an S3 target. Use XOS with DPO if the cluster also needs to offload snapshots to a third-party object store.
 
 **Related topics**
 
