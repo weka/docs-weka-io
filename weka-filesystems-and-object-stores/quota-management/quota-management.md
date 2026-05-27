@@ -104,8 +104,15 @@ weka fs quota list-default <filesystem-name> --type group
 
 **Command**: `weka fs quota set`
 
-Before setting a quota, verify that at least one Data Services container is set to enable the command to run the `QUOTA_COLORING` task in the background.\
-For details, see [set-up-a-data-services-container-for-background-tasks.md](../../operation-guide/background-tasks/set-up-a-data-services-container-for-background-tasks.md "mention").
+Before setting a quota, check which scenario applies:
+
+* **Directory quota:** A Data Services container is required to run the `QUOTA_COLORING` background task.
+* **User or group quota on filesystems created in WEKA 5.1.20 or later:** User quota accounting is enabled automatically. No Data Services container is required.
+* **User or group quota on filesystems created before WEKA 5.1.20:** Run `weka fs quota enable-users` before setting the quota. A Data Services container is required for this one-time operation.
+
+**Related topic**
+
+[set-up-a-data-services-container-for-background-tasks.md](../../operation-guide/background-tasks/set-up-a-data-services-container-for-background-tasks.md "mention").
 
 Use the following command to set a quota:
 
@@ -183,17 +190,30 @@ weka fs quota list <filesystem-name> --type group --all
 
 **Command**: `weka fs quota enable-users` / `weka fs quota disable-users`
 
-User quota accounting is enabled by default on new filesystems, including filesystems created after an upgrade.
+User quota accounting applies to both user quotas and group quotas.
 
-For existing filesystems that were upgraded, run `enable-users` to enable accounting explicitly. Enabling accounting on an existing filesystem triggers a background `QUOTA_COLORING` task that stamps existing objects with UID quota identifiers.
+* **Filesystems created in WEKA 5.1.20 or later:** User quota accounting is enabled automatically. User and group quotas can be set immediately.
+* **Filesystems created before WEKA 5.1.20:** Enable user quota accounting before setting user or group quotas. Run the following command:
 
-A Data Services container is required for this initial coloring. New filesystems do not require a Data Services container for quota counting.
+```bash
+weka fs quota enable-users <filesystem>
+```
 
-Per-user quota limits can be set after accounting is enabled.
+This triggers a one-time background `QUOTA_COLORING` task that stamps existing objects with UID quota identifiers. A Data Services container must be running on the cluster for this operation to complete.
 
-`weka fs quota enable-users <filesystem> [--snap-name snap-name]`
+There is no fallback mode for this operation. If no Data Services container is available, the command does not complete.
 
-`weka fs quota disable-users <filesystem> [--snap-name snap-name]`
+Per-user and per-group quota limits can be set after accounting is enabled.
+
+To disable user quota accounting, run the following command:
+
+```bash
+weka fs quota disable-users <filesystem>
+```
+
+{% hint style="info" %}
+Only a Data Services container is required to enable user quota accounting on an existing filesystem. A frontend container on the backend server is not required for this operation.
+{% endhint %}
 
 **Parameters**
 
