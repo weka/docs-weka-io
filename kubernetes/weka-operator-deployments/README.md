@@ -47,6 +47,8 @@ The WEKA Operator backend deployment integrates various components within a Kube
   * **Drivers Builder**: Compiles drivers for specific WEKA versions and kernel targets, uploading them to the Distribution Service. Multiple builders can run concurrently to support the same repository.
   * **Drivers Loader**: Automatically detects missing drivers, retrieves them from the Distribution Service, and loads them using `modprobe`.
 
+For full CRD schema details, see the [WEKA CRD API Reference](https://weka.github.io/weka-k8s-api/).
+
 <div data-with-frame="true"><figure><img src="../../.gitbook/assets/WEKA_operator_backend_deploy.png" alt="" width="560"><figcaption><p>WEKA Operator backend deployment</p></figcaption></figure></div>
 
 ## WEKA Operator client deployment overview
