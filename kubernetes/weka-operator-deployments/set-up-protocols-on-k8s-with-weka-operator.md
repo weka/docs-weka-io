@@ -1,6 +1,6 @@
 ---
 description: >-
-  Configure S3, NFS, and SMB-W protocols using the WEKA Kubernetes operator to
+  Configure S3, NFS-W, and SMB-W protocols using the WEKA Kubernetes operator to
   provide object and file access to filesystems.
 ---
 
@@ -8,41 +8,46 @@ description: >-
 
 ## Overview of WEKA Operator protocols
 
-The WEKA Kubernetes operator streamlines the deployment of protocol gateways by managing dedicated containers within the WekaCluster custom resource. By defining protocol settings in the cluster configuration, the operator automatically provisions and manages S3, NFS, and SMB-W frontend containers on the WEKA cluster fabric.
+The WEKA Kubernetes operator streamlines the deployment of protocol gateways by managing dedicated containers within the WekaCluster custom resource. By defining protocol settings in the cluster configuration, the operator automatically provisions and manages S3, NFS-W, and SMB-W frontend containers on the WEKA cluster fabric.
 
-#### S3 protocol architecture
+### S3 protocol architecture
 
-The S3 data path facilitates object access through a layered service structure:
+The S3 data path routes object requests through the Kubernetes service, the software load balancer, and the S3 frontend containers:
 
-* **Client access:** S3 clients communicate with the weka-s3 Service using the HTTP/S3 API.
-* **Load balancing:** Traffic is directed to a Software Load Balancer (SLB Pod) running an SLB proxy.
-* **Protocol delivery:** The SLB proxy routes requests to a pool of S3 Pods.
-* **Backend integration:** S3 Pods communicate with the WEKA Backend using the internal WEKA protocol.
+* **Client access:** S3 clients send HTTP or HTTPS requests to the `weka-s3` service.
+* **Service routing:** The service forwards each request to an SLB pod that runs the software load balancer. The SLB pods are interconnected, so an SLB can relay traffic through a peer SLB if the selected S3 pod is unreachable.
+* **S3 processing:** The software load balancer forwards the request to one of the S3 pods.
+* **Backend access:** The S3 pod reads and writes data through the internal WEKA protocol to the backend containers.
 
-#### NFS protocol architecture
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/k8s_s3.png" alt=""><figcaption><p>WEKA Operator S3 protocol architecture</p></figcaption></figure></div>
 
-The NFS data path provides file access through a direct routing mechanism:
+### NFS-W protocol architecture
 
-* **Client access:** NFS clients establish an NFS mount to the weka-nfs Service.
-* **Routing:** The service routes traffic directly to the available NFS Pods.
-* **Backend integration:** NFS Pods connect to the WEKA Backend by way of the WEKA protocol.
+The NFS-W data path routes file requests from the Kubernetes service directly to the NFS-W frontend containers:
 
-#### SMB-W protocol architecture
+* **Client access:** NFS clients mount the exported filesystem through the `weka-nfs` service.
+* **Service routing:** The service forwards traffic directly to one of the NFS pods.
+* **Backend access:** The NFS-W pod reads and writes data through the internal WEKA protocol to the backend containers.
 
-The SMB-W data path delivers Windows, Linux CIFS, and macOS file access through a clustered, Active Directory-integrated service:
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/k8s_nfs.png" alt=""><figcaption><p>WEKA Operator NFS-W protocol architecture</p></figcaption></figure></div>
 
-* **Client access:** SMB clients connect to a floating IP address served by the SMB-W cluster.
-* **High availability:** The operator distributes floating IPs from the configured range across the SMB-W containers. If a container becomes unavailable, another container in the cluster takes over its floating IP to preserve service continuity.
-* **Identity:** The SMB-W cluster joins a single Active Directory domain, which can include multiple trusted domains. The operator performs the domain join using the credentials stored in a Kubernetes Secret.
-* **Backend integration:** SMB-W Pods read and write data on the WEKA filesystems using the internal WEKA protocol. Cluster-wide protocol configuration is persisted on the operator-managed `.config_fs` filesystem.
+### SMB-W protocol architecture
 
-<div data-with-frame="true"><figure><img src="../../.gitbook/assets/WEKA_Operator_protocols.png" alt=""><figcaption><p>WEKA Operator S3, NFS, and SMB-W protocols setup</p></figcaption></figure></div>
+The SMB-W data path routes file requests through floating IPs, SMB-W frontend containers, Active Directory integration, and the WEKA backend:
+
+* **Client access:** SMB clients connect to one of the floating IP addresses assigned to the SMB-W cluster.
+* **Floating IP routing:** The operator distributes the configured floating IP range across the SMB-W containers. If a container becomes unavailable, another container takes over its floating IP.
+* **Identity services:** The SMB-W cluster joins Active Directory by using credentials stored in a Kubernetes Secret. The domain can include trusted domains.
+* **Backend access:** The SMB-W container reads and writes data through the internal WEKA protocol to the backend containers.
+* **Persistent configuration:** Cluster-wide SMB-W configuration is stored on the operator-managed `.config_fs` filesystem.
+
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/k8s_smb.png" alt=""><figcaption><p>WEKA Operator SMB-W protocol architecture</p></figcaption></figure></div>
 
 ## Before you begin
 
 * Confirm the minimum versions of the WEKA Operator and WEKA image:
 
-<table><thead><tr><th width="138.09088134765625">Protocol</th><th>Minimum WEKA Operator version</th><th>Minimum WEKA version</th></tr></thead><tbody><tr><td>S3</td><td>1.7</td><td>4.4</td></tr><tr><td>NFS</td><td>1.10</td><td>5.1</td></tr><tr><td>SMB-W</td><td>1.11</td><td>5.1.20</td></tr></tbody></table>
+<table><thead><tr><th width="138.09088134765625">Protocol</th><th>Minimum WEKA Operator version</th><th>Minimum WEKA version</th></tr></thead><tbody><tr><td>S3</td><td>1.7</td><td>4.4</td></tr><tr><td>NFS-W</td><td>1.10</td><td>5.1</td></tr><tr><td>SMB-W</td><td>1.11</td><td>5.1.20</td></tr></tbody></table>
 
 * Ensure the WEKA Operator is deployed and running in the Kubernetes cluster.
 * Verify that the WekaCluster resource is initialized.
@@ -51,7 +56,7 @@ The SMB-W data path delivers Windows, Linux CIFS, and macOS file access through 
   * **Active Directory:** A reachable Active Directory domain controller, configured to support either RFC2307 or RID identity mapping. For SMB-W identity requirements, see [Manage the SMB protocol](https://docs.weka.io/additional-protocols/smb-support).
   * **AD user with computer-join permission:** An AD account that the operator uses to add the SMB-W cluster computer object to the domain. Store the password in a Kubernetes Secret in the same namespace as the WekaCluster.
   * **DNS resolution from the Kubernetes cluster:** All WEKA backend Pods must resolve the AD domain name and the AD domain controllers. Add the AD domain to CoreDNS or to the upstream resolver used by the cluster. Without this, the operator-driven domain join fails.
-  * **Floating IPs on the management subnet:** Reserve a range of unused IP addresses on the same subnet as the WEKA management network. The operator assigns these IPs across the SMB-W containers for high availability. Do not assign these IPs to any other host, WEKA component, or NFS pool.
+  * **Floating IPs on the management subnet:** Reserve a range of unused IP addresses on the same subnet as the WEKA management network. The operator assigns these IPs across the SMB-W containers for high availability. Do not assign these IPs to any other host, WEKA component, or NFS-W pool.
   * **Three to eight SMB-W containers:** Plan for a minimum of three SMB-W containers and a maximum of eight. Container counts below this minimum prevent cluster formation.
 
 {% hint style="info" %}
@@ -86,7 +91,7 @@ High availability for SMB-W is not supported in public cloud environments. In al
       driversDistService: "https://weka-drivers-dist.weka-operator-system.svc.cluster.local:60002"
       imagePullSecret: "quay-io-robot-secret"
     </code></pre>
-3.  **NFS protocol setup:** Set the NFS parameters in the relevant sections.
+3.  **NFS-W protocol setup:** Set the NFS-W parameters in the relevant sections.
 
     <pre class="language-yaml" data-title="WekaCluster YAML configuration file example with NFS parameters"><code class="lang-yaml">apiVersion: weka.weka.io/v1
     kind: WekaCluster
@@ -152,7 +157,7 @@ High availability for SMB-W is not supported in public cloud environments. In al
     </code></pre>
 
 {% hint style="info" %}
-Unlike NFS, the SMB-W configuration does not include an `interfaces` field. The operator selects the floating IP interface from the management network of each SMB-W container.
+Unlike NFS-W, the SMB-W configuration does not include an `interfaces` field. The operator selects the floating IP interface from the management network of each SMB-W container.
 {% endhint %}
 
 5. Apply the updated configuration to the Kubernetes cluster:\
@@ -172,11 +177,11 @@ Use the following parameters in the WekaCluster `spec` to define S3 settings.
 
 <table><thead><tr><th width="352">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>dynamicTemplate.s3Containers</code></td><td>Total number of S3 containers to be deployed.<br>Data type: Integer<br>Example: <code>2</code></td></tr><tr><td><code>dynamicTemplate.s3Cores</code></td><td>Number of CPU cores assigned to each S3 container process.<br>Data type: Integer<br>Example: <code>3</code></td></tr><tr><td><code>dynamicTemplate.s3FrontendHugepages</code></td><td>Hugepage memory for the S3 frontend in MiB. A minimum of 1600 MiB is required.<br>Data type: Integer<br>Example: <code>3072</code><br><strong>Set only when guided by the WEKA team.</strong></td></tr><tr><td><code>dynamicTemplate.envoyCores</code></td><td>Number of CPU cores assigned to the software load balancer container.<br>Data type: Integer<br>Example: <code>3</code></td></tr><tr><td><code>additionalMemory.s3</code></td><td>Additional memory allocation in MiB for S3 containers, exceeding automatic calculations.<br>Data type: Integer<br>Example: <code>1000</code><br><strong>Set only when guided by the WEKA team.</strong></td></tr></tbody></table>
 
-### NFS configuration reference
+### NFS-W configuration reference
 
-Use the following parameters to define NFS and networking settings.
+Use the following parameters to define NFS-W and networking settings.
 
-<table><thead><tr><th width="336.9090576171875">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>nfs.interfaces</code></td><td>Restricted network interfaces for NFS traffic.<br>Data type: List of strings<br>Example: <code>["ens5"]</code></td></tr><tr><td><code>nfs.ipRanges</code></td><td>Floating IP addresses for client access, supporting CIDR or range formats.<br>Data type: List of strings<br>Example: <code>["10.0.1.1-10.0.1.10"]</code></td></tr><tr><td><code>dynamicTemplate.nfsContainers</code></td><td>Experimental count of NFS frontend containers to create.<br>Data type: Integer<br>Example: <code>2</code></td></tr><tr><td><code>dynamicTemplate.nfsCores</code></td><td>Number of CPU cores assigned to each NFS container process.<br>Data type: Integer<br>Example: <code>3</code></td></tr><tr><td><code>dynamicTemplate.nfsFrontendHugepages</code></td><td>Hugepage memory for the NFS frontend in MiB. A minimum of 1600 MiB is required.<br>Data type: Integer<br>Example: <code>3072</code><br><strong>Set only when guided by the WEKA team.</strong></td></tr><tr><td><code>additionalMemory.nfs</code></td><td>Additional memory allocation in MiB for NFS containers, exceeding automatic calculations.<br>Data type: Integer<br>Example: <code>1000</code><br><strong>Set only when guided by the WEKA team.</strong></td></tr></tbody></table>
+<table><thead><tr><th width="336.9090576171875">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>nfs.interfaces</code></td><td>Restricted network interfaces for NFS-W traffic.<br>Data type: List of strings<br>Example: <code>["ens5"]</code></td></tr><tr><td><code>nfs.ipRanges</code></td><td>Floating IP addresses for client access, supporting CIDR or range formats.<br>Data type: List of strings<br>Example: <code>["10.0.1.1-10.0.1.10"]</code></td></tr><tr><td><code>dynamicTemplate.nfsContainers</code></td><td>Experimental count of NFS-W frontend containers to create.<br>Data type: Integer<br>Example: <code>2</code></td></tr><tr><td><code>dynamicTemplate.nfsCores</code></td><td>Number of CPU cores assigned to each NFS-W container process.<br>Data type: Integer<br>Example: <code>3</code></td></tr><tr><td><code>dynamicTemplate.nfsFrontendHugepages</code></td><td>Hugepage memory for the NFS-W frontend in MiB. A minimum of 1600 MiB is required.<br>Data type: Integer<br>Example: <code>3072</code><br><strong>Set only when guided by the WEKA team.</strong></td></tr><tr><td><code>additionalMemory.nfs</code></td><td>Additional memory allocation in MiB for NFS-W containers, exceeding automatic calculations.<br>Data type: Integer<br>Example: <code>1000</code><br><strong>Set only when guided by the WEKA team.</strong></td></tr></tbody></table>
 
 ### SMB-W configuration reference
 
