@@ -303,6 +303,7 @@
   * [NFS transport failback](appendices/weka-csi-plugin/nfs-transport-failback.md)
   * [Upgrade legacy persistent volumes for capacity enforcement](appendices/weka-csi-plugin/upgrade-legacy-persistent-volumes-for-capacity-enforcement.md)
   * [Troubleshooting](appendices/weka-csi-plugin/troubleshooting.md)
+  * [Create a Volume Snapshot](appendices/weka-csi-plugin/create-a-volume-snapshot.md)
 * [Create a client image](appendices/create-a-client-image.md)
 * [Update WMS and WSA](appendices/update-wms-and-wsa.md)
 * [BIOS tool](appendices/bios-tool.md)
