@@ -470,7 +470,7 @@ The following table describes each field that appears in the progress output str
 
 ## WEKA S3 **Migrator:** s3migrate command
 
-The WEKA S3 Migrator facilitates object migration between S3-compatible storage systems. It supports parallel execution, detailed reporting, and fine-grained control through various parameters.
+The WEKA S3 Migrator facilitates object migration between WEKA S3 clusters. It supports parallel execution, detailed reporting, and fine-grained control through various parameters.
 
 #### **Example usage**
 
