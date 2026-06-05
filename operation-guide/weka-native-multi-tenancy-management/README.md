@@ -19,15 +19,15 @@ The platform is designed to serve tenants of any scale, from small 1 TB workload
 
 ## WEKA native multi-tenancy: key concepts
 
-Native multi-tenancy allows multiple isolated tenants to run on the same physical infrastructure. While tenants share CPU, memory, and drives, WEKA enforces strict isolation in the datapath, and  control plane.
+Native multi-tenancy allows multiple isolated tenants to run on the same physical infrastructure. While tenants share CPU, memory, and drives, WEKA enforces strict isolation in the datapath, and control plane.
 
 Native multi-tenancy supports the following features:
 
 * **Scale:** Tenants can scale from 1TB in size to multi-PB and they can coexist on the same cluster and scale seamlessly through resource elasticity in a cluster.
 * **Network Isolation:** Tenants operate within dedicated network spaces (VLANs), each with its unique IP range. This setup allows overlapping IP addresses among different tenants. Additionally, a single tenant can utilize multiple network spaces.
 * **Per-tenant identity:** Each tenant can integrate with its own LDAP or Active Directory server for independent directory services.
-* **Tenant-level security:** Each tenant can configure a custom Key Management System (KMS) for independent  encryption.
-* **Multi-tenant S3:** The system provides tenant-scoped S3 buckets and ensures tenant-specific capacity accounting and security mechanisms. S3 service is provided as a multi-tenant service with global network access - this means that S3 is accessible from outside network spaces while retaining security control and capacity accounting on a per-tenant basis. (S3 objects and buckets belong to specific tenants and are managed by tenant security definitions and control.)&#x20;
+* **Tenant-level security:** Each tenant can configure a custom Key Management System (KMS) for independent encryption.
+* **Multi-tenant S3:** The system provides tenant-scoped S3 buckets and ensures tenant-specific capacity accounting and security mechanisms. S3 service is provided as a multi-tenant service with global network access - this means that S3 is accessible from outside network spaces while retaining security control and capacity accounting on a per-tenant basis. (S3 objects and buckets belong to specific tenants and are managed by tenant security definitions and control.)
 * **Quality of Service (QoS):** Cluster Administrators can set performance limits on per tenant basis, such as maximum throughput (MB/s) and IOPS, to prevent "noisy neighbor" behavior and ensure predictable performance for each tenant.
 
 <div data-with-frame="true"><figure><img src="../../.gitbook/assets/Tenant_supported_entities.png" alt="" width="375"><figcaption><p>Tenant-supported entities</p></figcaption></figure></div>
@@ -36,7 +36,7 @@ Native multi-tenancy supports the following features:
 
 A network space serves as a cluster-level boundary defined by a Name, IP Range, and VLAN ID, linking the physical network to a logical tenant. WEKA uses these spaces to provide enhanced security and connectivity features, including:
 
-* **Traffic segmentation and security:**&#x20;
+* **Traffic segmentation and security:**
   * **VLAN mapping:** Each space is assigned a specific VLAN, and the system validates the source VLAN of incoming traffic to ensure it matches the tenant's designated network space.
   * **Routing isolation:** Each tenant operates under its own distinct routing domain, ensuring that traffic is contained and preventing cross-tenant leakage.
   * **Dedicated POSIX endpoints:** Network spaces provide isolated datapath endpoints for POSIX filesystem traffic within the tenant's private network boundary.
@@ -96,32 +96,18 @@ The multi-tenancy model relies on a provider-consumer relationship where certain
 
 ## Choose an isolation model
 
-Use native multi-tenancy for logical isolation in a single cluster. It maximizes performance and capacity elasticity.
+Choose native multi-tenancy by default.
 
-Use composable clusters for physical isolation per tenant. It deploys dedicated Kubernetes-based WEKA clusters.
-
-Evaluate the following criteria to determine the appropriate architecture for a specific environment.
-
-**Decision logic: select a multi-tenancy model**
-
-{% tabs %}
-{% tab title="Use native multi-tenancy when:" %}
-* **High-density hosting:** You must host many tenants on a single shared infrastructure.
-* **Mixed scale:** Your environment spans tenants of very different sizes, from small 1–20 TB workloads to multi-petabyte deployments, and you need elastic capacity and performance sharing across them.
-* **Network flexibility:** Tenants require overlapping IP addresses, customized subnets, or dedicated VLANs.
-* **Operational simplicity:** You want to avoid the overhead and complexity of managing multiple underlying Kubernetes clusters.
-{% endtab %}
-
-{% tab title="Use composable clusters when:" %}
-* **Massive scale per tenant:** You manage very large tenants that consume a significant percentage of total hardware.
-* **Physical Isolation:** The environment enforces strict hardware allocation, ensuring each tenant receives dedicated performance resources. These resources are physically separated, exclusively assigned, and not shared or influenced by any other tenants.
-* **Kubernetes-centric operations:** Customers prefer and are equipped to operate within dedicated Kubernetes-based environments.
+1. **Choose the isolation type**
+   * Use **native multi-tenancy** for logical isolation on shared infrastructure.
+   * Use **composable clusters** when each tenant needs dedicated hardware.
+2. **Choose the native multi-tenancy platform**
+   * Use **bare metal or VMs** when the WEKA cluster does not run on Kubernetes.
+   * Use **Kubernetes** when the WEKA cluster runs on Kubernetes and tenants still share one cluster.
 
 **Related topic**
 
-[composable-clusters-for-multi-tenancy-in-kubernetes.md](../../kubernetes/composable-clusters-for-multi-tenancy-in-kubernetes.md "mention")
-{% endtab %}
-{% endtabs %}
+[Composable clusters for multi-tenancy in Kubernetes](../../kubernetes/composable-clusters-for-multi-tenancy-in-kubernetes.md)
 
 ## Upgrade: Transition to native multi-tenancy
 
