@@ -888,9 +888,41 @@ Identify the appropriate method for your environment:
 * **WekaManualOperation:** A one-time action that signs and discovers drives. Use this for initial manual provisioning.
 * **WekaPolicy:** An automated approach that performs periodic discovery. It initiates discovery immediately when it detects node updates or hardware additions.
 
+**Understand the shared field**
+
+The `shared` field in the `signDrivesPayload` controls whether SSD Proxy is enabled on the signed drives.
+
+{% tabs %}
+{% tab title="shared: false (default)" %}
+Whole drives are assigned directly to WEKA processes. This is the simpler configuration and suits deployments where clusters are large enough to use full drives.
+
+Consider `false` when:
+
+* You intend to assign complete drives to one or more WekaCluster CRs.
+* Your clusters are consistently active and you want to avoid sharing drive workload across tenants.
+
+{% hint style="info" %}
+Running multiple WekaCluster CRs on the same hardware does not require drive sharing. With 6 drives available, you can assign each drive to a separate WekaCluster without enabling `shared`.
+{% endhint %}
+{% endtab %}
+
+{% tab title="shared: true" %}
+Enables SSD Proxy, which introduces a layer between WEKA processes and the physical drives. This enables two capabilities:
+
+* **Drive slicing:** A single physical drive can be divided into logical slices, each used by a different WekaCluster. This is useful when clusters are smaller and do not need full drives.
+* **Higher aggregate throughput:** When clusters are not all fully loaded at the same time, drive sharing increases the number of drives used in parallel, which can improve overall performance. If clusters are consistently active simultaneously, drive workload is shared across tenants.
+
+{% hint style="info" %}
+SSD Proxy enables allocating multiple CPU cores per physical drive.
+{% endhint %}
+
+For details on SSD Proxy operation and resource requirements,, see [Drive sharing](../../operation-guide/drives-sharing.md).
+{% endtab %}
+{% endtabs %}
+
 **Procedure**
 
-1. **Define drive sharing and signing:** Apply a WekaPolicy to sign compatible drives. For WEKA 5.1.0 and Operator 1.10, enable drive sharing to support composable clusters.
+1. **Define drive sharing and signing:** Apply a WekaPolicy to sign compatible drives.
 
 {% code title="sign-drives.yaml" %}
 ```yaml
@@ -904,7 +936,7 @@ spec:
   payload:
     signDrivesPayload:
       type: "all-not-root"
-      shared: true # Enables drive sharing for WEKA 5.1.0 and Operator 1.10
+      shared: true # To support drive slicing or higher per-drive throughput through SSD Proxy. See the Understand the shared field section above.
 ```
 {% endcode %}
 
@@ -932,7 +964,7 @@ Provision the WEKA cluster backend using the WekaCluster CR. This resource defin
 
 * **Drive discovery:** Ensure you have signed and discovered drives.
 * **Driver distribution:** Verify the driver distribution service is accessible. WEKA recommends the external service at [https://drivers.weka.io](https://drivers.weka.io/).
-* **Drive sharing:** If using WEKA 5.1.0 and Operator 1.10 onwards, use the `containerCapacity` parameter instead of `numDrives`.
+* **Drive sharing:** If you set `shared: true` when signing drives, use `containerCapacity` instead of `numDrives`. If you set `shared: false`, `numDrives` is optional and defaults to `1`, which assigns one whole drive per drive container.
 
 **Procedure**
 
@@ -951,8 +983,7 @@ spec:
   dynamicTemplate:
     computeContainers: 6
     driveContainers: 6
-    # Use containerCapacity for WEKA 5.1.0+ with drive sharing
-    containerCapacity: 1000 
+    containerCapacity: 1000   # Use instead of numDrives when shared: true is set in sign-drives
   image: quay.io/weka.io/weka-in-container:5.1.0
   nodeSelector:
     weka.io/supports-backends: "true"
@@ -965,7 +996,7 @@ spec:
 
 3. **Optional: Configure a pre-start-io script:**
 
-If your cluster requires settings that cannot be applied through standard configuration — for example, overriding the default bucket count on a small or non-standard cluster — set `spec.overrides.postFormClusterScript` in the manifest before applying it.
+If your cluster requires settings that cannot be applied through standard configuration, for example, overriding the default bucket count on a small or non-standard cluster, set `spec.overrides.postFormClusterScript` in the manifest before applying it.
 
 The Operator runs this script once, after the cluster forms and before `start-io`. Use it only when no standard configuration option achieves the required result.
 
