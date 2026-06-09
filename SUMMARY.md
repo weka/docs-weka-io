@@ -273,6 +273,7 @@
 ## Best Practice Guides
 
 * [WEKA and Slurm integration](best-practice-guides/weka-and-slurm-integration/README.md)
+  * [Configure Kubernetes and WEKA for CoreWeave SUNK](best-practice-guides/weka-and-slurm-integration/configure-kubernetes-and-weka-for-coreweave-sunk.md)
   * [Manage CPU allocations for WEKA and Slurm](best-practice-guides/weka-and-slurm-integration/avoid-conflicting-cpu-allocations.md)
 * [Best practices for WEKA stateless client and Kubernetes](best-practice-guides/best-practices-for-weka-stateless-client-and-kubernetes.md)
 * [Storage expansion best practice](best-practice-guides/storage-expansion-best-practice.md)

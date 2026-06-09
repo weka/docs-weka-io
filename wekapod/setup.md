@@ -181,6 +181,6 @@ After configuring the WEKApod servers, start managing the system using the GUI, 
 
 **Related topics**
 
-[Broken link](/broken/pages/KEOEQRdsKM2PB9lTiaPg "mention")
+[Getting Started with NeuralMesh](https://app.gitbook.com/s/ZW262oqYA8pNNfGvXjHa/getting-started-with-weka "mention")
 
 [adding-clients-bare-metal.md](../planning-and-installation/bare-metal/adding-clients-bare-metal.md "mention")
