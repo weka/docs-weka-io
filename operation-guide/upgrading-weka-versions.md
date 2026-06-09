@@ -202,6 +202,8 @@ Ensure the environment meets the necessary prerequisites before proceeding with 
     * If any planned tasks are scheduled during the upgrade, postpone them until after the NDU process.
     * If tasks are currently running, take necessary actions based on their status.
     * Consult the [**Background tasks**](background-tasks/) topic for comprehensive guidance.
+  * **Data catalog:**
+    * Check the catalog indexing status to ensure it is disabled.
 
 </details>
 
@@ -221,16 +223,6 @@ Demo: WEKA Upgrade Checker
 
 1. Run the WEKA Upgrade Checker at least **24 hours** before the scheduled upgrade.
 2. Ensure **passwordless SSH access** is configured on all backend servers.
-3. If the data catalog service is running, disable indexing before upgrading.
-   1. Run the following command to check the catalog indexing status: `weka catalog config show`
-   2. If `index-enabled` is `true`, disable indexing before proceeding with the upgrade:\
-      `weka catalog config update --index-enabled false`
-   3. After the upgrade completes, re-enable indexing: \
-      `weka catalog config update --index-enabled true`
-
-{% hint style="info" %}
-A future release of the WEKA Upgrade Checker Tool will include this check automatically.
-{% endhint %}
 
 **Procedure**
 
