@@ -435,12 +435,12 @@ Each specification assumes approximately 10% monthly data growth over a 12 to 18
 
 Review and adjust catalog resource allocations every 6–9 months to account for filesystem growth. Run the `filestats.sh` script to get the current object count per filesystem, then use the sizing table to determine whether your existing resources still meet the requirements.
 
-| Parameter                   | 100+ million objects                         | 200+ million objects                         | 500+ million objects                         | 1+ billion objects                       |
-| --------------------------- | -------------------------------------------- | -------------------------------------------- | -------------------------------------------- | ---------------------------------------- |
-| **Data service containers** | 5 total: 4 workers + 1 coordinator           | 5 total: 4 workers + 1 coordinator           | 10 total: 9 workers + 1 coordinator          | 10 total: 9 workers + 1 coordinator      |
-| **CPU**                     | 2 spare cores per server (minimum)           | 2 spare cores per server (minimum)           | 2 spare cores per server (minimum)           | 2 spare cores per server (minimum)       |
-| **Memory**                  | 32 GB free per server                        | 32 GB free per server                        | 32 GB free per server                        | 64 GB free per server                    |
-| **Disk (index filesystem)** | 100 GB – 250 GB (30 days – 1 year retention) | 150 GB – 500 GB (30 days – 1 year retention) | 250 GB – 1.5 TB (30 days – 1 year retention) | 1 TB – 5 TB (30 days – 1 year retention) |
+| Parameter                   | 0-200+ million objects                                     | 500+ million objects                                       | 1+ billion objects                                     |
+| --------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------- | ------------------------------------------------------ |
+| **Data service containers** | 5 total: 4 workers + 1 coordinator                         | 10 total: 9 workers + 1 coordinator                        | 10 total: 9 workers + 1 coordinator                    |
+| **CPU**                     | 2 spare cores per server (minimum)                         | 2 spare cores per server (minimum)                         | 2 spare cores per server (minimum)                     |
+| **Memory**                  | 32 GB free per server                                      | 32 GB free per server                                      | 64 GB free per server                                  |
+| **Disk (index filesystem)** | <p>150 GB – 500 GB </p><p>(30 days – 1 year retention)</p> | <p>250 GB – 1.5 TB </p><p>(30 days – 1 year retention)</p> | <p>1 TB – 5 TB </p><p>(30 days – 1 year retention)</p> |
 
 The following considerations apply to all deployment sizes:
 
@@ -455,10 +455,10 @@ The table below provides estimated durations for the initial full ingest and ong
 * Baseline ingest time depends on the directory-to-file ratio: a lower ratio means fewer directory scans and faster ingestion.
 * Delta estimates assume 1% change per day.
 
-| Operation                                                          | 100+ million objects | 200+ million objects | 500+ million objects | 1+ billion objects |
-| ------------------------------------------------------------------ | -------------------- | -------------------- | -------------------- | ------------------ |
-| <p><strong>Baseline</strong><br><strong>(full ingest)</strong></p> | 8–9 hours            | 8–22 hours           | 24–40 hours          | 48–60 hours        |
-| **Delta (incremental changes)**                                    | 20–25 minutes        | 40–50 minutes        | 1–2 hours            | 3–5 hours          |
+| Operation                                                          | 200+ million objects | 500+ million objects | 1+ billion objects |
+| ------------------------------------------------------------------ | -------------------- | -------------------- | ------------------ |
+| <p><strong>Baseline</strong><br><strong>(full ingest)</strong></p> | 8–22 hours           | 24–40 hours          | 72–96 hours        |
+| **Delta (incremental changes)**                                    | 40–50 minutes        | 1–2 hours            | 10–12 hours        |
 
 To monitor ingest progress in real time, run:
 

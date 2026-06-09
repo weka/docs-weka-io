@@ -117,6 +117,7 @@
 * [Data catalog](weka-filesystems-and-object-stores/data-catalog/README.md)
   * [Configure data catalog](weka-filesystems-and-object-stores/data-catalog/configure-data-catalog.md)
   * [Analyze storage distribution](weka-filesystems-and-object-stores/data-catalog/analyze-storage-distribution.md)
+  * [Data catalog FAQ](weka-filesystems-and-object-stores/data-catalog/data-catalog-faq.md)
 
 ## Additional Protocols
 
