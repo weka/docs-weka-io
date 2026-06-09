@@ -31,7 +31,7 @@ Event: CatalogIngestionFailed
 
 Internal testing with typical workloads shows up to 10% overhead on client IO.
 
-For high-churn environments (500+ million objects), run data catalog on dedicated servers instead of sharing servers with backend workloads.
+For environments with high IO load, run data catalog on dedicated servers instead of sharing servers with backend workloads.
 
 </details>
 
