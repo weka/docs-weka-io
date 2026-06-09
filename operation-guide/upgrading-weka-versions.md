@@ -447,14 +447,14 @@ Use the backend servers to remotely trigger online upgrades for multiple statele
 
 *   Run the remote upgrade command from a backend container.
 
-    <pre class="language-bash" data-overflow="wrap"><code class="lang-bash">weka local run -C &#x3C;container-name> --in &#x3C;target-release> upgrade --mode=clients-upgrade --client-rolling-batch-size &#x3C;batch-size> [--clients-to-upgrade &#x3C;client-ids>] [--drop-host &#x3C;client-ids>] --from backends
+    <pre class="language-bash" data-overflow="wrap"><code class="lang-bash">weka local run -C &#x3C;container-name> --in &#x3C;target-release> upgrade --mode=clients-upgrade --client-rolling-batch-size &#x3C;batch-size> [--clients-to-upgrade &#x3C;client-ids>] [--drop-host &#x3C;client-ids>]
     </code></pre>
 
 **Remote upgrade parameters**
 
 Reference the following table for parameters used with the `weka local run upgrade` command.
 
-<table><thead><tr><th width="263">Parameter</th><th width="368">Description</th><th>Default</th></tr></thead><tbody><tr><td><code>--mode=clients-upgrade</code></td><td>Activates the remote upgrade process for clients.</td><td>N/A</td></tr><tr><td><code>--client-rolling-batch-size</code></td><td>Defines the number of clients to upgrade in each sequential batch.</td><td>1</td></tr><tr><td><code>--clients-to-upgrade</code></td><td>Specifies a comma-separated list of client IDs to include.</td><td>All clients</td></tr><tr><td><code>--drop-host</code></td><td>Specifies a comma-separated list of client IDs to exclude from the upgrade.</td><td>None</td></tr><tr><td><code>--from backends</code></td><td>Directs the client to pull the upgrade package from the backend servers.</td><td>N/A</td></tr></tbody></table>
+<table><thead><tr><th width="263">Parameter</th><th width="368">Description</th><th>Default</th></tr></thead><tbody><tr><td><code>--mode=clients-upgrade</code></td><td>Activates the remote upgrade process for clients.</td><td>N/A</td></tr><tr><td><code>--client-rolling-batch-size</code></td><td>Defines the number of clients to upgrade in each sequential batch.</td><td>1</td></tr><tr><td><code>--clients-to-upgrade</code></td><td>Specifies a comma-separated list of client IDs to include.</td><td>All clients</td></tr><tr><td><code>--drop-host</code></td><td>Specifies a comma-separated list of client IDs to exclude from the upgrade.</td><td>None</td></tr></tbody></table>
 
 **Example**
 
