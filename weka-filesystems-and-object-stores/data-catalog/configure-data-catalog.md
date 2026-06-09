@@ -54,7 +54,7 @@ Configure the infrastructure and filesystems required to activate catalog servic
     ```bash
     weka fs add .indexfs default 500GB
     ```
-2.  **Deploy data service containers:**&#x20;
+2.  **Deploy data service containers:**
 
     Run the following command on each server, whether dedicated backend servers or existing backend servers:
 
@@ -221,7 +221,7 @@ weka local start <name>
 
 **Resolution:**
 
-1. Verify indexing is enabled by checking the `Indexing` column in `weka catalog fs status`.&#x20;
+1. Verify indexing is enabled by checking the `Indexing` column in `weka catalog fs status`.
 2. Check the index interval with `weka catalog config show`.
 3. Ensure the catalog services have a sufficient number of servers configured and running with active status.
 
@@ -382,6 +382,10 @@ TASK ID  TYPE           STATE    PHASE                PROGRESS  USER PAUSED  DES
 
 Use the following guidelines to determine the hardware resources required for the catalog deployment before enabling indexing. Resource requirements scale with the number of filesystem objects and the anticipated data growth rate.
 
+#### Find the filesystem statistics
+
+If you already have current filesystem statistics, skip this section and continue to [Sizing for the catalog deployment](configure-data-catalog.md#sizing-for-the-catalog-deployment).
+
 Download the `filestats.sh` script and run it on your filesystem to measure its object count and directory-to-file ratio before sizing your hardware:
 
 {% file src="../../.gitbook/assets/filestats.sh" %}
@@ -393,9 +397,7 @@ chmod +x filestats.sh
 
 **Script example output**
 
-Use the **Total Items** count from the script output to select the appropriate column in the sizing tables below. For example, 40 million objects falls under the 100+ million objects column.
-
-Use the **Dir-to-file Ratio** to estimate where your baseline ingest time falls within the range shown in the **Sizing for baseline indexing time** table below. For example, a ratio of 0.0589 falls under the **Baseline** (full ingest) row, 8–9 hours.
+Use the **Total Items** count from the script output to select the appropriate column in the sizing tables below. For example, 40 million objects falls under the 200+ million objects column.
 
 {% code overflow="wrap" %}
 ```
@@ -435,12 +437,12 @@ Each specification assumes approximately 10% monthly data growth over a 12 to 18
 
 Review and adjust catalog resource allocations every 6–9 months to account for filesystem growth. Run the `filestats.sh` script to get the current object count per filesystem, then use the sizing table to determine whether your existing resources still meet the requirements.
 
-| Parameter                   | 0-200+ million objects                                     | 500+ million objects                                       | 1+ billion objects                                     |
-| --------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------- | ------------------------------------------------------ |
-| **Data service containers** | 5 total: 4 workers + 1 coordinator                         | 10 total: 9 workers + 1 coordinator                        | 10 total: 9 workers + 1 coordinator                    |
-| **CPU**                     | 2 spare cores per server (minimum)                         | 2 spare cores per server (minimum)                         | 2 spare cores per server (minimum)                     |
-| **Memory**                  | 32 GB free per server                                      | 32 GB free per server                                      | 64 GB free per server                                  |
-| **Disk (index filesystem)** | <p>150 GB – 500 GB </p><p>(30 days – 1 year retention)</p> | <p>250 GB – 1.5 TB </p><p>(30 days – 1 year retention)</p> | <p>1 TB – 5 TB </p><p>(30 days – 1 year retention)</p> |
+| Parameter                   | Up to 200+ million objects                   | Up to 500+ million objects                   | Up to 1+ billion objects                 |
+| --------------------------- | -------------------------------------------- | -------------------------------------------- | ---------------------------------------- |
+| **Data service containers** | 5 total: 4 workers + 1 coordinator           | 10 total: 9 workers + 1 coordinator          | 10 total: 9 workers + 1 coordinator      |
+| **CPU**                     | 2 spare cores per server (minimum)           | 2 spare cores per server (minimum)           | 2 spare cores per server (minimum)       |
+| **Memory**                  | 32 GB free per server                        | 32 GB free per server                        | 64 GB free per server                    |
+| **Disk (index filesystem)** | 150 GB – 500 GB (30 days – 1 year retention) | 250 GB – 1.5 TB (30 days – 1 year retention) | 1 TB – 5 TB (30 days – 1 year retention) |
 
 The following considerations apply to all deployment sizes:
 
@@ -457,8 +459,8 @@ The table below provides estimated durations for the initial full ingest and ong
 
 | Operation                                                          | 200+ million objects | 500+ million objects | 1+ billion objects |
 | ------------------------------------------------------------------ | -------------------- | -------------------- | ------------------ |
-| <p><strong>Baseline</strong><br><strong>(full ingest)</strong></p> | 8–22 hours           | 24–40 hours          | 72–96 hours        |
-| **Delta (incremental changes)**                                    | 40–50 minutes        | 1–2 hours            | 10–12 hours        |
+| <p><strong>Baseline</strong><br><strong>(full ingest)</strong></p> | 8–22 hours           | 24–40 hours          | 48–60 hours        |
+| **Delta (incremental changes)**                                    | 40–50 minutes        | 1–2 hours            | 3–5 hours          |
 
 To monitor ingest progress in real time, run:
 
@@ -476,9 +478,9 @@ For the catalog REST API reference, see [Catalog](../../getting-started-with-wek
 
 ### Run a catalog query
 
-Query the catalog index to retrieve files and directories that match the specified conditions. This is the API equivalent of the Catalog Discovery feature. Use the `criteria` field to filter results with nested `AND`/`OR` conditions.
+Query the catalog index to retrieve files and directories that match the specified conditions. This is the API equivalent of the Catalog Discovery feature. Use the `criteria` field to filter results with nested `AND` and `OR` conditions.
 
-Results are paginated: when the response includes a `next_cookie` value, pass it as `resume_cookie` in the next request to retrieve the following page. Repeat until `next_cookie` is empty, which indicates the last page.
+Results are paginated. When the response includes a `next_cookie` value, pass it as `resume_cookie` in the next request to retrieve the following page. Repeat until `next_cookie` is empty, which indicates the last page.
 
 `POST /catalog/query`
 
@@ -486,11 +488,13 @@ The following fields are available in `select_fields`:
 
 `inode`, `filepath`, `filename`, `size`, `file_type`, `uid`, `gid`, `file_extension`, `mode`, `birth_time`, `access_time`, `modify_time`, `change_time`
 
-#### **Basic example with pagination**
+#### Basic example with pagination
 
 This example searches for all files named `test.log` across the filesystem, returning 100 results per page.
 
-**Request:**
+<details>
+
+<summary>Request example</summary>
 
 ```json
 {
@@ -508,7 +512,11 @@ This example searches for all files named `test.log` across the filesystem, retu
 }
 ```
 
-**Response (page 1):**
+</details>
+
+<details>
+
+<summary>Response example. Page 1</summary>
 
 ```json
 {
@@ -523,7 +531,13 @@ This example searches for all files named `test.log` across the filesystem, retu
 }
 ```
 
+</details>
+
 To retrieve the next page, resubmit the same request body with `resume_cookie` set to the value of `next_cookie` from the previous response:
+
+<details>
+
+<summary>Request example. Next page</summary>
 
 ```json
 {
@@ -541,13 +555,17 @@ To retrieve the next page, resubmit the same request body with `resume_cookie` s
 }
 ```
 
+</details>
+
 When `next_cookie` is empty in the response, all pages have been retrieved.
 
-#### **Complex example 1: AND query with multiple field filters**
+#### Complex example 1: AND query with multiple field filters
 
 This example filters for regular files named `test.log` under `/data/logs` that are larger than 1024 bytes, sorted by filename ascending.
 
-**Request:**
+<details>
+
+<summary>Request example</summary>
 
 ```json
 {
@@ -569,11 +587,15 @@ This example filters for regular files named `test.log` under `/data/logs` that 
 }
 ```
 
-#### **Complex example 2: OR query across multiple paths**
+</details>
 
-This example retrieves files from two directories — `/data/logs` and `/data/tmp` — in a single query using an `OR` operator.
+#### Complex example 2: OR query across multiple paths
 
-**Request:**
+This example retrieves files from two directories, `/data/logs` and `/data/tmp`, in a single query using an `OR` operator.
+
+<details>
+
+<summary>Request example</summary>
 
 ```json
 {
@@ -592,7 +614,11 @@ This example retrieves files from two directories — `/data/logs` and `/data/tm
 }
 ```
 
-**Response:**
+</details>
+
+<details>
+
+<summary>Response example</summary>
 
 ```json
 {
@@ -607,15 +633,17 @@ This example retrieves files from two directories — `/data/logs` and `/data/tm
 }
 ```
 
-***
-
-The key structural decisions: pagination gets its own explanation upfront before the examples, the `resume_cookie` loop is shown explicitly with a before/after request pair, and the two complex queries are labeled by their filter logic (AND vs OR) rather than just numbered, so the purpose is immediately clear.
+</details>
 
 ### Get changes between two point-in-time snapshots
 
 Return the files and directories added, deleted, or modified between two point-in-time snapshots.
 
 `POST /catalog/query/diff`
+
+<details>
+
+<summary>Request example</summary>
 
 ```json
 {
@@ -630,7 +658,11 @@ Return the files and directories added, deleted, or modified between two point-i
 }
 ```
 
-**Response example:**
+</details>
+
+<details>
+
+<summary>Response example</summary>
 
 ```json
 {
@@ -652,13 +684,17 @@ Return the files and directories added, deleted, or modified between two point-i
 }
 ```
 
+</details>
+
 ### Get data usage by user ID
 
 Query filesystem usage statistics grouped by user, returning file count and total size per User ID (UID).
 
 `GET /catalog/stats/usageByUser`
 
-**Response example:**
+<details>
+
+<summary>Response example</summary>
 
 ```json
 {
@@ -671,13 +707,17 @@ Query filesystem usage statistics grouped by user, returning file count and tota
 }
 ```
 
+</details>
+
 ### Get data usage by group ID
 
 Query filesystem usage statistics grouped by group name, returning file count and total size per Group ID (GID).
 
 `GET /catalog/stats/usageByGroup`
 
-**Response example:**
+<details>
+
+<summary>Response example</summary>
 
 ```json
 {
@@ -690,13 +730,17 @@ Query filesystem usage statistics grouped by group name, returning file count an
 }
 ```
 
+</details>
+
 ### Get list of snapshot metadata available for a filesystem
 
 List the catalog snapshots available for a filesystem, including the start and end timestamps of each data ingestion cycle into the index filesystem.
 
 `GET /catalog/snapshots/{fs_uuid}`
 
-**Response example:**
+<details>
+
+<summary>Response example</summary>
 
 ```json
 {
@@ -713,13 +757,17 @@ List the catalog snapshots available for a filesystem, including the start and e
 }
 ```
 
+</details>
+
 ### Get file distribution by extension types
 
 Query file count and total size grouped by file extension types across the filesystem.
 
 `GET /catalog/stats/distributionByExtension`
 
-**Response example:**
+<details>
+
+<summary>Response example</summary>
 
 ```json
 {
@@ -733,13 +781,17 @@ Query file count and total size grouped by file extension types across the files
 }
 ```
 
+</details>
+
 ### Get data by file size ranges
 
 Query file distribution grouped by size ranges, from 0–1 KB up to 10 TB and above.
 
 `GET /catalog/stats/filesBySize`
 
-**Response example:**
+<details>
+
+<summary>Response example</summary>
 
 ```json
 {
@@ -761,13 +813,17 @@ Query file distribution grouped by size ranges, from 0–1 KB up to 10 TB and ab
 }
 ```
 
+</details>
+
 ### Get capacity by file age
 
 Query total file capacity grouped by file age based on modification time, from under one week to five years and older.
 
 `GET /catalog/stats/capacityByFileAge`
 
-**Response example:**
+<details>
+
+<summary>Response example</summary>
 
 ```json
 {
@@ -785,13 +841,17 @@ Query total file capacity grouped by file age based on modification time, from u
 }
 ```
 
+</details>
+
 ### Get dashboard statistics
 
 Get a top-level summary of filesystem statistics, including total file count, directory count, capacity, and the top users ranked by file count and total size.
 
 `GET /catalog/stats/dashboard`
 
-**Response example:**
+<details>
+
+<summary>Response example</summary>
 
 ```json
 {
@@ -808,13 +868,17 @@ Get a top-level summary of filesystem statistics, including total file count, di
 }
 ```
 
+</details>
+
 ### Get hierarchical directory tree with size statistics
 
 Retrieve a directory tree up to a specified depth, showing direct and recursive size aggregations for each node. All sizes are returned in bytes.
 
 `GET /catalog/stats/directoryTree`
 
-**Response example:**
+<details>
+
+<summary>Response example</summary>
 
 ```json
 {
@@ -838,13 +902,17 @@ Retrieve a directory tree up to a specified depth, showing direct and recursive 
 }
 ```
 
+</details>
+
 ### Get filesystem capacity metadata history
 
 Query filesystem capacity metadata showing SSD and total capacity trends across multiple snapshots over time.
 
 `GET /catalog/filesystem/metadata`
 
-**Response example:**
+<details>
+
+<summary>Response example</summary>
 
 ```json
 {
@@ -857,13 +925,17 @@ Query filesystem capacity metadata showing SSD and total capacity trends across 
 }
 ```
 
+</details>
+
 ### Get point-in-time filesystem capacity metadata
 
 Query filesystem capacity metadata for a specific snapshot access point. If `access_point` is provided, the response returns metadata for that snapshot. If `access_point` is omitted, the response returns the most recent metadata.
 
 `GET /catalog/filesystem/metadata/point-in-time`
 
-**Response example:**
+<details>
+
+<summary>Response example</summary>
 
 ```json
 {
@@ -873,3 +945,5 @@ Query filesystem capacity metadata for a specific snapshot access point. If `acc
   ]
 }
 ```
+
+</details>
