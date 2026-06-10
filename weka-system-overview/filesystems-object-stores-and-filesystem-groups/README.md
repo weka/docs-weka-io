@@ -157,11 +157,9 @@ WEKA provides multiple resource management layers to prevent noisy neighbors fro
 
 **Related topics**
 
-[Multi-tenancy cluster-level administration](../../operation-guide/weka-native-multi-tenancy-management/multi-tenancy-cluster-level-administration.md#manage-tenant-quality-of-service)
-
-[Manage filesystems using the CLI](../../weka-filesystems-and-object-stores/managing-filesystems/managing-filesystems-1.md#add-a-filesystem)
-
-[Mount filesystems](../../weka-filesystems-and-object-stores/mounting-filesystems/#additional-mount-options-using-the-stateless-clients-feature)
+* [Manage tenant QoS in multi-tenancy](../../operation-guide/weka-native-multi-tenancy-management/multi-tenancy-cluster-level-administration.md#manage-tenant-quality-of-service): Set tenant-wide `--max-throughput` and `--max-iops` limits.
+* [Manage filesystem QoS using the CLI](../../weka-filesystems-and-object-stores/managing-filesystems/managing-filesystems-1.md#filesystem-qos-using-the-cli): Use `--max-throughput` and `--max-iops` when you create or update a filesystem.
+* [Manage client QoS mount options](../../weka-filesystems-and-object-stores/mounting-filesystems/#client-qos-mount-options): Use `qos_max_ops`, `qos_max_throughput_mbps`, and `qos_preferred_throughput_mbps` for stateless clients.
 
 **Performance parameters**
 

@@ -206,6 +206,16 @@ The following options trigger a client container restart:
 The additional mount options parameters above are only effective on the first mount command for each client, unless stated otherwise.
 {% endhint %}
 
+### Client QoS mount options
+
+Use client QoS mount options to cap frontend throughput and IOPS for stateless clients.
+
+Look for these options in the stateless client mount table:
+
+* `qos_max_ops`: Sets the maximum client IOPS.
+* `qos_max_throughput_mbps`: Sets the maximum client throughput.
+* `qos_preferred_throughput_mbps`: Sets the preferred client throughput target.
+
 {% hint style="info" %}
 By default, the command selects the optimal core allocation for WEKA. If necessary, multiple `core` parameters can be used to allocate specific cores to the WEKA client. For example, `mount -t wekafs -o core=2 -o core=4 -o net=ib0 backend-server-0/my_fs /mnt/weka`
 {% endhint %}
@@ -369,7 +379,7 @@ net=<netdev>/[ip]/[bits]/[gateway]
     * If the default network is not set, the WEKA cluster may fail to allocate an IP address for the client.
 
 {% hint style="warning" %}
-**Important:** Ensure that the **WEKA cluster default data networking** is configured before executing the `mount` command. For configuration details, see [#id-6.-configure-default-data-networking-optional](../../planning-and-installation/bare-metal/perform-post-configuration-procedures.md#id-6.-configure-default-data-networking-optional "mention").
+**Important:** Ensure that the **WEKA cluster default data networking** is configured before executing the `mount` command. For configuration details, see /pages/ospkBUXCQGIqEwyRlWwn#id-6.-configure-default-data-networking-optional.
 {% endhint %}
 
 #### **Example: Configuring VFs on a single physical network device**
