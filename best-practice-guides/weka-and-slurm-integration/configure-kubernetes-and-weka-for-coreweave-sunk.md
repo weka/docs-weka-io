@@ -17,9 +17,14 @@ Complete these tasks:
 
 For more platform details, see [CoreWeave SUNK Documentation](https://docs.coreweave.com/).
 
-{% hint style="info" %}
-**Qualified versions:** This procedure was validated with CoreWeave SUNK v7.3.0, WEKA Operator v1.11.0, WEKA software v4.4.26, Kubernetes v1.32, and Ubuntu 24.04.
-{% endhint %}
+#### Supported product versions
+
+This configuration supports:&#x20;
+
+* CoreWeave SUNK v7.3.0 or newer.
+* WEKA Operator v1.11.0 or newer.
+* WEKA software v4.4.26 or newer.
+* Kubernetes v1.32 or newer.
 
 ## SUNK node architecture and CPU isolation
 
