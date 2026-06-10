@@ -17,7 +17,11 @@ Complete these tasks:
 
 For more platform details, see [CoreWeave SUNK Documentation](https://docs.coreweave.com/).
 
-### SUNK node architecture and CPU isolation
+{% hint style="info" %}
+**Qualified versions:** This procedure was validated with CoreWeave SUNK v7.3.0, WEKA Operator v1.11.0, WEKA software v4.4.26, Kubernetes v1.32, and Ubuntu 24.04.
+{% endhint %}
+
+## SUNK node architecture and CPU isolation
 
 The diagram below explains how WEKA and SUNK components interact on a NeuralMesh Axon cluster running Kubernetes.
 
