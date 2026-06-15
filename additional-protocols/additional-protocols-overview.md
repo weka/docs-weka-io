@@ -101,8 +101,8 @@ Replace the network configuration parameters with values appropriate for your en
 * To configure the protocol containers with **UDP** networking, run the following command:
 
 {% code overflow="wrap" %}
-```
-sudo weka local setup container --name frontend0 --only-frontend-cores --cores 1 --join-ips <EXISTING-BACKEND-IP> --allow-protocols true --net=UDP
+```bash
+sudo weka local setup container --name frontend0 --only-frontend-cores --cores 1 --join-ips <EXISTING-BACKEND-IP> --allow-protocols true --net udp
 ```
 {% endcode %}
 

@@ -40,7 +40,7 @@ In addition, you can mount a filesystem using **fstab** or **autofs**.
 
 To mount a WEKA filesystem persistently, follow these steps:
 
-1. **Install the WEKA client**: Ensure the WEKA client is installed, configured, and connected to your WEKA cluster. See [adding-clients-bare-metal.md](../../planning-and-installation/bare-metal/adding-clients-bare-metal.md "mention").
+1. **Install the WEKA client**: Ensure the WEKA persistent client is installed, configured, and connected to your cluster. See [Add a persistent client to the cluster](../../planning-and-installation/bare-metal/adding-clients-bare-metal.md#add-a-persistent-client-to-the-cluster).
 2. **Identify the filesystem**: Determine the name of the filesystem you want to mount. For this example, we use a filesystem named `demo`.
 3.  **Create a mount point**: SSH into one of your cluster servers and create a directory to serve as the mount point for the filesystem:
 
