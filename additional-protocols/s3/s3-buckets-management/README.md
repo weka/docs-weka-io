@@ -16,7 +16,7 @@ Buckets and objects created through the S3 protocol come with default root POSIX
 
 Objects created through anonymous access are assigned the anonymous UID and GID configured for the tenant. If the tenant does not define these values, the system uses the cluster-level defaults.
 
-S3 bucket creation does not support a filesystem parameter. The system creates the bucket in the tenant default filesystem. If no tenant default filesystem is configured, bucket creation fails.
+By default, all buckets are created in the tenant default filesystem, which can be set during S3 cluster configuration. This configuration is optional. Because S3 native API bucket creation does not support a filesystem parameter, bucket creation fails if no tenant default filesystem is configured. To place a bucket in a different filesystem, use the WEKA GUI, API, or CLI, which accept a filesystem parameter.
 
 Bucket names must be unique across the entire cluster. If a bucket name is already in use, the system returns an error to choose another name.
 

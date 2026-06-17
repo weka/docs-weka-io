@@ -86,6 +86,7 @@ Verify that both the kernel and operating system versions appear as supported in
 * **CentOS Stream:**
   * 8.5, 8.4, 8.3, 8.2, 8.1
 * **Ubuntu:**
+  * 26.04
   * 24.04
   * 22.04
   * 20.04
@@ -107,6 +108,7 @@ Verify that both the kernel and operating system versions appear as supported in
 * **CentOS Stream:**
   * 8.5, 8.4, 8.3, 8.2, 8.1
 * **Ubuntu:**
+  * 26.04
   * 24.04
   * 22.04
   * 20.04
@@ -117,11 +119,8 @@ Verify that both the kernel and operating system versions appear as supported in
   * AMI 2017.09
   * Amazon Linux 2 LTS
 * **SELS:**
-  * 15 SP6
-  * 15 SP5
-  * 15 SP4
-  * 15 SP2
-  * 12 SP5
+  * 15 LTSS
+  * 12 LTSS
 * **Oracle Linux:**
   * 9
   * 8.9
