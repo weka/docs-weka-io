@@ -1,14 +1,14 @@
 ---
 description: >-
-  If the system is not prepared using the WMS, perform this procedure to set the
-  networking and other tasks before configuring the WEKA cluster.
+  Prepare the servers, system networking, and operating environment before
+  configuring the WEKA cluster.
 metaLinks:
   alternates:
     - >-
       https://app.gitbook.com/s/0yXyIrnroN3zIG3qa4W3/planning-and-installation/bare-metal/setting-up-the-hosts
 ---
 
-# Manually prepare the system for configuration
+# Prepare servers
 
 Once the hardware and software prerequisites are met, prepare the backend servers and clients for the WEKA system configuration.
 
@@ -389,7 +389,7 @@ nmcli connection modify ib1 ipv4.routing-rules "priority 102 from 10.10.10.101 t
 
 Run the `nmcli` commands to view the current network configuration, including interfaces, IP addresses, routes, and DNS settings.
 
-<table><thead><tr><th width="290.3636474609375">Goal</th><th>Command</th></tr></thead><tbody><tr><td>Full details (IP, DNS, routes)</td><td><code>nmcli device show</code></td></tr><tr><td>Brief status</td><td><code>nmcli device status</code></td></tr><tr><td>Active connections </td><td><code>nmcli connection show --active</code></td></tr><tr><td>Specific device</td><td><code>nmcli device show eth0</code></td></tr></tbody></table>
+<table><thead><tr><th width="290.3636474609375">Goal</th><th>Command</th></tr></thead><tbody><tr><td>Full details (IP, DNS, routes)</td><td><code>nmcli device show</code></td></tr><tr><td>Brief status</td><td><code>nmcli device status</code></td></tr><tr><td>Active connections</td><td><code>nmcli connection show --active</code></td></tr><tr><td>Specific device</td><td><code>nmcli device show eth0</code></td></tr></tbody></table>
 
 **Example**
 
@@ -554,7 +554,7 @@ WEKA highly recommends that any servers used as backends have no swap configured
 
 ## 11. Validate the system preparation
 
-The `wekachecker` is a tool that validates the readiness of the servers in the cluster before installing the WEKA software.
+The `wekachecker` is the required validation tool for confirming server readiness before installing the WEKA software.
 
 The `wekachecker` performs the following validations:
 
@@ -584,7 +584,7 @@ The `wekachecker` performs the following validations:
 * noexec mount option on /tmp
 
 {% hint style="info" %}
-The `wekachecker`tool applies to all WEKA versions. From V4.0, the following validations are not relevant, although the tool displays them:
+The `wekachecker` tool applies to all WEKA versions. From V4.0, the following validations are not relevant, although the tool displays them:
 
 * OS has SELinux disabled or in permissive mode.
 * Network Manager is disabled.

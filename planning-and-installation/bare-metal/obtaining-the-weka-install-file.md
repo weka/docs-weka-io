@@ -1,16 +1,18 @@
 ---
 description: >-
-  This page describes registering to get.weka.io and obtaining the WEKA
-  installation packages: WMS, WSA, and WEKA software release.
+  Register for access to get.weka.io and download the WEKA software package
+  required for bare metal installation.
 metaLinks:
   alternates:
     - >-
       https://app.gitbook.com/s/0yXyIrnroN3zIG3qa4W3/planning-and-installation/bare-metal/obtaining-the-weka-install-file
 ---
 
-# Obtain the WEKA installation packages
+# Download WEKA packages
 
-## **Register to get.weka.io**
+Register for access to get.weka.io and download the WEKA software package required for bare metal installation.
+
+## Register to get.weka.io
 
 To sign in to [get.weka.io](http://get.weka.io), you first need to create an account and fill in your details. If you already have a registered account for get.weka.io, skip this procedure.
 
@@ -35,13 +37,9 @@ The Create Your Account page opens.
 
 Your request for access to [get.weka.io](http://get.weka.io) is sent to WEKA for review. Wait for a validation email. Once your registration is approved, you can sign in to [get.weka.io](http://get.weka.io).
 
-## **Download the** WEKA **installation packages**
+## Download the WEKA installation package
 
-Download the required WEKA installation packages according to the workflow path.
-
-* Path A (automated with WMS and WSA): Download the WMS and WSA ISOs from [get.weka.io](https://get.weka.io/ui/dashboard). The WMS is downloaded from a dedicated dropdown. The WSA is found in the relevant release page.
-* Path B (automated with WSA): Download the WSA package from [get.weka.io](https://get.weka.io/ui/dashboard) The WSA is found in the relevant release page.
-* Path C (manual installation and configuration): Download the WEKA software tarball from [get.weka.io](https://get.weka.io/ui/dashboard). The tarball is found in the relevant release page.
+Download the WEKA software tarball from [get.weka.io](https://get.weka.io/ui/dashboard). Use this package for the supported bare metal installation workflows.
 
 You can only sign in and download the packages if you are a registered user.
 
@@ -56,18 +54,12 @@ You can only sign in and download the packages if you are a registered user.
 <div data-with-frame="true"><figure><img src="../../.gitbook/assets/2023-12-20_09-17-44 (1).jpg" alt=""><figcaption><p>get.weka.io dashboard</p></figcaption></figure></div>
 
 2. Do one of the following:
-   * Select the required package from the dashboard.
+   * Select the required release package from the dashboard.
    * Select the **Releases** tab, select the required release, and follow the download instructions.\
      (The token in the download link is purposely blurred.)
 
-<div data-with-frame="true"><figure><img src="../../.gitbook/assets/2023-12-20_09-18-13.jpg" alt=""><figcaption><p>Releases download page: tar file, WSA, and WMS (in a separate tab)</p></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/2023-12-20_09-18-13.jpg" alt=""><figcaption><p>Releases download page</p></figcaption></figure></div>
 
 ## What to do next?
 
-Depending on the workflow path you follow, go to one of the following:
-
-[install-the-weka-cluster-using-the-wms-with-wsa.md](install-the-weka-cluster-using-the-wms-with-wsa.md "mention") (path A)
-
-[install-the-weka-cluster-using-the-wsa.md](install-the-weka-cluster-using-the-wsa.md "mention") (path B)
-
-[manually-install-os-and-weka-on-servers](manually-install-os-and-weka-on-servers/ "mention") (path C)
+[Install OS and WEKA software](manually-install-os-and-weka-on-servers/)
