@@ -8,7 +8,7 @@ metaLinks:
       https://app.gitbook.com/s/0yXyIrnroN3zIG3qa4W3/planning-and-installation/bare-metal/configure-the-weka-cluster-using-the-weka-configurator
 ---
 
-# Run WEKA Configurator
+# Configure the cluster using the WEKA Configurator
 
 The WEKA Configurator tool facilitates cluster configuration. It performs the following:
 
@@ -34,9 +34,9 @@ Adhere to the following concepts:
 ## Prerequisites
 
 * **System preparation validation:**\
-  Ensure the system preparation is validated using the `wekachecker` tool. For additional details, refer to the Validate the system preparation section.
+  Ensure the system preparation is validated using the `wekachecker` tool (on WSA installations this is already installed under `/opt/tools/install`). For additional details, refer to the [#id-11.-validate-the-system-preparation](setting-up-the-hosts/#id-11.-validate-the-system-preparation "mention") section.
 * **WEKA software installation on cluster servers:**\
-  Verify that the WEKA software is installed on all cluster servers. If it is not installed, follow [Install OS and WEKA software](manually-install-os-and-weka-on-servers/). Once the installation is complete, the WEKA software runs in STEM mode on all allocated servers.
+  Verify that the WEKA software is installed on all cluster servers. If it is not installed through the WSA, follow the installation instructions provided in the **Install** tab of [get.weka.io](https://get.weka.io). Once the installation is complete, the WEKA software will be deployed on all allocated servers and running in STEM mode.
 
 ## Workflow
 
@@ -46,27 +46,29 @@ Adhere to the following concepts:
 
 ### 1. Access the WEKA tools
 
-1.  Download the WEKA tools repository to one of the servers by running the following command:
+1.  **If you do not use WSA or WEKApod**:\
+    Download the WEKA tools repository to one of the servers by running the following command:
 
     ```bash
     git clone https://github.com/weka/tools
     ```
-2.  If the tools are already available on the server, use the following location:
+2.  **If you use WSA or WEKApod**:\
+    The tools are pre-installed and can be found at the following location:
 
     ```bash
-    /opt/tools/install
+    /opt/tools/install  
     ```
 
 ### 2. Configure a WEKA cluster with the WEKA Configurator
 
 1. **Run the `wekaconfig` Tool:**
-   1. Connect to one of the backend servers using SSH.
-   2.  Navigate to the tools directory:
+   1. Connect to one of the backend servers or the WMS server (if it exists) using SSH.
+   2.  Navigate to the tools directory directory:
 
        ```bash
        cd tools/install
-       # or
-       cd /opt/tools/install
+       - or -
+       cd opt/tools/install
        ```
    3.  Run the `wekaconfig` tool:
 
@@ -330,7 +332,7 @@ Regarding drive selection: it is not possible to manually select the data drives
 To modify the drives used in the cluster, manually edit the `config.sh` file. Refer to the example output for `config.sh` provided above for guidance.
 {% endhint %}
 
-### 3. Apply the configuration
+### 2. Apply the configuration
 
 * From the install directory, run `./config.sh`.
 

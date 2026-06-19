@@ -19,17 +19,19 @@
 
 * [Prerequisites and compatibility](planning-and-installation/prerequisites-and-compatibility.md)
 * [System installation on bare metal servers](planning-and-installation/bare-metal/README.md)
-  * [Review hardware requirements](planning-and-installation/bare-metal/planning-a-weka-system-installation.md)
-  * [Download WEKA packages](planning-and-installation/bare-metal/obtaining-the-weka-install-file.md)
-  * [Install OS and WEKA software](planning-and-installation/bare-metal/manually-install-os-and-weka-on-servers/README.md)
+  * [Plan system hardware requirements](planning-and-installation/bare-metal/planning-a-weka-system-installation.md)
+  * [Obtain the installation packages](planning-and-installation/bare-metal/obtaining-the-weka-install-file.md)
+  * [Install the cluster using the WMS with WSA](planning-and-installation/bare-metal/install-the-weka-cluster-using-the-wms-with-wsa.md)
+  * [Install the cluster using the WSA](planning-and-installation/bare-metal/install-the-weka-cluster-using-the-wsa.md)
+  * [Manually install OS and system on servers](planning-and-installation/bare-metal/manually-install-os-and-weka-on-servers/README.md)
     * [Safe server shutdown](planning-and-installation/bare-metal/manually-install-os-and-weka-on-servers/safe-server-shutdown.md)
-  * [Prepare servers](planning-and-installation/bare-metal/setting-up-the-hosts/README.md)
+  * [Manually prepare the system for configuration](planning-and-installation/bare-metal/setting-up-the-hosts/README.md)
     * [Broadcom adapter setup for WEKA clients](planning-and-installation/bare-metal/setting-up-the-hosts/broadcom-adapter-setup-for-weka-system.md)
     * [Enable the SR-IOV](planning-and-installation/bare-metal/setting-up-the-hosts/sr-iov-enablement.md)
-  * [Run WEKA Configurator](planning-and-installation/bare-metal/configure-the-weka-cluster-using-the-weka-configurator.md)
-  * [Run resources generator](planning-and-installation/bare-metal/manually-configure-the-weka-cluster-using-the-resource-generator/README.md)
+  * [Configure the cluster using the WEKA Configurator](planning-and-installation/bare-metal/configure-the-weka-cluster-using-the-weka-configurator.md)
+  * [Manually configure the cluster using the resources generator](planning-and-installation/bare-metal/manually-configure-the-weka-cluster-using-the-resource-generator/README.md)
     * [VLAN tagging in the WEKA system](planning-and-installation/bare-metal/manually-configure-the-weka-cluster-using-the-resource-generator/vlan-tagging-in-the-weka-system.md)
-  * [Complete post-configuration](planning-and-installation/bare-metal/perform-post-configuration-procedures.md)
+  * [Perform post-configuration procedures](planning-and-installation/bare-metal/perform-post-configuration-procedures.md)
   * [Add clients to a bare-metal cluster](planning-and-installation/bare-metal/adding-clients-bare-metal.md)
 * [Cloud Deployment Manager Web (CDM Web) User Guide](planning-and-installation/weka-cdm-web-user-guide.md)
 * [WEKA installation on AWS](planning-and-installation/aws/README.md)
@@ -67,7 +69,7 @@
 * [NeuralMesh Axon deployment](neuralmesh-axon/neuralmesh-axon-deployment.md)
 * [NeuralMesh Axon maintenance](neuralmesh-axon/neuralmesh-axon-maintenance.md)
 
-## Get Started with NeuralMesh <a href="#getting-started-with-weka" id="getting-started-with-weka"></a>
+## Getting Started with NeuralMesh <a href="#getting-started-with-weka" id="getting-started-with-weka"></a>
 
 * [Manage the system using the WEKA GUI](getting-started-with-weka/manage-the-system-using-weka-gui.md)
 * [Manage the system using the WEKA CLI](getting-started-with-weka/manage-the-system-using-weka-cli/README.md)
@@ -217,6 +219,7 @@
 
 ## Monitor the Cluster <a href="#monitor-the-weka-cluster" id="monitor-the-weka-cluster"></a>
 
+* [Deploy monitoring tools using the WEKA Management Station (WMS)](monitor-the-weka-cluster/deploy-monitoring-tools-using-the-weka-management-station-wms.md)
 * [WEKA Home - The WEKA support cloud](monitor-the-weka-cluster/the-wekaio-support-cloud/README.md)
   * [Local WEKA Home overview](monitor-the-weka-cluster/the-wekaio-support-cloud/local-weka-home-overview.md)
   * [Deploy Local WEKA Home on K8s](monitor-the-weka-cluster/the-wekaio-support-cloud/deploy-local-weka-home-v4.x-on-k8s/README.md)
@@ -304,4 +307,5 @@
   * [Troubleshooting](appendices/weka-csi-plugin/troubleshooting.md)
   * [Create a Volume Snapshot](appendices/weka-csi-plugin/create-a-volume-snapshot.md)
 * [Create a client image](appendices/create-a-client-image.md)
+* [Update WMS and WSA](appendices/update-wms-and-wsa.md)
 * [BIOS tool](appendices/bios-tool.md)

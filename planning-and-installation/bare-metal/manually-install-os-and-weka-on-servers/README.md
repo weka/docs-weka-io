@@ -1,14 +1,16 @@
 ---
 description: >-
-  Install a supported operating system and the WEKA software on each bare metal
-  server.
+  This requirement only applies when manually preparing and installing the WEKA
+  cluster on bare metal servers.
 metaLinks:
   alternates:
     - >-
       https://app.gitbook.com/s/0yXyIrnroN3zIG3qa4W3/planning-and-installation/bare-metal/manually-install-os-and-weka-on-servers
 ---
 
-# Install OS and WEKA software
+# Manually install OS and system on servers
+
+If you are not using the WMS or WSA automated tools for installing a WEKA cluster, manually install a supported OS and the WEKA software on the bare metal server.
 
 {% hint style="info" %}
 For optimal server performance and configuration, it is recommended to use the `bios_tool` to set BIOS settings on your servers.

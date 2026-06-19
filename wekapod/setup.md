@@ -6,19 +6,19 @@ metaLinks:
 
 # WEKApod initial system setup and configuration
 
-Complete the initial WEKApod hardware setup, then continue with the supported bare metal installation workflow.
-
 ## Workflow
 
-1. [Prepare for installation](setup.md#prepare-for-installation)
-2. [Install hardware](setup.md#install-hardware)
-3. [Connect cables](setup.md#connect-cables)
-4. [Configure the iDRAC](setup.md#configure-the-idrac)
-5. [Install and configure the WEKA software](setup.md#install-and-configure-the-weka-software)
+Follow these procedures to complete the installation, initial setup, and configuration for the WEKApod system.
 
-### Before you begin
+1. [#prepare-for-installation](setup.md#prepare-for-installation "mention")
+2. [#install-hardware](setup.md#install-hardware "mention")
+3. [#connect-cables](setup.md#connect-cables "mention")
+4. [#configure-the-idrac](setup.md#configure-the-idrac "mention") (if the WMS server and Ethernet switch are unavailable)
+5. [#configure-the-weka-software-using-wms](setup.md#configure-the-weka-software-using-wms "mention")
 
-Ensure the site is ready for deployment and that you have the rack plan, service tags, and network details for all servers.
+{% hint style="info" %}
+The WEKA Management Server (WMS) is an optional component. If a WMS is not part of your deployment, omit the WMS-related steps.
+{% endhint %}
 
 ### Prepare for installation
 
@@ -39,7 +39,8 @@ A detailed site requirements document will be provided before installation, whic
 1. **Rack preparation:** Confirm that the rack is securely mounted according to the rack installation guidelines.
 2. **Device mounting:** Mount the following devices according to the rack installation guidelines:
    * **Ethernet switch:** Mount on the top rail of the rack.
-   * **WEKApod servers:** Mount on the rails below the Ethernet switch in the order specified in the provided spreadsheet.\
+   * **WMS server:** Mount on the rail directly below the Ethernet switch.
+   * **WEKApod servers:** Mount on the rails below the WMS server in the order specified in the provided spreadsheet.\
      Match each server's service tag, which is available on the front panel and on the box, to the corresponding entry in the spreadsheet.
 
 **Related topic**
@@ -50,6 +51,8 @@ A detailed site requirements document will be provided before installation, whic
 
 1. Connect the peripherals to the system as follows:
    * **OS management:**
+     * Connect the first WMS Ethernet port to the 1 Gbps Ethernet switch (if the switch is not available, connect to the customer's Ethernet network).
+     * Connect the second WMS Ethernet port to the customer's Ethernet network.
      * Connect the NIC port of each WEKApod server to the 1 Gbps Ethernet switch (if the switch is not available, connect to the customer's Ethernet network).
    * **BMC/iDRAC/iLO/IPMI:** Connect the BMC Ethernet port of each WEKApod server to the 1 Gbps Ethernet switch.
    * **InfiniBand (IB):** Connect the two IB ports of each WEKApod server to the IB network.
@@ -63,13 +66,13 @@ A detailed site requirements document will be provided before installation, whic
 
 iDRAC (Integrated Dell Remote Access Controller) is a proprietary technology developed by Dell. It provides remote management capabilities for Dell servers, allowing administrators to manage and monitor the server hardware independently of the operating system.
 
-If the BMC interfaces are not already configured, perform this procedure for each WEKApod server.
+When the WEKApod system is shipped with a WMS server and Ethernet switch, the WSA servers come pre-configured with IP address information. Therefore, perform this procedure only if the **WMS server and Ethernet switch are unavailable**; otherwise, skip this step.
 
 {% hint style="info" %}
 The pre-configured IP address of the iDRAC/BMC interfaces of the backend servers is **192.168.2.x**, as indicated in the provided spreadsheet and Packing List included with the shipment.
 {% endhint %}
 
-**Repeat this procedure for all WEKApod servers:**
+**Repeat this procedure for all WSA servers:**
 
 1. Connect a crash cart (KVM) to the server.
 2. Power on or reboot the server.
@@ -100,9 +103,11 @@ Alternatively, you can configure these settings using the **Lifecycle Controller
 
 <div data-with-frame="true"><figure><img src="../.gitbook/assets/idrac_6.png" alt=""><figcaption></figcaption></figure></div>
 
-### Install and configure the WEKA software
+### Configure the WEKA software using WMS
 
-Use the supported bare metal workflow to install and configure WEKA on WEKApod servers.
+For WEKApod systems that include a WMS server and Ethernet switch, follow the steps below to configure the software using the WMS.
+
+If your WEKApod system does not include a WMS server and Ethernet switch, refer to the instructions for reinstalling the operating system, WEKA software, and configuring the system. See [install-the-weka-cluster-using-the-wms-with-wsa.md](../planning-and-installation/bare-metal/install-the-weka-cluster-using-the-wms-with-wsa.md "mention").
 
 #### Configuration tips and troubleshooting
 
@@ -111,15 +116,64 @@ Use the supported bare metal workflow to install and configure WEKA on WEKApod s
   * On macOS, press `Ctrl+Option+F2`
   * On Windows, press `Ctrl+Alt+F2`
 * **BMC access**: In some cases, you may need to use the Baseboard Management Controller (BMC) virtual console to complete the configuration.
-* **Best practice**: Run the `dnf update` command on all WEKApod servers. Applying necessary security patches before configuration is essential for system security.
+* **Best practice**: Run the `dnf update` command on all WEKApod servers and the WMS. Applying necessary security patches before configuration is essential for system security.
 
-#### Procedure
+#### **Procedure**
 
-1. [Download WEKA packages](../planning-and-installation/bare-metal/obtaining-the-weka-install-file.md).
-2. [Install OS and WEKA software](../planning-and-installation/bare-metal/manually-install-os-and-weka-on-servers/).
-3. [Prepare servers](../planning-and-installation/bare-metal/setting-up-the-hosts/).
-4. [Run WEKA Configurator](../planning-and-installation/bare-metal/configure-the-weka-cluster-using-the-weka-configurator.md).
-5. [Complete post-configuration](../planning-and-installation/bare-metal/perform-post-configuration-procedures.md).
+1. Log in on the console or through SSH as the weka user (root password: `WekaService`; weka user password: `weka.io123`).
+2. Browse the WMS Admin UI using the URL: `http://<WMS-hostname-or-ip>:8501`.
+
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/WP_WMS_1_login.png" alt="" width="563"><figcaption></figcaption></figure></div>
+
+3. Enter username and password (default: _admin_/_admin_), and select **Login**. The Landing Page appears.
+4. Select **Deploy a WEKA Cluster** and ensure any popup blockers are disabled.
+
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/WP_WMS_2_deploy.png" alt="" width="563"><figcaption></figcaption></figure></div>
+
+5. Select **WEKApod Install**.
+6. In Step 1 - Number of servers, the default **Server Count** is set to 8. If your deployment requires a different number, adjust this value as needed, then click **Next**.
+
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/WP_WMS_4_step_1.png" alt=""><figcaption></figcaption></figure></div>
+
+7. In Step 2 - Verify IPMI Connectivity, the WMS automatically fills in the IPMI IPs. Ensure the IPMI/iDRAC first IP, username, and password are correct (default: root/WekaService). Click **Verify IPMI IPs** and confirm that the **Brand** column shows Dell. Then, click **Next**.
+
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/WP_WMS_5_step_2.png" alt=""><figcaption></figcaption></figure></div>
+
+8. In Step 3 - Dataplane Settings, do the following:
+   1. Enter the required IP information for the Dataplane network, then click **Update Dataplanes**.
+   2. Ensure the Dataplanes are configured correctly, then click **Next**.
+
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/WP_WMS_6_step_3.png" alt=""><figcaption></figcaption></figure></div>
+
+9. In Step 4 - Save Files and Run Validation Checks, click **Save Files and Run Validation Checks**.
+
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/WP_WMS_7_step_4.png" alt=""><figcaption></figcaption></figure></div>
+
+11. Confirm that all settings are correct. Click **Download Configuration CSV File** to save the configuration, then click **Next**.
+
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/WP_WMS_8_step_4a.png" alt=""><figcaption></figcaption></figure></div>
+
+12. In Step 5 - Optional (Re)install WEKA Software, you can update the WEKA version if needed (the current version may be outdated based on the WSA version used to image the servers).\
+    If you do not want to update the WEKA version, click **Next/Skip**.\
+    \
+    To update the WEKA version:
+    1. Place the required WEKA version in the weka user's home directory (`~/weka`) on the WSA server.
+    2. Click **Refresh Weka Software File List**.
+    3. Select the new version from the list.
+    4. Click **Start WEKA Software Install**. This process may take a few minutes.
+    5. Once the installation is complete, click **Next/Skip**.
+
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/WP_WMS_9_step_5.png" alt=""><figcaption></figcaption></figure></div>
+
+13. In Step 6 - Apply OS and Dataplane settings, click **Run system configuration scripts**. This process typically takes 3-5 minutes for an 8-server cluster, but larger clusters take longer.
+
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/WP_WMS_10_step_6.png" alt=""><figcaption></figcaption></figure></div>
+
+14. Optional. You can review the messages providing a summary of the installation. To display more details, click **Show Data**.
+
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/WP_WMS_14_messages.png" alt=""><figcaption></figcaption></figure></div>
+
+15. Upon completion of the preceding steps, proceed with the standard configuration of the cluster as outlined in [configure-the-weka-cluster-using-the-weka-configurator.md](../planning-and-installation/bare-metal/configure-the-weka-cluster-using-the-weka-configurator.md "mention").
 
 ## Next steps
 
@@ -127,6 +181,6 @@ After configuring the WEKApod servers, start managing the system using the GUI, 
 
 **Related topics**
 
-[Get Started with NeuralMesh](https://app.gitbook.com/s/ZW262oqYA8pNNfGvXjHa/getting-started-with-weka "mention")
+[Getting Started with NeuralMesh](https://app.gitbook.com/s/ZW262oqYA8pNNfGvXjHa/getting-started-with-weka "mention")
 
 [adding-clients-bare-metal.md](../planning-and-installation/bare-metal/adding-clients-bare-metal.md "mention")
