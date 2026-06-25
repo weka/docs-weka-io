@@ -17,25 +17,26 @@ Effective sizing requires a clear understanding of the primary components:
 * **`workers.stats`:** Performs heavy processing of statistics. This component is typically the primary bottleneck in large environments.
 * **`workers.forwarding`:** Handles the transmission of processed data. These processes require fewer CPU resources but still scale with the cluster size.
 
-Load scales linearly based on the number of unique (`host_id`, `node_id`) metric pairs.
+Load scales linearly based on the total process count in the cluster. This count equals the number of unique (`host_id`, `node_id`) metric pairs, where one container (`host_id`) can hold many processes (`node_id`).
 
 ### `workers.stats` capacity references
 
 Use these values to determine the necessary CPU resources for a cluster.
 
-<table><thead><tr><th width="191.72723388671875">Metric</th><th width="279.272705078125">Theoretical maximum</th><th>Recommended safe value</th></tr></thead><tbody><tr><td>Pairs per 1 CPU core</td><td>750</td><td>550</td></tr><tr><td>Target utilization</td><td>100%</td><td>70%</td></tr></tbody></table>
+<table><thead><tr><th width="191.72723388671875">Metric</th><th width="279.272705078125">Theoretical maximum</th><th>Recommended safe value</th></tr></thead><tbody><tr><td>Processes per 1 CPU core</td><td>750</td><td>550</td></tr><tr><td>Target utilization</td><td>100%</td><td>70%</td></tr></tbody></table>
 
 ### **Sizing by cluster scale**
 
-<table><thead><tr><th width="134.27276611328125">Cluster size</th><th width="167.6363525390625">Unique pairs</th><th width="191.181884765625">Estimated CPU</th><th>Recommended number of pods</th></tr></thead><tbody><tr><td>Small</td><td>Up to 1,500</td><td>2 cores</td><td>1</td></tr><tr><td>Medium</td><td>1,500 to 5,000</td><td>2 to 8 cores</td><td>1 to 2</td></tr><tr><td>Large</td><td>5,000 to 10,000</td><td>8 to 14 cores</td><td>2+</td></tr></tbody></table>
+<table><thead><tr><th width="134.27276611328125">Cluster size</th><th width="167.6363525390625">Process count</th><th width="191.181884765625">Estimated CPU</th><th>Recommended number of pods</th></tr></thead><tbody><tr><td>Small</td><td>Up to 1,500</td><td>2 cores</td><td>1</td></tr><tr><td>Medium</td><td>1,500 to 5,000</td><td>2 to 8 cores</td><td>1 to 2</td></tr><tr><td>Large</td><td>5,000 to 10,000</td><td>8 to 14 cores</td><td>2+</td></tr></tbody></table>
 
 ### Calculate required replicas
 
 Determine the required number of pod replicas in a specific environment using the following formulas.
 
-**Prerequisites**
+**Before you begin**
 
-* Identify the total number of unique (`host_id`, `node_id`) pairs in the cluster.
+* Identify the total process count in the cluster.
+* Confirm that the process count equals the number of unique (`host_id`, `node_id`) metric pairs.
 * Define the CPU limit per pod.
 
 **Procedure**
@@ -43,18 +44,18 @@ Determine the required number of pod replicas in a specific environment using th
 1. Calculate the required CPU cores.
 
 $$
-Required\_CPU = \frac{Number\_of\_pairs}{Pairs\_per\_1\_CPU\_core}
+Required\ CPU = \frac{Number\ of\ processes}{Processes\ per\ 1 \ CPU\ core}
 $$
 
 2. Calculate the required replicas based on the pod CPU limit.
 
 $$
-Required\_replicas = \frac{Required\_CPU}{CPU\_limit\_per\_pod}
+Required\ replicas = \frac{Required\ CPU}{CPU\ limit\ per\ pod}
 $$
 
 **Example**
 
-For a cluster with 10,000 unique pairs and a limit of 16 CPU cores per pod:
+For a cluster with 10,000 processes and a limit of 16 CPU cores per pod:
 
 1. Required CPU cores: 10,000 / 750 = 13.4 cores.
 2. Required replicas = 13.4 / 16 =\~ 1 (maximum utilization).
@@ -209,7 +210,7 @@ workers:
 
 **Related topics**
 
-[#upgrade-local-weka-home](deploy-local-weka-home-v4.x-on-k8s/#upgrade-local-weka-home "mention")
+[deploy-local-weka-home-v4.x-on-k8s](deploy-local-weka-home-v4.x-on-k8s#upgrade-local-weka-home "mention")
 
 [#upgrade-the-local-weka-home](local-weka-home-deployment/#upgrade-the-local-weka-home "mention")
 
