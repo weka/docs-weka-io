@@ -46,7 +46,7 @@ Enabling Single Root I/O Virtualization (SR-IOV) is mandatory when deploying cli
 
 [sr-iov-enablement.md](sr-iov-enablement.md "mention")
 
-## 3. Set up ConnectX cards
+## 3. Set up ConnectX cards <a href="#set-up-connectx-cards" id="set-up-connectx-cards"></a>
 
 1.  **Configure firmware parameters:** All ConnectX ports used directly with WEKA servers and clients require specific firmware settings for optimal performance. Set the following non-default parameters:
 
@@ -69,7 +69,7 @@ Enabling Single Root I/O Virtualization (SR-IOV) is mandatory when deploying cli
 
 For additional details, refer to the NVIDIA ConnectX documentation.
 
-## 4. Set custom kernel parameters <a href="#configure-the-networking" id="configure-the-networking"></a>
+## 4. Set custom kernel parameters <a href="#set-custom-kernel-parameters" id="set-custom-kernel-parameters"></a>
 
 To ensure optimal performance and stability, configure the Linux kernel with custom parameters that:
 
@@ -317,7 +317,7 @@ ignore-carrier=ib0,ib1
 
 3. Restart the NetworkManager service for the changes to take effect.
 
-## 6. Configure dual-network links with policy-based routing <a href="#configure-the-ha-networking" id="configure-the-ha-networking"></a>
+## 6. Configure dual-network links with policy-based routing <a href="#configure-dual-network-links-with-policy-based-routing" id="configure-dual-network-links-with-policy-based-routing"></a>
 
 The following steps provide guidance for configuring dual-network links with policy-based routing on Linux systems. Adjust IP addresses and interface names according to your environment.
 
@@ -528,13 +528,13 @@ The`-M do` flag prohibits packet fragmentation, which allows verification of cor
 All WEKA server interfaces within the same subnet must have connectivity and be able to ping each other.
 {% endhint %}
 
-## 8. Configure the clock synchronization <a href="#configure-sync" id="configure-sync"></a>
+## 8. Configure the clock synchronization <a href="#configure-the-clock-synchronization" id="configure-the-clock-synchronization"></a>
 
 The synchronization of time on computers and networks is considered good practice and is vitally important for the stability of the WEKA system. Proper timestamp alignment in packets and logs is very helpful for the efficient and quick resolution of issues.
 
 Configure the clock synchronization software on the backends and clients according to the specific vendor instructions (see your OS documentation), before installing the WEKA software.
 
-## **9. Enable kdump**
+## **9. Enable kdump** <a href="#enable-kdump" id="enable-kdump"></a>
 
 Enabling kdump ensures crash diagnostic data is captured (`/var/crash`).
 
@@ -574,7 +574,7 @@ The `wekachecker` performs the following validations:
 * HT/AMT is disabled
 * The kernel is supported
 * CPU has a supported AES, and it is enabled
-* Numa balancing is enabled
+* Numa balancing is disabled
 * RAM state
 * XFS FS type installed
 * Mellanox OFED is installed
