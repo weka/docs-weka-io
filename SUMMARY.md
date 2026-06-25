@@ -226,7 +226,7 @@
 * [Deploy monitoring tools using the WEKA Management Station (WMS)](monitor-the-weka-cluster/deploy-monitoring-tools-using-the-weka-management-station-wms.md)
 * [WEKA Home - The WEKA support cloud](monitor-the-weka-cluster/the-wekaio-support-cloud/README.md)
   * [Local WEKA Home overview](monitor-the-weka-cluster/the-wekaio-support-cloud/local-weka-home-overview.md)
-  * [Deploy Local WEKA Home v3.0 or higher](monitor-the-weka-cluster/the-wekaio-support-cloud/local-weka-home-deployment.md)
+  * [Deploy Local WEKA Home on K3s](monitor-the-weka-cluster/the-wekaio-support-cloud/local-weka-home-deployment.md)
   * [Deploy Local WEKA Home v2.x](monitor-the-weka-cluster/the-wekaio-support-cloud/deploy-local-weka-home-v2.x.md)
   * [Explore cluster insights](monitor-the-weka-cluster/the-wekaio-support-cloud/explore-cluster-insights-and-statistics.md)
   * [Explore performance statistics in Grafana](monitor-the-weka-cluster/the-wekaio-support-cloud/explore-performance-statistics-in-grafana.md)
