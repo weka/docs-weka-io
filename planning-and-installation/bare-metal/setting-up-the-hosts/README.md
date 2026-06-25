@@ -70,7 +70,7 @@ Single Root I/O Virtualization (SR-IOV) enablement is mandatory in the following
 
 For additional details, refer to the NVIDIA ConnectX documentation.
 
-## 4. Set custom kernel parameters <a href="#configure-the-networking" id="configure-the-networking"></a>
+## 4. Set custom kernel parameters
 
 To ensure optimal performance and stability, configure the Linux kernel with custom parameters that:
 
@@ -538,7 +538,7 @@ The `wekachecker` performs the following validations:
 * HT/AMT is disabled
 * The kernel is supported
 * CPU has a supported AES, and it is enabled
-* Numa balancing is enabled
+* Numa balancing is disabled
 * RAM state
 * XFS FS type installed
 * Mellanox OFED is installed
@@ -592,7 +592,7 @@ Check if HT/AMT is disabled                                  [WARN]
 Check if kernel is supported...                              [PASS]
 Check if CPU has AES enabled and supported                   [PASS]
 Check if Network Manager is disabled                         [WARN]
-Checking if Numa balancing is enabled                        [WARN]
+Checking if Numa balancing is disabled                       [WARN]
 Checking RAM state for errors                                [PASS]
 Check for XFS FS type installed                              [PASS]
 Check if Mellanox OFED is installed                          [PASS]
