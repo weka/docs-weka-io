@@ -30,7 +30,7 @@ You can deploy WEKAmon in one of two ways:
 <div data-with-frame="true"><img src="../.gitbook/assets/image (152).png" alt="WEKA monitoring data on the Grafana dashboard example"></div>
 
 {% hint style="info" %}
-If you have deployed the WMS, follow the procedure in:[deploy-monitoring-tools-using-the-weka-management-station-wms.md](deploy-monitoring-tools-using-the-weka-management-station-wms.md "mention"). Otherwise, continue with this workflow.
+If you have deployed the WMS, follow the procedure in: [deploy-monitoring-tools-using-the-weka-management-station-wms.md](deploy-monitoring-tools-using-the-weka-management-station-wms.md "mention"). Otherwise, continue with this workflow.
 {% endhint %}
 
 ## Deploy full WEKAmon stack (Docker Compose)

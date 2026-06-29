@@ -157,7 +157,7 @@ weka security policy add <name> [--description description] [--action action] [-
 
 **Parameters**
 
-<table><thead><tr><th width="192">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>name</code>*</td><td>Name of the new security policy. (up to 64 alphanumeric characters, hyphens (<code>-</code>), underscores (<code>_</code>), and periods (<code>.</code>), starting with a letter).</td></tr><tr><td><code>description</code></td><td>Description of the security policy. (up to 256 characters).</td></tr><tr><td><code>action</code></td><td>Whether access is granted or denied when the security policy matches. (format: <code>allow</code> or <code>deny</code>).</td></tr><tr><td><code>read-only</code></td><td><p>The security policy allows read-only mounts only.</p><p>Cannot be combined with <code>squash-mode</code> or <code>roles</code> attributes.</p><p>(format: <code>yes</code>, <code>no</code>, <code>true</code>, <code>false</code>, <code>on</code>, <code>off</code>, <code>y</code> or <code>n</code>).</p></td></tr><tr><td><code>squash-mode</code></td><td><p>Specifies how the storage system maps incoming UIDs and GIDs. Cannot be combined with <code>read-only</code> or <code>roles</code> attributes. For a description of each value, see <a href="manage-cidr-based-security-policies.md#squash-mode">Squash mode</a>.</p><p>Default: <code>none</code></p></td></tr><tr><td><code>anon-uid</code></td><td><p>An anonymous UID to replace the root user when root squashing is enabled.</p><p>Default: <code>65534</code></p></td></tr><tr><td><code>anon-gid</code></td><td>An anonymous GID to replace the root user when root squashing is enabled.<br>Default: <code>65534</code></td></tr><tr><td><code>ips</code>...</td><td>IP address ranges to which the security policy applies. (format: IP or IP/CIDR or IP1-IP2 or A.B.C.D-E, may be repeated or comma-separated).</td></tr><tr><td><code>roles</code>...</td><td><p>User roles to which the security policy applies.</p><p>Cannot be combined with <code>read-only</code> or <code>squash-mode</code> attributes.</p><p>(format: <code>clusteradmin</code>, <code>tenantadmin</code>, <code>regular</code>, <code>readonly</code> or <code>s3</code>, may be repeated or comma-separated).</p></td></tr></tbody></table>
+<table><thead><tr><th width="192">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>name</code>*</td><td>Name of the new security policy. (up to 64 alphanumeric characters, hyphens (<code>-</code>), underscores (<code>_</code>), and periods (<code>.</code>), starting with a letter).</td></tr><tr><td><code>description</code></td><td>Description of the security policy. (up to 256 characters).</td></tr><tr><td><code>action</code></td><td>Whether access is granted or denied when the security policy matches. (format: <code>allow</code> or <code>deny</code>).</td></tr><tr><td><code>read-only</code></td><td><p>The security policy allows read-only mounts only.</p><p>Cannot be combined with <code>squash-mode</code> or <code>roles</code> attributes.</p><p>(format: <code>yes</code>, <code>no</code>, <code>true</code>, <code>false</code>, <code>on</code>, <code>off</code>, <code>y</code> or <code>n</code>).</p></td></tr><tr><td><code>squash-mode</code></td><td><p>Specifies how the storage system maps incoming UIDs and GIDs. Cannot be combined with <code>read-only</code> or <code>roles</code> attributes. For a description of each value, see <a href="manage-cidr-based-security-policies.md#squash-mode">Squash mode</a>.</p><p>Default: <code>none</code></p></td></tr><tr><td><code>anon-uid</code></td><td><p>An anonymous UID to replace the root user when root squashing is enabled.</p><p>Default: <code>65534</code></p></td></tr><tr><td><code>anon-gid</code></td><td>An anonymous GID to replace the root user when root squashing is enabled.<br>Default: <code>65534</code></td></tr><tr><td><code>ips</code>...</td><td><p>IP address ranges to which the security policy applies. (format: IP or IP/CIDR or IP1-IP2 or A.B.C.D-E, may be repeated or comma-separated).</p><p>If omitted, the default range is <code>0.0.0.0/0</code>.</p></td></tr><tr><td><code>roles</code>...</td><td><p>User roles to which the security policy applies.</p><p>Cannot be combined with <code>read-only</code> or <code>squash-mode</code> attributes.</p><p>(format: <code>clusteradmin</code>, <code>tenantadmin</code>, <code>regular</code>, <code>readonly</code> or <code>s3</code>, may be repeated or comma-separated).</p></td></tr></tbody></table>
 
 {% hint style="info" %}
 A policy cannot combine `roles` with `read-only` or `squash-mode`. A policy that includes `read-only` or `squash-mode` must use `allow` as its action. The `deny` action is not permitted for filesystem-scoped policies.
@@ -644,6 +644,65 @@ weka fs security policy attach data-warehouse rootsquash-analysis-network
 {% endcode %}
 
 **Results:** The `rootsquash-analysis-network` policy is applied to the `data-warehouse` filesystem. Any root user accessing this filesystem from the `172.16.0.0/12` network is automatically squashed to `uid 1001` and `gid 2001`, preventing unrestricted root access. Users from other networks retain their original credentials.
+
+### Example 5: Restrict filesystem access to specific hosts
+
+This example demonstrates how to allow only specific hosts to mount a filesystem while blocking all other clients.
+
+**Scenario:** Allow two specific hosts (`10.100.10.72` and `10.100.10.74`) to mount a filesystem, and deny access from all other IP addresses.
+
+**Before you begin:** Run these commands as `tenantadmin` in the relevant organization, or as `admin` in the root organization.
+
+In this example, the filesystem name is `fs0`. Replace `fs0` with your filesystem name.
+
+1. **Create the policies:** Create an allow policy for the two hosts, and a deny policy for all other IP addresses:
+
+```bash
+weka security policy add fs0allow --action allow --ips 10.100.10.72,10.100.10.74
+weka security policy add denyall --action deny
+```
+
+`--ips` default range: `0.0.0.0/0`.
+
+2. **Verify the policies exist:**
+
+```bash
+weka security policy list
+```
+
+3. **If needed, create the filesystem:** If your filesystem already exists, skip this step.
+
+```bash
+weka fs add fs0 default 10gb
+```
+
+4. **Confirm no policies are attached to the filesystem:**
+
+```bash
+weka fs security policy list fs0
+```
+
+5. **Attach both policies to the filesystem in order**, with `fs0allow` first and `denyall` second:
+
+```bash
+weka fs security policy set fs0 fs0allow denyall
+```
+
+6. **Confirm the policies are attached in the correct order:**
+
+```bash
+weka fs security policy list fs0
+```
+
+Expected output:
+
+```
+POSITION  POLICY ID  POLICY NAME
+       0  2          fs0allow
+       1  3          denyall
+```
+
+**Result:** Clients at `10.100.10.72` and `10.100.10.74` can mount `fs0`. Clients outside this range receive a `permission denied` error when attempting to mount.
 
 ## Configure CSI storage classes for root-squashed filesystems
 
