@@ -78,82 +78,39 @@ Verify that both the kernel and operating system versions appear as supported in
 
 {% tab title="Backends" %}
 * **Rocky Linux:**
-  * 9.4, 9.3, 9.2, 9.1, 9.0
-  * 8.10, 8.9, 8.8, 8.7, 8.6
+  * 10 (x86 and ARM), 9, 8 Release lines
 * **RHEL:**
-  * 9.5, 9.4, 9.3, 9.2, 9.1, 9.0
-  * 8.10, 8.9, 8.8, 8.7, 8.6, 8.5, 8.4, 8.3, 8.2, 8.1, 8.0
+  * 10, 9, 8 Release lines
 * **CentOS Stream:**
-  * 8.5, 8.4, 8.3, 8.2, 8.1
+  * 10, 9, 8 Release lines
 * **Ubuntu:**
-  * 26.04
-  * 24.04
-  * 22.04
-  * 20.04
-  * 18.04
+  * 26.04, 24.04, 22.04, 20.04, 18.04
 * **Amazon Linux:**
-  * AL2023 with x86 distribution
-  * AMI 2018.03
-  * AMI 2017.09
-  * Amazon Linux 2 LTS
+  * AL2023 (x86 and ARM), AMI 2018.03, AMI 2017.09, Amazon Linux 2 LTS
 {% endtab %}
 
 {% tab title="Clients" %}
 * **Rocky Linux:**
-  * 10 (ARM), 10, 9.5 (ARM), 9.5, 9.4, 9.3, 9.2, 9.1, 9.0
-  * 8.10, 8.9, 8.8, 8.7, 8.6
+  * 10 (x86 and ARM), 9, 8 Release lines
 * **RHEL:**
-  * 9.7, 9.6, 9.5, 9.4, 9.3, 9.2, 9.1, 9.0
-  * 8.10, 8.9, 8.8, 8.7, 8.6, 8.5, 8.4, 8.3, 8.2, 8.1, 8.0
+  * 10, 9, 8 Release lines
 * **CentOS Stream:**
-  * 8.5, 8.4, 8.3, 8.2, 8.1
-* **Ubuntu:**
-  * 26.04
-  * 24.04
-  * 22.04
-  * 20.04
-  * 18.04
-* **Amazon Linux:**
-  * AL2023 with x86 and ARM distributions
-  * AMI 2018.03
-  * AMI 2017.09
-  * Amazon Linux 2 LTS
-* **SELS:**
-  * 15 LTSS
-  * 12 LTSS
-* **Oracle Linux:**
-  * 9
-  * 8.9
-* **Debian:**
-  * 13
-  * 12 (with Linux kernel 6.6)
-  * 10
+  * 10, 9, 8 Release lines
 * **AlmaLinux OS:**
-  * 9.6, 9.4
-  * 8.10
+  * 10, 9, 8 Release lines
+* **Ubuntu:**
+  * 26.04 (x86 and ARM), 24.04, 22.04, 20.04, 18.04
+* **Amazon Linux:**
+  * AL2023 (x86 and ARM), AMI 2018.03, AMI 2017.09, Amazon Linux 2 LTS
+* **SELS:**
+  * 15 LTSS, 12 LTSS
+* **Oracle Linux:**
+  * 9, 8.9
+* **Debian:**
+  * 13, 12 (with Linux kernel 6.6), 10
 * **Proxmox Virtual Environment**:
-  * 9
-  * 8.2
-  * 8.14
+  * 9, 8.2, 8.14
 * **Azure Linux**
-{% endtab %}
-
-{% tab title="Kernel" %}
-The following kernel versions are supported:
-
-* 6.14
-* 6.8
-* 6.0 to 6.5
-* 5.3 to 5.19
-* 4.4.0-1106 to 4.19
-* 3.10
-
-{% hint style="info" %}
-- Kernels 5.15 and higher are not supported with Amazon Linux operating systems.
-- It is recommended to turn off auto kernel updates, so it will not get upgraded to an unsupported version.
-- Confirm that both the kernel version and the operating system version are listed as supported, as these are distinct components with their own compatibility considerations.
-- For clarity, the range of supported versions is inclusive.
-{% endhint %}
 {% endtab %}
 
 {% tab title="Configuration" %}
@@ -178,12 +135,10 @@ The following kernel versions are supported:
 {% endtabs %}
 
 {% hint style="info" %}
-**Operating system support notice:**
+**Kernel support notice:**
 
-* Starting with version 4.3.2, Red Hat Enterprise Linux 7.X and CentOS Linux 7.X are not supported due to end-of-life (EOL).
-* Starting with version 5.0, CentOS Stream 8.0 and CentOS Linux 8.0, 8.1. 8.2, 8.3 are not supported due to end-of-life (EOL).
-
-For upgrade guidance, contact the [Customer Success Team](../support/getting-support-for-your-weka-system.md#contact-customer-success-team).
+* Amazon Linux does not support kernels 5.15 and later with WEKA.
+* Disable automatic kernel updates to prevent upgrades to unsupported kernels.
 {% endhint %}
 
 ## WEKA installation directory
@@ -191,7 +146,7 @@ For upgrade guidance, contact the [Customer Success Team](../support/getting-sup
 * **Installation directory**:
   * Set the WEKA installation directory directly to `/opt/weka`.
   * Avoid using symbolic links. They are not supported.
-  * Ensure `/opt/weka` resides on high availability storage if it's shared.
+  * Ensure `/opt/weka` resides on high-availability storage if it's shared.
 * **Boot drive requirements**:
   * Type and quantity: 2 NVMe SSDs
   * Capacity: 960 GB each
