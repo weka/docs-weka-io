@@ -32,7 +32,6 @@ Size the IP range using these guidelines:
 * Reserve one IP per NIC per server: 1 IP per server in an LACP configuration, 2 IPs per server in an HA dual-NIC configuration.
 * The range can exceed this minimum but must not be smaller.
 * IPs in this range are reserved for WEKA backend use only. Do not assign them to clients or any other resource.
-* ~~In some cases, the system assigns IPs in ascending order from the lowest available address in the range.~~
 * Each VLAN is assigned to a single network space. Network spaces that use the same VLAN cannot share the same backends.
 * Use `weka cluster network-space show-usage` to inspect current IP allocation.
 
