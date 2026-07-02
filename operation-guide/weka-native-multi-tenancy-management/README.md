@@ -49,6 +49,7 @@ A network space serves as a cluster-level boundary defined by a Name, IP Range, 
     * Isolate data traffic from management services like LDAP or KMS.
     * Support clients residing on different physical VLANs.
     * Provide redundant network paths for high availability.
+  * **Reserved backend IP range:** Network space IPs are reserved exclusively for backend containers. Configure client IPs outside the reserved range. Do not assign any client IP from that range.
 
 <div data-with-frame="true"><figure><img src="../../.gitbook/assets/mt_networking.png" alt=""><figcaption><p>Multi-tenancy networking</p></figcaption></figure></div>
 
