@@ -83,6 +83,8 @@ Verify that both the kernel and operating system versions appear as supported in
   * 10, 9, 8 Release lines
 * **CentOS Stream:**
   * 10, 9, 8 Release lines
+* **AlmaLinux OS:**
+  * 10, 9, 8 Release lines
 * **Ubuntu:**
   * 26.04, 24.04, 22.04, 20.04, 18.04
 * **Amazon Linux:**
