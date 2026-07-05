@@ -130,6 +130,10 @@ A container with two IP addresses uses HA networking. A container with only one 
 
 If the cluster uses InfiniBand and Ethernet network technologies, you can define up to four IP addresses.
 
+{% hint style="info" %}
+The `management-ips` setting applies to management processes on the data plane network. It does not apply to external management interfaces such as the CLI or REST API.
+{% endhint %}
+
 ### Modify the number of cores for a container
 
 You can increase or decrease the number of dedicated cores for a container locally, even while the container is active.

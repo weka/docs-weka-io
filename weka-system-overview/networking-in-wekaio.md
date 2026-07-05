@@ -98,10 +98,10 @@ While WEKA backend servers must include DPDK and SR-IOV, WEKA clients in applica
 ### Configuration guidelines
 
 * **DPDK backends and clients using NICs supporting shared networking (single IP):**
-  * Require one IP address per client for both management and data plane.
+  * Require one IP address per client for data plane.
   * SR-IOV enabled is not required.
 * **DPDK backends and clients using NICs supporting dedicated networking:**
-  * IP address for management: One per NIC (configured before WEKA installation).
+  * IP address for management process on data plane: One per NIC (configured before WEKA installation).
   * IP address for data plane: One per [WEKA core](../planning-and-installation/bare-metal/planning-a-weka-system-installation.md#cpu-resource-planning) in each server (applied during cluster initialization).
   * [Virtual Functions](https://en.wikipedia.org/wiki/Network_function_virtualization) (VFs):
     * Ensure the device supports a maximum number of VFs greater than the number of physical cores on the server.
@@ -111,9 +111,13 @@ While WEKA backend servers must include DPDK and SR-IOV, WEKA clients in applica
 * **UDP clients:**
   * Use a shared networking (single IP) for all purposes.
 * **Servers with mixed adapter roles (IP-only, IP and RDMA, or RDMA-only):**
-  * IP address for management and data plane: Required only on adapters assigned the IP-only or IP and RDMA role.
+  * IP address for data plane: Required only on adapters assigned the IP-only or IP and RDMA role.
   * RDMA-only adapters do not require an IP address in the WEKA data plane.
   * SR-IOV: Required only on adapters that carry DPDK-based IP traffic.
+
+{% hint style="info" %}
+Management IPs in these networking guidelines serve management processes on the data plane network. They do not serve external management interfaces such as the CLI or REST API.
+{% endhint %}
 
 ## Network **High Availability** <a href="#high-availability" id="high-availability"></a>
 
@@ -159,7 +163,7 @@ By leveraging RDMA and GDS, you can achieve enhanced performance. A UDP client, 
 
 When a server includes RDMA-capable network adapters, each adapter can be assigned one of the following roles that define how it handles traffic:
 
-<table><thead><tr><th width="168">Role</th><th>Description</th></tr></thead><tbody><tr><td>IP-only</td><td>Handles management and data-path IP traffic. RDMA is not used on this adapter.</td></tr><tr><td>IP and RDMA</td><td>Handles both IP traffic and RDMA operations.</td></tr><tr><td>RDMA-only</td><td>Dedicated exclusively to RDMA traffic. Does not carry IP traffic.</td></tr></tbody></table>
+<table><thead><tr><th width="168">Role</th><th>Description</th></tr></thead><tbody><tr><td>IP-only</td><td>Handles management process and data-path IP traffic. RDMA is not used on this adapter.</td></tr><tr><td>IP and RDMA</td><td>Handles both IP traffic and RDMA operations.</td></tr><tr><td>RDMA-only</td><td>Dedicated exclusively to RDMA traffic. Does not carry IP traffic.</td></tr></tbody></table>
 
 Assigning dedicated roles allows you to isolate RDMA traffic from IP traffic, improving network utilization and predictability. Adapters without RDMA capability can coexist on the same server when assigned to the IP-only role.
 

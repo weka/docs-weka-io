@@ -35,6 +35,10 @@ curl http://10.20.0.2:14000/dist/v1/install | sh
 
 3. Mount a stateless client on the filesystem. In the mount command, specify all the NICs of the client.
 
+{% hint style="info" %}
+The `mgmt_ip` option identifies management processes on the data plane network. It does not identify external management interfaces such as the CLI or REST API.
+{% endhint %}
+
 * **DPDK mount with four NICs:**
 
 {% code overflow="wrap" %}

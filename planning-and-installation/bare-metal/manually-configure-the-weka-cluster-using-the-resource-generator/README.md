@@ -141,6 +141,10 @@ This method involves two main stages. First, you create the initial `drives0` co
 <table><thead><tr><th width="158.6484375">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>hostnames*</code></td><td>(Required) Hostnames or IP addresses, separated by spaces. If port 14000 is not the default for the drives, you can specify <code>hostnames:port</code> or <code>ips:port</code>.</td></tr><tr><td><code>host-ips</code></td><td><p>IP addresses of the management interfaces, separated by commas.</p><ul><li>Use a list of <code>ip+ip</code> address pairs for a high availability (HA) configuration.</li><li>If the cluster connects to both IB and Ethernet, you can specify up to four management IPs (<code>ip+ip+ip+ip</code>) for redundancy.</li><li>Default: IP of the first network device of the container.</li></ul></td></tr></tbody></table>
 
 {% hint style="info" %}
+The `host-ips` values identify management processes on the data plane network. They do not identify external management interfaces such as the CLI or REST API.
+{% endhint %}
+
+{% hint style="info" %}
 **Notes:**
 
 * The `weka local setup container` command uses pre-configured IP addresses from the generated resource file. It only modifies entries that are empty or contain the default `127.0.0.1` address. To force an overwrite of the `ips` field, use the `--overwrite_resource_ips` flag.
@@ -187,6 +191,10 @@ weka local setup container -n drives --resources-path drives0.json \
 --join-ips 10.108.121.124,10.108.168.90,10.108.163.203,10.108.67.242,10.108.67.205 \
 --clusterize
 ```
+
+{% hint style="info" %}
+The `--management-ips` option identifies management processes on the data plane network. It does not identify external management interfaces such as the CLI or REST API.
+{% endhint %}
 
 ### 4. Configure the SSD drives
 

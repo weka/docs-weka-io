@@ -444,6 +444,10 @@ backend1/my_fs /mnt/weka
 ```
 {% endcode %}
 
+{% hint style="info" %}
+The `mgmt_ip` option identifies management processes on the data plane network. It does not identify external management interfaces such as the CLI or REST API.
+{% endhint %}
+
 </details>
 
 <details>
@@ -526,6 +530,10 @@ backend1/my_fs \
 -o mgmt_ip=10.0.0.1+10.0.0.2 /mnt/weka
 ```
 {% endcode %}
+
+{% hint style="info" %}
+The `mgmt_ip` option identifies management processes on the data plane network. It does not identify external management interfaces such as the CLI or REST API.
+{% endhint %}
 
 </details>
 

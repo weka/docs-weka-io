@@ -95,6 +95,10 @@ Where:
   You can identify the VF interface and synthetic network interface pair by their common MAC address. In the example above, the VF interface is `enP39539s2np0` (item 5), and the synthetic network interface is `eth1` (item 3), which has the IP address and mask 10.0.0.31/24.
 * `<Management-IP>`: In the example above, it the `eth0` management IP `10.0.0.30`.
 
+{% hint style="info" %}
+The `mgmt_ip` option identifies management processes on the data plane network. It does not identify external management interfaces such as the CLI or REST API.
+{% endhint %}
+
 Example:
 
 {% code overflow="wrap" fullWidth="false" %}
