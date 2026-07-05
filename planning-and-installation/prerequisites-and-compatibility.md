@@ -197,12 +197,11 @@ Shared networking configuration for NIC models:
 
 *   **Mixed networks**
 
-    A mixed network configuration refers to a setup where a WEKA cluster connects to both InfiniBand and Ethernet networks.
+    A mixed network configuration connects a WEKA cluster to both InfiniBand and Ethernet networks.
 
-    Certain features and configurations are not supported in mixed network setups. Review the following limitations and supported settings:
+    RDMA is supported in mixed networks on adapters that support both mixed networks and RDMA. Review the remaining limitations and supported settings:
 
     * **Non-supported features in mixed networks:**
-      * RDMA
       * VLAN
       * IPv6
     * **Supported MTU settings in mixed networks:**
