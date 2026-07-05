@@ -76,91 +76,40 @@ Verify that both the kernel and operating system versions appear as supported in
 
 {% tab title="Backends" %}
 * **Rocky Linux:**
-  * 9.6, 9.4, 9.3, 9.2, 9.1, 9.0
-  * 8.10, 8.9, 8.8, 8.7, 8.6
+  * 10 (x86 and ARM), 9, 8 Release lines
 * **RHEL:**
-  * 10.1
-  * 9.7, 9.6, 9.5, 9.4, 9.3, 9.2, 9.1, 9.0
-  * 8.10, 8.9, 8.8, 8.7, 8.6, 8.5, 8.4, 8.3, 8.2, 8.1, 8.0
-* **CentOS:**
-  * 8.5, 8.4, 8.3, 8.2, 8.1, 8.0
+  * 10, 9, 8 Release lines
+* **CentOS Stream:**
+  * 10, 9, 8 Release lines
+* **AlmaLinux OS:**
+  * 10, 9, 8 Release lines
 * **Ubuntu:**
-  * 24.04
-  * 22.04
-  * 20.04
-  * 18.04
-* **Amazon Linux 2023** (AL2023) with x86 distribution
-* **Amazon Linux 2 LTS** (formerly Amazon Linux 2 LTS 17.12) with x86\_64 distribution
+  * 26.04 (x86 and ARM), 24.04, 22.04, 20.04, 18.04
 * **Amazon Linux:**
-  * AMI 2018.03
-  * AMI 2017.09
-* **Oracle Linux:**
-  * 9.6, 9
-  * 8.7, 8.5
+  * AL2023 (x86 and ARM), AMI 2018.03, AMI 2017.09, Amazon Linux 2 LTS
 {% endtab %}
 
 {% tab title="Clients" %}
 * **Rocky Linux:**
-  * Supported on ARM: 9.5, 9.3
-  * 9.6, 9.5, 9.4, 9.3, 9.2, 9.1, 9.0
-  * 8.10, 8.9, 8.8, 8.7, 8.6
+  * 10 (x86 and ARM), 9, 8 Release lines
 * **RHEL:**
-  * 10.1
-  * 9.7, 9.6, 9.5, 9.4, 9.3, 9.3 (ARM), 9.2, 9.1, 9.0
-  * 8.10, 8.9, 8.8, 8.7, 8.6, 8.5, 8.4, 8.3, 8.2, 8.1, 8.0
-* **CentOS:**
-  * 8.5, 8.4, 8.3, 8.2, 8.1, 8.0
-* **Ubuntu:**
-  * 24.04
-  * 22.04
-  * 20.04
-  * 18.04
-* **Amazon Linux 2023** (AL2023) with x86 and ARM distributions
-* **Amazon Linux 2 LTS** (formerly Amazon Linux 2 LTS 17.12) with x86 and ARM distributions
-* **Amazon Linux:**
-  * AMI 2018.03
-  * AMI 2017.09
-* **SLES:**
-  * 15 SP6
-  * 15 SP5
-  * 15 SP4
-  * 15 SP2
-  * 12 SP5
-* **Oracle Linux:**
-  * 9.6, 9
-  * 8.9 (ARM), 8.7, 8.5
-* **Debian:**
-  * 12 (with Linux kernel 6.6)
-  * 10
+  * 10, 9, 8 Release lines
+* **CentOS Stream:**
+  * 10, 9, 8 Release lines
 * **AlmaLinux OS:**
-  * 9.4
-  * 8.10
+  * 10, 9, 8 Release lines
+* **Ubuntu:**
+  * 26.04 (x86 and ARM), 24.04, 22.04, 20.04, 18.04
+* **Amazon Linux:**
+  * AL2023 (x86 and ARM), AMI 2018.03, AMI 2017.09, Amazon Linux 2 LTS
+* **SELS:**
+  * 15 LTSS, 12 LTSS
+* **Oracle Linux:**
+  * 9, 8.9
+* **Debian:**
+  * 13, 12 (with Linux kernel 6.6), 10
 * **Proxmox Virtual Environment**:
-  * 8.2
-  * 8.14
-{% endtab %}
-
-{% tab title="Supported kernels versions" %}
-Identify the kernel requirements for the WEKA system to ensure platform stability and data integrity across the environment. Confirm that both the kernel version and the operating system version are listed as supported. These are distinct components with their own compatibility considerations.
-
-**Kernel compatibility matrix**
-
-The following table lists the supported kernel versions for WEKA servers. The range of supported versions is inclusive.
-
-<table><thead><tr><th width="192">Kernel version</th><th>Supported operating systems</th></tr></thead><tbody><tr><td>6.14</td><td>All supported distributions</td></tr><tr><td>6.12</td><td>Amazon Linux 2023 only</td></tr><tr><td>6.8</td><td>All supported distributions</td></tr><tr><td>6.0 to 6.5</td><td>All supported distributions</td></tr><tr><td>5.3 to 5.19</td><td>Various distributions (see notes for Amazon Linux 2)</td></tr><tr><td>4.4.0-1106 to 4.19</td><td>Various distributions</td></tr><tr><td>3.10</td><td>Legacy distributions</td></tr></tbody></table>
-
-{% hint style="info" %}
-Kernels 5.15 and higher are not supported with the Amazon Linux 2 (AL2) operating system.
-{% endhint %}
-
-**Kernel update requirements**
-
-Manage the server environment to maintain a validated state. Preventing unintended upgrades ensures the WEKA process remains compatible with the underlying kernel.
-
-* **Disable automatic updates:** Turn off automatic kernel updates to prevent the server from upgrading to an unsupported version.
-* **Verify versioning:** Ensure the kernel version and operating system version are both explicitly listed as supported before any manual upgrade.
-* **Exclude kernel packages:** Configure the package manager to ignore kernel-related updates by adding `exclude=kernel*` to the configuration file (for example: `/etc/dnf/dnf.conf` or `/etc/yum.conf`).
-* **Validate configuration:** Run a check-update command to confirm the package manager no longer targets kernel packages for installation.
+  * 9, 8.2, 8.14
 {% endtab %}
 
 {% tab title="Configuration" %}
@@ -188,8 +137,13 @@ Manage the server environment to maintain a validated state. Preventing unintend
 {% endtab %}
 {% endtabs %}
 
+
+
 {% hint style="info" %}
-As of version 4.3.2, RHEL 7.X and CentOS 7.X are no longer supported due to their end-of-life status. If you need assistance upgrading your operating system, contact the [Customer Success Team](../support/getting-support-for-your-weka-system.md#contact-customer-success-team) for guidance.
+**Kernel support notice:**
+
+* Amazon Linux does not support kernels 5.15 and later with WEKA.
+* Disable automatic kernel updates to prevent upgrades to unsupported kernels.
 {% endhint %}
 
 ## WEKA installation directory
