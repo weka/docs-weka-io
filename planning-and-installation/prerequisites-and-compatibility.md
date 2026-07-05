@@ -138,10 +138,9 @@ Verify that both the kernel and operating system versions appear as supported in
 {% endtabs %}
 
 {% hint style="info" %}
-**Kernel support notice:**
-
-* Amazon Linux does not support kernels 5.15 and later with WEKA.
-* Disable automatic kernel updates to prevent upgrades to unsupported kernels.
+* **Amazon Linux:** WEKA does not support **kernel** versions 5.15 and later.
+* Disable automatic **kernel** updates to prevent upgrades to unsupported versions.
+* **CentOS Stream 8:** Deprecated because the vendor ended support.
 {% endhint %}
 
 ## WEKA installation directory
