@@ -73,85 +73,45 @@ This policy excludes Linux distributions bundled as part of the WEKA Software Ap
 
 **Support verification**
 
-Verify that both the kernel and operating system versions appear as supported in the backends, clients, and kernel tabs. These components require independent verification. If  a custom operating system or kernel is required, contact the [Customer Success Team](../support/getting-support-for-your-weka-system.md#contact-customer-success-team).
+Verify that both the kernel and operating system versions appear as supported in the backends, clients, and kernel tabs. These components require independent verification. If a custom operating system or kernel is required, contact the [Customer Success Team](../support/getting-support-for-your-weka-system.md#contact-customer-success-team).
 {% endtab %}
 
 {% tab title="Backends" %}
 * **Rocky Linux:**
-  * 9.4, 9.3, 9.2, 9.1, 9.0
-  * 8.10, 8.9, 8.8, 8.7, 8.6
+  * 10 (x86 and ARM), 9, 8 Release lines
 * **RHEL:**
-  * 9.5, 9.4, 9.3, 9.2, 9.1, 9.0
-  * 8.10, 8.9, 8.8, 8.7, 8.6, 8.5, 8.4, 8.3, 8.2, 8.1, 8.0
+  * 10, 9, 8 Release lines
 * **CentOS Stream:**
-  * 8.5, 8.4, 8.3, 8.2, 8.1
+  * 10, 9, 8 Release lines
+* **AlmaLinux OS:**
+  * 10, 9, 8 Release lines
 * **Ubuntu:**
-  * 24.04
-  * 22.04
-  * 20.04
-  * 18.04
+  * 26.04, 24.04, 22.04, 20.04, 18.04
 * **Amazon Linux:**
-  * AMI 2018.03
-  * AMI 2017.09
-* **Amazon Linux 2 LTS** (formerly Amazon Linux 2 LTS 17.12)
-  * Latest update package that was tested: 5.10.176-157.645.amzn2.x86\_64
+  * AL2023 (x86 and ARM), AMI 2018.03, AMI 2017.09, Amazon Linux 2 LTS
 {% endtab %}
 
 {% tab title="Clients" %}
 * **Rocky Linux:**
-  * 9.5 (ARM), 9.5, 9.4, 9.3, 9.2, 9.1, 9.0
-  * 8.10, 8.9, 8.8, 8.7, 8.6
+  * 10 (x86 and ARM), 9, 8 Release lines
 * **RHEL:**
-  * 9.5, 9.4, 9.3, 9.2, 9.1, 9.0
-  * 8.10, 8.9, 8.8, 8.7, 8.6, 8.5, 8.4, 8.3, 8.2, 8.1, 8.0
+  * 10, 9, 8 Release lines
 * **CentOS Stream:**
-  * 8.5, 8.4, 8.3, 8.2, 8.1
-* **Ubuntu:**
-  * 24.04
-  * 22.04
-  * 20.04
-  * 18.04
-* **Amazon Linux:**
-  * AMI 2018.03
-  * AMI 2017.09
-* **Amazon Linux 2 LTS** (formerly Amazon Linux 2 LTS 17.12)
-  * Latest update package that was tested: 5.10.176-157.645.amzn2.x86\_64
-* **SLES:**
-  * 15 SP6
-  * 15 SP5
-  * 15 SP4
-  * 15 SP2
-  * 12 SP5
-* **Oracle Linux:**
-  * 9
-  * 8.9
-* **Debian:**
-  * 12 (with Linux kernel 6.6)
-  * 10
+  * 10, 9, 8 Release lines
 * **AlmaLinux OS:**
-  * 9.6, 9.4
-  * 8.10
+  * 10, 9, 8 Release lines
+* **Ubuntu:**
+  * 26.04 (x86 and ARM), 24.04, 22.04, 20.04, 18.04
+* **Amazon Linux:**
+  * AL2023 (x86 and ARM), AMI 2018.03, AMI 2017.09, Amazon Linux 2 LTS
+* **SELS:**
+  * 15 LTSS, 12 LTSS
+* **Oracle Linux:**
+  * 9, 8.9
+* **Debian:**
+  * 13, 12 (with Linux kernel 6.6), 10
 * **Proxmox Virtual Environment**:
-  * 8.2
-  * 8.14
-{% endtab %}
-
-{% tab title="Kernel" %}
-The following kernel versions are supported:
-
-* 6.14
-* 6.8
-* 6.0 to 6.5
-* 5.3 to 5.19
-* 4.4.0-1106 to 4.19
-* 3.10
-
-{% hint style="info" %}
-- Kernels 5.15 and higher are not supported with Amazon Linux operating systems.
-- It is recommended to turn off auto kernel updates, so it will not get upgraded to an unsupported version.
-- Confirm that both the kernel version and the operating system version are listed as supported, as these are distinct components with their own compatibility considerations.
-- For clarity, the range of supported versions is inclusive.
-{% endhint %}
+  * 9, 8.2, 8.14
 {% endtab %}
 
 {% tab title="Configuration" %}
@@ -181,12 +141,9 @@ The following kernel versions are supported:
 {% endtabs %}
 
 {% hint style="info" %}
-**Operating system support notice:**
-
-* Starting with version 4.3.2, Red Hat Enterprise Linux 7.X and CentOS Linux 7.X are not supported due to end-of-life (EOL).
-* Starting with version 5.0, CentOS Stream 8.0 and CentOS Linux 8.0, 8.1. 8.2, 8.3 are not supported due to end-of-life (EOL).
-
-For upgrade guidance, contact the [Customer Success Team](../support/getting-support-for-your-weka-system.md#contact-customer-success-team).
+* **Amazon Linux:** WEKA does not support **kernel** versions 5.15 and later.
+* Disable automatic **kernel** updates to prevent upgrades to unsupported versions.
+* **CentOS Stream 8:** Deprecated because the vendor ended support.
 {% endhint %}
 
 ***
@@ -285,7 +242,7 @@ Shared networking configuration for NIC models:
 
 The WEKA system is compatible with various network adapters for both backend servers and clients. The following table lists these adapters, detailing their protocol type and a breakdown of both supported and unsupported features. Use this information to verify hardware compatibility and understand the specific capabilities of each adapter within a WEKA environment.
 
-<table><thead><tr><th width="199">Adapter</th><th width="114">Protocol</th><th width="248">Supported features</th><th>Unsupported features</th></tr></thead><tbody><tr><td>Amazon ENA</td><td>Ethernet</td><td>✅ SR-IOV VF</td><td><p>❌ Single IP</p><p>❌ HA</p><p>❌ Routed network</p><p>❌ LACP</p><p>❌ Mixed networks</p><p>❌ RX interrupts</p><p>❌ RDMA</p><p>❌ IOMMU</p></td></tr><tr><td>NVIDIA Mellanox CX-7 single-port</td><td>InfiniBand</td><td><p>✅ Single IP</p><p>✅ RX interrupts</p><p>✅ RDMA</p><p>✅ HA</p><p>✅ PKEY</p><p>✅ IOMMU</p></td><td><p>❌ Mixed networks</p><p>❌ SR-IOV VF</p><p>❌ Routed network</p></td></tr><tr><td>NVIDIA Mellanox CX-7 dual-port</td><td>InfiniBand</td><td><p>✅ Single IP</p><p>✅ RX interrupts</p><p>✅ RDMA</p><p>✅ HA</p><p>✅ PKEY</p><p>✅ IOMMU</p></td><td><p>❌ Mixed networks</p><p>❌ SR-IOV VF</p><p>❌ Routed network</p></td></tr><tr><td>NVIDIA Mellanox CX-7-ETH single-port</td><td>Ethernet</td><td><p>✅ Single IP</p><p>✅ RDMA</p><p>✅ HA</p><p>✅ Routed network (ETH only)</p><p>✅ IOMMU</p></td><td><p>❌ LACP</p><p>❌ Mixed networks</p><p>❌ SR-IOV VF</p><p>❌ RX interrupts</p></td></tr><tr><td>NVIDIA Mellanox CX-7-ETH dual-port</td><td>Ethernet</td><td><p>✅ LACP</p><p>✅ Single IP</p><p>✅ RDMA</p><p>✅ HA</p><p>✅ Routed network (ETH only)</p><p>✅ IOMMU</p></td><td><p>❌ Mixed networks</p><p>❌ SR-IOV VF</p><p>❌ RX interrupts</p></td></tr><tr><td>NVIDIA Mellanox CX-6 LX</td><td>Ethernet</td><td><p>✅ Single IP</p><p>✅ RDMA</p><p>✅ RX interrupts</p><p>✅ HA</p><p>✅ Routed network (ETH only)</p><p>✅ IOMMU</p></td><td><p>❌ LACP</p><p>❌ Mixed networks</p><p>❌ SR-IOV VF</p></td></tr><tr><td>NVIDIA Mellanox CX-6 DX</td><td>Ethernet</td><td><p>✅ LACP</p><p>✅ Single IP</p><p>✅ RX interrupts</p><p>✅ RDMA</p><p>✅ HA</p><p>✅ Routed network (ETH only)</p><p>✅ IOMMU</p></td><td><p>❌ Mixed networks</p><p>❌ SR-IOV VF</p></td></tr><tr><td>NVIDIA Mellanox CX-6</td><td>Ethernet InfiniBand</td><td><p>✅ Mixed networks</p><p>✅ Single IP</p><p>✅ RX interrupts</p><p>✅ RDMA</p><p>✅ HA</p><p>✅ IOMMU</p></td><td><p>❌ Routed network</p><p>❌  LACP</p><p>❌ SR-IOV VF</p></td></tr><tr><td>NVIDIA Mellanox CX-5 EX</td><td>Ethernet InfiniBand</td><td><p>✅ Mixed networks</p><p>✅ RDMA</p><p>✅ HA</p><p>✅ PKEY (IB only)</p><p>✅ IOMMU</p></td><td><p>❌ Single IP</p><p>❌ Routed network</p><p>❌ LACP</p><p>❌ SR-IOV VF</p><p>❌ RX interrupts</p></td></tr><tr><td>NVIDIA Mellanox CX-5 BF</td><td>Ethernet</td><td><p>✅ Mixed networks</p><p>✅ RDMA</p><p>✅ HA</p><p>✅ IOMMU</p></td><td><p>❌ Single IP</p><p>❌ Routed network</p><p>❌ LACP</p><p>❌ SR-IOV VF</p><p>❌ RX interrupts</p></td></tr><tr><td>NVIDIA Mellanox CX-5</td><td>Ethernet InfiniBand</td><td><p>✅ Mixed networks</p><p>✅ RX interrupts</p><p>✅ RDMA</p><p>✅ HA</p><p>✅ Routed network (ETH only)</p><p>✅ PKEY (IB only)</p><p>✅ IOMMU</p></td><td><p>❌ Single IP</p><p>❌ LACP</p><p>❌ SR-IOV VF</p><p>❌ Routed network (IB)</p></td></tr><tr><td><p>NVIDIA Mellanox CX-4/ CX-4 LX<br></p><p><strong>Note:</strong> The manufacturer declared this adapter end-of-life in January 2022. WEKA does not guarantee functionality due to dependencies on DPDK18, limited features, and limited availability.</p></td><td>Ethernet InfiniBand</td><td><p><img src="../.gitbook/assets/yellow_check_mark.jpg" alt=""> Mixed networks</p><p><img src="../.gitbook/assets/yellow_check_mark.jpg" alt=""> RX interrupts</p><p><img src="../.gitbook/assets/yellow_check_mark.jpg" alt=""> HA</p><p><img src="../.gitbook/assets/yellow_check_mark.jpg" alt=""> Routed network (ETH only)</p><p><img src="../.gitbook/assets/yellow_check_mark.jpg" alt=""> IOMMU</p></td><td><p>❌ Single IP</p><p>❌ LACP</p><p>❌ RDMA</p><p>❌ SR-IOV VF</p><p>❌ Routed network (IB)<br>❌ PKEY</p></td></tr><tr><td>VirtIO</td><td>Ethernet</td><td><p>✅ HA</p><p>✅ Routed network</p></td><td><p>❌ Single IP</p><p>❌ LACP</p><p>❌ Mixed networks</p><p>❌ RX interrupts</p><p>❌ SR-IOV VF</p><p>❌ IOMMU</p></td></tr></tbody></table>
+<table><thead><tr><th width="199">Adapter</th><th width="114">Protocol</th><th width="248">Supported features</th><th>Unsupported features</th></tr></thead><tbody><tr><td>Amazon ENA</td><td>Ethernet</td><td>✅ SR-IOV VF</td><td><p>❌ Single IP</p><p>❌ HA</p><p>❌ Routed network</p><p>❌ LACP</p><p>❌ Mixed networks</p><p>❌ RX interrupts</p><p>❌ RDMA</p><p>❌ IOMMU</p></td></tr><tr><td>NVIDIA Mellanox CX-7 single-port</td><td>InfiniBand</td><td><p>✅ Single IP</p><p>✅ RX interrupts</p><p>✅ RDMA</p><p>✅ HA</p><p>✅ PKEY</p><p>✅ IOMMU</p></td><td><p>❌ Mixed networks</p><p>❌ SR-IOV VF</p><p>❌ Routed network</p></td></tr><tr><td>NVIDIA Mellanox CX-7 dual-port</td><td>InfiniBand</td><td><p>✅ Single IP</p><p>✅ RX interrupts</p><p>✅ RDMA</p><p>✅ HA</p><p>✅ PKEY</p><p>✅ IOMMU</p></td><td><p>❌ Mixed networks</p><p>❌ SR-IOV VF</p><p>❌ Routed network</p></td></tr><tr><td>NVIDIA Mellanox CX-7-ETH single-port</td><td>Ethernet</td><td><p>✅ Single IP</p><p>✅ RDMA</p><p>✅ HA</p><p>✅ Routed network (ETH only)</p><p>✅ IOMMU</p></td><td><p>❌ LACP</p><p>❌ Mixed networks</p><p>❌ SR-IOV VF</p><p>❌ RX interrupts</p></td></tr><tr><td>NVIDIA Mellanox CX-7-ETH dual-port</td><td>Ethernet</td><td><p>✅ LACP</p><p>✅ Single IP</p><p>✅ RDMA</p><p>✅ HA</p><p>✅ Routed network (ETH only)</p><p>✅ IOMMU</p></td><td><p>❌ Mixed networks</p><p>❌ SR-IOV VF</p><p>❌ RX interrupts</p></td></tr><tr><td>NVIDIA Mellanox CX-6 LX</td><td>Ethernet</td><td><p>✅ Single IP</p><p>✅ RDMA</p><p>✅ RX interrupts</p><p>✅ HA</p><p>✅ Routed network (ETH only)</p><p>✅ IOMMU</p></td><td><p>❌ LACP</p><p>❌ Mixed networks</p><p>❌ SR-IOV VF</p></td></tr><tr><td>NVIDIA Mellanox CX-6 DX</td><td>Ethernet</td><td><p>✅ LACP</p><p>✅ Single IP</p><p>✅ RX interrupts</p><p>✅ RDMA</p><p>✅ HA</p><p>✅ Routed network (ETH only)</p><p>✅ IOMMU</p></td><td><p>❌ Mixed networks</p><p>❌ SR-IOV VF</p></td></tr><tr><td>NVIDIA Mellanox CX-6</td><td>Ethernet InfiniBand</td><td><p>✅ Mixed networks</p><p>✅ Single IP</p><p>✅ RX interrupts</p><p>✅ RDMA</p><p>✅ HA</p><p>✅ IOMMU</p></td><td><p>❌ Routed network</p><p>❌ LACP</p><p>❌ SR-IOV VF</p></td></tr><tr><td>NVIDIA Mellanox CX-5 EX</td><td>Ethernet InfiniBand</td><td><p>✅ Mixed networks</p><p>✅ RDMA</p><p>✅ HA</p><p>✅ PKEY (IB only)</p><p>✅ IOMMU</p></td><td><p>❌ Single IP</p><p>❌ Routed network</p><p>❌ LACP</p><p>❌ SR-IOV VF</p><p>❌ RX interrupts</p></td></tr><tr><td>NVIDIA Mellanox CX-5 BF</td><td>Ethernet</td><td><p>✅ Mixed networks</p><p>✅ RDMA</p><p>✅ HA</p><p>✅ IOMMU</p></td><td><p>❌ Single IP</p><p>❌ Routed network</p><p>❌ LACP</p><p>❌ SR-IOV VF</p><p>❌ RX interrupts</p></td></tr><tr><td>NVIDIA Mellanox CX-5</td><td>Ethernet InfiniBand</td><td><p>✅ Mixed networks</p><p>✅ RX interrupts</p><p>✅ RDMA</p><p>✅ HA</p><p>✅ Routed network (ETH only)</p><p>✅ PKEY (IB only)</p><p>✅ IOMMU</p></td><td><p>❌ Single IP</p><p>❌ LACP</p><p>❌ SR-IOV VF</p><p>❌ Routed network (IB)</p></td></tr><tr><td><p>NVIDIA Mellanox CX-4/ CX-4 LX<br></p><p><strong>Note:</strong> The manufacturer declared this adapter end-of-life in January 2022. WEKA does not guarantee functionality due to dependencies on DPDK18, limited features, and limited availability.</p></td><td>Ethernet InfiniBand</td><td><p><img src="../.gitbook/assets/yellow_check_mark.jpg" alt=""> Mixed networks</p><p><img src="../.gitbook/assets/yellow_check_mark.jpg" alt=""> RX interrupts</p><p><img src="../.gitbook/assets/yellow_check_mark.jpg" alt=""> HA</p><p><img src="../.gitbook/assets/yellow_check_mark.jpg" alt=""> Routed network (ETH only)</p><p><img src="../.gitbook/assets/yellow_check_mark.jpg" alt=""> IOMMU</p></td><td><p>❌ Single IP</p><p>❌ LACP</p><p>❌ RDMA</p><p>❌ SR-IOV VF</p><p>❌ Routed network (IB)<br>❌ PKEY</p></td></tr><tr><td>VirtIO</td><td>Ethernet</td><td><p>✅ HA</p><p>✅ Routed network</p></td><td><p>❌ Single IP</p><p>❌ LACP</p><p>❌ Mixed networks</p><p>❌ RX interrupts</p><p>❌ SR-IOV VF</p><p>❌ IOMMU</p></td></tr></tbody></table>
 
 ### Supported network adapters for clients-only
 
