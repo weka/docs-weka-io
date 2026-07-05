@@ -113,6 +113,7 @@ Verify that both the kernel and operating system versions appear as supported in
 * **Proxmox Virtual Environment**:
   * 9, 8.2, 8.14
 * **Azure Linux**
+  * 3
 {% endtab %}
 
 {% tab title="Configuration" %}
