@@ -141,4 +141,4 @@ The server provides a status report indicating the system is in STEM mode, and i
 
 ## What to do next?
 
-Go to [Configure the WEKA cluster](configure-the-weka-cluster-using-the-weka-configurator.md).
+Go to [Configure the cluster with WEKA Configurator](configure-the-weka-cluster-using-the-weka-configurator.md).

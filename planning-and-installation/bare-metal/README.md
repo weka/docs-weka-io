@@ -83,4 +83,4 @@ All supported configuration methods lead to the same next step: completing post-
 
 ## What to do next?
 
-Go to [Obtain installation packages](obtaining-the-weka-install-file.md).
+Go to [Plan hardware requirements](planning-a-weka-system-installation.md).

@@ -269,4 +269,4 @@ weka local setup container --client --auto-remove-timeout <auto-remove-timeout> 
 
 ## What to do next?
 
-Go to [Test the cluster with fio](../perform-post-configuration-procedures.md).
+Go to [Perform post-configuration](../perform-post-configuration-procedures.md).

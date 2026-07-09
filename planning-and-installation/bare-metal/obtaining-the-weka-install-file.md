@@ -65,6 +65,6 @@ You can only sign in and download the packages if you are a registered user.
 
 Depending on the installation path you follow, go to one of the following:
 
-[Install the cluster using the WSA](install-the-weka-cluster-using-the-wsa.md)
+Path A: [Install WSA](install-the-weka-cluster-using-the-wsa.md)
 
-[Manually install OS and system on servers](manually-install-os-and-weka-on-servers/)
+Path B: [Install OS and WEKA software](manually-install-os-and-weka-on-servers/)

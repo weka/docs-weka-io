@@ -5,7 +5,7 @@ metaLinks:
       https://app.gitbook.com/s/0yXyIrnroN3zIG3qa4W3/planning-and-installation/bare-metal/planning-a-weka-system-installation
 ---
 
-# Plan system hardware requirements
+# Plan hardware requirements
 
 The planning of a WEKA system is essential before the actual installation process. It involves the planning of the following:
 
@@ -210,6 +210,6 @@ Clients can be configured with networking as described above to achieve the high
 
 ## What to do next?
 
-[obtaining-the-weka-install-file.md](obtaining-the-weka-install-file.md "mention") (all paths)
+[obtaining-the-weka-install-file.md](obtaining-the-weka-install-file.md "mention") (both paths)
 
 [^1]: For details, see [set-up-a-data-services-container-for-background-tasks.md](../../operation-guide/background-tasks/set-up-a-data-services-container-for-background-tasks.md "mention")

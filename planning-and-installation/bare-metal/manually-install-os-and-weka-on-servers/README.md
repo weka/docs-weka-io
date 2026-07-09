@@ -135,4 +135,4 @@ If a failure occurs during the WEKA software installation process, an error mess
 
 ## What to do next?
 
-Go to [Validate the system preparation](../setting-up-the-hosts/).
+Go to [Prepare the system](../setting-up-the-hosts/).
