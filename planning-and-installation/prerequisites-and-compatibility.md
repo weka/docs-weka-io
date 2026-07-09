@@ -71,9 +71,9 @@ This policy excludes Linux distributions bundled as part of the WEKA Software Ap
 * **General Availability (GA):** WEKA aims to support new GA releases within three months of the vendor release date. After addition to the supported list, these versions receive full support, including certification, ongoing validation, and defect remediation aligned to the [release-support-and-commitments.md](../support/release-support-and-commitments.md "mention").
 * **End of Support and End of Life:** After a vendor EoS date, WEKA stops active testing and validation. Field issues receive best-effort remediation. If vendor backports are unavailable, fixes may require upgrading to a supported version. Plan migrations before the vendor EoL date.
 
-**Support verification**
+**Custom kernel support**
 
-Verify that both the kernel and operating system versions appear as supported in the backends, clients, and kernel tabs. These components require independent verification. If a custom operating system or kernel is required, contact the [Customer Success Team](../support/getting-support-for-your-weka-system.md#contact-customer-success-team).
+For custom kernel certification, contact the [Customer Success Team](../support/getting-support-for-your-weka-system.md#contact-customer-success-team).
 {% endtab %}
 
 {% tab title="Backends" %}
