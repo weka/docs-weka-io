@@ -47,62 +47,37 @@ WEKA will support upcoming releases of the operating systems in the lists within
 
 {% tabs %}
 {% tab title="Backends" %}
-* **RHEL:**
-  * 9.4, 9.3, 9.2, 9.1, 9.0
-  * 8.10, 8.9, 8.8, 8.7, 8.6, 8.5, 8.4, 8.3, 8.2, 8.1, 8.0
-  * 7.9, 7.8, 7.7, 7.6, 7.5, 7.4, 7.3, 7.2
 * **Rocky Linux:**
-  * 9.4, 9.3, 9.2, 9.1, 9.0
-  * 8.10, 8.9, 8.8, 8.7, 8.6
-* **CentOS:**
-  * 8.5, 8.4, 8.3, 8.2, 8.1, 8.0
-  * 7.9, 7.8, 7.7, 7.6, 7.5, 7.4, 7.3, 7.2
+  * 9, 8, 7 Release lines
+* **RHEL:**
+  * 9, 8, 7 Release lines
+* **CentOS Stream:**
+  * 9, 8, 7 Release lines
 * **Ubuntu:**
-  * 24.04
-  * 22.04
-  * 20.04
-  * 18.04
-* **Amazon Linux 2023** (AL2023) with x86 distribution
-* **Amazon Linux 2 LTS** (formerly Amazon Linux 2 LTS 17.12) with x86\_64 distribution
+  * 24.04, 22.04, 20.04, 18.04
 * **Amazon Linux:**
-  * AMI 2018.03
-  * AMI 2017.09
+  * AL2023, AMI 2018.03, AMI 2017.09, Amazon Linux 2 LTS
 {% endtab %}
 
 {% tab title="Clients" %}
-* **RHEL:**
-  * 9.4, 9.3, 9.2, 9.1, 9.0
-  * 8.10, 8.9, 8.8, 8.7, 8.6, 8.5, 8.4, 8.3, 8.2, 8.1, 8.0
-  * 7.9, 7.8, 7.7, 7.6, 7.5, 7.4, 7.3, 7.2
 * **Rocky Linux:**
-  * 9.4, 9.3, 9.2, 9.1, 9.0
-  * 8.10, 8.9, 8.8, 8.7, 8.6
-* **CentOS:**
-  * 8.5, 8.4, 8.3, 8.2, 8.1, 8.0
-  * 7.9, 7.8, 7.7, 7.6, 7.5, 7.4, 7.3, 7.2
+  * 9, 8, 7 Release lines
+* **RHEL:**
+  * 9, 8, 7 Release lines
+* **CentOS Linux:**
+  * 8, 7 Release lines
+* **AlmaLinux OS:**
+  * 9, 8 Release lines
 * **Ubuntu:**
-  * 24.04
-  * 22.04
-  * 20.04
-  * 18.04
-* **Amazon Linux 2023** (AL2023) with x86 distribution
-* **Amazon Linux 2 LTS** (formerly Amazon Linux 2 LTS 17.12) with x86 distribution
+  * 24.04, 22.04, 20.04, 18.04
 * **Amazon Linux:**
-  * AMI 2018.03
-  * AMI 2017.09
-* **SLES:**
-  * 15 SP6
-  * 15 SP5
-  * 15 SP4
-  * 15 SP2
-  * 12 SP5
+  * AL2023, AMI 2018.03, AMI 2017.09, Amazon Linux 2 LTS
+* **SELS:**
+  * 15 LTSS, 12 LTSS
 * **Oracle Linux:**
   * 9
 * **Debian:**
   * 12
-* **AlmaLinux OS:**
-  * 9.4
-  * 8.10
 {% endtab %}
 
 {% tab title="Kernel" %}
