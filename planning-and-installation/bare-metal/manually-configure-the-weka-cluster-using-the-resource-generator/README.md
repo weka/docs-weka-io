@@ -8,9 +8,11 @@ metaLinks:
       https://app.gitbook.com/s/0yXyIrnroN3zIG3qa4W3/planning-and-installation/bare-metal/manually-configure-the-weka-cluster-using-the-resource-generator
 ---
 
-# Manually configure the cluster using the resources generator
+# Configure the cluster with Resources Generator
 
-Perform this workflow using the resources generator only if you are not using the automated WMS, WSA, or WEKA Configurator.
+Perform this workflow only if you are following the manual installation and configuration path.
+
+Do not use this workflow if you are using the WSA or WEKA Configurator.
 
 The resources generator generates three resource files on each server in the `/tmp` directory: `drives0.json`, `compute0.json`, and `frontend0.json`. Then, you create the containers using these generated files of the cluster servers.
 
@@ -267,4 +269,4 @@ weka local setup container --client --auto-remove-timeout <auto-remove-timeout> 
 
 ## What to do next?
 
-[perform-post-configuration-procedures.md](../perform-post-configuration-procedures.md "mention")
+Go to [Test the cluster with fio](../perform-post-configuration-procedures.md).

@@ -1,21 +1,23 @@
 ---
 description: >-
-  This requirement only applies when manually preparing and installing the WEKA
-  cluster on bare metal servers.
+  Install a supported operating system and the WEKA software on each bare metal
+  server when using the manual installation path.
 metaLinks:
   alternates:
     - >-
       https://app.gitbook.com/s/0yXyIrnroN3zIG3qa4W3/planning-and-installation/bare-metal/manually-install-os-and-weka-on-servers
 ---
 
-# Manually install OS and system on servers
+# Install OS and WEKA software
 
-If you are not using the WMS or WSA automated tools for installing a WEKA cluster, manually install a supported OS and the WEKA software on the bare metal server.
+Install a supported operating system and the WEKA software manually on each bare metal server.
+
+Follow this page if you are using the manual installation and configuration path.
 
 {% hint style="info" %}
-For optimal server performance and configuration, it is recommended to use the `bios_tool` to set BIOS settings on your servers.
+For optimal server performance and configuration, use `bios_tool` to set BIOS settings on your servers.
 
-Refer to the Appendix: [bios-tool.md](../../../appendices/bios-tool.md "mention") for detailed instructions on using `bios_tool` to ensure that your servers meet the recommended BIOS configurations. Using this tool can significantly streamline the setup process and save time.
+For details, see [Use bios\_tool](../../../appendices/bios-tool.md).
 {% endhint %}
 
 **Procedure**
@@ -129,8 +131,8 @@ If a failure occurs during the WEKA software installation process, an error mess
 
 **Related topic**
 
-[#operating-system](../../prerequisites-and-compatibility.md#operating-system "mention") (on the Prerequisites and compatibility topic)
+[Operating system prerequisites](../../prerequisites-and-compatibility.md#operating-system)
 
 ## What to do next?
 
-[setting-up-the-hosts](../setting-up-the-hosts/ "mention")
+Go to [Validate the system preparation](../setting-up-the-hosts/).

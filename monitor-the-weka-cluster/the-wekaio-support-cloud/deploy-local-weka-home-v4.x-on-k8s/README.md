@@ -27,7 +27,7 @@ The deployment is managed through a configuration file to ensure a consistent, r
 
 The diagram below illustrates the overall solution architecture and how the core components interact within the Kubernetes (K8s) environment.
 
-<div data-with-frame="true"><figure><img src="../../../.gitbook/assets/LWH_4.x_on_k8s.png" alt=""><figcaption><p>Local WEKA Home v4.x solution architecture</p></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src="../../../.gitbook/assets/LWH_on_k8s.png" alt=""><figcaption><p>Local WEKA Home v4.x solution architecture</p></figcaption></figure></div>
 
 ### Architecture components
 
@@ -84,7 +84,7 @@ While the defaults handle common loads, tune the following parameters for very l
 
 * **VMCluster:** Adjust the CPU, memory, shard count, or capacity. You can reduce these resources for smaller deployments to save infrastructure costs.
 * **Stats workers:** The default memory setting is 1 GiB. Processing statistics for approximately 40,000 processes requires approximately 40 CPU cores (hyperthreads).
-* **Worker autoscaling:** To prevent the HPA from resetting during redeployments, set `workers.stats.autoscaling.minReplicas`  to match your calculated baseline usage.
+* **Worker autoscaling:** To prevent the HPA from resetting during redeployments, set `workers.stats.autoscaling.minReplicas` to match your calculated baseline usage.
 
 ## Prerequisites
 

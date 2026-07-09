@@ -110,7 +110,7 @@ Object-store tiering consists of four core processes:
 
 These processes operate automatically based on configured policies and real-time system conditions.
 
-![Tiering processes](../.gitbook/assets/tiering_processes.png)
+<div data-with-frame="true"><img src="../.gitbook/assets/tiering_processes.png" alt="Tiering processes"></div>
 
 #### Write to SSD
 
@@ -230,7 +230,7 @@ Snap to Object is commonly used in backup or rapid-persistence workflows where d
 
 Object-store direct mount modifies the standard tiering flow for specific mount points.
 
-*   **Write behavior:**&#x20;
+*   **Write behavior:**
 
     * Data is written to the SSD tier first.
     * It is immediately scheduled for upload to the object store tier.

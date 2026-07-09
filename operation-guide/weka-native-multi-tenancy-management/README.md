@@ -30,7 +30,7 @@ Native multi-tenancy supports the following features:
 * **Multi-tenant S3:** The system provides tenant-scoped S3 buckets and ensures tenant-specific capacity accounting and security mechanisms. S3 service is provided as a multi-tenant service with global network access - this means that S3 is accessible from outside network spaces while retaining security control and capacity accounting on a per-tenant basis. (S3 objects and buckets belong to specific tenants and are managed by tenant security definitions and control.)
 * **Quality of Service (QoS):** Cluster Administrators can set performance limits on per tenant basis, such as maximum throughput (MB/s) and IOPS, to prevent "noisy neighbor" behavior and ensure predictable performance for each tenant.
 
-<div data-with-frame="true"><figure><img src="../../.gitbook/assets/Tenant_supported_entities.png" alt="" width="375"><figcaption><p>Tenant-supported entities</p></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/Tenant_supported_entities.png" alt="" width="563"><figcaption><p>Tenant-supported entities</p></figcaption></figure></div>
 
 ### Network Isolation through network spaces
 

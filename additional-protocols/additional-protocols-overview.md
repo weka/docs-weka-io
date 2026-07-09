@@ -56,7 +56,7 @@ With this option, you configure the existing cluster to provide the required pro
 * [s3](s3/ "mention")
 * [smb-support](smb-support/ "mention")
 
-<div data-with-frame="true"><figure><img src="../.gitbook/assets/protocols_on_existing_backends.png" alt=""><figcaption><p>Protocol containers using existing backend servers</p></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/Protocols_on_existing_backends.png" alt=""><figcaption><p>Protocol containers using existing backend servers</p></figcaption></figure></div>
 
 ## **Prepare dedicated protocol servers**
 
@@ -71,7 +71,7 @@ Dedicated protocol servers offer the following advantages:
 * **Optimized performance:** Leverage dedicated CPU resources for tailored and efficient performance, optimizing overall resource usage.
 * **Independent protocol scaling:** Scale specific protocols independently, mitigating resource contention and ensuring consistent performance across the cluster.
 
-<div data-with-frame="true"><figure><img src="../.gitbook/assets/protocols_on_dedicated_servers.png" alt=""><figcaption><p>Protocol containers in dedicated servers</p></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/Protocols_on_dedicated_servers.png" alt=""><figcaption><p>Protocol containers in dedicated servers</p></figcaption></figure></div>
 
 **Procedure**
 

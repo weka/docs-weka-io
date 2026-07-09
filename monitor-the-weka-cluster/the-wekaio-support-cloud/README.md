@@ -26,7 +26,7 @@ In the WEKA Home portal, the Customer Success Team can view the cluster’s stat
 
 WEKA Home also powers NeuralMesh Observe, the customer-facing observability platform that presents the same telemetry data through multi-cluster dashboards, performance charts, and intelligent alerting. For details, see [neuralmesh-observe-overview.md](neuralmesh-observe-overview.md "mention").
 
-<div data-with-frame="true"><figure><img src="../../.gitbook/assets/wekahome_overview.png" alt=""><figcaption><p>WEKA clusters and clients connected to WEKA Home</p></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/wekahome_overview (2).png" alt=""><figcaption><p>WEKA clusters and clients connected to WEKA Home</p></figcaption></figure></div>
 
 ## Cloud WEKA Home data collection
 

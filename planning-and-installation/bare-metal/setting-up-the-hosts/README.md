@@ -1,14 +1,12 @@
 ---
-description: >-
-  If the system is not prepared using the WMS, perform this procedure to set the
-  networking and other tasks before configuring the WEKA cluster.
+description: Set the networking and other tasks before configuring the WEKA cluster.
 metaLinks:
   alternates:
     - >-
       https://app.gitbook.com/s/0yXyIrnroN3zIG3qa4W3/planning-and-installation/bare-metal/setting-up-the-hosts
 ---
 
-# Manually prepare the system for configuration
+# Prepare the system
 
 Once the hardware and software prerequisites are met, prepare the backend servers and clients for the WEKA system configuration.
 
@@ -40,7 +38,10 @@ For Mellanox OFED setup, see NVIDIA Documentation.
 
 ## 2. Enable SR-IOV <a href="#enable-sr-iov" id="enable-sr-iov"></a>
 
-Enabling Single Root I/O Virtualization (SR-IOV) is mandatory when deploying client VMs. The physical NIC must expose its virtual functions (VFs) to the corresponding virtual NICs to ensure proper functionality and performance.
+SR-IOV only needs to be enabled if any of the following statements are true:
+
+* If WEKA is running on a VM
+* If WEKA data plane is running on Broadcom highspeed NICs
 
 **Related topic**
 
@@ -534,7 +535,7 @@ The synchronization of time on computers and networks is considered good practic
 
 Configure the clock synchronization software on the backends and clients according to the specific vendor instructions (see your OS documentation), before installing the WEKA software.
 
-## **9. Enable kdump** <a href="#enable-kdump" id="enable-kdump"></a>
+## **9. (Optional) Enable kdump** <a href="#enable-kdump" id="enable-kdump"></a>
 
 Enabling kdump ensures crash diagnostic data is captured (`/var/crash`).
 
@@ -548,7 +549,7 @@ path /var/crash
 core_collector makedumpfile -c --message-level 1 -d 31
 ```
 
-## 10. Disable swap (if any)
+## 10. Disable swap
 
 WEKA highly recommends that any servers used as backends have no swap configured. This is distribution-dependent but is often a case of commenting out any `swap` entries in `/etc/fstab` and rebooting.
 

@@ -29,7 +29,7 @@ In context of WEKA KMS OpenBao Vault is compatible with HashiCorp Vault. Any ref
 
 ### **KMS encryption models**
 
-WEKA supports two primary models for KMS integration.&#x20;
+WEKA supports two primary models for KMS integration.
 
 #### **Cluster encryption key**
 
@@ -56,7 +56,7 @@ To ensure seamless operations and safeguard your data, adhere to the following b
 * **KMS method verification:** Familiarize yourself with the specific methods your KMS uses for key security, unsealing, and recovery. Different systems have distinct processes; for example, HashiCorp Vault can enable [auto-unsealing](https://developer.hashicorp.com/vault/tutorials/auto-unseal/autounseal-aws-kms) using a trusted service. Understanding these mechanisms is essential for efficient recovery and key management.
 * **Snapshot backup:** When using Snap-To-Object, ensure that encrypted filesystem keys are backed up to an object store. This provides an additional layer of protection in case the WEKA system configuration is compromised.
 
-For further guidance on securing HashiCorp Vault or OpenBao Vault in production environments, refer to the [HashiCorp Vault Production Hardening](https://learn.hashicorp.com/vault/operations/production-hardening) or [OpenBao Vault Post Installation Hardening](https://openbao.org/docs/install/#post-installation-hardening)  documentation.
+For further guidance on securing HashiCorp Vault or OpenBao Vault in production environments, refer to the [HashiCorp Vault Production Hardening](https://learn.hashicorp.com/vault/operations/production-hardening) or [OpenBao Vault Post Installation Hardening](https://openbao.org/docs/install/#post-installation-hardening) documentation.
 
 ## KMS integration: cluster encryption keys
 
@@ -68,7 +68,7 @@ The following steps outline the process for managing encryption keys across the 
 2. **Encryption process:** During normal operation, encrypted FS keys are stored in the configuration table. FS keys in-memory are used for real-time encryption/decryption. After a restart, encrypted FS keys are retrieved and decrypted using the cluster key.
 3. **Rewrap operation:** The rewrap process involves decrypting the FS key, retrieving it, and then re-encrypting the FS key with a new version of the cluster key. This ensures that the FS keys remain protected with updated encryption, enhancing security based on KMS policies.
 
-<div data-with-frame="true"><figure><img src="../../.gitbook/assets/KMS-cluster-wide (3).png" alt=""><figcaption><p>KMS integration with cluster encryption keys</p></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/KMS-cluster-wide.png" alt=""><figcaption><p>KMS integration with cluster encryption keys</p></figcaption></figure></div>
 
 ## KMS integration: per-filesystem encryption keys
 

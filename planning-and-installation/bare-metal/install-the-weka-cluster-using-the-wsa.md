@@ -1,30 +1,29 @@
 ---
 description: >-
-  The WSA (WEKA Software Appliance) is an alternative method to install WEKA
-  software on bare-metal servers. The WSA simplifies and accelerates the
-  installation.
+  Use the WSA to simplify and accelerate WEKA software installation on bare
+  metal servers.
 metaLinks:
   alternates:
     - >-
       https://app.gitbook.com/s/0yXyIrnroN3zIG3qa4W3/planning-and-installation/bare-metal/install-the-weka-cluster-using-the-wsa
 ---
 
-# Install the cluster using the WSA
+# Install WSA
 
-WSA is a package consisting of a base version of Linux (based on Rocky 8.6), network drivers and other required packages, WEKA software, and various diagnostic and configuration tools. Using the WSA facilitates the post-installation administration, security, and other KB updates controlled and distributed by WEKA, following a Long Term Support (LTS) plan.
+Install WEKA on bare metal servers with the WEKA Software Appliance.
 
-The WSA generally works like any OS install disk (Linux/Windows).
+WSA includes the operating system image, network drivers, WEKA software, and diagnostic tools. It accelerates server preparation and standardizes the deployment environment.
+
+Follow this page if you are using the automated installation with WSA path.
 
 <div data-with-frame="true"><figure><img src="../../.gitbook/assets/WSA_overview.png" alt=""><figcaption><p>WEKA cluster installation using the WSA</p></figcaption></figure></div>
 
 {% hint style="warning" %}
-Do not attempt to install the WSA using PXE boot. The WSA has a specific kickstart methodology only compatible with WMS or manual boot from ISO.
+Do not install the WSA using PXE boot. Boot the WSA image from virtual media, DVD, or USB media.
 {% endhint %}
 
 {% hint style="info" %}
 WEKA releases WSA updates addressing critical security issues found in the underlying Linux distribution within five days of discovery and availability. Customers can update their WSA instance from the repository where these updates are provided. WEKA notifies customers when updates are available, enabling timely updates to minimize potential risks. For any questions, contact the Customer Success Team.
-
-For the update procedure, see [update-wms-and-wsa.md](../../appendices/update-wms-and-wsa.md "mention").
 {% endhint %}
 
 ## WSA deployment prerequisites
@@ -37,7 +36,7 @@ A physical server that meets the following requirements:
 
 ## Before you begin
 
-Before deploying the WSA, adhere to the following:
+Before deploying the WSA, do the following:
 
 * Download the latest release of the WSA package from [get.weka.io](https://get.weka.io/ui/dashboard) dashboard.
 * The root password is `WekaService`
@@ -74,21 +73,13 @@ Burn the WSA image to a DVD or USB stick and boot the server from this physical 
 {% endtab %}
 {% endtabs %}
 
-Once you boot the server, the WSA installs the WEKA OS, drivers, WEKA software. and other packages automatically and unattended (no human interaction required).
+Once you boot the server, the WSA installs the operating system, drivers, WEKA software, and other packages automatically.
 
-Depending on network speed, this can take about 10-60 mins (or more) per server.
-
-<div data-with-frame="true"><figure><img src="../../.gitbook/assets/WMS_install_1.png" alt="" width="563"><figcaption></figcaption></figure></div>
+Depending on server and media performance, installation can take 10 to 60 minutes per server.
 
 ### 2. Configure the WSA
 
-Once the WSA installation is complete and the server is rebooted, configure the WSA.
-
-{% hint style="info" %}
-Normally, the WEKA Software Appliance is deployed with the help of the WEKA Management Station (WMS), which can be used to complete the configuration of the servers.
-
-However, if not deployed with the WMS, configure the WEKA cluster manually according to the following steps.
-{% endhint %}
+Once the WSA installation completes and the server reboots, configure the server.
 
 1. Log-in to the server using one of the following methods:
 
@@ -109,9 +100,9 @@ If you don’t know the WSA hostname or IP address, go to the console and press 
 {% endtab %}
 {% endtabs %}
 
-When the server boots for the first time, the WSA automatically installs the WEKA software on the bare metal servers unattended.
+When the server boots for the first time, the WSA installs the WEKA software automatically.
 
-Then the server reboots, it runs with WEKA in STEM mode.
+After the reboot, the server runs with WEKA in STEM mode.
 
 2. Set the following networking details:
    * Hostname
@@ -130,15 +121,19 @@ For detailed instructions on setting the configuration options, see general Linu
 
 Each server has the WEKA Tools pre-installed in `/opt/tools`, including:
 
-* `wekanetperf`: This tool runs `iperf` between the servers to ensure line rate can be achieved.
-* `wekachecker`: This tool checks a variety of network settings and more. For details, see [#id-11.-validate-the-system-preparation](setting-up-the-hosts/#id-11.-validate-the-system-preparation "mention").
-* `bios_tool`: This tool helps you to set the required BIOS settings on the servers.
+* `wekanetperf`: Runs `iperf` between servers to validate line rate.
+* `wekachecker`: Checks network settings and other readiness items. For details, see Validate the system preparation.
+* `bios_tool`: Helps set the required BIOS settings on servers.
 
 ### 4. Validate the WEKA software installation
 
 Verify that the WEKA software is installed and running on the server.
 
-Log-in to the server and run the command `weka status`.
+Log in to the server and run:
+
+```bash
+weka status
+```
 
 The server provides a status report indicating the system is in STEM mode, and is ready for the cluster configuration.
 
@@ -146,4 +141,4 @@ The server provides a status report indicating the system is in STEM mode, and i
 
 ## What to do next?
 
-[configure-the-weka-cluster-using-the-weka-configurator.md](configure-the-weka-cluster-using-the-weka-configurator.md "mention")
+Go to [Configure the WEKA cluster](configure-the-weka-cluster-using-the-weka-configurator.md).

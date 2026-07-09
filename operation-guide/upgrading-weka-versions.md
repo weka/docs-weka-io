@@ -113,7 +113,7 @@ Example output:
 `16 DataSphere-6 client`
 {% endhint %}
 
-<div data-with-frame="true"><figure><img src="../.gitbook/assets/NDU_process_4.2.png" alt=""><figcaption><p>NDU process at a glance</p></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/NDU_process.png" alt=""><figcaption><p>NDU process at a glance</p></figcaption></figure></div>
 
 **Related topics**
 

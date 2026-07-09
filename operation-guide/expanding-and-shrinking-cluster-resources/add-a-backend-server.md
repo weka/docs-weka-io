@@ -11,7 +11,7 @@ Expanding a cluster in a multi-container backend architecture with a new server 
 
 Adding a server to the cluster includes discovering the existing cluster resources, generating the resource files, creating containers using the resource files, and adding the SSDs to the new server.
 
-<div data-with-frame="true"><figure><img src="../../.gitbook/assets/add_server_multi.gif" alt=""><figcaption><p>Adding a server to the cluster in a multi-container backend architecture</p></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/add_server_in_mbc.png" alt=""><figcaption><p>Adding a server to the cluster in a multi-container backend architecture</p></figcaption></figure></div>
 
 ### Before you begin
 

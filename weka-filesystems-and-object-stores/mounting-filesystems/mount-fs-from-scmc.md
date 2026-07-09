@@ -19,7 +19,7 @@ Mounting filesystems from a single stateless WEKA client to multiple clusters pr
 * **Optimized workload distribution:** Facilitates the efficient distribution of workloads across clusters, supporting scalable application deployments and enhancing system performance.
 * **Seamless integration:** The WEKA SCMC feature ensures reliable and efficient integration for stateless clients requiring access to multiple clusters.
 
-<div data-with-frame="true"><figure><img src="../../.gitbook/assets/single_client_multi-clusters (1).png" alt=""><figcaption><p>Mount filesystems from Single Client to Multiple Clusters (SCMC)</p></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/single_client_multi-clusters.png" alt=""><figcaption><p>Mount filesystems from Single Client to Multiple Clusters (SCMC)</p></figcaption></figure></div>
 
 ### **Bandwidth division considerations in SCMC**
 

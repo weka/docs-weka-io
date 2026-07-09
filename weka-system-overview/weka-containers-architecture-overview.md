@@ -28,7 +28,7 @@ The system uses different types of processes, each dedicated to specific functio
 
 Each server implements a multi-container backend architecture where containers are specialized by process type: drive, compute, or frontend.
 
-<div data-with-frame="true"><figure><img src="../.gitbook/assets/MCB_architecture.png" alt=""><figcaption><p>MCB architecture</p></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/weka_mcb_arch.png" alt="" width="563"><figcaption><p>MCB architecture</p></figcaption></figure></div>
 
 ## Benefits of MCB architecture
 

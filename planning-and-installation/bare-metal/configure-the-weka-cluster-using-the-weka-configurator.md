@@ -8,7 +8,7 @@ metaLinks:
       https://app.gitbook.com/s/0yXyIrnroN3zIG3qa4W3/planning-and-installation/bare-metal/configure-the-weka-cluster-using-the-weka-configurator
 ---
 
-# Configure the cluster using the WEKA Configurator
+# Configure the cluster with WEKA Configurator
 
 The WEKA Configurator tool facilitates cluster configuration. It performs the following:
 
@@ -34,7 +34,7 @@ Adhere to the following concepts:
 ## Prerequisites
 
 * **System preparation validation:**\
-  Ensure the system preparation is validated using the `wekachecker` tool (on WSA installations this is already installed under `/opt/tools/install`). For additional details, refer to the [#id-11.-validate-the-system-preparation](setting-up-the-hosts/#id-11.-validate-the-system-preparation "mention") section.
+  Ensure the system preparation is validated using the `wekachecker` tool (on WSA installations this is already installed under `/opt/tools/install`). For additional details, refer to the [Validate the system preparation](setting-up-the-hosts/#id-11.-validate-the-system-preparation) section.
 * **WEKA software installation on cluster servers:**\
   Verify that the WEKA software is installed on all cluster servers. If it is not installed through the WSA, follow the installation instructions provided in the **Install** tab of [get.weka.io](https://get.weka.io). Once the installation is complete, the WEKA software will be deployed on all allocated servers and running in STEM mode.
 

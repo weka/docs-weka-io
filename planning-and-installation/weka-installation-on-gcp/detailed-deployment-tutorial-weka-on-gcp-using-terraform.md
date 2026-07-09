@@ -105,7 +105,7 @@ The Terraform deployment can automatically establish VPC peering connections fro
 
 This guide assumes an already deployed VPC and the necessity of adding four WEKA-specific VPCs. This requirement arises from GCP networking constraints, where each VM instance can only have one vNIC per VPC. However, WEKA mandates a minimum of four vNICs per instance. Ensure that you have the CIDR information for the four subnets created in the new VPCs to prevent conflicts.
 
-<div data-with-frame="true"><figure><img src="../../.gitbook/assets/image (208).png" alt=""><figcaption></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/GCP_Networking_requirements.png" alt=""><figcaption><p>GCP networking</p></figcaption></figure></div>
 
 ## Deploy WEKA in GCP using Terraform
 

@@ -67,7 +67,7 @@ The system comprises the following software components:
 
 By running in user space within Linux containers and bypassing the kernel, NeuralMesh achieves faster, lower-latency performance that is portable across bare-metal, VM, containerized, and cloud environments. Efficient resource consumption minimizes latency and optimizes CPU usage, offering flexibility in shared or dedicated environments.
 
-<div data-with-frame="true"><figure><img src="../.gitbook/assets/NeuralMesh_cluster_components.jpg" alt=""><figcaption><p>NeuralMesh software-based storage architecture</p></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/NeuralMesh_cluster.png" alt=""><figcaption><p>NeuralMesh software-based storage architecture</p></figcaption></figure></div>
 
 NeuralMesh's design departs from traditional NAS solutions by introducing multiple filesystems within a global namespace that share the same physical resources. Each filesystem has its unique identity, allowing customization of snapshot policies, tiering, role-based access control (RBAC), quota management, and more. Unlike other solutions, filesystem capacity adjustments are dynamic, enhancing scalability without disrupting I/O.
 

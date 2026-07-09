@@ -25,8 +25,6 @@ The deployment is managed through a configuration file to ensure a consistent, r
 
 ## Workflow: Local WEKA Home deployment
 
-If you have deployed the WMS and do not require IPv6 networking, follow [deploy-monitoring-tools-using-the-weka-management-station-wms.md](../../deploy-monitoring-tools-using-the-weka-management-station-wms.md "mention"). Otherwise, perform the following workflow:
-
 1. Verify prerequisites.
 2. Prepare the physical server (or VM).
 3. Configure IPv6 (optional).
