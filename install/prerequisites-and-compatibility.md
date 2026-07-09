@@ -106,19 +106,13 @@ WEKA will support upcoming releases of the operating systems in the lists within
 {% endtab %}
 
 {% tab title="Kernel" %}
-The following kernel versions are supported:
+**Custom kernel support**
 
-* 6.8
-* 6.0 to 6.5
-* 5.3 to 5.19
-* 4.4.0-1106 to 4.19
-* 3.10
+For custom kernel certification, contact the [Customer Success Team](../support/getting-support-for-your-weka-system.md#contact-customer-success-team).
 
 {% hint style="info" %}
-- Kernels 5.15 and higher are not supported with Amazon Linux 2 (AL2) operating system.
-- It is recommended to turn off auto kernel updates, so it will not get upgraded to an unsupported version.
-- Confirm that both the kernel version and the operating system version are listed as supported, as these are distinct components with their own compatibility considerations.
-- For clarity, the range of supported versions is inclusive.
+* Kernels 5.15 and higher are not supported with Amazon Linux 2 (AL2) operating system.
+* It is recommended to turn off auto kernel updates, so it will not get upgraded to an unsupported version.
 {% endhint %}
 {% endtab %}
 
@@ -145,6 +139,8 @@ The following kernel versions are supported:
 * WEKA backends and clients that serve protocols must be deployed on a supported OS with **cgroups V1** (legacy).
 {% endtab %}
 {% endtabs %}
+
+
 
 ## WEKA installation directory
 
