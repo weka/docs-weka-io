@@ -41,73 +41,47 @@ WEKA will support upcoming releases of the operating systems in the lists within
 
 {% tabs %}
 {% tab title="Backends" %}
-* **RHEL:**
-  * 9.4, 9.3, 9.2, 9.1, 9.0
-  * 8.10, 8.9, 8.8, 8.7, 8.6, 8.5, 8.4, 8.3, 8.2, 8.1, 8.0
 * **Rocky Linux:**
-  * 9.4, 9.3, 9.2, 9.1, 9.0
-  * 8.9, 8.8, 8.7, 8.6
-* **CentOS:**
-  * 8.5, 8.4, 8.3, 8.2, 8.1, 8.0
+  * 9, 8 Release lines
+* **RHEL:**
+  * 9, 8 Release lines
+* **CentOS Linux:**
+  * 9, 8 Release lines
 * **Ubuntu:**
-  * 24.04
-  * 22.04
-  * 20.04
-  * 18.04
+  * 24.04, 22.04, 20.04, 18.04
 * **Amazon Linux:**
-  * AMI 2018.03
-  * AMI 2017.09
-* **Amazon Linux 2 LTS** (formerly Amazon Linux 2 LTS 17.12)
-  * Latest update package that was tested: 5.10.176-157.645.amzn2.x86\_64
+  * AMI 2018.03, AMI 2017.09, Amazon Linux 2 LTS
 {% endtab %}
 
 {% tab title="Clients" %}
-* **RHEL:**
-  * 9.4, 9.3, 9.2, 9.1, 9.0
-  * 8.10, 8.9, 8.8, 8.7, 8.6, 8.5, 8.4, 8.3, 8.2, 8.1, 8.0
 * **Rocky Linux:**
-  * 9.4, 9.3, 9.2, 9.1, 9.0
-  * 8.9, 8.8, 8.7, 8.6
-* **CentOS:**
-  * 8.5, 8.4, 8.3, 8.2, 8.1, 8.0
+  * 9, 8 Release lines
+* **RHEL:**
+  * 9, 8 Release lines
+* **CentOS Linux:**
+  * 8 Release line
+* **AlmaLinux OS:**
+  * 9, 8 Release lines
 * **Ubuntu:**
-  * 24.04
-  * 22.04
-  * 20.04
-  * 18.04
+  * 24.04, 22.04, 20.04, 18.04
 * **Amazon Linux:**
-  * AMI 2018.03
-  * AMI 2017.09
-* **Amazon Linux 2 LTS** (formerly Amazon Linux 2 LTS 17.12)
-  * Latest update package that was tested: 5.10.176-157.645.amzn2.x86\_64
-* **SLES:**
-  * 15 SP4
-  * 15 SP2
-  * 12 SP5
+  * AMI 2018.03, AMI 2017.09, Amazon Linux 2 LTS
+* **SELS:**
+  * 15 LTSS, 12 LTSS
 * **Oracle Linux:**
-  * 9
-  * 8.9
+  * 9, 8
 * **Debian:**
   * 12
-* **AlmaLinux OS:**
-  * 9.4
-  * 8.10
 {% endtab %}
 
 {% tab title="Kernel" %}
-The following kernel versions are supported:
+**Custom kernel support**
 
-* 6.8
-* 6.0 to 6.2
-* 5.3 to 5.19
-* 4.4.0-1106 to 4.19
-* 3.10
+For custom kernel certification, contact the [Customer Success Team](https://docs.weka.io/4.2/support/getting-support-for-your-weka-system#contact-customer-success-team).
 
 {% hint style="info" %}
-- Kernels 5.15 and higher are not supported with Amazon Linux 2 (AL2) operating system.
-- It is recommended to turn off auto kernel updates, so it will not get upgraded to an unsupported version.
-- Confirm that both the kernel version and the operating system version are listed as supported, as these are distinct components with their own compatibility considerations.
-- For clarity, the range of supported versions is inclusive.
+* Kernels 5.15 and higher are not supported with Amazon Linux 2 (AL2) operating system.
+* It is recommended to turn off auto kernel updates, so it will not get upgraded to an unsupported version.
 {% endhint %}
 {% endtab %}
 
