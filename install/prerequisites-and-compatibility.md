@@ -51,7 +51,7 @@ WEKA will support upcoming releases of the operating systems in the lists within
   * 9, 8, 7 Release lines
 * **RHEL:**
   * 9, 8, 7 Release lines
-* **CentOS Stream:**
+* **CentOS Linux:**
   * 9, 8, 7 Release lines
 * **Ubuntu:**
   * 24.04, 22.04, 20.04, 18.04
