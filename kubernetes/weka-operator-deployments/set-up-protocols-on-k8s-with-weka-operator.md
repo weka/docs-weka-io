@@ -68,56 +68,30 @@ High availability for SMB-W is not supported in public cloud environments. In al
 1. Open the WekaCluster YAML configuration file.
 2.  **S3 protocol setup:** Set the S3 parameters in the relevant sections.
 
-    <pre class="language-yaml" data-title="WekaCluster YAML configuration file example with S3 parameters"><code class="lang-yaml">apiVersion: weka.weka.io/v1
-    kind: WekaCluster
-    metadata:
-      name: weka-cluster-dev
-      namespace: default
+    ```yaml
     spec:
-      gracefulDestroyDuration: "0"
-      template: dynamic
       dynamicTemplate:
         s3Containers: 3
         s3Cores: 2
         s3FrontendHugepages: 3072
         envoyCores: 1
-        computeContainers: 5 # WEKA cluster
-        driveContainers: 5 # WEKA cluster
       additionalMemory:
-        s3: 1000  
-      image: quay.io/weka.io/weka-in-container-dev:5.1.0.547
-      nodeSelector:
-        weka.io/supports-backends: "true"
-      driversDistService: "https://weka-drivers-dist.weka-operator-system.svc.cluster.local:60002"
-      imagePullSecret: "quay-io-robot-secret"
-    </code></pre>
+        s3: 1000
+    ```
 3.  **NFS-W protocol setup:** Set the NFS-W parameters in the relevant sections.
 
-    <pre class="language-yaml" data-title="WekaCluster YAML configuration file example with NFS parameters"><code class="lang-yaml">apiVersion: weka.weka.io/v1
-    kind: WekaCluster
-    metadata:
-      name: weka-cluster-dev
-      namespace: default
+    ```yaml
     spec:
-      gracefulDestroyDuration: "0"
       nfs:
         interfaces: ["ens5"]
         ipRanges: ["10.0.1.1-10.0.1.10"]
-      template: dynamic
       dynamicTemplate:
-        computeContainers: 5 # WEKA cluster
-        driveContainers: 5 # WEKA cluster
         nfsContainers: 2
         nfsCores: 2
         nfsFrontendHugepages: 3072
       additionalMemory:
         nfs: 1000
-      image: quay.io/weka.io/weka-in-container-dev:5.1.0.547
-      nodeSelector:
-        weka.io/supports-backends: "true"
-      driversDistService: "https://weka-drivers-dist.weka-operator-system.svc.cluster.local:60002"
-      imagePullSecret: "quay-io-robot-secret"
-    </code></pre>
+    ```
 4.  **SMB-W protocol setup:** Create a Kubernetes Secret with the Active Directory join password, then set the SMB-W parameters in the WekaCluster.
 
     Create the AD join Secret in the same namespace as the WekaCluster:
@@ -130,31 +104,18 @@ High availability for SMB-W is not supported in public cloud environments. In al
 
     Add the SMB-W configuration to the WekaCluster:
 
-    <pre class="language-yaml" data-title="WekaCluster YAML configuration file example with SMB-W parameters"><code class="lang-yaml">apiVersion: weka.weka.io/v1
-    kind: WekaCluster
-    metadata:
-      name: weka-cluster-dev
-      namespace: default
+    ```yaml
     spec:
-      gracefulDestroyDuration: "0"
       smbw:
         clusterName: "wekaSMB"
         domainName: "ad.example.com"
         userName: "ad-admin"
         domainJoinSecret: "smbw-ad-join"
         ipRanges: ["10.0.2.1-10.0.2.10"]
-      template: dynamic
       dynamicTemplate:
-        computeContainers: 5 # WEKA cluster
-        driveContainers: 5 # WEKA cluster
         smbwContainers: 3
         smbwCores: 2
-      image: quay.io/weka.io/weka-in-container-dev:5.1.0.547
-      nodeSelector:
-        weka.io/supports-backends: "true"
-      driversDistService: "https://weka-drivers-dist.weka-operator-system.svc.cluster.local:60002"
-      imagePullSecret: "quay-io-robot-secret"
-    </code></pre>
+    ```
 
 {% hint style="info" %}
 Unlike NFS-W, the SMB-W configuration does not include an `interfaces` field. The operator selects the floating IP interface from the management network of each SMB-W container.

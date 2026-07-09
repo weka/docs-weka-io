@@ -12,11 +12,11 @@ metaLinks:
 
 ## Overview
 
-WEKA enables multi-tenancy by allowing multiple cluster deployments to share the same hardware while maintaining full resource isolation. This is achieved through a Kubernetes Operator that facilitates the composition of resource sets—including hosts, drives, cores, and memory—into independent clusters.
+WEKA enables multi-tenancy by allowing multiple cluster deployments to share the same hardware while maintaining full resource isolation. This is achieved through a Kubernetes Operator that facilitates the composition of resource sets (including hosts, drives, cores, and memory) into independent clusters.
 
 The process of creating these composable clusters is efficient, taking only a few minutes. Each cluster is allocated dedicated resources, ensuring consistent performance without interference from other tenants.
 
-<div data-with-frame="true"><figure><img src="../.gitbook/assets/weka-multi-tenancy-concept.png" alt=""><figcaption><p>WEKA composable clusters for multi-tenancy concept</p></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/weka-multi-tenancy-concept.png" alt="" width="563"><figcaption><p>WEKA composable clusters for multi-tenancy concept</p></figcaption></figure></div>
 
 ### Key benefits
 
@@ -34,6 +34,17 @@ The process of creating these composable clusters is efficient, taking only a fe
 
 <div data-with-frame="true"><figure><img src="../.gitbook/assets/weka-multi-tenancy-deplyment-glance.gif" alt=""><figcaption><p>Composable clusters for multi-tenancy deployment at a glance</p></figcaption></figure></div>
 
+### Resource partitioning across Kubernetes nodes
+
+Composable clusters can use only a subset of Kubernetes nodes.
+
+Apply these placement rules:
+
+* Each cluster can use a different number of Kubernetes nodes.
+* Each cluster must use a distinct set of Kubernetes nodes.
+
+For example, cluster 1 can use 12 nodes. Cluster 2 can use 6 different nodes. Cluster 3 can use another 6 different nodes.
+
 ## Summary
 
 WEKA’s multi-tenant architecture delivers a highly secure, scalable, and cost-efficient solution for service providers and enterprises. Composable clusters deliver full resource isolation and automated management to meet the ever-evolving demands of modern AI, ML, and high-performance computing environments.
@@ -41,6 +52,6 @@ WEKA’s multi-tenant architecture delivers a highly secure, scalable, and cost-
 For detailed deployment procedures and day-2 operations see:
 
 * [weka-operator-deployments](weka-operator-deployments/ "mention")
-* [weka-operator-day-2-operations.md](weka-operator-day-2-operations.md "mention")
+* [weka-operator-day-2-operations](weka-operator-day-2-operations/ "mention")
 
 [^1]: **NCP (NVIDIA Cloud Platform)**: A framework or set of guidelines for designing scalable, high-performance, and multi-tenant network architectures. It includes a common network reference architecture to ensure interoperability, optimize resource utilization, and simplify network management.

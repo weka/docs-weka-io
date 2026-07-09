@@ -53,14 +53,14 @@ You can only sign in and download the packages if you are a registered user.
 
 [get.weka.io](http://get.weka.io) page opens.
 
-<div data-with-frame="true"><figure><img src="../../.gitbook/assets/2023-12-20_09-17-44 (1).jpg" alt=""><figcaption><p>get.weka.io dashboard</p></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/get_dashboard.png" alt=""><figcaption><p>get.weka.io dashboard</p></figcaption></figure></div>
 
 2. Do one of the following:
    * Select the required package from the dashboard.
    * Select the **Releases** tab, select the required release, and follow the download instructions.\
      (The token in the download link is purposely blurred.)
 
-<div data-with-frame="true"><figure><img src="../../.gitbook/assets/2023-12-20_09-18-13.jpg" alt=""><figcaption><p>Releases download page: tar file, WSA, and WMS (in a separate tab)</p></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/get_releases.png" alt=""><figcaption><p>Releases download page: tar file, WSA, and WMS (in a separate tab)</p></figcaption></figure></div>
 
 ## What to do next?
 

@@ -90,14 +90,15 @@ helm repo add csi-wekafs https://weka.github.io/csi-wekafs
 2. Install the WEKA CSI Plugin. Run the following command:
 
 {% code overflow="wrap" %}
-```
+```bash
 helm install csi-wekafs csi-wekafs/csi-wekafsplugin --namespace csi-wekafs --create-namespace
 
 ```
 {% endcode %}
 
 {% hint style="info" %}
-If you need SELinux support, see the [SELinux support](add-selinux-support.md) section.
+* If you need SELinux support, see [SELinux support](add-selinux-support.md).
+* If the WEKA cluster does not use a trusted HTTPS certificate, add `--set pluginConfig.allowInsecureHttps=true` to bypass strict HTTPS certificate validation.
 {% endhint %}
 
 <details>

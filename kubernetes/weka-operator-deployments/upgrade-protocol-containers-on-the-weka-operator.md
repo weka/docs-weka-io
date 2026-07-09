@@ -18,9 +18,11 @@ These invariants matter most in shared-infrastructure deployments where one Kube
 
 #### Container deletion versus pod deletion
 
-Deleting a protocol pod does not migrate it to a new node. The Operator immediately respawns the pod on the same node because the underlying WekaContainer resource still references that node.
+Deleting a protocol pod does not move it to a new node. The Operator immediately recreates the pod on the same node because the underlying WekaContainer resource still points to that node.
 
-To move a protocol container to a different node, delete the WekaContainer resource. The Operator then recreates the container, schedules a fresh pod, and applies the current `roleNodeSelector` rules.
+To move a protocol container to a different node, delete the WekaContainer resource. The Operator then creates a replacement container, starts a new pod, and reapplies the current `roleNodeSelector` rules.
+
+Deleting a pod is non-destructive. The Operator recreates it in place. Deleting a WekaContainer resource is destructive. It dissociates any NVMe drives assigned to that WekaContainer and deletes its persistent data. Never force-delete pods or WekaContainer resources.
 
 ## Upgrade a protocol container to a new WEKA version
 
@@ -100,7 +102,7 @@ kubectl get pods -n <namespace> -l app.kubernetes.io/managed-by=weka-operator -o
 * The old-version protocol pods are gone, along with the WekaContainer resources that backed them.
 * The protocol service remains available throughout, provided you maintain enough capacity for the protocol's high-availability requirements during the move.
 
-## Troubleshooting
+## Troubleshoot protocol containers upgrade
 
 <details>
 

@@ -19,7 +19,7 @@ For more platform details, see [CoreWeave SUNK Documentation](https://docs.corew
 
 #### Supported product versions
 
-This configuration supports:&#x20;
+This configuration supports:
 
 * CoreWeave SUNK v7.3.0 or newer.
 * WEKA Operator v1.11.0 or newer.
@@ -66,6 +66,8 @@ The diagram below explains how WEKA and SUNK components interact on a NeuralMesh
 ## Configure kubelet CPU management
 
 Configure `kubelet` static CPU management so the OS keeps reserved CPUs and the WEKA client pod receives dedicated CPUs from the allocatable pool.
+
+For the full CPU isolation rationale, HyperThreading sibling guidance, and Kubernetes version-specific reservation options, see [WEKA Operator best practices](../../kubernetes/weka-operator-deployments/weka-operator-best-practices.md).
 
 **Procedure**
 

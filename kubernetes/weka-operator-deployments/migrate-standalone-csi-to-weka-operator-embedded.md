@@ -18,14 +18,17 @@ The migration process affects cluster operations as follows:
 
 * **Volume integrity:** Existing PVCs and PVs remain intact. Uninstalling the standalone plugin only prevents new volume provisioning and mounting until the migration completes.
 * **Management availability:** CSI operations, such as creating or deleting PVCs and gathering metrics, are blocked until the embedded CSI is active.
-* **Pod stability:** The Operator-managed client pod may briefly report an Error or CrashLoopBackOff status. If the pod does not self-recover within a few minutes, delete it manually to force a restart.
 
 ### Migration limitations
 
 Identify specific environment constraints that affect the migration process.
 
-* **Mixed mount environments:** Worker servers running regular host mounts alongside CSI mounts and Operator-managed clients do not support non-disruptive upgrades. For these configurations, use reboot-based upgrades or manually coordinate the unmounting and remounting of volumes during the client provisioning cycle.
+* **Mixed mount environments:** Kubernetes clusters that combine stateless client mounts outside CSI with CSI mounts and Operator-managed clients do not support non-disruptive upgrades. Use reboot-based upgrades, or manually unmount and remount volumes during the client provisioning cycle.
 * **Agent removal:** The WEKA agent cannot be removed from a server while active mounts are present. Plan agent removal only after unmounting all volumes or during a coordinated maintenance window.
+
+{% hint style="warning" %}
+Avoid direct mounts on Kubernetes servers outside the CSI plugin. Direct mounts can cause issues during upgrades and server reboots.
+{% endhint %}
 
 ## Migrate the CSI plugin
 
@@ -36,7 +39,7 @@ Back up existing Helm values for both the Operator and the CSI plugin.
 Before starting the migration, ensure the environment meets these criteria:
 
 * **Operator version:** The WEKA Operator version is 1.7.0 or later.
-* **Original installation:** The standalone CSI plugin was installed using the `weka-csi` Helm chart.
+* **Original installation:** The standalone CSI plugin was installed using the `csi-wekafs` Helm chart.
 * **Maintenance window:** A maintenance window is scheduled to account for a potential IO stall during CSI cutover.
 * **Backups:** Back up existing Helm values for both the Operator and the CSI plugin.
 
@@ -46,7 +49,7 @@ Before starting the migration, ensure the environment meets these criteria:
 2.  **Uninstall the standalone CSI:** Remove the Helm-based CSI installation.
 
     ```bash
-    helm uninstall weka-csi -n <namespace>
+    helm uninstall csi-wekafs -n <namespace>
     ```
 3.  **Configure the CSI group name:** Set the `csiGroup` parameter in the WekaClient specification. This maintains compatibility with the `csi.weka.io` driver name and ensures existing StorageClasses and PVs function without modification.
 
