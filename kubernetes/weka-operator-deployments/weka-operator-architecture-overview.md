@@ -112,7 +112,7 @@ To connect a WekaClient to an in-cluster WekaCluster, set `targetCluster` in the
 
 [WEKA Operator full deployment workflow](weka-operator-full-deployment-workflow.md)
 
-[Driver management with the WEKA Operator](/broken/pages/CnmsppNCO6Z9dfmCPGL1)
+[WEKA Operator driver management](weka-operator-driver-management.md)
 
 [WekaCluster and WekaContainer lifecycle](wekacluster-and-wekacontainer-lifecycle.md)
 

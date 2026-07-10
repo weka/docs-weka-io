@@ -445,7 +445,7 @@ If outbound access to `drivers.weka.io` is available, use the pre-built driver s
 
 <table><thead><tr><th width="334">Condition</th><th>Method</th></tr></thead><tbody><tr><td>Standard Linux distribution with supported kernel, outbound access to <code>drivers.weka.io</code></td><td>Pre-built drivers (recommended): No build infrastructure required. By default, the drivers are pulled from <code>https://drivers.weka.io</code>.</td></tr><tr><td>Air-gapped environment, custom or patched kernel, or no external network access</td><td>Local driver builder: Configure driver distribution policy.</td></tr></tbody></table>
 
-For architectural details on how driver distribution works, see [Driver management with the WEKA Operator](/broken/spaces/ZW262oqYA8pNNfGvXjHa/pages/CnmsppNCO6Z9dfmCPGL1).
+For architectural details on how driver distribution works, see [WEKA Operator driver management](weka-operator-driver-management.md).
 
 #### Before you begin
 
