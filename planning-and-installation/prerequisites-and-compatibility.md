@@ -86,7 +86,7 @@ For custom kernel certification, contact the [Customer Success Team](../support/
 * **AlmaLinux OS:**
   * 10, 9, 8 Release lines
 * **Ubuntu:**
-  * 26.04, 24.04, 22.04, 20.04, 18.04
+  * 24.04, 22.04, 20.04, 18.04
 * **Amazon Linux:**
   * AL2023 (x86 and ARM), AMI 2018.03, AMI 2017.09, Amazon Linux 2 LTS
 {% endtab %}
@@ -101,7 +101,7 @@ For custom kernel certification, contact the [Customer Success Team](../support/
 * **AlmaLinux OS:**
   * 10, 9, 8 Release lines
 * **Ubuntu:**
-  * 26.04 (x86 and ARM), 24.04, 22.04, 20.04, 18.04
+  * 24.04, 22.04, 20.04, 18.04
 * **Amazon Linux:**
   * AL2023 (x86 and ARM), AMI 2018.03, AMI 2017.09, Amazon Linux 2 LTS
 * **SELS:**
