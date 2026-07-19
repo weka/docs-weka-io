@@ -83,16 +83,16 @@ You can use a storage class from dynamic provisioning for static provisioning. I
 
 <details>
 
-<summary>Example: PV yaml file</summary>
+<summary>Example: PV YAML file</summary>
 
-{% code title="csi-wekafs/examples/static/pv-wekafs-dir-static.yaml" %}
+{% code title="examples/static_volume/static_filesystem/pv-wekafs-fs-static-api.yaml" %}
 ```yaml
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: pv-wekafs-dir-static-api
+  name: pv-wekafs-fs-static-api
 spec:
-  storageClassName: storageclass-wekafs-dir-static-api
+  storageClassName: storageclass-wekafs-fs-static-api
   accessModes:
     - ReadWriteMany
   persistentVolumeReclaimPolicy: Retain
@@ -116,21 +116,16 @@ spec:
 
 </details>
 
-2. Apply the PV yaml file and validate it is created successfully.
+2. Apply the PV YAML file.
 
 <details>
 
-<summary>Apply the PV yaml file</summary>
+<summary>Apply the PV YAML file</summary>
 
 ```bash
-# apply the pv .yaml file
-$ kubectl apply -f pv-wekafs-dir-static.yaml
-persistentvolume/pv-wekafs-dir-static created
-
-# check the pv resource has been created
-$ kubectl get pv
-NAME                  CAPACITY ACCESS MODES RECLAIM POLICY STATUS    CLAIM     STORAGECLASS                        REASON  AGE
-pv-wekafs-dir-static  1Gi      RWX          Retain         Available           storageclass-wekafs-dir-static-api          3m33s
+# Apply the PV YAML file.
+$ kubectl apply -f examples/static_volume/static_filesystem/pv-wekafs-fs-static-api.yaml
+persistentvolume/pv-wekafs-fs-static-api created
 ```
 
 </details>
@@ -139,23 +134,23 @@ pv-wekafs-dir-static  1Gi      RWX          Retain         Available           s
 
 <table><thead><tr><th width="227.33333333333331">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>spec.accessModes</code></td><td>The volume access mode.<br>Possible values: <code>ReadWriteMany</code>, <code>ReadWriteOnce</code>, <code>ReadOnlyMany</code></td></tr><tr><td><code>spec.storageClassName</code></td><td>The storage class to use to create the PV.<br>The storage class must exist.</td></tr><tr><td><code>spec.capacity.storage</code></td><td>A required capacity for the volume.<br>The capacity quota is not enforced but is stored on the filesystem directory extended and attributed for future use.</td></tr><tr><td><code>spec.csi.volumeHandle</code></td><td><p>The path previously created.<br>A string containing the <code>volumeType</code> (<code>dir/v1</code>) filesystem name, and the directory path.<br>Example: <code>dir/v1/podsFilesystem/my-dir</code></p><p>The filesystem and path must exist in the WEKA cluster.</p></td></tr></tbody></table>
 
-3. Bind a PVC to this specific PV using the `volumeName` parameter under the PVC `spec` and provide it with the specific PV name.
+3. Create a PVC that binds to the PV. Set `spec.volumeName` to the PV name.
 
 <details>
 
 <summary>Example: persistent volume claim for static provisioning</summary>
 
-{% code title="csi-wekafs/examples/static/pvc-wekafs-dir-static.yaml" %}
+{% code title="examples/static_volume/static_filesystem/pvc-wekafs-fs-static-api.yaml" %}
 ```yaml
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: pvc-wekafs-dir-static-api
+  name: pvc-wekafs-fs-static-api
 spec:
   accessModes:
     - ReadWriteMany
-  storageClassName: storageclass-wekafs-dir-static-api
-  volumeName: pv-wekafs-dir-static
+  storageClassName: storageclass-wekafs-fs-static-api
+  volumeName: pv-wekafs-fs-static-api
   volumeMode: Filesystem
   resources:
     requests:
@@ -169,17 +164,36 @@ spec:
 
 <table><thead><tr><th width="263">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>spec.accessModes</code></td><td>The volume access mode.<br>Possible values: <code>ReadWriteMany</code>, <code>ReadWriteOnce</code>, <code>ReadOnlyMany</code></td></tr><tr><td><code>spec.storageClassName</code></td><td>The storage class to use to create the PVC.<br>It must be the same storage class as the PV requested to bind in <code>spec.volumeName</code>.</td></tr><tr><td><code>spec.resources.requests.storage</code></td><td>The required capacity for the volume.<br>The capacity quota is not enforced but is stored on the filesystem directory extended and attributed for future use.</td></tr><tr><td><code>spec.volumeName</code></td><td>The name of a pre-configured persistent volume.<br>The persistent volume name must exist.</td></tr></tbody></table>
 
-4. Validate that the PVC resource is created and successfully bounded (the status is `Bound`).
+4. Apply the PVC YAML file.
 
 <details>
 
-<summary>Validate the PVC resource is created</summary>
+<summary>Apply the PVC YAML file</summary>
 
 ```bash
-# check the pvc resource has been created
+# Apply the PVC YAML file.
+$ kubectl apply -f examples/static_volume/static_filesystem/pvc-wekafs-fs-static-api.yaml
+persistentvolumeclaim/pvc-wekafs-fs-static-api created
+```
+
+</details>
+
+5. Validate that the PVC binds to the PV.
+
+<details>
+
+<summary>Validate the PVC binding</summary>
+
+```bash
+# Check that the PVC binds to the PV.
 $ kubectl get pvc
-NAME                    STATUS   VOLUME                  CAPACITY   ACCESS MODES   STORAGECLASS                         AGE
-pvc-wekafs-dir-static   Bound    pv-wekafs-dir-static   1Gi        RWX            storageclass-wekafs-dir-static-api   6m30s
+NAME                         STATUS   VOLUME                     CAPACITY   ACCESS MODES   STORAGECLASS                              AGE
+pvc-wekafs-fs-static-api     Bound    pv-wekafs-fs-static-api    1Gi        RWX            storageclass-wekafs-fs-static-api         6m30s
+
+# Check that the PV binds to the PVC.
+$ kubectl get pv
+NAME                      CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS   CLAIM                                  STORAGECLASS                              REASON   AGE
+pv-wekafs-fs-static-api   1Gi        RWX            Retain           Bound    default/pvc-wekafs-fs-static-api      storageclass-wekafs-fs-static-api                  6m30s
 ```
 
 </details>
