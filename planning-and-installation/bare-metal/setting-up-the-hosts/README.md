@@ -423,49 +423,86 @@ DNS configuration:
 
 ### **Ubuntu Netplan configuration**
 
-1.  Open the Netplan configuration file `/etc/netplan/01-netcfg.yaml` and adjust it:
+Configure source-based routing for each data plane interface. This preserves the management default route in the main routing table.
+
+Identify the data plane gateway and every remote network reachable from the data plane. Replace the example addresses, interface names, and additional network CIDRs.
+
+1.  Create or edit `/etc/netplan/10-weka.yaml`:
 
     ```yaml
     network:
-        version: 2
-        renderer: networkd
-        ethernets:
-            enp2s0:
-                dhcp4: true
-                nameservers:
-                        addresses: [8.8.8.8]
-            ib1:
-                addresses:
-                        [10.222.0.10/24]
-                routes:
-                        - to: 10.222.0.0/24
-                          via: 10.222.0.10
-                          table: 100
-                routing-policy:
-                        - from: 10.222.0.10
-                          table: 100
-                          priority: 32764
-                ignore-carrier: true
-                
-            ib2:
-                addresses:
-                        [10.222.0.20/24]
-                routes:
-                        - to: 10.222.0.0/24
-                          via: 10.222.0.20
-                          table: 101
-                routing-policy:
-                        - from: 10.222.0.20
-                          table: 101
-                          priority: 32765
-                ignore-carrier: true
+      version: 2
+      renderer: networkd
+      ethernets:
+        enp2s0:
+          dhcp4: true
+          dhcp6: false
+          nameservers:
+            addresses: [8.8.8.8, 8.8.4.4]
+
+        ib1:
+          dhcp4: false
+          dhcp6: false
+          optional: true
+          ignore-carrier: true
+          addresses:
+            - 10.222.0.10/24
+          routes:
+            # Main table routes
+            - to: 10.222.0.0/24
+              scope: link
+              metric: 2000
+            # Add each remote data plane network reachable through ib1.
+            # - to: <ADDITIONAL_SUBNET>
+            #   via: 10.222.0.1
+            #   metric: 2000
+            # Source-based routing table 101
+            - to: 0.0.0.0/0
+              via: 10.222.0.1
+              table: 101
+            - to: 10.222.0.0/24
+              scope: link
+              table: 101
+          routing-policy:
+            - from: 10.222.0.10/32
+              table: 101
+              priority: 1010
+
+        ib2:
+          dhcp4: false
+          dhcp6: false
+          optional: true
+          ignore-carrier: true
+          addresses:
+            - 10.222.0.20/24
+          routes:
+            # Main table routes
+            - to: 10.222.0.0/24
+              scope: link
+              metric: 2000
+            # Add each remote data plane network reachable through ib2.
+            # - to: <ADDITIONAL_SUBNET>
+            #   via: 10.222.0.1
+            #   metric: 2000
+            # Source-based routing table 102
+            - to: 0.0.0.0/0
+              via: 10.222.0.1
+              table: 102
+            - to: 10.222.0.0/24
+              scope: link
+              table: 102
+          routing-policy:
+            - from: 10.222.0.20/32
+              table: 102
+              priority: 1020
     ```
-2.  After adjusting the Netplan configuration file, run the following commands:
+2.  Apply the configuration:
 
     ```bash
-    ip route add 10.222.0.0/24 via 10.222.0.10 dev ib1 table 100
-    ip route add 10.222.0.0/24 via 10.222.0.20 dev ib2 table 101
+    sudo netplan apply
     ```
+
+The source-based routing tables select the correct interface for traffic from each data plane IP. The main-table routes reach data plane networks when the data plane is not the default network.
 
 ### **SLES/SUSE configuration**
 
