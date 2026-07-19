@@ -18,7 +18,7 @@ Registration is a two-step form: a profile step and an additional details step. 
 
 1. Go to [learnweka.weka.io](https://learnweka.weka.io/). The customer sign-in screen opens.
 2. In the sign-in card, select **Register** next to **Are you a customer needing access?**
-3. In the rEgistration form, do the following:
+3. In the Registration form, do the following:
    1. Enter your company email, first name, and last name.
    2. Create a password with 12 or more characters, including letters and numbers.
    3. Select your language and time zone.
