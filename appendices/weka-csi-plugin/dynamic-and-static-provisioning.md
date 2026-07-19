@@ -150,7 +150,7 @@ pv-wekafs-dir-static  1Gi      RWX          Retain         Available           s
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: pvc-wekafs-dir-static
+  name: pvc-wekafs-dir-static-api
 spec:
   accessModes:
     - ReadWriteMany
