@@ -92,6 +92,8 @@ This portal encompasses all documentation essential for comprehending and operat
 
 {% hint style="info" %}
 For maintenance and troubleshooting articles, search the WEKA Knowledge Base in the [WEKA support portal](https://support.weka.io/s/) or contact the [Customer Success Team](support/getting-support-for-your-weka-system.md#contacting-weka-technical-support-team).
+
+For product training and certification, see [Register for WEKAdemy](support/register-for-wekademy.md).
 {% endhint %}
 
 ### Conventions

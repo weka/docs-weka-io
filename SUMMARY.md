@@ -302,6 +302,7 @@
     * [Manage protocols debug level using the GUI](support/diagnostics-management/protocols-debug-level-management/manage-protocols-debug-level-using-the-gui.md)
     * [Manage protocols debug level using the CLI](support/diagnostics-management/protocols-debug-level-management/manage-protocols-debug-level-using-the-cli.md)
   * [Diagnostics data management](support/diagnostics-management/diagnostics-utility.md)
+* [Register for WEKAdemy](support/register-for-wekademy.md)
 
 ## Appendices
 
