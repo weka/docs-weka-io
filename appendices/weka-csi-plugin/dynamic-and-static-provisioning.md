@@ -72,20 +72,20 @@ You can use an existing storage class from dynamic provisioning for static provi
 
 **Procedure**
 
-1. Create a PV yaml file (see the following example).
+1. Create a static filesystem-backed persistent volume (PV) YAML file.
 
 <details>
 
-<summary>Example: PV yaml file</summary>
+<summary>Example: pv-wekafs-fs-static-api.yaml</summary>
 
-{% code title="csi-wekafs/examples/static/pv-wekafs-dir-static.yaml" %}
+{% code title="examples/static_volume/static_filesystem/pv-wekafs-fs-static-api.yaml" %}
 ```yaml
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: pv-wekafs-dir-static
+  name: pv-wekafs-fs-static-api
 spec:
-  storageClassName: storageclass-wekafs-dir-api
+  storageClassName: storageclass-wekafs-fs-static-api
   accessModes:
     - ReadWriteMany
   persistentVolumeReclaimPolicy: Retain
@@ -103,21 +103,21 @@ spec:
 
 </details>
 
-2. Apply the PV yaml file and validate it is created successfully.
+2. Apply the PV YAML file and validate that it is created successfully.
 
 <details>
 
-<summary>Apply the PV yaml file</summary>
+<summary>Apply the PV YAML file</summary>
 
 ```
-# apply the pv .yaml file
-$ kubectl apply -f pv-wekafs-dir-static.yaml
-persistentvolume/pv-wekafs-dir-static created
+# Apply the PV YAML file.
+$ kubectl apply -f examples/static_volume/static_filesystem/pv-wekafs-fs-static-api.yaml
+persistentvolume/pv-wekafs-fs-static-api created
 
-# check the pv resource has been created
+# Check that the PV resource was created.
 $ kubectl get pv
 NAME                                       CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS      CLAIM                         STORAGECLASS                       REASON   AGE
-pv-wekafs-dir-static                       1Gi        RWX            Retain           Available                                 storageclass-wekafs-dir=api                 3m33s
+pv-wekafs-fs-static-api                    1Gi        RWX            Retain           Available                                 storageclass-wekafs-fs-static-api           3m33s
 ```
 
 </details>
@@ -130,19 +130,19 @@ pv-wekafs-dir-static                       1Gi        RWX            Retain     
 
 <details>
 
-<summary>Example: persistent volume claim for static provisioning</summary>
+<summary>Example: pvc-wekafs-fs-static-api.yaml</summary>
 
-{% code title="csi-wekafs/examples/static/pvc-wekafs-dir-static.yaml" %}
+{% code title="examples/static_volume/static_filesystem/pvc-wekafs-fs-static-api.yaml" %}
 ```yaml
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: pvc-wekafs-dir-static
+  name: pvc-wekafs-fs-static-api
 spec:
   accessModes:
     - ReadWriteMany
-  storageClassName: storageclass-wekafs-dir-api
-  volumeName: pv-wekafs-dir-static
+  storageClassName: storageclass-wekafs-fs-static-api
+  volumeName: pv-wekafs-fs-static-api
   volumeMode: Filesystem
   resources:
     requests:
@@ -163,10 +163,14 @@ spec:
 <summary>Validate the PVC resource is created</summary>
 
 ```
-# check the pv resource has been created
+# Apply the PVC YAML file.
+$ kubectl apply -f examples/static_volume/static_filesystem/pvc-wekafs-fs-static-api.yaml
+persistentvolumeclaim/pvc-wekafs-fs-static-api created
+
+# Check that the PVC bound to the PV.
 $ kubectl get pv
 NAME                                       CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS      CLAIM                           STORAGECLASS                       REASON   AGE
-pv-wekafs-dir-static                       1Gi        RWX            Retain           Bound       default/pvc-wekafs-dir-static   storageclass-wekafs-dir-api                 6m30s
+pv-wekafs-fs-static-api                    1Gi        RWX            Retain           Bound       default/pvc-wekafs-fs-static-api storageclass-wekafs-fs-static-api           6m30s
 ```
 
 </details>
