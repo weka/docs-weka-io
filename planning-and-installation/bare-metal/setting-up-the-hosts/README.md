@@ -39,7 +39,7 @@ Some of the examples contain version-specific information. The software is updat
 
 Single Root I/O Virtualization (SR-IOV) enablement is mandatory in the following cases:
 
-* The servers are equipped with Intel NICs.&#x20;
+* The servers are equipped with Intel NICs.
 * When working with client VMs, a physical NIC's virtual functions (VFs) must be exposed to the virtual NICs.
 
 **Related topic**
@@ -48,7 +48,7 @@ Single Root I/O Virtualization (SR-IOV) enablement is mandatory in the following
 
 ## 3. Set up ConnectX cards
 
-1.  **Configure firmware parameters:** All ConnectX ports used directly with WEKA  servers and clients require specific firmware settings for optimal performance. Set the following non-default parameters:
+1.  **Configure firmware parameters:** All ConnectX ports used directly with WEKA servers and clients require specific firmware settings for optimal performance. Set the following non-default parameters:
 
     * `ADVANCED_PCI_SETTINGS=1`
     * `PCI_WR_ORDERING=1`
@@ -294,10 +294,10 @@ Verify the connection is up with all the non-default partition attributes set:
 The following is an example of configuring `ignore-carrier` on systems that use NetworkManager on Rocky Linux 8. The exact steps may vary depending on your operating system and its specific network configuration tools. Always refer to your system’s official documentation for accurate information.
 {% endhint %}
 
-1. Open the  `/etc/NetworkManager/NetworkManager.conf` file to edit it.
+1. Open the `/etc/NetworkManager/NetworkManager.conf` file to edit it.
 2. Under the `[main]` section, add one of the following lines depending on the operating system:
    * For some versions of Rocky Linux, RHEL, and CentOS: `ignore-carrier=*`
-   * For some other versions:  `ignore-carrier=<device-name1>,<device-name2>`. \
+   * For some other versions: `ignore-carrier=<device-name1>,<device-name2>`.\
      Replace `<device-name1>,<device-name2>` with the actual device names you want to apply this setting to.
 
 Example for RockyLinux and RHEL 8.7:
@@ -384,50 +384,86 @@ nmcli connection modify ib1 ipv4.routing-rules "priority 102 from 10.10.10.101 t
 
 The route's first IP address in the above commands signifies the network's subnet associated with the respective NIC. The last address in the routing rules corresponds to the IP address of the NIC being configured, where `ib0` is set to `10.10.10.1`.
 
-### **Ubuntu Netplan configuration**
+### Ubuntu Netplan configuration
 
-1.  Open the Netplan configuration file `/etc/netplan/01-netcfg.yaml` and adjust it:
+Configure source-based routing for each dataplane interface. Each source address uses its own routing table.
+
+Identify the management interface, dataplane interfaces, dataplane gateway, and all required remote networks. Replace the example addresses and interface names with values from your environment.
+
+1. Open `/etc/netplan/10-weka.yaml`.
+2.  Add the following configuration:
 
     ```yaml
     network:
-        version: 2
-        renderer: networkd
-        ethernets:
-            enp2s0:
-                dhcp4: true
-                nameservers:
-                        addresses: [8.8.8.8]
-            ib1:
-                addresses:
-                        [10.222.0.10/24]
-                routes:
-                        - to: 10.222.0.0/24
-                          via: 10.222.0.10
-                          table: 100
-                routing-policy:
-                        - from: 10.222.0.10
-                          table: 100
-                          priority: 32764
-                ignore-carrier: true
-                
-            ib2:
-                addresses:
-                        [10.222.0.20/24]
-                routes:
-                        - to: 10.222.0.0/24
-                          via: 10.222.0.20
-                          table: 101
-                routing-policy:
-                        - from: 10.222.0.20
-                          table: 101
-                          priority: 32765
-                ignore-carrier: true
+      version: 2
+      renderer: networkd
+      ethernets:
+        enp2s0:
+          dhcp4: true
+          dhcp6: false
+          nameservers:
+            addresses: [8.8.8.8, 8.8.4.4]
+
+        ib1:
+          dhcp4: false
+          dhcp6: false
+          optional: true
+          ignore-carrier: true
+          addresses:
+            - 10.222.0.10/24
+          routes:
+            # Main table route for the local dataplane network.
+            - to: 10.222.0.0/24
+              scope: link
+              metric: 2000
+            # Add each remote dataplane network when the dataplane is not default.
+            # - to: <ADDITIONAL_SUBNET>
+            #   via: 10.222.0.1
+            #   metric: 2000
+            # Source-based routing table 101.
+            - to: 0.0.0.0/0
+              via: 10.222.0.1
+              table: 101
+            - to: 10.222.0.0/24
+              scope: link
+              table: 101
+          routing-policy:
+            - from: 10.222.0.10/32
+              table: 101
+              priority: 1010
+
+        ib2:
+          dhcp4: false
+          dhcp6: false
+          optional: true
+          ignore-carrier: true
+          addresses:
+            - 10.222.0.20/24
+          routes:
+            # Main table route for the local dataplane network.
+            - to: 10.222.0.0/24
+              scope: link
+              metric: 2000
+            # Add each remote dataplane network when the dataplane is not default.
+            # - to: <ADDITIONAL_SUBNET>
+            #   via: 10.222.0.1
+            #   metric: 2000
+            # Source-based routing table 102.
+            - to: 0.0.0.0/0
+              via: 10.222.0.1
+              table: 102
+            - to: 10.222.0.0/24
+              scope: link
+              table: 102
+          routing-policy:
+            - from: 10.222.0.20/32
+              table: 102
+              priority: 1020
     ```
-2.  After adjusting the Netplan configuration file, run the following commands:
+3.  Apply the configuration:
 
     ```bash
-    ip route add 10.222.0.0/24 via 10.222.0.10 dev ib1 table 100
-    ip route add 10.222.0.0/24 via 10.222.0.20 dev ib2 table 101
+    sudo netplan apply
     ```
 
 ### **SLES/SUSE configuration**
