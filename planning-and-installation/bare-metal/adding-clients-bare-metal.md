@@ -131,8 +131,6 @@ Ensure the client can reach a backend server. Reserve the CPU cores, memory, and
 
 1.  **Install the WEKA agent:** Install the agent from a backend server. Replace `backend-1` with a backend server name that resolves on the client.
 
-    <a class="button secondary">Copy</a>
-
     ```bash
     curl http://backend-1:14000/dist/v1/install | sh
     ```
