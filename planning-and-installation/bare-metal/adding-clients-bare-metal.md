@@ -84,7 +84,7 @@ A **stateless client** is a client that does not persistently store any software
 
 To enable a stateless client to use the WEKA filesystem, the `mount` command is used. This command installs the WEKA software automatically and configures the client without requiring manual intervention.
 
-#### Before you begin
+**Before you begin**
 
 Ensure each client has a unique IP address and a fully qualified domain name (FQDN) for proper cluster identification.
 
@@ -126,15 +126,24 @@ Ensure each client has a unique IP address and a fully qualified domain name (FQ
 
 Add a persistent client for continuous POSIX filesystem access. A persistent client, also called a stateful client, remains joined to the cluster and supports persistent mounts.
 
-Configure the container locally with resources to add a persistent client. The command designates the container as frontend-dedicated.
+**Before you begin**
 
-It also removes the client container from the cluster configuration when it becomes unreachable. The default removal delay is one hour. The client container automatically rejoins when connectivity is restored.
+Ensure the client can reach a backend server. Reserve the CPU cores, memory, and network device for the client container.
+
+**Procedure**
+
+1.  **Install the WEKA agent:** Install the agent from a backend server. Replace `backend-1` with a backend server name that resolves on the client.
+
+    ```bash
+    curl http://backend-1:14000/dist/v1/install | sh
+    ```
+2.  **Configure the client container:** Run `weka local setup client` with the required resources and network settings. The command designates the container as `frontend-dedicated`.
+
+    The cluster removes an unreachable client container after one hour. The container rejoins automatically when connectivity returns.
 
 {% hint style="info" %}
 You can modify the automatic removal delay using `weka local resources auto-remove-timeout <auto-remove-timeout> [--container container]`. Specify the timeout value in seconds.
 {% endhint %}
-
-**Command:** `weka local setup client`
 
 {% code overflow="wrap" %}
 ```bash
@@ -161,7 +170,7 @@ weka local setup client [--name name]
 ```
 {% endcode %}
 
-Example:
+For example:
 
 {% code overflow="wrap" %}
 ```bash
@@ -169,7 +178,7 @@ weka local setup client --name client --join-ips 10.108.81.144 --base-port 14000
 ```
 {% endcode %}
 
-**Parameters**
+#### Parameters
 
 <table><thead><tr><th width="231">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>-n</code>, <code>--name</code></td><td>The name to give the container.</td></tr><tr><td><code>--cores</code></td><td>Number of CPU cores dedicated to WEKA.</td></tr><tr><td><code>--memory</code></td><td>Memory dedicated to WEKA in bytes. Set to <code>0</code> to let the system decide. Use decimal or binary units, such as <code>1GB</code> or <code>1GiB</code>.</td></tr><tr><td><code>--bandwidth</code></td><td>Bandwidth limit per second. Use <code>unlimited</code> or a decimal or binary value, such as <code>1GB</code> or <code>1GiB</code>.</td></tr><tr><td><code>-t</code>, <code>--timeout</code></td><td>Join command timeout. Use values such as <code>3s</code>, <code>2h</code>, <code>4m</code>, <code>1d</code>, <code>1d5h</code>, <code>1w</code>, <code>infinite</code>, or <code>unlimited</code>.</td></tr><tr><td><code>--base-port</code></td><td>First port used by the WEKA container. WEKA uses 100 ports starting at this port.</td></tr><tr><td><code>--weka-version</code></td><td>WEKA version used to start the container.</td></tr><tr><td><code>--fqdn</code></td><td>Fully qualified domain name used by other containers for TLS hostname verification.</td></tr><tr><td><code>--nvidia-vf-single-ip</code></td><td>Configures NVIDIA virtual functions to use a single IP address. Use <code>yes</code>, <code>no</code>, <code>true</code>, <code>false</code>, <code>on</code>, <code>off</code>, <code>y</code>, or <code>n</code>.</td></tr><tr><td><code>--dedicated-mode</code></td><td>Sets DPDK core dedication to <code>full</code> or <code>none</code>. <code>none</code> requires NIC driver support.</td></tr><tr><td><code>--scan-rdma</code></td><td>Scans for unused network devices and adds them for RDMA use. Use <code>off</code>, <code>ib</code>, <code>eth</code>, or <code>all</code>.</td></tr><tr><td><code>--color</code></td><td>Sets color output. Use <code>auto</code>, <code>disabled</code>, or <code>enabled</code>.</td></tr><tr><td><code>--core-ids</code>...</td><td>WEKA dedicated core IDs. Repeat the parameter or provide comma-separated values.</td></tr><tr><td><code>--management-ips</code>...</td><td>Management process IP addresses. Repeat the parameter or provide comma-separated values.</td></tr><tr><td><code>--join-ips</code>...</td><td>Management process IP:port pairs. If no port is specified, WEKA uses the default port. Repeat the parameter or provide comma-separated values.</td></tr><tr><td><code>--net</code>...</td><td>Network specification. Use a device name such as <code>ib1</code> or <code>eth1</code>, <code>&#x3C;device>/&#x3C;ip>/&#x3C;bits>/&#x3C;gateway></code>, <code>&#x3C;device>/rdma-only/inet4</code>, or <code>&#x3C;device>/rdma-only/inet6</code>. Use <code>udp</code> to force UDP mode. Repeat the parameter or provide comma-separated values.</td></tr><tr><td><code>--disable</code></td><td>Creates the container as disabled.</td></tr><tr><td><code>--no-start</code></td><td>Does not start the container after creation.</td></tr><tr><td><code>--allow-mix-setting</code></td><td>Allows specified core IDs when containers with automatic core-ID allocation run on the same server.</td></tr><tr><td><code>--restricted</code></td><td>Enables restricted client mode.</td></tr></tbody></table>
 
