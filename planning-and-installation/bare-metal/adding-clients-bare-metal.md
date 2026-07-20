@@ -6,7 +6,7 @@ metaLinks:
       https://app.gitbook.com/s/0yXyIrnroN3zIG3qa4W3/planning-and-installation/bare-metal/adding-clients-bare-metal
 ---
 
-# Add clients to a bare-metal cluster
+# Add clients
 
 ## cgroups configuration
 
@@ -124,39 +124,40 @@ Ensure each client has a unique IP address and a fully qualified domain name (FQ
 
 ## Add a persistent client to the cluster
 
-A persistent client, also called a stateful client, remains joined to the cluster. It supports persistent POSIX mounts. Use a persistent client when continuous filesystem access is required.
+Add a persistent client for continuous POSIX filesystem access. A persistent client, also called a stateful client, remains joined to the cluster and supports persistent mounts.
 
-Set up the container locally with resources using one of the following commands:
+Configure the container locally with resources to add a persistent client. The command designates the container as frontend-dedicated.
 
-**Option 1: `weka local setup container` for manual client container setup**
-
-Configures the client with all necessary resources, including cores, memory, networking, and ports.
-
-{% code overflow="wrap" %}
-```bash
-weka local setup container --name <name> --join-ips <join-ips> --base-port <base-port> --cores <cores> --core-ids <core-ids> --net <device> --only-frontend-cores
-```
-{% endcode %}
-
-Example:
-
-{% code overflow="wrap" %}
-```bash
-weka local setup container --name client --join-ips 10.108.81.144 --base-port 14000 --cores 1 --core-ids 2 --net ib1 --only-frontend-cores
-```
-{% endcode %}
-
-**Option 2: `weka local setup client` for direct persistent client setup**
-
-Configures a persistent client directly. Running this command automatically designates the container as frontend-dedicated and enables automatic removal from the cluster if the client container becomes unreachable (default removal delay: 1 hour).
+It also removes the client container from the cluster configuration when it becomes unreachable. The default removal delay is one hour. The client container automatically rejoins when connectivity is restored.
 
 {% hint style="info" %}
-You can modify the automatic removal delay using `weka local resources auto-remove-timeout [--container container]`. Specify the timeout value in seconds.
+You can modify the automatic removal delay using `weka local resources auto-remove-timeout <auto-remove-timeout> [--container container]`. Specify the timeout value in seconds.
 {% endhint %}
+
+**Command:** `weka local setup client`
 
 {% code overflow="wrap" %}
 ```bash
-weka local setup client --name <name> --join-ips <join-ips> --base-port <base-port> --cores <cores> --core-ids <core-ids> --net <device>
+weka local setup client [--name name]
+                        [--cores cores]
+                        [--memory memory]
+                        [--bandwidth bandwidth]
+                        [--timeout timeout]
+                        [--base-port base-port]
+                        [--weka-version weka-version]
+                        [--fqdn fqdn]
+                        [--nvidia-vf-single-ip nvidia-vf-single-ip]
+                        [--dedicated-mode dedicated-mode]
+                        [--scan-rdma scan-rdma]
+                        [--color color]
+                        [--core-ids core-ids]...
+                        [--management-ips management-ips]...
+                        [--join-ips join-ips]...
+                        [--net net]...
+                        [--disable]
+                        [--no-start]
+                        [--allow-mix-setting]
+                        [--restricted]
 ```
 {% endcode %}
 
@@ -170,6 +171,6 @@ weka local setup client --name client --join-ips 10.108.81.144 --base-port 14000
 
 **Parameters**
 
-<table><thead><tr><th width="229">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>name</code></td><td>Name of the client container to create.</td></tr><tr><td><code>join-ips</code></td><td>Management IP address of an existing cluster server to join.</td></tr><tr><td><code>base-port</code></td><td>Starting port used by the container for WEKA communication.</td></tr><tr><td><code>cores</code></td><td>Number of CPU cores to allocate to the client container.</td></tr><tr><td><code>core-ids</code></td><td>Specific CPU core IDs to assign to the client container.</td></tr><tr><td><code>only-frontend-cores</code></td><td><p>Creates a frontend-only container for client access.</p><p>Applies to <code>weka local setup container</code> only.</p></td></tr><tr><td><kbd>net</kbd></td><td><p>Network configuration for client connectivity.</p><p>Use a device name such as <code>ib1</code> or <code>eth1</code>. You can also specify <code>&#x3C;device>/&#x3C;ip>/&#x3C;bits>/&#x3C;gateway></code>, <code>&#x3C;device>/rdma-only/inet4</code>, or <code>&#x3C;device>/rdma-only/inet6</code>.</p><p>Use <code>udp</code> to force UDP mode. You can repeat this parameter or provide a comma-separated list.</p></td></tr></tbody></table>
+<table><thead><tr><th width="231">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>-n</code>, <code>--name</code></td><td>The name to give the container.</td></tr><tr><td><code>--cores</code></td><td>Number of CPU cores dedicated to WEKA.</td></tr><tr><td><code>--memory</code></td><td>Memory dedicated to WEKA in bytes. Set to <code>0</code> to let the system decide. Use decimal or binary units, such as <code>1GB</code> or <code>1GiB</code>.</td></tr><tr><td><code>--bandwidth</code></td><td>Bandwidth limit per second. Use <code>unlimited</code> or a decimal or binary value, such as <code>1GB</code> or <code>1GiB</code>.</td></tr><tr><td><code>-t</code>, <code>--timeout</code></td><td>Join command timeout. Use values such as <code>3s</code>, <code>2h</code>, <code>4m</code>, <code>1d</code>, <code>1d5h</code>, <code>1w</code>, <code>infinite</code>, or <code>unlimited</code>.</td></tr><tr><td><code>--base-port</code></td><td>First port used by the WEKA container. WEKA uses 100 ports starting at this port.</td></tr><tr><td><code>--weka-version</code></td><td>WEKA version used to start the container.</td></tr><tr><td><code>--fqdn</code></td><td>Fully qualified domain name used by other containers for TLS hostname verification.</td></tr><tr><td><code>--nvidia-vf-single-ip</code></td><td>Configures NVIDIA virtual functions to use a single IP address. Use <code>yes</code>, <code>no</code>, <code>true</code>, <code>false</code>, <code>on</code>, <code>off</code>, <code>y</code>, or <code>n</code>.</td></tr><tr><td><code>--dedicated-mode</code></td><td>Sets DPDK core dedication to <code>full</code> or <code>none</code>. <code>none</code> requires NIC driver support.</td></tr><tr><td><code>--scan-rdma</code></td><td>Scans for unused network devices and adds them for RDMA use. Use <code>off</code>, <code>ib</code>, <code>eth</code>, or <code>all</code>.</td></tr><tr><td><code>--color</code></td><td>Sets color output. Use <code>auto</code>, <code>disabled</code>, or <code>enabled</code>.</td></tr><tr><td><code>--core-ids</code>...</td><td>WEKA dedicated core IDs. Repeat the parameter or provide comma-separated values.</td></tr><tr><td><code>--management-ips</code>...</td><td>Management process IP addresses. Repeat the parameter or provide comma-separated values.</td></tr><tr><td><code>--join-ips</code>...</td><td>Management process IP:port pairs. If no port is specified, WEKA uses the default port. Repeat the parameter or provide comma-separated values.</td></tr><tr><td><code>--net</code>...</td><td>Network specification. Use a device name such as <code>ib1</code> or <code>eth1</code>, <code>&#x3C;device>/&#x3C;ip>/&#x3C;bits>/&#x3C;gateway></code>, <code>&#x3C;device>/rdma-only/inet4</code>, or <code>&#x3C;device>/rdma-only/inet6</code>. Use <code>udp</code> to force UDP mode. Repeat the parameter or provide comma-separated values.</td></tr><tr><td><code>--disable</code></td><td>Creates the container as disabled.</td></tr><tr><td><code>--no-start</code></td><td>Does not start the container after creation.</td></tr><tr><td><code>--allow-mix-setting</code></td><td>Allows specified core IDs when containers with automatic core-ID allocation run on the same server.</td></tr><tr><td><code>--restricted</code></td><td>Enables restricted client mode.</td></tr></tbody></table>
 
 [^1]: A **diskless node** is a workstation or computer that lacks local disk drives and uses network booting to load its operating system from a server. For details, see [https://en.wikipedia.org/wiki/Diskless\_node](https://en.wikipedia.org/wiki/Diskless_node)
