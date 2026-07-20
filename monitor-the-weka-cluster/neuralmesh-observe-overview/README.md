@@ -13,7 +13,7 @@ NeuralMesh Observe is a SaaS observability platform for the WEKA® products. It 
 ## Connectivity and access
 
 * **Native telemetry**: Observe leverages Cloud WEKA Home (CWH) telemetry as its foundation. Each cluster uploads statistics, events, alerts, and usage data in encrypted form.
-  * For details on cloud telemetry data and the retention periods, see [#cloud-weka-home-data-collection](./#cloud-weka-home-data-collection "mention").
+  * For details on cloud telemetry data and the retention periods, see [#cloud-weka-home-data-collection](../the-wekaio-support-cloud/#cloud-weka-home-data-collection "mention").
 * **Zero infrastructure management**: You do not need to deploy or maintain any monitoring infrastructure or local agents.
 * **Support portal SSO**: Access is managed through Single Sign-On (SSO) using your [support.weka.io](https://support.weka.io/) credentials.
 * **Included service**: Observe is included with your WEKA software at no additional cost.
@@ -74,4 +74,4 @@ Clusters appear only after telemetry data is successfully uploaded to Cloud WEKA
 
 **Related topic**
 
-[Upload information from the WEKA cluster to WEKA Home](./#upload-information-from-the-weka-cluster-to-weka-home)
+[Upload information from the WEKA cluster to WEKA Home](../the-wekaio-support-cloud/#upload-information-from-the-weka-cluster-to-weka-home)
