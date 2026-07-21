@@ -41,7 +41,7 @@ The SMB-W data path routes file requests through floating IPs, SMB-W frontend co
 * **Backend access:** The SMB-W container reads and writes data through the internal WEKA protocol to the backend containers.
 * **Persistent configuration:** Cluster-wide SMB-W configuration is stored on the operator-managed `.config_fs` filesystem.
 
-<div data-with-frame="true"><figure><img src="../../.gitbook/assets/k8s_smb.png" alt=""><figcaption><p>WEKA Operator SMB-W protocol architecture</p></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/weka_operator_smb.png" alt=""><figcaption><p>WEKA Operator SMB-W protocol architecture</p></figcaption></figure></div>
 
 ## Before you begin
 
