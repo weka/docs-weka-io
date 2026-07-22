@@ -474,8 +474,6 @@ When configuring driver distribution manually, the following elements must be pr
 
 <summary>Example 1: Minimal policy (recommended for most deployments)</summary>
 
-**Ubuntu**
-
 {% code title="weka-drivers.yaml" %}
 ```yaml
 apiVersion: weka.weka.io/v1alpha1
@@ -487,34 +485,6 @@ spec:
   type: enable-local-drivers-distribution
   image: quay.io/weka.io/weka-in-container:5.1.0
   imagePullSecret: "quay-io-robot-secret"
-  payload:
-    driverDistPayload:
-      builderPreRunScript: "apt-get update && apt-get install -y gcc-12"
-    interval: 1m
-  nodeSelector:
-    weka.io/supports-backends: "true"
-```
-{% endcode %}
-
-**Rocky Linux**
-
-{% code title="weka-drivers.yaml" %}
-```yaml
-apiVersion: weka.weka.io/v1alpha1
-kind: WekaPolicy
-metadata:
-  name: weka-drivers
-  namespace: weka-operator-system
-spec:
-  type: enable-local-drivers-distribution
-  image: quay.io/weka.io/weka-in-container:5.1.0
-  imagePullSecret: "quay-io-robot-secret"
-  payload:
-    driverDistPayload:
-      builderPreRunScript: "dnf install -y gcc"
-    interval: 1m
-  nodeSelector:
-    weka.io/supports-backends: "true"
 ```
 {% endcode %}
 
@@ -673,11 +643,39 @@ spec:
 
 </details>
 
+3. Install a compiler in the builder container.
+   1. The driver builder compiles kernel modules in the builder container. Install a compiler that matches the node kernel requirements.
+   2. Add `builderPreRunScript` to the `WekaPolicy` specification:
+
+```yaml
+payload:
+  driverDistPayload:
+    builderPreRunScript: "apt-get update && apt-get install -y gcc-12"
+```
+
+For RPM-based builder images (for example, Rocky Linux):
+
+```yaml
+payload:
+  driverDistPayload:
+    builderPreRunScript: "dnf install -y gcc"
+```
+
+{% hint style="info" %}
+* Ubuntu 22.04 with kernel 6.5 or later requires `gcc-12`.
+* Ubuntu 24.04 typically requires `gcc-13`.
+* Alternatively, install `gcc` and kernel headers with `apt-get install -y gcc linux-headers-$(uname -r)`.
+{% endhint %}
+
 **WekaPolicy additional attributes**
+
+{% hint style="info" %}
+Review the [WekaPolicy API reference](https://weka.github.io/weka-k8s-api/wekapolicy/) for all available resource options.
+{% endhint %}
 
 <table><thead><tr><th width="197">Attribute</th><th>Description</th></tr></thead><tbody><tr><td><code>image</code></td><td>The WEKA container image used for the distributor and default builder.</td></tr><tr><td><code>interval</code></td><td>How often the operator reconciles the policy. Default: <code>1m</code>.</td></tr><tr><td><code>builderPreRunScript</code></td><td>Optional script to run before the build, for example to install a compiler.</td></tr><tr><td><code>ensureNICsPayload</code></td><td>Defines the configuration for ensuring a specific number of data NICs on selected nodes.</td></tr><tr><td><code>signDrivesPayload</code></td><td>Configures parameters to scan and sign drives for WEKA backend containers.</td></tr></tbody></table>
 
-3. Apply the configuration:
+4. Apply the configuration:
 
 ```bash
 kubectl apply -f weka-drivers.yaml
@@ -735,6 +733,10 @@ For details on SSD Proxy operation and resource requirements,, see [Drive sharin
 
 #### Procedure
 
+{% hint style="info" %}
+Review the [WekaPolicy API reference](https://weka.github.io/weka-k8s-api/wekapolicy/) for all available resource options.
+{% endhint %}
+
 1. **Define drive sharing and signing:** Apply a WekaPolicy to sign compatible drives.
 
 {% code title="sign-drives.yaml" %}
@@ -749,7 +751,7 @@ spec:
   payload:
     signDrivesPayload:
       type: "all-not-root"
-      shared: true # To support drive slicing or higher per-drive throughput through SSD Proxy. See the Understand the shared field section above.
+      ##shared: true # To support drive slicing or higher per-drive throughput through SSD Proxy. See the Understand the shared field section above.
 ```
 {% endcode %}
 
@@ -772,6 +774,10 @@ Perform these steps in sequence:
 ### 6.1. Install the WekaCluster CR
 
 Provision the WEKA cluster backend using the WekaCluster CR. This resource defines the storage containers, drive configurations, and networking for the cluster.
+
+{% hint style="info" %}
+Review the [WekaCluster API reference](https://weka.github.io/weka-k8s-api/wekacluster/) for all available resource options.
+{% endhint %}
 
 #### Before you begin
 
@@ -799,14 +805,13 @@ spec:
   dynamicTemplate:
     computeContainers: 6
     driveContainers: 6
-    containerCapacity: 1000   # Use instead of numDrives when shared: true is set in sign-driv
+    ##containerCapacity: 1000   # Use instead of numDrives when shared: true is set in sign-driv
   image: quay.io/weka.io/weka-in-container:5.1.0
   nodeSelector:
     weka.io/supports-backends: "true"
   driversDistService: "https://drivers.weka.io"
   imagePullSecret: "quay-io-robot-secret"
-  network:
-    udpMode: true
+  
 ```
 {% endcode %}
 
@@ -904,6 +909,10 @@ kubectl apply -f secret.yaml
 ### 6.3. Install the WekaClient CR
 
 If you need WEKA clients on Kubernetes, deploy the WekaClient CR on the designated Kubernetes nodes. WekaClient works like a DaemonSet and provisions one pod per selected node to provide a persistent WEKA data plane for your workloads.
+
+{% hint style="info" %}
+Review the [WekaClient API reference](https://weka.github.io/weka-k8s-api/wekaclient/) for all available resource options.
+{% endhint %}
 
 #### Before you begin
 
