@@ -429,33 +429,37 @@ Identify the data plane gateway and every remote network reachable from the data
 
 1.  Create or edit `/etc/netplan/10-weka.yaml`:
 
-    ```yaml
+    <pre class="language-yaml" data-title="/etc/netplan/10-weka.yaml"><code class="lang-yaml"># Host: weka-node-01
+    # Apply:  sudo netplan apply
+
     network:
       version: 2
       renderer: networkd
       ethernets:
         enp2s0:
-          dhcp4: true
-          dhcp6: false
+          dhcp4: yes
+          dhcp6: no
           nameservers:
             addresses: [8.8.8.8, 8.8.4.4]
+          # Default route via DHCP — no SBR policy needed on management interface
 
         ib1:
-          dhcp4: false
-          dhcp6: false
+          dhcp4: no
+          dhcp6: no
           optional: true
-          ignore-carrier: true
+          ignore-carrier: true  # configure even without physical link (IB/RDMA NICs may be slow to init)
           addresses:
             - 10.222.0.10/24
           routes:
-            # Main table routes
+            # Main table entries
             - to: 10.222.0.0/24
               scope: link
-              metric: 2000
-            # Add each remote data plane network reachable through ib1.
-            # - to: <ADDITIONAL_SUBNET>
+            # ── Additional subnets reachable via ib1 (main table) ──────────────
+            # Add any other CIDRs that hosts/clients on this fabric need to reach.
+            # Without a main-table entry, locally-originated traffic (e.g. weka
+            # backend&#x3C;->backend, S3, SMB, NFS) may egress the wrong interface.
+            # - to: &#x3C;ADDITIONAL_SUBNET>
             #   via: 10.222.0.1
-            #   metric: 2000
             # Source-based routing table 101
             - to: 0.0.0.0/0
               via: 10.222.0.1
@@ -469,21 +473,22 @@ Identify the data plane gateway and every remote network reachable from the data
               priority: 1010
 
         ib2:
-          dhcp4: false
-          dhcp6: false
+          dhcp4: no
+          dhcp6: no
           optional: true
-          ignore-carrier: true
+          ignore-carrier: true  # configure even without physical link (IB/RDMA NICs may be slow to init)
           addresses:
             - 10.222.0.20/24
           routes:
-            # Main table routes
+            # Main table entries
             - to: 10.222.0.0/24
               scope: link
-              metric: 2000
-            # Add each remote data plane network reachable through ib2.
-            # - to: <ADDITIONAL_SUBNET>
+            # ── Additional subnets reachable via ib2 (main table) ──────────────
+            # Add any other CIDRs that hosts/clients on this fabric need to reach.
+            # Without a main-table entry, locally-originated traffic (e.g. weka
+            # backend&#x3C;->backend, S3, SMB, NFS) may egress the wrong interface.
+            # - to: &#x3C;ADDITIONAL_SUBNET>
             #   via: 10.222.0.1
-            #   metric: 2000
             # Source-based routing table 102
             - to: 0.0.0.0/0
               via: 10.222.0.1
@@ -495,7 +500,7 @@ Identify the data plane gateway and every remote network reachable from the data
             - from: 10.222.0.20/32
               table: 102
               priority: 1020
-    ```
+    </code></pre>
 2.  Apply the configuration:
 
     ```bash
