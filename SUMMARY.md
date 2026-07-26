@@ -219,7 +219,7 @@
 ## Monitor the Cluster <a href="#monitor-the-weka-cluster" id="monitor-the-weka-cluster"></a>
 
 * [NeuralMesh Observe overview](monitor-the-weka-cluster/neuralmesh-observe-overview/README.md)
-  * [Export cluster metrics to Prometheus](monitor-the-weka-cluster/neuralmesh-observe-overview/export-cluster-metrics-to-prometheus.md)
+  * [Export cluster metrics from Observe to Prometheus](monitor-the-weka-cluster/neuralmesh-observe-overview/export-cluster-metrics-to-prometheus.md)
 * [WEKA Home - The WEKA support cloud](monitor-the-weka-cluster/the-wekaio-support-cloud/README.md)
   * [Local WEKA Home overview](monitor-the-weka-cluster/the-wekaio-support-cloud/local-weka-home-overview.md)
   * [Deploy Local WEKA Home on K8s](monitor-the-weka-cluster/the-wekaio-support-cloud/deploy-local-weka-home-v4.x-on-k8s/README.md)
@@ -233,7 +233,6 @@
   * [Manage alerts and integrations](monitor-the-weka-cluster/the-wekaio-support-cloud/manage-alerts-and-integrations.md)
   * [Enforce security and compliance](monitor-the-weka-cluster/the-wekaio-support-cloud/enforce-security-and-compliance.md)
   * [Optimize support and data management](monitor-the-weka-cluster/the-wekaio-support-cloud/optimize-support-and-data-management.md)
-* [Set up WEKAmon for external monitoring](monitor-the-weka-cluster/external-monitoring.md)
 * [Monitor WEKA clusters in Kubernetes with Prometheus and Grafana](monitor-the-weka-cluster/monitor-weka-clusters-in-kubernetes-with-prometheus-and-grafana.md)
 
 ## Kubernetes

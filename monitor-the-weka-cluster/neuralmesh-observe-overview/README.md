@@ -6,9 +6,9 @@ description: >-
 
 # NeuralMesh Observe overview
 
-NeuralMesh Observe is a SaaS observability platform for the WEKA® products. It provides a single web interface at [observe.weka.io](https://observe.weka.io) to monitor, plan, and troubleshoot your entire WEKA estate across on-premises, public cloud, and NeuralMesh Axon configurations.
+Observe is a SaaS observability platform for the WEKA® products. It provides a single web interface at [observe.weka.io](https://observe.weka.io) to monitor, plan, and troubleshoot your entire WEKA estate across on-premises, public cloud, and NeuralMesh Axon configurations.
 
-<div data-with-frame="true"><figure><img src="../../.gitbook/assets/observe-dashboard-green.jpg" alt=""><figcaption><p>Overview dashboard screen</p></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/observe-dashboard-green.jpg" alt=""><figcaption><p>Observe overview dashboard screen</p></figcaption></figure></div>
 
 ## Connectivity and access
 

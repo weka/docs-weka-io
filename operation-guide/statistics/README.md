@@ -1,7 +1,5 @@
 ---
-description: >-
-  This page describes the statistics available in the WEKA system and how to
-  work with them.
+description: Monitor current WEKA system performance statistics and drill into charts.
 metaLinks:
   alternates:
     - https://app.gitbook.com/s/0yXyIrnroN3zIG3qa4W3/operation-guide/statistics
@@ -48,5 +46,5 @@ The page shows only the statistics of the backend servers and clients in the clu
 * A backend server is removed.
 * A client is not connected to the cluster for more than the [retention period](statistics-1.md#set-statistics-retention).
 
-The WEKA cluster does not hold historical statistics data. For historical statistics data, use `weka-mon` (see [Set up the WEKAmon external monitoring](../../monitor-the-weka-cluster/external-monitoring.md)).
+The WEKA cluster does not retain historical statistics. Use [Observe](../../monitor-the-weka-cluster/neuralmesh-observe-overview/) to monitor historical cluster data.
 {% endhint %}

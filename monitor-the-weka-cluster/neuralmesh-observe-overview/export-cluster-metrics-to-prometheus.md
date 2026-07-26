@@ -1,16 +1,16 @@
 ---
-description: Export a set of WEKA cluster metrics from Observe into Prometheus.
+description: Export WEKA cluster metrics from Observe to Prometheus.
 metaLinks:
   alternates:
     - >-
       https://app.gitbook.com/s/0yXyIrnroN3zIG3qa4W3/monitor-the-weka-cluster/the-wekaio-support-cloud/export-cluster-metrics-to-prometheus
 ---
 
-# Export cluster metrics to Prometheus
+# Export cluster metrics from Observe to Prometheus
 
-## Export cluster metrics to Prometheus
+## Export cluster metrics from Observe to Prometheus
 
-Observe exposes WEKA cluster metrics directly as Prometheus scrape endpoints. Configure your Prometheus server to scrape these endpoints and get metrics delivered in standard Prometheus format, no custom application or intermediate extraction step required. For details on how to access Observe, see [#connectivity-and-access](./#connectivity-and-access "mention").
+Observe exposes WEKA cluster metrics directly as Prometheus scrape endpoints. Configure your Prometheus server to scrape these endpoints and get metrics delivered in standard Prometheus format. For access details, see [NeuralMesh Observe overview](./#connectivity-and-access).
 
 Metrics are organized across four endpoints, each covering a distinct area of cluster telemetry. This keeps the cardinality of each individual scrape manageable, rather than one large payload that grows with every drive, client, and filesystem added to the cluster.
 
@@ -57,11 +57,11 @@ Each endpoint URL is available in the cluster settings under the Prometheus Expo
 
 ### Configure Prometheus
 
-Configure Prometheus to scrape metrics from WEKA Observe by adding one scrape job per endpoint. Each job authenticates using a Bearer token and targets the Observe hostname.
+Configure Prometheus to scrape metrics from Observe by adding one scrape job per endpoint. Each job authenticates using a Bearer token and targets the Observe hostname.
 
 **Before you begin**
 
-Obtain the following from the WEKA Observe token dialog:
+Obtain the following from the Observe token dialog:
 
 * The authentication token
 * The full URL for each endpoint you want to scrape (hostname and path)
@@ -195,4 +195,4 @@ You can define multiple jobs targeting the same endpoint with different `collect
 
 ### Grafana dashboards
 
-Grafana dashboards are available for download from the Grafana Dashboards section of the Observe Settings page. Each dashboard provides a default set of panels to visualize exporter data and can be imported directly into your Grafana instance.
+Grafana dashboards are available from the Grafana Dashboards section of the Observe **Settings** page. Each dashboard provides a default panel set and imports directly into your Grafana instance.

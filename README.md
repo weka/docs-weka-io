@@ -74,7 +74,7 @@ This portal encompasses all documentation essential for comprehending and operat
 
 **Operation guide:** Navigate through various system operations, including events, statistics, user management, multi-tenancy, upgrades, expansion, and more.
 
-**Monitor the cluster:** Deploy the WEKA Management Server (WMS) alongside tools like Local WEKA Home, WEKAmon, and SnapTool to effectively monitor your WEKA cluster.
+**Monitor the cluster:** Use NeuralMesh Observe to validate performance, monitor cluster health, plan capacity, and troubleshoot your WEKA estate. Local WEKA Home collects telemetry from clusters and clients to support troubleshooting.
 
 **Kubernetes**: The Kubernetes guides cover deploying and managing the WEKA Data Platform. Learn how to use the WEKA Operator for high-performance storage deployment and handle day-2 operations including scaling, hardware management, and performance optimization.
 

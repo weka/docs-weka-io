@@ -1,7 +1,5 @@
 ---
-description: >-
-  WEKA system events provide timestamped information about cluster operations
-  and changes.
+description: Review timestamped WEKA cluster operations, changes, and events.
 metaLinks:
   alternates:
     - https://app.gitbook.com/s/0yXyIrnroN3zIG3qa4W3/operation-guide/events

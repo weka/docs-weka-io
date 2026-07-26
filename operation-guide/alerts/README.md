@@ -1,8 +1,7 @@
 ---
 description: >-
-  Explore how alerts identify problematic, ongoing states within a cluster that
-  require administrative attention. These notifications provide, actionable
-  insights into system health and performance.
+  Monitor cluster alerts and resolve conditions requiring administrative
+  attention.
 metaLinks:
   alternates:
     - https://app.gitbook.com/s/0yXyIrnroN3zIG3qa4W3/operation-guide/alerts
@@ -34,7 +33,7 @@ Reduce background noise and focus on critical issues by moving alerts from the A
 
 #### Muting rules and behaviors
 
-&#x20;The occurrence-based muting introduces specific constraints and capabilities:
+The occurrence-based muting introduces specific constraints and capabilities:
 
 * **Level exclusivity:** The system prevents mixing different muting levels for the same alert type. If an alert type is muted by process, you cannot add a container or server mute to that same type until you clear the existing mute.
 * **Occurrence management:** You can add or remove specific processes, containers, or servers to an existing muted alert type using the `--add` or `--remove` flags in the CLI.
