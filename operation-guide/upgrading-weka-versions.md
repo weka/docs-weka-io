@@ -27,62 +27,39 @@ WEKA uses a structured versioning scheme to indicate the scope and type of chang
 
 * **Major version:** The major version represents substantial changes, such as new features, architectural updates, or significant enhancements.
   * Defined by the first two numbers in the version string.
-  * Example: In 5.0.4, the major version is 5.0.
+  * Example: In 5.1.21, the major version is 5.1.
 * **Minor version:** The minor version reflects smaller updates, such as bug fixes, performance improvements, or minor feature additions.
   * Defined by the third number in the version string.
-  * Example: In 5.0.4, the minor version is 4.
+  * Example: In 5.1.21, the minor version is 21.
 * **Build number:** The build number (fourth component, if present) identifies incremental builds.
   * Used for hotfixes or release candidates that address specific issues without altering core functionality.
-  * Example: 5.0.4.384, the build number is 384.
+  * Example: 5.1.21.26, the build number is 26.
 
 ## Version compatibility guidelines
 
 * **Upgrade direction:** Upgrades must always progress from older to newer versions.
 * **Compatibility basis:** Compatibility is determined by the release date of the target version relative to the source version.
-* **Major version upgrades:** Upgrades must follow consecutive order (for example, 4.2 → 4.3). LTS releases upgrade to Innovation, and Innovation releases upgrade to the next LTS.
+* **Major version upgrades:** Upgrades must follow consecutive order (for example, 4.3 → 4.4). LTS releases upgrade to Innovation, and Innovation releases upgrade to the next LTS.
 * **LTS upgrades:** Clusters and clients can be upgraded between consecutive LTS releases (for example, 4.2.6 and above may be upgraded to the latest minor release of 4.4).
 * **Client upgrades:** Clients are supported if they are at most one major version behind the backend. In multi-hop upgrades, such as from 4.2 to 4.4 to 5.0, clients must be upgraded before the cluster to maintain compatibility.
 * **SCMC deployments:** The client-target-version parameter must be identical across all clusters and compatible with the target backend upgrade. See [mount-fs-from-scmc.md](../weka-filesystems-and-object-stores/mounting-filesystems/mount-fs-from-scmc.md "mention").
-* **Reference information:** For detailed source-to-target support per release, refer to the upgrade section at [get.weka.io](https://get.weka.io).
 
-### **Upgrade examples**
+#### Check the upgrade path
 
-<details>
+Verify that the upgrade path from your source version to the target version is supported. The **Upgrade Path** checker on [get.weka.io](https://get.weka.io) validates the path and indicates additional requirements, such as upgrading clients before the backends.
 
-<summary>Target version: 5.0.1.101</summary>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/check_upgrade_path.png" alt="" width="563"><figcaption><p>Check the upgrade path</p></figcaption></figure></div>
 
-**Supported upgrades**
+**Procedure**
 
-```
-4.4.6.122 → 5.0.1.101    Maximum supported version
-                         (released: May 15, 2025 → June 16, 2025)
-4.4.6.114 → 5.0.1.101    Supported intermediate version
-4.4.6     → 5.0.1.101    Minimum supported version
-```
-
-**Unsupported upgrades**
-
-```
-4.4.8.53  → 5.0.1.101     Version not in supported range
-4.4.7.89  → 5.0.1.101     Version not in supported range 
-                          (released after 5.0.1 code freeze)
-4.4.4     → 5.0.1.101     Version not in supported range
-4.4.3     → 5.0.1.101     Version not in supported range
-```
-
-<figure><img src="../.gitbook/assets/supported_upgrades.png" alt=""><figcaption><p>Releases example on get.weka.io</p></figcaption></figure>
-
-</details>
-
-<details>
-
-<summary>Target version: 4.4.9.130</summary>
-
-4.4.9.130 was release on August 20, 2025. The minimum required version to upgrade from is 4.2.1.
-
-<figure><img src="../.gitbook/assets/upgarde_compatibility_4.4.9.png" alt=""><figcaption></figcaption></figure>
-
-</details>
+1. On [get.weka.io](https://get.weka.io), open the **Upgrade Path** checker.
+2. In the **From** box, select the source version.
+3. In the **To** box, select the target version.
+4. Select **Check Path**.
+5. Review the upgrade summary:
+   * **Direct Upgrade** indicates the path is supported.
+   * A warning indicates an additional requirement to complete before the upgrade, such as a client upgrade.
+   * The path list indicates the recommended target version.
 
 ## What is a non-disruptive upgrade (NDU)
 

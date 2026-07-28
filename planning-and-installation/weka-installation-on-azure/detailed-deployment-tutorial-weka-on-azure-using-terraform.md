@@ -400,9 +400,6 @@ The user's token in get.weka.io provides access to WEKA binaries and is required
 **Procedure:**
 
 1. Visit [get.weka.io](https://get.weka.io/ui/dashboard), and select the user’s name in the upper-right corner.
-
-<div data-with-frame="true"><figure><img src="../../.gitbook/assets/image (88).png" alt=""><figcaption></figcaption></figure></div>
-
 2. From the left-hand menu, select **API Tokens**. The user's API token is displayed on the screen and will be used later in the installation process.
 
 ### Select variables and edit the main.tf

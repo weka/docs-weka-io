@@ -18,7 +18,7 @@ Create a [get.weka.io](https://get.weka.io/ui/dashboard) account before you down
 
 1. Go to the [get.weka.io](https://get.weka.io/ui/dashboard) download site, and select **Create an account.**
 
-<div data-with-frame="true"><img src="../../.gitbook/assets/Sign-in_create_an_account.png" alt="Create an account" width="425"></div>
+<div data-with-frame="true"><img src="../../.gitbook/assets/get.weka.io.png" alt="Create an account" width="425"></div>
 
 The Send Registration Email page opens.
 
@@ -30,8 +30,6 @@ To confirm your registration, select the link.\
 The Create Your Account page opens.
 
 4\. Fill in your email address, full name, and password. Then, select **Create Account**.
-
-<div data-with-frame="true"><img src="../../.gitbook/assets/Create_an_account.png" alt="Create account" width="434"></div>
 
 Your request for access to [get.weka.io](http://get.weka.io) is sent to WEKA for review. Wait for a validation email. Once your registration is approved, you can sign in to [get.weka.io](http://get.weka.io).
 
@@ -48,18 +46,15 @@ You can only sign in and download the packages if you are a registered user.
 
 1. Go to the [get.weka.io](https://get.weka.io/ui/dashboard) download site, and sign in with your registered account.
 
-<div data-with-frame="true"><img src="../../.gitbook/assets/sign-in-for-download.png" alt="Sign in to download and get your WEKA license" width="422"></div>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/get.weka_dashboard.png" alt=""><figcaption><p>get.weka.io dashboard</p></figcaption></figure></div>
 
-[get.weka.io](http://get.weka.io) page opens.
+2. Download the required package:
+   * Select the package from the dashboard.
+   * Or, select the **Releases** tab. Select the required release, then follow the download instructions.
 
-<div data-with-frame="true"><figure><img src="../../.gitbook/assets/get_dashboard.png" alt=""><figcaption><p>get.weka.io dashboard</p></figcaption></figure></div>
+The download-link token is intentionally blurred in the image.
 
-2. Do one of the following:
-   * Select the required package from the dashboard.
-   * Select the **Releases** tab, select the required release, and follow the download instructions.\
-     (The token in the download link is purposely blurred.)
-
-<div data-with-frame="true"><figure><img src="../../.gitbook/assets/get_releases.png" alt=""><figcaption><p>Releases download page</p></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/get.weka_releases.png" alt=""><figcaption><p>Releases download page</p></figcaption></figure></div>
 
 ## What to do next?
 

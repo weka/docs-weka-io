@@ -242,13 +242,8 @@ The WEKA user token grants access to WEKA binaries and is required for accessing
 
 1. Open a web browser and navigate to [get.weka.io](https://get.weka.io).
 2. In the upper right-hand corner, click the user’s name.
-
-<div data-with-frame="true"><figure><img src="../../.gitbook/assets/image (15).png" alt=""><figcaption></figcaption></figure></div>
-
 3. From the left-hand menu, select **API Tokens**.
 4. The user’s API token displays on the screen. Use this token later in the installation process.
-
-<div data-with-frame="true"><figure><img src="../../.gitbook/assets/image (16).png" alt=""><figcaption></figcaption></figure></div>
 
 ### Deploy WEKA in AWS with Terraform
 
