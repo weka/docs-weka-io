@@ -112,7 +112,7 @@ The minimum memory requirement for a WEKA client is 5 GiB. This minimum supports
 
 For a typical client deployment, the total memory requirement is the sum of the following:
 
-<table><thead><tr><th width="284">Purpose</th><th>Per-client memory</th></tr></thead><tbody><tr><td>Base</td><td>3 GiB</td></tr><tr><td>Frontend (FE) processes</td><td>2.5 GiB × number of FE processes</td></tr><tr><td>HugePages (configured)</td><td>Container HugePages ÷ number of FE processes</td></tr><tr><td>HugePages (default)</td><td>1.4 GiB × number of FE processes</td></tr><tr><td>OS and kernel cache</td><td>See note below</td></tr></tbody></table>
+<table><thead><tr><th width="284">Purpose</th><th>Per-client memory</th></tr></thead><tbody><tr><td>Base</td><td>3 GiB</td></tr><tr><td>Frontend (FE) processes</td><td>2.5 GiB × number of FE processes</td></tr><tr><td>HugePages (configured)</td><td>Container HugePages</td></tr><tr><td>HugePages (default)</td><td>1.4 GiB × number of FE processes</td></tr><tr><td>OS and kernel cache</td><td>See note below</td></tr></tbody></table>
 
 {% hint style="info" %}
 The WEKA client uses the Linux kernel page cache to accelerate read and write operations. The kernel cache grows to fill available memory, so leaving additional RAM beyond the WEKA process requirements improves I/O performance. The recommended headroom matches the working set size of your workload, though this varies by application. Leave as much free RAM as the system allows.
@@ -143,12 +143,11 @@ Calculations:
 
 * Base: 3 GiB
 * FE processes: 2 × 2.5 = 5 GiB
-* Effective HugePages memory: 6 ÷ 2 = 3 GiB
 
-Total WEKA process memory = 3 + 5 + 3 = **11 GiB**, plus additional RAM for the OS and kernel cache.
+Total WEKA process memory = 3 + 5 + 6 = **14 GiB**, plus additional RAM for the OS and kernel cache.
 
 {% hint style="warning" %}
-Clients running workloads that consume all available RAM, such as Slurm jobs with no memory reservation, leave no RAM for the kernel cache. This results in degraded I/O performance even for workloads that are not I/O intensive. Reserve sufficient RAM for the OS and kernel cache outside of job schedulers. For Slurm-specific guidance, see [weka-and-slurm-integration](../../best-practice-guides/weka-and-slurm-integration/ "mention").
+Clients running workloads that consume all available RAM, such as Slurm jobs with no memory reservation, leave no RAM for the kernel cache. This results in degraded I/O performance even for workloads that are not I/O intensive. Reserve sufficient RAM for the OS and kernel cache outside of job schedulers. For Slurm specific guidance, see [weka-and-slurm-integration](../../best-practice-guides/weka-and-slurm-integration/ "mention").
 {% endhint %}
 
 ## CPU resource planning
