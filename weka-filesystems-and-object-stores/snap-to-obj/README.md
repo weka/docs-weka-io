@@ -115,6 +115,21 @@ This capability for filesystem snapshots makes them more cost-effective because 
 
 It is recommended that the synchronous snapshots be applied in chronological order.
 
+## Object store space reclamation after a snapshot download
+
+When you download a snapshot to create a filesystem (`weka fs download`), the new filesystem reads the objects in the bucket but does not take ownership of them. The cluster does not delete objects it did not write. As a result, deleting data from the downloaded filesystem does not release space in the object store bucket.
+
+This behavior applies in both of the following scenarios:
+
+* **Download to a different cluster**: The new cluster has no record of which objects the original cluster wrote, so it cannot safely delete any of them.
+* **Download to the same cluster**: Even when the same cluster that uploaded the snapshot downloads it, the new filesystem does not own the original objects, and space reclamation does not occur.
+
+**Example**: A tiered filesystem consumes 5 PB in the object store bucket. After you download its snapshot to a new filesystem and delete 3 PB of data, the bucket still consumes 5 PB.
+
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/obs-space-reclamation-after-snapshot-download.png" alt=""><figcaption><p>Object store space reclamation after a snapshot download</p></figcaption></figure></div>
+
+To enable space reclamation for a downloaded filesystem, migrate it to a different object store bucket. During migration, the object store must accommodate the original data and the migrated data. This temporarily requires up to twice the filesystem’s tiered capacity. Delete the original data after migration completes.
+
 ## Delete snapshots residing on an object store
 
 Deleting a snapshot uploaded from a filesystem removes all its data from the local object store bucket. It does not remove any data from a remote object store bucket.
