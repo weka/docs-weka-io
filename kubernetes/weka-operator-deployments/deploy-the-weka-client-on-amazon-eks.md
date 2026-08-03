@@ -14,7 +14,7 @@ metaLinks:
 
 The following table describes the support levels for different cloud services:
 
-<table><thead><tr><th width="120">Cloud service</th><th width="110">Instance type</th><th width="133">WekaCluster (backends)</th><th width="127">WekaClient: UDP</th><th width="137">WekaClient: DPDK</th><th width="140">NIC provisioning for DPDK</th></tr></thead><tbody><tr><td>Amazon EKS</td><td>VM</td><td>Not supported</td><td>Supported</td><td>Supported</td><td>Operator creates and attaches NICs automatically</td></tr><tr><td>Oracle OKE</td><td>Bare metal</td><td>Supported</td><td>Supported</td><td>Supported</td><td>Manual</td></tr><tr><td>Oracle OKE</td><td>VM</td><td>Not supported</td><td>Supported</td><td>Supported</td><td>Operator verifies required number of NICs</td></tr><tr><td>Google GKE</td><td>VM</td><td>Not supported</td><td>Supported</td><td>Not Supported</td><td></td></tr><tr><td>Azure AKS</td><td>VM</td><td>Not supported</td><td>Supported</td><td>Not Supported</td><td></td></tr></tbody></table>
+<table><thead><tr><th width="120">Cloud service</th><th width="110">Instance type</th><th width="133">WekaCluster (backends)</th><th width="127">WekaClient: UDP</th><th width="137">WekaClient: DPDK</th><th width="140">NIC provisioning for DPDK</th></tr></thead><tbody><tr><td>Amazon EKS</td><td>VM</td><td>Supported</td><td>Supported</td><td>Supported</td><td>Operator creates and attaches NICs automatically</td></tr><tr><td>Oracle OKE</td><td>Bare metal</td><td>Supported</td><td>Supported</td><td>Supported</td><td>Manual</td></tr><tr><td>Oracle OKE</td><td>VM</td><td>Not supported</td><td>Supported</td><td>Supported</td><td>Operator verifies required number of NICs</td></tr><tr><td>Google GKE</td><td>VM</td><td>Not supported</td><td>Supported</td><td>Not Supported</td><td></td></tr><tr><td>Azure AKS</td><td>VM</td><td>Not supported</td><td>Supported</td><td>Not Supported</td><td></td></tr></tbody></table>
 
 ## Prerequisites
 
@@ -56,6 +56,22 @@ Node group IAM role policies:
 * AmazonEKS\_CNI\_Policy
 
 Use the same subnets and security groups as the WEKA cluster when configuring the Amazon EKS node group.
+
+### WekaCluster on EKS
+
+Configure a lifecycle-hook timeout for EKS worker nodes that run WekaCluster backend pods:
+
+```bash
+aws autoscaling put-lifecycle-hook \
+  --lifecycle-hook-name "weka-drive-drain" \
+  --auto-scaling-group-name "<ASG_NAME>" \
+  --lifecycle-transition "autoscaling:EC2_INSTANCE_TERMINATING" \
+  --heartbeat-timeout 1800 \
+  --default-result "CONTINUE" \
+  --region "<REGION>"
+```
+
+Replace `<REGION>` with your EKS deployment Region. Replace `<ASG_NAME>` with the Auto Scaling group that manages the EKS node group.
 
 ### Oracle OKE
 
