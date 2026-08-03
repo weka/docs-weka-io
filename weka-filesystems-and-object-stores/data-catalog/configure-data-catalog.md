@@ -43,7 +43,7 @@ Configure the infrastructure and filesystems required to activate catalog servic
 
 #### Before you begin
 
-* The catalog services require at least five backend servers. Ensure each server has 32 GB of free memory and connectivity on port 14400.
+* The catalog services require at least five backend servers. Ensure each server has 32 GB for the data catalog service plus 5.5 GB for the data services, and connectivity on port 14400.
 * Each server that runs catalog services must also run a frontend container. The catalog feature requires a frontend container and a data service container on the same server.
 * For optimal operation, ensure a minimum of 500 GB of available storage for the index filesystem (`.indexfs`). See [#sizing-guidelines](configure-data-catalog.md#sizing-guidelines "mention").
 
@@ -437,13 +437,15 @@ Each specification assumes approximately 10% monthly data growth over a 12 to 18
 
 Review and adjust catalog resource allocations every 6–9 months to account for filesystem growth. Run the `filestats.sh` script to get the current object count per filesystem, then use the sizing table to determine whether your existing resources still meet the requirements.
 
-| Parameter                   | Up to 200+ million objects                   | Up to 500+ million objects                   | Up to 1+ billion objects                 |
-| --------------------------- | -------------------------------------------- | -------------------------------------------- | ---------------------------------------- |
-| **Data service containers** | 5 total: 4 workers + 1 coordinator           | 10 total: 9 workers + 1 coordinator          | 10 total: 9 workers + 1 coordinator      |
-| **CPU**                     | 2 spare cores per server (minimum)           | 2 spare cores per server (minimum)           | 2 spare cores per server (minimum)       |
-| **Memory**                  | 32 GB free per server                        | 32 GB free per server                        | 64 GB free per server                    |
-| **Disk (index filesystem)** | 150 GB – 500 GB (30 days – 1 year retention) | 250 GB – 1.5 TB (30 days – 1 year retention) | 1 TB – 5 TB (30 days – 1 year retention) |
+| Parameter                         | Up to 200 million objects                                                              | Up to 500 million objects                                                                 | Up to 1 billion objects                                                                |
+| --------------------------------- | -------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| **Data Services containers**      | 5 total: 1 coordinator and 4 workers                                                   | 10 total: 1 coordinator and 9 workers                                                     | 10 total: 1 coordinator and 9 workers                                                  |
+| **Frontend containers**           | 5 total: 1 on each Data Services server                                                | 10 total: 1 on each Data Services server                                                  | 10 total: 1 on each Data Services server                                               |
+| **CPU**                           | <p>2 available cores for Data Services.<br>1 available core for the frontend.</p>      | <p>2 available cores for Data Services.<br>1 available core for the frontend.</p>         | <p>2 available cores for Data Services.<br>1 available core for the frontend.</p>      |
+| **Memory**                        | <p>37.5 GB free per server:<br>32 GB for Data Services and 5.5 GB for the frontend</p> | <p>37.5 GB free per server:</p><p>32 GB for Data Services and 5.5 GB for the frontend</p> | <p>69.5 GB free per server:<br>64 GB for Data Services and 5.5 GB for the frontend</p> |
+| **Disk for the index filesystem** | 150 GB to 500 GB for 30 days to 1 year of retention                                    | 250 GB to 1.5 TB for 30 days to 1 year of retention                                       | 1 TB to 5 TB for 30 days to 1 year of retention                                        |
 
+\
 The following considerations apply to all deployment sizes:
 
 * The catalog supports selective manual assignment of data service containers or automatic assignment of all backend servers. Coordinator and worker servers cannot be assigned manually.
