@@ -135,8 +135,15 @@ helm upgrade --create-namespace \
   --namespace weka-operator-system \
   --version <weka-operator-version> \
   --set csi.installationEnabled=true \
-  --set imagePullSecret=quay-io-robot-secret
+  --set imagePullSecret=quay-io-robot-secret \
+  --set cleanupRemovedNodes=true
 ```
+
+{% hint style="info" %}
+**`cleanupRemovedNodes`**
+
+When enabled, the WEKA Operator automatically deletes backend WekaContainers whose target node is no longer part of the Kubernetes cluster. This prevents stale container resources from accumulating when nodes are scaled down or replaced, which occurs frequently in cloud environments. For cloud deployments, this value defaults to `true`.
+{% endhint %}
 
 For Google GKE:
 
