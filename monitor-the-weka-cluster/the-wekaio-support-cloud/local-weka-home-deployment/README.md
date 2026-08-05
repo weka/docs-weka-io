@@ -843,7 +843,7 @@ kubectl logs <pod name from previous command> -n kube-system > traefik.out
 
 The probable cause for this issue is that the containers dir (`/var/lib/rancher/k3s`) consumes disk space.
 
-Starting in LWH 5.0, stats and forwarding backlogs use dedicated FSQ-backed PVCs. If the containers directory has sufficient capacity, check FSQ PVC usage. Run `homecli local diagnose` to assess backlog and disk-fill estimates. For the procedure and report details, see [Diagnose the Local WEKA Home](diagnose-the-local-weka-home.md).
+Starting in LWH 5.0, stats and forwarding backlogs use dedicated FSQ-backed PVCs. If the containers directory has sufficient capacity, check FSQ PVC usage. Run `homecli local diagnose` to assess backlog and disk-fill estimates. For the procedure and report details, see [Diagnose the Local WEKA Home](../deploy-local-weka-home-on-k3s/diagnose-the-local-weka-home.md).
 
 #### Resolution
 
@@ -884,7 +884,7 @@ The LWH deployment diagnostics provide the following information:
 * LWH version
 * Syslogs
 
-Starting in LWH 5.0, the archive includes a `homecli local diagnose -o json` snapshot. It captures health, sizing, queue, database, and metrics state. You do not need to run the command separately before contacting support. For standalone diagnostics and report details, see [Diagnose the Local WEKA Home](diagnose-the-local-weka-home.md).
+Starting in LWH 5.0, the archive includes a `homecli local diagnose -o json` snapshot. It captures health, sizing, queue, database, and metrics state. You do not need to run the command separately before contacting support. For standalone diagnostics and report details, see [Diagnose the Local WEKA Home](../deploy-local-weka-home-on-k3s/diagnose-the-local-weka-home.md).
 
 **Procedure**
 

@@ -9,7 +9,7 @@ description: >-
 
 ### Overview
 
-Collaborate with the WEKA Customer Success Team (CST) by establishing secure debugging sessions. When deploying the Local WEKA Home (LWH) on Kubernetes, you enable remote access  by overriding chart values to define one deployment per session within the `remoteSessionClient.sessions` block. This configuration allows you to grant WEKA CST controlled access to your environment to troubleshoot issues in real time through SSH (tmate[^1]) sessions.
+Collaborate with the WEKA Customer Success Team (CST) by establishing secure debugging sessions. When deploying the Local WEKA Home (LWH) on Kubernetes, you enable remote access by overriding chart values to define one deployment per session within the `remoteSessionClient.sessions` block. This configuration allows you to grant WEKA CST controlled access to your environment to troubleshoot issues in real time through SSH (tmate[^1]) sessions.
 
 ## Configure remote access sessions
 

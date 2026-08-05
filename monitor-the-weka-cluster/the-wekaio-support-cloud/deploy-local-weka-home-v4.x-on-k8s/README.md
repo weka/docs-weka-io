@@ -27,7 +27,7 @@ The deployment is managed through a configuration file to ensure a consistent, r
 
 The diagram below illustrates the overall solution architecture and how the core components interact within the Kubernetes (K8s) environment.
 
-<div data-with-frame="true"><figure><img src="../../../.gitbook/assets/LWH_on_k8s_arch_5.0.png" alt=""><figcaption><p>Local WEKA Home v4.x solution architecture</p></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src="../../../.gitbook/assets/LWH_on_k8s.png" alt=""><figcaption><p>Local WEKA Home v4.x solution architecture</p></figcaption></figure></div>
 
 ### Architecture components
 

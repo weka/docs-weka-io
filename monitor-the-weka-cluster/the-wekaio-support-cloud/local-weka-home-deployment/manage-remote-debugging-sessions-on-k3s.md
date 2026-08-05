@@ -4,7 +4,7 @@ description: >-
   to troubleshoot cluster issues using homecli on K3s deployment.
 ---
 
-# Manage remote debugging sessions
+# Manage remote debugging sessions on K3s
 
 ## Overview
 
@@ -338,7 +338,7 @@ homecli remote-access copy-recording [flags]
 
 **Required flag**
 
-<table><thead><tr><th width="165">Flag</th><th width="126">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>--output</code> / <code>-o</code>  </td><td><code>string</code></td><td>Local destination directory. The directory is created if it does not already exist.</td></tr></tbody></table>
+<table><thead><tr><th width="165">Flag</th><th width="126">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>--output</code> / <code>-o</code></td><td><code>string</code></td><td>Local destination directory. The directory is created if it does not already exist.</td></tr></tbody></table>
 
 **Filter flags**
 

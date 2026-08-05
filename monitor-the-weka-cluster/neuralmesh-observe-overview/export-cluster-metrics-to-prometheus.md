@@ -30,30 +30,24 @@ Each cluster has one active token. The token authenticates all four scrape endpo
 **Procedure**
 
 1. In Observe, go to the cluster settings and locate the Prometheus Exporter section.
-2. Select **Generate New Key**. A dialog opens displaying:
-   * The **Authentication Token**. Copy and store it securely now.
-   * The URLs for all four scrape endpoints, ready to copy.
-3. Copy the token and all endpoint URLs you intend to use.
+
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/Observe_generate_token.png" alt=""><figcaption></figcaption></figure></div>
+
+2. Select **Generate New Key**.&#x20;
+3. Copy the token and all endpoint URLs you intend to scrape using the copy icon next to each. Each endpoint covers a distinct area of cluster telemetry:
+   * **Base URL**: cluster health, capacity, and S3 metrics.
+   * **/clients**: per-client and per-filesystem I/O metrics.
+   * **/drives**: per-drive health, I/O, and network metrics.
+   * **/quota\_domains**: per-quota-domain I/O metrics.
 4. Select **I've Saved the Token** to close the dialog.
 
-<figure><img src="../../.gitbook/assets/Observe_generate_token.png" alt=""><figcaption></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/observe_prometheus_token_generated.png" alt="" width="486"><figcaption></figcaption></figure></div>
+
+5. To get the full list of available metrics, categories, and collections, select **Download YAML** under **Metric Reference**.
 
 {% hint style="info" %}
 Each cluster supports one active token. Generating a new token immediately invalidates the previous one. Update your Prometheus configuration with the new token as soon as possible to avoid a gap in metric collection.
 {% endhint %}
-
-### Scrape endpoints
-
-The exporter exposes metrics across four endpoints. Each endpoint covers a distinct area of cluster telemetry.
-
-| Endpoint                    | Coverage                                   |
-| --------------------------- | ------------------------------------------ |
-| Base URL                    | Cluster health, capacity, and S3 metrics   |
-| Base URL + `/clients`       | Per-client and per-filesystem I/O metrics  |
-| Base URL + `/drives`        | Per-drive health, I/O, and network metrics |
-| Base URL + `/quota_domains` | Per-quota-domain I/O metrics               |
-
-Each endpoint URL is available in the cluster settings under the Prometheus Exporter section, and is also shown in the token dialog when a new token is generated. When configuring Prometheus, use the hostname portion of the URL as the target and the path portion (everything after the hostname) as the `metrics_path` value.
 
 ### Configure Prometheus
 
@@ -123,75 +117,7 @@ Replace the placeholders with your values:
 
 ### Selective metric collection
 
-By default, every scrape returns the full metric set for that endpoint. If you want to limit what is collected, for example, to reduce Prometheus memory usage or to configure separate jobs for alerting and dashboards, you can use the `collect[]` and `exclude[]` parameters.
-
-**How it works**
-
-* `collect[]`: allowlist. Specifies which metrics to return. Accepts category names, collection names, or individual metric names, in any combination. Omitting `collect[]` returns all metrics.
-* `exclude[]`: denylist. Removes specific metrics from the selected set. Applied after `collect[]`.
-
-**Categories**
-
-A category is a short name that maps to all metrics sharing a common name prefix. For example, the `s3` category returns all metrics whose names start with `weka_s3_`, and the `drive` category returns all metrics starting with `weka_drive_`.
-
-Category membership is self-evident from the metric names themselves, no explicit list is needed. When the exporter is updated and new metrics are added under an existing prefix, they are automatically included in that category without any configuration change.
-
-**Collections**
-
-Some categories, particularly `cluster`, cover a large number of metrics spanning several distinct use cases. Collections break a category into smaller, named subsets, each focused on a specific purpose such as alerting, performance dashboards, or capacity management.
-
-This reduces the number of metrics you need to explicitly exclude when you only care about a subset: instead of collecting the full category and listing many individual `exclude[]` entries, you can specify only the collection you need. For example, rather than collecting the full `cluster` category and excluding everything performance-related, you can collect `cluster_health` directly and get only the health and alerting metrics.
-
-**Metric reference**
-
-The complete list of available metrics, categories, and collections for your cluster version is available as a downloadable YAML file from the Prometheus Exporter panel on the Settings page.
-
-**Examples**
-
-Alerting only: minimal metric set for health monitoring:
-
-```yaml
-params:
-  collect[]: [cluster_health]
-```
-
-Full dashboard: health, performance, S3, and drives:
-
-```yaml
-params:
-  collect[]: [cluster_health, cluster_performance, s3, drive]
-```
-
-Drop a specific high-cardinality metric from a collection:
-
-```yaml
-params:
-  collect[]: [cluster_health, cluster_performance]
-  exclude[]: [weka_cpu_utilization_percent]
-```
-
-Single metric only:
-
-```yaml
-params:
-  collect[]: [weka_cluster_status]
-```
-
-A complete job definition using selective collection looks like this:
-
-```yaml
-- job_name: weka_alerting
-  scheme: https
-  authorization:
-    credentials: <your-token>
-  metrics_path: <base-url>
-  params:
-    collect[]: [cluster_health]
-  static_configs:
-    - targets: ['<observe-host>']
-```
-
-You can define multiple jobs targeting the same endpoint with different `collect[]` parameters, for example, one job for alerting and one for dashboards. All jobs can coexist in the same `prometheus.yaml`.
+Limit the exported metrics for this job. See [Configure selective Prometheus metric collection](../the-wekaio-support-cloud/configure-selective-prometheus-metric-collection.md).
 
 ### Grafana dashboards
 

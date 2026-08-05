@@ -83,7 +83,7 @@ Deploy LWH on Minikube for a lightweight Kubernetes implementation installed on 
 
 [#deploy-local-weka-home-on-k8s](local-weka-home-overview.md#deploy-local-weka-home-on-k8s "mention")
 
-[deploy-local-weka-home-on-k3s](deploy-local-weka-home-on-k3s/ "mention")
+[local-weka-home-deployment](local-weka-home-deployment/ "mention")
 
 [Broken link](/broken/pages/HnMiUB1GNDahucN9HRj7 "mention")
 
