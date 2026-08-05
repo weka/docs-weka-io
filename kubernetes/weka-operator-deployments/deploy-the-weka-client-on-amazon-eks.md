@@ -57,21 +57,15 @@ Node group IAM role policies:
 
 Use the same subnets and security groups as the WEKA cluster when configuring the Amazon EKS node group.
 
-### WekaCluster on EKS
+#### WekaCluster on EKS
 
-Configure a lifecycle-hook timeout for EKS worker nodes that run WekaCluster backend pods:
+When deploying a WEKA cluster on EKS, grant the following additional permissions:
 
-```bash
-aws autoscaling put-lifecycle-hook \
-  --lifecycle-hook-name "weka-drive-drain" \
-  --auto-scaling-group-name "<ASG_NAME>" \
-  --lifecycle-transition "autoscaling:EC2_INSTANCE_TERMINATING" \
-  --heartbeat-timeout 1800 \
-  --default-result "CONTINUE" \
-  --region "<REGION>"
-```
-
-Replace `<REGION>` with your EKS deployment Region. Replace `<ASG_NAME>` with the Auto Scaling group that manages the EKS node group.
+* autoscaling:DescribeAutoScalingInstances
+* autoscaling:DescribeAutoScalingGroups
+* autoscaling:RecordLifecycleActionHeartbeat
+* autoscaling:CompleteLifecycleAction
+* autoscaling:PutLifecycleHook
 
 ### Oracle OKE
 
