@@ -318,32 +318,6 @@ ignore-carrier=ib0,ib1
 
 3. Restart the NetworkManager service for the changes to take effect.
 
-### RoCE configuration
-
-Configure RoCE (RDMA over Converged Ethernet) when the data plane runs over Ethernet and RDMA traffic must be carried losslessly across it. Skip this section for InfiniBand fabrics.
-
-{% hint style="info" %}
-Follow NVIDIA's RoCE configuration procedure for your switch operating system and NIC. Apply the WEKA-required values below wherever the NVIDIA procedure asks for a traffic class, DSCP value, or priority.
-
-NVIDIA owns and maintains this procedure, and updates it as switch operating system versions change. The links below may move or be replaced over time. If a link is broken or outdated, search NVIDIA's documentation site for the current RoCE configuration procedure matching your switch operating system version.
-{% endhint %}
-
-**Before you begin**
-
-Confirm the switch operating system (NVIDIA Onyx or Cumulus Linux) and check NVIDIA's documentation for the procedure matching your switch software version:
-
-* [RDMA Over Converged Ethernet (RoCE), NVIDIA Onyx documentation](https://docs.nvidia.com/networking/display/Onyxv3104302/RDMA+Over+Converged+Ethernet+\(RoCE\))
-* [RDMA over Converged Ethernet (RoCE), NVIDIA Cumulus Linux documentation](https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-59/Layer-1-and-Switch-Ports/Quality-of-Service/RDMA-over-Converged-Ethernet-RoCE/)
-* [Lossless RoCE configuration for Onyx switches in DSCP-based QoS mode, NVIDIA Enterprise Support](https://enterprise-support.nvidia.com/s/article/lossless-roce-configuration-for-mlnx-os-switches-in-dscp-based-qos-mode--advanced-mode-x)
-
-**Required parameters for WEKA**
-
-<table><thead><tr><th width="217.46484375">Parameter</th><th width="153.35546875">Value</th><th>Notes</th></tr></thead><tbody><tr><td>Marking method</td><td>Layer 3 (DSCP)</td><td>Required when WEKA traffic is routed across subnets. Layer 2 (TOS) marking works only when all servers share a subnet, but WEKA doesn't recommend it.</td></tr><tr><td>DSCP value</td><td>24</td><td>Register value 96 (DSCP x 4) on the NIC.</td></tr><tr><td>Traffic class, data</td><td>3</td><td>Maps to switch priority 3.</td></tr><tr><td>Traffic class, congestion notification (CNP)</td><td>6</td><td>Maps to switch priority 6.</td></tr><tr><td>PFC priority</td><td>3</td><td>Enable Priority Flow Control on this priority so RoCE traffic isn't dropped.</td></tr><tr><td>Congestion control</td><td>ECN</td><td>Enable alongside PFC.</td></tr></tbody></table>
-
-Configure the switch first, using the `roce` macro (Onyx) or `nv set qos roce` (Cumulus Linux) from the NVIDIA procedure, then configure each server's NIC with `mlnx_qos` and `cma_roce_tos` using the values above.
-
-After configuration, verify the network as described in step 7.
-
 ## 6. Configure dual-network links with policy-based routing <a href="#configure-dual-network-links-with-policy-based-routing" id="configure-dual-network-links-with-policy-based-routing"></a>
 
 The following steps provide guidance for configuring dual-network links with policy-based routing on Linux systems. Adjust IP addresses and interface names according to your environment.
