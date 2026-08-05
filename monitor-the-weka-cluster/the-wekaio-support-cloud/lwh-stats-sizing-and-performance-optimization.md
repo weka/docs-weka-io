@@ -9,13 +9,13 @@ description: >-
 
 ## Stats workload principles
 
-Statistical data volume in large clusters can exceed default configurations. When stats workers fail to process incoming data quickly, the stats stream reaches its 3 GiB capacity, causing NATS to reject new messages.
+Statistical data volume in large clusters can exceed default configurations. When stats workers cannot process incoming data quickly, the FSQ-backed stats queue grows and delays downstream processing.
 
 Effective sizing requires a clear understanding of the primary components:
 
-* **`api.stats`:** Manages the ingestion and exposure of statistical data.
-* **`workers.stats`:** Performs heavy processing of statistics. This component is typically the primary bottleneck in large environments.
-* **`workers.forwarding`:** Handles the transmission of processed data. These processes require fewer CPU resources but still scale with the cluster size.
+* **`api.stats`:** Ingests statistics into the queue and exposes statistics data.
+* **`workers.stats`:** Consumes and processes queued statistics. This component is typically the primary bottleneck.
+* **`workers.forwarding`:** Transmits processed data. It needs less CPU but scales with cluster size.
 
 Load scales linearly based on the total process count in the cluster. This count equals the number of unique (`host_id`, `node_id`) metric pairs, where one container (`host_id`) can hold many processes (`node_id`).
 
@@ -25,9 +25,25 @@ Use these values to determine the necessary CPU resources for a cluster.
 
 <table><thead><tr><th width="191.72723388671875">Metric</th><th width="279.272705078125">Theoretical maximum</th><th>Recommended safe value</th></tr></thead><tbody><tr><td>Processes per 1 CPU core</td><td>750</td><td>550</td></tr><tr><td>Target utilization</td><td>100%</td><td>70%</td></tr></tbody></table>
 
-### **Sizing by cluster scale**
+### Size `workers.stats` on Kubernetes
 
-<table><thead><tr><th width="134.27276611328125">Cluster size</th><th width="167.6363525390625">Process count</th><th width="191.181884765625">Estimated CPU</th><th>Recommended number of pods</th></tr></thead><tbody><tr><td>Small</td><td>Up to 1,500</td><td>2 cores</td><td>1</td></tr><tr><td>Medium</td><td>1,500 to 5,000</td><td>2 to 8 cores</td><td>1 to 2</td></tr><tr><td>Large</td><td>5,000 to 10,000</td><td>8 to 14 cores</td><td>2+</td></tr></tbody></table>
+Use the safe capacity value of 550 processes per CPU core. The replica counts assume a `workers.stats` CPU limit of 2 cores.
+
+| Cluster size | Process count   | Required CPU   | `workers.stats` replicas | Memory limit per replica |
+| ------------ | --------------- | -------------- | ------------------------ | ------------------------ |
+| Small        | Up to 1,500     | Up to 3 cores  | 2                        | 1 GiB                    |
+| Medium       | 1,501 to 5,000  | 3 to 10 cores  | 2 to 5                   | 1 GiB                    |
+| Large        | 5,001 to 10,000 | 10 to 19 cores | 5 to 10                  | 1 GiB                    |
+
+### Kubernetes component scaling
+
+Use the following defaults for the FSQ-based statistics components.
+
+| Component            | Scaling behavior                | CPU request and limit | Memory request and limit |
+| -------------------- | ------------------------------- | --------------------- | ------------------------ |
+| `api.stats`          | Autoscaling. 1 to 10 replicas.  | 200m / 1 core         | 200 MiB / 1 GiB          |
+| `workers.stats`      | Autoscaling. 1 to 300 replicas. | 1 core / 2 cores      | 200 MiB / 1 GiB          |
+| `workers.forwarding` | Autoscaling. 1 to 10 replicas.  | 100m / 500m           | 200 MiB / 400 MiB        |
 
 ### Calculate required replicas
 
@@ -47,7 +63,7 @@ $$
 Required\ CPU = \frac{Number\ of\ processes}{Processes\ per\ 1 \ CPU\ core}
 $$
 
-2. Calculate the required replicas based on the pod CPU limit.
+2. Calculate the required `workers.stats` replicas based on the CPU limit.
 
 $$
 Required\ replicas = \frac{Required\ CPU}{CPU\ limit\ per\ pod}
@@ -212,7 +228,7 @@ workers:
 
 [https://github.com/weka/docs-weka-io/blob/5.1/monitor-the-weka-cluster/the-wekaio-support-cloud/deploy-local-weka-home-v4.x-on-k8s#upgrade-local-weka-home](https://github.com/weka/docs-weka-io/blob/5.1/monitor-the-weka-cluster/the-wekaio-support-cloud/deploy-local-weka-home-v4.x-on-k8s#upgrade-local-weka-home "mention")
 
-[#upgrade-the-local-weka-home](local-weka-home-deployment/#upgrade-the-local-weka-home "mention")
+[#upgrade-the-local-weka-home](deploy-local-weka-home-on-k3s/#upgrade-the-local-weka-home "mention")
 
 ## Operational maintenance
 

@@ -77,15 +77,15 @@ Deploy LWH on K3s for a lightweight Kubernetes implementation installed on a sin
 
 #### Deploy Local WEKA Home on Minikube
 
-Deploy LWH on Minikube for a lightweight Kubernetes implementation installed on a single Docker container. This deployment method supports LWH version 2.x. You can customize the deployment by specifying configuration parameters in the  `config.yaml` file.
+Deploy LWH on Minikube for a lightweight Kubernetes implementation installed on a single Docker container. This deployment method supports LWH version 2.x. You can customize the deployment by specifying configuration parameters in the `config.yaml` file.
 
 **Related topics**
 
 [#deploy-local-weka-home-on-k8s](local-weka-home-overview.md#deploy-local-weka-home-on-k8s "mention")
 
-[local-weka-home-deployment](local-weka-home-deployment/ "mention")
+[deploy-local-weka-home-on-k3s](deploy-local-weka-home-on-k3s/ "mention")
 
-[deploy-local-weka-home-v2.x.md](deploy-local-weka-home-v2.x.md "mention")
+[Broken link](/broken/pages/HnMiUB1GNDahucN9HRj7 "mention")
 
 ## Security hardening for Local WEKA Home
 

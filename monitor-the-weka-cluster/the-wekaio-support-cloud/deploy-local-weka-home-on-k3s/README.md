@@ -51,7 +51,7 @@ Verify that the following requirements are met:
 
       Example: 20 backends with 10 processes each = 200 processes; 500 clients with 2 processes each = 1000 processes. The total is 1200 processes. This deployment requires 9 CPU cores and 40 GiB.
 * SSD-backed storage requirements:
-  * Minimum 500 GiB for locally collected data in `/opt/wekahome/data`
+* Size `/opt/wekahome/data` based on the number of monitored WEKA servers and the stats retention period. See [LWH storage sizing](../lwh-storage-sizing.md) for estimated storage requirements. As a rule of thumb, budget \~1 GiB per monitored server per month of retention, plus \~40 GiB fixed overhead. \~500 GiB is the right size for roughly 500 monitored servers at the default 30-day retention. Larger clusters with more monitored servers, or longer retention, need proportionally more.
 * 1 Gbps network
 
 {% hint style="success" %}
@@ -385,9 +385,31 @@ The default PVC capacity for remote session recordings is 10 GiB ( `10Gi`). To i
 
 <details>
 
+<summary>Resource presets: Expected node count (v5.0+)</summary>
+
+Starting in LWH v5.0, set `wekaNodesMonitored` to the number of WEKA cluster nodes (servers) this LWH instance is expected to monitor.
+
+This selects a resource preset (`small`/`medium`/`large`/`xlarge`) that automatically sets replica counts and autoscaling for the API and worker pods. See **Resource presets** below for the full table and how to pick a value.
+
+```json
+{
+  "wekaNodesMonitored": 2000
+}
+```
+
+When this field is `0` or unset, no preset is applied and the chart defaults stand. You can also set this value interactively or with `--weka-nodes` at setup time, see step 4 below.
+
+</details>
+
+<details>
+
 <summary>Helm Overrides for high stats throughput</summary>
 
 For high stats throughput, use the detailed sizing formulas in [lwh-stats-sizing-and-performance-optimization.md](../lwh-stats-sizing-and-performance-optimization.md "mention").
+
+As of v5.0, the values below are normally set automatically.
+
+FSQ does not support worker autoscaling. Set fixed worker replica counts.
 
 ```json
 {
@@ -424,11 +446,6 @@ For high stats throughput, use the detailed sizing formulas in [lwh-stats-sizing
             "memory": "1000Mi",
             "cpu": "2000m"
           }
-        },
-        "autoscaling": {
-          "enabled": true,
-          "minReplicas": 2,
-          "maxReplicas": 30
         }
       },
       "forwarding": {
@@ -442,11 +459,6 @@ For high stats throughput, use the detailed sizing formulas in [lwh-stats-sizing
             "memory": "400Mi",
             "cpu": "500m"
           }
-        },
-        "autoscaling": {
-          "enabled": true,
-          "minReplicas": 1,
-          "maxReplicas": 10
         }
       }
     }
@@ -457,17 +469,29 @@ For high stats throughput, use the detailed sizing formulas in [lwh-stats-sizing
 </details>
 
 4. To reload your path variable do one of the following:
-
-* Re-login to the server.
-* Run the following command: `source /etc/profile`
-
-4.  To initialize the setup, run the following command from the root user:\
+   * Re-login to the server.
+   * Run the following command: `source /etc/profile`
+5.  To initialize the setup, run the following command from the root user:\
     `homecli local setup -c config.json`\
     \
     For a fresh installation, expect approximately 5 minutes for completion.<br>
 
     <div data-gb-custom-block data-tag="hint" data-style="success" class="hint hint-success"><p>If you get a "command not found" error, make sure you did not skip step 4 above.</p></div>
 
+    \
+    **Resource presets**\
+    Starting in v5.0, running `homecli local setup` interactively also asks how many WEKA servers this instance is expected to monitor:
+
+    ```
+    small      0 – 1,000 nodes
+    medium     1,000 – 5,000 nodes
+    large      5,000 – 10,000 nodes
+    xlarge     10,000+ nodes (elastic scaling enabled)
+
+    Expected Weka node count [0 = use chart defaults]:
+    ```
+
+    Your answer selects the resource preset described above, which drives replica counts and autoscaling for the API and worker pods. The prompt is automatically skipped when stdin isn't a terminal, so scripted installs don't hang.\
     \
     **Options:**
 
@@ -479,6 +503,9 @@ For high stats throughput, use the detailed sizing formulas in [lwh-stats-sizing
       `homecli local setup --host <host.domain.com>`
     * Enable HTTPS by providing a certificate and key directly to the command instead of using the `config.json`:\
       `homecli local setup --iface <interface> --tls-cert <cert.pem> --tls-key <key.pem>`
+    * Set the expected node count up front and skip the interactive prompt (v5.0+):\
+      `homecli local setup --weka-nodes <N>`\
+      `0` means "use chart defaults." You can also set this permanently by `"wekaNodesMonitored": N` in `config.json`.
 
 <details>
 
@@ -672,7 +699,14 @@ Certain upgrades require a fresh installation, as direct in-place upgrades are n
 1. Download the latest [Local WEKA Home bundle](https://get.weka.io/ui/lwh/download) to the dedicated physical server (or VM).
 2. Run `bash wekahome-*.bundle`
 3. To modify the existing configuration, open the `/opt/wekahome/config/config.json` file and modify the settings. See [#id-6.-install-and-configure-local-weka-home](./#id-6.-install-and-configure-local-weka-home "mention").
-4. Run `homecli local upgrade`. For an upgrade, it takes about 2 minutes.
+4.  Run `homecli local upgrade`. The upgrade takes about 2 minutes.
+
+    Starting in LWH v5.0, the command checks the current installation before upgrading. If stats workers need more or fewer resources, it recommends a resource preset. The command then requests confirmation.
+
+    Use one of these flags to control the preset check:
+
+    * `--yes`: Accept the recommended preset without prompting. Use this for CI or scripted upgrades.
+    * `--skip-preset-check`: Skip the preset check. Use this when you have already reviewed sizing.
 5. Run `kubectl get pods -n home-weka-io` and verify in the results that all pods have the status **Running** or **Completed**.\
    To wait for the pods' statuses, run `watch kubectl get pods -n home-weka-io`.
 6. Verify the Local WEKA Home is upgraded successfully. Run the following command line:\
@@ -809,6 +843,8 @@ kubectl logs <pod name from previous command> -n kube-system > traefik.out
 
 The probable cause for this issue is that the containers dir (`/var/lib/rancher/k3s`) consumes disk space.
 
+Starting in LWH 5.0, stats and forwarding backlogs use dedicated FSQ-backed PVCs. If the containers directory has sufficient capacity, check FSQ PVC usage. Run `homecli local diagnose` to assess backlog and disk-fill estimates. For the procedure and report details, see [Diagnose the Local WEKA Home](diagnose-the-local-weka-home.md).
+
 #### Resolution
 
 Do one of the following:
@@ -848,6 +884,8 @@ The LWH deployment diagnostics provide the following information:
 * LWH version
 * Syslogs
 
+Starting in LWH 5.0, the archive includes a `homecli local diagnose -o json` snapshot. It captures health, sizing, queue, database, and metrics state. You do not need to run the command separately before contacting support. For standalone diagnostics and report details, see [Diagnose the Local WEKA Home](diagnose-the-local-weka-home.md).
+
 **Procedure**
 
 1. Run the following command:
@@ -862,4 +900,4 @@ homecli local collect-debug-info [archive] [--include-sensitive] [--full-disk-sc
 
 **Parameters**
 
-<table><thead><tr><th width="242">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>archive</code>*</td><td>The path and output archive file name.<br>For example: <code>/path/diag/lwh_diagnostics.tar.gz</code></td></tr><tr><td><code>include-sensitive</code></td><td>Include sensitive data in the archive. For example, value overrides.<br>Use this parameter only if required by the Customer Success Team.</td></tr><tr><td><code>full-disk-scan</code></td><td>Perform a higher level of disk scan.<br>Use this parameter only if required by the Customer Success Team.</td></tr><tr><td><code>verbose</code></td><td>Provide a higher verbosity level of the debug information.</td></tr></tbody></table>
+<table><thead><tr><th width="180.19921875">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>archive</code>*</td><td>The path and output archive file name.<br>For example: <code>/path/diag/lwh_diagnostics.tar.gz</code></td></tr><tr><td><code>include-sensitive</code></td><td>Include sensitive data in the archive. For example, value overrides.<br>Use this parameter only if required by the Customer Success Team.</td></tr><tr><td><code>full-disk-scan</code></td><td>Perform a higher level of disk scan.<br>Use this parameter only if required by the Customer Success Team.</td></tr><tr><td><code>verbose</code></td><td>Provide a higher verbosity level of the debug information.</td></tr></tbody></table>

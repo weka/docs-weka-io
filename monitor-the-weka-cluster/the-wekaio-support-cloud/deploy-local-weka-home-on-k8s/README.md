@@ -27,7 +27,7 @@ The deployment is managed through a configuration file to ensure a consistent, r
 
 The diagram below illustrates the overall solution architecture and how the core components interact within the Kubernetes (K8s) environment.
 
-<div data-with-frame="true"><figure><img src="../../../.gitbook/assets/LWH_on_k8s.png" alt=""><figcaption><p>Local WEKA Home v4.x solution architecture</p></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src="../../../.gitbook/assets/LWH_on_k8s_arch_5.0.png" alt=""><figcaption><p>Local WEKA Home v4.x solution architecture</p></figcaption></figure></div>
 
 ### Architecture components
 
@@ -35,7 +35,7 @@ The LWH v4.x solution ingests data from registered WEKA clusters and processes i
 
 1. **Data ingestion layer:** WEKA clusters send metrics, events, and alerts to LWH API endpoints.
 2. **API and ingress layer:** Handles HTTP ingestion and routing. It supports multiple ingress controllers (ALB, Traefik, or Nginx) and can use an Envoy-based gateway service. API endpoints receive data and forward it to the persistent queue layer.
-3. **Processing layer:** Uses NATS (persistent queues) for durable message storage and buffering. Worker services consume messages from these queues to process statistical data, events, and alerts.
+3. **Processing layer:** Starting in LWH v5.0, cluster stats ingestion and outbound forwarding are handled by FSQ, a filesystem-backed queue (each message is a file on a PVC that worker pods drain directly). NATS JetStream continues to provide durable, persistent-queue storage for the lower-volume paths: alerts, events, and notifications. Worker services consume messages from the appropriate queue (FSQ for stats/forwarding, NATS for alerts/events) to process them.
 4. **Storage layer:** Consists of specialized databases including a Postgres Database for metadata and a Victoria Metrics Cluster for raw time-series metrics. A secondary Victoria Metrics instance is used for internal application monitoring.
 5. **User interface layer:** Provides a Grafana Dashboard for visualization and an LWH UI for managing rules and configurations.
 
@@ -43,7 +43,12 @@ The LWH v4.x solution ingests data from registered WEKA clusters and processes i
 
 1. WEKA clusters send statistics, events, and alerts to API endpoints.
 2. API components authenticate and validate incoming data.
-3. Data is ingested into NATS persistent queues for reliable buffering.
+3.  Data is ingested into the appropriate queue for reliable buffering:
+
+    * FSQ for stats and forwarding.
+    * NATS persistent queues for alerts, events, and notifications.
+
+    See **Processing layer** above.
 4. Worker services consume messages from queues and process them.
 5. Processed data is written to the appropriate databases:
    * Metrics are stored in the Victoria Metrics Cluster.
@@ -62,6 +67,14 @@ The load on LWH scales linearly with the number of unique (`host_id`, `node_id`)
 * **Metric pair:** The primary unit of measure for stats processing capacity.
 * **WEKA process:** Includes cores, backends, clients, and management processes. On average, a cluster generates metric pairs at a 1:1 ratio with its total process count.
 
+#### Resource presets (v5.0+)
+
+Use the sizing tiers in [LWH stats: sizing and performance optimization](../lwh-stats-sizing-and-performance-optimization.md) to select resource settings for Kubernetes deployments.
+
+Configure component-specific `resourcesPreset`, resource requests and limits, and `replicas` or `autoscaling` values in `values.yaml`. Use the sizing guidance to select appropriate values for the monitored cluster.
+
+Use the deployment-estimation guidance below to validate the selected values against process and metric-pair counts.
+
 #### **Deployment estimation**
 
 For initial planning, use the following guidelines to ensure the stats workers can handle the ingestion and processing load with sufficient headroom.
@@ -70,13 +83,15 @@ For initial planning, use the following guidelines to ensure the stats workers c
 * **CPU core estimate:** Allocate approximately 2 CPU cores for every 1,000 WEKA processes.
 * **Time series density:** Each process typically generates 2,000 unique time series.
 
-For high stats throughput, use the detailed sizing formulas in [lwh-stats-sizing-and-performance-optimization.md](../lwh-stats-sizing-and-performance-optimization.md "mention").
+Configure resources and scaling values in `values.yaml`.
+
+For high stats throughput, use the detailed sizing formulas in [LWH stats: sizing and performance optimization](../lwh-stats-sizing-and-performance-optimization.md).
 
 #### Component scaling behavior
 
 LWH components are pre-configured to handle standard production loads. Adjustments are only required when approaching the limits of the default installation.
 
-<table data-header-hidden><thead><tr><th width="185.3636474609375">Component</th><th width="179.6363525390625">Default capacity</th><th>Scaling behavior</th></tr></thead><tbody><tr><td>API and Workers</td><td>100,000 processes</td><td>Scale dynamically based on load using Horizontal Pod Autoscaling (HPA).</td></tr><tr><td>VictoriaMetrics (VM)</td><td>80,000 processes</td><td>Operates as a stateful set. High loads may require manual adjustment of CPU, memory, or shard count.</td></tr><tr><td>NATS</td><td>100,000 processes</td><td>Managed through the STATS stream. Default limit is 3 GiB.</td></tr><tr><td>Postgres</td><td>N/A</td><td>Typically maintains low utilization. Relies on quick failover and fast CSI reattachment via the WEKA filesystem.</td></tr></tbody></table>
+<table><thead><tr><th width="185.3636474609375">Component</th><th width="179.6363525390625">Default capacity</th><th>Scaling behavior</th></tr></thead><tbody><tr><td>API and Workers</td><td>100,000 processes</td><td>Scale dynamically based on load using Horizontal Pod Autoscaling (HPA).</td></tr><tr><td>VictoriaMetrics (VM)</td><td>80,000 processes</td><td>Operates as a stateful set. High loads may require manual adjustment of CPU, memory, or shard count.</td></tr><tr><td>NATS JetStream</td><td>3 GiB for alerts, events, and notifications</td><td>Buffers alerts, events, and notifications. It does not store stats or forwarding data.</td></tr><tr><td>Postgres</td><td>N/A</td><td>Typically maintains low utilization. Relies on quick failover and fast CSI reattachment via the WEKA filesystem.</td></tr></tbody></table>
 
 #### Key tuning parameters
 
@@ -85,6 +100,12 @@ While the defaults handle common loads, tune the following parameters for very l
 * **VMCluster:** Adjust the CPU, memory, shard count, or capacity. You can reduce these resources for smaller deployments to save infrastructure costs.
 * **Stats workers:** The default memory setting is 1 GiB. Processing statistics for approximately 40,000 processes requires approximately 40 CPU cores (hyperthreads).
 * **Worker autoscaling:** To prevent the HPA from resetting during redeployments, set `workers.stats.autoscaling.minReplicas` to match your calculated baseline usage.
+
+#### Size persistent storage
+
+Size `/opt/wekahome/data` based on monitored WEKA servers and statistics retention. Budget approximately 1 GiB per server for each month of retention. Add 40 GiB for events, queues, and databases.
+
+Allocate 500 GiB for approximately 500 monitored servers at the default 30-day retention. Increase capacity proportionally for more servers or longer retention. See [LWH storage sizing](../lwh-storage-sizing.md) for estimates by server count and retention period.
 
 ## Prerequisites
 
@@ -121,7 +142,7 @@ The required installation method is Helm. The Operator Lifecycle Manager (OLM) m
 
 ## Deployment workflow
 
-1. **Apply security hardening to the LWH server:** Configure the server to meet WEKA security standards before deploying the LWH software. See [#hardened-configuration-for-local-weka-home](../local-weka-home-overview.md#hardened-configuration-for-local-weka-home "mention").
+1. **Apply security hardening to the LWH server:** Configure the server to meet WEKA security standards before deploying the LWH software. See [Security hardening for Local WEKA Home](../local-weka-home-overview.md#security-hardening-for-local-weka-home).
 2. **Configure Helm values:** Create a `values.yaml` file to customize your WEKA Home deployment.
 3. **Install the LWH**: Follow one of the methods for deploying LWH on a Kubernetes environment: standard Helm installation or ArgoCD integration.
 4. **Configure networking and access:** Set up ingress or gateway service access
@@ -131,6 +152,8 @@ The required installation method is Helm. The Operator Lifecycle Manager (OLM) m
 Create a `values.yaml` file to customize your WEKA Home deployment. This file overrides the chart's default settings.
 
 The following example highlights common adjustments, particularly for specifying a WEKA storage class for persistent volumes and using `nodeSelector` to schedule pods onto specific nodes (such as those running WEKA clients).
+
+Configure resource presets, resource requests and limits, and replicas or autoscaling settings directly in `values.yaml`.
 
 <details>
 
@@ -367,7 +390,7 @@ The LWH Helm chart is publicly available on GitHub. The documentation on GitHub 
     helm upgrade --create-namespace \
         --install wekahome wekahome/wekahome \
         --namespace weka-home \
-        --version v4.2.4 \
+        --version v5.0.0 \
         --values /path/to/values.yaml
     ```
 
