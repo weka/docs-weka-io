@@ -215,6 +215,7 @@
 * [Manage WEKA drivers](operation-guide/manage-weka-drivers.md)
 * [Drivers distribution service](operation-guide/drivers-distribution-service.md)
 * [Drives sharing](operation-guide/drives-sharing.md)
+* [Replace a failed drive](operation-guide/replace-a-failed-drive.md)
 
 ## Monitor the Cluster <a href="#monitor-the-weka-cluster" id="monitor-the-weka-cluster"></a>
 
