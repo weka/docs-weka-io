@@ -1,6 +1,6 @@
 # Table of contents
 
-* [NeuralMesh™ by WEKA documentation](README.md)
+* [NeuralMesh™ by WEKA documentationRoCE configuration](README.md)
   * [Documentation revision history](readme/documentation-revision-history.md)
 
 ## System Overview <a href="#weka-system-overview" id="weka-system-overview"></a>
