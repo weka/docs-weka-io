@@ -783,7 +783,10 @@ Review the [WekaCluster API reference](https://weka.github.io/weka-k8s-api/wekac
 
 * Verify that drives are signed and discovered ([step 5](weka-operator-full-deployment-workflow.md#id-5.-discover-and-sign-drives)).
 * Verify the driver distribution service is accessible. WEKA recommends the external service at `https://drivers.weka.io`.
-* If you set `shared: true` when signing drives, use `containerCapacity` instead of `numDrives`. If you set `shared: false`, `numDrives` is optional and defaults to `1`, which assigns one whole drive per drive container.
+* If you set `shared: true` when signing drives, select a sizing method for the dynamic template:
+  * `clusterCapacity`: Sets the target usable capacity for the whole cluster. The operator derives the container and drive layout automatically.
+  * `containerCapacity`: Sets the capacity per drive container. Required when `shared: true` is set and `clusterCapacity` is not set.
+  * `numDrives`: Assigns whole drives per drive container. Applies when `shared: false` is set. Optional, defaults to `1`.
 
 #### Procedure
 
@@ -805,7 +808,8 @@ spec:
   dynamicTemplate:
     computeContainers: 6
     driveContainers: 6
-    ##containerCapacity: 1000   # Use instead of numDrives when shared: true is set in sign-driv
+    ##containerCapacity: 1000   # Use instead of numDrives when shared: true is set in sign-drive
+    ##     clusterCapacity: "300TiB" # Target usable capacity for the whole cluster - operator 1.14.2 
   image: quay.io/weka.io/weka-in-container:5.1.0
   nodeSelector:
     weka.io/supports-backends: "true"

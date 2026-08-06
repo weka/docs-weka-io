@@ -125,7 +125,7 @@ kubectl apply -f weka-cluster.yaml
 ```
 
 {% hint style="info" %}
-`containerCapacity` is required for WEKA 5.1.0 and later when drive sharing is enabled. For earlier versions, use `numDrives` instead.
+For WEKA 5.1.0 and later with drive sharing enabled, set `containerCapacity`. For earlier versions, set `numDrives`. Alternatively, set `dynamicTemplate.clusterCapacity`, such as `"300TiB"`, to define the cluster's target usable capacity instead of per-container capacity.
 {% endhint %}
 
 **5. Deploy the WekaClient**
