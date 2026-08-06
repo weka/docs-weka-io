@@ -58,13 +58,16 @@ Use this guide to choose the right starting point for deployment and operations 
 
 [WekaCluster and WekaContainer lifecycle](wekacluster-and-wekacontainer-lifecycle.md)
 
+Kubernetes deployment types
+
 **Start a new deployment:**
 
-| Task                                         | Topic                                                                                       |
-| -------------------------------------------- | ------------------------------------------------------------------------------------------- |
-| Full deployment workflow end-to-end          | [WEKA Operator full deployment workflow](weka-operator-full-deployment-workflow.md)         |
-| Minimal working cluster in five steps        | [Quick installation](quick-installation.md)                                                 |
-| Deploy on a cloud-managed Kubernetes service | [Deploy WEKA on cloud-managed Kubernetes services](deploy-the-weka-client-on-amazon-eks.md) |
+| Task                                                                                    | Topic                                                                                                          |
+| --------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
+| Generate deployment artifacts with a guided wizard (recommended for common deployments) | [Cloud Deployment Manager  Kubernetes deployment types](cloud-deployment-manager-kubernetes-deployment-types/) |
+| Minimal working cluster in five steps                                                   | [Quick installation](quick-installation.md)                                                                    |
+| Full deployment workflow end-to-end                                                     | [WEKA Operator full deployment workflow](weka-operator-full-deployment-workflow.md)                            |
+| Deploy on a cloud-managed Kubernetes service                                            | [Deploy WEKA on cloud-managed Kubernetes services](deploy-the-weka-client-on-amazon-eks.md)                    |
 
 **Go to a specific task:** Use these topics for focused configuration and migration work.
 
