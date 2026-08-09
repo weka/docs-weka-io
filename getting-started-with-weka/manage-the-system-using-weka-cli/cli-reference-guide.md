@@ -7,6 +7,8 @@ description: >-
 
 # CLI reference guide
 
+## weka
+
 The base command for all weka related CLIs
 
 ```sh
@@ -24,7 +26,7 @@ weka [--color color] [--help] [--build] [--version] [--legal] [--opt-in]
 | `--legal`         | Prints software license information and exits                                    |
 | `--opt-in`        | Opt in to the new CLI experience                                                 |
 
-## weka agent
+### weka agent
 
 Commands that control the weka agent (outside the weka containers)
 
@@ -38,7 +40,7 @@ weka agent [--color color] [--help]
 | `--color`      | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled') |
 | `-h`, `--help` | Show help message                                                                |
 
-### weka agent autocomplete
+#### weka agent autocomplete
 
 Bash autocompletion utilities
 
@@ -52,7 +54,7 @@ weka agent autocomplete [--color color] [--help]
 | `--color`      | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled') |
 | `-h`, `--help` | Show help message                                                                |
 
-#### weka agent autocomplete export
+**weka agent autocomplete export**
 
 Export bash autocompletion script
 
@@ -66,7 +68,7 @@ weka agent autocomplete export [--color color] [--help]
 | `--color`      | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled') |
 | `-h`, `--help` | Show help message                                                                |
 
-#### weka agent autocomplete install
+**weka agent autocomplete install**
 
 Locally install bash autocompletion utility
 
@@ -80,7 +82,7 @@ weka agent autocomplete install [--color color] [--help]
 | `--color`      | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled') |
 | `-h`, `--help` | Show help message                                                                |
 
-#### weka agent autocomplete uninstall
+**weka agent autocomplete uninstall**
 
 Locally uninstall bash autocompletion utility
 
@@ -94,7 +96,7 @@ weka agent autocomplete uninstall [--color color] [--help]
 | `--color`      | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled') |
 | `-h`, `--help` | Show help message                                                                |
 
-### weka agent install-agent
+#### weka agent install-agent
 
 Installs Weka agent on the machine the command is executed from
 
@@ -111,7 +113,7 @@ weka agent install-agent [--color color] [--no-update] [--no-start] [--systemd-g
 | `--systemd-graceful-shutdown` | Enable graceful shutdown via systemd                                             |
 | `-h`, `--help`                | Show help message                                                                |
 
-### weka agent restart
+#### weka agent restart
 
 Stop and start Weka agent on the server the command is executed from. If the agent is not running yet, it will be started
 
@@ -125,7 +127,7 @@ weka agent restart [--color color] [--help]
 | `--color`      | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled') |
 | `-h`, `--help` | Show help message                                                                |
 
-### weka agent uninstall
+#### weka agent uninstall
 
 Deletes all Weka files, drivers, shared memory and any other remainder from the machine this command is executed from. WARNING - This action is destructive and might cause a loss of data!
 
@@ -142,7 +144,7 @@ weka agent uninstall [--color color] [--force] [--ignore-wekafs-mounts] [--keep-
 | `--keep-files`           | Do not remove Weka version images and keep in installation directory             |
 | `-h`, `--help`           | Show help message                                                                |
 
-### weka agent update-containers
+#### weka agent update-containers
 
 Update the currently available containers and version specs to the current agent version. This command does not update weka, only the container's representation on the local machine.
 
@@ -156,7 +158,7 @@ weka agent update-containers [--color color] [--help]
 | `--color`      | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled') |
 | `-h`, `--help` | Show help message                                                                |
 
-## weka alerts
+### weka alerts
 
 List alerts in the Weka cluster
 
@@ -201,7 +203,7 @@ weka alerts [--severity severity]
 | `--no-header`             | Don't show column headers when printing the output                                                                                                                                                               |
 | `-v`, `--verbose`         | Show all columns in output                                                                                                                                                                                       |
 
-### weka alerts describe
+#### weka alerts describe
 
 Describe all the alert types that might be returned from the weka cluster (including explanations and how to handle them)
 
@@ -240,7 +242,7 @@ weka alerts describe [--color color]
 | `--no-header`             | Don't show column headers when printing the output                                                                                                                                      |
 | `-v`, `--verbose`         | Show all columns in output                                                                                                                                                              |
 
-### weka alerts mute
+#### weka alerts mute
 
 Mute an alert-type. Muted alerts will not appear in the list of active alerts. It is required to specify a duration for the mute. Once the set duration concludes, the alert-type will automatically be unmuted.
 
@@ -277,7 +279,7 @@ weka alerts mute <alert-type>
 | `--hostname`...           | Mutes alerts for specific server IDs. This parameter applies only to server-specific alerts. If omitted or used on a non-server alert, all alerts of this type are muted. Provide a comma-separated list or repeat the parameter for multiple IDs. (may be repeated or comma-separated)          |
 | `-h`, `--help`            | Show help message                                                                                                                                                                                                                                                                                |
 
-#### weka alerts mute add
+**weka alerts mute add**
 
 Add more items to the mute scope for an already muted alert-type. You can add more process/container/hostname items to the existing scope. Duration and comment remain unchanged.
 
@@ -310,7 +312,7 @@ weka alerts mute add <alert-type>
 | `--hostname`...           | Adds more hostnames to the mute scope. This parameter applies only to server-specific alerts. Provide a comma-separated list or repeat the parameter for multiple IDs. (may be repeated or comma-separated)        |
 | `-h`, `--help`            | Show help message                                                                                                                                                                                                  |
 
-#### weka alerts mute list
+**weka alerts mute list**
 
 List all currently muted alert types with their mute configurations
 
@@ -349,7 +351,7 @@ weka alerts mute list [--color color]
 | `--no-header`             | Don't show column headers when printing the output                                                                                                                                      |
 | `-v`, `--verbose`         | Show all columns in output                                                                                                                                                              |
 
-#### weka alerts mute remove
+**weka alerts mute remove**
 
 Remove specific items from the mute scope of an already muted alert-type. You can remove specific process/container/hostname items from the existing scope. If all items are removed, the alert will be completely unmuted.
 
@@ -382,7 +384,7 @@ weka alerts mute remove <alert-type>
 | `--hostname`...           | Removes specific hostnames from the mute scope. This parameter applies only to server-specific alerts. Provide a comma-separated list or repeat the parameter for multiple IDs. (may be repeated or comma-separated)        |
 | `-h`, `--help`            | Show help message                                                                                                                                                                                                           |
 
-### weka alerts types
+#### weka alerts types
 
 List all alert types that can be returned from the Weka cluster
 
@@ -409,7 +411,7 @@ weka alerts types [--color color]
 | `-h`, `--help`            | Show help message                                                                                          |
 | `-J`, `--json`            | Format output as JSON                                                                                      |
 
-### weka alerts unmute
+#### weka alerts unmute
 
 Unmute an alert-type which was previously muted.
 
@@ -436,7 +438,7 @@ weka alerts unmute <alert-type>
 | `--profile`               | Name of the connection and authentication profile to use                                                   |
 | `-h`, `--help`            | Show help message                                                                                          |
 
-## weka audit
+### weka audit
 
 Commands used for audit in a weka cluster
 
@@ -450,7 +452,7 @@ weka audit [--color color] [--help]
 | `--color`      | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled') |
 | `-h`, `--help` | Show help message                                                                |
 
-### weka audit cluster
+#### weka audit cluster
 
 Audit cluster CLI
 
@@ -464,7 +466,7 @@ weka audit cluster [--color color] [--help]
 | `--color`      | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled') |
 | `-h`, `--help` | Show help message                                                                |
 
-#### weka audit cluster decrypt-filename
+**weka audit cluster decrypt-filename**
 
 Decrypt filename in audit telemetry
 
@@ -532,7 +534,7 @@ weka audit cluster decrypt-filename enable [--color color]
 | `-h`, `--help`            | Show help message                                                                                          |
 | `-J`, `--json`            | Format output as JSON                                                                                      |
 
-#### weka audit cluster decrypt-fullpath
+**weka audit cluster decrypt-fullpath**
 
 Decrypt full file paths in audit telemetry
 
@@ -600,7 +602,7 @@ weka audit cluster decrypt-fullpath enable [--color color]
 | `-h`, `--help`            | Show help message                                                                                          |
 | `-J`, `--json`            | Format output as JSON                                                                                      |
 
-#### weka audit cluster disable
+**weka audit cluster disable**
 
 Disable audit logging cluster-wide
 
@@ -627,7 +629,7 @@ weka audit cluster disable [--color color]
 | `-h`, `--help`            | Show help message                                                                                          |
 | `-J`, `--json`            | Format output as JSON                                                                                      |
 
-#### weka audit cluster enable
+**weka audit cluster enable**
 
 Enable audit logging cluster-wide
 
@@ -654,7 +656,7 @@ weka audit cluster enable [--color color]
 | `-h`, `--help`            | Show help message                                                                                          |
 | `-J`, `--json`            | Format output as JSON                                                                                      |
 
-#### weka audit cluster enhancer
+**weka audit cluster enhancer**
 
 Audit cluster enhancer CLI
 
@@ -722,7 +724,7 @@ weka audit cluster enhancer enable [--color color]
 | `-h`, `--help`            | Show help message                                                                                          |
 | `-J`, `--json`            | Format output as JSON                                                                                      |
 
-#### weka audit cluster resolve-paths
+**weka audit cluster resolve-paths**
 
 Resolve full file paths in audit telemetry
 
@@ -790,7 +792,7 @@ weka audit cluster resolve-paths enable [--color color]
 | `-h`, `--help`            | Show help message                                                                                          |
 | `-J`, `--json`            | Format output as JSON                                                                                      |
 
-#### weka audit cluster set-global-operations
+**weka audit cluster set-global-operations**
 
 Define which operations to audit globally (can be 'All' or any subset)
 
@@ -819,7 +821,7 @@ weka audit cluster set-global-operations [--color color]
 | `-h`, `--help`            | Show help message                                                                                                                                                                                                                          |
 | `-J`, `--json`            | Format output as JSON                                                                                                                                                                                                                      |
 
-#### weka audit cluster stats
+**weka audit cluster stats**
 
 Audit logging cluster-wide stats
 
@@ -862,7 +864,7 @@ weka audit cluster stats [--color color]
 | `--no-header`             | Don't show column headers when printing the output                                                                                                                                      |
 | `-v`, `--verbose`         | Show all columns in output                                                                                                                                                              |
 
-#### weka audit cluster status
+**weka audit cluster status**
 
 Audit logging cluster-wide status
 
@@ -889,7 +891,7 @@ weka audit cluster status [--color color]
 | `-h`, `--help`            | Show help message                                                                                          |
 | `-J`, `--json`            | Format output as JSON                                                                                      |
 
-### weka audit fs
+#### weka audit fs
 
 Audit filesystems CLI
 
@@ -903,7 +905,7 @@ weka audit fs [--color color] [--help]
 | `--color`      | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled') |
 | `-h`, `--help` | Show help message                                                                |
 
-#### weka audit fs disable
+**weka audit fs disable**
 
 Disable audit on a filesystem
 
@@ -930,7 +932,7 @@ weka audit fs disable <name>
 | `--profile`               | Name of the connection and authentication profile to use                                                   |
 | `-h`, `--help`            | Show help message                                                                                          |
 
-#### weka audit fs enable
+**weka audit fs enable**
 
 Enable audit on a filesystem
 
@@ -957,7 +959,7 @@ weka audit fs enable <name>
 | `--profile`               | Name of the connection and authentication profile to use                                                   |
 | `-h`, `--help`            | Show help message                                                                                          |
 
-#### weka audit fs set-operations
+**weka audit fs set-operations**
 
 Override audit operations for a specific filesystem
 
@@ -988,7 +990,7 @@ weka audit fs set-operations <name>
 | `-h`, `--help`            | Show help message                                                                                                                                                                                                                                                                            |
 | `-J`, `--json`            | Format output as JSON                                                                                                                                                                                                                                                                        |
 
-#### weka audit fs status
+**weka audit fs status**
 
 List filesystems audit status
 
@@ -1033,7 +1035,7 @@ weka audit fs status [--name name]
 | `--no-header`             | Don't show column headers when printing the output                                                                                                                                      |
 | `-v`, `--verbose`         | Show all columns in output                                                                                                                                                              |
 
-## weka catalog
+### weka catalog
 
 Manage the Data Catalog service and indexed filesystem data
 
@@ -1047,7 +1049,7 @@ weka catalog [--color color] [--help]
 | `--color`      | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled') |
 | `-h`, `--help` | Show help message                                                                |
 
-### weka catalog cluster
+#### weka catalog cluster
 
 Manage the catalog cluster infrastructure and status
 
@@ -1061,7 +1063,7 @@ weka catalog cluster [--color color] [--help]
 | `--color`      | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled') |
 | `-h`, `--help` | Show help message                                                                |
 
-#### weka catalog cluster add
+**weka catalog cluster add**
 
 Create a catalog cluster
 
@@ -1094,7 +1096,7 @@ weka catalog cluster add <indexfs>
 | `-h`, `--help`            | Show help message                                                                                          |
 | `-J`, `--json`            | Format output as JSON                                                                                      |
 
-#### weka catalog cluster remove
+**weka catalog cluster remove**
 
 Destroy the catalog cluster
 
@@ -1123,7 +1125,7 @@ weka catalog cluster remove [--color color]
 | `-f`, `--force`           | Force this action without further confirmation. This action will destroy the catalog cluster and cannot be undone. |
 | `-J`, `--json`            | Format output as JSON                                                                                              |
 
-#### weka catalog cluster status
+**weka catalog cluster status**
 
 Get catalog cluster status
 
@@ -1166,7 +1168,7 @@ weka catalog cluster status [--color color]
 | `--no-header`             | Don't show column headers when printing the output                                                                                                                                      |
 | `-v`, `--verbose`         | Show all columns in output                                                                                                                                                              |
 
-#### weka catalog cluster update
+**weka catalog cluster update**
 
 Update an existing catalog cluster
 
@@ -1197,7 +1199,7 @@ weka catalog cluster update [--color color]
 | `-h`, `--help`            | Show help message                                                                                          |
 | `-J`, `--json`            | Format output as JSON                                                                                      |
 
-### weka catalog config
+#### weka catalog config
 
 Manage the configuration settings for the Data Catalog service
 
@@ -1211,7 +1213,7 @@ weka catalog config [--color color] [--help]
 | `--color`      | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled') |
 | `-h`, `--help` | Show help message                                                                |
 
-#### weka catalog config show
+**weka catalog config show**
 
 View the current catalog cluster settings and indexing policies
 
@@ -1238,7 +1240,7 @@ weka catalog config show [--color color]
 | `-h`, `--help`            | Show help message                                                                                          |
 | `-J`, `--json`            | Format output as JSON                                                                                      |
 
-#### weka catalog config update
+**weka catalog config update**
 
 Update catalog configuration including index policy
 
@@ -1266,12 +1268,12 @@ weka catalog config update [--color color]
 | `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                               |
 | `--profile`               | Name of the connection and authentication profile to use                                                                                                             |
 | `--index-enabled`         | Enable or disable catalog indexing (format: 'yes', 'no', 'true', 'false', 'on', 'off', 'y' or 'n')                                                                   |
-| `--index-interval`        | Index task execution interval. Default: 1 day. Supports time units: s (seconds), m (minutes), h (hours) (format: 3s, 4m, 2h, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--retention-period`      | Retention period for index snapshots. Default: 30 days. Supports time units: m (minutes), h (hours), d (days) (format: 3s, 4m, 2h, 1d, 1d5h, 1w, infinite/unlimited) |
+| `--index-interval`        | Index task execution interval. Default: 1 day. Supports time units: s (seconds), m (minutes), h (hours) (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
+| `--retention-period`      | Retention period for index snapshots. Default: 30 days. Supports time units: m (minutes), h (hours), d (days) (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
 | `--max-ingest-tasks`      | Maximum number of ingest tasks that can run in parallel (default: 2)                                                                                                 |
 | `-h`, `--help`            | Show help message                                                                                                                                                    |
 
-### weka catalog fs
+#### weka catalog fs
 
 Manage filesystem catalog status and metadata
 
@@ -1285,7 +1287,7 @@ weka catalog fs [--color color] [--help]
 | `--color`      | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled') |
 | `-h`, `--help` | Show help message                                                                |
 
-#### weka catalog fs status
+**weka catalog fs status**
 
 Show which filesystems have catalog enabled, which have metadata, last ingested time, and last ingest task errors
 
@@ -1324,7 +1326,7 @@ weka catalog fs status [--color color]
 | `--no-header`             | Don't show column headers when printing the output                                                                                                                                      |
 | `-v`, `--verbose`         | Show all columns in output                                                                                                                                                              |
 
-### weka catalog metadata
+#### weka catalog metadata
 
 Manage catalog metadata on a per-filesystem basis
 
@@ -1338,7 +1340,7 @@ weka catalog metadata [--color color] [--help]
 | `--color`      | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled') |
 | `-h`, `--help` | Show help message                                                                |
 
-#### weka catalog metadata remove
+**weka catalog metadata remove**
 
 Delete catalog metadata for a filesystem
 
@@ -1369,7 +1371,7 @@ weka catalog metadata remove <fs-name>
 | `-J`, `--json`            | Format output as JSON                                                                                                                 |
 | `-f`, `--force`           | Force this action without further confirmation. This action deletes all the catalog metadata for the filesystem and cannot be undone. |
 
-#### weka catalog metadata show
+**weka catalog metadata show**
 
 Show ingestion history for a filesystem
 
@@ -1398,7 +1400,7 @@ weka catalog metadata show <fs-name>
 | `-h`, `--help`            | Show help message                                                                                          |
 | `-J`, `--json`            | Format output as JSON                                                                                      |
 
-## weka cloud
+### weka cloud
 
 Cloud commands. List the cluster's cloud status, if no subcommand supplied.
 
@@ -1412,7 +1414,7 @@ weka cloud [--color color] [--help]
 | `--color`      | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled') |
 | `-h`, `--help` | Show help message                                                                |
 
-### weka cloud disable
+#### weka cloud disable
 
 Turn cloud features off
 
@@ -1437,7 +1439,7 @@ weka cloud disable [--color color]
 | `--profile`               | Name of the connection and authentication profile to use                                                   |
 | `-h`, `--help`            | Show help message                                                                                          |
 
-### weka cloud enable
+#### weka cloud enable
 
 Turn cloud features on
 
@@ -1466,7 +1468,7 @@ weka cloud enable [--cloud-url cloud]
 | `--profile`               | Name of the connection and authentication profile to use                                                       |
 | `-h`, `--help`            | Show help message                                                                                              |
 
-### weka cloud proxy
+#### weka cloud proxy
 
 Get or set the HTTP proxy used to connect to cloud services
 
@@ -1497,7 +1499,170 @@ weka cloud proxy [--color color]
 | `-J`, `--json`            | Format output as JSON                                                                                      |
 | `-u`, `--unset`           | Remove the HTTP proxy setting                                                                              |
 
-### weka cloud status
+#### weka cloud quota-analytics
+
+Quota analytics commands
+
+```sh
+weka cloud quota-analytics [--color color] [--help]
+
+```
+
+| Parameter      | Description                                                                      |
+| -------------- | -------------------------------------------------------------------------------- |
+| `--color`      | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled') |
+| `-h`, `--help` | Show help message                                                                |
+
+**weka cloud quota-analytics disable**
+
+Turn quota analytics reporting off
+
+```sh
+weka cloud quota-analytics disable [--color color]
+                                   [--HOST HOST]
+                                   [--PORT PORT]
+                                   [--CONNECT-TIMEOUT CONNECT-TIMEOUT]
+                                   [--TIMEOUT TIMEOUT]
+                                   [--profile profile]
+                                   [--help]
+                                   [--json]
+
+```
+
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
+| `-J`, `--json`            | Format output as JSON                                                                                      |
+
+**weka cloud quota-analytics enable**
+
+Turn quota analytics reporting on
+
+```sh
+weka cloud quota-analytics enable [--color color]
+                                  [--HOST HOST]
+                                  [--PORT PORT]
+                                  [--CONNECT-TIMEOUT CONNECT-TIMEOUT]
+                                  [--TIMEOUT TIMEOUT]
+                                  [--profile profile]
+                                  [--help]
+                                  [--json]
+
+```
+
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
+| `-J`, `--json`            | Format output as JSON                                                                                      |
+
+**weka cloud quota-analytics redact-paths**
+
+Quota analytics path redaction commands
+
+```sh
+weka cloud quota-analytics redact-paths [--color color] [--help]
+
+```
+
+| Parameter      | Description                                                                      |
+| -------------- | -------------------------------------------------------------------------------- |
+| `--color`      | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled') |
+| `-h`, `--help` | Show help message                                                                |
+
+**weka cloud quota-analytics redact-paths off**
+
+Turn quota analytics path redaction off
+
+```sh
+weka cloud quota-analytics redact-paths off [--color color]
+                                            [--HOST HOST]
+                                            [--PORT PORT]
+                                            [--CONNECT-TIMEOUT CONNECT-TIMEOUT]
+                                            [--TIMEOUT TIMEOUT]
+                                            [--profile profile]
+                                            [--help]
+                                            [--json]
+
+```
+
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
+| `-J`, `--json`            | Format output as JSON                                                                                      |
+
+**weka cloud quota-analytics redact-paths on**
+
+Turn quota analytics path redaction on
+
+```sh
+weka cloud quota-analytics redact-paths on [--color color]
+                                           [--HOST HOST]
+                                           [--PORT PORT]
+                                           [--CONNECT-TIMEOUT CONNECT-TIMEOUT]
+                                           [--TIMEOUT TIMEOUT]
+                                           [--profile profile]
+                                           [--help]
+                                           [--json]
+
+```
+
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
+| `-J`, `--json`            | Format output as JSON                                                                                      |
+
+**weka cloud quota-analytics status**
+
+Show quota analytics reporting and path redaction configuration
+
+```sh
+weka cloud quota-analytics status [--color color]
+                                  [--HOST HOST]
+                                  [--PORT PORT]
+                                  [--CONNECT-TIMEOUT CONNECT-TIMEOUT]
+                                  [--TIMEOUT TIMEOUT]
+                                  [--profile profile]
+                                  [--help]
+                                  [--json]
+
+```
+
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
+| `-J`, `--json`            | Format output as JSON                                                                                      |
+
+#### weka cloud status
 
 Show cloud connectivity status
 
@@ -1536,7 +1701,7 @@ weka cloud status [--color color]
 | `--no-header`             | Don't show column headers when printing the output                                                                                                                                      |
 | `-v`, `--verbose`         | Show all columns in output                                                                                                                                                              |
 
-### weka cloud upload-rate
+#### weka cloud upload-rate
 
 Get the cloud upload rate
 
@@ -1563,7 +1728,7 @@ weka cloud upload-rate [--color color]
 | `-h`, `--help`            | Show help message                                                                                          |
 | `-J`, `--json`            | Format output as JSON                                                                                      |
 
-#### weka cloud upload-rate set
+**weka cloud upload-rate set**
 
 Set the cloud upload rate
 
@@ -1590,7 +1755,7 @@ weka cloud upload-rate set [--bytes-per-second bps]
 | `--profile`               | Name of the connection and authentication profile to use                                                   |
 | `-h`, `--help`            | Show help message                                                                                          |
 
-## weka cluster
+### weka cluster
 
 Commands that manage the cluster
 
@@ -1604,7 +1769,7 @@ weka cluster [--color color] [--help]
 | `--color`      | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled') |
 | `-h`, `--help` | Show help message                                                                |
 
-### weka cluster bucket
+#### weka cluster bucket
 
 List the cluster buckets, logical compute units used to divide the workload in the cluster
 
@@ -1649,7 +1814,7 @@ weka cluster bucket [--color color]
 | `--no-header`             | Don't show column headers when printing the output                                                                                                                                                                                                                                                  |
 | `-v`, `--verbose`         | Show all columns in output                                                                                                                                                                                                                                                                          |
 
-### weka cluster client-target-version
+#### weka cluster client-target-version
 
 Commands that manage the clients target version
 
@@ -1663,7 +1828,7 @@ weka cluster client-target-version [--color color] [--help]
 | `--color`      | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled') |
 | `-h`, `--help` | Show help message                                                                |
 
-#### weka cluster client-target-version reset
+**weka cluster client-target-version reset**
 
 Clear cluster's client target version value
 
@@ -1688,7 +1853,7 @@ weka cluster client-target-version reset [--color color]
 | `--profile`               | Name of the connection and authentication profile to use                                                   |
 | `-h`, `--help`            | Show help message                                                                                          |
 
-#### weka cluster client-target-version set
+**weka cluster client-target-version set**
 
 Determine clients target version to be used in case of upgrade or a new mount (stateless client).
 
@@ -1715,7 +1880,7 @@ weka cluster client-target-version set <version-name>
 | `--profile`               | Name of the connection and authentication profile to use                                                   |
 | `-h`, `--help`            | Show help message                                                                                          |
 
-#### weka cluster client-target-version show
+**weka cluster client-target-version show**
 
 Show clients target version to be used in case of upgrade or a new mount (stateless client).
 
@@ -1740,7 +1905,7 @@ weka cluster client-target-version show [--color color]
 | `--profile`               | Name of the connection and authentication profile to use                                                   |
 | `-h`, `--help`            | Show help message                                                                                          |
 
-### weka cluster container
+#### weka cluster container
 
 List the cluster containers
 
@@ -1797,7 +1962,7 @@ weka cluster container [--color color]
 | `--no-header`             | Don't show column headers when printing the output                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
 | `-v`, `--verbose`         | Show all columns in output                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
 
-#### weka cluster container activate
+**weka cluster container activate**
 
 Activate the supplied containers, or all containers (if none supplied)
 
@@ -1830,7 +1995,7 @@ weka cluster container activate [--color color]
 | `--skip-activate-drives`     | Do not activate the drives of the container                                                                    |
 | `-h`, `--help`               | Show help message                                                                                              |
 
-#### weka cluster container add
+**weka cluster container add**
 
 Add a container to the cluster
 
@@ -1869,7 +2034,7 @@ weka cluster container add <hostname>
 | `-R`, `--raw-units`       | Print values in raw units (bytes, seconds, etc.). When not set, sizes are printed in human-readable format, e.g 1KiB 234MiB 2GiB.                  |
 | `-U`, `--UTC`             | Print times in UTC. When not set, times are converted to the local time of this host.                                                              |
 
-#### weka cluster container apply
+**weka cluster container apply**
 
 Apply the staged resources of the supplied containers, or all containers
 
@@ -1902,7 +2067,7 @@ weka cluster container apply [--color color]
 | `-f`, `--force`              | Force this action without further confirmation.                                                                                              |
 | `-h`, `--help`               | Show help message                                                                                                                            |
 
-#### weka cluster container bandwidth
+**weka cluster container bandwidth**
 
 Limit weka's bandwidth for the container
 
@@ -1931,7 +2096,7 @@ weka cluster container bandwidth <container-id>
 | `--profile`               | Name of the connection and authentication profile to use                                                                                                                                   |
 | `-h`, `--help`            | Show help message                                                                                                                                                                          |
 
-#### weka cluster container clear-failure
+**weka cluster container clear-failure**
 
 Clear the last failure fields for all supplied containers
 
@@ -1958,7 +2123,7 @@ weka cluster container clear-failure [--color color]
 | `--profile`               | Name of the connection and authentication profile to use                                                   |
 | `-h`, `--help`            | Show help message                                                                                          |
 
-#### weka cluster container cores
+**weka cluster container cores**
 
 Dedicate container's cores to weka
 
@@ -2005,7 +2170,7 @@ weka cluster container cores <container-id>
 | `--allow-mix-setting`        | Allow specified core-ids even if there are running containers with AUTO core-ids allocation on the same server. |
 | `-h`, `--help`               | Show help message                                                                                               |
 
-#### weka cluster container deactivate
+**weka cluster container deactivate**
 
 Deactivate the supplied container(s)
 
@@ -2040,7 +2205,7 @@ weka cluster container deactivate [--allow-reduced-resilience-to allow-reduced-r
 | `--allow-unavailable`           | Allow the container to be unavailable while it is deactivated which skips setting its local resources          |
 | `-h`, `--help`                  | Show help message                                                                                              |
 
-#### weka cluster container deactivation-check
+**weka cluster container deactivation-check**
 
 Check if the provided containers can be deactivated
 
@@ -2069,7 +2234,7 @@ weka cluster container deactivation-check [--color color]
 | `-h`, `--help`            | Show help message                                                                                          |
 | `-J`, `--json`            | Format output as JSON                                                                                      |
 
-#### weka cluster container dedicate
+**weka cluster container dedicate**
 
 Set the container as dedicated to weka. For example it can be rebooted whenever needed, and configured by weka for optimal performance and stability
 
@@ -2098,7 +2263,7 @@ weka cluster container dedicate <container-id>
 | `--profile`               | Name of the connection and authentication profile to use                                                                                    |
 | `-h`, `--help`            | Show help message                                                                                                                           |
 
-#### weka cluster container failure-domain
+**weka cluster container failure-domain**
 
 Set the container failure-domain
 
@@ -2129,7 +2294,7 @@ weka cluster container failure-domain <container-id>
 | `--auto`                  | Set this container to be a failure-domain of its own                                                       |
 | `-h`, `--help`            | Show help message                                                                                          |
 
-#### weka cluster container info-hw
+**weka cluster container info-hw**
 
 Show hardware information about one or more containers
 
@@ -2164,7 +2329,7 @@ weka cluster container info-hw [--color color]
 | `-R`, `--raw-units`       | Print values in raw units (bytes, seconds, etc.). When not set, sizes are printed in human-readable format, e.g 1KiB 234MiB 2GiB. |
 | `-U`, `--UTC`             | Print times in UTC. When not set, times are converted to the local time of this host.                                             |
 
-#### weka cluster container join-secret
+**weka cluster container join-secret**
 
 Set secret this container will use when joining or validating other backends
 
@@ -2193,7 +2358,7 @@ weka cluster container join-secret <container-id>
 | `--profile`               | Name of the connection and authentication profile to use                                                   |
 | `-h`, `--help`            | Show help message                                                                                          |
 
-#### weka cluster container management-ips
+**weka cluster container management-ips**
 
 Set the container's management process IPs. Setting 2 IPs will turn this containers networking into highly-available mode
 
@@ -2222,7 +2387,7 @@ weka cluster container management-ips <container-id>
 | `--profile`               | Name of the connection and authentication profile to use                                                   |
 | `-h`, `--help`            | Show help message                                                                                          |
 
-#### weka cluster container memory
+**weka cluster container memory**
 
 Dedicate a set amount of RAM to weka
 
@@ -2251,7 +2416,7 @@ weka cluster container memory <container-id>
 | `--profile`               | Name of the connection and authentication profile to use                                                                                                                                 |
 | `-h`, `--help`            | Show help message                                                                                                                                                                        |
 
-#### weka cluster container net
+**weka cluster container net**
 
 List Weka dedicated networking devices in a container
 
@@ -2378,7 +2543,36 @@ weka cluster container net remove <container-id>
 | `--profile`               | Name of the connection and authentication profile to use                                                   |
 | `-h`, `--help`            | Show help message                                                                                          |
 
-#### weka cluster container remove
+**weka cluster container non-datapath-cores**
+
+Set CPU cores reserved for non-datapath operations (management). Only supported when cgroups are disabled (None groups mode). Pass no core IDs to clear the list.
+
+```sh
+weka cluster container non-datapath-cores <container-id>
+                                          [--color color]
+                                          [--HOST HOST]
+                                          [--PORT PORT]
+                                          [--CONNECT-TIMEOUT CONNECT-TIMEOUT]
+                                          [--TIMEOUT TIMEOUT]
+                                          [--profile profile]
+                                          [--core-ids core-ids]...
+                                          [--help]
+
+```
+
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `container-id`\*          | Container ID as shown in `weka cluster container`                                                          |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `--core-ids`...           | CPU core IDs to reserve for non-datapath use (may be repeated or comma-separated)                          |
+| `-h`, `--help`            | Show help message                                                                                          |
+
+**weka cluster container remove**
 
 Remove a container from the cluster
 
@@ -2409,7 +2603,7 @@ weka cluster container remove <container-id>
 | `--no-unimprint`          | Don't remotely unimprint the container, just remove it from the cluster configuration                      |
 | `-h`, `--help`            | Show help message                                                                                          |
 
-#### weka cluster container requested-action
+**weka cluster container requested-action**
 
 Set the requested action of the supplied containers to one of: STOP, RESTART, APPLY\_RESOURCES to gracefully stop, restart or apply resources to the containers.
 
@@ -2438,7 +2632,7 @@ weka cluster container requested-action <requested_action>
 | `--profile`               | Name of the connection and authentication profile to use                                                           |
 | `-h`, `--help`            | Show help message                                                                                                  |
 
-#### weka cluster container resources
+**weka cluster container resources**
 
 Get the resources of the supplied container
 
@@ -2473,7 +2667,7 @@ weka cluster container resources <container-id>
 | `-R`, `--raw-units`       | Print values in raw units (bytes, seconds, etc.). When not set, sizes are printed in human-readable format, e.g 1KiB 234MiB 2GiB. |
 | `-U`, `--UTC`             | Print times in UTC. When not set, times are converted to the local time of this host.                                             |
 
-#### weka cluster container restore
+**weka cluster container restore**
 
 Restore staged resources of the supplied containers, or all containers, to their stable state
 
@@ -2502,7 +2696,7 @@ weka cluster container restore [--color color]
 | `--all`                   | Apply resources on all the containers in the cluster. This will cause all backend containers in the entire cluter to restart simultaneously! |
 | `-h`, `--help`            | Show help message                                                                                                                            |
 
-### weka cluster add
+#### weka cluster add
 
 Form a Weka cluster from hosts that just had Weka installed on them
 
@@ -2541,7 +2735,7 @@ weka cluster add [--admin-password admin-password]
 | `-h`, `--help`             | Show help message                                                                                                                                                                                     |
 | `-J`, `--json`             | Format output as JSON                                                                                                                                                                                 |
 
-### weka cluster default-net
+#### weka cluster default-net
 
 List the default data networking configuration
 
@@ -2572,7 +2766,7 @@ weka cluster default-net [--color color]
 | `-R`, `--raw-units`       | Print values in raw units (bytes, seconds, etc.). When not set, sizes are printed in human-readable format, e.g 1KiB 234MiB 2GiB. |
 | `-U`, `--UTC`             | Print times in UTC. When not set, times are converted to the local time of this host.                                             |
 
-#### weka cluster default-net reset
+**weka cluster default-net reset**
 
 Reset the default data networking configuration
 
@@ -2597,7 +2791,7 @@ weka cluster default-net reset [--color color]
 | `--profile`               | Name of the connection and authentication profile to use                                                   |
 | `-h`, `--help`            | Show help message                                                                                          |
 
-#### weka cluster default-net set
+**weka cluster default-net set**
 
 Set the default data networking configuration
 
@@ -2628,7 +2822,7 @@ weka cluster default-net set [--range range]
 | `--profile`               | Name of the connection and authentication profile to use                                                   |
 | `-h`, `--help`            | Show help message                                                                                          |
 
-#### weka cluster default-net update
+**weka cluster default-net update**
 
 Update the default data networking configuration
 
@@ -2659,7 +2853,7 @@ weka cluster default-net update [--range range]
 | `--profile`               | Name of the connection and authentication profile to use                                                   |
 | `-h`, `--help`            | Show help message                                                                                          |
 
-### weka cluster drive
+#### weka cluster drive
 
 List the cluster's drives
 
@@ -2686,29 +2880,29 @@ weka cluster drive [--color color]
 
 ```
 
-| Parameter                 | Description                                                                                                                                                                                                                                                                                                                                                                                                                                       |
-| ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `uuids`...                | A list of DriveIds or UUIDs to list. If no ID is specified, all drives are listed.                                                                                                                                                                                                                                                                                                                                                                |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                                                                                                                                                                                                                                                                                  |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                                                                                                                                                                                                                                                                                                  |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                                                                                                                                                                                                                                                                                                  |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                                                                                                                                                                                                                        |
-| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                                                                                                                                                                                                                            |
-| `--profile`               | Name of the connection and authentication profile to use                                                                                                                                                                                                                                                                                                                                                                                          |
-| `-f`, `--format`          | Specify in what format to output the result (format: 'view', 'csv', 'markdown', 'json' or 'oldview')                                                                                                                                                                                                                                                                                                                                              |
-| `--container`...          | Only return the drives of these container IDs, if not specified, all drives are listed (may be repeated or comma-separated)                                                                                                                                                                                                                                                                                                                       |
-| `-o`, `--output`...       | Specify which columns to output. May include any of the following: uid,id,uuid,host,hostname,node,path,size,status,stime,fdName,fdId,writable,used,nvkvused,attachment,vendor,firmware,serial,model,added,removed,block,remain,threshold,pool,drive\_status\_message,pci\_vid,pci\_id,pci\_ssvid,pci\_ssid,location,needsPhaseOut,hardDeactivate,autoEjectReason,lastFailure,lastFailureCode,lastFailureTime (may be repeated or comma-separated) |
-| `-s`, `--sort`...         | Specify which column(s) to take into account when sorting the output. May include a '+' or '-' before the column name to sort in ascending or descending order respectively. Usage: \[+                                                                                                                                                                                                                                                           |
-| `-F`, `--filter`...       | Specify what values to filter by in a specific column. Usage: column1=val1\[,column2=val2\[,..]] (may be repeated or comma-separated)                                                                                                                                                                                                                                                                                                             |
-| `--filter-color`...       | Filter rows with specific colors (red/yellow/green) (may be repeated or comma-separated)                                                                                                                                                                                                                                                                                                                                                          |
-| `--show-removed`          | Show drives that were removed from the cluster                                                                                                                                                                                                                                                                                                                                                                                                    |
-| `-h`, `--help`            | Show help message                                                                                                                                                                                                                                                                                                                                                                                                                                 |
-| `-R`, `--raw-units`       | Print values in raw units (bytes, seconds, etc.). When not set, sizes are printed in human-readable format, e.g 1KiB 234MiB 2GiB.                                                                                                                                                                                                                                                                                                                 |
-| `-U`, `--UTC`             | Print times in UTC. When not set, times are converted to the local time of this host.                                                                                                                                                                                                                                                                                                                                                             |
-| `--no-header`             | Don't show column headers when printing the output                                                                                                                                                                                                                                                                                                                                                                                                |
-| `-v`, `--verbose`         | Show all columns in output                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| Parameter                 | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `uuids`...                | A list of DriveIds or UUIDs to list. If no ID is specified, all drives are listed.                                                                                                                                                                                                                                                                                                                                                                                              |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                                                                                                                                                                                                                                                                                                                |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                                                                                                                                                                                                                                                                                                                                |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                                                                                                                                                                                                                                                                                                                                |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                                                                                                                                                                                                                                                      |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                                                                                                                                                                                                                                                          |
+| `--profile`               | Name of the connection and authentication profile to use                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| `-f`, `--format`          | Specify in what format to output the result (format: 'view', 'csv', 'markdown', 'json' or 'oldview')                                                                                                                                                                                                                                                                                                                                                                            |
+| `--container`...          | Only return the drives of these container IDs, if not specified, all drives are listed (may be repeated or comma-separated)                                                                                                                                                                                                                                                                                                                                                     |
+| `-o`, `--output`...       | Specify which columns to output. May include any of the following: uid,id,uuid,host,hostname,node,path,size,status,stime,fdName,fdId,writable,used,nvkvused,attachment,vendor,firmware,serial,model,added,removed,block,remain,threshold,pool,drive\_status\_message,pci\_vid,pci\_id,pci\_ssvid,pci\_ssid,location,needsPhaseOut,hardDeactivate,autoEjectReason,lastFailure,lastFailureCode,lastFailureTime,fail\_reports,fail\_reporters (may be repeated or comma-separated) |
+| `-s`, `--sort`...         | Specify which column(s) to take into account when sorting the output. May include a '+' or '-' before the column name to sort in ascending or descending order respectively. Usage: \[+                                                                                                                                                                                                                                                                                         |
+| `-F`, `--filter`...       | Specify what values to filter by in a specific column. Usage: column1=val1\[,column2=val2\[,..]] (may be repeated or comma-separated)                                                                                                                                                                                                                                                                                                                                           |
+| `--filter-color`...       | Filter rows with specific colors (red/yellow/green) (may be repeated or comma-separated)                                                                                                                                                                                                                                                                                                                                                                                        |
+| `--show-removed`          | Show drives that were removed from the cluster                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| `-h`, `--help`            | Show help message                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| `-R`, `--raw-units`       | Print values in raw units (bytes, seconds, etc.). When not set, sizes are printed in human-readable format, e.g 1KiB 234MiB 2GiB.                                                                                                                                                                                                                                                                                                                                               |
+| `-U`, `--UTC`             | Print times in UTC. When not set, times are converted to the local time of this host.                                                                                                                                                                                                                                                                                                                                                                                           |
+| `--no-header`             | Don't show column headers when printing the output                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| `-v`, `--verbose`         | Show all columns in output                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
 
-#### weka cluster drive activate
+**weka cluster drive activate**
 
 Activate the supplied drive, or all drives (if none supplied)
 
@@ -2739,7 +2933,7 @@ weka cluster drive activate [--color color]
 | `-R`, `--raw-units`       | Print values in raw units (bytes, seconds, etc.). When not set, sizes are printed in human-readable format, e.g 1KiB 234MiB 2GiB. |
 | `-U`, `--UTC`             | Print times in UTC. When not set, times are converted to the local time of this host.                                             |
 
-#### weka cluster drive add
+**weka cluster drive add**
 
 Add the given drive
 
@@ -2792,7 +2986,7 @@ weka cluster drive add <container-id>
 | `--no-header`                      | Don't show column headers when printing the output                                                                                                                                      |
 | `-v`, `--verbose`                  | Show all columns in output                                                                                                                                                              |
 
-#### weka cluster drive deactivate
+**weka cluster drive deactivate**
 
 Deactivates one or more SSD drives, taking them offline.
 
@@ -2827,7 +3021,7 @@ weka cluster drive deactivate [--allow-reduced-resilience-to allow-reduced-resil
 | `-f`, `--force`                 | Force this action without further confirmation. This action may impact performance while the drive is phasing out. |
 | `-h`, `--help`                  | Show help message                                                                                                  |
 
-#### weka cluster drive identify
+**weka cluster drive identify**
 
 Turn a drive's identify LED on or off
 
@@ -2856,7 +3050,7 @@ weka cluster drive identify <uuid>
 | `--profile`               | Name of the connection and authentication profile to use                                                   |
 | `-h`, `--help`            | Show help message                                                                                          |
 
-#### weka cluster drive remove
+**weka cluster drive remove**
 
 Remove the supplied drive(s)
 
@@ -2885,7 +3079,7 @@ weka cluster drive remove [--color color]
 | `-f`, `--force`           | Force this action without further confirmation. To undo the removal, add the drive back and re-scan the drives on the host local to the drive.                                            |
 | `-h`, `--help`            | Show help message                                                                                                                                                                         |
 
-#### weka cluster drive scan
+**weka cluster drive scan**
 
 Scan for provisioned drives on the cluster's containers
 
@@ -2916,7 +3110,7 @@ weka cluster drive scan [--color color]
 | `-R`, `--raw-units`       | Print values in raw units (bytes, seconds, etc.). When not set, sizes are printed in human-readable format, e.g 1KiB 234MiB 2GiB. |
 | `-U`, `--UTC`             | Print times in UTC. When not set, times are converted to the local time of this host.                                             |
 
-### weka cluster failure-domain
+#### weka cluster failure-domain
 
 List the Weka cluster failure domains
 
@@ -2961,7 +3155,7 @@ weka cluster failure-domain [--color color]
 | `--no-header`             | Don't show column headers when printing the output                                                                                                                                                                                                                                         |
 | `-v`, `--verbose`         | Show all columns in output                                                                                                                                                                                                                                                                 |
 
-### weka cluster hot-spare
+#### weka cluster hot-spare
 
 Get or set the number of hot-spare failure-domains in the cluster. If param is not given, the current number of hot-spare FDs will be listed
 
@@ -2996,7 +3190,7 @@ weka cluster hot-spare [--color color]
 | `-R`, `--raw-units`          | Print values in raw units (bytes, seconds, etc.). When not set, sizes are printed in human-readable format, e.g 1KiB 234MiB 2GiB. |
 | `-U`, `--UTC`                | Print times in UTC. When not set, times are converted to the local time of this host.                                             |
 
-### weka cluster license
+#### weka cluster license
 
 Get information about the current license status, how much resources are being used in the cluster and whether or not your current license is valid.
 
@@ -3027,7 +3221,7 @@ weka cluster license [--color color]
 | `-R`, `--raw-units`       | Print values in raw units (bytes, seconds, etc.). When not set, sizes are printed in human-readable format, e.g 1KiB 234MiB 2GiB. |
 | `-U`, `--UTC`             | Print times in UTC. When not set, times are converted to the local time of this host.                                             |
 
-#### weka cluster license reset
+**weka cluster license reset**
 
 Removes existing license information, returning the cluster to an unlicensed mode
 
@@ -3052,7 +3246,7 @@ weka cluster license reset [--color color]
 | `--profile`               | Name of the connection and authentication profile to use                                                   |
 | `-h`, `--help`            | Show help message                                                                                          |
 
-#### weka cluster license set
+**weka cluster license set**
 
 Set the cluster license
 
@@ -3079,7 +3273,7 @@ weka cluster license set <license>
 | `--profile`               | Name of the connection and authentication profile to use                                                   |
 | `-h`, `--help`            | Show help message                                                                                          |
 
-### weka cluster mount-defaults
+#### weka cluster mount-defaults
 
 Commands for editing default mount options
 
@@ -3093,7 +3287,7 @@ weka cluster mount-defaults [--color color] [--help]
 | `--color`      | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled') |
 | `-h`, `--help` | Show help message                                                                |
 
-#### weka cluster mount-defaults reset
+**weka cluster mount-defaults reset**
 
 Reset default mount options
 
@@ -3124,7 +3318,7 @@ weka cluster mount-defaults reset [--color color]
 | `--qos-max-ops`              | qos-max-ops is the maximum number of operations of any kind for the client                                  |
 | `-h`, `--help`               | Show help message                                                                                           |
 
-#### weka cluster mount-defaults set
+**weka cluster mount-defaults set**
 
 Set default mount options.
 
@@ -3155,7 +3349,7 @@ weka cluster mount-defaults set [--qos-max-throughput qos-max-throughput]
 | `--profile`                  | Name of the connection and authentication profile to use                                                    |
 | `-h`, `--help`               | Show help message                                                                                           |
 
-#### weka cluster mount-defaults show
+**weka cluster mount-defaults show**
 
 View default mount options
 
@@ -3182,7 +3376,7 @@ weka cluster mount-defaults show [--color color]
 | `-J`, `--json`            | Format output as JSON                                                                                      |
 | `-h`, `--help`            | Show help message                                                                                          |
 
-### weka cluster network-space
+#### weka cluster network-space
 
 List the cluster's network-spaces. Optionally filter by tenant.
 
@@ -3227,7 +3421,7 @@ weka cluster network-space [--tenant tenant]
 | `--no-header`             | Don't show column headers when printing the output                                                                                                                                      |
 | `-v`, `--verbose`         | Show all columns in output                                                                                                                                                              |
 
-#### weka cluster network-space add
+**weka cluster network-space add**
 
 Add new Network Space and corresponding VLAN and IP Pool for BE Cluster use
 
@@ -3262,7 +3456,7 @@ weka cluster network-space add <name>
 | `--profile`               | Name of the connection and authentication profile to use                                                   |
 | `-h`, `--help`            | Show help message                                                                                          |
 
-#### weka cluster network-space remove
+**weka cluster network-space remove**
 
 Remove a Network Space
 
@@ -3288,12 +3482,12 @@ weka cluster network-space remove <name>
 | `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
 | `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
 | `--profile`               | Name of the connection and authentication profile to use                                                   |
-| `--force`                 | Force remove the netspace even when clients are present!                                                   |
+| `--force`                 | Allow operation even when clients are bound to this network space.                                         |
 | `-h`, `--help`            | Show help message                                                                                          |
 
-#### weka cluster network-space show-usage
+**weka cluster network-space show-usage**
 
-Show Network Space Usage
+Show network space IP usage. Defaults to backend containers only; use --include-clients to also show mounted clients.
 
 ```sh
 weka cluster network-space show-usage [--name name]
@@ -3311,6 +3505,7 @@ weka cluster network-space show-usage [--name name]
                                       [--filter-color filter-color]...
                                       [--backends]
                                       [--clients]
+                                      [--include-clients]
                                       [--help]
                                       [--raw-units]
                                       [--UTC]
@@ -3330,19 +3525,20 @@ weka cluster network-space show-usage [--name name]
 | `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                  |
 | `--profile`               | Name of the connection and authentication profile to use                                                                                                                                |
 | `-f`, `--format`          | Specify in what format to output the result (format: 'view', 'csv', 'markdown', 'json' or 'oldview')                                                                                    |
-| `-o`, `--output`...       | Specify which columns to output. May include any of the following: hostId,ip,netspaceIpIdx,hostMode,proxy (may be repeated or comma-separated)                                          |
+| `-o`, `--output`...       | Specify which columns to output. May include any of the following: idx,ip,hostId,containerName,hostname,device,networkLabel,proxy (may be repeated or comma-separated)                  |
 | `-s`, `--sort`...         | Specify which column(s) to take into account when sorting the output. May include a '+' or '-' before the column name to sort in ascending or descending order respectively. Usage: \[+ |
 | `-F`, `--filter`...       | Specify what values to filter by in a specific column. Usage: column1=val1\[,column2=val2\[,..]] (may be repeated or comma-separated)                                                   |
 | `--filter-color`...       | Filter rows with specific colors (red/yellow/green) (may be repeated or comma-separated)                                                                                                |
 | `-b`, `--backends`        | Only return backend containers                                                                                                                                                          |
 | `-c`, `--clients`         | Only return client containers                                                                                                                                                           |
+| `--include-clients`       | Also show client containers mounted on this netspace (rendered in a separate section)                                                                                                   |
 | `-h`, `--help`            | Show help message                                                                                                                                                                       |
 | `-R`, `--raw-units`       | Print values in raw units (bytes, seconds, etc.). When not set, sizes are printed in human-readable format, e.g 1KiB 234MiB 2GiB.                                                       |
 | `-U`, `--UTC`             | Print times in UTC. When not set, times are converted to the local time of this host.                                                                                                   |
 | `--no-header`             | Don't show column headers when printing the output                                                                                                                                      |
 | `-v`, `--verbose`         | Show all columns in output                                                                                                                                                              |
 
-#### weka cluster network-space update
+**weka cluster network-space update**
 
 Update new Network Space and corresponding VLAN and IP Pool for BE Cluster use
 
@@ -3378,10 +3574,10 @@ weka cluster network-space update <id>
 | `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
 | `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
 | `--profile`               | Name of the connection and authentication profile to use                                                   |
-| `--force`                 | Force update the netspace even when clients are present!                                                   |
+| `--force`                 | Allow operation even when clients are bound to this network space.                                         |
 | `-h`, `--help`            | Show help message                                                                                          |
 
-### weka cluster process
+#### weka cluster process
 
 List the cluster processes
 
@@ -3442,7 +3638,7 @@ weka cluster process [--color color]
 | `--no-header`             | Don't show column headers when printing the output                                                                                                                                                                                                                                                                                                                                     |
 | `-v`, `--verbose`         | Show all columns in output                                                                                                                                                                                                                                                                                                                                                             |
 
-### weka cluster servers
+#### weka cluster servers
 
 Commands for physical servers
 
@@ -3456,7 +3652,7 @@ weka cluster servers [--color color] [--help]
 | `--color`      | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled') |
 | `-h`, `--help` | Show help message                                                                |
 
-#### weka cluster servers list
+**weka cluster servers list**
 
 List the cluster servers
 
@@ -3501,7 +3697,7 @@ weka cluster servers list [--color color]
 | `--no-header`             | Don't show column headers when printing the output                                                                                                                                                                                                             |
 | `-v`, `--verbose`         | Show all columns in output                                                                                                                                                                                                                                     |
 
-#### weka cluster servers requested-action
+**weka cluster servers requested-action**
 
 Set the requested action for all backend containers on the supplied servers to one of: STOP, RESTART, APPLY\_RESOURCES to gracefully stop, restart or apply resources to the backend containers on the servers.
 
@@ -3532,7 +3728,7 @@ weka cluster servers requested-action <requested_action>
 | `--profile`               | Name of the connection and authentication profile to use                                                                           |
 | `-h`, `--help`            | Show help message                                                                                                                  |
 
-#### weka cluster servers show
+**weka cluster servers show**
 
 Show a single server overview according to given server uid
 
@@ -3561,7 +3757,7 @@ weka cluster servers show <uid>
 | `-J`, `--json`            | Format output as JSON                                                                                      |
 | `-h`, `--help`            | Show help message                                                                                          |
 
-### weka cluster start-io
+#### weka cluster start-io
 
 Start IO services
 
@@ -3588,7 +3784,7 @@ weka cluster start-io [--color color]
 | `-h`, `--help`            | Show help message                                                                                          |
 | `-J`, `--json`            | Format output as JSON                                                                                      |
 
-### weka cluster stop-io
+#### weka cluster stop-io
 
 Stop IO services
 
@@ -3621,7 +3817,7 @@ weka cluster stop-io [--color color]
 | `-h`, `--help`               | Show help message                                                                                                                                                                           |
 | `-J`, `--json`               | Format output as JSON                                                                                                                                                                       |
 
-### weka cluster task
+#### weka cluster task
 
 List the currently running background tasks and their status
 
@@ -3668,7 +3864,7 @@ weka cluster task [--color color]
 | `--no-header`             | Don't show column headers when printing the output                                                                                                                                      |
 | `-v`, `--verbose`         | Show all columns in output                                                                                                                                                              |
 
-#### weka cluster task abort
+**weka cluster task abort**
 
 Abort a currently running background task
 
@@ -3695,7 +3891,7 @@ weka cluster task abort <task-id>
 | `--profile`               | Name of the connection and authentication profile to use                                                   |
 | `-h`, `--help`            | Show help message                                                                                          |
 
-#### weka cluster task bucket
+**weka cluster task bucket**
 
 List the status of a background task on specific buckets
 
@@ -3742,7 +3938,7 @@ weka cluster task bucket [--color color]
 | `--no-header`             | Don't show column headers when printing the output                                                                                                                                      |
 | `-v`, `--verbose`         | Show all columns in output                                                                                                                                                              |
 
-#### weka cluster task limits
+**weka cluster task limits**
 
 List the current limits for background tasks
 
@@ -3796,7 +3992,7 @@ weka cluster task limits set [--cpu-limit cpu-limit]
 | `--profile`               | Name of the connection and authentication profile to use                                                   |
 | `-h`, `--help`            | Show help message                                                                                          |
 
-#### weka cluster task pause
+**weka cluster task pause**
 
 Pause a currently running background task
 
@@ -3823,7 +4019,7 @@ weka cluster task pause <task-id>
 | `--profile`               | Name of the connection and authentication profile to use                                                   |
 | `-h`, `--help`            | Show help message                                                                                          |
 
-#### weka cluster task resume
+**weka cluster task resume**
 
 Resume a currently paused background task
 
@@ -3850,7 +4046,7 @@ weka cluster task resume <task-id>
 | `--profile`               | Name of the connection and authentication profile to use                                                   |
 | `-h`, `--help`            | Show help message                                                                                          |
 
-#### weka cluster task throttle
+**weka cluster task throttle**
 
 Slow down the rate of progress of a currently running background task
 
@@ -3879,7 +4075,7 @@ weka cluster task throttle <task-id>
 | `--profile`               | Name of the connection and authentication profile to use                                                   |
 | `-h`, `--help`            | Show help message                                                                                          |
 
-### weka cluster update
+#### weka cluster update
 
 Update cluster configuration
 
@@ -3914,7 +4110,7 @@ weka cluster update [--cluster-name cluster-name]
 | `--profile`                | Name of the connection and authentication profile to use                                                                                                       |
 | `-h`, `--help`             | Show help message                                                                                                                                              |
 
-## weka dataservice
+### weka dataservice
 
 Commands that manage dataservice
 
@@ -3928,7 +4124,7 @@ weka dataservice [--color color] [--help]
 | `--color`      | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled') |
 | `-h`, `--help` | Show help message                                                                |
 
-### weka dataservice global-config
+#### weka dataservice global-config
 
 Dataservice Global Configuration
 
@@ -3942,7 +4138,7 @@ weka dataservice global-config [--color color] [--help]
 | `--color`      | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled') |
 | `-h`, `--help` | Show help message                                                                |
 
-#### weka dataservice global-config set
+**weka dataservice global-config set**
 
 Set Dataservice global configuration options
 
@@ -3969,7 +4165,7 @@ weka dataservice global-config set [--config-fs config-fs]
 | `--profile`               | Name of the connection and authentication profile to use                                                   |
 | `-h`, `--help`            | Show help message                                                                                          |
 
-#### weka dataservice global-config show
+**weka dataservice global-config show**
 
 Show the Dataservice global configuration
 
@@ -3996,7 +4192,7 @@ weka dataservice global-config show [--color color]
 | `-h`, `--help`            | Show help message                                                                                          |
 | `-J`, `--json`            | Format output as JSON                                                                                      |
 
-### weka dataservice s3-lifecycle-task
+#### weka dataservice s3-lifecycle-task
 
 Commands to manage S3 lifecycle tasks
 
@@ -4010,7 +4206,7 @@ weka dataservice s3-lifecycle-task [--color color] [--help]
 | `--color`      | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled') |
 | `-h`, `--help` | Show help message                                                                |
 
-#### weka dataservice s3-lifecycle-task disable
+**weka dataservice s3-lifecycle-task disable**
 
 Disable the S3 lifecycle task manager
 
@@ -4035,7 +4231,7 @@ weka dataservice s3-lifecycle-task disable [--color color]
 | `--profile`               | Name of the connection and authentication profile to use                                                   |
 | `-h`, `--help`            | Show help message                                                                                          |
 
-#### weka dataservice s3-lifecycle-task enable
+**weka dataservice s3-lifecycle-task enable**
 
 Enable the S3 lifecycle task manager
 
@@ -4060,7 +4256,7 @@ weka dataservice s3-lifecycle-task enable [--color color]
 | `--profile`               | Name of the connection and authentication profile to use                                                   |
 | `-h`, `--help`            | Show help message                                                                                          |
 
-#### weka dataservice s3-lifecycle-task set
+**weka dataservice s3-lifecycle-task set**
 
 Set S3 lifecycle task manager settings
 
@@ -4089,7 +4285,7 @@ weka dataservice s3-lifecycle-task set [--max-tasks max-tasks]
 | `--profile`               | Name of the connection and authentication profile to use                                                   |
 | `-h`, `--help`            | Show help message                                                                                          |
 
-#### weka dataservice s3-lifecycle-task show
+**weka dataservice s3-lifecycle-task show**
 
 Show S3 lifecycle task manager status and settings
 
@@ -4116,7 +4312,7 @@ weka dataservice s3-lifecycle-task show [--color color]
 | `-h`, `--help`            | Show help message                                                                                          |
 | `-J`, `--json`            | Format output as JSON                                                                                      |
 
-## weka diags
+### weka diags
 
 Diagnostics commands to help understand the status of the cluster and its environment
 
@@ -4130,7 +4326,7 @@ weka diags [--color color] [--help]
 | `--color`      | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled') |
 | `-h`, `--help` | Show help message                                                                |
 
-### weka diags collect
+#### weka diags collect
 
 Collect diags from all cluster containers to a directory on the container running this command
 
@@ -4179,7 +4375,7 @@ weka diags collect [--id id]
 | `-U`, `--UTC`             | Print times in UTC. When not set, times are converted to the local time of this host.                                                                         |
 | `-J`, `--json`            | Format output as JSON                                                                                                                                         |
 
-### weka diags list
+#### weka diags list
 
 Prints results of a previously collected diags report
 
@@ -4195,7 +4391,7 @@ weka diags list [--color color] [--verbose] [--help] [<id>]...
 | `-v`, `--verbose` | Print results of all diags, including successful ones                                                        |
 | `-h`, `--help`    | Show help message                                                                                            |
 
-### weka diags rm
+#### weka diags rm
 
 Stop a running instance of diags, and cancel its uploads.
 
@@ -4224,7 +4420,7 @@ weka diags rm [--HOST HOST]
 | `--all`                   | Delete all.                                                                                                |
 | `-h`, `--help`            | Show help message                                                                                          |
 
-### weka diags upload
+#### weka diags upload
 
 Collect and upload diags from all cluster containers to Weka's support cloud
 
@@ -4265,7 +4461,7 @@ weka diags upload [--timeout timeout]
 | `-h`, `--help`            | Show help message                                                                                                                               |
 | `-J`, `--json`            | Format output as JSON                                                                                                                           |
 
-## weka driver
+### weka driver
 
 Manage Weka drivers
 
@@ -4279,7 +4475,7 @@ weka driver [--color color] [--help]
 | `--color`      | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled') |
 | `-h`, `--help` | Show help message                                                                |
 
-### weka driver build
+#### weka driver build
 
 Compiles drivers for the machine where this command is executed.
 
@@ -4294,7 +4490,7 @@ weka driver build [--color color] [--version version] [--help]
 | `-V`, `--version` | Weka version for drivers.                                                        |
 | `-h`, `--help`    | Show help message                                                                |
 
-### weka driver download
+#### weka driver download
 
 Downloads drivers from a distribution server.
 
@@ -4311,7 +4507,7 @@ weka driver download [--color color] [--version version] [--kernel-signature ker
 | `--from`...                | Download from this distribution server (can be given multiple times). Otherwise distribution servers are taken from the $WEKA\_DIST\_SERVERS environment variable, the /etc/wekaio/dist-servers file, or /etc/wekaio/service.conf in that order of precedence. (may be repeated or comma-separated) |
 | `-h`, `--help`             | Show help message                                                                                                                                                                                                                                                                                   |
 
-### weka driver export
+#### weka driver export
 
 Exports drivers from this machine to an archive.
 
@@ -4328,7 +4524,7 @@ weka driver export <path> [--color color] [--version version] [--kernel-signatur
 | `-K`, `--kernel-signature` | Kernel signature for drivers.                                                    |
 | `-h`, `--help`             | Show help message                                                                |
 
-### weka driver import
+#### weka driver import
 
 Imports drivers from a previously exported archive to this machine.
 
@@ -4344,7 +4540,7 @@ weka driver import <path> [--color color] [--overwrite] [--help]
 | `--overwrite`  | Overwrite existing drivers                                                       |
 | `-h`, `--help` | Show help message                                                                |
 
-### weka driver install
+#### weka driver install
 
 Installs drivers on the machine where this command is executed.
 
@@ -4359,7 +4555,7 @@ weka driver install [--color color] [--version version] [--help]
 | `-V`, `--version` | Weka version for drivers.                                                        |
 | `-h`, `--help`    | Show help message                                                                |
 
-### weka driver kernel
+#### weka driver kernel
 
 Shows the kernel signature of the system. This signature is used to identify the specific kernel.
 
@@ -4374,7 +4570,7 @@ weka driver kernel [--color color] [--help] [--json]
 | `-h`, `--help` | Show help message                                                                |
 | `-J`, `--json` | Format output as JSON                                                            |
 
-### weka driver pack
+#### weka driver pack
 
 Creates driver package.
 
@@ -4395,7 +4591,7 @@ weka driver pack [--color color]
 | `-e`, `--environment`...   | Environment variable to add (may be repeated)                                    |
 | `-h`, `--help`             | Show help message                                                                |
 
-### weka driver ready
+#### weka driver ready
 
 Checks if kernel drivers are loaded and ready for Weka.
 
@@ -4412,7 +4608,7 @@ weka driver ready [--color color] [--version version] [--help] [--json] [--quiet
 | `-J`, `--json`    | Format output as JSON                                                            |
 | `-q`, `--quiet`   | Checks quietly (exit status 0 if drivers are ready, 1 otherwise).                |
 
-### weka driver sign
+#### weka driver sign
 
 Signs drivers with a private key.
 
@@ -4440,7 +4636,7 @@ weka driver sign <key>
 | `--pack`                   | Sign driver package.                                                                                                                                |
 | `-h`, `--help`             | Show help message                                                                                                                                   |
 
-## weka events
+### weka events
 
 List all events that conform to the filter criteria
 
@@ -4471,33 +4667,33 @@ weka events [--num-results num-results]
 
 ```
 
-| Parameter                      | Description                                                                                                                                                                                                                                                                                                                                             |
-| ------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `-n`, `--num-results`          | Get up to this number of events, default: 50                                                                                                                                                                                                                                                                                                            |
-| `--start-time`                 | Include events occurred in this time point and later (format: 5m, -5m, -1d, -1w, 1:00, 01:00, 18:30, 18:30:07, 2018-12-31 10:00, 2018/12/31 10:00, 2018-12-31T10:00, 2019-Nov-17 11:11:00.309, 9:15Z, 10:00+2:00)                                                                                                                                       |
-| `--end-time`                   | Include events occurred not later then this time point (format: 5m, -5m, -1d, -1w, 1:00, 01:00, 18:30, 18:30:07, 2018-12-31 10:00, 2018/12/31 10:00, 2018-12-31T10:00, 2019-Nov-17 11:11:00.309, 9:15Z, 10:00+2:00)                                                                                                                                     |
-| `--severity`                   | Include event with equal and higher severity, default: INFO (format: 'debug', 'info', 'warning', 'minor', 'major' or 'critical')                                                                                                                                                                                                                        |
-| `-d`, `--direction`            | Fetch events from the first available event (forward) or the latest created event (backward), default: backward (format: 'forward' or 'backward')                                                                                                                                                                                                       |
-| `--color`                      | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                                                                                                                                                                                        |
-| `-H`, `--HOST`                 | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                                                                                                                                                                                                        |
-| `-P`, `--PORT`                 | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                                                                                                                                                                                                        |
-| `-C`, `--CONNECT-TIMEOUT`      | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                                                                                                                              |
-| `-T`, `--TIMEOUT`              | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                                                                                                                                  |
-| `--profile`                    | Name of the connection and authentication profile to use                                                                                                                                                                                                                                                                                                |
-| `-f`, `--format`               | Specify in what format to output the result (format: 'view', 'csv', 'markdown', 'json' or 'oldview')                                                                                                                                                                                                                                                    |
-| `-t`, `--type-list`...         | Filter events by type, can be used multiple times (use 'weka events list-types' to see available types) (may be repeated or comma-separated)                                                                                                                                                                                                            |
-| `-x`, `--exclude-type-list`... | Remove events by type, can be used multiple times (use 'weka events list-types' to see available types) (may be repeated or comma-separated)                                                                                                                                                                                                            |
-| `-c`, `--category-list`...     | Include only events matches to the category\_list. Category can be Events, Node, Raid, Drive, ObjectStorage, System, Resources, Clustering, Network, Filesystem, Upgrade, NFS, Config, Cloud, InterfaceGroup, Tenant, User, Alerts, Licensing, Custom, Kms, Smb, Telemetry, Traces, S3, Security, Agent or Catalog (may be repeated or comma-separated) |
-| `-o`, `--output`...            | Specify which columns to output. May include any of the following: time,cloudTime,node,category,severity,type,entity,desc (may be repeated or comma-separated)                                                                                                                                                                                          |
-| `-i`, `--show-internal`        | Show internal events                                                                                                                                                                                                                                                                                                                                    |
-| `-l`, `--cloud-time`           | Sort by cloud time instead of local timestamp                                                                                                                                                                                                                                                                                                           |
-| `-h`, `--help`                 | Show help message                                                                                                                                                                                                                                                                                                                                       |
-| `-R`, `--raw-units`            | Print values in raw units (bytes, seconds, etc.). When not set, sizes are printed in human-readable format, e.g 1KiB 234MiB 2GiB.                                                                                                                                                                                                                       |
-| `-U`, `--UTC`                  | Print times in UTC. When not set, times are converted to the local time of this host.                                                                                                                                                                                                                                                                   |
-| `--no-header`                  | Don't show column headers when printing the output                                                                                                                                                                                                                                                                                                      |
-| `-v`, `--verbose`              | Show all columns in output                                                                                                                                                                                                                                                                                                                              |
+| Parameter                      | Description                                                                                                                                                                                                                                                                                                                                                          |
+| ------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `-n`, `--num-results`          | Get up to this number of events, default: 50                                                                                                                                                                                                                                                                                                                         |
+| `--start-time`                 | Include events occurred in this time point and later (format: 5m, -5m, -1d, -1w, 1:00, 01:00, 18:30, 18:30:07, 2018-12-31 10:00, 2018/12/31 10:00, 2018-12-31T10:00, 2019-Nov-17 11:11:00.309, 9:15Z, 10:00+2:00)                                                                                                                                                    |
+| `--end-time`                   | Include events occurred not later then this time point (format: 5m, -5m, -1d, -1w, 1:00, 01:00, 18:30, 18:30:07, 2018-12-31 10:00, 2018/12/31 10:00, 2018-12-31T10:00, 2019-Nov-17 11:11:00.309, 9:15Z, 10:00+2:00)                                                                                                                                                  |
+| `--severity`                   | Include event with equal and higher severity, default: INFO (format: 'debug', 'info', 'warning', 'minor', 'major' or 'critical')                                                                                                                                                                                                                                     |
+| `-d`, `--direction`            | Fetch events from the first available event (forward) or the latest created event (backward), default: backward (format: 'forward' or 'backward')                                                                                                                                                                                                                    |
+| `--color`                      | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                                                                                                                                                                                                     |
+| `-H`, `--HOST`                 | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                                                                                                                                                                                                                     |
+| `-P`, `--PORT`                 | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                                                                                                                                                                                                                     |
+| `-C`, `--CONNECT-TIMEOUT`      | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                                                                                                                                           |
+| `-T`, `--TIMEOUT`              | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                                                                                                                                               |
+| `--profile`                    | Name of the connection and authentication profile to use                                                                                                                                                                                                                                                                                                             |
+| `-f`, `--format`               | Specify in what format to output the result (format: 'view', 'csv', 'markdown', 'json' or 'oldview')                                                                                                                                                                                                                                                                 |
+| `-t`, `--type-list`...         | Filter events by type, can be used multiple times (use 'weka events list-types' to see available types) (may be repeated or comma-separated)                                                                                                                                                                                                                         |
+| `-x`, `--exclude-type-list`... | Remove events by type, can be used multiple times (use 'weka events list-types' to see available types) (may be repeated or comma-separated)                                                                                                                                                                                                                         |
+| `-c`, `--category-list`...     | Include only events matches to the category\_list. Category can be Events, Node, Raid, Drive, ObjectStorage, System, Resources, Clustering, Network, Filesystem, Upgrade, NFS, Config, Cloud, InterfaceGroup, Tenant, User, Alerts, Licensing, Custom, Kms, Smb, Telemetry, Traces, S3, Security, Agent, Environment or Catalog (may be repeated or comma-separated) |
+| `-o`, `--output`...            | Specify which columns to output. May include any of the following: time,cloudTime,node,category,severity,type,entity,desc (may be repeated or comma-separated)                                                                                                                                                                                                       |
+| `-i`, `--show-internal`        | Show internal events                                                                                                                                                                                                                                                                                                                                                 |
+| `-l`, `--cloud-time`           | Sort by cloud time instead of local timestamp                                                                                                                                                                                                                                                                                                                        |
+| `-h`, `--help`                 | Show help message                                                                                                                                                                                                                                                                                                                                                    |
+| `-R`, `--raw-units`            | Print values in raw units (bytes, seconds, etc.). When not set, sizes are printed in human-readable format, e.g 1KiB 234MiB 2GiB.                                                                                                                                                                                                                                    |
+| `-U`, `--UTC`                  | Print times in UTC. When not set, times are converted to the local time of this host.                                                                                                                                                                                                                                                                                |
+| `--no-header`                  | Don't show column headers when printing the output                                                                                                                                                                                                                                                                                                                   |
+| `-v`, `--verbose`              | Show all columns in output                                                                                                                                                                                                                                                                                                                                           |
 
-### weka events list-local
+#### weka events list-local
 
 List recent events that happened on the machine running this command
 
@@ -4550,7 +4746,7 @@ weka events list-local [--start-time <start>]
 | `--no-header`             | Don't show column headers when printing the output                                                                                                                                                                  |
 | `-v`, `--verbose`         | Show all columns in output                                                                                                                                                                                          |
 
-### weka events list-types
+#### weka events list-types
 
 Show the event type definition information
 
@@ -4575,27 +4771,27 @@ weka events list-types [--color color]
 
 ```
 
-| Parameter                 | Description                                                                                                                                                                                                                                                                                                                                                |
-| ------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                                                                                                                                                                                           |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                                                                                                                                                                                                           |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                                                                                                                                                                                                           |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                                                                                                                                 |
-| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                                                                                                                                     |
-| `--profile`               | Name of the connection and authentication profile to use                                                                                                                                                                                                                                                                                                   |
-| `-f`, `--format`          | Specify in what format to output the result (format: 'view', 'csv', 'markdown', 'json' or 'oldview')                                                                                                                                                                                                                                                       |
-| `-c`, `--category`...     | List only the events that fall under one of the following categories: Events, Node, Raid, Drive, ObjectStorage, System, Resources, Clustering, Network, Filesystem, Upgrade, NFS, Config, Cloud, InterfaceGroup, Tenant, User, Alerts, Licensing, Custom, Kms, Smb, Telemetry, Traces, S3, Security, Agent or Catalog (may be repeated or comma-separated) |
-| `-t`, `--type`...         | List only events of the specified types (may be repeated or comma-separated)                                                                                                                                                                                                                                                                               |
-| `-o`, `--output`...       | Specify which columns to output. May include any of the following: type,category,severity,description,format,permission,parameters,dedup,dedupParams (may be repeated or comma-separated)                                                                                                                                                                  |
-| `-s`, `--sort`...         | Specify which column(s) to take into account when sorting the output. May include a '+' or '-' before the column name to sort in ascending or descending order respectively. Usage: \[+                                                                                                                                                                    |
-| `-F`, `--filter`...       | Specify what values to filter by in a specific column. Usage: column1=val1\[,column2=val2\[,..]] (may be repeated or comma-separated)                                                                                                                                                                                                                      |
-| `--filter-color`...       | Filter rows with specific colors (red/yellow/green) (may be repeated or comma-separated)                                                                                                                                                                                                                                                                   |
-| `--show-internal`         | Show internal events                                                                                                                                                                                                                                                                                                                                       |
-| `-h`, `--help`            | Show help message                                                                                                                                                                                                                                                                                                                                          |
-| `--no-header`             | Don't show column headers when printing the output                                                                                                                                                                                                                                                                                                         |
-| `-v`, `--verbose`         | Show all columns in output                                                                                                                                                                                                                                                                                                                                 |
+| Parameter                 | Description                                                                                                                                                                                                                                                                                                                                                             |
+| ------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                                                                                                                                                                                                        |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                                                                                                                                                                                                                        |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                                                                                                                                                                                                                        |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                                                                                                                                              |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                                                                                                                                                  |
+| `--profile`               | Name of the connection and authentication profile to use                                                                                                                                                                                                                                                                                                                |
+| `-f`, `--format`          | Specify in what format to output the result (format: 'view', 'csv', 'markdown', 'json' or 'oldview')                                                                                                                                                                                                                                                                    |
+| `-c`, `--category`...     | List only the events that fall under one of the following categories: Events, Node, Raid, Drive, ObjectStorage, System, Resources, Clustering, Network, Filesystem, Upgrade, NFS, Config, Cloud, InterfaceGroup, Tenant, User, Alerts, Licensing, Custom, Kms, Smb, Telemetry, Traces, S3, Security, Agent, Environment or Catalog (may be repeated or comma-separated) |
+| `-t`, `--type`...         | List only events of the specified types (may be repeated or comma-separated)                                                                                                                                                                                                                                                                                            |
+| `-o`, `--output`...       | Specify which columns to output. May include any of the following: type,category,severity,description,format,permission,parameters,dedup,dedupParams (may be repeated or comma-separated)                                                                                                                                                                               |
+| `-s`, `--sort`...         | Specify which column(s) to take into account when sorting the output. May include a '+' or '-' before the column name to sort in ascending or descending order respectively. Usage: \[+                                                                                                                                                                                 |
+| `-F`, `--filter`...       | Specify what values to filter by in a specific column. Usage: column1=val1\[,column2=val2\[,..]] (may be repeated or comma-separated)                                                                                                                                                                                                                                   |
+| `--filter-color`...       | Filter rows with specific colors (red/yellow/green) (may be repeated or comma-separated)                                                                                                                                                                                                                                                                                |
+| `--show-internal`         | Show internal events                                                                                                                                                                                                                                                                                                                                                    |
+| `-h`, `--help`            | Show help message                                                                                                                                                                                                                                                                                                                                                       |
+| `--no-header`             | Don't show column headers when printing the output                                                                                                                                                                                                                                                                                                                      |
+| `-v`, `--verbose`         | Show all columns in output                                                                                                                                                                                                                                                                                                                                              |
 
-### weka events trigger-event
+#### weka events trigger-event
 
 Trigger a custom event with a user defined parameter
 
@@ -4622,7 +4818,7 @@ weka events trigger-event <message>
 | `--profile`               | Name of the connection and authentication profile to use                                                   |
 | `-h`, `--help`            | Show help message                                                                                          |
 
-## weka fs
+### weka fs
 
 List filesystems defined in this Weka cluster
 
@@ -4649,29 +4845,29 @@ weka fs [--name name]
 
 ```
 
-| Parameter                 | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-| ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `--name`                  | Filesystem name                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
-| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-| `--profile`               | Name of the connection and authentication profile to use                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
-| `-f`, `--format`          | Specify in what format to output the result (format: 'view', 'csv', 'markdown', 'json' or 'oldview')                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| `-o`, `--output`...       | Specify which columns to output. May include any of the following: uid,id,name,group,usedSSD,usedSSDD,usedSSDM,freeSSD,availableSSDM,availableSSD,usedTotal,usedTotalD,freeTotal,availableTotal,maxFiles,status,encrypted,stores,auth,thinProvisioned,thinProvisioningMinSSDBudget,thinProvisioningMaxSSDBudget,usedSSDWD,usedSSDRD,reductionRatio,pendingReduction,dataReduction,reducedProcessedSize,reducedSize,kmsKey,kmsNamespace,kmsRole,processedReductionRatio,dataReductionSavings,indexEnabled,permissions,ownerGuid (may be repeated or comma-separated) |
-| `-s`, `--sort`...         | Specify which column(s) to take into account when sorting the output. May include a '+' or '-' before the column name to sort in ascending or descending order respectively. Usage: \[+                                                                                                                                                                                                                                                                                                                                                                             |
-| `-F`, `--filter`...       | Specify what values to filter by in a specific column. Usage: column1=val1\[,column2=val2\[,..]] (may be repeated or comma-separated)                                                                                                                                                                                                                                                                                                                                                                                                                               |
-| `--filter-color`...       | Filter rows with specific colors (red/yellow/green) (may be repeated or comma-separated)                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
-| `--capacities`            | Display all capacity columns                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
-| `--force-fresh`           | Refresh the capacities to make sure they are most updated                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
-| `-h`, `--help`            | Show help message                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
-| `-R`, `--raw-units`       | Print values in raw units (bytes, seconds, etc.). When not set, sizes are printed in human-readable format, e.g 1KiB 234MiB 2GiB.                                                                                                                                                                                                                                                                                                                                                                                                                                   |
-| `-U`, `--UTC`             | Print times in UTC. When not set, times are converted to the local time of this host.                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
-| `--no-header`             | Don't show column headers when printing the output                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
-| `-v`, `--verbose`         | Show all columns in output                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| Parameter                 | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| ------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `--name`                  | Filesystem name                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| `--profile`               | Name of the connection and authentication profile to use                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| `-f`, `--format`          | Specify in what format to output the result (format: 'view', 'csv', 'markdown', 'json' or 'oldview')                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| `-o`, `--output`...       | Specify which columns to output. May include any of the following: uid,id,name,group,usedSSD,usedSSDD,usedSSDM,freeSSD,availableSSDM,availableSSD,usedTotal,usedTotalD,freeTotal,availableTotal,maxFiles,status,encrypted,stores,auth,thinProvisioned,thinProvisioningMinSSDBudget,thinProvisioningMaxSSDBudget,usedSSDWD,usedSSDRD,reductionRatio,pendingReduction,dataReduction,reducedProcessedSize,reducedSize,kmsKey,kmsNamespace,kmsRole,processedReductionRatio,dataReductionSavings,indexEnabled,permissions,ownerGuid,maxThroughput,maxIops (may be repeated or comma-separated) |
+| `-s`, `--sort`...         | Specify which column(s) to take into account when sorting the output. May include a '+' or '-' before the column name to sort in ascending or descending order respectively. Usage: \[+                                                                                                                                                                                                                                                                                                                                                                                                   |
+| `-F`, `--filter`...       | Specify what values to filter by in a specific column. Usage: column1=val1\[,column2=val2\[,..]] (may be repeated or comma-separated)                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| `--filter-color`...       | Filter rows with specific colors (red/yellow/green) (may be repeated or comma-separated)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| `--capacities`            | Display all capacity columns                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| `--force-fresh`           | Refresh the capacities to make sure they are most updated                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| `-h`, `--help`            | Show help message                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| `-R`, `--raw-units`       | Print values in raw units (bytes, seconds, etc.). When not set, sizes are printed in human-readable format, e.g 1KiB 234MiB 2GiB.                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| `-U`, `--UTC`             | Print times in UTC. When not set, times are converted to the local time of this host.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| `--no-header`             | Don't show column headers when printing the output                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| `-v`, `--verbose`         | Show all columns in output                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
 
-### weka fs add
+#### weka fs add
 
 Create a filesystem
 
@@ -4740,7 +4936,7 @@ weka fs add <name>
 | `-R`, `--raw-units`        | Print values in raw units (bytes, seconds, etc.). When not set, sizes are printed in human-readable format, e.g 1KiB 234MiB 2GiB.                                                                                                                                         |
 | `-U`, `--UTC`              | Print times in UTC. When not set, times are converted to the local time of this host.                                                                                                                                                                                     |
 
-### weka fs remove
+#### weka fs remove
 
 Delete a filesystem
 
@@ -4771,7 +4967,7 @@ weka fs remove <name>
 | `-f`, `--force`           | Force this action without further confirmation. This action DELETES ALL DATA in the filesystem and cannot be undone. |
 | `-h`, `--help`            | Show help message                                                                                                    |
 
-### weka fs download
+#### weka fs download
 
 Download a filesystem from object store
 
@@ -4834,7 +5030,7 @@ weka fs download <name>
 | `-R`, `--raw-units`          | Print values in raw units (bytes, seconds, etc.). When not set, sizes are printed in human-readable format, e.g 1KiB 234MiB 2GiB.                                                                                                                                         |
 | `-U`, `--UTC`                | Print times in UTC. When not set, times are converted to the local time of this host.                                                                                                                                                                                     |
 
-### weka fs group
+#### weka fs group
 
 List filesystem groups
 
@@ -4877,7 +5073,7 @@ weka fs group [--color color]
 | `--no-header`             | Don't show column headers when printing the output                                                                                                                                      |
 | `-v`, `--verbose`         | Show all columns in output                                                                                                                                                              |
 
-#### weka fs group add
+**weka fs group add**
 
 Create a filesystem group
 
@@ -4914,7 +5110,7 @@ weka fs group add <name>
 | `-R`, `--raw-units`       | Print values in raw units (bytes, seconds, etc.). When not set, sizes are printed in human-readable format, e.g 1KiB 234MiB 2GiB. |
 | `-U`, `--UTC`             | Print times in UTC. When not set, times are converted to the local time of this host.                                             |
 
-#### weka fs group remove
+**weka fs group remove**
 
 Delete a filesystem group
 
@@ -4941,7 +5137,7 @@ weka fs group remove <name>
 | `--profile`               | Name of the connection and authentication profile to use                                                   |
 | `-h`, `--help`            | Show help message                                                                                          |
 
-#### weka fs group update
+**weka fs group update**
 
 Update a filesystem group
 
@@ -4974,7 +5170,7 @@ weka fs group update <name>
 | `--profile`               | Name of the connection and authentication profile to use                                                   |
 | `-h`, `--help`            | Show help message                                                                                          |
 
-### weka fs kms-rewrap
+#### weka fs kms-rewrap
 
 Rewrap the key of Filesystem
 
@@ -5003,7 +5199,7 @@ weka fs kms-rewrap <name>
 | `-h`, `--help`            | Show help message                                                                                          |
 | `-J`, `--json`            | Format output as JSON                                                                                      |
 
-### weka fs protection
+#### weka fs protection
 
 Commands used to manage file system protection
 
@@ -5017,7 +5213,7 @@ weka fs protection [--color color] [--help]
 | `--color`      | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled') |
 | `-h`, `--help` | Show help message                                                                |
 
-#### weka fs protection snapshot-policy
+**weka fs protection snapshot-policy**
 
 Snapshot policy management commands
 
@@ -5375,7 +5571,7 @@ weka fs protection snapshot-policy update <name>
 | `--profile`               | Name of the connection and authentication profile to use                                                      |
 | `-h`, `--help`            | Show help message                                                                                             |
 
-### weka fs quota
+#### weka fs quota
 
 Commands used to control directory quotas
 
@@ -5389,7 +5585,7 @@ weka fs quota [--color color] [--help]
 | `--color`      | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled') |
 | `-h`, `--help` | Show help message                                                                |
 
-#### weka fs quota disable-users
+**weka fs quota disable-users**
 
 Disable user quota accounting for a filesystem
 
@@ -5418,7 +5614,7 @@ weka fs quota disable-users <filesystem>
 | `--profile`               | Name of the connection and authentication profile to use                                                   |
 | `-h`, `--help`            | Show help message                                                                                          |
 
-#### weka fs quota enable-users
+**weka fs quota enable-users**
 
 Enable user quota accounting for a filesystem
 
@@ -5449,7 +5645,7 @@ weka fs quota enable-users <filesystem>
 | `--force`                 | Skip version compatibility checks                                                                          |
 | `-h`, `--help`            | Show help message                                                                                          |
 
-#### weka fs quota list
+**weka fs quota list**
 
 List filesystem quotas (directory, user, or group quotas, by default only exceeding directory quotas)
 
@@ -5481,34 +5677,34 @@ weka fs quota list [filesystem]
 
 ```
 
-| Parameter                 | Description                                                                                                                                                                                             |
-| ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `filesystem`              | Filesystem name                                                                                                                                                                                         |
-| `--snap-name`             | Optional snapshot name                                                                                                                                                                                  |
-| `--type`                  | Quota type: 'directory', 'user', or 'group'                                                                                                                                                             |
-| `-p`, `--path`            | Show this path only                                                                                                                                                                                     |
-| `-u`, `--under`           | List under (and including) this path only                                                                                                                                                               |
-| `--over`                  | Show only quotas over this percentage of usage (format: 0..100)                                                                                                                                         |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                                        |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                                                        |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                                                        |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                              |
-| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                  |
-| `--profile`               | Name of the connection and authentication profile to use                                                                                                                                                |
-| `-f`, `--format`          | Specify in what format to output the result (format: 'view', 'csv', 'markdown', 'json' or 'oldview')                                                                                                    |
-| `-o`, `--output`...       | Specify which columns to output. May include any of the following: quotaId,path,used,dblk,mblk,soft,hard,usage,owner,grace\_seconds,time\_over\_soft\_limit,status (may be repeated or comma-separated) |
-| `-s`, `--sort`...         | Specify which column(s) to take into account when sorting the output. May include a '+' or '-' before the column name to sort in ascending or descending order respectively. Usage: \[+                 |
-| `-F`, `--filter`...       | Specify what values to filter by in a specific column. Usage: column1=val1\[,column2=val2\[,..]] (may be repeated or comma-separated)                                                                   |
-| `--filter-color`...       | Filter rows with specific colors (red/yellow/green) (may be repeated or comma-separated)                                                                                                                |
-| `--all`                   | Show all (not only exceeding) quotas                                                                                                                                                                    |
-| `-q`, `--quick`           | Skip resolving inodes to paths                                                                                                                                                                          |
-| `-h`, `--help`            | Show help message                                                                                                                                                                                       |
-| `-R`, `--raw-units`       | Print values in raw units (bytes, seconds, etc.). When not set, sizes are printed in human-readable format, e.g 1KiB 234MiB 2GiB.                                                                       |
-| `-U`, `--UTC`             | Print times in UTC. When not set, times are converted to the local time of this host.                                                                                                                   |
-| `--no-header`             | Don't show column headers when printing the output                                                                                                                                                      |
-| `-v`, `--verbose`         | Show all columns in output                                                                                                                                                                              |
+| Parameter                 | Description                                                                                                                                                                                                  |
+| ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `filesystem`              | Filesystem name                                                                                                                                                                                              |
+| `--snap-name`             | Optional snapshot name                                                                                                                                                                                       |
+| `--type`                  | Quota type: 'directory', 'user', or 'group'                                                                                                                                                                  |
+| `-p`, `--path`            | Show this path only                                                                                                                                                                                          |
+| `-u`, `--under`           | List under (and including) this path only                                                                                                                                                                    |
+| `--over`                  | Show only quotas over this percentage of usage (format: 0..100)                                                                                                                                              |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                                             |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                                                             |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                                                             |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                   |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                       |
+| `--profile`               | Name of the connection and authentication profile to use                                                                                                                                                     |
+| `-f`, `--format`          | Specify in what format to output the result (format: 'view', 'csv', 'markdown', 'json' or 'oldview')                                                                                                         |
+| `-o`, `--output`...       | Specify which columns to output. May include any of the following: quotaId,name,path,used,dblk,mblk,soft,hard,usage,owner,grace\_seconds,time\_over\_soft\_limit,status (may be repeated or comma-separated) |
+| `-s`, `--sort`...         | Specify which column(s) to take into account when sorting the output. May include a '+' or '-' before the column name to sort in ascending or descending order respectively. Usage: \[+                      |
+| `-F`, `--filter`...       | Specify what values to filter by in a specific column. Usage: column1=val1\[,column2=val2\[,..]] (may be repeated or comma-separated)                                                                        |
+| `--filter-color`...       | Filter rows with specific colors (red/yellow/green) (may be repeated or comma-separated)                                                                                                                     |
+| `--all`                   | Show all (not only exceeding) quotas                                                                                                                                                                         |
+| `-q`, `--quick`           | Skip resolving inodes to paths                                                                                                                                                                               |
+| `-h`, `--help`            | Show help message                                                                                                                                                                                            |
+| `-R`, `--raw-units`       | Print values in raw units (bytes, seconds, etc.). When not set, sizes are printed in human-readable format, e.g 1KiB 234MiB 2GiB.                                                                            |
+| `-U`, `--UTC`             | Print times in UTC. When not set, times are converted to the local time of this host.                                                                                                                        |
+| `--no-header`             | Don't show column headers when printing the output                                                                                                                                                           |
+| `-v`, `--verbose`         | Show all columns in output                                                                                                                                                                                   |
 
-#### weka fs quota list-default
+**weka fs quota list-default**
 
 List filesystem default quotas
 
@@ -5549,7 +5745,7 @@ weka fs quota list-default [filesystem]
 | `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                  |
 | `--profile`               | Name of the connection and authentication profile to use                                                                                                                                |
 | `-f`, `--format`          | Specify in what format to output the result (format: 'view', 'csv', 'markdown', 'json' or 'oldview')                                                                                    |
-| `-o`, `--output`...       | Specify which columns to output. May include any of the following: inodeId,fs,path,soft,hard,owner,grace (may be repeated or comma-separated)                                           |
+| `-o`, `--output`...       | Specify which columns to output. May include any of the following: inodeId,fs,name,path,soft,hard,owner,grace (may be repeated or comma-separated)                                      |
 | `-s`, `--sort`...         | Specify which column(s) to take into account when sorting the output. May include a '+' or '-' before the column name to sort in ascending or descending order respectively. Usage: \[+ |
 | `-F`, `--filter`...       | Specify what values to filter by in a specific column. Usage: column1=val1\[,column2=val2\[,..]] (may be repeated or comma-separated)                                                   |
 | `--filter-color`...       | Filter rows with specific colors (red/yellow/green) (may be repeated or comma-separated)                                                                                                |
@@ -5559,7 +5755,7 @@ weka fs quota list-default [filesystem]
 | `--no-header`             | Don't show column headers when printing the output                                                                                                                                      |
 | `-v`, `--verbose`         | Show all columns in output                                                                                                                                                              |
 
-#### weka fs quota set
+**weka fs quota set**
 
 Set a directory quota in a filesystem
 
@@ -5571,6 +5767,7 @@ weka fs quota set [path]
                   [--hard hard]
                   [--grace grace]
                   [--owner owner]
+                  [--name name]
                   [--filesystem filesystem]
                   [--snap-name snap-name]
                   [--color color]
@@ -5593,6 +5790,7 @@ weka fs quota set [path]
 | `--hard`                  | Hard limit for the directory, or 0 for unlimited (format: capacity in decimal or binary units: 1B, 1KB, 1MB, 1GB, 1TB, 1PB, 1EB, 1KiB, 1MiB, 1GiB, 1TiB, 1PiB, 1EiB) |
 | `--grace`                 | Soft limit grace period (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                       |
 | `--owner`                 | Quota owner (e.g., email)                                                                                                                                            |
+| `--name`                  | Quota name (filesystem-unique label)                                                                                                                                 |
 | `--filesystem`            | Filesystem name                                                                                                                                                      |
 | `--snap-name`             | Name of the writable snapshot                                                                                                                                        |
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                     |
@@ -5604,7 +5802,7 @@ weka fs quota set [path]
 | `-h`, `--help`            | Show help message                                                                                                                                                    |
 | `-J`, `--json`            | Format output as JSON                                                                                                                                                |
 
-#### weka fs quota set-default
+**weka fs quota set-default**
 
 Set a default quota in a filesystem
 
@@ -5615,6 +5813,7 @@ weka fs quota set-default [path]
                           [--hard hard]
                           [--grace grace]
                           [--owner owner]
+                          [--name name]
                           [--filesystem filesystem]
                           [--snap-name snap-name]
                           [--color color]
@@ -5635,6 +5834,7 @@ weka fs quota set-default [path]
 | `--hard`                  | Hard limit (format: capacity in decimal or binary units: 1B, 1KB, 1MB, 1GB, 1TB, 1PB, 1EB, 1KiB, 1MiB, 1GiB, 1TiB, 1PiB, 1EiB) |
 | `--grace`                 | Soft limit grace period (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                 |
 | `--owner`                 | Quota owner (e.g., email)                                                                                                      |
+| `--name`                  | Quota name (filesystem-unique label)                                                                                           |
 | `--filesystem`            | Filesystem name (required for user/group type)                                                                                 |
 | `--snap-name`             | Name of the writable snapshot                                                                                                  |
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                               |
@@ -5645,7 +5845,7 @@ weka fs quota set-default [path]
 | `--profile`               | Name of the connection and authentication profile to use                                                                       |
 | `-h`, `--help`            | Show help message                                                                                                              |
 
-#### weka fs quota reset
+**weka fs quota reset**
 
 Unsets a directory quota in a filesystem
 
@@ -5684,7 +5884,7 @@ weka fs quota reset [path]
 | `-h`, `--help`            | Show help message                                                                                          |
 | `-J`, `--json`            | Format output as JSON                                                                                      |
 
-#### weka fs quota unset-default
+**weka fs quota unset-default**
 
 Unsets a default quota in a filesystem
 
@@ -5717,7 +5917,7 @@ weka fs quota unset-default [path]
 | `--profile`               | Name of the connection and authentication profile to use                                                   |
 | `-h`, `--help`            | Show help message                                                                                          |
 
-### weka fs reserve
+#### weka fs reserve
 
 Thin provisioning reserve for tenants
 
@@ -5731,7 +5931,7 @@ weka fs reserve [--color color] [--help]
 | `--color`      | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled') |
 | `-h`, `--help` | Show help message                                                                |
 
-#### weka fs reserve set
+**weka fs reserve set**
 
 Set a tenant's thin provisioning SSD reserve
 
@@ -5766,7 +5966,7 @@ weka fs reserve set <ssd-capacity>
 | `-R`, `--raw-units`       | Print values in raw units (bytes, seconds, etc.). When not set, sizes are printed in human-readable format, e.g 1KiB 234MiB 2GiB.           |
 | `-U`, `--UTC`             | Print times in UTC. When not set, times are converted to the local time of this host.                                                       |
 
-#### weka fs reserve status
+**weka fs reserve status**
 
 Thin provisioning reserve for tenants
 
@@ -5809,7 +6009,7 @@ weka fs reserve status [--color color]
 | `--no-header`             | Don't show column headers when printing the output                                                                                                                                      |
 | `-v`, `--verbose`         | Show all columns in output                                                                                                                                                              |
 
-#### weka fs reserve reset
+**weka fs reserve reset**
 
 Unset a tenant's thin provisioning SSD's reserve
 
@@ -5842,7 +6042,7 @@ weka fs reserve reset [--tenant tenant]
 | `-R`, `--raw-units`       | Print values in raw units (bytes, seconds, etc.). When not set, sizes are printed in human-readable format, e.g 1KiB 234MiB 2GiB. |
 | `-U`, `--UTC`             | Print times in UTC. When not set, times are converted to the local time of this host.                                             |
 
-### weka fs restore
+#### weka fs restore
 
 Restore filesystem content from a snapshot
 
@@ -5879,7 +6079,7 @@ weka fs restore <filesystem>
 | `-h`, `--help`                                  | Show help message                                                                                                                                      |
 | `-J`, `--json`                                  | Format output as JSON                                                                                                                                  |
 
-### weka fs security
+#### weka fs security
 
 Manage filesystem security
 
@@ -5893,7 +6093,7 @@ weka fs security [--color color] [--help]
 | `--color`      | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled') |
 | `-h`, `--help` | Show help message                                                                |
 
-#### weka fs security policy
+**weka fs security policy**
 
 Manages filesystem security policies.
 
@@ -6074,7 +6274,7 @@ weka fs security policy set <filesystem>
 | `-h`, `--help`            | Show help message                                                                                          |
 | `-J`, `--json`            | Format output as JSON                                                                                      |
 
-### weka fs snapshot
+#### weka fs snapshot
 
 List snapshots
 
@@ -6100,28 +6300,28 @@ weka fs snapshot [--filesystem filesystem]
 
 ```
 
-| Parameter                 | Description                                                                                                                                                                                                                                                                                                                                                                                             |
-| ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `--filesystem`            | Filesystem name                                                                                                                                                                                                                                                                                                                                                                                         |
-| `--name`                  | Snapshot name                                                                                                                                                                                                                                                                                                                                                                                           |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                                                                                                                                                                                                                                        |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                                                                                                                                                                                                                                                        |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                                                                                                                                                                                                                                                        |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                                                                                                                                                                              |
-| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                                                                                                                                                                                  |
-| `--profile`               | Name of the connection and authentication profile to use                                                                                                                                                                                                                                                                                                                                                |
-| `-f`, `--format`          | Specify in what format to output the result (format: 'view', 'csv', 'markdown', 'json' or 'oldview')                                                                                                                                                                                                                                                                                                    |
-| `-o`, `--output`...       | Specify which columns to output. May include any of the following: uid,id,filesystem,name,access,writeable,created,local\_upload\_size,remote\_upload\_size,local\_object\_status,local\_object\_progress,local\_object\_locator,remote\_object\_status,remote\_object\_progress,remote\_object\_locator,removing,prefetched,est\_reclaimable\_size,metadata\_size (may be repeated or comma-separated) |
-| `-s`, `--sort`...         | Specify which column(s) to take into account when sorting the output. May include a '+' or '-' before the column name to sort in ascending or descending order respectively. Usage: \[+                                                                                                                                                                                                                 |
-| `-F`, `--filter`...       | Specify what values to filter by in a specific column. Usage: column1=val1\[,column2=val2\[,..]] (may be repeated or comma-separated)                                                                                                                                                                                                                                                                   |
-| `--filter-color`...       | Filter rows with specific colors (red/yellow/green) (may be repeated or comma-separated)                                                                                                                                                                                                                                                                                                                |
-| `-h`, `--help`            | Show help message                                                                                                                                                                                                                                                                                                                                                                                       |
-| `-R`, `--raw-units`       | Print values in raw units (bytes, seconds, etc.). When not set, sizes are printed in human-readable format, e.g 1KiB 234MiB 2GiB.                                                                                                                                                                                                                                                                       |
-| `-U`, `--UTC`             | Print times in UTC. When not set, times are converted to the local time of this host.                                                                                                                                                                                                                                                                                                                   |
-| `--no-header`             | Don't show column headers when printing the output                                                                                                                                                                                                                                                                                                                                                      |
-| `-v`, `--verbose`         | Show all columns in output                                                                                                                                                                                                                                                                                                                                                                              |
+| Parameter                 | Description                                                                                                                                                                                                                                                                                                                                                                                                        |
+| ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `--filesystem`            | Filesystem name                                                                                                                                                                                                                                                                                                                                                                                                    |
+| `--name`                  | Snapshot name                                                                                                                                                                                                                                                                                                                                                                                                      |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                                                                                                                                                                                                                                                   |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                                                                                                                                                                                                                                                                   |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                                                                                                                                                                                                                                                                   |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                                                                                                                                                                                         |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                                                                                                                                                                                             |
+| `--profile`               | Name of the connection and authentication profile to use                                                                                                                                                                                                                                                                                                                                                           |
+| `-f`, `--format`          | Specify in what format to output the result (format: 'view', 'csv', 'markdown', 'json' or 'oldview')                                                                                                                                                                                                                                                                                                               |
+| `-o`, `--output`...       | Specify which columns to output. May include any of the following: uid,id,filesystem,name,access,writeable,created,local\_upload\_size,remote\_upload\_size,local\_object\_status,local\_object\_progress,local\_object\_locator,remote\_object\_status,remote\_object\_progress,remote\_object\_locator,removing,prefetched,est\_reclaimable\_size,metadata\_size,dependants (may be repeated or comma-separated) |
+| `-s`, `--sort`...         | Specify which column(s) to take into account when sorting the output. May include a '+' or '-' before the column name to sort in ascending or descending order respectively. Usage: \[+                                                                                                                                                                                                                            |
+| `-F`, `--filter`...       | Specify what values to filter by in a specific column. Usage: column1=val1\[,column2=val2\[,..]] (may be repeated or comma-separated)                                                                                                                                                                                                                                                                              |
+| `--filter-color`...       | Filter rows with specific colors (red/yellow/green) (may be repeated or comma-separated)                                                                                                                                                                                                                                                                                                                           |
+| `-h`, `--help`            | Show help message                                                                                                                                                                                                                                                                                                                                                                                                  |
+| `-R`, `--raw-units`       | Print values in raw units (bytes, seconds, etc.). When not set, sizes are printed in human-readable format, e.g 1KiB 234MiB 2GiB.                                                                                                                                                                                                                                                                                  |
+| `-U`, `--UTC`             | Print times in UTC. When not set, times are converted to the local time of this host.                                                                                                                                                                                                                                                                                                                              |
+| `--no-header`             | Don't show column headers when printing the output                                                                                                                                                                                                                                                                                                                                                                 |
+| `-v`, `--verbose`         | Show all columns in output                                                                                                                                                                                                                                                                                                                                                                                         |
 
-#### weka fs snapshot access-point-naming-convention
+**weka fs snapshot access-point-naming-convention**
 
 Access point naming convention
 
@@ -6193,7 +6393,7 @@ weka fs snapshot access-point-naming-convention update <access-point-naming-conv
 | `--profile`                        | Name of the connection and authentication profile to use                                                   |
 | `-h`, `--help`                     | Show help message                                                                                          |
 
-#### weka fs snapshot copy
+**weka fs snapshot copy**
 
 Copy one snapshot over another
 
@@ -6234,7 +6434,7 @@ weka fs snapshot copy <filesystem>
 | `-R`, `--raw-units`                             | Print values in raw units (bytes, seconds, etc.). When not set, sizes are printed in human-readable format, e.g 1KiB 234MiB 2GiB. |
 | `-U`, `--UTC`                                   | Print times in UTC. When not set, times are converted to the local time of this host.                                             |
 
-#### weka fs snapshot add
+**weka fs snapshot add**
 
 Create a snapshot
 
@@ -6287,7 +6487,7 @@ weka fs snapshot add <filesystem>
 | `--no-header`             | Don't show column headers when printing the output                                                                                                                                      |
 | `-v`, `--verbose`         | Show all columns in output                                                                                                                                                              |
 
-#### weka fs snapshot remove
+**weka fs snapshot remove**
 
 Delete a snapshot
 
@@ -6318,7 +6518,7 @@ weka fs snapshot remove <filesystem>
 | `-f`, `--force`           | Force this action without further confirmation. This action deletes all data stored by the snapshot and cannot be undone. |
 | `-h`, `--help`            | Show help message                                                                                                         |
 
-#### weka fs snapshot download
+**weka fs snapshot download**
 
 Download a snapshot into an existing filesystem
 
@@ -6361,7 +6561,7 @@ weka fs snapshot download <filesystem>
 | `-R`, `--raw-units`         | Print values in raw units (bytes, seconds, etc.). When not set, sizes are printed in human-readable format, e.g 1KiB 234MiB 2GiB. |
 | `-U`, `--UTC`               | Print times in UTC. When not set, times are converted to the local time of this host.                                             |
 
-#### weka fs snapshot update
+**weka fs snapshot update**
 
 Update snapshot parameters
 
@@ -6400,7 +6600,7 @@ weka fs snapshot update <filesystem>
 | `-R`, `--raw-units`       | Print values in raw units (bytes, seconds, etc.). When not set, sizes are printed in human-readable format, e.g 1KiB 234MiB 2GiB. |
 | `-U`, `--UTC`             | Print times in UTC. When not set, times are converted to the local time of this host.                                             |
 
-#### weka fs snapshot upload
+**weka fs snapshot upload**
 
 Upload a snapshot to object store
 
@@ -6439,7 +6639,7 @@ weka fs snapshot upload <filesystem>
 | `-R`, `--raw-units`         | Print values in raw units (bytes, seconds, etc.). When not set, sizes are printed in human-readable format, e.g 1KiB 234MiB 2GiB.          |
 | `-U`, `--UTC`               | Print times in UTC. When not set, times are converted to the local time of this host.                                                      |
 
-### weka fs tier
+#### weka fs tier
 
 Show object store connectivity for each node in the cluster
 
@@ -6482,7 +6682,7 @@ weka fs tier [--color color]
 | `--no-header`             | Don't show column headers when printing the output                                                                                                                                      |
 | `-v`, `--verbose`         | Show all columns in output                                                                                                                                                              |
 
-#### weka fs tier capacity
+**weka fs tier capacity**
 
 List capacities for object store buckets attached to filesystems
 
@@ -6529,7 +6729,7 @@ weka fs tier capacity [--filesystem filesystem]
 | `--no-header`             | Don't show column headers when printing the output                                                                                                                                                                                        |
 | `-v`, `--verbose`         | Show all columns in output                                                                                                                                                                                                                |
 
-#### weka fs tier fetch
+**weka fs tier fetch**
 
 Fetch object-stored files to SSD storage
 
@@ -6564,7 +6764,7 @@ weka fs tier fetch [--non-existing non-existing]
 | `-R`, `--raw-units`       | Print values in raw units (bytes, seconds, etc.). When not set, sizes are printed in human-readable format, e.g 1KiB 234MiB 2GiB. |
 | `-U`, `--UTC`             | Print times in UTC. When not set, times are converted to the local time of this host.                                             |
 
-#### weka fs tier location
+**weka fs tier location**
 
 Show data storage location for a given path
 
@@ -6601,7 +6801,7 @@ weka fs tier location <path>
 | `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                  |
 | `--profile`               | Name of the connection and authentication profile to use                                                                                                                                |
 | `-f`, `--format`          | Specify in what format to output the result (format: 'view', 'csv', 'markdown', 'json' or 'oldview')                                                                                    |
-| `-o`, `--output`...       | Specify which columns to output. May include any of the following: path,type,size,ssdWrite,ssdRead,obsBytes,remoteBytes (may be repeated or comma-separated)                            |
+| `-o`, `--output`...       | Specify which columns to output. May include any of the following: path,type,size,ssdWrite,ssdRead,obsBytes,remoteBytes,remoteClusterBytes (may be repeated or comma-separated)         |
 | `-s`, `--sort`...         | Specify which column(s) to take into account when sorting the output. May include a '+' or '-' before the column name to sort in ascending or descending order respectively. Usage: \[+ |
 | `-F`, `--filter`...       | Specify what values to filter by in a specific column. Usage: column1=val1\[,column2=val2\[,..]] (may be repeated or comma-separated)                                                   |
 | `--filter-color`...       | Filter rows with specific colors (red/yellow/green) (may be repeated or comma-separated)                                                                                                |
@@ -6611,7 +6811,7 @@ weka fs tier location <path>
 | `--no-header`             | Don't show column headers when printing the output                                                                                                                                      |
 | `-v`, `--verbose`         | Show all columns in output                                                                                                                                                              |
 
-#### weka fs tier obs
+**weka fs tier obs**
 
 List object stores configuration and status
 
@@ -6724,7 +6924,7 @@ weka fs tier obs update <name>
 | `--sts-role-session-name`       | An identifier for the assumed role session. Length constraints: Minimum length of 2, maximum length of 64.                                                                                         |
 | `owed characters: upper and lo` | wer-case alphanumeric characters with no spaces.                                                                                                                                                   |
 
-#### weka fs tier ops
+**weka fs tier ops**
 
 List all the operations currently running on an object store from all the hosts in the cluster
 
@@ -6769,7 +6969,7 @@ weka fs tier ops [name]
 | `--no-header`             | Don't show column headers when printing the output                                                                                                                                                            |
 | `-v`, `--verbose`         | Show all columns in output                                                                                                                                                                                    |
 
-#### weka fs tier release
+**weka fs tier release**
 
 Release object-stored files from SSD storage
 
@@ -6804,7 +7004,7 @@ weka fs tier release [--non-existing non-existing]
 | `-R`, `--raw-units`       | Print values in raw units (bytes, seconds, etc.). When not set, sizes are printed in human-readable format, e.g 1KiB 234MiB 2GiB. |
 | `-U`, `--UTC`             | Print times in UTC. When not set, times are converted to the local time of this host.                                             |
 
-#### weka fs tier s3
+**weka fs tier s3**
 
 List S3 object store buckets configuration and status
 
@@ -7043,7 +7243,7 @@ weka fs tier s3 snapshot [--color color] [--help]
 | `--color`      | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled') |
 | `-h`, `--help` | Show help message                                                                |
 
-\####### weka fs tier s3 snapshot list
+**weka fs tier s3 snapshot list**
 
 List and show info about snapshots uploaded to Object Storage
 
@@ -7179,7 +7379,7 @@ weka fs tier s3 update <name>
 | `--sts-role-session-name`       | An identifier for the assumed role session. Length constraints: Minimum length of 2, maximum length of 64.                                                              |
 | `owed characters: upper and lo` | wer-case alphanumeric characters with no spaces.                                                                                                                        |
 
-### weka fs update
+#### weka fs update
 
 Update a filesystem
 
@@ -7238,7 +7438,7 @@ weka fs update <name>
 | `--use-cluster-kms-key-identifier` | Use cluster KMS configuration for this filesystem, removes the custom KMS configuration for this filesystem                                                                                                                                                               |
 | `-h`, `--help`                     | Show help message                                                                                                                                                                                                                                                         |
 
-## weka interface-group
+### weka interface-group
 
 List interface groups
 
@@ -7279,7 +7479,7 @@ weka interface-group [--name name]
 | `--no-header`             | Don't show column headers when printing the output                                                                                                                                      |
 | `-v`, `--verbose`         | Show all columns in output                                                                                                                                                              |
 
-### weka interface-group add
+#### weka interface-group add
 
 Create an interface group
 
@@ -7328,7 +7528,7 @@ weka interface-group add <name>
 | `--no-header`             | Don't show column headers when printing the output                                                                                                                                                                                                              |
 | `-v`, `--verbose`         | Show all columns in output                                                                                                                                                                                                                                      |
 
-### weka interface-group assignment
+#### weka interface-group assignment
 
 List the currently assigned interface for each floating-IP address in the given interface-group. If is not supplied, assignments for all floating-IP addresses will be listed
 
@@ -7369,7 +7569,7 @@ weka interface-group assignment [--name name]
 | `--no-header`             | Don't show column headers when printing the output                                                                                                                                      |
 | `-v`, `--verbose`         | Show all columns in output                                                                                                                                                              |
 
-### weka interface-group remove
+#### weka interface-group remove
 
 Delete an interface group
 
@@ -7398,7 +7598,7 @@ weka interface-group remove <name>
 | `-f`, `--force`           | Force this action without further confirmation. This action may disrupt IO service for connected clients and can be undone by re-creating the interface group. |
 | `-h`, `--help`            | Show help message                                                                                                                                              |
 
-### weka interface-group ip-range
+#### weka interface-group ip-range
 
 Commands that manage interface-groups' ip-ranges
 
@@ -7412,7 +7612,7 @@ weka interface-group ip-range [--color color] [--help]
 | `--color`      | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled') |
 | `-h`, `--help` | Show help message                                                                |
 
-#### weka interface-group ip-range add
+**weka interface-group ip-range add**
 
 Add an ip range to an interface group
 
@@ -7441,7 +7641,7 @@ weka interface-group ip-range add <name>
 | `--profile`               | Name of the connection and authentication profile to use                                                   |
 | `-h`, `--help`            | Show help message                                                                                          |
 
-#### weka interface-group ip-range remove
+**weka interface-group ip-range remove**
 
 Delete an ip range from an interface group
 
@@ -7472,7 +7672,7 @@ weka interface-group ip-range remove <name>
 | `-f`, `--force`           | Force this action without further confirmation. This action may disrupt IO service for connected clients and can be undone by re-creating the IP range. |
 | `-h`, `--help`            | Show help message                                                                                                                                       |
 
-### weka interface-group port
+#### weka interface-group port
 
 Commands that manage interface-groups' ports
 
@@ -7486,7 +7686,7 @@ weka interface-group port [--color color] [--help]
 | `--color`      | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled') |
 | `-h`, `--help` | Show help message                                                                |
 
-#### weka interface-group port add
+**weka interface-group port add**
 
 Add a server port to an interface group
 
@@ -7517,7 +7717,7 @@ weka interface-group port add <name>
 | `--profile`               | Name of the connection and authentication profile to use                                                   |
 | `-h`, `--help`            | Show help message                                                                                          |
 
-#### weka interface-group port remove
+**weka interface-group port remove**
 
 Delete a server port from an interface group
 
@@ -7550,7 +7750,7 @@ weka interface-group port remove <name>
 | `-f`, `--force`           | Force this action without further confirmation. This action may disrupt IO service for connected clients and can be undone by re-adding the port. |
 | `-h`, `--help`            | Show help message                                                                                                                                 |
 
-### weka interface-group update
+#### weka interface-group update
 
 Update an interface group
 
@@ -7581,7 +7781,7 @@ weka interface-group update <name>
 | `--profile`               | Name of the connection and authentication profile to use                                                   |
 | `-h`, `--help`            | Show help message                                                                                          |
 
-## weka local
+### weka local
 
 Commands that control weka and its containers on the local machine
 
@@ -7595,7 +7795,7 @@ weka local [--color color] [--help]
 | `--color`      | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled') |
 | `-h`, `--help` | Show help message                                                                |
 
-### weka local diags
+#### weka local diags
 
 Collect diagnostics from the local machine
 
@@ -7632,7 +7832,7 @@ weka local diags [--id id]
 | `-v`, `--verbose`              | Print results of all diags, including successful ones                                                                  |
 | `-h`, `--help`                 | Show help message                                                                                                      |
 
-### weka local disable
+#### weka local disable
 
 Disable containers by not launching them on machine boot. This does not affect the current running status of the container. In order to change the current status, use the "weka local start/stop" commands. If no container names are specified, this command runs on all containers.
 
@@ -7648,7 +7848,7 @@ weka local disable [--color color] [--type type]... [--help] [<container>]...
 | `-t`, `--type`... | The container types to disable (may be repeated or comma-separated)              |
 | `-h`, `--help`    | Show help message                                                                |
 
-### weka local drive
+#### weka local drive
 
 Manage local drives
 
@@ -7662,46 +7862,28 @@ weka local drive [--color color] [--help]
 | `--color`      | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled') |
 | `-h`, `--help` | Show help message                                                                |
 
-#### weka local drive identify
+**weka local drive identify**
 
 Turn a drive's identify LED on or off
 
 ```sh
-weka local drive identify <serialNumber>
-                          <state>
-                          [--color color]
-                          [--HOST HOST]
-                          [--PORT PORT]
-                          [--CONNECT-TIMEOUT CONNECT-TIMEOUT]
-                          [--TIMEOUT TIMEOUT]
-                          [--profile profile]
-                          [--help]
+weka local drive identify <serialNumber> <state> [--color color] [--help]
 
 ```
 
-| Parameter                 | Description                                                                                                |
-| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
-| `serialNumber`\*          | The serial number of the drive                                                                             |
-| `state`\*                 | Set the drive's identify LED on or off (format: 'yes', 'no', 'true', 'false', 'on', 'off', 'y' or 'n')     |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
-| `--profile`               | Name of the connection and authentication profile to use                                                   |
-| `-h`, `--help`            | Show help message                                                                                          |
+| Parameter        | Description                                                                                            |
+| ---------------- | ------------------------------------------------------------------------------------------------------ |
+| `serialNumber`\* | The serial number of the drive                                                                         |
+| `state`\*        | Set the drive's identify LED on or off (format: 'yes', 'no', 'true', 'false', 'on', 'off', 'y' or 'n') |
+| `--color`        | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                       |
+| `-h`, `--help`   | Show help message                                                                                      |
 
-#### weka local drive list
+**weka local drive list**
 
 List local drives
 
 ```sh
 weka local drive list [--color color]
-                      [--HOST HOST]
-                      [--PORT PORT]
-                      [--CONNECT-TIMEOUT CONNECT-TIMEOUT]
-                      [--TIMEOUT TIMEOUT]
-                      [--profile profile]
                       [--format format]
                       [--output output]...
                       [--sort sort]...
@@ -7715,26 +7897,21 @@ weka local drive list [--color color]
 
 ```
 
-| Parameter                 | Description                                                                                                                                                                             |
-| ------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                        |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                                        |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                                        |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                              |
-| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                  |
-| `--profile`               | Name of the connection and authentication profile to use                                                                                                                                |
-| `-f`, `--format`          | Specify in what format to output the result (format: 'view', 'csv', 'markdown', 'json' or 'oldview')                                                                                    |
-| `-o`, `--output`...       | Specify which columns to output. May include any of the following: name,serial,capacity,status,manufacturer,model,location,refresh,component (may be repeated or comma-separated)       |
-| `-s`, `--sort`...         | Specify which column(s) to take into account when sorting the output. May include a '+' or '-' before the column name to sort in ascending or descending order respectively. Usage: \[+ |
-| `-F`, `--filter`...       | Specify what values to filter by in a specific column. Usage: column1=val1\[,column2=val2\[,..]] (may be repeated or comma-separated)                                                   |
-| `--filter-color`...       | Filter rows with specific colors (red/yellow/green) (may be repeated or comma-separated)                                                                                                |
-| `-h`, `--help`            | Show help message                                                                                                                                                                       |
-| `-R`, `--raw-units`       | Print values in raw units (bytes, seconds, etc.). When not set, sizes are printed in human-readable format, e.g 1KiB 234MiB 2GiB.                                                       |
-| `-U`, `--UTC`             | Print times in UTC. When not set, times are converted to the local time of this host.                                                                                                   |
-| `--no-header`             | Don't show column headers when printing the output                                                                                                                                      |
-| `-v`, `--verbose`         | Show all columns in output                                                                                                                                                              |
+| Parameter           | Description                                                                                                                                                                             |
+| ------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `--color`           | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                        |
+| `-f`, `--format`    | Specify in what format to output the result (format: 'view', 'csv', 'markdown', 'json' or 'oldview')                                                                                    |
+| `-o`, `--output`... | Specify which columns to output. May include any of the following: name,serial,capacity,status,manufacturer,model,location,refresh,component (may be repeated or comma-separated)       |
+| `-s`, `--sort`...   | Specify which column(s) to take into account when sorting the output. May include a '+' or '-' before the column name to sort in ascending or descending order respectively. Usage: \[+ |
+| `-F`, `--filter`... | Specify what values to filter by in a specific column. Usage: column1=val1\[,column2=val2\[,..]] (may be repeated or comma-separated)                                                   |
+| `--filter-color`... | Filter rows with specific colors (red/yellow/green) (may be repeated or comma-separated)                                                                                                |
+| `-h`, `--help`      | Show help message                                                                                                                                                                       |
+| `-R`, `--raw-units` | Print values in raw units (bytes, seconds, etc.). When not set, sizes are printed in human-readable format, e.g 1KiB 234MiB 2GiB.                                                       |
+| `-U`, `--UTC`       | Print times in UTC. When not set, times are converted to the local time of this host.                                                                                                   |
+| `--no-header`       | Don't show column headers when printing the output                                                                                                                                      |
+| `-v`, `--verbose`   | Show all columns in output                                                                                                                                                              |
 
-### weka local enable
+#### weka local enable
 
 Enable monitoring for the requested containers so they automaticlly start on machine boot. This does not affect the current running status of the container. In order to change the current status, use the "weka local start/stop" commands. If no container names are specified, this command runs on all containers.
 
@@ -7750,7 +7927,7 @@ weka local enable [--color color] [--type type]... [--help] [<container>]...
 | `-t`, `--type`... | The container types to enable (may be repeated or comma-separated)               |
 | `-h`, `--help`    | Show help message                                                                |
 
-### weka local events
+#### weka local events
 
 List the events saved to the local drive. This command does not require authentication and can be used when Weka is turned off.
 
@@ -7787,22 +7964,7 @@ weka local events [--path path]
 | `--no-header`       | Don't show column headers when printing the output                                                                                                                                      |
 | `-v`, `--verbose`   | Show all columns in output                                                                                                                                                              |
 
-### weka local extract-hostside
-
-Extrat a hostside app from contaier to host
-
-```sh
-weka local extract-hostside <app> [--color color] [--help]
-
-```
-
-| Parameter      | Description                                                                      |
-| -------------- | -------------------------------------------------------------------------------- |
-| `app`\*        | The app to extract                                                               |
-| `--color`      | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled') |
-| `-h`, `--help` | Show help message                                                                |
-
-### weka local install-agent
+#### weka local install-agent
 
 Installs Weka agent on the machine the command is executed from
 
@@ -7819,7 +7981,7 @@ weka local install-agent [--color color] [--no-update] [--no-start] [--systemd-g
 | `--systemd-graceful-shutdown` | Enable graceful shutdown via systemd                                             |
 | `-h`, `--help`                | Show help message                                                                |
 
-### weka local monitoring
+#### weka local monitoring
 
 Turn monitoring on/off for the given containers, or all containers if none are specified. When a container is started, it's always monitored. When a container is monitored, it will be restarted if it exits without being stopped through the CLI.
 
@@ -7836,7 +7998,7 @@ weka local monitoring <enabled> [--color color] [--type type]... [--help] [<cont
 | `-t`, `--type`... | The container types to disable (may be repeated or comma-separated)                                    |
 | `-h`, `--help`    | Show help message                                                                                      |
 
-### weka local ps
+#### weka local ps
 
 List the Weka containers running on the machine this command is executed from
 
@@ -7869,7 +8031,7 @@ weka local ps [--color color]
 | `--no-header`       | Don't show column headers when printing the output                                                                                                                                                                                                                                               |
 | `-v`, `--verbose`   | Show all columns in output                                                                                                                                                                                                                                                                       |
 
-### weka local reset-data
+#### weka local reset-data
 
 Resets the data directory for a given container, making the host no longer aware of the rest of the cluster
 
@@ -7887,7 +8049,7 @@ weka local reset-data [--container container] [--color color] [--clean-unused] [
 | `-f`, `--force`     | Force this action without further confirmation. This action is destructive and can potentially lose all data in the cluster. |
 | `-h`, `--help`      | Show help message                                                                                                            |
 
-### weka local resources
+#### weka local resources
 
 List and control container resources
 
@@ -7906,7 +8068,7 @@ weka local resources [--container container] [--color color] [--stable] [--help]
 | `-R`, `--raw-units` | Print values in raw units (bytes, seconds, etc.). When not set, sizes are printed in human-readable format, e.g 1KiB 234MiB 2GiB. |
 | `-U`, `--UTC`       | Print times in UTC. When not set, times are converted to the local time of this host.                                             |
 
-#### weka local resources apply
+**weka local resources apply**
 
 Apply changes to resources locally
 
@@ -7923,7 +8085,7 @@ weka local resources apply [--container container] [--timeout timeout] [--color 
 | `-h`, `--help`      | Show help message                                                                                                         |
 | `-f`, `--force`     | Force this action without further confirmation. This action will restart the container on this host and cannot be undone. |
 
-#### weka local resources auto-remove-timeout
+**weka local resources auto-remove-timeout**
 
 Configure the auto-remove-timeout (in seconds) to remove inactive client containers.
 
@@ -7944,7 +8106,7 @@ weka local resources auto-remove-timeout <auto-remove-timeout>
 | `-f`, `--force`         | Force this action without further confirmation. This would cause a non-client container to become a client and this action is irreversible.. |
 | `-h`, `--help`          | Show help message                                                                                                                            |
 
-#### weka local resources bandwidth
+**weka local resources bandwidth**
 
 Limit weka's bandwidth for the host
 
@@ -7960,7 +8122,7 @@ weka local resources bandwidth <bandwidth> [--container container] [--color colo
 | `--color`           | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                           |
 | `-h`, `--help`      | Show help message                                                                                                                                                                          |
 
-#### weka local resources base-port
+**weka local resources base-port**
 
 Change the port-range used by the container. Weka containers require 100 ports to operate.
 
@@ -7976,7 +8138,7 @@ weka local resources base-port <base-port> [--container container] [--color colo
 | `--color`           | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')     |
 | `-h`, `--help`      | Show help message                                                                    |
 
-#### weka local resources cores
+**weka local resources cores**
 
 Change the core configuration of the host
 
@@ -8013,7 +8175,7 @@ weka local resources cores <cores>
 | `--allow-mix-setting`        | Allow specified core-ids even if there are running containers with AUTO core-ids allocation on the same server. |
 | `-h`, `--help`               | Show help message                                                                                               |
 
-#### weka local resources dedicate
+**weka local resources dedicate**
 
 Set the host as dedicated to weka. For example it can be rebooted whenever needed, and configured by weka for optimal performance and stability
 
@@ -8029,7 +8191,7 @@ weka local resources dedicate <on> [--container container] [--color color] [--he
 | `--color`           | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                  |
 | `-h`, `--help`      | Show help message                                                                                                                 |
 
-#### weka local resources drive
+**weka local resources drive**
 
 List or specify settings for drives managed in resources
 
@@ -8093,7 +8255,7 @@ weka local resources drive scan <scan-drives> [--container container] [--color c
 | `--color`           | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
 | `-h`, `--help`      | Show help message                                                                                          |
 
-#### weka local resources export
+**weka local resources export**
 
 Export stable resources to file
 
@@ -8111,24 +8273,24 @@ weka local resources export <path> [--container container] [--color color] [--st
 | `--stable`          | List the resources from the currently stable resources, which are the last known good resources |
 | `-h`, `--help`      | Show help message                                                                               |
 
-#### weka local resources failure-domain
+**weka local resources failure-domain**
 
 Set the host failure-domain
 
 ```sh
-weka local resources failure-domain [--container container] [--name name] [--color color] [--auto] [--help]
+weka local resources failure-domain [--container container] [--name name] [--scope scope] [--color color] [--help]
 
 ```
 
-| Parameter           | Description                                                                                        |
-| ------------------- | -------------------------------------------------------------------------------------------------- |
-| `-C`, `--container` | The container name                                                                                 |
-| `--name`            | Add this host to a named failure-domain. A failure-domain will be created if it doesn't exist yet. |
-| `--color`           | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                   |
-| `--auto`            | Set this host to be a failure-domain of its own                                                    |
-| `-h`, `--help`      | Show help message                                                                                  |
+| Parameter           | Description                                                                                                                                                                                                                                         |
+| ------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `-C`, `--container` | The container name                                                                                                                                                                                                                                  |
+| `--name`            | Add this host to a named failure-domain. A failure-domain will be created if it doesn't exist yet.                                                                                                                                                  |
+| `--scope`           | Automatic failure domain scope: 'server' (each server is its own FD), 'rack' (switch discovery via LLDP or InfiniBand SMP), or 'chassis' (SMBIOS chassis serial, for multi-node enclosures such as BigTwin) (format: 'server', 'rack' or 'chassis') |
+| `--color`           | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                                                                                    |
+| `-h`, `--help`      | Show help message                                                                                                                                                                                                                                   |
 
-#### weka local resources fqdn
+**weka local resources fqdn**
 
 Configure the fqdn to be used by other containers for TLS hostname verification when interacting with the cluster.
 
@@ -8144,7 +8306,7 @@ weka local resources fqdn <fqdn> [--container container] [--color color] [--help
 | `--color`           | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                       |
 | `-h`, `--help`      | Show help message                                                                                                                      |
 
-#### weka local resources hardware-monitor
+**weka local resources hardware-monitor**
 
 Configure hardware monitoring for the local chassis
 
@@ -8171,7 +8333,7 @@ weka local resources hardware-monitor [--container container]
 | `--disable`         | Disable hardware monitoring.                                                       |
 | `-h`, `--help`      | Show help message                                                                  |
 
-#### weka local resources import
+**weka local resources import**
 
 Import resources from file
 
@@ -8189,7 +8351,7 @@ weka local resources import <path> [--container container] [--color color] [--wi
 | `-h`, `--help`       | Show help message                                                                                                                                |
 | `-f`, `--force`      | Force this action without further confirmation. This action will override any resource changes that have not been applied, and cannot be undone. |
 
-#### weka local resources join-ips
+**weka local resources join-ips**
 
 Set the IPs and ports of all hosts in the cluster. This will enable the host to join the cluster using these IPs.
 
@@ -8212,7 +8374,7 @@ weka local resources join-ips [--container container]
 | `--restricted`      | Join using restricted client port                                                                                                                |
 | `-h`, `--help`      | Show help message                                                                                                                                |
 
-#### weka local resources join-secret
+**weka local resources join-secret**
 
 Configure the secret used when joining a cluster as a backend
 
@@ -8229,7 +8391,7 @@ weka local resources join-secret <secret> [--container container] [--color color
 | `--purge`           | Purge previous join secrets                                                      |
 | `-h`, `--help`      | Show help message                                                                |
 
-#### weka local resources management-ips
+**weka local resources management-ips**
 
 Set the host's management node IPs. Setting 2 IPs will turn this hosts networking into highly-available mode
 
@@ -8245,7 +8407,23 @@ weka local resources management-ips [--container container] [--color color] [--h
 | `--color`           | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled') |
 | `-h`, `--help`      | Show help message                                                                |
 
-#### weka local resources memory
+**weka local resources management-nets**
+
+Set the host's management network interfaces used to auto detect the management IPs
+
+```sh
+weka local resources management-nets [--container container] [--color color] [--help] [<management-nets>]...
+
+```
+
+| Parameter            | Description                                                                      |
+| -------------------- | -------------------------------------------------------------------------------- |
+| `management-nets`... | Network interfaces used to auto detect the management IPs                        |
+| `-C`, `--container`  | The container name                                                               |
+| `--color`            | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled') |
+| `-h`, `--help`       | Show help message                                                                |
+
+**weka local resources memory**
 
 Dedicate a set amount of RAM to weka
 
@@ -8261,7 +8439,7 @@ weka local resources memory <memory> [--container container] [--color color] [--
 | `--color`           | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                         |
 | `-h`, `--help`      | Show help message                                                                                                                                                                        |
 
-#### weka local resources net
+**weka local resources net**
 
 List and control container resources
 
@@ -8334,7 +8512,23 @@ weka local resources net remove <name> [--container container] [--color color] [
 | `--color`           | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled') |
 | `-h`, `--help`      | Show help message                                                                |
 
-#### weka local resources restore
+**weka local resources non-datapath-cores**
+
+Set the list of CPU cores reserved for non-datapath operations (e.g. management tasks). Pass no core IDs to clear the list.
+
+```sh
+weka local resources non-datapath-cores [--container container] [--color color] [--help] [<core-ids>]...
+
+```
+
+| Parameter           | Description                                                                      |
+| ------------------- | -------------------------------------------------------------------------------- |
+| `core-ids`...       | CPU core IDs to mark as non-datapath                                             |
+| `-C`, `--container` | The container name                                                               |
+| `--color`           | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled') |
+| `-h`, `--help`      | Show help message                                                                |
+
+**weka local resources restore**
 
 Restore resources from Stable resources
 
@@ -8349,7 +8543,7 @@ weka local resources restore [--container container] [--color color] [--help]
 | `--color`           | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled') |
 | `-h`, `--help`      | Show help message                                                                |
 
-### weka local restart
+#### weka local restart
 
 Restart a Weka container
 
@@ -8376,7 +8570,7 @@ weka local restart [--wait-time wait-time]
 | `-f`, `--force`                       | Skip the check for active mounts and perform an ungraceful restart                                                                   |
 | `-h`, `--help`                        | Show help message                                                                                                                    |
 
-### weka local rm
+#### weka local rm
 
 Delete a Weka container from the machine this command is executed from (this removed the data associated with the container, but retains the downloaded software)
 
@@ -8393,7 +8587,7 @@ weka local rm [--color color] [--all] [--force] [--help] [<containers>]...
 | `-f`, `--force` | Force this action without further confirmation. This would delete all data associated with the container(s) and can potentially lose all data in the cluster. |
 | `-h`, `--help`  | Show help message                                                                                                                                             |
 
-### weka local run
+#### weka local run
 
 Execute a command inside a new container that has the same mounts as the given container. If no container is specified, either "default" or the only defined container is selected. If no command is specified, opens an interactive shell.
 
@@ -8410,7 +8604,7 @@ weka local run [--container container] [--in in] [--color color] [--environment 
 | `-e`, `--environment`... | Environment variable to add (may be repeated)                                    |
 | `-h`, `--help`           | Show help message                                                                |
 
-### weka local setup
+#### weka local setup
 
 Container setup commands
 
@@ -8424,7 +8618,7 @@ weka local setup [--color color] [--help]
 | `--color`      | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled') |
 | `-h`, `--help` | Show help message                                                                |
 
-#### weka local setup client
+**weka local setup client**
 
 Setup a local weka client container
 
@@ -8443,6 +8637,7 @@ weka local setup client [--name name]
                         [--color color]
                         [--core-ids core-ids]...
                         [--management-ips management-ips]...
+                        [--management-net management-net]...
                         [--join-ips join-ips]...
                         [--net net]...
                         [--disable]
@@ -8469,6 +8664,7 @@ weka local setup client [--name name]
 | `--color`               | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                         |
 | `--core-ids`...         | Specify the ids of weka dedicated cores (may be repeated or comma-separated)                                                                                                             |
 | `--management-ips`...   | New IPs for the management nodes (may be repeated or comma-separated)                                                                                                                    |
+| `--management-net`...   | Net interface used to auto configure management IPs (may be repeated or comma-separated)                                                                                                 |
 | `--join-ips`...         | New IP:port pairs for the management processes. If no port is used the command will use the default Weka port (may be repeated or comma-separated)                                       |
 | `--net`...              | Network specification - /\[ip]/\[bits]/\[gateway], or /rdma-only/\[inet4                                                                                                                 |
 | `--disable`             | Should the container be created as disabled                                                                                                                                              |
@@ -8477,7 +8673,7 @@ weka local setup client [--name name]
 | `--restricted`          | Restricted client mode functionality only                                                                                                                                                |
 | `-h`, `--help`          | Show help message                                                                                                                                                                        |
 
-#### weka local setup container
+**weka local setup container**
 
 Setup a local weka container
 
@@ -8490,6 +8686,7 @@ weka local setup container [--name name]
                            [--memory memory]
                            [--bandwidth bandwidth]
                            [--failure-domain failure-domain]
+                           [--failure-domain-scope failure-domain-scope]
                            [--timeout timeout]
                            [--container-id container-id]
                            [--base-port base-port]
@@ -8528,53 +8725,54 @@ weka local setup container [--name name]
 
 ```
 
-| Parameter                     | Description                                                                                                                                                                              |
-| ----------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `-n`, `--name`                | The name to give the container                                                                                                                                                           |
-| `--cores`                     | Number of CPU cores dedicated to weka                                                                                                                                                    |
-| `--frontend-dedicated-cores`  | Number of cores dedicated to weka frontend (out of the total )                                                                                                                           |
-| `--drives-dedicated-cores`    | Number of cores dedicated to weka drives (out of the total )                                                                                                                             |
-| `--compute-dedicated-cores`   | Number of cores dedicated to weka compute (out of the total )                                                                                                                            |
-| `--memory`                    | Memory dedicated to weka in bytes, set to 0 to let the system decide (format: capacity in decimal or binary units: 1B, 1KB, 1MB, 1GB, 1TB, 1PB, 1EB, 1KiB, 1MiB, 1GiB, 1TiB, 1PiB, 1EiB) |
-| `--bandwidth`                 | bandwidth limitation per second (format: either "unlimited" or bandwidth per second in binary or decimal values: 1B, 1KB, 1MB, 1GB, 1TB, 1PB, 1EB, 1KiB, 1MiB, 1GiB, 1TiB, 1PiB, 1EiB)   |
-| `--failure-domain`            | Add this container to a named failure-domain. A failure-domain will be created if it doesn't exist yet. If not specified, an automatic failure domain will be assigned.                  |
-| `-t`, `--timeout`             | Join command timeout in seconds (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                   |
-| `--container-id`              | Designate a container-id that will be used when the container joins the cluster                                                                                                          |
-| `--base-port`                 | The first port that will be used by the Weka container, out of a total of 100 ports.                                                                                                     |
-| `--resources-path`            | Import the container's resources from a file (additional command-line flags specified will override the resources in the file)                                                           |
-| `--weka-version`              | Use the specified version to start the container in                                                                                                                                      |
-| `--fqdn`                      | The Fully Qualified Domain Name (FQDN) to be used by other containers for TLS hostname verification when interacting with the cluster                                                    |
-| `--auto-remove-timeout`       | Set the timeout (in seconds) to remove inactive client containers. Applies only with the --client flag.                                                                                  |
-| `--nvidia-vf-single-ip`       | Nvidia VFs work as Single IP (format: 'yes', 'no', 'true', 'false', 'on', 'off', 'y' or 'n')                                                                                             |
-| `--dedicated-mode`            | Determine whether DPDK networking dedicates a core (full) or not (none). none can only be set when the NIC driver supports it. (format: 'full' or 'none')                                |
-| `--scan-rdma`                 | Scan for unused net devices and add them for RDMA only use. (format: 'off', 'ib', 'eth' or 'all')                                                                                        |
-| `--color`                     | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                         |
-| `--core-ids`...               | Specify the ids of weka dedicated cores (may be repeated or comma-separated)                                                                                                             |
-| `--management-ips`...         | New IPs for the management nodes (may be repeated or comma-separated)                                                                                                                    |
-| `--join-ips`...               | New IP:port pairs for the management processes. If no port is used the command will use the default Weka port (may be repeated or comma-separated)                                       |
-| `--join-fqdns`...             | FQDN:port pairs for the management processes. If no port is used the command will use the default Weka port (may be repeated or comma-separated)                                         |
-| `--net`...                    | Network specification - /\[ip]/\[bits]/\[gateway], or /rdma-only/\[inet4                                                                                                                 |
-| `--management-net`...         | Net interface used to auto configure management IPs (may be repeated or comma-separated)                                                                                                 |
-| `--drive-uuids`...            | UUIDs of signed storage drives to be used when the container forms/joins a cluster (may be repeated or comma-separated)                                                                  |
-| `--disable`                   | Should the container be created as disabled                                                                                                                                              |
-| `--no-start`                  | Do not start the container after its creation                                                                                                                                            |
-| `--no-frontends`              | Don't allocate frontend nodes                                                                                                                                                            |
-| `--only-drives-cores`         | Create only nodes with a drives role                                                                                                                                                     |
-| `--only-compute-cores`        | Create only nodes with a compute role                                                                                                                                                    |
-| `--only-frontend-cores`       | Create only nodes with a frontend role                                                                                                                                                   |
-| `--only-dataserv-cores`       | Create only nodes with a dataserv role                                                                                                                                                   |
-| `--allow-mix-setting`         | Allow specified core-ids even if there are running containers with AUTO core-ids allocation on the same server.                                                                          |
-| `--dedicate`                  | Set the host as weka dedicated                                                                                                                                                           |
-| `--force`                     | Create a new container even if a container with the same name exists, disregarding all safety checks!                                                                                    |
-| `--ignore-used-ports`         | Allow container to start even if the required ports are used by other processes                                                                                                          |
-| `--skip-management-ips-check` | Skip The enforcement of management IPs                                                                                                                                                   |
-| `--client`                    | Create persistent client container                                                                                                                                                       |
-| `--restricted`                | Restricted client mode functionality only                                                                                                                                                |
-| `--clusterize`                | Form a cluster with the --join-ips supplied                                                                                                                                              |
-| `--scan-drives`               | Scan for signed drives and add them to the cluster during container start                                                                                                                |
-| `-h`, `--help`                | Show help message                                                                                                                                                                        |
+| Parameter                     | Description                                                                                                                                                                                                                                         |
+| ----------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `-n`, `--name`                | The name to give the container                                                                                                                                                                                                                      |
+| `--cores`                     | Number of CPU cores dedicated to weka                                                                                                                                                                                                               |
+| `--frontend-dedicated-cores`  | Number of cores dedicated to weka frontend (out of the total )                                                                                                                                                                                      |
+| `--drives-dedicated-cores`    | Number of cores dedicated to weka drives (out of the total )                                                                                                                                                                                        |
+| `--compute-dedicated-cores`   | Number of cores dedicated to weka compute (out of the total )                                                                                                                                                                                       |
+| `--memory`                    | Memory dedicated to weka in bytes, set to 0 to let the system decide (format: capacity in decimal or binary units: 1B, 1KB, 1MB, 1GB, 1TB, 1PB, 1EB, 1KiB, 1MiB, 1GiB, 1TiB, 1PiB, 1EiB)                                                            |
+| `--bandwidth`                 | bandwidth limitation per second (format: either "unlimited" or bandwidth per second in binary or decimal values: 1B, 1KB, 1MB, 1GB, 1TB, 1PB, 1EB, 1KiB, 1MiB, 1GiB, 1TiB, 1PiB, 1EiB)                                                              |
+| `--failure-domain`            | Add this container to a named failure-domain. A failure-domain will be created if it doesn't exist yet. If not specified, an automatic failure domain will be assigned.                                                                             |
+| `--failure-domain-scope`      | Automatic failure domain scope: 'server' (each server is its own FD), 'rack' (switch discovery via LLDP or InfiniBand SMP), or 'chassis' (SMBIOS chassis serial, for multi-node enclosures such as BigTwin) (format: 'server', 'rack' or 'chassis') |
+| `-t`, `--timeout`             | Join command timeout in seconds (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                                              |
+| `--container-id`              | Designate a container-id that will be used when the container joins the cluster                                                                                                                                                                     |
+| `--base-port`                 | The first port that will be used by the Weka container, out of a total of 100 ports.                                                                                                                                                                |
+| `--resources-path`            | Import the container's resources from a file (additional command-line flags specified will override the resources in the file)                                                                                                                      |
+| `--weka-version`              | Use the specified version to start the container in                                                                                                                                                                                                 |
+| `--fqdn`                      | The Fully Qualified Domain Name (FQDN) to be used by other containers for TLS hostname verification when interacting with the cluster                                                                                                               |
+| `--auto-remove-timeout`       | Set the timeout (in seconds) to remove inactive client containers. Applies only with the --client flag.                                                                                                                                             |
+| `--nvidia-vf-single-ip`       | Nvidia VFs work as Single IP (format: 'yes', 'no', 'true', 'false', 'on', 'off', 'y' or 'n')                                                                                                                                                        |
+| `--dedicated-mode`            | Determine whether DPDK networking dedicates a core (full) or not (none). none can only be set when the NIC driver supports it. (format: 'full' or 'none')                                                                                           |
+| `--scan-rdma`                 | Scan for unused net devices and add them for RDMA only use. (format: 'off', 'ib', 'eth' or 'all')                                                                                                                                                   |
+| `--color`                     | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                                                                                    |
+| `--core-ids`...               | Specify the ids of weka dedicated cores (may be repeated or comma-separated)                                                                                                                                                                        |
+| `--management-ips`...         | New IPs for the management nodes (may be repeated or comma-separated)                                                                                                                                                                               |
+| `--join-ips`...               | New IP:port pairs for the management processes. If no port is used the command will use the default Weka port (may be repeated or comma-separated)                                                                                                  |
+| `--join-fqdns`...             | FQDN:port pairs for the management processes. If no port is used the command will use the default Weka port (may be repeated or comma-separated)                                                                                                    |
+| `--net`...                    | Network specification - /\[ip]/\[bits]/\[gateway], or /rdma-only/\[inet4                                                                                                                                                                            |
+| `--management-net`...         | Net interface used to auto configure management IPs (may be repeated or comma-separated)                                                                                                                                                            |
+| `--drive-uuids`...            | UUIDs of signed storage drives to be used when the container forms/joins a cluster (may be repeated or comma-separated)                                                                                                                             |
+| `--disable`                   | Should the container be created as disabled                                                                                                                                                                                                         |
+| `--no-start`                  | Do not start the container after its creation                                                                                                                                                                                                       |
+| `--no-frontends`              | Don't allocate frontend nodes                                                                                                                                                                                                                       |
+| `--only-drives-cores`         | Create only nodes with a drives role                                                                                                                                                                                                                |
+| `--only-compute-cores`        | Create only nodes with a compute role                                                                                                                                                                                                               |
+| `--only-frontend-cores`       | Create only nodes with a frontend role                                                                                                                                                                                                              |
+| `--only-dataserv-cores`       | Create only nodes with a dataserv role                                                                                                                                                                                                              |
+| `--allow-mix-setting`         | Allow specified core-ids even if there are running containers with AUTO core-ids allocation on the same server.                                                                                                                                     |
+| `--dedicate`                  | Set the host as weka dedicated                                                                                                                                                                                                                      |
+| `--force`                     | Create a new container even if a container with the same name exists, disregarding all safety checks!                                                                                                                                               |
+| `--ignore-used-ports`         | Allow container to start even if the required ports are used by other processes                                                                                                                                                                     |
+| `--skip-management-ips-check` | Skip The enforcement of management IPs                                                                                                                                                                                                              |
+| `--client`                    | Create persistent client container                                                                                                                                                                                                                  |
+| `--restricted`                | Restricted client mode functionality only                                                                                                                                                                                                           |
+| `--clusterize`                | Form a cluster with the --join-ips supplied                                                                                                                                                                                                         |
+| `--scan-drives`               | Scan for signed drives and add them to the cluster during container start                                                                                                                                                                           |
+| `-h`, `--help`                | Show help message                                                                                                                                                                                                                                   |
 
-#### weka local setup envoy
+**weka local setup envoy**
 
 Setup a local envoy container
 
@@ -8591,7 +8789,7 @@ weka local setup envoy [--name name] [--color color] [--disable] [--no-start] [-
 | `--no-start`   | Do not start the container after its creation                                    |
 | `-h`, `--help` | Show help message                                                                |
 
-#### weka local setup ssdproxy
+**weka local setup ssdproxy**
 
 Setup a local SSD Proxy container
 
@@ -8600,6 +8798,7 @@ weka local setup ssdproxy [--name name]
                           [--memory memory]
                           [--max-drives max-drives]
                           [--expected-max-drive-size expected-max-drive-size]
+                          [--expected-max-vid-num-per-drive expected-max-vid-num-per-drive]
                           [--base-port base-port]
                           [--color color]
                           [--disable]
@@ -8609,20 +8808,21 @@ weka local setup ssdproxy [--name name]
 
 ```
 
-| Parameter                   | Description                                                                                                                                                                                       |
-| --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `-n`, `--name`              | The name to give the container                                                                                                                                                                    |
-| `--memory`                  | Memory dedicated to ssdproxy in bytes, set to 0 to let the system decide (format: capacity in decimal or binary units: 1B, 1KB, 1MB, 1GB, 1TB, 1PB, 1EB, 1KiB, 1MiB, 1GiB, 1TiB, 1PiB, 1EiB)      |
-| `--max-drives`              | Set max drives supported in proxy up to 40 for auto memory calculation must not be used with --memory                                                                                             |
-| `--expected-max-drive-size` | Set max drive size for auto memory calculation must not be used with --memory (format: capacity in decimal or binary units: 1B, 1KB, 1MB, 1GB, 1TB, 1PB, 1EB, 1KiB, 1MiB, 1GiB, 1TiB, 1PiB, 1EiB) |
-| `--base-port`               | The first port that will be used by the SSD Proxy container (currently uses 2 ports: base\_port and base\_port+50 for tracing)                                                                    |
-| `--color`                   | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                                  |
-| `--disable`                 | Should the container be created as disabled                                                                                                                                                       |
-| `--no-start`                | Do not start the container after its creation                                                                                                                                                     |
-| `--enable-ssdproxy-nginx`   | Enable nginx server for SSD Proxy viewer (default: disabled)                                                                                                                                      |
-| `-h`, `--help`              | Show help message                                                                                                                                                                                 |
+| Parameter                          | Description                                                                                                                                                                                                                       |
+| ---------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `-n`, `--name`                     | The name to give the container                                                                                                                                                                                                    |
+| `--memory`                         | Memory dedicated to ssdproxy in bytes; overrides auto-calculation from --max-drives/--expected-max-drive-size (format: capacity in decimal or binary units: 1B, 1KB, 1MB, 1GB, 1TB, 1PB, 1EB, 1KiB, 1MiB, 1GiB, 1TiB, 1PiB, 1EiB) |
+| `--max-drives`                     | Set max drives supported in proxy up to 40                                                                                                                                                                                        |
+| `--expected-max-drive-size`        | Set max drive size for proxy chunkdb memory sizing; ignored when --memory is set (format: capacity in decimal or binary units: 1B, 1KB, 1MB, 1GB, 1TB, 1PB, 1EB, 1KiB, 1MiB, 1GiB, 1TiB, 1PiB, 1EiB)                              |
+| `--expected-max-vid-num-per-drive` | Set max number of VIDs per drive for proxy DPDK memory sizing (default: proxy decides)                                                                                                                                            |
+| `--base-port`                      | The first port that will be used by the SSD Proxy container (currently uses 2 ports: base\_port and base\_port+50 for tracing)                                                                                                    |
+| `--color`                          | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                                                                  |
+| `--disable`                        | Should the container be created as disabled                                                                                                                                                                                       |
+| `--no-start`                       | Do not start the container after its creation                                                                                                                                                                                     |
+| `--enable-ssdproxy-nginx`          | Enable nginx server for SSD Proxy viewer (default: disabled)                                                                                                                                                                      |
+| `-h`, `--help`                     | Show help message                                                                                                                                                                                                                 |
 
-#### weka local setup taskmon
+**weka local setup taskmon**
 
 Setup a local taskmon container
 
@@ -8638,7 +8838,7 @@ weka local setup taskmon [--color color] [--disable] [--no-start] [--help]
 | `--no-start`   | Do not start the container after its creation                                    |
 | `-h`, `--help` | Show help message                                                                |
 
-#### weka local setup telemetry
+**weka local setup telemetry**
 
 Setup a local telemetry container
 
@@ -8659,7 +8859,7 @@ weka local setup telemetry [--dependent-container-name dependent-container-name]
 | `--no-start`                         | Do not start the container after its creation                                    |
 | `-h`, `--help`                       | Show help message                                                                |
 
-#### weka local setup weka
+**weka local setup weka**
 
 Setup a local weka container
 
@@ -8676,7 +8876,7 @@ weka local setup weka [--name name] [--color color] [--disable] [--no-start] [--
 | `--no-start`   | Do not start the container after its creation                                    |
 | `-h`, `--help` | Show help message                                                                |
 
-### weka local start
+#### weka local start
 
 Start a Weka container
 
@@ -8699,7 +8899,7 @@ weka local start [--wait-time wait-time]
 | `--skip-start-and-enable-dependent` | Skip starting and enabling dependent containers when starting containers by name                                  |
 | `-h`, `--help`                      | Show help message                                                                                                 |
 
-### weka local status
+#### weka local status
 
 Show the status of a Weka container
 
@@ -8717,7 +8917,7 @@ weka local status [--color color] [--type type]... [--verbose] [--help] [--json]
 | `-h`, `--help`    | Show help message                                                                |
 | `-J`, `--json`    | Format output as JSON                                                            |
 
-### weka local stop
+#### weka local stop
 
 Stop a Weka container
 
@@ -8742,7 +8942,7 @@ weka local stop [--reason reason]
 | `-f`, `--force`   | Skip the check for active mounts and perform an ungraceful stop                                                                  |
 | `-h`, `--help`    | Show help message                                                                                                                |
 
-### weka local upgrade
+#### weka local upgrade
 
 Upgrade a Weka Host Container to its cluster version
 
@@ -8752,6 +8952,7 @@ weka local upgrade [--container container]
                    [--upgrade-container-timeout upgrade-container-timeout]
                    [--prepare-container-timeout prepare-container-timeout]
                    [--container-action-timeout container-action-timeout]
+                   [--use-requested-action use-requested-action]
                    [--color color]
                    [--allow-not-ready]
                    [--dont-upgrade-agent]
@@ -8767,8 +8968,9 @@ weka local upgrade [--container container]
 | `-t`, `--target-version`      | Specify a specific target version for upgrade, instead of upgrading to the backend's version.                                              |
 | `NOTE - This parameter is`    | DANGEROUS, use with caution. Incorrect usage may cause upgrade failure.                                                                    |
 | `--upgrade-container-timeout` | How long to wait for the container to upgrade. default is 120s (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                      |
-| `--prepare-container-timeout` | How long to wait for the container to prepare for upgrade. default is 120s (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)          |
+| `--prepare-container-timeout` | How long to wait for the container to prepare for upgrade. default is 900s (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)          |
 | `--container-action-timeout`  | How long to wait for the container action to run before timing out and retrying 30s (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `--use-requested-action`      | Use requested action mechanism to drain containers during upgrade (true/false)                                                             |
 | `--color`                     | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                           |
 | `--allow-not-ready`           | Allow starting local upgrade while the container is not fully up                                                                           |
 | `--dont-upgrade-agent`        | Don't upgrade the weka agent                                                                                                               |
@@ -8776,7 +8978,7 @@ weka local upgrade [--container container]
 | `--all`                       | Upgrade all containers                                                                                                                     |
 | `-h`, `--help`                | Show help message                                                                                                                          |
 
-## weka mount
+### weka mount
 
 Mounts a wekafs filesystem. This is the helper utility installed at /sbin/mount.wekafs.
 
@@ -8811,7 +9013,7 @@ weka mount <source>
 | `-R`, `--raw-units` | Print values in raw units (bytes, seconds, etc.). When not set, sizes are printed in human-readable format, e.g 1KiB 234MiB 2GiB. |
 | `-U`, `--UTC`       | Print times in UTC. When not set, times are converted to the local time of this host.                                             |
 
-## weka nfs
+### weka nfs
 
 Commands that manage client-groups, permissions and interface-groups
 
@@ -8825,7 +9027,7 @@ weka nfs [--color color] [--help]
 | `--color`      | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled') |
 | `-h`, `--help` | Show help message                                                                |
 
-### weka nfs client-group
+#### weka nfs client-group
 
 Lists NFS client groups
 
@@ -8866,7 +9068,7 @@ weka nfs client-group [--name name]
 | `--no-header`             | Don't show column headers when printing the output                                                                                                                                      |
 | `-v`, `--verbose`         | Show all columns in output                                                                                                                                                              |
 
-#### weka nfs client-group add
+**weka nfs client-group add**
 
 Create an NFS client group
 
@@ -8907,7 +9109,7 @@ weka nfs client-group add <name>
 | `--no-header`             | Don't show column headers when printing the output                                                                                                                                      |
 | `-v`, `--verbose`         | Show all columns in output                                                                                                                                                              |
 
-#### weka nfs client-group remove
+**weka nfs client-group remove**
 
 Delete an NFS client group
 
@@ -8936,7 +9138,7 @@ weka nfs client-group remove <name>
 | `-f`, `--force`           | Force this action without further confirmation. This action may disrupt IO service for connected NFS clients and can be undone by re-creating the client group. |
 | `-h`, `--help`            | Show help message                                                                                                                                               |
 
-### weka nfs clients
+#### weka nfs clients
 
 NFS Clients usage information
 
@@ -8950,7 +9152,7 @@ weka nfs clients [--color color] [--help]
 | `--color`      | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled') |
 | `-h`, `--help` | Show help message                                                                |
 
-#### weka nfs clients show
+**weka nfs clients show**
 
 Show NFS Clients usage information. If no options are given, all NFS Ganesha containers will be selected.
 
@@ -8997,7 +9199,7 @@ weka nfs clients show [--interface-group interface-group]
 | `--no-header`             | Don't show column headers when printing the output                                                                                                                                                           |
 | `-v`, `--verbose`         | Show all columns in output                                                                                                                                                                                   |
 
-### weka nfs debug-level
+#### weka nfs debug-level
 
 Manage debug level for nfs servers.
 
@@ -9011,7 +9213,7 @@ weka nfs debug-level [--color color] [--help]
 | `--color`      | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled') |
 | `-h`, `--help` | Show help message                                                                |
 
-#### weka nfs debug-level list
+**weka nfs debug-level list**
 
 Lists nfs server supported components/levels for setting debug levels.
 
@@ -9054,7 +9256,7 @@ weka nfs debug-level list <what>
 | `--no-header`             | Don't show column headers when printing the output                                                                                                                                      |
 | `-v`, `--verbose`         | Show all columns in output                                                                                                                                                              |
 
-#### weka nfs debug-level set
+**weka nfs debug-level set**
 
 Set debug level for nfs servers. Set to default (EVENT) when finished debugging.
 
@@ -9087,7 +9289,7 @@ weka nfs debug-level set <level>
 | `--full-list`             | Select the full list of components if no component is selected (default: false)                                                       |
 | `-h`, `--help`            | Show help message                                                                                                                     |
 
-#### weka nfs debug-level show
+**weka nfs debug-level show**
 
 Get debug level for nfs servers.
 
@@ -9132,7 +9334,7 @@ weka nfs debug-level show [--color color]
 | `--no-header`             | Don't show column headers when printing the output                                                                                                                                      |
 | `-v`, `--verbose`         | Show all columns in output                                                                                                                                                              |
 
-### weka nfs global-config
+#### weka nfs global-config
 
 NFS Global Configuration
 
@@ -9146,7 +9348,7 @@ weka nfs global-config [--color color] [--help]
 | `--color`      | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled') |
 | `-h`, `--help` | Show help message                                                                |
 
-#### weka nfs global-config set
+**weka nfs global-config set**
 
 Set NFS global configuration options
 
@@ -9199,7 +9401,7 @@ weka nfs global-config set [--mountd-port mountd-port]
 | `-h`, `--help`                    | Show help message                                                                                                                                                                           |
 | `-f`, `--force`                   | Force this action without further confirmation. This may cause a temporary disruption in the NFS service.                                                                                   |
 
-#### weka nfs global-config show
+**weka nfs global-config show**
 
 Show the NFS global configuration
 
@@ -9226,7 +9428,7 @@ weka nfs global-config show [--color color]
 | `-h`, `--help`            | Show help message                                                                                          |
 | `-J`, `--json`            | Format output as JSON                                                                                      |
 
-### weka nfs interface-group
+#### weka nfs interface-group
 
 List interface groups
 
@@ -9267,7 +9469,7 @@ weka nfs interface-group [--name name]
 | `--no-header`             | Don't show column headers when printing the output                                                                                                                                      |
 | `-v`, `--verbose`         | Show all columns in output                                                                                                                                                              |
 
-#### weka nfs interface-group add
+**weka nfs interface-group add**
 
 Create an interface group
 
@@ -9314,7 +9516,7 @@ weka nfs interface-group add <name>
 | `--no-header`             | Don't show column headers when printing the output                                                                                                                                      |
 | `-v`, `--verbose`         | Show all columns in output                                                                                                                                                              |
 
-#### weka nfs interface-group assignment
+**weka nfs interface-group assignment**
 
 List the currently assigned interface for each floating-IP address in the given interface-group. If is not supplied, assignments for all floating-IP addresses will be listed
 
@@ -9355,7 +9557,7 @@ weka nfs interface-group assignment [--name name]
 | `--no-header`             | Don't show column headers when printing the output                                                                                                                                      |
 | `-v`, `--verbose`         | Show all columns in output                                                                                                                                                              |
 
-#### weka nfs interface-group remove
+**weka nfs interface-group remove**
 
 Delete an interface group
 
@@ -9384,7 +9586,7 @@ weka nfs interface-group remove <name>
 | `-f`, `--force`           | Force this action without further confirmation. This action may disrupt IO service for connected NFS clients and can be undone by re-creating the interface group. |
 | `-h`, `--help`            | Show help message                                                                                                                                                  |
 
-#### weka nfs interface-group ip-range
+**weka nfs interface-group ip-range**
 
 Commands that manage nfs interface-groups' ip-ranges
 
@@ -9458,7 +9660,7 @@ weka nfs interface-group ip-range remove <name>
 | `-f`, `--force`           | Force this action without further confirmation. This action may disrupt IO service for connected NFS clients and can be undone by re-creating the IP range. |
 | `-h`, `--help`            | Show help message                                                                                                                                           |
 
-#### weka nfs interface-group port
+**weka nfs interface-group port**
 
 Commands that manage nfs interface-groups' ports
 
@@ -9536,7 +9738,7 @@ weka nfs interface-group port remove <name>
 | `-f`, `--force`           | Force this action without further confirmation. This action may disrupt IO service for connected NFS clients and can be undone by re-adding the port. |
 | `-h`, `--help`            | Show help message                                                                                                                                     |
 
-#### weka nfs interface-group update
+**weka nfs interface-group update**
 
 Update an interface group
 
@@ -9567,7 +9769,7 @@ weka nfs interface-group update <name>
 | `--profile`               | Name of the connection and authentication profile to use                                                   |
 | `-h`, `--help`            | Show help message                                                                                          |
 
-### weka nfs kerberos
+#### weka nfs kerberos
 
 NFS Kerberos Commands
 
@@ -9581,7 +9783,7 @@ weka nfs kerberos [--color color] [--help]
 | `--color`      | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled') |
 | `-h`, `--help` | Show help message                                                                |
 
-#### weka nfs kerberos registration
+**weka nfs kerberos registration**
 
 NFS Kerberos service registration
 
@@ -9704,7 +9906,7 @@ weka nfs kerberos registration show [--color color]
 | `--no-header`             | Don't show column headers when printing the output                                                                                                                                      |
 | `-v`, `--verbose`         | Show all columns in output                                                                                                                                                              |
 
-#### weka nfs kerberos reset
+**weka nfs kerberos reset**
 
 Wipe out NFS Kerberos Service configuration information. Running this command without the `no-restart` option can disrupt IO service for connected NFS clients.
 
@@ -9733,7 +9935,7 @@ weka nfs kerberos reset [--color color]
 | `--no-restart`            | Don't restart the NFS-W containers to apply changes (default: false)                                       |
 | `-h`, `--help`            | Show help message                                                                                          |
 
-#### weka nfs kerberos service
+**weka nfs kerberos service**
 
 NFS Kerberos service
 
@@ -9823,7 +10025,7 @@ weka nfs kerberos service show [--color color]
 | `--no-header`             | Don't show column headers when printing the output                                                                                                                                                 |
 | `-v`, `--verbose`         | Show all columns in output                                                                                                                                                                         |
 
-### weka nfs ldap
+#### weka nfs ldap
 
 NFS LDAP Commands
 
@@ -9837,7 +10039,7 @@ weka nfs ldap [--color color] [--help]
 | `--color`      | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled') |
 | `-h`, `--help` | Show help message                                                                |
 
-#### weka nfs ldap export-openldap
+**weka nfs ldap export-openldap**
 
 Export in use configuration information for NFS to use OpenLDAP.
 
@@ -9870,7 +10072,7 @@ weka nfs ldap export-openldap <server-name>
 | `--profile`               | Name of the connection and authentication profile to use                                                   |
 | `-h`, `--help`            | Show help message                                                                                          |
 
-#### weka nfs ldap import-openldap
+**weka nfs ldap import-openldap**
 
 Import configuration information for NFS to use OpenLDAP. Running this command without the `no-restart` option can disrupt IO service for connected NFS clients.
 
@@ -9909,7 +10111,7 @@ weka nfs ldap import-openldap <server-name>
 | `--no-restart`            | Don't restart NFS-W containers to apply changes (default: false)                                           |
 | `-h`, `--help`            | Show help message                                                                                          |
 
-#### weka nfs ldap reset
+**weka nfs ldap reset**
 
 Wipe out NFS LDAP configuration information, This action may disrupt IO service for connected NFS clients if used without no-restart option
 
@@ -9938,7 +10140,7 @@ weka nfs ldap reset [--color color]
 | `--no-restart`            | Don't restart the NFS-W containers to apply changes (default: false)                                       |
 | `-h`, `--help`            | Show help message                                                                                          |
 
-#### weka nfs ldap setup-ad
+**weka nfs ldap setup-ad**
 
 Setup configuration information for NFS to use Active Directory LDAP. Running this command without the `no-restart` option can disrupt IO service for connected NFS clients.
 
@@ -9967,7 +10169,7 @@ weka nfs ldap setup-ad [--color color]
 | `--no-restart`            | Don't restart the NFS-W containers to apply changes (default: false)                                       |
 | `-h`, `--help`            | Show help message                                                                                          |
 
-#### weka nfs ldap setup-ad-nokrb
+**weka nfs ldap setup-ad-nokrb**
 
 Setup configuration information for NFS to use Active Directory LDAP for ACL only when kerberos is not used. Running this command without the `no-restart` option can disrupt IO service for connected NFS clients.
 
@@ -10008,7 +10210,7 @@ weka nfs ldap setup-ad-nokrb <server-name>
 | `--no-restart`            | Don't restart the NFS-W containers to apply changes (default: false)                                       |
 | `-h`, `--help`            | Show help message                                                                                          |
 
-#### weka nfs ldap setup-onhostldap
+**weka nfs ldap setup-onhostldap**
 
 Setup configuration information for NFS to use on host LDAP Client. Running this command without the `no-restart` option can disrupt IO service for connected NFS clients.
 
@@ -10039,7 +10241,7 @@ weka nfs ldap setup-onhostldap <ldap-domain>
 | `--no-restart`            | Don't restart the NFS-W containers to apply changes (default: false)                                       |
 | `-h`, `--help`            | Show help message                                                                                          |
 
-#### weka nfs ldap setup-openldap
+**weka nfs ldap setup-openldap**
 
 Setup configuration information for NFS to use OpenLDAP. Running this command without the `no-restart` option can disrupt IO service for connected NFS clients.
 
@@ -10081,7 +10283,7 @@ weka nfs ldap setup-openldap <server-name>
 | `--no-restart D`            | on't restart NFS-W containers to apply changes (default: false)                           |
 | `-h`, `--help S`            | how help message                                                                          |
 
-#### weka nfs ldap show
+**weka nfs ldap show**
 
 Show NFS LDAP setup information
 
@@ -10120,7 +10322,7 @@ weka nfs ldap show [--color color]
 | `--no-header`             | Don't show column headers when printing the output                                                                                                                                                                        |
 | `-v`, `--verbose`         | Show all columns in output                                                                                                                                                                                                |
 
-### weka nfs permission
+#### weka nfs permission
 
 List NFS permissions for a filesystem
 
@@ -10161,7 +10363,7 @@ weka nfs permission [--filesystem filesystem]
 | `--no-header`             | Don't show column headers when printing the output                                                                                                                                                                                                                    |
 | `-v`, `--verbose`         | Show all columns in output                                                                                                                                                                                                                                            |
 
-#### weka nfs permission add
+**weka nfs permission add**
 
 Allow a client group to access a file system
 
@@ -10189,6 +10391,7 @@ weka nfs permission add <filesystem>
                         [--no-restart]
                         [--force]
                         [--help]
+                        [--json]
 
 ```
 
@@ -10217,8 +10420,9 @@ weka nfs permission add <filesystem>
 | `--no-restart`            | Prevents the restart of NFS-W containers when applying changes (default: false), null, No.HideFromUsage                                                                                                                                                                          |
 | `-f`, `--force`           | Force this action without further confirmation. This action will affect all NFS users of this permission/export, Use it with caution and consult the Weka Customer Success team at need.                                                                                         |
 | `-h`, `--help`            | Show help message                                                                                                                                                                                                                                                                |
+| `-J`, `--json`            | Format output as JSON                                                                                                                                                                                                                                                            |
 
-#### weka nfs permission remove
+**weka nfs permission remove**
 
 Delete a file system permission
 
@@ -10251,7 +10455,7 @@ weka nfs permission remove <filesystem>
 | `-f`, `--force`           | Force this action without further confirmation. This action may disrupt IO service for connected NFS clients and can be undone by re-creating the filesystem permission. |
 | `-h`, `--help`            | Show help message                                                                                                                                                        |
 
-#### weka nfs permission update
+**weka nfs permission update**
 
 Edit a file system permission
 
@@ -10310,7 +10514,7 @@ weka nfs permission update <filesystem>
 | `--no-restart`            | Prevents the restart of NFS-W containers when applying changes (default: false), null, No.HideFromUsage                                                                                                                                                                          |
 | `-h`, `--help`            | Show help message                                                                                                                                                                                                                                                                |
 
-### weka nfs rules
+#### weka nfs rules
 
 Commands that manage NFS-rules
 
@@ -10324,7 +10528,7 @@ weka nfs rules [--color color] [--help]
 | `--color`      | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled') |
 | `-h`, `--help` | Show help message                                                                |
 
-#### weka nfs rules add
+**weka nfs rules add**
 
 Commands that add NFS-rules
 
@@ -10353,6 +10557,7 @@ weka nfs rules add dns <name>
                        [--TIMEOUT TIMEOUT]
                        [--profile profile]
                        [--help]
+                       [--json]
 
 ```
 
@@ -10368,6 +10573,7 @@ weka nfs rules add dns <name>
 | `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
 | `--profile`               | Name of the connection and authentication profile to use                                                   |
 | `-h`, `--help`            | Show help message                                                                                          |
+| `-J`, `--json`            | Format output as JSON                                                                                      |
 
 **weka nfs rules add ip**
 
@@ -10383,6 +10589,7 @@ weka nfs rules add ip <name>
                       [--TIMEOUT TIMEOUT]
                       [--profile profile]
                       [--help]
+                      [--json]
 
 ```
 
@@ -10397,8 +10604,9 @@ weka nfs rules add ip <name>
 | `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
 | `--profile`               | Name of the connection and authentication profile to use                                                   |
 | `-h`, `--help`            | Show help message                                                                                          |
+| `-J`, `--json`            | Format output as JSON                                                                                      |
 
-#### weka nfs rules remove
+**weka nfs rules remove**
 
 Commands for deleting NFS-rules
 
@@ -10470,7 +10678,7 @@ weka nfs rules remove ip <name>
 | `--profile`               | Name of the connection and authentication profile to use                                                   |
 | `-h`, `--help`            | Show help message                                                                                          |
 
-## weka s3
+### weka s3
 
 Commands that manage Weka's S3 container
 
@@ -10484,7 +10692,7 @@ weka s3 [--color color] [--help]
 | `--color`      | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled') |
 | `-h`, `--help` | Show help message                                                                |
 
-### weka s3 bucket
+#### weka s3 bucket
 
 S3 Cluster Bucket Commands
 
@@ -10498,7 +10706,7 @@ weka s3 bucket [--color color] [--help]
 | `--color`      | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled') |
 | `-h`, `--help` | Show help message                                                                |
 
-#### weka s3 bucket add
+**weka s3 bucket add**
 
 Create an S3 bucket
 
@@ -10517,6 +10725,7 @@ weka s3 bucket add <name>
                    [--CONNECT-TIMEOUT CONNECT-TIMEOUT]
                    [--TIMEOUT TIMEOUT]
                    [--profile profile]
+                   [--object-locking-on]
                    [--force]
                    [--help]
                    [--json]
@@ -10539,11 +10748,12 @@ weka s3 bucket add <name>
 | `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                                                                                                                                              |
 | `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                                                                                                                                                  |
 | `--profile`               | Name of the connection and authentication profile to use                                                                                                                                                                                                                                                                                                                |
+| `--object-locking-on`     | Enable S3 Object Lock on the bucket (creation-time only; requires cluster-wide versioning support)                                                                                                                                                                                                                                                                      |
 | `-f`, `--force`           | Force when existing-path has quota                                                                                                                                                                                                                                                                                                                                      |
 | `-h`, `--help`            | Show help message                                                                                                                                                                                                                                                                                                                                                       |
 | `-J`, `--json`            | Format output as JSON                                                                                                                                                                                                                                                                                                                                                   |
 
-#### weka s3 bucket remove
+**weka s3 bucket remove**
 
 Destroy an S3 bucket
 
@@ -10576,7 +10786,7 @@ weka s3 bucket remove <name>
 | `-J`, `--json`            | Format output as JSON                                                                                         |
 | `-f`, `--force`           | Force this action without further confirmation. This action may disrupt IO service for connected S3 clients.. |
 
-#### weka s3 bucket etag-alg
+**weka s3 bucket etag-alg**
 
 Commands to manage ETag algorithm for a specific S3 Performance Bucket
 
@@ -10654,7 +10864,7 @@ weka s3 bucket etag-alg set <bucket-name>
 | `-J`, `--json`            | Format output as JSON                                                                                                                       |
 | `-f`, `--force`           | Force this action without further confirmation. Changing this setting could significantly affect the WEKA cluster performance.              |
 
-#### weka s3 bucket integrity-mode
+**weka s3 bucket integrity-mode**
 
 Commands to manage integrity handling for a specific S3 Performance Bucket
 
@@ -10732,7 +10942,7 @@ weka s3 bucket integrity-mode set <bucket-name>
 | `-J`, `--json`            | Format output as JSON                                                                                                                                                                                                        |
 | `-f`, `--force`           | Force this action without further confirmation. Changing this setting could significantly affect the WEKA cluster performance.                                                                                               |
 
-#### weka s3 bucket lifecycle-rule
+**weka s3 bucket lifecycle-rule**
 
 S3 Bucket Lifecycle
 
@@ -10763,6 +10973,7 @@ weka s3 bucket lifecycle-rule add <bucket>
                                   [--tags tags]
                                   [--help]
                                   [--json]
+                                  [--noncurrent]
 
 ```
 
@@ -10780,6 +10991,7 @@ weka s3 bucket lifecycle-rule add <bucket>
 | `--tags`                  | object tags                                                                                                |
 | `-h`, `--help`            | Show help message                                                                                          |
 | `-J`, `--json`            | Format output as JSON                                                                                      |
+| `--noncurrent`            | apply expiry to noncurrent object versions only (not current versions)                                     |
 
 **weka s3 bucket lifecycle-rule list**
 
@@ -10814,7 +11026,7 @@ weka s3 bucket lifecycle-rule list <bucket>
 | `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                  |
 | `--profile`               | Name of the connection and authentication profile to use                                                                                                                                |
 | `-f`, `--format`          | Specify in what format to output the result (format: 'view', 'csv', 'markdown', 'json' or 'oldview')                                                                                    |
-| `-o`, `--output`...       | Specify which columns to output. May include any of the following: id,expiry\_days,expiry\_date,prefix,tags (may be repeated or comma-separated)                                        |
+| `-o`, `--output`...       | Specify which columns to output. May include any of the following: id,expiry\_days,expiry\_date,noncurrent,prefix,tags (may be repeated or comma-separated)                             |
 | `-s`, `--sort`...         | Specify which column(s) to take into account when sorting the output. May include a '+' or '-' before the column name to sort in ascending or descending order respectively. Usage: \[+ |
 | `-F`, `--filter`...       | Specify what values to filter by in a specific column. Usage: column1=val1\[,column2=val2\[,..]] (may be repeated or comma-separated)                                                   |
 | `--filter-color`...       | Filter rows with specific colors (red/yellow/green) (may be repeated or comma-separated)                                                                                                |
@@ -10884,7 +11096,7 @@ weka s3 bucket lifecycle-rule reset <bucket>
 | `-J`, `--json`            | Format output as JSON                                                                                      |
 | `-f`, `--force`           | Force this action without further confirmation. This action will delete the existing S3 bucket rules.      |
 
-#### weka s3 bucket list
+**weka s3 bucket list**
 
 Show all the buckets on the S3 cluster
 
@@ -10908,26 +11120,26 @@ weka s3 bucket list [--color color]
 
 ```
 
-| Parameter                 | Description                                                                                                                                                                             |
-| ------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                        |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                                        |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                                        |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                              |
-| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                  |
-| `--profile`               | Name of the connection and authentication profile to use                                                                                                                                |
-| `-f`, `--format`          | Specify in what format to output the result (format: 'view', 'csv', 'markdown', 'json' or 'oldview')                                                                                    |
-| `-o`, `--output`...       | Specify which columns to output. May include any of the following: name,hard,used,path,fs,bucket\_type,etag,integrity,sorting (may be repeated or comma-separated)                      |
-| `-s`, `--sort`...         | Specify which column(s) to take into account when sorting the output. May include a '+' or '-' before the column name to sort in ascending or descending order respectively. Usage: \[+ |
-| `-F`, `--filter`...       | Specify what values to filter by in a specific column. Usage: column1=val1\[,column2=val2\[,..]] (may be repeated or comma-separated)                                                   |
-| `--filter-color`...       | Filter rows with specific colors (red/yellow/green) (may be repeated or comma-separated)                                                                                                |
-| `-h`, `--help`            | Show help message                                                                                                                                                                       |
-| `-R`, `--raw-units`       | Print values in raw units (bytes, seconds, etc.). When not set, sizes are printed in human-readable format, e.g 1KiB 234MiB 2GiB.                                                       |
-| `-U`, `--UTC`             | Print times in UTC. When not set, times are converted to the local time of this host.                                                                                                   |
-| `--no-header`             | Don't show column headers when printing the output                                                                                                                                      |
-| `-v`, `--verbose`         | Show all columns in output                                                                                                                                                              |
+| Parameter                 | Description                                                                                                                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                 |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                     |
+| `--profile`               | Name of the connection and authentication profile to use                                                                                                                                                   |
+| `-f`, `--format`          | Specify in what format to output the result (format: 'view', 'csv', 'markdown', 'json' or 'oldview')                                                                                                       |
+| `-o`, `--output`...       | Specify which columns to output. May include any of the following: name,hard,used,path,fs,bucket\_type,etag,integrity,sorting,bucketVersioningState,objectLockEnabled (may be repeated or comma-separated) |
+| `-s`, `--sort`...         | Specify which column(s) to take into account when sorting the output. May include a '+' or '-' before the column name to sort in ascending or descending order respectively. Usage: \[+                    |
+| `-F`, `--filter`...       | Specify what values to filter by in a specific column. Usage: column1=val1\[,column2=val2\[,..]] (may be repeated or comma-separated)                                                                      |
+| `--filter-color`...       | Filter rows with specific colors (red/yellow/green) (may be repeated or comma-separated)                                                                                                                   |
+| `-h`, `--help`            | Show help message                                                                                                                                                                                          |
+| `-R`, `--raw-units`       | Print values in raw units (bytes, seconds, etc.). When not set, sizes are printed in human-readable format, e.g 1KiB 234MiB 2GiB.                                                                          |
+| `-U`, `--UTC`             | Print times in UTC. When not set, times are converted to the local time of this host.                                                                                                                      |
+| `--no-header`             | Don't show column headers when printing the output                                                                                                                                                         |
+| `-v`, `--verbose`         | Show all columns in output                                                                                                                                                                                 |
 
-#### weka s3 bucket notification
+**weka s3 bucket notification**
 
 S3 bucket notification commands
 
@@ -11060,7 +11272,7 @@ weka s3 bucket notification remove <bucket>
 | `-h`, `--help`            | Show help message                                                                                          |
 | `-J`, `--json`            | Format output as JSON                                                                                      |
 
-#### weka s3 bucket policy
+**weka s3 bucket policy**
 
 S3 bucket policy commands
 
@@ -11223,7 +11435,7 @@ weka s3 bucket policy reset <bucket-name>
 | `-h`, `--help`            | Show help message                                                                                          |
 | `-J`, `--json`            | Format output as JSON                                                                                      |
 
-#### weka s3 bucket quota
+**weka s3 bucket quota**
 
 S3 Bucket Quota, configure the hard limit of bucket disk usage
 
@@ -11293,7 +11505,7 @@ weka s3 bucket quota reset <name>
 | `--profile`               | Name of the connection and authentication profile to use                                                   |
 | `-h`, `--help`            | Show help message                                                                                          |
 
-#### weka s3 bucket sorting
+**weka s3 bucket sorting**
 
 Commands to manage LIST operation sorting for a specific S3 Performance Bucket
 
@@ -11371,7 +11583,108 @@ weka s3 bucket sorting set <bucket-name>
 | `-J`, `--json`            | Format output as JSON                                                                                                                                                                                                |
 | `-f`, `--force`           | Force this action without further confirmation. Changing this setting could significantly affect the WEKA cluster performance.                                                                                       |
 
-### weka s3 cluster
+**weka s3 bucket versioning**
+
+S3 bucket versioning commands
+
+```sh
+weka s3 bucket versioning [--color color] [--help]
+
+```
+
+| Parameter      | Description                                                                      |
+| -------------- | -------------------------------------------------------------------------------- |
+| `--color`      | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled') |
+| `-h`, `--help` | Show help message                                                                |
+
+**weka s3 bucket versioning enable**
+
+Enables versioning for an S3 bucket
+
+```sh
+weka s3 bucket versioning enable <bucket-name>
+                                 [--color color]
+                                 [--HOST HOST]
+                                 [--PORT PORT]
+                                 [--CONNECT-TIMEOUT CONNECT-TIMEOUT]
+                                 [--TIMEOUT TIMEOUT]
+                                 [--profile profile]
+                                 [--help]
+                                 [--json]
+
+```
+
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `bucket-name`\*           | Bucket name                                                                                                |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
+| `-J`, `--json`            | Format output as JSON                                                                                      |
+
+**weka s3 bucket versioning get**
+
+Get the versioning mode of an S3 bucket
+
+```sh
+weka s3 bucket versioning get <name>
+                              [--color color]
+                              [--HOST HOST]
+                              [--PORT PORT]
+                              [--CONNECT-TIMEOUT CONNECT-TIMEOUT]
+                              [--TIMEOUT TIMEOUT]
+                              [--profile profile]
+                              [--help]
+                              [--json]
+
+```
+
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `name`\*                  | Bucket name                                                                                                |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
+| `-J`, `--json`            | Format output as JSON                                                                                      |
+
+**weka s3 bucket versioning suspend**
+
+Suspends versioning for an S3 bucket
+
+```sh
+weka s3 bucket versioning suspend <bucket-name>
+                                  [--color color]
+                                  [--HOST HOST]
+                                  [--PORT PORT]
+                                  [--CONNECT-TIMEOUT CONNECT-TIMEOUT]
+                                  [--TIMEOUT TIMEOUT]
+                                  [--profile profile]
+                                  [--help]
+                                  [--json]
+
+```
+
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `bucket-name`\*           | Bucket name to suspend versioning for                                                                      |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
+| `-J`, `--json`            | Format output as JSON                                                                                      |
+
+#### weka s3 cluster
 
 View info about the S3 cluster managed by weka
 
@@ -11400,7 +11713,7 @@ weka s3 cluster [--color color]
 | `-h`, `--help`            | Show help message                                                                                          |
 | `-J`, `--json`            | Format output as JSON                                                                                      |
 
-#### weka s3 cluster audit-webhook
+**weka s3 cluster audit-webhook**
 
 S3 Cluster Audit Webhook Commands
 
@@ -11530,7 +11843,7 @@ weka s3 cluster audit-webhook show [--color color]
 | `-h`, `--help`            | Show help message                                                                                          |
 | `-J`, `--json`            | Format output as JSON                                                                                      |
 
-#### weka s3 cluster container
+**weka s3 cluster container**
 
 Commands that manage Weka's S3 cluster's containers
 
@@ -11625,7 +11938,7 @@ weka s3 cluster container remove [--color color]
 | `--profile`               | Name of the connection and authentication profile to use                                                   |
 | `-h`, `--help`            | Show help message                                                                                          |
 
-#### weka s3 cluster add
+**weka s3 cluster add**
 
 Create an S3 cluster managed by weka
 
@@ -11644,6 +11957,7 @@ weka s3 cluster add [--default-fs-name default-fs-name]
                     [--profile profile]
                     [--container container]...
                     [--all-servers]
+                    [--allow-versioning]
                     [--force]
                     [--help]
                     [<config-fs-name>]...
@@ -11667,10 +11981,11 @@ weka s3 cluster add [--default-fs-name default-fs-name]
 | `--profile`               | Name of the connection and authentication profile to use                                                                                                                                                    |
 | `--container`...          | The containers that will serve via the S3 protocol (pass weka's container ID as a number) (may be repeated or comma-separated)                                                                              |
 | `--all-servers`           | Install S3 on all servers                                                                                                                                                                                   |
+| `--allow-versioning`      | Enable S3 versioning (default off, cannot be disabled once enabled)                                                                                                                                         |
 | `-f`, `--force`           | Force this action without further confirmation. Be aware that this will impact all S3 buckets within the S3 service. Exercise caution and consult the WEKA Customer Success team if assistance is required. |
 | `-h`, `--help`            | Show help message                                                                                                                                                                                           |
 
-#### weka s3 cluster remove
+**weka s3 cluster remove**
 
 Destroy the S3 cluster managed by weka. This will not delete the data, just stop exposing it via S3
 
@@ -11700,7 +12015,7 @@ weka s3 cluster remove [--color color]
 | `ever`, `internal users wit` | h S3 roles will be permanently removed from the system..                                                                                                |
 | `-h`, `--help`               | Show help message                                                                                                                                       |
 
-#### weka s3 cluster etag-alg
+**weka s3 cluster etag-alg**
 
 Commands to manage ETag algorithm for all S3 Performance Buckets
 
@@ -11743,7 +12058,118 @@ weka s3 cluster etag-alg reset [--color color]
 | `-J`, `--json`            | Format output as JSON                                                                                                          |
 | `-f`, `--force`           | Force this action without further confirmation. Changing this setting could significantly affect the WEKA cluster performance. |
 
-#### weka s3 cluster integrity-mode
+**weka s3 cluster group**
+
+Manage S3 IAM groups
+
+```sh
+weka s3 cluster group [--color color] [--help]
+
+```
+
+| Parameter      | Description                                                                      |
+| -------------- | -------------------------------------------------------------------------------- |
+| `--color`      | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled') |
+| `-h`, `--help` | Show help message                                                                |
+
+**weka s3 cluster group add**
+
+Create a new S3 IAM group
+
+```sh
+weka s3 cluster group add <name>
+                          [--color color]
+                          [--HOST HOST]
+                          [--PORT PORT]
+                          [--CONNECT-TIMEOUT CONNECT-TIMEOUT]
+                          [--TIMEOUT TIMEOUT]
+                          [--profile profile]
+                          [--help]
+                          [--json]
+
+```
+
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `name`\*                  | Group name                                                                                                 |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
+| `-J`, `--json`            | Format output as JSON                                                                                      |
+
+**weka s3 cluster group list**
+
+List all S3 IAM groups
+
+```sh
+weka s3 cluster group list [--color color]
+                           [--HOST HOST]
+                           [--PORT PORT]
+                           [--CONNECT-TIMEOUT CONNECT-TIMEOUT]
+                           [--TIMEOUT TIMEOUT]
+                           [--profile profile]
+                           [--format format]
+                           [--output output]...
+                           [--sort sort]...
+                           [--filter filter]...
+                           [--filter-color filter-color]...
+                           [--help]
+                           [--no-header]
+                           [--verbose]
+
+```
+
+| Parameter                 | Description                                                                                                                                                                             |
+| ------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                        |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                                        |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                                        |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                              |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                  |
+| `--profile`               | Name of the connection and authentication profile to use                                                                                                                                |
+| `-f`, `--format`          | Specify in what format to output the result (format: 'view', 'csv', 'markdown', 'json' or 'oldview')                                                                                    |
+| `-o`, `--output`...       | Specify which columns to output. May include any of the following: name,policy (may be repeated or comma-separated)                                                                     |
+| `-s`, `--sort`...         | Specify which column(s) to take into account when sorting the output. May include a '+' or '-' before the column name to sort in ascending or descending order respectively. Usage: \[+ |
+| `-F`, `--filter`...       | Specify what values to filter by in a specific column. Usage: column1=val1\[,column2=val2\[,..]] (may be repeated or comma-separated)                                                   |
+| `--filter-color`...       | Filter rows with specific colors (red/yellow/green) (may be repeated or comma-separated)                                                                                                |
+| `-h`, `--help`            | Show help message                                                                                                                                                                       |
+| `--no-header`             | Don't show column headers when printing the output                                                                                                                                      |
+| `-v`, `--verbose`         | Show all columns in output                                                                                                                                                              |
+
+**weka s3 cluster group remove**
+
+Delete an S3 IAM group
+
+```sh
+weka s3 cluster group remove <name>
+                             [--color color]
+                             [--HOST HOST]
+                             [--PORT PORT]
+                             [--CONNECT-TIMEOUT CONNECT-TIMEOUT]
+                             [--TIMEOUT TIMEOUT]
+                             [--profile profile]
+                             [--help]
+                             [--json]
+
+```
+
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `name`\*                  | Group name                                                                                                 |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
+| `-J`, `--json`            | Format output as JSON                                                                                      |
+
+**weka s3 cluster integrity-mode**
 
 Commands to manage integrity handling for all S3 Performance Buckets
 
@@ -11786,7 +12212,7 @@ weka s3 cluster integrity-mode reset [--color color]
 | `-J`, `--json`            | Format output as JSON                                                                                                          |
 | `-f`, `--force`           | Force this action without further confirmation. Changing this setting could significantly affect the WEKA cluster performance. |
 
-#### weka s3 cluster notification-target
+**weka s3 cluster notification-target**
 
 S3 cluster notification-target commands
 
@@ -11867,7 +12293,7 @@ weka s3 cluster notification-target cert [--color color] [--help]
 | `--color`      | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled') |
 | `-h`, `--help` | Show help message                                                                |
 
-\####### weka s3 cluster notification-target cert add
+**weka s3 cluster notification-target cert add**
 
 Add S3 notification-target certificate
 
@@ -11902,7 +12328,7 @@ weka s3 cluster notification-target cert add <cert-name>
 | `-h`, `--help`            | Show help message                                                                                          |
 | `-J`, `--json`            | Format output as JSON                                                                                      |
 
-\####### weka s3 cluster notification-target cert list
+**weka s3 cluster notification-target cert list**
 
 Show S3 notification-target certificates
 
@@ -11943,7 +12369,7 @@ weka s3 cluster notification-target cert list [--target-type target-type]
 | `--no-header`             | Don't show column headers when printing the output                                                                                                                                      |
 | `-v`, `--verbose`         | Show all columns in output                                                                                                                                                              |
 
-\####### weka s3 cluster notification-target cert remove
+**weka s3 cluster notification-target cert remove**
 
 Remove S3 notification-target certificate
 
@@ -12169,7 +12595,7 @@ weka s3 cluster notification-target update [--type type]
 | `-h`, `--help`            | Show help message                                                                                          |
 | `-J`, `--json`            | Format output as JSON                                                                                      |
 
-#### weka s3 cluster oidc
+**weka s3 cluster oidc**
 
 Manage OIDC (OpenID Connect) configuration for S3 authentication (e.g., Entra ID)
 
@@ -12185,7 +12611,7 @@ weka s3 cluster oidc [--color color] [--help]
 
 **weka s3 cluster oidc add**
 
-Configure OIDC (OpenID Connect) authentication for S3, enabling integration with identity providers like Microsoft Entra ID
+Configure OIDC (OpenID Connect) authentication for S3, enabling integration with identity providers like Microsoft Entra ID or Keycloak
 
 ```sh
 weka s3 cluster oidc add [--color color]
@@ -12195,6 +12621,11 @@ weka s3 cluster oidc add [--color color]
                          [--TIMEOUT TIMEOUT]
                          [--profile profile]
                          [--config-url config-url]
+                         [--type type]
+                         [--claim-name claim-name]
+                         [--client-id client-id]
+                         [--groups-claim-name groups-claim-name]
+                         [--client-secret client-secret]
                          [--help]
                          [--json]
 
@@ -12209,6 +12640,11 @@ weka s3 cluster oidc add [--color color]
 | `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
 | `--profile`               | Name of the connection and authentication profile to use                                                   |
 | `--config-url`            | OIDC Configuration URL (required for JWT validation)                                                       |
+| `--type`                  | Identity provider type (generic, azure, keycloak) (format: 'generic', 'azure' or 'keycloak')               |
+| `--claim-name`            | JWT claim name for policy mapping (default: roles)                                                         |
+| `--client-id`             | OIDC client ID                                                                                             |
+| `--groups-claim-name`     | JWT claim name for groups (default: groups)                                                                |
+| `--client-secret`         | Client secret (required for type=azure)                                                                    |
 | `-h`, `--help`            | Show help message                                                                                          |
 | `-J`, `--json`            | Format output as JSON                                                                                      |
 
@@ -12278,6 +12714,11 @@ weka s3 cluster oidc update [--color color]
                             [--TIMEOUT TIMEOUT]
                             [--profile profile]
                             [--config-url config-url]
+                            [--claim-name claim-name]
+                            [--type type]
+                            [--client-id client-id]
+                            [--groups-claim-name groups-claim-name]
+                            [--client-secret client-secret]
                             [--help]
                             [--json]
 
@@ -12292,10 +12733,15 @@ weka s3 cluster oidc update [--color color]
 | `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
 | `--profile`               | Name of the connection and authentication profile to use                                                   |
 | `--config-url`            | OIDC Configuration URL                                                                                     |
+| `--claim-name`            | JWT claim name for policy mapping (default: roles)                                                         |
+| `--type`                  | Identity provider type (generic, azure, keycloak) (format: 'generic', 'azure' or 'keycloak')               |
+| `--client-id`             | OIDC client ID                                                                                             |
+| `--groups-claim-name`     | JWT claim name for groups (default: groups)                                                                |
+| `--client-secret`         | Client secret (required for type=azure)                                                                    |
 | `-h`, `--help`            | Show help message                                                                                          |
 | `-J`, `--json`            | Format output as JSON                                                                                      |
 
-#### weka s3 cluster performance-bucket
+**weka s3 cluster performance-bucket**
 
 Display existing global settings for WEKA S3 performance buckets
 
@@ -12322,7 +12768,7 @@ weka s3 cluster performance-bucket [--color color]
 | `-h`, `--help`            | Show help message                                                                                          |
 | `-J`, `--json`            | Format output as JSON                                                                                      |
 
-#### weka s3 cluster setup
+**weka s3 cluster setup**
 
 S3 cluster setup commands
 
@@ -12377,6 +12823,7 @@ weka s3 cluster setup update [--default-fs-name default-fs-name]
                              [--CONNECT-TIMEOUT CONNECT-TIMEOUT]
                              [--TIMEOUT TIMEOUT]
                              [--profile profile]
+                             [--clear-default-fs]
                              [--help]
 
 ```
@@ -12392,9 +12839,10 @@ weka s3 cluster setup update [--default-fs-name default-fs-name]
 | `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
 | `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
 | `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `--clear-default-fs`      | Clear the default filesystem for this tenant                                                               |
 | `-h`, `--help`            | Show help message                                                                                          |
 
-#### weka s3 cluster sorting
+**weka s3 cluster sorting**
 
 Commands to manage LIST operation sorting for all S3 Performance Buckets
 
@@ -12437,7 +12885,7 @@ weka s3 cluster sorting reset [--color color]
 | `-J`, `--json`            | Format output as JSON                                                                                                          |
 | `-f`, `--force`           | Force this action without further confirmation. Changing this setting could significantly affect the WEKA cluster performance. |
 
-#### weka s3 cluster status
+**weka s3 cluster status**
 
 Show which of the containers are ready.
 
@@ -12476,7 +12924,7 @@ weka s3 cluster status [--color color]
 | `--no-header`             | Don't show column headers when printing the output                                                                                                                                               |
 | `-v`, `--verbose`         | Show all columns in output                                                                                                                                                                       |
 
-#### weka s3 cluster update
+**weka s3 cluster update**
 
 Update an S3 cluster
 
@@ -12493,6 +12941,7 @@ weka s3 cluster update [--port port]
                        [--profile profile]
                        [--container container]...
                        [--all-servers]
+                       [--allow-versioning]
                        [--force]
                        [--help]
 
@@ -12512,6 +12961,7 @@ weka s3 cluster update [--port port]
 | `--profile`               | Name of the connection and authentication profile to use                                                                                                                                                    |
 | `--container`...          | The containers that will serve via the S3 protocol (may be repeated or comma-separated)                                                                                                                     |
 | `--all-servers`           | Install S3 on all servers                                                                                                                                                                                   |
+| `--allow-versioning`      | Enable S3 versioning (default off, cannot be disabled once enabled)                                                                                                                                         |
 | `-f`, `--force`           | Force this action without further confirmation. Be aware that this will impact all S3 buckets within the S3 service. Exercise caution and consult the WEKA Customer Success team if assistance is required. |
 | `-h`, `--help`            | Show help message                                                                                                                                                                                           |
 
@@ -12550,7 +13000,7 @@ weka s3 cluster update performance-bucket [--etag-alg etag-alg]
 | `-J`, `--json`            | Format output as JSON                                                                                                                                                                                                                          |
 | `-f`, `--force`           | Force this action without further confirmation. Changing this setting could significantly affect the WEKA cluster performance.                                                                                                                 |
 
-### weka s3 policy
+#### weka s3 policy
 
 S3 policy commands
 
@@ -12564,7 +13014,7 @@ weka s3 policy [--color color] [--help]
 | `--color`      | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled') |
 | `-h`, `--help` | Show help message                                                                |
 
-#### weka s3 policy add
+**weka s3 policy add**
 
 Add an S3 IAM policy
 
@@ -12595,13 +13045,15 @@ weka s3 policy add <policy-name>
 | `-h`, `--help`            | Show help message                                                                                          |
 | `-J`, `--json`            | Format output as JSON                                                                                      |
 
-#### weka s3 policy attach
+**weka s3 policy attach**
 
-Attach an S3 policy to a user
+Attach an S3 policy to a user or group
 
 ```sh
 weka s3 policy attach <policy>
-                      <user>
+                      [username]
+                      [--user user]
+                      [--group group]
                       [--color color]
                       [--HOST HOST]
                       [--PORT PORT]
@@ -12616,7 +13068,9 @@ weka s3 policy attach <policy>
 | Parameter                 | Description                                                                                                |
 | ------------------------- | ---------------------------------------------------------------------------------------------------------- |
 | `policy`\*                | Policy name to attach                                                                                      |
-| `user`\*                  | User name                                                                                                  |
+| `username`                | User name to attach policy to                                                                              |
+| `--user`                  | User name to attach policy to (alternative to positional argument)                                         |
+| `--group`                 | Group name to attach policy to (mutually exclusive with user)                                              |
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
@@ -12626,12 +13080,14 @@ weka s3 policy attach <policy>
 | `-h`, `--help`            | Show help message                                                                                          |
 | `-J`, `--json`            | Format output as JSON                                                                                      |
 
-#### weka s3 policy detach
+**weka s3 policy detach**
 
-Detach an S3 policy from a user
+Detach an S3 policy from a user or group
 
 ```sh
-weka s3 policy detach <user>
+weka s3 policy detach [username]
+                      [--user user]
+                      [--group group]
                       [--color color]
                       [--HOST HOST]
                       [--PORT PORT]
@@ -12645,7 +13101,9 @@ weka s3 policy detach <user>
 
 | Parameter                 | Description                                                                                                |
 | ------------------------- | ---------------------------------------------------------------------------------------------------------- |
-| `user`\*                  | User name                                                                                                  |
+| `username`                | User name to detach policy from                                                                            |
+| `--user`                  | User name to detach policy from (alternative to positional argument)                                       |
+| `--group`                 | Group name to detach policy from (mutually exclusive with user)                                            |
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
@@ -12655,7 +13113,7 @@ weka s3 policy detach <user>
 | `-h`, `--help`            | Show help message                                                                                          |
 | `-J`, `--json`            | Format output as JSON                                                                                      |
 
-#### weka s3 policy list
+**weka s3 policy list**
 
 Print a list of the existing S3 IAM policies
 
@@ -12694,7 +13152,7 @@ weka s3 policy list [--color color]
 | `--no-header`             | Don't show column headers when printing the output                                                                                                                                      |
 | `-v`, `--verbose`         | Show all columns in output                                                                                                                                                              |
 
-#### weka s3 policy remove
+**weka s3 policy remove**
 
 Remove an S3 IAM policy
 
@@ -12723,7 +13181,7 @@ weka s3 policy remove <policy>
 | `-h`, `--help`            | Show help message                                                                                          |
 | `-J`, `--json`            | Format output as JSON                                                                                      |
 
-#### weka s3 policy show
+**weka s3 policy show**
 
 Show the details of an S3 IAM policy
 
@@ -12752,7 +13210,7 @@ weka s3 policy show <policy-name>
 | `-h`, `--help`            | Show help message                                                                                          |
 | `-J`, `--json`            | Format output as JSON                                                                                      |
 
-### weka s3 service-account
+#### weka s3 service-account
 
 S3 service account commands. Should be run only with an S3 user role
 
@@ -12766,7 +13224,7 @@ weka s3 service-account [--color color] [--help]
 | `--color`      | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled') |
 | `-h`, `--help` | Show help message                                                                |
 
-#### weka s3 service-account add
+**weka s3 service-account add**
 
 Add an S3 service account
 
@@ -12795,7 +13253,7 @@ weka s3 service-account add [--policy-file policy-file]
 | `-h`, `--help`            | Show help message                                                                                          |
 | `-J`, `--json`            | Format output as JSON                                                                                      |
 
-#### weka s3 service-account list
+**weka s3 service-account list**
 
 Print a list of the user's S3 service accounts
 
@@ -12834,7 +13292,7 @@ weka s3 service-account list [--color color]
 | `--no-header`             | Don't show column headers when printing the output                                                                                                                                      |
 | `-v`, `--verbose`         | Show all columns in output                                                                                                                                                              |
 
-#### weka s3 service-account remove
+**weka s3 service-account remove**
 
 Remove an S3 service account
 
@@ -12863,7 +13321,7 @@ weka s3 service-account remove <access_key>
 | `-h`, `--help`            | Show help message                                                                                          |
 | `-J`, `--json`            | Format output as JSON                                                                                      |
 
-#### weka s3 service-account show
+**weka s3 service-account show**
 
 Show the details of an S3 service account
 
@@ -12892,7 +13350,7 @@ weka s3 service-account show <access_key>
 | `-h`, `--help`            | Show help message                                                                                          |
 | `-J`, `--json`            | Format output as JSON                                                                                      |
 
-### weka s3 sts
+#### weka s3 sts
 
 S3 security token commands
 
@@ -12906,7 +13364,7 @@ weka s3 sts [--color color] [--help]
 | `--color`      | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled') |
 | `-h`, `--help` | Show help message                                                                |
 
-#### weka s3 sts assume-role
+**weka s3 sts assume-role**
 
 Generate a temporary security token with an assumed role using existing user credentials
 
@@ -12941,7 +13399,7 @@ weka s3 sts assume-role [--access-key access-key]
 | `-h`, `--help`            | Show help message                                                                                          |
 | `-J`, `--json`            | Format output as JSON                                                                                      |
 
-### weka s3 user
+#### weka s3 user
 
 Commands that manage S3 users
 
@@ -12955,7 +13413,7 @@ weka s3 user [--color color] [--help]
 | `--color`      | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled') |
 | `-h`, `--help` | Show help message                                                                |
 
-#### weka s3 user keys-generate
+**weka s3 user keys-generate**
 
 Generate or rotate an S3 API access/secret key pair for S3 data path operations
 
@@ -12984,7 +13442,7 @@ weka s3 user keys-generate [--user user]
 | `-h`, `--help`            | Show help message                                                                                                          |
 | `-J`, `--json`            | Format output as JSON                                                                                                      |
 
-## weka security
+### weka security
 
 Security commands.
 
@@ -12998,7 +13456,7 @@ weka security [--color color] [--help]
 | `--color`      | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled') |
 | `-h`, `--help` | Show help message                                                                |
 
-### weka security ca-cert
+#### weka security ca-cert
 
 Commands handling custom CA signed certificate
 
@@ -13012,7 +13470,7 @@ weka security ca-cert [--color color] [--help]
 | `--color`      | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled') |
 | `-h`, `--help` | Show help message                                                                |
 
-#### weka security ca-cert download
+**weka security ca-cert download**
 
 Download the Weka cluster custom certificate, if such certificate was set
 
@@ -13039,7 +13497,7 @@ weka security ca-cert download <path>
 | `--profile`               | Name of the connection and authentication profile to use                                                   |
 | `-h`, `--help`            | Show help message                                                                                          |
 
-#### weka security ca-cert set
+**weka security ca-cert set**
 
 Add a custom certificate to the certificates list. If a custom certificate is already set, this command updates it.
 
@@ -13066,7 +13524,7 @@ weka security ca-cert set [--cert-file cert-file]
 | `--profile`               | Name of the connection and authentication profile to use                                                   |
 | `-h`, `--help`            | Show help message                                                                                          |
 
-#### weka security ca-cert status
+**weka security ca-cert status**
 
 Show the Weka cluster CA-cert status and certificate
 
@@ -13093,7 +13551,7 @@ weka security ca-cert status [--color color]
 | `-h`, `--help`            | Show help message                                                                                          |
 | `-J`, `--json`            | Format output as JSON                                                                                      |
 
-#### weka security ca-cert reset
+**weka security ca-cert reset**
 
 Unsets custom CA signed certificate from cluster
 
@@ -13118,7 +13576,7 @@ weka security ca-cert reset [--color color]
 | `--profile`               | Name of the connection and authentication profile to use                                                   |
 | `-h`, `--help`            | Show help message                                                                                          |
 
-### weka security cors-trusted-sites
+#### weka security cors-trusted-sites
 
 Commands for handling Cross Origin Resource Sharing weka apis
 
@@ -13132,7 +13590,7 @@ weka security cors-trusted-sites [--color color] [--help]
 | `--color`      | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled') |
 | `-h`, `--help` | Show help message                                                                |
 
-#### weka security cors-trusted-sites add
+**weka security cors-trusted-sites add**
 
 Add a trusted site to list, provide url with http or https prefix and port number if not a standard port.
 
@@ -13159,7 +13617,7 @@ weka security cors-trusted-sites add <site>
 | `--profile`               | Name of the connection and authentication profile to use                                                   |
 | `-h`, `--help`            | Show help message                                                                                          |
 
-#### weka security cors-trusted-sites list
+**weka security cors-trusted-sites list**
 
 Lists the set of trusted sites where CORS in configured
 
@@ -13186,7 +13644,7 @@ weka security cors-trusted-sites list [--color color]
 | `-h`, `--help`            | Show help message                                                                                          |
 | `-J`, `--json`            | Format output as JSON                                                                                      |
 
-#### weka security cors-trusted-sites remove
+**weka security cors-trusted-sites remove**
 
 Remove the specified site from the trusted list.
 
@@ -13213,7 +13671,7 @@ weka security cors-trusted-sites remove <site>
 | `--profile`               | Name of the connection and authentication profile to use                                                   |
 | `-h`, `--help`            | Show help message                                                                                          |
 
-#### weka security cors-trusted-sites remove-all
+**weka security cors-trusted-sites remove-all**
 
 Removes all trusted sites for Cross Origin Resource Sharing
 
@@ -13238,7 +13696,7 @@ weka security cors-trusted-sites remove-all [--color color]
 | `--profile`               | Name of the connection and authentication profile to use                                                   |
 | `-h`, `--help`            | Show help message                                                                                          |
 
-### weka security gui-idle-timeout
+#### weka security gui-idle-timeout
 
 Manage GUI session idle timeout settings
 
@@ -13252,7 +13710,7 @@ weka security gui-idle-timeout [--color color] [--help]
 | `--color`      | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled') |
 | `-h`, `--help` | Show help message                                                                |
 
-#### weka security gui-idle-timeout restore-defaults
+**weka security gui-idle-timeout restore-defaults**
 
 Restores the GUI idle timeout to the default value (30 minutes)
 
@@ -13279,7 +13737,7 @@ weka security gui-idle-timeout restore-defaults [--color color]
 | `-h`, `--help`            | Show help message                                                                                          |
 | `-J`, `--json`            | Format output as JSON                                                                                      |
 
-#### weka security gui-idle-timeout set
+**weka security gui-idle-timeout set**
 
 Sets the user idle timeout for the GUI
 
@@ -13308,7 +13766,7 @@ weka security gui-idle-timeout set <timeout>
 | `-h`, `--help`            | Show help message                                                                                                                                               |
 | `-J`, `--json`            | Format output as JSON                                                                                                                                           |
 
-#### weka security gui-idle-timeout show
+**weka security gui-idle-timeout show**
 
 Shows the current GUI idle timeout setting
 
@@ -13335,7 +13793,7 @@ weka security gui-idle-timeout show [--color color]
 | `-h`, `--help`            | Show help message                                                                                          |
 | `-J`, `--json`            | Format output as JSON                                                                                      |
 
-### weka security kms
+#### weka security kms
 
 List the currently configured key management service settings
 
@@ -13362,7 +13820,7 @@ weka security kms [--color color]
 | `-h`, `--help`            | Show help message                                                                                          |
 | `-J`, `--json`            | Format output as JSON                                                                                      |
 
-#### weka security kms rewrap
+**weka security kms rewrap**
 
 Rewraps all the master filesystem keys using the configured KMS. This can be used to rewrap with a rotated KMS key, or to change wrapping to the newly-configured KMS.
 
@@ -13395,7 +13853,7 @@ weka security kms rewrap [--new-key-uid new-key-uid]
 | `-h`, `--help`                   | Show help message                                                                                          |
 | `-J`, `--json`                   | Format output as JSON                                                                                      |
 
-#### weka security kms set
+**weka security kms set**
 
 Configure the active KMS
 
@@ -13491,7 +13949,7 @@ weka security kms set vault <address>
 | `-h`, `--help`                   | Show help message                                                                                          |
 | `--convert-to-cluster-key-on-fs` | Convert all encrypted filesystems to use cluster key                                                       |
 
-#### weka security kms reset
+**weka security kms reset**
 
 Remove external KMS configurations. This will fail if there are any encrypted filesystems that rely on the KMS.
 
@@ -13520,7 +13978,7 @@ weka security kms reset [--color color]
 | `-f`, `--force`           | Force removal of tenant KMS, switching encrypted filesystems to use the cluster-wide KMS                   |
 | `-h`, `--help`            | Show help message                                                                                          |
 
-### weka security lockout-config
+#### weka security lockout-config
 
 Commands used to interact with the account lockout config parameters
 
@@ -13534,7 +13992,7 @@ weka security lockout-config [--color color] [--help]
 | `--color`      | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled') |
 | `-h`, `--help` | Show help message                                                                |
 
-#### weka security lockout-config reset
+**weka security lockout-config reset**
 
 Reset the number of failed attempts before lockout and the duration of lock to their defaults
 
@@ -13559,7 +14017,7 @@ weka security lockout-config reset [--color color]
 | `--profile`               | Name of the connection and authentication profile to use                                                   |
 | `-h`, `--help`            | Show help message                                                                                          |
 
-#### weka security lockout-config set
+**weka security lockout-config set**
 
 Configure the number of failed attempts before lockout and the duration of lock
 
@@ -13588,7 +14046,7 @@ weka security lockout-config set [--failed-attempts failed-attempts]
 | `--profile`               | Name of the connection and authentication profile to use                                                                 |
 | `-h`, `--help`            | Show help message                                                                                                        |
 
-#### weka security lockout-config show
+**weka security lockout-config show**
 
 Show the current number of attempts needed to lockout and how long the lockout is for
 
@@ -13615,7 +14073,7 @@ weka security lockout-config show [--color color]
 | `-h`, `--help`            | Show help message                                                                                          |
 | `-J`, `--json`            | Format output as JSON                                                                                      |
 
-### weka security login-banner
+#### weka security login-banner
 
 Commands used to view and edit the login banner
 
@@ -13629,7 +14087,7 @@ weka security login-banner [--color color] [--help]
 | `--color`      | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled') |
 | `-h`, `--help` | Show help message                                                                |
 
-#### weka security login-banner disable
+**weka security login-banner disable**
 
 Disable the login banner
 
@@ -13656,7 +14114,7 @@ weka security login-banner disable [--color color]
 | `-h`, `--help`            | Show help message                                                                                          |
 | `-J`, `--json`            | Format output as JSON                                                                                      |
 
-#### weka security login-banner enable
+**weka security login-banner enable**
 
 Enable the login banner
 
@@ -13683,7 +14141,7 @@ weka security login-banner enable [--color color]
 | `-h`, `--help`            | Show help message                                                                                          |
 | `-J`, `--json`            | Format output as JSON                                                                                      |
 
-#### weka security login-banner reset
+**weka security login-banner reset**
 
 Resets the login banner back to the default state (empty)
 
@@ -13708,7 +14166,7 @@ weka security login-banner reset [--color color]
 | `--profile`               | Name of the connection and authentication profile to use                                                   |
 | `-h`, `--help`            | Show help message                                                                                          |
 
-#### weka security login-banner set
+**weka security login-banner set**
 
 Set the login banner
 
@@ -13735,7 +14193,7 @@ weka security login-banner set <login-banner>
 | `--profile`               | Name of the connection and authentication profile to use                                                   |
 | `-h`, `--help`            | Show help message                                                                                          |
 
-#### weka security login-banner show
+**weka security login-banner show**
 
 Show the current login banner
 
@@ -13762,7 +14220,7 @@ weka security login-banner show [--color color]
 | `-h`, `--help`            | Show help message                                                                                          |
 | `-J`, `--json`            | Format output as JSON                                                                                      |
 
-### weka security policy
+#### weka security policy
 
 Manages security policies.
 
@@ -13776,7 +14234,7 @@ weka security policy [--color color] [--help]
 | `--color`      | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled') |
 | `-h`, `--help` | Show help message                                                                |
 
-#### weka security policy add
+**weka security policy add**
 
 Creates a new security policy.
 
@@ -13801,27 +14259,27 @@ weka security policy add <name>
 
 ```
 
-| Parameter                 | Description                                                                                                                                                        |
-| ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `name`\*                  | Name of the new security policy. (up to 64 alphanumeric characters, hyphens (-), underscores (\_), and periods (.), starting with a letter)                        |
-| `--description`           | Description of the security policy. (up to 256 characters)                                                                                                         |
-| `--action`                | Whether access is granted or denied when the security policy matches. (format: 'allow' or 'deny')                                                                  |
-| `--read-only`             | The security policy allows read-only mounts only. (format: 'yes', 'no', 'true', 'false', 'on', 'off', 'y' or 'n')                                                  |
-| `--squash-mode`           | Squash mode (root sqush) for mounted filesystems. (format: 'none', 'root' or 'all')                                                                                |
-| `--anon-uid`              | Anonymous UID to be used instead of root when root squashing is enabled.                                                                                           |
-| `--anon-gid`              | Anonymous GID to be used instead of root when root squashing is enabled.                                                                                           |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                   |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                   |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                   |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                         |
-| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                             |
-| `--profile`               | Name of the connection and authentication profile to use                                                                                                           |
-| `--ips`...                | IP address ranges to which the security policy applies. (format: IP or IP/CIDR or IP1-IP2 or A.B.C.D-E, may be repeated or comma-separated)                        |
-| `--roles`...              | User roles to which the security policy applies. (format: 'clusteradmin', 'tenantadmin', 'regular', 'readonly', 's3' or 'csi', may be repeated or comma-separated) |
-| `-h`, `--help`            | Show help message                                                                                                                                                  |
-| `-J`, `--json`            | Format output as JSON                                                                                                                                              |
+| Parameter                 | Description                                                                                                                                                                                                                                             |
+| ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `name`\*                  | Name of the new security policy. (up to 64 alphanumeric characters, hyphens (-), underscores (\_), and periods (.), starting with a letter)                                                                                                             |
+| `--description`           | Description of the security policy. (up to 256 characters)                                                                                                                                                                                              |
+| `--action`                | Whether access is granted or denied when the security policy matches. (format: 'allow' or 'deny')                                                                                                                                                       |
+| `--read-only`             | The security policy allows read-only mounts only. (format: 'yes', 'no', 'true', 'false', 'on', 'off', 'y' or 'n')                                                                                                                                       |
+| `--squash-mode`           | Dictates whether user and group IDs accessing mounted filesystems are squashed. If 'root', then accesses by root (UID 0/GID 0) are converted to the anonymous UID and GID. If 'all', then all accesses are converted. (format: 'none', 'root' or 'all') |
+| `--anon-uid`              | Anonymous user ID to which accesses are squashed. (default: 65534)                                                                                                                                                                                      |
+| `--anon-gid`              | Anonymous group ID to which accesses are squashed. (default: 65534)                                                                                                                                                                                     |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                                                                                        |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                                                                                                        |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                                                                                                        |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                              |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                                  |
+| `--profile`               | Name of the connection and authentication profile to use                                                                                                                                                                                                |
+| `--ips`...                | IP address ranges to which the security policy applies. (format: IP or IP/CIDR or IP1-IP2 or A.B.C.D-E, may be repeated or comma-separated)                                                                                                             |
+| `--roles`...              | User roles to which the security policy applies. (format: 'clusteradmin', 'tenantadmin', 'regular', 'readonly', 's3' or 'csi', may be repeated or comma-separated)                                                                                      |
+| `-h`, `--help`            | Show help message                                                                                                                                                                                                                                       |
+| `-J`, `--json`            | Format output as JSON                                                                                                                                                                                                                                   |
 
-#### weka security policy remove
+**weka security policy remove**
 
 Deletes a security policy.
 
@@ -13850,7 +14308,7 @@ weka security policy remove <policy>
 | `-h`, `--help`            | Show help message                                                                                                 |
 | `-f`, `--force`           | Force this action without further confirmation. Security policy details will be lost with no chance for recovery. |
 
-#### weka security policy duplicate
+**weka security policy duplicate**
 
 Duplicates an existing security policy, creating a new one.
 
@@ -13881,7 +14339,7 @@ weka security policy duplicate <policy>
 | `-h`, `--help`            | Show help message                                                                                                                           |
 | `-J`, `--json`            | Format output as JSON                                                                                                                       |
 
-#### weka security policy join
+**weka security policy join**
 
 Manages security policies related to cluster joining.
 
@@ -14078,7 +14536,7 @@ weka security policy join set [--color color]
 | `-h`, `--help`            | Show help message                                                                                          |
 | `-J`, `--json`            | Format output as JSON                                                                                      |
 
-#### weka security policy list
+**weka security policy list**
 
 List security policies defined in the Weka cluster.
 
@@ -14127,7 +14585,7 @@ weka security policy list [--action action]
 | `--no-header`             | Don't show column headers when printing the output                                                                                                                                                                                      |
 | `-v`, `--verbose`         | Show all columns in output                                                                                                                                                                                                              |
 
-#### weka security policy show
+**weka security policy show**
 
 Displays information about a specific security policy.
 
@@ -14156,7 +14614,7 @@ weka security policy show <policy>
 | `-J`, `--json`            | Format output as JSON                                                                                      |
 | `-h`, `--help`            | Show help message                                                                                          |
 
-#### weka security policy test
+**weka security policy test**
 
 Simulates the effect of one or more security policies.
 
@@ -14191,7 +14649,7 @@ weka security policy test [--role role]
 | `-h`, `--help`            | Show help message                                                                                                                                 |
 | `-J`, `--json`            | Format output as JSON                                                                                                                             |
 
-#### weka security policy update
+**weka security policy update**
 
 Updates the settings of an existing security policy.
 
@@ -14222,33 +14680,33 @@ weka security policy update <policy>
 
 ```
 
-| Parameter                 | Description                                                                                                                                                        |
-| ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `policy`\*                | Name or ID of security policy.                                                                                                                                     |
-| `--description`           | Updates the description of the security policy. (up to 256 characters)                                                                                             |
-| `--action`                | Changes whether access is granted when the security policy matches. (format: 'allow' or 'deny')                                                                    |
-| `--new-name`              | New name of the security policy. (up to 64 alphanumeric characters, hyphens (-), underscores (\_), and periods (.), starting with a letter)                        |
-| `--read-only`             | The security policy allows read-only mounts only. (format: 'yes', 'no', 'true', 'false', 'on', 'off', 'y' or 'n')                                                  |
-| `--squash-mode`           | Squash mode (root sqush) for mounted filesystems. (format: 'none', 'root' or 'all')                                                                                |
-| `--anon-uid`              | Anonymous UID to be used instead of root when root squashing is enabled.                                                                                           |
-| `--anon-gid`              | Anonymous GID to be used instead of root when root squashing is enabled.                                                                                           |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                   |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                   |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                   |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                         |
-| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                             |
-| `--profile`               | Name of the connection and authentication profile to use                                                                                                           |
-| `--roles`...              | User roles to which the security policy applies. (format: 'clusteradmin', 'tenantadmin', 'regular', 'readonly', 's3' or 'csi', may be repeated or comma-separated) |
-| `--add-roles`...          | User roles to append to the security policy. (format: 'clusteradmin', 'tenantadmin', 'regular', 'readonly', 's3' or 'csi', may be repeated or comma-separated)     |
-| `--remove-roles`...       | User roles to remove from the security policy. (format: 'clusteradmin', 'tenantadmin', 'regular', 'readonly', 's3' or 'csi', may be repeated or comma-separated)   |
-| `--ips`...                | IP address ranges to which the security policy applies. (format: IP or IP/CIDR or IP1-IP2 or A.B.C.D-E, may be repeated or comma-separated)                        |
-| `--add-ips`...            | IP address ranges to append to the security policy. (format: IP or IP/CIDR or IP1-IP2 or A.B.C.D-E, may be repeated or comma-separated)                            |
-| `--remove-ips`...         | IP address ranges to remove from the security policy. (format: IP or IP/CIDR or IP1-IP2 or A.B.C.D-E, may be repeated or comma-separated)                          |
-| `-f`, `--force`           | Force update, bypassing safeguards (may disrupt cluster members!)                                                                                                  |
-| `-h`, `--help`            | Show help message                                                                                                                                                  |
-| `-J`, `--json`            | Format output as JSON                                                                                                                                              |
+| Parameter                 | Description                                                                                                                                                                                                                                             |
+| ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `policy`\*                | Name or ID of security policy.                                                                                                                                                                                                                          |
+| `--description`           | Updates the description of the security policy. (up to 256 characters)                                                                                                                                                                                  |
+| `--action`                | Changes whether access is granted when the security policy matches. (format: 'allow' or 'deny')                                                                                                                                                         |
+| `--new-name`              | New name of the security policy. (up to 64 alphanumeric characters, hyphens (-), underscores (\_), and periods (.), starting with a letter)                                                                                                             |
+| `--read-only`             | The security policy allows read-only mounts only. (format: 'yes', 'no', 'true', 'false', 'on', 'off', 'y' or 'n')                                                                                                                                       |
+| `--squash-mode`           | Dictates whether user and group IDs accessing mounted filesystems are squashed. If 'root', then accesses by root (UID 0/GID 0) are converted to the anonymous UID and GID. If 'all', then all accesses are converted. (format: 'none', 'root' or 'all') |
+| `--anon-uid`              | Anonymous user ID to which accesses are squashed. (default: 65534)                                                                                                                                                                                      |
+| `--anon-gid`              | Anonymous group ID to which accesses are squashed. (default: 65534)                                                                                                                                                                                     |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                                                                                        |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                                                                                                        |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                                                                                                        |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                              |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                                  |
+| `--profile`               | Name of the connection and authentication profile to use                                                                                                                                                                                                |
+| `--roles`...              | User roles to which the security policy applies. (format: 'clusteradmin', 'tenantadmin', 'regular', 'readonly', 's3' or 'csi', may be repeated or comma-separated)                                                                                      |
+| `--add-roles`...          | User roles to append to the security policy. (format: 'clusteradmin', 'tenantadmin', 'regular', 'readonly', 's3' or 'csi', may be repeated or comma-separated)                                                                                          |
+| `--remove-roles`...       | User roles to remove from the security policy. (format: 'clusteradmin', 'tenantadmin', 'regular', 'readonly', 's3' or 'csi', may be repeated or comma-separated)                                                                                        |
+| `--ips`...                | IP address ranges to which the security policy applies. (format: IP or IP/CIDR or IP1-IP2 or A.B.C.D-E, may be repeated or comma-separated)                                                                                                             |
+| `--add-ips`...            | IP address ranges to append to the security policy. (format: IP or IP/CIDR or IP1-IP2 or A.B.C.D-E, may be repeated or comma-separated)                                                                                                                 |
+| `--remove-ips`...         | IP address ranges to remove from the security policy. (format: IP or IP/CIDR or IP1-IP2 or A.B.C.D-E, may be repeated or comma-separated)                                                                                                               |
+| `-f`, `--force`           | Force update, bypassing safeguards (may disrupt cluster members!)                                                                                                                                                                                       |
+| `-h`, `--help`            | Show help message                                                                                                                                                                                                                                       |
+| `-J`, `--json`            | Format output as JSON                                                                                                                                                                                                                                   |
 
-### weka security tls
+#### weka security tls
 
 TLS commands.
 
@@ -14262,7 +14720,7 @@ weka security tls [--color color] [--help]
 | `--color`      | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled') |
 | `-h`, `--help` | Show help message                                                                |
 
-#### weka security tls download
+**weka security tls download**
 
 Download the Weka cluster TLS certificate
 
@@ -14289,7 +14747,7 @@ weka security tls download <path>
 | `--profile`               | Name of the connection and authentication profile to use                                                   |
 | `-h`, `--help`            | Show help message                                                                                          |
 
-#### weka security tls local
+**weka security tls local**
 
 TLS local configuration commands
 
@@ -14371,7 +14829,7 @@ weka security tls local reset [--color color]
 | `--all`                   | Apply TLS configuration on all the backend containers in the cluster                                       |
 | `-h`, `--help`            | Show help message                                                                                          |
 
-#### weka security tls set
+**weka security tls set**
 
 Make Ngnix use TLS when accessing UI. If TLS already set this command updates the key and certificate.
 
@@ -14400,7 +14858,7 @@ weka security tls set [--private-key private-key]
 | `--profile`               | Name of the connection and authentication profile to use                                                   |
 | `-h`, `--help`            | Show help message                                                                                          |
 
-#### weka security tls status
+**weka security tls status**
 
 Show the Weka cluster TLS status and certificate
 
@@ -14427,7 +14885,7 @@ weka security tls status [--color color]
 | `-h`, `--help`            | Show help message                                                                                          |
 | `-J`, `--json`            | Format output as JSON                                                                                      |
 
-#### weka security tls reset
+**weka security tls reset**
 
 Make Ngnix not use TLS when accessing UI
 
@@ -14452,7 +14910,7 @@ weka security tls reset [--color color]
 | `--profile`               | Name of the connection and authentication profile to use                                                   |
 | `-h`, `--help`            | Show help message                                                                                          |
 
-## weka smb
+### weka smb
 
 Commands that manage Weka's SMB container
 
@@ -14466,7 +14924,7 @@ weka smb [--color color] [--help]
 | `--color`      | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled') |
 | `-h`, `--help` | Show help message                                                                |
 
-### weka smb cluster
+#### weka smb cluster
 
 View info about the SMB cluster managed by weka
 
@@ -14493,7 +14951,7 @@ weka smb cluster [--color color]
 | `-h`, `--help`            | Show help message                                                                                          |
 | `-J`, `--json`            | Format output as JSON                                                                                      |
 
-#### weka smb cluster container
+**weka smb cluster container**
 
 Update an SMB cluster containers
 
@@ -14565,7 +15023,7 @@ weka smb cluster container remove [--color color]
 | `-h`, `--help`            | Show help message                                                                                             |
 | `-f`, `--force`           | Force this action without further confirmation. This action may disrupt IO service for connected SMB clients. |
 
-#### weka smb cluster add
+**weka smb cluster add**
 
 Create a SMB cluster managed by weka
 
@@ -14622,7 +15080,7 @@ weka smb cluster add <netbios-name>
 | `--smb-ips-range`...               | IPs used as floating IPs for samba to server SMB in a HA manner. Then should not be assigned to any container on the network (may be repeated or comma-separated)                                                                                                                                                                                           |
 | `-h`, `--help`                     | Show help message                                                                                                                                                                                                                                                                                                                                           |
 
-#### weka smb cluster debug
+**weka smb cluster debug**
 
 Set debug level in an SMB container
 
@@ -14653,7 +15111,7 @@ weka smb cluster debug <level>
 | `-h`, `--help`            | Show help message                                                                                                     |
 | `-J`, `--json`            | Format output as JSON                                                                                                 |
 
-#### weka smb cluster remove
+**weka smb cluster remove**
 
 Destroy the SMB cluster managed by weka. This will not delete the data, just stop exposing it via SMB
 
@@ -14680,7 +15138,7 @@ weka smb cluster remove [--color color]
 | `-f`, `--force`           | Force this action without further confirmation. This action may disrupt IO service for connected SMB clients. |
 | `-h`, `--help`            | Show help message                                                                                             |
 
-#### weka smb cluster status
+**weka smb cluster status**
 
 Show which of the containers are ready.
 
@@ -14707,7 +15165,7 @@ weka smb cluster status [--color color]
 | `-h`, `--help`            | Show help message                                                                                          |
 | `-J`, `--json`            | Format output as JSON                                                                                      |
 
-#### weka smb cluster trusted-domains
+**weka smb cluster trusted-domains**
 
 List all trusted domains
 
@@ -14810,7 +15268,7 @@ weka smb cluster trusted-domains remove <trusteddomain-id>
 | `-f`, `--force`           | Force this action without further confirmation. This action may disrupt IO service for connected SMB clients and modify existing uids/gids. |
 | `-h`, `--help`            | Show help message                                                                                                                           |
 
-#### weka smb cluster update
+**weka smb cluster update**
 
 Update an SMB cluster
 
@@ -14841,7 +15299,7 @@ weka smb cluster update [--color color]
 | `--smb-ips-range`...      | IPs used as floating IPs for SMB to serve in a HA manner. Then should not be assigned to any host on the network (may be repeated or comma-separated) |
 | `-h`, `--help`            | Show help message                                                                                                                                     |
 
-#### weka smb cluster wait
+**weka smb cluster wait**
 
 Wait for SMB cluster to become ready
 
@@ -14868,7 +15326,7 @@ weka smb cluster wait [--timeout timeout]
 | `--profile`               | Name of the connection and authentication profile to use                                                   |
 | `-h`, `--help`            | Show help message                                                                                          |
 
-### weka smb domain
+#### weka smb domain
 
 View info about the domain
 
@@ -14895,7 +15353,7 @@ weka smb domain [--color color]
 | `-h`, `--help`            | Show help message                                                                                          |
 | `-J`, `--json`            | Format output as JSON                                                                                      |
 
-#### weka smb domain join
+**weka smb domain join**
 
 Join cluster to Active Directory domain
 
@@ -14936,7 +15394,7 @@ weka smb domain join <username>
 | `-h`, `--help`            | Show help message                                                                                          |
 | `-J`, `--json`            | Format output as JSON                                                                                      |
 
-#### weka smb domain leave
+**weka smb domain leave**
 
 Leave Active Directory domain
 
@@ -14971,7 +15429,7 @@ weka smb domain leave <username>
 | `-h`, `--help`            | Show help message                                                                                          |
 | `-J`, `--json`            | Format output as JSON                                                                                      |
 
-### weka smb share
+#### weka smb share
 
 List all shares exposed via SMB
 
@@ -15010,7 +15468,7 @@ weka smb share [--color color]
 | `--no-header`             | Don't show column headers when printing the output                                                                                                                                                                                                                                                                                     |
 | `-v`, `--verbose`         | Show all columns in output                                                                                                                                                                                                                                                                                                             |
 
-#### weka smb share add
+**weka smb share add**
 
 Add a new share to be exposed by SMB
 
@@ -15075,7 +15533,7 @@ weka smb share add <share-name>
 | `-h`, `--help`            | Show help message                                                                                                                                                                                                                                                                      |
 | `-J`, `--json`            | Format output as JSON                                                                                                                                                                                                                                                                  |
 
-#### weka smb share host-access
+**weka smb share host-access**
 
 Show host access help
 
@@ -15225,7 +15683,7 @@ weka smb share host-access reset <share-id>
 | `-h`, `--help`            | Show help message                                                                                          |
 | `-J`, `--json`            | Format output as JSON                                                                                      |
 
-#### weka smb share list
+**weka smb share list**
 
 Show lists help
 
@@ -15375,7 +15833,7 @@ weka smb share list show [--color color]
 | `--no-header`             | Don't show column headers when printing the output                                                                                                                                      |
 | `-v`, `--verbose`         | Show all columns in output                                                                                                                                                              |
 
-#### weka smb share remove
+**weka smb share remove**
 
 Remove a share exposed by SMB
 
@@ -15404,7 +15862,7 @@ weka smb share remove <share-id>
 | `-f`, `--force`           | Force this action without further confirmation. This action may disrupt IO service for connected SMB clients. |
 | `-h`, `--help`            | Show help message                                                                                             |
 
-#### weka smb share update
+**weka smb share update**
 
 Update an SMB share
 
@@ -15439,7 +15897,7 @@ weka smb share update <share-id>
 | `--hidden`                | Hidden (format: 'yes', 'no', 'true', 'false', 'on', 'off', 'y' or 'n')                                     |
 | `-h`, `--help`            | Show help message                                                                                          |
 
-## weka stats
+### weka stats
 
 List all statistics that conform to the filter criteria
 
@@ -15518,7 +15976,7 @@ weka stats [--start-time <start>]
 | `--no-header`              | Don't show column headers when printing the output                                                                                                                                                                                                                                          |
 | `-v`, `--verbose`          | Show all columns in output                                                                                                                                                                                                                                                                  |
 
-### weka stats list-types
+#### weka stats list-types
 
 Show the statistics definition information
 
@@ -15544,28 +16002,28 @@ weka stats list-types [--color color]
 
 ```
 
-| Parameter                 | Description                                                                                                                                                                                                                              |
-| ------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `name-or-category`...     | Filter by these names or categories                                                                                                                                                                                                      |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                                                                         |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                                                                                         |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                                                                                         |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                               |
-| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                   |
-| `--profile`               | Name of the connection and authentication profile to use                                                                                                                                                                                 |
-| `-f`, `--format`          | Specify in what format to output the result (format: 'view', 'csv', 'markdown', 'json' or 'oldview')                                                                                                                                     |
-| `-o`, `--output`...       | Specify which columns to output. May include any of the following: category,clabel,identifier,description,label,type,unit,params,realted,permission,ntype,accumulate,histogram,histogramUnit,factor (may be repeated or comma-separated) |
-| `-s`, `--sort`...         | Specify which column(s) to take into account when sorting the output. May include a '+' or '-' before the column name to sort in ascending or descending order respectively. Usage: \[+                                                  |
-| `-F`, `--filter`...       | Specify what values to filter by in a specific column. Usage: column1=val1\[,column2=val2\[,..]] (may be repeated or comma-separated)                                                                                                    |
-| `--filter-color`...       | Filter rows with specific colors (red/yellow/green) (may be repeated or comma-separated)                                                                                                                                                 |
-| `--show-internal`         | Show internal statistics                                                                                                                                                                                                                 |
-| `-h`, `--help`            | Show help message                                                                                                                                                                                                                        |
-| `-R`, `--raw-units`       | Print values in raw units (bytes, seconds, etc.). When not set, sizes are printed in human-readable format, e.g 1KiB 234MiB 2GiB.                                                                                                        |
-| `-U`, `--UTC`             | Print times in UTC. When not set, times are converted to the local time of this host.                                                                                                                                                    |
-| `--no-header`             | Don't show column headers when printing the output                                                                                                                                                                                       |
-| `-v`, `--verbose`         | Show all columns in output                                                                                                                                                                                                               |
+| Parameter                 | Description                                                                                                                                                                                                                                      |
+| ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `name-or-category`...     | Filter by these names or categories                                                                                                                                                                                                              |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                                                                                 |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                                                                                                 |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                                                                                                 |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                       |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                           |
+| `--profile`               | Name of the connection and authentication profile to use                                                                                                                                                                                         |
+| `-f`, `--format`          | Specify in what format to output the result (format: 'view', 'csv', 'markdown', 'json' or 'oldview')                                                                                                                                             |
+| `-o`, `--output`...       | Specify which columns to output. May include any of the following: category,clabel,identifier,description,label,type,unit,params,realted,permission,ntype,accumulate,histogram,histogramUnit,factor,counter (may be repeated or comma-separated) |
+| `-s`, `--sort`...         | Specify which column(s) to take into account when sorting the output. May include a '+' or '-' before the column name to sort in ascending or descending order respectively. Usage: \[+                                                          |
+| `-F`, `--filter`...       | Specify what values to filter by in a specific column. Usage: column1=val1\[,column2=val2\[,..]] (may be repeated or comma-separated)                                                                                                            |
+| `--filter-color`...       | Filter rows with specific colors (red/yellow/green) (may be repeated or comma-separated)                                                                                                                                                         |
+| `--show-internal`         | Show internal statistics                                                                                                                                                                                                                         |
+| `-h`, `--help`            | Show help message                                                                                                                                                                                                                                |
+| `-R`, `--raw-units`       | Print values in raw units (bytes, seconds, etc.). When not set, sizes are printed in human-readable format, e.g 1KiB 234MiB 2GiB.                                                                                                                |
+| `-U`, `--UTC`             | Print times in UTC. When not set, times are converted to the local time of this host.                                                                                                                                                            |
+| `--no-header`             | Don't show column headers when printing the output                                                                                                                                                                                               |
+| `-v`, `--verbose`         | Show all columns in output                                                                                                                                                                                                                       |
 
-### weka stats realtime
+#### weka stats realtime
 
 Get performance related stats which are updated in a one-second interval.
 
@@ -15612,7 +16070,7 @@ weka stats realtime [--color color]
 | `--no-header`             | Don't show column headers when printing the output                                                                                                                                                                                        |
 | `-v`, `--verbose`         | Show all columns in output                                                                                                                                                                                                                |
 
-### weka stats retention
+#### weka stats retention
 
 Configure retention for statistics
 
@@ -15626,7 +16084,7 @@ weka stats retention [--color color] [--help]
 | `--color`      | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled') |
 | `-h`, `--help` | Show help message                                                                |
 
-#### weka stats retention restore-default
+**weka stats retention restore-default**
 
 Restore default retention for statistics
 
@@ -15655,7 +16113,7 @@ weka stats retention restore-default [--color color]
 | `-h`, `--help`            | Show help message                                                                                          |
 | `-J`, `--json`            | Format output as JSON                                                                                      |
 
-#### weka stats retention set
+**weka stats retention set**
 
 Choose how long to keep statistics for
 
@@ -15686,7 +16144,7 @@ weka stats retention set [--days days]
 | `-h`, `--help`            | Show help message                                                                                          |
 | `-J`, `--json`            | Format output as JSON                                                                                      |
 
-#### weka stats retention status
+**weka stats retention status**
 
 Show configured statistics retention
 
@@ -15713,7 +16171,7 @@ weka stats retention status [--color color]
 | `-h`, `--help`            | Show help message                                                                                          |
 | `-J`, `--json`            | Format output as JSON                                                                                      |
 
-## weka status
+### weka status
 
 Get an overall status of the Weka cluster
 
@@ -15746,7 +16204,7 @@ weka status [--color color]
 | `-R`, `--raw-units`       | Print values in raw units (bytes, seconds, etc.). When not set, sizes are printed in human-readable format, e.g 1KiB 234MiB 2GiB. |
 | `-U`, `--UTC`             | Print times in UTC. When not set, times are converted to the local time of this host.                                             |
 
-### weka status rebuild
+#### weka status rebuild
 
 Show the cluster phasing in/out progress, and protection per fault-level
 
@@ -15777,7 +16235,7 @@ weka status rebuild [--color color]
 | `-R`, `--raw-units`       | Print values in raw units (bytes, seconds, etc.). When not set, sizes are printed in human-readable format, e.g 1KiB 234MiB 2GiB. |
 | `-U`, `--UTC`             | Print times in UTC. When not set, times are converted to the local time of this host.                                             |
 
-### weka status reduction
+#### weka status reduction
 
 Show cluster data reduction information'
 
@@ -15808,7 +16266,7 @@ weka status reduction [--color color]
 | `-R`, `--raw-units`       | Print values in raw units (bytes, seconds, etc.). When not set, sizes are printed in human-readable format, e.g 1KiB 234MiB 2GiB. |
 | `-U`, `--UTC`             | Print times in UTC. When not set, times are converted to the local time of this host.                                             |
 
-## weka telemetry
+### weka telemetry
 
 Commands that manage the telemetry gateway
 
@@ -15822,7 +16280,7 @@ weka telemetry [--color color] [--help]
 | `--color`      | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled') |
 | `-h`, `--help` | Show help message                                                                |
 
-### weka telemetry exports
+#### weka telemetry exports
 
 Commands that manage the telemetry exports
 
@@ -15836,7 +16294,7 @@ weka telemetry exports [--color color] [--help]
 | `--color`      | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled') |
 | `-h`, `--help` | Show help message                                                                |
 
-#### weka telemetry exports add
+**weka telemetry exports add**
 
 Add a telemetry export to weka
 
@@ -16050,7 +16508,7 @@ weka telemetry exports add syslog <name>
 | `--disabled`                     | start the telemetry export in disabled Mode                                                                                         |
 | `--without-sources`              | Force creation of export without sources                                                                                            |
 
-#### weka telemetry exports attach
+**weka telemetry exports attach**
 
 Add a telemetry export source to weka
 
@@ -16081,7 +16539,7 @@ weka telemetry exports attach <export-id>
 | `-h`, `--help`            | Show help message                                                                                          |
 | `-J`, `--json`            | Format output as JSON                                                                                      |
 
-#### weka telemetry exports detach
+**weka telemetry exports detach**
 
 Remove a telemetry export source from weka
 
@@ -16114,7 +16572,7 @@ weka telemetry exports detach <export-id>
 | `-J`, `--json`            | Format output as JSON                                                                                                                         |
 | `-f`, `--force`           | Force this action without further confirmation. This action will remove the telemetry export source from weka, it will no longer be exported. |
 
-#### weka telemetry exports disable
+**weka telemetry exports disable**
 
 Disable a telemetry export in weka
 
@@ -16141,7 +16599,7 @@ weka telemetry exports disable <export-id>
 | `--profile`               | Name of the connection and authentication profile to use                                                   |
 | `-h`, `--help`            | Show help message                                                                                          |
 
-#### weka telemetry exports enable
+**weka telemetry exports enable**
 
 Enable a telemetry export in weka
 
@@ -16168,7 +16626,7 @@ weka telemetry exports enable <export-id>
 | `--profile`               | Name of the connection and authentication profile to use                                                   |
 | `-h`, `--help`            | Show help message                                                                                          |
 
-#### weka telemetry exports list
+**weka telemetry exports list**
 
 List telemetry exports, and their current config
 
@@ -16211,7 +16669,7 @@ weka telemetry exports list [--name name]
 | `--no-header`             | Don't show column headers when printing the output                                                                                                                                      |
 | `-v`, `--verbose`         | Show all columns in output                                                                                                                                                              |
 
-#### weka telemetry exports remove
+**weka telemetry exports remove**
 
 Remove a telemetry export from weka
 
@@ -16240,7 +16698,7 @@ weka telemetry exports remove <export-id>
 | `-h`, `--help`            | Show help message                                                                                                                   |
 | `-f`, `--force`           | Force this action without further confirmation. This action will remove the telemetry export from weka, and all associated sources. |
 
-#### weka telemetry exports status
+**weka telemetry exports status**
 
 Report the status of a telemetry exports
 
@@ -16267,7 +16725,7 @@ weka telemetry exports status [--color color]
 | `-h`, `--help`            | Show help message                                                                                          |
 | `-J`, `--json`            | Format output as JSON                                                                                      |
 
-#### weka telemetry exports update
+**weka telemetry exports update**
 
 Update a telemetry export in weka
 
@@ -16426,7 +16884,7 @@ weka telemetry exports update syslog <export-id>
 | `-h`, `--help`                   | Show help message                                                                                                                   |
 | `-J`, `--json`                   | Format output as JSON                                                                                                               |
 
-## weka tenant
+### weka tenant
 
 List tenants defined in the Weka cluster
 
@@ -16450,26 +16908,26 @@ weka tenant [--color color]
 
 ```
 
-| Parameter                 | Description                                                                                                                                                                                                                           |
-| ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                                                                      |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                                                                                      |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                                                                                      |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                            |
-| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                |
-| `--profile`               | Name of the connection and authentication profile to use                                                                                                                                                                              |
-| `-f`, `--format`          | Specify in what format to output the result (format: 'view', 'csv', 'markdown', 'json' or 'oldview')                                                                                                                                  |
-| `-o`, `--output`...       | Specify which columns to output. May include any of the following: uid,id,name,allocSSD,quotaSSD,allocTotal,quotaTotal,enforceFsAuth,enforceNetspace,maxThroughput,maxIops,policyNames,policyIds (may be repeated or comma-separated) |
-| `-s`, `--sort`...         | Specify which column(s) to take into account when sorting the output. May include a '+' or '-' before the column name to sort in ascending or descending order respectively. Usage: \[+                                               |
-| `-F`, `--filter`...       | Specify what values to filter by in a specific column. Usage: column1=val1\[,column2=val2\[,..]] (may be repeated or comma-separated)                                                                                                 |
-| `--filter-color`...       | Filter rows with specific colors (red/yellow/green) (may be repeated or comma-separated)                                                                                                                                              |
-| `-h`, `--help`            | Show help message                                                                                                                                                                                                                     |
-| `-R`, `--raw-units`       | Print values in raw units (bytes, seconds, etc.). When not set, sizes are printed in human-readable format, e.g 1KiB 234MiB 2GiB.                                                                                                     |
-| `-U`, `--UTC`             | Print times in UTC. When not set, times are converted to the local time of this host.                                                                                                                                                 |
-| `--no-header`             | Don't show column headers when printing the output                                                                                                                                                                                    |
-| `-v`, `--verbose`         | Show all columns in output                                                                                                                                                                                                            |
+| Parameter                 | Description                                                                                                                                                                                                                                                            |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                                                                                                       |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                                                                                                                       |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                                                                                                                       |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                                             |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                                                 |
+| `--profile`               | Name of the connection and authentication profile to use                                                                                                                                                                                                               |
+| `-f`, `--format`          | Specify in what format to output the result (format: 'view', 'csv', 'markdown', 'json' or 'oldview')                                                                                                                                                                   |
+| `-o`, `--output`...       | Specify which columns to output. May include any of the following: id,name,allocTotal,quotaTotal,pctAllocated,qos,enforceFsAuth,enforceNetspace,policyNames,uid,allocSSD,quotaSSD,pctAllocatedSSD,maxThroughput,maxIops,policyIds (may be repeated or comma-separated) |
+| `-s`, `--sort`...         | Specify which column(s) to take into account when sorting the output. May include a '+' or '-' before the column name to sort in ascending or descending order respectively. Usage: \[+                                                                                |
+| `-F`, `--filter`...       | Specify what values to filter by in a specific column. Usage: column1=val1\[,column2=val2\[,..]] (may be repeated or comma-separated)                                                                                                                                  |
+| `--filter-color`...       | Filter rows with specific colors (red/yellow/green) (may be repeated or comma-separated)                                                                                                                                                                               |
+| `-h`, `--help`            | Show help message                                                                                                                                                                                                                                                      |
+| `-R`, `--raw-units`       | Print values in raw units (bytes, seconds, etc.). When not set, sizes are printed in human-readable format, e.g 1KiB 234MiB 2GiB.                                                                                                                                      |
+| `-U`, `--UTC`             | Print times in UTC. When not set, times are converted to the local time of this host.                                                                                                                                                                                  |
+| `--no-header`             | Don't show column headers when printing the output                                                                                                                                                                                                                     |
+| `-v`, `--verbose`         | Show all columns in output                                                                                                                                                                                                                                             |
 
-### weka tenant add
+#### weka tenant add
 
 Create a new tenant in the Weka cluster
 
@@ -16480,6 +16938,8 @@ weka tenant add <name>
                 [--total-quota total-quota]
                 [--enforce-fs-authentication enforce-fs-authentication]
                 [--enforce-mount-netspace-access enforce-mount-netspace-access]
+                [--max-throughput max-throughput]
+                [--max-iops max-iops]
                 [--color color]
                 [--HOST HOST]
                 [--PORT PORT]
@@ -16492,26 +16952,28 @@ weka tenant add <name>
 
 ```
 
-| Parameter                         | Description                                                                                                                     |
-| --------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
-| `name`\*                          | Tenant name                                                                                                                     |
-| `username`\*                      | Username of tenant admin                                                                                                        |
-| `password`\*                      | Password of tenant admin                                                                                                        |
-| `--ssd-quota`                     | SSD quota (format: capacity in decimal or binary units: 1B, 1KB, 1MB, 1GB, 1TB, 1PB, 1EB, 1KiB, 1MiB, 1GiB, 1TiB, 1PiB, 1EiB)   |
-| `--total-quota`                   | Total quota (format: capacity in decimal or binary units: 1B, 1KB, 1MB, 1GB, 1TB, 1PB, 1EB, 1KiB, 1MiB, 1GiB, 1TiB, 1PiB, 1EiB) |
-| `--enforce-fs-authentication`     | Enforce every filesystem created under this tenant requires authentication                                                      |
-| `--enforce-mount-netspace-access` | Enforce every mount requested coming from netspace belonging to this tenant                                                     |
-| `--color`                         | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                |
-| `-H`, `--HOST`                    | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                |
-| `-P`, `--PORT`                    | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                |
-| `-C`, `--CONNECT-TIMEOUT`         | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                      |
-| `-T`, `--TIMEOUT`                 | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                          |
-| `--profile`                       | Name of the connection and authentication profile to use                                                                        |
-| `--network-spaces`...             | Network space names to assign to the tenant (may be repeated or comma-separated)                                                |
-| `-h`, `--help`                    | Show help message                                                                                                               |
-| `-J`, `--json`                    | Format output as JSON                                                                                                           |
+| Parameter                         | Description                                                                                                                                                                                                                                                              |
+| --------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `name`\*                          | Tenant name                                                                                                                                                                                                                                                              |
+| `username`\*                      | Username of tenant admin                                                                                                                                                                                                                                                 |
+| `password`\*                      | Password of tenant admin                                                                                                                                                                                                                                                 |
+| `--ssd-quota`                     | SSD quota (format: capacity in decimal or binary units: 1B, 1KB, 1MB, 1GB, 1TB, 1PB, 1EB, 1KiB, 1MiB, 1GiB, 1TiB, 1PiB, 1EiB)                                                                                                                                            |
+| `--total-quota`                   | Total quota (format: capacity in decimal or binary units: 1B, 1KB, 1MB, 1GB, 1TB, 1PB, 1EB, 1KiB, 1MiB, 1GiB, 1TiB, 1PiB, 1EiB)                                                                                                                                          |
+| `--enforce-fs-authentication`     | Enforce every filesystem created under this tenant requires authentication                                                                                                                                                                                               |
+| `--enforce-mount-netspace-access` | Enforce every mount requested coming from netspace belonging to this tenant                                                                                                                                                                                              |
+| `--max-throughput`                | The maximum total throughput allowed for the tenant per second. Use a number with capacity units in Decimal or Binary: for example, 200GiB or 500GB. (format: capacity in decimal or binary units: 1B, 1KB, 1MB, 1GB, 1TB, 1PB, 1EB, 1KiB, 1MiB, 1GiB, 1TiB, 1PiB, 1EiB) |
+| `--max-iops`                      | The maximum total I/O operations allowed for the tenant per second. Use a number without units: for example, 500000.                                                                                                                                                     |
+| `--color`                         | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                                                                                                         |
+| `-H`, `--HOST`                    | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                                                                                                                         |
+| `-P`, `--PORT`                    | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                                                                                                                         |
+| `-C`, `--CONNECT-TIMEOUT`         | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                                               |
+| `-T`, `--TIMEOUT`                 | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                                                   |
+| `--profile`                       | Name of the connection and authentication profile to use                                                                                                                                                                                                                 |
+| `--network-spaces`...             | Network space names to assign to the tenant (may be repeated or comma-separated)                                                                                                                                                                                         |
+| `-h`, `--help`                    | Show help message                                                                                                                                                                                                                                                        |
+| `-J`, `--json`                    | Format output as JSON                                                                                                                                                                                                                                                    |
 
-### weka tenant remove
+#### weka tenant remove
 
 Delete a tenant
 
@@ -16542,7 +17004,7 @@ weka tenant remove <tenant>
 | `-h`, `--help`            | Show help message                                                                                                                          |
 | `-J`, `--json`            | Format output as JSON                                                                                                                      |
 
-### weka tenant network-space
+#### weka tenant network-space
 
 List network spaces assigned to a tenant. Defaults to the current user's tenant.
 
@@ -16571,7 +17033,7 @@ weka tenant network-space [--tenant tenant]
 | `-h`, `--help`            | Show help message                                                                                          |
 | `-J`, `--json`            | Format output as JSON                                                                                      |
 
-#### weka tenant network-space add
+**weka tenant network-space add**
 
 Add network spaces to a tenant. Defaults to the current user's tenant.
 
@@ -16602,7 +17064,7 @@ weka tenant network-space add [--tenant tenant]
 | `-h`, `--help`            | Show help message                                                                                          |
 | `-J`, `--json`            | Format output as JSON                                                                                      |
 
-#### weka tenant network-space remove
+**weka tenant network-space remove**
 
 Remove network spaces from a tenant. Defaults to the current user's tenant.
 
@@ -16633,7 +17095,7 @@ weka tenant network-space remove [--tenant tenant]
 | `-h`, `--help`            | Show help message                                                                                          |
 | `-J`, `--json`            | Format output as JSON                                                                                      |
 
-### weka tenant rename
+#### weka tenant rename
 
 Change a tenant name
 
@@ -16664,7 +17126,7 @@ weka tenant rename <tenant>
 | `-h`, `--help`            | Show help message                                                                                          |
 | `-J`, `--json`            | Format output as JSON                                                                                      |
 
-### weka tenant security
+#### weka tenant security
 
 Manages tenant security
 
@@ -16678,7 +17140,7 @@ weka tenant security [--color color] [--help]
 | `--color`      | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled') |
 | `-h`, `--help` | Show help message                                                                |
 
-#### weka tenant security policy
+**weka tenant security policy**
 
 Manages tenant security policies
 
@@ -16859,7 +17321,7 @@ weka tenant security policy set <tenant>
 | `-h`, `--help`            | Show help message                                                                                          |
 | `-J`, `--json`            | Format output as JSON                                                                                      |
 
-#### weka tenant security revoke-tokens
+**weka tenant security revoke-tokens**
 
 Revokes all API tokens issued for this tenant
 
@@ -16888,80 +17350,90 @@ weka tenant security revoke-tokens <tenant>
 | `-h`, `--help`            | Show help message                                                                                          |
 | `-f`, `--force`           | Force this action without further confirmation. This action will log all users out of the tenant.          |
 
-### weka tenant set-qos
+#### weka tenant stats
 
-Set an tenant's quality of service
+Show I/O statistics per tenant (equivalent to 'weka stats --category=tenant\_stats --param tenant:\*'). Use --tenant to filter to a specific tenant.
 
 ```sh
-weka tenant set-qos <tenant>
-                    [--max-throughput max-throughput]
-                    [--max-iops max-iops]
-                    [--color color]
-                    [--HOST HOST]
-                    [--PORT PORT]
-                    [--CONNECT-TIMEOUT CONNECT-TIMEOUT]
-                    [--TIMEOUT TIMEOUT]
-                    [--profile profile]
-                    [--help]
-                    [--json]
+weka tenant stats [--color color]
+                  [--HOST HOST]
+                  [--PORT PORT]
+                  [--CONNECT-TIMEOUT CONNECT-TIMEOUT]
+                  [--TIMEOUT TIMEOUT]
+                  [--profile profile]
+                  [--tenant tenant]
+                  [--start-time <start>]
+                  [--end-time <end>]
+                  [--interval interval]
+                  [--resolution-secs <secs>]
+                  [--aggregate-by aggregate-by]
+                  [--query-timeout <seconds>]
+                  [--format format]
+                  [--stat stat]...
+                  [--param param]...
+                  [--process-ids process-ids]...
+                  [--output output]...
+                  [--sort sort]...
+                  [--filter filter]...
+                  [--filter-color filter-color]...
+                  [--help]
+                  [--raw-units]
+                  [--UTC]
+                  [--accumulated]
+                  [--per-process]
+                  [--no-zeros]
+                  [--per-role]
+                  [--show-internal]
+                  [--no-header]
+                  [--verbose]
 
 ```
 
-| Parameter                 | Description                                                                                                                                                                                                                                                              |
-| ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `tenant`\*                | Tenant name or ID                                                                                                                                                                                                                                                        |
-| `--max-throughput`        | The maximum total throughput allowed for the tenant per second. Use a number with capacity units in Decimal or Binary: for example, 200GiB or 500GB. (format: capacity in decimal or binary units: 1B, 1KB, 1MB, 1GB, 1TB, 1PB, 1EB, 1KiB, 1MiB, 1GiB, 1TiB, 1PiB, 1EiB) |
-| `--max-iops`              | The maximum total I/O operations allowed for the tenant per second. Use a number without units: for example, 500000.                                                                                                                                                     |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                                                                                                         |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                                                                                                                         |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                                                                                                                         |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                                               |
-| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                                                   |
-| `--profile`               | Name of the connection and authentication profile to use                                                                                                                                                                                                                 |
-| `-h`, `--help`            | Show help message                                                                                                                                                                                                                                                        |
-| `-J`, `--json`            | Format output as JSON                                                                                                                                                                                                                                                    |
+| Parameter                 | Description                                                                                                                                                                                        |
+| ------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                                   |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                                                   |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                                                   |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                         |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                             |
+| `--profile`               | Name of the connection and authentication profile to use                                                                                                                                           |
+| `--tenant`                | Filter by tenant name or ID                                                                                                                                                                        |
+| `--start-time`            | Query for stats starting at this time (format: 5m, -5m, -1d, -1w, 1:00, 01:00, 18:30, 18:30:07, 2018-12-31 10:00, 2018/12/31 10:00, 2018-12-31T10:00, 2019-Nov-17 11:11:00.309, 9:15Z, 10:00+2:00) |
+| `--end-time`              | Query for stats up to this time point (format: 5m, -5m, -1d, -1w, 1:00, 01:00, 18:30, 18:30:07, 2018-12-31 10:00, 2018/12/31 10:00, 2018-12-31T10:00, 2019-Nov-17 11:11:00.309, 9:15Z, 10:00+2:00) |
+| `--interval`              | Period (in seconds) of time of the report                                                                                                                                                          |
+| `--resolution-secs`       | Length of each interval in the report period                                                                                                                                                       |
+| `--aggregate-by`          | Aggregate statistics by the specified component (format: 'none', 'process', 'container' or 'server')                                                                                               |
+| `--query-timeout`         | Per-container timeout in seconds for retrieving query output (default: 5)                                                                                                                          |
+| `-f`, `--format`          | Specify in what format to output the result (format: 'view', 'csv', 'markdown', 'json' or 'oldview')                                                                                               |
+| `--stat`...               | Retrieve only the specified statistics (may be repeated or comma-separated)                                                                                                                        |
+| `--param`...              | For parameterized statistics, filter by additional key:value pairs (e.g. --param method:read). --tenant is shorthand for --param tenant:. (format: key:value, may be repeated or comma-separated)  |
+| `--process-ids`...        | Limit the report to the specified processes (may be repeated or comma-separated)                                                                                                                   |
+| `-o`, `--output`...       | Specify which columns to output. May include any of the following: timestamp,stat,value (may be repeated or comma-separated)                                                                       |
+| `-s`, `--sort`...         | Specify which column(s) to take into account when sorting the output. May include a '+' or '-' before the column name to sort in ascending or descending order respectively. Usage: \[+            |
+| `-F`, `--filter`...       | Specify what values to filter by in a specific column. Usage: column1=val1\[,column2=val2\[,..]] (may be repeated or comma-separated)                                                              |
+| `--filter-color`...       | Filter rows with specific colors (red/yellow/green) (may be repeated or comma-separated)                                                                                                           |
+| `-h`, `--help`            | Show help message                                                                                                                                                                                  |
+| `-R`, `--raw-units`       | Print values in raw units (bytes, seconds, etc.). When not set, sizes are printed in human-readable format, e.g 1KiB 234MiB 2GiB.                                                                  |
+| `-U`, `--UTC`             | Print times in UTC. When not set, times are converted to the local time of this host.                                                                                                              |
+| `--accumulated`           | Show accumulated statistics, not rate statistics                                                                                                                                                   |
+| `--per-process`           | Do not aggregate statistics across processes                                                                                                                                                       |
+| `-Z`, `--no-zeros`        | Do not retrieve results where the value is 0                                                                                                                                                       |
+| `--per-role`              | Aggregate statistics by role                                                                                                                                                                       |
+| `--show-internal`         | Show internal statistics                                                                                                                                                                           |
+| `--no-header`             | Don't show column headers when printing the output                                                                                                                                                 |
+| `-v`, `--verbose`         | Show all columns in output                                                                                                                                                                         |
 
-### weka tenant set-quota
-
-Set a tenant's SSD and/or total quotas
-
-```sh
-weka tenant set-quota <tenant>
-                      [--ssd-quota ssd-quota]
-                      [--total-quota total-quota]
-                      [--color color]
-                      [--HOST HOST]
-                      [--PORT PORT]
-                      [--CONNECT-TIMEOUT CONNECT-TIMEOUT]
-                      [--TIMEOUT TIMEOUT]
-                      [--profile profile]
-                      [--help]
-                      [--json]
-
-```
-
-| Parameter                 | Description                                                                                                                     |
-| ------------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
-| `tenant`\*                | Tenant name or ID                                                                                                               |
-| `--ssd-quota`             | SSD quota (format: capacity in decimal or binary units: 1B, 1KB, 1MB, 1GB, 1TB, 1PB, 1EB, 1KiB, 1MiB, 1GiB, 1TiB, 1PiB, 1EiB)   |
-| `--total-quota`           | Total quota (format: capacity in decimal or binary units: 1B, 1KB, 1MB, 1GB, 1TB, 1PB, 1EB, 1KiB, 1MiB, 1GiB, 1TiB, 1PiB, 1EiB) |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                      |
-| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                          |
-| `--profile`               | Name of the connection and authentication profile to use                                                                        |
-| `-h`, `--help`            | Show help message                                                                                                               |
-| `-J`, `--json`            | Format output as JSON                                                                                                           |
-
-### weka tenant update
+#### weka tenant update
 
 Update tenant options
 
 ```sh
 weka tenant update <tenant>
+                   [--new-name new-name]
                    [--enforce-fs-authentication enforce-fs-authentication]
                    [--enforce-mount-netspace-access enforce-mount-netspace-access]
+                   [--max-throughput max-throughput]
+                   [--max-iops max-iops]
                    [--color color]
                    [--HOST HOST]
                    [--PORT PORT]
@@ -16973,21 +17445,24 @@ weka tenant update <tenant>
 
 ```
 
-| Parameter                         | Description                                                                                                |
-| --------------------------------- | ---------------------------------------------------------------------------------------------------------- |
-| `tenant`\*                        | Tenant name or ID                                                                                          |
-| `--enforce-fs-authentication`     | Enforce filesystem authentication                                                                          |
-| `--enforce-mount-netspace-access` | Enforce mount netspace access                                                                              |
-| `--color`                         | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
-| `-H`, `--HOST`                    | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
-| `-P`, `--PORT`                    | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
-| `-C`, `--CONNECT-TIMEOUT`         | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`                 | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
-| `--profile`                       | Name of the connection and authentication profile to use                                                   |
-| `-h`, `--help`                    | Show help message                                                                                          |
-| `-J`, `--json`                    | Format output as JSON                                                                                      |
+| Parameter                         | Description                                                                                                                                                                                                                                                              |
+| --------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `tenant`\*                        | Tenant name or ID                                                                                                                                                                                                                                                        |
+| `--new-name`                      | New tenant name                                                                                                                                                                                                                                                          |
+| `--enforce-fs-authentication`     | Enforce filesystem authentication                                                                                                                                                                                                                                        |
+| `--enforce-mount-netspace-access` | Enforce mount netspace access                                                                                                                                                                                                                                            |
+| `--max-throughput`                | The maximum total throughput allowed for the tenant per second. Use a number with capacity units in Decimal or Binary: for example, 200GiB or 500GB. (format: capacity in decimal or binary units: 1B, 1KB, 1MB, 1GB, 1TB, 1PB, 1EB, 1KiB, 1MiB, 1GiB, 1TiB, 1PiB, 1EiB) |
+| `--max-iops`                      | The maximum total I/O operations allowed for the tenant per second. Use a number without units: for example, 500000.                                                                                                                                                     |
+| `--color`                         | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                                                                                                         |
+| `-H`, `--HOST`                    | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                                                                                                                         |
+| `-P`, `--PORT`                    | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                                                                                                                         |
+| `-C`, `--CONNECT-TIMEOUT`         | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                                               |
+| `-T`, `--TIMEOUT`                 | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                                                   |
+| `--profile`                       | Name of the connection and authentication profile to use                                                                                                                                                                                                                 |
+| `-h`, `--help`                    | Show help message                                                                                                                                                                                                                                                        |
+| `-J`, `--json`                    | Format output as JSON                                                                                                                                                                                                                                                    |
 
-## weka umount
+### weka umount
 
 Unmounts wekafs filesystems. This is the helper utility installed at /sbin/umount.wekafs.
 
@@ -17016,7 +17491,7 @@ weka umount <target>
 | `-r`, `--readonly`     | In case unmounting fails, try to remount read-only                                                                                      |
 | `-h`, `--help`         | Show help message                                                                                                                       |
 
-## weka upgrade
+### weka upgrade
 
 Commands that control the upgrade precedure of Weka
 
@@ -17030,61 +17505,48 @@ weka upgrade [--color color] [--help]
 | `--color`      | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled') |
 | `-h`, `--help` | Show help message                                                                |
 
-### weka upgrade pause
+#### weka upgrade backends
 
-Pause the upgrade process
+Run upgrade using a specific CLI version. This is a simplified alias for `weka local run upgrade --in <target>` and supports only a minimal set of flags.
 
 ```sh
-weka upgrade pause [--color color]
-                   [--HOST HOST]
-                   [--PORT PORT]
-                   [--CONNECT-TIMEOUT CONNECT-TIMEOUT]
-                   [--TIMEOUT TIMEOUT]
-                   [--profile profile]
-                   [--help]
-                   [--json]
+weka upgrade backends [--container container]
+                      [--mode mode]
+                      [--target-release target-release]
+                      [--use-requested-action use-requested-action]
+                      [--color color]
+                      [--allow-alerts allow-alerts]...
+                      [--environment environment]...
+                      [--prepare-only]
+                      [--distribute-version]
+                      [--can-run]
+                      [--expect-stopped-io]
+                      [--skip-alerts-check]
+                      [--enable-upgrade-prompt]
+                      [--help]
+                      [<target>]...
 
 ```
 
-| Parameter                 | Description                                                                                                |
-| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
-| `--profile`               | Name of the connection and authentication profile to use                                                   |
-| `-h`, `--help`            | Show help message                                                                                          |
-| `-J`, `--json`            | Format output as JSON                                                                                      |
+| Parameter                 | Description                                                                                                                                                                                |
+| ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `target`...               | The CLI version to run the upgrade command in                                                                                                                                              |
+| `-C`, `--container`       | The container to run in                                                                                                                                                                    |
+| `--mode`                  | The type of upgrade to perform                                                                                                                                                             |
+| `--target-release`        | The target release to upgrade to. This is a release string, and should be in the format of X.Y.Z.                                                                                          |
+| `--use-requested-action`  | Use requested action mechanism to drain containers during upgrade (true/false)                                                                                                             |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                           |
+| `--allow-alerts`...       | Allow a specific alert type to be active when starting the upgrade - Prefer using this flag to allow specific alerts instead of skipping alerts check (may be repeated or comma-separated) |
+| `-e`, `--environment`...  | Environment variable (KEY=VALUE) to forward into the upgrade container (may be repeated)                                                                                                   |
+| `--prepare-only`          | Checks we can upgrade, downloads and prepares the version on all hosts, but doesn't actually start the upgrade process                                                                     |
+| `--distribute-version`    | Only downloads and prepares the version on all hosts, but doesn't actually start the upgrade process                                                                                       |
+| `--can-run`               | Is the system ready for the upgrade to run                                                                                                                                                 |
+| `--expect-stopped-io`     | Expect the system to already be in a stopped IO state                                                                                                                                      |
+| `--skip-alerts-check`     | Skip the check making sure there are no active alerts                                                                                                                                      |
+| `--enable-upgrade-prompt` | Enable prompts between host upgrades                                                                                                                                                       |
+| `-h`, `--help`            | Show help message                                                                                                                                                                          |
 
-### weka upgrade resume
-
-Resume the upgrade process
-
-```sh
-weka upgrade resume [--color color]
-                    [--HOST HOST]
-                    [--PORT PORT]
-                    [--CONNECT-TIMEOUT CONNECT-TIMEOUT]
-                    [--TIMEOUT TIMEOUT]
-                    [--profile profile]
-                    [--help]
-                    [--json]
-
-```
-
-| Parameter                 | Description                                                                                                |
-| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
-| `--profile`               | Name of the connection and authentication profile to use                                                   |
-| `-h`, `--help`            | Show help message                                                                                          |
-| `-J`, `--json`            | Format output as JSON                                                                                      |
-
-### weka upgrade supported-features
+#### weka upgrade supported-features
 
 List upgrade features supported by the running cluster
 
@@ -17111,7 +17573,7 @@ weka upgrade supported-features [--color color]
 | `-h`, `--help`            | Show help message                                                                                          |
 | `-J`, `--json`            | Format output as JSON                                                                                      |
 
-## weka user
+### weka user
 
 List users defined in the Weka cluster
 
@@ -17152,7 +17614,7 @@ weka user [--color color]
 | `--no-header`             | Don't show column headers when printing the output                                                                                                                                      |
 | `-v`, `--verbose`         | Show all columns in output                                                                                                                                                              |
 
-### weka user add
+#### weka user add
 
 Create a new user in the Weka cluster
 
@@ -17188,7 +17650,7 @@ weka user add <username>
 | `-h`, `--help`            | Show help message                                                                                                                                                                                                                               |
 | `-J`, `--json`            | Format output as JSON                                                                                                                                                                                                                           |
 
-### weka user change-role
+#### weka user change-role
 
 Change the role of an existing user.
 
@@ -17217,7 +17679,7 @@ weka user change-role <username>
 | `--profile`               | Name of the connection and authentication profile to use                                                   |
 | `-h`, `--help`            | Show help message                                                                                          |
 
-### weka user remove
+#### weka user remove
 
 Delete user from the Weka cluster
 
@@ -17244,7 +17706,7 @@ weka user remove <username>
 | `--profile`               | Name of the connection and authentication profile to use                                                   |
 | `-h`, `--help`            | Show help message                                                                                          |
 
-### weka user generate-token
+#### weka user generate-token
 
 Generate an access token for the current logged in user for use with REST API
 
@@ -17273,7 +17735,7 @@ weka user generate-token [--access-token-timeout access-token-timeout]
 | `-h`, `--help`            | Show help message                                                                                          |
 | `-J`, `--json`            | Format output as JSON                                                                                      |
 
-### weka user ldap
+#### weka user ldap
 
 Show current LDAP configuration used for authenticating users
 
@@ -17300,7 +17762,7 @@ weka user ldap [--color color]
 | `-h`, `--help`            | Show help message                                                                                          |
 | `-J`, `--json`            | Format output as JSON                                                                                      |
 
-#### weka user ldap disable
+**weka user ldap disable**
 
 Disable authentication through the configured LDAP server
 
@@ -17329,7 +17791,7 @@ weka user ldap disable [--color color]
 | `-h`, `--help`            | Show help message                                                                                                              |
 | `-J`, `--json`            | Format output as JSON                                                                                                          |
 
-#### weka user ldap enable
+**weka user ldap enable**
 
 Enable authentication through the configured LDAP server (has no effect if LDAP server is already enabled)
 
@@ -17356,7 +17818,7 @@ weka user ldap enable [--color color]
 | `-h`, `--help`            | Show help message                                                                                          |
 | `-J`, `--json`            | Format output as JSON                                                                                      |
 
-#### weka user ldap refresh-imported
+**weka user ldap refresh-imported**
 
 Refreshes all users imported from an LDAP S3 source, updating their UID, GID, and S3 policy to match the values in the LDAP directory.
 
@@ -17383,7 +17845,7 @@ weka user ldap refresh-imported [--color color]
 | `-h`, `--help`            | Show help message                                                                                          |
 | `-J`, `--json`            | Format output as JSON                                                                                      |
 
-#### weka user ldap reset
+**weka user ldap reset**
 
 Delete all LDAP settings from the cluster
 
@@ -17412,7 +17874,7 @@ weka user ldap reset [--color color]
 | `-h`, `--help`            | Show help message                                                                                                                 |
 | `-J`, `--json`            | Format output as JSON                                                                                                             |
 
-#### weka user ldap setup
+**weka user ldap setup**
 
 Setup an LDAP server for user authentication
 
@@ -17433,6 +17895,7 @@ weka user ldap setup <server-uri>
                      [--ignore-start-tls-failure ignore-start-tls-failure]
                      [--server-timeout-secs server-timeout-secs]
                      [--protocol-version protocol-version]
+                     [--user-uuid-attribute user-uuid-attribute]
                      [--user-revocation-attribute user-revocation-attribute]
                      [--color color]
                      [--HOST HOST]
@@ -17464,6 +17927,7 @@ weka user ldap setup <server-uri>
 | `--ignore-start-tls-failure`   | Ignore start TLS failure (format: 'yes', 'no', 'true', 'false', 'on', 'off', 'y' or 'n')                                           |
 | `--server-timeout-secs`        | LDAP connection timeout in seconds                                                                                                 |
 | `--protocol-version`           | LDAP protocol version                                                                                                              |
+| `--user-uuid-attribute`        | LDAP attribute name for user UUID (default: entryUUID)                                                                             |
 | `--user-revocation-attribute`  | User revocation attribute: If provided, updating this attribute in the LDAP server automatically revokes all user tokens.          |
 | `--color`                      | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                   |
 | `-H`, `--HOST`                 | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                   |
@@ -17474,7 +17938,7 @@ weka user ldap setup <server-uri>
 | `-h`, `--help`                 | Show help message                                                                                                                  |
 | `-J`, `--json`                 | Format output as JSON                                                                                                              |
 
-#### weka user ldap setup-ad
+**weka user ldap setup-ad**
 
 Setup an Active Directory server for user authentication
 
@@ -17524,7 +17988,7 @@ weka user ldap setup-ad <server-uri>
 | `-h`, `--help`                | Show help message                                                                                                                  |
 | `-J`, `--json`                | Format output as JSON                                                                                                              |
 
-#### weka user ldap update
+**weka user ldap update**
 
 Edit LDAP server configuration
 
@@ -17546,6 +18010,7 @@ weka user ldap update [--server-uri server-uri]
                       [--ignore-start-tls-failure ignore-start-tls-failure]
                       [--server-timeout-secs server-timeout-secs]
                       [--protocol-version protocol-version]
+                      [--user-uuid-attribute user-uuid-attribute]
                       [--user-revocation-attribute user-revocation-attribute]
                       [--color color]
                       [--HOST HOST]
@@ -17577,6 +18042,7 @@ weka user ldap update [--server-uri server-uri]
 | `--ignore-start-tls-failure`   | Ignore certificate verification errors (format: 'yes', 'no', 'true', 'false', 'on', 'off', 'y' or 'n')                             |
 | `--server-timeout-secs`        | LDAP connection timeout in seconds                                                                                                 |
 | `--protocol-version`           | LDAP protocol version                                                                                                              |
+| `--user-uuid-attribute`        | LDAP attribute name for user UUID (default: entryUUID)                                                                             |
 | `--user-revocation-attribute`  | User revocation attribute: If provided, updating this attribute in the LDAP server automatically revokes all user tokens.          |
 | `--color`                      | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                   |
 | `-H`, `--HOST`                 | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                   |
@@ -17587,7 +18053,7 @@ weka user ldap update [--server-uri server-uri]
 | `-h`, `--help`                 | Show help message                                                                                                                  |
 | `-J`, `--json`                 | Format output as JSON                                                                                                              |
 
-### weka user login
+#### weka user login
 
 Logs a user into the Weka cluster. If login is successful, the user credentials are saved to the user homedir.
 
@@ -17620,7 +18086,7 @@ weka user login [username]
 | `--profile`               | Name of the connection and authentication profile to use                                                                                                                                                                                                              |
 | `-h`, `--help`            | Show help message                                                                                                                                                                                                                                                     |
 
-### weka user logout
+#### weka user logout
 
 Logs the current user out of the Weka cluster by removing the user credentials from WEKA\_TOKEN if exists, or otherwise from the user homedir
 
@@ -17645,7 +18111,7 @@ weka user logout [--color color]
 | `--profile`               | Name of the connection and authentication profile to use                                                   |
 | `-h`, `--help`            | Show help message                                                                                          |
 
-### weka user passwd
+#### weka user passwd
 
 Set a user's password. If the currently logged-in user is an admin, it can change the password for all other users in the tenant.
 
@@ -17675,7 +18141,7 @@ weka user passwd [--username username]
 | `--profile`               | Name of the connection and authentication profile to use                                                                                                                                                                           |
 | `-h`, `--help`            | Show help message                                                                                                                                                                                                                  |
 
-### weka user revoke-tokens
+#### weka user revoke-tokens
 
 Revoke all existing login tokens of an internal user
 
@@ -17704,7 +18170,7 @@ weka user revoke-tokens <username>
 | `-h`, `--help`            | Show help message                                                                                          |
 | `-J`, `--json`            | Format output as JSON                                                                                      |
 
-### weka user update
+#### weka user update
 
 Change parameters of an existing user.
 
@@ -17737,7 +18203,7 @@ weka user update <username>
 | `--profile`               | Name of the connection and authentication profile to use                                                   |
 | `-h`, `--help`            | Show help message                                                                                          |
 
-### weka user whoami
+#### weka user whoami
 
 Get information about currently logged-in user
 
@@ -17770,7 +18236,7 @@ weka user whoami [--color color]
 | `--no-header`             | Don't show column headers when printing the output                                                                                     |
 | `-v`, `--verbose`         | Show all columns in output                                                                                                             |
 
-## weka version
+### weka version
 
 When run without arguments, lists the versions available on this machine. Subcommands allow for downloading of versions, setting the current version and other actions to manage versions.
 
@@ -17786,7 +18252,7 @@ weka version [--color color] [--full] [--help] [--json]
 | `-h`, `--help` | Show help message                                                                |
 | `-J`, `--json` | Format output as JSON                                                            |
 
-### weka version current
+#### weka version current
 
 Prints the current version. If no version is set, a failure exit status is returned.
 
@@ -17801,7 +18267,7 @@ weka version current [--container container] [--color color] [--help]
 | `--color`           | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled') |
 | `-h`, `--help`      | Show help message                                                                |
 
-### weka version get
+#### weka version get
 
 Download a Weka version to the machine this command is executed from
 
@@ -17830,7 +18296,7 @@ weka version get <version>
 | `--driver-only`      | Only download components required for compiling drivers                                                                                                                                                                                                                                            |
 | `-h`, `--help`       | Show help message                                                                                                                                                                                                                                                                                  |
 
-### weka version prepare
+#### weka version prepare
 
 Prepare the version for use. This includes things like compiling the version drivers for the local machine.
 
@@ -17846,7 +18312,7 @@ weka version prepare <version-name> [--color color] [--help] [<containers>]...
 | `--color`        | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled') |
 | `-h`, `--help`   | Show help message                                                                |
 
-### weka version rm
+#### weka version rm
 
 Delete a version from the machine this command is executed from
 
@@ -17863,7 +18329,7 @@ weka version rm [--color color] [--clean-unused] [--force] [--help] [<version-na
 | `-f`, `--force`   | Force this action without further confirmation. This action may be undone by re-downloading the version. |
 | `-h`, `--help`    | Show help message                                                                                        |
 
-### weka version set
+#### weka version set
 
 Set the current version. Containers must be stopped before setting the current version and the new version must have already been downloaded.
 
@@ -17892,7 +18358,7 @@ weka version set <version>
 | `--client-only`              | Only set the client version                                                      |
 | `-h`, `--help`               | Show help message                                                                |
 
-### weka version reset
+#### weka version reset
 
 Unset the current version. Containers must be stopped before setting the current version and the new version must have already been downloaded.
 
