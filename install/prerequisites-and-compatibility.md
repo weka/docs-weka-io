@@ -349,7 +349,6 @@ To get the best performance, ensure [TRIM](https://en.wikipedia.org/wiki/Trim_\(
 * Scality Ring (version 7.4.4.8)
 * Scality Artesca (version 1.5.2)
 * SwiftStack (version 6.30)
-* Spectra Logic BlackPearl with Vail for remote buckets (version 5.7.1)
 * WEKA S3
 
 ## Virtual Machines
