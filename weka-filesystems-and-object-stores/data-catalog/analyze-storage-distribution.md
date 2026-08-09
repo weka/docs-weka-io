@@ -80,7 +80,7 @@ Scroll down to view additional distribution metrics.
 
 Filter and locate specific files by defining complex metadata conditions such as file size, access time, or owner.
 
-<div data-with-frame="true"><figure><img src="../../.gitbook/assets/Discovery_query.png" alt=""><figcaption><p>Discovery query</p></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/catalog_discovery.png" alt=""><figcaption><p>Discovery query</p></figcaption></figure></div>
 
 **Before you begin**
 
@@ -130,7 +130,7 @@ Verify that the target filesystem is indexed by the data catalog and has at leas
 
 Use pre-configured templates to quickly identify common file categories like cold data or recently modified files.
 
-<div data-with-frame="true"><figure><img src="../../.gitbook/assets/Discovery_query_templates.png" alt=""><figcaption><p>Discovery query templates</p></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/Catalog_query_templates.png" alt=""><figcaption><p>Discovery query templates</p></figcaption></figure></div>
 
 **Before you begin**
 
