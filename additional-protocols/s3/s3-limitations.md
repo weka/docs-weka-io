@@ -78,6 +78,10 @@ The following standard S3 APIs are supported for bucket and object management:
   * [GET Bucket Notification Configuration](https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketNotificationConfiguration.html)
   * [PUT Bucket Notification](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketNotification.html)
   * [PUT Bucket Notification Configuration](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketNotificationConfiguration.html)
+* **Versioning APIs:**
+  * [PutBucketVersioning](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketVersioning.html)
+  * [GetBucketVersioning](https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketVersioning.html)
+  * [ListObjectVersions](https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListObjectVersions.html)
 
 ## General limits
 
@@ -107,25 +111,55 @@ WEKA follows AWS S3 object naming conventions with the following limitations.
 
 The S3 protocol implementation supports the following policy actions:
 
-* `s3:*` (supported for IAM policies only)
-* `s3:AbortMultipartUpload`
-* `s3:CreateBucket`
-* `s3:DeleteBucket`
-* `s3:DeleteBucketPolicy`
-* `s3:DeleteObject`
-* `s3:GetBucketLocation`
-* `s3:GetLifecycleConfiguration`
-* `s3:PutLifecycleConfiguration`
-* `s3:ListBucketMultipartUploads`
-* `s3:ListMultipartUploadParts`
-* `s3:GetBucketPolicy`
-* `s3:GetObject`
-* `s3:ListAllMyBuckets`
-* `s3:ListBucket`
-* `s3:PutBucketPolicy`
-* `s3:PutObject`
-* `s3:GetBucketTagging`
-* `s3:PutBucketTagging`
+* **Wildcard**
+  * s3:\* (supported for IAM policies only)
+* **Bucket**
+  * s3:CreateBucket
+  * s3:DeleteBucket
+  * s3:GetBucketLocation
+  * s3:ListAllMyBuckets
+  * s3:ListBucket
+* **Object**
+  * s3:GetObject
+  * s3:PutObject
+  * s3:DeleteObject
+* **Multipart Upload**
+  * s3:AbortMultipartUpload
+  * s3:ListBucketMultipartUploads
+  * s3:ListMultipartUploadParts
+* **Bucket Policy**
+  * s3:GetBucketPolicy
+  * s3:PutBucketPolicy
+  * s3:DeleteBucketPolicy
+* **Lifecycle**
+  * s3:GetLifecycleConfiguration
+  * s3:PutLifecycleConfiguration
+* **Bucket Tagging**
+  * s3:GetBucketTagging
+  * s3:PutBucketTagging
+* **Object Tagging**
+  * s3:GetObjectTagging
+  * s3:PutObjectTagging
+  * s3:DeleteObjectTagging
+* **Object Lock**
+  * s3:PutObjectRetention
+  * s3:GetObjectRetention
+  * s3:PutObjectLegalHold
+  * s3:GetObjectLegalHold
+  * s3:BypassGovernanceRetention
+  * s3:PutBucketObjectLockConfiguration
+  * s3:GetBucketObjectLockConfiguration
+* **Versioning**
+  * s3:PutBucketVersioning
+  * s3:GetBucketVersioning
+  * s3:GetObjectVersion
+  * s3:DeleteObjectVersion
+  * s3:GetObjectVersionTagging
+  * s3:PutObjectVersionTagging
+  * s3:DeleteObjectVersionTagging
+* **Notifications**
+  * s3:GetBucketNotification
+  * s3:PutBucketNotification
 
 ## Supported AWS-aligned integrity algorithms
 

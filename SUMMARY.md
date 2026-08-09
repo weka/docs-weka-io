@@ -145,6 +145,7 @@
     * [Configure audit webhook using the CLI](additional-protocols/s3/audit-s3-apis/audit-s3-apis.md)
     * [Example: How to use Splunk to audit S3](additional-protocols/s3/audit-s3-apis/audit-s3-apis-1.md)
     * [Example: How to use S3 audit events for tracking and security](additional-protocols/s3/audit-s3-apis/example-how-to-use-s3-audit-events-for-tracking-and-security.md)
+  * [S3 versioning](additional-protocols/s3/s3-versioning.md)
   * [S3 supported APIs and limitations](additional-protocols/s3/s3-limitations.md)
   * [S3 examples using boto3](additional-protocols/s3/s3-examples-using-boto3.md)
   * [Configure and use AWS CLI with WEKA S3 storage](additional-protocols/s3/configure-and-use-aws-cli-with-weka-s3-storage.md)
