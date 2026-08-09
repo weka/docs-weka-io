@@ -96,41 +96,6 @@ Example output:
 
 [weka-containers-architecture-overview.md](../weka-system-overview/weka-containers-architecture-overview.md "mention")
 
-## Before you begin
-
-Complete these checks before running the starting the upgrade workflow.
-
-1. **Verify protocol separation.** Assign only one of NFS, SMB, or S3 to each server. The upgrade does not start when a server runs multiple protocols. Contact the Customer Success Team to separate the protocols.
-2. **Verify the NFS protocol version.** Contact the Customer Success Team if legacy NFS is configured. The upgrade is blocked until it is resolved.
-3.  **Stop NFS file-locking services.** On each WEKA server, stop the `rpc.statd` and `rpc-statd-notifiy` services.
-
-    ```bash
-    systemctl stop rpc-statd.service
-    systemctl stop srpc-statd-notify-service
-    systemctl disable rpc-statd.service
-    systemctl disable srpc-statd-notify-service
-    ```
-4. **Schedule S3 cluster creation.** Create an S3 cluster only after the upgrade completes and all containers are running.
-5.  **For clusters deployed with Data Catalog, clean up the data catalog index.**
-
-    <div data-gb-custom-block data-tag="hint" data-style="warning" class="hint hint-warning"><p>The target version includes a performance-optimized data catalog index. The existing index is incompatible and must be removed to free the space.</p></div>
-
-    1.  Disable the catalog indexing.
-
-        ```bash
-        weka catalog config update --index-enabled false
-        ```
-    2.  Remove the catalog cluster.
-
-        ```bash
-        weka catalog cluster remove --force
-        ```
-    3.  Delete the index filesystem.
-
-        ```bash
-        weka fs remove .indexfs
-        ```
-
 ## Upgrade workflow
 
 1. [Verify system upgrade prerequisites](upgrading-weka-versions.md#id-1.-verify-system-upgrade-prerequisites)
@@ -139,7 +104,18 @@ Complete these checks before running the starting the upgrade workflow.
 4. [Upgrade the backend servers](upgrading-weka-versions.md#4.-upgrade-the-backend-servers)
 5. [Enable LLQ and WC in AWS](upgrading-weka-versions.md#id-5.-enable-llq-and-wc-in-aws)
 6. [Upgrade the clients](upgrading-weka-versions.md#id-6.-upgrade-the-clients)
-7. [Complete the cluster upgrade](upgrading-weka-versions.md#id-7.-complete-the-cluster-upgrade)
+7. [Check the status after the upgrade](upgrading-weka-versions.md#id-7.-check-the-status-after-the-upgrade)
+
+{% hint style="warning" %}
+Adhere to the following considerations:
+
+* **Protocol separation**: Upgrading a WEKA cluster with a server used for more than one of the following protocols, NFS, SMB, or S3, is not permitted. If such a case arises, the upgrade process does not initiate and indicates the servers that require protocol separation. Contact the Customer Success Team to ensure only one additional protocol is installed on each server.
+* **Legacy NFS protocol**: If a legacy NFS protocol is implemented, contact the Customer Success Team. In this case, the upgrade is blocked.
+* **NFS file-locking prerequisite before upgrade:** Ensure the `rpc.statd` and `rpc-statd-notifiy` services are stopped on the WEKA servers. If not, run the following commands:\
+  `systemctl disable rpc-statd.service`\
+  `systemctl disable srpc-statd-notify-service`
+* **S3 Cluster Creation**: If you plan to create an S3 cluster, it’s crucial to ensure the upgrade process is complete and all containers are up before initiating the creation.
+{% endhint %}
 
 ### 1. Verify system upgrade prerequisites
 
@@ -481,13 +457,6 @@ CONTAINER ID HOSTNAME     CONTAINER IPS            STATUS RELEASE FAILURE DOMAIN
 ```
 {% endcode %}
 
-### 7. Complete the cluster upgrade
+### 7. Check the status after the upgrade
 
-Verify the upgraded cluster and restore Data Catalog services when required.
-
-1.  Verify that the cluster runs the target version.
-
-    ```bash
-    weka status
-    ```
-2. For clusters deployed with Data Catalog, create the catalog cluster and index filesystem. Follow [Deploy the catalog services](../weka-filesystems-and-object-stores/data-catalog/configure-data-catalog.md#deploy-the-catalog-services).
+Once the upgrade is complete, verify that the cluster is in the new version by running the `weka status` command.

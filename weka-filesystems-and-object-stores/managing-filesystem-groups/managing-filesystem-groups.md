@@ -44,7 +44,9 @@ A filesystem group is required when adding a filesystem. You can create more fil
 
 **Related topics**
 
-To learn more about the drive retention period and tiering cue, see [tiering.md](../tiering.md "mention").
+To learn more about the drive retention period and tiering cue, se&#x65;**:**
+
+[Broken link](/broken/pages/-LxWGVbB9iYC1u6AKg_O "mention")
 
 ## Edit a filesystem group
 

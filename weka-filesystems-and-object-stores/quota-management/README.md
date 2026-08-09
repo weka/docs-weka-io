@@ -17,7 +17,7 @@ The WEKA system offers multiple layers where you can limit capacity usage:
 * **Tenant level**: Monitor tenant usage, including SSD and total capacity, and restrict usage with quotas per tenant. Use this quota for chargebacks based on consumed or allocated SSD or object store capacity. See [multi-tenancy-cluster-level-administration.md](../../operation-guide/weka-native-multi-tenancy-management/multi-tenancy-cluster-level-administration.md "mention").
 * **Filesystem level**: Allocate a unique filesystem for each department or project.
 * **Directory level**: Assign a unique quota for each project directory (beneficial when users are involved in multiple projects) or for each user’s home directory.
-* **User and group level:** Assign a quota per user (UID) or per group (GID) to limit the total capacity consumed across the entire filesystem, regardless of which directories the user writes to. User and group quotas complement directory quotas: when both apply to a write operation, the most restrictive limit takes effect. User and group quota management is available through the CLI and REST API.
+* **User and group level:** Assign a quota per user (UID) or per group (GID) to limit the total capacity consumed across the entire filesystem, regardless of which directories the user writes to. User and group quotas complement directory quotas: when both apply to a write operation, the most restrictive limit takes effect. User and group quota management is available through the CLI only.
 
 A tenant administrator can set a quota on a directory. This action initiates calculating the current directory usage in a background task. Once this calculation is complete, the quota is considered.
 

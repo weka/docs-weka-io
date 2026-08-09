@@ -29,7 +29,6 @@ IT administrators leverage the data catalog to manage, monitor, and query large 
     * **Cold data identification:** Find all files and directories untouched by any user in the last 90 days.
     * **Export query results:** Download results in JSON format for sharing and analyzing data with other tools.
 * **Data forecast:** The data ingestion in the file system, alongside data patterns from the catalog, provides projections for future growth. It offers a visual graphical representation of forecasted numbers.
-* **Comparative analysis:** Compare data between two points in time using Comparison Insights. Review a delta summary of added, modified, and deleted files and directories, then identify which directories drove the change.
 
 ## Identify storage trends with the Filesystem Analytics dashboard
 
@@ -40,10 +39,9 @@ Monitor storage trends and capacity distribution using the Filesystem Analytics 
 The dashboard features several specialized panels to present filesystem metadata:
 
 * **Sunburst chart:** The centerpiece of the dashboard designed for top-level view of directory hierarchy and capacity consumption.
-* **File count by extension:** Shows how files are distributed by extension across the filesystem. Select a bar, then select **Deep Dive** to explore the underlying files.
+* **File count by extension:** A panel that tracks the distribution of specific file formats across the filesystem.
 * **Usage statistics by user or group:** Charts that identify storage consumption attributed to specific accounts or organizational units.
 * **Historical trends and forecasting:** The Filesystem Capacity Over Time chart shows historical growth and provides predictable usage based on current patterns if at least 24 hours of data is available.
-* **Comparison Insights:** Compares a filesystem between two points in time, summarizing added, modified, and deleted files and directories and ranking directories by storage impact.
 
 #### Sunburst chart characteristics
 

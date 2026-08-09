@@ -132,7 +132,7 @@ If your benchmark results differ significantly from the expected values, contact
 
 **Related topics**
 
-[Filesystems & Object Stores](https://app.gitbook.com/s/ZW262oqYA8pNNfGvXjHa/weka-filesystems-and-object-stores "mention")
+[Broken link](/broken/pages/-LBJvd2jB8hUJhPLHHmk "mention")
 
 [mounting-filesystems](../weka-filesystems-and-object-stores/mounting-filesystems/ "mention")
 

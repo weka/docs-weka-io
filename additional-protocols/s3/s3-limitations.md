@@ -38,55 +38,46 @@ This allows organizations to integrate applications using non-posix compliant ke
 The following standard S3 APIs are supported for bucket and object management:
 
 * **Bucket APIs:**
-  * [HeadBucket](https://docs.aws.amazon.com/AmazonS3/latest/API/API_HeadBucket.html)
-  * [CreateBucket](https://docs.aws.amazon.com/AmazonS3/latest/API/API_CreateBucket.html)
-  * [DeleteBucket](https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteBucket.html)
-  * [ListObjects](https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListObjects.html)
-  * [ListObjectsV2](https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListObjectsV2.html)
-  * [ListBuckets](https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListBuckets.html)
+  * [HEAD Bucket](https://docs.aws.amazon.com/AmazonS3/latest/API/API_HeadBucket.html)
+  * [CREATE Bucket](https://docs.aws.amazon.com/AmazonS3/latest/API/API_CreateBucket.html)
+  * [DELETE Bucket](https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteBucket.html)
+  * [LIST Objects](https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListObjects.html)
+  * [LIST Objects V2](https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListObjectsV2.html)
+  * [LIST Buckets](https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListBuckets.html)
 * **Bucket Lifecycle APIs:**
-  * [GetBucketLifecycleConfiguration](https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketLifecycleConfiguration.html)
-  * [PutBucketLifecycleConfiguration](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketLifecycleConfiguration.html)
-  * [DeleteBucketLifecycle](https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteBucketLifecycle.html)
+  * [GET Bucket Lifecycle](https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketLifecycleConfiguration.html)
+  * [PUT Bucket Lifecycle](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketLifecycleConfiguration.html)
+  * [DELETE Bucket Lifecycle](https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteBucketLifecycle.html)
 * **Bucket Policy APIs:**
-  * [GetBucketPolicy](https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketPolicy.html)
-  * [PutBucketPolicy](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketPolicy.html)
-  * [DeleteBucketPolicy](https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteBucketPolicy.html)
+  * [GET Bucket Policy](https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketPolicy.html)
+  * [PUT Bucket Policy](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketPolicy.html)
+  * [DELETE Bucket Policy](https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteBucketPolicy.html)
 * **Bucket Tagging APIs:**
-  * [GetBucketTagging](https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketTagging.html)
-  * [PutBucketTagging](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketTagging.html)
-  * [DeleteBucketTagging](https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteBucketTagging.html)
+  * [GET Bucket Tagging](https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketTagging.html)
+  * [PUT Bucket Tagging](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketTagging.html)
+  * [DELETE Bucket Tagging](https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteBucketTagging.html)
 * **Object APIs:**
-  * [GetObject](https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetObject.html)
-  * [PutObject](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutObject.html)
-  * [DeleteObject](https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteObject.html)
-  * [DeleteObjects](https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteObjects.html)
-  * [CopyObject](https://docs.aws.amazon.com/AmazonS3/latest/API/API_CopyObject.html)
-  * [HeadObject](https://docs.aws.amazon.com/AmazonS3/latest/API/API_HeadObject.html)
+  * [GET Object](https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetObject.html)
+  * [PUT Object](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutObject.html)
+  * [DELETE Object](https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteObject.html)
+  * [DELETE Objects](https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteObjects.html)
+  * [COPY Object](https://docs.aws.amazon.com/AmazonS3/latest/API/API_CopyObject.html)
+  * [HEAD Object](https://docs.aws.amazon.com/AmazonS3/latest/API/API_HeadObject.html)
 * **Object Tagging APIs:**
-  * [GetObjectTagging](https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetObjectTagging.html)
-  * [PutObjectTagging](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutObjectTagging.html)
-  * [DeleteObjectTagging](https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteObjectTagging.html)
+  * [GET Object Tagging](https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetObjectTagging.html)
+  * [PUT Object Tagging](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutObjectTagging.html)
+  * [DELETE Object Tagging](https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteObjectTagging.html)
 * **Object Multipart APIs:**
-  * [CreateMultipartUpload](https://docs.aws.amazon.com/AmazonS3/latest/API/API_CreateMultipartUpload.html)
-  * [CompleteMultipartUpload](https://docs.aws.amazon.com/AmazonS3/latest/API/API_CompleteMultipartUpload.html)
-  * [ListParts](https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListParts.html)
-  * [UploadPart](https://docs.aws.amazon.com/AmazonS3/latest/API/API_UploadPart.html)
-  * [AbortMultipartUpload](https://docs.aws.amazon.com/AmazonS3/latest/API/API_AbortMultipartUpload.html)
+  * [POST Create Multipart Upload](https://docs.aws.amazon.com/AmazonS3/latest/API/API_CreateMultipartUpload.html)
+  * [POST Complete Multipart Upload](https://docs.aws.amazon.com/AmazonS3/latest/API/API_CompleteMultipartUpload.html)
+  * [GET Object Parts](https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListParts.html)
+  * [PUT Part](https://docs.aws.amazon.com/AmazonS3/latest/API/API_UploadPart.html)
+  * [DELETE Multipart Upload](https://docs.aws.amazon.com/AmazonS3/latest/API/API_AbortMultipartUpload.html)
 * **Bucket Notification APIs:**
-  * [GETBucketNotification](https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketNotification.html)
-  * [GETBucketNotificationConfiguration](https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketNotificationConfiguration.html)
-  * [PUTBucketNotification](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketNotification.html)
-  * [PUTBucketNotificationConfiguration](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketNotificationConfiguration.html)
-* **Versioning APIs:**
-  * [PutBucketVersioning](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketVersioning.html)
-  * [GetBucketVersioning](https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketVersioning.html)
-  * [ListObjectVersions](https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListObjectVersions.html)
-* **Object Lock APIs:**
-  * [PutObjectRetention](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutObjectRetention.html)
-  * [GetObjectRetention](https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetObjectRetention.html)
-  * [PutObjectLegalHold](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutObjectLegalHold.html)
-  * [GetObjectLegalHold](https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetObjectLegalHold.html)
+  * [GET Bucket Notification](https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketNotification.html)
+  * [GET Bucket Notification Configuration](https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketNotificationConfiguration.html)
+  * [PUT Bucket Notification](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketNotification.html)
+  * [PUT Bucket Notification Configuration](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketNotificationConfiguration.html)
 
 ## General limits
 
@@ -116,55 +107,25 @@ WEKA follows AWS S3 object naming conventions with the following limitations.
 
 The S3 protocol implementation supports the following policy actions:
 
-* **Wildcard**
-  * s3:\* (supported for IAM policies only)
-* **Bucket**
-  * s3:CreateBucket
-  * s3:DeleteBucket
-  * s3:GetBucketLocation
-  * s3:ListAllMyBuckets
-  * s3:ListBucket
-* **Object**
-  * s3:GetObject
-  * s3:PutObject
-  * s3:DeleteObject
-* **Multipart Upload**
-  * s3:AbortMultipartUpload
-  * s3:ListBucketMultipartUploads
-  * s3:ListMultipartUploadParts
-* **Bucket Policy**
-  * s3:GetBucketPolicy
-  * s3:PutBucketPolicy
-  * s3:DeleteBucketPolicy
-* **Lifecycle**
-  * s3:GetLifecycleConfiguration
-  * s3:PutLifecycleConfiguration
-* **Bucket Tagging**
-  * s3:GetBucketTagging
-  * s3:PutBucketTagging
-* **Object Tagging**
-  * s3:GetObjectTagging
-  * s3:PutObjectTagging
-  * s3:DeleteObjectTagging
-* **Object Lock**
-  * s3:PutObjectRetention
-  * s3:GetObjectRetention
-  * s3:PutObjectLegalHold
-  * s3:GetObjectLegalHold
-  * s3:BypassGovernanceRetention
-  * s3:PutBucketObjectLockConfiguration
-  * s3:GetBucketObjectLockConfiguration
-* **Versioning**
-  * s3:PutBucketVersioning
-  * s3:GetBucketVersioning
-  * s3:GetObjectVersion
-  * s3:DeleteObjectVersion
-  * s3:GetObjectVersionTagging
-  * s3:PutObjectVersionTagging
-  * s3:DeleteObjectVersionTagging
-* **Notifications**
-  * s3:GetBucketNotification
-  * s3:PutBucketNotification
+* `s3:*` (supported for IAM policies only)
+* `s3:AbortMultipartUpload`
+* `s3:CreateBucket`
+* `s3:DeleteBucket`
+* `s3:DeleteBucketPolicy`
+* `s3:DeleteObject`
+* `s3:GetBucketLocation`
+* `s3:GetLifecycleConfiguration`
+* `s3:PutLifecycleConfiguration`
+* `s3:ListBucketMultipartUploads`
+* `s3:ListMultipartUploadParts`
+* `s3:GetBucketPolicy`
+* `s3:GetObject`
+* `s3:ListAllMyBuckets`
+* `s3:ListBucket`
+* `s3:PutBucketPolicy`
+* `s3:PutObject`
+* `s3:GetBucketTagging`
+* `s3:PutBucketTagging`
 
 ## Supported AWS-aligned integrity algorithms
 

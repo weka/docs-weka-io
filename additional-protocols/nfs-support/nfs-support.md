@@ -36,7 +36,7 @@ To support NFS file-locking, ensure the system meets the prerequisites outlined 
 2. On the left pane, select **NFS**.
 3. Select the **Settings** tab.
 
-<div data-with-frame="true"><figure><img src="../../.gitbook/assets/NFS_settings.png" alt=""><figcaption><p>NFS Settings tab</p></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/wmng_NFS_Settings_tab.png" alt=""><figcaption><p>NFS Settings tab</p></figcaption></figure></div>
 
 4. In the Global Settings section, select **Update**, and do the following:
    * **Config FS**: Select the cluster-wide configuration filesystem that maintains the NFS and Kerberos configurations.
@@ -60,7 +60,7 @@ To support NFS file-locking, ensure the system meets the prerequisites outlined 
        Example: KRB5 KRB5i KRB5p.\
        The default values depend on Kerberos configuration:
 
-       * If not configured: SYS
+       * If not configured: NONE SYS
        * If configured: KRB5
    * **Mount Port:** Set the port that the mountd service binds to.
    * **Lock Manager Port**: Set the port for the network lock manager’s registration.
@@ -73,7 +73,7 @@ These ports are only relevant for NFSv3. The default value of 0 indicates using 
 
 5. Select **Save** to apply the settings.
 
-<div data-with-frame="true"><figure><img src="../../.gitbook/assets/NFS_configure_default_global_settings.png" alt="" width="433"><figcaption><p>Configure global NFS settings dialog</p></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/wmng_configure_default_global_settings.png" alt="" width="433"><figcaption><p>Configure global NFS settings dialog</p></figcaption></figure></div>
 
 ## **Configure the NFS cluster level** <a href="#create-interface-groups" id="create-interface-groups"></a>
 
@@ -354,7 +354,7 @@ If you create an NFS v4 client permission, verify that a global configuration fi
    * **Authentication Types:** The method of authentication. The enabled authentication types in the NFS global settings determine the possible options and the default.\
      Examples:
      * Enabled types: NONE, SYS, KRB5, KRB5i, KRB5p. Default: KRB5.
-     * Enabled types: NONE, SYS. Default: SYS.
+     * Enabled types: NONE, SYS. Default: NONE, SYS.
      * Enabled types: NONE, SYS, KRB5i, KRB5p. Default: KRB5i.
    * **Anon. UID**: Anonymous user ID. Only relevant for Root and All user squashing.
    * **Anon. GID:** Anonymous group ID. Only relevant for Root and All user squashing.

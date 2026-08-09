@@ -32,29 +32,21 @@ When a bucket creation request does not specify a filesystem, the system resolve
 
 [#dedicated-filesystem-requirement-for-persistent-protocol-configurations](../../additional-protocols-overview.md#dedicated-filesystem-requirement-for-persistent-protocol-configurations "mention").
 
-## Load balancer configuration
+## Round-robin DNS or load balancer **configuration**
 
-A load balancer distributes incoming S3 client requests across WEKA servers. It directs each new connection to the most appropriate backend based on availability and current load.
+To distribute S3 client traffic across WEKA servers with the S3 protocol enabled, it is recommended to set up a round-robin DNS entry that resolves to the IP addresses of the servers. If the WEKA servers have multiple network interfaces, ensure that the DNS entry uses the IPs corresponding to the network(s) intended for S3 traffic.
 
-Health checks are central to this setup. Configure the load balancer to probe `/wekas3api/health/ready`. The endpoint returns HTTP `200` when the server is healthy and HTTP `503` when it has exceeded its capacity threshold. This prevents routing requests to unavailable or overloaded containers.
+For added resilience, consider using a DNS server that supports health checks to detect unresponsive servers. Keep in mind that even robust DNS servers or load balancers may become overwhelmed under extreme load conditions.
 
-The endpoint also acts as a load probe. Every response includes an `x-weka-score` header with a normalized load score from `0.0` to `1.0`. A score of `0.0` indicates no load. A score of `1.0` indicates full saturation. The service derives the score from active requests and memory usage relative to their maximums.
+Alternatively, a client-side load balancer can be used, allowing each client to check the health of S3 containers in the cluster. Configure the load balancer to probe the following endpoint: `/wekas3api/health/ready`.
 
-Append `?c=json` to receive the same values in the body: `/wekas3api/health/ready?c=json`.
+An example of a suitable load balancer is the open-source **Sidekick Load Balancer**.
 
-```json
-{"score":0.73,"rq.active":1500,"rq.max":2048,"mem.active":1473,"mem.max":4096}
-```
+**Related information**
 
-This data enables Global Server Load Balancing (GSLB). GSLB routes traffic across multiple sites or clusters, typically through DNS. Use the score for weighted routing so healthy, lower-loaded servers receive more traffic. Solutions that support header-based routing can read `x-weka-score` directly without parsing the JSON body. One example is [loadbalancer.org](https://www.loadbalancer.org/).
+[Round-robin DNS](https://en.wikipedia.org/wiki/Round-robin_DNS)
 
-## Round-robin DNS configuration
-
-Round-robin DNS maps one hostname to multiple IP addresses. DNS responses rotate through those addresses so successive clients connect to different servers.
-
-To distribute S3 traffic with this method, create a DNS entry that resolves to the IP addresses of all servers with the S3 protocol enabled. If the WEKA servers have multiple network interfaces, use the IP addresses on the network intended for S3 traffic.
-
-For added resilience, use a DNS service that supports health checks to detect and remove unresponsive servers from rotation automatically. Keep in mind that DNS-level health checks are coarser than those of a dedicated load balancer and may be less effective under extreme load.
+[Sidekick Load Balancer](https://github.com/minio/sidekick)
 
 **Related topics**
 
