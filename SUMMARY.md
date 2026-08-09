@@ -150,6 +150,7 @@
   * [S3 examples using boto3](additional-protocols/s3/s3-examples-using-boto3.md)
   * [Configure and use AWS CLI with WEKA S3 storage](additional-protocols/s3/configure-and-use-aws-cli-with-weka-s3-storage.md)
   * [S3 bucket notifications](additional-protocols/s3/s3-bucket-notifications.md)
+  * [S3 Object Lock](additional-protocols/s3/s3-object-lock.md)
   * [Configure S3 Performance Buckets](additional-protocols/s3/configure-s3-performance-buckets.md)
 * [Manage the SMB protocol](additional-protocols/smb-support/README.md)
   * [Manage SMB using the GUI](additional-protocols/smb-support/smb-management-using-the-gui.md)
