@@ -1,0 +1,1 @@
+fio —blocksize=1048576 --direct=1 --numjobs=32 --directory=$WORKING_DIR --ioengine=libaio --invalidate=0 --time_based --name=$BENCHMARK_ID --nrfiles=1 --clat_percentiles=1 --max-jobs=32 --randrepeat=1 --create_serialize=0 --group_reporting '--filename_format=$jobnum/$filenum' --runtime=70 --rwmixread=0 --iodepth=1 --readwrite=read --filesize=104857600

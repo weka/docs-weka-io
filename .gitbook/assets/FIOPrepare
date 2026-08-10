@@ -1,0 +1,4 @@
+export WEKA_MOUNT=/mnt/weka
+export BENCHMARK_ID=FioWrites4KSingleThread
+export WORKING_DIR=$WEKA_MOUNT/$BENCHMARK_ID
+mkdir -p $WORKING_DIR
