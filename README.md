@@ -2,6 +2,28 @@
 description: Version 5.0
 cover: .gitbook/assets/doc_neuralmesh_banner3.gif
 coverY: -64.55749999999999
+layout:
+  width: default
+  cover:
+    visible: true
+    size: hero
+    mask: none
+  title:
+    visible: true
+  description:
+    visible: true
+  tableOfContents:
+    visible: true
+  outline:
+    visible: true
+  pagination:
+    visible: true
+  metadata:
+    visible: true
+  tags:
+    visible: true
+  actions:
+    visible: true
 ---
 
 # NeuralMesh™ by WEKA documentation

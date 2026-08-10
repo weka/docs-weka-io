@@ -44,7 +44,7 @@ sssd
 
 <summary>Recommended packages for remote support and maintenance</summary>
 
-#### RHEL and derivatives
+**RHEL and derivatives**
 
 ```
 @network-tools
@@ -80,7 +80,7 @@ screen
 ice
 ```
 
-#### Ubuntu
+**Ubuntu**
 
 ```
 elfutils
@@ -126,8 +126,6 @@ If a failure occurs during the WEKA software installation process, an error mess
 **Related topic**
 
 [#operating-system](../../prerequisites-and-compatibility.md#operating-system "mention") (on the Prerequisites and compatibility topic)
-
-
 
 ## What to do next?
 

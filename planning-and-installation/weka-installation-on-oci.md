@@ -128,4 +128,4 @@ Depending on your deployment mode, you can choose one of the following options t
 
 ### What to do next
 
-Proceed to [Broken link](/broken/pages/KEOEQRdsKM2PB9lTiaPg "mention"), which serves as your entry point for using the WEKA system. Start by familiarizing yourself with the graphical user interface (GUI) and command-line interface (CLI). Once you are comfortable, you can perform your first I/O operations using the WEKA filesystem. This includes creating a filesystem and mounting it on the appropriate client or backend servers, depending on your chosen deployment mode.
+Proceed to [Getting Started with NeuralMesh](https://app.gitbook.com/s/0yXyIrnroN3zIG3qa4W3/getting-started-with-weka "mention"), which serves as your entry point for using the WEKA system. Start by familiarizing yourself with the graphical user interface (GUI) and command-line interface (CLI). Once you are comfortable, you can perform your first I/O operations using the WEKA filesystem. This includes creating a filesystem and mounting it on the appropriate client or backend servers, depending on your chosen deployment mode.
