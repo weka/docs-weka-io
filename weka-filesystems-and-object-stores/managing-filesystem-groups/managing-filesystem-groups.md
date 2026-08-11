@@ -1,72 +1,83 @@
 ---
-description: This page describes how to view and manage filesystem groups using the GUI.
+description: View, create, edit, and remove filesystem groups from the Filesystems page.
 ---
 
 # Manage filesystem groups using the GUI
 
-Using the GUI, you can perform the following actions:
-
-* [View filesystem groups](managing-filesystem-groups.md#view-filesystem-groups)
-* [Add filesystem groups](managing-filesystem-groups.md#add-a-filesystem-group)
-* [Edit filesystem groups](managing-filesystem-groups.md#edit-a-filesystem-group)
-* [Delete a filesystem group](managing-filesystem-groups.md#delete-a-filesystem-group)
-
 ## View filesystem groups
 
-The filesystem groups are displayed on the **Filesystems** page. Each filesystem group indicates the number of filesystems that use it.
+The filesystem groups appear on the **Filesystems** page. The tab title shows the number of filesystem groups in the cluster.
 
 **Procedure**
 
-1. From the menu, select **Manage > Filesystems**.
+1. Select **Manage > Filesystems** from the navigation menu.
+2. Select the **Filesystem Groups** tab.
 
-<div data-with-frame="true"><img src="../../.gitbook/assets/wmng_view_filesystem_groups.png" alt="Filesystem groups example"></div>
+<div data-with-frame="true"><img src="../../.gitbook/assets/view_filesystem_groups.png" alt="Filesystem groups example"></div>
 
-## Add a filesystem group
+The table shows the following details for each filesystem group:
 
-A filesystem group is required when adding a filesystem. You can create more filesystem groups if you want to apply a different tiering policy on specific filesystems.
+<table><thead><tr><th width="209.930419921875">Column</th><th>Description</th></tr></thead><tbody><tr><td><strong>Name</strong></td><td>The name of the filesystem group.</td></tr><tr><td><strong>Filesystems</strong></td><td>The number of filesystems that use the group.</td></tr><tr><td><strong>Drive Retention Period</strong></td><td>The time to keep data on the SSD after it is copied to the object store.</td></tr><tr><td><strong>Tiering Cue</strong></td><td>The time to wait after the last update before the data is copied from the SSD to the object store.</td></tr></tbody></table>
+
+## Create a filesystem group
+
+Create a filesystem group to apply a different tiering policy to specific filesystems.
 
 **Procedure**
 
-1. From the menu, select **Manage > Filesystems**.
-2. Select the + sign right to the Filesystem Groups title.
-3. In the **Create Filesystem Group** dialog, set the following:
-   * **Name:** Set a meaningful name for the filesystem group.
-   * **Drive Retention Period**: Set the period for keeping data on the SSD after it is copied to the object store. After this period, the copy of the data is deleted from the SSD.
-   * **Tiering Cue**: Set the time to wait after the last update before the data is copied from the SSD and sent to the object store.
+1. Select **Manage > Filesystems** from the navigation menu.
+2. Select the **Filesystem Groups** tab.
+3. Select **Create Filesystem Group**.
+4. Set the following in the **Create Filesystem Group** dialog:
 
-<div data-with-frame="true"><img src="../../.gitbook/assets/wmng_add_fsg.gif" alt="Add a filesystem group"></div>
+<div data-with-frame="true"><img src="../../.gitbook/assets/create_fsg.png" alt="Add a filesystem group"></div>
 
-4. Select **Create**.
+<table><thead><tr><th width="207.15692138671875">Setting</th><th>Description</th></tr></thead><tbody><tr><td><strong>Name</strong></td><td>A meaningful name for the filesystem group.</td></tr><tr><td><strong>Drive Retention Period</strong></td><td>The time to keep data on the SSD after it is copied to the object store. When this period ends, the copy of the data is deleted from the SSD. Set a value and select the time unit.</td></tr><tr><td><strong>Tiering Cue</strong></td><td>The time to wait after the last update before the data is copied from the SSD to the object store. Set a value and select the time unit.</td></tr></tbody></table>
 
-**Related topics**
-
-To learn more about the drive retention period and tiering cue, see [tiering.md](../tiering.md "mention").
+5. Select **Create**.
 
 ## Edit a filesystem group
 
-You can edit the filesystem group policy according to your system requirements.
+Edit a filesystem group to adjust its tiering policy to your system requirements.
 
-**Procedure**
+#### Procedure
 
-1. From the menu, select **Manage > Filesystems**.
-2. Select the filesystem group you want to edit.
-3. Select the pencil sign right to the filesystem group name.
-4. In the **Edit Filesystem Group** dialog, update the settings as you need. (See the parameter descriptions in the [Add a filesystem group](managing-filesystem-groups.md#add-a-filesystem-group) topic.)
+1. Select **Manage > Filesystems** from the navigation menu.
+2. Select the **Filesystem Groups** tab.
+3. Select the three dots menu of the filesystem group, and select **Edit**.
+4. Update the settings in the **Edit Filesystem Group** dialog. Show Image The settings are the same as in the **Create Filesystem Group** dialog.
 
-<div data-with-frame="true"><img src="../../.gitbook/assets/wmng_edit_fsg_animated.gif" alt="Edit a filesystem group"></div>
+<div data-with-frame="true"><img src="../../.gitbook/assets/edit_fsg.png" alt="Edit a filesystem group"></div>
 
-5. Select **Update**.
 
-## Delete a filesystem group
 
-You can delete a filesystem group no longer used by any filesystem.
+5. Select **Save**.
 
-**Procedure**
+The updated tiering policy applies to all the filesystems that use the group.
 
-1. From the menu, select **Manage > Filesystems**.
-2. Select the filesystem group you want to delete.
-3. Verify that the filesystem group is not used by any filesystems (indicates 0 filesystems).
+## Remove a filesystem group
 
-<div data-with-frame="true"><img src="../../.gitbook/assets/wmng_delete_fsg.png" alt="Delete a filesystem group"></div>
+Remove a filesystem group that no longer serves any filesystem.
 
-5. Select the **Remove** icon. In the pop-up message, select **Yes** to delete the filesystem group.
+{% hint style="info" %}
+You cannot remove a filesystem group that is used by a filesystem. Move the filesystems to another group, or delete them, before you remove the group.
+{% endhint %}
+
+#### Procedure
+
+1. Select **Manage > Filesystems** from the navigation menu.
+2. Select the **Filesystem Groups** tab.
+3. Verify that the **Filesystems** column of the group shows `0`.
+4. Select the three dots menu of the filesystem group, and select **Remove**.
+
+<div data-with-frame="true"><img src="../../.gitbook/assets/delete_fsg.png" alt="Delete a filesystem group"></div>
+
+5. Select **Yes** in the confirmation message.
+
+**Related topics**
+
+[Manage filesystem groups](./)
+
+[Manage data lifecycle for tiered systems](../tiering.md)
+
+[Manage filesystem groups using the CLI](manage-filesystem-groups-using-the-cli.md)

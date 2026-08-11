@@ -40,7 +40,7 @@ The WEKA driver directory structure is organized to help you manage driver packa
 Follow these steps to build and manage WEKA drivers for a specific OS and WEKA kernel version on a system running the **target OS kernel version**. This system, which can be a virtual machine (VM), **must** have the exact kernel version that you intend to use for distribution across the WEKA cluster.
 
 {% hint style="info" %}
-The `weka driver` commands described in this section provide a high-level overview. For a complete list of arguments and options, refer to the CLI reference guide in the [manage-the-system-using-weka-cli](../getting-started-with-weka/manage-the-system-using-weka-cli/ "mention") section.
+The `weka driver` commands described in this section provide a high-level overview. For a complete list of arguments and options, refer to the CLI reference guide in the [weka-cli-overview](../getting-started-with-weka/weka-cli-overview/ "mention") section.
 {% endhint %}
 
 1.  **Install the WEKA agent:**\

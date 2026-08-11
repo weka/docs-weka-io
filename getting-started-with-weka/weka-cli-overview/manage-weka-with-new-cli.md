@@ -1,0 +1,231 @@
+---
+description: >-
+  Use wekactl to install WEKA, manage profiles, control output formatting,
+  filter and inspect data, and configure TLS certificate handling.
+---
+
+# Manage WEKA with new CLI
+
+Starting with WEKA 6.0.0, wekactl is the default CLI, and the `weka` command on a cluster server invokes it. The examples in this topic use `weka`.
+
+## Before you begin
+
+* On a cluster server, no installation is required. wekactl ships inside the product.
+* To manage clusters from a workstation that is not a cluster server, install the standalone binary. See [Install wekactl on a workstation](manage-weka-with-new-cli.md#install-wekactl-on-a-workstation).
+* To install a WEKA version using the CLI, a get.weka.io token is required.
+
+> **INTERNAL, remove before publication. TBD (Engineering):** Confirm the minimum cluster version a standalone wekactl can manage (see the version independence item in the concept topic).
+
+## Access wekactl on a cluster server
+
+On any server running WEKA 6.0.0, the `weka` command invokes wekactl. The binary is also available directly at:
+
+```
+/opt/weka/bin/wekactl
+```
+
+The legacy CLI binary remains available at `/opt/weka/bin/weka` alongside wekactl.
+
+To revert to the legacy CLI temporarily, set the following environment variable:
+
+```
+export WEKA_CLI_LEGACY=1
+```
+
+The legacy CLI is a migration aid only. It receives no new features and is planned for removal in a future release. For details on behavior differences that affect existing scripts, see [Migrate from the legacy weka CLI to wekactl](manage-weka-with-new-cli.md#).
+
+> **INTERNAL, remove before publication. TBD (Engineering, blocking):** Confirm the exact variable name against a shipping build. The Slack discussion used both `WEKA_CLI_LEGACY=1` and `WEKACTL_CLI_LEGACY=1`, and the variable does not appear in the migration guide draft. Also confirm scope: does the variable affect only the invoking shell session, and does it apply per-command or persistently?
+
+## Install wekactl on a workstation
+
+Binary packages for Linux, macOS, and Windows are available on get.weka.io under the CLI tab:
+
+* Linux: `deb` and `rpm` packages, also available through the network package repositories
+* macOS: Homebrew formula
+* Windows: Scoop manifest
+
+The standalone build is version-independent and can manage clusters running earlier WEKA versions.
+
+To install a specific WEKA version on a server:
+
+```bash
+weka version get <version> --set-current
+```
+
+> **INTERNAL, remove before publication. TBD (PM/Engineering):** Confirm the get.weka.io delivery channels listed above match what ships for 6.0.0 (open item 1 in the migration guide draft).
+
+## Bootstrap a stateless client
+
+After installing the standalone `rpm` or `deb` package, run the standard mount command:
+
+```bash
+mount -t wekafs <backend>/<filesystem> <mount-point>
+```
+
+On the first connection, the CLI establishes trust in the cluster TLS certificate. In non-interactive contexts, such as a scripted or first-boot mount, the certificate is accepted and saved automatically, so the mount is not blocked on a prompt. See [Manage TLS certificates](manage-weka-with-new-cli.md#manage-tls-certificates).
+
+## Manage profiles
+
+<table><thead><tr><th width="287.014892578125">Operation</th><th>Command</th></tr></thead><tbody><tr><td>Create a profile</td><td><code>weka profile add &#x3C;profile_name></code></td></tr><tr><td>List profiles</td><td><code>weka profile list</code></td></tr><tr><td>Show a profile</td><td><code>weka profile show &#x3C;profile_name></code></td></tr><tr><td>Select the active profile</td><td><code>weka profile select &#x3C;profile_name></code></td></tr><tr><td>Update a profile</td><td><code>weka profile update &#x3C;profile_name></code></td></tr><tr><td>Duplicate a profile</td><td><code>weka profile duplicate &#x3C;profile_name></code></td></tr><tr><td>Delete a profile</td><td><code>weka profile remove &#x3C;profile_name></code></td></tr><tr><td>Log out of a profile</td><td><code>weka profile logout &#x3C;profile_name></code></td></tr><tr><td>Delete all profiles</td><td><code>weka profile purge</code></td></tr></tbody></table>
+
+Profile settings are stored as editable JSON files and can be overridden using environment variables. On Linux, when no custom profile is selected, wekactl reuses an existing token created by the legacy weka CLI.
+
+> **INTERNAL, remove before publication. TBD (Engineering):** Confirm the full profile verb set and the exact syntax of `select`, `update`, `duplicate`, `logout`, and `purge` against a shipping build. The migration guide draft lists these verbs without arguments.
+
+## Control output format and style
+
+Use the `--output` flag to select a format:
+
+```bash
+weka <command> --output <format>
+```
+
+Supported formats: `table` (default), `json`, `csv`, `tsv`, `html`, `markdown`. The short forms `-J` (JSON) and `-R` (raw units) are also available.
+
+To add, remove, or reorder columns selectively:
+
+```bash
+weka <command> -o +<column_name>,-<column_name>
+```
+
+To disable terminal word-wrapping and clipping:
+
+```bash
+weka <command> --clip=false
+```
+
+To pipe output to a pager:
+
+```bash
+weka <command> --pager
+```
+
+The default pager is `less -S -R`. To use a different pager, set `WEKA_CLI_PAGER`.
+
+To render output as an HTML page in the default browser:
+
+```bash
+weka <command> --browser
+```
+
+To refresh output at a fixed interval:
+
+```bash
+weka <command> --watch <interval>
+```
+
+To label a table:
+
+```bash
+weka <command> --title "<title>"
+weka <command> --custom-title "<title>"
+weka <command> --caption "<caption>"
+```
+
+## Trim output with head and tail
+
+To display only the first or last N records:
+
+```bash
+weka <command> --head <n>
+weka <command> --tail <n>
+```
+
+`--head` and `--tail` operate on records, not lines, and also work with JSON output. Use both together to see the spread between the top and bottom records. Use negative values to exclude outliers.
+
+## Filter rows
+
+To include only rows matching a field value:
+
+```bash
+weka <command> --filter <field>=<value>
+```
+
+To exclude rows matching a field value, prefix the value with `~`:
+
+```bash
+weka <command> --filter <field>=~<value>
+```
+
+To filter by row color, for example to show only non-nominal rows:
+
+```bash
+weka <command> --filter-color=~green
+```
+
+## View statistics and histograms
+
+The `stats show` subcommand merges multiple statistics on a single line and supports column reordering and sorting by a chosen statistic.
+
+To display a visual histogram:
+
+```bash
+weka stats --output +histogram
+```
+
+To display a histogram for a specific statistic:
+
+```bash
+weka stats show --output +<stat_name>.histogram
+```
+
+For example:
+
+```bash
+weka stats show --output +reactor.step_cycles.histogram
+```
+
+## Manage TLS certificates
+
+All network communication uses TLS. Certificate trust follows a trust-on-first-use model:
+
+* On the first interactive connection to a server, the CLI displays the certificate fingerprint, issuer, and expiry, and prompts for confirmation. Accepted certificates are saved to the active profile automatically.
+* In non-interactive contexts, the certificate is accepted and saved automatically on first use. To enforce stricter validation, set `WEKA_TLS_STRICTNESS`.
+* If the cluster uses a certificate signed by a trusted authority already installed in the system certificate store, no prompt appears.
+
+To bypass certificate validation:
+
+```bash
+weka <command> --insecure
+weka <command> -k
+```
+
+Bypassing certificate validation skips the certificate check only. The connection remains TLS-encrypted. Bypassing certificate validation is not recommended in production environments.
+
+## Connect through a bastion or Kubernetes
+
+To tunnel the connection through an SSH jump server:
+
+```bash
+weka <command> --jump <user>@<bastion>
+```
+
+Alternatively, set the `WEKA_JUMP_HOST` environment variable or configure the jump server in the profile. The tunnel uses the system `ssh` and inherits the local SSH configuration, agent, and MFA prompts.
+
+To reach a cluster managed by the WEKA Operator:
+
+```bash
+weka <command> --kube-weka-cluster <name>
+```
+
+The connection tunnels through `kubectl port-forward` using the current kubeconfig and credentials. Related flags: `--kube-namespace`, `--kube-context`, `--kubeconfig`.
+
+## Use interactive mode
+
+To enter interactive mode, launch the CLI without arguments:
+
+```bash
+weka
+```
+
+To disable interactive mode and print help instead:
+
+```bash
+export WEKA_CLI_NO_INTERACTIVE=1
+```
+
+For shell completion setup outside interactive mode, run:
+
+```bash
+weka completion <bash|zsh|fish|powershell>
+```

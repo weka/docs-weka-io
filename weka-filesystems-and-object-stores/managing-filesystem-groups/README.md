@@ -1,17 +1,30 @@
 ---
-description: This page provides an overview about managing filesystem groups.
+description: >-
+  Learn how filesystem groups control the tiering behavior of the filesystems
+  that belong to them.
 ---
 
 # Manage filesystem groups
 
-A filesystem group in the WEKA system is used specifically to manage tiering policies for filesystems. It defines key parameters, including the drive retention period and the tiering queue time, which determine how and when data is tiered.
+A filesystem group defines the tiering policy applied to its filesystems. It sets two parameters:
 
-When you add a filesystem, it must be associated with a filesystem group to apply these tiering behaviors. The WEKA system supports up to eight filesystem groups, allowing flexibility in managing tiering policies across different filesystems.
+* **Drive Retention Period**: The time to keep data on the SSD after it is copied to the object store. When this period ends, the copy of the data is deleted from the SSD.
+* **Tiering Cue**: The time to wait after the last update before the data is copied from the SSD to the object store.
+
+Every filesystem must belong to a filesystem group. The system provides the `default` filesystem group, which you can use as is or edit. Create additional filesystem groups when you want to apply a different tiering policy to specific filesystems.
+
+NeuralMesh supports up to eight filesystem groups.
+
+{% hint style="info" %}
+The tiering policy applies only to tiered filesystems. For an SSD-only filesystem, the filesystem group is still required, but its parameters have no effect.
+{% endhint %}
 
 **Related topics**
 
 [Filesystems, object stores, and filesystem groups](../../weka-system-overview/filesystems-object-stores-and-filesystem-groups/)
 
-[managing-filesystem-groups.md](managing-filesystem-groups.md "mention")
+[Manage data lifecycle for tiered systems](../tiering.md)
 
-[manage-filesystem-groups-using-the-cli.md](manage-filesystem-groups-using-the-cli.md "mention")
+[Manage filesystem groups using the GUI](managing-filesystem-groups.md)
+
+[Manage filesystem groups using the CLI](manage-filesystem-groups-using-the-cli.md)

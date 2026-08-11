@@ -6,40 +6,55 @@ description: >-
 
 # Manage the system using the GUI
 
-## WEKA GUI overview
+## NeuralMesh GUI overview
 
-The NeuralMesh GUI application is the administration tool for your NeuralMesh system. Use this tool for system configuration, filesystems management, user management, and investigation of alarms, events, and statistics.
+The NeuralMesh GUI application is the administration tool for your NeuralMesh system. Use this tool for system configuration, filesystems management, user management, and investigation of alerts, events, and statistics.
 
-The GUI application supports the following functions:
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/gui_overview.gif" alt=""><figcaption><p>NeuralMesh GUI overview</p></figcaption></figure></div>
 
-* **Configuration**:
-  * Configure the cluster, such as data availability, license, security, and central monitoring.
-  * Configure the backend containers and expose the data in different protocols.
-  * Manage local users and set up the user directory.
-  * Create and manage organizations and their quotas.
-* **Management**:
-  * Manage the filesystems, including tiering, thin provisioning, and encryption.
-  * Manage snapshots.
-  * Manage the object store buckets.
-  * Manage the filesystem protocols: SMB, S3, and NFS.
-  * Manage directory quotas.
-* **Investigation**:
-  * Investigate events.
-  * Investigate overtime statistics, such as total operations, R/W throughput, CPU usage, and read or write latency.
-* **Monitoring**:
-  * View the cluster protection and availability.
-  * View the R/W throughput.
-  * View the backend and client top consumers.
-  * View alarms.
-  * View the used, provisioned, and total capacity.
-  * View the frontend, compute, and drive cores usage.
-  * View the hardware components (active/total).
+### Navigation menu
 
-<div data-with-frame="true"><img src="../.gitbook/assets/wmng_gui_overview.gif" alt="WEKA GUI overview"></div>
+The navigation menu on the left groups the GUI pages into four sections. Select the arrow next to the NeuralMesh logo to collapse or expand the menu. When the menu is collapsed, point to a section icon to display its pages.
+
+Select **Monitor** or the NeuralMesh logo at any time to return to the system dashboard.
+
+#### Monitor
+
+Display the system dashboard with all its widgets. This is the default view when you sign in.
+
+<table><thead><tr><th width="197.203125">Page</th><th>Description</th></tr></thead><tbody><tr><td><strong>Background Tasks</strong></td><td>Follow long-running system operations, such as rebuild and redistribution.</td></tr></tbody></table>
+
+#### Investigate
+
+Analyze the cluster behavior over time.
+
+<table><thead><tr><th width="214.53622436523438">Page</th><th>Description</th></tr></thead><tbody><tr><td><strong>Events</strong></td><td>Review the system events.</td></tr><tr><td><strong>Statistics</strong></td><td>Review overtime statistics, such as total operations, throughput, CPU usage, and read or write latency.</td></tr><tr><td><strong>Insights</strong></td><td>Review the system recommendations and detected anomalies.</td></tr><tr><td><strong>Filesystem Analytics</strong></td><td>Review the capacity and file distribution across the filesystems.</td></tr></tbody></table>
+
+#### Manage
+
+Manage the data services of the cluster.
+
+<table><thead><tr><th width="210.62997436523438">Page</th><th>Description</th></tr></thead><tbody><tr><td><strong>Filesystems</strong></td><td>Manage the filesystems, including tiering, thin provisioning, and encryption.</td></tr><tr><td><strong>Snapshots</strong></td><td>Manage snapshots.</td></tr><tr><td><strong>Snapshot Policies</strong></td><td>Define schedules that create and delete snapshots automatically.</td></tr><tr><td><strong>Object Stores</strong></td><td>Manage the object store buckets.</td></tr><tr><td><strong>Protocols</strong></td><td>Manage the filesystem protocols: SMB, S3, and NFS.</td></tr><tr><td><strong>Directory Quotas</strong></td><td>Manage directory quotas.</td></tr><tr><td><strong>Tenants</strong></td><td>Create and manage tenants and their quotas.</td></tr></tbody></table>
+
+#### Configure
+
+Set up the cluster and control access to it.
+
+<table><thead><tr><th width="214.3089599609375">Page</th><th>Description</th></tr></thead><tbody><tr><td><strong>Cluster Settings</strong></td><td>Configure the cluster, such as data availability, license, security, and central monitoring.</td></tr><tr><td><strong>Cluster Servers</strong></td><td>Configure the backend containers and expose the data in different protocols.</td></tr><tr><td><strong>User Management</strong></td><td>Manage local users, set up the user directory, and assign roles.</td></tr></tbody></table>
+
+#### Top bar
+
+The top bar displays the cluster status indicator, the cluster name, and the current timestamp. It also provides the following controls:
+
+* **Alerts**: Displays the active alerts. The badge indicates the number of alerts.
+* **CLI**: Opens a terminal session to the cluster.
+* **Display mode**: Switches the GUI between light and dark modes.
+* **User profile**: Displays the account details, the display units, and the sign-out option.
+* **More options**: Displays additional GUI settings.
 
 ## Access the GUI
 
-The NeuralMesh GUI is a web application you can access using an already configured account and has the appropriate rights to configure, administer, or view.
+The NeuralMesh GUI is a web application you can access using an already configured account that has the appropriate rights to configure, administer, or view.
 
 **Before you begin**
 
@@ -47,109 +62,96 @@ Make sure that port 14000 is open in the firewall of your organization.
 
 **Procedure**
 
-1. In your browser, go to `https://<NeuralMesh system or server name>:14000`.\
+1. Go to `https://<NeuralMesh system or server name>:14000` in your browser.\
    The sign-in page opens.
 
 <div data-with-frame="true"><img src="../.gitbook/assets/sign_in.png" alt="Sign in to the NeuralMesh GUI"></div>
 
-2. Sign in with the username and password of an account with cluster administration or\
-   organization administration privileges. For details about the account types, see [user-management](../operation-guide/user-management/ "mention").\
-   The system dashboard opens.
+2. Sign in with the username and password of an account with cluster administration or organization administration privileges. The system dashboard opens.
 
-{% hint style="info" %}
-The initial default username and password are _admin_ and _admin_[.](../operation-guide/user-management/) In the first sign-in, NeuralMesh enforces changing the admin password.
-{% endhint %}
+The initial default username and password are `admin` and `admin`. In the first sign-in, NeuralMesh enforces changing the admin password.
 
 **Related topics**
 
 [user-management](../operation-guide/user-management/ "mention")
 
-## System Dashboard
+## System dashboard
 
-The system dashboard contains widgets that provide an overview of the WEKA system, including an overall status, R/W throughput, top consumers, alerts, capacity, core usage, and hardware.
+The system dashboard contains widgets that provide an overview of the NeuralMesh system, including capacity, performance, cluster protection, alerts, and inventory.
 
-The system dashboard opens by default when you sign in. If you select another menu and want to display the dashboard again, select the **NeuralMesh** logo.
+The system dashboard opens by default when you sign in. If you select another page and want to display the dashboard again, select **Monitor** or the NeuralMesh logo.
 
 <div data-with-frame="true"><img src="../.gitbook/assets/system_dashboard.png" alt="System Dashboard"></div>
 
-### Cluster Protection and Availability widget
+Widgets that include an information icon display an explanation of the presented data when you point to the icon.
 
-This widget shows the overall status of the system's health and protection state.
+#### Usable Capacity widget
 
-The overall status widget includes the following indications:
+This widget shows the total capacity available for data, and its split between the used and free capacity.
 
-* **Protection state:** The possible protection states include:
-  * OK: The system operates properly.
-  * UNKNOWN: The protection state is unknown.
-  * UNINITIALIZED: The system still needs to complete the cluster configuration and run the first IOs.
-  * REBUILDING: When a failure occurs, the data rebuild process reads all the stripes where the failure occurred, rebuilds the data, and returns the system to full protection.
-  * PARTIALLY\_PROTECTED: Some or all of the data is not fully protected. The reported number of protections indicates the cluster's failure resilience.
-  * UNPROTECTED: The data is not protected against any failure.
-  * UNAVAILABLE: Too many parallel failures occur in the system that can cause system unavailability.
-  * REDISTRIBUTING: The system redistributes the data between servers and drives due to scale-up or scale-down.
-* **Service Uptime**: The elapsed time since the I/O services started.
+#### Throughput widget
+
+This widget shows the current aggregated throughput of the cluster, and its split between read and write.
+
+#### IOPS widget
+
+This widget shows the current aggregated operations per second, and their split between read and write.
+
+#### Clients widget
+
+This widget shows the number of clients defined in the cluster, and their split between active and inactive.
+
+#### Cluster Protection widget
+
+This widget shows the health and protection state of the system.
+
+The Cluster Protection widget includes the following indications:
+
+* **Protection state**: The banner shows the current state, such as `Fully Protected`. The possible protection states include:
+  * **Fully Protected**: The system operates properly.
+  * **Unknown**: The protection state is unknown.
+  * **Uninitialized**: The system still needs to complete the cluster configuration and run the first IOs.
+  * **Rebuilding**: When a failure occurs, the data rebuild process reads all the stripes where the failure occurred, rebuilds the data, and returns the system to full protection.
+  * **Partially Protected**: Some or all of the data is not fully protected. The reported number of protections indicates the cluster's failure resilience.
+  * **Unprotected**: The data is not protected against any failure.
+  * **Unavailable**: Too many parallel failures occur in the system that can cause system unavailability.
+  * **Redistributing**: The system redistributes the data between servers and drives due to scale-up or scale-down.
 * **Data Protection**: The number of data drives and protection parity drives. The color of the protection parity drives indicates their status.
-* **Virtual (Hot) Spares**: The number of failure domains the system can lose and still complete the data rebuild while maintaining the same net capacity.
+* **Virtual Spares**: The number of failure domains the system can lose and still complete the data rebuild while maintaining the same net capacity.
+* **Up For**: The elapsed time since the I/O services started.
 
-### R/W Throughput widget
-
-This widget shows the current performance statistics aggregated across the cluster.
-
-The R/W Throughput widget includes the following indications:
-
-* **Throughput**: The total throughput.
-* **Total Ops**: The number of cluster operations.
-* **Latency**: The average latency of R/W operations.
-* **Active clients**: The number of clients connected to the cluster.
-
-{% hint style="info" %}
-Selecting one of the R/W Throughput, Latency, and Total Ops titles displays the statistics page.
-
-Selecting the Active clients title displays the clients tab.
-{% endhint %}
-
-### Top Consumers widget
-
-This widget shows the top 5 backend servers and clients in the system. You can sort the list of servers by total IO operations per second or total throughput.
-
-### Alerts widget
-
-This widget shows the alerts that are not muted.
-
-### Capacity widget
+#### Capacity widget
 
 This widget shows an overview of the managed capacity.
 
-The top bar indicates the total capacity provisioned for all filesystems and the used capacity. For tiered filesystems, the total capacity also includes the Object Store part.
+The chart shows the used and free capacity out of the total usable capacity. For tiered filesystems, the total capacity also includes the object store part.
 
-The bottom bar indicates the total SSD capacity available in the system, the provisioned capacity, and the used capacity.
+The SSD bar shows the written capacity out of the total provisioned capacity on the SSDs.
 
-{% hint style="info" %}
-Selecting the Capacity title displays the filesystems page.
-{% endhint %}
+#### Top Active widget
 
-### Core Usage widget
+This widget shows the most active backend servers and clients in the system. Select the **Backends** or **Clients** tab to switch between them. For each entry, the widget shows the host name, the operations per second, and the throughput.
 
-This widget shows the average usage and the maximum load level of the Frontend, Compute, and Drive cores. Hovering the maximum value displays the most active server and the NodeID number.
+#### Active Alerts widget
 
-### Hardware widget
+This widget shows the alerts that are not muted. Select the settings icon to configure which alerts appear, or select the open icon to display the alerts page.
 
-This widget shows an overview of the hardware components (active/total).
+#### Performance widget
 
-The hardware components include:
+This widget shows the throughput, IOPS, and average latency of the cluster over time. Select **1H**, **1D**, or **7D** to change the displayed time range.
 
-* **Backends**: The number of backend servers.
-* **Cores**: The number of cores configured for running processes in the backend servers.
-* **Drives**: The number of drives.
-* **OBS Buckets**: The number of the object store buckets.
+#### Inventory widget
 
-{% hint style="info" %}
-Selecting one of the Backends, Cores, or Drives titles displays the **backend servers** page.
+This widget shows an overview of the system resources.
 
-Selecting the OBS Buckets title displays the **object store buckets** page.
-{% endhint %}
+| Resource        | Description                                                              |
+| --------------- | ------------------------------------------------------------------------ |
+| **Servers**     | The number of active backend servers out of the total number of servers. |
+| **Drives**      | The number of active drives out of the total number of drives.           |
+| **Filesystems** | The total number of filesystems.                                         |
+| **S3 Buckets**  | The total number of S3 buckets.                                          |
 
-## Switch the display time
+### Switch the display time
 
 Timestamps in events and statistics are logged internally in UTC. The GUI displays the timestamps in local or system time. You can switch between the local and system time.
 
@@ -157,18 +159,18 @@ Switching the display time may be required when the customer, Customer Success T
 
 **Procedure**
 
-1. On the top bar, point to the timestamp.
-2. Depending on the displayed time, select **Switch to System Time** or **Switch to Local Time**.
+1. Point to the timestamp on the top bar.
+2. Select **Switch to System Time** or **Switch to Local Time**, depending on the displayed time.
 
 <div data-with-frame="true"><img src="../.gitbook/assets/sw_display_time.gif" alt="Switch display time"></div>
 
-## Switch the GUI between light and dark modes
+### Switch the GUI between light and dark modes
 
 You can switch the GUI between light and dark modes according to your preferences. The dark mode is a user interface for content that displays light text on a dark background. The dark mode is beneficial for viewing screens at night. The reduced brightness can reduce eye strain in low-light conditions.
 
-**Procedure**
+#### Procedure
 
-1. Depending on the current display mode, point to the sun or moon symbol on the top bar.
+1. Point to the sun or moon symbol on the top bar, depending on the current display mode.
 2. Select **Switch to the light mode** or **Switch to dark mode**.
 
 <div data-with-frame="true"><img src="../.gitbook/assets/sw_dark_mode.gif" alt="Switch the GUI between light and dark modes"></div>
@@ -183,13 +185,14 @@ The 3D view provides the server components' status at a glance, including the dr
 
 ## Display tables
 
-Manage rows and columns in tables such as **Filesystems**, **Snapshots**, and **Object stores**.
+Manage rows and columns in tables such as Filesystems, Snapshots, and Object Stores.
 
-Open a page that displays a resource table.
+**Procedure**
 
-1. Review the row count beside the table title.
-2. Select the table settings icon.
-3. Select or clear columns to change the table view.
+1. Open a page that displays a resource table.
+2. Review the row count beside the table title.
+3. Select the table settings icon.
+4. Select or clear columns to change the table view.
 
 <div data-with-frame="true"><figure><img src="../.gitbook/assets/display_tables.png" alt=""><figcaption><p>Example: Display the filesystems table</p></figcaption></figure></div>
 
@@ -197,10 +200,10 @@ Open a page that displays a resource table.
 
 Select the unit system used for capacity and performance values.
 
-1. Open the user profile menu.
-2.  Select **Base 2 units** for binary units.
+**Procedure**
 
-    Select **Base 10 units** for decimal units.
+1. Open the user profile menu on the top bar.
+2. Select **Base 2 units** for binary units, or **Base 10 units** for decimal units.
 
 The GUI updates capacity sizes and metrics to use your selected unit system.
 

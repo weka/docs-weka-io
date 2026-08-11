@@ -243,7 +243,7 @@ The `weka status` command displays the overall status of the WEKA cluster.
 
 **Related topic**
 
-[#cluster-status](../../getting-started-with-weka/manage-the-system-using-weka-cli/#cluster-status "mention")
+[#cluster-status](../../getting-started-with-weka/weka-cli-overview/#cluster-status "mention")
 
 ## 5. Bypass the proxy server (optional)
 

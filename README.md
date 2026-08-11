@@ -1,5 +1,5 @@
 ---
-description: Version 5.1
+description: Version 6.0
 cover: .gitbook/assets/doc_neuralmesh_banner3.gif
 coverY: 0
 ---
