@@ -59,6 +59,6 @@ Use the following command line to delete a filesystem group:
 
 **Related topics**
 
-To learn about the tiring policy, see:
+To learn about the tiering policy, see:
 
 [tiering.md](../tiering.md "mention")

@@ -549,7 +549,7 @@ Testing the self-healing functionality of a WEKA cluster involves decommissionin
 
 See [#required-ports](../prerequisites-and-compatibility.md#required-ports "mention")
 
-### Appendix B: **Terraform’s r**equired permissions examples <a href="#appendix-b-terraforms-required-permissions" id="appendix-b-terraforms-required-permissions"></a>
+### Appendix B: Terraform’s **r**equired permissions examples <a href="#appendix-b-terraforms-required-permissions" id="appendix-b-terraforms-required-permissions"></a>
 
 The minimum IAM Policies needed are based on the assumption that the network, including VPC, subnets, VPC Endpoints, and Security Groups, is created by the end user. If IAM roles or policies are pre-established, some permissions may be omitted.
 

@@ -44,7 +44,7 @@ When deploying a WEKA system on a cloud platform (AWS, Azure, or GCP), the WEKA 
 1. From the menu, select **Manage > Filesystems**.
 2. Select the **+Create** button.
 
-<div data-with-frame="true"><img src="../../.gitbook/assets/wmng_create_fs_button.png" alt="Create filesystem"></div>
+<div data-with-frame="true"><img src="/broken/files/FTb3RoK07VZjB4NS6gNG" alt="Create filesystem"></div>
 
 3. In the **Create Filesystem** dialog, set the following:
    * **Name**: Enter a descriptive label for the filesystem, limited to 32 characters and excluding slash (`/`) or backslash (`\`).

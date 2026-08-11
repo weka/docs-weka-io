@@ -1,42 +1,63 @@
 ---
-description: This page provides an overview about managing object stores.
+description: >-
+  Learn how NeuralMesh uses object stores to extend SSD capacity with a
+  lower-cost storage tier.
 ---
 
 # Manage object stores
 
-Object stores in WEKA are optional external storage media, complementing SSD storage with a more cost-effective solution. This allows for the strategic allocation of resources, with object stores accommodating warm data (infrequently accessed) and SSDs handling hot data (frequently accessed).
+Object stores are optional external storage media that complement the SSD storage. This split lets you allocate resources by access pattern: the object store holds warm data that is accessed infrequently, and the SSDs hold hot data that is accessed frequently.
 
-In WEKA, object store buckets can be distributed across different physical object stores. However, to ensure optimal Quality of Service (QoS), a crucial mapping between the bucket and the physical object store is required.
+NeuralMesh treats an object store as a physical entity, on-premises or in the cloud, that groups multiple object store buckets. Object store buckets can reside in different physical object stores. To keep the Quality of Service (QoS) predictable, each bucket must be mapped to the physical object store that holds it.
 
-WEKA treats object stores as physical entities, either on-premises or in the cloud, grouping multiple object store buckets. These buckets can be categorized as either local (used for tiering and snapshots) or remote (exclusively for snapshots). An object-store bucket must be added to an object store with the same type and remain inaccessible to other applications.
+## Local and remote object stores
 
-While a single object store bucket can potentially serve different filesystems and multiple WEKA systems, it is advisable to dedicate each bucket to a specific filesystem. For instance, if managing three-tiered file systems, assigning a dedicated local object storage bucket to each file system is recommended.
+Each object store has a site setting that determines what its buckets can serve:
 
-For each filesystem, users can attach up to three object store buckets:
+* **Local**: Used for tiering and snapshots.
+* **Remote**: Used for snapshots only.
 
-* A local object store bucket for tiering and snapshots.
-* A second local object store bucket for additional tiering and snapshots. Note that adding a second local bucket renders the first local bucket read-only.
-* A remote object store bucket exclusively for snapshots.
+Add an object store bucket to an object store of the same type. Keep the bucket inaccessible to other applications.
 
 {% hint style="info" %}
-Remote object store buckets employ a write-once-delete-never approach to snapshot uploads. This means the bucket will only grow in size over time, even if the snapshots uploaded to it are deleted from the filesystem.
+Remote object store buckets use a write-once-delete-never approach for snapshot uploads. The bucket only grows over time, even when the snapshots uploaded to it are deleted from the filesystem.
 {% endhint %}
 
-Multiple object store buckets offer flexibility for various use cases, including:
+## Buckets per filesystem
 
-* Migrating to different local object stores when detaching a read-only bucket from a filesystem tiered to two local object store buckets.
-* Scaling object store capacity.
-* Increasing total tiering capacity for filesystems.
+A single object store bucket can serve different filesystems and multiple NeuralMesh systems. Still, dedicate each bucket to a specific filesystem. For example, when you manage three tiered filesystems, assign a dedicated local object store bucket to each one.
+
+You can attach up to three object store buckets to a filesystem:
+
+* A local object store bucket for tiering and snapshots.
+* A second local object store bucket for additional tiering and snapshots. Adding a second local bucket makes the first local bucket read-only.
+* A remote object store bucket for snapshots only.
+
+Multiple object store buckets support the following use cases:
+
+* Migrating to a different local object store by detaching the read-only bucket from a filesystem tiered to two local object store buckets.
+* Scaling the object store capacity.
+* Increasing the total tiering capacity of filesystems.
 * Backing up data in a remote site.
 
-In cloud environments, users can employ cloud lifecycle policies to transition storage tiers or classes. For example, in AWS, users can move objects from the S3 standard storage class to the S3 intelligent tiering storage class for long-term retention using the AWS lifecycle policy.
+## Cloud lifecycle policies
+
+In cloud environments, you can use cloud lifecycle policies to transition storage tiers or classes. For example, in AWS you can move objects from the S3 Standard storage class to the S3 Intelligent-Tiering storage class for long-term retention.
 
 {% hint style="danger" %}
-**Warning: Do not modify WEKA-managed object store data**
+**Do not modify NeuralMesh-managed object store data.**
 
-WEKA manages data in its own internal structures and automatically handles deduplication between live tiered data and filesystem snapshots stored in the object store.
+NeuralMesh manages data in its own internal structures and automatically handles deduplication between live tiered data and filesystem snapshots stored in the object store.
 
-Do not attempt to manually manage, delete, or apply lifecycle policies to any data that WEKA uploads to the object store.
-
-This includes policies that delete or age-out data objects. Interfering with WEKA-managed data can result in irreversible data loss, including loss of live filesystem data.
+Do not manually manage, delete, or apply lifecycle policies to any data that NeuralMesh uploads to the object store, including policies that delete or age out data objects. Interfering with NeuralMesh-managed data can cause irreversible data loss, including the loss of live filesystem data.
 {% endhint %}
+
+**Related topics**
+
+[Filesystems, object stores, and filesystem groups](../../weka-system-overview/filesystems-object-stores-and-filesystem-groups/)
+
+[Manage data lifecycle for tiered systems](../tiering.md)
+
+[Manage object stores using the GUI](managing-object-stores.md)
+
+[Manage object stores using the CLI](managing-object-stores-1.md)
