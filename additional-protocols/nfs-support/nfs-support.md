@@ -34,7 +34,11 @@ To support NFS file-locking, ensure the system meets the prerequisites outlined 
 
 <div data-with-frame="true"><figure><img src="../../.gitbook/assets/NFS_settings.png" alt=""><figcaption><p>NFS Settings tab</p></figcaption></figure></div>
 
-4. In the Global Settings section, select **Update**, and do the following:
+4. In the Global settings section, select **Update.**
+
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/NFS_cfg_default_global_set.png" alt="" width="563"><figcaption><p>Configure global NFS settings dialog</p></figcaption></figure></div>
+
+5. Set the following:
    * **Config FS**: Select the cluster-wide configuration filesystem that maintains the NFS and Kerberos configurations.
    * **Supported Versions**: Select the NFS versions you want to support based on your needs. Options include V3, V4, or both.
    * **ACL**: Sets the ACL to ON (default) or OFF.
@@ -43,8 +47,8 @@ To support NFS file-locking, ensure the system meets the prerequisites outlined 
      * **POSIX** (default): Enforces POSIX ACLs, compatible across protocols, but loses NFSv4's finer granularity.
      * **NFSv4**: Enforces NFSv4 ACLs directly, retaining full granularity, but lacks interoperability with other protocols. (The **NFSv4** flavor is experimental and is not recommended to be used in production environments.)
      * **Hybrid**: Combines both POSIX and NFSv4 ACLs to support interoperability. NFS ensures consistency between the two ACL flavors, and if any inconsistency arises, POSIX ACL is used for enforcement.
-   *   **Authentication Type**: Enable the authentication types that can be used when setting the NFS client permissions.\
-       Possible values:
+   * **Multi-Tenancy:** Enable NFS multi-tenancy so each tenant gets isolated client groups, permissions, and identity domains. Requires an NFS container restart to take effect.
+   *   **Authentication Type**: Enable the authentication types that can be used when setting the NFS client permissions. Possible values:
 
        * **NONE:** No authentication.
        * **SYS:** System authentication.
@@ -56,20 +60,19 @@ To support NFS file-locking, ensure the system meets the prerequisites outlined 
        Example: KRB5 KRB5i KRB5p.\
        The default values depend on Kerberos configuration:
 
-       * If not configured: SYS
-       * If configured: KRB5
-   * **Mount Port:** Set the port that the mountd service binds to.
-   * **Lock Manager Port**: Set the port for the network lock manager’s registration.
-   * **Status Monitor Port:** Set the port for the network status monitor’s registration.
-   * **Notification Port:** Set the port for the notification’s registration.
+       * If not configured: **SYS**
+       * If configured: **KRB5**
+
+* **Mount Port:** Set the port that the mountd service binds to.
+* **Lock Manager Port**: Set the port for the network lock manager’s registration.
+* **Status Monitor Port:** Set the port for the network status monitor’s registration.
+* **Notification Port:** Set the port for the notification’s registration.
 
 {% hint style="success" %}
 These ports are only relevant for NFSv3. The default value of 0 indicates using the default published ports.
 {% endhint %}
 
-5. Select **Save** to apply the settings.
-
-<div data-with-frame="true"><figure><img src="../../.gitbook/assets/NFS_configure_default_global_settings.png" alt="" width="433"><figcaption><p>Configure global NFS settings dialog</p></figcaption></figure></div>
+5. Select **Submit** to apply the settings.
 
 ## **Configure the NFS cluster level** <a href="#create-interface-groups" id="create-interface-groups"></a>
 
@@ -80,18 +83,18 @@ Configuring the NFS cluster level involves creating an interface group and assig
 **Procedure**
 
 1. From the menu, select **Manage > Protocols**.
-2. On the left pane, select **NFS**.
-3. In the Configuration tab, select the **+** sign near the Interface Groups title.
+2. From Protocols, select **NFS**.
+3. In the Configuration tab, select **Configure**.
 
-<div data-with-frame="true"><img src="../../.gitbook/assets/wmng_add_nfs_group_add.png" alt="Add an NFS interface group"></div>
+<div data-with-frame="true"><img src="../../.gitbook/assets/NFS_conf_fsg_button.png" alt="Add an NFS interface group"></div>
 
 4. In the Create Interface Group dialog, set the following properties:
    * **Name**: A unique interface group name (maximum 11 characters).
    * **Gateway**: A valid IP address of the gateway.
    * **Subnet mask**: The subnet mask in CIDR (Classless Inter-Domain Routing) format. For example, a value of 16 equals 255.255.0.0.
-5. Select **Save**.
+5. Select **Create**.
 
-<div data-with-frame="true"><img src="../../.gitbook/assets/wmng_add_nfs_group_dialog.png" alt="Create interface group dialog" width="295"></div>
+<div data-with-frame="true"><img src="../../.gitbook/assets/NFS_create_interface_group.png" alt="Create interface group dialog"></div>
 
 ### Set interface group ports
 
@@ -102,15 +105,13 @@ Repeat this port setting process for each server participating in the NFS cluste
 **Procedure**
 
 1. In the Configuration tab, select the interface group.
-2. In the Group Ports table, select **+Create**.
-3.  In the Add Port dialog, set the following properties:
+2. In the Group Ports table, select **Add**.
+3. In the Add Port dialog, set the following properties:
+   * **Hostname**: Select the server on which the port resides.
+   * **Port:** Select the port from the list.
+4. Select **Submit**.
 
-    * **Hostname**: Select the server on which the port resides.
-    * **Port:** Select the port from the list.
-
-    Select **Save**.
-
-<div data-with-frame="true"><img src="../../.gitbook/assets/wmng_add_nfs_group_ports_dialog.png" alt="Add port dialog" width="285"></div>
+<div data-with-frame="true"><img src="../../.gitbook/assets/NFS_add_port.png" alt="Add port dialog"></div>
 
 **Example**
 
@@ -123,9 +124,7 @@ You might need to remove an interface group due to a change in network configura
 **Procedure**
 
 1. In the Configuration tab, select the interface group.
-2. In the Group Ports table, select the three dots, and from the menu, select **Remove**.
-
-<div data-with-frame="true"><img src="../../.gitbook/assets/wmng_add_nfs_group_ports_remove.png" alt="Remove an interface group port" width="563"></div>
+2. In the Group Ports table, select the three dots, then **Remove**.
 
 ### **Set interface group IPs**
 
@@ -136,18 +135,18 @@ Floating IPs are not supported in WEKA installations on Azure and GCP.
 **Procedure**
 
 1. In the Configuration tab, select the interface group.
-2. In the Group IPs table, select **+Create**.
+2. In the Group IPs table, select **Add**.
 3. In the Add Range IP dialog, set the relevant IP range.
-4. Select **Save**.
+4. Select **Submit**.
 
-<div data-with-frame="true"><img src="../../.gitbook/assets/wmng_add_nfs_group_ips_dialog.png" alt="Add range IP dialog" width="292"></div>
+<div data-with-frame="true"><img src="../../.gitbook/assets/NFS_add_group_IPs.png" alt="Add range IP dialog"></div>
 
 ### Remove an interface group IP range
 
 **Procedure**
 
 1. In the Configuration tab, select the interface group.
-2. In the Group IPs table, select the three dots, and from the menu, select **Remove**.
+2. In the Group IPs table, select the three dots, then **Remove**.
 
 ## Integrate the NFS and Kerberos service
 
@@ -167,7 +166,7 @@ In all KDC and LDAP parameters, use the FQDN format. The hostname part of the FQ
 **Procedure**
 
 1. From the menu, select **Manage > Protocols**.
-2. On the left pane, select **NFS**.
+2. Select **NFS** from **Protocols**.
 3. Select the **Settings** tab.
 4. In the Kerberos Authentication section, select **Configure**.
 
@@ -189,9 +188,10 @@ Configuring the NFS-Kerberos service integration automatically restarts the NFS 
    * **NFS Service Name**: This refers to the complete domain name for a specific NFS server.
    * **KDC Realm Admin Name**: The username of an administrator who has access to the LDAP directory. This user manages the KDC within a realm.
    * **KDC Realm Admin Password**: The password of the administrative user who manages the KDC within a realm.
-4) Select **Save** to apply the changes.
+   * **Base OU:** TBD
+4) Select **Configure** to apply the changes.
 
-<div data-with-frame="true"><figure><img src="../../.gitbook/assets/wmng_configure_Kerberos_over_AD.png" alt=""><figcaption><p>Configure Kerberos authentication over AD dialog</p></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/NFS_conf_kerb_auth_AD.png" alt=""><figcaption><p>Configure Kerberos authentication over AD dialog</p></figcaption></figure></div>
 {% endtab %}
 
 {% tab title="Configure Kerberos service with MIT" %}
@@ -210,9 +210,9 @@ Configuring the NFS-Kerberos service integration automatically restarts the NFS 
    * **LDAP Reader User Password**: The password of the administrative user.
    * **LDAP Base DN**: The base Distinguished Name (DN) for the Lightweight Directory Access Protocol directory tree.
    * **LDAP Port**: The port number on which the Lightweight Directory Access Protocol server listens.
-4. Select **Save** to apply the changes.
+4. Select **Configure** to apply the changes.
 
-<div data-with-frame="true"><figure><img src="../../.gitbook/assets/wmng_configure_Kerberos_over_MIT.png" alt=""><figcaption><p>Configure Kerberos authentication over MIT dialog</p></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/NFS_conf_kerb_auth_MIT.png" alt=""><figcaption><p>Configure Kerberos authentication over MIT dialog</p></figcaption></figure></div>
 {% endtab %}
 {% endtabs %}
 
@@ -240,14 +240,19 @@ Configure the LDAP service for NFS to manage user access and permissions efficie
 **Procedure**
 
 1. From the menu, select **Manage > Protocols**.
-2. On the left pane, select **NFS**.
+2. Select **NFS** from **Protocols**.
 3. Select the **Settings** tab.
 4. In the **LDAP Service** section, select **Configure**.
+
+{% hint style="warning" %}
+When you configure the LDAP settings, it restarts the NFS containers, temporarily interrupting the IO service for connected NFS clients.
+{% endhint %}
+
 5. Select the **LDAP type** that corresponds to your environment and follow the relevant steps below.
 
 {% tabs %}
 {% tab title="Configure for Active Directory" %}
-Use this option to configure NFS to use Active Directory LDAP for ACLs when Kerberos is not used.
+Use this option when Active Directory provides LDAP-based ACL support and Kerberos is not configured.
 
 1. **LDAP Type:** Select Active Directory.
 2. Set the following parameters:
@@ -258,11 +263,11 @@ Use this option to configure NFS to use Active Directory LDAP for ACLs when Kerb
    * **LDAP Admin Password:** The password for the administrative user.
 3. Select **Configure**.
 
-<div data-with-frame="true"><figure><img src="../../.gitbook/assets/nfs-configure-ldap-service.png" alt=""><figcaption></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/NFS-conf-ldap.png" alt=""><figcaption></figcaption></figure></div>
 {% endtab %}
 
 {% tab title="Configure for OpenLDAP" %}
-Use this option to configure NFS to use OpenLDAP.
+Use this option when an OpenLDAP server provides the directory service for NFS.
 
 1. LDAP Type: Select **Open LDAP**.
 2. Set the following parameters:
@@ -274,7 +279,17 @@ Use this option to configure NFS to use OpenLDAP.
    * **LDAP Port:** The port number the LDAP server listens on. Default: `389`
 3. Select **Configure**.
 
-<div data-with-frame="true"><figure><img src="../../.gitbook/assets/nfs-configure-openldap-service.png" alt=""><figcaption></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/NFS-conf-openldap.png" alt=""><figcaption></figcaption></figure></div>
+{% endtab %}
+
+{% tab title="On Host LDAP" %}
+Use this option when the LDAP service runs locally on the NFS server.
+
+1. LDAP Type: Select **On Host LDAP**.
+2. In LDAP Domain, select the server hosting the LDAP service.\
+   Example: `myldapserver.example.com`
+
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/NFS_conf_on_host_ldap.png" alt=""><figcaption></figcaption></figure></div>
 {% endtab %}
 {% endtabs %}
 
@@ -288,12 +303,13 @@ Creating additional client groups helps in better organization, customization of
 
 1. In the Permissions tab, select the **+** sign near the Client Groups title.
 
-<div data-with-frame="true"><img src="../../.gitbook/assets/wmng_add_nfs_client_group_add.png" alt="Add a client group"></div>
+<div data-with-frame="true"><img src="../../.gitbook/assets/NFS_add_client_group_button.png" alt="5Add a client group"></div>
 
-2. In the Create Client Group dialog, set the client group name.
-3. Select **Save**.
+2. In the Create Client Group dialog, set **Client Group Name**. This user-defined logical label groups client servers so you can apply common NFS export permissions to them as a unit.
 
-<div data-with-frame="true"><img src="../../.gitbook/assets/wmng_add_nfs_client_group_dialog.png" alt="Create client group dialog" width="293"></div>
+<div data-with-frame="true"><img src="../../.gitbook/assets/NFS_client_group_dialog.png" alt="Create client group dialog"></div>
+
+3. Select **Create**.
 
 ### Assign a DNS and IP to a client group
 
@@ -304,24 +320,26 @@ Assigning a DNS and IP to a client group facilitates network communication and r
 1. In the NFS configuration, select the **Permissions** tab.
 2. In the Permissions tab, select **Add DNS** for the relevant Client Group.
 
-<div data-with-frame="true"><img src="../../.gitbook/assets/wmng_add_nfs_client_group_dns-ip-buttons.png" alt="Manage client access groups"></div>
+<div data-with-frame="true"><img src="../../.gitbook/assets/NFS_client_group_dns-ip-buttons.png" alt="Manage client access groups"></div>
 
-3. In the Create Client Group DNS Rule dialog, set the DNS server name. Then, select **Save**.
+3. In the Create Client Group DNS Rule dialog, set the DNS server name. Then, select **Create**.
 
-<div data-with-frame="true"><img src="../../.gitbook/assets/wmng_add_nfs_client_group_dns_rule.png" alt="Create client group DNS rule dialog" width="294"></div>
+<div data-with-frame="true"><img src="../../.gitbook/assets/NFS_client_group_dns_rule.png" alt="Create client group DNS rule dialog" width="375"></div>
 
 4. In the Permissions tab, select **Add IP** for the relevant Client Group.
-5. In the Create Client Group IP Rule dialog, set the IP address and bitmask. Then, select **Save**.
+5. In the Create Client Group IP Rule dialog, set the IP address and bitmask. These values define the client IP range allowed to connect through NFS.
 
-<div data-with-frame="true"><img src="../../.gitbook/assets/wmng_add_nfs_client_group_ip_rule.png" alt="Create client group IP rule dialog" width="298"></div>
+<div data-with-frame="true"><img src="../../.gitbook/assets/NFS_client_group_ip.png" alt="Create client group IP rule dialog" width="375"></div>
 
 ### Remove the DNS or IP of a client group
 
+Remove a DNS or IP rule when a client server is decommissioned, moves networks, or no longer requires NFS access through this client group.
+
 **Procedure**
 
-1. In the Permissions tab, select the **trash** symbol displayed next to the DNS or IP for the relevant Client Group.
+1. In the Permissions tab, hover on the IP or DNS for the relevant Client Group, and select **Delete Rule.**
 
-<div data-with-frame="true"><img src="../../.gitbook/assets/wmng_add_nfs_group_ip_remove.png" alt="Remove the DNS or IP of a client group" width="279"></div>
+<div data-with-frame="true"><img src="../../.gitbook/assets/NFS_group_ip_remove.png" alt="Remove the DNS or IP of a client group" width="375"></div>
 
 ### Create NFS client permission <a href="#create-nfs-client-permission" id="create-nfs-client-permission"></a>
 
@@ -335,9 +353,9 @@ If you create an NFS v4 client permission, verify that a global configuration fi
 
 **Procedure**
 
-1. In the Permissions table, select **+Create**.
+1. In the Permissions table, select **Create**.
 
-<div data-with-frame="true"><img src="../../.gitbook/assets/wmng_add_NFS_client_permissions.png" alt="Permissions table"></div>
+<div data-with-frame="true"><img src="../../.gitbook/assets/NFS_add_client_permissions.png" alt="Permissions table"></div>
 
 2. In the Create NFS Permission dialog, set the following properties:
    * **Client Group**: The client group to which the permissions are applied.
@@ -354,9 +372,9 @@ If you create an NFS v4 client permission, verify that a global configuration fi
      * Enabled types: NONE, SYS, KRB5i, KRB5p. Default: KRB5i.
    * **Anon. UID**: Anonymous user ID. Only relevant for Root and All user squashing.
    * **Anon. GID:** Anonymous group ID. Only relevant for Root and All user squashing.
-3. Select **Save**.
+3. Select **Submit**.
 
-<div data-with-frame="true"><img src="../../.gitbook/assets/wmng_create_nfs_permission.png" alt="Create NFS permission"></div>
+<div data-with-frame="true"><img src="../../.gitbook/assets/NFS_create_permissions_dialog.gif" alt="Create NFS permission"></div>
 
 ### Edit NFS client permission <a href="#edit-nfs-client-permission" id="edit-nfs-client-permission"></a>
 
@@ -366,9 +384,9 @@ You can edit the existing NFS permission settings for a client group. You can al
 
 1. In the Permissions table, select the three dots of the client group to edit, and select **Edit**.
 
-<div data-with-frame="true"><figure><img src="../../.gitbook/assets/wmng_edit_nfs_permission.png" alt=""><figcaption><p>Edit a client group permissions</p></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/NFS_edit_permissions.png" alt=""><figcaption><p>Edit a client group permissions</p></figcaption></figure></div>
 
-2. Set the relevant properties: Type, Priority, Supported Versions, Squash Root, Authentication Type, Anon. UID, and Anon. GID. Then, select **Save**.
+2. Set the relevant properties: Type, Priority, Supported Versions, Squash Root, Authentication Type, Anon. UID, and Anon. GID. Then, select **Submit**.
 3. To move the priority of a client group setting to the top or bottom priority, select **Move to top priority** or **Move to bottom priority**.
 4. To remove the client group permission setting, select **Remove**.
 
