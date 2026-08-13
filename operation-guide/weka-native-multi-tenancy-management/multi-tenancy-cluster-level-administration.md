@@ -16,6 +16,10 @@ Once network spaces are established, **tenant environments** can be created arou
 
 Administrators control the full tenant lifecycle, creation, configuration, and removal, and can adjust resource limits, security policies, and quality-of-service (QoS) settings at any time. All tasks in this topic require the **ClusterAdmin** role.
 
+{% hint style="info" %}
+Each network space operation produces **two** events: one when the change is committed, and one when it is verified on all backend servers. A pair of events for a single create, update, or remove is expected behavior, not a duplicate.
+{% endhint %}
+
 ## Create a network space
 
 A network space defines a cluster-level network boundary, including a VLAN ID and an IP range. After the administrator creates the network space, it can be assigned to a specific tenant to provide isolated datapath endpoints.
@@ -61,6 +65,7 @@ Use the following command to add a network space:
 ```bash
 weka cluster network-space add <name> [--vlan vlan]
                                       [--range range]
+                                      [--fip-range fip-range]
                                       [--gateway gateway]
                                       [--netmask-bits netmask-bits]
 ```
@@ -73,12 +78,21 @@ weka cluster network-space add <name> [--vlan vlan]
 | `name`* | Unique name for the network-space. |
 | `vlan` | VLAN ID (1..4094) for tagged traffic. |
 | `range` | Specific IP range allocated for this space. |
+| `fip-range` | Floating IP range allocated for tenant NFS services in this space. Maximum 8 addresses. Required only if the network space serves NFS for a tenant. |
 | `gateway` | Default gateway IP for the network-space. |
 | `netmask-bits` | Subnet mask bits (1..32). Default: 16. |
+
+{% hint style="info" %}
+A network space that serves NFS for a tenant supports a maximum of **8 floating IP addresses**, separate from the `range` used for backend containers. See [manage-nfs-for-tenants.md](manage-nfs-for-tenants.md "mention").
+{% endhint %}
 
 ## Edit a network space
 
 Cluster administrators can update the network boundaries of an existing network space, such as changing the VLAN ID or adjusting the IP address pool. While you can modify networking parameters, the network space name remains fixed.
+
+{% hint style="warning" %}
+A network space cannot be edited while a tenant is attached to it. Detach the tenant first. See [Edit a tenant environment](#edit-a-tenant-environment).
+{% endhint %}
 
 #### **GUI procedure**
 
@@ -102,6 +116,7 @@ Use the following command to update a network space by its ID:
 weka cluster network-space update <id> [--name name]
                                        [--vlan vlan]
                                        [--range range]
+                                       [--fip-range fip-range]
                                        [--gateway gateway]
                                        [--netmask-bits netmask-bits]
 ```
@@ -115,18 +130,25 @@ weka cluster network-space update <id> [--name name]
 | `name` | New name for the network-space. |
 | `vlan` | New VLAN ID (1..4094) for tagged traffic. |
 | `range` | New IP range for the network-space. |
+| `fip-range` | New floating IP range for tenant NFS services. Maximum 8 addresses. |
 | `gateway` | New default gateway IP for the network-space. |
 | `netmask-bits` | New subnet mask bits (1..32). Default: 16. |
+
+TBD [Confirm `--fip-range` is accepted on both `weka cluster network-space add` and `update`. Documented on both here; the review confirmed the parameter exists but not which subcommands accept it.]
 
 ## Remove a network space
 
 Removing a network space permanently deletes its configuration from the cluster. Before proceeding, ensure that the network space is no longer assigned to any active tenants.
 
+{% hint style="warning" %}
+A network space cannot be removed while a tenant is attached to it. Detach the tenant first.
+{% endhint %}
+
 #### **GUI procedure**
 
 1. From the menu, select **Manage > Tenants**.
 2. Select the **Network Spaces** tab.
-3. Locate the target Network Space, select the **Actions** menu (three vertical dots), and select **Edit**.
+3. Locate the target network space, select the **Actions** menu (three vertical dots), and select **Remove**.
 4.  In the Remove Network Space dialog, enter the exact Network Space Name to confirm the action.<br>
 
     <div data-with-frame="true"><figure><img src="../../.gitbook/assets/mt_remove_net_space.png" alt=""><figcaption><p>Remove network space</p></figcaption></figure></div>
@@ -289,13 +311,20 @@ weka tenant update <tenant> [--enforce-fs-authentication enforce-fs-authenticati
 
 ## Remove a tenant
 
-Deleting a tenant is a permanent action that removes the tenant and its associated configuration. Before proceeding, ensure that the tenant no longer contains active filesystems or S3 buckets.
+Deleting a tenant is a permanent action that removes the tenant and its associated configuration.
+
+**Before you begin**
+
+Removal is blocked while the tenant still holds resources. Ensure the tenant no longer has:
+
+* Active filesystems or S3 buckets.
+* NFS exports or client groups, and an assignment to an interface group. See [manage-nfs-for-tenants.md](manage-nfs-for-tenants.md "mention").
 
 #### **GUI procedure**
 
 1. From the menu, select **Manage > Tenants**.
 2. Select the **Tenants** tab.
-3. Locate the target tenant, select the **Actions** menu (three vertical dots), and select **Edit**.
+3. Locate the target tenant, select the **Actions** menu (three vertical dots), and select **Remove**.
 4.  In the Remove Tenant dialog, enter the exact Tenant Name to confirm the action.<br>
 
     <div data-with-frame="true"><figure><img src="../../.gitbook/assets/mt_remove_tenant.png" alt=""><figcaption><p>Remove tenant</p></figcaption></figure></div>
@@ -351,6 +380,8 @@ weka tenant set-qos <tenant> [--max-throughput max-throughput]
 
 ## Configure tenant S3 settings
 
+TBD [This section requires tenant administrator privileges but sits on the cluster-level page. Should it move to Multi-tenancy tenant-level administration, or is it here because a cluster admin performs it during provisioning? Left in place pending a decision.]
+
 As a tenant administrator, you can configure dedicated S3 settings for a specific tenant. This includes defining a default filesystem for buckets created through the S3 API and assigning an anonymous POSIX User ID (UID) and Group ID (GID) for anonymous or public S3 access.
 
 **Before you begin**
@@ -381,7 +412,9 @@ weka s3 cluster setup update [--default-fs-name default-fs-name]
 
 Cluster administrators can view the alert list as it appears to a specific tenant admin, without logging in as that user. This is useful when investigating alert visibility discrepancies in multi-tenant clusters.
 
-55Only users with the **ClusterAdmin** role can use this flag. Non-admin users receive a permission error. Passing the cluster admin name returns the same full alert list as running `weka alerts` without the flag.
+{% hint style="info" %}
+Only users with the **ClusterAdmin** role can use this flag. Non-admin users receive a permission error. Passing the cluster admin name returns the same full alert list as running `weka alerts` without the flag.
+{% endhint %}
 
 Use the `--tenant` flag with the `weka alerts` command:
 

@@ -77,7 +77,7 @@ An interface group owns a set of floating IP addresses. Assigning a tenant to an
 #### Before you begin
 
 * The tenant must already exist and have at least one network space assigned. See [Create a tenant environment](multi-tenancy-cluster-level-administration.md#create-a-tenant-environment).
-* The network space must define a floating IP range through `--fip-range`. <!-- TBD [Is `--fip-range` available on `weka cluster network-space add`, on `update`, or on both? The prerequisite assumes it can be set at creation.] -->
+* The network space must define a floating IP range through `--fip-range`. TBD [Is `--fip-range` available on `weka cluster network-space add`, on `update`, or on both? The prerequisite assumes it can be set at creation.]
 * A tenant network space supports a maximum of **8 floating IP addresses**.
 
 {% hint style="info" %}
@@ -86,9 +86,9 @@ The root organization is never assigned to an interface group. It uses the inter
 
 #### CLI procedure
 
-<!-- TBD [Do GUI screens exist for tenant-to-interface-group assignment and for the Tenants column? This section is CLI-only because no captures were available. If the screens exist, this section needs a GUI procedure to match the rest of the multi-tenancy topics.] -->
+TBD [Do GUI screens exist for tenant-to-interface-group assignment and for the Tenants column? This section is CLI-only because no captures were available. If the screens exist, this section needs a GUI procedure to match the rest of the multi-tenancy topics.]
 
-<!-- TBD [Confirm the argument order for `weka nfs interface-group tenant add|move|delete`. Documented here as `<interface-group> <tenant>`; the review supplied the verbs but not the signature.] -->
+TBD [Confirm the argument order for `weka nfs interface-group tenant add|move|delete`. Documented here as `<interface-group> <tenant>`; the review supplied the verbs but not the signature.]
 
 List the tenants currently assigned to interface groups:
 
@@ -135,8 +135,6 @@ weka nfs interface-group ns-assignment
 ```
 
 {% hint style="info" %}
-Network space operations produce **two** events: one when the change is committed, and one when it is verified on all backend servers. Seeing a pair of events for a single operation is expected, not a duplicate.
-
 During a floating IP takeover, a 30-second grace window suppresses transient duplicate-address detection, so `ArpServerDuplicateIPDetected` does not fire for the brief period when two servers can both answer for the address.
 {% endhint %}
 
@@ -154,7 +152,7 @@ Several NFS features remain available only in the root organization while NFS mu
 | ACLs | Yes | No |
 | NFSv3 file locking (NLM) | Yes | No — NFSv4.1 locking is available |
 
-<!-- TBD [Is `NFSv3 lock service ports` reachable by a user action, or only through internal port registration? If it is internal only, this table lists six root-organization-only features rather than seven, and the row above covers it.] -->
+TBD [Is `NFSv3 lock service ports` reachable by a user action, or only through internal port registration? If it is internal only, this table lists six root-organization-only features rather than seven, and the row above covers it.]
 
 {% hint style="warning" %}
 **Two different LDAP configurations exist, and only one of them is available to a tenant.**

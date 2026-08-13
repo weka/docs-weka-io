@@ -13,7 +13,7 @@ The NFS implementation is compatible with NFSv3 or NFSv4[^1] protocols and overc
 **Multi-tenancy:** When NFS multi-tenancy is enabled, each tenant gets isolated client groups, exports, and floating IP addresses, and several NFS features become available only in the root organization. See [manage-nfs-for-tenants.md](../../operation-guide/weka-native-multi-tenancy-management/manage-nfs-for-tenants.md "mention").
 {% endhint %}
 
-<!-- TBD [The hint "The legacy NFS stack is no longer supported" was removed from this position. Confirm the upgrade topic still states that a legacy NFS deployment blocks the upgrade and requires contacting the Customer Success Team. If that guard was dropped in 6.0, the statement needs a home here instead.] -->
+TBD [The hint "The legacy NFS stack is no longer supported" was removed from this position. Confirm the upgrade topic still states that a legacy NFS deployment blocks the upgrade and requires contacting the Customer Success Team. If that guard was dropped in 6.0, the statement needs a home here instead.]
 
 ## NFS service deployment guidelines and requirements
 
@@ -207,7 +207,7 @@ weka debug flock list <inode-id>
 
 This command outputs a list of all current locks on the specified file, enabling administrators to monitor and manage file access effectively.
 
-<!-- TBD [Is there a supported, non-`weka debug` command for inspecting active file locks? `weka debug` commands are internal, and this is the only way the documentation offers customers to view locks.] -->
+TBD [Is there a supported, non-`weka debug` command for inspecting active file locks? `weka debug` commands are internal, and this is the only way the documentation offers customers to view locks.]
 
 ## NFS service deployment high-level workflow
 
