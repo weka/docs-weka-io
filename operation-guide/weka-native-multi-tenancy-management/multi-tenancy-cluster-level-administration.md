@@ -68,7 +68,13 @@ weka cluster network-space add <name> [--vlan vlan]
 
 **Parameters**
 
-<table><thead><tr><th width="199">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>name</code>*</td><td>Unique name for the network-space.</td></tr><tr><td><code>vlan</code></td><td>VLAN ID (1..4094) for tagged traffic.</td></tr><tr><td><code>range</code></td><td>Specific IP range allocated for this space.</td></tr><tr><td><code>gateway</code></td><td>Default gateway IP for the network-space.</td></tr><tr><td><code>netmask-bits</code></td><td>Subnet mask bits (1..32). Default: 16.</td></tr></tbody></table>
+| Parameter | Description |
+| --- | --- |
+| `name`* | Unique name for the network-space. |
+| `vlan` | VLAN ID (1..4094) for tagged traffic. |
+| `range` | Specific IP range allocated for this space. |
+| `gateway` | Default gateway IP for the network-space. |
+| `netmask-bits` | Subnet mask bits (1..32). Default: 16. |
 
 ## Edit a network space
 
@@ -103,7 +109,14 @@ weka cluster network-space update <id> [--name name]
 
 **Parameters**
 
-<table><thead><tr><th width="199">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>id</code>*</td><td>Network space id.</td></tr><tr><td><code>name</code></td><td>New name for the network-space.</td></tr><tr><td><code>vlan</code></td><td>New VLAN ID (1..4094) for tagged traffic.</td></tr><tr><td><code>range</code></td><td>New IP range for the network-space.</td></tr><tr><td><code>gateway</code></td><td>New default gateway IP for the network-space.</td></tr><tr><td><code>netmask-bits</code></td><td>New subnet mask bits (1..32). Default: 16.</td></tr></tbody></table>
+| Parameter | Description |
+| --- | --- |
+| `id`* | Network space id. |
+| `name` | New name for the network-space. |
+| `vlan` | New VLAN ID (1..4094) for tagged traffic. |
+| `range` | New IP range for the network-space. |
+| `gateway` | New default gateway IP for the network-space. |
+| `netmask-bits` | New subnet mask bits (1..32). Default: 16. |
 
 ## Remove a network space
 
@@ -127,7 +140,9 @@ weka cluster network-space remove <name>
 
 **Parameters**
 
-<table><thead><tr><th width="199">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>name</code></td><td>Network space name.</td></tr></tbody></table>
+| Parameter | Description |
+| --- | --- |
+| `name` | Network space name. |
 
 ## Create a tenant environment
 
@@ -175,7 +190,16 @@ The CLI prompt requires the password after running the command.
 
 **Parameters**
 
-<table><thead><tr><th width="279">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>name</code>*</td><td>Tenant name.</td></tr><tr><td><code>username</code>*</td><td>Username of the tenant admin.</td></tr><tr><td><code>password</code>*</td><td>Password of the tenant admin.</td></tr><tr><td><code>ssd-quota</code></td><td>SSD quota. Supports decimal or binary units (for example, 1GB, 1GiB).</td></tr><tr><td><code>total-quota</code></td><td>Total quota; supports decimal or binary units (for example, 1TB, 1TiB).</td></tr><tr><td><code>enforce-fs-authentication</code></td><td>Forces every filesystem under this tenant to require authentication.</td></tr><tr><td><code>enforce-mount-netspace-access</code></td><td>Restricts mount requests to only those originating from the tenant's network space.</td></tr><tr><td><code>network-spaces</code>...</td><td>Network space names to assign (repeatable or comma-separated).</td></tr></tbody></table>
+| Parameter | Description |
+| --- | --- |
+| `name`* | Tenant name. |
+| `username`* | Username of the tenant admin. |
+| `password`* | Password of the tenant admin. |
+| `ssd-quota` | SSD quota. Supports decimal or binary units (for example, 1GB, 1GiB). |
+| `total-quota` | Total quota; supports decimal or binary units (for example, 1TB, 1TiB). |
+| `enforce-fs-authentication` | Forces every filesystem under this tenant to require authentication. |
+| `enforce-mount-netspace-access` | Restricts mount requests to only those originating from the tenant's network space. |
+| `network-spaces`... | Network space names to assign (repeatable or comma-separated). |
 
 ## Edit a tenant environment
 
@@ -226,7 +250,10 @@ weka tenant network-space remove [--tenant tenant]
 
 **Parameters**
 
-<table><thead><tr><th width="279">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>tenant</code>*</td><td>Tenant name (default: current user's tenant).</td></tr><tr><td><code>network-spaces</code>...</td><td>Network space names to add to or remove from a tenant (can be repeated or comma-separated).</td></tr></tbody></table>
+| Parameter | Description |
+| --- | --- |
+| `tenant`* | Tenant name (default: current user's tenant). |
+| `network-spaces`... | Network space names to add to or remove from a tenant (can be repeated or comma-separated). |
 
 **Update tenant quotas**
 
@@ -237,7 +264,11 @@ weka tenant set-quota <tenant> [--ssd-quota <ssd-quota>]
 
 **Parameters**
 
-<table><thead><tr><th width="198">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>tenant</code>*</td><td>Tenant name or ID.</td></tr><tr><td><code>ssd-quota</code></td><td>SSD quota: Capacity in decimal (for example, 1GB) or binary units (for example, 1GiB).</td></tr><tr><td><code>total-quota</code></td><td>Total quota: Capacity in decimal (for example, 1TB) or binary units (for example, 1TiB).</td></tr></tbody></table>
+| Parameter | Description |
+| --- | --- |
+| `tenant`* | Tenant name or ID. |
+| `ssd-quota` | SSD quota: Capacity in decimal (for example, 1GB) or binary units (for example, 1GiB). |
+| `total-quota` | Total quota: Capacity in decimal (for example, 1TB) or binary units (for example, 1TiB). |
 
 **Update tenant security options**
 
@@ -250,7 +281,11 @@ weka tenant update <tenant> [--enforce-fs-authentication enforce-fs-authenticati
 
 **Parameters**
 
-<table><thead><tr><th width="279">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>tenant</code>*</td><td>Tenant name or ID.</td></tr><tr><td><code>enforce-fs-authentication</code></td><td>Forces every filesystem under this tenant to require authentication.</td></tr><tr><td><code>enforce-mount-netspace-access</code></td><td>Restricts mount requests to only those originating from the tenant's network space.</td></tr></tbody></table>
+| Parameter | Description |
+| --- | --- |
+| `tenant`* | Tenant name or ID. |
+| `enforce-fs-authentication` | Forces every filesystem under this tenant to require authentication. |
+| `enforce-mount-netspace-access` | Restricts mount requests to only those originating from the tenant's network space. |
 
 ## Remove a tenant
 
@@ -308,7 +343,11 @@ weka tenant set-qos <tenant> [--max-throughput max-throughput]
 
 **Parameters**
 
-<table><thead><tr><th width="220">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>tenant</code>*</td><td>The name or ID of the tenant.</td></tr><tr><td><code>max-throughput</code></td><td>The maximum total throughput allowed for the tenant per second. Use a number with capacity units in Decimal or Binary: for example, 200GiB or 500GB.</td></tr><tr><td><code>max-iops</code></td><td>The maximum total I/O operations allowed for the tenant per second. Use a number without units: for example, 500000.</td></tr></tbody></table>
+| Parameter | Description |
+| --- | --- |
+| `tenant`* | The name or ID of the tenant. |
+| `max-throughput` | The maximum total throughput allowed for the tenant per second. Use a number with capacity units in Decimal or Binary: for example, 200GiB or 500GB. |
+| `max-iops` | The maximum total I/O operations allowed for the tenant per second. Use a number without units: for example, 500000. |
 
 ## Configure tenant S3 settings
 
@@ -352,7 +391,9 @@ weka alerts --tenant <tenant_name>
 
 **Parameters**
 
-<table><thead><tr><th width="180">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>tenant_name</code></td><td>Name of the tenant whose alert view to display. Pass the cluster admin name to return the full cluster alert list.</td></tr></tbody></table>
+| Parameter | Description |
+| --- | --- |
+| `tenant_name` | Name of the tenant whose alert view to display. Pass the cluster admin name to return the full cluster alert list. |
 
 **Related topic**
 
