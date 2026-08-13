@@ -39,7 +39,11 @@ In a 16+4 configuration, the system ensures that only one data block from any st
 
 The system ensures data integrity by utilizing automated restoration processes. It dynamically adjusts the priority of rebuild tasks according to the current redundancy level.
 
-<table><thead><tr><th width="203">Redundancy state</th><th width="153">Rebuild priority</th><th>Operational impact</th></tr></thead><tbody><tr><td>1 to 3 domains failed</td><td>Background</td><td>Minimal impact on application performance.</td></tr><tr><td>4 domains failed</td><td>High</td><td>Elevated priority to restore single-additional-failure resiliency.</td></tr><tr><td>Single drive failure</td><td>Background</td><td>Negligible impact due to granular data distribution.</td></tr></tbody></table>
+| Redundancy state | Rebuild priority | Operational impact |
+| --- | --- | --- |
+| 1 to 3 domains failed | Background | Minimal impact on application performance. |
+| 4 domains failed | High | Elevated priority to restore single-additional-failure resiliency. |
+| Single drive failure | Background | Negligible impact due to granular data distribution. |
 
 ### Performance and placement efficiency
 

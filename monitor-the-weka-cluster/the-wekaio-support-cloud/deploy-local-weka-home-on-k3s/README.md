@@ -896,4 +896,9 @@ homecli local collect-debug-info [archive] [--include-sensitive] [--full-disk-sc
 
 **Parameters**
 
-<table><thead><tr><th width="180.19921875">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>archive</code>*</td><td>The path and output archive file name.<br>For example: <code>/path/diag/lwh_diagnostics.tar.gz</code></td></tr><tr><td><code>include-sensitive</code></td><td>Include sensitive data in the archive. For example, value overrides.<br>Use this parameter only if required by the Customer Success Team.</td></tr><tr><td><code>full-disk-scan</code></td><td>Perform a higher level of disk scan.<br>Use this parameter only if required by the Customer Success Team.</td></tr><tr><td><code>verbose</code></td><td>Provide a higher verbosity level of the debug information.</td></tr></tbody></table>
+| Parameter | Description |
+| --- | --- |
+| `archive`* | The path and output archive file name.For example: `/path/diag/lwh_diagnostics.tar.gz` |
+| `include-sensitive` | Include sensitive data in the archive. For example, value overrides.Use this parameter only if required by the Customer Success Team. |
+| `full-disk-scan` | Perform a higher level of disk scan.Use this parameter only if required by the Customer Success Team. |
+| `verbose` | Provide a higher verbosity level of the debug information. |

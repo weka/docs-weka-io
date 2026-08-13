@@ -56,7 +56,15 @@ weka local setup container --name <container_name> --base-port <base-port> --joi
 
 **Parameters:**
 
-<table><thead><tr><th width="255">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>name</code>*</td><td>The Data Services container name. Set <code>dataserv0</code> to avoid confusion.</td></tr><tr><td><code>only-dataserv-cores</code>*</td><td>Creates a Data Services container. This parameter is mandatory.</td></tr><tr><td><code>base-port</code></td><td>If a base-port is not specified, the Data Services container may still initialize as it attempts to allocate an available port range and could succeed. However, for optimal operation, it is recommended to provide the base port externally.</td></tr><tr><td><code>join-ips</code>*</td><td>Specify the management IP of one of the servers in the cluster to join.</td></tr><tr><td><code>management-ips</code></td><td>This is optional. If not provided, it automatically takes the management IP of the server.</td></tr><tr><td><code>memory</code></td><td>Configure the container memory to be allocated for huge pages. It is recommended to set it to 1.5 GB.</td></tr><tr><td><code>allow-mix-setting</code></td><td>This option enables using specified core IDs, even when containers with AUTO core ID allocation run on the same server. It is required if the core allocation is not explicitly specified.</td></tr></tbody></table>
+| Parameter | Description |
+| --- | --- |
+| `name`* | The Data Services container name. Set `dataserv0` to avoid confusion. |
+| `only-dataserv-cores`* | Creates a Data Services container. This parameter is mandatory. |
+| `base-port` | If a base-port is not specified, the Data Services container may still initialize as it attempts to allocate an available port range and could succeed. However, for optimal operation, it is recommended to provide the base port externally. |
+| `join-ips`* | Specify the management IP of one of the servers in the cluster to join. |
+| `management-ips` | This is optional. If not provided, it automatically takes the management IP of the server. |
+| `memory` | Configure the container memory to be allocated for huge pages. It is recommended to set it to 1.5 GB. |
+| `allow-mix-setting` | This option enables using specified core IDs, even when containers with AUTO core ID allocation run on the same server. It is required if the core allocation is not explicitly specified. |
 
 <details>
 

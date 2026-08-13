@@ -1,17 +1,16 @@
 ---
 description: >-
-  The WEKA system enables file access through the NFS protocol instead of the
-  WEKA client.
+  Provide file access over NFS, without installing a client on the host.
 ---
 
 # Manage the NFS protocol
 
-NFS (Network File System) is a protocol that enables clients to access the WEKA filesystem without requiring WEKA's client software. This leverages the standard NFS implementation of the client's operating system.
+NFS (Network File System) is a protocol that enables clients to access the filesystem without requiring the WEKA client software. This leverages the standard NFS implementation of the client's operating system.
 
-WEKA supports an advanced NFS implementation, NFS-W, designed to overcome inherent limitations in the NFS protocol. NFS-W is compatible with NFSv3 or NFSv4[^1] protocols and offers enhanced capabilities, including support for more than 16 user security groups and NFS file-locking.
+The NFS implementation is compatible with NFSv3 or NFSv4[^1] protocols and overcomes inherent limitations in the NFS protocol, including support for more than 16 user security groups and NFS file-locking.
 
 {% hint style="info" %}
-The legacy NFS stack is no longer supported.
+**Multi-tenancy:** When NFS multi-tenancy is enabled, each tenant gets isolated client groups, exports, and floating IP addresses, and several NFS features become available only in the root organization. See [manage-nfs-for-tenants.md](../../operation-guide/weka-native-multi-tenancy-management/manage-nfs-for-tenants.md "mention").
 {% endhint %}
 
 ## NFS service deployment guidelines and requirements
@@ -26,8 +25,8 @@ A persistent cluster-wide configuration filesystem is required for the protocol'
 
 An interface group provides resilience and high availability for NFS services by enabling transparent failover between NFS servers.
 
-* **Resilience:** An interface group requires a minimum of two WEKA servers to ensure continuous NFS availability. If a server becomes unavailable, its floating IPs automatically migrate to a healthy server in the group.
-* **Server membership:** An interface group consists of a set of WEKA servers, each with a designated network port. All ports must be associated with the same subnet.
+* **Resilience:** An interface group requires a minimum of two servers to ensure continuous NFS availability. If a server becomes unavailable, its floating IPs automatically migrate to a healthy server in the group.
+* **Server membership:** An interface group consists of a set of servers, each with a designated network port. All ports must be associated with the same subnet.
 * **Floating IP management:** The group includes one or more floating IP addresses used by the NFS service. All floating IPs must reside in the same subnet, and each server must already have a static IP configured on the corresponding network interface.
 * **Routing configuration:** Floating IPs must comply with the network routing configuration to ensure proper reachability and failover behavior.
 
@@ -37,17 +36,21 @@ Floating IPs are supported on AWS but not on Azure, GCP, and OCI cloud environme
 
 An interface group can have only a single port. Therefore, two interface groups are required to support High Availability (HA) in NFS. When assigning the other server ports to these interface groups, consider the network topology to ensure no single point of failure exists in the switch.
 
-You can define up to 10 different Interface groups. Use multiple interface groups if the cluster connects to multiple subnets. You can set up to 50 servers in each interface group.
+You can define up to 10 different interface groups. Use multiple interface groups if the cluster connects to multiple subnets. You can set up to 50 servers in each interface group.
 
-The WEKA system automatically distributes the IP addresses evenly on each server and port. If a server fails, the WEKA system redistributes the IP addresses associated with the failed server to other servers.
+The system automatically distributes the IP addresses evenly across the servers and ports. If a server fails, its IP addresses are redistributed to the remaining servers.
 
 {% hint style="warning" %}
-The WEKA system automatically configures the floating IP addresses used by the NFS service on the appropriate server. Refrain from manually configuring or using the floating IP.
+Floating IP addresses used by the NFS service are configured automatically on the appropriate server. Refrain from manually configuring or using the floating IP.
+{% endhint %}
+
+{% hint style="info" %}
+**Multi-tenancy:** These limits apply to the root organization. A tenant network space supports a maximum of 8 floating IP addresses, and a tenant is assigned to an interface group rather than owning one. See [manage-nfs-for-tenants.md](../../operation-guide/weka-native-multi-tenancy-management/manage-nfs-for-tenants.md "mention").
 {% endhint %}
 
 ### Round-robin DNS server configuration
 
-To ensure load balancing between the NFS clients on the different WEKA servers serving NFS, it is recommended that a round-robin DNS entry be resolved to the list of floating IPs.
+To ensure load balancing between the NFS clients on the different servers serving NFS, it is recommended that a round-robin DNS entry be resolved to the list of floating IPs.
 
 {% hint style="info" %}
 Set the TTL (Time to Live) for all records assigned to the NFS servers to 0 (Zero). This action ensures that the client or the DNS server does not cache the IP.
@@ -67,6 +70,10 @@ Access Control List (ACL) in NFS (Network File System) provide fine-grained cont
 
 {% hint style="info" %}
 To enable ACL functionality, you must configure LDAP to manage user and group information.
+{% endhint %}
+
+{% hint style="warning" %}
+**Multi-tenancy:** ACLs are available only in the root organization. On a tenant export, an explicitly requested ACL type is rejected, and an ACL type left at its default is silently set to `NONE`. An export created without naming an ACL type therefore has weaker access control than the default described here. See [manage-nfs-for-tenants.md](../../operation-guide/weka-native-multi-tenancy-management/manage-nfs-for-tenants.md "mention").
 {% endhint %}
 
 **ACL flavors in NFS**
@@ -101,7 +108,7 @@ When upgrading, the default ACL flavor for all permissions sets to **POSIX**. AC
 
 ## NFS integration with Kerberos service
 
-WEKA facilitates the seamless integration of NFS with an existing Kerberos service. This integration enables clients' authentication, data integrity, and data privacy over the wire when interacting with the NFS server, ensuring robust security even across untrusted networks.
+NFS integrates with an existing Kerberos service to provide client authentication, data integrity, and data privacy over the wire, ensuring robust security even across untrusted networks.
 
 The Kerberos security levels are:
 
@@ -113,11 +120,15 @@ The Kerberos security levels are:
 NFS exports created before configuring Kerberos are not updated automatically when using Kerberos. The Authenticator Type must be modified to one of the Kerberos types to leverage the Kerberos advantages.
 {% endhint %}
 
+{% hint style="warning" %}
+**Multi-tenancy:** Kerberos is available only in the root organization. Tenant connections that attempt `RPCSEC_GSS` are rejected with `AUTH_TOOWEAK`, and tenant mounts use `sec=sys` only. The Kerberos flavors are also removed from the tenant view of `weka nfs global-config`, so a cluster administrator and a tenant administrator running that command see different output. See [manage-nfs-for-tenants.md](../../operation-guide/weka-native-multi-tenancy-management/manage-nfs-for-tenants.md "mention").
+{% endhint %}
+
 ### Kerberos LDAP configurations
 
-WEKA supports Kerberos authentication for NFS using AD and Kerberos MIT:
+Kerberos authentication for NFS is supported using AD and Kerberos MIT:
 
-* **Active Directory (AD):** NFS integrates with Active Directory (AD), which includes built-in Kerberos services. WEKA interacts with the AD using the Kerberos protocol to authenticate service requests among trusted devices.
+* **Active Directory (AD):** NFS integrates with Active Directory (AD), which includes built-in Kerberos services. The system interacts with the AD using the Kerberos protocol to authenticate service requests among trusted devices.
 * **Kerberos MIT:** NFS integrates with Kerberos MIT, implementing the Kerberos protocol, which uses secret-key cryptography for authentication across insecure networks. This protocol is widely standardized and utilized.
 
 {% hint style="info" %}
@@ -126,7 +137,7 @@ WEKA supports Kerberos authentication for NFS using AD and Kerberos MIT:
 
 ### Kerberos service interactions basic outline
 
-The following Kerberos service interactions ensure secure communication between the client and the WEKA NFS server:
+The following Kerberos service interactions ensure secure communication between the client and the NFS server:
 
 1. **Client authentication and ticket request:** The client sends a request, including encrypted credentials, to the Authentication Server for a Ticket Granting Ticket (TGT).
 2. **Ticket generation and delivery:** The Authentication Server verifies the client’s identity, generates a session key, forms a TGT, and sends these to the client.
@@ -147,17 +158,21 @@ For performance scalability, add as many servers as possible to the interface gr
 
 The cluster supports a maximum of 200 floating IPs to facilitate load balancing by distributing them evenly across all interface group servers and ports. In systems with more NFS interfaces than this limit, not every interface will have a dedicated floating IP.
 
-When different clients resolve the DNS name into an IP service, each receives a different IP address, ensuring that other clients access different servers. This design allows the WEKA system to scale and service thousands of clients.
+When different clients resolve the DNS name into an IP service, each receives a different IP address, ensuring that other clients access different servers. This design allows the system to scale and serve thousands of clients.
 
 To ensure service resilience, if a server fails, the system reassigns all IP addresses associated with the failed server to other servers using GARP[^2] network messages. The clients then reconnect to the new servers without any reconfiguration or service interruption.
 
 ## NFS file-locking support
 
-WEKA supports NFS byte-range [advisory locking](#user-content-fn-3)[^3] for NFS versions 3, 4, and 4.1. This mechanism ensures synchronized access to files in a networked environment by allowing multiple processes to coordinate access to shared files. It helps maintain data integrity and consistency by preventing concurrent modifications that could lead to data corruption. WEKA’s implementation is interoperable with POSIX byte-range advisory locks, enabling compatibility and coordination between NFS clients and WEKA’s filesystem.
+NFS byte-range [advisory locking](#user-content-fn-3)[^3] is supported for NFS versions 3, 4, and 4.1. This mechanism ensures synchronized access to files in a networked environment by allowing multiple processes to coordinate access to shared files. It helps maintain data integrity and consistency by preventing concurrent modifications that could lead to data corruption. The implementation is interoperable with POSIX byte-range advisory locks, enabling compatibility and coordination between NFS clients and the filesystem.
+
+{% hint style="warning" %}
+**Multi-tenancy:** NFSv3 locking (NLM) is not offered on tenant floating IP addresses. Clients that mount a tenant export with NFSv3 cannot take locks. NFSv4.1 locking is available to tenants. Plan client compatibility accordingly. See [manage-nfs-for-tenants.md](../../operation-guide/weka-native-multi-tenancy-management/manage-nfs-for-tenants.md "mention").
+{% endhint %}
 
 ### NFS file-locking prerequisites for NFSv3
 
-* **Port prerequisites:** Ports used by the `nlockmgr` and `status` services must be open on the clients and WEKA servers. Use **one** of the following methods to meet this requirement:
+* **Port prerequisites:** Ports used by the `nlockmgr` and `status` services must be open on the clients and the servers. Use **one** of the following methods to meet this requirement:
   *   Disable and stop `firewalld` using the commands:
 
       ```
@@ -190,6 +205,8 @@ weka debug flock list <inode-id>
 
 This command outputs a list of all current locks on the specified file, enabling administrators to monitor and manage file access effectively.
 
+TBD [Is there a supported, non-`weka debug` command for inspecting active file locks? `weka debug` commands are internal, and this is the only way the documentation offers customers to view locks.]
+
 ## NFS service deployment high-level workflow
 
 <div data-with-frame="true"><figure><img src="../../.gitbook/assets/NFS_deploy_workflow.png" alt=""><figcaption><p>NFS service deployment high-level workflow</p></figcaption></figure></div>
@@ -201,6 +218,10 @@ For detailed procedures, see the related topics.
 [nfs-support.md](nfs-support.md "mention")
 
 [nfs-support-1.md](nfs-support-1.md "mention")
+
+[supported-nfs-client-mount-options.md](supported-nfs-client-mount-options.md "mention")
+
+[manage-nfs-for-tenants.md](../../operation-guide/weka-native-multi-tenancy-management/manage-nfs-for-tenants.md "mention")
 
 [^1]: NFSv4.0 and NFSv4.1
 

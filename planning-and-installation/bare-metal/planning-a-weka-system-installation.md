@@ -105,7 +105,13 @@ The minimum memory requirement for a WEKA client is 5 GiB. This minimum supports
 
 For a typical client deployment, the total memory requirement is the sum of the following:
 
-<table><thead><tr><th width="284">Purpose</th><th>Per-client memory</th></tr></thead><tbody><tr><td>Base</td><td>3 GiB</td></tr><tr><td>Frontend (FE) processes</td><td>2.5 GiB × number of FE processes</td></tr><tr><td>HugePages (configured)</td><td>Container HugePages</td></tr><tr><td>HugePages (default)</td><td>1.4 GiB × number of FE processes</td></tr><tr><td>OS and kernel cache</td><td>See note below</td></tr></tbody></table>
+| Purpose | Per-client memory |
+| --- | --- |
+| Base | 3 GiB |
+| Frontend (FE) processes | 2.5 GiB × number of FE processes |
+| HugePages (configured) | Container HugePages |
+| HugePages (default) | 1.4 GiB × number of FE processes |
+| OS and kernel cache | See note below |
 
 {% hint style="info" %}
 The WEKA client uses the Linux kernel page cache to accelerate read and write operations. The kernel cache grows to fill available memory, so leaving additional RAM beyond the WEKA process requirements improves I/O performance. The recommended headroom matches the working set size of your workload, though this varies by application. Leave as much free RAM as the system allows.

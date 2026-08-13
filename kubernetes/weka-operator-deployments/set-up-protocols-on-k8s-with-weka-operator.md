@@ -47,7 +47,11 @@ The SMB-W data path routes file requests through floating IPs, SMB-W frontend co
 
 * Confirm the minimum versions of the WEKA Operator and WEKA image:
 
-<table><thead><tr><th width="138.09088134765625">Protocol</th><th>Minimum WEKA Operator version</th><th>Minimum WEKA version</th></tr></thead><tbody><tr><td>S3</td><td>1.7</td><td>4.4</td></tr><tr><td>NFS-W</td><td>1.10</td><td>5.1</td></tr><tr><td>SMB-W</td><td>1.11</td><td>5.1.20</td></tr></tbody></table>
+| Protocol | Minimum WEKA Operator version | Minimum WEKA version |
+| --- | --- | --- |
+| S3 | 1.7 | 4.4 |
+| NFS-W | 1.10 | 5.1 |
+| SMB-W | 1.11 | 5.1.20 |
 
 * Ensure the WEKA Operator is deployed and running in the Kubernetes cluster.
 * Verify that the WekaCluster resource is initialized.
@@ -136,19 +140,41 @@ The hugepage and additional memory parameters listed in the reference tables (`*
 
 Use the following parameters in the WekaCluster `spec` to define S3 settings.
 
-<table><thead><tr><th width="352">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>dynamicTemplate.s3Containers</code></td><td>Total number of S3 containers to be deployed.<br>Data type: Integer<br>Example: <code>2</code></td></tr><tr><td><code>dynamicTemplate.s3Cores</code></td><td>Number of CPU cores assigned to each S3 container process.<br>Data type: Integer<br>Example: <code>3</code></td></tr><tr><td><code>dynamicTemplate.s3FrontendHugepages</code></td><td>Hugepage memory for the S3 frontend in MiB. A minimum of 1600 MiB is required.<br>Data type: Integer<br>Example: <code>3072</code><br><strong>Set only when guided by the WEKA team.</strong></td></tr><tr><td><code>dynamicTemplate.envoyCores</code></td><td>Number of CPU cores assigned to the software load balancer container.<br>Data type: Integer<br>Example: <code>3</code></td></tr><tr><td><code>additionalMemory.s3</code></td><td>Additional memory allocation in MiB for S3 containers, exceeding automatic calculations.<br>Data type: Integer<br>Example: <code>1000</code><br><strong>Set only when guided by the WEKA team.</strong></td></tr></tbody></table>
+| Parameter | Description |
+| --- | --- |
+| `dynamicTemplate.s3Containers` | Total number of S3 containers to be deployed.Data type: IntegerExample: `2` |
+| `dynamicTemplate.s3Cores` | Number of CPU cores assigned to each S3 container process.Data type: IntegerExample: `3` |
+| `dynamicTemplate.s3FrontendHugepages` | Hugepage memory for the S3 frontend in MiB. A minimum of 1600 MiB is required.Data type: IntegerExample: `3072`**Set only when guided by the WEKA team.** |
+| `dynamicTemplate.envoyCores` | Number of CPU cores assigned to the software load balancer container.Data type: IntegerExample: `3` |
+| `additionalMemory.s3` | Additional memory allocation in MiB for S3 containers, exceeding automatic calculations.Data type: IntegerExample: `1000`**Set only when guided by the WEKA team.** |
 
 ### NFS-W configuration reference
 
 Use the following parameters to define NFS-W and networking settings.
 
-<table><thead><tr><th width="336.9090576171875">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>nfs.interfaces</code></td><td>Restricted network interfaces for NFS-W traffic.<br>Data type: List of strings<br>Example: <code>["ens5"]</code></td></tr><tr><td><code>nfs.ipRanges</code></td><td>Floating IP addresses for client access, supporting CIDR or range formats.<br>Data type: List of strings<br>Example: <code>["10.0.1.1-10.0.1.10"]</code></td></tr><tr><td><code>dynamicTemplate.nfsContainers</code></td><td>Experimental count of NFS-W frontend containers to create.<br>Data type: Integer<br>Example: <code>2</code></td></tr><tr><td><code>dynamicTemplate.nfsCores</code></td><td>Number of CPU cores assigned to each NFS-W container process.<br>Data type: Integer<br>Example: <code>3</code></td></tr><tr><td><code>dynamicTemplate.nfsFrontendHugepages</code></td><td>Hugepage memory for the NFS-W frontend in MiB. A minimum of 1600 MiB is required.<br>Data type: Integer<br>Example: <code>3072</code><br><strong>Set only when guided by the WEKA team.</strong></td></tr><tr><td><code>additionalMemory.nfs</code></td><td>Additional memory allocation in MiB for NFS-W containers, exceeding automatic calculations.<br>Data type: Integer<br>Example: <code>1000</code><br><strong>Set only when guided by the WEKA team.</strong></td></tr></tbody></table>
+| Parameter | Description |
+| --- | --- |
+| `nfs.interfaces` | Restricted network interfaces for NFS-W traffic.Data type: List of stringsExample: `["ens5"]` |
+| `nfs.ipRanges` | Floating IP addresses for client access, supporting CIDR or range formats.Data type: List of stringsExample: `["10.0.1.1-10.0.1.10"]` |
+| `dynamicTemplate.nfsContainers` | Experimental count of NFS-W frontend containers to create.Data type: IntegerExample: `2` |
+| `dynamicTemplate.nfsCores` | Number of CPU cores assigned to each NFS-W container process.Data type: IntegerExample: `3` |
+| `dynamicTemplate.nfsFrontendHugepages` | Hugepage memory for the NFS-W frontend in MiB. A minimum of 1600 MiB is required.Data type: IntegerExample: `3072`**Set only when guided by the WEKA team.** |
+| `additionalMemory.nfs` | Additional memory allocation in MiB for NFS-W containers, exceeding automatic calculations.Data type: IntegerExample: `1000`**Set only when guided by the WEKA team.** |
 
 ### SMB-W configuration reference
 
 Use the following parameters to define SMB-W settings. Field names match the `WekaCluster` CRD in [weka-k8s-api](https://github.com/weka/weka-k8s-api).
 
-<table><thead><tr><th width="352">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>smbw.clusterName</code></td><td>Name of the SMB-W cluster. Used as the NetBIOS name and the Active Directory computer object name. Must be 1-15 characters, alphanumeric and hyphens only.<br>Data type: String<br>Default: <code>default</code><br>Example: <code>wekaSMB</code></td></tr><tr><td><code>smbw.domainName</code></td><td>Active Directory domain name that the SMB-W cluster joins. Required for SMB-W cluster creation.<br>Data type: String<br>Example: <code>ad.example.com</code></td></tr><tr><td><code>smbw.userName</code></td><td>Active Directory user with permission to add a computer object to the domain. The operator uses this user to perform the domain join.<br>Data type: String<br>Example: <code>ad-admin</code></td></tr><tr><td><code>smbw.domainJoinSecret</code></td><td>Name of the Kubernetes Secret that holds the AD user password. The operator joins the domain when this Secret is set and skips the join otherwise. Required for AD join.<br>Data type: String<br>Example: <code>smbw-ad-join</code></td></tr><tr><td><code>smbw.ipRanges</code></td><td>Floating IP ranges that the operator distributes across SMB-W containers for high availability. Maps to <code>weka smb cluster add --smb-ips-range</code>.<br>Data type: List of strings<br>Example: <code>["10.0.2.1-10.0.2.10"]</code></td></tr><tr><td><code>dynamicTemplate.smbwContainers</code></td><td>Number of SMB-W frontend containers to create. Minimum 3, maximum 8.<br>Data type: Integer<br>Example: <code>3</code></td></tr><tr><td><code>dynamicTemplate.smbwCores</code></td><td>Number of CPU cores assigned to each SMB-W container process. When not set, the operator uses an automatic value.<br>Data type: Integer<br>Example: <code>2</code></td></tr><tr><td><code>dynamicTemplate.smbwFrontendHugepages</code></td><td>Hugepage memory for the SMB-W frontend in MiB. When not set, the operator computes the value as <code>1400 × smbwCores</code> plus a fixed offset.<br>Data type: Integer<br>Example: <code>3072</code><br><strong>Set only when guided by the WEKA team.</strong></td></tr></tbody></table>
+| Parameter | Description |
+| --- | --- |
+| `smbw.clusterName` | Name of the SMB-W cluster. Used as the NetBIOS name and the Active Directory computer object name. Must be 1-15 characters, alphanumeric and hyphens only.Data type: StringDefault: `default`Example: `wekaSMB` |
+| `smbw.domainName` | Active Directory domain name that the SMB-W cluster joins. Required for SMB-W cluster creation.Data type: StringExample: `ad.example.com` |
+| `smbw.userName` | Active Directory user with permission to add a computer object to the domain. The operator uses this user to perform the domain join.Data type: StringExample: `ad-admin` |
+| `smbw.domainJoinSecret` | Name of the Kubernetes Secret that holds the AD user password. The operator joins the domain when this Secret is set and skips the join otherwise. Required for AD join.Data type: StringExample: `smbw-ad-join` |
+| `smbw.ipRanges` | Floating IP ranges that the operator distributes across SMB-W containers for high availability. Maps to `weka smb cluster add --smb-ips-range`.Data type: List of stringsExample: `["10.0.2.1-10.0.2.10"]` |
+| `dynamicTemplate.smbwContainers` | Number of SMB-W frontend containers to create. Minimum 3, maximum 8.Data type: IntegerExample: `3` |
+| `dynamicTemplate.smbwCores` | Number of CPU cores assigned to each SMB-W container process. When not set, the operator uses an automatic value.Data type: IntegerExample: `2` |
+| `dynamicTemplate.smbwFrontendHugepages` | Hugepage memory for the SMB-W frontend in MiB. When not set, the operator computes the value as `1400 × smbwCores` plus a fixed offset.Data type: IntegerExample: `3072`**Set only when guided by the WEKA team.** |
 
 #### Behavior notes for SMB-W
 

@@ -40,7 +40,16 @@ Choose the model that matches your infrastructure and operating boundary.
 
 Verify minimum version requirements before deployment or upgrade.
 
-<table><thead><tr><th width="205">Feature</th><th width="140">Operator (min. version)</th><th width="139">WEKA Cluster (min. version)</th><th>Notes</th></tr></thead><tbody><tr><td>S3</td><td>1.7</td><td>4.4</td><td>Supported.</td></tr><tr><td>NFS</td><td>1.10</td><td>5.1.0</td><td>Supported.</td></tr><tr><td>Audit</td><td>1.10</td><td>5.1.0</td><td>Supported.</td></tr><tr><td>SMB-W</td><td>1.11</td><td>5.1.20</td><td>Supported.</td></tr><tr><td>Data Services</td><td>1.13</td><td>5.1.20</td><td>Supported for <a data-footnote-ref href="#user-content-fn-1">quota coloring</a>.<br>Not supported for Data Catalog.</td></tr><tr><td>ssdproxy</td><td>1.12</td><td>5.1.30</td><td>Supported.<br>Share NVMe drives across multiple clusters.</td></tr><tr><td>AlloyFlash</td><td>1.14</td><td>5.1.30</td><td>Supported.<br>Enable mixed TLC and QLC drive deployments.</td></tr><tr><td>Cluster capacity sizing</td><td>1.14.2</td><td>5.1.0</td><td>Supported.<br>Size the cluster by target usable capacity with <code>dynamicTemplate.clusterCapacity</code>.</td></tr></tbody></table>
+| Feature | Operator (min. version) | WEKA Cluster (min. version) | Notes |
+| --- | --- | --- | --- |
+| S3 | 1.7 | 4.4 | Supported. |
+| NFS | 1.10 | 5.1.0 | Supported. |
+| Audit | 1.10 | 5.1.0 | Supported. |
+| SMB-W | 1.11 | 5.1.20 | Supported. |
+| Data Services | 1.13 | 5.1.20 | Supported for quota coloring.Not supported for Data Catalog. |
+| ssdproxy | 1.12 | 5.1.30 | Supported.Share NVMe drives across multiple clusters. |
+| AlloyFlash | 1.14 | 5.1.30 | Supported.Enable mixed TLC and QLC drive deployments. |
+| Cluster capacity sizing | 1.14.2 | 5.1.0 | Supported.Size the cluster by target usable capacity with `dynamicTemplate.clusterCapacity`. |
 
 ## How to use this guide
 

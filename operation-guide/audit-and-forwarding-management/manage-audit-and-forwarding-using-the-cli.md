@@ -81,7 +81,9 @@ weka audit fs status [--name name]
 
 **Parameter**
 
-<table><thead><tr><th width="181.84765625">Name</th><th>Description</th></tr></thead><tbody><tr><td><code>name</code></td><td>The name of a specific filesystem to view.</td></tr></tbody></table>
+| Name | Description |
+| --- | --- |
+| `name` | The name of a specific filesystem to view. |
 
 ### **Enable or disable auditing for a filesystem**
 
@@ -100,7 +102,9 @@ Enable or disable auditing on a specific filesystem.
 
 **Parameter**
 
-<table><thead><tr><th width="168.8671875">Name</th><th>Description</th></tr></thead><tbody><tr><td><code>name</code>*</td><td>The name of the filesystem on which to enable or disable auditing.</td></tr></tbody></table>
+| Name | Description |
+| --- | --- |
+| `name`* | The name of the filesystem on which to enable or disable auditing. |
 
 **Related topics**
 

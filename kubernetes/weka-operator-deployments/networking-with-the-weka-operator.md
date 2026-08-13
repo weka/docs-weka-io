@@ -12,7 +12,10 @@ WEKA data-plane processes require direct access to network interfaces for high-p
 
 WEKA supports two data-path modes:
 
-<table><thead><tr><th width="196">Mode</th><th>Description</th><th>When to use</th></tr></thead><tbody><tr><td>DPDK mode (default)</td><td>WEKA uses DPDK for data-path traffic and bypasses the kernel networking stack for lower latency and higher throughput.</td><td>Use when the servers, NICs, and Kubernetes network configuration support DPDK.</td></tr><tr><td>UDP mode</td><td>WEKA sends data-path traffic through the kernel networking stack over UDP.</td><td>Use when DPDK is not supported or when the network environment requires UDP transport.</td></tr></tbody></table>
+| Mode | Description | When to use |
+| --- | --- | --- |
+| DPDK mode (default) | WEKA uses DPDK for data-path traffic and bypasses the kernel networking stack for lower latency and higher throughput. | Use when the servers, NICs, and Kubernetes network configuration support DPDK. |
+| UDP mode | WEKA sends data-path traffic through the kernel networking stack over UDP. | Use when DPDK is not supported or when the network environment requires UDP transport. |
 
 The WEKA Operator is CNI-agnostic. WEKA containers run with `hostNetwork: true`, so they use the Kubernetes node network instead of the pod overlay. Any conformant CNI, including Calico, Cilium, Flannel, and Multus, is supported. Interfaces used for WEKA storage traffic do not need CNI management, but they must have assigned IP addresses.
 

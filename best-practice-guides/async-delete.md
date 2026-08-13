@@ -120,7 +120,11 @@ Async delete does not emit entries in `weka events`. There are no started, progr
 
 If filesystem auditing is enabled, the audit log records the following entries:
 
-<table><thead><tr><th width="266.5">Audit entry</th><th>When it is recorded</th></tr></thead><tbody><tr><td><code>AuditTraceAsyncDeleteInit</code></td><td>The rename to <code>.weka-delete</code> occurs. One entry per request.</td></tr><tr><td><code>AuditTraceAsyncDeleteSubdir</code></td><td>A subdirectory is unlinked during shredding.</td></tr><tr><td><code>AuditTraceAsyncDeleteFile</code></td><td>A file or symlink is unlinked during shredding.</td></tr></tbody></table>
+| Audit entry | When it is recorded |
+| --- | --- |
+| `AuditTraceAsyncDeleteInit` | The rename to `.weka-delete` occurs. One entry per request. |
+| `AuditTraceAsyncDeleteSubdir` | A subdirectory is unlinked during shredding. |
+| `AuditTraceAsyncDeleteFile` | A file or symlink is unlinked during shredding. |
 
 These entries appear in the audit destination configured for the filesystem, for example an S3 audit bucket. They do not appear in `weka events`. Without auditing enabled, there is no per-entry trail.
 
@@ -134,7 +138,12 @@ weka fs update <fsname> --enable-audit <audit-target>
 
 Query async delete counters using `weka stats` under the `async_delete` category:
 
-<table><thead><tr><th width="305.25">Stat</th><th>Meaning</th></tr></thead><tbody><tr><td><code>ASYNC_DELETE_DIRS_QUEUED</code></td><td>Directories added to the trash bin, broken out by <code>DeletionSource</code>. The <code>WEKA_DEL</code> label corresponds to the rename-to-<code>.weka-delete</code> path. <code>XATTR_OVERFLOW</code> and <code>FSCK</code> are unrelated internal sources.</td></tr><tr><td><code>ASYNC_DELETE_DIRS_QUEUED_SUBDIRS</code></td><td>Subdirectories the shredder discovers and enqueues while walking a queued tree.</td></tr><tr><td><code>ASYNC_DELETE_FILES_QUEUED</code></td><td>Files the shredder discovers and enqueues for unlinking.</td></tr><tr><td><code>ASYNC_DELETE_SLICES_SHREDDED</code></td><td>Directory slices the shredder has processed. Indicates forward progress through queued work.</td></tr></tbody></table>
+| Stat | Meaning |
+| --- | --- |
+| `ASYNC_DELETE_DIRS_QUEUED` | Directories added to the trash bin, broken out by `DeletionSource`. The `WEKA_DEL` label corresponds to the rename-to-`.weka-delete` path. `XATTR_OVERFLOW` and `FSCK` are unrelated internal sources. |
+| `ASYNC_DELETE_DIRS_QUEUED_SUBDIRS` | Subdirectories the shredder discovers and enqueues while walking a queued tree. |
+| `ASYNC_DELETE_FILES_QUEUED` | Files the shredder discovers and enqueues for unlinking. |
+| `ASYNC_DELETE_SLICES_SHREDDED` | Directory slices the shredder has processed. Indicates forward progress through queued work. |
 
 Useful monitoring patterns:
 
@@ -164,7 +173,12 @@ Behavior during this phase:
 
 Set cluster-wide overrides using `weka debug override add --key <key> --value <value>`. These affect every filesystem that has async delete enabled.
 
-<table><thead><tr><th>Key</th><th width="224">Default</th><th>Purpose</th></tr></thead><tbody><tr><td><code>fs.dir.async_delete.delete_name</code></td><td><code>.weka-delete</code></td><td>Changes the reserved trigger name cluster-wide. If changed, the literal string <code>.weka-delete</code> becomes an ordinary filename on every filesystem in the cluster.</td></tr><tr><td><code>fs.dir.async_delete.node_shred_parallelism</code></td><td>Internal default</td><td>Sets per-process parallelism for the shredder worker. Increase for faster reclaim on idle clusters; decrease to reduce impact on foreground I/O.</td></tr><tr><td><code>fs.dir.async_delete.throttle_load_threshold</code></td><td>Load-level metric default</td><td>Sets the metadata load level at which the shredder begins backing off to protect foreground I/O.</td></tr><tr><td><code>fs.dir.async_delete.choking_stop_level</code></td><td>Load-level metric default</td><td>Sets the metadata load level at which the shredder stops issuing new work entirely until load subsides.</td></tr></tbody></table>
+| Key | Default | Purpose |
+| --- | --- | --- |
+| `fs.dir.async_delete.delete_name` | `.weka-delete` | Changes the reserved trigger name cluster-wide. If changed, the literal string `.weka-delete` becomes an ordinary filename on every filesystem in the cluster. |
+| `fs.dir.async_delete.node_shred_parallelism` | Internal default | Sets per-process parallelism for the shredder worker. Increase for faster reclaim on idle clusters; decrease to reduce impact on foreground I/O. |
+| `fs.dir.async_delete.throttle_load_threshold` | Load-level metric default | Sets the metadata load level at which the shredder begins backing off to protect foreground I/O. |
+| `fs.dir.async_delete.choking_stop_level` | Load-level metric default | Sets the metadata load level at which the shredder stops issuing new work entirely until load subsides. |
 
 
 

@@ -76,7 +76,11 @@ Ensure you have TenantAdmin permissions. This command applies only within the bo
 
 **Parameters**
 
-<table><thead><tr><th width="243">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>default-fs-name</code></td><td>The filesystem name to use as the default for this tenant, overriding the cluster-level default.</td></tr><tr><td><code>anonymous-posix-uid</code></td><td>The POSIX user ID to assign to anonymous access requests for this tenant.</td></tr><tr><td><code>anonymous-posix-gid</code></td><td>The POSIX group ID to assign to anonymous access requests for this tenant.</td></tr></tbody></table>
+| Parameter | Description |
+| --- | --- |
+| `default-fs-name` | The filesystem name to use as the default for this tenant, overriding the cluster-level default. |
+| `anonymous-posix-uid` | The POSIX user ID to assign to anonymous access requests for this tenant. |
+| `anonymous-posix-gid` | The POSIX group ID to assign to anonymous access requests for this tenant. |
 
 ## Add containers to the S3 cluster
 
@@ -92,7 +96,9 @@ The following command example adds two containers with the IDs 8 and 9:
 
 **Parameters**
 
-<table><thead><tr><th width="282">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>container-ids</code>*</td><td>Container IDs to add to the S3 cluster.<br>Space-separated list of numbers.</td></tr></tbody></table>
+| Name | Value |
+| --- | --- |
+| `container-ids`* | Container IDs to add to the S3 cluster.Space-separated list of numbers. |
 
 ## Remove containers from the S3 cluster
 
@@ -104,7 +110,9 @@ Use the following command line to remove containers from the S3 cluster:
 
 **Parameters**
 
-<table><thead><tr><th width="281">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>container-ids</code>*</td><td>Container IDs to remove from the S3 cluster.<br>Space-separated list of numbers</td></tr></tbody></table>
+| Name | Value |
+| --- | --- |
+| `container-ids`* | Container IDs to remove from the S3 cluster.Space-separated list of numbers |
 
 ## Remove an S3 cluster
 

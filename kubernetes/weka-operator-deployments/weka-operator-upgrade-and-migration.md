@@ -11,7 +11,11 @@ description: >-
 
 Always perform the following three steps in order. The WEKA Operator must be upgraded before the cluster or client versions are changed. Upgrade-related bugs in the Operator are resolved first, and some WEKA versions require a minimum Operator version to interact correctly with the new software.
 
-<table><thead><tr><th width="78.2734375">Step</th><th width="287.71484375">Task</th><th>Description</th></tr></thead><tbody><tr><td>1</td><td><a href="weka-operator-upgrade-and-migration.md#id-1.-upgrade-the-weka-operator">Upgrade the WEKA Operator</a></td><td>Install the latest Operator version before making any version changes to the cluster or clients.</td></tr><tr><td>2</td><td><a href="weka-operator-upgrade-and-migration.md#id-2.-upgrade-the-weka-cluster-version">Upgrade the WEKA cluster version</a></td><td>Update the WEKA image on the WekaCluster CR.</td></tr><tr><td>3</td><td><a href="weka-operator-upgrade-and-migration.md#id-3.-upgrade-the-weka-client-version">Upgrade the WEKA client version</a></td><td>Update the WEKA image on the WekaClient CR.</td></tr></tbody></table>
+| Step | Task | Description |
+| --- | --- | --- |
+| 1 | [Upgrade the WEKA Operator](weka-operator-upgrade-and-migration.md#id-1.-upgrade-the-weka-operator) | Install the latest Operator version before making any version changes to the cluster or clients. |
+| 2 | [Upgrade the WEKA cluster version](weka-operator-upgrade-and-migration.md#id-2.-upgrade-the-weka-cluster-version) | Update the WEKA image on the WekaCluster CR. |
+| 3 | [Upgrade the WEKA client version](weka-operator-upgrade-and-migration.md#id-3.-upgrade-the-weka-client-version) | Update the WEKA image on the WekaClient CR. |
 
 ***
 
@@ -19,7 +23,11 @@ Always perform the following three steps in order. The WEKA Operator must be upg
 
 The following procedures are independent of the upgrade sequence. Perform them as needed based on your environment.
 
-<table><thead><tr><th width="366">Procedure</th><th>Description</th></tr></thead><tbody><tr><td><a href="weka-operator-upgrade-and-migration.md#upgrade-the-ssdproxy-version">Upgrade the ssdproxy version</a></td><td>Apply independently of or aligned with the cluster version.</td></tr><tr><td><a href="weka-operator-upgrade-and-migration.md#migrate-a-weka-client-to-operator-controlled-management">Migrate a client to Operator-controlled management</a></td><td>Move a standalone WEKA client to Operator lifecycle management.</td></tr><tr><td><a href="weka-operator-upgrade-and-migration.md#delete-a-wekacluster">Delete a WekaCluster</a></td><td>Remove a cluster immediately or after the grace period expires.</td></tr></tbody></table>
+| Procedure | Description |
+| --- | --- |
+| [Upgrade the ssdproxy version](weka-operator-upgrade-and-migration.md#upgrade-the-ssdproxy-version) | Apply independently of or aligned with the cluster version. |
+| [Migrate a client to Operator-controlled management](weka-operator-upgrade-and-migration.md#migrate-a-weka-client-to-operator-controlled-management) | Move a standalone WEKA client to Operator lifecycle management. |
+| [Delete a WekaCluster](weka-operator-upgrade-and-migration.md#delete-a-wekacluster) | Remove a cluster immediately or after the grace period expires. |
 
 ***
 
@@ -147,7 +155,10 @@ The Operator recreates the ssdproxy WekaContainer using the updated image.
 
 Move a standalone WEKA client running directly on a Kubernetes worker node to Operator lifecycle management. Choose the approach that matches your environment.
 
-<table><thead><tr><th width="215">Approach</th><th>When to use</th></tr></thead><tbody><tr><td><a href="weka-operator-upgrade-and-migration.md#migrate-with-container-name-override">Container name override</a></td><td>Preferred for minimal operational impact. Migrates the client without interrupting workloads. Requires quick manual action within a two-minute window.</td></tr><tr><td><a href="weka-operator-upgrade-and-migration.md#migrate-with-a-clean-installation">Clean installation</a></td><td>Use when a fresh environment without legacy components is preferred. Requires node eviction and causes a temporary disruption.</td></tr></tbody></table>
+| Approach | When to use |
+| --- | --- |
+| [Container name override](weka-operator-upgrade-and-migration.md#migrate-with-container-name-override) | Preferred for minimal operational impact. Migrates the client without interrupting workloads. Requires quick manual action within a two-minute window. |
+| [Clean installation](weka-operator-upgrade-and-migration.md#migrate-with-a-clean-installation) | Use when a fresh environment without legacy components is preferred. Requires node eviction and causes a temporary disruption. |
 
 ***
 

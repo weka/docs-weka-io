@@ -16,7 +16,14 @@ Snapshot functionality is not available for Directory-backed volumes by default.
 
 ### Procedure overview
 
-<table><thead><tr><th width="88">Step</th><th width="345">Action</th><th>Responsibility</th></tr></thead><tbody><tr><td>1</td><td>Confirm the snapshot controller is running</td><td>Kubernetes orchestrator (Kubeadm, GKE, OpenShift)</td></tr><tr><td>2</td><td>Confirm snapshot CRDs exist</td><td>Kubernetes orchestrator (Kubeadm, GKE, OpenShift)</td></tr><tr><td>3</td><td>Create a VolumeSnapshotClass</td><td>WEKA admin</td></tr><tr><td>4</td><td>Provision a volume and workload</td><td>WEKA admin</td></tr><tr><td>5</td><td>Create a snapshot</td><td>WEKA admin</td></tr><tr><td>6</td><td>Create a new volume from the snapshot</td><td>WEKA admin</td></tr></tbody></table>
+| Step | Action | Responsibility |
+| --- | --- | --- |
+| 1 | Confirm the snapshot controller is running | Kubernetes orchestrator (Kubeadm, GKE, OpenShift) |
+| 2 | Confirm snapshot CRDs exist | Kubernetes orchestrator (Kubeadm, GKE, OpenShift) |
+| 3 | Create a VolumeSnapshotClass | WEKA admin |
+| 4 | Provision a volume and workload | WEKA admin |
+| 5 | Create a snapshot | WEKA admin |
+| 6 | Create a new volume from the snapshot | WEKA admin |
 
 ### Before you begin
 

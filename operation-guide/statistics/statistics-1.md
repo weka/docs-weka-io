@@ -20,7 +20,10 @@ Use the following command line to obtain statistics definition information:\
 
 **Parameters**
 
-<table><thead><tr><th width="222">Name</th><th width="314">Value</th><th>Default</th></tr></thead><tbody><tr><td><code>name-or-category</code></td><td>Limit the output to a specific statistic name, category, or category label (in parenthesis).</td><td></td></tr><tr><td><code>show-internal</code></td><td>Include internal statistics in the output.</td><td>False</td></tr></tbody></table>
+| Name | Value | Default |
+| --- | --- | --- |
+| `name-or-category` | Limit the output to a specific statistic name, category, or category label (in parenthesis). |  |
+| `show-internal` | Include internal statistics in the output. | False |
 
 **Examples**
 
@@ -99,7 +102,11 @@ Use the following command line to obtain the current performance-related statist
 
 **Parameters**
 
-<table><thead><tr><th width="217">Name</th><th width="325">Value</th><th>Default</th></tr></thead><tbody><tr><td><code>process-ids</code></td><td>Only show real-time stats of the specified processes in a comma-separated list.</td><td></td></tr><tr><td><code>raw-units</code></td><td>Print values in raw units such as bytes and seconds.</td><td>Readable format.<br>Examples: 1KiB 234MiB 2GiB.</td></tr><tr><td><code>UTC</code></td><td>Print times in UTC.</td><td>Server's local time.</td></tr></tbody></table>
+| Name | Value | Default |
+| --- | --- | --- |
+| `process-ids` | Only show real-time stats of the specified processes in a comma-separated list. |  |
+| `raw-units` | Print values in raw units such as bytes and seconds. | Readable format.Examples: 1KiB 234MiB 2GiB. |
+| `UTC` | Print times in UTC. | Server's local time. |
 
 ## **View statistics over time**
 
@@ -115,7 +122,22 @@ Use the following command line to manage filters and read statistics:
 
 **Parameters**
 
-<table><thead><tr><th width="202">Name</th><th width="369">Value</th><th>Default</th></tr></thead><tbody><tr><td><code>start-time</code></td><td>Start time of the reported period.<br>Format examples: <code>5m</code>, <code>-5m</code>, <code>-1d</code>, <code>-1w</code>, <code>1:00</code>, <code>01:00</code>, <code>18:30</code>, <code>18:30:07</code>, <code>2018-12-31 10:00</code>, <code>2018/12/31 10:00</code>, <code>2018-12-31T10:00</code>, <code>9:15Z</code>, <code>10:00+2:00</code>.</td><td>-1m</td></tr><tr><td><code>end-time</code></td><td>End time of the reported period.<br>Format examples: <code>5m</code>, <code>-5m</code>, <code>-1d</code>, <code>-1w</code>, <code>1:00</code>, <code>01:00</code>, <code>18:30</code>, <code>18:30:07</code>, <code>2018-12-31 10:00</code>, <code>2018/12/31 10:00</code>, <code>2018-12-31T10:00</code>, <code>9:15Z</code>, <code>10:00+2:00</code>.</td><td>Current time</td></tr><tr><td><code>interval</code>*</td><td>Period of time to be reported.<br>Valid interval in seconds (positive integer).</td><td></td></tr><tr><td><code>resolution-secs</code></td><td>Length of each interval in the reported period.<br>The value must be a multiple of 60 seconds</td><td>60</td></tr><tr><td><code>category</code></td><td>A specific category for retrieving statistics.<br>Valid categories: CPU, Object Store, Operations, Operations (NFS), Operations (Driver), SSD.</td><td>All</td></tr><tr><td><code>stat</code></td><td>The names of the statistics to retrieve.</td><td>All</td></tr><tr><td><code>process-ids</code></td><td>A valid process ID.</td><td>All</td></tr><tr><td><code>param</code></td><td>For parameterized statistics, it retrieves only the instantiations where the specified parameter has the specified value.<br>Format: <code>key:val</code><br>Example for multiple values:<br>'<code>--param method:putBlocks --param method:initBlock</code>'</td><td></td></tr><tr><td><code>accumulated</code></td><td>Display accumulated statistics instead of rate statistics.</td><td>False</td></tr><tr><td><code>per-process</code></td><td>Do not aggregate statistics across processes.</td><td>False</td></tr><tr><td><code>no-zeros</code></td><td>Filters out results where the value is 0.</td><td>False</td></tr><tr><td><code>show-internal</code></td><td>Display internal statistics.</td><td>False</td></tr><tr><td><code>raw-units</code></td><td>Print values in raw units, such as bytes and seconds.</td><td>Readable format.<br>(for example: 1KiB 234MiB 2GiB)</td></tr><tr><td><code>UTC</code></td><td>Print times in UTC.</td><td>Server's local time.</td></tr></tbody></table>
+| Name | Value | Default |
+| --- | --- | --- |
+| `start-time` | Start time of the reported period.Format examples: `5m`, `-5m`, `-1d`, `-1w`, `1:00`, `01:00`, `18:30`, `18:30:07`, `2018-12-31 10:00`, `2018/12/31 10:00`, `2018-12-31T10:00`, `9:15Z`, `10:00+2:00`. | -1m |
+| `end-time` | End time of the reported period.Format examples: `5m`, `-5m`, `-1d`, `-1w`, `1:00`, `01:00`, `18:30`, `18:30:07`, `2018-12-31 10:00`, `2018/12/31 10:00`, `2018-12-31T10:00`, `9:15Z`, `10:00+2:00`. | Current time |
+| `interval`* | Period of time to be reported.Valid interval in seconds (positive integer). |  |
+| `resolution-secs` | Length of each interval in the reported period.The value must be a multiple of 60 seconds | 60 |
+| `category` | A specific category for retrieving statistics.Valid categories: CPU, Object Store, Operations, Operations (NFS), Operations (Driver), SSD. | All |
+| `stat` | The names of the statistics to retrieve. | All |
+| `process-ids` | A valid process ID. | All |
+| `param` | For parameterized statistics, it retrieves only the instantiations where the specified parameter has the specified value.Format: `key:val`Example for multiple values:'`--param method:putBlocks --param method:initBlock`' |  |
+| `accumulated` | Display accumulated statistics instead of rate statistics. | False |
+| `per-process` | Do not aggregate statistics across processes. | False |
+| `no-zeros` | Filters out results where the value is 0. | False |
+| `show-internal` | Display internal statistics. | False |
+| `raw-units` | Print values in raw units, such as bytes and seconds. | Readable format.(for example: 1KiB 234MiB 2GiB) |
+| `UTC` | Print times in UTC. | Server's local time. |
 
 ## Set statistics retention
 
@@ -126,6 +148,9 @@ Use the following command line to set the statistics retention period.\
 
 **Parameters**
 
-<table><thead><tr><th width="207">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>days</code>*</td><td>Number of days to keep the statistics.<br>Ensure sufficient free disk space per server and the specified number of days.</td></tr><tr><td><code>dry-run</code></td><td>Only tests the required capacity per the retention period.</td></tr></tbody></table>
+| Name | Value |
+| --- | --- |
+| `days`* | Number of days to keep the statistics.Ensure sufficient free disk space per server and the specified number of days. |
+| `dry-run` | Only tests the required capacity per the retention period. |
 
 Use `weka stats retention status` to view the current retention and `weka stats retention restore-default` to restore the default retention settings.

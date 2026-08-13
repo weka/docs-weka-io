@@ -69,7 +69,15 @@ When an export is defined in the WekaCluster resource, it automatically enables 
 
 Use these parameters in the `spec.telemetry` section to manage audit exports.
 
-<table><thead><tr><th width="394.9090576171875">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>exports[].name</code></td><td>The export name. The operator internally prefixes this with <code>operator-</code>.<br>Data type: String.</td></tr><tr><td><code>exports[].sources</code></td><td>Data sources to export. Use <code>["audit"]</code> for audit logs.<br>Data type: List of strings.</td></tr><tr><td><code>exports[].splunk.authTokenSecretRef</code></td><td>Reference to the Kubernetes Secret containing the HEC token using the <code>secretName.keyName</code> format.<br>Data type: String.</td></tr><tr><td><code>exports[].splunk.endpoint</code></td><td>The Splunk HEC URL destination.<br>Data type: String.</td></tr><tr><td><code>exports[].splunk.caCertSecretRef</code></td><td>Optional. Reference to a custom CA certificate secret (<code>secretName.keyName</code>). Mutually exclusive with <code>verifyWithClusterCACert</code>.<br>Data type: String.</td></tr><tr><td><code>exports[].splunk.allowUnverifiedCertificate</code></td><td>Optional. Skips TLS verification when set to true. For testing purposes only.<br>Data type: Boolean.</td></tr><tr><td><code>exports[].splunk.verifyWithClusterCACert</code></td><td>Optional. Uses the cluster's own CA for verification. It cannot be used simultaneously with <code>caCertSecretRef</code>.<br>Data type: Boolean.</td></tr></tbody></table>
+| Parameter | Description |
+| --- | --- |
+| `exports[].name` | The export name. The operator internally prefixes this with `operator-`.Data type: String. |
+| `exports[].sources` | Data sources to export. Use `["audit"]` for audit logs.Data type: List of strings. |
+| `exports[].splunk.authTokenSecretRef` | Reference to the Kubernetes Secret containing the HEC token using the `secretName.keyName` format.Data type: String. |
+| `exports[].splunk.endpoint` | The Splunk HEC URL destination.Data type: String. |
+| `exports[].splunk.caCertSecretRef` | Optional. Reference to a custom CA certificate secret (`secretName.keyName`). Mutually exclusive with `verifyWithClusterCACert`.Data type: String. |
+| `exports[].splunk.allowUnverifiedCertificate` | Optional. Skips TLS verification when set to true. For testing purposes only.Data type: Boolean. |
+| `exports[].splunk.verifyWithClusterCACert` | Optional. Uses the cluster's own CA for verification. It cannot be used simultaneously with `caCertSecretRef`.Data type: Boolean. |
 
 #### Disable auditing
 

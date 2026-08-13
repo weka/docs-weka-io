@@ -44,7 +44,7 @@ When a stateless client mounts a filesystem in a cluster, it creates a client co
 {% hint style="warning" %}
 The client target version must be consistent across all clusters. It can match the cluster version or be one major version earlier (regardless the minor), provided that version is available in the cluster for client download.
 
-To upgrade the cluster to a version higher than the first major release above the client version, see [upgrading-weka-versions.md](../../operation-guide/upgrading-weka-versions.md "mention").
+To upgrade the cluster to a version higher than the first major release above the client version, see [README.md](../../operation-guide/upgrading-weka-versions/README.md "mention").
 {% endhint %}
 
 #### Procedure:

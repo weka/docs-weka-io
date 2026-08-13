@@ -29,7 +29,15 @@ Bucket names must be unique across the entire cluster. If the name is already in
 
 **Parameters**
 
-<table><thead><tr><th width="164">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>name</code>*</td><td>The name for the S3 bucket to add.<br>Refer to the <a href="../s3-limitations.md#buckets">Bucket Naming Limitations</a> section.</td></tr><tr><td><code>policy</code></td><td>The name of a pre-defined bucket policy for anonymous access.<br>Possible values: <code>none</code>, <code>download</code>, <code>upload</code>, <code>public</code>.<br>Default: <code>none</code></td></tr><tr><td><code>policy-json</code></td><td>A path to a custom policy JSON file representing an S3 bucket policy for anonymous access.</td></tr><tr><td><code>hard-quota</code></td><td>Hard quota for the S3 bucket.<br>You can only set on a new bucket without existing data. You cannot set it when using <code>existing-path</code> to an existing directory with data.</td></tr><tr><td><code>fs-name</code></td><td>Existing filesystem name to create the bucket within.<br>If omitted, the system uses the tenant default filesystem first and then the cluster default filesystem. If neither default is configured, the command fails unless you specify <code>fs-name</code> or <code>fs-id</code>.</td></tr><tr><td><code>fs-id</code></td><td>Existing filesystem ID to create the bucket within.<br>If omitted, the system uses the tenant default filesystem first and then the cluster default filesystem. If neither default is configured, the command fails unless you specify <code>fs-name</code> or <code>fs-id</code>.</td></tr><tr><td><code>existing-path</code></td><td>Existing directory path relative to the filesystem root to expose a bucket from.</td></tr></tbody></table>
+| Name | Value |
+| --- | --- |
+| `name`* | The name for the S3 bucket to add.Refer to the [Bucket Naming Limitations](../s3-limitations.md#buckets) section. |
+| `policy` | The name of a pre-defined bucket policy for anonymous access.Possible values: `none`, `download`, `upload`, `public`.Default: `none` |
+| `policy-json` | A path to a custom policy JSON file representing an S3 bucket policy for anonymous access. |
+| `hard-quota` | Hard quota for the S3 bucket.You can only set on a new bucket without existing data. You cannot set it when using `existing-path` to an existing directory with data. |
+| `fs-name` | Existing filesystem name to create the bucket within.If omitted, the system uses the tenant default filesystem first and then the cluster default filesystem. If neither default is configured, the command fails unless you specify `fs-name` or `fs-id`. |
+| `fs-id` | Existing filesystem ID to create the bucket within.If omitted, the system uses the tenant default filesystem first and then the cluster default filesystem. If neither default is configured, the command fails unless you specify `fs-name` or `fs-id`. |
+| `existing-path` | Existing directory path relative to the filesystem root to expose a bucket from. |
 
 ## List buckets
 
@@ -53,7 +61,10 @@ Use the following command line to set an S3 bucket quota:
 
 **Parameters**
 
-<table><thead><tr><th width="186">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>bucket-name</code>*</td><td>The name of an existing S3 bucket.</td></tr><tr><td><code>hard-quota</code>*</td><td>Hard quota for the S3 bucket.<br>You can only set it initially on an empty bucket. Calling this command on a bucket that already has a quota changes the quota limitation.</td></tr></tbody></table>
+| Name | Value |
+| --- | --- |
+| `bucket-name`* | The name of an existing S3 bucket. |
+| `hard-quota`* | Hard quota for the S3 bucket.You can only set it initially on an empty bucket. Calling this command on a bucket that already has a quota changes the quota limitation. |
 
 ## Reset a bucket quota
 
@@ -222,7 +233,10 @@ Use the following command line to set a pre-defined bucket policy:
 
 **Parameters**
 
-<table><thead><tr><th width="228">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>bucket-name</code>*</td><td>Name of an existing S3 bucket.</td></tr><tr><td><code>bucket-policy</code>*</td><td>Name of a pre-defined bucket policy for anonymous access.<br>Possible values: <code>none</code>, <code>download</code>, <code>upload</code>, <code>public</code>.</td></tr></tbody></table>
+| Name | Value |
+| --- | --- |
+| `bucket-name`* | Name of an existing S3 bucket. |
+| `bucket-policy`* | Name of a pre-defined bucket policy for anonymous access.Possible values: `none`, `download`, `upload`, `public`. |
 
 ### Set a custom bucket policy
 
@@ -270,7 +284,10 @@ Use the following command line to set a custom bucket policy:
 
 **Parameters**
 
-<table><thead><tr><th width="215">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>bucket-name</code>*</td><td>Name of an existing S3 bucket.</td></tr><tr><td><code>policy-file</code>*</td><td>A path to a custom JSON file representing an S3 bucket policy for anonymous access.<br>Wildcards (such as <code>s3:*</code>) are not allowed as an <code>Action</code> in the custom policy file.<br>See <a href="../s3-limitations.md#supported-policy-actions">Supported Policy Actions</a>.</td></tr></tbody></table>
+| Name | Value |
+| --- | --- |
+| `bucket-name`* | Name of an existing S3 bucket. |
+| `policy-file`* | A path to a custom JSON file representing an S3 bucket policy for anonymous access.Wildcards (such as `s3:*`) are not allowed as an `Action` in the custom policy file.See [Supported Policy Actions](../s3-limitations.md#supported-policy-actions). |
 
 ### View a bucket policy
 
@@ -282,7 +299,9 @@ Use the following command line to view an S3 bucket policy name/JSON:
 
 **Parameters**
 
-<table><thead><tr><th width="219">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>bucket-name</code>*</td><td>Name of an existing S3 bucket.</td></tr></tbody></table>
+| Name | Value |
+| --- | --- |
+| `bucket-name`* | Name of an existing S3 bucket. |
 
 ### Unset a bucket policy
 
@@ -294,4 +313,6 @@ Use the following command line to unset an S3 bucket policy:
 
 **Parameters**
 
-<table><thead><tr><th width="227">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>bucket-name</code>*</td><td>Name of an existing S3 bucket.</td></tr></tbody></table>
+| Name | Value |
+| --- | --- |
+| `bucket-name`* | Name of an existing S3 bucket. |

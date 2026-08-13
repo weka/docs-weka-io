@@ -11,7 +11,12 @@ description: >-
 
 The operator creates four distinct secrets for each WekaCluster to facilitate different access requirements:
 
-<table><thead><tr><th width="173">Secret type</th><th width="270">Format</th><th>Purpose</th></tr></thead><tbody><tr><td>Operator Secret</td><td><code>weka-operator-&#x3C;cluster-uid></code></td><td>Used by the operator for administrative operations.</td></tr><tr><td>User Admin Secret</td><td><code>weka-cluster-&#x3C;cluster-name></code></td><td>Provides access for the weka cluster with admin rights</td></tr><tr><td>Client Secret</td><td><code>weka-client-&#x3C;cluster-name></code></td><td>Used by WEKA clients to connect to the cluster with the minimum privileges required to join as a client.</td></tr><tr><td>CSI Secret</td><td><code>weka-csi-&#x3C;cluster-name></code></td><td>Used by the CSI plugin for storage provisioning.</td></tr></tbody></table>
+| Secret type | Format | Purpose |
+| --- | --- | --- |
+| Operator Secret | `weka-operator-&#x3C;cluster-uid>` | Used by the operator for administrative operations. |
+| User Admin Secret | `weka-cluster-&#x3C;cluster-name>` | Provides access for the weka cluster with admin rights |
+| Client Secret | `weka-client-&#x3C;cluster-name>` | Used by WEKA clients to connect to the cluster with the minimum privileges required to join as a client. |
+| CSI Secret | `weka-csi-&#x3C;cluster-name>` | Used by the CSI plugin for storage provisioning. |
 
 ### Configure Client Secret
 

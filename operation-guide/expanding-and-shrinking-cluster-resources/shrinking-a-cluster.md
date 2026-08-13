@@ -65,7 +65,9 @@ To deactivate a drive, run the following command:
 
 **Parameters**
 
-<table><thead><tr><th width="229">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>uuids</code>*</td><td>Comma-separated drive identifiers.</td></tr></tbody></table>
+| Name | Value |
+| --- | --- |
+| `uuids`* | Comma-separated drive identifiers. |
 
 {% hint style="info" %}
 Running the `weka cluster drive` command is displayed whether the redistribution is still being performed.
@@ -81,7 +83,10 @@ To remove a drive, run the following command:
 
 **Parameters**
 
-<table><thead><tr><th width="232">Name</th><th>Value</th></tr></thead><tbody><tr><td><strong>Name</strong></td><td><strong>Value</strong></td></tr><tr><td><code>uuids</code>*</td><td>Comma-separated drive identifiers.</td></tr></tbody></table>
+| Name | Value |
+| --- | --- |
+| **Name** | **Value** |
+| `uuids`* | Comma-separated drive identifiers. |
 
 ## Remove containers with their allocated drives
 
@@ -98,7 +103,10 @@ To deactivate containers with their drives, run the following command:
 
 **Parameters**
 
-<table><thead><tr><th width="224">Name</th><th width="398">Value</th><th>Default</th></tr></thead><tbody><tr><td><code>container-ids</code>*</td><td>Space-separated container identifiers</td><td></td></tr><tr><td><code>allow-unavailable</code></td><td>Allow deactivation of an unavailable container.<br>If the <code>container-id</code> value returns, it joins the cluster in an active state.</td><td>No</td></tr></tbody></table>
+| Name | Value | Default |
+| --- | --- | --- |
+| `container-ids`* | Space-separated container identifiers |  |
+| `allow-unavailable` | Allow deactivation of an unavailable container.If the `container-id` value returns, it joins the cluster in an active state. | No |
 
 To interpret container lifecycle and health during deactivation, see [Container state and status fields](https://app.gitbook.com/s/ZW262oqYA8pNNfGvXjHa/operation-guide/expanding-and-shrinking-cluster-resources/container-state-and-status-fields).
 
@@ -112,4 +120,6 @@ To remove the container from the cluster, run the following command:
 
 **Parameters**
 
-<table><thead><tr><th width="230">Name</th><th>Value</th><th data-hidden>Default</th></tr></thead><tbody><tr><td><code>container-id</code>*</td><td>Comma-separated container identifiers.</td><td></td></tr></tbody></table>
+| Name | Value | Default |
+| --- | --- | --- |
+| `container-id`* | Comma-separated container identifiers. |  |

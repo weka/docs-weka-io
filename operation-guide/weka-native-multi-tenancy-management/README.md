@@ -1,31 +1,31 @@
 ---
 description: >-
-  Logically separate users and resources on one WEKA cluster. Host tenants with
-  independent LDAP, KMS, and QoS. Scale from small workloads to multi-petabyte
+  Logically separate users and resources on one NeuralMesh cluster. Host tenants
+  with independent KMS and QoS. Scale from small workloads to multi-petabyte
   deployments on shared infrastructure.
 ---
 
-# WEKA native multi-tenancy management
+# Native multi-tenancy management
 
 ## Overview
 
-WEKA native multi-tenancy enables multiple independent tenants to share a single cluster while maintaining strict logical isolation for users, data, and policies. Tenants can have dedicated network spaces, per-tenant security controls, encryption per tenant, QoS, capacity quotas, and elastic resource sharing.
+Native multi-tenancy enables multiple independent tenants to share a single cluster while maintaining strict logical isolation for users, data, and policies. Tenants can have dedicated network spaces, per-tenant security controls, encryption per tenant, QoS, capacity quotas, and elastic resource sharing.
 
-The architecture delivers VPC-like networking flexibility within a single cluster. Each tenant maps to its own network namespaces and VLANs, enabling overlapping IP address ranges and custom subnets within a single WEKA cluster.
+The architecture delivers VPC-like networking flexibility within a single cluster. Each tenant maps to its own network namespaces and VLANs, enabling overlapping IP address ranges and custom subnets within a single cluster.
 
 The platform is designed to serve tenants of any scale, from small 1 TB workloads to very large multi-petabyte deployments, simultaneously on the same hardware footprint. Tenants share CPU, memory, and NVMe drives while receiving predictable, policy-enforced performance through per-tenant QoS caps and capacity quotas.
 
-<div data-with-frame="true"><figure><img src="../../.gitbook/assets/mutli-tenancy-arch.png" alt=""><figcaption><p>WEKA native multi-tenancy architecture</p></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/mutli-tenancy-arch.png" alt=""><figcaption><p>Native multi-tenancy architecture</p></figcaption></figure></div>
 
-## WEKA native multi-tenancy: key concepts
+## Native multi-tenancy: key concepts
 
-Native multi-tenancy allows multiple isolated tenants to run on the same physical infrastructure. While tenants share CPU, memory, and drives, WEKA enforces strict isolation in the datapath, and control plane.
+Native multi-tenancy allows multiple isolated tenants to run on the same physical infrastructure. While tenants share CPU, memory, and drives, isolation is enforced in the datapath and the control plane.
 
 Native multi-tenancy supports the following features:
 
 * **Scale:** Tenants can scale from 1TB in size to multi-PB and they can coexist on the same cluster and scale seamlessly through resource elasticity in a cluster.
 * **Network Isolation:** Tenants operate within dedicated network spaces (VLANs), each with its unique IP range. This setup allows overlapping IP addresses among different tenants. Additionally, a single tenant can utilize multiple network spaces.
-* **Per-tenant identity:** Each tenant can integrate with its own LDAP or Active Directory server for independent directory services.
+* **Per-tenant identity:** Each tenant can integrate with its own LDAP or Active Directory server for independent directory services. This applies to tenant user accounts. NFS group resolution uses a separate LDAP configuration that is available only in the root organization. See [Manage NFS for tenants](manage-nfs-for-tenants.md).
 * **Tenant-level security:** Each tenant can configure a custom Key Management System (KMS) for independent encryption.
 * **Multi-tenant S3:** The system provides tenant-scoped S3 buckets with tenant-specific capacity accounting and security controls. S3 access is available through the cluster's default network and tenant-specific VLANs. S3 objects and buckets remain subject to each tenant's security policies and capacity limits.
 * **Quality of Service (QoS):** Cluster Administrators can set performance limits on per tenant basis, such as maximum throughput (MB/s) and IOPS, to prevent "noisy neighbor" behavior and ensure predictable performance for each tenant.
@@ -63,14 +63,14 @@ When a cluster administrator links one or more network spaces to a tenant, WEKA 
 
 ## Cluster-level vs tenant-level responsibilities
 
-WEKA native multi-tenancy enforces a distinct separation between cluster-level and tenant-level operations. This separation ensures administrative isolation and prevents unintended access across tenants.
+Native multi-tenancy enforces a distinct separation between cluster-level and tenant-level operations. This separation ensures administrative isolation and prevents unintended access across tenants.
 
 ### **Cluster-level responsibilities (ClusterAdmin)**
 
 The cluster administrator manages the system's physical fabric and the high-level logical boundaries between tenants. A user with the `ClusterAdmin` role performs the following tasks:
 
 * **Manages infrastructure:** This includes overseeing physical hardware, nodes, drives, and system-wide upgrades.
-* **Defines network primitives:** The administrator creates and maintains virtual routing and forwarding (VRDF) pools and shared network endpoints.
+* **Defines network primitives:** The administrator creates and maintains virtual routing and forwarding (VRF) pools and shared network endpoints.
 * **Manages the tenant lifecycle:** This involves creating, renaming, and deleting tenant entities.
 * **Maps network security:** The administrator attaches or detaches network spaces to tenants and enforces tenant-wide security flags such as `enforceMountToNetworkSpace`.
 * **Sets resource boundaries:** This includes defining storage capacity quotas (SSD and total) and setting per-tenant quality-of-service (QoS) caps.
@@ -114,7 +114,7 @@ Choose native multi-tenancy by default.
 
 As part of the upgrade to this version, the system transitions to a native multi-tenancy model. Existing organizations are upgraded and replaced by tenants, with no data copy required. All existing data remains fully accessible and continues to function as before.
 
-**Role conversion:** Users with the `OrgAdmin` role are converted `TenantAdmin`.
+**Role conversion:** Users with the `OrgAdmin` role are converted to `TenantAdmin`.
 
 **API and CLI deprecation:** Commands and routes that use `org` terminology are deprecated and will transition to `tenant` syntax.
 

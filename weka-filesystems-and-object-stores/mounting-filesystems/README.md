@@ -147,7 +147,12 @@ This setup ensures that the stateless client operates with restricted privileges
 
 **Parameters**
 
-<table><thead><tr><th width="250">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>options</code></td><td>See Additional Mount Options below.</td></tr><tr><td><code>backend</code></td><td>IP/hostname of a backend container.<br>Mandatory.</td></tr><tr><td><code>fs</code></td><td>Filesystem name.<br>Mandatory.</td></tr><tr><td><code>mount-point</code></td><td>Path to mount on the local server.<br>Mandatory.</td></tr></tbody></table>
+| Name | Value |
+| --- | --- |
+| `options` | See Additional Mount Options below. |
+| `backend` | IP/hostname of a backend container.Mandatory. |
+| `fs` | Filesystem name.Mandatory. |
+| `mount-point` | Path to mount on the local server.Mandatory. |
 
 ***
 
@@ -311,7 +316,10 @@ weka cluster mount-defaults set [--qos-max-throughput qos-max-throughput] [--qos
 
 **Parameters**
 
-<table><thead><tr><th width="249.9453125">Option</th><th>Description</th></tr></thead><tbody><tr><td><code>qos_max_throughput</code></td><td>Specifies the default maximum request rate for Quality of Service (QoS), in megabytes per second. This is an average-based limit applied at the frontend. The system allows short bursts above this value but aims to maintain the specified limit over time.</td></tr><tr><td><code>qos_preferred_throughput</code></td><td>Specifies the default preferred request rate for Quality of Service (QoS), in megabytes per second. This is a soft target used to guide bandwidth allocation. The system aims to maintain this rate under normal conditions but allows the frontend to exceed it, up to the maximum, when additional resources are available.</td></tr></tbody></table>
+| Option | Description |
+| --- | --- |
+| `qos_max_throughput` | Specifies the default maximum request rate for Quality of Service (QoS), in megabytes per second. This is an average-based limit applied at the frontend. The system allows short bursts above this value but aims to maintain the specified limit over time. |
+| `qos_preferred_throughput` | Specifies the default preferred request rate for Quality of Service (QoS), in megabytes per second. This is a soft target used to guide bandwidth allocation. The system aims to maintain this rate under normal conditions but allows the frontend to exceed it, up to the maximum, when additional resources are available. |
 
 ### Monitor active mounts per container
 

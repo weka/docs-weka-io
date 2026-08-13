@@ -213,7 +213,10 @@ Only a Data Services container is required to enable user quota accounting on an
 
 **Parameters**
 
-<table><thead><tr><th width="157">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>filesystem</code>*</td><td>Filesystem name.</td></tr><tr><td><code>snap-name</code></td><td>Name of the writable snapshot.</td></tr></tbody></table>
+| Name | Value |
+| --- | --- |
+| `filesystem`* | Filesystem name. |
+| `snap-name` | Name of the writable snapshot. |
 
 ## List quotas or default quotas
 

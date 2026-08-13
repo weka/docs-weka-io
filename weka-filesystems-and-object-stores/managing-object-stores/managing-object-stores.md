@@ -66,7 +66,11 @@ Create object store buckets to be used for tiering or snapshots.
 
 3. Set the following in the **Create Object Store Bucket** dialog:
 
-<table><thead><tr><th width="134.98724365234375">Setting</th><th>Description</th></tr></thead><tbody><tr><td><strong>Name</strong></td><td>A meaningful name for the bucket.</td></tr><tr><td><strong>Object Store</strong></td><td>The object store that holds the bucket. Select the local object store for tiering and snapshots. Select the remote object store for snapshots only.</td></tr><tr><td><strong>Type</strong></td><td>The type of object store: <code>AWS</code>, <code>AZURE</code>, or <code>OTHER</code>. Use <code>OTHER</code> for GCP and other S3-compatible object stores.</td></tr></tbody></table>
+| Setting | Description |
+| --- | --- |
+| **Name** | A meaningful name for the bucket. |
+| **Object Store** | The object store that holds the bucket. Select the local object store for tiering and snapshots. Select the remote object store for snapshots only. |
+| **Type** | The type of object store: `AWS`, `AZURE`, or `OTHER`. Use `OTHER` for GCP and other S3-compatible object stores. |
 
 4. Set the connection parameters under **Buckets Default Parameters**. Leave a parameter empty to use the value defined at the object store level.
 
@@ -74,17 +78,37 @@ Create object store buckets to be used for tiering or snapshots.
 {% tab title="AWS" %}
 NeuralMesh supports two options for creating AWS S3 buckets: for a cluster on EC2, and for a cluster that is not on EC2 using STS.
 
-<table><thead><tr><th width="209.1171875">Setting</th><th>Description</th></tr></thead><tbody><tr><td><strong>Protocol</strong></td><td>The protocol to use when connecting to the bucket.</td></tr><tr><td><strong>Hostname</strong></td><td>The DNS name or IP address of the bucket entry point.</td></tr><tr><td><strong>Port</strong></td><td>The port to use when connecting to the bucket.</td></tr><tr><td><strong>Bucket</strong></td><td>The name of the bucket that stores the data.</td></tr><tr><td><strong>Auth Method</strong></td><td>The authentication method. AWS uses <code>AWSSignature4</code>.</td></tr><tr><td><strong>Region</strong></td><td>The region assigned to work with.</td></tr><tr><td><strong>Access Key</strong>, <strong>Secret Key</strong></td><td>The keys of a user granted read and write access to the bucket. Leave empty when the EC2 instances have the permissions granted by the IAM role.</td></tr></tbody></table>
+| Setting | Description |
+| --- | --- |
+| **Protocol** | The protocol to use when connecting to the bucket. |
+| **Hostname** | The DNS name or IP address of the bucket entry point. |
+| **Port** | The port to use when connecting to the bucket. |
+| **Bucket** | The name of the bucket that stores the data. |
+| **Auth Method** | The authentication method. AWS uses `AWSSignature4`. |
+| **Region** | The region assigned to work with. |
+| **Access Key**, **Secret Key** | The keys of a user granted read and write access to the bucket. Leave empty when the EC2 instances have the permissions granted by the IAM role. |
 
 For a cluster that is not on EC2, enable **Enable AssumeRole API** and set the following:
 
-<table><thead><tr><th width="215.00494384765625">Setting</th><th>Description</th></tr></thead><tbody><tr><td><strong>Role ARN</strong></td><td>The Amazon Resource Name (ARN) to assume. The ARN must have the permissions defined in the IAM role for S3 access.</td></tr><tr><td><strong>Role Session Name</strong></td><td>A unique identifier for the assumed role session.</td></tr><tr><td><strong>Session Duration</strong></td><td>The duration of the temporary security credentials in seconds. Possible values: 900 to 43200. Default: 3600.</td></tr><tr><td><strong>Access Key</strong>, <strong>Secret Key</strong></td><td>The keys of the user granted the AssumeRole permissions.</td></tr></tbody></table>
+| Setting | Description |
+| --- | --- |
+| **Role ARN** | The Amazon Resource Name (ARN) to assume. The ARN must have the permissions defined in the IAM role for S3 access. |
+| **Role Session Name** | A unique identifier for the assumed role session. |
+| **Session Duration** | The duration of the temporary security credentials in seconds. Possible values: 900 to 43200. Default: 3600. |
+| **Access Key**, **Secret Key** | The keys of the user granted the AssumeRole permissions. |
 
 <div data-with-frame="true"><figure><img src="../../.gitbook/assets/create_obs_aws.png" alt=""><figcaption><p>Create AWS S3 bucket</p></figcaption></figure></div>
 {% endtab %}
 
 {% tab title="Azure" %}
-<table><thead><tr><th width="214.65704345703125">Setting</th><th>Description</th></tr></thead><tbody><tr><td><strong>Protocol</strong></td><td>The protocol to use when connecting to the bucket.</td></tr><tr><td><strong>Hostname</strong></td><td>The DNS name or IP address of the bucket entry point.</td></tr><tr><td><strong>Port</strong></td><td>The port to use when connecting to the bucket.</td></tr><tr><td><strong>Bucket</strong></td><td>The name of the bucket that stores the data.</td></tr><tr><td><strong>Auth Method</strong></td><td>The authentication method to connect to the bucket.</td></tr><tr><td><strong>Access Key</strong>, <strong>Secret Key</strong></td><td>The keys of a user granted read and write access to the bucket.</td></tr></tbody></table>
+| Setting | Description |
+| --- | --- |
+| **Protocol** | The protocol to use when connecting to the bucket. |
+| **Hostname** | The DNS name or IP address of the bucket entry point. |
+| **Port** | The port to use when connecting to the bucket. |
+| **Bucket** | The name of the bucket that stores the data. |
+| **Auth Method** | The authentication method to connect to the bucket. |
+| **Access Key**, **Secret Key** | The keys of a user granted read and write access to the bucket. |
 
 <div data-with-frame="true"><figure><img src="../../.gitbook/assets/create_obs_azure.png" alt=""><figcaption><p>Create Azure S3 bucket</p></figcaption></figure></div>
 {% endtab %}
@@ -92,7 +116,15 @@ For a cluster that is not on EC2, enable **Enable AssumeRole API** and set the f
 {% tab title="OTHER" %}
 Use this type for GCP and other S3-compatible object stores.
 
-<table><thead><tr><th width="220.38134765625">Setting</th><th>Description</th></tr></thead><tbody><tr><td><strong>Protocol</strong></td><td>The protocol to use when connecting to the bucket.</td></tr><tr><td><strong>Hostname</strong></td><td>The DNS name or IP address of the bucket entry point.</td></tr><tr><td><strong>Port</strong></td><td>The port to use when connecting to the bucket.</td></tr><tr><td><strong>Bucket</strong></td><td>The name of the bucket that stores the data.</td></tr><tr><td><strong>Auth Method</strong></td><td>The authentication method to connect to the bucket.</td></tr><tr><td><strong>Region</strong></td><td>The region assigned to work with. You can usually leave it empty.</td></tr><tr><td><strong>Access Key</strong>, <strong>Secret Key</strong></td><td>The keys of a user granted read and write access to the bucket. For GCP, leave empty when the service account has the permissions granted by the IAM role. Set the keys when the cluster does not run on GCP instances.</td></tr></tbody></table>
+| Setting | Description |
+| --- | --- |
+| **Protocol** | The protocol to use when connecting to the bucket. |
+| **Hostname** | The DNS name or IP address of the bucket entry point. |
+| **Port** | The port to use when connecting to the bucket. |
+| **Bucket** | The name of the bucket that stores the data. |
+| **Auth Method** | The authentication method to connect to the bucket. |
+| **Region** | The region assigned to work with. You can usually leave it empty. |
+| **Access Key**, **Secret Key** | The keys of a user granted read and write access to the bucket. For GCP, leave empty when the service account has the permissions granted by the IAM role. Set the keys when the cluster does not run on GCP instances. |
 
 <div data-with-frame="true"><figure><img src="../../.gitbook/assets/create_obs_other.png" alt=""><figcaption><p>Create GCP S3 bucket</p></figcaption></figure></div>
 {% endtab %}
@@ -119,7 +151,16 @@ The object store buckets appear on the **Object Stores** page. The table title s
 
 The table shows the following details for each bucket:
 
-<table><thead><tr><th width="149.8878173828125">Column</th><th>Description</th></tr></thead><tbody><tr><td><strong>Status</strong></td><td>The connection status of the bucket.</td></tr><tr><td><strong>Name</strong></td><td>The name of the bucket.</td></tr><tr><td><strong>Protocol</strong></td><td>The protocol used to connect to the bucket.</td></tr><tr><td><strong>Port</strong></td><td>The port used to connect to the bucket.</td></tr><tr><td><strong>Region</strong></td><td>The region assigned to the bucket.</td></tr><tr><td><strong>Object Store</strong></td><td>The object store that holds the bucket.</td></tr><tr><td><strong>Auth Method</strong></td><td>The authentication method used to connect to the bucket.</td></tr><tr><td><strong>Errors</strong></td><td>The error details, if errors exist.</td></tr></tbody></table>
+| Column | Description |
+| --- | --- |
+| **Status** | The connection status of the bucket. |
+| **Name** | The name of the bucket. |
+| **Protocol** | The protocol used to connect to the bucket. |
+| **Port** | The port used to connect to the bucket. |
+| **Region** | The region assigned to the bucket. |
+| **Object Store** | The object store that holds the bucket. |
+| **Auth Method** | The authentication method used to connect to the bucket. |
+| **Errors** | The error details, if errors exist. |
 
 ## Edit an object store bucket <a href="#edit-an-object-store-bucket" id="edit-an-object-store-bucket"></a>
 

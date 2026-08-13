@@ -139,7 +139,14 @@ Configure SELinux support for NeuralMesh Axon clusters hosted in a Kubernetes ru
 
 Configure firewall rules to allow these ports and protocols on all cluster servers:
 
-<table><thead><tr><th width="236">Port/NodePort</th><th width="116">Protocol</th><th>Purpose</th></tr></thead><tbody><tr><td>14000-14100, 15000-15100, 16000-16100</td><td>TCP + UDP</td><td>NeuralMesh Axon Core container traffic</td></tr><tr><td>443</td><td>TCP</td><td>NeuralMesh Axon Core traces remote viewer</td></tr><tr><td>22</td><td>TCP</td><td>SSH management access</td></tr><tr><td>123</td><td>TCP</td><td>NTP management access</td></tr><tr><td>8200, 8201</td><td>TCP</td><td>Hashicorp Vault traffic</td></tr><tr><td>5696</td><td>TCP</td><td>KMIP traffic</td></tr></tbody></table>
+| Port/NodePort | Protocol | Purpose |
+| --- | --- | --- |
+| 14000-14100, 15000-15100, 16000-16100 | TCP + UDP | NeuralMesh Axon Core container traffic |
+| 443 | TCP | NeuralMesh Axon Core traces remote viewer |
+| 22 | TCP | SSH management access |
+| 123 | TCP | NTP management access |
+| 8200, 8201 | TCP | Hashicorp Vault traffic |
+| 5696 | TCP | KMIP traffic |
 
 ### CPU core management
 

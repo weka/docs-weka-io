@@ -148,7 +148,9 @@ This operation might take some time to complete. During that time, SMB IOs are s
 
 **Parameters**
 
-<table><thead><tr><th width="287">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>container-ids</code>*</td><td>Container IDs of containers with a frontend process to serve the SMB service.<br>Specify a comma-separated list with a minimum of 3 containers.</td></tr></tbody></table>
+| Name | Value |
+| --- | --- |
+| `container-ids`* | Container IDs of containers with a frontend process to serve the SMB service.Specify a comma-separated list with a minimum of 3 containers. |
 
 ## Configure trusted domains <a href="#configure-trusted-domains" id="configure-trusted-domains"></a>
 
@@ -168,7 +170,11 @@ Use the following command line to add an SMB trusted domain:
 
 **Parameters**
 
-<table><thead><tr><th width="221">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>domain-name</code>*</td><td>The name of the domain to add.</td></tr><tr><td><code>from-id</code>*</td><td>The first ID of the range for the domain ID mapping.<br>The range cannot overlap with other domains.</td></tr><tr><td><code>to-id</code>*</td><td>The last ID of the range for the domain ID mapping.<br>The range cannot overlap with other domains</td></tr></tbody></table>
+| Name | Value |
+| --- | --- |
+| `domain-name`* | The name of the domain to add. |
+| `from-id`* | The first ID of the range for the domain ID mapping.The range cannot overlap with other domains. |
+| `to-id`* | The last ID of the range for the domain ID mapping.The range cannot overlap with other domains |
 
 ### Remove trusted domains
 
@@ -180,7 +186,9 @@ Use the following command line to remove an SMB-trusted domain:
 
 **Parameters**
 
-<table><thead><tr><th width="237">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>domain-id</code>*</td><td>The internal ID of the domain to remove</td></tr></tbody></table>
+| Name | Value |
+| --- | --- |
+| `domain-id`* | The internal ID of the domain to remove |
 
 {% hint style="info" %}
 **SMB-W cluster restart and verification**
@@ -279,7 +287,11 @@ Use the following command line to add users to a share user-list:
 
 **Parameters**
 
-<table><thead><tr><th width="239">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>share-id</code>*</td><td>The ID of the share to update.</td></tr><tr><td><code>user-list-type</code>*</td><td>The type of permissions list for <code>users</code>:<br><br><code>read_only</code>: list of users that do not get write access to the SMB share, regardless of the <code>read-only</code> setting.<br><br><code>read_write</code>: list of users get write access to the SMB share, regardless of the <code>read-only</code> setting.<br><br><code>valid</code>: list of users allowed to log in to this SMB share service (an empty list means all users are allowed).<br><br><code>invalid</code>: list of users that are not allowed to log in to this share SMB service.</td></tr><tr><td><code>users</code>*</td><td>A comma-separated list of users to add to the <code>user-list-type</code> list.<br>Can use the <code>@</code> notation to allow groups of users. For example, <code>root, Jack, @domain\admins.</code><br>You can set up to 8 users/groups for all lists combined per share.</td></tr></tbody></table>
+| Name | Value |
+| --- | --- |
+| `share-id`* | The ID of the share to update. |
+| `user-list-type`* | The type of permissions list for `users`:`read_only`: list of users that do not get write access to the SMB share, regardless of the `read-only` setting.`read_write`: list of users get write access to the SMB share, regardless of the `read-only` setting.`valid`: list of users allowed to log in to this SMB share service (an empty list means all users are allowed).`invalid`: list of users that are not allowed to log in to this share SMB service. |
+| `users`* | A comma-separated list of users to add to the `user-list-type` list.Can use the `@` notation to allow groups of users. For example, `root, Jack, @domain\admins.`You can set up to 8 users/groups for all lists combined per share. |
 
 ***
 
@@ -291,7 +303,11 @@ Use the following command line to remove users from a share user-list:
 
 **Parameters**
 
-<table><thead><tr><th width="245">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>share-id</code>*</td><td>The ID of the share to be updated.</td></tr><tr><td><code>user-list-type</code>*</td><td>The type of permissions list for <code>users</code>:<br><br><code>read_only</code>: list of users that do not get write access to the SMB share, regardless of the <code>read-only</code> setting.<br><br><code>read_write</code>: list of users get write access to the SMB share, regardless of the <code>read-only</code> setting.<br><br><code>valid</code>: list of users allowed to log in to this SMB share service (an empty list means all users are allowed).<br><br><code>invalid</code>: list of users not allowed to log in to this SMB share service.</td></tr><tr><td><code>users</code>*</td><td>A comma-separated list of users to remove from the <code>user-list-type</code> list. Can use the <code>@</code> notation to allow groups of users, e.g. <code>root, Jack, @domain\admins.</code><br>You can set up to 8 users/groups for all lists combined per share.</td></tr></tbody></table>
+| Name | Value |
+| --- | --- |
+| `share-id`* | The ID of the share to be updated. |
+| `user-list-type`* | The type of permissions list for `users`:`read_only`: list of users that do not get write access to the SMB share, regardless of the `read-only` setting.`read_write`: list of users get write access to the SMB share, regardless of the `read-only` setting.`valid`: list of users allowed to log in to this SMB share service (an empty list means all users are allowed).`invalid`: list of users not allowed to log in to this SMB share service. |
+| `users`* | A comma-separated list of users to remove from the `user-list-type` list. Can use the `@` notation to allow groups of users, e.g. `root, Jack, @domain\admins.`You can set up to 8 users/groups for all lists combined per share. |
 
 ***
 
@@ -303,7 +319,10 @@ Use the following command line to remove all users from a share user-list:
 
 **Parameters**
 
-<table><thead><tr><th width="244">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>share-id</code>*</td><td>The ID of the share to be updated</td></tr><tr><td><code>user-list-type</code>*</td><td>The type of permissions list to reset:<br><br><code>read_only</code>: list of users that do not get write access to the SMB share, regardless of the <code>read-only</code> setting.<br><br><code>read_write</code>: list of users get write access to the SMB share, regardless of the <code>read-only</code> setting.<br><br><code>valid</code>: list of users allowed to log in to this SMB share service (an empty list means all users are allowed).<br><br><code>invalid</code>: list of users not allowed to log in to this SMB share service.</td></tr></tbody></table>
+| Name | Value |
+| --- | --- |
+| `share-id`* | The ID of the share to be updated |
+| `user-list-type`* | The type of permissions list to reset:`read_only`: list of users that do not get write access to the SMB share, regardless of the `read-only` setting.`read_write`: list of users get write access to the SMB share, regardless of the `read-only` setting.`valid`: list of users allowed to log in to this SMB share service (an empty list means all users are allowed).`invalid`: list of users not allowed to log in to this SMB share service. |
 
 ## Remove SMB shares <a href="#remove-smb-shares" id="remove-smb-shares"></a>
 
@@ -315,7 +334,9 @@ Use the following command line to remove a share exposed to SMB:
 
 **Parameters**
 
-<table><thead><tr><th width="308">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>share-id</code>*</td><td>The ID of the share to remove.</td></tr></tbody></table>
+| Name | Value |
+| --- | --- |
+| `share-id`* | The ID of the share to remove. |
 
 {% hint style="success" %}
 **Example:** The following is an example of removing an SMB share defined as ID 1:

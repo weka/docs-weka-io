@@ -23,7 +23,10 @@ Load scales linearly based on the total process count in the cluster. This count
 
 Use these values to determine the necessary CPU resources for a cluster.
 
-<table><thead><tr><th width="191.72723388671875">Metric</th><th width="279.272705078125">Theoretical maximum</th><th>Recommended safe value</th></tr></thead><tbody><tr><td>Processes per 1 CPU core</td><td>750</td><td>550</td></tr><tr><td>Target utilization</td><td>100%</td><td>70%</td></tr></tbody></table>
+| Metric | Theoretical maximum | Recommended safe value |
+| --- | --- | --- |
+| Processes per 1 CPU core | 750 | 550 |
+| Target utilization | 100% | 70% |
 
 ### Size `workers.stats` on Kubernetes
 

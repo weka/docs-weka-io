@@ -22,25 +22,44 @@ Select **Monitor** or the NeuralMesh logo at any time to return to the system da
 
 Display the system dashboard with all its widgets. This is the default view when you sign in.
 
-<table><thead><tr><th width="197.203125">Page</th><th>Description</th></tr></thead><tbody><tr><td><strong>Background Tasks</strong></td><td>Follow long-running system operations, such as rebuild and redistribution.</td></tr></tbody></table>
+| Page | Description |
+| --- | --- |
+| **Background Tasks** | Follow long-running system operations, such as rebuild and redistribution. |
 
 #### Investigate
 
 Analyze the cluster behavior over time.
 
-<table><thead><tr><th width="214.53622436523438">Page</th><th>Description</th></tr></thead><tbody><tr><td><strong>Events</strong></td><td>Review the system events.</td></tr><tr><td><strong>Statistics</strong></td><td>Review overtime statistics, such as total operations, throughput, CPU usage, and read or write latency.</td></tr><tr><td><strong>Insights</strong></td><td>Review the system recommendations and detected anomalies.</td></tr><tr><td><strong>Filesystem Analytics</strong></td><td>Review the capacity and file distribution across the filesystems.</td></tr></tbody></table>
+| Page | Description |
+| --- | --- |
+| **Events** | Review the system events. |
+| **Statistics** | Review overtime statistics, such as total operations, throughput, CPU usage, and read or write latency. |
+| **Insights** | Review the system recommendations and detected anomalies. |
+| **Filesystem Analytics** | Review the capacity and file distribution across the filesystems. |
 
 #### Manage
 
 Manage the data services of the cluster.
 
-<table><thead><tr><th width="210.62997436523438">Page</th><th>Description</th></tr></thead><tbody><tr><td><strong>Filesystems</strong></td><td>Manage the filesystems, including tiering, thin provisioning, and encryption.</td></tr><tr><td><strong>Snapshots</strong></td><td>Manage snapshots.</td></tr><tr><td><strong>Snapshot Policies</strong></td><td>Define schedules that create and delete snapshots automatically.</td></tr><tr><td><strong>Object Stores</strong></td><td>Manage the object store buckets.</td></tr><tr><td><strong>Protocols</strong></td><td>Manage the filesystem protocols: SMB, S3, and NFS.</td></tr><tr><td><strong>Directory Quotas</strong></td><td>Manage directory quotas.</td></tr><tr><td><strong>Tenants</strong></td><td>Create and manage tenants and their quotas.</td></tr></tbody></table>
+| Page | Description |
+| --- | --- |
+| **Filesystems** | Manage the filesystems, including tiering, thin provisioning, and encryption. |
+| **Snapshots** | Manage snapshots. |
+| **Snapshot Policies** | Define schedules that create and delete snapshots automatically. |
+| **Object Stores** | Manage the object store buckets. |
+| **Protocols** | Manage the filesystem protocols: SMB, S3, and NFS. |
+| **Directory Quotas** | Manage directory quotas. |
+| **Tenants** | Create and manage tenants and their quotas. |
 
 #### Configure
 
 Set up the cluster and control access to it.
 
-<table><thead><tr><th width="214.3089599609375">Page</th><th>Description</th></tr></thead><tbody><tr><td><strong>Cluster Settings</strong></td><td>Configure the cluster, such as data availability, license, security, and central monitoring.</td></tr><tr><td><strong>Cluster Servers</strong></td><td>Configure the backend containers and expose the data in different protocols.</td></tr><tr><td><strong>User Management</strong></td><td>Manage local users, set up the user directory, and assign roles.</td></tr></tbody></table>
+| Page | Description |
+| --- | --- |
+| **Cluster Settings** | Configure the cluster, such as data availability, license, security, and central monitoring. |
+| **Cluster Servers** | Configure the backend containers and expose the data in different protocols. |
+| **User Management** | Manage local users, set up the user directory, and assign roles. |
 
 #### Top bar
 

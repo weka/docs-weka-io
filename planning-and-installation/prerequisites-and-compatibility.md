@@ -26,7 +26,11 @@ For cloud-based installations, WEKA supports a minimal configuration of **6 serv
 
 ## CPU
 
-<table><thead><tr><th width="356">CPU family/architecture</th><th width="202">Supported on backends</th><th>Supported on clients</th></tr></thead><tbody><tr><td>Intel Xeon E5 v3 (Haswell) through Xeon 6 (Granite Rapids / Sierra Forest) with up to 256 total CPU cores</td><td><span data-gb-custom-inline data-tag="emoji" data-code="1f44d">👍</span><br>Dual-socket</td><td><span data-gb-custom-inline data-tag="emoji" data-code="1f44d">👍</span><br>Single-socket and dual-socket</td></tr><tr><td>AMD EPYC™ processor families 2nd (Rome) through 5th (Turin) Generations with up to 256 total CPU cores</td><td><span data-gb-custom-inline data-tag="emoji" data-code="1f44d">👍</span><br>Single-socket</td><td><span data-gb-custom-inline data-tag="emoji" data-code="1f44d">👍</span><br>Single-socket and dual-socket</td></tr><tr><td>ARM (AArch64) - NVIDIA Grace single or dual-processor with up to 144 total CPU cores</td><td><span data-gb-custom-inline data-tag="emoji" data-code="1f44d">👍</span><br>NVIDIA Grace</td><td><span data-gb-custom-inline data-tag="emoji" data-code="1f44d">👍</span><br>NVIDIA Grace</td></tr></tbody></table>
+| CPU family/architecture | Supported on backends | Supported on clients |
+| --- | --- | --- |
+| Intel Xeon E5 v3 (Haswell) through Xeon 6 (Granite Rapids / Sierra Forest) with up to 256 total CPU cores | 👍Dual-socket | 👍Single-socket and dual-socket |
+| AMD EPYC™ processor families 2nd (Rome) through 5th (Turin) Generations with up to 256 total CPU cores | 👍Single-socket | 👍Single-socket and dual-socket |
+| ARM (AArch64) - NVIDIA Grace single or dual-processor with up to 144 total CPU cores | 👍NVIDIA Grace | 👍NVIDIA Grace |
 
 {% hint style="info" %}
 The following requirements must be met:

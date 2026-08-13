@@ -44,7 +44,12 @@ Identify how object operations behave when you access a versioned bucket through
 
 #### Behavior summary
 
-<table><thead><tr><th width="173">Operation</th><th width="146">Delete marker created</th><th>Standard S3 GET</th><th width="128">Versions by version ID</th><th>File-protocol access</th></tr></thead><tbody><tr><td>Delete via S3</td><td>Yes</td><td>404</td><td>Retained</td><td>Not accessible</td></tr><tr><td>Delete via file protocol</td><td>No</td><td>404</td><td>Retained</td><td>Not accessible</td></tr><tr><td>Rename or move via file protocol</td><td>No</td><td>404 at original path</td><td>Retained</td><td>Accessible at new path</td></tr><tr><td>Copy via file protocol</td><td>No</td><td>Source unchanged</td><td>Retained</td><td>Source and copy accessible</td></tr></tbody></table>
+| Operation | Delete marker created | Standard S3 GET | Versions by version ID | File-protocol access |
+| --- | --- | --- | --- | --- |
+| Delete via S3 | Yes | 404 | Retained | Not accessible |
+| Delete via file protocol | No | 404 | Retained | Not accessible |
+| Rename or move via file protocol | No | 404 at original path | Retained | Accessible at new path |
+| Copy via file protocol | No | Source unchanged | Retained | Source and copy accessible |
 
 To keep version state consistent, manage versioned buckets through the S3 protocol.
 

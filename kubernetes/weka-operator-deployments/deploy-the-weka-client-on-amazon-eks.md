@@ -10,7 +10,13 @@ description: >-
 
 The following table describes the support levels for different cloud services:
 
-<table><thead><tr><th width="120">Cloud service</th><th width="110">Instance type</th><th width="133">WekaCluster (backends)</th><th width="127">WekaClient: UDP</th><th width="137">WekaClient: DPDK</th><th width="140">NIC provisioning for DPDK</th></tr></thead><tbody><tr><td>Amazon EKS</td><td>VM</td><td>Supported</td><td>Supported</td><td>Supported</td><td>Operator creates and attaches NICs automatically</td></tr><tr><td>Oracle OKE</td><td>Bare metal</td><td>Supported</td><td>Supported</td><td>Supported</td><td>Manual</td></tr><tr><td>Oracle OKE</td><td>VM</td><td>Not supported</td><td>Supported</td><td>Supported</td><td>Operator verifies required number of NICs</td></tr><tr><td>Google GKE</td><td>VM</td><td>Not supported</td><td>Supported</td><td>Not Supported</td><td></td></tr><tr><td>Azure AKS</td><td>VM</td><td>Not supported</td><td>Supported</td><td>Not Supported</td><td></td></tr></tbody></table>
+| Cloud service | Instance type | WekaCluster (backends) | WekaClient: UDP | WekaClient: DPDK | NIC provisioning for DPDK |
+| --- | --- | --- | --- | --- | --- |
+| Amazon EKS | VM | Supported | Supported | Supported | Operator creates and attaches NICs automatically |
+| Oracle OKE | Bare metal | Supported | Supported | Supported | Manual |
+| Oracle OKE | VM | Not supported | Supported | Supported | Operator verifies required number of NICs |
+| Google GKE | VM | Not supported | Supported | Not Supported |  |
+| Azure AKS | VM | Not supported | Supported | Not Supported |  |
 
 ## Prerequisites
 

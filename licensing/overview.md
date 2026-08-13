@@ -18,13 +18,25 @@ Apply these licensing rules:
 
 WEKA uses a modular licensing model where specific editions serve as the foundation, while add-ons provide supplemental functionality.
 
-<table><thead><tr><th width="100">License</th><th width="181">Full name</th><th width="115">Type</th><th>Description</th></tr></thead><tbody><tr><td>XPS</td><td>Extreme Performance and Scale Performance Edition</td><td>Core</td><td>Flash-tier license for on-premises environments that includes POSIX, S3, SMB, NFS, and GDS protocol support. Includes local snapshot capability.</td></tr><tr><td>XCL</td><td>Extreme Performance and Scale Hybrid Cloud Edition</td><td>Core</td><td>Flash-tier license for hybrid cloud environments that includes POSIX, S3, SMB, NFS, and GDS protocol support. Includes local snapshot capability and local Snap-To-Object capability for one local object store repository.</td></tr><tr><td>DPO</td><td>WEKA Data Protection Option</td><td>Add-on</td><td>Add-on data protection license for XPS and XOS deployments. Includes tiering, local and remote Snap-To-Object, and synchronous snapshots.</td></tr><tr><td>XOS</td><td>Extreme Performance Object Edition</td><td>Standalone / Add-on</td><td>Use XOS as an alternative to XPS if the cluster operates exclusively as an S3 target. Use XOS with DPO if the cluster also needs to offload snapshots to a third-party object store. Includes local snapshot capability.</td></tr><tr><td>DEO</td><td>Data Efficiency Option</td><td>Add-on</td><td>Add-on data efficiency license for XPS deployments. Enables cluster-wide data reduction on a per-filesystem basis.</td></tr></tbody></table>
+| License | Full name | Type | Description |
+| --- | --- | --- | --- |
+| XPS | Extreme Performance and Scale Performance Edition | Core | Flash-tier license for on-premises environments that includes POSIX, S3, SMB, NFS, and GDS protocol support. Includes local snapshot capability. |
+| XCL | Extreme Performance and Scale Hybrid Cloud Edition | Core | Flash-tier license for hybrid cloud environments that includes POSIX, S3, SMB, NFS, and GDS protocol support. Includes local snapshot capability and local Snap-To-Object capability for one local object store repository. |
+| DPO | WEKA Data Protection Option | Add-on | Add-on data protection license for XPS and XOS deployments. Includes tiering, local and remote Snap-To-Object, and synchronous snapshots. |
+| XOS | Extreme Performance Object Edition | Standalone / Add-on | Use XOS as an alternative to XPS if the cluster operates exclusively as an S3 target. Use XOS with DPO if the cluster also needs to offload snapshots to a third-party object store. Includes local snapshot capability. |
+| DEO | Data Efficiency Option | Add-on | Add-on data efficiency license for XPS deployments. Enables cluster-wide data reduction on a per-filesystem basis. |
 
 ## License properties
 
 Identify the key attributes and capacity limits defined within each license.
 
-<table><thead><tr><th width="198">Property</th><th>Description</th></tr></thead><tbody><tr><td><strong>Cluster GUID</strong></td><td>Unique identifier assigned during cluster installation.</td></tr><tr><td><strong>Expiry date</strong></td><td>End of the licensed usage period.</td></tr><tr><td><strong>Usable capacity</strong></td><td>Licensed usable flash capacity in TB.</td></tr><tr><td><strong>Object-store capacity</strong></td><td>Licensed object-store capacity for DPO license.</td></tr><tr><td><strong>Data Efficiency Option</strong></td><td>Shows whether the DEO license is enabled or disabled.</td></tr></tbody></table>
+| Property | Description |
+| --- | --- |
+| **Cluster GUID** | Unique identifier assigned during cluster installation. |
+| **Expiry date** | End of the licensed usage period. |
+| **Usable capacity** | Licensed usable flash capacity in TB. |
+| **Object-store capacity** | Licensed object-store capacity for DPO license. |
+| **Data Efficiency Option** | Shows whether the DEO license is enabled or disabled. |
 
 ## XPS, XCL and XOS capacity
 

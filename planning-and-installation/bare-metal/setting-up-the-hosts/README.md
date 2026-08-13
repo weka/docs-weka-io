@@ -334,7 +334,14 @@ Confirm the switch operating system (NVIDIA Onyx or Cumulus Linux) and check NVI
 
 **Required parameters for WEKA**
 
-<table><thead><tr><th width="216.5859375">Parameter</th><th width="165.8515625">Value</th><th>Notes</th></tr></thead><tbody><tr><td>Marking method</td><td>Layer 3 (DSCP)</td><td>Required when WEKA traffic is routed across subnets. Layer 2 (TOS) marking works only when all servers share a subnet, but WEKA doesn't recommend it.</td></tr><tr><td>DSCP value</td><td>24</td><td>Register value 96 (DSCP x 4) on the NIC.</td></tr><tr><td>Traffic class, data</td><td>3</td><td>Maps to switch priority 3.</td></tr><tr><td>Traffic class, congestion notification (CNP)</td><td>6</td><td>Maps to switch priority 6.</td></tr><tr><td>PFC priority</td><td>3</td><td>Enable Priority Flow Control on this priority so RoCE traffic isn't dropped.</td></tr><tr><td>Congestion control</td><td>ECN</td><td>Enable alongside PFC.</td></tr></tbody></table>
+| Parameter | Value | Notes |
+| --- | --- | --- |
+| Marking method | Layer 3 (DSCP) | Required when WEKA traffic is routed across subnets. Layer 2 (TOS) marking works only when all servers share a subnet, but WEKA doesn't recommend it. |
+| DSCP value | 24 | Register value 96 (DSCP x 4) on the NIC. |
+| Traffic class, data | 3 | Maps to switch priority 3. |
+| Traffic class, congestion notification (CNP) | 6 | Maps to switch priority 6. |
+| PFC priority | 3 | Enable Priority Flow Control on this priority so RoCE traffic isn't dropped. |
+| Congestion control | ECN | Enable alongside PFC. |
 
 Configure the switch first, using the `roce` macro (Onyx) or `nv set qos roce` (Cumulus Linux) from the NVIDIA procedure, then configure each server's NIC with `mlnx_qos` and `cma_roce_tos` using the values above.
 
@@ -412,7 +419,12 @@ nmcli connection modify ib1 ipv4.routing-rules "priority 102 from 10.10.10.101 t
 
 Run the `nmcli` commands to view the current network configuration, including interfaces, IP addresses, routes, and DNS settings.
 
-<table><thead><tr><th width="290.3636474609375">Goal</th><th>Command</th></tr></thead><tbody><tr><td>Full details (IP, DNS, routes)</td><td><code>nmcli device show</code></td></tr><tr><td>Brief status</td><td><code>nmcli device status</code></td></tr><tr><td>Active connections</td><td><code>nmcli connection show --active</code></td></tr><tr><td>Specific device</td><td><code>nmcli device show eth0</code></td></tr></tbody></table>
+| Goal | Command |
+| --- | --- |
+| Full details (IP, DNS, routes) | `nmcli device show` |
+| Brief status | `nmcli device status` |
+| Active connections | `nmcli connection show --active` |
+| Specific device | `nmcli device show eth0` |
 
 **Example**
 

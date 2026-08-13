@@ -87,7 +87,12 @@ For high stats throughput, use the detailed sizing formulas in [LWH stats: sizin
 
 LWH components are pre-configured to handle standard production loads. Adjustments are only required when approaching the limits of the default installation.
 
-<table><thead><tr><th width="185.3636474609375">Component</th><th width="179.6363525390625">Default capacity</th><th>Scaling behavior</th></tr></thead><tbody><tr><td>API and Workers</td><td>100,000 processes</td><td>Scale dynamically based on load using Horizontal Pod Autoscaling (HPA).</td></tr><tr><td>VictoriaMetrics (VM)</td><td>80,000 processes</td><td>Operates as a stateful set. High loads may require manual adjustment of CPU, memory, or shard count.</td></tr><tr><td>NATS JetStream</td><td>3 GiB for alerts, events, and notifications</td><td>Buffers alerts, events, and notifications. It does not store stats or forwarding data.</td></tr><tr><td>Postgres</td><td>N/A</td><td>Typically maintains low utilization. Relies on quick failover and fast CSI reattachment via the WEKA filesystem.</td></tr></tbody></table>
+| Component | Default capacity | Scaling behavior |
+| --- | --- | --- |
+| API and Workers | 100,000 processes | Scale dynamically based on load using Horizontal Pod Autoscaling (HPA). |
+| VictoriaMetrics (VM) | 80,000 processes | Operates as a stateful set. High loads may require manual adjustment of CPU, memory, or shard count. |
+| NATS JetStream | 3 GiB for alerts, events, and notifications | Buffers alerts, events, and notifications. It does not store stats or forwarding data. |
+| Postgres | N/A | Typically maintains low utilization. Relies on quick failover and fast CSI reattachment via the WEKA filesystem. |
 
 #### Key tuning parameters
 
@@ -365,7 +370,13 @@ data:
 
 You can deploy LWH on a Kubernetes environment using two primary methods: standard Helm installation or ArgoCD integration. Each method differs in setup complexity, ingress handling, and lifecycle management.
 
-<table><thead><tr><th width="168">Feature</th><th>Standard Helm Installation</th><th>ArgoCD Integration</th></tr></thead><tbody><tr><td>Method</td><td>Direct installation using Helm commands.</td><td>Integration with an ArgoCD application.</td></tr><tr><td>Requirements</td><td>Standard Helm CLI.</td><td>LWH v4.1.0-b40 or higher.</td></tr><tr><td>Configuration</td><td>Straightforward deployment.</td><td>Requires special handling for Helm hooks, secrets, and job lifecycle.</td></tr><tr><td>Secrets</td><td>Auto-generated during deployment.</td><td>Requires manual pre-creation of secrets.</td></tr><tr><td>Recommendation</td><td>Recommended for most standard deployments.</td><td>Suitable for environments managing applications using GitOps with ArgoCD.</td></tr></tbody></table>
+| Feature | Standard Helm Installation | ArgoCD Integration |
+| --- | --- | --- |
+| Method | Direct installation using Helm commands. | Integration with an ArgoCD application. |
+| Requirements | Standard Helm CLI. | LWH v4.1.0-b40 or higher. |
+| Configuration | Straightforward deployment. | Requires special handling for Helm hooks, secrets, and job lifecycle. |
+| Secrets | Auto-generated during deployment. | Requires manual pre-creation of secrets. |
+| Recommendation | Recommended for most standard deployments. | Suitable for environments managing applications using GitOps with ArgoCD. |
 
 #### Install the LWH using Helm
 

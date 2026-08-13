@@ -29,13 +29,49 @@ For additional guidance on related topics, consult the standard procedures. Thes
 
 Administrators maintain control over identity providers and user credentials to ensure secure access to tenant resources.
 
-* **Configure LDAP or Active Directory:** As Tenant Admin, you can configure and reset LDAP/AD at the tenant scope.
+* **Configure LDAP or Active Directory:** As Tenant Admin, you can configure and reset LDAP/AD at the tenant scope, for tenant user accounts.
 * **Local user management:** Create, update, and delete regular users belonging to the tenant.
 * **Credential management:** Manage API tokens and passwords for the tenant's users.
+
+{% hint style="warning" %}
+**This is not the same LDAP that NFS uses.**
+
+The LDAP configured here authenticates tenant **user accounts**. NFS group resolution — the configuration that supports more than 16 user groups — is a separate setting, available only in the root organization. A Tenant Admin cannot configure it.
+
+As a result, NFS requests from a tenant always use numeric owner and group strings. Names are not resolved, and unknown names map to `anon`. On a tenant NFS mount, `ls -l` shows numeric UIDs and GIDs unless the client performs its own mapping.
+
+Configuring tenant LDAP successfully does not change NFS identity behavior. See [manage-nfs-for-tenants.md](manage-nfs-for-tenants.md "mention").
+{% endhint %}
 
 For additional guidance on related topics, consult the standard procedures. These also apply in a tenant-specific context, including:
 
 [user-management](../user-management/ "mention")
+
+## Manage tenant NFS resources
+
+When NFS multi-tenancy is enabled, a Tenant Admin manages the tenant's own NFS objects but cannot see or change cluster-level NFS configuration.
+
+| Task | Tenant Admin |
+| --- | --- |
+| Create and manage the tenant's NFS exports and client groups | Yes |
+| List interface groups | No |
+| Change NFS global configuration | No |
+| Assign the tenant to an interface group | No — a Cluster Admin performs this |
+| Use Kerberos, ACLs, Manage GIDs, or name-based (DNS) client rules | No — root organization only |
+
+Kerberos flavors are removed from the tenant view of `weka nfs global-config`, so a Cluster Admin and a Tenant Admin running that command see different output.
+
+Per-tenant NFS limits are lower than the root organization's: 8 client groups, 16 client group rules counted across the tenant, and 64 exports.
+
+**Related topic**
+
+[manage-nfs-for-tenants.md](manage-nfs-for-tenants.md "mention")
+
+## View alerts for a tenant
+
+Quota alerts are emitted per tenant and are visible to Tenant Admins. Their text was written for cluster administrators, so it may refer to cluster-wide context that a tenant cannot act on.
+
+A Cluster Admin can view the alert list exactly as a Tenant Admin sees it. See [View alerts as a tenant](multi-tenancy-cluster-level-administration.md#view-alerts-as-a-tenant).
 
 ## Mount authentication for tenant filesystems
 

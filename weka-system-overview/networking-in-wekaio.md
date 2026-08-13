@@ -159,7 +159,11 @@ By leveraging RDMA and GDS, you can achieve enhanced performance. A UDP client, 
 
 When a server includes RDMA-capable network adapters, each adapter can be assigned one of the following roles that define how it handles traffic:
 
-<table><thead><tr><th width="168">Role</th><th>Description</th></tr></thead><tbody><tr><td>IP-only</td><td>Handles management process and data-path IP traffic. RDMA is not used on this adapter.</td></tr><tr><td>IP and RDMA</td><td>Handles both IP traffic and RDMA operations.</td></tr><tr><td>RDMA-only</td><td>Dedicated exclusively to RDMA traffic. Does not carry IP traffic.</td></tr></tbody></table>
+| Role | Description |
+| --- | --- |
+| IP-only | Handles management process and data-path IP traffic. RDMA is not used on this adapter. |
+| IP and RDMA | Handles both IP traffic and RDMA operations. |
+| RDMA-only | Dedicated exclusively to RDMA traffic. Does not carry IP traffic. |
 
 Assigning dedicated roles allows you to isolate RDMA traffic from IP traffic, improving network utilization and predictability. Adapters without RDMA capability can coexist on the same server when assigned to the IP-only role.
 

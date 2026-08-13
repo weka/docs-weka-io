@@ -71,7 +71,12 @@ Before starting the migration, ensure the environment meets these criteria:
        ```
 5. **Verify the deployment:** Validate the status of the migration and all components.
 
-<table><thead><tr><th width="150.36370849609375">Component</th><th>Validation command</th></tr></thead><tbody><tr><td>Deployment status</td><td><code>kubectl get wekaclient &#x3C;client-name> -n &#x3C;namespace> -o jsonpath='{.status.csiDeployed}'</code></td></tr><tr><td>Storage classes</td><td><code>kubectl get storageclass</code></td></tr><tr><td>Controller status</td><td><code>kubectl get deployment -n</code></td></tr><tr><td>Node pods</td><td><code>kubectl get pods -n &#x3C;csi-namespace> -l component=csi-weka-csi-node</code></td></tr></tbody></table>
+| Component | Validation command |
+| --- | --- |
+| Deployment status | `kubectl get wekaclient &#x3C;client-name> -n &#x3C;namespace> -o jsonpath='{.status.csiDeployed}'` |
+| Storage classes | `kubectl get storageclass` |
+| Controller status | `kubectl get deployment -n` |
+| Node pods | `kubectl get pods -n &#x3C;csi-namespace> -l component=csi-weka-csi-node` |
 
 **Related topic**
 

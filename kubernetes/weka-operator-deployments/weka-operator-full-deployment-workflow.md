@@ -9,7 +9,17 @@ description: >-
 
 **Workflow**
 
-<table><thead><tr><th width="80">Step</th><th width="272">Task</th><th>Description</th></tr></thead><tbody><tr><td>1</td><td><a href="weka-operator-full-deployment-workflow.md#id-1.-obtain-setup-information">Obtain setup information</a></td><td>Collect registry credentials and version tags.</td></tr><tr><td>2</td><td><a href="weka-operator-full-deployment-workflow.md#id-2.-prepare-kubernetes-environment">Prepare Kubernetes environment</a></td><td>Configure control plane readiness, HugePages, Kubelet settings, image pull secrets, and failure domains.</td></tr><tr><td>3</td><td><a href="weka-operator-full-deployment-workflow.md#id-3.-install-the-weka-operator">Install the WEKA Operator</a></td><td>Deploy the operator and set the required drive type configuration.</td></tr><tr><td>4</td><td><a href="weka-operator-full-deployment-workflow.md#id-4.-manage-driver-distribution">Manage driver distribution</a></td><td>Select external or local driver distribution and apply the required policy.</td></tr><tr><td>5</td><td><a href="weka-operator-full-deployment-workflow.md#id-5.-discover-and-sign-drives">Discover and sign drives</a></td><td>Detect available drives and apply the required signing policy.</td></tr><tr><td>6</td><td><a href="weka-operator-full-deployment-workflow.md#id-6.-provision-weka-resources">Provision WEKA resources</a></td><td>Deploy the WekaCluster, create the optional client secret, and install the WekaClient when needed.</td></tr><tr><td>7</td><td><a href="weka-operator-full-deployment-workflow.md#id-7.-manage-the-weka-cluster-management-proxy">Manage the WEKA cluster management proxy</a></td><td>Optionally expose WEKA management endpoints through an operator-managed Service and Ingress.</td></tr><tr><td>8</td><td><a href="weka-operator-full-deployment-workflow.md#id-8.-assign-network-space-proxy-subnets-for-multiple-weka-clusters">Assign network space proxy subnets</a></td><td>Assign unique proxy subnets when multiple WEKA clusters share the same Kubernetes environment.</td></tr><tr><td>9</td><td><a href="weka-operator-full-deployment-workflow.md#id-9.-perform-post-deployment-storage-configuration-on-weka-client">Perform post-deployment storage configuration on WEKA client</a></td><td>Configure CSI behavior and storage provisioning for WEKA clients.</td></tr></tbody></table>
+| Step | Task | Description |
+| --- | --- | --- |
+| 1 | [Obtain setup information](weka-operator-full-deployment-workflow.md#id-1.-obtain-setup-information) | Collect registry credentials and version tags. |
+| 2 | [Prepare Kubernetes environment](weka-operator-full-deployment-workflow.md#id-2.-prepare-kubernetes-environment) | Configure control plane readiness, HugePages, Kubelet settings, image pull secrets, and failure domains. |
+| 3 | [Install the WEKA Operator](weka-operator-full-deployment-workflow.md#id-3.-install-the-weka-operator) | Deploy the operator and set the required drive type configuration. |
+| 4 | [Manage driver distribution](weka-operator-full-deployment-workflow.md#id-4.-manage-driver-distribution) | Select external or local driver distribution and apply the required policy. |
+| 5 | [Discover and sign drives](weka-operator-full-deployment-workflow.md#id-5.-discover-and-sign-drives) | Detect available drives and apply the required signing policy. |
+| 6 | [Provision WEKA resources](weka-operator-full-deployment-workflow.md#id-6.-provision-weka-resources) | Deploy the WekaCluster, create the optional client secret, and install the WekaClient when needed. |
+| 7 | [Manage the WEKA cluster management proxy](weka-operator-full-deployment-workflow.md#id-7.-manage-the-weka-cluster-management-proxy) | Optionally expose WEKA management endpoints through an operator-managed Service and Ingress. |
+| 8 | [Assign network space proxy subnets](weka-operator-full-deployment-workflow.md#id-8.-assign-network-space-proxy-subnets-for-multiple-weka-clusters) | Assign unique proxy subnets when multiple WEKA clusters share the same Kubernetes environment. |
+| 9 | [Perform post-deployment storage configuration on WEKA client](weka-operator-full-deployment-workflow.md#id-9.-perform-post-deployment-storage-configuration-on-weka-client) | Configure CSI behavior and storage provisioning for WEKA clients. |
 
 ***
 
@@ -76,7 +86,13 @@ HugePages  = (Total GiB × 1024) / 2
 
 Variables:
 
-<table><thead><tr><th width="201.60003662109375">Variable</th><th>Description</th></tr></thead><tbody><tr><td>Server capacity</td><td>Total usable capacity of all drives assigned to WEKA on the server, measured in GiB.</td></tr><tr><td>Ratio</td><td>Controls the metadata memory component in the HugePages calculation. Server capacity is divided by this value, so a higher ratio allocates less memory to metadata, which reduces total HugePages consumption. The default is 1000. Set to 2000 to lower HugePages usage on servers where reduced metadata allocation is acceptable.</td></tr><tr><td>Cores for WEKA</td><td>Number of CPU cores allocated to the WEKA container on the server.</td></tr><tr><td>WEKA Container factor</td><td>Fixed HugePages allocation of 1.7 GiB for each WEKA container.</td></tr><tr><td>Headroom</td><td>Additional 10% buffer, expressed as 1.1, to account for memory fragmentation and operational variance. If you plan to run additional workloads that require HugePages, add their planned requirements on top of the calculated value.</td></tr></tbody></table>
+| Variable | Description |
+| --- | --- |
+| Server capacity | Total usable capacity of all drives assigned to WEKA on the server, measured in GiB. |
+| Ratio | Controls the metadata memory component in the HugePages calculation. Server capacity is divided by this value, so a higher ratio allocates less memory to metadata, which reduces total HugePages consumption. The default is 1000. Set to 2000 to lower HugePages usage on servers where reduced metadata allocation is acceptable. |
+| Cores for WEKA | Number of CPU cores allocated to the WEKA container on the server. |
+| WEKA Container factor | Fixed HugePages allocation of 1.7 GiB for each WEKA container. |
+| Headroom | Additional 10% buffer, expressed as 1.1, to account for memory fragmentation and operational variance. If you plan to run additional workloads that require HugePages, add their planned requirements on top of the calculated value. |
 
 **Example calculation**
 
@@ -132,7 +148,11 @@ Procedure:
 
 The WEKA Operator automatically allocates ports to prevent collisions in multi-cluster environments. Manual configuration is typically unnecessary unless specific infrastructure or policy requirements apply.
 
-<table><thead><tr><th width="273.39996337890625">Component</th><th width="144.39990234375">Default start port</th><th>Port range size</th></tr></thead><tbody><tr><td>WEKA Operator (v1.10+) / WEKA (v5.1.0+)</td><td>35000</td><td>260 ports per cluster</td></tr><tr><td>WEKA Operator / WEKA (previous versions)</td><td>35000</td><td>500 ports per cluster</td></tr><tr><td>WEKA client connectivity</td><td>45000</td><td>Maximum: 65535</td></tr></tbody></table>
+| Component | Default start port | Port range size |
+| --- | --- | --- |
+| WEKA Operator (v1.10+) / WEKA (v5.1.0+) | 35000 | 260 ports per cluster |
+| WEKA Operator / WEKA (previous versions) | 35000 | 500 ports per cluster |
+| WEKA client connectivity | 45000 | Maximum: 65535 |
 
 **Reserve ports on each node**
 
@@ -187,7 +207,14 @@ CPU  CORE  SOCKET  NODE
 In this example, there are 6 physical cores and 12 logical CPUs. CPUs that share the same\
 `CORE` and `SOCKET` values are HyperThreading siblings:
 
-<table><thead><tr><th width="179">Physical core</th><th width="225">Logical CPU (thread 0)</th><th>Logical CPU (thread 1, HT sibling)</th></tr></thead><tbody><tr><td>0</td><td>0</td><td>6</td></tr><tr><td>1</td><td>1</td><td>7</td></tr><tr><td>2</td><td>2</td><td>8</td></tr><tr><td>3</td><td>3</td><td>9</td></tr><tr><td>4</td><td>4</td><td>10</td></tr><tr><td>5</td><td>5</td><td>11</td></tr></tbody></table>
+| Physical core | Logical CPU (thread 0) | Logical CPU (thread 1, HT sibling) |
+| --- | --- | --- |
+| 0 | 0 | 6 |
+| 1 | 1 | 7 |
+| 2 | 2 | 8 |
+| 3 | 3 | 9 |
+| 4 | 4 | 10 |
+| 5 | 5 | 11 |
 
 The `thread_siblings_list` confirms these pairs directly:
 
@@ -280,7 +307,10 @@ The system distributes data and parity blocks from the same stripe across differ
 
 **Select a failure domain mode**
 
-<table><thead><tr><th width="113">Mode</th><th width="320">Function</th><th>Usage</th></tr></thead><tbody><tr><td>Implicit (default)</td><td>Assigns every process as its own independent failure domain.</td><td>Deployments where infrastructure shared risks cannot be identified by Kubernetes node labels.</td></tr><tr><td>Explicit</td><td>Groups processes into named domains based on physical node labels.</td><td>Deployments where containers share a rack, switch, or power source.</td></tr></tbody></table>
+| Mode | Function | Usage |
+| --- | --- | --- |
+| Implicit (default) | Assigns every process as its own independent failure domain. | Deployments where infrastructure shared risks cannot be identified by Kubernetes node labels. |
+| Explicit | Groups processes into named domains based on physical node labels. | Deployments where containers share a rack, switch, or power source. |
 
 {% hint style="info" %}
 Prefer explicit mode when Kubernetes node labels can represent shared infrastructure boundaries. Explicit mode provides better failure protection by separating processes across known physical domains such as racks, power feeds, or switches. To use it, ensure the required topology labels are present on the nodes.
@@ -380,7 +410,11 @@ Manage the lifecycle of WEKA resources by installing the WEKA Operator. This pro
 * Confirm `kubectl` is installed and configured against the target cluster.
 *   Identify your deployment configuration before running the Helm command:
 
-    <table><thead><tr><th width="218">Condition</th><th>Required flag</th></tr></thead><tbody><tr><td>Operator v1.7.0 and later</td><td><code>--set csi.installationEnabled=true</code></td></tr><tr><td>Operator v1.10 and later with AlloyFlash</td><td><code>--set driveSharing.driveTypesRatio='{tlc: 9, qlc: 1}'</code></td></tr><tr><td>Operator v1.10 and later with single drive type</td><td><code>--set driveSharing.driveTypesRatio='{qlc: 0}'</code></td></tr></tbody></table>
+    | Condition | Required flag |
+| --- | --- |
+| Operator v1.7.0 and later | `--set csi.installationEnabled=true` |
+| Operator v1.10 and later with AlloyFlash | `--set driveSharing.driveTypesRatio='{tlc: 9, qlc: 1}'` |
+| Operator v1.10 and later with single drive type | `--set driveSharing.driveTypesRatio='{qlc: 0}'` |
 
 #### Procedure
 
@@ -443,7 +477,10 @@ If outbound access to `drivers.weka.io` is available, use the pre-built driver s
 
 **Choose a distribution method**
 
-<table><thead><tr><th width="334">Condition</th><th>Method</th></tr></thead><tbody><tr><td>Standard Linux distribution with supported kernel, outbound access to <code>drivers.weka.io</code></td><td>Pre-built drivers (recommended): No build infrastructure required. By default, the drivers are pulled from <code>https://drivers.weka.io</code>.</td></tr><tr><td>Air-gapped environment, custom or patched kernel, or no external network access</td><td>Local driver builder: Configure driver distribution policy.</td></tr></tbody></table>
+| Condition | Method |
+| --- | --- |
+| Standard Linux distribution with supported kernel, outbound access to `drivers.weka.io` | Pre-built drivers (recommended): No build infrastructure required. By default, the drivers are pulled from `https://drivers.weka.io`. |
+| Air-gapped environment, custom or patched kernel, or no external network access | Local driver builder: Configure driver distribution policy. |
 
 For architectural details on how driver distribution works, see [WEKA Operator driver management](weka-operator-driver-management.md).
 
@@ -673,7 +710,13 @@ payload:
 Review the [WekaPolicy API reference](https://weka.github.io/weka-k8s-api/wekapolicy/) for all available resource options.
 {% endhint %}
 
-<table><thead><tr><th width="197">Attribute</th><th>Description</th></tr></thead><tbody><tr><td><code>image</code></td><td>The WEKA container image used for the distributor and default builder.</td></tr><tr><td><code>interval</code></td><td>How often the operator reconciles the policy. Default: <code>1m</code>.</td></tr><tr><td><code>builderPreRunScript</code></td><td>Optional script to run before the build, for example to install a compiler.</td></tr><tr><td><code>ensureNICsPayload</code></td><td>Defines the configuration for ensuring a specific number of data NICs on selected nodes.</td></tr><tr><td><code>signDrivesPayload</code></td><td>Configures parameters to scan and sign drives for WEKA backend containers.</td></tr></tbody></table>
+| Attribute | Description |
+| --- | --- |
+| `image` | The WEKA container image used for the distributor and default builder. |
+| `interval` | How often the operator reconciles the policy. Default: `1m`. |
+| `builderPreRunScript` | Optional script to run before the build, for example to install a compiler. |
+| `ensureNICsPayload` | Defines the configuration for ensuring a specific number of data NICs on selected nodes. |
+| `signDrivesPayload` | Configures parameters to scan and sign drives for WEKA backend containers. |
 
 4. Apply the configuration:
 
@@ -697,7 +740,10 @@ When a drive discovery operation runs, the operator performs three actions on ea
 
 **Choose a discovery method**
 
-<table><thead><tr><th width="208">Method</th><th>Use case</th></tr></thead><tbody><tr><td><code>WekaManualOperation</code></td><td>One-time action for initial manual provisioning.</td></tr><tr><td><code>WekaPolicy</code></td><td>Automated periodic discovery. Initiates immediately when it detects node updates or hardware additions. Recommended for production.</td></tr></tbody></table>
+| Method | Use case |
+| --- | --- |
+| `WekaManualOperation` | One-time action for initial manual provisioning. |
+| `WekaPolicy` | Automated periodic discovery. Initiates immediately when it detects node updates or hardware additions. Recommended for production. |
 
 **Understand the shared field**
 
@@ -755,7 +801,11 @@ spec:
 ```
 {% endcode %}
 
-<table><thead><tr><th width="185">Name</th><th>Description</th></tr></thead><tbody><tr><td><code>all-not-root</code></td><td>Signs all detected block devices except the root device.</td></tr><tr><td><code>aws-all</code></td><td>Detects NVMe devices using AWS PCI identifiers.</td></tr><tr><td><code>device-paths</code></td><td>Targets specific device paths listed in the manifest.</td></tr></tbody></table>
+| Name | Description |
+| --- | --- |
+| `all-not-root` | Signs all detected block devices except the root device. |
+| `aws-all` | Detects NVMe devices using AWS PCI identifiers. |
+| `device-paths` | Targets specific device paths listed in the manifest. |
 
 ## 6. Provision WEKA resources
 
@@ -1009,7 +1059,23 @@ kubectl apply -f weka-client.yaml
 
 For the full list of configurable fields, see [WekaClient parameters](https://weka.github.io/weka-k8s-api/wekaclient/).
 
-<table><thead><tr><th width="229">Name</th><th width="367">Description</th><th>Default</th></tr></thead><tbody><tr><td><code>image</code></td><td>The WEKA container image version to deploy.</td><td>—</td></tr><tr><td><code>imagePullSecret</code></td><td>Secret name used to authenticate with the image registry.</td><td>—</td></tr><tr><td><code>port</code></td><td>Defines a range of 100 ports for the container.</td><td>Dynamic</td></tr><tr><td><code>agentPort</code></td><td>Specifies a single port used by the agent process.</td><td>Dynamic</td></tr><tr><td><code>portRange</code></td><td>Defines a <code>basePort</code> for automatic port allocation.</td><td>—</td></tr><tr><td><code>nodeSelector</code></td><td>Selects the nodes where WEKA containers are scheduled.</td><td>—</td></tr><tr><td><code>network</code></td><td>Network configuration map. Sub-keys: <code>ethDevice</code> (single device), <code>ethDevices</code> (multiple devices), and <code>udpMode</code> (true/false). Defaults to UDP mode when not set.</td><td>UDP</td></tr><tr><td><code>driversDistService</code></td><td>URL for the driver distribution service.</td><td>—</td></tr><tr><td><code>targetCluster</code></td><td>Name and namespace of the WekaCluster CR to connect to. Applies when the WekaCluster runs in the same Kubernetes cluster.</td><td>—</td></tr><tr><td><code>joinIpPorts</code></td><td>IP addresses used to join a cluster outside the local environment.</td><td>—</td></tr><tr><td><code>wekaSecretRef</code></td><td>Reference to the Kubernetes Secret containing cluster credentials.</td><td>—</td></tr><tr><td><code>coresNum</code></td><td>Number of physical CPU cores to allocate to each container.</td><td>1</td></tr><tr><td><code>cpuPolicy</code></td><td>Defines core allocation behavior: <code>auto</code>, <code>manual</code>, <code>shared</code>, <code>dedicated</code> or <code>dedicated_ht</code></td><td><code>auto</code></td></tr><tr><td><code>upgradePolicy</code></td><td>Sets the upgrade strategy: <code>rolling</code>, <code>manual</code>, or <code>all-at-once</code>.</td><td><code>rolling</code></td></tr><tr><td><code>gracefulDestroyDuration</code></td><td>Pause duration for local data and drive allocations during pod deletion.</td><td>24h</td></tr></tbody></table>
+| Name | Description | Default |
+| --- | --- | --- |
+| `image` | The WEKA container image version to deploy. | — |
+| `imagePullSecret` | Secret name used to authenticate with the image registry. | — |
+| `port` | Defines a range of 100 ports for the container. | Dynamic |
+| `agentPort` | Specifies a single port used by the agent process. | Dynamic |
+| `portRange` | Defines a `basePort` for automatic port allocation. | — |
+| `nodeSelector` | Selects the nodes where WEKA containers are scheduled. | — |
+| `network` | Network configuration map. Sub-keys: `ethDevice` (single device), `ethDevices` (multiple devices), and `udpMode` (true/false). Defaults to UDP mode when not set. | UDP |
+| `driversDistService` | URL for the driver distribution service. | — |
+| `targetCluster` | Name and namespace of the WekaCluster CR to connect to. Applies when the WekaCluster runs in the same Kubernetes cluster. | — |
+| `joinIpPorts` | IP addresses used to join a cluster outside the local environment. | — |
+| `wekaSecretRef` | Reference to the Kubernetes Secret containing cluster credentials. | — |
+| `coresNum` | Number of physical CPU cores to allocate to each container. | 1 |
+| `cpuPolicy` | Defines core allocation behavior: `auto`, `manual`, `shared`, `dedicated` or `dedicated_ht` | `auto` |
+| `upgradePolicy` | Sets the upgrade strategy: `rolling`, `manual`, or `all-at-once`. | `rolling` |
+| `gracefulDestroyDuration` | Pause duration for local data and drive allocations during pod deletion. | 24h |
 
 </details>
 
@@ -1023,7 +1089,12 @@ Optionally - access WEKA management endpoints through an operator-managed Servic
 
 WEKA does not install or configure the following components. These remain the responsibility of the platform administrator:
 
-<table><thead><tr><th width="217">Component</th><th>Purpose</th></tr></thead><tbody><tr><td>Ingress controller</td><td>Manages incoming traffic, for example NGINX or Traefik.</td></tr><tr><td>External connectivity</td><td>A load balancer or equivalent mechanism to route traffic from outside the cluster.</td></tr><tr><td>DNS resolution</td><td>Configured hostnames that resolve to the Ingress controller's external IP.</td></tr><tr><td>TLS termination</td><td>Optional platform-managed certificate management for secure HTTPS communication.</td></tr></tbody></table>
+| Component | Purpose |
+| --- | --- |
+| Ingress controller | Manages incoming traffic, for example NGINX or Traefik. |
+| External connectivity | A load balancer or equivalent mechanism to route traffic from outside the cluster. |
+| DNS resolution | Configured hostnames that resolve to the Ingress controller's external IP. |
+| TLS termination | Optional platform-managed certificate management for secure HTTPS communication. |
 
 **Ingress configuration**
 
@@ -1073,7 +1144,10 @@ Assign a non-overlapping subnet to every WEKA cluster so that each cluster keeps
 
 If your deployment includes a WEKA client on Kubernetes and embedded CSI is enabled, configure the CSI plugin and storage classes based on your operator version to enable persistent volume provisioning.
 
-<table><thead><tr><th width="168.171875">Operator version</th><th width="345.9453125">Behavior</th><th>Required action</th></tr></thead><tbody><tr><td>v1.7.0 and later</td><td>Embedded CSI is supported. When embedded CSI is enabled during operator installation, the operator configures the CSI plugin and StorageClass automatically.</td><td>Proceed to create a Persistent Volume Claim (PVC).<br>See <a data-mention href="../../appendices/weka-csi-plugin/dynamic-and-static-provisioning.md">dynamic-and-static-provisioning.md</a>.</td></tr><tr><td>v1.6.2 and earlier</td><td>Embedded CSI is not available. CSI requires manual installation.</td><td>See <a data-mention href="../../appendices/weka-csi-plugin/">weka-csi-plugin</a>.</td></tr></tbody></table>
+| Operator version | Behavior | Required action |
+| --- | --- | --- |
+| v1.7.0 and later | Embedded CSI is supported. When embedded CSI is enabled during operator installation, the operator configures the CSI plugin and StorageClass automatically. | Proceed to create a Persistent Volume Claim (PVC).See dynamic-and-static-provisioning.md. |
+| v1.6.2 and earlier | Embedded CSI is not available. CSI requires manual installation. | See weka-csi-plugin. |
 
 {% hint style="info" %}
 For v1.7.0 and later, when embedded CSI installation is enabled, the operator creates storage classes following the pattern `weka-<groupName>-<fsName>`. To disable automatic storage class creation, set `csi.storageClassCreationDisabled: true` in your Helm values.

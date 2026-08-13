@@ -36,7 +36,30 @@ Operations specific to filesystem management, such as `MOUNT` and `UMOUNT`, are 
 
 The following table describes each audited operation type.
 
-<table><thead><tr><th width="164.84765625">Operation</th><th width="568.82421875">Description</th></tr></thead><tbody><tr><td><code>FILEOPEN</code></td><td>Logs the initial opening of a file for read or write access. For performance reasons, subsequent opens are logged only when the access type changes or moves between system nodes.</td></tr><tr><td><code>ATOMIC_FILEOPEN</code></td><td>Logs the creation and opening of a file as a single, atomic action. Unlike <code>FILEOPEN</code>, this operation is always recorded.</td></tr><tr><td><code>CLOSE</code></td><td>Logs the closing of a file, which involves releasing the file descriptor associated with it. This operation marks the end of a session or access period for a file and is crucial for tracking file access duration and resource management.</td></tr><tr><td><code>LOOKUP</code></td><td>Logs the action of searching for a file or directory by its name.</td></tr><tr><td><code>READDIR</code></td><td>Logs the reading of a directory's contents, such as when a user lists its files.</td></tr><tr><td><code>MKNOD</code></td><td>Logs the creation of a file, special file, or directory.</td></tr><tr><td><code>RENAME</code></td><td>Logs the renaming of a file or directory.</td></tr><tr><td><code>RMDIR</code></td><td>Logs the removal of a directory.</td></tr><tr><td><code>GETATTR</code></td><td>Logs the retrieval of file attributes (metadata), such as access time or permissions.</td></tr><tr><td><code>SETATTR</code></td><td>Logs the modification of file attributes (metadata), such as changing permissions or file size.</td></tr><tr><td><code>READLINK</code></td><td>Logs the reading of a symbolic link's destination path.</td></tr><tr><td><code>UNLINK</code></td><td>Logs the deletion of a file, symbolic link, or hard link.</td></tr><tr><td><code>SYMLINK</code></td><td>Logs the creation of a symbolic link (a shortcut to another file or directory).</td></tr><tr><td><code>LINK</code></td><td>Logs the creation of a hard link (an additional name for an existing file).</td></tr><tr><td><code>SETXATTR</code></td><td>Logs the addition of a custom attribute (extended metadata) to a file.</td></tr><tr><td><code>LISTXATTR</code></td><td>Logs the listing of all custom attributes for a file.</td></tr><tr><td><code>GETXATTR</code></td><td>Logs the reading of a specific custom attribute from a file.</td></tr><tr><td><code>RMXATTR</code></td><td>Logs the removal of a custom attribute from a file.</td></tr><tr><td><code>MOUNT</code></td><td>Logs the mounting of a filesystem, making it accessible.</td></tr><tr><td><code>UMOUNT</code></td><td>Logs the unmounting of a filesystem, making it inaccessible.</td></tr><tr><td><code>HEARTBEAT</code></td><td>Sends a periodic message from each node to confirm that the audit system is operational.</td></tr><tr><td><code>LOST_AUDIT</code></td><td>Sends a special message to indicate that one or more audit events may have been lost, signaling a potential gap in the audit trail.</td></tr></tbody></table>
+| Operation | Description |
+| --- | --- |
+| `FILEOPEN` | Logs the initial opening of a file for read or write access. For performance reasons, subsequent opens are logged only when the access type changes or moves between system nodes. |
+| `ATOMIC_FILEOPEN` | Logs the creation and opening of a file as a single, atomic action. Unlike `FILEOPEN`, this operation is always recorded. |
+| `CLOSE` | Logs the closing of a file, which involves releasing the file descriptor associated with it. This operation marks the end of a session or access period for a file and is crucial for tracking file access duration and resource management. |
+| `LOOKUP` | Logs the action of searching for a file or directory by its name. |
+| `READDIR` | Logs the reading of a directory's contents, such as when a user lists its files. |
+| `MKNOD` | Logs the creation of a file, special file, or directory. |
+| `RENAME` | Logs the renaming of a file or directory. |
+| `RMDIR` | Logs the removal of a directory. |
+| `GETATTR` | Logs the retrieval of file attributes (metadata), such as access time or permissions. |
+| `SETATTR` | Logs the modification of file attributes (metadata), such as changing permissions or file size. |
+| `READLINK` | Logs the reading of a symbolic link's destination path. |
+| `UNLINK` | Logs the deletion of a file, symbolic link, or hard link. |
+| `SYMLINK` | Logs the creation of a symbolic link (a shortcut to another file or directory). |
+| `LINK` | Logs the creation of a hard link (an additional name for an existing file). |
+| `SETXATTR` | Logs the addition of a custom attribute (extended metadata) to a file. |
+| `LISTXATTR` | Logs the listing of all custom attributes for a file. |
+| `GETXATTR` | Logs the reading of a specific custom attribute from a file. |
+| `RMXATTR` | Logs the removal of a custom attribute from a file. |
+| `MOUNT` | Logs the mounting of a filesystem, making it accessible. |
+| `UMOUNT` | Logs the unmounting of a filesystem, making it inaccessible. |
+| `HEARTBEAT` | Sends a periodic message from each node to confirm that the audit system is operational. |
+| `LOST_AUDIT` | Sends a special message to indicate that one or more audit events may have been lost, signaling a potential gap in the audit trail. |
 
 ### Operation categories for configuration
 
@@ -44,13 +67,52 @@ When configuring audit logging, the system allows enabling auditing based on hig
 
 These categories are specified in the command-line and configuration interfaces to control the scope of audit logging efficiently.
 
-<table><thead><tr><th width="299.78125">Category (configurable operation type)</th><th>Included audit operations</th></tr></thead><tbody><tr><td><code>open</code></td><td><code>FILEOPEN</code>, <code>ATOMIC_FILEOPEN</code></td></tr><tr><td><code>close</code></td><td><code>CLOSE</code></td></tr><tr><td><code>create</code></td><td><code>MKNOD</code>, <code>SYMLINK</code>, <code>LINK</code>, <code>SETATTR</code>, <code>ATOMIC_FILEOPEN</code></td></tr><tr><td><code>read</code></td><td><code>READDIR</code></td></tr><tr><td><code>modify</code></td><td><code>SETATTR</code>, <code>SETXATTR</code>, <code>RMXATTR</code></td></tr><tr><td><code>delete</code></td><td><code>UNLINK</code>, <code>RMDIR</code></td></tr><tr><td><code>rename</code></td><td><code>RENAME</code></td></tr><tr><td><code>session_management</code></td><td><code>MOUNT</code>, <code>UMOUNT</code>, <code>HEARTBEAT</code>, <code>LOST_AUDIT</code></td></tr></tbody></table>
+| Category (configurable operation type) | Included audit operations |
+| --- | --- |
+| `open` | `FILEOPEN`, `ATOMIC_FILEOPEN` |
+| `close` | `CLOSE` |
+| `create` | `MKNOD`, `SYMLINK`, `LINK`, `SETATTR`, `ATOMIC_FILEOPEN` |
+| `read` | `READDIR` |
+| `modify` | `SETATTR`, `SETXATTR`, `RMXATTR` |
+| `delete` | `UNLINK`, `RMDIR` |
+| `rename` | `RENAME` |
+| `session_management` | `MOUNT`, `UMOUNT`, `HEARTBEAT`, `LOST_AUDIT` |
 
 ## Audit message format
 
 Each audit event sent to an external system is structured in a consistent message format containing fields that provide detailed information about the audited operation. The audit message can contain the following fields:
 
-<table><thead><tr><th width="176.890625">Field</th><th>Description</th></tr></thead><tbody><tr><td><code>category</code></td><td>The management category of the audited operation.</td></tr><tr><td><code>recordType</code></td><td>The type of record. For audit events, this is always <code>AUDIT</code>.</td></tr><tr><td><code>recordId</code></td><td>A unique identifier for the specific audit record.</td></tr><tr><td><code>recordVersion</code></td><td>The version number of the audit message format.</td></tr><tr><td><code>operation</code></td><td>The type of filesystem operation that was performed (for example, <code>FILEOPEN</code>, <code>SETATTR</code>).</td></tr><tr><td><code>timestamp</code></td><td>The date and time when the operation occurred.</td></tr><tr><td><code>clusterGuid</code></td><td>The unique identifier of the cluster.</td></tr><tr><td><code>clusterName</code></td><td>The name of the cluster where the event occurred.</td></tr><tr><td><code>clientIp</code></td><td>The IP address of the client machine that initiated the operation.</td></tr><tr><td><code>clientHostname</code></td><td>The hostname of the client machine that initiated the operation.</td></tr><tr><td><code>uid</code></td><td>The user ID (UID) of the user who performed the operation.</td></tr><tr><td><code>gid</code></td><td>The group ID (GID) of the user who performed the operation.</td></tr><tr><td><code>fsId</code></td><td>The unique identifier for the filesystem where the operation occurred.</td></tr><tr><td><code>fsName</code></td><td>The name of the filesystem where the operation occurred.</td></tr><tr><td><code>snapshotId</code></td><td>The ID of the snapshot related to the transaction. An ID of <code>0</code> indicates the live filesystem.</td></tr><tr><td><code>snapshotName</code></td><td>The name of the snapshot related to the transaction.</td></tr><tr><td><code>inodeId</code></td><td>The unique inode identifier for the file or directory involved in the operation.</td></tr><tr><td><code>parentinodeID</code></td><td>The unique inode identifier of the parent directory.</td></tr><tr><td><code>fullPath</code></td><td>The complete path used to identify the object in the filesystem.</td></tr><tr><td><code>errorCode</code></td><td>The status code of the operation. A value of <code>0</code> indicates success.</td></tr><tr><td><code>targetFullPath</code></td><td>For operations such as <code>RENAME</code> or <code>SYMLINK</code>, this is the destination path of the object.</td></tr><tr><td><code>feOpId</code></td><td>The operation ID from the front-end container.</td></tr><tr><td><code>requestedAccess</code></td><td>The type of access requested during an open operation, such as <code>read</code> or <code>write</code>.</td></tr><tr><td><code>timeSent</code></td><td>The timestamp of when the audit message was sent from the telemetry gateway.</td></tr><tr><td><code>wekaServer</code></td><td>The hostname of the server that serviced the audit event.</td></tr><tr><td><code>key</code></td><td>The key of the extended attribute involved in an <code>xattr</code> operation.</td></tr><tr><td><code>modeBits</code></td><td>The new POSIX mode bits of a file or directory after a permission change operation.</td></tr><tr><td><code>outageStart</code></td><td>For <code>LOST_AUDIT</code> events, an estimate of when the audit message outage started.</td></tr><tr><td><code>outageEnd</code></td><td>For <code>LOST_AUDIT</code> events, an estimate of when the audit message outage ended.</td></tr></tbody></table>
+| Field | Description |
+| --- | --- |
+| `category` | The management category of the audited operation. |
+| `recordType` | The type of record. For audit events, this is always `AUDIT`. |
+| `recordId` | A unique identifier for the specific audit record. |
+| `recordVersion` | The version number of the audit message format. |
+| `operation` | The type of filesystem operation that was performed (for example, `FILEOPEN`, `SETATTR`). |
+| `timestamp` | The date and time when the operation occurred. |
+| `clusterGuid` | The unique identifier of the cluster. |
+| `clusterName` | The name of the cluster where the event occurred. |
+| `clientIp` | The IP address of the client machine that initiated the operation. |
+| `clientHostname` | The hostname of the client machine that initiated the operation. |
+| `uid` | The user ID (UID) of the user who performed the operation. |
+| `gid` | The group ID (GID) of the user who performed the operation. |
+| `fsId` | The unique identifier for the filesystem where the operation occurred. |
+| `fsName` | The name of the filesystem where the operation occurred. |
+| `snapshotId` | The ID of the snapshot related to the transaction. An ID of `0` indicates the live filesystem. |
+| `snapshotName` | The name of the snapshot related to the transaction. |
+| `inodeId` | The unique inode identifier for the file or directory involved in the operation. |
+| `parentinodeID` | The unique inode identifier of the parent directory. |
+| `fullPath` | The complete path used to identify the object in the filesystem. |
+| `errorCode` | The status code of the operation. A value of `0` indicates success. |
+| `targetFullPath` | For operations such as `RENAME` or `SYMLINK`, this is the destination path of the object. |
+| `feOpId` | The operation ID from the front-end container. |
+| `requestedAccess` | The type of access requested during an open operation, such as `read` or `write`. |
+| `timeSent` | The timestamp of when the audit message was sent from the telemetry gateway. |
+| `wekaServer` | The hostname of the server that serviced the audit event. |
+| `key` | The key of the extended attribute involved in an `xattr` operation. |
+| `modeBits` | The new POSIX mode bits of a file or directory after a permission change operation. |
+| `outageStart` | For `LOST_AUDIT` events, an estimate of when the audit message outage started. |
+| `outageEnd` | For `LOST_AUDIT` events, an estimate of when the audit message outage ended. |
 
 <details>
 

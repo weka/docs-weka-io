@@ -206,7 +206,10 @@ weka cluster drive add <container-id> <device-paths>
 
 **Parameters**
 
-<table><thead><tr><th width="195.71484375">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>container-id</code>*</td><td>The Identifier of the drive container to add the local SSD drives.</td></tr><tr><td><code>device-paths</code>*</td><td>List of block devices that identify local SSDs.<br>It must be a valid Unix network device name<strong>.</strong><br>Format: Space-separated strings.<br>Example, <code>/dev/nvme0n1 /dev/nvme1n1</code></td></tr></tbody></table>
+| Name | Value |
+| --- | --- |
+| `container-id`* | The Identifier of the drive container to add the local SSD drives. |
+| `device-paths`* | List of block devices that identify local SSDs.It must be a valid Unix network device name**.**Format: Space-separated strings.Example, `/dev/nvme0n1 /dev/nvme1n1` |
 
 ### 5. Create compute containers
 
@@ -236,7 +239,10 @@ weka local setup container --join-ips <IP addresses> \
 
 **Parameters**
 
-<table><thead><tr><th width="187.9765625">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>resources-path</code>*</td><td>A valid path to the resource file.</td></tr><tr><td><code>join-ips</code></td><td>IP:port pairs for the management processes to join the cluster. In the absence of a specified port, the command defaults to using the standard WEKA port 14000. Set the values, only if you want to customize the port.<br>Format: comma-separated IP addresses.<br>Example: <code>--join-ips 10.10.10.1,10.10.10.2,10.10.10.3:15000</code></td></tr></tbody></table>
+| Name | Value |
+| --- | --- |
+| `resources-path`* | A valid path to the resource file. |
+| `join-ips` | IP:port pairs for the management processes to join the cluster. In the absence of a specified port, the command defaults to using the standard WEKA port 14000. Set the values, only if you want to customize the port.Format: comma-separated IP addresses.Example: `--join-ips 10.10.10.1,10.10.10.2,10.10.10.3:15000` |
 
 ### 7. Configure the number of data and parity drives
 
