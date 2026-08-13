@@ -72,6 +72,10 @@ A collection of hardware components that can fail together due to a single root 
 
 A collection of filesystems that share a common tiering policy to object-store.
 
+### Floating IP
+
+An IP address that the cluster assigns to a server rather than the server owning it permanently. Protocol services reach clients through floating IPs, and if the hosting server becomes unavailable the address migrates to a healthy server in the same interface group, so clients reconnect without reconfiguration. Floating IPs are managed automatically and must not be configured manually on a server.
+
 ### Frontend
 
 It is the collection of WEKA software that runs on a client and accesses storage services and IO from the WEKA storage cluster. The frontend consists of a process that delivers IO to the WEKA driver, a DPDK library, and the WEKA POSIX driver.
@@ -85,6 +89,12 @@ The term "host" is deprecated. See [#container](glossary.md#container "mention")
 ### Hot data
 
 Frequently used data (as opposed to warm data), usually residing on SSDs.
+
+## I
+
+### Interface group
+
+A set of servers and designated network ports that together provide a protocol service, along with the floating IP addresses clients use to reach it. An interface group gives the service resilience: if one server becomes unavailable, its floating IPs migrate to another server in the group. All ports in a group must be on the same subnet. See [README.md](../additional-protocols/nfs-support/README.md "mention").
 
 ## L
 
@@ -105,6 +115,10 @@ The term "machine" is deprecated. See [#server](glossary.md#server "mention").
 ### Net capacity
 
 Amount of space available for user data on SSDs in a configured WEKA system.
+
+### Network space
+
+A cluster-level network boundary defined by a name, a VLAN ID, and an IP address range. Network spaces are the building block of tenant isolation: each one provides dedicated datapath endpoints, and traffic is validated against the VLAN it arrives on. Because each space is isolated by VLAN, two tenants can use overlapping IP ranges without conflict. A single tenant can be assigned several network spaces. See [multi-tenancy-cluster-level-administration.md](../operation-guide/weka-native-multi-tenancy-management/multi-tenancy-cluster-level-administration.md "mention").
 
 ### Node
 
@@ -175,6 +189,12 @@ Stem Mode in WEKA refers to the installed and running software that has not yet 
 Snap-To-Object is a WEKA feature facilitating the uploading of snapshots to object stores.
 
 ## T
+
+### Tenant
+
+An isolated environment within a single cluster, with its own administrator, users, filesystems, storage quota, and assigned network spaces. Tenants share CPU, memory, and drives while remaining logically separated in both the datapath and the control plane.
+
+The terms *tenant* and *organization* refer to the same entity. **Tenant** is the current term and is used throughout the documentation and CLI. **Organization** appears in older commands and in the `root organization`, which is the default tenant that exists on every cluster and is the only one where certain protocol features are available. See [weka-native-multi-tenancy-management](../operation-guide/weka-native-multi-tenancy-management/ "mention").
 
 ### Tiered WEKA configuration
 

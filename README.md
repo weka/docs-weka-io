@@ -17,7 +17,7 @@ In this documentation, references to WEKA denote the underlying software compone
 {% endhint %}
 
 {% hint style="warning" %}
-**Important:** This documentation applies to the **latest minor version** (5.1.**X**). For information on new features and supported prerequisites released with each minor version, refer to the relevant release notes available at [get.weka.io](https://get.weka.io/).
+**Important:** This documentation applies to the **latest minor version** (6.0.**X**). For information on new features and supported prerequisites released with each minor version, refer to the relevant release notes available at [get.weka.io](https://get.weka.io/).
 
 Check the release notes for details about any updates or changes accompanying the latest releases.
 {% endhint %}
@@ -25,6 +25,8 @@ Check the release notes for details about any updates or changes accompanying th
 Select your version from the dropdown menu located at the top of the left-hand navigation bar.
 
 <div align="left" data-with-frame="true"><figure><img src=".gitbook/assets/5.1_version_selector.png" alt="" width="169"><figcaption></figcaption></figure></div>
+
+TBD [The version-selector screenshot is `5.1_version_selector.png` and shows 5.1 as the selected version. It needs recapturing on the 6.0 site once published. The 5.0 variant, `5.0_version_selector.gif`, is unreferenced and can be deleted.]
 
 ## Get answers from Ask AI
 

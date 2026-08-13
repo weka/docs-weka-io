@@ -49,4 +49,4 @@ The following table provides the end-of-support dates for WEKA version series.
 
 **Related topic**
 
-[upgrading-weka-versions.md](../operation-guide/upgrading-weka-versions.md "mention")
+[README.md](../operation-guide/upgrading-weka-versions/README.md "mention")

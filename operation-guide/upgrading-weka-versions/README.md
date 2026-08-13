@@ -15,7 +15,7 @@ Each release in [get.weka.io](https://get.weka.io) is tagged as either **Innovat
 
 **Related topic**
 
-[release-support-and-commitments.md](../support/release-support-and-commitments.md "mention")
+[release-support-and-commitments.md](../../support/release-support-and-commitments.md "mention")
 
 ### Software versions
 
@@ -38,7 +38,7 @@ WEKA uses a structured versioning scheme to indicate the scope and type of chang
 * **Major version upgrades:** Upgrades must follow consecutive order (for example, 4.3 → 4.4). LTS releases upgrade to Innovation, and Innovation releases upgrade to the next LTS.
 * **LTS upgrades:** Clusters and clients can be upgraded between consecutive LTS releases (for example, 4.2.6 and above may be upgraded to the latest minor release of 4.4).
 * **Client upgrades:** Clients are supported if they are at most one major version behind the backend. In multi-hop upgrades, such as from 4.2 to 4.4 to 5.0, clients must be upgraded before the cluster to maintain compatibility.
-* **SCMC deployments:** The client-target-version parameter must be identical across all clusters and compatible with the target backend upgrade. See [mount-fs-from-scmc.md](../weka-filesystems-and-object-stores/mounting-filesystems/mount-fs-from-scmc.md "mention").
+* **SCMC deployments:** The client-target-version parameter must be identical across all clusters and compatible with the target backend upgrade. See [mount-fs-from-scmc.md](../../weka-filesystems-and-object-stores/mounting-filesystems/mount-fs-from-scmc.md "mention").
 
 #### Check the upgrade path
 
@@ -62,7 +62,7 @@ Verify that the upgrade path from your source version to the target version is s
 In MCB architecture, each container serves a single type of process, drive, frontend, or compute function. Therefore, upgrading one container at a time (rolling upgrade) is possible while the remaining containers continue serving the clients.
 
 {% hint style="info" %}
-Some background tasks, such as snapshot uploads or downloads, must be postponed or aborted. See the [prerequisites](upgrading-weka-versions.md#1.-verify-prerequisites-for-the-upgrade) in the upgrade workflow for details.
+Some background tasks, such as snapshot uploads or downloads, must be postponed or aborted. See the [prerequisites](./#1.-verify-prerequisites-for-the-upgrade) in the upgrade workflow for details.
 {% endhint %}
 
 #### **Internal upgrade process**
@@ -90,7 +90,7 @@ Example output:
 
 **Related topics**
 
-[weka-containers-architecture-overview.md](../weka-system-overview/weka-containers-architecture-overview.md "mention")
+[weka-containers-architecture-overview.md](../../weka-system-overview/weka-containers-architecture-overview.md "mention")
 
 ## Before you begin
 
@@ -129,13 +129,13 @@ Complete these checks before running the starting the upgrade workflow.
 
 ## Upgrade workflow
 
-1. [Verify system upgrade prerequisites](upgrading-weka-versions.md#id-1.-verify-system-upgrade-prerequisites)
-2. [Prepare the cluster for upgrade](upgrading-weka-versions.md#id-2.-prepare-the-cluster-for-upgrade)
-3. [Prepare the backend servers for upgrade (optional)](upgrading-weka-versions.md#3.-optional.-prepare-the-backend-servers-for-upgrade)
-4. [Upgrade the backend servers](upgrading-weka-versions.md#4.-upgrade-the-backend-servers)
-5. [Enable LLQ and WC in AWS](upgrading-weka-versions.md#id-5.-enable-llq-and-wc-in-aws)
-6. [Upgrade the clients](upgrading-weka-versions.md#id-6.-upgrade-the-clients)
-7. [Complete the cluster upgrade](upgrading-weka-versions.md#id-7.-complete-the-cluster-upgrade)
+1. [Verify system upgrade prerequisites](./#id-1.-verify-system-upgrade-prerequisites)
+2. [Prepare the cluster for upgrade](./#id-2.-prepare-the-cluster-for-upgrade)
+3. [Prepare the backend servers for upgrade (optional)](./#3.-optional.-prepare-the-backend-servers-for-upgrade)
+4. [Upgrade the backend servers](./#4.-upgrade-the-backend-servers)
+5. [Enable LLQ and WC in AWS](./#id-5.-enable-llq-and-wc-in-aws)
+6. [Upgrade the clients](./#id-6.-upgrade-the-clients)
+7. [Complete the cluster upgrade](./#id-7.-complete-the-cluster-upgrade)
 
 ### 1. Verify system upgrade prerequisites
 
@@ -152,7 +152,7 @@ Ensure the environment meets the necessary prerequisites before proceeding with 
 <summary>Sample list of the verification steps performed by the WEKA Upgrade Checker Tool</summary>
 
 * [x] **Backend server Prerequisites and compatibility**:
-  * Confirm that all backend servers meet the [prerequisites and compatibility](../planning-and-installation/prerequisites-and-compatibility.md) requirements of the target version. Address any discrepancies promptly.
+  * Confirm that all backend servers meet the [prerequisites and compatibility](../../planning-and-installation/prerequisites-and-compatibility.md) requirements of the target version. Address any discrepancies promptly.
   * **Contact the Customer Success Team** if there are compatibility issues or missing prerequisites.
 * [x] **Source version architecture**:
   * Verify that the source version is configured in an **MCB (Multi-Cluster Backend)** architecture.
@@ -198,7 +198,7 @@ Ensure the environment meets the necessary prerequisites before proceeding with 
   * **Postpone planned tasks or address running tasks**:
     * If any planned tasks are scheduled during the upgrade, postpone them until after the NDU process.
     * If tasks are currently running, take necessary actions based on their status.
-    * Consult the [**Background tasks**](background-tasks/) topic for comprehensive guidance.
+    * Consult the [**Background tasks**](../background-tasks/) topic for comprehensive guidance.
   * **Data catalog:**
     * Check the catalog indexing status to ensure it is disabled.
 
@@ -377,12 +377,12 @@ Manage client upgrades to ensure software alignment with the backend clusters. T
 Learn the available methods for upgrading clients to a new software version.
 
 * **Hot upgrade:** Allows clients to remain mounted and operational throughout the client software update.
-  * [**Local (on-client) trigger**](upgrading-weka-versions.md#upgrade-a-client-locally): An administrative action performed from the client itself to perform hot upgrade.
-  * [**Remote trigger**](upgrading-weka-versions.md#upgrade-clients-in-batches-via-remote-trigger)**:** An administrative action performed from the backend servers to trigger hot upgrades on specific client(s).
+  * [**Local (on-client) trigger**](./#upgrade-a-client-locally): An administrative action performed from the client itself to perform hot upgrade.
+  * [**Remote trigger**](./#upgrade-clients-in-batches-via-remote-trigger)**:** An administrative action performed from the backend servers to trigger hot upgrades on specific client(s).
 * **Remount-based upgrade:** An alternative method where a client automatically upgrades following a remount of all mounted wekafs on a client or reboot.
 * **Persistent client coordination:** A dedicated client acting as a protocol gateway manages containers with `allow-protocols true`. During upgrades, it coordinates with backend servers to maintain continuous protocol service availability.
 * **Multi-cluster clients:** Perform online upgrades locally for clients without unmounting filesystems.\
-  Related topic: [mount-fs-from-scmc.md](../weka-filesystems-and-object-stores/mounting-filesystems/mount-fs-from-scmc.md "mention").
+  Related topic: [mount-fs-from-scmc.md](../../weka-filesystems-and-object-stores/mounting-filesystems/mount-fs-from-scmc.md "mention").
 
 #### Upgrade a client locally
 
@@ -391,7 +391,7 @@ Update the software of a single stateless or persistent client by connecting dir
 **Before you begin**
 
 * Upgrade all backend components to the target version.
-* Verify version compatibility in the [#version-compatibility-guidelines](upgrading-weka-versions.md#version-compatibility-guidelines "mention").
+* Verify version compatibility in the [#version-compatibility-guidelines](./#version-compatibility-guidelines "mention").
 
 **Procedure**
 

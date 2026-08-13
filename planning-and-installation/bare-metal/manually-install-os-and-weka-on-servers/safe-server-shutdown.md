@@ -68,4 +68,4 @@ If you require fully safe shutdowns, disable those hooks or extend the timeout. 
 
 [background-tasks](../../../operation-guide/background-tasks/ "mention")
 
-[upgrading-weka-versions.md](../../../operation-guide/upgrading-weka-versions.md "mention")
+[README.md](../../../operation-guide/upgrading-weka-versions/README.md "mention")

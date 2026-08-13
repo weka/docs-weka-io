@@ -31,8 +31,20 @@ Cluster Admin accounts must adhere to a strict password policy:
 You can create additional Cluster Admin accounts with unique usernames. You can rename or delete the default `admin` user if at least one other Cluster Admin account exists. To ensure system continuity, maintain at least one internal Cluster Admin account for support purposes.
 
 {% hint style="info" %}
-When multiple tenants exist, a Tenant Admins manages a specific tenant, while the Cluster Admin manages cluster-wide and infrastructure-level tasks.
+When multiple tenants exist, a Tenant Admin manages a specific tenant, while the Cluster Admin manages cluster-wide and infrastructure-level tasks.
 {% endhint %}
+
+### Roles and multi-tenancy
+
+Two changes affect what a Tenant Admin can do when multi-tenancy is in use.
+
+**Root-organization Tenant Admins keep the Tenant Admin role.** They are no longer escalated to Cluster Admin automatically. This is a loosening rather than a restriction, and it means a root-organization Tenant Admin now has the same scope as any other Tenant Admin.
+
+**Some NFS operations now require the Cluster Admin role.** Five NFS API endpoints were tightened, so calls that previously succeeded with a lower role return HTTP 403. The change takes effect immediately after the upgrade with no deprecation period. The most consequential is a *read* operation that moved from Read Only to Cluster Admin, which can break monitoring scripts that never wrote anything. See [breaking-changes.md](../upgrading-weka-versions/breaking-changes.md "mention").
+
+For what a Tenant Admin can and cannot do with NFS specifically, see [multi-tenancy-tenant-level-administration.md](../weka-native-multi-tenancy-management/multi-tenancy-tenant-level-administration.md "mention").
+
+TBD [The role names on this page are spaced — Cluster Admin, Tenant Admin, Read-only — while the multi-tenancy topics use the API forms ClusterAdmin, TenantAdmin, and the upgrade transition note uses OrgAdmin. Decide one convention: spaced prose names with the API form in code font where an API or CLI is being discussed, or the API form everywhere. Currently a reader moving between these topics sees three spellings for the same role.]
 
 ## Authentication and login process
 

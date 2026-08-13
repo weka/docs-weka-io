@@ -19,6 +19,10 @@ A tenant administrator can set a quota on a directory. This action initiates cal
 
 The tenant administrator sets quotas to inform users and prevent overuse of filesystem capacity. Only data that the user controls is considered. The quota does not include protection overhead or snapshots. It includes file data and metadata in the directory, whether tiered or not.
 
+{% hint style="info" %}
+Quota alerts are emitted per tenant and are visible to tenant administrators, not only to cluster administrators. A cluster administrator can view the alert list exactly as a tenant administrator sees it, which is useful when investigating why a tenant did or did not receive an alert. See [View alerts as a tenant](../../operation-guide/weka-native-multi-tenancy-management/multi-tenancy-cluster-level-administration.md#view-alerts-as-a-tenant).
+{% endhint %}
+
 ## Guidelines for quota management
 
 When managing quotas, adhere to the following guidelines and requirements.
