@@ -12,7 +12,10 @@ Encryption configuration applies to filesystems, not to WEKA management traffic 
 
 ## Encryption modes
 
-<table><thead><tr><th width="106">Mode</th><th width="313">Key storage</th><th>Use case</th></tr></thead><tbody><tr><td>Internal</td><td>Encryption key stored in the WEKA cluster configuration.</td><td>Evaluating encrypted filesystem performance. Not recommended for production.</td></tr><tr><td>Vault</td><td>Encryption key managed by HashiCorp Vault via Kubernetes authentication.</td><td>Production environments requiring an external KMS.</td></tr></tbody></table>
+| Mode | Key storage | Use case |
+| --- | --- | --- |
+| Internal | Encryption key stored in the WEKA cluster configuration. | Evaluating encrypted filesystem performance. Not recommended for production. |
+| Vault | Encryption key managed by HashiCorp Vault via Kubernetes authentication. | Production environments requiring an external KMS. |
 
 ### Configure internal encryption
 
@@ -54,7 +57,11 @@ spec:
       method: kubernetes
 ```
 
-<table><thead><tr><th width="162">Field</th><th>Description</th></tr></thead><tbody><tr><td><code>address</code>*</td><td>Vault server address, for example <code>https://vault.example.com:8200</code>.</td></tr><tr><td><code>role</code>*</td><td>The Vault role to authenticate as. Must have a policy permitting access to the WEKA encryption key.</td></tr><tr><td><code>method</code>*</td><td>Vault authentication method. Only <code>kubernetes</code> is supported for Operator-managed deployments.</td></tr></tbody></table>
+| Field | Description |
+| --- | --- |
+| `address`* | Vault server address, for example `https://vault.example.com:8200`. |
+| `role`* | The Vault role to authenticate as. Must have a policy permitting access to the WEKA encryption key. |
+| `method`* | Vault authentication method. Only `kubernetes` is supported for Operator-managed deployments. |
 
 2. Apply the updated configuration:
 

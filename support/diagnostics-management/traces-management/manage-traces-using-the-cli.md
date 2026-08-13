@@ -27,7 +27,12 @@ Manage trace settings using the CLI commands:
 
 **Parameters**
 
-<table><thead><tr><th width="240">Parameter</th><th>Description</th><th>Default</th></tr></thead><tbody><tr><td><code>server-max</code></td><td>Maximum capacity to retain per server.</td><td>50 GB per IO-node, with a minimum of 100 GB for all IO-nodes.</td></tr><tr><td><code>client-max</code></td><td>Maximum capacity to retain per client.</td><td>50 GB per IO-node, with a minimum of 100 GB for all IO-nodes.</td></tr><tr><td><code>server-ensure-free</code></td><td>Always maintain at least this much capacity to remain free on servers.</td><td>3 GB</td></tr><tr><td><code>client-ensure-free</code></td><td>Always maintain at least this much capacity to remain free on clients.</td><td>3 GB</td></tr></tbody></table>
+| Parameter | Description | Default |
+| --- | --- | --- |
+| `server-max` | Maximum capacity to retain per server. | 50 GB per IO-node, with a minimum of 100 GB for all IO-nodes. |
+| `client-max` | Maximum capacity to retain per client. | 50 GB per IO-node, with a minimum of 100 GB for all IO-nodes. |
+| `server-ensure-free` | Always maintain at least this much capacity to remain free on servers. | 3 GB |
+| `client-ensure-free` | Always maintain at least this much capacity to remain free on clients. | 3 GB |
 
 {% hint style="info" %}
 To modify the trace retention setting of a single client, you can use the `traces_capacity_mb` mount command. See [#additional-mount-options-using-the-stateless-clients-feature](../../../weka-filesystems-and-object-stores/mounting-filesystems/#additional-mount-options-using-the-stateless-clients-feature "mention").

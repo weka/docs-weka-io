@@ -26,7 +26,13 @@ The `homecli` tool is included in the Local WEKA Home deployment for K3s. For K8
 
 The remote-access command group provides the following subcommands:
 
-<table><thead><tr><th width="212" valign="top">Command</th><th valign="top">Description</th></tr></thead><tbody><tr><td valign="top"><code>start</code></td><td valign="top">Start a new remote-access tmate session</td></tr><tr><td valign="top"><code>stop</code></td><td valign="top">Stop running remote session(s)</td></tr><tr><td valign="top"><code>list</code></td><td valign="top">List active remote sessions</td></tr><tr><td valign="top"><code>list-recordings</code></td><td valign="top">List available session recordings</td></tr><tr><td valign="top"><code>copy-recording</code></td><td valign="top">Copy recording files from PVC to local filesystem</td></tr></tbody></table>
+| Command | Description |
+| --- | --- |
+| `start` | Start a new remote-access tmate session |
+| `stop` | Stop running remote session(s) |
+| `list` | List active remote sessions |
+| `list-recordings` | List available session recordings |
+| `copy-recording` | Copy recording files from PVC to local filesystem |
 
 ***
 
@@ -42,17 +48,33 @@ homecli remote-access start [flags]
 
 **Required flags**
 
-<table><thead><tr><th width="174">Flag</th><th width="133">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>--cluster-id</code></td><td><code>string</code></td><td>Cluster GUID (must be a valid UUID).</td></tr><tr><td><code>--cluster-name</code></td><td><code>string</code></td><td>Human-readable cluster name. Max 63 characters; alphanumeric with dashes, underscores, or dots.</td></tr><tr><td><code>--ssh-keys-path</code></td><td><code>string</code></td><td>Host path to an existing SSH keys directory, mounted as a HostPath volume.</td></tr></tbody></table>
+| Flag | Type | Description |
+| --- | --- | --- |
+| `--cluster-id` | `string` | Cluster GUID (must be a valid UUID). |
+| `--cluster-name` | `string` | Human-readable cluster name. Max 63 characters; alphanumeric with dashes, underscores, or dots. |
+| `--ssh-keys-path` | `string` | Host path to an existing SSH keys directory, mounted as a HostPath volume. |
 
 **Optional flags**
 
-<table><thead><tr><th width="190">Flag</th><th width="112">Type</th><th width="161">Default</th><th>Description</th></tr></thead><tbody><tr><td><code>--cloud-url</code></td><td><code>string</code></td><td>From config</td><td>Cloud Weka Home URL</td></tr><tr><td><code>--host-name</code></td><td><code>string</code></td><td>System hostname</td><td>Override hostname</td></tr><tr><td><code>--terminal-cols</code></td><td><code>int</code></td><td><code>158</code></td><td>Terminal width</td></tr><tr><td><code>--terminal-lines</code></td><td><code>int</code></td><td><code>35</code></td><td>Terminal height</td></tr><tr><td><code>--debug</code></td><td><code>bool</code></td><td><code>false</code></td><td>Enable debug logging in the tmate container</td></tr></tbody></table>
+| Flag | Type | Default | Description |
+| --- | --- | --- | --- |
+| `--cloud-url` | `string` | From config | Cloud Weka Home URL |
+| `--host-name` | `string` | System hostname | Override hostname |
+| `--terminal-cols` | `int` | `158` | Terminal width |
+| `--terminal-lines` | `int` | `35` | Terminal height |
+| `--debug` | `bool` | `false` | Enable debug logging in the tmate container |
 
 **Custom tmate server flags**
 
 When connecting to a custom tmate server, all of the following flags must be provided together.
 
-<table><thead><tr><th>Flag</th><th width="117">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>--tmate-server-host</code></td><td><code>string</code></td><td>Override tmate SSH server hostname</td></tr><tr><td><code>--tmate-server-port</code></td><td><code>string</code></td><td>Override tmate SSH server port</td></tr><tr><td><code>--tmate-server-rsa-fingerprint</code></td><td><code>string</code></td><td>Override RSA fingerprint</td></tr><tr><td><code>--tmate-server-ed25519-fingerprint</code></td><td><code>string</code></td><td>Override Ed25519 fingerprint</td></tr><tr><td><code>--tmate-server-ecdsa-fingerprint</code></td><td><code>string</code></td><td>Override ECDSA fingerprint</td></tr></tbody></table>
+| Flag | Type | Description |
+| --- | --- | --- |
+| `--tmate-server-host` | `string` | Override tmate SSH server hostname |
+| `--tmate-server-port` | `string` | Override tmate SSH server port |
+| `--tmate-server-rsa-fingerprint` | `string` | Override RSA fingerprint |
+| `--tmate-server-ed25519-fingerprint` | `string` | Override Ed25519 fingerprint |
+| `--tmate-server-ecdsa-fingerprint` | `string` | Override ECDSA fingerprint |
 
 **Validation rules**
 
@@ -118,7 +140,11 @@ homecli remote-access stop [flags]
 
 **Flags**
 
-<table><thead><tr><th width="184">Flag</th><th width="139">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>--session-id</code></td><td><code>string</code></td><td>Stop a specific session by its 6-character hex ID (example, <code>a1b2c3</code>)</td></tr><tr><td><code>--cluster-id</code></td><td><code>string</code></td><td>Stop all active sessions for a specific cluster (must be a valid UUID)</td></tr><tr><td><code>--all</code></td><td><code>bool</code></td><td>Stop all active sessions</td></tr></tbody></table>
+| Flag | Type | Description |
+| --- | --- | --- |
+| `--session-id` | `string` | Stop a specific session by its 6-character hex ID (example, `a1b2c3`) |
+| `--cluster-id` | `string` | Stop all active sessions for a specific cluster (must be a valid UUID) |
+| `--all` | `bool` | Stop all active sessions |
 
 **Validation rules**
 
@@ -168,7 +194,9 @@ homecli remote-access list [flags]
 
 **Flags**
 
-<table><thead><tr><th width="126">Flag</th><th width="92">Short</th><th width="108">Type</th><th width="109">Default</th><th>Description</th></tr></thead><tbody><tr><td><code>--output</code></td><td><code>-o</code></td><td><code>string</code></td><td><code>table</code></td><td>Output format: <code>table</code>, <code>json</code>, or <code>yaml</code></td></tr></tbody></table>
+| Flag | Short | Type | Default | Description |
+| --- | --- | --- | --- | --- |
+| `--output` | `-o` | `string` | `table` | Output format: `table`, `json`, or `yaml` |
 
 #### **Examples**
 
@@ -251,7 +279,10 @@ homecli remote-access list-recordings [flags]
 
 **Flags**
 
-<table><thead><tr><th width="161">Flag</th><th width="119">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>--cluster-id</code></td><td><code>string</code></td><td>Filter recordings by cluster ID (must be a valid UUID)</td></tr><tr><td><code>--output</code> / <code>-o</code></td><td><code>string</code></td><td>Output format: <code>table</code> (default), <code>json</code>, or <code>yaml</code></td></tr></tbody></table>
+| Flag | Type | Description |
+| --- | --- | --- |
+| `--cluster-id` | `string` | Filter recordings by cluster ID (must be a valid UUID) |
+| `--output` / `-o` | `string` | Output format: `table` (default), `json`, or `yaml` |
 
 #### **Examples**
 
@@ -322,7 +353,12 @@ session-recording.cast                245 B     2024-01-10 14:22   -
 
 #### **Size format**
 
-<table><thead><tr><th width="260">Size range</th><th>Format example</th></tr></thead><tbody><tr><td>Less than 1 KB</td><td><code>245 B</code></td></tr><tr><td>Less than 1 MB</td><td><code>856.3 KB</code></td></tr><tr><td>Less than 1 GB</td><td><code>1.2 MB</code></td></tr><tr><td>1 GB or more</td><td><code>2.5 GB</code></td></tr></tbody></table>
+| Size range | Format example |
+| --- | --- |
+| Less than 1 KB | `245 B` |
+| Less than 1 MB | `856.3 KB` |
+| Less than 1 GB | `1.2 MB` |
+| 1 GB or more | `2.5 GB` |
 
 ***
 
@@ -338,13 +374,19 @@ homecli remote-access copy-recording [flags]
 
 **Required flag**
 
-<table><thead><tr><th width="165">Flag</th><th width="126">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>--output</code> / <code>-o</code></td><td><code>string</code></td><td>Local destination directory. The directory is created if it does not already exist.</td></tr></tbody></table>
+| Flag | Type | Description |
+| --- | --- | --- |
+| `--output` / `-o` | `string` | Local destination directory. The directory is created if it does not already exist. |
 
 **Filter flags**
 
 At least one of the following filter flags must be provided:
 
-<table><thead><tr><th width="168">Flag</th><th width="145">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>--recording</code></td><td><code>string</code></td><td>Specific recording filename to copy. Must be a <code>.cast</code> file with safe characters (alphanumeric, underscore, dash, colon, dot).</td></tr><tr><td><code>--cluster-id</code></td><td><code>string</code></td><td>Copy all recordings associated with a cluster (must be a valid UUID).</td></tr><tr><td><code>--all</code></td><td><code>bool</code></td><td>Copy all available recordings.</td></tr></tbody></table>
+| Flag | Type | Description |
+| --- | --- | --- |
+| `--recording` | `string` | Specific recording filename to copy. Must be a `.cast` file with safe characters (alphanumeric, underscore, dash, colon, dot). |
+| `--cluster-id` | `string` | Copy all recordings associated with a cluster (must be a valid UUID). |
+| `--all` | `bool` | Copy all available recordings. |
 
 **Validation rules**
 

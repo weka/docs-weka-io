@@ -22,7 +22,12 @@ In multi-tenant deployments, notification rules are tenant-scoped and notificati
 * ClusterAdmin manages notification targets for the cluster.
 * Tenants can view only their own bucket rules.
 
-<table><thead><tr><th width="435">Operation</th><th>Who can perform it</th></tr></thead><tbody><tr><td>Add, update, or remove a notification target</td><td>ClusterAdmin only</td></tr><tr><td>View notification targets</td><td>ClusterAdmin only</td></tr><tr><td>Add, update, or remove a notification rule on a bucket</td><td>TenantAdmin within the tenant</td></tr><tr><td>View notification rules</td><td>TenantAdmin for the tenant's buckets</td></tr></tbody></table>
+| Operation | Who can perform it |
+| --- | --- |
+| Add, update, or remove a notification target | ClusterAdmin only |
+| View notification targets | ClusterAdmin only |
+| Add, update, or remove a notification rule on a bucket | TenantAdmin within the tenant |
+| View notification rules | TenantAdmin for the tenant's buckets |
 
 {% hint style="warning" %}
 Notification targets are shared cluster resources. Multiple tenants can attach rules to the same target. Events from different tenants can flow through the same Kafka topic or webhook endpoint. Per-target tenant isolation is not available in this release.
@@ -37,7 +42,12 @@ Notification targets are shared cluster resources. Multiple tenants can attach r
 
 ### Supported event types
 
-<table><thead><tr><th width="241.91015625">Category</th><th>Events</th></tr></thead><tbody><tr><td>Object created events</td><td><code>Put</code>, <code>Post</code>, <code>Copy</code>, <code>CompleteMultipartUpload</code></td></tr><tr><td>Object removed events</td><td><code>Delete</code></td></tr><tr><td>Object accessed events</td><td><code>Head</code>, <code>Get</code></td></tr><tr><td>Wildcard support</td><td><code>s3:ObjectCreated:*</code>, <code>s3:ObjectAccessed:*</code>, <code>s3:ObjectRemoved:*</code></td></tr></tbody></table>
+| Category | Events |
+| --- | --- |
+| Object created events | `Put`, `Post`, `Copy`, `CompleteMultipartUpload` |
+| Object removed events | `Delete` |
+| Object accessed events | `Head`, `Get` |
+| Wildcard support | `s3:ObjectCreated:*`, `s3:ObjectAccessed:*`, `s3:ObjectRemoved:*` |
 
 ### Operational considerations and best practices
 
@@ -73,7 +83,13 @@ weka s3 cluster notification-target add \
 
 **Parameters**
 
-<table><thead><tr><th width="165.9375"></th><th></th></tr></thead><tbody><tr><td><code>type</code></td><td>Specifies the target type. Supported value: <code>kafka</code>.</td></tr><tr><td><code>name</code></td><td>Name for the target.</td></tr><tr><td><code>topic</code></td><td>Kafka topic name.</td></tr><tr><td><code>brokers</code></td><td>Comma-separated list of <code>&#x3C;IP or hostname>:&#x3C;port></code> for Kafka brokers.</td></tr><tr><td><code>queue-limit</code></td><td>Maximum queued notifications before dropping events.</td></tr></tbody></table>
+|  |  |
+| --- | --- |
+| `type` | Specifies the target type. Supported value: `kafka`. |
+| `name` | Name for the target. |
+| `topic` | Kafka topic name. |
+| `brokers` | Comma-separated list of `&#x3C;IP or hostname>:&#x3C;port>` for Kafka brokers. |
+| `queue-limit` | Maximum queued notifications before dropping events. |
 
 **Example**
 

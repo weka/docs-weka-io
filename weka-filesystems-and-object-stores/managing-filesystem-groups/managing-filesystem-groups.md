@@ -17,7 +17,12 @@ The filesystem groups appear on the **Filesystems** page. The tab title shows th
 
 The table shows the following details for each filesystem group:
 
-<table><thead><tr><th width="209.930419921875">Column</th><th>Description</th></tr></thead><tbody><tr><td><strong>Name</strong></td><td>The name of the filesystem group.</td></tr><tr><td><strong>Filesystems</strong></td><td>The number of filesystems that use the group.</td></tr><tr><td><strong>Drive Retention Period</strong></td><td>The time to keep data on the SSD after it is copied to the object store.</td></tr><tr><td><strong>Tiering Cue</strong></td><td>The time to wait after the last update before the data is copied from the SSD to the object store.</td></tr></tbody></table>
+| Column | Description |
+| --- | --- |
+| **Name** | The name of the filesystem group. |
+| **Filesystems** | The number of filesystems that use the group. |
+| **Drive Retention Period** | The time to keep data on the SSD after it is copied to the object store. |
+| **Tiering Cue** | The time to wait after the last update before the data is copied from the SSD to the object store. |
 
 ## Create a filesystem group
 
@@ -32,7 +37,11 @@ Create a filesystem group to apply a different tiering policy to specific filesy
 
 <div data-with-frame="true"><img src="../../.gitbook/assets/create_fsg.png" alt="Add a filesystem group"></div>
 
-<table><thead><tr><th width="207.15692138671875">Setting</th><th>Description</th></tr></thead><tbody><tr><td><strong>Name</strong></td><td>A meaningful name for the filesystem group.</td></tr><tr><td><strong>Drive Retention Period</strong></td><td>The time to keep data on the SSD after it is copied to the object store. When this period ends, the copy of the data is deleted from the SSD. Set a value and select the time unit.</td></tr><tr><td><strong>Tiering Cue</strong></td><td>The time to wait after the last update before the data is copied from the SSD to the object store. Set a value and select the time unit.</td></tr></tbody></table>
+| Setting | Description |
+| --- | --- |
+| **Name** | A meaningful name for the filesystem group. |
+| **Drive Retention Period** | The time to keep data on the SSD after it is copied to the object store. When this period ends, the copy of the data is deleted from the SSD. Set a value and select the time unit. |
+| **Tiering Cue** | The time to wait after the last update before the data is copied from the SSD to the object store. Set a value and select the time unit. |
 
 5. Select **Create**.
 

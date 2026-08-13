@@ -39,7 +39,9 @@ The secret key is visible **only once** when adding the S3 service account. You 
 
 **Parameters**
 
-<table><thead><tr><th width="151">Name</th><th width="380">Description</th><th>Default</th></tr></thead><tbody><tr><td><code>policy-file</code></td><td>The IAM policy file to attach to the S3 service account.</td><td>Inherits the IAM policy from the parent S3 user</td></tr></tbody></table>
+| Name | Description | Default |
+| --- | --- | --- |
+| `policy-file` | The IAM policy file to attach to the S3 service account. | Inherits the IAM policy from the parent S3 user |
 
 ## Show an S3 service account details
 
@@ -51,7 +53,9 @@ Use the following command line to display the policy details attached to the spe
 
 **Parameters**
 
-<table><thead><tr><th width="153">Name</th><th>Description</th></tr></thead><tbody><tr><td><code>access-key</code>*</td><td>The access key of the S3 service account.</td></tr></tbody></table>
+| Name | Description |
+| --- | --- |
+| `access-key`* | The access key of the S3 service account. |
 
 ## Remove S3 service account <a href="#creating-a-new-iam-policies" id="creating-a-new-iam-policies"></a>
 
@@ -63,4 +67,6 @@ Use the following command line to remove an S3 service account:‌
 
 **Parameters**
 
-<table><thead><tr><th width="164">Name</th><th>Description</th></tr></thead><tbody><tr><td><code>access-key</code>*</td><td>The access key of the S3 service account to remove.</td></tr></tbody></table>
+| Name | Description |
+| --- | --- |
+| `access-key`* | The access key of the S3 service account to remove. |

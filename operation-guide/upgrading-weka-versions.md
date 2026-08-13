@@ -421,7 +421,10 @@ Update the software of a single stateless or persistent client by connecting dir
 
 Reference these flags for the `weka version` command to manage package downloads and visibility.
 
-<table><thead><tr><th width="185">Flag</th><th>Description</th></tr></thead><tbody><tr><td><code>--client-only</code></td><td>Downloads only the essential components required for stateless client operations.</td></tr><tr><td><code>--full</code></td><td>Displays version information only when the complete set of components is present on the server.</td></tr></tbody></table>
+| Flag | Description |
+| --- | --- |
+| `--client-only` | Downloads only the essential components required for stateless client operations. |
+| `--full` | Displays version information only when the complete set of components is present on the server. |
 
 #### Upgrade clients in batches (via remote trigger)
 
@@ -443,7 +446,12 @@ Use the backend servers to remotely trigger online upgrades for multiple statele
 
 Reference the following table for parameters used with the `weka local run upgrade` command.
 
-<table><thead><tr><th width="263">Parameter</th><th width="368">Description</th><th>Default</th></tr></thead><tbody><tr><td><code>--mode=clients-upgrade</code></td><td>Activates the remote upgrade process for clients.</td><td>N/A</td></tr><tr><td><code>--client-rolling-batch-size</code></td><td>Defines the number of clients to upgrade in each sequential batch.</td><td>1</td></tr><tr><td><code>--clients-to-upgrade</code></td><td>Specifies a comma-separated list of client IDs to include.</td><td>All clients</td></tr><tr><td><code>--drop-host</code></td><td>Specifies a comma-separated list of client IDs to exclude from the upgrade.</td><td>None</td></tr></tbody></table>
+| Parameter | Description | Default |
+| --- | --- | --- |
+| `--mode=clients-upgrade` | Activates the remote upgrade process for clients. | N/A |
+| `--client-rolling-batch-size` | Defines the number of clients to upgrade in each sequential batch. | 1 |
+| `--clients-to-upgrade` | Specifies a comma-separated list of client IDs to include. | All clients |
+| `--drop-host` | Specifies a comma-separated list of client IDs to exclude from the upgrade. | None |
 
 **Example**
 

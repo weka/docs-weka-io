@@ -12,7 +12,15 @@ Version upgrades for the WEKA Operator, WekaCluster, and WekaClient are covered 
 
 **Tasks**
 
-<table><thead><tr><th width="308">Task</th><th>Description</th></tr></thead><tbody><tr><td><a href="cluster-maintenance.md#update-wekacluster-configuration">Update WekaCluster configuration</a></td><td>Modify memory, tolerations, driver service, and image pull secret settings.</td></tr><tr><td><a href="cluster-maintenance.md#update-wekaclient-configuration">Update WekaClient configuration</a></td><td>Modify client-side memory, ports, cores, tolerations, and authentication settings.</td></tr><tr><td><a href="cluster-maintenance.md#rotate-pods-after-applying-changes">Rotate pods after applying changes</a></td><td>Restart all WekaContainer pods to apply updated configuration cluster-wide.</td></tr><tr><td><a href="cluster-maintenance.md#rotate-the-wekaclient-join-token">Rotate the WekaClient join token</a></td><td>Generate a new join token and update the Kubernetes secret before the current token expires.</td></tr><tr><td><a href="cluster-maintenance.md#configure-trace-retention">Configure trace retention</a></td><td>Set trace retention limits on a Kubernetes-managed WEKA cluster.</td></tr><tr><td><a href="cluster-maintenance.md#pause-and-resume-a-cluster-for-maintenance">Pause and resume a cluster for maintenance</a></td><td>Halt all cluster I/O gracefully for a planned maintenance window.</td></tr><tr><td><a href="cluster-maintenance.md#cancel-a-cluster-deletion">Cancel a cluster deletion</a></td><td>Recover a cluster before the graceful destroy period expires.</td></tr></tbody></table>
+| Task | Description |
+| --- | --- |
+| [Update WekaCluster configuration](cluster-maintenance.md#update-wekacluster-configuration) | Modify memory, tolerations, driver service, and image pull secret settings. |
+| [Update WekaClient configuration](cluster-maintenance.md#update-wekaclient-configuration) | Modify client-side memory, ports, cores, tolerations, and authentication settings. |
+| [Rotate pods after applying changes](cluster-maintenance.md#rotate-pods-after-applying-changes) | Restart all WekaContainer pods to apply updated configuration cluster-wide. |
+| [Rotate the WekaClient join token](cluster-maintenance.md#rotate-the-wekaclient-join-token) | Generate a new join token and update the Kubernetes secret before the current token expires. |
+| [Configure trace retention](cluster-maintenance.md#configure-trace-retention) | Set trace retention limits on a Kubernetes-managed WEKA cluster. |
+| [Pause and resume a cluster for maintenance](cluster-maintenance.md#pause-and-resume-a-cluster-for-maintenance) | Halt all cluster I/O gracefully for a planned maintenance window. |
+| [Cancel a cluster deletion](cluster-maintenance.md#cancel-a-cluster-deletion) | Recover a cluster before the graceful destroy period expires. |
 
 ***
 
@@ -537,7 +545,11 @@ Run `weka cluster stop-io` manually before applying the pause. The Operator does
 
 **`spec.overrides.paused` values**
 
-<table><thead><tr><th width="185">Value</th><th>Behavior</th></tr></thead><tbody><tr><td>Field omitted</td><td>No propagation. The cluster does not enforce a pause state on containers.</td></tr><tr><td><code>true</code></td><td>Containers are stopped in sequence. Cluster status changes to <code>Paused</code>.</td></tr><tr><td><code>false</code></td><td>Containers that were paused by this field transition back to active. Containers in other states are not affected.</td></tr></tbody></table>
+| Value | Behavior |
+| --- | --- |
+| Field omitted | No propagation. The cluster does not enforce a pause state on containers. |
+| `true` | Containers are stopped in sequence. Cluster status changes to `Paused`. |
+| `false` | Containers that were paused by this field transition back to active. Containers in other states are not affected. |
 
 **Procedure: pause the cluster**
 

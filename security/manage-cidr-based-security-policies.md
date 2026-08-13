@@ -53,7 +53,12 @@ When creating or updating a security policy, the following restrictions apply:
 
 The following table summarizes where each policy type can be attached:
 
-<table><thead><tr><th width="245">Policy attributes</th><th width="167">Attach to tenant</th><th width="177">Attach to filesystem</th><th>Attach to join list</th></tr></thead><tbody><tr><td>IP range only</td><td>Yes</td><td>Yes</td><td>Yes</td></tr><tr><td>Roles (with or without IP range)</td><td>Yes</td><td>No</td><td>No</td></tr><tr><td><code>read-only</code> or <code>squash-mode</code> (with or without IP range)</td><td>No</td><td>Yes</td><td>No</td></tr><tr><td>Roles combined with <code>read-only</code> or <code>squash-mode</code></td><td>Not permitted at creation</td><td>Not permitted at creation</td><td>Not permitted at creation</td></tr></tbody></table>
+| Policy attributes | Attach to tenant | Attach to filesystem | Attach to join list |
+| --- | --- | --- | --- |
+| IP range only | Yes | Yes | Yes |
+| Roles (with or without IP range) | Yes | No | No |
+| `read-only` or `squash-mode` (with or without IP range) | No | Yes | No |
+| Roles combined with `read-only` or `squash-mode` | Not permitted at creation | Not permitted at creation | Not permitted at creation |
 
 In addition, a policy already in use by one scope cannot be attached to a different scope:
 
@@ -137,7 +142,9 @@ weka security policy show <policy>
 
 **Parameters**
 
-<table><thead><tr><th width="190">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>policy</code>*</td><td>Name or ID of security policy.</td></tr></tbody></table>
+| Parameter | Description |
+| --- | --- |
+| `policy`* | Name or ID of security policy. |
 
 ### Add a new security policy
 
@@ -181,7 +188,9 @@ weka security policy remove <policy>
 
 **Parameters**
 
-<table><thead><tr><th width="211">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>policy</code>*</td><td>Name or ID of security policy.</td></tr></tbody></table>
+| Parameter | Description |
+| --- | --- |
+| `policy`* | Name or ID of security policy. |
 
 ### Duplicate an existing security policy
 
@@ -195,7 +204,10 @@ weka security policy duplicate <policy> <name>
 
 **Parameters**
 
-<table><thead><tr><th width="204">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>policy</code>*</td><td>Name or ID of the security policy to duplicate.</td></tr><tr><td><code>name</code>*</td><td>Name of the new security policy. (up to 64 alphanumeric characters, hyphens (-), underscores (_), and periods (.), starting with a letter).</td></tr></tbody></table>
+| Parameter | Description |
+| --- | --- |
+| `policy`* | Name or ID of the security policy to duplicate. |
+| `name`* | Name of the new security policy. (up to 64 alphanumeric characters, hyphens (-), underscores (_), and periods (.), starting with a letter). |
 
 **Example**
 
@@ -249,7 +261,12 @@ weka security policy test [--role role] [--ip ip] [--join] [<policy>]...
 
 **Parameters**
 
-<table><thead><tr><th width="193">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>policy</code>...</td><td>Policies to evaluate, with access verified in the order listed.</td></tr><tr><td><code>role</code></td><td>Simulate effect of policies on API access from the given user role. (format: <code>clusteradmin</code>, <code>tenantadmin</code>, <code>regular</code>, <code>readonly</code> or <code>s3</code>)</td></tr><tr><td><code>ip</code></td><td>IP address to evaluate as the source address.</td></tr><tr><td><code>join</code></td><td>Simulate effect of policies when joining the cluster.</td></tr></tbody></table>
+| Parameter | Description |
+| --- | --- |
+| `policy`... | Policies to evaluate, with access verified in the order listed. |
+| `role` | Simulate effect of policies on API access from the given user role. (format: `clusteradmin`, `tenantadmin`, `regular`, `readonly` or `s3`) |
+| `ip` | IP address to evaluate as the source address. |
+| `join` | Simulate effect of policies when joining the cluster. |
 
 **Example**
 
@@ -269,7 +286,10 @@ weka security policy join list [--client] [--backend]
 
 **Parameters**
 
-<table><thead><tr><th width="195">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>client</code></td><td>List policies for clients.</td></tr><tr><td><code>backend</code></td><td>List policies for backends.</td></tr></tbody></table>
+| Parameter | Description |
+| --- | --- |
+| `client` | List policies for clients. |
+| `backend` | List policies for backends. |
 
 ### Set security policies for joining cluster
 
@@ -283,7 +303,11 @@ weka security policy join set [--client] [--backend] [<policies>]...
 
 **Parameters**
 
-<table><thead><tr><th width="201">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>policies</code>...</td><td>Security policy names or IDs applied to cluster join process.</td></tr><tr><td><code>client</code></td><td>Apply policies to clients.</td></tr><tr><td><code>backend</code></td><td>Apply policies to backends.</td></tr></tbody></table>
+| Parameter | Description |
+| --- | --- |
+| `policies`... | Security policy names or IDs applied to cluster join process. |
+| `client` | Apply policies to clients. |
+| `backend` | Apply policies to backends. |
 
 ### Attach a security policy when joining cluster
 
@@ -297,7 +321,11 @@ weka security policy join attach [--client] [--backend] [<policies>]...
 
 **Parameters**
 
-<table><thead><tr><th width="205">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>policies</code>...</td><td>Security policy names or IDs to attach to cluster join process.</td></tr><tr><td><code>client</code></td><td>Apply policies to clients.</td></tr><tr><td><code>backend</code></td><td>Apply policies to backends.</td></tr></tbody></table>
+| Parameter | Description |
+| --- | --- |
+| `policies`... | Security policy names or IDs to attach to cluster join process. |
+| `client` | Apply policies to clients. |
+| `backend` | Apply policies to backends. |
 
 {% hint style="info" %}
 Only policies that contain IP ranges only, with no `roles`, `read-only`, or `squash-mode` attributes, can be attached to the join list. Policies already in use by a filesystem or tenant cannot be attached to the join list.
@@ -315,7 +343,11 @@ weka security policy join detach [--client] [--backend] [<policies>]...
 
 **Parameters**
 
-<table><thead><tr><th width="195">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>policies</code>...</td><td>Security policy names or IDs to remove from cluster join process.</td></tr><tr><td><code>client</code></td><td>Apply policies to clients.</td></tr><tr><td><code>backend</code></td><td>Apply policies to backends.</td></tr></tbody></table>
+| Parameter | Description |
+| --- | --- |
+| `policies`... | Security policy names or IDs to remove from cluster join process. |
+| `client` | Apply policies to clients. |
+| `backend` | Apply policies to backends. |
 
 ### Remove all security policies applied when joining cluster
 
@@ -329,7 +361,10 @@ weka security policy join reset [--client] [--backend]
 
 **Parameters**
 
-<table><thead><tr><th width="195">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>client</code></td><td>Apply policies to clients.</td></tr><tr><td><code>backend</code></td><td>Apply policies to backends.</td></tr></tbody></table>
+| Parameter | Description |
+| --- | --- |
+| `client` | Apply policies to clients. |
+| `backend` | Apply policies to backends. |
 
 ## Manage tenant-level security policies
 
@@ -361,7 +396,9 @@ The command `weka tenant` also displays the attached policies for each tenant.
 
 **Parameters**
 
-<table><thead><tr><th width="227">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>tenant</code>*</td><td>Tenant name or ID.</td></tr></tbody></table>
+| Parameter | Description |
+| --- | --- |
+| `tenant`* | Tenant name or ID. |
 
 ### Set security policies for a tenant
 
@@ -375,7 +412,10 @@ weka tenant security policy set <tenant> [<policies>]...
 
 **Parameters**
 
-<table><thead><tr><th width="237">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>tenant</code>*</td><td>Tenant name or ID.</td></tr><tr><td><code>policies</code>...</td><td>Security policy names or IDs to assign them to the tenant, separated by spaces.</td></tr></tbody></table>
+| Parameter | Description |
+| --- | --- |
+| `tenant`* | Tenant name or ID. |
+| `policies`... | Security policy names or IDs to assign them to the tenant, separated by spaces. |
 
 ### Remove all security policies from a tenant
 
@@ -389,7 +429,9 @@ weka tenant security policy reset <tenant>
 
 **Parameters**
 
-<table><thead><tr><th width="227">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>tenant</code>*</td><td>Tenant name or ID.</td></tr></tbody></table>
+| Parameter | Description |
+| --- | --- |
+| `tenant`* | Tenant name or ID. |
 
 ### Attach new security policies to a tenant
 
@@ -403,7 +445,10 @@ weka tenant security policy attach <tenant> [<policies>]...
 
 **Parameters**
 
-<table><thead><tr><th width="237">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>tenant</code>*</td><td>Tenant name or ID.</td></tr><tr><td><code>policies</code>...</td><td>Security policy names or IDs to attach to the tenant, separated by spaces.</td></tr></tbody></table>
+| Parameter | Description |
+| --- | --- |
+| `tenant`* | Tenant name or ID. |
+| `policies`... | Security policy names or IDs to attach to the tenant, separated by spaces. |
 
 {% hint style="info" %}
 Only policies that do not contain `read-only` or `squash-mode` attributes can be attached to a tenant. Policies already in use by a filesystem or join list cannot be attached to a tenant.
@@ -421,7 +466,10 @@ weka tenant security policy detach <tenant>[<policies>]...
 
 **Parameters**
 
-<table><thead><tr><th width="237">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>tenant</code>*</td><td>Tenant name or ID.</td></tr><tr><td><code>policies</code>...</td><td>Security policy names or IDs to detach from the tenant, separated by spaces .</td></tr></tbody></table>
+| Parameter | Description |
+| --- | --- |
+| `tenant`* | Tenant name or ID. |
+| `policies`... | Security policy names or IDs to detach from the tenant, separated by spaces . |
 
 ### Revoke all API tokens issued for a tenant
 
@@ -435,7 +483,9 @@ weka tenant security revoke-tokens <tenant>
 
 **Parameters**
 
-<table><thead><tr><th width="237">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>tenant</code>*</td><td>Tenant name or ID.</td></tr></tbody></table>
+| Parameter | Description |
+| --- | --- |
+| `tenant`* | Tenant name or ID. |
 
 ## Manage filesystem security policies
 
@@ -459,7 +509,9 @@ weka fs security policy list <fs-name>
 
 **Parameters**
 
-<table><thead><tr><th width="192">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>fs-name</code>*</td><td>Filesystem name.</td></tr></tbody></table>
+| Parameter | Description |
+| --- | --- |
+| `fs-name`* | Filesystem name. |
 
 ### Set security policies for a filesystem
 
@@ -473,7 +525,10 @@ weka fs security policy set <fs-name> [<policies>]...
 
 **Parameters**
 
-<table><thead><tr><th width="191">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>fs-name</code>*</td><td>Filesystem name.</td></tr><tr><td><code>policies</code>...</td><td>Security policy names or IDs to set for a filesystem, space separated.</td></tr></tbody></table>
+| Parameter | Description |
+| --- | --- |
+| `fs-name`* | Filesystem name. |
+| `policies`... | Security policy names or IDs to set for a filesystem, space separated. |
 
 Example to apply two security policies to a filesystem named <kbd>fs0</kbd>:
 
@@ -493,7 +548,9 @@ weka fs security policy reset <fs-name>
 
 **Parameters**
 
-<table><thead><tr><th width="183">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>fs-name</code>*</td><td>Filesystem name.</td></tr></tbody></table>
+| Parameter | Description |
+| --- | --- |
+| `fs-name`* | Filesystem name. |
 
 ### Attach new security policies to a filesystem
 
@@ -507,7 +564,10 @@ weka fs security policy attach <fs-name> [<policies>]...
 
 **Parameters**
 
-<table><thead><tr><th width="176">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>fs-name</code>*</td><td>Filesystem name.</td></tr><tr><td><code>policies</code>...</td><td>Security policy names or IDs to attach new security policies to the specified filesystem, space separated.</td></tr></tbody></table>
+| Parameter | Description |
+| --- | --- |
+| `fs-name`* | Filesystem name. |
+| `policies`... | Security policy names or IDs to attach new security policies to the specified filesystem, space separated. |
 
 {% hint style="info" %}
 Only policies that do not contain `roles` attributes can be attached to a filesystem. Policies already in use by a tenant or join list cannot be attached to a filesystem.
@@ -525,7 +585,10 @@ weka fs security policy detach <fs-name> [<policies>]...
 
 **Parameters**
 
-<table><thead><tr><th width="176">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>fs-name</code>*</td><td>Filesystem name.</td></tr><tr><td><code>policies</code>...</td><td>Security policy names or IDs to remove from the specified filesystem, space separated.</td></tr></tbody></table>
+| Parameter | Description |
+| --- | --- |
+| `fs-name`* | Filesystem name. |
+| `policies`... | Security policy names or IDs to remove from the specified filesystem, space separated. |
 
 ## Examples: Implementing CIDR-based security policies
 
@@ -747,7 +810,11 @@ Manage storage classes where the `volumeType` is set to `weka/v2` and includes a
 
 ### Storage class parameter reference
 
-<table><thead><tr><th width="207">Parameter</th><th width="282">Description</th><th>Supported values</th></tr></thead><tbody><tr><td><code>volumeType</code></td><td>Defines the underlying WEKA storage architecture.</td><td><code>dir/v1</code>, <code>weka/v2</code></td></tr><tr><td><code>filesystemName</code></td><td>Specifies the source filesystem for snapshot-backed volumes.</td><td>Existing filesystem name, to be used with Snapshot Backed or Directory backed PVC</td></tr><tr><td><code>filesystemGroupName</code></td><td>Specifies the group where new filesystems are created.</td><td>Existing group name, to be used with Filesystem Backed PVC</td></tr></tbody></table>
+| Parameter | Description | Supported values |
+| --- | --- | --- |
+| `volumeType` | Defines the underlying WEKA storage architecture. | `dir/v1`, `weka/v2` |
+| `filesystemName` | Specifies the source filesystem for snapshot-backed volumes. | Existing filesystem name, to be used with Snapshot Backed or Directory backed PVC |
+| `filesystemGroupName` | Specifies the group where new filesystems are created. | Existing group name, to be used with Filesystem Backed PVC |
 
 **Related topic**
 

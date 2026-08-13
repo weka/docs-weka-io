@@ -102,6 +102,12 @@ Example:
         ecdsaFingerprint: "SHA256:..."
 </code></pre>
 
-<table><thead><tr><th width="272">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>host</code></td><td>Hostname of the custom tmate server.</td></tr><tr><td><code>port</code></td><td>Connection port (typically 22).</td></tr><tr><td><code>rsaFingerprint</code></td><td>RSA fingerprint of the server.</td></tr><tr><td><code>ed25519Fingerprint</code></td><td>Ed25519 fingerprint of the server.</td></tr><tr><td><code>ecdsaFingerprint</code></td><td>ECDSA fingerprint of the server.</td></tr></tbody></table>
+| Parameter | Description |
+| --- | --- |
+| `host` | Hostname of the custom tmate server. |
+| `port` | Connection port (typically 22). |
+| `rsaFingerprint` | RSA fingerprint of the server. |
+| `ed25519Fingerprint` | Ed25519 fingerprint of the server. |
+| `ecdsaFingerprint` | ECDSA fingerprint of the server. |
 
 [^1]: A terminal multiplexer that facilitates secure, instant terminal sharing by way of an SSH connection to a remote relay server.

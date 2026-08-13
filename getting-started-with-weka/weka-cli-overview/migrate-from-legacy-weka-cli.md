@@ -76,7 +76,16 @@ Known exceptions: `version rm` keeps `delete` as an alias, and `diags rm` accept
 
 ### Output format flags are long-form only
 
-<table><thead><tr><th width="172.53125">Format</th><th>wekactl flag</th><th>Legacy short form</th></tr></thead><tbody><tr><td>JSON</td><td><code>--json</code> / <code>-J</code></td><td><code>-J</code> (unchanged)</td></tr><tr><td>Raw units</td><td><code>--raw-units</code> / <code>-R</code></td><td><code>-R</code> (unchanged)</td></tr><tr><td>CSV</td><td><code>--csv</code> (no short form)</td><td>TBD</td></tr><tr><td>TSV</td><td><code>--tsv</code> (new)</td><td>Did not exist</td></tr><tr><td>Markdown</td><td><code>--markdown</code> (no short form)</td><td>TBD</td></tr><tr><td>HTML</td><td><code>--html</code> (new)</td><td>Did not exist</td></tr><tr><td>No header row</td><td><code>--no-header</code> (no short form)</td><td>TBD</td></tr><tr><td>Style selection</td><td><code>--pretty</code> / <code>--plain</code> / <code>--classic</code></td><td>Did not exist</td></tr></tbody></table>
+| Format | wekactl flag | Legacy short form |
+| --- | --- | --- |
+| JSON | `--json` / `-J` | `-J` (unchanged) |
+| Raw units | `--raw-units` / `-R` | `-R` (unchanged) |
+| CSV | `--csv` (no short form) | TBD |
+| TSV | `--tsv` (new) | Did not exist |
+| Markdown | `--markdown` (no short form) | TBD |
+| HTML | `--html` (new) | Did not exist |
+| No header row | `--no-header` (no short form) | TBD |
+| Style selection | `--pretty` / `--plain` / `--classic` | Did not exist |
 
 If a script used a one-letter flag for CSV, Markdown, or no-header output, switch it to the long form.
 
@@ -112,7 +121,33 @@ All network communication uses TLS, with no plaintext fallback. On the first int
 
 The following table lists the changes that fail outright and require a script update. Renames where the old spelling is kept as a hidden alias are not listed. The general changes above apply to every group and are not repeated.
 
-<table><thead><tr><th width="140.50390625">Group</th><th width="292.20703125">Old</th><th>New</th></tr></thead><tbody><tr><td>cluster</td><td><code>cluster create</code></td><td><code>cluster add</code></td></tr><tr><td>cluster</td><td><code>cluster remote-cluster {add,update,remove}</code></td><td><code>cluster peer {add,update,remove}</code> (old path errors with a pointer to the new one)</td></tr><tr><td>cluster</td><td><code>cluster update</code> with no options (no-op)</td><td>Requires at least one option; a no-op now errors</td></tr><tr><td>fs</td><td><code>fs create</code> / <code>fs delete</code></td><td><code>fs add</code> / <code>fs remove</code></td></tr><tr><td>fs</td><td><code>fs group create</code> / <code>fs group delete</code></td><td><code>fs group add</code> / <code>fs group remove</code></td></tr><tr><td>fs</td><td><code>fs reserve unset</code></td><td><code>fs reserve reset</code></td></tr><tr><td>fs</td><td><code>fs quota unset</code></td><td><code>fs quota reset</code> (but <code>fs quota set-default</code> / <code>unset-default</code> keep the <code>unset</code> spelling; do not blanket search-and-replace)</td></tr><tr><td>fs</td><td><code>fs snapshot create</code> / <code>fs snapshot delete</code></td><td><code>fs snapshot add</code> / <code>fs snapshot remove</code></td></tr><tr><td>fs</td><td><code>fs protection snapshot-policy create</code> / <code>delete</code></td><td><code>... add</code> / <code>... remove</code></td></tr><tr><td>fs</td><td><code>fs tier s3 delete</code> / <code>fs tier obs delete</code></td><td><code>fs tier s3 remove</code> / <code>fs tier obs remove</code></td></tr><tr><td>nfs</td><td><code>nfs ... delete ...</code></td><td><code>nfs ... remove ...</code></td></tr><tr><td>nfs</td><td><code>nfs rules add dns &#x3C;NAME> &#x3C;DNS> --ip ...</code></td><td><code>--ip</code> on <code>rules add dns</code> errors; use <code>nfs rules add ip</code></td></tr><tr><td>s3</td><td><code>s3 bucket create</code> / <code>s3 bucket destroy</code></td><td><code>s3 bucket add</code> / <code>s3 bucket remove</code></td></tr><tr><td>s3</td><td><code>s3 cluster create</code> / <code>s3 cluster destroy</code></td><td><code>s3 cluster add</code> / <code>s3 cluster remove</code></td></tr><tr><td>s3</td><td>Creation-time bucket flags (<code>--etag-alg</code>, <code>--quota</code>, <code>--versioning</code>, and similar on <code>s3 bucket create</code>)</td><td>Configure after creation with subcommands: <code>s3 bucket checksum set</code>, <code>etag-alg set</code>, <code>integrity-mode set</code>, <code>quota set</code>, <code>sorting set</code>, <code>versioning enable</code>, <code>policy set</code>, <code>lifecycle-rule add</code></td></tr><tr><td>user / tenant</td><td><code>user delete</code></td><td><code>user remove</code></td></tr><tr><td>user / tenant</td><td><code>user change-role</code></td><td><code>user update --role</code> (stub points to the replacement)</td></tr><tr><td>user / tenant</td><td><code>org create</code> / <code>org delete</code> (<code>tenant create</code> / <code>delete</code>)</td><td><code>tenant add</code> / <code>tenant remove</code></td></tr><tr><td>security</td><td><code>security policy delete</code></td><td><code>security policy remove</code></td></tr><tr><td>stats</td><td><code>stats retention restore-default</code></td><td><code>stats retention reset</code></td></tr><tr><td>cloud</td><td><code>cloud proxy --set &#x3C;URL></code> / <code>cloud proxy --unset</code></td><td><code>cloud proxy set &#x3C;URL></code> / <code>cloud proxy reset</code> (flag form no longer exists)</td></tr><tr><td>dataservice</td><td><code>data-service ...</code></td><td><code>dataservice ...</code> (no hyphen; no hyphenated alias found)</td></tr><tr><td>smb</td><td>Parsing <code>smb cluster status</code> text lines (<code>hostname: Ready</code>)</td><td>Output is a formatted table (<code>Container</code>, <code>Status</code>)</td></tr><tr><td>status</td><td>Parsing <code>status reduction</code> free-text lines</td><td>Output is a table (<code>Reduction Ratio</code>, <code>Saved Bytes</code>)</td></tr><tr><td>status</td><td>Parsing specific lines or labels from the main <code>status</code> output</td><td>The layout was fully redesigned; re-verify any parsing</td></tr></tbody></table>
+| Group | Old | New |
+| --- | --- | --- |
+| cluster | `cluster create` | `cluster add` |
+| cluster | `cluster remote-cluster {add,update,remove}` | `cluster peer {add,update,remove}` (old path errors with a pointer to the new one) |
+| cluster | `cluster update` with no options (no-op) | Requires at least one option; a no-op now errors |
+| fs | `fs create` / `fs delete` | `fs add` / `fs remove` |
+| fs | `fs group create` / `fs group delete` | `fs group add` / `fs group remove` |
+| fs | `fs reserve unset` | `fs reserve reset` |
+| fs | `fs quota unset` | `fs quota reset` (but `fs quota set-default` / `unset-default` keep the `unset` spelling; do not blanket search-and-replace) |
+| fs | `fs snapshot create` / `fs snapshot delete` | `fs snapshot add` / `fs snapshot remove` |
+| fs | `fs protection snapshot-policy create` / `delete` | `... add` / `... remove` |
+| fs | `fs tier s3 delete` / `fs tier obs delete` | `fs tier s3 remove` / `fs tier obs remove` |
+| nfs | `nfs ... delete ...` | `nfs ... remove ...` |
+| nfs | `nfs rules add dns &#x3C;NAME> &#x3C;DNS> --ip ...` | `--ip` on `rules add dns` errors; use `nfs rules add ip` |
+| s3 | `s3 bucket create` / `s3 bucket destroy` | `s3 bucket add` / `s3 bucket remove` |
+| s3 | `s3 cluster create` / `s3 cluster destroy` | `s3 cluster add` / `s3 cluster remove` |
+| s3 | Creation-time bucket flags (`--etag-alg`, `--quota`, `--versioning`, and similar on `s3 bucket create`) | Configure after creation with subcommands: `s3 bucket checksum set`, `etag-alg set`, `integrity-mode set`, `quota set`, `sorting set`, `versioning enable`, `policy set`, `lifecycle-rule add` |
+| user / tenant | `user delete` | `user remove` |
+| user / tenant | `user change-role` | `user update --role` (stub points to the replacement) |
+| user / tenant | `org create` / `org delete` (`tenant create` / `delete`) | `tenant add` / `tenant remove` |
+| security | `security policy delete` | `security policy remove` |
+| stats | `stats retention restore-default` | `stats retention reset` |
+| cloud | `cloud proxy --set &#x3C;URL>` / `cloud proxy --unset` | `cloud proxy set &#x3C;URL>` / `cloud proxy reset` (flag form no longer exists) |
+| dataservice | `data-service ...` | `dataservice ...` (no hyphen; no hyphenated alias found) |
+| smb | Parsing `smb cluster status` text lines (`hostname: Ready`) | Output is a formatted table (`Container`, `Status`) |
+| status | Parsing `status reduction` free-text lines | Output is a table (`Reduction Ratio`, `Saved Bytes`) |
+| status | Parsing specific lines or labels from the main `status` output | The layout was fully redesigned; re-verify any parsing |
 
 > **INTERNAL, remove before publication. TBD (Engineering):** The following items in this table are marked "verify" in the engineering draft and must be confirmed against a shipping build: the `dataservice` alias absence, the `stats retention reset` alias absence, whether `--unlink` carried over to `s3 bucket remove`, and the full legacy-to-new `security` command mapping (open items 4, 7, 10).
 

@@ -28,7 +28,12 @@ weka security token-expiry set [--access-token access-token] [--refresh-token re
 
 **Parameters**
 
-<table><thead><tr><th width="227.93359375">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>access-token</code></td><td>Default lifetime of an access token.<br>Possible values: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited</td></tr><tr><td><code>refresh-token</code></td><td>Default lifetime of a refresh token.<br>Possible values: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited</td></tr><tr><td><code>access-token-max</code></td><td>Maximum allowable lifetime for an access token.<br>Possible values: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited</td></tr><tr><td><code>refresh-token-max</code></td><td>Maximum allowable lifetime for a refresh token.<br>Possible values: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited</td></tr></tbody></table>
+| Parameter | Description |
+| --- | --- |
+| `access-token` | Default lifetime of an access token.Possible values: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited |
+| `refresh-token` | Default lifetime of a refresh token.Possible values: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited |
+| `access-token-max` | Maximum allowable lifetime for an access token.Possible values: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited |
+| `refresh-token-max` | Maximum allowable lifetime for a refresh token.Possible values: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited |
 
 **Examples:**
 

@@ -22,7 +22,16 @@ Use mount options to:
 
 The CSI Plugin supports standard mount options except for the read-only (ro) option. Use the following table to identify appropriate settings for your workload.
 
-<table><thead><tr><th width="167">Name</th><th>Description</th><th>Use case</th></tr></thead><tbody><tr><td><code>sync</code></td><td>Forces data writes to disk before the mount completes.</td><td>Databases requiring high integrity.</td></tr><tr><td><code>noatime</code></td><td>Disables access timestamp updates.</td><td>Reduces write amplification.</td></tr><tr><td><code>nodev</code></td><td>Prevents the use of device nodes.</td><td>Security-sensitive environments.</td></tr><tr><td><code>noexec</code></td><td>Disallows program execution on the volume.</td><td>Security-focused deployments.</td></tr><tr><td><code>atime</code></td><td>Enables access time recording.</td><td>Monitoring file access patterns.</td></tr><tr><td><code>diratime</code></td><td>Enables directory access time recording.</td><td>Tracking directory access.</td></tr><tr><td><code>relatime</code></td><td>Updates access times relative to modification times.</td><td>Improved performance.</td></tr><tr><td><code>data=ordered</code></td><td>Ensures sequential writes flush to disk immediately.</td><td>Strict write ordering.</td></tr></tbody></table>
+| Name | Description | Use case |
+| --- | --- | --- |
+| `sync` | Forces data writes to disk before the mount completes. | Databases requiring high integrity. |
+| `noatime` | Disables access timestamp updates. | Reduces write amplification. |
+| `nodev` | Prevents the use of device nodes. | Security-sensitive environments. |
+| `noexec` | Disallows program execution on the volume. | Security-focused deployments. |
+| `atime` | Enables access time recording. | Monitoring file access patterns. |
+| `diratime` | Enables directory access time recording. | Tracking directory access. |
+| `relatime` | Updates access times relative to modification times. | Improved performance. |
+| `data=ordered` | Ensures sequential writes flush to disk immediately. | Strict write ordering. |
 
 ## Apply custom mount options using the CSI Plugin
 

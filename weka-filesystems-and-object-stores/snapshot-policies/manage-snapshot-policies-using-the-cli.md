@@ -75,7 +75,9 @@ weka fs protection snapshot-policy show <name>
 
 **Parameters**
 
-<table><thead><tr><th width="272">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>name</code>*</td><td>Policy name</td></tr></tbody></table>
+| Parameter | Description |
+| --- | --- |
+| `name`* | Policy name |
 
 <details>
 
@@ -147,7 +149,10 @@ weka fs protection snapshot-policy export <name> <path>
 
 **Parameters**
 
-<table><thead><tr><th width="208">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>name</code>*</td><td>The snapshot policy to export.</td></tr><tr><td><code>path</code>*</td><td>The path to the directory to save the export policy file.</td></tr></tbody></table>
+| Parameter | Description |
+| --- | --- |
+| `name`* | The snapshot policy to export. |
+| `path`* | The path to the directory to save the export policy file. |
 
 <details>
 
@@ -240,7 +245,12 @@ weka fs protection snapshot-policy add <name> <path> [--description description]
 
 **Parameters**
 
-<table><thead><tr><th width="170">Parameter</th><th width="483">Description</th><th>Default</th></tr></thead><tbody><tr><td><code>name</code>*</td><td>The snapshot policy name. Up to 12 alphanumeric characters, hyphens (-), underscores (_), and periods (.)</td><td></td></tr><tr><td><code>path</code>*</td><td>The path to the snapshot policy file. It must be in JSON format.</td><td></td></tr><tr><td><code>description</code></td><td>Policy description. Up to 128 characters.</td><td></td></tr><tr><td><code>enabled</code></td><td>Set snapshot policy status.<br>Possible values: <code>true</code> or <code>false</code></td><td><code>true</code></td></tr></tbody></table>
+| Parameter | Description | Default |
+| --- | --- | --- |
+| `name`* | The snapshot policy name. Up to 12 alphanumeric characters, hyphens (-), underscores (_), and periods (.) |  |
+| `path`* | The path to the snapshot policy file. It must be in JSON format. |  |
+| `description` | Policy description. Up to 128 characters. |  |
+| `enabled` | Set snapshot policy status.Possible values: `true` or `false` | `true` |
 
 <details>
 
@@ -299,7 +309,11 @@ This command detaches the specified filesystems from the snapshot policy. To rem
 
 **Parameters**
 
-<table><thead><tr><th width="289">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>name</code>*</td><td>The snapshot policy name.</td></tr><tr><td><code>filesystems</code>... *</td><td>A list of filesystems you want to detach from the policy.</td></tr><tr><td><code>remove-waiting-tasks</code></td><td>Allow to delete all waiting tasks corresponding to the filesystems.</td></tr></tbody></table>
+| Parameter | Description |
+| --- | --- |
+| `name`* | The snapshot policy name. |
+| `filesystems`... * | A list of filesystems you want to detach from the policy. |
+| `remove-waiting-tasks` | Allow to delete all waiting tasks corresponding to the filesystems. |
 
 <details>
 
@@ -329,7 +343,13 @@ weka fs protection snapshot-policy update <name> [--new-name new-name] [--descri
 
 **Parameters**
 
-<table><thead><tr><th width="266">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>name</code>*</td><td>Existing snapshot policy name.</td></tr><tr><td><code>new-name</code></td><td>New policy name. Up to 12 alphanumeric characters, hyphens (-), underscores (_), and periods (.).</td></tr><tr><td><code>description</code></td><td>New policy description. Up to 128 characters.</td></tr><tr><td><code>path</code></td><td>The path to the new or modified snapshot policy file. It must be in JSON format.</td></tr><tr><td><code>enabled</code></td><td>Set snapshot policy status.<br>Possible values: <code>true</code> or <code>false</code></td></tr></tbody></table>
+| Parameter | Description |
+| --- | --- |
+| `name`* | Existing snapshot policy name. |
+| `new-name` | New policy name. Up to 12 alphanumeric characters, hyphens (-), underscores (_), and periods (.). |
+| `description` | New policy description. Up to 128 characters. |
+| `path` | The path to the new or modified snapshot policy file. It must be in JSON format. |
+| `enabled` | Set snapshot policy status.Possible values: `true` or `false` |
 
 ## Delete a snapshot policy
 
@@ -343,7 +363,9 @@ weka fs protection snapshot-policy delete <name>
 
 **Parameters**
 
-<table><thead><tr><th width="223">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>name</code>*</td><td>Existing snapshot policy name.</td></tr></tbody></table>
+| Parameter | Description |
+| --- | --- |
+| `name`* | Existing snapshot policy name. |
 
 <details>
 

@@ -106,7 +106,10 @@ Use the following command line to add an S3 IAM policy:
 
 **Parameters**
 
-<table><thead><tr><th width="237">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>policy-name</code>*</td><td>Name of the IAM policy to add.</td></tr><tr><td><code>policy-file</code>*</td><td>Path to the custom JSON file representing an IAM policy for anonymous access.<br>See <a data-mention href="../s3-limitations.md#supported-s3-policy-actions">#supported-s3-policy-actions</a>.</td></tr></tbody></table>
+| Name | Value |
+| --- | --- |
+| `policy-name`* | Name of the IAM policy to add. |
+| `policy-file`* | Path to the custom JSON file representing an IAM policy for anonymous access.See #supported-s3-policy-actions. |
 
 ## Delete an IAM policy <a href="#creating-a-new-iam-policies" id="creating-a-new-iam-policies"></a>
 
@@ -118,7 +121,9 @@ Use the following command line to delete an S3 IAM policy:‌
 
 **Parameters**
 
-<table><thead><tr><th width="241">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>policy-name</code>*</td><td>Name of the IAM policy to remove.</td></tr></tbody></table>
+| Name | Value |
+| --- | --- |
+| `policy-name`* | Name of the IAM policy to remove. |
 
 ## Attach a policy to an S3 user <a href="#creating-a-new-iam-policies" id="creating-a-new-iam-policies"></a>
 
@@ -130,7 +135,10 @@ Use the following command line to attach an IAM policy to an S3 user:‌
 
 **Parameters**
 
-<table><thead><tr><th width="248">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>policy</code>*</td><td>Name of an existing IAM policy.</td></tr><tr><td><code>user</code>*</td><td>Name of a local WEKA S3 user.</td></tr></tbody></table>
+| Name | Value |
+| --- | --- |
+| `policy`* | Name of an existing IAM policy. |
+| `user`* | Name of a local WEKA S3 user. |
 
 If the user does not already have S3 credentials, the system creates them automatically when the policy is attached. The secret key is displayed once and must be saved immediately.
 
@@ -150,7 +158,10 @@ Use the following command line to detach an IAM policy from an S3 user:‌‌
 
 **Parameters**
 
-<table><thead><tr><th width="204">Name</th><th>Description</th></tr></thead><tbody><tr><td><code>policy</code>*</td><td>Name of the IAM policy to detach.</td></tr><tr><td><code>user</code>*</td><td>Name of a local WEKA S3 user.</td></tr></tbody></table>
+| Name | Description |
+| --- | --- |
+| `policy`* | Name of the IAM policy to detach. |
+| `user`* | Name of a local WEKA S3 user. |
 
 Detaching a policy removes S3 data access, but keeps the existing S3 access key and secret key. If you later attach any S3 policy again, the same key pair is used.
 
@@ -206,7 +217,12 @@ Use the following command line to generate a temporary security token:
 
 **Parameters**
 
-<table><thead><tr><th width="159">Name</th><th width="349">Description</th><th>Default</th></tr></thead><tbody><tr><td><code>access-key</code>*</td><td>A local WEKA S3 user access key</td><td></td></tr><tr><td><code>secret-key</code></td><td>A local WEKA S3 user secret key</td><td>If not supplied, the command prompts to supply the secret-key.</td></tr><tr><td><code>policy-file</code></td><td>Path to a custom JSON file representing an IAM policy for anonymous access.<br>You cannot gain additional capabilities to the IAM policy attached to this S3 user.<br>See <a href="../s3-limitations.md#supported-policy-actions">Supported Policy Actions</a>.</td><td>​</td></tr><tr><td><code>duration</code>*</td><td>Duration for the token validity.<br>Possible values between 15 minutes and 1 week. Format: <code>900s</code>, <code>60m</code>, <code>2d</code>, <code>1w</code></td><td>​</td></tr></tbody></table>
+| Name | Description | Default |
+| --- | --- | --- |
+| `access-key`* | A local WEKA S3 user access key |  |
+| `secret-key` | A local WEKA S3 user secret key | If not supplied, the command prompts to supply the secret-key. |
+| `policy-file` | Path to a custom JSON file representing an IAM policy for anonymous access.You cannot gain additional capabilities to the IAM policy attached to this S3 user.See [Supported Policy Actions](../s3-limitations.md#supported-policy-actions). | ​ |
+| `duration`* | Duration for the token validity.Possible values between 15 minutes and 1 week. Format: `900s`, `60m`, `2d`, `1w` | ​ |
 
 An example response:
 

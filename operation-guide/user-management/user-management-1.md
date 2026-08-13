@@ -27,7 +27,13 @@ Use the following command line to create a local user:
 
 **Parameters**
 
-<table><thead><tr><th width="193.33333333333331">Name</th><th width="426">Value</th><th>Default</th></tr></thead><tbody><tr><td><code>username</code>*</td><td>Name for the new user</td><td></td></tr><tr><td><code>role</code></td><td>Role of the new created user.<br>Possible values: <code>clusteradmin</code>, <code>csi</code>, <code>tenantadmin</code>, <code>readonly</code>, <code>regular</code>, <code>s3</code></td><td></td></tr><tr><td><code>password</code></td><td>New user password.<br>If not supplied, the command prompts to supply the password.</td><td></td></tr><tr><td><code>posix-uid</code></td><td>POSIX UID of underlying files representing objects created by this S3 user access/keys credentials.<br>For S3 user roles only.</td><td>0</td></tr><tr><td><code>posix-gid</code></td><td>POSIX GID of underlying files representing objects created by this S3 user access/keys credentials.<br>For S3 user roles only.</td><td>0</td></tr></tbody></table>
+| Name | Value | Default |
+| --- | --- | --- |
+| `username`* | Name for the new user |  |
+| `role` | Role of the new created user.Possible values: `clusteradmin`, `csi`, `tenantadmin`, `readonly`, `regular`, `s3` |  |
+| `password` | New user password.If not supplied, the command prompts to supply the password. |  |
+| `posix-uid` | POSIX UID of underlying files representing objects created by this S3 user access/keys credentials.For S3 user roles only. | 0 |
+| `posix-gid` | POSIX GID of underlying files representing objects created by this S3 user access/keys credentials.For S3 user roles only. | 0 |
 
 {% hint style="success" %}
 **Example:**
@@ -112,7 +118,10 @@ Use the following command to change a local user password:
 
 **Parameters**
 
-<table><thead><tr><th>Name</th><th width="389.3333333333333">Value</th><th>Default</th></tr></thead><tbody><tr><td><code>password</code>*</td><td>New password</td><td></td></tr><tr><td><code>username</code></td><td>Name of the user to change the password for.<br>It must be a valid local user.</td><td>The current logged-in user</td></tr></tbody></table>
+| Name | Value | Default |
+| --- | --- | --- |
+| `password`* | New password |  |
+| `username` | Name of the user to change the password for.It must be a valid local user. | The current logged-in user |
 
 {% hint style="info" %}
 * If necessary, provide or set`WEKA_USERNAME` or `WEKA_PASSWORD.`
@@ -155,7 +164,9 @@ You can revoke the access for LDAP users by changing the `user-revocation-attrib
 
 **Parameters**
 
-<table><thead><tr><th width="176">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>username</code>*</td><td>A user with valid credentials within the Tenant Admin's domain executing the command.</td></tr></tbody></table>
+| Name | Value |
+| --- | --- |
+| `username`* | A user with valid credentials within the Tenant Admin's domain executing the command. |
 
 {% hint style="warning" %}
 NFS and SMB are different protocols from WekaFS, which require additional security considerations when used. For example, The system grants NFS permissions per server. Therefore, manage the permissions for accessing these servers for NFS export carefully.
@@ -171,7 +182,12 @@ Use the following command line to update a local user:
 
 **Parameters**
 
-<table><thead><tr><th width="181">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>username</code>*</td><td>Name of an existing user.<br>It must be a valid local user.</td></tr><tr><td><code>role</code></td><td>Updated user role.<br>Possible values: <code>regular</code>, <code>s3</code>,<code>readonly</code>, <code>tenantadmin</code> or <code>clusteradmin</code></td></tr><tr><td><code>posix-uid</code></td><td>POSIX UID of underlying files representing objects created by this S3 user access/keys credentials.<br>For S3 user roles only.</td></tr><tr><td><code>posix-gid</code></td><td>POSIX GID of underlying files representing objects created by this S3 user access/keys credentials.<br>For S3 user roles only.</td></tr></tbody></table>
+| Name | Value |
+| --- | --- |
+| `username`* | Name of an existing user.It must be a valid local user. |
+| `role` | Updated user role.Possible values: `regular`, `s3`,`readonly`, `tenantadmin` or `clusteradmin` |
+| `posix-uid` | POSIX UID of underlying files representing objects created by this S3 user access/keys credentials.For S3 user roles only. |
+| `posix-gid` | POSIX GID of underlying files representing objects created by this S3 user access/keys credentials.For S3 user roles only. |
 
 ## Delete a local user
 
@@ -183,7 +199,9 @@ To delete a user, use the following command line:
 
 **Parameters**
 
-<table><thead><tr><th width="188">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>username</code>*</td><td>Name of the user to delete.<br>It must be a valid local user.</td></tr></tbody></table>
+| Name | Value |
+| --- | --- |
+| `username`* | Name of the user to delete.It must be a valid local user. |
 
 {% hint style="success" %}
 **Example:**
@@ -222,7 +240,25 @@ To configure an Active Directory server, use the following command line:
 
 **Parameters**
 
-<table><thead><tr><th width="281">Name</th><th width="333">Value</th><th>Default</th></tr></thead><tbody><tr><td><code>server-uri</code>*</td><td>Either the LDAP server hostname/IP or a URI.<br>Format: <code>ldap://hostname:port</code> or <code>ldaps://hostname:port</code></td><td></td></tr><tr><td><code>base-dn</code>*</td><td>Base DN under which users are stored.<br>Ensure the name is valid.</td><td></td></tr><tr><td><code>user-id-attribute</code>*</td><td>Attribute storing user IDs.<br>Ensure the name is valid.</td><td></td></tr><tr><td><code>user-object-class</code>*</td><td>Object class of users.<br>Ensure the name is valid.</td><td></td></tr><tr><td><code>group-object-class</code>*</td><td>Object class of groups.<br>Ensure the name is valid.</td><td></td></tr><tr><td><code>group-membership-attribute</code>*</td><td>Attribute of group containing the DN of a user membership in the group.<br>Ensure the name is valid.</td><td></td></tr><tr><td><code>group-id-attribute</code>*</td><td>Attribute storing the group name.<br>The name must match the names used in the <code>&#x3C;admin-group></code>, <code>&#x3C;regular group></code> and <code>&#x3C;readonly group></code></td><td></td></tr><tr><td><code>reader-username</code> and <code>reader-password</code>*</td><td>Credentials of a user with read access to the directory.<br>The password is kept in the Weka cluster configuration in plain text, as it is used to authenticate against the directory during user authentication.</td><td></td></tr><tr><td><code>cluster-admin-group</code>*</td><td>Group name for Users with Cluster Admin role.<br>Ensure the name is valid.</td><td></td></tr><tr><td><code>tenant-admin-group</code>*</td><td>Tenant Admin Group Name.<br>Ensure the name is valid.</td><td></td></tr><tr><td><code>regular-group</code>*</td><td>Name of group containing users defined with regular privileges.<br>Ensure the name is valid.</td><td></td></tr><tr><td><code>readonly-group</code>*</td><td>Name of group containing users defined with read only privileges.<br>Ensure the name is valid.</td><td></td></tr><tr><td><code>server-timeout-secs</code></td><td>Server connection timeout in seconds.</td><td></td></tr><tr><td><code>protocol-version</code></td><td>Selection of LDAP version.<br>Possible values: <code>LDAP v2</code> or <code>LDAP v3</code></td><td><code>LDAP v3</code></td></tr><tr><td><code>user-revocation-attribute</code></td><td>The LDAP attribute; when its value changes in the LDAP directory, user access and mount tokens are revoked.<br>The user must re-login after a change is detected.</td><td></td></tr><tr><td><code>start-tls</code></td><td>Issue StartTLS after connecting.<br>Possible values: <code>yes</code> or <code>no</code><br>Do not use with <code>ldaps://</code></td><td><code>no</code></td></tr><tr><td><code>ignore-start-tls-failure</code></td><td>Ignore start TLS failure.<br>Possible values: <code>yes</code> or <code>no</code></td><td><code>no</code></td></tr></tbody></table>
+| Name | Value | Default |
+| --- | --- | --- |
+| `server-uri`* | Either the LDAP server hostname/IP or a URI.Format: `ldap://hostname:port` or `ldaps://hostname:port` |  |
+| `base-dn`* | Base DN under which users are stored.Ensure the name is valid. |  |
+| `user-id-attribute`* | Attribute storing user IDs.Ensure the name is valid. |  |
+| `user-object-class`* | Object class of users.Ensure the name is valid. |  |
+| `group-object-class`* | Object class of groups.Ensure the name is valid. |  |
+| `group-membership-attribute`* | Attribute of group containing the DN of a user membership in the group.Ensure the name is valid. |  |
+| `group-id-attribute`* | Attribute storing the group name.The name must match the names used in the `&#x3C;admin-group>`, `&#x3C;regular group>` and `&#x3C;readonly group>` |  |
+| `reader-username` and `reader-password`* | Credentials of a user with read access to the directory.The password is kept in the Weka cluster configuration in plain text, as it is used to authenticate against the directory during user authentication. |  |
+| `cluster-admin-group`* | Group name for Users with Cluster Admin role.Ensure the name is valid. |  |
+| `tenant-admin-group`* | Tenant Admin Group Name.Ensure the name is valid. |  |
+| `regular-group`* | Name of group containing users defined with regular privileges.Ensure the name is valid. |  |
+| `readonly-group`* | Name of group containing users defined with read only privileges.Ensure the name is valid. |  |
+| `server-timeout-secs` | Server connection timeout in seconds. |  |
+| `protocol-version` | Selection of LDAP version.Possible values: `LDAP v2` or `LDAP v3` | `LDAP v3` |
+| `user-revocation-attribute` | The LDAP attribute; when its value changes in the LDAP directory, user access and mount tokens are revoked.The user must re-login after a change is detected. |  |
+| `start-tls` | Issue StartTLS after connecting.Possible values: `yes` or `no`Do not use with `ldaps://` | `no` |
+| `ignore-start-tls-failure` | Ignore start TLS failure.Possible values: `yes` or `no` | `no` |
 
 {% hint style="info" %}
 The `sAMAccountName` (user logon name) for roles such as Cluster Admin, Tenant Admin, Regular User, and Read-only User is limited to 20 characters.

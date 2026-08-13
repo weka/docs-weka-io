@@ -30,7 +30,13 @@ WEKA containers run in `hostNetwork` mode, giving them direct access to the host
 
 Identify and select the appropriate driver provisioning mode based on your network environment and kernel requirements.
 
-<table><thead><tr><th width="195"></th><th>Pre-built (drivers.weka.io)</th><th>Locally-built (Drivers-Builder)</th></tr></thead><tbody><tr><td><strong>Recommended for</strong></td><td>Standard Linux distributions with supported kernel versions and outbound network access</td><td>Air-gapped or outbound-restricted environments; custom, patched, or uncommon kernel versions</td></tr><tr><td><strong>How it works</strong></td><td>Operator downloads ready-made signed packages directly from <code>drivers.weka.io</code>. No compilation required.</td><td>Operator builds, signs, and distributes drivers entirely within the cluster using the Drivers-Builder component.</td></tr><tr><td><strong>Main advantage</strong></td><td>Fastest path. No build infrastructure required in the cluster.</td><td>Full control over the build environment, including custom build flags through <code>extraBuildArgs</code>.</td></tr><tr><td><strong>Constraints</strong></td><td>Not suitable for air-gapped environments. Cannot be used with custom or patched kernels absent from the registry.</td><td>Increases overall provisioning time due to compilation. Requires Drivers-Dist with persistent storage.</td></tr><tr><td><strong>Fallback behavior</strong></td><td>If a kernel version is not found in the registry, the operator falls back to locally-built mode if a Drivers-Builder is configured.</td><td>Failed builds are retried indefinitely.</td></tr></tbody></table>
+|  | Pre-built (drivers.weka.io) | Locally-built (Drivers-Builder) |
+| --- | --- | --- |
+| **Recommended for** | Standard Linux distributions with supported kernel versions and outbound network access | Air-gapped or outbound-restricted environments; custom, patched, or uncommon kernel versions |
+| **How it works** | Operator downloads ready-made signed packages directly from `drivers.weka.io`. No compilation required. | Operator builds, signs, and distributes drivers entirely within the cluster using the Drivers-Builder component. |
+| **Main advantage** | Fastest path. No build infrastructure required in the cluster. | Full control over the build environment, including custom build flags through `extraBuildArgs`. |
+| **Constraints** | Not suitable for air-gapped environments. Cannot be used with custom or patched kernels absent from the registry. | Increases overall provisioning time due to compilation. Requires Drivers-Dist with persistent storage. |
+| **Fallback behavior** | If a kernel version is not found in the registry, the operator falls back to locally-built mode if a Drivers-Builder is configured. | Failed builds are retried indefinitely. |
 
 ## Pre-built drivers mode
 
@@ -105,7 +111,9 @@ Set the `driversDistService` field in the WekaCluster or WekaClient resource to 
 
 **Field reference**
 
-<table><thead><tr><th width="199">Field</th><th width="306">Description</th><th>Type</th></tr></thead><tbody><tr><td><code>driversDistService</code></td><td>Internal Drivers-Dist service endpoint that serves driver packages.</td><td>string, required for locally-built mode</td></tr></tbody></table>
+| Field | Description | Type |
+| --- | --- | --- |
+| `driversDistService` | Internal Drivers-Dist service endpoint that serves driver packages. | string, required for locally-built mode |
 
 **WekaCluster example**
 

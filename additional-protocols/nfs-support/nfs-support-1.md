@@ -66,7 +66,12 @@ Use the following command line to add an interface group:
 
 **Parameters**
 
-<table><thead><tr><th width="157">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>name</code>*</td><td>Unique interface group name.</td></tr><tr><td><code>type</code>*</td><td>Group type.<br>Can only be <code>NFS</code>.</td></tr><tr><td><code>subnet</code></td><td>The valid subnet mask in the 255.255.0.0 format.<br><strong>Default:</strong> <code>255.255.255.255</code></td></tr><tr><td><code>gateway</code></td><td>Gateway valid IP.<br><strong>Default:</strong> <code>255.255.255.255</code></td></tr></tbody></table>
+| Name | Value |
+| --- | --- |
+| `name`* | Unique interface group name. |
+| `type`* | Group type.Can only be `NFS`. |
+| `subnet` | The valid subnet mask in the 255.255.0.0 format.**Default:** `255.255.255.255` |
+| `gateway` | Gateway valid IP.**Default:** `255.255.255.255` |
 
 ### Set interface group ports
 
@@ -90,7 +95,11 @@ The following command line adds the interface `enp2s0` on the Frontend container
 
 **Parameters**
 
-<table><thead><tr><th width="220">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>name</code>*</td><td>Interface group name.</td></tr><tr><td><code>container-id</code>*</td><td>Valid frontend container ID on which the port resides. You can obtain the container ID by running the <code>weka cluster container</code> command.</td></tr><tr><td><code>port</code>*</td><td>Valid port's device. Maximum 14 characters.<br>Example: <code>eth1</code>.</td></tr></tbody></table>
+| Name | Value |
+| --- | --- |
+| `name`* | Interface group name. |
+| `container-id`* | Valid frontend container ID on which the port resides. You can obtain the container ID by running the `weka cluster container` command. |
+| `port`* | Valid port's device. Maximum 14 characters.Example: `eth1`. |
 
 ### Set interface group IPs
 
@@ -114,7 +123,10 @@ The following command line adds IPs in the range `10.0.1.101` to `10.0.1.118` to
 
 **Parameters**
 
-<table><thead><tr><th width="222">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>name</code>*</td><td>Interface group name</td></tr><tr><td><code>ips</code>*</td><td>Valid IP range</td></tr></tbody></table>
+| Name | Value |
+| --- | --- |
+| `name`* | Interface group name |
+| `ips`* | Valid IP range |
 
 ### Configure the service mountd port
 
@@ -233,7 +245,14 @@ weka nfs kerberos service setup WEKA-REALM kdc.primary.weka.io kdc.admin.weka.io
 
 **Parameters**
 
-<table><thead><tr><th width="210">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>kdc-realm-name</code>*</td><td>Specifies the realm (domain) used by Kerberos.</td></tr><tr><td><code>kdc-primary-server</code>*</td><td>Identifies the server hosting the primary Key Distribution Center service.</td></tr><tr><td><code>kdc-admin-server</code>*</td><td>Identifies the server hosting the administrative Key Distribution Center service.</td></tr><tr><td><code>kdc-secondary-server</code></td><td>Identifies the server hosting the secondary Key Distribution Center service.</td></tr><tr><td><code>force</code></td><td>When used, it forces the action to proceed without further confirmation. Typically used when the service is configured or registered.</td></tr><tr><td><code>restart</code></td><td>When used, the command restarts the NFS-W containers after the changes are applied.</td></tr></tbody></table>
+| Name | Value |
+| --- | --- |
+| `kdc-realm-name`* | Specifies the realm (domain) used by Kerberos. |
+| `kdc-primary-server`* | Identifies the server hosting the primary Key Distribution Center service. |
+| `kdc-admin-server`* | Identifies the server hosting the administrative Key Distribution Center service. |
+| `kdc-secondary-server` | Identifies the server hosting the secondary Key Distribution Center service. |
+| `force` | When used, it forces the action to proceed without further confirmation. Typically used when the service is configured or registered. |
+| `restart` | When used, the command restarts the NFS-W containers after the changes are applied. |
 
 #### Show NFS Kerberos service setup information
 
@@ -274,7 +293,14 @@ weka nfs kerberos registration setup-ad myservicename.test.example.com myrealmad
 
 **Parameters**
 
-<table><thead><tr><th width="194">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>nfs-service-name</code>*</td><td>This refers to the complete domain name for a specific NFS server.</td></tr><tr><td><code>realm-admin-name</code>*</td><td>The username of an administrator who has access to the LDAP directory. This user manages the KDC within a realm.</td></tr><tr><td><code>realm-admin-passwd</code></td><td>This parameter is for the password of the administrative user who manages the KDC within a realm.<br>It’s not stored in the configuration for security reasons. If it’s not provided during setup, the system asks for it. The entered password isn’t shown on the screen to protect privacy and security.</td></tr><tr><td><code>base-ou</code></td><td>LDAP base OU for account creation.<br>This allows admins to create a defined path such as <code>OU=Weka,OU=Servers</code> instead of using the default <code>CN=Computers</code> container.</td></tr><tr><td><code>force</code></td><td>When used, it forces the action to proceed without further confirmation. Typically used when the service is configured or registered.</td></tr><tr><td><code>restart</code></td><td>When used, the command restarts the NFS-W containers after the changes are applied.</td></tr></tbody></table>
+| Name | Value |
+| --- | --- |
+| `nfs-service-name`* | This refers to the complete domain name for a specific NFS server. |
+| `realm-admin-name`* | The username of an administrator who has access to the LDAP directory. This user manages the KDC within a realm. |
+| `realm-admin-passwd` | This parameter is for the password of the administrative user who manages the KDC within a realm.It’s not stored in the configuration for security reasons. If it’s not provided during setup, the system asks for it. The entered password isn’t shown on the screen to protect privacy and security. |
+| `base-ou` | LDAP base OU for account creation.This allows admins to create a defined path such as `OU=Weka,OU=Servers` instead of using the default `CN=Computers` container. |
+| `force` | When used, it forces the action to proceed without further confirmation. Typically used when the service is configured or registered. |
+| `restart` | When used, the command restarts the NFS-W containers after the changes are applied. |
 
 #### Set up Kerberos to use AD LDAP
 
@@ -294,7 +320,10 @@ weka nfs ldap setup-ad
 
 **Parameters**
 
-<table><thead><tr><th width="136">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>force</code></td><td>When used, it forces the action to proceed without further confirmation. Typically used when the service is configured or registered.</td></tr><tr><td><code>no-restart</code></td><td>When used, it prevents NFS-W containers from restarting to apply changes.</td></tr></tbody></table>
+| Name | Value |
+| --- | --- |
+| `force` | When used, it forces the action to proceed without further confirmation. Typically used when the service is configured or registered. |
+| `no-restart` | When used, it prevents NFS-W containers from restarting to apply changes. |
 
 {% hint style="warning" %}
 In a successful operation, the system automatically restarts the NFS containers, leading to a temporary disruption in the IO service for connected NFS clients. However, if you want to avoid restarting the NFS-W containers, add the `--no-restart` option to the command line.
@@ -329,7 +358,12 @@ weka nfs kerberos registration setup-mit myservicename.test.example.com myservic
 
 **Parameters**
 
-<table><thead><tr><th width="192">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>nfs-service-name</code>*</td><td>Fully Qualified Domain Name (FQDN) for the NFS Service. This refers to the complete domain name for a specific NFS server. The hostname part of the FQDN is restricted to a maximum of 20 characters.</td></tr><tr><td><code>keytab-file</code>*</td><td>The path to the pre-generated keytab file containing the keys for the NFS service’s unique identity in <a data-footnote-ref href="#user-content-fn-1">base64</a> format.</td></tr><tr><td><code>force</code></td><td>When used, it forces the action to proceed without further confirmation. Typically used when the service is configured.</td></tr><tr><td><code>restart</code></td><td>When used, the command restarts the NFS-W containers after the changes are applied.</td></tr></tbody></table>
+| Name | Value |
+| --- | --- |
+| `nfs-service-name`* | Fully Qualified Domain Name (FQDN) for the NFS Service. This refers to the complete domain name for a specific NFS server. The hostname part of the FQDN is restricted to a maximum of 20 characters. |
+| `keytab-file`* | The path to the pre-generated keytab file containing the keys for the NFS service’s unique identity in base64 format. |
+| `force` | When used, it forces the action to proceed without further confirmation. Typically used when the service is configured. |
+| `restart` | When used, the command restarts the NFS-W containers after the changes are applied. |
 
 #### Set up Kerberos to use OpenLDAP
 
@@ -349,7 +383,16 @@ weka nfs ldap setup-openldap myldapserver.test.example.com, myldapdomain.example
 
 **Parameters**
 
-<table><thead><tr><th width="213">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>server-name</code>*</td><td>Specifies the server hosting the Lightweight Directory Access Protocol service.</td></tr><tr><td><code>ldap-domain</code>*</td><td>Defines the domain the Lightweight Directory Access Protocol service will access.</td></tr><tr><td><code>reader-user-name</code>*</td><td>The username of an administrative user used to generate the keytab file.</td></tr><tr><td><code>reader-user-password</code></td><td>The administrative user's password.<br>(It is maintained in a configuration file.)</td></tr><tr><td><code>base-dn</code></td><td>The base Distinguished Name (DN) for the Lightweight Directory Access Protocol directory tree.</td></tr><tr><td><code>ldap-port-number</code></td><td>The port number on which the Lightweight Directory Access Protocol server listens.<br><strong>Default:</strong> 389</td></tr><tr><td><code>force</code></td><td>When used, it forces the action to proceed without further confirmation. Typically used when the service is configured or registered.</td></tr><tr><td><code>no-restart</code></td><td>When used, it prevents NFS-W containers from restarting to apply changes.</td></tr></tbody></table>
+| Name | Value |
+| --- | --- |
+| `server-name`* | Specifies the server hosting the Lightweight Directory Access Protocol service. |
+| `ldap-domain`* | Defines the domain the Lightweight Directory Access Protocol service will access. |
+| `reader-user-name`* | The username of an administrative user used to generate the keytab file. |
+| `reader-user-password` | The administrative user's password.(It is maintained in a configuration file.) |
+| `base-dn` | The base Distinguished Name (DN) for the Lightweight Directory Access Protocol directory tree. |
+| `ldap-port-number` | The port number on which the Lightweight Directory Access Protocol server listens.**Default:** 389 |
+| `force` | When used, it forces the action to proceed without further confirmation. Typically used when the service is configured or registered. |
+| `no-restart` | When used, it prevents NFS-W containers from restarting to apply changes. |
 
 {% hint style="warning" %}
 In a successful operation, the system automatically restarts the NFS containers, leading to a temporary disruption in the IO service for connected NFS clients. However, if you want to avoid restarting the NFS-W containers, add the `--no-restart` option to the command line.
@@ -379,7 +422,10 @@ Use the following command to clear the NFS LDAP configuration:
 
 **Parameters**
 
-<table><thead><tr><th width="147.52734375">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>force</code></td><td>When used, it forces the action to proceed without further confirmation. Typically used when the service is configured.</td></tr><tr><td><code>no-restart</code></td><td>When used, it prevents NFS-W containers from restarting to apply changes.</td></tr></tbody></table>
+| Name | Value |
+| --- | --- |
+| `force` | When used, it forces the action to proceed without further confirmation. Typically used when the service is configured. |
+| `no-restart` | When used, it prevents NFS-W containers from restarting to apply changes. |
 
 ### Show Kerberos registration information
 
@@ -514,7 +560,9 @@ Use the following command lines to add or remove a client access group:
 
 **Parameters**
 
-<table><thead><tr><th width="258">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>name</code>*</td><td>Valid group name.</td></tr></tbody></table>
+| Name | Value |
+| --- | --- |
+| `name`* | Valid group name. |
 
 ### Manage client access groups' rules
 
@@ -544,7 +592,10 @@ Use the following command lines to remove a rule that causes a client to be part
 
 **Parameters**
 
-<table><thead><tr><th width="250">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>name</code>*</td><td>Valid client group name.</td></tr><tr><td><code>dns</code>*</td><td>DNS rule with *?[] wildcard rules.</td></tr></tbody></table>
+| Name | Value |
+| --- | --- |
+| `name`* | Valid client group name. |
+| `dns`* | DNS rule with *?[] wildcard rules. |
 
 #### **Add IP-based client group rules**
 

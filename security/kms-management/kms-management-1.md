@@ -155,7 +155,11 @@ If the KMS key is compromised or requires rotation, the KMS administrator can ro
 
 **Parameters**
 
-<table><thead><tr><th width="273.8984375">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>new-key-uid</code>*</td><td>Unique identifier for the new key to be used to wrap filesystem keys.<br>Mandatory for <code>kmip</code> only.<br>Do not specify any value for <code>vault</code>.</td></tr><tr><td><code>all</code></td><td>Rewrap all the filesystem encryption keys. Applicable when using HashiCorp Vault for per-filesystem encryption keys.<br>Without the <code>--all</code> option, the command re-encrypts only the keys of filesystems that use the cluster key for encryption.</td></tr><tr><td><code>convert-to-cluster-key-on-fs</code></td><td>Convert all encrypted filesystems to use the KMS cluster key.</td></tr></tbody></table>
+| Name | Value |
+| --- | --- |
+| `new-key-uid`* | Unique identifier for the new key to be used to wrap filesystem keys.Mandatory for `kmip` only.Do not specify any value for `vault`. |
+| `all` | Rewrap all the filesystem encryption keys. Applicable when using HashiCorp Vault for per-filesystem encryption keys.Without the `--all` option, the command re-encrypts only the keys of filesystems that use the cluster key for encryption. |
+| `convert-to-cluster-key-on-fs` | Convert all encrypted filesystems to use the KMS cluster key. |
 
 {% hint style="info" %}
 WEKA does not automatically re-encrypt existing filesystem keys with the new KMS key for snapshots that were previously uploaded with the old encrypted keys.

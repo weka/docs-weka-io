@@ -41,7 +41,9 @@ Use the following command line to add a trusted site to the CORS list.
 
 **Parameters**
 
-<table><thead><tr><th width="179">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>site</code>*</td><td>Trusted site to add. Include the URL with the <code>http</code> or <code>https</code> prefix, and specify the port number if it’s not the default.</td></tr></tbody></table>
+| Parameter | Description |
+| --- | --- |
+| `site`* | Trusted site to add. Include the URL with the `http` or `https` prefix, and specify the port number if it’s not the default. |
 
 Example:
 
@@ -57,7 +59,9 @@ Use the following command line to remove a specified trusted site from the CORS 
 
 `weka security cors-trusted-sites remove`
 
-<table><thead><tr><th width="179">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>site</code>*</td><td>Trusted site to remove from the CORS list.</td></tr></tbody></table>
+| Parameter | Description |
+| --- | --- |
+| `site`* | Trusted site to remove from the CORS list. |
 
 ### Remove all trusted sites from the CORS list
 

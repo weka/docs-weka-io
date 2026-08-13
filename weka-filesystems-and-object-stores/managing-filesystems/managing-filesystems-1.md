@@ -73,7 +73,25 @@ Use the following command line to edit an existing filesystem:
 
 **Parameters**
 
-<table><thead><tr><th width="284.95703125">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>name</code>*</td><td>Name of the filesystem to edit.</td></tr><tr><td><code>new-name</code></td><td>New name for the filesystem.</td></tr><tr><td><code>total-capacity</code></td><td>Total capacity of the edited filesystem.</td></tr><tr><td><code>ssd-capacity</code></td><td>SSD capacity of the edited filesystem.<br>Minimum value: 1GiB.</td></tr><tr><td><code>thin-provision-min-ssd</code></td><td>For thin-provisioned filesystems, this is the minimum SSD capacity that is ensured to be always available to this filesystem.<br>Minimum value: 1GiB.<br>For details, see <a href="../../weka-system-overview/filesystems-object-stores-and-filesystem-groups/#thin-provisioning-in-weka-filesystems">Filesystems, object stores, and filesystem groups</a>.</td></tr><tr><td><code>thin-provision-max-ssd</code></td><td>For thin-provisioned filesystem, this is the maximum SSD capacity the filesystem can consume.<br>The value must not exceed the <code>total-capacity</code>.</td></tr><tr><td><code>audit-enabled</code></td><td>Forwards this filesystem's audit logs to a configured events monitoring platform, provided that cluster-wide auditing is also enabled.</td></tr><tr><td><code>data-reduction</code></td><td>Enable data reduction.<br>Data reduction can be enabled only on thin provision, non-tiered, and unencrypted filesystems on a cluster with a valid data reduction license. For details, see <a href="../../weka-system-overview/filesystems-object-stores-and-filesystem-groups/#data-reduction-in-weka-filesystems">Filesystems, object stores, and filesystem groups</a>.</td></tr><tr><td><code>auth-required</code></td><td>Determines if mounting the filesystem requires being authenticated to WEKA (<a href="../../operation-guide/user-management/#user-log-in">weka user login</a>).<br>Possible values: <code>yes</code> or <code>no</code>.</td></tr><tr><td><code>kms-key-identifier</code></td><td>Customize KMS key identifier for this filesystem (only for HashiCorp Vault).</td></tr><tr><td><code>kms-namespace</code></td><td>Customize KMS namespace for this filesystem (only for HashiCorp Vault).</td></tr><tr><td><code>kms-role-id</code></td><td>Customize KMS role-id for this filesystem (only for HashiCorp Vault).</td></tr><tr><td><code>kms-secret-id</code></td><td>Customize KMS secret-id for this filesystem (only for HashiCorp Vault).</td></tr><tr><td><code>index-enabled</code></td><td>Enable catalog indexing for this filesystem (format: '<code>yes</code>', '<code>no</code>', '<code>true</code>', '<code>false</code>', '<code>on</code>', '<code>off</code>', '<code>y</code>' or '<code>n</code>').</td></tr><tr><td><code>max-throughput</code></td><td>The maximum total throughput allowed for the filesystem per second. Use a number with capacity units in Decimal or Binary: for example, 200GiB or 500GB.</td></tr><tr><td><code>max-iops</code></td><td>The maximum total I/O operations allowed for the filesystem per second. Use a number without units: for example, 500000.</td></tr><tr><td><code>use-cluster-kms-key-identifier</code></td><td>Enable cluster KMS configuration for this filesystem, which removes any custom KMS settings previously applied to it.</td></tr></tbody></table>
+| Name | Value |
+| --- | --- |
+| `name`* | Name of the filesystem to edit. |
+| `new-name` | New name for the filesystem. |
+| `total-capacity` | Total capacity of the edited filesystem. |
+| `ssd-capacity` | SSD capacity of the edited filesystem.Minimum value: 1GiB. |
+| `thin-provision-min-ssd` | For thin-provisioned filesystems, this is the minimum SSD capacity that is ensured to be always available to this filesystem.Minimum value: 1GiB.For details, see [Filesystems, object stores, and filesystem groups](../../weka-system-overview/filesystems-object-stores-and-filesystem-groups/#thin-provisioning-in-weka-filesystems). |
+| `thin-provision-max-ssd` | For thin-provisioned filesystem, this is the maximum SSD capacity the filesystem can consume.The value must not exceed the `total-capacity`. |
+| `audit-enabled` | Forwards this filesystem's audit logs to a configured events monitoring platform, provided that cluster-wide auditing is also enabled. |
+| `data-reduction` | Enable data reduction.Data reduction can be enabled only on thin provision, non-tiered, and unencrypted filesystems on a cluster with a valid data reduction license. For details, see [Filesystems, object stores, and filesystem groups](../../weka-system-overview/filesystems-object-stores-and-filesystem-groups/#data-reduction-in-weka-filesystems). |
+| `auth-required` | Determines if mounting the filesystem requires being authenticated to WEKA ([weka user login](../../operation-guide/user-management/#user-log-in)).Possible values: `yes` or `no`. |
+| `kms-key-identifier` | Customize KMS key identifier for this filesystem (only for HashiCorp Vault). |
+| `kms-namespace` | Customize KMS namespace for this filesystem (only for HashiCorp Vault). |
+| `kms-role-id` | Customize KMS role-id for this filesystem (only for HashiCorp Vault). |
+| `kms-secret-id` | Customize KMS secret-id for this filesystem (only for HashiCorp Vault). |
+| `index-enabled` | Enable catalog indexing for this filesystem (format: '`yes`', '`no`', '`true`', '`false`', '`on`', '`off`', '`y`' or '`n`'). |
+| `max-throughput` | The maximum total throughput allowed for the filesystem per second. Use a number with capacity units in Decimal or Binary: for example, 200GiB or 500GB. |
+| `max-iops` | The maximum total I/O operations allowed for the filesystem per second. Use a number without units: for example, 500000. |
+| `use-cluster-kms-key-identifier` | Enable cluster KMS configuration for this filesystem, which removes any custom KMS settings previously applied to it. |
 
 ## Filesystem QoS using the CLI
 
@@ -94,7 +112,10 @@ Use the following command line to remove a filesystem:
 
 **Parameters**
 
-<table><thead><tr><th>Name</th><th width="377">Value</th><th>Default</th></tr></thead><tbody><tr><td><code>name</code>*</td><td>Name of the filesystem to delete.</td><td></td></tr><tr><td><code>purge-from-obs</code></td><td>For a tiered filesystem, if set, all filesystem data is deleted from the object store bucket.</td><td>False</td></tr></tbody></table>
+| Name | Value | Default |
+| --- | --- | --- |
+| `name`* | Name of the filesystem to delete. |  |
+| `purge-from-obs` | For a tiered filesystem, if set, all filesystem data is deleted from the object store bucket. | False |
 
 {% hint style="danger" %}
 Using `purge-from-obs` removes all data from the object-store. This includes any backup data or snapshots created from this filesystem (if this filesystem has been downloaded from a snapshot of a different filesystem, it will leave the original snapshot data intact).
@@ -114,4 +135,6 @@ Rewrap operations can be performed per filesystem, enabling each key to be re-en
 
 **Parameters**
 
-<table><thead><tr><th width="252">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>name</code>*</td><td>Filesystem name</td></tr></tbody></table>
+| Parameter | Description |
+| --- | --- |
+| `name`* | Filesystem name |

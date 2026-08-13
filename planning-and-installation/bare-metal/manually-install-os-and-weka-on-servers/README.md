@@ -22,25 +22,9 @@ For details, see [Use bios\_tool](https://app.gitbook.com/s/ZW262oqYA8pNNfGvXjHa
 
 **Required packages**
 
-<table><thead><tr><th>RHEL and derivatives</th><th>Ubuntu</th></tr></thead><tbody><tr><td><pre><code>elfutils-libelf-devel
-gcc
-glibc-headers
-glibc-devel
-make
-perl
-rpcbind
-xfsprogs
-kernel-devel
-sssd
-</code></pre></td><td><pre><code>libelf-dev
-linux-headers-$(uname -r)
-gcc
-make
-perl
-rpcbind
-xfsprogs
-sssd
-</code></pre></td></tr></tbody></table>
+| RHEL and derivatives | Ubuntu |
+| --- | --- |
+| `elfutils-libelf-devel gcc glibc-headers glibc-devel make perl rpcbind xfsprogs kernel-devel sssd ` | `libelf-dev linux-headers-$(uname -r) gcc make perl rpcbind xfsprogs sssd ` |
 
 <details>
 

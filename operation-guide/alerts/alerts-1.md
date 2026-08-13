@@ -152,13 +152,30 @@ Use the following command line to list all alerts (muted and unmuted) in the WEK
 
 **Parameters**
 
-<table><thead><tr><th width="144.89453125">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>severity</code></td><td>List alerts with the specified severity level and higher. Default: <code>warning</code>. Supported values: <code>debug</code> (hidden), '<code>warning</code>' (lowest), <code>minor</code>, <code>major</code> or <code>critical</code> (highest).</td></tr><tr><td><code>muted</code></td><td>List muted alerts in addition to active alerts.</td></tr><tr><td><code>inactive</code></td><td>List alerts that recently transitioned to an inactive state.</td></tr></tbody></table>
+| Name | Value |
+| --- | --- |
+| `severity` | List alerts with the specified severity level and higher. Default: `warning`. Supported values: `debug` (hidden), '`warning`' (lowest), `minor`, `major` or `critical` (highest). |
+| `muted` | List muted alerts in addition to active alerts. |
+| `inactive` | List alerts that recently transitioned to an inactive state. |
 
 #### `weka alerts` output parameters
 
 Explore the output parameters of the `weka alerts` command.
 
-<table><thead><tr><th width="217.90234375">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>action</code></td><td>Displays the recommended action to resolve the alert.</td></tr><tr><td><code>active_duration</code></td><td>Indicates the duration for which the alert has been active.</td></tr><tr><td><code>comment</code></td><td>Shows any user-added comments for the alert.</td></tr><tr><td><code>count</code></td><td>Provides the number of times the alert has occurred.</td></tr><tr><td><code>description</code></td><td>Explains the alert in detail.</td></tr><tr><td><code>end_time</code></td><td>Specifies the time when the alert was resolved.</td></tr><tr><td><code>mute_time_remaining</code></td><td>Indicates the remaining time until the alert is unmuted.</td></tr><tr><td><code>muted</code></td><td>Shows whether the alert is currently muted (<code>muted</code> or <code>unmuted</code>).</td></tr><tr><td><code>severity</code></td><td>Defines the severity level of the alert, for example, <code>WARNING</code>.</td></tr><tr><td><code>start_time</code></td><td>Specifies the start time when an alert type first started, not when each individual alert instance was generated.</td></tr><tr><td><code>title</code></td><td>Provides a concise title for the alert.</td></tr><tr><td><code>type</code></td><td>Identifies the unique type of the alert.</td></tr></tbody></table>
+| Parameter | Description |
+| --- | --- |
+| `action` | Displays the recommended action to resolve the alert. |
+| `active_duration` | Indicates the duration for which the alert has been active. |
+| `comment` | Shows any user-added comments for the alert. |
+| `count` | Provides the number of times the alert has occurred. |
+| `description` | Explains the alert in detail. |
+| `end_time` | Specifies the time when the alert was resolved. |
+| `mute_time_remaining` | Indicates the remaining time until the alert is unmuted. |
+| `muted` | Shows whether the alert is currently muted (`muted` or `unmuted`). |
+| `severity` | Defines the severity level of the alert, for example, `WARNING`. |
+| `start_time` | Specifies the start time when an alert type first started, not when each individual alert instance was generated. |
+| `title` | Provides a concise title for the alert. |
+| `type` | Identifies the unique type of the alert. |
 
 <details>
 
@@ -238,7 +255,12 @@ weka alerts mute add <alert-type> /
 
 **Parameters**
 
-<table><thead><tr><th width="168.48828125">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>alert-type</code>*</td><td>Specifies the alert type to update mute scope for. Run <code>weka alerts types</code> to list all possible types.</td></tr><tr><td><code>process</code>...</td><td>Adds specific process IDs to the mute scope. This parameter applies only to process-specific alerts. For multiple entries, provide a comma-separated list or repeat the parameter.</td></tr><tr><td><code>container</code>...</td><td>Adds specific container IDs to the mute scope. Use this parameter for container-specific alerts only.For multiple entries, provide a comma-separated list or repeat the parameter.</td></tr><tr><td><code>hostname</code>...</td><td>Adds specific server names to the mute scope. Use this parameter for server-specific alerts only. For multiple entries, provide a comma-separated list or repeat the parameter.</td></tr></tbody></table>
+| Parameter | Description |
+| --- | --- |
+| `alert-type`* | Specifies the alert type to update mute scope for. Run `weka alerts types` to list all possible types. |
+| `process`... | Adds specific process IDs to the mute scope. This parameter applies only to process-specific alerts. For multiple entries, provide a comma-separated list or repeat the parameter. |
+| `container`... | Adds specific container IDs to the mute scope. Use this parameter for container-specific alerts only.For multiple entries, provide a comma-separated list or repeat the parameter. |
+| `hostname`... | Adds specific server names to the mute scope. Use this parameter for server-specific alerts only. For multiple entries, provide a comma-separated list or repeat the parameter. |
 
 ### Remove items from mute scope
 
@@ -256,7 +278,12 @@ weka alerts mute remove <alert-type> /
 
 **Parameters**
 
-<table><thead><tr><th width="163.90625">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>alert-type</code>*</td><td>Specifies the alert type to remove from mute scope. Run <code>weka alerts types</code> to list all possible types.</td></tr><tr><td><code>process</code>...</td><td>Removes specific process IDs from the mute scope. This parameter applies only to process-specific alerts. For multiple entries, provide a comma-separated list or repeat the parameter.</td></tr><tr><td><code>container</code>...</td><td>Removes specific container IDs from the mute scope. Use this parameter for container-specific alerts only. Provide a comma-separated list or repeat the parameter for multiple IDs.</td></tr><tr><td><code>hostname</code>...</td><td>Removes specific server names from the mute scope. Use this parameter for server-specific alerts only. Provide a comma-separated list or repeat the parameter for multiple names.</td></tr></tbody></table>
+| Parameter | Description |
+| --- | --- |
+| `alert-type`* | Specifies the alert type to remove from mute scope. Run `weka alerts types` to list all possible types. |
+| `process`... | Removes specific process IDs from the mute scope. This parameter applies only to process-specific alerts. For multiple entries, provide a comma-separated list or repeat the parameter. |
+| `container`... | Removes specific container IDs from the mute scope. Use this parameter for container-specific alerts only. Provide a comma-separated list or repeat the parameter for multiple IDs. |
+| `hostname`... | Removes specific server names from the mute scope. Use this parameter for server-specific alerts only. Provide a comma-separated list or repeat the parameter for multiple names. |
 
 ## **Unmute alerts**
 
@@ -268,4 +295,6 @@ Use the following command line to unmute a muted Alert Type:
 
 **Parameters**
 
-<table><thead><tr><th width="221">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>alert-type</code>*</td><td>An alert-type to unmute, use <code>weka alerts types</code> to list types.</td></tr></tbody></table>
+| Name | Value |
+| --- | --- |
+| `alert-type`* | An alert-type to unmute, use `weka alerts types` to list types. |

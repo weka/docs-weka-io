@@ -39,7 +39,9 @@ Use the following command line to view a bucket's existing lifecycle rules:‌
 
 **Parameters**
 
-<table><thead><tr><th width="195">Name</th><th width="327">Value</th><th>Default</th></tr></thead><tbody><tr><td><code>bucket</code>*</td><td>The S3 bucket name.</td><td>​Content</td></tr></tbody></table>
+| Name | Value | Default |
+| --- | --- | --- |
+| `bucket`* | The S3 bucket name. | ​Content |
 
 ## Remove a lifecycle rule
 
@@ -51,7 +53,10 @@ Use the following command line to remove an lifecycle rule of a specified bucket
 
 **Parameters**
 
-<table><thead><tr><th width="204">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>bucket</code>*</td><td>The S3 bucket name.</td></tr><tr><td><code>name</code>*</td><td>The rule name.</td></tr></tbody></table>
+| Name | Value |
+| --- | --- |
+| `bucket`* | The S3 bucket name. |
+| `name`* | The rule name. |
 
 ## Remove all lifecycle rules
 
@@ -63,4 +68,6 @@ Use the following command line to remove all the lifecycle rules of a specified 
 
 **Parameters**
 
-<table><thead><tr><th width="209">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>bucket</code>*</td><td>The S3 bucket name.</td></tr></tbody></table>
+| Name | Value |
+| --- | --- |
+| `bucket`* | The S3 bucket name. |

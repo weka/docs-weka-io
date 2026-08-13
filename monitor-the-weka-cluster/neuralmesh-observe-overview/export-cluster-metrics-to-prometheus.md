@@ -109,7 +109,11 @@ scrape_configs:
 
 Replace the placeholders with your values:
 
-<table><thead><tr><th width="183">Placeholder</th><th>Value</th></tr></thead><tbody><tr><td><code>&#x3C;observe-host></code></td><td>Hostname from the cluster settings URL</td></tr><tr><td><code>&#x3C;base-url></code></td><td>Path portion of the endpoint URL from the token dialog</td></tr><tr><td><code>&#x3C;your-token></code></td><td>Authentication token from the token dialog</td></tr></tbody></table>
+| Placeholder | Value |
+| --- | --- |
+| `&#x3C;observe-host>` | Hostname from the cluster settings URL |
+| `&#x3C;base-url>` | Path portion of the endpoint URL from the token dialog |
+| `&#x3C;your-token>` | Authentication token from the token dialog |
 
 ### Selective metric collection
 

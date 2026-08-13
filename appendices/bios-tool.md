@@ -33,7 +33,21 @@ bios_tool [-h] [-c [HOSTCONFIGFILE]] [-b [BIOS]] [--bmc_config] [--fix] [--reboo
 
 #### Parameters
 
-<table><thead><tr><th width="301">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>-h, --help</code></td><td>Displays the help message.</td></tr><tr><td><code>-c, --hostconfigfile [HOSTCONFIGFILE]</code></td><td>Specify the host configuration file (YAML/CSV) containing server details.</td></tr><tr><td><code>-b, --bios [BIOS]</code></td><td>Specify the BIOS settings configuration file (YAML).</td></tr><tr><td><code>--bmc_config</code></td><td>Enables RedFish and IPMI Over LAN on all servers.</td></tr><tr><td><code>--fix</code></td><td>Corrects BIOS settings based on the configuration file.</td></tr><tr><td><code>--reboot</code></td><td>Reboots the server after applying any changes to the BIOS settings. Only a server with modifications will be rebooted.</td></tr><tr><td><code>--dump</code></td><td>Displays BIOS settings without making changes.</td></tr><tr><td><code>--reset_bios</code></td><td>Resets BIOS to default settings. Use <code>--reboot</code> for automatic reboot after resetting.</td></tr><tr><td><code>--diff DIFF DIFF</code></td><td>Compares BIOS settings between two servers.</td></tr><tr><td><code>--bmc_ips [BMC_IPS ...]</code></td><td>List of BMC IP addresses (space-separated) to configure servers without a config file.<br>For example, <code>--bmc_ips 192.168.1.1 192.168.1.2</code>.<br>Combined with <code>--bmc_username</code> and <code>--bmc_password</code>, this option enables quick configuration of multiple servers with identical credentials, eliminating the need for a configuration file.</td></tr><tr><td><code>--bmc_username</code><br><code>--bmc_password</code></td><td>Credentials for BMC access.</td></tr><tr><td><code>-v, --verbose</code></td><td>Provides verbose output.</td></tr><tr><td><code>--version</code></td><td>Displays the current version of BIOS tool.</td></tr></tbody></table>
+| Parameter | Description |
+| --- | --- |
+| `-h, --help` | Displays the help message. |
+| `-c, --hostconfigfile [HOSTCONFIGFILE]` | Specify the host configuration file (YAML/CSV) containing server details. |
+| `-b, --bios [BIOS]` | Specify the BIOS settings configuration file (YAML). |
+| `--bmc_config` | Enables RedFish and IPMI Over LAN on all servers. |
+| `--fix` | Corrects BIOS settings based on the configuration file. |
+| `--reboot` | Reboots the server after applying any changes to the BIOS settings. Only a server with modifications will be rebooted. |
+| `--dump` | Displays BIOS settings without making changes. |
+| `--reset_bios` | Resets BIOS to default settings. Use `--reboot` for automatic reboot after resetting. |
+| `--diff DIFF DIFF` | Compares BIOS settings between two servers. |
+| `--bmc_ips [BMC_IPS ...]` | List of BMC IP addresses (space-separated) to configure servers without a config file.For example, `--bmc_ips 192.168.1.1 192.168.1.2`.Combined with `--bmc_username` and `--bmc_password`, this option enables quick configuration of multiple servers with identical credentials, eliminating the need for a configuration file. |
+| `--bmc_username``--bmc_password` | Credentials for BMC access. |
+| `-v, --verbose` | Provides verbose output. |
+| `--version` | Displays the current version of BIOS tool. |
 
 ## Getting started
 

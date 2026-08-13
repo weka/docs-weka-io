@@ -106,4 +106,10 @@ Use these attributes to map S3 IAM policy on the WEKA cluster.
 
 Use these parameters to interface with the LDAP authentication endpoint.
 
-<table><thead><tr><th width="215.8182373046875">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>ldap_user</code> *</td><td>The username defined in the LDAP directory.</td></tr><tr><td><code>ldap_password</code> *</td><td>The password associated with the LDAP user.</td></tr><tr><td><code>weka_cluster_address</code> *</td><td>The IP address or FQDN of the cluster management interface.</td></tr><tr><td><code>TenantID</code></td><td>(Optional) The tenant identifier used to specify which LDAP configuration to query. If not provided, defaults to Tenant 0.</td></tr><tr><td><code>-k</code></td><td>Instructs curl to proceed if the SSL certificate is self-signed.</td></tr></tbody></table>
+| Parameter | Description |
+| --- | --- |
+| `ldap_user` * | The username defined in the LDAP directory. |
+| `ldap_password` * | The password associated with the LDAP user. |
+| `weka_cluster_address` * | The IP address or FQDN of the cluster management interface. |
+| `TenantID` | (Optional) The tenant identifier used to specify which LDAP configuration to query. If not provided, defaults to Tenant 0. |
+| `-k` | Instructs curl to proceed if the SSL certificate is self-signed. |

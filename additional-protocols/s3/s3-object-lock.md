@@ -62,7 +62,15 @@ Confirm the following before you configure S3 Object Lock:
 
 Grant the following S3 permissions to control access to Object Lock, legal hold, and retention operations.
 
-<table><thead><tr><th width="353">Permission</th><th>Description</th></tr></thead><tbody><tr><td><code>s3:GetBucketObjectLockConfiguration</code></td><td>Get the Object Lock configuration of a bucket.</td></tr><tr><td><code>s3:PutBucketObjectLockConfiguration</code></td><td>Set the Object Lock configuration of a bucket.</td></tr><tr><td><code>s3:GetObjectLegalHold</code></td><td>Get the legal hold status of an object with a GET or HEAD request.</td></tr><tr><td><code>s3:PutObjectLegalHold</code></td><td>Turn the legal hold of an object on or off.</td></tr><tr><td><code>s3:BypassGovernanceRetention</code></td><td>Bypass the retention period of an object in Governance mode.</td></tr><tr><td><code>s3:GetObjectRetention</code></td><td>Get the retention period of an object.</td></tr><tr><td><code>s3:PutObjectRetention</code></td><td>Set the retention mode and retention date of an object.</td></tr></tbody></table>
+| Permission | Description |
+| --- | --- |
+| `s3:GetBucketObjectLockConfiguration` | Get the Object Lock configuration of a bucket. |
+| `s3:PutBucketObjectLockConfiguration` | Set the Object Lock configuration of a bucket. |
+| `s3:GetObjectLegalHold` | Get the legal hold status of an object with a GET or HEAD request. |
+| `s3:PutObjectLegalHold` | Turn the legal hold of an object on or off. |
+| `s3:BypassGovernanceRetention` | Bypass the retention period of an object in Governance mode. |
+| `s3:GetObjectRetention` | Get the retention period of an object. |
+| `s3:PutObjectRetention` | Set the retention mode and retention date of an object. |
 
 ### Enable Object Lock on a bucket
 

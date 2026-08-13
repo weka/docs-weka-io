@@ -359,8 +359,23 @@ The following tables show example results from tests run in specific AWS and Sup
 
 ### **Single client results**
 
-<table><thead><tr><th width="203.96484375">Benchmark</th><th width="230.95703125">AWS</th><th>SuperMicro</th></tr></thead><tbody><tr><td><strong>Read Throughput</strong></td><td>8.9 GiB/s</td><td>21.4 GiB/s</td></tr><tr><td><strong>Write Throughput</strong></td><td>9.4 GiB/s</td><td>17.2 GiB/s</td></tr><tr><td><strong>Read IOPS</strong></td><td>393,333 ops/s</td><td>563,667 ops/s</td></tr><tr><td><strong>Write IOPS</strong></td><td>302,333 ops/s</td><td>378,667 ops/s</td></tr><tr><td><strong>Read Latency</strong></td><td>272 µs avg.&#x26;lt;br>99.5% completed under 459 µs</td><td>144.76 µs avg.&#x26;lt;br>99.5% completed under 260 µs</td></tr><tr><td><strong>Write Latency</strong></td><td>298 µs avg.&#x26;lt;br>99.5% completed under 432 µs</td><td>107.12 µs avg.&#x26;lt;br>99.5% completed under 142 µs</td></tr></tbody></table>
+| Benchmark | AWS | SuperMicro |
+| --- | --- | --- |
+| **Read Throughput** | 8.9 GiB/s | 21.4 GiB/s |
+| **Write Throughput** | 9.4 GiB/s | 17.2 GiB/s |
+| **Read IOPS** | 393,333 ops/s | 563,667 ops/s |
+| **Write IOPS** | 302,333 ops/s | 378,667 ops/s |
+| **Read Latency** | 272 µs avg.&#x26;lt;br>99.5% completed under 459 µs | 144.76 µs avg.&#x26;lt;br>99.5% completed under 260 µs |
+| **Write Latency** | 298 µs avg.&#x26;lt;br>99.5% completed under 432 µs | 107.12 µs avg.&#x26;lt;br>99.5% completed under 142 µs |
 
 ### **Aggregated cluster results (with multiple clients)**
 
-<table><thead><tr><th width="203.94921875">Benchmark</th><th width="232.93359375">AWS</th><th>SuperMicro</th></tr></thead><tbody><tr><td><strong>Read Throughput</strong></td><td>36.2 GiB/s</td><td>123 GiB/s</td></tr><tr><td><strong>Write Throughput</strong></td><td>11.6 GiB/s</td><td>37.6 GiB/s</td></tr><tr><td><strong>Read IOPS</strong></td><td>1,978,330 ops/s</td><td>4,346,330 ops/s</td></tr><tr><td><strong>Write IOPS</strong></td><td>404,670 ops/s</td><td>1,317,000 ops/s</td></tr><tr><td><strong>Creates</strong></td><td>79,599 ops/s</td><td>234,472 ops/s</td></tr><tr><td><strong>Stats</strong></td><td>1,930,721 ops/s</td><td>3,257,394 ops/s</td></tr><tr><td><strong>Deletes</strong></td><td>117,644 ops/s</td><td>361,755 ops/s</td></tr></tbody></table>
+| Benchmark | AWS | SuperMicro |
+| --- | --- | --- |
+| **Read Throughput** | 36.2 GiB/s | 123 GiB/s |
+| **Write Throughput** | 11.6 GiB/s | 37.6 GiB/s |
+| **Read IOPS** | 1,978,330 ops/s | 4,346,330 ops/s |
+| **Write IOPS** | 404,670 ops/s | 1,317,000 ops/s |
+| **Creates** | 79,599 ops/s | 234,472 ops/s |
+| **Stats** | 1,930,721 ops/s | 3,257,394 ops/s |
+| **Deletes** | 117,644 ops/s | 361,755 ops/s |

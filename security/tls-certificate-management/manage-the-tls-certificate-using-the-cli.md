@@ -10,7 +10,10 @@ Use the following command line to use TLS when accessing UI. If TLS is already s
 
 **Parameters**
 
-<table><thead><tr><th width="179">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>private-key</code></td><td>Path to TLS private unencrypted key pem file.</td></tr><tr><td><code>certificate</code></td><td>Path to TLS certificate pem file.</td></tr></tbody></table>
+| Parameter | Description |
+| --- | --- |
+| `private-key` | Path to TLS private unencrypted key pem file. |
+| `certificate` | Path to TLS certificate pem file. |
 
 {% hint style="success" %}
 **Example:**
@@ -46,4 +49,6 @@ Use the CLI command:
 
 **Parameters**
 
-<table><thead><tr><th width="179">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>cert-file</code></td><td>Path to the certificate file.</td></tr></tbody></table>
+| Parameter | Description |
+| --- | --- |
+| `cert-file` | Path to the certificate file. |

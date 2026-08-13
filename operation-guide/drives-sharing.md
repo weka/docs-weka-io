@@ -79,7 +79,12 @@ weka-sign-drive virtual add <physical-uuid> \
 
 **Parameters**
 
-<table><thead><tr><th width="217.33331298828125">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>&#x3C;physical-uuid></code></td><td>Physical UUID identified in the previous step.</td></tr><tr><td><code>--size</code></td><td>Virtual drive size, in GB. Over-provisioning is supported.</td></tr><tr><td><code>--owner-cluster-guid</code></td><td>Cluster GUID used when signing the physical drive.<br>Default: all clusters if not specified.</td></tr><tr><td><code>--virtual-uuid</code></td><td>Optional. Explicitly assigns a virtual UUID. If omitted, WEKA generates one automatically.</td></tr></tbody></table>
+| Parameter | Description |
+| --- | --- |
+| `&#x3C;physical-uuid>` | Physical UUID identified in the previous step. |
+| `--size` | Virtual drive size, in GB. Over-provisioning is supported. |
+| `--owner-cluster-guid` | Cluster GUID used when signing the physical drive.Default: all clusters if not specified. |
+| `--virtual-uuid` | Optional. Explicitly assigns a virtual UUID. If omitted, WEKA generates one automatically. |
 
 **Example:** Create three 1 TB virtual drives on the same physical drive.
 
@@ -132,7 +137,11 @@ weka local setup ssdproxy \
 
 **Parameters**
 
-<table><thead><tr><th width="264.6666564941406">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>--max-drives</code></td><td>Maximum number of physical drives managed by the proxy (up to 40).</td></tr><tr><td><code>--expected-max-drive-size-gb</code></td><td>Largest expected drive size in GB. Used to calculate memory allocation for ChunkDB metadata.</td></tr><tr><td><code>--memory</code></td><td>If not using the <code>max-drives</code> and <code>expected-max-drive-size-gb</code>, specify the exact container memory.</td></tr></tbody></table>
+| Parameter | Description |
+| --- | --- |
+| `--max-drives` | Maximum number of physical drives managed by the proxy (up to 40). |
+| `--expected-max-drive-size-gb` | Largest expected drive size in GB. Used to calculate memory allocation for ChunkDB metadata. |
+| `--memory` | If not using the `max-drives` and `expected-max-drive-size-gb`, specify the exact container memory. |
 
 **Memory sizing guidance**
 
@@ -168,7 +177,11 @@ weka cluster drive add <container-id> <virtual-uuid> [--pool <pool-name>]
 
 **Parameters**
 
-<table><thead><tr><th width="208"></th><th></th></tr></thead><tbody><tr><td><code>&#x3C;container-id></code></td><td>ID of the container to attach the virtual drive.</td></tr><tr><td><code>&#x3C;virtual-uuid></code></td><td>Virtual UUID created in the previous step.</td></tr><tr><td><code>--pool</code></td><td>Optional. Target storage pool (for example, <code>iubig</code> for large indirection unit pools).</td></tr></tbody></table>
+|  |  |
+| --- | --- |
+| `&#x3C;container-id>` | ID of the container to attach the virtual drive. |
+| `&#x3C;virtual-uuid>` | Virtual UUID created in the previous step. |
+| `--pool` | Optional. Target storage pool (for example, `iubig` for large indirection unit pools). |
 
 **Examples**
 

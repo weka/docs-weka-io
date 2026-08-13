@@ -40,11 +40,37 @@ Some sub-commands accept `<container-ids>`. See details in the following table.
 
 **Subcommands**
 
-<table><thead><tr><th width="192.33333333333331">Sub-command</th><th width="342">Description</th><th>Comment</th></tr></thead><tbody><tr><td><code>activate</code></td><td>Activate the containers.</td><td>Specify the list of containers with a space delimiter.</td></tr><tr><td><code>add</code></td><td>Add a container to the cluster.</td><td></td></tr><tr><td><code>apply</code></td><td>Apply changes to the resources on the containers.</td><td>Specify the list of containers with a space delimiter.</td></tr><tr><td><code>auto-remove-timeout</code></td><td>Set the time to wait before removing the containers from clients if they disconnect from the cluster. The minimum value is 60. Use 0 to disable automatic removal.</td><td>This subcommand only applies to clients.</td></tr><tr><td><code>bandwidth</code></td><td>Limit the bandwidth of the containers.</td><td></td></tr><tr><td><code>clear-failure</code></td><td>Clear the last failure fields of the containers.</td><td>Specify the list of containers with a space delimiter.</td></tr><tr><td><code>cores</code></td><td>Change the number of cores in the containers.</td><td>Increasing the number of cores does not require deactivating the container, whereas decreasing the core count requires deactivation.</td></tr><tr><td><code>deactivate</code></td><td>Deactivate the containers.</td><td>Specify the list of containers with a space delimiter.</td></tr><tr><td><code>deactivation-check</code></td><td>Check if the specified containers can be deactivated.</td><td></td></tr><tr><td><code>dedicate</code></td><td>Set the containers to be dedicated to the WEKA cluster.</td><td></td></tr><tr><td><code>failure-domain</code></td><td>Set the failure domain on the container.</td><td>Requires deactivating the container.</td></tr><tr><td><code>info-hw</code></td><td>Show hardware information about the containers.</td><td></td></tr><tr><td><code>join-secret</code></td><td>Set the secret this container uses when joining or validating other backends.</td><td></td></tr><tr><td><code>management-ips</code></td><td>Set the management IPs of the container. To achieve high availability, set two IPs.</td><td></td></tr><tr><td><code>memory</code></td><td>Set the RAM size dedicated to the container.</td><td></td></tr><tr><td><code>net</code></td><td>List the WEKA-dedicated networking devices in the containers.</td><td>Specify the list of containers with a space delimiter.</td></tr><tr><td><code>remove</code></td><td>Remove a container from the cluster.</td><td></td></tr><tr><td><code>requested-action</code></td><td>Set the specified containers' requested action to stop, restart, or apply resources gracefully.</td><td></td></tr><tr><td><code>resources</code></td><td>Get the resources of the containers.</td><td></td></tr><tr><td><code>restore</code></td><td>Restore staged resources of the containers or all containers to their stable state.</td><td>Specify the list of containers with a space delimiter.</td></tr></tbody></table>
+| Sub-command | Description | Comment |
+| --- | --- | --- |
+| `activate` | Activate the containers. | Specify the list of containers with a space delimiter. |
+| `add` | Add a container to the cluster. |  |
+| `apply` | Apply changes to the resources on the containers. | Specify the list of containers with a space delimiter. |
+| `auto-remove-timeout` | Set the time to wait before removing the containers from clients if they disconnect from the cluster. The minimum value is 60. Use 0 to disable automatic removal. | This subcommand only applies to clients. |
+| `bandwidth` | Limit the bandwidth of the containers. |  |
+| `clear-failure` | Clear the last failure fields of the containers. | Specify the list of containers with a space delimiter. |
+| `cores` | Change the number of cores in the containers. | Increasing the number of cores does not require deactivating the container, whereas decreasing the core count requires deactivation. |
+| `deactivate` | Deactivate the containers. | Specify the list of containers with a space delimiter. |
+| `deactivation-check` | Check if the specified containers can be deactivated. |  |
+| `dedicate` | Set the containers to be dedicated to the WEKA cluster. |  |
+| `failure-domain` | Set the failure domain on the container. | Requires deactivating the container. |
+| `info-hw` | Show hardware information about the containers. |  |
+| `join-secret` | Set the secret this container uses when joining or validating other backends. |  |
+| `management-ips` | Set the management IPs of the container. To achieve high availability, set two IPs. |  |
+| `memory` | Set the RAM size dedicated to the container. |  |
+| `net` | List the WEKA-dedicated networking devices in the containers. | Specify the list of containers with a space delimiter. |
+| `remove` | Remove a container from the cluster. |  |
+| `requested-action` | Set the specified containers' requested action to stop, restart, or apply resources gracefully. |  |
+| `resources` | Get the resources of the containers. |  |
+| `restore` | Restore staged resources of the containers or all containers to their stable state. | Specify the list of containers with a space delimiter. |
 
 **Options**
 
-<table><thead><tr><th width="193">Option</th><th width="340.3333333333333">Description</th><th></th></tr></thead><tbody><tr><td>-b</td><td>Only return backend containers.</td><td></td></tr><tr><td>-c</td><td>Only return client containers.</td><td></td></tr><tr><td>-l</td><td>Only return containers that are part of the cluster leadership.</td><td></td></tr><tr><td>-L</td><td>Only return the cluster leader.</td><td></td></tr></tbody></table>
+| Option | Description |  |
+| --- | --- | --- |
+| -b | Only return backend containers. |  |
+| -c | Only return client containers. |  |
+| -l | Only return containers that are part of the cluster leadership. |  |
+| -L | Only return the cluster leader. |  |
 
 ## Expansion procedures on a remote container
 
@@ -252,7 +278,10 @@ These local commands have the same semantics as their remote counterpart. You do
 
 **Options**
 
-<table><thead><tr><th width="194.33333333333331">Option</th><th width="337">Description</th><th>Comment</th></tr></thead><tbody><tr><td><code>--stable</code></td><td>List the resources from the last successful container boot.</td><td></td></tr><tr><td><code>-C</code></td><td>The container name.</td><td></td></tr></tbody></table>
+| Option | Description | Comment |
+| --- | --- | --- |
+| `--stable` | List the resources from the last successful container boot. |  |
+| `-C` | The container name. |  |
 
 <details>
 
