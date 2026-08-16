@@ -118,6 +118,8 @@
   * [Configure data catalog](weka-filesystems-and-object-stores/data-catalog/configure-data-catalog.md)
   * [Analyze storage distribution](weka-filesystems-and-object-stores/data-catalog/analyze-storage-distribution.md)
   * [Data catalog FAQ](weka-filesystems-and-object-stores/data-catalog/data-catalog-faq.md)
+* [Asynchronous replication](weka-filesystems-and-object-stores/asynchronous-replication/README.md)
+  * [Manage asynchronous replication](weka-filesystems-and-object-stores/asynchronous-replication/manage-asynchronous-replication.md)
 
 ## Additional Protocols
 
