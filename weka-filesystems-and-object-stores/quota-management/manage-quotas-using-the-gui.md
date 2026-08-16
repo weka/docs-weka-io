@@ -1,7 +1,7 @@
 ---
 description: >-
   Manage directory quotas and default quota settings for your filesystems using
-  the WEKA GUI.
+  the NeuralMesh GUI.
 ---
 
 # Manage quotas using the GUI

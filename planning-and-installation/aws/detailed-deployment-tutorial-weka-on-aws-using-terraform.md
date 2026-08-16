@@ -453,9 +453,9 @@ To manage your WEKA cluster, you need to access the backend servers. This is typ
     * Replace `/path/to/private-key.pem` with the actual path to your SSH private key file.
     * Replace `<server-ip-address>` with the IP address of the WEKA backend server.
 
-## **WEKA GUI Login and Review**
+## **NeuralMesh GUI Login and Review**
 
-To manage your WEKA cluster through the GUI) you'll need access to a jump box (a system with a GUI) that is deployed in the same VPC and subnet as your WEKA cluster. This allows you to securely access the WEKA GUI through a web browser.
+To manage your WEKA cluster through the GUI) you'll need access to a jump box (a system with a GUI) that is deployed in the same VPC and subnet as your WEKA cluster. This allows you to securely access the NeuralMesh GUI through a web browser.
 
 The following procedure provides an example of using a Windows 10 instance.
 
@@ -465,17 +465,17 @@ The following procedure provides an example of using a Windows 10 instance.
    * Deploy a Windows 10 instance in the same VPC, subnet, and security group as your WEKA cluster.
    * Assign a public IP address to the Windows 10 instance.
    * Modify the network security group rules to allow Remote Desktop Protocol (RDP) access to the Windows 10 system.
-2. **Access the WEKA GUI**:
+2. **Access the NeuralMesh GUI**:
    * Open a web browser on the Windows 10 jump box.
-   *   Navigate to the WEKA GUI by entering the following URL:
+   *   Navigate to the NeuralMesh GUI by entering the following URL:
 
        ```arduino
        https://<IP>:14000
        ```
 
        * Replace `<IP>` with the IP address of your WEKA cluster. For example: `https://10.5.0.11`.
-   * The WEKA GUI login screen appears.
-3. **Log In to the WEKA GUI**:
+   * The NeuralMesh GUI login screen appears.
+3. **Log In to the NeuralMesh GUI**:
    * Log in using the username `admin` and the password obtained from AWS Secrets Manager (as described in the earlier steps).
 
 <div data-with-frame="true"><figure><img src="../../.gitbook/assets/Azure_Jump_login.png" alt=""><figcaption><p>Sign in</p></figcaption></figure></div>

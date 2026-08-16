@@ -122,7 +122,7 @@ spec:
     bindManagementAll: true
 ```
 
-Use `bindManagementAll: true` only when your network topology requires external access to the WEKA management API, or when users must access the WEKA GUI by using a server IP address. Keep the default `false` setting in production. It is more secure.
+Use `bindManagementAll: true` only when your network topology requires external access to the WEKA management API, or when users must access the NeuralMesh GUI by using a server IP address. Keep the default `false` setting in production. It is more secure.
 
 ## Enable IPv6
 

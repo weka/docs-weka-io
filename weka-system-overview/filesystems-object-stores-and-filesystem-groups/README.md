@@ -179,7 +179,7 @@ When multiple clients or processes are throttled simultaneously, the system appl
 **Considerations**
 
 * **Bursting:** QoS supports bursting control, allowing a filesystem to temporarily exceed its defined limit. This is useful in scenarios where multiple clients start simultaneously and require short-term additional throughput.
-* **Interface availability:** QoS settings are fully manageable through the CLI, but are not available in the WEKA GUI or the REST API.
+* **Interface availability:** QoS settings are fully manageable through the CLI, but are not available in the NeuralMesh GUI or the REST API.
 
 ## Object stores overview
 

@@ -647,7 +647,7 @@ Retrieve the IP addresses of the WEKA backend instances. For a public network de
 
 In the examples below, a Windows 10 instance with a public IP address was deployed in the same vnet, subnet, and security group as the WEKA cluster. Network security group rules were added to allow RDP explicit access to the Windows 10 system.
 
-3. Open a browser in the Windows 10 jump box and visit `https://<cluster-backend-ip>:14000`. The WEKA GUI login screen should appear. After changing the default password, login.
+3. Open a browser in the Windows 10 jump box and visit `https://<cluster-backend-ip>:14000`. The NeuralMesh GUI login screen should appear. After changing the default password, login.
 
 <div data-with-frame="true"><figure><img src="../../.gitbook/assets/Azure_Jump_login.png" alt=""><figcaption></figcaption></figure></div>
 

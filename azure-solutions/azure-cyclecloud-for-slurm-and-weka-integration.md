@@ -223,12 +223,12 @@ The **cluster-init script** used in the previous step requires specific configur
 **Procedure**
 
 1. **Retrieve WEKA configuration details**
-   1.  **Log into the WEKA GUI**: Navigate to the **Cluster Servers** section and note the IP addresses of the WEKA backend servers.<br>
+   1.  **Log into the NeuralMesh GUI**: Navigate to the **Cluster Servers** section and note the IP addresses of the WEKA backend servers.<br>
 
        <div data-with-frame="true"><figure><img src="../.gitbook/assets/CycleCloud_4-1 (1).png" alt=""><figcaption></figcaption></figure></div>
    2.  **Select or create a filesystem**:
 
-       1. In the WEKA GUI, go to the **Filesystems** section.
+       1. In the NeuralMesh GUI, go to the **Filesystems** section.
        2. Identify the filesystem you want to mount to the CycleCloud VMs. You can select an existing filesystem or create a new one for this purpose.
 
        <div data-with-frame="true"><figure><img src="../.gitbook/assets/CycleCloud_4-2.png" alt=""><figcaption><p>Select a filesystem</p></figcaption></figure></div>
@@ -284,9 +284,9 @@ To validate the integration, run a SLURM job across multiple nodes and confirm t
         ```
 
     <div data-with-frame="true"><figure><img src="../.gitbook/assets/CycleCloud_5-3.png" alt=""><figcaption></figcaption></figure></div>
-3.  **Verify on the WEKA GUI**:
+3.  **Verify on the NeuralMesh GUI**:
 
-    1. Access the **WEKA GUI**.
+    1. Access the **NeuralMesh GUI**.
     2. Navigate to the **Clients** section to verify that all nodes are connected and mounted to the WEKA Data Platform.
     3. Ensure all nodes display a green status, indicating successful connectivity.
 

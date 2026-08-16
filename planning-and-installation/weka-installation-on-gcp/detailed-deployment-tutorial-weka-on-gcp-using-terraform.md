@@ -444,16 +444,16 @@ Follow these steps to connect to the backend instances:
 
 <div data-with-frame="true"><figure><img src="../../.gitbook/assets/image (219).png" alt=""><figcaption></figcaption></figure></div>
 
-## Access and review the WEKA GUI
+## Access and review the NeuralMesh GUI
 
-To access the WEKA GUI, use a jump host with a GUI deployed within the same VPC and subnet as the WEKA cluster.
+To access the NeuralMesh GUI, use a jump host with a GUI deployed within the same VPC and subnet as the WEKA cluster.
 
-### Access the WEKA GUI
+### Access the NeuralMesh GUI
 
 In the following examples, a Windows 10 instance with a public IP address is deployed in the same VPC, subnet, and security group as the WEKA cluster. The network security group rules are added to allow RDP explicit access to the Windows 10 system.
 
 1. Open a browser in the Windows 10 jump box.
-2. Visit https://\<cluster-backend-ip>:14000. The WEKA GUI sign-in screen appears.
+2. Visit https://\<cluster-backend-ip>:14000. The NeuralMesh GUI sign-in screen appears.
 3. Sign in as user **admin** and use the password retrieved earlier ( see [#retrieve-the-weka-cluster-access-password](detailed-deployment-tutorial-weka-on-gcp-using-terraform.md#retrieve-the-weka-cluster-access-password "mention")).
 
 {% hint style="info" %}
