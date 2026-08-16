@@ -54,12 +54,37 @@ Some sub-commands accept `<container-ids>`. See details in the following table.
 
 ### Modify the memory
 
-Run the following command lines on the active container:
+Adjust the RAM dedicated to an active container. Apply the staged configuration after setting the new capacity.
 
-```
-weka cluster container memory <container-id> <capacity-memory>
-weka cluster container apply <container-ids>
-```
+**Before you begin**
+
+* Identify the target container ID and memory capacity.
+* Plan for a local container stop and restart when reducing memory.
+
+**Procedure**
+
+1.  Set the memory capacity.
+
+    ```
+    weka cluster container memory <container-id> <capacity-memory>
+    ```
+2.  Apply the staged configuration.
+
+    ```
+    weka cluster container apply <container-id>
+    ```
+3.  Verify the applied configuration.
+
+    ```
+    weka cluster container resources <container-id> --stable
+    ```
+4.  If you reduced memory, release hugepages on each affected server.
+
+    ```
+    weka local stop
+    weka local run -- /weka/scripts/release-hugepages.sh
+    weka local start
+    ```
 
 <details>
 
@@ -72,13 +97,20 @@ weka cluster container memory 0 1.5GiB
 weka cluster container apply 0
 ```
 
+After reducing memory, run the hugepage release command on the affected server. The output resembles the following:
+
+```
+node0: Releasing 1452 2048kB hugepages
+node0: Current count: 712 2048kB hugepages
+node0: Releasing 30 1048576kB hugepages
+node0: Current count: 30 1048576kB hugepages
+```
+
 </details>
 
-After reducing the memory allocation for a container, follow these steps to release hugepages on each container:
-
-1. Stop the container locally. Run `weka local stop`
-2. Release hugepages. Run `weka local run release_hugepages`
-3. Restart the container locally. Run `weka local start`
+{% hint style="info" %}
+The script releases hugepages from the stopped container. WEKA-created `tmpfs` mounts retain some memory until you unmount them. Review the script output for released and current hugepage counts.
+{% endhint %}
 
 ### Modify the network configuration
 
