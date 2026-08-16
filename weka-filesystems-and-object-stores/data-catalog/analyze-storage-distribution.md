@@ -15,12 +15,13 @@ Explore filesystem metadata to identify usage patterns and discover specific dat
 * **Search files with discovery queries:** Build custom queries to locate files based on metadata attributes.
 * **Use discovery templates:** Apply pre-defined query patterns for common analysis tasks.
 * **Export catalog data:** Save capacity reports and query results as CSV or JSON files.
+* **Compare storage activity:** Compare added, modified, and deleted files and directories between two points in time using the Comparison Insights tab.
 
 ## Analyze capacity usage
 
 Explore the distribution of storage across different directory levels to identify large data sets and review high-level filesystem metrics.
 
-<div data-with-frame="true"><figure><img src="../../.gitbook/assets/catalog_sunburst.png" alt=""><figcaption><p>Capacity usage: Sunburst and File Statistics charts</p></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/catalog_sunburst_example.png" alt=""><figcaption><p>Capacity usage: Sunburst and File Statistics charts</p></figcaption></figure></div>
 
 **Before you begin**
 
@@ -41,10 +42,12 @@ Verify that the target filesystem is indexed by the data catalog.
    * Select a sector to zoom into a specific directory.
    * Hover over a sector to view the directory path, total size, and percentage of the total filesystem capacity. Dark purple sectors represent directories, while light purple sectors represent individual files or groups of smaller items.
    * Select the center of the chart to move up one directory level.
-8. Use the **File Statistics** chart to view data distribution. Select an option from the dropdown menu:
-   * File Count by Extension
-   * Usage Statistics by Group
-   * Usage Statistics by User
+8. Use the **File Statistics** chart to view data distribution.
+   1. Select an option from the dropdown menu:
+      * File Count by Extension
+      * Usage Statistics by Group
+      * Usage Statistics by User
+   2. Select **Deep Dive** on a bar to explore the individual files within that segment. This leaves the **Capacity Usage** report and opens **Discovery** with relevant query parameters populated. Select **Run Query** to view the results.
 
 ## Monitor storage distribution and trends
 
@@ -77,7 +80,7 @@ Scroll down to view additional distribution metrics.
 
 Filter and locate specific files by defining complex metadata conditions such as file size, access time, or owner.
 
-<div data-with-frame="true"><figure><img src="../../.gitbook/assets/catalog_discovery.png" alt=""><figcaption><p>Discovery query</p></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/Discovery_query.png" alt=""><figcaption><p>Discovery query</p></figcaption></figure></div>
 
 **Before you begin**
 
@@ -96,11 +99,38 @@ Access the **Discovery** tab within the **Filesystem Analytics** view.
 6. Set the number of **Rows per Page** to display.
 7. Select **Run Query**.
 
+## Compare storage insights
+
+Compare a filesystem between two points in time to identify what changed and which directories drove the change.
+
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/Compare_storage_insights.png" alt=""><figcaption><p>Compare storage insights</p></figcaption></figure></div>
+
+**Before you begin**
+
+Verify that the target filesystem is indexed by the data catalog and has at least two point-in-time snapshots available.
+
+**Procedure**
+
+1. Select **Investigate > Filesystem Analytics**.
+2. Select the **Comparison Insights** tab.
+3. Select the target filesystem from the **Filesystem** dropdown menu.
+4. Select the **Baseline** and **Compare to** points in time. The elapsed time between the two points appears next to the selectors.
+5. Select **Compare** to run the comparison.
+6. Review the summary cards. Each card shows the number of affected files and directories, plus the associated capacity:
+   * **Added:** New files and directories, with the total size of new data.
+   * **Modified:** Changed files and directories, with the net size change.
+   * **Deleted:** Removed files and directories, with the capacity freed.
+   * **Net Storage Delta:** The overall capacity change and the total number of entries changed.
+7. Review the **Storage Impact by Directory** chart to identify which directories contributed most to the change. Each bar is color-coded by change type (added, modified, or deleted) and shows the net capacity delta and number of changed entries.
+8. Select a directory row to view its detailed breakdown, including added, modified, and deleted capacity, net delta, total entries changed, and the number of files and directories in that path.
+   * Use the copy icon next to a directory path. Paste the path into **Discovery** to analyze its directory structure without retyping it.
+9. Use the download icon to export the comparison results as a CSV file.
+
 ## Apply discovery query templates
 
 Use pre-configured templates to quickly identify common file categories like cold data or recently modified files.
 
-<div data-with-frame="true"><figure><img src="../../.gitbook/assets/Catalog_query_templates.png" alt=""><figcaption><p>Discovery query templates</p></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/Discovery_query_templates.png" alt=""><figcaption><p>Discovery query templates</p></figcaption></figure></div>
 
 **Before you begin**
 

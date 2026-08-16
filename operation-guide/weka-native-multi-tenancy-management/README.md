@@ -27,7 +27,7 @@ Native multi-tenancy supports the following features:
 * **Network Isolation:** Tenants operate within dedicated network spaces (VLANs), each with its unique IP range. This setup allows overlapping IP addresses among different tenants. Additionally, a single tenant can utilize multiple network spaces.
 * **Per-tenant identity:** Each tenant can integrate with its own LDAP or Active Directory server for independent directory services.
 * **Tenant-level security:** Each tenant can configure a custom Key Management System (KMS) for independent encryption.
-* **Multi-tenant S3:** The system provides tenant-scoped S3 buckets and ensures tenant-specific capacity accounting and security mechanisms. S3 service is provided as a multi-tenant service with global network access - this means that S3 is accessible from outside network spaces while retaining security control and capacity accounting on a per-tenant basis. (S3 objects and buckets belong to specific tenants and are managed by tenant security definitions and control.)
+* **Multi-tenant S3:** The system provides tenant-scoped S3 buckets with tenant-specific capacity accounting and security controls. S3 access is available through the cluster's default network and tenant-specific VLANs. S3 objects and buckets remain subject to each tenant's security policies and capacity limits.
 * **Quality of Service (QoS):** Cluster Administrators can set performance limits on per tenant basis, such as maximum throughput (MB/s) and IOPS, to prevent "noisy neighbor" behavior and ensure predictable performance for each tenant.
 
 <div data-with-frame="true"><figure><img src="../../.gitbook/assets/Tenant_supported_entities.png" alt="" width="563"><figcaption><p>Tenant-supported entities</p></figcaption></figure></div>
@@ -39,13 +39,13 @@ A network space serves as a cluster-level boundary defined by a Name, IP Range, 
 * **Traffic segmentation and security:**
   * **VLAN mapping:** Each space is assigned a specific VLAN, and the system validates the source VLAN of incoming traffic to ensure it matches the tenant's designated network space.
   * **Routing isolation:** Each tenant operates under its own distinct routing domain, ensuring that traffic is contained and preventing cross-tenant leakage.
-  * **Dedicated POSIX endpoints:** Network spaces provide isolated datapath endpoints for POSIX filesystem traffic within the tenant's private network boundary.
+  * **Dedicated POSIX endpoints:** Network spaces provide isolated datapath endpoints for POSIX filesystem traffic within the tenant's private network boundary. These endpoints support DPDK and RoCE.
 * **Global and protocol connectivity:**
   * **Default network access:** The cluster maintains a default network for backend communication and S3 protocol access.
-  * **Protocol differentiation:** While filesystem access is routed through tenant-specific VLANs and trunk ports, S3 access can be provided through the cluster's default network.
+  * **Protocol differentiation:** While filesystem access is routed through tenant-specific VLANs and trunk ports, S3 access can be provided both through the cluster's default network and tenant's specific VLAN.
 * **IP and connectivity flexibility:**
   * **Overlapping IP support:** Tenants can share identical IP ranges without conflicts by using distinct network spaces isolated by VLANs (for example, Tenant 1 and Tenant 2 sharing the `10.100.x.x` range).
-  * **Multi-network assignment:** A single tenant can connect to multiple spaces to:
+  * **Multi-network assignment:** A single tenant can connect to multiple network spaces to:
     * Isolate data traffic from management services like LDAP or KMS.
     * Support clients residing on different physical VLANs.
     * Provide redundant network paths for high availability.

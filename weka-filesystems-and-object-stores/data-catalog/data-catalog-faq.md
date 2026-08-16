@@ -89,6 +89,14 @@ No. Deploy one data service container per server, and size the deployment based 
 
 </details>
 
+<details>
+
+<summary>Can I deploy NFS or other protocol containers on the same data server containers as the Data Catalog?</summary>
+
+No. Co-locating protocol containers (such as NFS) with Data Catalog services on the same data server container is not currently supported.
+
+</details>
+
 **Related topics**
 
 For deployment steps and sizing guidance, see [Configure data catalog](configure-data-catalog.md).

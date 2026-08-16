@@ -49,64 +49,82 @@ Configure the infrastructure and filesystems required to activate catalog servic
 
 #### Procedure
 
-1.  **Create the index filesystem:** Add the `.indexfs`.
+1. **Create the configuration filesystem:** New clusters do not create `.config_fs` by default. Create it if it does not already exist. Existing clusters already include this filesystem.
+
+```bash
+weka fs add .config_fs default 50GB
+```
+
+{% hint style="info" %}
+For details about the .config\_fs sizing, see the [Dedicated filesystem requirement for cluster-wide persistent protocol configurations](../../additional-protocols/additional-protocols-overview.md#dedicated-filesystem-requirement-for-cluster-wide-persistent-protocol-configurations).
+{% endhint %}
+
+2. **Create the index filesystem:** Add the `.indexfs`.
+
+<pre class="language-bash"><code class="lang-bash"><strong>weka fs add .indexfs default 500GB
+</strong></code></pre>
+
+3. **Deploy data service containers:**
+
+Run the following command on each server, whether dedicated backend servers or existing backend servers:
+
+```bash
+sudo weka local setup container \
+  --name dataservN \
+  --base-port 14400 \
+  --join-ips <CLUSTER_LEADER_IP> \
+  --only-dataserv-cores \
+  --allow-mix-setting
+```
+
+You can use the same name on all servers or increment it across servers (for example, `dataserv0`, `dataserv1`, and so on).<br>
+
+**Dedicated backend servers only:** To avoid impact on client workload I/Os, also run the following command on each dedicated backend server to add a frontend container (existing backend servers already contain frontend containers):
+
+{% code overflow="wrap" %}
+```bash
+sudo weka local setup container \
+   --name frontend0 \
+   --cores 1 \
+   --frontend-dedicated-cores 1 \
+   --join-ips <CLUSTER_LEADER_IP> \
+   --net <INTERFACE>
+```
+{% endcode %}
+
+4. Set **global configuration of data service** container by running the following command on any of the cluster servers.
+
+{% code overflow="wrap" %}
+```bash
+weka dataservice global-config set --config-fs .config_fs
+```
+{% endcode %}
+
+5. **Initialize the catalog services:**
+6.  Add the newly created `dataserv` container IDs to the catalog cluster. You can specify the container IDs or provide the `--all-servers` flag.
 
     ```bash
-    weka fs add .indexfs default 500GB
+    weka catalog cluster add .indexfs --containers <ID1>,<ID2>,<ID3>,<ID4>,<ID5>
+    #or
+    weka catalog cluster add .indexfs --all-servers
     ```
-2.  **Deploy data service containers:**
-
-    Run the following command on each server, whether dedicated backend servers or existing backend servers:
+7.  Wait for 30 seconds and then check if the catalog services are active:
 
     ```bash
-    sudo weka local setup container \
-      --name dataservN \
-      --base-port 14400 \
-      --join-ips <CLUSTER_LEADER_IP> \
-      --only-dataserv-cores \
-      --allow-mix-setting
+    weka catalog cluster status
     ```
 
-    You can use the same name on all servers or increment it across servers (for example, `dataserv0`, `dataserv1`, and so on).<br>
+    Output example:
 
-    **Dedicated backend servers only:** To avoid impact on client workload I/Os, also run the following command on each dedicated backend server to add a frontend container (existing backend servers already contain frontend containers):
-
-    <pre class="language-bash" data-overflow="wrap"><code class="lang-bash">sudo weka local setup container \
-       --name frontend0 \
-       --cores 1 \
-       --frontend-dedicated-cores 1 \
-       --join-ips &#x3C;CLUSTER_LEADER_IP> \
-       --net &#x3C;INTERFACE>
-    </code></pre>
-3.  Set **global configuration of data service** container by running the following command on any of the cluster servers.
-
-    <pre class="language-bash" data-overflow="wrap"><code class="lang-bash">weka dataservice global-config set --config-fs .config_fs
-    </code></pre>
-4. **Initialize the catalog services:**
-   1.  Add the newly created `dataserv` container IDs to the catalog cluster. You can specify the container IDs or provide the `--all-servers` flag.
-
-       ```bash
-       weka catalog cluster add .indexfs --containers <ID1>,<ID2>,<ID3>,<ID4>,<ID5>
-       #or
-       weka catalog cluster add .indexfs --all-servers
-       ```
-   2.  Wait for 30 seconds and then check if the catalog services are active:
-
-       ```bash
-       weka catalog cluster status
-       ```
-
-       Output example:
-
-       ```bash
-       SERVICE NAME         CONTAINER ID  HOSTNAME  CONTAINER  IP             STATUS  ROLE
-       catalog-coordinator  23            sphere-3  dataserv0  10.121.43.123  active  COORDINATOR
-       catalog-worker-2     25            sphere-2  dataserv0  10.121.74.183  active  WORKER
-       catalog-worker-4     22            sphere-4  dataserv0  10.121.101.84  active  WORKER
-       catalog-worker-5     21            sphere-5  dataserv0  10.121.10.21   active  WORKER
-       catalog-worker-6     24            sphere-6  dataserv0  10.121.97.143  active  WORKER
-       ```
-5. **Enable indexing:**
+    ```bash
+    SERVICE NAME         CONTAINER ID  HOSTNAME  CONTAINER  IP             STATUS  ROLE
+    catalog-coordinator  23            sphere-3  dataserv0  10.121.43.123  active  COORDINATOR
+    catalog-worker-2     25            sphere-2  dataserv0  10.121.74.183  active  WORKER
+    catalog-worker-4     22            sphere-4  dataserv0  10.121.101.84  active  WORKER
+    catalog-worker-5     21            sphere-5  dataserv0  10.121.10.21   active  WORKER
+    catalog-worker-6     24            sphere-6  dataserv0  10.121.97.143  active  WORKER
+    ```
+8. **Enable indexing:**
    1.  Enable the catalog feature on your specified filesystem. Replace `fs-name` with the name of the filesystem you want to index.
 
        ```bash
@@ -143,7 +161,7 @@ Configure the infrastructure and filesystems required to activate catalog servic
        Retention period: 30d 0:00:00h
        Max ingest tasks: 1
        ```
-6.  **Configure index interval and snapshot retention period:** Adjust these settings to match your workload needs. They dictate how often data is indexed and the duration for which point-in-time snapshots are kept. By default, the `--index-interval` is set to 1 day, and the `--retention-period` is 30 days. Use the following command to update these configurations:
+9.  **Configure index interval and snapshot retention period:** Adjust these settings to match your workload needs. They dictate how often data is indexed and the duration for which point-in-time snapshots are kept. By default, the `--index-interval` is set to 1 day, and the `--retention-period` is 30 days. Use the following command to update these configurations:
 
     ```shell
     weka catalog config update --index-interval <time> --retention-period <time>
@@ -437,13 +455,12 @@ Each specification assumes approximately 10% monthly data growth over a 12 to 18
 
 Review and adjust catalog resource allocations every 6–9 months to account for filesystem growth. Run the `filestats.sh` script to get the current object count per filesystem, then use the sizing table to determine whether your existing resources still meet the requirements.
 
-| Parameter                         | Up to 200 million objects                                                              | Up to 500 million objects                                                                 | Up to 1 billion objects                                                                |
-| --------------------------------- | -------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
-| **Data Services containers**      | 5 total: 1 coordinator and 4 workers                                                   | 10 total: 1 coordinator and 9 workers                                                     | 10 total: 1 coordinator and 9 workers                                                  |
-| **Frontend containers**           | 5 total: 1 on each Data Services server                                                | 10 total: 1 on each Data Services server                                                  | 10 total: 1 on each Data Services server                                               |
-| **CPU**                           | <p>2 available cores for Data Services.<br>1 available core for the frontend.</p>      | <p>2 available cores for Data Services.<br>1 available core for the frontend.</p>         | <p>2 available cores for Data Services.<br>1 available core for the frontend.</p>      |
-| **Memory**                        | <p>37.5 GB free per server:<br>32 GB for Data Services and 5.5 GB for the frontend</p> | <p>37.5 GB free per server:</p><p>32 GB for Data Services and 5.5 GB for the frontend</p> | <p>69.5 GB free per server:<br>64 GB for Data Services and 5.5 GB for the frontend</p> |
-| **Disk for the index filesystem** | 150 GB to 500 GB for 30 days to 1 year of retention                                    | 250 GB to 1.5 TB for 30 days to 1 year of retention                                       | 1 TB to 5 TB for 30 days to 1 year of retention                                        |
+| Parameter                   | Up to 200+ million objects                   | Up to 500+ million objects                   | Up to 1+ billion objects                 |
+| --------------------------- | -------------------------------------------- | -------------------------------------------- | ---------------------------------------- |
+| **Data service containers** | 5 total: 4 workers + 1 coordinator           | 10 total: 9 workers + 1 coordinator          | 10 total: 9 workers + 1 coordinator      |
+| **CPU**                     | 2 spare cores per server (minimum)           | 2 spare cores per server (minimum)           | 2 spare cores per server (minimum)       |
+| **Memory**                  | 32 GB free per server                        | 32 GB free per server                        | 64 GB free per server                    |
+| **Disk (index filesystem)** | 150 GB – 500 GB (30 days – 1 year retention) | 250 GB – 1.5 TB (30 days – 1 year retention) | 1 TB – 5 TB (30 days – 1 year retention) |
 
 \
 The following considerations apply to all deployment sizes:
@@ -639,7 +656,7 @@ This example retrieves files from two directories, `/data/logs` and `/data/tmp`,
 
 ### Get changes between two point-in-time snapshots
 
-Return the files and directories added, deleted, or modified between two point-in-time snapshots.
+Return the files and directories added, deleted, or modified between two point-in-time snapshots. This is the API equivalent of Comparison Insights.
 
 `POST /catalog/query/diff`
 
@@ -949,3 +966,5 @@ Query filesystem capacity metadata for a specific snapshot access point. If `acc
 ```
 
 </details>
+
+Use the returned capacity values to compare current usage with the configured filesystem capacity. Specify an `access_point` to retrieve values from a retained catalog snapshot.
