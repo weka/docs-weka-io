@@ -24,9 +24,7 @@ Check the release notes for details about any updates or changes accompanying th
 
 Select your version from the dropdown menu located at the top of the left-hand navigation bar.
 
-<div align="left" data-with-frame="true"><figure><img src=".gitbook/assets/5.1_version_selector.png" alt="" width="169"><figcaption></figcaption></figure></div>
-
-TBD [The version-selector screenshot is `5.1_version_selector.png` and shows 5.1 as the selected version. It needs recapturing on the 6.0 site once published. The 5.0 variant, `5.0_version_selector.gif`, is unreferenced and can be deleted.]
+<div align="left" data-with-frame="true"><figure><img src=".gitbook/assets/version_selector_6.0.png" alt="" width="277"><figcaption></figcaption></figure></div>
 
 ## Get answers from Ask AI
 

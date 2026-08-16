@@ -1,15 +1,8 @@
 ---
-description: This page describes how to manage alerts using the CLI.
+description: View alert types and alerts, then mute or unmute them using the CLI.
 ---
 
 # Manage alerts using the CLI
-
-Using the CLI, you can:
-
-* [Display alert types](alerts-1.md#view-alerts)
-* [View alerts](alerts-1.md#mute-alerts)
-* [Mute alerts](alerts-1.md#mute-alerts)
-* [Unmute alerts](alerts-1.md#unmute-alerts)
 
 ## **Display alert types**
 
@@ -152,30 +145,30 @@ Use the following command line to list all alerts (muted and unmuted) in the WEK
 
 **Parameters**
 
-| Name | Value |
-| --- | --- |
+| Name       | Value                                                                                                                                                                             |
+| ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `severity` | List alerts with the specified severity level and higher. Default: `warning`. Supported values: `debug` (hidden), '`warning`' (lowest), `minor`, `major` or `critical` (highest). |
-| `muted` | List muted alerts in addition to active alerts. |
-| `inactive` | List alerts that recently transitioned to an inactive state. |
+| `muted`    | List muted alerts in addition to active alerts.                                                                                                                                   |
+| `inactive` | List alerts that recently transitioned to an inactive state.                                                                                                                      |
 
 #### `weka alerts` output parameters
 
 Explore the output parameters of the `weka alerts` command.
 
-| Parameter | Description |
-| --- | --- |
-| `action` | Displays the recommended action to resolve the alert. |
-| `active_duration` | Indicates the duration for which the alert has been active. |
-| `comment` | Shows any user-added comments for the alert. |
-| `count` | Provides the number of times the alert has occurred. |
-| `description` | Explains the alert in detail. |
-| `end_time` | Specifies the time when the alert was resolved. |
-| `mute_time_remaining` | Indicates the remaining time until the alert is unmuted. |
-| `muted` | Shows whether the alert is currently muted (`muted` or `unmuted`). |
-| `severity` | Defines the severity level of the alert, for example, `WARNING`. |
-| `start_time` | Specifies the start time when an alert type first started, not when each individual alert instance was generated. |
-| `title` | Provides a concise title for the alert. |
-| `type` | Identifies the unique type of the alert. |
+| Parameter             | Description                                                                                                       |
+| --------------------- | ----------------------------------------------------------------------------------------------------------------- |
+| `action`              | Displays the recommended action to resolve the alert.                                                             |
+| `active_duration`     | Indicates the duration for which the alert has been active.                                                       |
+| `comment`             | Shows any user-added comments for the alert.                                                                      |
+| `count`               | Provides the number of times the alert has occurred.                                                              |
+| `description`         | Explains the alert in detail.                                                                                     |
+| `end_time`            | Specifies the time when the alert was resolved.                                                                   |
+| `mute_time_remaining` | Indicates the remaining time until the alert is unmuted.                                                          |
+| `muted`               | Shows whether the alert is currently muted (`muted` or `unmuted`).                                                |
+| `severity`            | Defines the severity level of the alert, for example, `WARNING`.                                                  |
+| `start_time`          | Specifies the start time when an alert type first started, not when each individual alert instance was generated. |
+| `title`               | Provides a concise title for the alert.                                                                           |
+| `type`                | Identifies the unique type of the alert.                                                                          |
 
 <details>
 
@@ -255,12 +248,12 @@ weka alerts mute add <alert-type> /
 
 **Parameters**
 
-| Parameter | Description |
-| --- | --- |
-| `alert-type`* | Specifies the alert type to update mute scope for. Run `weka alerts types` to list all possible types. |
-| `process`... | Adds specific process IDs to the mute scope. This parameter applies only to process-specific alerts. For multiple entries, provide a comma-separated list or repeat the parameter. |
+| Parameter      | Description                                                                                                                                                                        |
+| -------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `alert-type`\* | Specifies the alert type to update mute scope for. Run `weka alerts types` to list all possible types.                                                                             |
+| `process`...   | Adds specific process IDs to the mute scope. This parameter applies only to process-specific alerts. For multiple entries, provide a comma-separated list or repeat the parameter. |
 | `container`... | Adds specific container IDs to the mute scope. Use this parameter for container-specific alerts only.For multiple entries, provide a comma-separated list or repeat the parameter. |
-| `hostname`... | Adds specific server names to the mute scope. Use this parameter for server-specific alerts only. For multiple entries, provide a comma-separated list or repeat the parameter. |
+| `hostname`...  | Adds specific server names to the mute scope. Use this parameter for server-specific alerts only. For multiple entries, provide a comma-separated list or repeat the parameter.    |
 
 ### Remove items from mute scope
 
@@ -278,12 +271,12 @@ weka alerts mute remove <alert-type> /
 
 **Parameters**
 
-| Parameter | Description |
-| --- | --- |
-| `alert-type`* | Specifies the alert type to remove from mute scope. Run `weka alerts types` to list all possible types. |
-| `process`... | Removes specific process IDs from the mute scope. This parameter applies only to process-specific alerts. For multiple entries, provide a comma-separated list or repeat the parameter. |
-| `container`... | Removes specific container IDs from the mute scope. Use this parameter for container-specific alerts only. Provide a comma-separated list or repeat the parameter for multiple IDs. |
-| `hostname`... | Removes specific server names from the mute scope. Use this parameter for server-specific alerts only. Provide a comma-separated list or repeat the parameter for multiple names. |
+| Parameter      | Description                                                                                                                                                                             |
+| -------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `alert-type`\* | Specifies the alert type to remove from mute scope. Run `weka alerts types` to list all possible types.                                                                                 |
+| `process`...   | Removes specific process IDs from the mute scope. This parameter applies only to process-specific alerts. For multiple entries, provide a comma-separated list or repeat the parameter. |
+| `container`... | Removes specific container IDs from the mute scope. Use this parameter for container-specific alerts only. Provide a comma-separated list or repeat the parameter for multiple IDs.     |
+| `hostname`...  | Removes specific server names from the mute scope. Use this parameter for server-specific alerts only. Provide a comma-separated list or repeat the parameter for multiple names.       |
 
 ## **Unmute alerts**
 
@@ -295,6 +288,6 @@ Use the following command line to unmute a muted Alert Type:
 
 **Parameters**
 
-| Name | Value |
-| --- | --- |
-| `alert-type`* | An alert-type to unmute, use `weka alerts types` to list types. |
+| Name           | Value                                                           |
+| -------------- | --------------------------------------------------------------- |
+| `alert-type`\* | An alert-type to unmute, use `weka alerts types` to list types. |

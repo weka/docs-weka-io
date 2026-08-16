@@ -76,8 +76,8 @@
   * [Migrate from legacy WEKA CLI](getting-started-with-weka/weka-cli-overview/migrate-from-legacy-weka-cli.md)
   * [CLI reference guide](getting-started-with-weka/weka-cli-overview/cli-reference-guide.md)
 * [Perform a basic IO sanity check](getting-started-with-weka/performing-the-first-io.md)
-* [Getting started with WEKA REST API](getting-started-with-weka/getting-started-with-weka-rest-api.md)
-* [WEKA REST API and equivalent CLI commands](getting-started-with-weka/weka-rest-api-and-equivalent-cli-commands.md)
+* [Getting started with REST API](getting-started-with-weka/getting-started-with-weka-rest-api.md)
+* [REST API and equivalent CLI commands](getting-started-with-weka/weka-rest-api-and-equivalent-cli-commands.md)
 
 ## Performance
 

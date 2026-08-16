@@ -1,18 +1,18 @@
 ---
 description: >-
-  Manage WEKA clusters from any supported platform using wekactl, a modern
+  Manage clusters from any supported platform using wekactl, a modern
   command-line interface and Go API.
 ---
 
 # New WEKA CLI (formerly wekactl) overview
 
-wekactl provides a comprehensive administrative interface for WEKA clusters and supports most cluster management operations available in the legacy weka CLI. Unlike the legacy CLI, wekactl runs directly on Linux, macOS, and Windows systems, eliminating the need to log in to a cluster server for day-to-day administration.
+wekactl provides a comprehensive administrative interface for NeuralMesh clusters and supports most cluster management operations available in the legacy weka CLI. Unlike the legacy CLI, wekactl runs directly on Linux, macOS, and Windows systems, eliminating the need to log in to a cluster server for day-to-day administration.
 
 Starting with WEKA 6.0.0, wekactl is the default CLI. Running the `weka` command on a cluster server invokes wekactl. The command examples in this documentation use `weka`.
 
 > **INTERNAL, remove before publication. TBD (Engineering/PM):** Confirm the invocation convention for standalone installations on a workstation (macOS, Windows, or a non-cluster Linux server). Is the binary invoked as `wekactl`, `weka`, or both? All command examples in this topic set follow the answer.
 
-If you upgrade from an earlier version and rely on scripts that parse legacy CLI output, review [Migrate from the legacy weka CLI to wekactl](./#) before switching.
+If you upgrade from an earlier version and rely on scripts that parse legacy CLI output, review [Migrate from the legacy weka CLI to wekactl](./) before switching.
 
 ## Key capabilities
 
@@ -143,6 +143,6 @@ Compare the legacy weka CLI and wekactl to identify the main operational advanta
 * **Local-only commands:** Commands that proxy through the local agent, including `local`, `agent`, `smb`, `audit`, `mount`, `umount`, most `debug` commands, most `driver` commands, and the server-side `version` operations (`set`, `reset`, `prepare`, `current`, `rm`), are available only when running locally on a server running WEKA. `version get` runs from anywhere without an agent; only `version get --set-current` requires the server.
 * **Remote management limits:** Managing directory-based quotas remotely requires data services to be enabled on the cluster. Otherwise, run quota management commands on a WEKA server.
 * **Profile compatibility:** wekactl profiles are not compatible with legacy weka CLI profiles. See [Multi-cluster profile management and TLS security](./#multi-cluster-profile-management-and-tls-security) for the Linux token reuse exception.
-* **Legacy CLI fallback:** After upgrading to WEKA 6.0.0, revert to the legacy CLI temporarily by setting an environment variable. See [Migrate from the legacy weka CLI to wekactl](./#).
+* **Legacy CLI fallback:** After upgrading to WEKA 6.0.0, revert to the legacy CLI temporarily by setting an environment variable. See [Migrate from the legacy weka CLI to wekactl](./).
 
 > **INTERNAL, remove before publication. TBD (Engineering):** The "remote management limits" statement about directory-based quotas comes from product documentation and is not visibly enforced in CLI help. Confirm with engineering.

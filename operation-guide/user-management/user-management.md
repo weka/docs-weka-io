@@ -39,7 +39,7 @@ If you create an S3 user and attach an S3 policy, the system generates an S3 acc
 {% endtab %}
 
 {% tab title="Create TenantAdmin user example" %}
-<div data-with-frame="true"><img src="../../.gitbook/assets/create_user (1).png" alt="Create TenantAdmin user example" width="352"></div>
+<div data-with-frame="true"><img src="../../.gitbook/assets/create_user.png" alt="Create TenantAdmin user example" width="352"></div>
 {% endtab %}
 {% endtabs %}
 
@@ -148,26 +148,26 @@ Connect to an LDAP server to authenticate and authorize users for access to the 
 
 <summary>LDAP property reference</summary>
 
-| Property | Description |
-| --- | --- |
-| Server URI | The address of the LDAP server. For example: `ldap://ldap.example.com:389`. |
-| Protocol Version | The version of the LDAP protocol. For example: `3`. |
-| Start TLS | When enabled, initiates a Transport Layer Security (TLS) connection with the LDAP server for encrypted communication. |
-| Ignore Certificate Failures | When enabled, the LDAP client ignores certificate validation failures during the TLS/SSL handshake. Use this option cautiously, as it may pose a security risk. |
-| Server Timeout Seconds | The number of seconds the WEKA system waits for a response from the LDAP server before the connection attempt times out. |
-| Base DN | The base distinguished name (DN) that serves as the starting point for directory tree searches. For example: `dc=example,dc=com`. |
-| Reader Username | The username or DN of a dedicated user account for reading data from the LDAP server. For example: `cn=reader,dc=example,dc=com`. |
-| Reader Password | The password for the reader user account. |
-| User ID Attribute | The attribute in the LDAP schema that uniquely identifies user entries. For example: `uid`. |
-| User Object Class | The object class in the LDAP schema that defines the structure of user entries. For example: `person`. |
-| User Revocation Attribute | An attribute that indicates a user account's revocation status. For example: `isRevoked`. |
-| Group ID Attribute | The attribute in the LDAP schema that uniquely identifies group entries. For example: `cn`. |
-| Group Membership Attribute | The attribute that specifies which users are members of a particular group. For example: `member`. |
-| Group Object Class | The object class in the LDAP schema that defines the structure of group entries. For example: `groupOfNames`. |
-| Cluster Admin Group | The LDAP group granted administrative privileges for the cluster. The sAMAccountName can be up to 20 characters. For example: `cn=cluster_admins,ou=groups,dc=example,dc=com`. |
-| Tenant Admin Role Group | The LDAP group granted administrative privileges for specific tenants. The sAMAccountName can be up to 20 characters. For example: `cn=tenant_admins,ou=groups,dc=example,dc=com`. |
-| Regular User Role Group | The LDAP group for users with standard access privileges. The sAMAccountName can be up to 20 characters. For example: `cn=regular_users,ou=groups,dc=example,dc=com`. |
-| Read-only User Role Group | The LDAP group for users with read-only access privileges. The sAMAccountName can be up to 20 characters. For example: `cn=read_only_users,ou=groups,dc=example,dc=com`. |
+| Property                    | Description                                                                                                                                                                        |
+| --------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Server URI                  | The address of the LDAP server. For example: `ldap://ldap.example.com:389`.                                                                                                        |
+| Protocol Version            | The version of the LDAP protocol. For example: `3`.                                                                                                                                |
+| Start TLS                   | When enabled, initiates a Transport Layer Security (TLS) connection with the LDAP server for encrypted communication.                                                              |
+| Ignore Certificate Failures | When enabled, the LDAP client ignores certificate validation failures during the TLS/SSL handshake. Use this option cautiously, as it may pose a security risk.                    |
+| Server Timeout Seconds      | The number of seconds the WEKA system waits for a response from the LDAP server before the connection attempt times out.                                                           |
+| Base DN                     | The base distinguished name (DN) that serves as the starting point for directory tree searches. For example: `dc=example,dc=com`.                                                  |
+| Reader Username             | The username or DN of a dedicated user account for reading data from the LDAP server. For example: `cn=reader,dc=example,dc=com`.                                                  |
+| Reader Password             | The password for the reader user account.                                                                                                                                          |
+| User ID Attribute           | The attribute in the LDAP schema that uniquely identifies user entries. For example: `uid`.                                                                                        |
+| User Object Class           | The object class in the LDAP schema that defines the structure of user entries. For example: `person`.                                                                             |
+| User Revocation Attribute   | An attribute that indicates a user account's revocation status. For example: `isRevoked`.                                                                                          |
+| Group ID Attribute          | The attribute in the LDAP schema that uniquely identifies group entries. For example: `cn`.                                                                                        |
+| Group Membership Attribute  | The attribute that specifies which users are members of a particular group. For example: `member`.                                                                                 |
+| Group Object Class          | The object class in the LDAP schema that defines the structure of group entries. For example: `groupOfNames`.                                                                      |
+| Cluster Admin Group         | The LDAP group granted administrative privileges for the cluster. The sAMAccountName can be up to 20 characters. For example: `cn=cluster_admins,ou=groups,dc=example,dc=com`.     |
+| Tenant Admin Role Group     | The LDAP group granted administrative privileges for specific tenants. The sAMAccountName can be up to 20 characters. For example: `cn=tenant_admins,ou=groups,dc=example,dc=com`. |
+| Regular User Role Group     | The LDAP group for users with standard access privileges. The sAMAccountName can be up to 20 characters. For example: `cn=regular_users,ou=groups,dc=example,dc=com`.              |
+| Read-only User Role Group   | The LDAP group for users with read-only access privileges. The sAMAccountName can be up to 20 characters. For example: `cn=read_only_users,ou=groups,dc=example,dc=com`.           |
 
 </details>
 
@@ -189,17 +189,17 @@ Connect to an Active Directory (AD) domain to authenticate and authorize users f
 
 <summary>Active Directory property reference</summary>
 
-| Property | Description |
-| --- | --- |
-| Domain | The domain name of the Active Directory environment. For example: `example.com`. |
-| Server URI | The address of the Active Directory server. For example: `ldap://ad.example.com`. |
-| Server Timeout Seconds | The number of seconds the WEKA system waits for a response from the AD server before the connection attempt times out. |
-| Reader Username | The username or user principal name (UPN) of a dedicated user account for reading data from Active Directory. For example: `readeruser@ad.example.com`. |
-| Reader Password | The password for the reader user account. |
-| Cluster Admin Role Group | The Active Directory group granted administrative privileges for the cluster. The sAMAccountName can be up to 20 characters. For example: `CN=ClusterAdmins,CN=Users,DC=example,DC=com`. |
-| Tenant Admin Role Group | The Active Directory group granted administrative privileges for specific tenants. The sAMAccountName can be up to 20 characters. For example: `CN=TenantAdmins,CN=Users,DC=example,DC=com`. |
-| Regular User Role Group | The Active Directory group for users with standard access privileges. The sAMAccountName can be up to 20 characters. For example: `CN=RegularUsers,CN=Users,DC=example,DC=com`. |
-| Read-only User Role Group | The Active Directory group for users with read-only access privileges. The sAMAccountName can be up to 20 characters. For example: `CN=ReadOnlyUsers,CN=Users,DC=example,DC=com`. |
+| Property                  | Description                                                                                                                                                                                  |
+| ------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Domain                    | The domain name of the Active Directory environment. For example: `example.com`.                                                                                                             |
+| Server URI                | The address of the Active Directory server. For example: `ldap://ad.example.com`.                                                                                                            |
+| Server Timeout Seconds    | The number of seconds the WEKA system waits for a response from the AD server before the connection attempt times out.                                                                       |
+| Reader Username           | The username or user principal name (UPN) of a dedicated user account for reading data from Active Directory. For example: `readeruser@ad.example.com`.                                      |
+| Reader Password           | The password for the reader user account.                                                                                                                                                    |
+| Cluster Admin Role Group  | The Active Directory group granted administrative privileges for the cluster. The sAMAccountName can be up to 20 characters. For example: `CN=ClusterAdmins,CN=Users,DC=example,DC=com`.     |
+| Tenant Admin Role Group   | The Active Directory group granted administrative privileges for specific tenants. The sAMAccountName can be up to 20 characters. For example: `CN=TenantAdmins,CN=Users,DC=example,DC=com`. |
+| Regular User Role Group   | The Active Directory group for users with standard access privileges. The sAMAccountName can be up to 20 characters. For example: `CN=RegularUsers,CN=Users,DC=example,DC=com`.              |
+| Read-only User Role Group | The Active Directory group for users with read-only access privileges. The sAMAccountName can be up to 20 characters. For example: `CN=ReadOnlyUsers,CN=Users,DC=example,DC=com`.            |
 
 </details>
 

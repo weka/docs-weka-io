@@ -1,7 +1,7 @@
 ---
 description: >-
-  This section details the specific hardware and software configurations used to
-  generate the example performance results.
+  Review the hardware and software configurations used for example performance
+  results.
 ---
 
 # Performance test environment configurations

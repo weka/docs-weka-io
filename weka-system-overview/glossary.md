@@ -1,3 +1,9 @@
+---
+description: >-
+  Find definitions for NeuralMesh storage, networking, and cluster-management
+  terms.
+---
+
 # Glossary
 
 ## A
@@ -94,7 +100,7 @@ Frequently used data (as opposed to warm data), usually residing on SSDs.
 
 ### Interface group
 
-A set of servers and designated network ports that together provide a protocol service, along with the floating IP addresses clients use to reach it. An interface group gives the service resilience: if one server becomes unavailable, its floating IPs migrate to another server in the group. All ports in a group must be on the same subnet. See [README.md](../additional-protocols/nfs-support/README.md "mention").
+A set of servers and designated network ports that together provide a protocol service, along with the floating IP addresses clients use to reach it. An interface group gives the service resilience: if one server becomes unavailable, its floating IPs migrate to another server in the group. All ports in a group must be on the same subnet. See [nfs-support](../additional-protocols/nfs-support/ "mention").
 
 ## L
 
@@ -194,7 +200,7 @@ Snap-To-Object is a WEKA feature facilitating the uploading of snapshots to obje
 
 An isolated environment within a single cluster, with its own administrator, users, filesystems, storage quota, and assigned network spaces. Tenants share CPU, memory, and drives while remaining logically separated in both the datapath and the control plane.
 
-The terms *tenant* and *organization* refer to the same entity. **Tenant** is the current term and is used throughout the documentation and CLI. **Organization** appears in older commands and in the `root organization`, which is the default tenant that exists on every cluster and is the only one where certain protocol features are available. See [weka-native-multi-tenancy-management](../operation-guide/weka-native-multi-tenancy-management/ "mention").
+The terms _tenant_ and _organization_ refer to the same entity. **Tenant** is the current term and is used throughout the documentation and CLI. **Organization** appears in older commands and in the `root organization`, which is the default tenant that exists on every cluster and is the only one where certain protocol features are available. See [weka-native-multi-tenancy-management](../operation-guide/weka-native-multi-tenancy-management/ "mention").
 
 ### Tiered WEKA configuration
 

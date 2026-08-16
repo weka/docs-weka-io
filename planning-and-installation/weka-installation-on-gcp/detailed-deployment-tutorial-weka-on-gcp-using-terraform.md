@@ -460,25 +460,9 @@ In the following examples, a Windows 10 instance with a public IP address is dep
 The provided examples are for reference. The values shown below may differ from those of your cluster.
 {% endhint %}
 
-<div data-with-frame="true"><figure><img src="../../.gitbook/assets/image (220).png" alt=""><figcaption></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/NeuralMesh_login.png" alt=""><figcaption><p>Sign in</p></figcaption></figure></div>
 
-### Review the WEKA GUI
-
-1. View the cluster GUI home screen.
-
-<div data-with-frame="true"><figure><img src="../../.gitbook/assets/image (221).png" alt=""><figcaption></figcaption></figure></div>
-
-2. Review the cluster backends. Check the status and details of the backend instances.
-
-<div data-with-frame="true"><figure><img src="../../.gitbook/assets/image (222).png" alt=""><figcaption></figcaption></figure></div>
-
-3. Review the clients, if any, attached to the cluster.
-
-<div data-with-frame="true"><figure><img src="../../.gitbook/assets/image (223).png" alt=""><figcaption></figcaption></figure></div>
-
-4. Review the filesystems.
-
-<div data-with-frame="true"><figure><img src="../../.gitbook/assets/image (224).png" alt=""><figcaption></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/gui_dashboard.png" alt=""><figcaption><p>Dashboard</p></figcaption></figure></div>
 
 ## Automated scale-out and scale-in of the WEKA backend cluster
 

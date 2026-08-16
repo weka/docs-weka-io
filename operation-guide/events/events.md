@@ -1,13 +1,8 @@
 ---
-description: This page describes how to manage events using the GUI.
+description: View, filter, and investigate system events using the GUI.
 ---
 
 # Manage events using the GUI
-
-With the GUI, you can:
-
-* [View events](events.md#view-events)
-* [Filter events](events.md#filter-events)
 
 ## View events
 

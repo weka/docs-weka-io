@@ -1,18 +1,18 @@
 ---
 description: >-
-  Use this procedure to perform a basic input/output (IO) sanity check on a
-  newly installed NeuralMesh cluster to confirm it is operational.
+  Confirm a new NeuralMesh cluster is operational by creating, mounting, and
+  writing to a filesystem.
 ---
 
 # Perform a basic IO sanity check
 
-Use this procedure to perform a basic input/output (IO) sanity check on a newly installed NeuralMesh cluster. This check involves creating a filesystem, mounting it, and writing a small amount of data to confirm the system is operational.
+Validate a newly installed NeuralMesh cluster with a basic input/output (I/O) check. Create and mount a filesystem, then write a small amount of data to confirm the system operates.
 
-After completing this sanity check, you can proceed to validate that the NeuralMesh cluster and your IT environment are configured for optimal performance.
+After this check, validate the NeuralMesh cluster and IT environment for optimal performance.
 
 ## Create a filesystem
 
-To create a filesystem, you first create a filesystem group and then create the filesystem within that group.
+Create a filesystem group before creating a filesystem in that group.
 
 **Procedure**
 

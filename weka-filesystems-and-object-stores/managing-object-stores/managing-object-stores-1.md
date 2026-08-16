@@ -1,19 +1,8 @@
 ---
-description: This page describes how to view and manage object stores using the CLI.
+description: View and configure object stores and object store buckets using the CLI.
 ---
 
 # Manage object stores using the CLI
-
-Using the CLI, you can perform the following actions:
-
-* [View object stores](managing-object-stores-1.md#view-object-stores)
-* [Edit an object store](managing-object-stores-1.md#edit-an-object-store)
-* [Add an object store](managing-object-stores-1.md#add-an-object-store-bucket)
-* [View object store buckets](managing-object-stores-1.md#view-object-store-buckets)
-* [Add an object store bucket](managing-object-stores-1.md#add-an-object-store-bucket)
-* [Edit an object store bucket](managing-object-stores-1.md#edit-an-object-store-bucket)
-* [List recent operations of an object store bucket](managing-object-stores-1.md#show-recent-operations-of-an-object-store-bucket)
-* [Delete an object store bucket](managing-object-stores-1.md#delete-an-object-store-bucket)
 
 ## View object stores
 
@@ -35,26 +24,26 @@ Use the following command line to edit an object store:
 
 **Parameters**
 
-| Parameter | Description |
-| --- | --- |
-| `name` * | Name of the object store to create. |
-| `new-name` | New name for the object store. |
-| `site` | Site location of the object store.Possible values:`local` - for tiering+snapshots`remote` - for snapshots only |
-| `hostname` | Object store host identifier (hostname or IP address) to use as a default for added buckets. |
-| `port` | Object store port, to be used as a default for added buckets. |
-| `auth-method` | Authentication method to use as a default for added buckets.Possible values: `None`,`AWSSignature2`,`AWSSignature4` |
-| `region` | Region name to use as a default for added buckets. |
-| `access-key-id` | Object store access key ID to use as a default for added buckets. |
-| `secret-key` | Object store secret key to use as a default for added buckets. |
-| `protocol` | Protocol type to use as a default for added buckets.Possible values: `HTTP`,`HTTPS`,`HTTPS_UNVERIFIED` |
-| `bandwidth` | Bandwidth limitation per core (Mbps). |
-| `download-bandwidth` | Object store download bandwidth limitation per core (Mbps). |
-| `upload-bandwidth` | Object store upload bandwidth limitation per core (Mbps). |
-| `remove-bandwidth` | A bandwidth (Mbps) to limit the throughput of delete requests sent to the object store.Setting a bandwidth equal to or lower than the object store deletion throughput prevents an increase in the object store deletions queue. |
-| `max-concurrent-downloads` | Maximum number of downloads concurrently performed on this object store in a single IO node.Possible values: `1`-`64` |
-| `max-concurrent-uploads` | Maximum number of uploads concurrently performed on this object store in a single IO node.Possible values: `1`-`64` |
-| `max-concurrent-removals` | Maximum number of removals concurrently performed on this object store in a single IO node.Possible values: `1`-`64` |
-| `enable-upload-tags` | Determines whether to enable object-tagging or not. To use as a default for added buckets. For details, see [Object tagging](../tiering.md#object-tagging).Possible values: `true`,`false` |
+| Parameter                  | Description                                                                                                                                                                                                                      |
+| -------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `name` \*                  | Name of the object store to create.                                                                                                                                                                                              |
+| `new-name`                 | New name for the object store.                                                                                                                                                                                                   |
+| `site`                     | Site location of the object store.Possible values:`local` - for tiering+snapshots`remote` - for snapshots only                                                                                                                   |
+| `hostname`                 | Object store host identifier (hostname or IP address) to use as a default for added buckets.                                                                                                                                     |
+| `port`                     | Object store port, to be used as a default for added buckets.                                                                                                                                                                    |
+| `auth-method`              | Authentication method to use as a default for added buckets.Possible values: `None`,`AWSSignature2`,`AWSSignature4`                                                                                                              |
+| `region`                   | Region name to use as a default for added buckets.                                                                                                                                                                               |
+| `access-key-id`            | Object store access key ID to use as a default for added buckets.                                                                                                                                                                |
+| `secret-key`               | Object store secret key to use as a default for added buckets.                                                                                                                                                                   |
+| `protocol`                 | Protocol type to use as a default for added buckets.Possible values: `HTTP`,`HTTPS`,`HTTPS_UNVERIFIED`                                                                                                                           |
+| `bandwidth`                | Bandwidth limitation per core (Mbps).                                                                                                                                                                                            |
+| `download-bandwidth`       | Object store download bandwidth limitation per core (Mbps).                                                                                                                                                                      |
+| `upload-bandwidth`         | Object store upload bandwidth limitation per core (Mbps).                                                                                                                                                                        |
+| `remove-bandwidth`         | A bandwidth (Mbps) to limit the throughput of delete requests sent to the object store.Setting a bandwidth equal to or lower than the object store deletion throughput prevents an increase in the object store deletions queue. |
+| `max-concurrent-downloads` | Maximum number of downloads concurrently performed on this object store in a single IO node.Possible values: `1`-`64`                                                                                                            |
+| `max-concurrent-uploads`   | Maximum number of uploads concurrently performed on this object store in a single IO node.Possible values: `1`-`64`                                                                                                              |
+| `max-concurrent-removals`  | Maximum number of removals concurrently performed on this object store in a single IO node.Possible values: `1`-`64`                                                                                                             |
+| `enable-upload-tags`       | Determines whether to enable object-tagging or not. To use as a default for added buckets. For details, see [Object tagging](../tiering.md#object-tagging).Possible values: `true`,`false`                                       |
 
 ## View object store buckets
 
@@ -112,16 +101,16 @@ Use the following command line to list the recent operations running on an objec
 
 **Parameters**
 
-| Name | Value |
-| --- | --- |
-| `name`* | A valid object store bucket name to show its recent operations. |
-| `format` | Specify the output format.Possible values: `view`, `csv`, `markdown`, `json`, or `oldview`Default: `view` |
-| `output` | Specify the columns in the output.Possible values:`node`, `obsBucket`, `key`, `type`, `execution`, `phase`, `previous`, `start`, `size`, `results`, `errors`, `lastHTTP`, `concurrency`, `inode`Default: All columns |
-| `sort` | Specify the column(s) to consider when sorting the output. For the sorting order, ascending or descending, add - or + signs respectively before the column name. |
-| `filter` | Specify the values to filter by in a specific column. Usage: `column1=val1[,column2=val2[,..]]` |
-| `raw-units` | Print values in a readable format of raw units such as bytes and seconds.Possible value examples: `1KiB` `234MiB` `2GiB`. |
-| `no-header` | Don't show column headers in the output, |
-| `verbose` | Show all columns in the output. |
+| Name        | Value                                                                                                                                                                                                                |
+| ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `name`\*    | A valid object store bucket name to show its recent operations.                                                                                                                                                      |
+| `format`    | Specify the output format.Possible values: `view`, `csv`, `markdown`, `json`, or `oldview`Default: `view`                                                                                                            |
+| `output`    | Specify the columns in the output.Possible values:`node`, `obsBucket`, `key`, `type`, `execution`, `phase`, `previous`, `start`, `size`, `results`, `errors`, `lastHTTP`, `concurrency`, `inode`Default: All columns |
+| `sort`      | Specify the column(s) to consider when sorting the output. For the sorting order, ascending or descending, add - or + signs respectively before the column name.                                                     |
+| `filter`    | Specify the values to filter by in a specific column. Usage: `column1=val1[,column2=val2[,..]]`                                                                                                                      |
+| `raw-units` | Print values in a readable format of raw units such as bytes and seconds.Possible value examples: `1KiB` `234MiB` `2GiB`.                                                                                            |
+| `no-header` | Don't show column headers in the output,                                                                                                                                                                             |
+| `verbose`   | Show all columns in the output.                                                                                                                                                                                      |
 
 ## Delete an object store bucket
 
@@ -133,8 +122,8 @@ Use the following command line to delete an object store bucket:
 
 **Parameters**
 
-| Name | Value |
-| --- | --- |
-| `name`* | A valid name of the object store bucket to delete. |
+| Name     | Value                                              |
+| -------- | -------------------------------------------------- |
+| `name`\* | A valid name of the object store bucket to delete. |
 
 [^1]: WEKA supports the AWS Security Token Service (STS) that enables you to request temporary, limited-privilege credentials for users using the [AssumeRole](https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole.html) API.

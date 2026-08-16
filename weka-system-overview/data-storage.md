@@ -1,23 +1,23 @@
 ---
 description: >-
   Explore the principles for data lifecycle management and how data storage is
-  managed in SSD-only and tiered WEKA system configurations.
+  managed in SSD-only and tiered system configurations.
 ---
 
 # Data lifecycle management overview
 
-The WEKA system provides flexible storage architectures that balance performance and cost by managing data across different storage media. Understanding how WEKA handles data placement helps you configure systems that deliver the performance characteristics your workloads require while controlling storage costs.
+The cluster provides flexible storage architectures that balance performance and cost by managing data across different storage media. Understanding how the system handles data placement helps you configure systems that deliver the performance characteristics your workloads require while controlling storage costs.
 
-## Storage media options in WEKA systems
+## Storage media options
 
-WEKA systems use two types of storage media, each serving distinct purposes based on its performance and cost characteristics:
+The cluster uses two types of storage media, each serving distinct purposes based on its performance and cost characteristics:
 
-* **Solid-state drives (SSDs):** Form the foundation of every WEKA system. These locally attached drives provide the high performance and low latency that make WEKA suitable for demanding workloads. SSDs are a required component of any WEKA configuration, and they deliver the exceptional IOPS and throughput that applications depend on for fast data access.
-* **Object store systems:** Represent the second storage tier available in WEKA. These systems connect to WEKA externally and can be cloud-based services like AWS S3 or Azure Blob Storage, or on-premises installations using various third-party solutions. Object stores trade some performance and add latency compared to SSDs, but they provide virtually unlimited capacity at significantly lower cost per terabyte than solid-state storage.
+* **Solid-state drives (SSDs):** Form the foundation of the cluster. These locally attached drives provide the high performance and low latency that make the cluster suitable for demanding workloads. SSDs are a required component of any cluster configuration, and they deliver the exceptional IOPS and throughput that applications depend on for fast data access.
+* **Object store systems:** Represent the second storage tier available in the cluster. These systems connect to the cluster externally and can be cloud-based services like AWS S3 or Azure Blob Storage, or on-premises installations using various third-party solutions. Object stores trade some performance and add latency compared to SSDs, but they provide virtually unlimited capacity at significantly lower cost per terabyte than solid-state storage.
 
 ### Configuration options: SSD-only vs tiered systems
 
-WEKA supports two fundamental configuration approaches that serve different use cases and priorities:
+The cluster supports two fundamental configuration approaches that serve different use cases and priorities:
 
 * SSD-only configurations
 * Tiered configurations
@@ -28,19 +28,19 @@ SSD-only configurations store all data exclusively on solid-state drives. This a
 
 Workloads that demand consistent low latency and high throughput for all data access, regardless of data age or access frequency, benefit from SSD-only configurations. The trade-offs include capacity limitations, where the SSD investment bounds the total storage, and a higher cost per terabyte stored.
 
-In SSD-only configurations, WEKA can optionally use object store for the Snap-To-Object feature. This feature maintains backup copies of snapshots in object store for disaster recovery while keeping all active data on SSDs for performance.
+In SSD-only configurations, the cluster can optionally use object store for the Snap-To-Object feature. This feature maintains backup copies of snapshots in object store for disaster recovery while keeping all active data on SSDs for performance.
 
 #### Tiered configurations
 
-Tiered configurations combine SSDs and object store into an integrated system where WEKA automatically manages data placement between the two media.
+Tiered configurations combine SSDs and object store into an integrated system where the cluster automatically manages data placement between the two media.
 
-This approach optimizes storage cost and efficiency. Newly created and frequently accessed data stays on SSDs for fast access, while older or rarely accessed data moves to object store. WEKA automatically identifies the appropriate tier for the data and transparently moves it between tiers as access patterns change.
+This approach optimizes storage cost and efficiency. Newly created and frequently accessed data stays on SSDs for fast access, while older or rarely accessed data moves to object store. the cluster automatically identifies the appropriate tier for the data and transparently moves it between tiers as access patterns change.
 
-Tiered configurations allow the provisioning of a much larger total filesystem capacity than the SSD investment alone supports. For example, a system can configure 25 TB of SSDs but create a 100 TB filesystem, while WEKA manages which 25 TB resides on SSDs based on access patterns and configured policies.
+Tiered configurations allow the provisioning of a much larger total filesystem capacity than the SSD investment alone supports. For example, a system can configure 25 TB of SSDs but create a 100 TB filesystem, while the cluster manages which 25 TB resides on SSDs based on access patterns and configured policies.
 
 ## Data management in tiered configurations
 
-Understanding data placement in a tiered system clarifies how WEKA balances performance and cost.
+Understanding data placement in a tiered system clarifies how the cluster balances performance and cost.
 
 ### **Metadata residency**
 
@@ -54,20 +54,20 @@ This design enables efficient navigation of very large filesystems, including en
 
 Write operations in tiered systems always target SSDs first. Creating new files, appending to existing files, or modifying content occurs at SSD speeds.
 
-WEKA never writes directly to object store to avoid high latency in the write path. Instead, writes complete quickly on SSD, and the system manages the background process of copying data to object store based on configured policies.
+The cluster never writes directly to object store to avoid high latency in the write path. Instead, writes complete quickly on SSD, and the system manages the background process of copying data to object store based on configured policies.
 
 ### **Read operations and promotion**
 
 Read operations access data from either storage tier based on the data’s current location:
 
 * **SSD resident data:** If the data resides on SSD (for example, because it has not been tiered or remains cached), the read operation completes at SSD performance.
-* **Object store resident data:** If the requested data exists only in the object store (OBS), WEKA retrieves it from OBS to satisfy the read request. The system may cache the retrieved data on SSD to accelerate subsequent access, depending on current activity and resource availability. If the data is not cached (or only partially cached), subsequent reads are served directly from OBS.
+* **Object store resident data:** If the requested data exists only in the object store (OBS), the cluster retrieves it from OBS to satisfy the read request. The system may cache the retrieved data on SSD to accelerate subsequent access, depending on current activity and resource availability. If the data is not cached (or only partially cached), subsequent reads are served directly from OBS.
 
 The system performs coordinated reads by serving all locally available data from the SSD while simultaneously fetching any missing segments from the object store. In this model, the SSD acts as a transparent cache layer. The system does not wait for full promotion to complete before using the local fragments to accelerate the request.
 
 ### Intelligent chunk-level management
 
-WEKA optimizes storage efficiency and performance by managing data at a sub-file granularity. The system uses data chunks to distribute data across different SSDs and organize tiering. It tracks the storage tier and access patterns for each chunk independently.
+The cluster optimizes storage efficiency and performance by managing data at a sub-file granularity. The system uses data chunks to distribute data across different SSDs and organize tiering. It tracks the storage tier and access patterns for each chunk independently.
 
 #### Optimize large file handling
 
@@ -145,11 +145,11 @@ In tiered configurations, SSDs perform three critical functions beyond storage: 
 
 Filesystem metadata operations, such as creating files, modifying attributes, and updating directory listings, involve frequent, small random read and write operations. SSDs excel at this workload pattern, whereas object store performs poorly.
 
-WEKA stores all metadata on SSDs. This ensures fast filesystem navigation and file operations, regardless of the total data volume or its location.
+The cluster stores all metadata on SSDs. This ensures fast filesystem navigation and file operations, regardless of the total data volume or its location.
 
 #### **Write staging**
 
-SSDs act as a low-latency staging area for write operations. Direct writing to object store imposes high latency on applications. To mitigate this, WEKA accepts all writes on SSDs, allowing them to complete at local speeds. The application proceeds immediately while the system handles the background task of copying data to object store. This approach delivers consistent write performance while leveraging cost-effective long-term storage.
+SSDs act as a low-latency staging area for write operations. Direct writing to object store imposes high latency on applications. To mitigate this, the cluster accepts all writes on SSDs, allowing them to complete at local speeds. The application proceeds immediately while the system handles the background task of copying data to object store. This approach delivers consistent write performance while leveraging cost-effective long-term storage.
 
 #### **Read caching**
 
@@ -174,7 +174,7 @@ SSD space remains reserved for essential functions, even when not fully utilized
 
 ## Data lifecycle management policies
 
-WEKA provides time-based policies to control data movement between tiers. These policies enable tuning the system for specific workload patterns and balancing performance against storage costs.
+The cluster provides time-based policies to control data movement between tiers. These policies enable tuning the system for specific workload patterns and balancing performance against storage costs.
 
 #### Drive retention period
 

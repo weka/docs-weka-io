@@ -478,25 +478,17 @@ The following procedure provides an example of using a Windows 10 instance.
 3. **Log In to the WEKA GUI**:
    * Log in using the username `admin` and the password obtained from AWS Secrets Manager (as described in the earlier steps).
 
-<div data-with-frame="true"><figure><img src="../../.gitbook/assets/image (22).png" alt=""><figcaption></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/Azure_Jump_login.png" alt=""><figcaption><p>Sign in</p></figcaption></figure></div>
 
 4. **Review the WEKA Cluster**:
 
 * **Cluster home screen**: View the cluster home screen for an overview of the system status.
 
-<div data-with-frame="true"><figure><img src="../../.gitbook/assets/image (23).png" alt=""><figcaption></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/gui_dashboard.png" alt=""><figcaption><p>Dashboard</p></figcaption></figure></div>
 
 * **Cluster Backends**: Review the status and details of the backend servers within the cluster (the server names may differ from those shown in examples).
-
-<div data-with-frame="true"><figure><img src="../../.gitbook/assets/image (24).png" alt=""><figcaption></figcaption></figure></div>
-
 * **Clients**: If there are any clients attached to the cluster, review their details and status.
-
-<div data-with-frame="true"><figure><img src="../../.gitbook/assets/image (25).png" alt=""><figcaption></figcaption></figure></div>
-
 * **Filesystems**: Review the filesystems associated with the cluster for their status and configuration.
-
-<div data-with-frame="true"><figure><img src="../../.gitbook/assets/image (26).png" alt=""><figcaption></figcaption></figure></div>
 
 ## Scaling WEKA clusters with automated workflows
 

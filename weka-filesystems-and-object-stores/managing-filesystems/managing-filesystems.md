@@ -1,113 +1,73 @@
 ---
-description: This page describes how to view and manage filesystems using the GUI.
+description: View, create, edit, and delete filesystems using the GUI.
 ---
 
 # Manage filesystems using the GUI
 
-Using the GUI, you can perform the following actions:
-
-* [View filesystems](managing-filesystems.md#view-filesystems)
-* [Create a filesystem](managing-filesystems.md#create-a-filesystem)
-* [Edit a filesystem](managing-filesystems.md#edit-a-filesystem)
-* [Delete a filesystem](managing-filesystems.md#delete-a-filesystem)
-
 ## View filesystems
 
-The filesystems are displayed on the **Filesystems** page. Each filesystem indicates the status, tiering, remote backup, encryption, SDD capacity, total capacity, filesystem group, and data reduction details.
-
-**Before you begin**
-
-Ensure a filesystem group is set with the required tiering policy. See [#add-a-filesystem-group](../managing-filesystem-groups/managing-filesystem-groups.md#add-a-filesystem-group "mention").
+View each filesystem's status, capacity, group, tiering, remote backup, encryption, and data reduction settings.
 
 **Procedure**
 
 1. From the menu, select **Manage > Filesystems**.
 
-<div data-with-frame="true"><img src="../../.gitbook/assets/view_fs.png" alt="View filesystems example"></div>
+<div data-with-frame="true"><img src="../../.gitbook/assets/view_fs.png" alt="Filesystems page"></div>
 
 ## Create a filesystem
 
-When deploying a WEKA system on-premises, no filesystem is initially provided. You must create the filesystem and configure its properties, including capacity, group, tiering, thin provisioning, encryption, and required authentication during mounting.
+Create a filesystem with the capacity and features required for your workload.
 
-When deploying a WEKA system on a cloud platform (AWS, Azure, or GCP), the WEKA system includes a default filesystem configured to maximum capacity. If your deployment necessitates additional filesystems with varied settings, reduce the provisioned capacity of the default filesystem and create a new filesystem with the desired properties to meet your specific requirements.
+On-premises deployments require you to create a filesystem. Cloud deployments include a default filesystem at maximum capacity. Reduce its capacity before creating another filesystem.
 
 **Before you begin**
 
-* Verify that the system has free capacity.
-* Verify that a filesystem group is already set.
-* If tiering is required, verify that an object store bucket is set.
-* If audit logging required, verify that the Audit and Forwarding feature is enabled and configured.
-* If encryption is required, verify that a KMS is configured.
+* Ensure the system has free capacity and a filesystem group.
+* If you use tiering, create an object store bucket.
+* If you use audit logging, enable and configure **Audit and Forwarding**.
+* If you use encryption, configure a KMS.
 
 **Procedure**
 
 1. From the menu, select **Manage > Filesystems**.
-2. Select the **+Create** button.
+2. Select **Create Filesystem**.
+3. In **Create Filesystem**, set the following:
+   * **Name**: Enter a descriptive name of up to 32 characters. Do not use `/` or `\`.
+   * **Group**: Select a filesystem group.
+   * **Capacity**: Enter the capacity to provision. Select **Use All** to use all free capacity.
 
-<div data-with-frame="true"><img src="/broken/files/FTb3RoK07VZjB4NS6gNG" alt="Create filesystem"></div>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/create_fs.png" alt="" width="563"><figcaption><p>Create filesystem</p></figcaption></figure></div>
 
-3. In the **Create Filesystem** dialog, set the following:
-   * **Name**: Enter a descriptive label for the filesystem, limited to 32 characters and excluding slash (`/`) or backslash (`\`).
-   * **Group**: Select the filesystem group that fits your filesystem.
-   * **Capacity**: Enter the storage size to provision, or select **Use All** to provision all the free capacity.
+4.  Optional: To enable **Tiering**, select the toggle. Tiering requires a defined object store bucket. You cannot enable tiering with data reduction.
 
-<div data-with-frame="true"><figure><img src="../../.gitbook/assets/create_fs.png" alt=""><figcaption><p>Create filesystem</p></figcaption></figure></div>
+    * **Object Store Bucket**: Select an object store bucket.
+    * **Drive Capacity**: Enter the SSD capacity. Select **Use All** to allocate all free capacity.
+    * **Total Capacity**: Enter the bucket's total capacity, including drive capacity.
 
-4.  Optional: [**Tiering**](/broken/pages/-LxWGVbB9iYC1u6AKg_O#tiering-cue-policy).\
-    If tiering is required, and the following conditions are met:
+    **Best practice:** Use a 1:4 ratio for drive capacity and total capacity.
 
-    * An object store bucket is already defined.
-    * Data reduction is not enabled.
+    Tiering also supports creating a filesystem from an uploaded snapshot. See the related topics.
 
-    Then, enable tiering by selecting the Tiering toggle and specifying the following details:
+<div data-with-frame="true"><img src="../../.gitbook/assets/fs_tiering.png" alt="Tiering" width="563"></div>
 
-    * **Object Store Bucket:** Select a predefined object store bucket from the list.
-    * **Drive Capacity:** Enter the SSD capacity to provision, or select **Use All** to allocate all available free capacity.
-    * **Total Capacity:** Enter the total capacity of the object store bucket, including the drive capacity.
+5.  Optional: To enable **Thin Provision**, select the toggle. Set the guaranteed minimum and maximum capacity.
 
-    **Best practice:** Use a 1:4 ratio between the drive capacity and total capacity, as shown in the example below.
+    The minimum must not exceed available SSD capacity. Maximum available capacity depends on free SSD space. Thin provisioning is required for data reduction.
 
-    When tiering is enabled, you can also create the file system from an uploaded snapshot. For more information, see the related topics below.
+<div data-with-frame="true"><img src="../../.gitbook/assets/fs_thin_provisioning.png" alt="Thin provisioning" width="563"></div>
 
-<div data-with-frame="true"><img src="../../.gitbook/assets/wmng_fs_tiering.png" alt="Tiering"></div>
+6. Optional: To enable **Data Reduction**, select the toggle. The filesystem must be thin-provisioned, non-tiered, and unencrypted. The cluster also requires a valid data reduction license.
 
-5. Optional: **Thin Provision**.\
-   If Thin Provision is required, select the toggle button, and set the minimum (guaranteed) and the maximum capacity for the thin provisioned filesystem.\
-   The minimum capacity must be less or equal to the available SSD capacity.\
-   You can set any maximum capacity, but the available capacity depends on the actual free space of the SSD capacity.\
-   Thin provisioning is mandatory when enabling data reduction.
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/fs_data_reduction.png" alt="" width="563"><figcaption><p>Data reduction</p></figcaption></figure></div>
 
-<div data-with-frame="true"><img src="../../.gitbook/assets/fs_thin_provisioning.png" alt="Thin provisioning"></div>
-
-6.  Optional: **Data Reduction**.
-
-    Data reduction can be enabled only when all of the following conditions are met:
-
-    * Filesystem is **thin provisioned**
-    * Filesystem is **non-tiered**
-    * Filesystem is **unencrypted**
-    *   Cluster has a **valid data reduction license**
-
-        * The license status can be verified in the cluster settings
-
-        For more details, see the related topics below.
-
-    \
-    To enable the Data Reduction, select the toggle button.
-
-<div data-with-frame="true"><figure><img src="../../.gitbook/assets/fs_data_reduction.png" alt=""><figcaption><p>Data reduction</p></figcaption></figure></div>
-
-7. Optional: If **Audit Logging** is required for this filesystem, select the toggle button. When on, the WEKA system Forwards this filesystem's audit logs to a configured events monitoring platform, provided that cluster-wide auditing is also enabled.
+7. Optional: To enable **Audit Logging**, select the toggle. The system forwards filesystem audit logs when cluster-wide auditing is enabled.
 
 {% hint style="info" %}
-To use the **Audit Logging** option, ensure the **Audit and Forwarding** feature is enabled and configured. For more information, see [audit-and-forwarding-management](../../operation-guide/audit-and-forwarding-management/ "mention").
+**Audit Logging** requires an enabled and configured **Audit and Forwarding** feature. For more information, see [audit-and-forwarding-management](../../operation-guide/audit-and-forwarding-management/ "mention").
 {% endhint %}
 
-8. Optional: If **Encryption** is required and your WEKA system is deployed with a KMS, select the toggle button.
-9. Optional: **Required Authentication**.\
-   When ON, user authentication is required when mounting to the filesystem. This option is only relevant to a filesystem created in the root organization.\
-   Enabling authentication is not allowed for a filesystem hosting NFS client permissions or SMB shares.\
-   To authenticate during mount, the user must run the `weka user login` command or use the `auth_token_path` parameter.
+8. Optional: To enable **Encryption**, select the toggle. Encryption requires a configured KMS.
+9. Optional: To require authentication when mounting the filesystem, select **Required Authentication**. This setting only applies to filesystems in the root organization. Do not enable it for filesystems with NFS client permissions or SMB shares.
 10. Select **Save**.
 
 **Related topics**
@@ -126,19 +86,16 @@ To use the **Audit Logging** option, ensure the **Audit and Forwarding** feature
 
 ## Edit a filesystem
 
-You can modify the filesystem parameters according to your demand changes over time. The parameters you can modify include filesystem name, capacity, tiering, thin provisioning, and required authentication (but not encryption).
+Modify filesystem settings as requirements change. You can change the name, capacity, tiering, thin provisioning, and required authentication. You cannot change encryption.
 
 **Procedure**
 
 1. From the menu, select **Manage > Filesystems**.
-2. Select the three dots on the right of the filesystem you want to modify, and select **Edit**.
+2. For the filesystem you want to modify, select the three dots, then select **Edit**.
 
-<div data-with-frame="true"><img src="../../.gitbook/assets/wmng_edit_fs_menu.png" alt="Filesystem menu"></div>
+<div data-with-frame="true"><img src="../../.gitbook/assets/edit_fs_menu.png" alt="Filesystem menu"></div>
 
 3. In the **Edit Filesystem** dialog, modify the parameters according to your requirements. (See the parameter descriptions in the [Add a filesystem](managing-filesystems.md#add-a-filesystem) topic.)
-
-<div data-with-frame="true"><figure><img src="../../.gitbook/assets/Edit_fs.png" alt=""><figcaption><p>Edit a filesystem</p></figcaption></figure></div>
-
 4. Select **Save**.
 
 ## Delete a filesystem
@@ -152,7 +109,5 @@ If you must also delete the data in the tiered object store bucket, see the [Del
 **Procedure**
 
 1. From the menu, select **Manage > Filesystems**.
-2. Select the three dots on the right of the filesystem you want to delete, and select **Remove**.
-3. To confirm the filesystem deletion, enter the filesystem name and select **Confirm**.
-
-<div data-with-frame="true"><img src="../../.gitbook/assets/wmng_delete_fs_animated.gif" alt="Delete a filesystem"></div>
+2. For the filesystem you want to delete, select the three dots, then select **Remove**.
+3. When the confirmation message appears, verify the filesystem name, then select **Confirm**.

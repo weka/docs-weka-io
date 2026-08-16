@@ -44,8 +44,6 @@ WEKA uses a structured versioning scheme to indicate the scope and type of chang
 
 Verify that the upgrade path from your source version to the target version is supported. The **Upgrade Path** checker on [get.weka.io](https://get.weka.io) validates the path and indicates additional requirements, such as upgrading clients before the backends.
 
-<div data-with-frame="true"><figure><img src="../.gitbook/assets/check_upgrade_path.png" alt="" width="563"><figcaption><p>Check the upgrade path</p></figcaption></figure></div>
-
 **Procedure**
 
 1. On [get.weka.io](https://get.weka.io), open the **Upgrade Path** checker.
@@ -85,8 +83,6 @@ Example output:
 `14 DataSphere-3 backend`\
 `16 DataSphere-6 client`
 {% endhint %}
-
-<div data-with-frame="true"><figure><img src="../.gitbook/assets/NDU_process.png" alt=""><figcaption><p>NDU process at a glance</p></figcaption></figure></div>
 
 **Related topics**
 
@@ -293,8 +289,6 @@ Use this method if the cluster environment has connectivity to [get.weka.io](htt
 1. From the Public Releases on the [get.weka.io](https://get.weka.io/ui/releases/), select the required release.
 2. Select the **Install** tab.
 3. From the backend server, run the `curl` command line as shown in the following example.
-
-<figure><img src="../.gitbook/assets/get-weka-io-curl.png" alt=""><figcaption><p>Example: Install tab</p></figcaption></figure>
 {% endtab %}
 
 {% tab title="Method C" %}
@@ -302,8 +296,6 @@ Use this method if the cluster environment does not have connectivity to [get.we
 
 1. Download the new version tar file to a location from which you copy it to a dedicated directory in the cluster backend server, and untar the file.
 2. From the dedicated directory in the cluster backend server, run the `install.sh` command.
-
-<figure><img src="../.gitbook/assets/get-weka-io-download.png" alt=""><figcaption><p>Example: Download tab</p></figcaption></figure>
 {% endtab %}
 {% endtabs %}
 
@@ -421,10 +413,10 @@ Update the software of a single stateless or persistent client by connecting dir
 
 Reference these flags for the `weka version` command to manage package downloads and visibility.
 
-| Flag | Description |
-| --- | --- |
-| `--client-only` | Downloads only the essential components required for stateless client operations. |
-| `--full` | Displays version information only when the complete set of components is present on the server. |
+| Flag            | Description                                                                                     |
+| --------------- | ----------------------------------------------------------------------------------------------- |
+| `--client-only` | Downloads only the essential components required for stateless client operations.               |
+| `--full`        | Displays version information only when the complete set of components is present on the server. |
 
 #### Upgrade clients in batches (via remote trigger)
 
@@ -446,12 +438,12 @@ Use the backend servers to remotely trigger online upgrades for multiple statele
 
 Reference the following table for parameters used with the `weka local run upgrade` command.
 
-| Parameter | Description | Default |
-| --- | --- | --- |
-| `--mode=clients-upgrade` | Activates the remote upgrade process for clients. | N/A |
-| `--client-rolling-batch-size` | Defines the number of clients to upgrade in each sequential batch. | 1 |
-| `--clients-to-upgrade` | Specifies a comma-separated list of client IDs to include. | All clients |
-| `--drop-host` | Specifies a comma-separated list of client IDs to exclude from the upgrade. | None |
+| Parameter                     | Description                                                                 | Default     |
+| ----------------------------- | --------------------------------------------------------------------------- | ----------- |
+| `--mode=clients-upgrade`      | Activates the remote upgrade process for clients.                           | N/A         |
+| `--client-rolling-batch-size` | Defines the number of clients to upgrade in each sequential batch.          | 1           |
+| `--clients-to-upgrade`        | Specifies a comma-separated list of client IDs to include.                  | All clients |
+| `--drop-host`                 | Specifies a comma-separated list of client IDs to exclude from the upgrade. | None        |
 
 **Example**
 

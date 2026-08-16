@@ -643,31 +643,22 @@ Retrieve the IP addresses of the WEKA backend instances. For a public network de
 1. Select one of the backend IP addresses, paste it into the browser's address bar, append `:14000`, and press Enter. The WEKA web interface loads.
 2. Log in using the default username `admin` and the password retrieved in the earlier step.
 
-<figure><img src="../../.gitbook/assets/image (141).png" alt=""><figcaption></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/NeuralMesh_login.png" alt=""><figcaption><p>Sign in</p></figcaption></figure></div>
 
 In the examples below, a Windows 10 instance with a public IP address was deployed in the same vnet, subnet, and security group as the WEKA cluster. Network security group rules were added to allow RDP explicit access to the Windows 10 system.
 
 3. Open a browser in the Windows 10 jump box and visit `https://<cluster-backend-ip>:14000`. The WEKA GUI login screen should appear. After changing the default password, login.
 
-<figure><img src="../../.gitbook/assets/image (115).png" alt=""><figcaption></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/Azure_Jump_login.png" alt=""><figcaption></figcaption></figure></div>
 
 4. View the cluster GUI home screen.
 
-<figure><img src="../../.gitbook/assets/image (116).png" alt=""><figcaption></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/gui_dashboard.png" alt=""><figcaption><p>Dashboard</p></figcaption></figure></div>
 
 5. Review the cluster backends.
-
-<figure><img src="../../.gitbook/assets/image (117).png" alt=""><figcaption></figcaption></figure>
-
 6. Review the clients attached to the cluster as part of the terraform deployment process.
-
-<figure><img src="../../.gitbook/assets/image (118).png" alt=""><figcaption></figcaption></figure>
-
 7. Review the file system `default` created as part of the terraform deployment process.
-
-<figure><img src="../../.gitbook/assets/image (120).png" alt=""><figcaption></figcaption></figure>
-
-8. In the Azure portal Virtual Machines page, view the WEKA cluster instance resources.
+8. In the Azure portal Virtual Machines page, view the cluster instance resources.
 
 <figure><img src="../../.gitbook/assets/image (119).png" alt=""><figcaption></figcaption></figure>
 

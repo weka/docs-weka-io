@@ -1,6 +1,10 @@
-# Getting started with WEKA REST API
+---
+description: Access, authenticate, and call the REST API.
+---
 
-The WEKA system provides a RESTful API that allows you to automate operations and integrate them into your workflows or monitoring systems. A solid understanding of the relevant WEKA CLI commands and parameters is important when working with the REST API. For example, when creating a filesystem using the `POST /fileSystems` service, refer to the corresponding CLI documentation for guidance.
+# Getting started with REST API
+
+The system provides a RESTful API that allows you to automate operations and integrate them into your workflows or monitoring systems. A solid understanding of the relevant CLI commands and parameters is important when working with the REST API. For example, when creating a filesystem using the `POST /fileSystems` service, refer to the corresponding CLI documentation for guidance.
 
 ## Access the REST API
 
@@ -8,15 +12,17 @@ You can access the REST API using one of the following methods:
 
 * **Direct access:** Use port 14000 and the URL `/api/v2`.
 * **Through the cluster:** Browse to `https://<cluster name or IP>:14000/api/v2/docs`.
-* **Through the WEKA GUI:** Select the three dots on the upper right menu and select **REST API**.\
-  <img src="../.gitbook/assets/wmng_access_rest_api.png" alt="" data-size="original">
-*   **WEKA static API:** Browse to [api.docs.weka.io](https://api.docs.weka.io/) and select the required REST API version from the definition selector. You can also generate client code by using the OpenAPI client generator with the corresponding .json definition file.<br>
+* **Through the GUI:** Select the three dots on the upper right menu and select **REST API**.
 
-    <div data-with-frame="true"><figure><img src="../.gitbook/assets/static_api_docs.png" alt=""><figcaption></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/access_rest_api.png" alt="" width="375"><figcaption></figcaption></figure></div>
+
+* **Static REST API:** Browse to [api.docs.weka.io](https://api.docs.weka.io/) and select the required REST API version from the definition selector. You can also generate client code by using the OpenAPI client generator with the corresponding .json definition file.
+
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/static_api_docs.png" alt=""><figcaption><p>Static REST API</p></figcaption></figure></div>
 
 ## Explore the REST API through the GUI
 
-<div data-with-frame="true"><figure><img src="../.gitbook/assets/Get_started_with_REST_API.gif" alt=""><figcaption><p>Explore the REST API through the GUI</p></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/get_started_with_rest_api.gif" alt=""><figcaption></figcaption></figure></div>
 
 ## Obtain an access token
 

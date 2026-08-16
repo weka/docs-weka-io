@@ -1,15 +1,8 @@
 ---
-description: This page describes how to view and manage filesystem groups using the CLI.
+description: View, create, edit, and remove filesystem groups using the CLI.
 ---
 
 # Manage filesystem groups using the CLI
-
-Using the CLI, you can perform the following actions:
-
-* [View filesystem groups](manage-filesystem-groups-using-the-cli.md#view-filesystem-groups)
-* [Add a filesystem group](manage-filesystem-groups-using-the-cli.md#add-a-filesystem-group)
-* [Edit a filesystem group](manage-filesystem-groups-using-the-cli.md#edit-a-filesystem-group)
-* [Remove a filesystem group](manage-filesystem-groups-using-the-cli.md#remove-a-filesystem-group)
 
 ## **View filesystem groups**
 
@@ -43,12 +36,12 @@ Use the following command to edit a filesystem group:
 
 **Parameters**
 
-| Name | Value |
-| --- | --- |
-| `name`* | Name of the filesystem group to edit.It must be a valid name. |
-| `new-name` | New name for the filesystem group. |
+| Name                   | Value                                                                                                                                                                          |
+| ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `name`\*               | Name of the filesystem group to edit.It must be a valid name.                                                                                                                  |
+| `new-name`             | New name for the filesystem group.                                                                                                                                             |
 | `target-ssd-retention` | The time for keeping data on the SSD after it is copied to the object store. After this period, the copy of the data is deleted from the SSD.Format: 3s, 2h, 4m, 1d, 1d5h, 1w. |
-| `start-demote` | The time to wait after the last update before the data is copied from the SSD and sent to the object store.Format: 3s, 2h, 4m, 1d, 1d5h, 1w. |
+| `start-demote`         | The time to wait after the last update before the data is copied from the SSD and sent to the object store.Format: 3s, 2h, 4m, 1d, 1d5h, 1w.                                   |
 
 ## Remove a filesystem group
 
@@ -60,9 +53,9 @@ Use the following command line to delete a filesystem group:
 
 **Parameters**
 
-| Name | Value |
-| --- | --- |
-| `name`* | Name of the filesystem group to delete |
+| Name     | Value                                  |
+| -------- | -------------------------------------- |
+| `name`\* | Name of the filesystem group to delete |
 
 **Related topics**
 

@@ -42,7 +42,7 @@ TenantAdmin can configure tenant-specific overrides for the default filesystem a
 
 Once the system completes configuration, the servers' statuses change from not ready (red X icon) to ready (green V icon).
 
-<div data-with-frame="true"><figure><img src="../../../.gitbook/assets/S3_cluster_config (1).png" alt=""><figcaption><p>S3 Cluster Configuration</p></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src="../../../.gitbook/assets/S3_cluster_config.png" alt=""><figcaption><p>S3 Cluster Configuration</p></figcaption></figure></div>
 
 ## Update an S3 cluster configuration
 
@@ -66,7 +66,7 @@ Modifying the **Virtual-hosted-style Domains** parameter automatically triggers 
 
 5. Select **Save**.
 
-<div data-with-frame="true"><img src="../../../.gitbook/assets/edit_s3_cluster (1).png" alt="Edit S3 Cluster Configuration" width="351"></div>
+<div data-with-frame="true"><img src="../../../.gitbook/assets/edit_s3_cluster.png" alt="Edit S3 Cluster Configuration" width="351"></div>
 
 ## Delete an S3 cluster configuration
 
