@@ -51,7 +51,7 @@ If the IAM user lacks these permissions, update their permissions or create a ne
 
 **Procedure**
 
-1. **Access the AWS Management Console:** Log in using the account intended for the WEKA deployment.
+1. **Access the AWS Management Console:** Sign in using the account intended for the WEKA deployment.
 2. **Navigate to the IAM dashboard:** From the Services menu, select **IAM** to open the Identity and Access Management dashboard.
 
 <div data-with-frame="true"><figure><img src="../../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure></div>
@@ -453,9 +453,9 @@ To manage your WEKA cluster, you need to access the backend servers. This is typ
     * Replace `/path/to/private-key.pem` with the actual path to your SSH private key file.
     * Replace `<server-ip-address>` with the IP address of the WEKA backend server.
 
-## **NeuralMesh GUI Login and Review**
+## **NeuralMesh GUI login and review**
 
-To manage your WEKA cluster through the GUI) you'll need access to a jump box (a system with a GUI) that is deployed in the same VPC and subnet as your WEKA cluster. This allows you to securely access the NeuralMesh GUI through a web browser.
+To manage your cluster through the GUI you'll need access to a jump box that is deployed in the same VPC and subnet as your WEKA cluster. This allows you to securely access the NeuralMesh GUI through a web browser.
 
 The following procedure provides an example of using a Windows 10 instance.
 
@@ -474,9 +474,9 @@ The following procedure provides an example of using a Windows 10 instance.
        ```
 
        * Replace `<IP>` with the IP address of your WEKA cluster. For example: `https://10.5.0.11`.
-   * The NeuralMesh GUI login screen appears.
-3. **Log In to the NeuralMesh GUI**:
-   * Log in using the username `admin` and the password obtained from AWS Secrets Manager (as described in the earlier steps).
+   * The NeuralMesh GUI sign in screen appears.
+3. **Sign in to the NeuralMesh GUI**:
+   * Sign in using the username `admin` and the password obtained from AWS Secrets Manager (as described in the earlier steps).
 
 <div data-with-frame="true"><figure><img src="../../.gitbook/assets/Azure_Jump_login.png" alt=""><figcaption><p>Sign in</p></figcaption></figure></div>
 

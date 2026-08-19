@@ -1,62 +1,52 @@
 ---
-description: Explore the statistics available in the WEKA system and learn how to use them.
+description: >-
+  Explore the performance statistics collected as the system runs, and use them
+  to analyze performance and troubleshoot issues.
 ---
 
 # Statistics
 
-Explore hundreds of performance statistics collected as the WEKA system runs. Use these statistics to analyze system performance and troubleshoot issues.
+The system collects hundreds of statistics from the backend servers and the clients in the cluster. Statistics are grouped into categories, and each category holds the statistics measured for one part of the system. Select a category to see its statistics, and then select a statistic to display it as a chart on the **Statistics** page.
 
-The statistics categories of the basic charts include:
+<div data-with-frame="true"><img src="../../.gitbook/assets/stats_overview.png" alt="Statistics page"></div>
 
+### Statistics categories
+
+Basic charts cover the following categories:
+
+* api statistics
 * CPU
-* Object Store
+* Object Storage
 * Operations
-* Operations (Driver)
+* Operations (Directory Quota Domain)
+* Operations (driver)
+* Operations (Filesystem)
 * Operations (NFS)
 * Operations (NFSw)
+* Operations (S3)
+* Operations (SLB of S3)
+* Operations (Tenant)
 * SSD
 
-When you select each category, a list of the possible statistics related to the category is displayed, from which you can select a specific chart.
+Beyond the basic charts, the **Advanced** view exposes a larger set of low-level charts intended for the Customer Success team. Use it when working with WEKA Support on a specific investigation.
 
-The system also provides advanced statistic charts aimed to be used by the Customer Success Team.
+### Chart resolution and time range
 
-By default, the Statistics page displays the last hour of operation. Each chart point represents statistics averaged over one minute. This aggregation also applies when you select **Day** or **Week**.
+Each chart point represents the statistics averaged over one minute. This one-minute aggregation applies to every time range, including **Day** and **Week**, so a wider range shows more points rather than coarser ones.
 
-<div data-with-frame="true"><img src="../../.gitbook/assets/wmng_statistics_overview.gif" alt="Statistics page"></div>
+By default, the page displays the last hour of operation. You can switch to the last day or the last week, or set a custom start and end time.
 
-## **Drill-down options**
+Real-time statistics are the exception. They are sampled at a one-second interval and are available from the CLI only.
 
-Use the following options to investigate and customize charts.
+### Statistics availability
 
-### View chart values and events
+The page shows the statistics of the backend servers and the clients that are currently part of the cluster. Statistics are not shown in the following cases:
 
-1. Move the pointer over the scrollable chart area to view metric values.
-2. Select a purple event indicator on the time axis.
-3. Select **Show All** to correlate events with chart data.
+* A backend server is removed from the cluster.
+* A client is not connected to the cluster for longer than the retention period.
 
-### Change the time range
-
-1. In the **Last** row, select **Hour**, **Day**, or **Week**.
-2. To select a custom range, select the calendar in the **Range** row.
-3. Set the start and end time. Zoom in on the selected period as needed.
-
-### Add or remove charts
-
-The Statistics page displays up to five charts. By default, it shows total OPS, total throughput, and read and write latency.
-
-1. Select **+Add** to add a chart.
-2. Select a category and then a statistic.
-3. Select **X** in the upper-left corner of a chart to remove it.
-
-### Share a bookmarked view
-
-Copy the page URL after selecting the required charts and time range. Use the URL to reopen or share the same view.
+Statistics are retained for a configurable number of days, which is limited by the free disk space on each server. Set the retention period from the CLI.
 
 {% hint style="info" %}
-The page shows only the statistics of the backend servers and clients in the cluster. The page does not show statistics in the following cases:
-
-* A backend server is removed.
-* A client is not connected to the cluster for more than the [retention period](statistics-1.md#set-statistics-retention).
-
-The WEKA cluster does not retain historical statistics. Use [Observe](../../monitor-the-weka-cluster/neuralmesh-observe-overview/) to monitor historical cluster data.
+The cluster does not retain long-term historical statistics. To monitor historical cluster data, use [Observe](../../monitor-the-weka-cluster/neuralmesh-observe-overview/).
 {% endhint %}

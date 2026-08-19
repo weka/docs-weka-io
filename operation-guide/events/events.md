@@ -6,17 +6,17 @@ description: View, filter, and investigate system events using the GUI.
 
 ## View events
 
-The events enable you to investigate issues that occur in the system.
+View system events to investigate issues.
 
-The System Events page provides the following details:
+The **System Events** page shows:
 
-* **Severity**: The severity of the event. The options are Info (lowest), Warning, Minor, Major, and Critical (highest).
-* **Timestamp**: The date and time the event occurred. You can switch the display time between local and system time through the top bar.
-* **Process ID:** The process ID created the event.
-* **Origin**: The event's originator, such as a user, backend, or cluster. For example, when a user creates a filesystem, the username appears as the event's originator.
-* **Category**: The category options include Alerts, Cloud, Clustering, Config, Custom, Drive, Events, Filesystem, InterfaceGroup, Kms, Licensing, NFS, Network, Node, ObjectStorage, Org, Raid, Resources, S3, Security, Smb, System, Traces, Upgrade, and User.
-* **Name**: The name of the event.
-* **Description**: The description of the event.
+* **Severity**: The event severity. Values range from Info to Critical.
+* **Timestamp**: The event date and time. Use the top bar to switch between local and system time.
+* **Process ID:** The identifier of the process that created the event.
+* **Origin**: The event source, such as a user, backend, or cluster. Filesystem events show the creating username.
+* **Category**: The event category. Options include Alerts, Cloud, Clustering, Config, Custom, Drive, Events, Filesystem, InterfaceGroup, Kms, Licensing, NFS, Network, Node, ObjectStorage, Org, Raid, Resources, S3, Security, Smb, System, Traces, Upgrade, and User.
+* **Name**: The event name.
+* **Description**: Event details.
 
 You can select the **Advanced** switch to display internal events. This option is helpful for experts investigating internal issues.
 
@@ -24,78 +24,58 @@ You can select the **Advanced** switch to display internal events. This option i
 
 1. From the menu, select **Investigate > Events**.
 
-<div data-with-frame="true"><img src="../../.gitbook/assets/wmng_events_view.png" alt="System events"></div>
+<div data-with-frame="true"><img src="../../.gitbook/assets/events_view.png" alt="System events"></div>
 
 ## Filter events
 
-You can filter the events according to the event severity, timestamp, category, or event name. You can also filter events by multiple categories and multiple event names.
+Filter events by severity, timestamp, category, or event name. Combine categories and event names to narrow results.
 
-<div data-with-frame="true"><img src="../../.gitbook/assets/wmng_events_filter_example.gif" alt="Example: view all warning events (and higher severity events) related to resources"></div>
+### Filter by minimum severity
 
-#### Procedures
+1. Hover the **Severity** heading and select the filter icon.
+2. Select the minimum severity. Selecting **Major** displays Major and Critical events.
+3. Select **Apply**.
 
-<details>
+<div data-with-frame="true"><img src="../../.gitbook/assets/severity_filter.png" alt="" width="275"></div>
 
-<summary>Display events of a specific minimum severity</summary>
+### Filter by time period
 
-1. Select the filter icon of the **Severity** column.
-2. Select the required minimum severity.\
-   For example, the Critical events are displayed if you select the Major severity.
-
-<div data-with-frame="true"><img src="../../.gitbook/assets/wmng_events_filter_severity.png" alt="" width="116"></div>
-
-</details>
-
-<details>
-
-<summary>Display events of a specific period</summary>
-
-1. Select the filter icon of the **Timestamp** column.
-2. In the **From** field, select the timestamp of the beginning of the period to display.
-3. In the **To** field, select the timestamp of the end of the period to display or select **Now**.
+1. Hover the **Timestamp** heading and select the filter icon.
+2. In **From**, select the period start timestamp.
+3. In **To**, select the period end timestamp or select **Now**.
 4. Select **OK**.
-5. Select **Filter**.
+5. Select **Apply**.
 
-<div data-with-frame="true"><img src="../../.gitbook/assets/wmng_events_filter_timestamp.png" alt="" width="265"></div>
+<div data-with-frame="true"><img src="../../.gitbook/assets/timestamp_filter.png" alt="" width="298"></div>
 
-</details>
+### Filter by category
 
-<details>
+1. Hover the **Category** heading and select the filter icon.
+2. In **Filter Categories**, select one or more categories.
+3. Select **Apply**.
 
-<summary>Display events of specific categories</summary>
+<div data-with-frame="true"><img src="../../.gitbook/assets/category_filter.png" alt="" width="288"></div>
 
-1. Select the filter icon of the **Category** column.
-2. In the **Filter Categories**, select the category you want to display. You can select multiple categories.
+### Filter by event name
+
+1. Hover the **Event** heading and select the filter icon.
+2. In **Events Filter**, select one or more event names.
 3. Select **Filter**.
 
-<div data-with-frame="true"><img src="../../.gitbook/assets/wmng_events_filter_category.png" alt="" width="262"></div>
-
-</details>
-
-<details>
-
-<summary>Display events with specific event names</summary>
-
-1. Select the filter icon of the **Event** column.
-2. In the **Events Filter**, select the event name you want to display. You can select multiple event names.
-3. Select **Filter**.
-
-<div data-with-frame="true"><img src="../../.gitbook/assets/wmng_events_filter_by_events.png" alt=""></div>
-
-</details>
+<div data-with-frame="true"><img src="../../.gitbook/assets/event_filter.png" alt="" width="272"></div>
 
 ## Display events by a predefined template
 
-You can display events according to predefined templates based on a combination of event names with the same logical context. For example, selecting the **Processes** template displays all events related to processes. A predefined template enables focusing on certain areas of the system.
+Use predefined templates to filter related event names. For example, the **Processes** template displays events related to processes.
 
-The predefined templates include protocols, object store, cluster-wide tasks, filesystems, quota, snapshots, clients, and processes.
-
-<div data-with-frame="true"><figure><img src="../../.gitbook/assets/wmng_predefined_template_example.gif" alt=""><figcaption><p>Display events by a predefined template</p></figcaption></figure></div>
+Available templates cover protocols, object storage, cluster tasks, filesystems, quota, snapshots, clients, and processes.
 
 **Procedure**
 
-1. In the Events page, select **Predefined Templates.**
-2. Select from the list the required template to display.
+1. On **Events**, select **Predefined Templates**.
+2. Select a template. The event list updates with matching events.
+
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/predefined_filters.png" alt=""><figcaption><p>Predefined filters</p></figcaption></figure></div>
 
 **Related topic**
 

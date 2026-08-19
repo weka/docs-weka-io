@@ -51,9 +51,9 @@ The effectiveness of the data reduction ratio depends on the workload. It is par
 
 Data reduction applies only to user data, not metadata, on a per-filesystem basis.
 
-For example, the image below shows a cluster with a total physical SSD capacity of 979.2 TB. Thanks to data reduction, the cluster achieves a Data Reduction Ratio of 2.78:1, which results in 574.6 TB of saved capacity. This saving allows the cluster to have 1.6 PB of provisioned space, which is 159% of the actual physical capacity.
+For example, the image below shows a cluster with a total physical SSD capacity of 718.7 TB. Thanks to data reduction, the cluster achieves a Data Reduction Ratio of 2.32:1, which results in 536.4 TB of saved capacity. This saving allows the cluster to have 1.4 PB of provisioned space.
 
-<div data-with-frame="true"><figure><img src="../../.gitbook/assets/data_reduction_capacity_saving_example.png" alt="" width="422"><figcaption><p>Data reduction capacity saving</p></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/data_reduction_view.png" alt="" width="422"><figcaption><p>Data reduction capacity saving</p></figcaption></figure></div>
 
 #### Prerequisites
 

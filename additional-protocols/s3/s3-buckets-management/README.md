@@ -1,12 +1,12 @@
 ---
 description: >-
-  Explore managing your buckets in WEKA using S3 API, GUI, CLI, or API, with
-  flexible permissions through IAM or bucket policies for anonymous access.
+  Explore managing your buckets in the system using S3 API, GUI, CLI, or API,
+  with flexible permissions through IAM or bucket policies for anonymous access.
 ---
 
 # S3 buckets management
 
-Manage your buckets using WEKA, either through standard S3 API calls or the NeuralMesh GUI/API/CLI. Determine bucket permissions by using IAM policies for authorized users or setting bucket policies for anonymous access.
+Manage your buckets, either through standard S3 API calls or the NeuralMesh GUI/API/CLI. Determine bucket permissions by using IAM policies for authorized users or setting bucket policies for anonymous access.
 
 Buckets and objects created through the S3 protocol come with default root POSIX permissions. For more precise control, create a user with an S3 role and set specific POSIX permissions for objects generated with their access/secret keys.
 
