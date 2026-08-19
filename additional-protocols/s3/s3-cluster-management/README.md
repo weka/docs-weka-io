@@ -23,7 +23,7 @@ When a bucket creation request does not specify a filesystem, the system resolve
 
 [#update-per-tenant-s3-configuration](s3-cluster-management-1.md#update-per-tenant-s3-configuration "mention")
 
-[#dedicated-filesystem-requirement-for-persistent-protocol-configurations](../../additional-protocols-overview.md#dedicated-filesystem-requirement-for-persistent-protocol-configurations "mention").
+[#dedicated-filesystem-requirement-for-cluster-wide-persistent-protocol-configurations](../../additional-protocols-overview.md#dedicated-filesystem-requirement-for-cluster-wide-persistent-protocol-configurations "mention").
 
 ## Load balancer configuration
 

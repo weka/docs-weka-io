@@ -94,7 +94,7 @@ This workflow outlines the key steps to configure SMB-W support in the WEKA syst
 
 **Before you begin**
 
-Ensure that a dedicated filesystem exists for storing persistent protocol configurations. If not, create one. For guidance, [#dedicated-filesystem-requirement-for-persistent-protocol-configurations](../additional-protocols-overview.md#dedicated-filesystem-requirement-for-persistent-protocol-configurations "mention").
+Ensure that a dedicated filesystem exists for storing persistent protocol configurations. If not, create one. For guidance, [#dedicated-filesystem-requirement-for-cluster-wide-persistent-protocol-configurations](../additional-protocols-overview.md#dedicated-filesystem-requirement-for-cluster-wide-persistent-protocol-configurations "mention").
 
 **Workflow**
 

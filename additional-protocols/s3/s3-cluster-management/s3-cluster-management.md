@@ -18,7 +18,7 @@ An S3 cluster configuration includes a filesystem, port, and list of servers.
 
 **Before you begin**
 
-Verify that a predefined filesystem for maintaining the persisting cluster-wide protocols' configurations is created. If not, create it. For details, see [#dedicated-filesystem-requirement-for-persistent-protocol-configurations](../../additional-protocols-overview.md#dedicated-filesystem-requirement-for-persistent-protocol-configurations "mention").
+Verify that a predefined filesystem for maintaining the persisting cluster-wide protocols' configurations is created. If not, create it. For details, see [#dedicated-filesystem-requirement-for-cluster-wide-persistent-protocol-configurations](../../additional-protocols-overview.md#dedicated-filesystem-requirement-for-cluster-wide-persistent-protocol-configurations "mention").
 
 **Procedure**
 
