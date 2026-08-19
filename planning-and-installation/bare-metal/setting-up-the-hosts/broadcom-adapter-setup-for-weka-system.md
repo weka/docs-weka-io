@@ -24,7 +24,7 @@ To enable a WEKA client to use Broadcom adapters, ensure the server has the appr
 2.  **Installation instructions:** Follow these steps to compile and install the required components:
 
     1. **bnxt\_en driver**:
-       * Download the `bnxt_en` driver from the [Broadcom download center](https://www.broadcom.com/support/download-center).
+       * Download the `bnxt_en` driver from the [Broadcom support portal](https://www.broadcom.com/support).
          * Follow the provided instructions to compile and install it.
          * Ensure you are using this version instead of the default driver from your Linux distribution.
     2. **SliFF driver**:
