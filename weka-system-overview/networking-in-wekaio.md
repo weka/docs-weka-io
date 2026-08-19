@@ -18,6 +18,10 @@ The WEKA system supports the following types of networking technologies:
 
 The WEKA system networking can be configured as _performance-optimized_ or _CPU-optimized_. In [performance-optimized](networking-in-wekaio.md#performance-optimized-networking-dpdk) networking, the CPU cores are dedicated to WEKA, and the networking uses DPDK. In [CPU-optimized](networking-in-wekaio.md#cpu-optimized-networking-udp-mode) networking, the CPU cores are not dedicated to WEKA, and the networking uses DPDK (when supported by the NIC drivers) or in-kernel (UDP mode).
 
+{% hint style="info" %}
+This topic covers the cluster's own networking. Multi-tenant clusters add a second construct, the **network space**, which defines a logical network boundary using a VLAN ID and an IP range and provides isolated datapath endpoints for a tenant. Because each network space is isolated by VLAN, two tenants can use overlapping IP ranges within one cluster. See [multi-tenancy-cluster-level-administration.md](../operation-guide/weka-native-multi-tenancy-management/multi-tenancy-cluster-level-administration.md "mention").
+{% endhint %}
+
 ### Performance-optimized networking (DPDK)
 
 For performance-optimized networking, the WEKA system does not use standard kernel-based TCP/IP services but a proprietary infrastructure based on the following:

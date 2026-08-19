@@ -16,6 +16,10 @@ Do not change protocols debug level without specific instructions from the [Cust
 Once the container is restarted, the log verbosity level reverts to its default.
 {% endhint %}
 
+{% hint style="info" %}
+When NFS multi-tenancy is enabled, `weka nfs debug-level` is scoped to the caller's organization: a tenant administrator sees and sets the debug level for their own tenant's NFS containers only. The role required to run the command is unchanged.
+{% endhint %}
+
 **Related topics**
 
 [manage-protocols-debug-level-using-the-gui.md](manage-protocols-debug-level-using-the-gui.md "mention")

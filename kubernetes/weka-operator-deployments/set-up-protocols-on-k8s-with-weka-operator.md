@@ -31,6 +31,17 @@ The NFS-W data path routes file requests from the Kubernetes service directly to
 
 <div data-with-frame="true"><figure><img src="../../.gitbook/assets/k8s_nfs.png" alt=""><figcaption><p>WEKA Operator NFS-W protocol architecture</p></figcaption></figure></div>
 
+{% hint style="warning" %}
+**NFS multi-tenancy and this deployment mode are mutually exclusive.** Running NFS through the WEKA Operator and enabling NFS multi-tenancy cannot be combined on the same cluster:
+
+* Enabling NFS multi-tenancy fails while the Kubernetes NFS deployment mode is in use.
+* The Kubernetes NFS deployment mode cannot be configured on a cluster that already has NFS multi-tenancy enabled.
+
+This is a cluster-wide constraint, not a per-tenant restriction — the deployment mode is unavailable to the root organization as well.
+
+Kubernetes workloads that mount NFS exports as ordinary clients are unaffected. The constraint applies only to running the NFS service itself under the Operator. See [manage-nfs-for-tenants.md](../../operation-guide/weka-native-multi-tenancy-management/manage-nfs-for-tenants.md "mention").
+{% endhint %}
+
 ### SMB-W protocol architecture
 
 The SMB-W data path routes file requests through floating IPs, SMB-W frontend containers, Active Directory integration, and the WEKA backend:
