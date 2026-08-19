@@ -106,7 +106,7 @@ A network space that serves NFS for a tenant supports a maximum of **8 floating 
 Cluster administrators can update the network boundaries of an existing network space, such as changing the VLAN ID or adjusting the IP address pool. While you can modify networking parameters, the network space name remains fixed.
 
 {% hint style="warning" %}
-A network space cannot be edited while a tenant is attached to it. Detach the tenant first. See [Edit a tenant environment](multi-tenancy-cluster-level-administration.md#edit-a-tenant-environment).
+While a tenant is attached to an interface group, the network space's **VLAN and netmask cannot be changed**. Renaming the space and updating its IP ranges are still allowed. To change the VLAN or netmask, first remove the tenant from the interface group. See [manage-nfs-for-tenants.md](manage-nfs-for-tenants.md "mention").
 {% endhint %}
 
 #### **GUI procedure**
@@ -156,7 +156,7 @@ TBD \[Confirm `--fip-range` is accepted on both `weka cluster network-space add`
 Removing a network space permanently deletes its configuration from the cluster. Before proceeding, ensure that the network space is no longer assigned to any active tenants.
 
 {% hint style="warning" %}
-A network space cannot be removed while a tenant is attached to it. Detach the tenant first.
+A network space cannot be removed while its floating IP range is in use through an interface group. Remove the tenant from the interface group first.
 {% endhint %}
 
 #### **GUI procedure**
@@ -397,7 +397,9 @@ weka tenant set-qos <tenant> [--max-throughput max-throughput]
 
 TBD \[This section requires tenant administrator privileges but sits on the cluster-level page. Should it move to Multi-tenancy tenant-level administration, or is it here because a cluster admin performs it during provisioning? Left in place pending a decision.]
 
-As a tenant administrator, you can configure dedicated S3 settings for a specific tenant. This includes defining a default filesystem for buckets created through the S3 API and assigning an anonymous POSIX User ID (UID) and Group ID (GID) for anonymous or public S3 access.
+A cluster administrator configures a tenant's S3 settings during provisioning. A tenant administrator can adjust these settings for their own tenant afterwards.
+
+You can configure dedicated S3 settings for a specific tenant. This includes defining a default filesystem for buckets created through the S3 API and assigning an anonymous POSIX User ID (UID) and Group ID (GID) for anonymous or public S3 access.
 
 **Before you begin**
 

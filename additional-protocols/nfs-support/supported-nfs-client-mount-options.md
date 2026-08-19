@@ -29,7 +29,7 @@ For enhanced performance and stability, include the following parameters in addi
 
 * **Specifying NFS Client Version:** Always explicitly define the NFS client version (`vers=3` or `vers=4`) to prevent unexpected protocol negotiation during server configuration changes.
 * **Resiliency to network interruptions:** Use the `hard` option to ensure the client retries operations during temporary network interruptions, maintaining data integrity and operation continuity.
-* **Improving NFS performance:** Consider setting the `nconnect` parameter to a value greater than `1` to optimize NFS performance by enabling multiple TCP connections. TBD ["For the latest WEKA versions" was removed as unactionable - a reader cannot tell which versions qualify. Confirm the minimum version that supports nconnect > 1 so it can be stated, or confirm it applies to all supported versions.]
+* **Improving NFS performance:** Set the `nconnect` parameter to a value greater than `1` to open multiple TCP connections per mount. Supported for NFSv3, NFSv4.0, and NFSv4.1 on any supported WEKA version, and requires a Linux client kernel 5.3 or later. The maximum is `nconnect=16`, which is the Linux client's own limit. The practical ceiling is the per-server connection limit, which the cluster sizes automatically — see `max-client-connections` in [nfs-support-1.md](nfs-support-1.md "mention").
 * **Default NFS client options:** Beyond the parameters listed above, the default options negotiated by the NFS client at mount time are suitable for most use cases. For advanced configurations or additional NFS client options, refer to the documentation provided by your operating system.
 
 ## Mounting a tenant export

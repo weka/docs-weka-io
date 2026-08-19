@@ -40,11 +40,21 @@ Two changes affect what a Tenant Admin can do when multi-tenancy is in use.
 
 **Root-organization Tenant Admins keep the Tenant Admin role.** They are no longer escalated to Cluster Admin automatically. This is a loosening rather than a restriction, and it means a root-organization Tenant Admin now has the same scope as any other Tenant Admin.
 
-**Some NFS operations now require the Cluster Admin role.** Five NFS API endpoints were tightened, so calls that previously succeeded with a lower role return HTTP 403. The change takes effect immediately after the upgrade with no deprecation period. The most consequential is a *read* operation that moved from Read Only to Cluster Admin, which can break monitoring scripts that never wrote anything. See [breaking-changes.md](../upgrading-weka-versions/breaking-changes.md "mention").
+**Some NFS operations now require the Cluster Admin role.** Five NFS operations were tightened, so calls that previously succeeded with a lower role return HTTP 403. The change takes effect immediately after the upgrade with no deprecation period. The most consequential is a *read* operation that moved from Read Only to Cluster Admin, which can break monitoring scripts that never wrote anything. See [breaking-changes.md](../upgrading-weka-versions/breaking-changes.md "mention").
+
+**Cluster Admin can perform every Tenant Admin operation.** The roles are a strict hierarchy, so anything documented as a Tenant Admin task is also available to a Cluster Admin.
 
 For what a Tenant Admin can and cannot do with NFS specifically, see [multi-tenancy-tenant-level-administration.md](../weka-native-multi-tenancy-management/multi-tenancy-tenant-level-administration.md "mention").
 
-TBD [The role names on this page are spaced — Cluster Admin, Tenant Admin, Read-only — while the multi-tenancy topics use the API forms ClusterAdmin, TenantAdmin, and the upgrade transition note uses OrgAdmin. Decide one convention: spaced prose names with the API form in code font where an API or CLI is being discussed, or the API form everywhere. Currently a reader moving between these topics sees three spellings for the same role.]
+{% hint style="info" %}
+**Role names in the CLI and API.** The role tokens accepted and returned by the CLI and API are `ClusterAdmin` and `TenantAdmin`. This documentation uses **Cluster Admin** and **Tenant Admin** in prose, and the exact tokens wherever a CLI or API value appears.
+
+`OrgAdmin` is the pre-5.1.2 name for `TenantAdmin`. It is still accepted as an input alias but is not a current role name. It does appear verbatim in one place a reader will encounter — the 403 message raised by the tightened endpoints:
+
+```
+Current user role is "OrgAdmin" but a role of "ClusterAdmin" or above is required to perform this operation
+```
+{% endhint %}
 
 ## Authentication and login process
 

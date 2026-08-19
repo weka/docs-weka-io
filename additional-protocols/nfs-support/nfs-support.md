@@ -47,7 +47,8 @@ To support NFS file-locking, ensure the system meets the prerequisites outlined 
      * **POSIX** (default): Enforces POSIX ACLs, compatible across protocols, but loses NFSv4's finer granularity.
      * **NFSv4**: Enforces NFSv4 ACLs directly, retaining full granularity, but lacks interoperability with other protocols. (The **NFSv4** flavor is experimental and is not recommended to be used in production environments.)
      * **Hybrid**: Combines both POSIX and NFSv4 ACLs to support interoperability. NFS ensures consistency between the two ACL flavors, and if any inconsistency arises, POSIX ACL is used for enforcement.
-   * **Multi-Tenancy:** Enable NFS multi-tenancy so each tenant gets isolated client groups, permissions, and identity domains. Requires an NFS container restart to take effect.
+   * **Multi-Tenancy:** Enable NFS multi-tenancy so each tenant gets isolated client groups, exports, and floating IP addresses. Requires an NFS container restart to take effect. Several NFS features become available only in the root organization once this is on — see [manage-nfs-for-tenants.md](../../operation-guide/weka-native-multi-tenancy-management/manage-nfs-for-tenants.md "mention").\
+     This toggle is disabled while LDAP or Kerberos authentication is configured. Reset them first.
    *   **Authentication Type**: Enable the authentication types that can be used when setting the NFS client permissions. Possible values:
 
        * **NONE:** No authentication.
@@ -74,9 +75,17 @@ These ports are only relevant for NFSv3. The default value of 0 indicates using 
 
 5. Select **Submit** to apply the settings.
 
+   If you changed **Multi-Tenancy**, the **Restart NFS Containers** dialog opens. Select **Confirm** to restart the NFS containers and apply the change. The restart temporarily interrupts IO for connected NFS clients.
+
 ## **Configure the NFS cluster level** <a href="#create-interface-groups" id="create-interface-groups"></a>
 
 Configuring the NFS cluster level involves creating an interface group and assigning at least one server with its corresponding port.
+
+{% hint style="info" %}
+When NFS multi-tenancy is enabled, an interface group also serves the floating IP addresses of the tenants assigned to it. Use **Assign Tenant** on the interface group's detail view to assign or move a tenant, and the **Tenant** column on the namespaces table to see and remove existing assignments. See [manage-nfs-for-tenants.md](../../operation-guide/weka-native-multi-tenancy-management/manage-nfs-for-tenants.md "mention").
+{% endhint %}
+
+TBD [Captures needed for the multi-tenancy screens on this page: the Restart NFS Containers dialog, the Assign Tenant dialog on the interface-group detail view, and the namespaces table showing the Tenant column with its per-row Remove action.]
 
 ### Create an interface group <a href="#create-interface-groups" id="create-interface-groups"></a>
 

@@ -36,11 +36,17 @@ NFS multi-tenancy is disabled by default and applies to the whole cluster. Enabl
 
 Enabling fails if any of the following exist in the cluster:
 
-* Kubernetes NFS integration is enabled cluster-wide.
+* The Kubernetes NFS deployment mode is in use. Multi-tenancy and that deployment mode are mutually exclusive.
 * An NFS export on a tenant filesystem uses `manage_gids`.
 * A client group belonging to a tenant has a name-based (DNS) rule.
 
-Resolve these first. The three conditions are unrelated to each other, and the error names only the one it encountered.
+Resolve these first. The error lists every conflicting feature type at once, so a single attempt tells you everything you need to fix:
+
+```
+Cannot enable NFS multi-tenant; the following unsupported features are configured: <list>. Remove them first, then retry
+```
+
+In the GUI only, one further condition applies: the **Multi-Tenancy** toggle is disabled while LDAP or Kerberos authentication is configured, with the tooltip *"Multi-tenancy cannot be enabled while LDAP or Kerberos authentication is configured. Reset them first."* The CLI has no such restriction — with the CLI, Kerberos and LDAP simply become root-organization only once multi-tenancy is enabled.
 
 {% hint style="warning" %}
 Enabling or disabling NFS multi-tenancy requires an NFS container restart to take effect. Plan the change for a maintenance window.
@@ -52,13 +58,15 @@ Enabling or disabling NFS multi-tenancy requires an NFS container restart to tak
 2. Select **NFS**, then open the **Settings** tab.
 3. In the **Global settings** section, select **Update**.
 4. Set **Multi-Tenancy** to on.
-5. Select **Submit**, then restart the NFS containers.
+5. Select **Submit**, then select **Confirm** in the **Restart NFS Containers** dialog. The restart temporarily interrupts IO for connected NFS clients.
 
 #### CLI alternative
 
 ```bash
 weka nfs global-config set --enable-multi-tenant on
 ```
+
+The CLI does not restart the containers. On success it prints `Restart of NFS-W containers needed to apply changes.` — restarting is a separate step.
 
 To confirm the current state:
 
@@ -67,33 +75,45 @@ weka nfs global-config show
 ```
 
 {% hint style="info" %}
-Mutating NFS commands wait for the configuration to propagate to every NFS server before returning. This typically takes about 55 seconds and can take up to 120 seconds. A command that appears to hang is usually waiting for propagation.
+Mutating NFS commands wait for the configuration to propagate to every NFS server before returning — normally a few seconds, bounded by a 55-second timeout. If the timeout expires, the command fails with an error naming the servers that did not confirm.
 {% endhint %}
 
 ## Assign a tenant to an interface group
 
-An interface group owns a set of floating IP addresses. Assigning a tenant to an interface group allocates floating IPs from that group's network space to the tenant, which is what makes the tenant's exports reachable.
+A tenant's floating IP addresses are defined in the tenant's own network space, through `--fip-range`. Assigning the tenant to an interface group causes those floating IPs to be **served by that interface group's servers**, which is what makes the tenant's exports reachable.
 
 #### Before you begin
 
 * The tenant must already exist and have at least one network space assigned. See [Create a tenant environment](multi-tenancy-cluster-level-administration.md#create-a-tenant-environment).
-* The network space must define a floating IP range through `--fip-range`. TBD [Is `--fip-range` available on `weka cluster network-space add`, on `update`, or on both? The prerequisite assumes it can be set at creation.]
+* The tenant's network space must define a floating IP range through `--fip-range`, which is accepted on both `weka cluster network-space add` and `update`.
 * A tenant network space supports a maximum of **8 floating IP addresses**.
 
 {% hint style="info" %}
 The root organization is never assigned to an interface group. It uses the interface group's floating IPs directly. Only tenants require an explicit assignment.
 {% endhint %}
 
-#### CLI procedure
+#### **GUI procedure**
 
-TBD [Do GUI screens exist for tenant-to-interface-group assignment and for the Tenants column? This section is CLI-only because no captures were available. If the screens exist, this section needs a GUI procedure to match the rest of the multi-tenancy topics.]
+1. From the menu, select **Manage > Protocols**.
+2. Select **NFS**, then open the **Configuration** tab.
+3. Select the target interface group to open its detail view.
+4. Select **Assign Tenant**, and select the tenant.
 
-TBD [Confirm the argument order for `weka nfs interface-group tenant add|move|delete`. Documented here as `<interface-group> <tenant>`; the review supplied the verbs but not the signature.]
+   The same dialog also moves a tenant: a tenant already assigned to another interface group is moved to this one.
+5. Select **Save**.
 
-List the tenants currently assigned to interface groups:
+To remove a tenant, open the interface group's namespaces table and select **Remove** on the tenant's row.
+
+The **Tenant** column on that table shows which tenant each namespace serves.
+
+TBD [Captures needed: the Assign Tenant dialog, and the namespaces table showing the Tenant column with its per-row Remove action.]
+
+#### CLI alternative
+
+List the tenants currently assigned to interface groups. This is the bare parent command — there is no `list` subcommand:
 
 ```bash
-weka nfs interface-group tenant list
+weka nfs interface-group tenant
 ```
 
 Assign a tenant to an interface group:
@@ -120,11 +140,11 @@ weka nfs interface-group tenant delete <interface-group> <tenant>
 ```
 {% endcode %}
 
-{% hint style="warning" %}
-This command uses `delete`. Most other NFS subcommands were renamed from `delete` to `remove` in this version, and there are no aliases. `weka nfs interface-group tenant delete` is the exception.
-{% endhint %}
+All three verbs take the same two positional arguments, interface group first and tenant second.
 
-The interface group listing gains a **Tenants** column showing which tenants each group serves.
+{% hint style="warning" %}
+This command uses `delete`. Six other NFS subcommands were renamed from `delete` to `remove` in this version, with no aliases. `weka nfs interface-group tenant delete` is the exception. See [breaking-changes.md](../upgrading-weka-versions/breaking-changes.md "mention").
+{% endhint %}
 
 ## Inspect tenant network space assignment
 
@@ -134,9 +154,7 @@ Each tenant network space is hosted on a specific server. Use this command to se
 weka nfs interface-group ns-assignment
 ```
 
-{% hint style="info" %}
-During a floating IP takeover, a 30-second grace window suppresses transient duplicate-address detection, so `ArpServerDuplicateIPDetected` does not fire for the brief period when two servers can both answer for the address.
-{% endhint %}
+For the failover behavior that moves a tenant's floating IPs between servers, see [Scalability, load balancing, and resiliency](../../additional-protocols/nfs-support/README.md#scalability-load-balancing-and-resiliency).
 
 ## Feature availability: root organization and tenants
 
@@ -148,11 +166,12 @@ Several NFS features remain available only in the root organization while NFS mu
 | LDAP for NFS group resolution | Yes | No |
 | Manage GIDs | Yes | No |
 | Name-based (DNS) client rules | Yes | No — use IP-based rules |
-| Kubernetes NFS integration | Yes | No |
 | ACLs | Yes | No |
 | NFSv3 file locking (NLM) | Yes | No — NFSv4.1 locking is available |
 
-TBD [Is `NFSv3 lock service ports` reachable by a user action, or only through internal port registration? If it is internal only, this table lists six root-organization-only features rather than seven, and the row above covers it.]
+{% hint style="info" %}
+NFS multi-tenancy cannot be enabled on clusters running the Kubernetes NFS deployment mode; the two are mutually exclusive. This is a cluster-wide constraint rather than a tenant restriction — the deployment mode is not available to the root organization under multi-tenancy either. Kubernetes workloads that mount NFS exports as clients are unaffected.
+{% endhint %}
 
 {% hint style="warning" %}
 **Two different LDAP configurations exist, and only one of them is available to a tenant.**
@@ -179,6 +198,10 @@ Tenants have lower NFS object limits than the root organization.
 | Client group rules | 200 | 16 |
 | Exports (permissions) | 1024 | 64 |
 | Floating IPs per network space | — | 8 |
+
+Each limit is enforced per organization at creation time. A cluster supports up to **255 network spaces**, and a single tenant can own more than one, so there is no per-tenant network space quota.
+
+The root organization's 200 floating IP addresses come from the interface group's own address pool. Tenant floating IPs are allocated from their network spaces and do not count against it.
 
 {% hint style="info" %}
 The rule limit is counted across the whole organization, not per client group. A tenant with 8 client groups has 16 rules to distribute among them.

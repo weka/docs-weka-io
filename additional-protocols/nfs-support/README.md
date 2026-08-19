@@ -19,7 +19,7 @@ Adhere to the following guidelines and requirements when deploying the NFS servi
 
 ### **Configuration filesystem**
 
-A persistent cluster-wide configuration filesystem is required for the protocol's internal operations using NFSv4 or Kerberos integration. See [#dedicated-filesystem-for-persistent-protocol-configurations-requirement](../additional-protocols-overview.md#dedicated-filesystem-for-persistent-protocol-configurations-requirement "mention").
+A persistent cluster-wide configuration filesystem is required for the protocol's internal operations using NFSv4 or Kerberos integration. See [#dedicated-filesystem-requirement-for-cluster-wide-persistent-protocol-configurations](../additional-protocols-overview.md#dedicated-filesystem-requirement-for-cluster-wide-persistent-protocol-configurations "mention").
 
 ### **Interface groups**
 
@@ -162,6 +162,10 @@ When different clients resolve the DNS name into an IP service, each receives a 
 
 To ensure service resilience, if a server fails, the system reassigns all IP addresses associated with the failed server to other servers using GARP[^2] network messages. The clients then reconnect to the new servers without any reconfiguration or service interruption.
 
+{% hint style="info" %}
+During a floating IP takeover, two servers can briefly answer for the same address. A 30-second grace window suppresses duplicate-address detection for that period, so `ArpServerDuplicateIPDetected` is not raised for a normal failover. The event still fires for a genuine address conflict.
+{% endhint %}
+
 ## NFS file-locking support
 
 NFS byte-range [advisory locking](#user-content-fn-3)[^3] is supported for NFS versions 3, 4, and 4.1. This mechanism ensures synchronized access to files in a networked environment by allowing multiple processes to coordinate access to shared files. It helps maintain data integrity and consistency by preventing concurrent modifications that could lead to data corruption. The implementation is interoperable with POSIX byte-range advisory locks, enabling compatibility and coordination between NFS clients and the filesystem.
@@ -191,21 +195,7 @@ NFS byte-range [advisory locking](#user-content-fn-3)[^3] is supported for NFS v
 
 #### View file locks
 
-To inspect the active locks on a specific file, use the following command:
-
-```bash
-weka debug flock list <inode-id>
-                      [--snap-view-id snap-view-id]
-                      [--verbose]
-```
-
-* `<inode-id>`: The unique identifier of the file’s inode.
-* `--snap-view-id snap-view-id`: (Optional) Specifies the snapshot view ID for listing locks on a file within a particular snapshot.
-* `--verbose`: (Optional) Provides detailed lock information, including the lock owner and type.
-
-This command outputs a list of all current locks on the specified file, enabling administrators to monitor and manage file access effectively.
-
-TBD [Is there a supported, non-`weka debug` command for inspecting active file locks? `weka debug` commands are internal, and this is the only way the documentation offers customers to view locks.]
+Inspecting active file locks is not exposed as a supported operation. If you need to identify which client holds a lock on a file, contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md).
 
 ## NFS service deployment high-level workflow
 
