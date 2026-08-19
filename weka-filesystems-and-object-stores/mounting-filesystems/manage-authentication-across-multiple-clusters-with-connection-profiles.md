@@ -1,8 +1,7 @@
 ---
 description: >-
-  Learn how to manage authentication across multiple clusters in the WEKA CLI
-  using connection profiles, enabling seamless switching between clusters
-  without re-authentication.
+  Use CLI connection profiles to switch between WEKA clusters without repeated
+  authentication.
 ---
 
 # Manage authentication across multiple clusters with connection profiles

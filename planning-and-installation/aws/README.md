@@ -1,7 +1,7 @@
 ---
 description: >-
-  This section provides detailed instructions on installing a WEKA system on
-  AWS.
+  Deploy WEKA on AWS with Terraform. For system engineers familiar with AWS and
+  Terraform.
 ---
 
 # WEKA installation on AWS

@@ -1,17 +1,8 @@
 ---
-description: This page describes how to manage snapshots using the GUI.
+description: View, create, duplicate, restore, update, and delete snapshots from the GUI.
 ---
 
 # Manage snapshots using the GUI
-
-Using the GUI, you can:
-
-* [View snapshots](snapshots.md#view-snapshots)
-* [Create a snapshot](snapshots.md#create-a-snapshot)
-* [Duplicate a snapshot](snapshots.md#duplicate-a-snapshot)
-* [Delete a snapshot](snapshots.md#delete-a-snapshot)
-* [Restore a snapshot to a filesystem or another snapshot](snapshots.md#restore-a-snapshot)
-* [Update a snapshot](snapshots.md#update-a-snapshot)
 
 ## View snapshots
 
@@ -20,15 +11,15 @@ Using the GUI, you can:
 1. To display all snapshots, select **Manage > Snapshots** from the menu.\
    The Snapshots page opens.
 
-<div data-with-frame="true"><img src="../../.gitbook/assets/wmng_view_snapshots.png" alt="View all snapshots"></div>
+<div data-with-frame="true"><img src="../../.gitbook/assets/view_snapshots.png" alt="View all snapshots"></div>
 
 2\. To display a snapshot of a selected filesystem, do one of the following:
 
 * Select the Filesystem filter. Then, select the filesystem from the list.
 * From the menu, select **Manage > Filesystems**.\
-  From the filesystem, select the three dots, and from the menu, select **Go To Snapshot**.
+  From the filesystem, select the three dots, and from the menu, select **Go To Snapshots**.
 
-<div data-with-frame="true"><img src="../../.gitbook/assets/wmng_fs_go_to_snapshot_animated.gif" alt="View a snapshot of a specific filesystem"></div>
+<div data-with-frame="true"><img src="../../.gitbook/assets/view_snapshot_by_fs.gif" alt="View a snapshot of a specific filesystem"></div>
 
 ## Create a snapshot
 
@@ -41,22 +32,31 @@ Create a directory for filesystem-level snapshots that serves as the access poin
 **Procedure:**
 
 1. Do one of the following:
-   * From the menu, select **Manage > Snapshots**. From the Snapshots page, select **+Create**.\
+   * From the menu, select **Manage > Snapshots**. From the Snapshots page, select **Create Snapshot**.\
      The Create Snapshot dialog opens.
    * From the menu, select **Manage > Filesystems**. From the Filesystems page, select the three dots, and from the menu, select **Create Snapshot** (the source filesystem is automatically set).
 
-<div data-with-frame="true"><img src="../../.gitbook/assets/wmng_create_snapshot_animated.gif" alt="Create a snapshot from the Snapshots page"></div>
+{% tabs %}
+{% tab title="Snapshots page" %}
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/create_snapshot_from_snap_page.png" alt="Create a snapshot from the Snapshots page"><figcaption><p>Create a snapshot from the Snapshots page</p></figcaption></figure></div>
+{% endtab %}
 
-<div data-with-frame="true"><img src="../../.gitbook/assets/wmng_create_snap_from_fs.png" alt="Filesystems menu: Create a snapshot directly from a filesystem"></div>
+{% tab title="Filesystems page" %}
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/create_snapshot_from_fs.png" alt="Create a snapshot from the Filesystem page"><figcaption><p>Create a snapshot from the Filesystem page</p></figcaption></figure></div>
+{% endtab %}
+{% endtabs %}
 
-3. On the Create Snapshot dialog set the following properties:
+2. On the Create Snapshot dialog set the following properties:
    * **Name**: A unique name for the filesystem snapshot.
    * **Access Point**: A name of the newly-created directory for filesystem-level snapshots that serves as the snapshot's access point. If you do not specify the access point, the system sets it automatically (in GMT format).
    * **Writable**: Determines whether to set the snapshot to be writable.
    * **Source Filesystem**: The source filesystem from which to create the snapshot.
    * **Upload to local object store**: Determines whether to upload the snapshot to a local object store. You can also upload the snapshot later (see [Snap-To-Object](../snap-to-obj/)).
    * **Upload to remote object store**: Determines whether to upload the snapshot to a remote object store. You can also upload the snapshot later.
-4. Select **Create**.
+
+<div data-with-frame="true"><img src="../../.gitbook/assets/create_snapshot.png" alt="Create a snapshot from the Snapshots page"></div>
+
+3. Select **Create**.
 
 ## Duplicate a snapshot
 
@@ -67,13 +67,13 @@ You can duplicate a snapshot (clone), which enables creating a writable snapshot
 1. From the menu, select **Manage > Snapshots**.
 2. From the Snapshots page, select the three dots of the snapshot you want to duplicate, and from the menu, select **Duplicate Snapshot**.
 
-<div data-with-frame="true"><img src="../../.gitbook/assets/wmng_duplicate_snapshot.png" alt="Snapshots menu: Duplicate Snapshot"></div>
+<div data-with-frame="true"><img src="../../.gitbook/assets/duplicate_snapshot.png" alt="Snapshots menu: Duplicate Snapshot"></div>
 
 3. In the Duplicate Snapshot dialog, set the properties like you create a snapshot.\
    The source filesystem and source snapshot are already set.
 4. Select **Duplicate**.
 
-<div data-with-frame="true"><img src="../../.gitbook/assets/wmng_duplicate_snapshot_dialog.png" alt="Duplicate Snapshot dialog" width="301"></div>
+<div data-with-frame="true"><img src="../../.gitbook/assets/duplicate_snapshot_dialog.png" alt="Duplicate Snapshot dialog"></div>
 
 ## Delete a snapshot
 
@@ -86,9 +86,7 @@ When deleting a snapshot, consider the following guidelines:
 
 1. From the menu, select **Manage > Snapshots**.
 2. From the Snapshots page, select the three dots of the snapshot you want to delete, and from the menu, select **Remove**.
-3. In the Deletion Of Snapshot message, select **Yes** to delete the snapshot.
-
-<div data-with-frame="true"><img src="../../.gitbook/assets/wmng_remove_snapshot.png" alt="Remove a snapshot"></div>
+3. In the Deletion Of Snapshot message, select **Confirm** to delete the snapshot.
 
 ## Restore a snapshot to a filesystem or another snapshot <a href="#restore-a-snapshot" id="restore-a-snapshot"></a>
 
@@ -103,9 +101,9 @@ If you restore the snapshot to a filesystem, make sure to stop the IO services o
 1. From the menu, select **Manage > Snapshots**.
 2. From the Snapshots page, select the three dots of the snapshot you want to restore, and from the menu, select **Restore To**.
 3. In the Restore To dialog, select the destination: **Filesystem** or **Snapshot**.
-4. Select **Save**.
+4. Select **Submit**.
 
-<div data-with-frame="true"><img src="../../.gitbook/assets/wmng_restore_snapshot.png" alt="Restore a snapshot to a filesystem"></div>
+<div data-with-frame="true"><img src="../../.gitbook/assets/restore_snapshot.png" alt="Restore a snapshot to a filesystem"></div>
 
 ## Update a snapshot
 
@@ -118,4 +116,4 @@ You can update the snapshot name and access point properties.
 3. Modify the **Name** and **Access Point** properties as required.
 4. Select **Save**.
 
-<div data-with-frame="true"><img src="../../.gitbook/assets/wmng_edit_snapshot.png" alt="Edit snapshot properties"></div>
+<div data-with-frame="true"><img src="../../.gitbook/assets/edit_snapshot.png" alt="Edit snapshot properties"></div>

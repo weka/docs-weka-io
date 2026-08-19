@@ -1,7 +1,7 @@
 ---
 description: >-
-  This section aims at a system engineer familiar with the Azure fundamentals
-  and experienced in using Terraform to deploy a system on Azure.
+  Deploy WEKA on Azure with Terraform. For system engineers familiar with Azure
+  and Terraform.
 ---
 
 # WEKA installation on Azure

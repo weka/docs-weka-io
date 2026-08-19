@@ -1,18 +1,10 @@
 ---
-description: This page describes how to manage snapshots using the CLI.
+description: >-
+  Create, restore, update, remove, and inspect filesystem snapshots from the
+  CLI.
 ---
 
 # Manage snapshots using the CLI
-
-Using the CLI, you can:
-
-* [#add-a-snapshot](snapshots-1.md#add-a-snapshot "mention")
-* [#remove-a-snapshot](snapshots-1.md#remove-a-snapshot "mention")
-* [#restore-a-snapshot-to-a-filesystem-or-another-snapshot](snapshots-1.md#restore-a-snapshot-to-a-filesystem-or-another-snapshot "mention")
-* [#update-a-snapshot](snapshots-1.md#update-a-snapshot "mention")
-* [#access-the-.snapshots-directory](snapshots-1.md#access-the-.snapshots-directory "mention")
-* [#retrieve-snapshot-details](snapshots-1.md#retrieve-snapshot-details "mention")
-* [#set-up-snapshot-replication-between-clusters](snapshots-1.md#set-up-snapshot-replication-between-clusters "mention")
 
 ## Add a snapshot
 
@@ -29,13 +21,7 @@ See [#access-the-.snapshots-directory](snapshots-1.md#access-the-.snapshots-dire
 
 **Parameters**
 
-| Name | Value |
-| --- | --- |
-| `file-system`* | Filesystem on which to create the snapshot. |
-| `name`* | Name to assign to the new snapshot. |
-| `access-point` | Directory name to use as the snapshot access point.Default: Controlled by `weka fs snapshot access-point-naming-convention update &#x3C;date/name>`. By default, the system uses the date format `@GMT_%Y.%m.%d-%H.%M.%S`, which is compatible with [Windows previous versions for SMB](../../additional-protocols/smb-support/#windows-previous-versions). |
-| `source-snap` | Existing snapshot to use as the source for the new snapshot.Default: The latest snapshot of the specified filesystem. |
-| `is-writable` | Create the snapshot as writable.Default: `false` |
+<table><thead><tr><th width="204.7890625">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>file-system</code>*</td><td>Filesystem on which to create the snapshot.</td></tr><tr><td><code>name</code>*</td><td>Name to assign to the new snapshot.</td></tr><tr><td><code>access-point</code></td><td>Directory name to use as the snapshot access point.Default: Controlled by <code>weka fs snapshot access-point-naming-convention update &#x26;#x3C;date/name></code>. By default, the system uses the date format <code>@GMT_%Y.%m.%d-%H.%M.%S</code>, which is compatible with <a href="../../additional-protocols/smb-support/#windows-previous-versions">Windows previous versions for SMB</a>.</td></tr><tr><td><code>source-snap</code></td><td>Existing snapshot to use as the source for the new snapshot.Default: The latest snapshot of the specified filesystem.</td></tr><tr><td><code>is-writable</code></td><td>Create the snapshot as writable.Default: <code>false</code></td></tr></tbody></table>
 
 ## Remove a snapshot
 
@@ -47,10 +33,10 @@ Use the following command line to remove a snapshot:
 
 **Parameters**
 
-| Name | Value |
-| --- | --- |
-| `file-system`* | A valid filesystem identifier |
-| `name`* | Unique name for filesystem snapshot |
+| Name            | Value                               |
+| --------------- | ----------------------------------- |
+| `file-system`\* | A valid filesystem identifier       |
+| `name`\*        | Unique name for filesystem snapshot |
 
 {% hint style="warning" %}
 A snapshot deletion cannot happen parallel to a snapshot upload to the same filesystem. Since uploading a snapshot to a remote object store might take a while, it is advisable to delete the desired snapshots before uploading to the remote object store.
@@ -72,12 +58,12 @@ Use the following command line to restore a snapshot to another snapshot:
 
 **Parameters**
 
-| Name | Value |
-| --- | --- |
-| `file-system`* | Filesystem that contains the source snapshot, or the filesystem to restore. |
-| `source-name`* | Name of the snapshot to restore from or copy from. |
-| `destination-name`* | Name of the destination snapshot when using `weka fs snapshot copy`. |
-| `preserved-overwritten-snapshot-name` | Name to assign to the overwritten snapshot or live filesystem so it is preserved during the restore.If not specified, the system overwrites the target directly, and active IO to an existing filesystem can fail. |
+| Name                                          | Value                                                                                                                                                                                                                                                                          |
+| --------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `file-system`\*                               | Filesystem that contains the source snapshot, or the filesystem to restore.                                                                                                                                                                                                    |
+| `source-name`\*                               | Name of the snapshot to restore from or copy from.                                                                                                                                                                                                                             |
+| `destination-name`\*                          | Name of the destination snapshot when using `weka fs snapshot copy`.                                                                                                                                                                                                           |
+| `preserved-overwritten-snapshot-name`         | Name to assign to the overwritten snapshot or live filesystem so it is preserved during the restore.If not specified, the system overwrites the target directly, and active IO to an existing filesystem can fail.                                                             |
 | `preserved-overwritten-snapshot-access-point` | Directory name that serves as the access point for the preserved overwritten snapshot.Default: If `preserved-overwritten-snapshot-name` is specified and `preserved-overwritten-snapshot-access-point` is not, the system creates it automatically based on the snapshot name. |
 
 {% hint style="warning" %}
@@ -94,12 +80,7 @@ This command changes the snapshot attributes. Use the following command line to 
 
 **Parameters**
 
-| Name | Value |
-| --- | --- |
-| `file-system`* | Filesystem that contains the snapshot to update. |
-| `name`* | Current name of the snapshot to update. |
-| `new-name` | New name to assign to the snapshot. |
-| `access-point` | Directory name to use as the snapshot access point. |
+<table><thead><tr><th width="211.1171875">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>file-system</code>*</td><td>Filesystem that contains the snapshot to update.</td></tr><tr><td><code>name</code>*</td><td>Current name of the snapshot to update.</td></tr><tr><td><code>new-name</code></td><td>New name to assign to the snapshot.</td></tr><tr><td><code>access-point</code></td><td>Directory name to use as the snapshot access point.</td></tr></tbody></table>
 
 ## Access the `.snapshots` directory
 
@@ -138,11 +119,7 @@ weka fs snapshot [--file-system file-system] [--name name] [--output output]...
 ```
 {% endcode %}
 
-| Parameter | Description |
-| --- | --- |
-| `--file-system` | Filter the output by filesystem name. |
-| `--name` | Filter the output by snapshot name. |
-| `-o`, `--output`... | Select the columns to display. Supported values are `uid`, `id`, `filesystem`, `name`, `access`, `writeable`, `created`, `local_upload_size`, `remote_upload_size`, `local_object_status`, `local_object_progress`, `local_object_locator`, `remote_object_status`, `remote_object_progress`, `remote_object_locator`, `removing`, `prefetched`, `est_reclaimable_size`, and `metadata_size`.Repeat the option or use a comma-separated list. |
+<table><thead><tr><th width="212.421875">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>--file-system</code></td><td>Filter the output by filesystem name.</td></tr><tr><td><code>--name</code></td><td>Filter the output by snapshot name.</td></tr><tr><td><code>-o</code>, <code>--output</code>...</td><td>Select the columns to display. Supported values are <code>uid</code>, <code>id</code>, <code>filesystem</code>, <code>name</code>, <code>access</code>, <code>writeable</code>, <code>created</code>, <code>local_upload_size</code>, <code>remote_upload_size</code>, <code>local_object_status</code>, <code>local_object_progress</code>, <code>local_object_locator</code>, <code>remote_object_status</code>, <code>remote_object_progress</code>, <code>remote_object_locator</code>, <code>removing</code>, <code>prefetched</code>, <code>est_reclaimable_size</code>, and <code>metadata_size</code>.Repeat the option or use a comma-separated list.</td></tr></tbody></table>
 
 ## Set up snapshot replication between clusters
 

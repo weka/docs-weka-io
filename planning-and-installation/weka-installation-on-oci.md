@@ -1,7 +1,7 @@
 ---
 description: >-
-  WEKA Data Platform deployment on Oracle Cloud Infrastructure (OCI) follows
-  bare-metal installation with cloud-specific considerations.
+  Deploy WEKA on OCI bare-metal infrastructure with OCI-specific networking and
+  configuration requirements.
 ---
 
 # WEKA installation on OCI

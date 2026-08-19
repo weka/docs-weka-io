@@ -1,17 +1,22 @@
+---
+description: View, pause, resume, abort, and monitor background tasks in the GUI.
+---
+
 # Manage background tasks using the GUI
 
-The GUI includes a **Background Tasks** page that displays both active and pending tasks, along with details such as their duration since initiation, state, phase, and progress percentage.
+Monitor active and pending background tasks from the GUI. Review each task's duration, state, phase, and progress.
 
-If other tasks have higher priority, you can pause and resume tasks as needed.
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/background_tasks.png" alt=""><figcaption><p>Background Tasks</p></figcaption></figure></div>
 
-The **Abort** action is available for specific tasks, such as checking metadata integrity. However, it is not applicable to tasks like downloading a filesystem or snapshot, squashing a filesystem, or detaching object storage. To terminate these tasks, delete the associated entity.
+**Procedure**
 
-<div data-with-frame="true"><figure><img src="../../.gitbook/assets/wmng_bkg_tasks.gif" alt=""><figcaption><p>Background Tasks</p></figcaption></figure></div>
+1. Select **Monitor** > **Background Tasks**.
+2. Review active tasks and their status details.
+3. Select **Pause** to pause a task. The button changes to **Resume**.
+4. Select **Resume** to continue a paused task.
+5. Select **Abort** to stop a supported task.
+6. Enable **Show Waiting Tasks** to view pending tasks.
 
-**Procedure:**
-
-1. From the **Monitor** tab, select **Background Tasks**.
-2. To pause a task, select **Pause** (the button will toggle to **Resume**).
-3. To resume a paused task, select **Resume**.
-4. To abort a task, select **Abort**.
-5. To view waiting tasks (pending), toggle the **Show Waiting Tasks** switch.
+{% hint style="warning" %}
+**Abort** supports selected tasks, including metadata integrity checks. It does not stop filesystem or snapshot downloads, filesystem squashing, or object-storage detachment. Delete the associated entity to stop those tasks.
+{% endhint %}

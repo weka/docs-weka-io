@@ -1,7 +1,7 @@
 ---
 description: >-
-  This page describes how to attach or detach object stores buckets to or from
-  filesystems.
+  Attach or detach local and remote object store buckets for tiering, migration,
+  and backup.
 ---
 
 # Attach or detach object store buckets
