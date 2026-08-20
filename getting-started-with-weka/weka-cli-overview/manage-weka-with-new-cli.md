@@ -14,7 +14,9 @@ Starting with WEKA 6.0.0, wekactl is the default CLI, and the `weka` command on 
 * To manage clusters from a workstation that is not a cluster server, install the standalone binary. See [Install wekactl on a workstation](manage-weka-with-new-cli.md#install-wekactl-on-a-workstation).
 * To install a WEKA version using the CLI, a get.weka.io token is required.
 
-> **INTERNAL, remove before publication. TBD (Engineering):** Confirm the minimum cluster version a standalone wekactl can manage (see the version independence item in the concept topic).
+{% hint style="danger" %}
+**INTERNAL, remove before publication. TBD (Engineering):** Confirm the minimum cluster version a standalone wekactl can manage (see the version independence item in the concept topic).
+{% endhint %}
 
 ## Access wekactl on a cluster server
 
@@ -32,19 +34,18 @@ To revert to the legacy CLI temporarily, set the following environment variable:
 export WEKA_CLI_LEGACY=1
 ```
 
-The legacy CLI is a migration aid only. It receives no new features and is planned for removal in a future release. For details on behavior differences that affect existing scripts, see [Migrate from the legacy weka CLI to wekactl](manage-weka-with-new-cli.md#).
+The legacy CLI is a migration aid only. It receives no new features and is planned for removal in a future release. For details on behavior differences that affect existing scripts, see [Migrate from the legacy weka CLI to wekactl](manage-weka-with-new-cli.md).
 
-> **INTERNAL, remove before publication. TBD (Engineering, blocking):** Confirm the exact variable name against a shipping build. The Slack discussion used both `WEKA_CLI_LEGACY=1` and `WEKACTL_CLI_LEGACY=1`, and the variable does not appear in the migration guide draft. Also confirm scope: does the variable affect only the invoking shell session, and does it apply per-command or persistently?
+{% hint style="danger" %}
+**INTERNAL, remove before publication. TBD (Engineering, blocking):** Confirm the exact variable name against a shipping build. The Slack discussion used both `WEKA_CLI_LEGACY=1` and `WEKACTL_CLI_LEGACY=1`, and the variable does not appear in the migration guide draft. Also confirm scope: does the variable affect only the invoking shell session, and does it apply per-command or persistently?
+{% endhint %}
 
 ## Install wekactl on a workstation
 
-Binary packages for Linux, macOS, and Windows are available on get.weka.io under the CLI tab:
+1. Go to get.weka.io and open the **CLI** tab.
+2. Select your platform from the left: **RPM**, **DEB**, **macOS**, or **Windows**, then follow the steps shown.
 
-* Linux: `deb` and `rpm` packages, also available through the network package repositories
-* macOS: Homebrew formula
-* Windows: Scoop manifest
-
-The standalone build is version-independent and can manage clusters running earlier WEKA versions.
+Each platform offers a package manager setup and a direct package download. The standalone build is version-independent and can manage clusters running earlier WEKA versions.
 
 To install a specific WEKA version on a server:
 
@@ -52,7 +53,25 @@ To install a specific WEKA version on a server:
 weka version get <version> --set-current
 ```
 
-> **INTERNAL, remove before publication. TBD (PM/Engineering):** Confirm the get.weka.io delivery channels listed above match what ships for 6.0.0 (open item 1 in the migration guide draft).
+{% hint style="danger" %}
+**INTERNAL, remove before publication. TBD (PM/Engineering):** Confirm the get.weka.io delivery channels listed above match what ships for 6.0.0 (open item 1 in the migration guide draft).
+{% endhint %}
+
+## Connect for the first time
+
+Run wekactl with no arguments. With no profile saved, it prompts for a profile name, cluster hostname, port, username, and password, then presents the cluster TLS certificate fingerprint for you to trust. It saves and activates the profile, then opens the interactive shell.
+
+```bash
+wekactl
+```
+
+Verify the SHA256 fingerprint against the cluster before accepting it. Accepting saves the certificate for all WEKA hosts used by this profile.
+
+Type `exit` to leave the shell and run commands directly. To add more clusters, see [Manage profiles](manage-weka-with-new-cli.md#manage-profiles).
+
+{% hint style="danger" %}
+**INTERNAL, remove before publication. TBD (Engineering):** Does the first-run prompt also trigger on a first real command such as `wekactl status`, or only on a bare invocation? On Linux, wekactl can reuse an existing legacy CLI token, so confirm whether the prompt appears there at all.
+{% endhint %}
 
 ## Bootstrap a stateless client
 
@@ -66,31 +85,39 @@ On the first connection, the CLI establishes trust in the cluster TLS certificat
 
 ## Manage profiles
 
-| Operation | Command |
-| --- | --- |
-| Create a profile | `weka profile add &#x3C;profile_name>` |
-| List profiles | `weka profile list` |
-| Show a profile | `weka profile show &#x3C;profile_name>` |
-| Select the active profile | `weka profile select &#x3C;profile_name>` |
-| Update a profile | `weka profile update &#x3C;profile_name>` |
-| Duplicate a profile | `weka profile duplicate &#x3C;profile_name>` |
-| Delete a profile | `weka profile remove &#x3C;profile_name>` |
-| Log out of a profile | `weka profile logout &#x3C;profile_name>` |
-| Delete all profiles | `weka profile purge` |
+| Operation                 | Command                                      |
+| ------------------------- | -------------------------------------------- |
+| Create a profile          | `weka profile add &#x3C;profile_name>`       |
+| List profiles             | `weka profile list`                          |
+| Show a profile            | `weka profile show &#x3C;profile_name>`      |
+| Select the active profile | `weka profile select &#x3C;profile_name>`    |
+| Update a profile          | `weka profile update &#x3C;profile_name>`    |
+| Duplicate a profile       | `weka profile duplicate &#x3C;profile_name>` |
+| Delete a profile          | `weka profile remove &#x3C;profile_name>`    |
+| Log out of a profile      | `weka profile logout &#x3C;profile_name>`    |
+| Delete all profiles       | `weka profile purge`                         |
 
 Profile settings are stored as editable JSON files and can be overridden using environment variables. On Linux, when no custom profile is selected, wekactl reuses an existing token created by the legacy weka CLI.
 
-> **INTERNAL, remove before publication. TBD (Engineering):** Confirm the full profile verb set and the exact syntax of `select`, `update`, `duplicate`, `logout`, and `purge` against a shipping build. The migration guide draft lists these verbs without arguments.
+{% hint style="danger" %}
+**INTERNAL, remove before publication. TBD (Engineering):** Confirm the full profile verb set and the exact syntax of `select`, `update`, `duplicate`, `logout`, and `purge` against a shipping build. The migration guide draft lists these verbs without arguments.
+{% endhint %}
 
 ## Control output format and style
 
-Use the `--output` flag to select a format:
+Each output format has its own flag:
 
 ```bash
-weka <command> --output <format>
+weka <command> --<format>
 ```
 
-Supported formats: `table` (default), `json`, `csv`, `tsv`, `html`, `markdown`. The short forms `-J` (JSON) and `-R` (raw units) are also available.
+<table><thead><tr><th width="228.3046875">Format</th><th>Flag</th></tr></thead><tbody><tr><td>JSON</td><td><code>--json</code> or <code>-J</code></td></tr><tr><td>CSV</td><td><code>--csv</code></td></tr><tr><td>TSV</td><td><code>--tsv</code></td></tr><tr><td>Markdown</td><td><code>--markdown</code></td></tr><tr><td>HTML</td><td><code>--html</code></td></tr></tbody></table>
+
+{% hint style="info" %}
+Output style is separate from format. `--pretty` is the default on a terminal, and `--plain` is the default when output is redirected. Use `--classic` for output compatible with earlier WEKA versions.
+
+To show unscaled values, add `--raw-units` (`-R`) to any of the above. It changes how values are rendered, not the format.
+{% endhint %}
 
 To add, remove, or reorder columns selectively:
 

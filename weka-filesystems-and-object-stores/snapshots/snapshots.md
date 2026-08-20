@@ -11,7 +11,7 @@ description: View, create, duplicate, restore, update, and delete snapshots from
 1. To display all snapshots, select **Manage > Snapshots** from the menu.\
    The Snapshots page opens.
 
-<div data-with-frame="true"><img src="../../.gitbook/assets/view_snapshots.png" alt="View all snapshots"></div>
+<div data-with-frame="true"><img src="../../.gitbook/assets/wmng_view_snapshots.png" alt="View all snapshots"></div>
 
 2\. To display a snapshot of a selected filesystem, do one of the following:
 
@@ -19,7 +19,7 @@ description: View, create, duplicate, restore, update, and delete snapshots from
 * From the menu, select **Manage > Filesystems**.\
   From the filesystem, select the three dots, and from the menu, select **Go To Snapshots**.
 
-<div data-with-frame="true"><img src="../../.gitbook/assets/view_snapshot_by_fs.gif" alt="View a snapshot of a specific filesystem"></div>
+<div data-with-frame="true"><img src="../../.gitbook/assets/wmng_fs_go_to_snapshot_animated.gif" alt="View a snapshot of a specific filesystem"></div>
 
 ## Create a snapshot
 
@@ -42,7 +42,7 @@ Create a directory for filesystem-level snapshots that serves as the access poin
 {% endtab %}
 
 {% tab title="Filesystems page" %}
-<div data-with-frame="true"><figure><img src="../../.gitbook/assets/create_snapshot_from_fs.png" alt="Create a snapshot from the Filesystem page"><figcaption><p>Create a snapshot from the Filesystem page</p></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/wmng_create_snap_from_fs.png" alt="Create a snapshot from the Filesystem page"><figcaption><p>Create a snapshot from the Filesystem page</p></figcaption></figure></div>
 {% endtab %}
 {% endtabs %}
 
@@ -54,7 +54,7 @@ Create a directory for filesystem-level snapshots that serves as the access poin
    * **Upload to local object store**: Determines whether to upload the snapshot to a local object store. You can also upload the snapshot later (see [Snap-To-Object](../snap-to-obj/)).
    * **Upload to remote object store**: Determines whether to upload the snapshot to a remote object store. You can also upload the snapshot later.
 
-<div data-with-frame="true"><img src="../../.gitbook/assets/create_snapshot.png" alt="Create a snapshot from the Snapshots page"></div>
+<div data-with-frame="true"><img src="../../.gitbook/assets/wmng_create_snapshot_animated.gif" alt="Create a snapshot from the Snapshots page"></div>
 
 3. Select **Create**.
 
@@ -67,13 +67,13 @@ You can duplicate a snapshot (clone), which enables creating a writable snapshot
 1. From the menu, select **Manage > Snapshots**.
 2. From the Snapshots page, select the three dots of the snapshot you want to duplicate, and from the menu, select **Duplicate Snapshot**.
 
-<div data-with-frame="true"><img src="../../.gitbook/assets/duplicate_snapshot.png" alt="Snapshots menu: Duplicate Snapshot"></div>
+<div data-with-frame="true"><img src="../../.gitbook/assets/wmng_duplicate_snapshot.png" alt="Snapshots menu: Duplicate Snapshot"></div>
 
 3. In the Duplicate Snapshot dialog, set the properties like you create a snapshot.\
    The source filesystem and source snapshot are already set.
 4. Select **Duplicate**.
 
-<div data-with-frame="true"><img src="../../.gitbook/assets/duplicate_snapshot_dialog.png" alt="Duplicate Snapshot dialog"></div>
+<div data-with-frame="true"><img src="../../.gitbook/assets/wmng_duplicate_snapshot_dialog.png" alt="Duplicate Snapshot dialog"></div>
 
 ## Delete a snapshot
 
@@ -103,7 +103,7 @@ If you restore the snapshot to a filesystem, make sure to stop the IO services o
 3. In the Restore To dialog, select the destination: **Filesystem** or **Snapshot**.
 4. Select **Submit**.
 
-<div data-with-frame="true"><img src="../../.gitbook/assets/restore_snapshot.png" alt="Restore a snapshot to a filesystem"></div>
+<div data-with-frame="true"><img src="../../.gitbook/assets/wmng_restore_snapshot.png" alt="Restore a snapshot to a filesystem"></div>
 
 ## Update a snapshot
 
@@ -116,4 +116,4 @@ You can update the snapshot name and access point properties.
 3. Modify the **Name** and **Access Point** properties as required.
 4. Select **Save**.
 
-<div data-with-frame="true"><img src="../../.gitbook/assets/edit_snapshot.png" alt="Edit snapshot properties"></div>
+<div data-with-frame="true"><img src="../../.gitbook/assets/wmng_edit_snapshot.png" alt="Edit snapshot properties"></div>
