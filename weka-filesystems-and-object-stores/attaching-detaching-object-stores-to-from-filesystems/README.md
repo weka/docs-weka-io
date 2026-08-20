@@ -1,7 +1,7 @@
 ---
 description: >-
-  This page describes how to attach or detach object stores buckets to or from
-  filesystems.
+  Attach and detach local or remote object store buckets for filesystem tiering
+  and backup.
 metaLinks:
   alternates:
     - >-
@@ -12,24 +12,26 @@ metaLinks:
 
 ## Attachment of a local object store bucket to a filesystem
 
-Two local object store buckets can be attached to a filesystem, but only one of the buckets is writable. A local object store bucket is used for both tiering and snapshots. When attaching a new local object store bucket to an already tiered filesystem, the existing local object store bucket becomes read-only, and the new object store bucket is read/write. Multiple local object stores allow a range of use cases, including migration to different object stores, scaling of object store capacity, and increasing the total tiering capacity of filesystems.
+When attaching a local object store bucket to a non-tiered filesystem, the filesystem becomes tiered. Two local object store buckets can be attached to a filesystem, but only the most recently attached bucket is writable.
 
-When attaching a local object store bucket to a non-tiered filesystem, the filesystem becomes tiered.
+A local object store bucket is used for both tiering and snapshots. When attaching a new local object store bucket to an already tiered filesystem, the existing local object store bucket becomes read-only. The new object store bucket is read/write.
+
+Multiple local object stores allow a range of use cases. These include migration to different object stores, scaling object store capacity, and increasing total filesystem tiering capacity.
 
 ## Detachment of a local object store bucket from a filesystem
 
 Detaching a local object store bucket from a filesystem migrates the filesystem data residing in the object store bucket to the writable object store bucket (if one exists) or to the SSD.
 
-When detaching, the background task of detaching the object store bucket begins. Detaching can be a long process, depending on the amount of data and the load on the object stores.
-
 {% hint style="warning" %}
 Detaching an object store bucket is irreversible. Attaching the same bucket again is considered as re-attaching a new bucket regardless of the data stored in the bucket.
 {% endhint %}
 
-* **Migration to a different object store:** When detaching from a filesystem tiered to two local object store buckets, only the read-only object store bucket can be detached. In such cases, the background task copies the relevant data to the writable object store. In addition, the allocated SSD capacity only requires enough SSD capacity for the metadata.
+When detaching, the background task of detaching the object store bucket begins. Detaching can be a long process, depending on the amount of data and the load on the object stores.
+
+* **Migration to a different object store:** When detaching from a filesystem tiered to two local object store buckets, only the read-only object store bucket can be detached. In such cases, the background task copies only the data that remains in the filesystem to the writable object store. In addition, the allocated SSD capacity only requires enough SSD capacity for the metadata.
 * **Un-tiering a filesystem:** Detaching from a filesystem tiered to one object store bucket un-tiers the filesystem and copies the data back to the SSD. The allocated SSD capacity must be at least the total capacity the filesystem uses.
 
-On completion of detaching, the object store bucket does not appear under the filesystem when using the `weka fs` command. However, it still appears under the object store and can be removed if any other filesystem does not use it. The data in the read-only object store bucket remains in the object store bucket for backup purposes. If this is unnecessary or the reclamation of object store space is required, it is possible to delete the object store bucket.
+On completion of detaching, the object store bucket does not appear under the filesystem when using the `weka fs` command. However, it still appears in the object stores list and can be removed if any other filesystem does not use it. The data in the read-only object store bucket remains in the object store bucket for backup purposes. If this is unnecessary or the reclamation of object store space is required, it is possible to delete the object store bucket.
 
 {% hint style="info" %}
 Before deleting an object store bucket, remember to consider data from another filesystem or data not relevant to the WEKA system on the object store bucket.
@@ -41,7 +43,7 @@ Once the migration process is completed, while relevant data is migrated, old sn
 
 ## Migration considerations
 
-When migrating data (using the detach operation), copy only the necessary data (to reduce migration time and capacity). However, you may want to keep snapshots in the old object store bucket.
+The detach operation migrates all data that remains in the filesystem; you cannot select which data to copy. To reduce migration time and the capacity consumed on the new bucket, delete the snapshots that do not need to be migrated before detaching the old bucket. Snapshots you delete before detaching remain on the old bucket.
 
 **Migration workflow**
 
@@ -61,7 +63,9 @@ One remote object store bucket can be attached to a filesystem. A remote object 
 
 ### Detach a remote object store bucket
 
-Detaching a remote object store bucket from a filesystem keeps the backup data within the bucket intact. It is still possible to use these snapshots for recovery.
+Detaching a remote object store bucket from a filesystem keeps the backup data within the bucket intact, and you can still use these snapshots for recovery. However, after detaching, you cannot resume incremental snapshot uploads to that bucket.
+
+Attaching a bucket after detachment is treated as attaching a new bucket: the first snapshot upload is a full baseline, and subsequent uploads are incremental to it. To simplify future cleanup, start the new upload chain in an empty bucket.
 
 **Related topics**
 
