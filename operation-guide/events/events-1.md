@@ -1,5 +1,5 @@
 ---
-description: This page describes how to manage events using the CLI.
+description: View, filter, and trigger cluster and container events using the CLI.
 ---
 
 # Manage events using the CLI

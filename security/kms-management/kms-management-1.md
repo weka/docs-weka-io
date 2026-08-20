@@ -1,19 +1,10 @@
 ---
 description: >-
-  Explore commands for managing Key Management System (KMS) integration with the
-  WEKA system using the CLI.
+  Configure Key Management System integrations, rewrap filesystem keys, and
+  prepare Vault or KMIP using the CLI.
 ---
 
 # Manage KMS using CLI
-
-Using the CLI, you can:
-
-* [Configure the KMS](kms-management-1.md#configure-the-kms)
-* [View the KMS configuration](kms-management-1.md#view-the-kms-configuration)
-* [Remove the KMS configuration](kms-management-1.md#remove-the-kms-configuration)
-* [Rewrap filesystem keys](kms-management-1.md#rewrap-filesystem-keys)
-* [Set up vault configuration](kms-management-1.md#set-up-vault-configuration)
-* [Obtain a certificate for a KMIP-based KMS](kms-management-1.md#obtain-a-certificate-for-a-kmip-based-kms)
 
 ## Configure the KMS
 
@@ -155,11 +146,11 @@ If the KMS key is compromised or requires rotation, the KMS administrator can ro
 
 **Parameters**
 
-| Name | Value |
-| --- | --- |
-| `new-key-uid`* | Unique identifier for the new key to be used to wrap filesystem keys.Mandatory for `kmip` only.Do not specify any value for `vault`. |
-| `all` | Rewrap all the filesystem encryption keys. Applicable when using HashiCorp Vault for per-filesystem encryption keys.Without the `--all` option, the command re-encrypts only the keys of filesystems that use the cluster key for encryption. |
-| `convert-to-cluster-key-on-fs` | Convert all encrypted filesystems to use the KMS cluster key. |
+| Name                           | Value                                                                                                                                                                                                                                         |
+| ------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `new-key-uid`\*                | Unique identifier for the new key to be used to wrap filesystem keys.Mandatory for `kmip` only.Do not specify any value for `vault`.                                                                                                          |
+| `all`                          | Rewrap all the filesystem encryption keys. Applicable when using HashiCorp Vault for per-filesystem encryption keys.Without the `--all` option, the command re-encrypts only the keys of filesystems that use the cluster key for encryption. |
+| `convert-to-cluster-key-on-fs` | Convert all encrypted filesystems to use the KMS cluster key.                                                                                                                                                                                 |
 
 {% hint style="info" %}
 WEKA does not automatically re-encrypt existing filesystem keys with the new KMS key for snapshots that were previously uploaded with the old encrypted keys.

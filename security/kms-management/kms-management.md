@@ -1,17 +1,10 @@
 ---
 description: >-
-  Explore procedures for managing Key Management System (KMS) integration with
-  the WEKA system using the GUI.
+  Configure, view, update, and remove Key Management System integrations using
+  the GUI.
 ---
 
 # Manage KMS using GUI
-
-Using the GUI, you can:
-
-* [Configure a KMS](kms-management.md#configure-a-kms)
-* [View the KMS configuration](kms-management.md#view-the-kms-configuration)
-* [Update the KMS configuration](kms-management.md#update-the-kms-configuration)
-* [Remove the KMS configuration](kms-management.md#remove-the-kms-configuration)
 
 ## Configure a KMS
 
@@ -24,7 +17,10 @@ Ensure the KMS is preconfigured, and the key and a valid token are readily avail
 **Procedure**
 
 1. From the menu, select **Configure > Cluster Settings**.
-2. From the left pane, select **Security**.
+2. Select **Security**.
+
+<figure><img src="../../.gitbook/assets/security_tab_kms.png" alt=""><figcaption></figcaption></figure>
+
 3. On the **Security** page, select **Configure KMS**.
 4. On the **Configure KMS** dialog, select the KMS type to deploy: **HashiCorp Vault** or **KMIP**.
 5. Set the connection properties according to the selected KMS type. Select the relevant tab for details:
@@ -43,7 +39,7 @@ To configure the HashiCorp Vault connection from the GUI, set the following prop
 The GUI procedure configures HashiCorp Vault for **per-filesystem encryption**, which uses the AppRole authentication method. To configure cluster-wide encryption (using either a token or AppRole), use the CLI. See [#configure-the-kms](kms-management-1.md#configure-the-kms "mention").
 {% endhint %}
 
-<div align="center" data-with-frame="true"><img src="../../.gitbook/assets/4.4.2_configure_KMS_Hashicorp.png" alt="HashiCorp Vault type configuration" width="432"></div>
+<div align="center" data-with-frame="true"><img src="../../.gitbook/assets/configure_hashicorp.png" alt="HashiCorp Vault type configuration"></div>
 {% endtab %}
 
 {% tab title="KMIP " %}
@@ -55,7 +51,7 @@ To configure the KMIP connection, set the following properties:
 * **Client Key:** The content of the client key PEM file.
 * **CA Certificate:** (Optional) The content of the CA certificate PEM file.
 
-<div data-with-frame="true"><figure><img src="../../.gitbook/assets/wmng_configure_KMIP.png" alt="" width="422"><figcaption><p>KMIP type configuration</p></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/configure_kmip.png" alt=""><figcaption><p>KMIP type configuration</p></figcaption></figure></div>
 {% endtab %}
 {% endtabs %}
 
@@ -75,8 +71,6 @@ To configure the KMIP connection, set the following properties:
 2. From the left pane, select **Security**.\
    The **Security** page displays the configured KMS.
 
-<div data-with-frame="true"><img src="../../.gitbook/assets/wmng_view_kms_settings.png" alt="View the configured KMS"></div>
-
 ## Update the KMS configuration
 
 Update the KMS configuration in the WEKA system when changes occur in the KMS server details or cryptographic keys, ensuring seamless integration and continued secure filesystem key encryption.
@@ -88,10 +82,9 @@ If your system is upgraded to version 4.4.2 or higher, the **Update KMS Configur
 **Procedure**
 
 1. From the menu, select **Configure > Cluster Settings**.
-2. From the left pane, select **Security**.
-3. The **Security** page displays the configured KMS.
-4. Select **Update KMS**, and update the settings. For the parameter descriptions, see [#configure-a-kms](kms-management.md#configure-a-kms "mention").
-5. Select **Save**.
+2. Select **Security**. The **Security** page displays the configured KMS.
+3. Select **Update KMS**, and update the settings. For the parameter descriptions, see [#configure-a-kms](kms-management.md#configure-a-kms "mention").
+4. Select **Save**.
 
 ## Reset the KMS configuration
 

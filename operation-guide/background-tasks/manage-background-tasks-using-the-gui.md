@@ -6,7 +6,7 @@ description: View, pause, resume, abort, and monitor background tasks in the GUI
 
 Monitor active and pending background tasks from the GUI. Review each task's duration, state, phase, and progress.
 
-<div data-with-frame="true"><figure><img src="../../.gitbook/assets/wmng_bkg_tasks.gif" alt=""><figcaption><p>Background Tasks</p></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/background_tasks.png" alt=""><figcaption><p>Background Tasks</p></figcaption></figure></div>
 
 **Procedure**
 

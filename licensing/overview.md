@@ -1,10 +1,10 @@
 ---
-description: Understand WEKA license types, capacity rules, and status checks.
+description: Identify WEKA license types, capacity requirements, and license status.
 ---
 
 # Licensing overview
 
-Learn how WEKA licenses define cluster usage, capacity limits, and runtime validation. Use this page to understand license types, capacity rules, and status output in the GUI and CLI.
+Understand how WEKA licenses determine cluster capacity and runtime validation. Use this overview to identify license types, calculate capacity requirements, and check status.
 
 Apply these licensing rules:
 
@@ -18,25 +18,19 @@ Apply these licensing rules:
 
 WEKA uses a modular licensing model where specific editions serve as the foundation, while add-ons provide supplemental functionality.
 
-| License | Full name | Type | Description |
-| --- | --- | --- | --- |
-| XPS | Extreme Performance and Scale Performance Edition | Core | Flash-tier license for on-premises environments that includes POSIX, S3, SMB, NFS, and GDS protocol support. Includes local snapshot capability. |
-| XCL | Extreme Performance and Scale Hybrid Cloud Edition | Core | Flash-tier license for hybrid cloud environments that includes POSIX, S3, SMB, NFS, and GDS protocol support. Includes local snapshot capability and local Snap-To-Object capability for one local object store repository. |
-| DPO | WEKA Data Protection Option | Add-on | Add-on data protection license for XPS and XOS deployments. Includes tiering, local and remote Snap-To-Object, and synchronous snapshots. |
-| XOS | Extreme Performance Object Edition | Standalone / Add-on | Use XOS as an alternative to XPS if the cluster operates exclusively as an S3 target. Use XOS with DPO if the cluster also needs to offload snapshots to a third-party object store. Includes local snapshot capability. |
-| DEO | Data Efficiency Option | Add-on | Add-on data efficiency license for XPS deployments. Enables cluster-wide data reduction on a per-filesystem basis. |
+<table><thead><tr><th width="96.7421875">License</th><th>Full name</th><th width="156.328125">Type</th><th>Description</th></tr></thead><tbody><tr><td>XPS</td><td>Extreme Performance and Scale Performance Edition</td><td>Core</td><td>Flash-tier license for on-premises environments that includes POSIX, S3, SMB, NFS, and GDS protocol support. Includes local snapshot capability.</td></tr><tr><td>XCL</td><td>Extreme Performance and Scale Hybrid Cloud Edition</td><td>Core</td><td>Flash-tier license for hybrid cloud environments that includes POSIX, S3, SMB, NFS, and GDS protocol support. Includes local snapshot capability and local Snap-To-Object capability for one local object store repository.</td></tr><tr><td>DPO</td><td>WEKA Data Protection Option</td><td>Add-on</td><td>Add-on data protection license for XPS and XOS deployments. Includes tiering, local and remote Snap-To-Object, and synchronous snapshots.</td></tr><tr><td>XOS</td><td>Extreme Performance Object Edition</td><td>Standalone / Add-on</td><td>Use XOS as an alternative to XPS if the cluster operates exclusively as an S3 target. Use XOS with DPO if the cluster also needs to offload snapshots to a third-party object store. Includes local snapshot capability.</td></tr><tr><td>DEO</td><td>Data Efficiency Option</td><td>Add-on</td><td>Add-on data efficiency license for XPS deployments. Enables cluster-wide data reduction on a per-filesystem basis.</td></tr></tbody></table>
 
 ## License properties
 
 Identify the key attributes and capacity limits defined within each license.
 
-| Property | Description |
-| --- | --- |
-| **Cluster GUID** | Unique identifier assigned during cluster installation. |
-| **Expiry date** | End of the licensed usage period. |
-| **Usable capacity** | Licensed usable flash capacity in TB. |
-| **Object-store capacity** | Licensed object-store capacity for DPO license. |
-| **Data Efficiency Option** | Shows whether the DEO license is enabled or disabled. |
+| Property                   | Description                                             |
+| -------------------------- | ------------------------------------------------------- |
+| **Cluster GUID**           | Unique identifier assigned during cluster installation. |
+| **Expiry date**            | End of the licensed usage period.                       |
+| **Usable capacity**        | Licensed usable flash capacity in TB.                   |
+| **Object-store capacity**  | Licensed object-store capacity for DPO license.         |
+| **Data Efficiency Option** | Shows whether the DEO license is enabled or disabled.   |
 
 ## XPS, XCL and XOS capacity
 
@@ -89,7 +83,7 @@ The **License** page in **Cluster Settings** displays the current license detail
 **To display the license status:**
 
 1. From the menu, select **Configure > Cluster Settings**.
-2. From the **Cluster Settings** pane, select **License**.
+2. Select **License**.
 
 <div data-with-frame="true"><figure><img src="../.gitbook/assets/License_status.png" alt=""><figcaption><p>Cluster license settings</p></figcaption></figure></div>
 

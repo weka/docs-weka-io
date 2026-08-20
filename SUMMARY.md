@@ -192,7 +192,7 @@
 * [Security overview](security/security.md)
 * [Obtain authentication tokens](security/obtain-authentication-tokens.md)
 * [Manage token expiration](security/manage-token-expiration.md)
-* [Manage account lockout threshold policy](security/account-lockout-threshold-policy-management.md)
+* [Manage account lockout policy](security/account-lockout-threshold-policy-management.md)
 * [Manage KMS](security/kms-management/README.md)
   * [Manage KMS using GUI](security/kms-management/kms-management.md)
   * [Manage KMS using CLI](security/kms-management/kms-management-1.md)

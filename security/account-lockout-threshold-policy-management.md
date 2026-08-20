@@ -1,30 +1,34 @@
-# Manage account lockout threshold policy
+---
+description: Configure, reset, and view account lockout settings using the GUI or CLI.
+---
+
+# Manage account lockout policy
 
 To prevent brute force attacks, if several sign-in attempts fail (default: 5), the user account is locked for several minutes (default: 2 minutes).
 
 You can control these default values using the GUI or the CLI.
 
-## Manage account lockout threshold policy using GUI
+## Manage account lockout policy using GUI
 
-Using the GUI, you can set the number of failed attempts until the account is locked and the lockout duration. You can also reset the account lockout threshold policy properties to the default values.
+You can set the number of failed attempts until the account is locked and the lockout duration. You can also reset the lockout policy properties to the default values.
 
-<div data-with-frame="true"><figure><img src="../.gitbook/assets/wmng_account_lockout.png" alt=""><figcaption><p>Account Lockout Threshold policy</p></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/account_lockout_policy.png" alt=""><figcaption><p>Account Lockout Policy</p></figcaption></figure></div>
 
 **Procedure**
 
 1. From the menu, select **Configure > Cluster Settings**.
 2. From the left pane, select **Security**.
-3. In the Account Lockout Threshold Policy section, select **Set Account Lockout Policy**.
-4. In the Set Lockout Policy dialog, do the following:
+3. In the Account Lockout Policy section, select **Edit lockout policy**.
+4. In the Edit Lockout Policy dialog, do the following:
    * **Failed Attempts Until Lockout:** Set the number of sign-in attempts to lockout between 2 to 50.
    * **Lockout Duration:** Set the lockout duration between 30 seconds to 60 minutes.
 5. Select **Save**.
 
-<div data-with-frame="true"><figure><img src="../.gitbook/assets/wmng_set_lockout_policy.png" alt=""><figcaption><p>Set Lockout Policy</p></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/set_lockout_policy.png" alt=""><figcaption><p>Edit Lockout Policy</p></figcaption></figure></div>
 
-6. To reset the account lockout threshold policy properties to the default values, select **Reset account lockout policy**. In the confirmation message, select **Yes**.
+6. To reset the account lockout policy properties to the default values, select **Reset lockout policy**. In the confirmation message, select **Yes**.
 
-## Manage account lockout threshold policy using CLI
+## Manage account lockout policy using CLI
 
 To control the default values, use the following CLI commands:
 

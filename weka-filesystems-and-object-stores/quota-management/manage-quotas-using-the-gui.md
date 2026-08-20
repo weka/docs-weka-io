@@ -1,19 +1,10 @@
 ---
 description: >-
-  Manage directory quotas and default quota settings for your filesystems using
-  the NeuralMesh GUI.
+  Configure, view, update, and remove directory quotas and default quotas using
+  the GUI.
 ---
 
 # Manage quotas using the GUI
-
-Using the GUI, you can:
-
-* [Set default directory quota](manage-quotas-using-the-gui.md#set-default-directory-quota)
-* [Set directory quota](manage-quotas-using-the-gui.md#set-directory-quota)
-* [View directory quotas and default quota](manage-quotas-using-the-gui.md#view-directory-quotas-and-default-quota)
-* [Update a directory quota or default quota](manage-quotas-using-the-gui.md#update-a-directory-quota-or-default-quota)
-* [Remove a directory quota](manage-quotas-using-the-gui.md#remove-a-directory-quota)
-* [Remove the default quota for new directories](manage-quotas-using-the-gui.md#remove-the-default-quota-for-new-directories)
 
 {% hint style="info" %}
 To manage user or group quota, use the CLI. See [quota-management.md](quota-management.md "mention").
@@ -31,7 +22,7 @@ Ensure a mount point to the relevant filesystem is set.
 
 1. From the menu, select **Manage > Directory Quotas**.
 2. Select the **Default Directory Quotas** tab, then select **Create**.
-3. Select the filesystem the default quota applies to..
+3. Select the filesystem the default quota applies to.
 4. In the **Create Default Quota** dialog, set the following fields:
    * **Directory Path:** The full path to the parent directory. New subdirectories created under this path will automatically inherit the quota.
    * **Hard Quota Limit:** The maximum capacity a subdirectory can use. Writes are blocked when this limit is reached.
@@ -51,7 +42,7 @@ The tenant admin can set a quota on a directory, which triggers a background tas
 * To apply a quota to a directory, ensure there is a mount point for the relevant filesystem.
 *   Configure at least one Data Services container before setting a directory quota. The **Create** button is not available until a Data Services container is active. See
 
-    &#x20;See [set-up-a-data-services-container-for-background-tasks.md](../../operation-guide/background-tasks/set-up-a-data-services-container-for-background-tasks.md "mention").
+    See [set-up-a-data-services-container-for-background-tasks.md](../../operation-guide/background-tasks/set-up-a-data-services-container-for-background-tasks.md "mention").
 
 **Procedure**
 

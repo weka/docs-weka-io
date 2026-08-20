@@ -23,9 +23,7 @@ Background tasks handle operations related to snapshots, including creation and 
 
 Administrators of the root organization only can configure policies to create hourly, daily, weekly, monthly, and periodic snapshots. These policies can be assigned to filesystems already connected to a local or remote object store.
 
-The example below demonstrates how to configure a policy using the GUI. The policy schedules a snapshot every Saturday and uploads it to a local object store. Alternatively, you can use CLI commands to achieve the same result.
-
-<div data-with-frame="true"><figure><img src="../../.gitbook/assets/snapshots-policies-overview.gif" alt=""><figcaption><p>Create a snapshot policy</p></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/snap_policies_overview.png" alt=""><figcaption><p>Snapshot policies</p></figcaption></figure></div>
 
 ## General guidelines and considerations
 

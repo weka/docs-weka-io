@@ -57,14 +57,14 @@ Size the IP range using these guidelines:
 #### **GUI procedure**
 
 1. From the menu, select **Manage > Tenants**.
-2.  Select the **Network Spaces** tab and select **Create**.
+2.  Select the **Network Spaces** tab and select **Create Network Space**.
 
-    <div data-with-frame="true"><figure><img src="../../.gitbook/assets/mt_create_net_space_button.png" alt=""><figcaption></figcaption></figure></div>
+    <div data-with-frame="true"><figure><img src="../../.gitbook/assets/mt_create_netespace_button.png" alt=""><figcaption></figcaption></figure></div>
 3. Provide network space details:
    * **Network Space Name:** Enter a unique name for the network space (for example, `Eng_net`).
    * **VLAN ID:** Enter the VLAN ID assigned to this network boundary (for example, `100`).
 4. In the **IP Range** section, provide the following:
-   1. **IP Range:** Enter the starting and ending IP addresses for the network space. If the UI shows a CIDR notation option, do not use it.
+   1. **IP Range:** Enter the starting and ending IP addresses for the network space. (Do not use the CIDR notation option.)
    2. **Netmask (Bits):** Provide the subnet mask bits (for example, `24`). Default: 16.
    3. **Gateway:** Provide an optional default gateway IP address to specify the routing exit point for traffic leaving the local network space. The gateway must be visible from all IPs in range.
 
@@ -113,14 +113,15 @@ While a tenant is attached to an interface group, the network space's **VLAN and
 
 1. From the menu, select **Manage > Tenants**.
 2. Select the **Network Spaces** tab.
-3.  Locate the target network space, select the **Actions** menu (three vertical dots), and select **Edit**.<br>
+3. Locate the target network space, select the **Actions** menu (three vertical dots), and select **Edit**.
 
-    <div data-with-frame="true"><figure><img src="../../.gitbook/assets/mt_edit_net_space_button.png" alt=""><figcaption></figcaption></figure></div>
-4. Modify the network space properties as needed. For detailed information on these fields, refer to the network space creation procedure:
-   * Update the VLAN ID if required.
-   * Modify the IP Range as described in the creation procedure.
-   * Update the Gateway or Netmask (Bits) if the subnet routing or size has changed.
-5. Click **Save**.
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/mt_edit_net_space_button.png" alt=""><figcaption></figcaption></figure></div>
+
+3. Modify the network space properties as needed. For detailed information on these fields, refer to the network space creation procedure:&#x20;
+   1. Update the VLAN ID if required.
+   2. Modify the IP Range as described in the creation procedure.
+   3. Update the Gateway or Netmask (Bits) if the subnet routing or size has changed.
+4. Click **Save**.
 
 #### CLI alternative
 
@@ -164,10 +165,7 @@ A network space cannot be removed while its floating IP range is in use through 
 1. From the menu, select **Manage > Tenants**.
 2. Select the **Network Spaces** tab.
 3. Locate the target network space, select the **Actions** menu (three vertical dots), and select **Remove**.
-4.  In the Remove Network Space dialog, enter the exact Network Space Name to confirm the action.<br>
-
-    <div data-with-frame="true"><figure><img src="../../.gitbook/assets/mt_remove_net_space.png" alt=""><figcaption><p>Remove network space</p></figcaption></figure></div>
-5. Select **Confirm**.
+4. In the confirmation message, select **Confirm**.
 
 #### CLI alternative
 
@@ -200,7 +198,7 @@ During creation, you can assign multiple network spaces to a single tenant. This
 3. Configure the tenant properties:
    * **Tenant Name:** Enter a unique name for the tenant (for example, `Engineering`).
    * **Capacity Quota:** Toggle this to ON to limit the total storage capacity assigned to the tenant.
-   * **Total Quota:** Enter the maximum capacity allowed and select the appropriate unit (for example, `300 GB`).
+   * **Total Quota:** Enter the maximum capacity allowed and select the appropriate unit (for example, `1 TB`).
    * **Tenant Admin Username:** Enter the username for the tenant administrator (for example, `eng_tenant_admin`).
    * **Tenant Admin Password:** Enter and confirm a secure password for the tenant administrator.
    * **Network Spaces:** Select one or more predefined network spaces from the dropdown menu to assign them to the tenant.
@@ -241,6 +239,10 @@ The CLI prompt requires the password after running the command.
 ## Edit a tenant environment
 
 To modify an existing tenant's resource limits, security configuration, or S3 defaults, use the **Edit Tenant** dialog. While a cluster administrator can update quotas, network settings, and tenant-level S3 settings, the Tenant Name, Tenant Admin Username, and password fields are fixed and cannot be modified once the tenant is created.
+
+#### Before you begin
+
+To set the tenant-specific S3 defaults, an S3 cluster must be configure in the system.
 
 #### **GUI procedure**
 
@@ -340,10 +342,7 @@ Removal is blocked while the tenant still holds resources. Ensure the tenant no 
 1. From the menu, select **Manage > Tenants**.
 2. Select the **Tenants** tab.
 3. Locate the target tenant, select the **Actions** menu (three vertical dots), and select **Remove**.
-4.  In the Remove Tenant dialog, enter the exact Tenant Name to confirm the action.<br>
-
-    <div data-with-frame="true"><figure><img src="../../.gitbook/assets/mt_remove_tenant.png" alt=""><figcaption><p>Remove tenant</p></figcaption></figure></div>
-5. Select **Confirm**.
+4. In the Remove Tenant confirmation message, select **Confirm**.
 
 #### CLI alternative
 
@@ -408,7 +407,7 @@ Ensure you are logged in with tenant administrator privileges.
 #### **GUI procedure**
 
 1. Select **Manage > Protocols**.
-2. On the S3 Cluster Configuration page, select the plus (+) icon.
+2. From Protocols, select S3, then select **Configure**.
 3. In the **Configure Tenant S3 Settings** dialog, configure the following fields:
    * **Default Filesystem:** Select the filesystem to use as a fallback when buckets are created through the S3 API.
    * **Anonymous Posix UID:** Enter the POSIX User ID to assign for identity mapping during anonymous or public S3 access. The default value is 65534.

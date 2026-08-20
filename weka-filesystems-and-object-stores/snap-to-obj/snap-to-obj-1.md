@@ -1,17 +1,10 @@
 ---
 description: >-
-  The Snap-To-Object feature enables the committing of all the data of a
-  specific snapshot to an object store.
+  Upload snapshots to object storage and recover filesystems from local or
+  remote snapshots using the CLI.
 ---
 
 # Manage Snap-To-Object using the CLI
-
-Using the CLI, you can:
-
-* [Upload a snapshot](snap-to-obj-1.md#upload-a-snapshot)
-* [Create a filesystem from a local uploaded snapshot](snap-to-obj-1.md#create-a-filesystem-from-a-local-uploaded-snapshot)
-* [Manage synchronous snapshots](snap-to-obj-1.md#manage-synchronous-snapshots)
-* [Recover a filesystem from a remote-only snapshot](snap-to-obj-1.md#recover-a-filesystem-from-a-remote-only-snapshot)
 
 ## Upload a snapshot
 
@@ -23,11 +16,11 @@ Use the following command line to upload an existing snapshot:
 
 **Parameters**
 
-| Name | Value |
-| --- | --- |
-| `file-system`* | Filesystem name. |
-| `snapshot`* | Snapshot name of the `&#x3C;file-system>` filesystem to upload. |
-| `site`* | Location for the snapshot upload.Mandatory only if both `local` and `remote` buckets are attached.Possible values: `local` or `remote`Default: Auto-selected if only one bucket for upload is attached. |
+| Name            | Value                                                                                                                                                                                                   |
+| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `file-system`\* | Filesystem name.                                                                                                                                                                                        |
+| `snapshot`\*    | Snapshot name of the `&#x3C;file-system>` filesystem to upload.                                                                                                                                         |
+| `site`\*        | Location for the snapshot upload.Mandatory only if both `local` and `remote` buckets are attached.Possible values: `local` or `remote`Default: Auto-selected if only one bucket for upload is attached. |
 
 ## Create a filesystem from a local uploaded snapshot
 
@@ -41,23 +34,23 @@ When creating a filesystem from a snapshot, a background cluster task automatica
 
 **Parameters**
 
-| Name | Value |
-| --- | --- |
-| `name`* | Name of the filesystem to create. |
-| `group-name`* | Name of the filesystem group in which the new filesystem is placed. |
-| `total-capacity`* | The total capacity of the downloaded filesystem. |
-| `ssd-capacity`* | SSD capacity of the downloaded filesystem. |
-| `obs-bucket`* | Object store name for tiering. |
-| `locator`* | Object store locator obtained from a previously successful snapshot upload. |
-| `auth-required` | Require authentication for the mounting user when mounting this filesystem. This setting is only applicable in the root organization; users in non-root organizations must always be authenticated to perform a mount operation. Format: `yes` or `no`.Default: `no` |
-| `additional-obs` | An additional object-store name.If the data to recover reside in two object stores (a second object store attached to the filesystem, and the filesystem has not undergone full migration), this object store is attached in a `read-only` mode.The snapshot locator must be in the primary object store specified in the `obs` parameter. |
-| `snapshot-name` | The downloaded snapshot name.Default: The uploaded snapshot name. |
-| `access-point` | The downloaded snapshot access point.Default: The uploaded access point. |
-| `kms-key-identifier` | Customize KMS key name for this filesystem (applicable only for HashiCorp Vault). |
-| `kms-namespace` | Customize the KMS role ID for this filesystem (applicable only for HashiCorp Vault). |
-| `kms-role-id` | Customize the KMS role ID for this filesystem (applicable only for HashiCorp Vault). |
-| `kms-secret-id` | Customize the KMS secret ID for this filesystem (applicable only for HashiCorp Vault). |
-| `skip-resource-validation` | Skip verifying RAM and SSD resource allocation for the downloaded filesystem on the cluster. |
+| Name                       | Value                                                                                                                                                                                                                                                                                                                                      |
+| -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `name`\*                   | Name of the filesystem to create.                                                                                                                                                                                                                                                                                                          |
+| `group-name`\*             | Name of the filesystem group in which the new filesystem is placed.                                                                                                                                                                                                                                                                        |
+| `total-capacity`\*         | The total capacity of the downloaded filesystem.                                                                                                                                                                                                                                                                                           |
+| `ssd-capacity`\*           | SSD capacity of the downloaded filesystem.                                                                                                                                                                                                                                                                                                 |
+| `obs-bucket`\*             | Object store name for tiering.                                                                                                                                                                                                                                                                                                             |
+| `locator`\*                | Object store locator obtained from a previously successful snapshot upload.                                                                                                                                                                                                                                                                |
+| `auth-required`            | Require authentication for the mounting user when mounting this filesystem. This setting is only applicable in the root organization; users in non-root organizations must always be authenticated to perform a mount operation. Format: `yes` or `no`.Default: `no`                                                                       |
+| `additional-obs`           | An additional object-store name.If the data to recover reside in two object stores (a second object store attached to the filesystem, and the filesystem has not undergone full migration), this object store is attached in a `read-only` mode.The snapshot locator must be in the primary object store specified in the `obs` parameter. |
+| `snapshot-name`            | The downloaded snapshot name.Default: The uploaded snapshot name.                                                                                                                                                                                                                                                                          |
+| `access-point`             | The downloaded snapshot access point.Default: The uploaded access point.                                                                                                                                                                                                                                                                   |
+| `kms-key-identifier`       | Customize KMS key name for this filesystem (applicable only for HashiCorp Vault).                                                                                                                                                                                                                                                          |
+| `kms-namespace`            | Customize the KMS role ID for this filesystem (applicable only for HashiCorp Vault).                                                                                                                                                                                                                                                       |
+| `kms-role-id`              | Customize the KMS role ID for this filesystem (applicable only for HashiCorp Vault).                                                                                                                                                                                                                                                       |
+| `kms-secret-id`            | Customize the KMS secret ID for this filesystem (applicable only for HashiCorp Vault).                                                                                                                                                                                                                                                     |
+| `skip-resource-validation` | Skip verifying RAM and SSD resource allocation for the downloaded filesystem on the cluster.                                                                                                                                                                                                                                               |
 
 {% hint style="info" %}
 For encrypted filesystems, when downloading, you must use the same KMS cluster-wide key or, if configured, the per-filesystem encryption parameters to decrypt the snapshot data. For more information, see [kms-management](../../security/kms-management/ "mention").
@@ -101,10 +94,10 @@ If you need to download a snapshot earlier than the latest downloaded one, for e
 
 **Parameters**
 
-| Name | Value |
-| --- | --- |
-| `file-system`* | Name of the filesystem. |
-| `locator`* | Object store locator obtained from a previously successful snapshot upload. |
+| Name            | Value                                                                       |
+| --------------- | --------------------------------------------------------------------------- |
+| `file-system`\* | Name of the filesystem.                                                     |
+| `locator`\*     | Object store locator obtained from a previously successful snapshot upload. |
 
 If you need to pause and resume the download process, use the command: `weka cluster task pause / resume`. To abort the download process, delete the downloaded snapshot directly.
 

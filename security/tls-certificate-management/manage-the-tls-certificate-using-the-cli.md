@@ -1,3 +1,9 @@
+---
+description: >-
+  Manage TLS and CA certificates, including certificate status and downloads,
+  using the CLI.
+---
+
 # Manage TLS certificates using CLI
 
 ## Set the TLS certificate
@@ -10,10 +16,10 @@ Use the following command line to use TLS when accessing UI. If TLS is already s
 
 **Parameters**
 
-| Parameter | Description |
-| --- | --- |
+| Parameter     | Description                                   |
+| ------------- | --------------------------------------------- |
 | `private-key` | Path to TLS private unencrypted key pem file. |
-| `certificate` | Path to TLS certificate pem file. |
+| `certificate` | Path to TLS certificate pem file.             |
 
 {% hint style="success" %}
 **Example:**
@@ -49,6 +55,6 @@ Use the CLI command:
 
 **Parameters**
 
-| Parameter | Description |
-| --- | --- |
+| Parameter   | Description                   |
+| ----------- | ----------------------------- |
 | `cert-file` | Path to the certificate file. |
