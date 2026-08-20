@@ -116,9 +116,9 @@ To modify the settings of an existing peer, such as its join IPs or S3 hostnames
 
 Rotate a cluster's replication S3 credentials when they are compromised or when your security policy requires periodic rotation.
 
-Running `weka cluster peer init --reinit` regenerates this cluster's replication S3 access key and secret. The old credentials stop working immediately. The cluster's peer identity (inter-cluster key and GUID) is preserved, and existing peer relationships are not deleted. The command requires interactive confirmation and outputs the endpoint details table with the new credentials and a fresh pairing token.
+Running `weka cluster peer init --reinit` regenerates this cluster's replication S3 credentials. The old credentials stop working immediately. Existing peer relationships remain configured, but peer clusters retain the old credentials. Active replication can be disrupted until you update those credentials.
 
-Each peer cluster stores this cluster's S3 credentials in a local object store tier. The default tier name is `<peer name>-obs`. After rotation, peer tiers retain the previous credentials. Replication cannot continue until you refresh each tier. Active replication cycles can be interrupted.
+The command requires interactive confirmation. Its output includes **S3 Access Key** and **S3 Secret**. Use those fields as `<NEW_KEY>` and `<NEW_SECRET>`. The output also includes a new pairing token.
 
 **Procedure**
 
@@ -127,7 +127,7 @@ Each peer cluster stores this cluster's S3 credentials in a local object store t
     ```bash
     weka cluster peer init --reinit
     ```
-2.  On **each** peer cluster that references this cluster, refresh the stored credentials in place:
+2.  On each peer cluster that references this cluster, refresh the credentials stored in its local object store tier:
 
     ```bash
     weka fs tier obs update <this-cluster's-peer-name>-obs \
@@ -140,20 +140,12 @@ Each peer cluster stores this cluster's S3 credentials in a local object store t
     ```bash
     weka fs tier obs
     ```
-
-    Alternatively, perform a full re-pair:
-
-    ```bash
-    weka cluster peer remove <name>
-    weka cluster peer add <name> <new-token>
-    ```
-
-    Verify the new peer connection:
+3.  Verify the peer connection:
 
     ```bash
     weka cluster peer
     ```
-3.  Verify replication resumes:
+4.  Verify replication resumes:
 
     ```bash
     weka fs replication
@@ -169,7 +161,7 @@ The replication policy determines the replication interval, which paths are copi
 
 **Before you begin**
 
-Choose the copy option and access strategy for the workload. See [Asynchronous replication](/broken/pages/5900e4177c9308ebc5e884212d87390497121091). For a full data copy, ensure the target capacity is at least the source filesystem size.
+Choose the copy option and access strategy for the workload. See [.](./ "mention"). For a full data copy, ensure the target capacity is at least the source filesystem size.
 
 **Procedure**
 
@@ -183,7 +175,7 @@ weka fs replication add \
   --interval <duration> \
   [--copy-path <paths>] \
   [--access-strategy <INSTANT_ACCESS | COPY_FIRST>] \
-  [--apply-strategy <AUTOMATIC | MANUAL>] \
+  [--apply-strategy <AUTOMATIC>] \
   [--snapshots-to-keep <number>] \
   [--target-total-capacity <capacity>] \
   [--now]
@@ -213,8 +205,8 @@ weka fs replication
 | `--interval`              | Replication interval, for example, `5m` or `1h`. The minimum is 5 minutes.                                                                                                                                                                     |
 | `--copy-path`             | Specifies up to four paths to copy proactively. Separate paths with commas or repeat the option. Use `full`, `all`, or `/` to copy all data. Use `none` or `null` to replicate metadata only. Default: metadata-only replication.              |
 | `--access-strategy`       | Controls when a target snapshot becomes accessible. `INSTANT_ACCESS` (default) exposes the snapshot immediately. Data not copied locally is retrieved on demand. `COPY_FIRST` exposes the snapshot only after the `--copy-path` data is local. |
-| `--apply-strategy`        | Controls when the target applies a replicated snapshot. `AUTOMATIC` (default) applies the snapshot after the prerequisite phase completes. `MANUAL` waits for an explicit apply.                                                               |
-| `--snapshots-to-keep`     | Number of snapshots to retain, from 2 to about 250. Retaining more snapshots requires more storage.                                                                                                                                            |
+| `--apply-strategy`        | Controls when the target applies a replicated snapshot. `AUTOMATIC` applies the snapshot after the prerequisite phase completes.                                                                                                               |
+| `--snapshots-to-keep`     | Number of snapshots to retain, from 2 to 25. Retaining more snapshots requires more storage.                                                                                                                                                   |
 | `--target-total-capacity` | Total capacity for the target filesystem. Default: same as the source filesystem. A smaller target is allowed for a partial or metadata-only copy. A full copy requires at least the source size.                                              |
 | `--now`                   | Triggers the first replication cycle immediately instead of waiting one full interval.                                                                                                                                                         |
 
@@ -315,7 +307,7 @@ weka fs replication update <pair ID> \
   [--interval <duration>] \
   [--copy-path <paths> | --add-copy-path <paths> --remove-copy-path <paths>] \
   [--access-strategy <INSTANT_ACCESS | COPY_FIRST>] \
-  [--apply-strategy <AUTOMATIC | MANUAL>] \
+  [--apply-strategy <AUTOMATIC>] \
   [--snapshots-to-keep <number>]
 ```
 
@@ -378,10 +370,10 @@ weka fs replication fetch <path> [--filesystem <name>] [--snapshot <name>]
 
 ### Monitor hydration progress
 
-Fetch and release operations run in the background. Check the per-file hydration status:
+Fetch and release operations run in the background. Check the hydration status for a file:
 
 ```bash
-weka fs replication hydration status
+weka fs replication hydration status <path> [--filesystem <name>] [--snapshot <name>]
 ```
 
 ### Release file data
@@ -397,10 +389,10 @@ weka fs replication release
 Remove a replication pair when you no longer need to synchronize the source and target filesystems, or as part of a failover procedure.
 
 {% hint style="warning" %}
-Removing a pair stops further snapshot replication for the filesystem pair, including the retrieval of data on demand. If the target filesystem was created with a metadata-only or partial copy policy, files that were never hydrated become inaccessible after removal. Verify the hydration state before you remove a pair &#x61;_&#x73;_ no jobs should be running on the replication pair otherwise cmd fails.
+Removing a pair stops further snapshot replication for the filesystem pair, including the retrieval of data on demand. If the target filesystem was created with a metadata-only or partial copy policy, files that were never hydrated become inaccessible after removal. Verify the hydration state before removal. Pause the pair, then run `weka fs replication` and confirm that **State** is not `RUNNING`.
 {% endhint %}
 
-### Before you begin
+**Before you begin**
 
 Identify the replication pair ID:
 
@@ -408,7 +400,7 @@ Identify the replication pair ID:
 weka fs replication
 ```
 
-### Procedure
+**Procedure**
 
 1. Pause the replication pair. A running pair cannot be removed:
 
@@ -446,15 +438,60 @@ weka cluster peer
 
 **Procedure**
 
-1. Remove the peer:
+1. Remove each replication pair that uses this peer. Pause the pair first:
+
+```bash
+weka fs replication pause <pair ID>
+weka fs replication remove <pair ID>
+```
+
+2. Restore write access to each target filesystem. Run this command on the target cluster:
+
+```bash
+weka fs update <target filesystem> --access rw --force
+```
+
+The `--force` option overrides the replication write protection after pair removal.
+
+3. Remove the peer:
 
 ```bash
 weka cluster peer remove <peer>
 ```
 
-2. Remove mutual trust. Repeat the command on the other cluster.
-3. Verify peer removal:
+4. Remove mutual trust. Repeat the command on the other cluster.
+5. Verify peer removal:
 
 ```bash
 weka cluster peer
+```
+
+## Activate the target site during failover
+
+Activate the target filesystem on site B when the source site becomes unavailable, and redirect clients to it.
+
+{% hint style="warning" %}
+Failover is a manual procedure. Because replication is asynchronous, the target reflects the last replicated snapshot. Writes made on the source after that snapshot are lost.
+{% endhint %}
+
+### Considerations
+
+* Reverse replication (resynchronizing site A from site B after recovery) is not confirmed for this release.
+* The behavior of the trust relationship when site A returns online requires verification.
+
+**Before you begin**
+
+Confirm the recovery point. Check the **Last Replication** timestamp:
+
+```bash
+weka fs replication
+```
+
+**Procedure**
+
+1. Remove write protection from the target filesystem.\
+   On the target cluster:
+
+```bash
+weka fs update <name> --access rw
 ```
