@@ -113,12 +113,7 @@ It is recommended that the synchronous snapshots be applied in chronological ord
 
 ## Object store space reclamation after a snapshot download
 
-When you download a snapshot to create a filesystem (`weka fs download`), the new filesystem reads the objects in the bucket but does not take ownership of them. The cluster does not delete objects it did not write. As a result, deleting data from the downloaded filesystem does not release space in the object store bucket.
-
-This behavior applies in both of the following scenarios:
-
-* **Download to a different cluster**: The new cluster has no record of which objects the original cluster wrote, so it cannot safely delete any of them.
-* **Download to the same cluster**: Even when the same cluster that uploaded the snapshot downloads it, the new filesystem does not own the original objects, and space reclamation does not occur.
+When you download a snapshot to create a filesystem (`weka fs download`), the new filesystem reads the objects in the bucket but does not take ownership of them. A filesystem reclaims space only for objects it wrote itself. Objects inherited from a downloaded snapshot are never modified or deleted by the new filesystem, regardless of which cluster originally uploaded them. This applies even when the snapshot was uploaded from the same cluster. As a result, deleting data from the downloaded filesystem does not release space in the object store bucket.
 
 **Example**: A tiered filesystem consumes 5 PB in the object store bucket. After you download its snapshot to a new filesystem and delete 3 PB of data, the bucket still consumes 5 PB.
 
@@ -131,9 +126,7 @@ To enable space reclamation for a downloaded filesystem, migrate it to a differe
 Deleting a snapshot uploaded from a filesystem removes all its data from the local object store bucket. It does not remove any data from a remote object store bucket.
 
 {% hint style="danger" %}
-If the snapshot has been (or is) downloaded and used by a different filesystem, that filesystem stops functioning correctly, data can be unavailable, and errors can occur when accessing the data.
-
-Before deleting the downloaded snapshot, it is recommended to either un-tier or migrate the filesystem to a different object store bucket.
+If the snapshot has been (or is) downloaded and used by a different filesystem, deleting it causes that filesystem to stop functioning correctly. Data can become unavailable, and errors can occur when accessing the data.Before deleting the snapshot, un-tier the downloaded filesystem or migrate it to a different object store bucket. See [Attach or detach object store buckets](../attaching-detaching-object-stores-to-from-filesystems/).
 {% endhint %}
 
 ## Snap-To-Object and tiering
