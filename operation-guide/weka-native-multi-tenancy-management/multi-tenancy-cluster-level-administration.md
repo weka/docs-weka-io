@@ -30,29 +30,14 @@ The system uses an internal proxy with a default NAT subnet of **198.18.0.0/16**
 
 #### **Before you begin**
 
-Ensure the following prerequisites are met:
-
-* Each server has an NVIDIA NIC.
-* Configure RDMA on the NVIDIA NICs.
-* Configure Ethernet connectivity for the network-space VLAN.
-
-Size the IP range using these guidelines:
-
-* IPs are assigned to NICs, not containers. When multiple backend containers share a NIC, they share the same IP.
-* Reserve one IP per NIC per server: 1 IP per server in an LACP configuration, 2 IPs per server in an HA dual-NIC configuration.
-* The range can exceed this minimum but must not be smaller.
-* IPs in this range are reserved for WEKA backend use only. Do not assign them to clients or any other resource.
-* Each VLAN is assigned to a single network space. Network spaces that use the same VLAN cannot share the same backends.
-* Use `weka cluster network-space show-usage` to inspect current IP allocation.
-
-Size the IP range using these guidelines:
-
-* IPs are assigned to NICs, not containers. When multiple backend containers share a NIC, they share the same IP.
-* Reserve one IP per NIC per server: 1 IP per server in an LACP configuration, 2 IPs per server in an HA dual-NIC configuration.
-* The range can exceed this minimum but must not be smaller.
-* IPs in this range are reserved for WEKA backend use only. Do not assign them to clients or any other resource.
-* Each VLAN is assigned to a single network space. Network spaces that use the same VLAN cannot share the same backends.
-* Use `weka cluster network-space show-usage` to inspect current IP allocation.
+* Ensure each server has an NVIDIA NIC.
+* Size the IP range using these guidelines:
+  * IPs are assigned to NICs, not containers. When multiple backend containers share a NIC, they share the same IP.
+  * Reserve one IP per NIC per server: 1 IP per server in an LACP configuration, 2 IPs per server in an HA dual-NIC configuration.
+  * The range can exceed this minimum but must not be smaller.
+  * IPs in this range are reserved for WEKA backend use only. Do not assign them to clients or any other resource.
+  * Each VLAN is assigned to a single network space. Network spaces that use the same VLAN cannot share the same backends.
+  * Use `weka cluster network-space show-usage` to inspect current IP allocation.
 
 #### **GUI procedure**
 
