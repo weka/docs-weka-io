@@ -68,6 +68,11 @@
 * [NeuralMesh Axon deployment](neuralmesh-axon/neuralmesh-axon-deployment.md)
 * [NeuralMesh Axon maintenance](neuralmesh-axon/neuralmesh-axon-maintenance.md)
 
+## WEKA App Store
+
+* [Install the WEKA App Store](weka-app-store/install-the-weka-app-store.md)
+* [Install the WEKA AI Data Platform](weka-app-store/install-the-weka-ai-data-platform.md)
+
 ## Getting Started with NeuralMesh <a href="#getting-started-with-weka" id="getting-started-with-weka"></a>
 
 * [Manage the system using the WEKA GUI](getting-started-with-weka/manage-the-system-using-weka-gui.md)
