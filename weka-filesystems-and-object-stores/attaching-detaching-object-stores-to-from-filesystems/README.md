@@ -59,7 +59,7 @@ One remote object store bucket can be attached to a filesystem. A remote object 
 
 ### Detach a remote object store bucket
 
-Detaching a remote object store bucket from a filesystem keeps the backup data within the bucket intact, and it is still possible to use these snapshots for recovery. However, after detaching, you cannot resume incremental snapshot uploads to that bucket.
+Detaching a remote object store bucket from a filesystem keeps the backup data within the bucket intact, and you can still use these snapshots for recovery. However, after detaching, you cannot resume incremental snapshot uploads to that bucket.
 
 Attaching a bucket after detachment is treated as attaching a new bucket: the first snapshot upload is a full baseline, and subsequent uploads are incremental to it. To simplify future cleanup, start the new upload chain in an empty bucket.
 
