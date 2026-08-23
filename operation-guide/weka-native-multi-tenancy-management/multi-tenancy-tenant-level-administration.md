@@ -51,13 +51,13 @@ For additional guidance on related topics, consult the standard procedures. Thes
 
 When NFS multi-tenancy is enabled, a Tenant Admin manages the tenant's own NFS objects but cannot see or change cluster-level NFS configuration.
 
-| Task | Tenant Admin |
-| --- | --- |
-| Create and manage the tenant's NFS exports and client groups | Yes |
-| List interface groups | No |
-| Change NFS global configuration | No |
-| Assign the tenant to an interface group | No — a Cluster Admin performs this |
-| Use Kerberos, ACLs, Manage GIDs, or name-based (DNS) client rules | No — root organization only |
+| Task                                                              | Tenant Admin                       |
+| ----------------------------------------------------------------- | ---------------------------------- |
+| Create and manage the tenant's NFS exports and client groups      | Yes                                |
+| List interface groups                                             | No                                 |
+| Change NFS global configuration                                   | No                                 |
+| Assign the tenant to an interface group                           | No — a Cluster Admin performs this |
+| Use Kerberos, ACLs, Manage GIDs, or name-based (DNS) client rules | No — root organization only        |
 
 Kerberos flavors are removed from the tenant view of `weka nfs global-config`, so a Cluster Admin and a Tenant Admin running that command see different output.
 
@@ -94,11 +94,23 @@ To securely mount a tenant filesystem, users must first authenticate to generate
     ```bash
     weka user login <username> <password> --tenant <tenant> --HOST <backend-host>
     ```
-2.  **Mount the filesystem:** Once authenticated, the mount command automatically uses the token from the default location.
+2. **Mount the filesystem:** Once authenticated, the mount command automatically uses the token from the default location.
 
-    ```bash
-    mount -t wekafs <backend-host>/<filesystem_name> /mnt/weka/<mount_point>
-    ```
+* If the client has a single network interface:
+
+{% code overflow="wrap" %}
+```bash
+mount -t wekafs <backend-host>/<filesystem_name> /mnt/weka/<mount_point>
+```
+{% endcode %}
+
+* If the client has more than one network interface, specify the interface connected to the tenant's VLAN:
+
+```bash
+mount -t wekafs <backend-host>/<filesystem_name> /mnt/weka/<mount_point> -o net=<interface_name>
+```
+
+Where `<interface_name>` is the network interface that carries the tenant's VLAN traffic (for example, `eth1`).
 
 ### Advanced token management
 

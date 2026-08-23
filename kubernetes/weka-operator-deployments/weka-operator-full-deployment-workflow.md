@@ -962,7 +962,7 @@ If you need WEKA clients on Kubernetes, deploy the WekaClient CR on the designat
 Review the [WekaClient API reference](https://weka.github.io/weka-k8s-api/wekaclient/) for all available resource options.
 {% endhint %}
 
-#### Before you begin
+**Before you begin**
 
 * Label every worker node intended to host WEKA client pods:
 
