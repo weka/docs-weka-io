@@ -941,7 +941,8 @@ Ensure the label matches the `nodeSelector` property in the WekaClient CR.
 
 #### Procedure
 
-1. Create `weka-client.yaml` using the connection type that matches your environment:
+1. Create `weka-client.yaml` using the connection type that matches your environment:\
+   Both connection modes support the embedded CSI plugin.
 
 <details>
 
@@ -1072,6 +1073,8 @@ Assign a non-overlapping subnet to every WEKA cluster so that each cluster keeps
 ## 9. Perform post-deployment storage configuration on WEKA client
 
 If your deployment includes a WEKA client on Kubernetes and embedded CSI is enabled, configure the CSI plugin and storage classes based on your operator version to enable persistent volume provisioning.
+
+Embedded CSI is part of the WekaClient resource in both connection modes: `targetCluster` for a WekaCluster in the same Kubernetes cluster, and `joinIpPorts` for a WEKA cluster outside Kubernetes.
 
 <table><thead><tr><th width="168.171875">Operator version</th><th width="345.9453125">Behavior</th><th>Required action</th></tr></thead><tbody><tr><td>v1.7.0 and later</td><td>Embedded CSI is supported. When embedded CSI is enabled during operator installation, the operator configures the CSI plugin and StorageClass automatically.</td><td>Proceed to create a Persistent Volume Claim (PVC).<br>See <a data-mention href="../../appendices/weka-csi-plugin/dynamic-and-static-provisioning.md">dynamic-and-static-provisioning.md</a>.</td></tr><tr><td>v1.6.2 and earlier</td><td>Embedded CSI is not available. CSI requires manual installation.</td><td>See <a data-mention href="../../appendices/weka-csi-plugin/">weka-csi-plugin</a>.</td></tr></tbody></table>
 
