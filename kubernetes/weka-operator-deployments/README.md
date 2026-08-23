@@ -7,6 +7,10 @@ description: >-
 
 # WEKA Operator deployments
 
+{% hint style="info" %}
+The WEKA Operator releases on its own cadence, independent of WEKA cluster versions. For the most current WEKA Operator capabilities and procedures, see the [latest documentation](https://docs.weka.io/kubernetes/weka-operator-deployments) and the release notes for your target Operator version.
+{% endhint %}
+
 ## Overview
 
 The WEKA Operator simplifies deploying, managing, and scaling the WEKA Data Platform within a Kubernetes cluster. It provides custom Kubernetes resources that define and manage WEKA components effectively.
@@ -59,7 +63,7 @@ The WEKA Operator client deployment uses the WekaClient custom resource to manag
     Starting with Operator version 1.7.0, the deployment process has been streamlined:
 
     * **Embedded CSI plugin:** The CSI plugin is now embedded directly within the WekaClient CR, simplifying its management.
-    * **Co-located cluster requirement:** This integrated CSI deployment is only supported when the WEKA cluster and the WEKA clients reside within the same Kubernetes cluster. This is configured by referencing the WEKA cluster in the `targetCluster` field of the WekaClient CR.
+    * **Cluster connection:** Connect the WekaClient to a WekaCluster in the same Kubernetes cluster using the `targetCluster` field, or to a WEKA cluster outside Kubernetes using the `joinIpPorts` field.
 * **High availability**: The WEKA containers act as a persistent layer, enabling each pod to be safely recreated as needed. This supports high availability by ensuring continuous service even if individual pods are restarted or moved.
 
 <div data-with-frame="true"><figure><img src="../../.gitbook/assets/WEKA_operator_client_deploy.png" alt="" width="563"><figcaption><p>WEKA Operator client deployment</p></figcaption></figure></div>
