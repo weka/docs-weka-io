@@ -27,6 +27,7 @@ The system uses an internal proxy with a default NAT subnet of **198.18.0.0/16**
 #### **Before you begin**
 
 * Ensure each server has an NVIDIA NIC.
+* Ensure the switch ports connected to WEKA backend servers are configured as trunk ports that carry all VLANs intended for use in network spaces.
 * Size the IP range using these guidelines:
   * IPs are assigned to NICs, not containers. When multiple backend containers share a NIC, they share the same IP.
   * Reserve one IP per NIC per server: 1 IP per server in an LACP configuration, 2 IPs per server in an HA dual-NIC configuration.

@@ -6,7 +6,7 @@ description: >-
 
 # Multi-tenancy tenant-level administration
 
-After a Cluster Admin creates a tenant and assigns a Tenant Admin, that administrator is responsible for managing the isolated resources within their specific isolated space.&#x20;
+After a Cluster Admin creates a tenant and assigns a Tenant Admin, that administrator is responsible for managing the isolated resources within their specific isolated space.
 
 The following procedures describe how the Tenant Admin (or a Cluster Admin for the Root tenant) manages isolated storage, users, and security within a specific tenant boundary.
 
@@ -58,11 +58,23 @@ To securely mount a tenant filesystem, users must first authenticate to generate
     ```bash
     weka user login <username> <password> --tenant <tenant> --HOST <backend-host>
     ```
-2.  **Mount the filesystem:** Once authenticated, the mount command automatically uses the token from the default location.
+2. **Mount the filesystem:** Once authenticated, the mount command automatically uses the token from the default location.
 
-    ```bash
-    mount -t wekafs <backend-host>/<filesystem_name> /mnt/weka/<mount_point>
-    ```
+* If the client has a single network interface:
+
+{% code overflow="wrap" %}
+```bash
+mount -t wekafs <backend-host>/<filesystem_name> /mnt/weka/<mount_point>
+```
+{% endcode %}
+
+* If the client has more than one network interface, specify the interface connected to the tenant's VLAN:
+
+```bash
+mount -t wekafs <backend-host>/<filesystem_name> /mnt/weka/<mount_point> -o net=<interface_name>
+```
+
+Where `<interface_name>` is the network interface that carries the tenant's VLAN traffic (for example, `eth1`).
 
 ### Advanced token management
 
