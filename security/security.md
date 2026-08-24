@@ -111,7 +111,7 @@ The join secret ensures that backends can only join a cluster if they share the 
 * In multi-cluster environments, backends might mistakenly rejoin a neighboring cluster instead of their original one.
 * During a security breach, a malicious resource could infiltrate a cluster and access sensitive information.
 
-Generate a join token by running `weka cluster join-token generate` on a backend server.
+Generate a join token by running `weka cluster join-token add` on a backend server.
 
 To add the join secret to a backend container, run `weka local resources join-secret <secret>`.
 

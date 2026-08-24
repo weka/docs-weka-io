@@ -197,13 +197,13 @@ RDMA, including RoCE, is enabled by default. To support RDMA and GDS technologie
 To confirm RDMA usage, run the following command:
 
 ```
-weka cluster processes
+weka cluster process
 ```
 
 Example:
 
 ```bash
-# weka cluster processes
+# weka cluster process
 PROCESS ID  HOSTNAME  CONTAINER   IPS         STATUS  ROLES       NETWORK      CPU  MEMORY   UPTIME
 0           weka146   default     10.0.1.146  UP      MANAGEMENT  UDP                        16d 20:07:42h
 1           weka146   default     10.0.1.146  UP      FRONTEND    DPDK / RDMA  1    1.47 GB  16d 23:29:00h

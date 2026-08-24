@@ -106,7 +106,7 @@ sudo weka local setup container --name frontend0 --only-frontend-cores --cores 1
 3. **Verify protocol server configuration:** Confirm the dedicated protocol servers have joined the cluster:
 
 ```
-weka cluster containers
+weka cluster container
 ```
 
 Expected response example:

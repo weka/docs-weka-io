@@ -340,7 +340,7 @@ kubectl get pods -n weka-operator-system
 
 ```bash
 kubectl exec -it -n weka-operator-system <POD_NAME> -- \
-  weka cluster join-token generate --access-token-timeout 52w
+  weka cluster join-token add --access-token-timeout 52w
 ```
 
 This command generates a JWT token valid for 52 weeks. Example output:

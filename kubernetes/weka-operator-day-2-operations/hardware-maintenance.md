@@ -1632,7 +1632,7 @@ DISK ID  UUID                                  HOSTNAME         NODE ID  SIZE   
 4.  Confirm the container's integration with the WEKA cluster:
 
     ```bash
-    weka cluster host
+    weka cluster container
     ```
 
     Expected status: UP.
