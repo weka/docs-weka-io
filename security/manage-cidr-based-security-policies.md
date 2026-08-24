@@ -122,7 +122,7 @@ Use the following command line to list security policies defined in the WEKA clu
 
 {% code overflow="wrap" %}
 ```sh
-weka security policy list [--action action] [--roles roles]...[--ips ips]...[--squash-mode squash-mode] [--anon-uid anon-uid]  [--anon-gid anon-gid]
+weka security policy list [--action action] [--roles roles]...[--ips ips]...
 ```
 {% endcode %}
 

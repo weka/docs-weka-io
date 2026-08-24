@@ -131,7 +131,7 @@ These entries appear in the audit destination configured for the filesystem, for
 To enable auditing on a filesystem:
 
 ```bash
-weka fs update <fsname> --enable-audit <audit-target>
+weka fs update <fsname> --audit-enabled
 ```
 
 ### Stats

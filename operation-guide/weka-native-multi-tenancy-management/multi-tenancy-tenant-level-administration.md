@@ -140,5 +140,5 @@ Revoking access is a critical security measure when a user leaves the tenant or 
 2.  Run the following command to revoke all API tokens for that user:
 
     ```bash
-    weka user revoke-tokens <username> --force
+    weka user revoke-tokens <username>
     ```
