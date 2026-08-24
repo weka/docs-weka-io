@@ -52,7 +52,7 @@ Configure the infrastructure and filesystems required to activate catalog servic
 1. **Create the configuration filesystem:** New clusters do not create `.config_fs` by default. Create it if it does not already exist. Existing clusters already include this filesystem.
 
 ```bash
-weka fs add .config_fs default 50GB
+weka fs add .config_fs 50GB --fs-group default
 ```
 
 {% hint style="info" %}

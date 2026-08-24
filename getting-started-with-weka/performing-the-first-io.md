@@ -19,7 +19,7 @@ Create a filesystem group before creating a filesystem in that group.
 1.  Create a filesystem group. A filesystem must reside in a group.
 
     ```bash
-    $ weka fs group create my_fs_group
+    $ weka fs group add my_fs_group
     FSGroupId: 0
     ```
 2.  View the existing filesystem groups to confirm the creation.
@@ -32,7 +32,7 @@ Create a filesystem group before creating a filesystem in that group.
 3.  Create a filesystem within the new group.
 
     ```bash
-    $ weka fs create new_fs my_fs_group 1TiB
+    $ weka fs add new_fs 1TiB --fs-group my_fs_group
     FSId: 0
     ```
 4.  View the existing filesystems to confirm the creation
@@ -54,7 +54,7 @@ To create an additional filesystem, first reduce the size of the `default` files
 $ weka fs update default --total-capacity 1GiB
 
 # Create a new filesystem in the default group
-$ weka fs create new_fs default 1GiB
+$ weka fs add new_fs 1GiB --fs-group default
 
 # View the existing filesystems
 $ weka fs

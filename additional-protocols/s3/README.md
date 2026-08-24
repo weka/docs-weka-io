@@ -86,7 +86,7 @@ Create of an S3 bucket, a fundamental container for storing and organizing objec
 **Alternative CLI command**
 
 ```
-weka s3 bucket create my_bucket
+weka s3 bucket add my_bucket
 ```
 
 **Related topics**

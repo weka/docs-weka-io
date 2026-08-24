@@ -35,7 +35,7 @@ Once you issue a TLS certificate, it is used for connecting to the cluster (for 
 
 ## Unset the TLS certificate
 
-You can unset your TLS certificates using the CLI command: `weka security tls unset`.
+You can unset your TLS certificates using the CLI command: `weka security tls reset`.
 
 ## Download the TLS certificate
 

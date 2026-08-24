@@ -180,11 +180,11 @@ Use the following command line to update a local user:
 
 ## Delete a local user
 
-**Command:** `weka user delete`
+**Command:** `weka user remove`
 
 To delete a user, use the following command line:
 
-`weka user delete <username>`
+`weka user remove <username>`
 
 **Parameters**
 

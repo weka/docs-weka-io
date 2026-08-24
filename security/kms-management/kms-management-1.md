@@ -128,7 +128,7 @@ Use this command to show the details of the configured KMS.
 
 ## Remove the KMS configuration
 
-**Command:** `weka security kms unset`
+**Command:** `weka security kms reset`
 
 Use this command to remove the KMS from the WEKA system. It is only possible to remove a KMS configuration if no encrypted filesystems exist.
 

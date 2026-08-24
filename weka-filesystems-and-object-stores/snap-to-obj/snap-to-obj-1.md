@@ -151,7 +151,7 @@ Recover a filesystem when the required snapshot exists only in a remote object s
 6.  Delete the temporary recovery bucket definition when recovery is complete:
 
     ```bash
-    weka fs tier s3 delete <recovery-bucket-name>
+    weka fs tier s3 remove <recovery-bucket-name>
     ```
 
     If the delete command reports that the bucket is still in use, wait a few seconds and retry.

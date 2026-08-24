@@ -114,11 +114,11 @@ Use the following command line to list the recent operations running on an objec
 
 ## Delete an object store bucket
 
-**Command:** `weka fs tier s3 delete`
+**Command:** `weka fs tier s3 remove`
 
 Use the following command line to delete an object store bucket:
 
-`weka fs tier s3 delete <name>`
+`weka fs tier s3 remove <name>`
 
 **Parameters**
 

@@ -77,7 +77,7 @@ Use this command to remove an existing bucket from the filesystem only if the bu
 
 **Parameters**
 
-<table><thead><tr><th width="184">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>name</code>*</td><td>The name of an existing S3 bucket.</td></tr><tr><td><code>unlink</code></td><td><p>Detaches the bucket from the S3 configuration and keeps the data and metadata in place. Consequently, you can recreate the bucket while preserving the data and metadata (see <code>weka s3 bucket create</code> using the <code>existing-path</code> option).</p><p>Note: If the intent is to keep the data files for use outside of the S3 configuration and delete only the S3 metadata, contact the Customer Success Team for assistance.</p></td></tr></tbody></table>
+<table><thead><tr><th width="184">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>name</code>*</td><td>The name of an existing S3 bucket.</td></tr><tr><td><code>unlink</code></td><td><p>Detaches the bucket from the S3 configuration and keeps the data and metadata in place. Consequently, you can recreate the bucket while preserving the data and metadata (see <code>weka s3 bucket add</code> using the <code>existing-path</code> option).</p><p>Note: If the intent is to keep the data files for use outside of the S3 configuration and delete only the S3 metadata, contact the Customer Success Team for assistance.</p></td></tr></tbody></table>
 
 ## Manage bucket policies
 
@@ -296,11 +296,11 @@ Use the following command line to view an S3 bucket policy name/JSON:
 
 ### Unset a bucket policy
 
-**Command:** `weka s3 bucket policy unset`
+**Command:** `weka s3 bucket policy reset`
 
 Use the following command line to unset an S3 bucket policy:
 
-`weka s3 bucket policy unset <bucket-name>`
+`weka s3 bucket policy reset <bucket-name>`
 
 **Parameters**
 

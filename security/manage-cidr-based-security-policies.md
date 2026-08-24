@@ -172,7 +172,7 @@ The following example creates a policy that allows access by users with the `clu
 
 {% code overflow="wrap" %}
 ```bash
-weka security policy create admin_network --action allow --ips 10.1.0.0/16,10.2.1.0/24 --roles clusteradmin
+weka security policy add admin_network --action allow --ips 10.1.0.0/16,10.2.1.0/24 --roles clusteradmin
 ```
 {% endcode %}
 
@@ -732,7 +732,7 @@ weka security policy list
 3. **If needed, create the filesystem:** If your filesystem already exists, skip this step.
 
 ```bash
-weka fs add fs0 default 10gb
+weka fs add fs0 10gb --fs-group default
 ```
 
 4. **Confirm no policies are attached to the filesystem:**

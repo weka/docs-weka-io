@@ -16,7 +16,7 @@ Use this command to view information on the filesystem groups in the WEKA system
 
 Use the following command to add a filesystem group:
 
-`weka fs group add <name> [--target-ssd-retention=<target-ssd-retention>] [--start-demote=<start-demote>]`
+`weka fs group add <name> [--ssd-retention=<ssd-retention>] [--start-demote=<start-demote>]`
 
 **Parameters**
 
@@ -32,7 +32,7 @@ Use the following command to add a filesystem group:
 
 Use the following command to edit a filesystem group:
 
-`weka fs group update <name> [--new-name=<new-name>] [--target-ssd-retention=<target-ssd-retention>] [--start-demote=<start-demote>]`
+`weka fs group update <name> [--new-name=<new-name>] [--ssd-retention=<ssd-retention>] [--start-demote=<start-demote>]`
 
 **Parameters**
 

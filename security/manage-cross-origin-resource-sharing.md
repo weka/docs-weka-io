@@ -69,7 +69,7 @@ Use the following command line to remove a specified trusted site from the CORS 
 
 ### Remove all trusted sites from the CORS list
 
-**Command:** `weka security cors-trusted-sites remove-all`
+**Command:** `weka security cors-trusted-sites reset`
 
 Use the following command line to remove all trusted sites from the CORS list.
 

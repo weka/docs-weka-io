@@ -172,7 +172,7 @@ Use the following command to create a timestamped snapshot accessible from Windo
 
 {% code overflow="wrap" %}
 ```bash
-$ weka fs snapshot create fs_name snapshot_name --access-point `TZ=GMT date +@GMT-%Y.%m.%d-%H.%M.%S` 
+$ weka fs snapshot add fs_name snapshot_name --access-point `TZ=GMT date +@GMT-%Y.%m.%d-%H.%M.%S` 
 ```
 {% endcode %}
 

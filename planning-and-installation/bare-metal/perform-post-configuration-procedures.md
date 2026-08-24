@@ -283,7 +283,7 @@ Instead of individually configuring IP addresses for each network device, WEKA s
 
 Use the following command to configure default data networking:
 
-`weka cluster default-net set --range <range> [--gateway=<gateway>] [--netmask-bits=<netmask-bits>]`
+`weka cluster default-net set --range <range> [--gateway=<gateway>] [--netmask=<netmask>]`
 
 **Parameters**
 

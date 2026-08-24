@@ -259,7 +259,7 @@ weka fs protection snapshot-policy add <name> <path> [--description description]
 In this example, a new snapshot policy named `policy2` is created using the template file located at `/tmp/policy_template`. The system returns the newly created policy's ID.
 
 ```
-$ weka fs protection snapshot-policy create policy2 /tmp/policy_template
+$ weka fs protection snapshot-policy add policy2 /tmp/policy_template
 SnapPolicyId: 3
 ```
 
@@ -353,12 +353,12 @@ weka fs protection snapshot-policy update <name> [--new-name new-name] [--descri
 
 ## Delete a snapshot policy
 
-**Command:** `weka fs protection snapshot-policy delete <name>`
+**Command:** `weka fs protection snapshot-policy remove <name>`
 
 This command deletes the specified snapshot policy from the system. Ensure that no filesystems are attached to the policy before proceeding with the deletion.
 
 ```
-weka fs protection snapshot-policy delete <name>
+weka fs protection snapshot-policy remove <name>
 ```
 
 **Parameters**
@@ -372,7 +372,7 @@ weka fs protection snapshot-policy delete <name>
 <summary>Example: Delete a snapshot policy</summary>
 
 ```
-$ weka fs protection snapshot-policy delete policy2
+$ weka fs protection snapshot-policy remove policy2
 Warning: You are about to delete a snapshot policy. This action deletes the snapshot policy and cannot be undone.
 
 Are you sure you want to continue (yes/no)? yes

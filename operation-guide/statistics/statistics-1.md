@@ -10,11 +10,11 @@ description: >-
 
 Look up the definition of a statistic before you chart it or query it, to confirm its identifier, unit, and category.
 
-**Command:** `weka stats list-types`
+**Command:** `weka stats types`
 
 {% code overflow="wrap" %}
 ```bash
-weka stats list-types [<name-or-category>] [--show-internal]
+weka stats types [<name-or-category>] [--show-internal]
 ```
 {% endcode %}
 
@@ -31,7 +31,7 @@ weka stats list-types [<name-or-category>] [--show-internal]
 Filter by category label to list only the statistics in one GUI category. Quote labels that contain spaces.
 
 ```bash
-$ weka stats list-types "api statistics"
+$ weka stats types "api statistics"
 CATEGORY  CATEGORY LABEL  IDENTIFIER    DESCRIPTION         LABEL                       TYPE      UNIT      PARAMETERS  RELATED RATE PARAMETER  PERMISSION  FOR NODE TYPE  CAN ACCUMULATE  HISTOGRAM  HISTOGRAM UNIT
 api       api statistics  TOTAL_2xx_RQ  Total 2xx requests  Total 2xx requests (total)  Absolute  Requests                                      USER        MANAGEMENT     True            False
 api       api statistics  TOTAL_3xx_RQ  Total 3xx requests  Total 3xx requests (total)  Absolute  Requests                                      USER        MANAGEMENT     True            False
@@ -43,7 +43,7 @@ api       api statistics  TOTAL_5xx_RQ  Total 5xx requests  Total 5xx requests (
 Filter by name to match across categories. The value is matched as a substring, so `api` returns the `api` category and also the `API_*` statistics in `Operations (S3)`.
 
 ```bash
-$ weka stats list-types api
+$ weka stats types api
 CATEGORY  CATEGORY LABEL   IDENTIFIER    DESCRIPTION                 LABEL                     TYPE         UNIT          PARAMETERS  PERMISSION  FOR NODE TYPE  CAN ACCUMULATE  HISTOGRAM
 api       api statistics   TOTAL_2xx_RQ  Total 2xx requests          Total 2xx requests (total) Absolute     Requests                  USER        MANAGEMENT     True            False
 ...
@@ -56,7 +56,7 @@ ops_s3    Operations (S3)  API_TTLB      Time To Last Byte per API   TTLB per AP
 Add `--show-internal` to include the internal statistics of a category. These statistics are intended for the Customer Success team and are not part of the published statistics list.
 
 ```bash
-weka stats list-types config --show-internal
+weka stats types config --show-internal
 ```
 
 ## View statistics in real-time
@@ -92,7 +92,7 @@ weka stats [--start-time <start-time>] [--end-time <end-time>] [--interval <inte
 
 **Parameters**
 
-<table><thead><tr><th>Name</th><th width="393.86328125">Value</th><th>Default</th></tr></thead><tbody><tr><td><code>start-time</code></td><td>Start time of the reported period. Format examples: <code>5m</code>, <code>-5m</code>, <code>-1d</code>, <code>-1w</code>, <code>1:00</code>, <code>01:00</code>, <code>18:30</code>, <code>18:30:07</code>, <code>2018-12-31 10:00</code>, <code>2018/12/31 10:00</code>, <code>2018-12-31T10:00</code>, <code>9:15Z</code>, <code>10:00+2:00</code>.</td><td><code>-1m</code></td></tr><tr><td><code>end-time</code></td><td>End time of the reported period. Uses the same formats as <code>start-time</code>.</td><td>Current time</td></tr><tr><td><code>interval</code>*</td><td>Period of time to report, in seconds. Must be a positive integer.</td><td></td></tr><tr><td><code>resolution-secs</code></td><td>Length of each interval in the reported period. Must be a multiple of 60 seconds.</td><td>60</td></tr><tr><td><code>category</code></td><td>Retrieve statistics from one category only. Run <code>weka stats list-types</code> to see the available categories.</td><td>All</td></tr><tr><td><code>stat</code></td><td>Statistic names to retrieve, as listed in the <code>IDENTIFIER</code> column of <code>weka stats list-types</code>.</td><td>All</td></tr><tr><td><code>process-ids</code></td><td>Retrieve statistics only for the specified process IDs.</td><td>All</td></tr><tr><td><code>param</code></td><td>For parameterized statistics, retrieve only the instantiations where the parameter has the specified value. Format: <code>key:val</code>. Repeat the parameter for multiple values, for example <code>--param method:putBlocks --param method:initBlock</code>.</td><td></td></tr><tr><td><code>accumulated</code></td><td>Display accumulated statistics instead of rate statistics.</td><td>False</td></tr><tr><td><code>per-process</code></td><td>Do not aggregate statistics across processes.</td><td>False</td></tr><tr><td><code>no-zeros</code></td><td>Filter out results whose value is 0.</td><td>False</td></tr><tr><td><code>show-internal</code></td><td>Display internal statistics.</td><td>False</td></tr><tr><td><code>raw-units</code></td><td>Print values in raw units, such as bytes and seconds.</td><td>Readable format.(for example: <code>1KiB</code> <code>234MiB</code> , <code>2GiB</code>)</td></tr><tr><td><code>UTC</code></td><td>Print times in UTC.</td><td>Server's local time.</td></tr></tbody></table>
+<table><thead><tr><th>Name</th><th width="393.86328125">Value</th><th>Default</th></tr></thead><tbody><tr><td><code>start-time</code></td><td>Start time of the reported period. Format examples: <code>5m</code>, <code>-5m</code>, <code>-1d</code>, <code>-1w</code>, <code>1:00</code>, <code>01:00</code>, <code>18:30</code>, <code>18:30:07</code>, <code>2018-12-31 10:00</code>, <code>2018/12/31 10:00</code>, <code>2018-12-31T10:00</code>, <code>9:15Z</code>, <code>10:00+2:00</code>.</td><td><code>-1m</code></td></tr><tr><td><code>end-time</code></td><td>End time of the reported period. Uses the same formats as <code>start-time</code>.</td><td>Current time</td></tr><tr><td><code>interval</code>*</td><td>Period of time to report, in seconds. Must be a positive integer.</td><td></td></tr><tr><td><code>resolution-secs</code></td><td>Length of each interval in the reported period. Must be a multiple of 60 seconds.</td><td>60</td></tr><tr><td><code>category</code></td><td>Retrieve statistics from one category only. Run <code>weka stats types</code> to see the available categories.</td><td>All</td></tr><tr><td><code>stat</code></td><td>Statistic names to retrieve, as listed in the <code>IDENTIFIER</code> column of <code>weka stats types</code>.</td><td>All</td></tr><tr><td><code>process-ids</code></td><td>Retrieve statistics only for the specified process IDs.</td><td>All</td></tr><tr><td><code>param</code></td><td>For parameterized statistics, retrieve only the instantiations where the parameter has the specified value. Format: <code>key:val</code>. Repeat the parameter for multiple values, for example <code>--param method:putBlocks --param method:initBlock</code>.</td><td></td></tr><tr><td><code>accumulated</code></td><td>Display accumulated statistics instead of rate statistics.</td><td>False</td></tr><tr><td><code>per-process</code></td><td>Do not aggregate statistics across processes.</td><td>False</td></tr><tr><td><code>no-zeros</code></td><td>Filter out results whose value is 0.</td><td>False</td></tr><tr><td><code>show-internal</code></td><td>Display internal statistics.</td><td>False</td></tr><tr><td><code>raw-units</code></td><td>Print values in raw units, such as bytes and seconds.</td><td>Readable format.(for example: <code>1KiB</code> <code>234MiB</code> , <code>2GiB</code>)</td></tr><tr><td><code>UTC</code></td><td>Print times in UTC.</td><td>Server's local time.</td></tr></tbody></table>
 
 Statistics are averaged over one-minute intervals, so a total or any other aggregate relates to a specific minute. Raising `resolution-secs` widens each interval and reduces the number of rows returned.
 
@@ -151,10 +151,10 @@ weka stats retention status
 
 ### Restore the default retention period
 
-**Command:** `weka stats retention restore-default`
+**Command:** `weka stats retention reset`
 
 ```bash
-weka stats retention restore-default
+weka stats retention reset
 ```
 
 

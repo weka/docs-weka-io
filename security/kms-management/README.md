@@ -93,7 +93,7 @@ The following diagram illustrates how WEKA integrates with HashiCorp Vault to ma
 
 Administrators must configure multiple keys within the KMS, one for each filesystem. During the creation of a filesystem, specific parameters are required, including the namespace, KMS key identifier, role ID, and secret ID. This configuration ensures that the filesystem operates with its dedicated encryption key.
 
-The `weka fs create` command supports this process. For details, see [#create-a-filesystem](../../weka-filesystems-and-object-stores/managing-filesystems/managing-filesystems-1.md#create-a-filesystem "mention").
+The `weka fs add` command supports this process. For details, see [#create-a-filesystem](../../weka-filesystems-and-object-stores/managing-filesystems/managing-filesystems-1.md#create-a-filesystem "mention").
 
 #### **Key update and fallback**
 

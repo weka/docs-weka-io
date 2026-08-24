@@ -69,7 +69,7 @@ weka <command> --profile <profile-name>
 ```
 
 {% hint style="info" %}
-The `--profile` option is not supported with `weka diag` commands. The default profile is used for diagnostics.
+The `--profile` option is not supported with `weka diags` commands. The default profile is used for diagnostics.
 {% endhint %}
 
 **Related topic**

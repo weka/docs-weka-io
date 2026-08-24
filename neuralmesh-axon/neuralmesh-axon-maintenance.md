@@ -87,7 +87,7 @@ For Slurm or bare-metal configurations, manage the server state using the CLI to
 1.  **Verify server status:** Ensure the server is not already in maintenance mode.
 
     ```bash
-    weka cluster servers list
+    weka cluster server list
     ```
 
     Verify the `READY FOR MAINTENANCE` column shows `False`.\
@@ -97,14 +97,14 @@ For Slurm or bare-metal configurations, manage the server state using the CLI to
 2.  **Request maintenance mode:** Request the server to stop gracefully.
 
     ```bash
-    weka cluster servers requested-action stop --timeout=5m <server-name>
+    weka cluster server requested-action stop --timeout=5m <server-name>
     ```
 
     The `--timeout=x` option aborts the command if the stop flow does not start within the specified duration. (The stop flow may start before the timeout expires but complete after it.)
 3.  **Monitor status:** Wait for the server to be ready for maintenance.
 
     ```bash
-    weka cluster servers list
+    weka cluster server list
     ```
 
     Proceed when the `READY FOR MAINTENANCE` column shows `True`.\
@@ -121,5 +121,5 @@ For Slurm or bare-metal configurations, manage the server state using the CLI to
     Confirm the server is active:
 
     ```bash
-    weka cluster servers list
+    weka cluster server list
     ```

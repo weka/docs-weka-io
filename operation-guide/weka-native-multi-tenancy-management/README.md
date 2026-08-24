@@ -120,7 +120,7 @@ As part of the upgrade to this version, the system transitions to a native multi
 
 Example CLI mapping:
 
-* Deprecated: `weka org add <name>`
+* Deprecated: `weka tenant add <name>`
 * Replacement: `weka tenant add <name>`
 
 The upgrade process is performed by the Customer Success Team.

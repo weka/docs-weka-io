@@ -12,7 +12,7 @@ description: >-
 
 Use the following command line to create a snapshot:
 
-`weka fs snapshot add <file-system> <name> [--access-point access-point] [--source-snap=<source-snap>] [--is-writable]`
+`weka fs snapshot add <file-system> <name> [--access-point access-point] [--source-snap=<source-snap>] [--writable]`
 
 {% hint style="info" %}
 The newly created snapshot is saved in the `.snapshots` directory.\

@@ -79,7 +79,7 @@ Enable Object Lock on a new bucket by way of the WEKA CLI. Enabling Object Lock 
 To enable Object Lock when you create a bucket, run:
 
 ```bash
-weka s3 bucket create <name> --object-locking-on
+weka s3 bucket add <name> --object-locking-on
 ```
 
 To confirm the Object Lock status of your buckets, run:
