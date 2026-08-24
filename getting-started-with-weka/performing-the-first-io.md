@@ -20,15 +20,18 @@ Create a filesystem group before creating a filesystem in that group.
 
     ```bash
     $ weka fs group add my_fs_group
-    FSGroupId: 0
+    Created filesystem group my_fs_group with ID 1.
     ```
 2.  View the existing filesystem groups to confirm the creation.
 
     ```bash
     $ weka fs group
-    FileSystem Group ID | Name        | target-ssd-retention | start-demote
-    FSGroupId: 0          | my_fs_group | 1d 0:00:00h          | 0:15:00h
+    ID  Name         SSD Retention  Start Demote
+     0  .meta          1d 0:00:00h      0:15:00h
+     1  my_fs_group
     ```
+
+    A group created without `--ssd-retention` or `--start-demote` shows no value for those columns. Set them with `weka fs group update` if the group needs a tiering policy.
 3.  Create a filesystem within the new group.
 
     ```bash
