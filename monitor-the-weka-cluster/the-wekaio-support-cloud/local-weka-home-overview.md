@@ -1,7 +1,7 @@
 ---
 description: >-
-  Local WEKA Home is a private instance of WEKA Home deployed with a WEKA
-  cluster in a private network.
+  Explore Local WEKA Home capabilities, deployment options, and security
+  requirements for private environments.
 ---
 
 # Local WEKA Home overview

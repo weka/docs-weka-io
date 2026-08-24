@@ -1,23 +1,10 @@
 ---
 description: >-
-  Use the GUI to configure an SMB-W cluster on WEKA filesystems and manage
-  cluster settings, shares, and Active Directory integration.
+  Configure SMB-W clusters, Active Directory integration, servers, and shares
+  using the GUI.
 ---
 
 # Manage SMB using the GUI
-
-Using the GUI, you can:
-
-* [Configure the SMB cluster](smb-management-using-the-gui.md#configure-the-smb-cluster)
-* [Edit the SMB cluster](smb-management-using-the-gui.md#edit-the-smb-cluster)
-* [Join the SMB cluster to Active Directory](smb-management-using-the-gui.md#join-the-smb-cluster-in-the-active-directory)
-* [Add servers to the SMB cluster](smb-management-using-the-gui.md#add-or-remove-smb-cluster-hosts)
-* [Remove servers from the SMB cluster](smb-management-using-the-gui.md#delete-the-smb-cluster)
-* [Delete the SMB cluster](smb-management-using-the-gui.md#delete-the-smb-cluster)
-* [Display the SMB shares list](smb-management-using-the-gui.md#display-the-smb-shares-list)
-* [Add an SMB share](smb-management-using-the-gui.md#add-an-smb-share)
-* [Edit an SMB share](smb-management-using-the-gui.md#edit-an-smb-share)
-* [Remove an SMB share](smb-management-using-the-gui.md#remove-an-smb-share)
 
 {% hint style="info" %}
 The GUI refers to the feature as SMB, but it applies to SMB-W only. Support for the legacy SMB implementation has been removed.
@@ -61,13 +48,11 @@ Verify that the dedicated filesystem for persistent protocol configurations is c
 Due to cloud provider network limitations, setting a list of SMB floating IPs in all cloud installations is impossible. In this case, the SMB service must be accessed using the cluster nodes' primary addresses.
 {% endhint %}
 
-5. Select **Save**.
+5. Select **Submit**.
 
-<div data-with-frame="true"><figure><img src="../../.gitbook/assets/wmng_smb_configure_dialog_4.3.5.gif" alt=""><figcaption><p>SMB cluster configuration</p></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/smb_config.png" alt=""><figcaption><p>SMB cluster configuration</p></figcaption></figure></div>
 
-Once the system completes configuration, the server statuses change from not ready (❌) to ready (✅).
-
-<div data-with-frame="true"><img src="../../.gitbook/assets/wmng_smb_configure_result.png" alt="SMB cluster configuration example"></div>
+Once the system completes configuration, the server statuses change from <img src="../../.gitbook/assets/red_x.png" alt="" data-size="line"> (not ready) to <img src="../../.gitbook/assets/green_check.png" alt="" data-size="line"> (ready).
 
 ## Edit the SMB cluster <a href="#edit-the-smb-cluster" id="edit-the-smb-cluster"></a>
 
@@ -76,14 +61,9 @@ You can modify the encryption and IP settings according to your needs.
 **Procedure**
 
 1. In the SMB Cluster Configuration, select the **pencil** icon.
-
-<div data-with-frame="true"><figure><img src="../../.gitbook/assets/wmng_smb_cluster_edit.png" alt="" width="338"><figcaption><p>Edit the SMB cluster</p></figcaption></figure></div>
-
 2. In the Edit SMB Configuration dialog, do the following:
    * **Encryption:** Select one of the in-transit encryption enforcements: enabled, desired, or required.
    * **IPs:** List of virtual IPs (comma-separated) used as floating IPs for the SMB cluster. (Floating IPs are not supported for cloud installations.)
-
-<div data-with-frame="true"><figure><img src="../../.gitbook/assets/wmng_edit_smb_configuration.png" alt="" width="375"><figcaption><p>Edit SMB configuration</p></figcaption></figure></div>
 
 3\. Select **Save**.
 
@@ -119,9 +99,6 @@ Replace `8.8.8.8` and `8.8.4.4` with the appropriate nameserver IP addresses for
 **Procedure**
 
 1. In the SMB Cluster Configuration, select **Join**.
-
-<div data-with-frame="true"><figure><img src="../../.gitbook/assets/wmng_smb_join_ad_button.png" alt="" width="338"><figcaption><p>Join the SMB cluster in the Active Directory</p></figcaption></figure></div>
-
 2. In the Join to Active Directory dialog, set the following properties:
    * **Username** and **Password**: A username and password of an account that has join privileges to the Active Directory domain. WEKA does not save these credentials. Instead, the SMB cluster creates a computer account for use.
    * **Server**: (Optional) WEKA automatically identifies an AD Domain Controller server (from `/etc/resolv.conf`) based on the AD domain name. You do not need to set the server name. In some cases, specify the AD server if required.
@@ -206,8 +183,6 @@ Adding servers to the SMB cluster can provide several benefits and address vario
 2. In the Add SMB Cluster Servers dialog, select one or more available servers (a maximum of eight servers) from the list.
 3. Select **Save**.
 
-<div data-with-frame="true"><figure><img src="../../.gitbook/assets/wmng_add_server_to_smb_cluser.png" alt=""><figcaption><p>Add servers to the SMB cluster</p></figcaption></figure></div>
-
 ## Remove servers from the SMB cluster <a href="#delete-the-smb-cluster" id="delete-the-smb-cluster"></a>
 
 If the SMB cluster has more servers than you need, you can remove the server.
@@ -217,12 +192,7 @@ The minimum required number of servers in an SMB cluster is three.
 **Procedure**
 
 1. To remove one server, select the three dots next to the server to remove and select **Remove**.
-
-<div data-with-frame="true"><figure><img src="../../.gitbook/assets/wmng_remove_one_server.png" alt="" width="503"><figcaption><p>Remove one server from the SMB cluster</p></figcaption></figure></div>
-
 2. To remove more than one server, select the servers to remove from the Remove SMB Cluster Servers dialog (click the **X**), and select **Save**.
-
-<div data-with-frame="true"><figure><img src="../../.gitbook/assets/wmng_remove_few_servers.png" alt=""><figcaption><p>Remove more than one server from the SMB cluster</p></figcaption></figure></div>
 
 ## Delete the SMB cluster <a href="#delete-the-smb-cluster" id="delete-the-smb-cluster"></a>
 
@@ -230,10 +200,7 @@ Deleting the SMB cluster resets its configuration data. Deleting an SMB cluster 
 
 **Procedure**
 
-1. In the SMB Cluster Configuration, select the **trash** icon.
-
-<div data-with-frame="true"><img src="../../.gitbook/assets/wmng_smb_cluster_remove.png" alt="Delete the SMB cluster configuration"></div>
-
+1. In the SMB Cluster Configuration, select **X**.
 2. In the SMB Configuration Reset message, select **Reset**.
 
 ## **Display the SMB shares list** <a href="#display-the-smb-shares-list" id="display-the-smb-shares-list"></a>

@@ -1,8 +1,7 @@
 ---
 description: >-
-  A centralized service that delivers pre-built WEKA kernel drivers for
-  supported Linux distributions, eliminating manual compilation while ensuring
-  consistent deployment across environments.
+  Access pre-built WEKA kernel drivers for supported Linux distributions through
+  the Drivers Distribution Service.
 ---
 
 # Drivers distribution service

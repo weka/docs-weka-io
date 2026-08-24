@@ -1,3 +1,7 @@
+---
+description: Manage Local WEKA Home audit records, users, groups, and access permissions.
+---
+
 # Enforce security and compliance
 
 ## Cluster administration and audit

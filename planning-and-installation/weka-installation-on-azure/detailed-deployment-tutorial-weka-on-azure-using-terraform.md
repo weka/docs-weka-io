@@ -1,8 +1,5 @@
 ---
-description: >-
-  This guide provides step-by-step instructions for deploying the WEKA Data
-  Platform on Microsoft Azure using Terraform, tailored for customers, partners,
-  and WEKA teams.
+description: Deploy WEKA on Azure using a guided Terraform workflow.
 ---
 
 # Detailed deployment tutorial: WEKA on Azure using Terraform

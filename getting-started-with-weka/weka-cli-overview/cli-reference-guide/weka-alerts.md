@@ -1,3 +1,7 @@
+---
+description: View and manage WEKA cluster alerts.
+---
+
 # weka alerts
 
 List alerts in the Weka cluster.

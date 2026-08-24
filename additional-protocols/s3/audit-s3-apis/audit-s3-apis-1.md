@@ -1,10 +1,8 @@
 ---
-description: This page describes an example for using Splunk to audit S3.
+description: Configure Splunk HTTP Event Collector (HEC) to audit S3 API events.
 ---
 
 # Example: How to use Splunk to audit S3
-
-Setting up an HTTP Event Collector (HEC).
 
 #### Step 1: Configure the HEC
 

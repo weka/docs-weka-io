@@ -1,5 +1,5 @@
 ---
-description: This page describes possible congestion issues in the WEKA system.
+description: Identify WEKA system congestion events and respond to associated alerts.
 ---
 
 # System congestion

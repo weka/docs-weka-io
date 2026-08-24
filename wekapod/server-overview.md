@@ -1,3 +1,7 @@
+---
+description: Review WEKApod server hardware and component specifications.
+---
+
 # WEKApod servers overview
 
 ## **WEKApod server core** component
@@ -39,14 +43,14 @@ The front view of the WEKApod server configuration is order-dependent:
 
 **Front view of the WSA and WMS servers: Ports, panels, and slots descriptions** (all configurations)
 
-| Item | Ports, panels, and slots | Description |
-| --- | --- | --- |
-| 1 | Left control panel | Contains the system health, system ID, and the status LED indicators. |
-| 2 | Drives | Enables you to install NVMe drives supported on your system (order-dependent: E3.S or 2.5-inch). |
-| 3 | Right control panel | Contains the power button with integrated power LED, 1 x VGA port, 1 x 2.0 USB port, iDRAC Direct (Micro-AB USB) port, and the iDRAC Direct status LED. |
-| 4 | VGA | Enables you to connect a display device to the system. |
-| 5 | Information tag | The Express Service Tag is a slide-out label panel that contains system information such as Service Tag, NIC, MAC address, and so on. If you have opted for the secure default access to iDRAC, the Information tag also contains the iDRAC secure default password. |
-| 6 | E3.S blank | Enables you to install blanks for 14 x E3.S configuration. |
+| Item | Ports, panels, and slots | Description                                                                                                                                                                                                                                                          |
+| ---- | ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1    | Left control panel       | Contains the system health, system ID, and the status LED indicators.                                                                                                                                                                                                |
+| 2    | Drives                   | Enables you to install NVMe drives supported on your system (order-dependent: E3.S or 2.5-inch).                                                                                                                                                                     |
+| 3    | Right control panel      | Contains the power button with integrated power LED, 1 x VGA port, 1 x 2.0 USB port, iDRAC Direct (Micro-AB USB) port, and the iDRAC Direct status LED.                                                                                                              |
+| 4    | VGA                      | Enables you to connect a display device to the system.                                                                                                                                                                                                               |
+| 5    | Information tag          | The Express Service Tag is a slide-out label panel that contains system information such as Service Tag, NIC, MAC address, and so on. If you have opted for the secure default access to iDRAC, the Information tag also contains the iDRAC secure default password. |
+| 6    | E3.S blank               | Enables you to install blanks for 14 x E3.S configuration.                                                                                                                                                                                                           |
 
 ## Rear view of the WSA and WMS servers
 
@@ -54,26 +58,26 @@ The front view of the WEKApod server configuration is order-dependent:
 
 **Rear view of the WEKApod server: Ports, panels, and slots**
 
-| Item | Ports, panels, and slots | Description |
-| --- | --- | --- |
-| 1 | Power supply unit (PSU1) | Primary power supply unit. |
-| 2 | InfiniBand port 1 | 400 Gbps HDR InfiniBand port (**ib1**) for storage network connectivity. |
-| 3 | InfiniBand port 2 | 400 Gbps HDR InfiniBand port (**ib0**) for storage network connectivity. |
-| 4 | Power supply unit (PSU2) | Secondary power supply unit. |
-| 5 | OS management Ethernet ports | 1 Gbps Ethernet ports (left to right): WEKA Linux **eno8303** and **eno8403**. |
-| 6 | 25 Gbps Ethernet ports | Extra 25 Gbps Ethernet ports for auxiliary uses like WEKA Object Storage tiering, Snapshot-to-Object backup, and other secondary applications. |
-| 7 | BMC Ethernet port | Ethernet port for in-band management (iDRAC). |
+| Item | Ports, panels, and slots     | Description                                                                                                                                    |
+| ---- | ---------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1    | Power supply unit (PSU1)     | Primary power supply unit.                                                                                                                     |
+| 2    | InfiniBand port 1            | 400 Gbps HDR InfiniBand port (**ib1**) for storage network connectivity.                                                                       |
+| 3    | InfiniBand port 2            | 400 Gbps HDR InfiniBand port (**ib0**) for storage network connectivity.                                                                       |
+| 4    | Power supply unit (PSU2)     | Secondary power supply unit.                                                                                                                   |
+| 5    | OS management Ethernet ports | 1 Gbps Ethernet ports (left to right): WEKA Linux **eno8303** and **eno8403**.                                                                 |
+| 6    | 25 Gbps Ethernet ports       | Extra 25 Gbps Ethernet ports for auxiliary uses like WEKA Object Storage tiering, Snapshot-to-Object backup, and other secondary applications. |
+| 7    | BMC Ethernet port            | Ethernet port for in-band management (iDRAC).                                                                                                  |
 
 **Rear view of the WMS server: Ports, panels, and slots**
 
 <div data-with-frame="true"><figure><img src="../.gitbook/assets/wekapod_wms_server_rear.png" alt=""><figcaption><p>Rear view of the WMS server</p></figcaption></figure></div>
 
-| Item | Ports, panels, and slots | Description |
-| --- | --- | --- |
-| 1 | Power supply unit (PSU1) | Primary power supply unit. |
-| 2 | Power supply unit (PSU2) | Secondary power supply unit. |
-| 3 | OS management Ethernet ports | 1 Gbps Ethernet ports (left to right): WEKA Linux **eno12399**, **eno12409**, **eno12419**, and **eno12429**. |
-| 4 | BMC Ethernet port | Ethernet port for in-band management (iDRAC). |
+| Item | Ports, panels, and slots     | Description                                                                                                   |
+| ---- | ---------------------------- | ------------------------------------------------------------------------------------------------------------- |
+| 1    | Power supply unit (PSU1)     | Primary power supply unit.                                                                                    |
+| 2    | Power supply unit (PSU2)     | Secondary power supply unit.                                                                                  |
+| 3    | OS management Ethernet ports | 1 Gbps Ethernet ports (left to right): WEKA Linux **eno12399**, **eno12409**, **eno12419**, and **eno12429**. |
+| 4    | BMC Ethernet port            | Ethernet port for in-band management (iDRAC).                                                                 |
 
 ## Server Information tag location
 

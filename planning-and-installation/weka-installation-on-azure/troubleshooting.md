@@ -1,3 +1,7 @@
+---
+description: Troubleshoot common WEKA deployment issues on Azure.
+---
+
 # Troubleshooting
 
 During the deployment process, errors may occur. You can use the Azure Console tools to verify the resource status and the Azure quota limitations.

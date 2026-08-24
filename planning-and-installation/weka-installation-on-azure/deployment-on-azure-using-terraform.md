@@ -1,3 +1,7 @@
+---
+description: Deploy WEKA on Azure using Terraform.
+---
+
 # Deployment on Azure using Terraform
 
 This guide outlines the customization process for Terraform configurations to deploy the WEKA cluster on Azure. It is designed for system engineers with expertise in Azure and Terraform.

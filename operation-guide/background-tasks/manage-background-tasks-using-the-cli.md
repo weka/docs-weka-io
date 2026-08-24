@@ -1,10 +1,8 @@
+---
+description: View, limit, pause, resume, and abort WEKA background tasks using the CLI.
+---
+
 # Manage background tasks using the CLI
-
-Using the CLI, you can:
-
-* [View running background tasks](manage-background-tasks-using-the-cli.md#viewing-running-background-tasks)
-* [Limit background task resources](manage-background-tasks-using-the-cli.md#limit-background-task-resources)
-* [Pause/Resume/Abort a background task](manage-background-tasks-using-the-cli.md#pause-resume-abort-a-background-task)
 
 ## View active background tasks <a href="#viewing-running-background-tasks" id="viewing-running-background-tasks"></a>
 

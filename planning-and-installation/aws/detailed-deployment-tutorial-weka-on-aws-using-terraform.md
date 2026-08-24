@@ -1,3 +1,7 @@
+---
+description: Deploy WEKA on AWS with Terraform using a complete guided workflow.
+---
+
 # Detailed deployment tutorial: WEKA on AWS using Terraform
 
 ## Introduction

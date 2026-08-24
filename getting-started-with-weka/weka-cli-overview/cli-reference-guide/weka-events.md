@@ -1,3 +1,7 @@
+---
+description: View and manage WEKA system events.
+---
+
 # weka events
 
 List all events that conform to the filter criteria.

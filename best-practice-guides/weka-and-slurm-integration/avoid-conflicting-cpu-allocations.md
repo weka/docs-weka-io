@@ -1,3 +1,7 @@
+---
+description: Allocate CPU resources between WEKA and Slurm workloads.
+---
+
 # Manage CPU allocations for WEKA and Slurm
 
 Configure efficient CPU allocation to prevent conflicts between the WEKA filesystem and Slurm job scheduling. Improper CPU allocation can lead to performance degradation, CPU starvation, or resource contention.
@@ -103,7 +107,7 @@ CoreSpecCount=4 CPUSpecList=24-27 MemSpecLimit=20480
 **CPU index verification:** Ensure there is no mismatch between logical and physical CPU indexes. If a mismatch is detected, Slurm may inadvertently schedule jobs on WEKA cores.
 
 * **Action:** If indexes differ, see [#id-8.-address-logical-and-physical-cpu-index-mismatch](avoid-conflicting-cpu-allocations.md#id-8.-address-logical-and-physical-cpu-index-mismatch "mention").
-* **Reference:** See the [#id-2.-allocate-cores-and-memory-for-the-weka-agent](./#id-2.-allocate-cores-and-memory-for-the-weka-agent "mention").
+* **Reference:** See the /pages/C9Kb5Lk2YdpptwlNlLSx#id-2.-allocate-cores-and-memory-for-the-weka-agent.
 {% endhint %}
 
 ### 6. Verify CPUset configuration (v1 and v2)

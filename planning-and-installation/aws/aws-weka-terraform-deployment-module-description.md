@@ -1,3 +1,9 @@
+---
+description: >-
+  Review the Terraform AWS WEKA module structure, inputs, and deployment
+  resources.
+---
+
 # Terraform-AWS-WEKA module description
 
 The [Terraform-AWS-WEKA](https://registry.terraform.io/modules/weka/weka/aws/latest?tab=inputs) module is an open-source repository. It contains modules to customize the WEKA cluster installation on AWS. The default protocol deployed using the module is POSIX.

@@ -1,5 +1,7 @@
 ---
-description: Improve the WEKA support process with WEKA Home.
+description: >-
+  Understand WEKA Home telemetry collection and enable uploads from WEKA
+  clusters and clients.
 ---
 
 # WEKA Home - The WEKA support cloud
@@ -71,4 +73,4 @@ Uploading information to WEKA Home from the WEKA cluster backend servers and cli
 
 [statistics-list.md](../../operation-guide/statistics/statistics-list.md "mention")
 
-[#upload-diagnostics-data-to-weka-home](../../support/diagnostics-management/diagnostics-utility.md#upload-diagnostics-data-to-weka-home "mention")
+[Broken link](/broken/pages/-LQYbwoiZPKuvxtPDD12#upload-diagnostics-data-to-weka-home "mention")

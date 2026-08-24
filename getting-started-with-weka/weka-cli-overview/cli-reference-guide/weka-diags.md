@@ -1,3 +1,7 @@
+---
+description: Collect and manage WEKA diagnostic information.
+---
+
 # weka diags
 
 Understand the status of the cluster and its environment.

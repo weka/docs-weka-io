@@ -1,3 +1,7 @@
+---
+description: Display help for WEKA CLI commands.
+---
+
 # weka help
 
 Display detailed help for a given command.

@@ -1,3 +1,9 @@
+---
+description: >-
+  Configure and monitor cluster-level and filesystem-level auditing using the
+  CLI.
+---
+
 # Manage audit and forwarding using the CLI
 
 You can use the `weka audit` commands to configure and manage the audit and forwarding feature. The commands are organized into the following groups:
@@ -81,8 +87,8 @@ weka audit fs status [--name name]
 
 **Parameter**
 
-| Name | Description |
-| --- | --- |
+| Name   | Description                                |
+| ------ | ------------------------------------------ |
 | `name` | The name of a specific filesystem to view. |
 
 ### **Enable or disable auditing for a filesystem**
@@ -102,9 +108,9 @@ Enable or disable auditing on a specific filesystem.
 
 **Parameter**
 
-| Name | Description |
-| --- | --- |
-| `name`* | The name of the filesystem on which to enable or disable auditing. |
+| Name     | Description                                                        |
+| -------- | ------------------------------------------------------------------ |
+| `name`\* | The name of the filesystem on which to enable or disable auditing. |
 
 **Related topics**
 

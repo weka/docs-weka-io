@@ -1,3 +1,7 @@
+---
+description: Enable SELinux support for the WEKA CSI Plugin.
+---
+
 # Add SELinux support
 
 Security-Enhanced Linux (SELinux) is a Linux kernel security module that provides a mechanism for supporting access control security policies, including mandatory access controls (MAC).

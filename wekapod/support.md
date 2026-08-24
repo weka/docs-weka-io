@@ -1,3 +1,7 @@
+---
+description: Use the WEKApod support process to diagnose and resolve issues.
+---
+
 # WEKApod support process
 
 The WEKApod support process is a multi-tiered system designed to provide comprehensive assistance to customers:

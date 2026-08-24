@@ -1,7 +1,7 @@
 ---
 description: >-
-  Efficiently manage resource-intensive tasks with at least one Data Services
-  container for improved performance and reliability.
+  Configure a Data Services container to run quota coloring and S3 lifecycle
+  background tasks.
 ---
 
 # Set up a Data Services container for background tasks
@@ -56,15 +56,15 @@ weka local setup container --name <container_name> --base-port <base-port> --joi
 
 **Parameters:**
 
-| Parameter | Description |
-| --- | --- |
-| `name`* | The Data Services container name. Set `dataserv0` to avoid confusion. |
-| `only-dataserv-cores`* | Creates a Data Services container. This parameter is mandatory. |
-| `base-port` | If a base-port is not specified, the Data Services container may still initialize as it attempts to allocate an available port range and could succeed. However, for optimal operation, it is recommended to provide the base port externally. |
-| `join-ips`* | Specify the management IP of one of the servers in the cluster to join. |
-| `management-ips` | This is optional. If not provided, it automatically takes the management IP of the server. |
-| `memory` | Configure the container memory to be allocated for huge pages. It is recommended to set it to 1.5 GB. |
-| `allow-mix-setting` | This option enables using specified core IDs, even when containers with AUTO core ID allocation run on the same server. It is required if the core allocation is not explicitly specified. |
+| Parameter               | Description                                                                                                                                                                                                                                    |
+| ----------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `name`\*                | The Data Services container name. Set `dataserv0` to avoid confusion.                                                                                                                                                                          |
+| `only-dataserv-cores`\* | Creates a Data Services container. This parameter is mandatory.                                                                                                                                                                                |
+| `base-port`             | If a base-port is not specified, the Data Services container may still initialize as it attempts to allocate an available port range and could succeed. However, for optimal operation, it is recommended to provide the base port externally. |
+| `join-ips`\*            | Specify the management IP of one of the servers in the cluster to join.                                                                                                                                                                        |
+| `management-ips`        | This is optional. If not provided, it automatically takes the management IP of the server.                                                                                                                                                     |
+| `memory`                | Configure the container memory to be allocated for huge pages. It is recommended to set it to 1.5 GB.                                                                                                                                          |
+| `allow-mix-setting`     | This option enables using specified core IDs, even when containers with AUTO core ID allocation run on the same server. It is required if the core allocation is not explicitly specified.                                                     |
 
 <details>
 

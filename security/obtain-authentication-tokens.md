@@ -1,3 +1,7 @@
+---
+description: Obtain and manage WEKA access, refresh, and long-lived API tokens.
+---
+
 # Obtain authentication tokens
 
 There are two types of authentication tokens: an access token and a refresh token.

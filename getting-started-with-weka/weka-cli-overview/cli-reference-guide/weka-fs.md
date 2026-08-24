@@ -1,3 +1,7 @@
+---
+description: Manage WEKA filesystems and related storage settings.
+---
+
 # weka fs
 
 List filesystems defined in this Weka cluster.

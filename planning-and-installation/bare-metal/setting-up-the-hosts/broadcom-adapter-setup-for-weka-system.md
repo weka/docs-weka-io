@@ -1,3 +1,7 @@
+---
+description: Configure Broadcom network adapters for WEKA client connectivity.
+---
+
 # Broadcom adapter setup for WEKA clients
 
 To enable a WEKA client to use Broadcom adapters, ensure the server has the appropriate drivers and firmware downloaded from Broadcom's website.

@@ -1,7 +1,7 @@
 ---
 description: >-
-  This page describes the management of background tasks running on the WEKA
-  system.‌
+  Manage WEKA background tasks, including resource limits, concurrency, and
+  available actions.
 ---
 
 # Background tasks

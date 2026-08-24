@@ -1,3 +1,7 @@
+---
+description: Add WEKA clients to a WEKA cluster deployed on Google Cloud.
+---
+
 # Add clients to a WEKA cluster on GCP
 
 WEKA supports client instances with at least two NICs, one for management and one for the frontend data. It is possible to add more NICs for redundancy and higher performance.

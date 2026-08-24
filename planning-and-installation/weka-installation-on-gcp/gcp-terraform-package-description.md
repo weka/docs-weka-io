@@ -1,3 +1,9 @@
+---
+description: >-
+  Review the GCP WEKA Terraform package structure, inputs, and deployment
+  resources.
+---
+
 # GCP-WEKA deployment Terraform package description
 
 WEKA provides a ready-to-deploy [GCP-WEKA deployment Terraform package](https://registry.terraform.io/modules/weka/weka/gcp/latest) you can customize to install the WEKA cluster on GCP.

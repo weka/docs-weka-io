@@ -1,3 +1,7 @@
+---
+description: Provision WEKA storage dynamically or statically with the CSI Plugin.
+---
+
 # Dynamic and static provisioning
 
 The section provides some examples of dynamic and static provisioning. For more examples, see [https://github.com/weka/csi-wekafs/tree/main/examples](https://github.com/weka/csi-wekafs/tree/main/examples).
@@ -54,10 +58,10 @@ pvc-wekafs-dir        Bound    pvc-d00ba0fe-04a0-4916-8fea-ddbbc8f43380   1Gi   
 
 #### Persistent volume claim **parameters**
 
-| Parameter | Description |
-| --- | --- |
-| `spec.accessModes` | The volume access mode.Possible values: `ReadWriteMany`, `ReadWriteOnce`, `ReadOnlyMany` |
-| `spec.storageClassName` | The storage class to use to create the PVC.The storage class must exist. |
+| Parameter                         | Description                                                                                                                                               |
+| --------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `spec.accessModes`                | The volume access mode.Possible values: `ReadWriteMany`, `ReadWriteOnce`, `ReadOnlyMany`                                                                  |
+| `spec.storageClassName`           | The storage class to use to create the PVC.The storage class must exist.                                                                                  |
 | `spec.resources.requests.storage` | The required capacity for the volume.The capacity quota is not enforced but is stored on the filesystem directory extended and attributed for future use. |
 
 The directory is created in the filesystem under the `csi-volumes` directory starting with the volume name.
@@ -159,12 +163,12 @@ spec:
 
 #### Persistent volume claim for static provisioning
 
-| Parameter | Description |
-| --- | --- |
-| `spec.accessModes` | The volume access mode.Possible values: `ReadWriteMany`, `ReadWriteOnce`, `ReadOnlyMany` |
-| `spec.storageClassName` | The storage class to use to create the PVC.It must be the same storage class as the PV requested to bind in `spec.volumeName`. |
+| Parameter                         | Description                                                                                                                                               |
+| --------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `spec.accessModes`                | The volume access mode.Possible values: `ReadWriteMany`, `ReadWriteOnce`, `ReadOnlyMany`                                                                  |
+| `spec.storageClassName`           | The storage class to use to create the PVC.It must be the same storage class as the PV requested to bind in `spec.volumeName`.                            |
 | `spec.resources.requests.storage` | The required capacity for the volume.The capacity quota is not enforced but is stored on the filesystem directory extended and attributed for future use. |
-| `spec.volumeName` | The name of a pre-configured persistent volume.The persistent volume name must exist. |
+| `spec.volumeName`                 | The name of a pre-configured persistent volume.The persistent volume name must exist.                                                                     |
 
 4. Apply the PVC YAML file.
 

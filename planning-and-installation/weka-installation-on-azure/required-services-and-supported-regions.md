@@ -1,3 +1,7 @@
+---
+description: Review Azure services and regions required for a WEKA Terraform deployment.
+---
+
 # Required services and supported regions
 
 The region must support the services used in WEKA on Azure. The following sections list these services and the current regions that support them. See the related information below for updates.

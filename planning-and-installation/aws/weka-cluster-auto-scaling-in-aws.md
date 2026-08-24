@@ -1,3 +1,7 @@
+---
+description: Configure AWS auto scaling for WEKA cluster resources.
+---
+
 # WEKA cluster auto-scaling in AWS
 
 ## Scale-out the WEKA cluster backend servers

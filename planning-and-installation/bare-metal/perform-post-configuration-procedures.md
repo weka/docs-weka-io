@@ -1,3 +1,7 @@
+---
+description: Complete the required configuration tasks after creating a WEKA cluster.
+---
+
 # Perform post-configuration
 
 Once the WEKA cluster is installed and configured, perform the following:

@@ -1,3 +1,7 @@
+---
+description: Add a backend server to a multi-container WEKA cluster.
+---
+
 # Add a backend server
 
 Expanding a cluster in a multi-container backend architecture with a new server is similar to the WEKA multi-container backend installation process.

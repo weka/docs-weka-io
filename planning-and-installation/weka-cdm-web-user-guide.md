@@ -1,3 +1,7 @@
+---
+description: Use Cloud Deployment Manager Web to plan and deploy WEKA infrastructure.
+---
+
 # Cloud Deployment Manager Web (CDM Web) User Guide
 
 ## Overview
@@ -86,11 +90,9 @@ Certain fields within the configuration input panel require manual user input. O
 {% endtab %}
 
 {% tab title="WEKA Version" %}
-The WEKA software release dropdown menu is designed to auto-populate with the most recent Long-Term Support (LTS) version by default. You can select the previous software release by opening the dropdown menu and choosing from the list. The top two entries in the dropdown are always LTS releases, while the bottom two are innovation releases.
+The WEKA software release dropdown menu auto-populates with a recent recommended version by default. To use a different listed release, open the dropdown menu and select it from the list.
 
 To enter a WEKA software release that is not listed in the dropdown, click directly in the WEKA Version input field and type the desired release. This feature is particularly useful when deploying a WEKA cluster with a customer-specific software release.
-
-<div data-with-frame="true"><figure><img src="../.gitbook/assets/image (239).png" alt="" width="290"><figcaption><p>WEKA Version</p></figcaption></figure></div>
 {% endtab %}
 {% endtabs %}
 

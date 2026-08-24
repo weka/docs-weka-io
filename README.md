@@ -17,7 +17,7 @@ In this documentation, references to WEKA denote the underlying software compone
 {% endhint %}
 
 {% hint style="warning" %}
-**Important:** This documentation applies to the **latest minor version** (6.0.**X**). For information on new features and supported prerequisites released with each minor version, refer to the relevant release notes available at [get.weka.io](https://get.weka.io/).
+**Important:** This documentation applies to the **latest revision** (6.0.**X**). For information on new features and supported prerequisites released with each minor version, refer to the relevant release notes available at [get.weka.io](https://get.weka.io/).
 
 Check the release notes for details about any updates or changes accompanying the latest releases.
 {% endhint %}

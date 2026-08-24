@@ -334,14 +334,14 @@ Confirm the switch operating system (NVIDIA Onyx or Cumulus Linux) and check NVI
 
 **Required parameters for WEKA**
 
-| Parameter | Value | Notes |
-| --- | --- | --- |
-| Marking method | Layer 3 (DSCP) | Required when WEKA traffic is routed across subnets. Layer 2 (TOS) marking works only when all servers share a subnet, but WEKA doesn't recommend it. |
-| DSCP value | 24 | Register value 96 (DSCP x 4) on the NIC. |
-| Traffic class, data | 3 | Maps to switch priority 3. |
-| Traffic class, congestion notification (CNP) | 6 | Maps to switch priority 6. |
-| PFC priority | 3 | Enable Priority Flow Control on this priority so RoCE traffic isn't dropped. |
-| Congestion control | ECN | Enable alongside PFC. |
+| Parameter                                    | Value          | Notes                                                                                                                                                 |
+| -------------------------------------------- | -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Marking method                               | Layer 3 (DSCP) | Required when WEKA traffic is routed across subnets. Layer 2 (TOS) marking works only when all servers share a subnet, but WEKA doesn't recommend it. |
+| DSCP value                                   | 24             | Register value 96 (DSCP x 4) on the NIC.                                                                                                              |
+| Traffic class, data                          | 3              | Maps to switch priority 3.                                                                                                                            |
+| Traffic class, congestion notification (CNP) | 6              | Maps to switch priority 6.                                                                                                                            |
+| PFC priority                                 | 3              | Enable Priority Flow Control on this priority so RoCE traffic isn't dropped.                                                                          |
+| Congestion control                           | ECN            | Enable alongside PFC.                                                                                                                                 |
 
 Configure the switch first, using the `roce` macro (Onyx) or `nv set qos roce` (Cumulus Linux) from the NVIDIA procedure, then configure each server's NIC with `mlnx_qos` and `cma_roce_tos` using the values above.
 
@@ -388,14 +388,18 @@ Network scripts are deprecated in RHEL/Rocky 8. For RHEL/Rocky 8 and onwards, us
 
 You can configure routing for your Ethernet or InfiniBand connections using Network Manager command-line interface (`nmcli`) commands.
 
+{% hint style="warning" %}
+WEKA network spaces install source-based routing rules at priority 1000. Set the priority of the routing rules in this section to a number greater than 1000, for example 10000 and 10001. In Linux policy-based routing, a lower priority number takes precedence. Rules with a priority below 1000 override the network space rules and can block DPDK mounts that use the network space IP.
+{% endhint %}
+
 **Configure ethernet routing**
 
 To set up routing for Ethernet connections, use the following `nmcli` commands. In these commands, the first IP address of the route (`10.10.10.0/24`) represents the subnet of the network to which the NIC connects. The last address in the routing rule (`10.10.10.1` for `eth1`) is the IP address of the NIC you are configuring.
 
 {% code overflow="wrap" %}
 ```bash
-nmcli connection modify eth1 ipv4.routes "10.10.10.0/24 src=10.10.10.1 table=100" ipv4.routing-rules "priority 101 from 10.10.10.1 table 100"
-nmcli connection modify eth2 ipv4.routes "10.10.10.0/24 src=10.10.10.101 table=200" ipv4.routing-rules "priority 102 from 10.10.10.101 table 200"
+nmcli connection modify eth1 ipv4.routes "10.10.10.0/24 src=10.10.10.1 table=100" ipv4.routing-rules "priority 10000 from 10.10.10.1 table 100"
+nmcli connection modify eth2 ipv4.routes "10.10.10.0/24 src=10.10.10.101 table=200" ipv4.routing-rules "priority 10001 from 10.10.10.101 table 200"
 ```
 {% endcode %}
 
@@ -408,23 +412,38 @@ To set up routing for InfiniBand connections, use the following `nmcli` commands
 nmcli connection modify ib0 ipv4.route-metric 100
 nmcli connection modify ib1 ipv4.route-metric 101
 
-nmcli connection modify ib0 ipv4.routes "10.10.10.0/24 src=10.10.10.1 table=100" 
-nmcli connection modify ib0 ipv4.routing-rules "priority 101 from 10.10.10.1 table 100"
-nmcli connection modify ib1 ipv4.routes "10.10.10.0/24 src=10.10.10.101 table=200" 
-nmcli connection modify ib1 ipv4.routing-rules "priority 102 from 10.10.10.101 table 200"
+nmcli connection modify ib0 ipv4.routes "10.10.10.0/24 src=10.10.10.1 table=100"
+nmcli connection modify ib0 ipv4.routing-rules "priority 10000 from 10.10.10.1 table 100"
+nmcli connection modify ib1 ipv4.routes "10.10.10.0/24 src=10.10.10.101 table=200"
+nmcli connection modify ib1 ipv4.routing-rules "priority 10001 from 10.10.10.101 table 200"
 ```
 {% endcode %}
 
-**View network configuration**
+**Verify routing rule priority**
 
-Run the `nmcli` commands to view the current network configuration, including interfaces, IP addresses, routes, and DNS settings.
+Confirm that the configured rules have a priority greater than 1000 and that the network space rules retain precedence:
 
-| Goal | Command |
-| --- | --- |
-| Full details (IP, DNS, routes) | `nmcli device show` |
-| Brief status | `nmcli device status` |
-| Active connections | `nmcli connection show --active` |
-| Specific device | `nmcli device show eth0` |
+```bash
+ip rule show
+```
+
+Expected output includes the configured rules after the network space rules:
+
+```bash
+0:      from all lookup local
+1000:   from 10.10.10.50 lookup 5000
+10000:  from 10.10.10.1 lookup 100
+10001:  from 10.10.10.101 lookup 200
+32766:  from all lookup main
+32767:  from all lookup default
+```
+
+| Goal                           | Command                          |
+| ------------------------------ | -------------------------------- |
+| Full details (IP, DNS, routes) | `nmcli device show`              |
+| Brief status                   | `nmcli device status`            |
+| Active connections             | `nmcli connection show --active` |
+| Specific device                | `nmcli device show eth0`         |
 
 **Example**
 

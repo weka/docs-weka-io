@@ -1,3 +1,7 @@
+---
+description: Integrate WEKA storage with Amazon SageMaker HyperPod clusters.
+---
+
 # Amazon SageMaker HyperPod and WEKA Integrations
 
 ## Overview

@@ -1,3 +1,7 @@
+---
+description: Configure Kubernetes storage classes for the WEKA CSI Plugin.
+---
+
 # Storage class configurations
 
 The WEKA CSI Plugin supports the following persistent volume types:

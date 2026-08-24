@@ -1,8 +1,5 @@
 ---
-description: >-
-  The WEKA system enables managing user access and roles locally and through
-  organizational directories like LDAP or AD. This topic covers user types,
-  authentication methods, and management.
+description: Understand WEKA user types, roles, authentication methods, and login behavior.
 ---
 
 # User management
@@ -40,7 +37,7 @@ Two changes affect what a Tenant Admin can do when multi-tenancy is in use.
 
 **Root-organization Tenant Admins keep the Tenant Admin role.** They are no longer escalated to Cluster Admin automatically. This is a loosening rather than a restriction, and it means a root-organization Tenant Admin now has the same scope as any other Tenant Admin.
 
-**Some NFS operations now require the Cluster Admin role.** Five NFS operations were tightened, so calls that previously succeeded with a lower role return HTTP 403. The change takes effect immediately after the upgrade with no deprecation period. The most consequential is a *read* operation that moved from Read Only to Cluster Admin, which can break monitoring scripts that never wrote anything. See [breaking-changes.md](../upgrading-weka-versions/breaking-changes.md "mention").
+**Some NFS operations now require the Cluster Admin role.** Five NFS operations were tightened, so calls that previously succeeded with a lower role return HTTP 403. The change takes effect immediately after the upgrade with no deprecation period. The most consequential is a _read_ operation that moved from Read Only to Cluster Admin, which can break monitoring scripts that never wrote anything. See [breaking-changes.md](../upgrading-weka-versions/breaking-changes.md "mention").
 
 **Cluster Admin can perform every Tenant Admin operation.** The roles are a strict hierarchy, so anything documented as a Tenant Admin task is also available to a Cluster Admin.
 

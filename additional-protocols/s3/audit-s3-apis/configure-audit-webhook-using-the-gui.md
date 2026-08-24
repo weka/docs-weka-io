@@ -1,3 +1,7 @@
+---
+description: Configure an S3 API audit webhook using the GUI.
+---
+
 # Configure audit webhook using the GUI
 
 The audit webhook sends S3 APIs audit events to a remote system (for example, Splunk). These events provide a better understanding of the traffic nature.

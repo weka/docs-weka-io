@@ -1,7 +1,7 @@
 ---
 description: >-
-  Learn how to interpret how state and status in container and process output
-  from the CLI and REST API.
+  Interpret container and process state and status fields in CLI and REST API
+  output.
 ---
 
 # Container state and status fields
@@ -49,33 +49,33 @@ GET /containers/{uid}
 
 `state` tracks the container lifecycle managed by the cluster leader.
 
-| Value | Description |
-| --- | --- |
-| `ACTIVE` | The container is a full participating member of the cluster. |
-| `ADDING` | The container is joining the cluster for the first time. |
+| Value          | Description                                                                                                                    |
+| -------------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| `ACTIVE`       | The container is a full participating member of the cluster.                                                                   |
+| `ADDING`       | The container is joining the cluster for the first time.                                                                       |
 | `DEACTIVATING` | The cluster has received a deactivation request and is processing it. The container is winding down its cluster participation. |
-| `INACTIVE` | The container is deactivated. It remains registered but contributes no resources. |
-| `DRAINING` | The cluster is moving data and responsibilities away from the container before it can be safely deactivated or removed. |
-| `DRAINED` | Draining is complete. The container holds no cluster data or responsibilities and can be safely deactivated or removed. |
-| `REMOVING` | The container is being permanently removed from the cluster. |
+| `INACTIVE`     | The container is deactivated. It remains registered but contributes no resources.                                              |
+| `DRAINING`     | The cluster is moving data and responsibilities away from the container before it can be safely deactivated or removed.        |
+| `DRAINED`      | Draining is complete. The container holds no cluster data or responsibilities and can be safely deactivated or removed.        |
+| `REMOVING`     | The container is being permanently removed from the cluster.                                                                   |
 
 ### `status`: Live health
 
 `status` tracks whether the container's internal processes are connected at this moment. Some values mirror an active administrative transition. Others report process health directly.
 
-| Value | Description |
-| --- | --- |
-| `UP` | All container processes are connected and healthy. |
-| `DEGRADED` | Some container processes are connected. The container is partially functional. |
-| `DOWN` | No container processes are reachable. The container is not contributing to the cluster. |
-| `ADDING` | The container is still joining the cluster. Mirrors the `ADDING` state. |
-| `DEACTIVATING` | The container is being deactivated. Mirrors the `DEACTIVATING` state. |
-| `REMOVING` | The container is being removed. Mirrors the `REMOVING` state. |
-| `INACTIVE` | The container is deactivated. Mirrors the `INACTIVE` state. |
-| `DRAINING` | The container is draining while its processes are still up or partially up. |
-| `DRAINED (UP)` | Draining is complete. All processes are still running. |
-| `DRAINED (DEGRADED)` | Draining is complete. Some processes are still running. |
-| `DRAINED (DOWN)` | Draining is complete. All processes are offline. |
+| Value                | Description                                                                             |
+| -------------------- | --------------------------------------------------------------------------------------- |
+| `UP`                 | All container processes are connected and healthy.                                      |
+| `DEGRADED`           | Some container processes are connected. The container is partially functional.          |
+| `DOWN`               | No container processes are reachable. The container is not contributing to the cluster. |
+| `ADDING`             | The container is still joining the cluster. Mirrors the `ADDING` state.                 |
+| `DEACTIVATING`       | The container is being deactivated. Mirrors the `DEACTIVATING` state.                   |
+| `REMOVING`           | The container is being removed. Mirrors the `REMOVING` state.                           |
+| `INACTIVE`           | The container is deactivated. Mirrors the `INACTIVE` state.                             |
+| `DRAINING`           | The container is draining while its processes are still up or partially up.             |
+| `DRAINED (UP)`       | Draining is complete. All processes are still running.                                  |
+| `DRAINED (DEGRADED)` | Draining is complete. Some processes are still running.                                 |
+| `DRAINED (DOWN)`     | Draining is complete. All processes are offline.                                        |
 
 ### Common field combinations
 
@@ -111,18 +111,18 @@ The five process status values fall into two groups.
 
 **Unmonitored:** the process is not an active cluster member.
 
-| Value | Description |
-| --- | --- |
-| `DOWN` | The process is not an active cluster member. This is the stable state after fencing completes, or before a process has ever joined. |
+| Value     | Description                                                                                                                                                       |
+| --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `DOWN`    | The process is not an active cluster member. This is the stable state after fencing completes, or before a process has ever joined.                               |
 | `FENCING` | The leader is isolating the process. Other members are being instructed to stop trusting it. This is a short transition state before the process moves to `DOWN`. |
 
 **Monitored:** the process is in the join pipeline or fully active.
 
-| Value | Description |
-| --- | --- |
+| Value     | Description                                                                                                                           |
+| --------- | ------------------------------------------------------------------------------------------------------------------------------------- |
 | `SYNCING` | The leader has accepted the process for rejoin but it is waiting for link connectivity prerequisites and a slot in the joining batch. |
-| `JOINING` | The process is in the active rejoin batch. The leader is validating connectivity and session before promoting it to `UP`. |
-| `UP` | The process is a full cluster member, trusted for IO, heartbeats, and role-specific work. |
+| `JOINING` | The process is in the active rejoin batch. The leader is validating connectivity and session before promoting it to `UP`.             |
+| `UP`      | The process is a full cluster member, trusted for IO, heartbeats, and role-specific work.                                             |
 
 The typical progression after a restart or network event is `DOWN` → `SYNCING` → `JOINING` → `UP`. A process that leaves `UP` due to a failure is fenced first (`FENCING`) before returning to `DOWN`. A healthy cluster has almost all processes in `UP`.
 

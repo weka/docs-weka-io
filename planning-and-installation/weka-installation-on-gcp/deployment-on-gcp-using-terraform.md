@@ -1,3 +1,7 @@
+---
+description: Deploy WEKA on Google Cloud using Terraform.
+---
+
 # Deployment on GCP using Terraform
 
 The Terraform package includes a `main.tf` file you create according to your deployment needs.
@@ -146,7 +150,7 @@ Ensure the cluster does not undergo a scale-up or scale-down process before and 
 
 **Procedure**
 
-1. Perform the upgrade process. See [README.md](../../operation-guide/upgrading-weka-versions/README.md "mention").
+1. Perform the upgrade process. See [upgrading-weka-versions](../../operation-guide/upgrading-weka-versions/ "mention").
 2. Update the `weka_version` parameter in the `main.tf` file.
 3. Run `terraform apply`.
 

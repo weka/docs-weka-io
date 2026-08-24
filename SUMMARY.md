@@ -343,13 +343,10 @@
 * [Release support and commitments](support/release-support-and-commitments.md)
 * [Get support for your WEKA system](support/getting-support-for-your-weka-system.md)
 * [Diagnostics management](support/diagnostics-management/README.md)
-  * [Traces management](support/diagnostics-management/traces-management/README.md)
-    * [Manage traces using the GUI](support/diagnostics-management/traces-management/manage-traces-using-the-gui.md)
-    * [Manage traces using the CLI](support/diagnostics-management/traces-management/manage-traces-using-the-cli.md)
-  * [Protocols debug level management](support/diagnostics-management/protocols-debug-level-management/README.md)
-    * [Manage protocols debug level using the GUI](support/diagnostics-management/protocols-debug-level-management/manage-protocols-debug-level-using-the-gui.md)
-    * [Manage protocols debug level using the CLI](support/diagnostics-management/protocols-debug-level-management/manage-protocols-debug-level-using-the-cli.md)
-  * [Diagnostics data management](support/diagnostics-management/diagnostics-utility.md)
+  * [Traces and protocols debug level management](support/diagnostics-management/traces-and-protocols-debug-level-management/README.md)
+    * [Manage traces and protocols debug level using the GUI](support/diagnostics-management/traces-and-protocols-debug-level-management/manage-traces-and-protocols-debug-level-using-the-gui.md)
+    * [Manage traces and protocols debug level using the CLI](support/diagnostics-management/traces-and-protocols-debug-level-management/manage-traces-and-protocols-debug-level-using-the-cli.md)
+  * [Diagnostics data management](support/diagnostics-management/diagnostics-data-management.md)
 * [Register for WEKAdemy](support/register-for-wekademy.md)
 
 ## Appendices

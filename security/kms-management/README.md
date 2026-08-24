@@ -1,8 +1,5 @@
 ---
-description: >-
-  Efficiently manage and safeguard WEKA system keys through strategic KMS
-  configurations and best practices. Optimize security and operational
-  resilience.
+description: Manage KMS integration for cluster and per-filesystem encryption keys.
 ---
 
 # Manage KMS

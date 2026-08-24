@@ -110,7 +110,7 @@ Snapshot policies may need to be deleted when they are no longer required, are i
 **Procedure**
 
 1. Select the snapshot policy you wish to delete from the **Snapshot Policies** list.
-2. Move your mouse over the policy and click the **trash icon**.
+2. Move your mouse over the policy and select **X**.
 3. In the **Remove Snapshot Policy** confirmation message, select **Yes** to confirm the deletion.
 
 The selected snapshot policy is permanently removed and no longer appears in the policy list.

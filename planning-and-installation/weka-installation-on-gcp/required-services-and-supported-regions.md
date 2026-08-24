@@ -1,3 +1,9 @@
+---
+description: >-
+  Review Google Cloud services and regions required for a WEKA Terraform
+  deployment.
+---
+
 # Required services and supported regions
 
 The region must support the services used in WEKA on GCP. The following sections list these services and the regions that support them.

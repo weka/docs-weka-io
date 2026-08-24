@@ -1,17 +1,8 @@
 ---
-description: >-
-  This page describes how to manage information lifecycle (ILM) rules for S3
-  buckets using the CLI.
+description: Create, view, and remove S3 bucket lifecycle rules using the CLI.
 ---
 
 # Manage S3 lifecycle rules using the CLI
-
-Using the CLI, you can:
-
-* [Add a lifecycle rule](s3-information-lifecycle-management-1.md#create-an-ilm-rule)
-* [View lifecycle rules](s3-information-lifecycle-management-1.md#viewing-ilm-rules)
-* [Remove a lifecycle rule](s3-information-lifecycle-management-1.md#remove-a-lifecycle-rule)
-* [Reset the lifecycle rules of a bucket](s3-information-lifecycle-management-1.md#reset-ilm-rules-of-a-bucket)
 
 {% hint style="info" %}
 In multi-tenant deployments, lifecycle rules are scoped to the tenant in which they are defined. Rules apply only to buckets owned by that tenant. The lifecycle crawler runs cluster-wide across all tenants automatically. No additional configuration is required per tenant.
@@ -39,9 +30,9 @@ Use the following command line to view a bucket's existing lifecycle rules:‌
 
 **Parameters**
 
-| Name | Value | Default |
-| --- | --- | --- |
-| `bucket`* | The S3 bucket name. | ​Content |
+| Name       | Value               | Default  |
+| ---------- | ------------------- | -------- |
+| `bucket`\* | The S3 bucket name. | ​Content |
 
 ## Remove a lifecycle rule
 
@@ -53,10 +44,10 @@ Use the following command line to remove an lifecycle rule of a specified bucket
 
 **Parameters**
 
-| Name | Value |
-| --- | --- |
-| `bucket`* | The S3 bucket name. |
-| `name`* | The rule name. |
+| Name       | Value               |
+| ---------- | ------------------- |
+| `bucket`\* | The S3 bucket name. |
+| `name`\*   | The rule name.      |
 
 ## Remove all lifecycle rules
 
@@ -68,6 +59,6 @@ Use the following command line to remove all the lifecycle rules of a specified 
 
 **Parameters**
 
-| Name | Value |
-| --- | --- |
-| `bucket`* | The S3 bucket name. |
+| Name       | Value               |
+| ---------- | ------------------- |
+| `bucket`\* | The S3 bucket name. |

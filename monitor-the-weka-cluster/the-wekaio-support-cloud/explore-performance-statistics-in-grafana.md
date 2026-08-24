@@ -1,3 +1,7 @@
+---
+description: Explore Local WEKA Home performance statistics in Grafana dashboards.
+---
+
 # Explore performance statistics in Grafana
 
 ## Performance Statistics

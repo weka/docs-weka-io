@@ -1,3 +1,7 @@
+---
+description: Configure Azure virtual machine scaling for a WEKA cluster.
+---
+
 # Auto-scale virtual machines in Azure
 
 WEKA provides a resize API to scale up or down the cluster. You must use only this API to resize the cluster. Do not use any other option for resizing.

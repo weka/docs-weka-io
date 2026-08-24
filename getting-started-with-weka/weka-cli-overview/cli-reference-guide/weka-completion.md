@@ -1,3 +1,7 @@
+---
+description: Configure shell completion for the WEKA CLI.
+---
+
 # weka completion
 
 Emit, install or remove autocompletion support for this utility.

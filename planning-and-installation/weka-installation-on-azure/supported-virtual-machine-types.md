@@ -1,3 +1,7 @@
+---
+description: Select supported Azure virtual machine types for WEKA deployments.
+---
+
 # Supported virtual machine types
 
 ## Supported VM sizes for backends
@@ -8,20 +12,20 @@ Each VM size has a specific number of NICs, but only one is used for all traffic
 
 The following table lists the VM sizes applied by the Terraform package on the backends:
 
-| VM size | vCPU | Memory (GiB) | NVMe disks | Max NICs | BW (Mbps) |
-| --- | --- | --- | --- | --- | --- |
-| Standard_L8s_v3 | 8 | 64 | 1x1.92 TB | 4 | 12500 |
-| Standard_L16s_v3 | 16 | 128 | 2x1.92 TB | 8 | 12500 |
-| Standard_L32s_v3 | 32 | 256 | 4x1.92 TB | 8 | 16000 |
-| Standard_L48s_v3 | 48 | 384 | 6x1.92 TB | 8 | 24000 |
-| Standard_L64s_v3 | 64 | 512 | 8x1.92 TB | 8 | 30000 |
-| Standard_L80s_v3 | 80 | 640 | 10x1.92 TB | 8 | 32000 |
-| Standard_L8as_v3 | 8 | 64 | 1x1.92 TB | 4 | 12500 |
-| Standard_L16as_v3 | 16 | 128 | 2x1.92 TB | 8 | 12500 |
-| Standard_L32as_v3 | 32 | 256 | 4x1.92 TB | 8 | 16000 |
-| Standard_L48as_v3 | 48 | 384 | 6x1.92 TB | 8 | 24000 |
-| Standard_L64as_v3 | 64 | 512 | 8x1.92 TB | 8 | 32000 |
-| Standard_L80as_v3 | 80 | 640 | 10x1.92 TB | 8 | 32000 |
+| VM size             | vCPU | Memory (GiB) | NVMe disks | Max NICs | BW (Mbps) |
+| ------------------- | ---- | ------------ | ---------- | -------- | --------- |
+| Standard\_L8s\_v3   | 8    | 64           | 1x1.92 TB  | 4        | 12500     |
+| Standard\_L16s\_v3  | 16   | 128          | 2x1.92 TB  | 8        | 12500     |
+| Standard\_L32s\_v3  | 32   | 256          | 4x1.92 TB  | 8        | 16000     |
+| Standard\_L48s\_v3  | 48   | 384          | 6x1.92 TB  | 8        | 24000     |
+| Standard\_L64s\_v3  | 64   | 512          | 8x1.92 TB  | 8        | 30000     |
+| Standard\_L80s\_v3  | 80   | 640          | 10x1.92 TB | 8        | 32000     |
+| Standard\_L8as\_v3  | 8    | 64           | 1x1.92 TB  | 4        | 12500     |
+| Standard\_L16as\_v3 | 16   | 128          | 2x1.92 TB  | 8        | 12500     |
+| Standard\_L32as\_v3 | 32   | 256          | 4x1.92 TB  | 8        | 16000     |
+| Standard\_L48as\_v3 | 48   | 384          | 6x1.92 TB  | 8        | 24000     |
+| Standard\_L64as\_v3 | 64   | 512          | 8x1.92 TB  | 8        | 32000     |
+| Standard\_L80as\_v3 | 80   | 640          | 10x1.92 TB | 8        | 32000     |
 
 {% hint style="info" %}
 Using the Azure Console, the client instances can have different virtual machine types provisioned separately from the WEKA cluster.
@@ -41,79 +45,79 @@ In each virtual machine size, the cores are mapped to a specific number of the c
 
 <div data-with-frame="true"><figure><img src="../../.gitbook/assets/azure_lvs16.png" alt="" width="563"><figcaption><p>Mapped WEKA processes for a standard_L16s_v3</p></figcaption></figure></div>
 
-| VM size | # of compute cores | # of drive cores | # of frontend cores |
-| --- | --- | --- | --- |
-| Standard_L8s_v3 | 1 | 1 | 1 |
-| Standard_L16s_v3 | 4 | 2 | 1 |
-| Standard_L32s_v3 | 4 | 2 | 1 |
-| Standard_L48s_v3 | 3 | 3 | 1 |
-| Standard_L64s_v3 | 4 | 2 | 1 |
-| Standard_L80s_v3 | 4 | 2 | 1 |
-| Standard_L8as_v3 | 1 | 1 | 1 |
-| Standard_L16as_v3 | 4 | 2 | 1 |
-| Standard_L32as_v3 | 4 | 2 | 1 |
-| Standard_L48as_v3 | 3 | 3 | 1 |
-| Standard_L64as_v3 | 4 | 2 | 1 |
-| Standard_L80as_v3 | 4 | 2 | 1 |
+| VM size             | # of compute cores | # of drive cores | # of frontend cores |
+| ------------------- | ------------------ | ---------------- | ------------------- |
+| Standard\_L8s\_v3   | 1                  | 1                | 1                   |
+| Standard\_L16s\_v3  | 4                  | 2                | 1                   |
+| Standard\_L32s\_v3  | 4                  | 2                | 1                   |
+| Standard\_L48s\_v3  | 3                  | 3                | 1                   |
+| Standard\_L64s\_v3  | 4                  | 2                | 1                   |
+| Standard\_L80s\_v3  | 4                  | 2                | 1                   |
+| Standard\_L8as\_v3  | 1                  | 1                | 1                   |
+| Standard\_L16as\_v3 | 4                  | 2                | 1                   |
+| Standard\_L32as\_v3 | 4                  | 2                | 1                   |
+| Standard\_L48as\_v3 | 3                  | 3                | 1                   |
+| Standard\_L64as\_v3 | 4                  | 2                | 1                   |
+| Standard\_L80as\_v3 | 4                  | 2                | 1                   |
 
 ## Supported VM sizes for clients
 
 ### General purpose virtual machine sizes <a href="#general-purpose-virtual-machine-sizes" id="general-purpose-virtual-machine-sizes"></a>
 
-| VM series | VM size |
-| --- | --- |
-| Dsv3 | Standard_D4s_v3, Standard_D8s_v3, Standard_D16s_v3 |
-| Dasv4 | Standard_D2as_v4, Standard_D4as_v4, Standard_D8as_v4 |
-| Ddsv4 | Standard_D16ds_v4 |
-| Dasv4 | Standard_D4as_v4, Standard_D16as_v4, Standard_D32as_v4, Standard_D96as_v4 |
-| Dv5 | Standard_D8_v5 |
-| Dsv5 | Standard_D4s_v5 ,Standard_D16s_v5, Standard_D48s_v5 , Standard_D64s_v5 |
-| Dadsv5 | Standard_D4ads_v5, Standard_D16ads_v5, Standard_D48ads_v5, Standard_D96ads_v5 |
-| Dcsv2 | Standard_DC4s_v2 (UDP only) |
-| Dasv5 | Standard_D2as_v5, Standard_D8as_v5 |
-| Dpldsv5 | Standard_D8plds_v5, Standard_D32plds_v5, Standard_D64plds_v5 |
-| Dpsv5 | Standard_D4ps_v5, Standard_D8ps_v5, Standard_D16ps_v5, Standard_D32ps_v5, Standard_D48ps_v5, Standard_D64ps_v5 |
+| VM series | VM size                                                                                                                    |
+| --------- | -------------------------------------------------------------------------------------------------------------------------- |
+| Dsv3      | Standard\_D4s\_v3, Standard\_D8s\_v3, Standard\_D16s\_v3                                                                   |
+| Dasv4     | Standard\_D2as\_v4, Standard\_D4as\_v4, Standard\_D8as\_v4                                                                 |
+| Ddsv4     | Standard\_D16ds\_v4                                                                                                        |
+| Dasv4     | Standard\_D4as\_v4, Standard\_D16as\_v4, Standard\_D32as\_v4, Standard\_D96as\_v4                                          |
+| Dv5       | Standard\_D8\_v5                                                                                                           |
+| Dsv5      | Standard\_D4s\_v5 ,Standard\_D16s\_v5, Standard\_D48s\_v5 , Standard\_D64s\_v5                                             |
+| Dadsv5    | Standard\_D4ads\_v5, Standard\_D16ads\_v5, Standard\_D48ads\_v5, Standard\_D96ads\_v5                                      |
+| Dcsv2     | Standard\_DC4s\_v2 (UDP only)                                                                                              |
+| Dasv5     | Standard\_D2as\_v5, Standard\_D8as\_v5                                                                                     |
+| Dpldsv5   | Standard\_D8plds\_v5, Standard\_D32plds\_v5, Standard\_D64plds\_v5                                                         |
+| Dpsv5     | Standard\_D4ps\_v5, Standard\_D8ps\_v5, Standard\_D16ps\_v5, Standard\_D32ps\_v5, Standard\_D48ps\_v5, Standard\_D64ps\_v5 |
 
 ### Memory optimized virtual machine sizes
 
-| VM series | VM size |
-| --- | --- |
-| Edsv4 | Standard_E16ds_v4, Standard_E16-8ds_v4, Standard_E32ds_v4, |
-| Easv4 | Standard_E32-16as_v4 |
-| Easv5 | Standard_E32-16as_v5 |
-| Edsv4 | Standard_E32-16ds_v4, Standard_E48ds_v4 |
-| Eadsv5 | Standard_E96ads_v5 |
-| Mdmsv2 | Standard_M64dms_v2 |
-| Msv2 | Standard_M208s_v2 |
-| Mmsv2 | Standard_M208ms_v2, Standard_M416ms_v2 |
-| Epsv5 | Standard_E4ps_v5, Standard_E8ps_v5, Standard_E16ps_v5, Standard_E20ps_v5, Standard_E32ps_v5 |
+| VM series | VM size                                                                                               |
+| --------- | ----------------------------------------------------------------------------------------------------- |
+| Edsv4     | Standard\_E16ds\_v4, Standard\_E16-8ds\_v4, Standard\_E32ds\_v4,                                      |
+| Easv4     | Standard\_E32-16as\_v4                                                                                |
+| Easv5     | Standard\_E32-16as\_v5                                                                                |
+| Edsv4     | Standard\_E32-16ds\_v4, Standard\_E48ds\_v4                                                           |
+| Eadsv5    | Standard\_E96ads\_v5                                                                                  |
+| Mdmsv2    | Standard\_M64dms\_v2                                                                                  |
+| Msv2      | Standard\_M208s\_v2                                                                                   |
+| Mmsv2     | Standard\_M208ms\_v2, Standard\_M416ms\_v2                                                            |
+| Epsv5     | Standard\_E4ps\_v5, Standard\_E8ps\_v5, Standard\_E16ps\_v5, Standard\_E20ps\_v5, Standard\_E32ps\_v5 |
 
 ### Compute optimized virtual machine sizes
 
-| VM series | VM size |
-| --- | --- |
-| FXmds | Standard_FX48mds |
-| Fsv2 | Standard_F8s_v2, Standard_F32s_v2, Standard_F64s_v2, Standard_F72s_v2 |
+| VM series | VM size                                                                       |
+| --------- | ----------------------------------------------------------------------------- |
+| FXmds     | Standard\_FX48mds                                                             |
+| Fsv2      | Standard\_F8s\_v2, Standard\_F32s\_v2, Standard\_F64s\_v2, Standard\_F72s\_v2 |
 
 ### Storage optimized virtual machine sizes
 
-| VM series | VM size |
-| --- | --- |
-| Lsv3 | Standard_L8s_v3, Standard_L16s_v3, Standard_L32s_v3, Standard_L48s_v3, Standard_L64s_v3, Standard_L80s_v3 |
+| VM series | VM size                                                                                                               |
+| --------- | --------------------------------------------------------------------------------------------------------------------- |
+| Lsv3      | Standard\_L8s\_v3, Standard\_L16s\_v3, Standard\_L32s\_v3, Standard\_L48s\_v3, Standard\_L64s\_v3, Standard\_L80s\_v3 |
 
 ### High performance optimized
 
-| VM series | VM size |
-| --- | --- |
-| HBv4 | Standard_HB176rs_v4, Standard_HB176-24rs_v4, Standard_HB176-96rs_v4 |
-| HBv3 | Standard_HB120rs_v3 |
+| VM series | VM size                                                                   |
+| --------- | ------------------------------------------------------------------------- |
+| HBv4      | Standard\_HB176rs\_v4, Standard\_HB176-24rs\_v4, Standard\_HB176-96rs\_v4 |
+| HBv3      | Standard\_HB120rs\_v3                                                     |
 
 ### GPU - accelerated compute
 
-| VM series | VM size |
-| --- | --- |
-| NGads V620 | Standard_NG8ads_V620_v1, Standard_NG16ads_V620_v1, Standard_NG32ads_V620_v1 |
-| NVadsA10 | Standard_NVadsA10_v5 |
+| VM series  | VM size                                                                              |
+| ---------- | ------------------------------------------------------------------------------------ |
+| NGads V620 | Standard\_NG8ads\_V620\_v1, Standard\_NG16ads\_V620\_v1, Standard\_NG32ads\_V620\_v1 |
+| NVadsA10   | Standard\_NVadsA10\_v5                                                               |
 
 **Related information**
 

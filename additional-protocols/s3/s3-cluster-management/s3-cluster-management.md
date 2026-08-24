@@ -1,16 +1,8 @@
 ---
-description: >-
-  This page describes how to set up, update, monitor, and delete an S3 cluster
-  using the GUI.
+description: Create, update, and delete an S3 cluster using the GUI.
 ---
 
 # Manage the S3 service using the GUI
-
-Using the GUI, you can:
-
-* [Create an S3 cluster](s3-cluster-management.md#create-an-s3-cluster)
-* [Update an S3 cluster configuration](s3-cluster-management.md#update-an-s3-cluster-configuration)
-* [Delete an S3 cluster configuration](s3-cluster-management.md#delete-an-s3-cluster)
 
 ## Create an S3 cluster
 
@@ -36,7 +28,7 @@ Verify that a predefined filesystem for maintaining the persisting cluster-wide 
      A domain name can contain only letters, numbers, hyphens, and dots (a maximum of 64 characters for a domain).\
      You can add a list of domains with a total of 1024 characters. Press Enter after setting each domain in the list, or use a comma separator between the domains (no space allowed).
 5. In the **Config Filesystem**, select the filesystem used for persisting S3 cluster-wide configuration.
-6. Select **Save**.
+6. Select **Submit**.
 
 TenantAdmin can configure tenant-specific overrides for the default filesystem and anonymous POSIX UID and GID within the tenant boundary by using the CLI.
 
@@ -53,9 +45,6 @@ You can update the cluster defaults, the port, and the servers that participate 
 1. From the menu, select **Manage > Protocols**.
 2. From the Protocols pane, select **S3**.
 3. On the **Configuratio**n tab, select the pencil icon next to the S3 cluster configuration.
-
-<div data-with-frame="true"><img src="../../../.gitbook/assets/wmng_s3_edit_configuration_button (1).png" alt="Edit an S3 cluster configuration" width="340"></div>
-
 4. Update the properties as required. Do not set port 9001.
 
 The **Filesystem**, **Anonymous Posix UID**, and **Anonymous Posix GID** values remain cluster-level defaults. Tenant-specific overrides are configured separately.
@@ -66,8 +55,6 @@ Modifying the **Virtual-hosted-style Domains** parameter automatically triggers 
 
 5. Select **Save**.
 
-<div data-with-frame="true"><img src="../../../.gitbook/assets/edit_s3_cluster.png" alt="Edit S3 Cluster Configuration" width="351"></div>
-
 ## Delete an S3 cluster configuration
 
 Deleting an existing S3 cluster managed by the WEKA system does not delete the backend WEKA filesystem but removes the S3 bucket exposures of these filesystems.
@@ -76,8 +63,5 @@ Deleting an existing S3 cluster managed by the WEKA system does not delete the b
 
 1. From the menu, select **Manage > Protocols**.
 2. From the Protocols pane, select **S3**.
-3. On the Configuration tab, select the trash icon next to the S3 cluster configuration.
-
-<div data-with-frame="true"><img src="../../../.gitbook/assets/wmng_s3_delete_configuration (1).png" alt="Delete an S3 cluster configuration" width="340"></div>
-
+3. On the Configuration tab, select the X icon next to the S3 cluster configuration.
 4. In the S3 Configuration Reset message, select **Reset**.

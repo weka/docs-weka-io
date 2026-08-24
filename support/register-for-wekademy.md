@@ -1,3 +1,7 @@
+---
+description: Register for WEKAdemy training and certification.
+---
+
 # Register for WEKAdemy
 
 WEKAdemy is WEKA's training platform, hosted at learnweka.weka.io. It provides product training and certification courses for customers working with the WEKA system.

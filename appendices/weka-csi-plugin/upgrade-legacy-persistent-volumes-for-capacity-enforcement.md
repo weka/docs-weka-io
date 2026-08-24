@@ -1,3 +1,7 @@
+---
+description: Upgrade legacy WEKA persistent volumes for capacity enforcement.
+---
+
 # Upgrade legacy persistent volumes for capacity enforcement
 
 ## Bind legacy volumes to API

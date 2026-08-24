@@ -1,3 +1,7 @@
+---
+description: Create a client image for deploying WEKA clients.
+---
+
 # Create a client image
 
 When a stateless client first mounts or connects to a WEKA cluster, it downloads containers and builds drivers, taking 30 seconds to several minutes, based on the environment. For conventional machines, this is acceptable, occurring only once.

@@ -1,3 +1,7 @@
+---
+description: Deploy WEKA on AWS using Terraform.
+---
+
 # Deployment on AWS using Terraform
 
 ## Create a main.tf file

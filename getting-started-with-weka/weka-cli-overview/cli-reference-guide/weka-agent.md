@@ -1,3 +1,7 @@
+---
+description: Manage the local WEKA agent process.
+---
+
 # weka agent
 
 Manage the Weka agent process.

@@ -1,3 +1,7 @@
+---
+description: Scale WEKA Operator deployments by adding or removing resources.
+---
+
 # Cluster scaling
 
 Adjusting the size of a WEKA cluster ensures optimal performance and cost efficiency. Expand to meet growing workloads or shrink to reduce resources as demand decreases.

@@ -1,3 +1,7 @@
+---
+description: Manage the WEKA S3 service.
+---
+
 # weka s3
 
 Manage the WEKA S3 service.

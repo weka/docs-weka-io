@@ -1,7 +1,7 @@
 ---
 description: >-
-  Learn how to configure global defaults and individual bucket settings for S3
-  Performance Buckets to optimize S3 operations.
+  Configure global and per-bucket performance settings for S3 Performance
+  Buckets.
 ---
 
 # Configure S3 Performance Buckets

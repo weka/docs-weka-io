@@ -1,3 +1,9 @@
+---
+description: >-
+  Review the Azure WEKA Terraform package structure, inputs, and deployment
+  resources.
+---
+
 # Azure-WEKA deployment Terraform package description
 
 The [Azure-WEKA deployment Terraform package](https://registry.terraform.io/modules/weka/weka/azure/latest) contains customizable modules for deploying the WEKA cluster on Azure. The default protocol deployed using the module is POSIX. The module supports the following deployment types:

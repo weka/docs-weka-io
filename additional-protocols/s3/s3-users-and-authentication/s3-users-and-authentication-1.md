@@ -1,19 +1,8 @@
 ---
-description: This page describes how to add and control S3 service accounts using the CLI.
+description: Create, view, and remove S3 service accounts using the CLI.
 ---
 
 # Manage S3 service accounts using the CLI
-
-With the CLI, as an S3 user, you can:
-
-* [View S3 service accounts](s3-users-and-authentication-1.md#view-existing-s3-service-accounts)
-* [Add an S3 service account](s3-users-and-authentication-1.md#add-an-s3-service-account)
-* [Show S3 service account details](s3-users-and-authentication-1.md#show-an-s3-service-account-details)
-* [Remove an S3 service account](s3-users-and-authentication-1.md#creating-a-new-iam-policies)
-
-**Related topics**
-
-[#s3-service-accounts](./#s3-service-accounts "mention")
 
 ## View existing S3 service accounts
 
@@ -39,8 +28,8 @@ The secret key is visible **only once** when adding the S3 service account. You 
 
 **Parameters**
 
-| Name | Description | Default |
-| --- | --- | --- |
+| Name          | Description                                              | Default                                         |
+| ------------- | -------------------------------------------------------- | ----------------------------------------------- |
 | `policy-file` | The IAM policy file to attach to the S3 service account. | Inherits the IAM policy from the parent S3 user |
 
 ## Show an S3 service account details
@@ -53,9 +42,9 @@ Use the following command line to display the policy details attached to the spe
 
 **Parameters**
 
-| Name | Description |
-| --- | --- |
-| `access-key`* | The access key of the S3 service account. |
+| Name           | Description                               |
+| -------------- | ----------------------------------------- |
+| `access-key`\* | The access key of the S3 service account. |
 
 ## Remove S3 service account <a href="#creating-a-new-iam-policies" id="creating-a-new-iam-policies"></a>
 
@@ -67,6 +56,10 @@ Use the following command line to remove an S3 service account:‌
 
 **Parameters**
 
-| Name | Description |
-| --- | --- |
-| `access-key`* | The access key of the S3 service account to remove. |
+| Name           | Description                                         |
+| -------------- | --------------------------------------------------- |
+| `access-key`\* | The access key of the S3 service account to remove. |
+
+**Related topics**
+
+[#s3-service-accounts](./#s3-service-accounts "mention")

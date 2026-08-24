@@ -1,8 +1,5 @@
 ---
-description: >-
-  This guide provides step-by-step instructions for deploying the WEKA Data
-  Platform on GCP using Terraform, tailored for customers, partners, and WEKA
-  teams.
+description: Deploy WEKA on Google Cloud using a guided Terraform workflow.
 ---
 
 # Detailed deployment tutorial: WEKA on GCP using Terraform

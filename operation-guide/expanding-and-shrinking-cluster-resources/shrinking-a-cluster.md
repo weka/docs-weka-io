@@ -1,3 +1,9 @@
+---
+description: >-
+  Shrink a WEKA cluster by removing drives or containers and their allocated
+  drives.
+---
+
 # Shrink a cluster
 
 Shrinking a cluster may be required when you need to reduce the cluster's costs, and the performance degradation does not affect your business.
@@ -65,9 +71,9 @@ To deactivate a drive, run the following command:
 
 **Parameters**
 
-| Name | Value |
-| --- | --- |
-| `uuids`* | Comma-separated drive identifiers. |
+| Name      | Value                              |
+| --------- | ---------------------------------- |
+| `uuids`\* | Comma-separated drive identifiers. |
 
 {% hint style="info" %}
 Running the `weka cluster drive` command is displayed whether the redistribution is still being performed.
@@ -83,10 +89,10 @@ To remove a drive, run the following command:
 
 **Parameters**
 
-| Name | Value |
-| --- | --- |
-| **Name** | **Value** |
-| `uuids`* | Comma-separated drive identifiers. |
+| Name      | Value                              |
+| --------- | ---------------------------------- |
+| **Name**  | **Value**                          |
+| `uuids`\* | Comma-separated drive identifiers. |
 
 ## Remove containers with their allocated drives
 
@@ -103,10 +109,10 @@ To deactivate containers with their drives, run the following command:
 
 **Parameters**
 
-| Name | Value | Default |
-| --- | --- | --- |
-| `container-ids`* | Space-separated container identifiers |  |
-| `allow-unavailable` | Allow deactivation of an unavailable container.If the `container-id` value returns, it joins the cluster in an active state. | No |
+| Name                | Value                                                                                                                        | Default |
+| ------------------- | ---------------------------------------------------------------------------------------------------------------------------- | ------- |
+| `container-ids`\*   | Space-separated container identifiers                                                                                        |         |
+| `allow-unavailable` | Allow deactivation of an unavailable container.If the `container-id` value returns, it joins the cluster in an active state. | No      |
 
 To interpret container lifecycle and health during deactivation, see [Container state and status fields](https://app.gitbook.com/s/ZW262oqYA8pNNfGvXjHa/operation-guide/expanding-and-shrinking-cluster-resources/container-state-and-status-fields).
 
@@ -120,6 +126,6 @@ To remove the container from the cluster, run the following command:
 
 **Parameters**
 
-| Name | Value | Default |
-| --- | --- | --- |
-| `container-id`* | Comma-separated container identifiers. |  |
+| Name             | Value                                  | Default |
+| ---------------- | -------------------------------------- | ------- |
+| `container-id`\* | Comma-separated container identifiers. |         |

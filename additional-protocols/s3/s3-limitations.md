@@ -1,7 +1,5 @@
 ---
-description: >-
-  This page describes limitations concerning the S3 service and protocol
-  implementation.
+description: Review WEKA S3 API support, URL styles, limits, and naming requirements.
 ---
 
 # S3 supported APIs and limitations
@@ -10,9 +8,9 @@ description: >-
 
 WEKA supports two URL styles for API requests to S3 buckets: _path-style_ and _virtual-hosted-style_.
 
-| Style | URL format |
-| --- | --- |
-| Path-style | `https://s3.domain-name.com/bucket-name/object-name` |
+| Style                | URL format                                           |
+| -------------------- | ---------------------------------------------------- |
+| Path-style           | `https://s3.domain-name.com/bucket-name/object-name` |
 | Virtual-hosted-style | `https://bucket-name.s3.domain-name.com/object-name` |
 
 The difference between the styles is subtle but significant. When using a URL to reference an object, the DNS resolution maps the subdomain name to an IP address. With the path style, the subdomain is always `s3.domain-name.com`. With the virtual-hosted-style, the subdomain is specific to the bucket.
@@ -89,21 +87,21 @@ The following standard S3 APIs are supported for bucket and object management:
 
 ## General limits
 
-| Item | Limits |
-| --- | --- |
-| Maximum number of buckets | 10000 |
-| Maximum object size | 5 TiB |
-| Maximum number of parts per upload | 10000 |
-| Part numbers | 1 to 10000 (inclusive) |
-| Part size | 5 MiB to 5 GiB.The last part can be &#x3C; 5 MiB |
-| Maximum number of parts returned for a list parts request | 1000 |
-| Maximum number of multipart uploads returned in a list multipart uploads request | 1000 |
-| User-defined metadata per object | 2 KB |
-| Maximum length of an S3 IAM user policy | 2048 |
-| Maximum number of S3 IAM user policies | 1024 |
-| Maximum number of S3 regular users | 1024 |
-| Maximum number of S3 service accounts | 5000 |
-| Maximum number of S3 STS credentials | 5000 |
+| Item                                                                             | Limits                                      |
+| -------------------------------------------------------------------------------- | ------------------------------------------- |
+| Maximum number of buckets                                                        | 10000                                       |
+| Maximum object size                                                              | 5 TiB                                       |
+| Maximum number of parts per upload                                               | 10000                                       |
+| Part numbers                                                                     | 1 to 10000 (inclusive)                      |
+| Part size                                                                        | 5 MiB to 5 GiB.The last part can be < 5 MiB |
+| Maximum number of parts returned for a list parts request                        | 1000                                        |
+| Maximum number of multipart uploads returned in a list multipart uploads request | 1000                                        |
+| User-defined metadata per object                                                 | 2 KB                                        |
+| Maximum length of an S3 IAM user policy                                          | 2048                                        |
+| Maximum number of S3 IAM user policies                                           | 1024                                        |
+| Maximum number of S3 regular users                                               | 1024                                        |
+| Maximum number of S3 service accounts                                            | 5000                                        |
+| Maximum number of S3 STS credentials                                             | 5000                                        |
 
 ## Bucket naming limitations
 

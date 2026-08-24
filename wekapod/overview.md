@@ -1,3 +1,7 @@
+---
+description: Explore the WEKApod Data Platform Appliance architecture and capabilities.
+---
+
 # WEKApod Data Platform Appliance overview
 
 The WEKApod™ is a turnkey data platform appliance that delivers high-performance storage solutions supporting NVIDIA DGX SuperPOD and other environments. Each appliance includes pre-configured storage servers and integrated software, enabling simplified deployment and faster time to value.

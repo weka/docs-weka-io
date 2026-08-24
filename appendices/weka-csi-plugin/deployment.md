@@ -1,3 +1,7 @@
+---
+description: Deploy the WEKA CSI Plugin in a Kubernetes cluster.
+---
+
 # Deployment
 
 You can deploy the WEKA CSI Plugin using the helm chart from the official [WEKA ArtifactHub repository](https://artifacthub.io/packages/helm/csi-wekafs/csi-wekafsplugin).

@@ -1,3 +1,7 @@
+---
+description: Add WEKA storage to an existing Amazon SageMaker HyperPod cluster.
+---
+
 # Add WEKA to an existing Amazon SageMaker HyperPod cluster
 
 ## Deployment workflow for an existing Amazon SageMaker Hyperpod cluster

@@ -1,16 +1,8 @@
 ---
-description: This page describes how to manage S3 buckets using the GUI.
+description: Create, view, update, and delete S3 buckets using the GUI.
 ---
 
 # Manage S3 buckets using the GUI
-
-Using the GUI, you can:
-
-* [Create a bucket](s3-buckets-management.md#create-a-bucket)
-* [View a bucket details](s3-buckets-management.md#view-a-bucket-details)
-* [Edit a bucket hard quota](s3-buckets-management.md#edit-a-bucket-hard-quota)
-* [Edit a bucket policy](s3-buckets-management.md#edit-a-bucket-policy)
-* [Delete a bucket](s3-buckets-management.md#remove-a-bucket)
 
 ## Create a bucket <a href="#create-a-bucket" id="create-a-bucket"></a>
 

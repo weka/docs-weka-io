@@ -1,3 +1,7 @@
+---
+description: Perform hardware maintenance for WEKA Operator deployments.
+---
+
 # Hardware maintenance
 
 Hardware maintenance operations ensure cluster reliability and performance through systematic component management and failure response procedures. These operations span from routine preventive maintenance to critical component replacements.

@@ -649,7 +649,7 @@ Related information: [tls-certificate-management](../security/tls-certificate-ma
 
 ## Traces
 
-Related information: [traces-management](../support/diagnostics-management/traces-management/ "mention")
+Related information: [Broken link](/broken/pages/n61OexetA46x4ACDQFWb "mention")
 
 | Task                                                                                                                                                                                                                                                                                                               | REST API                                                                                            | CLI                              |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------- | -------------------------------- |

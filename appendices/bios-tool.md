@@ -1,7 +1,5 @@
 ---
-description: >-
-  This tool simplifies managing BIOS settings across multiple servers, ensuring
-  consistency and reducing manual configuration efforts.
+description: Configure BIOS settings consistently across WEKA servers using the BIOS tool.
 ---
 
 # BIOS tool
@@ -33,21 +31,21 @@ bios_tool [-h] [-c [HOSTCONFIGFILE]] [-b [BIOS]] [--bmc_config] [--fix] [--reboo
 
 #### Parameters
 
-| Parameter | Description |
-| --- | --- |
-| `-h, --help` | Displays the help message. |
-| `-c, --hostconfigfile [HOSTCONFIGFILE]` | Specify the host configuration file (YAML/CSV) containing server details. |
-| `-b, --bios [BIOS]` | Specify the BIOS settings configuration file (YAML). |
-| `--bmc_config` | Enables RedFish and IPMI Over LAN on all servers. |
-| `--fix` | Corrects BIOS settings based on the configuration file. |
-| `--reboot` | Reboots the server after applying any changes to the BIOS settings. Only a server with modifications will be rebooted. |
-| `--dump` | Displays BIOS settings without making changes. |
-| `--reset_bios` | Resets BIOS to default settings. Use `--reboot` for automatic reboot after resetting. |
-| `--diff DIFF DIFF` | Compares BIOS settings between two servers. |
-| `--bmc_ips [BMC_IPS ...]` | List of BMC IP addresses (space-separated) to configure servers without a config file.For example, `--bmc_ips 192.168.1.1 192.168.1.2`.Combined with `--bmc_username` and `--bmc_password`, this option enables quick configuration of multiple servers with identical credentials, eliminating the need for a configuration file. |
-| `--bmc_username``--bmc_password` | Credentials for BMC access. |
-| `-v, --verbose` | Provides verbose output. |
-| `--version` | Displays the current version of BIOS tool. |
+| Parameter                               | Description                                                                                                                                                                                                                                                                                                                        |
+| --------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `-h, --help`                            | Displays the help message.                                                                                                                                                                                                                                                                                                         |
+| `-c, --hostconfigfile [HOSTCONFIGFILE]` | Specify the host configuration file (YAML/CSV) containing server details.                                                                                                                                                                                                                                                          |
+| `-b, --bios [BIOS]`                     | Specify the BIOS settings configuration file (YAML).                                                                                                                                                                                                                                                                               |
+| `--bmc_config`                          | Enables RedFish and IPMI Over LAN on all servers.                                                                                                                                                                                                                                                                                  |
+| `--fix`                                 | Corrects BIOS settings based on the configuration file.                                                                                                                                                                                                                                                                            |
+| `--reboot`                              | Reboots the server after applying any changes to the BIOS settings. Only a server with modifications will be rebooted.                                                                                                                                                                                                             |
+| `--dump`                                | Displays BIOS settings without making changes.                                                                                                                                                                                                                                                                                     |
+| `--reset_bios`                          | Resets BIOS to default settings. Use `--reboot` for automatic reboot after resetting.                                                                                                                                                                                                                                              |
+| `--diff DIFF DIFF`                      | Compares BIOS settings between two servers.                                                                                                                                                                                                                                                                                        |
+| `--bmc_ips [BMC_IPS ...]`               | List of BMC IP addresses (space-separated) to configure servers without a config file.For example, `--bmc_ips 192.168.1.1 192.168.1.2`.Combined with `--bmc_username` and `--bmc_password`, this option enables quick configuration of multiple servers with identical credentials, eliminating the need for a configuration file. |
+| `--bmc_username``--bmc_password`        | Credentials for BMC access.                                                                                                                                                                                                                                                                                                        |
+| `-v, --verbose`                         | Provides verbose output.                                                                                                                                                                                                                                                                                                           |
+| `--version`                             | Displays the current version of BIOS tool.                                                                                                                                                                                                                                                                                         |
 
 ## Getting started
 

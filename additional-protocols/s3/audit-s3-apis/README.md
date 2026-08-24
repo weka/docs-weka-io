@@ -1,5 +1,5 @@
 ---
-description: This page describes how to set up an HTTP webhook for S3  audit purposes.
+description: Configure HTTP webhooks to audit S3 API operations.
 ---
 
 # Audit S3 APIs

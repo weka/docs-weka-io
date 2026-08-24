@@ -1,7 +1,7 @@
 ---
 description: >-
-  Learn how to manage WEKA drivers to ensure they are properly built, installed,
-  signed, and distributed for the appropriate kernel version.
+  Build, sign, package, distribute, and install WEKA drivers for target kernel
+  versions.
 ---
 
 # Manage WEKA drivers

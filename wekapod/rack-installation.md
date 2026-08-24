@@ -1,3 +1,7 @@
+---
+description: Install WEKApod servers in a rack.
+---
+
 # Rack installation
 
 {% hint style="danger" %}

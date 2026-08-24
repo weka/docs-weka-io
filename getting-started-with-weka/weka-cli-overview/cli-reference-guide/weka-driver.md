@@ -1,3 +1,7 @@
+---
+description: Build, install, and manage WEKA drivers.
+---
+
 # weka driver
 
 Manage Weka drivers.

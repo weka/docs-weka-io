@@ -1,3 +1,9 @@
+---
+description: >-
+  Manage diagnostics, usage reports, data forwarding, and API access in Local
+  WEKA Home.
+---
+
 # Optimize support and data management
 
 ## Cloud forwarding

@@ -1,16 +1,8 @@
 ---
-description: >-
-  This page describes how to set up an HTTP webhook for S3  audit purposes using
-  the CLI.
+description: Configure and view an S3 API audit webhook using the CLI.
 ---
 
 # Configure audit webhook using the CLI
-
-Using the CLI, you can:
-
-* [Enable an audit webhook for S3 APIs](audit-s3-apis.md#enable-an-audit-webhook-for-s3-apis)
-* [Disable an audit webhook for S3 APIs](audit-s3-apis.md#disable-an-audit-webhook-for-s3-apis)
-* [View the audit webhook configuration](audit-s3-apis.md#view-the-audit-webhook-configuration)
 
 ## Enable an audit webhook for S3 APIs
 
@@ -22,10 +14,10 @@ Use the following command line to enable an audit webhook for the S3 cluster:
 
 **Parameters**
 
-| Name | Value |
-| --- | --- |
-| `endpoint`* | The webhook endpoint. |
-| `auth-token`* | The authentication token obtained from the webhook service. |
+| Name           | Value                                                       |
+| -------------- | ----------------------------------------------------------- |
+| `endpoint`\*   | The webhook endpoint.                                       |
+| `auth-token`\* | The authentication token obtained from the webhook service. |
 
 ## Disable an audit webhook for S3 APIs
 

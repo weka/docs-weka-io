@@ -1,5 +1,7 @@
 ---
-description: This page provides some examples of using the S3 API.
+description: >-
+  Use Boto3 with WEKA S3 for credentials, temporary tokens, pre-signed URLs, and
+  object operations.
 ---
 
 # S3 examples using boto3

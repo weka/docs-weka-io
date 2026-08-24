@@ -1,3 +1,7 @@
+---
+description: Explore cluster health, capacity, and activity insights in Local WEKA Home.
+---
+
 # Explore cluster insights
 
 ## Clusters

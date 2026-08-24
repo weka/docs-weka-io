@@ -1,15 +1,10 @@
 ---
 description: >-
-  Explore the GUI to manage local users and configure the user directories LDAP
-  or AD.
+  Manage local users and configure LDAP or Active Directory user directories
+  using the GUI.
 ---
 
 # Manage users using the GUI
-
-Using the GUI, you can:
-
-* [Manage local users](user-management.md#manage-local-users)
-* [Manage user directory](user-management.md#manage-user-directory)
 
 ## Manage local users
 

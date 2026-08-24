@@ -1,5 +1,5 @@
 ---
-description: This page describes how to add clients to a bare-metal cluster.
+description: Add clients to a bare-metal WEKA cluster.
 ---
 
 # Add clients
@@ -176,27 +176,27 @@ weka local setup client --name client --join-ips 10.108.81.144 --base-port 14000
 
 #### Parameters
 
-| Parameter | Description |
-| --- | --- |
-| `-n`, `--name` | The name to give the container. |
-| `--cores` | Number of CPU cores dedicated to WEKA. |
-| `--memory` | Memory dedicated to WEKA in bytes. Set to `0` to let the system decide. Use decimal or binary units, such as `1GB` or `1GiB`. |
-| `--bandwidth` | Bandwidth limit per second. Use `unlimited` or a decimal or binary value, such as `1GB` or `1GiB`. |
-| `-t`, `--timeout` | Join command timeout. Use values such as `3s`, `2h`, `4m`, `1d`, `1d5h`, `1w`, `infinite`, or `unlimited`. |
-| `--base-port` | First port used by the WEKA container. WEKA uses 100 ports starting at this port. |
-| `--weka-version` | WEKA version used to start the container. |
-| `--fqdn` | Fully qualified domain name used by other containers for TLS hostname verification. |
-| `--nvidia-vf-single-ip` | Configures NVIDIA virtual functions to use a single IP address. Use `yes`, `no`, `true`, `false`, `on`, `off`, `y`, or `n`. |
-| `--dedicated-mode` | Sets DPDK core dedication to `full` or `none`. `none` requires NIC driver support. |
-| `--scan-rdma` | Scans for unused network devices and adds them for RDMA use. Use `off`, `ib`, `eth`, or `all`. |
-| `--color` | Sets color output. Use `auto`, `disabled`, or `enabled`. |
-| `--core-ids`... | WEKA dedicated core IDs. Repeat the parameter or provide comma-separated values. |
-| `--management-ips`... | Management process IP addresses. Repeat the parameter or provide comma-separated values. |
-| `--join-ips`... | Management process IP:port pairs. If no port is specified, WEKA uses the default port. Repeat the parameter or provide comma-separated values. |
-| `--net`... | Network specification. Use a device name such as `ib1` or `eth1`, `&#x3C;device>/&#x3C;ip>/&#x3C;bits>/&#x3C;gateway>`, `&#x3C;device>/rdma-only/inet4`, or `&#x3C;device>/rdma-only/inet6`. Use `udp` to force UDP mode. Repeat the parameter or provide comma-separated values. |
-| `--disable` | Creates the container as disabled. |
-| `--no-start` | Does not start the container after creation. |
-| `--allow-mix-setting` | Allows specified core IDs when containers with automatic core-ID allocation run on the same server. |
-| `--restricted` | Enables restricted client mode. |
+| Parameter               | Description                                                                                                                                                                                                                                                                       |
+| ----------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `-n`, `--name`          | The name to give the container.                                                                                                                                                                                                                                                   |
+| `--cores`               | Number of CPU cores dedicated to WEKA.                                                                                                                                                                                                                                            |
+| `--memory`              | Memory dedicated to WEKA in bytes. Set to `0` to let the system decide. Use decimal or binary units, such as `1GB` or `1GiB`.                                                                                                                                                     |
+| `--bandwidth`           | Bandwidth limit per second. Use `unlimited` or a decimal or binary value, such as `1GB` or `1GiB`.                                                                                                                                                                                |
+| `-t`, `--timeout`       | Join command timeout. Use values such as `3s`, `2h`, `4m`, `1d`, `1d5h`, `1w`, `infinite`, or `unlimited`.                                                                                                                                                                        |
+| `--base-port`           | First port used by the WEKA container. WEKA uses 100 ports starting at this port.                                                                                                                                                                                                 |
+| `--weka-version`        | WEKA version used to start the container.                                                                                                                                                                                                                                         |
+| `--fqdn`                | Fully qualified domain name used by other containers for TLS hostname verification.                                                                                                                                                                                               |
+| `--nvidia-vf-single-ip` | Configures NVIDIA virtual functions to use a single IP address. Use `yes`, `no`, `true`, `false`, `on`, `off`, `y`, or `n`.                                                                                                                                                       |
+| `--dedicated-mode`      | Sets DPDK core dedication to `full` or `none`. `none` requires NIC driver support.                                                                                                                                                                                                |
+| `--scan-rdma`           | Scans for unused network devices and adds them for RDMA use. Use `off`, `ib`, `eth`, or `all`.                                                                                                                                                                                    |
+| `--color`               | Sets color output. Use `auto`, `disabled`, or `enabled`.                                                                                                                                                                                                                          |
+| `--core-ids`...         | WEKA dedicated core IDs. Repeat the parameter or provide comma-separated values.                                                                                                                                                                                                  |
+| `--management-ips`...   | Management process IP addresses. Repeat the parameter or provide comma-separated values.                                                                                                                                                                                          |
+| `--join-ips`...         | Management process IP:port pairs. If no port is specified, WEKA uses the default port. Repeat the parameter or provide comma-separated values.                                                                                                                                    |
+| `--net`...              | Network specification. Use a device name such as `ib1` or `eth1`, `&#x3C;device>/&#x3C;ip>/&#x3C;bits>/&#x3C;gateway>`, `&#x3C;device>/rdma-only/inet4`, or `&#x3C;device>/rdma-only/inet6`. Use `udp` to force UDP mode. Repeat the parameter or provide comma-separated values. |
+| `--disable`             | Creates the container as disabled.                                                                                                                                                                                                                                                |
+| `--no-start`            | Does not start the container after creation.                                                                                                                                                                                                                                      |
+| `--allow-mix-setting`   | Allows specified core IDs when containers with automatic core-ID allocation run on the same server.                                                                                                                                                                               |
+| `--restricted`          | Enables restricted client mode.                                                                                                                                                                                                                                                   |
 
 [^1]: A **diskless node** is a workstation or computer that lacks local disk drives and uses network booting to load its operating system from a server. For details, see [https://en.wikipedia.org/wiki/Diskless\_node](https://en.wikipedia.org/wiki/Diskless_node)

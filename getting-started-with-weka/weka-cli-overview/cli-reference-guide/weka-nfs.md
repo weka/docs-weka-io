@@ -1,3 +1,7 @@
+---
+description: Manage the WEKA NFS service.
+---
+
 # weka nfs
 
 Manage Weka's NFS service.

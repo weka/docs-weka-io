@@ -1,5 +1,5 @@
 ---
-description: This page describes how to set a login banner displayed on the sign-in page.
+description: Configure, enable, disable, and reset the login banner using the GUI or CLI.
 ---
 
 # Manage login banner

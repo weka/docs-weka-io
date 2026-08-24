@@ -1,3 +1,7 @@
+---
+description: Configure a WEKApod system after hardware installation.
+---
+
 # WEKApod initial system setup and configuration
 
 ## Workflow

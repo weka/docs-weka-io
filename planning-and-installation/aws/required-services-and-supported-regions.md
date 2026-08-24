@@ -1,3 +1,7 @@
+---
+description: Review AWS services and regions required for a WEKA Terraform deployment.
+---
+
 # Required services and supported regions
 
 ## Required services

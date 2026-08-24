@@ -1,3 +1,7 @@
+---
+description: Integrate WEKA storage with AWS ParallelCluster.
+---
+
 # AWS ParallelCluster and WEKA Integration
 
 ## Overview

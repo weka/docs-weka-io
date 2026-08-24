@@ -1,3 +1,7 @@
+---
+description: Configure WEKA cloud connectivity and telemetry.
+---
+
 # weka cloud
 
 Manage observability via cloud services.

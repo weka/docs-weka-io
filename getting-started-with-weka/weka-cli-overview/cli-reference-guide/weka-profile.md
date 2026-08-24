@@ -1,3 +1,7 @@
+---
+description: Manage WEKA CLI connection and display profiles.
+---
+
 # weka profile
 
 Manage profile settings. Profiles are used to configure connection, authentication, and display preferences.

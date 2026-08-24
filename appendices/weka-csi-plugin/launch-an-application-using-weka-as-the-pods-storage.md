@@ -1,3 +1,7 @@
+---
+description: Deploy an application pod that uses WEKA storage.
+---
+
 # Launch an application using WEKA as the POD's storage
 
 Once a storage class and a PVC are in place, you can configure the Kubernetes pods to provision volumes via the WEKA system.

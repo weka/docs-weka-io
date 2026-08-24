@@ -1,3 +1,7 @@
+---
+description: Troubleshoot WEKA CSI Plugin deployment and volume issues.
+---
+
 # Troubleshooting
 
 You can use the following basic commands to check the status and debug the service:

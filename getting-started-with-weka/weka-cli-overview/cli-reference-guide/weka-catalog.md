@@ -1,3 +1,7 @@
+---
+description: Manage the data catalog service and indexed filesystem metadata.
+---
+
 # weka catalog
 
 Manage the Data Catalog service and indexed filesystem data.

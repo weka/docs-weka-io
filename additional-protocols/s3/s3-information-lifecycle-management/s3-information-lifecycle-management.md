@@ -1,17 +1,8 @@
 ---
-description: >-
-  This page describes how to manage information lifecycle (ILM) rules for S3
-  buckets using the GUI.
+description: Create, view, and remove S3 bucket lifecycle rules using the GUI.
 ---
 
 # Manage S3 lifecycle rules using the GUI
-
-Using the GUI, you can:
-
-* [Add a lifecycle rule](s3-information-lifecycle-management.md#add-a-lifecycle-rule)
-* [View lifecycle rules](s3-information-lifecycle-management.md#viewing-ilm-rules)
-* [Remove a lifecycle rule](s3-information-lifecycle-management.md#remove-a-lifecycle-rule)
-* [Remove all lifecycle rules](s3-information-lifecycle-management.md#or-all-rules)
 
 ## **Add** a lifecycle rule
 

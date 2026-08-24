@@ -1,3 +1,7 @@
+---
+description: Configure Google Cloud instance scaling for a WEKA cluster.
+---
+
 # Auto-scale instances in GCP
 
 Once the Terraform modules are applied, two workflows are running every minute. One for scale-up and the other for scale-down.

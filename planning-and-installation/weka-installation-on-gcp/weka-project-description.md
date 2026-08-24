@@ -1,3 +1,7 @@
+---
+description: Configure Google Cloud project resources required for a WEKA deployment.
+---
+
 # WEKA project description
 
 The WEKA project uses internal GCP resources. A basic WEKA project includes a cluster with multiple virtual private clouds (VPCs), virtual machines (VMs), a load balancer, DNS, cloud storage, a secret manager, and other components for managing cluster resizing. Peering between all virtual networks enables functions to run across them, with each VPC connected to every other VPC in a full mesh.

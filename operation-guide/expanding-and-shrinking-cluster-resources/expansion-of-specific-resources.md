@@ -1,7 +1,7 @@
 ---
 description: >-
-  Guidelines for expansion processes that only involve the addition of a
-  specific resource.
+  Expand memory, networking, cores, and storage resources for a specific WEKA
+  container.
 ---
 
 # Expand specific resources of a container
@@ -40,37 +40,37 @@ Some sub-commands accept `<container-ids>`. See details in the following table.
 
 **Subcommands**
 
-| Sub-command | Description | Comment |
-| --- | --- | --- |
-| `activate` | Activate the containers. | Specify the list of containers with a space delimiter. |
-| `add` | Add a container to the cluster. |  |
-| `apply` | Apply changes to the resources on the containers. | Specify the list of containers with a space delimiter. |
-| `auto-remove-timeout` | Set the time to wait before removing the containers from clients if they disconnect from the cluster. The minimum value is 60. Use 0 to disable automatic removal. | This subcommand only applies to clients. |
-| `bandwidth` | Limit the bandwidth of the containers. |  |
-| `clear-failure` | Clear the last failure fields of the containers. | Specify the list of containers with a space delimiter. |
-| `cores` | Change the number of cores in the containers. | Increasing the number of cores does not require deactivating the container, whereas decreasing the core count requires deactivation. |
-| `deactivate` | Deactivate the containers. | Specify the list of containers with a space delimiter. |
-| `deactivation-check` | Check if the specified containers can be deactivated. |  |
-| `dedicate` | Set the containers to be dedicated to the WEKA cluster. |  |
-| `failure-domain` | Set the failure domain on the container. | Requires deactivating the container. |
-| `info-hw` | Show hardware information about the containers. |  |
-| `join-secret` | Set the secret this container uses when joining or validating other backends. |  |
-| `management-ips` | Set the management IPs of the container. To achieve high availability, set two IPs. |  |
-| `memory` | Set the RAM size dedicated to the container. |  |
-| `net` | List the WEKA-dedicated networking devices in the containers. | Specify the list of containers with a space delimiter. |
-| `remove` | Remove a container from the cluster. |  |
-| `requested-action` | Set the specified containers' requested action to stop, restart, or apply resources gracefully. |  |
-| `resources` | Get the resources of the containers. |  |
-| `restore` | Restore staged resources of the containers or all containers to their stable state. | Specify the list of containers with a space delimiter. |
+| Sub-command           | Description                                                                                                                                                        | Comment                                                                                                                              |
+| --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------ |
+| `activate`            | Activate the containers.                                                                                                                                           | Specify the list of containers with a space delimiter.                                                                               |
+| `add`                 | Add a container to the cluster.                                                                                                                                    |                                                                                                                                      |
+| `apply`               | Apply changes to the resources on the containers.                                                                                                                  | Specify the list of containers with a space delimiter.                                                                               |
+| `auto-remove-timeout` | Set the time to wait before removing the containers from clients if they disconnect from the cluster. The minimum value is 60. Use 0 to disable automatic removal. | This subcommand only applies to clients.                                                                                             |
+| `bandwidth`           | Limit the bandwidth of the containers.                                                                                                                             |                                                                                                                                      |
+| `clear-failure`       | Clear the last failure fields of the containers.                                                                                                                   | Specify the list of containers with a space delimiter.                                                                               |
+| `cores`               | Change the number of cores in the containers.                                                                                                                      | Increasing the number of cores does not require deactivating the container, whereas decreasing the core count requires deactivation. |
+| `deactivate`          | Deactivate the containers.                                                                                                                                         | Specify the list of containers with a space delimiter.                                                                               |
+| `deactivation-check`  | Check if the specified containers can be deactivated.                                                                                                              |                                                                                                                                      |
+| `dedicate`            | Set the containers to be dedicated to the WEKA cluster.                                                                                                            |                                                                                                                                      |
+| `failure-domain`      | Set the failure domain on the container.                                                                                                                           | Requires deactivating the container.                                                                                                 |
+| `info-hw`             | Show hardware information about the containers.                                                                                                                    |                                                                                                                                      |
+| `join-secret`         | Set the secret this container uses when joining or validating other backends.                                                                                      |                                                                                                                                      |
+| `management-ips`      | Set the management IPs of the container. To achieve high availability, set two IPs.                                                                                |                                                                                                                                      |
+| `memory`              | Set the RAM size dedicated to the container.                                                                                                                       |                                                                                                                                      |
+| `net`                 | List the WEKA-dedicated networking devices in the containers.                                                                                                      | Specify the list of containers with a space delimiter.                                                                               |
+| `remove`              | Remove a container from the cluster.                                                                                                                               |                                                                                                                                      |
+| `requested-action`    | Set the specified containers' requested action to stop, restart, or apply resources gracefully.                                                                    |                                                                                                                                      |
+| `resources`           | Get the resources of the containers.                                                                                                                               |                                                                                                                                      |
+| `restore`             | Restore staged resources of the containers or all containers to their stable state.                                                                                | Specify the list of containers with a space delimiter.                                                                               |
 
 **Options**
 
-| Option | Description |  |
-| --- | --- | --- |
-| -b | Only return backend containers. |  |
-| -c | Only return client containers. |  |
-| -l | Only return containers that are part of the cluster leadership. |  |
-| -L | Only return the cluster leader. |  |
+| Option | Description                                                     |   |
+| ------ | --------------------------------------------------------------- | - |
+| -b     | Only return backend containers.                                 |   |
+| -c     | Only return client containers.                                  |   |
+| -l     | Only return containers that are part of the cluster leadership. |   |
+| -L     | Only return the cluster leader.                                 |   |
 
 ## Expansion procedures on a remote container
 
@@ -278,10 +278,10 @@ These local commands have the same semantics as their remote counterpart. You do
 
 **Options**
 
-| Option | Description | Comment |
-| --- | --- | --- |
-| `--stable` | List the resources from the last successful container boot. |  |
-| `-C` | The container name. |  |
+| Option     | Description                                                 | Comment |
+| ---------- | ----------------------------------------------------------- | ------- |
+| `--stable` | List the resources from the last successful container boot. |         |
+| `-C`       | The container name.                                         |         |
 
 <details>
 

@@ -1,3 +1,7 @@
+---
+description: Manage WEKA cluster configuration and resources.
+---
+
 # weka cluster
 
 Administer the Weka cluster.

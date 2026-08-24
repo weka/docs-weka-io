@@ -1,5 +1,5 @@
 ---
-description: Learn how to configure and use the AWS CLI with WEKA S3 storage.
+description: Configure AWS CLI credentials and use the CLI with WEKA S3 storage.
 ---
 
 # Configure and use AWS CLI with WEKA S3 storage

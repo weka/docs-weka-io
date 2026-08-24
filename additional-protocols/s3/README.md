@@ -1,5 +1,7 @@
 ---
-description: The WEKA configuration of the S3 protocol.
+description: >-
+  Configure and manage the WEKA S3 service, including access, security, and
+  resources.
 ---
 
 # Manage the S3 protocol

@@ -1,12 +1,10 @@
 ---
 description: >-
-  Update the WEKA Software Appliance on sites with Internet access and dark
-  sites.
+  Maintain WEKA Software Appliance security and functionality in connected and
+  dark sites.
 ---
 
 # Update the WSA
-
-Update the WSA regularly to maintain system security and functionality.
 
 ## Before you begin
 

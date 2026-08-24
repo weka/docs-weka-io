@@ -1,20 +1,10 @@
 ---
 description: >-
-  This page describes how to gain and obtain access permissions to the S3
-  protocol using the CLI.
+  Manage S3 IAM policies, credentials, and temporary security tokens using the
+  CLI.
 ---
 
 # Manage S3 users and authentication using the CLI
-
-With the CLI, you can:
-
-* [View existing IAM policies](s3-users-and-authentication.md#view-existing-iam-policies)
-* [Add an IAM policy](s3-users-and-authentication.md#create-an-iam-policy)
-* [Delete an IAM policy](s3-users-and-authentication.md#creating-a-new-iam-policies)
-* [Attach a policy to an S3 user](s3-users-and-authentication.md#creating-a-new-iam-policies-1)
-* [Detach a policy from an S3 user](s3-users-and-authentication.md#creating-a-new-iam-policies-1-1)
-* [Manage S3 credentials](s3-users-and-authentication.md#manage-s3-credentials)
-* [Generate a temporary security token](s3-users-and-authentication.md#generate-a-temporary-security-token)
 
 ## View existing IAM policies
 
@@ -106,10 +96,10 @@ Use the following command line to add an S3 IAM policy:
 
 **Parameters**
 
-| Name | Value |
-| --- | --- |
-| `policy-name`* | Name of the IAM policy to add. |
-| `policy-file`* | Path to the custom JSON file representing an IAM policy for anonymous access.See #supported-s3-policy-actions. |
+| Name            | Value                                                                                                          |
+| --------------- | -------------------------------------------------------------------------------------------------------------- |
+| `policy-name`\* | Name of the IAM policy to add.                                                                                 |
+| `policy-file`\* | Path to the custom JSON file representing an IAM policy for anonymous access.See #supported-s3-policy-actions. |
 
 ## Delete an IAM policy <a href="#creating-a-new-iam-policies" id="creating-a-new-iam-policies"></a>
 
@@ -121,9 +111,9 @@ Use the following command line to delete an S3 IAM policy:‌
 
 **Parameters**
 
-| Name | Value |
-| --- | --- |
-| `policy-name`* | Name of the IAM policy to remove. |
+| Name            | Value                             |
+| --------------- | --------------------------------- |
+| `policy-name`\* | Name of the IAM policy to remove. |
 
 ## Attach a policy to an S3 user <a href="#creating-a-new-iam-policies" id="creating-a-new-iam-policies"></a>
 
@@ -135,10 +125,10 @@ Use the following command line to attach an IAM policy to an S3 user:‌
 
 **Parameters**
 
-| Name | Value |
-| --- | --- |
-| `policy`* | Name of an existing IAM policy. |
-| `user`* | Name of a local WEKA S3 user. |
+| Name       | Value                           |
+| ---------- | ------------------------------- |
+| `policy`\* | Name of an existing IAM policy. |
+| `user`\*   | Name of a local WEKA S3 user.   |
 
 If the user does not already have S3 credentials, the system creates them automatically when the policy is attached. The secret key is displayed once and must be saved immediately.
 
@@ -158,10 +148,10 @@ Use the following command line to detach an IAM policy from an S3 user:‌‌
 
 **Parameters**
 
-| Name | Description |
-| --- | --- |
-| `policy`* | Name of the IAM policy to detach. |
-| `user`* | Name of a local WEKA S3 user. |
+| Name       | Description                       |
+| ---------- | --------------------------------- |
+| `policy`\* | Name of the IAM policy to detach. |
+| `user`\*   | Name of a local WEKA S3 user.     |
 
 Detaching a policy removes S3 data access, but keeps the existing S3 access key and secret key. If you later attach any S3 policy again, the same key pair is used.
 
@@ -217,12 +207,12 @@ Use the following command line to generate a temporary security token:
 
 **Parameters**
 
-| Name | Description | Default |
-| --- | --- | --- |
-| `access-key`* | A local WEKA S3 user access key |  |
-| `secret-key` | A local WEKA S3 user secret key | If not supplied, the command prompts to supply the secret-key. |
-| `policy-file` | Path to a custom JSON file representing an IAM policy for anonymous access.You cannot gain additional capabilities to the IAM policy attached to this S3 user.See [Supported Policy Actions](../s3-limitations.md#supported-policy-actions). | ​ |
-| `duration`* | Duration for the token validity.Possible values between 15 minutes and 1 week. Format: `900s`, `60m`, `2d`, `1w` | ​ |
+| Name           | Description                                                                                                                                                                                                                                  | Default                                                        |
+| -------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------- |
+| `access-key`\* | A local WEKA S3 user access key                                                                                                                                                                                                              |                                                                |
+| `secret-key`   | A local WEKA S3 user secret key                                                                                                                                                                                                              | If not supplied, the command prompts to supply the secret-key. |
+| `policy-file`  | Path to a custom JSON file representing an IAM policy for anonymous access.You cannot gain additional capabilities to the IAM policy attached to this S3 user.See [Supported Policy Actions](../s3-limitations.md#supported-policy-actions). | ​                                                              |
+| `duration`\*   | Duration for the token validity.Possible values between 15 minutes and 1 week. Format: `900s`, `60m`, `2d`, `1w`                                                                                                                             | ​                                                              |
 
 An example response:
 

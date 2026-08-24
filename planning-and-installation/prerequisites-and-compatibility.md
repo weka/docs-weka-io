@@ -7,7 +7,7 @@ description: >-
 # Prerequisites and compatibility
 
 {% hint style="warning" %}
-**Important:** The versions mentioned on the prerequisites and compatibility page apply to the **latest minor version** (6.0.**X**). For information on new features and supported prerequisites released with each minor version, refer to the relevant release notes available at [get.weka.io](https://get.weka.io/).
+**Important:** The versions mentioned on the prerequisites and compatibility page apply to the **latest revision** (6.0.**X**). For information on new features and supported prerequisites released with each minor version, refer to the relevant release notes available at [get.weka.io](https://get.weka.io/).
 
 Check the release notes for details about any updates or changes accompanying the latest releases.
 {% endhint %}
@@ -68,7 +68,7 @@ This policy excludes Linux distributions bundled as part of the WEKA Software Ap
 
 **Lifecycle stages**
 
-* **General Availability (GA):** WEKA aims to support new GA releases within three months of the vendor release date. After addition to the supported list, these versions receive full support, including certification, ongoing validation, and defect remediation aligned to the [release-support-and-commitments.md](../support/release-support-and-commitments.md "mention").
+* **General Availability (GA):** WEKA aims to support new GA releases within three months of the vendor release date. After addition to the supported list, these versions receive full support, including certification, ongoing validation, and defect remediation aligned to the [Broken link](/broken/pages/Kk43KpiTpQO4vxze2TU3 "mention").
 * **End of Support and End of Life:** After a vendor EoS date, WEKA stops active testing and validation. Field issues receive best-effort remediation. If vendor backports are unavailable, fixes may require upgrading to a supported version. Plan migrations before the vendor EoL date.
 
 **Custom kernel support**

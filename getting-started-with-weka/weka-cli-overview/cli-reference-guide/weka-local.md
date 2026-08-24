@@ -1,3 +1,7 @@
+---
+description: Manage local WEKA container resources and services.
+---
+
 # weka local
 
 Control local Weka resources and containers.

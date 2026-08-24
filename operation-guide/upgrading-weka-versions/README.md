@@ -4,41 +4,35 @@ description: Upgrade your WEKA system with the latest version.
 
 # Upgrade WEKA versions
 
-## WEKA release model
+## WEKA Release Lines
 
-WEKA operates a dual-track release model with two types of versions: Innovation releases and Long-Term Support (LTS) releases.
+Plan upgrades by Release Line.
 
-* Innovation releases deliver new features and enhancements frequently, providing early access to cutting-edge functionality.
-* LTS releases focus on stability and reliability.
+WEKA versions use the format **Major.Minor.Revision**. A Release Line is defined by the **Major** number, such as `4.x` or `5.x`. Revisions are cumulative within the same Release Line.
 
-Each release in [get.weka.io](https://get.weka.io) is tagged as either **Innovation** or **LTS**.
+{% hint style="info" %}
+For upgrade planning, note the following mappings:
 
-**Related topic**
+* Versions `4.3` and `4.4` are treated as one Release Line.
+* Versions `5.0` and `5.1` are treated as one Release Line.
+{% endhint %}
 
-[release-support-and-commitments.md](../../support/release-support-and-commitments.md "mention")
+Support tiers define the lifecycle of a Release Line:
 
-### Software versions
+* **Current (N):** Receives new features and service packs.
+* **Maintenance (N-1):** Receives service packs with bug fixes and currency updates.
+* **Limited support (N-2):** Receives selective fixes based on need.
 
-WEKA uses a structured versioning scheme to indicate the scope and type of changes introduced in each release. This helps users quickly identify whether a release includes major new features, minor improvements, or incremental fixes.
-
-* **Major version:** The major version represents substantial changes, such as new features, architectural updates, or significant enhancements.
-  * Defined by the first two numbers in the version string.
-  * Example: In 5.1.21, the major version is 5.1.
-* **Minor version:** The minor version reflects smaller updates, such as bug fixes, performance improvements, or minor feature additions.
-  * Defined by the third number in the version string.
-  * Example: In 5.1.21, the minor version is 21.
-* **Build number:** The build number (fourth component, if present) identifies incremental builds.
-  * Used for hotfixes or release candidates that address specific issues without altering core functionality.
-  * Example: 5.1.21.26, the build number is 26.
+For lifecycle details, see [Release support and commitments](/broken/pages/1c0a53bf4014f5596291918832d230f2295d360f).
 
 ## Version compatibility guidelines
 
-* **Upgrade direction:** Upgrades must always progress from older to newer versions.
-* **Compatibility basis:** Compatibility is determined by the release date of the target version relative to the source version.
-* **Major version upgrades:** Upgrades must follow consecutive order (for example, 4.3 → 4.4). LTS releases upgrade to Innovation, and Innovation releases upgrade to the next LTS.
-* **LTS upgrades:** Clusters and clients can be upgraded between consecutive LTS releases (for example, 4.2.6 and above may be upgraded to the latest minor release of 4.4).
-* **Client upgrades:** Clients are supported if they are at most one major version behind the backend. In multi-hop upgrades, such as from 4.2 to 4.4 to 5.0, clients must be upgraded before the cluster to maintain compatibility.
-* **SCMC deployments:** The client-target-version parameter must be identical across all clusters and compatible with the target backend upgrade. See [mount-fs-from-scmc.md](../../weka-filesystems-and-object-stores/mounting-filesystems/mount-fs-from-scmc.md "mention").
+* **Upgrade direction:** Always upgrade from older to newer versions.
+* **Release Line progression:** Upgrade across consecutive supported Release Lines. If a multi-hop path is required, complete one Release Line at a time.
+* **Compatibility basis:** Compatibility is determined by the release date of the target version relative to the source version and by the supported source range for that target version.
+* **Client upgrades:** Clients are supported if they are at most one Release Line behind the backend. In multi-hop upgrades, upgrade the clients before the cluster at each hop.
+* **SCMC deployments:** The `client-target-version` parameter must be identical across all clusters and compatible with the target backend version. See [Mount filesystems from Single Client to Multiple Clusters (SCMC)](https://app.gitbook.com/s/ZW262oqYA8pNNfGvXjHa/weka-filesystems-and-object-stores/mounting-filesystems/mount-fs-from-scmc).
+* **Reference information:** For exact supported source and target combinations, see the upgrade section at [get.weka.io](https://get.weka.io).
 
 #### Check the upgrade path
 
@@ -55,9 +49,9 @@ Verify that the upgrade path from your source version to the target version is s
    * A warning indicates an additional requirement to complete before the upgrade, such as a client upgrade.
    * The path list indicates the recommended target version.
 
-## What is a non-disruptive upgrade (NDU)
+## Non-disruptive upgrade (NDU) overview
 
-In MCB architecture, each container serves a single type of process, drive, frontend, or compute function. Therefore, upgrading one container at a time (rolling upgrade) is possible while the remaining containers continue serving the clients.
+In MCB architecture, each container serves a single process type: drive, compute, or frontend. This allows a rolling upgrade, upgrading one container at a time, while the remaining containers continue serving clients.
 
 {% hint style="info" %}
 Some background tasks, such as snapshot uploads or downloads, must be postponed or aborted. See the [prerequisites](./#1.-verify-prerequisites-for-the-upgrade) in the upgrade workflow for details.
@@ -65,23 +59,19 @@ Some background tasks, such as snapshot uploads or downloads, must be postponed 
 
 #### **Internal upgrade process**
 
-Once you run the upgrade command in `ndu` mode, the following occurs:
+When you run the upgrade command, the following rolling sequence runs across all backend servers:
 
-1. Downloading the version and preparing all backend servers.
-2. Rolling upgrade of the **drive** containers.
-3. Rolling upgrade of the **compute** containers.
-4. Rolling upgrade of the **frontend** configured with backend mode and **protocol** containers (including frontend and protocol containers hosted on a dedicated protocol server).
+1. Download the target version and prepare all backend servers.
+2. Rolling upgrade of the drive containers.
+3. Rolling upgrade of the compute containers.
+4. Rolling upgrade of the frontend and protocol containers (NFS, SMB, or S3), including those hosted on dedicated protocol servers.
+
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/NDU_process.png" alt=""><figcaption><p>NDU process at a glance</p></figcaption></figure></div>
 
 {% hint style="info" %}
-To review the frontend containers that will be upgraded, check their configuration mode by running the following command: `$ weka cluster process --role frontend -o containerId,hostname,mode`
+To review which frontend containers will be upgraded, run:
 
-Example output:
-
-`CONTAINER ID HOSTNAME MODE`\
-`10 DataSphere-1 backend`\
-`13 DataSphere-2 backend`\
-`14 DataSphere-3 backend`\
-`16 DataSphere-6 client`
+`weka cluster process --role frontend -o containerId,hostname,mode`
 {% endhint %}
 
 **Related topics**
@@ -135,13 +125,11 @@ Complete these checks before running the starting the upgrade workflow.
 
 ### 1. Verify system upgrade prerequisites
 
-Ensure the environment meets the necessary prerequisites before proceeding with any system upgrade. The **WEKA Upgrade Checker Tool** automates these essential checks, comprehensively assessing the system’s readiness. Whether performing a single-version upgrade or a multi-hop upgrade, following this procedure is mandatory.
+Use the WEKA Upgrade Checker Tool to validate system readiness before every upgrade, whether single-version or multi-hop. Running this procedure is mandatory.
 
-#### Summary of the WEKA Upgrade Checker Tool results:
+**Upgrade Checker results**
 
-1. **Passed checks (Green)**: The system meets all prerequisites for the upgrade.
-2. **Warnings (Yellow)**: Address promptly to resolve potential issues.
-3. **Failures (Red)**: Do not proceed; they may lead to data loss.
+<table><thead><tr><th width="134.421875">Indicator</th><th width="264.61328125">Meaning</th><th>Action</th></tr></thead><tbody><tr><td>Green</td><td>All prerequisites met</td><td>Verify the tool is the latest version</td></tr><tr><td>Yellow</td><td>Potential issues detected</td><td>Resolve before proceeding</td></tr><tr><td>Red</td><td>Critical failures found</td><td>Do not proceed. Contact the <a href="../../support/getting-support-for-your-weka-system.md">Customer Success Team</a></td></tr></tbody></table>
 
 <details>
 
@@ -203,10 +191,8 @@ Ensure the environment meets the necessary prerequisites before proceeding with 
 {% hint style="info" %}
 **Multi-hop version upgrades:**
 
-After completing an upgrade, a background process initiates the conversion of metadata to a new format (in specific versions). This conversion may take several minutes before another upgrade can commence. To monitor the progress, use the `weka status` CLI command and check if a data upgrade task is RUNNING.
+After each upgrade hop, a background process may convert metadata to a new format. Wait until this conversion completes before starting the next hop. Monitor progress with `weka status` and check if a data upgrade task is RUNNING.
 {% endhint %}
-
-By diligently following this system readiness validation procedure, you can confidently proceed with system upgrades, minimizing risks and ensuring a smooth upgrade.
 
 {% embed url="https://youtu.be/d1m2bzE_uCY" %}
 Demo: WEKA Upgrade Checker
@@ -252,60 +238,46 @@ Demo: WEKA Upgrade Checker
 
 ### 2. Prepare the cluster for upgrade
 
-Download the new WEKA version to one of the backend servers using one of the following methods depending on the cluster deployment:
+Download the target version to one of the backend servers using the method that matches your cluster's network environment.
 
-* Method A: Using a distribution server
-* Method B: Direct download and install from get.weka.io
-* Method C: If the connectivity to get.weka.io is limited
+**Method A: Distribution server**
 
-For details, select the relevant tab.
+Use this method if your environment includes a distribution server.
 
-{% tabs %}
-{% tab title="Method A" %}
-Use this method if the cluster environment includes a distribution server from which the target WEKA version can be downloaded.
+* If the distribution server contains the target version:
 
-If the distribution server contains the target WEKA version, run the following commands from the cluster backend server:
-
-```
-weka version get <version>
-weka version prepare <version>
+```bash
+weka version get <target-version>
+weka version prepare <target-version>
 ```
 
-Where: \<version> is the target WEKA version, for example: `5.1.21`.
+* If the distribution server does not contain the target version, pull it directly from get.weka.io using a token:
 
-If the distribution server does not contain the target WEKA version, add the option `--from` to the command, and specify the [get.weka.io](https://get.weka.io/ui/releases/) distribution site, along with the token.
-
-Example:
-
+```bash
+weka version get <target-version> --from https://[GET.WEKA.IO-TOKEN]@get.weka.io
+weka version prepare <target-version>
 ```
-weka version get <version> --from https://[GET.WEKA.IO-TOKEN]@get.weka.io
-weka version prepare <version>
-```
-{% endtab %}
 
-{% tab title="Method B" %}
-Use this method if the cluster environment has connectivity to [get.weka.io](https://get.weka.io).
+**Method B: Direct download and install from get.weka.io**
 
-1. From the Public Releases on the [get.weka.io](https://get.weka.io/ui/releases/), select the required release.
+Use this method if the backend servers have direct connectivity to [get.weka.io](https://get.weka.io).
+
+1. On [get.weka.io](https://get.weka.io), select the required release from Public Releases.
 2. Select the **Install** tab.
-3. From the backend server, run the `curl` command line as shown in the following example.
-{% endtab %}
+3. From the backend server, run the `curl` command displayed on the Install tab.
 
-{% tab title="Method C" %}
-Use this method if the cluster environment does not have connectivity to [get.weka.io](https://get.weka.io), such as with private networks or dark sites.
+**Method C: If the connectivity to get.weka.io is limited**
 
-1. Download the new version tar file to a location from which you copy it to a dedicated directory in the cluster backend server, and untar the file.
-2. From the dedicated directory in the cluster backend server, run the `install.sh` command.
-{% endtab %}
-{% endtabs %}
+Use this method if the backend servers have no connectivity to [get.weka.io](https://get.weka.io), such as in private networks or air-gapped environments.
+
+1. Download the target version tar file and copy it to a dedicated directory on a backend server.
+2. Extract the tar file and run: `./install.sh`
 
 ### 3. Prepare the backend servers for upgrade (optional)
 
-When working with many backend servers, preparing them separately from the upgrade process in advance is possible to minimize the total upgrade time. For a small number of backend servers, this step is not required.
+For large clusters, prepare the backend servers separately before running the upgrade to reduce total upgrade time. This step downloads the target version to all connected backend servers and readies it for installation.
 
-The preparation phase prepares all the connected backend servers for the upgrade, which includes downloading the new version and getting it ready to be applied.
-
-Once the new version is downloaded to one of the backend servers, run the following CLI command:
+Once the target version is downloaded to one of the backend servers, run:
 
 ```bash
 weka local run --container drives0 --in <new-version> upgrade --distribute-version
@@ -317,48 +289,40 @@ Where:
 
 ### 4. Upgrade the backend servers
 
-Once a new software version is installed on one of the backend servers, upgrade the entire cluster backend servers to the new version by running the following command on the backend server.
-
-If you already ran the preparation step, the upgrade command skips the download and preparation operations.
+Run the following command on one of the backend servers to upgrade all cluster backend servers to the target version:
 
 ```bash
-weka local run --container drives0 --in <new-version> upgrade
+weka local run --container drives0 --in <target-version> upgrade
 ```
 
-**Consider the following guidelines:**
+If you completed step 3, the command skips the download and preparation.
 
-* Before switching the cluster to the new software release, the upgrade command distributes the new release to all cluster servers. It makes the necessary preparations, such as compiling the new `wekafs` driver.
-* If a failure occurs during the preparation, such as a disconnection of a server or failure to build a driver, the upgrade process stops, and a summary message indicates the problematic server.
-*   If cleanup issues occur during a specific upgrade phase, rerun it with the relevant option:
+Before switching to the target version, the command distributes it to all servers and runs necessary preparations, such as compiling the `wekafs` driver. If a server disconnects or a driver fails to build, the upgrade stops and identifies the problematic server.
 
-    ```bash
-    --ndu-drives-phase
-    --ndu-frontends-phase
-    --ndu-computes-phase
-    ```
-* If the container running the upgrade process uses a port other than the default (14000), include the option `--mgmt-port <existing-port>` to the command.
+**Additional options**
+
+<table><thead><tr><th width="454">Scenario</th><th>Option</th></tr></thead><tbody><tr><td>Resume after a failure in the drives phase</td><td><code>--ndu-drives-phase</code></td></tr><tr><td>Resume after a failure in the frontends phase</td><td><code>--ndu-frontends-phase</code></td></tr><tr><td>Resume after a failure in the computes phase</td><td><code>--ndu-computes-phase</code></td></tr><tr><td>Upgrade process container uses a non-default port (default: 14000)</td><td><code>--mgmt-port &#x3C;port></code></td></tr></tbody></table>
 
 ### 5. Verify LLQ and WC are enabled in AWS
 
-Enabling the Low Latency Queue (LLQ) improves data processing efficiency in AWS by reducing I/O operation delays. LLQ is enabled by default after an upgrade, but if Write Combining (WC) is not activated in the `igb_uio` driver, the LLQ driver option does not function. After upgrading the backends, verify that WC is enabled.
+LLQ (Low Latency Queue) reduces I/O operation delays in AWS and is enabled by default after an upgrade. However, LLQ requires Write Combining (WC) to be active in the `igb_uio` driver. After upgrading the backend servers, verify that WC is enabled.
 
 **Procedure**
 
-1. **Check for upgrade events:**
-   * Review the upgrade events on the backends.
-   *   If `NetDevDriverReloadFailed` appears, restart the WEKA service by running the following commands on each backend server:
+1. Check for upgrade events on the backends. If `NetDevDriverReloadFailed` appears, restart the WEKA service on each affected backend server:
 
-       ```
-       weka local stop
-       weka local start
-       ```
-2. **Verify WC activation:**
-   *   Check if WC is activated by running:
+```bash
+   weka local stop
+   weka local start
+```
 
-       ```
-       cat /sys/module/igb_uio/parameters/wc_activate
-       ```
-   * If the output is `#1`, WC is activated, which enables the LLQ driver option.
+2. Verify that WC is activated:
+
+```bash
+   cat /sys/module/igb_uio/parameters/wc_activate
+```
+
+An output of `1` confirms WC is active and LLQ is functional.
 
 ### 6. Upgrade the clients
 
@@ -366,11 +330,11 @@ Manage client upgrades to ensure software alignment with the backend clusters. T
 
 #### Client upgrade types
 
-Learn the available methods for upgrading clients to a new software version.
+Learn the available methods for upgrading clients to the target version.
 
-* **Hot upgrade:** Allows clients to remain mounted and operational throughout the client software update.
-  * [**Local (on-client) trigger**](./#upgrade-a-client-locally): An administrative action performed from the client itself to perform hot upgrade.
-  * [**Remote trigger**](./#upgrade-clients-in-batches-via-remote-trigger)**:** An administrative action performed from the backend servers to trigger hot upgrades on specific client(s).
+* **Upgrade:** Allows clients to remain mounted and operational throughout the client software update.
+  * [**Local (on-client) trigger**](./#upgrade-a-client-locally): An administrative action performed from the client itself to perform upgrade.
+  * [**Remote trigger**](./#upgrade-clients-in-batches-via-remote-trigger)**:** An administrative action performed from the backend servers to trigger upgrades on specific client(s).
 * **Remount-based upgrade:** An alternative method where a client automatically upgrades following a remount of all mounted wekafs on a client or reboot.
 * **Persistent client coordination:** A dedicated client acting as a protocol gateway manages containers with `allow-protocols true`. During upgrades, it coordinates with backend servers to maintain continuous protocol service availability.
 * **Multi-cluster clients:** Perform online upgrades locally for clients without unmounting filesystems.\

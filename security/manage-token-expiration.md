@@ -1,7 +1,5 @@
 ---
-description: >-
-  Learn how to configure and manage token expiration settings to maintain a
-  secure authentication environment aligned with best practices.
+description: Configure default and maximum lifetimes for WEKA access and refresh tokens.
 ---
 
 # Manage token expiration
@@ -28,11 +26,11 @@ weka security token-expiry set [--access-token access-token] [--refresh-token re
 
 **Parameters**
 
-| Parameter | Description |
-| --- | --- |
-| `access-token` | Default lifetime of an access token.Possible values: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited |
-| `refresh-token` | Default lifetime of a refresh token.Possible values: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited |
-| `access-token-max` | Maximum allowable lifetime for an access token.Possible values: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited |
+| Parameter           | Description                                                                                                  |
+| ------------------- | ------------------------------------------------------------------------------------------------------------ |
+| `access-token`      | Default lifetime of an access token.Possible values: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited            |
+| `refresh-token`     | Default lifetime of a refresh token.Possible values: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited            |
+| `access-token-max`  | Maximum allowable lifetime for an access token.Possible values: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited |
 | `refresh-token-max` | Maximum allowable lifetime for a refresh token.Possible values: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited |
 
 **Examples:**

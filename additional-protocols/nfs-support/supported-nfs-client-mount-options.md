@@ -44,13 +44,7 @@ Each tenant floating IP runs its own portmapper on port 111, so no port override
 
 The following differences apply to tenant exports and not to the root organization. They affect client compatibility, so check them before planning a migration.
 
-| Behavior | On a tenant export |
-| --- | --- |
-| Security flavor | `sec=sys` only. Kerberos flavors (`krb5`, `krb5i`, `krb5p`) are available only in the root organization. A client attempting Kerberos is rejected with `AUTH_TOOWEAK`. |
-| NFSv3 file locking | Not available. The NLM lock service is not offered on tenant floating IPs, so NFSv3 clients cannot take locks. Use NFSv4.1, where locking works. |
-| User and group names on NFSv4 | Always numeric. `ls -l` shows numeric UIDs and GIDs rather than names, because NFS name resolution is available only in the root organization. Unknown names map to `anon`. Clients that perform their own local mapping are unaffected. |
-| ACLs | Not enforced. An export created without an explicit ACL type is set to `NONE`. |
-| `showmount -e` and `rpcinfo -p` | Return only the data for the tenant that owns the floating IP you query. |
+<table><thead><tr><th width="297.2109375">Behavior</th><th>On a tenant export</th></tr></thead><tbody><tr><td>Security flavor</td><td><code>sec=sys</code> only. Kerberos flavors (<code>krb5</code>, <code>krb5i</code>, <code>krb5p</code>) are available only in the root organization. A client attempting Kerberos is rejected with <code>AUTH_TOOWEAK</code>.</td></tr><tr><td>NFSv3 file locking</td><td>Not available. The NLM lock service is not offered on tenant floating IPs, so NFSv3 clients cannot take locks. Use NFSv4.1, where locking works.</td></tr><tr><td>User and group names on NFSv4</td><td>Always numeric. <code>ls -l</code> shows numeric UIDs and GIDs rather than names, because NFS name resolution is available only in the root organization. Unknown names map to <code>anon</code>. Clients that perform their own local mapping are unaffected.</td></tr><tr><td>ACLs</td><td>Not enforced. An export created without an explicit ACL type is set to <code>NONE</code>.</td></tr><tr><td><code>showmount -e</code> and <code>rpcinfo -p</code></td><td>Return only the data for the tenant that owns the floating IP you query.</td></tr></tbody></table>
 
 {% hint style="warning" %}
 The two items most likely to break an existing client are NFSv3 locking and numeric UIDs. An application relying on NFSv3 byte-range locks, or on `ls -l` resolving names, behaves differently after moving from a root-organization export to a tenant export.

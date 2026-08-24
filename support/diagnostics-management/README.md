@@ -1,17 +1,19 @@
+---
+description: Collect, manage, and upload diagnostics for Customer Success Team and R&D.
+---
+
 # Diagnostics management
 
-The WEKA system provides diagnostics information about internal processes at various levels. This information helps the Customer Success Team and R\&D to analyze and provide support when troubleshooting is needed.
+The system provides diagnostics information about internal processes at various levels. This information helps the Customer Success Team and R\&D analyze issues and provide support when troubleshooting is needed.
 
-The WEKA system has the following tools:
+The system provides the following tools:
 
-* **Traces:** Traces are low-level events collected by an internal tracking tool. The tracking tool collects the traces continuously on the backends and clients.
-* **Protocols debug level:** The cluster enables changing the log debug level (verbosity level) for each protocol container in the cluster.
-* **Diagnostics CLI command**: The diagnostics CLI command is used for collecting and uploading diagnostic data about clusters, servers, and containers for analysis by the Customer Success Team to help with troubleshooting.
+* **Traces:** Low-level events that an internal tracking tool collects continuously on the backends and clients.
+* **Protocols debug level:** A configurable log debug level for each protocol container. A higher level provides more details for investigating issues.
+* **Diagnostics data:** CLI commands that collect and upload diagnostics data about clusters, servers, and containers for analysis by the Customer Success Team.
 
 **Related topics**
 
-[traces-management](traces-management/ "mention")
+[Traces and protocols debug level management](traces-and-protocols-debug-level-management/)
 
-[protocols-debug-level-management](protocols-debug-level-management/ "mention")
-
-[diagnostics-utility.md](diagnostics-utility.md "mention")
+[Diagnostics data management](diagnostics-data-management.md)

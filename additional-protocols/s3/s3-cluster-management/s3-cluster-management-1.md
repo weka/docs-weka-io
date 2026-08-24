@@ -1,20 +1,10 @@
 ---
 description: >-
-  This page describes how to set up, update, monitor, and delete an S3 cluster
-  using the GUI.
+  Manage S3 cluster configuration, containers, readiness, and tenant settings
+  using the CLI.
 ---
 
 # Manage the S3 service using the CLI
-
-Using the CLI, you can:
-
-* [Add an S3 cluster](s3-cluster-management-1.md#add-an-s3-cluster)
-* [Check the status of the S3 cluster readiness](s3-cluster-management-1.md#check-the-status-of-the-s3-cluster-readiness)
-* [List the S3 cluster containers](s3-cluster-management-1.md#list-the-s3-cluster-containers)
-* [Update an S3 cluster configuration](s3-cluster-management-1.md#update-an-s3-cluster-configuration)
-* [Add containers to the S3 cluster](s3-cluster-management-1.md#add-containers-to-the-s3-cluster)
-* [Remove containers from the S3 cluster](s3-cluster-management-1.md#remove-hosts-from-the-s3-cluster)
-* [Remove an S3 cluster](s3-cluster-management-1.md#remove-an-s3-cluster)
 
 ## Add an S3 cluster
 
@@ -76,11 +66,11 @@ Ensure you have TenantAdmin permissions. This command applies only within the bo
 
 **Parameters**
 
-| Parameter | Description |
-| --- | --- |
-| `default-fs-name` | The filesystem name to use as the default for this tenant, overriding the cluster-level default. |
-| `anonymous-posix-uid` | The POSIX user ID to assign to anonymous access requests for this tenant. |
-| `anonymous-posix-gid` | The POSIX group ID to assign to anonymous access requests for this tenant. |
+| Parameter             | Description                                                                                      |
+| --------------------- | ------------------------------------------------------------------------------------------------ |
+| `default-fs-name`     | The filesystem name to use as the default for this tenant, overriding the cluster-level default. |
+| `anonymous-posix-uid` | The POSIX user ID to assign to anonymous access requests for this tenant.                        |
+| `anonymous-posix-gid` | The POSIX group ID to assign to anonymous access requests for this tenant.                       |
 
 ## Add containers to the S3 cluster
 
@@ -96,9 +86,9 @@ The following command example adds two containers with the IDs 8 and 9:
 
 **Parameters**
 
-| Name | Value |
-| --- | --- |
-| `container-ids`* | Container IDs to add to the S3 cluster.Space-separated list of numbers. |
+| Name              | Value                                                                   |
+| ----------------- | ----------------------------------------------------------------------- |
+| `container-ids`\* | Container IDs to add to the S3 cluster.Space-separated list of numbers. |
 
 ## Remove containers from the S3 cluster
 
@@ -110,9 +100,9 @@ Use the following command line to remove containers from the S3 cluster:
 
 **Parameters**
 
-| Name | Value |
-| --- | --- |
-| `container-ids`* | Container IDs to remove from the S3 cluster.Space-separated list of numbers |
+| Name              | Value                                                                       |
+| ----------------- | --------------------------------------------------------------------------- |
+| `container-ids`\* | Container IDs to remove from the S3 cluster.Space-separated list of numbers |
 
 ## Remove an S3 cluster
 

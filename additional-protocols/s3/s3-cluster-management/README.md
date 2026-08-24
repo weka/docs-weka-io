@@ -1,3 +1,9 @@
+---
+description: >-
+  Manage WEKA S3 cluster capacity, tenant settings, and client traffic
+  distribution.
+---
+
 # S3 cluster management
 
 ## S3 considerations

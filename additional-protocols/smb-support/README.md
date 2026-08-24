@@ -171,7 +171,7 @@ Available snapshots are listed by timestamp, corresponding to the snapshot acces
 Use the following command to create a timestamped snapshot accessible from Windows:
 
 {% code overflow="wrap" %}
-```
+```bash
 $ weka fs snapshot create fs_name snapshot_name --access-point `TZ=GMT date +@GMT-%Y.%m.%d-%H.%M.%S` 
 ```
 {% endcode %}

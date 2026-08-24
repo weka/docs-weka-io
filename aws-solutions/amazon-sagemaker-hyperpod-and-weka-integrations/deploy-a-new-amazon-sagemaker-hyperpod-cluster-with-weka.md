@@ -1,3 +1,7 @@
+---
+description: Deploy a new Amazon SageMaker HyperPod cluster with WEKA storage.
+---
+
 # Deploy a new Amazon SageMaker HyperPod cluster with WEKA
 
 ## Deployment workflow for new Amazon SageMaker Hyperpod cluster
