@@ -182,7 +182,7 @@ Use the following parameters to define SMB-W settings. Field names match the `We
 | `smbw.domainName` | Active Directory domain name that the SMB-W cluster joins. Required for SMB-W cluster creation.Data type: StringExample: `ad.example.com` |
 | `smbw.userName` | Active Directory user with permission to add a computer object to the domain. The operator uses this user to perform the domain join.Data type: StringExample: `ad-admin` |
 | `smbw.domainJoinSecret` | Name of the Kubernetes Secret that holds the AD user password. The operator joins the domain when this Secret is set and skips the join otherwise. Required for AD join.Data type: StringExample: `smbw-ad-join` |
-| `smbw.ipRanges` | Floating IP ranges that the operator distributes across SMB-W containers for high availability. Maps to `weka smb cluster add --smb-ips-range`.Data type: List of stringsExample: `["10.0.2.1-10.0.2.10"]` |
+| `smbw.ipRanges` | Floating IP ranges that the operator distributes across SMB-W containers for high availability. Maps to `weka smb cluster create --smb-ips-range`.Data type: List of stringsExample: `["10.0.2.1-10.0.2.10"]` |
 | `dynamicTemplate.smbwContainers` | Number of SMB-W frontend containers to create. Minimum 3, maximum 8.Data type: IntegerExample: `3` |
 | `dynamicTemplate.smbwCores` | Number of CPU cores assigned to each SMB-W container process. When not set, the operator uses an automatic value.Data type: IntegerExample: `2` |
 | `dynamicTemplate.smbwFrontendHugepages` | Hugepage memory for the SMB-W frontend in MiB. When not set, the operator computes the value as `1400 × smbwCores` plus a fixed offset.Data type: IntegerExample: `3072`**Set only when guided by the WEKA team.** |

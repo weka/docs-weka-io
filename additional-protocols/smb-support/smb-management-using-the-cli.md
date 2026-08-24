@@ -24,11 +24,11 @@ Use this command to view information about the SMB domain configuration.
 
 ## Add an SMB cluster <a href="#create-smb-cluster" id="create-smb-cluster"></a>
 
-**Command:** `weka smb cluster add`
+**Command:** `weka smb cluster create`
 
 Use the following command line to create a new SMB cluster to be managed by the WEKA system:
 
-`weka smb cluster add <netbios-name> <domain> <config-fs-name> [--domain-netbios-name domain-netbios-name] [--idmap-backend idmap-backend] [--default-domain-mapping-from-id default-domain-mapping-from-id] [--default-domain-mapping-to-id default-domain-mapping-to-id] [--joined-domain-mapping-from-id joined-domain-mapping-from-id] [--joined-domain-mapping-to-id joined-domain-mapping-to-id] [--encryption encryption] [--smb-conf-extra smb-conf-extra] [--container-ids container-ids]... [--smb-ips-pool smb-ips-pool]... [--smb-ips-range smb-ips-range]...[--symlink symlink]`
+`weka smb cluster create <netbios-name> <domain> <config-fs-name> [--domain-netbios-name domain-netbios-name] [--idmap-backend idmap-backend] [--default-domain-mapping-from-id default-domain-mapping-from-id] [--default-domain-mapping-to-id default-domain-mapping-to-id] [--joined-domain-mapping-from-id joined-domain-mapping-from-id] [--joined-domain-mapping-to-id joined-domain-mapping-to-id] [--encryption encryption] [--smb-conf-extra smb-conf-extra] [--container-ids container-ids]... [--smb-ips-pool smb-ips-pool]... [--smb-ips-range smb-ips-range]...[--symlink symlink]`
 
 **Parameters**
 
@@ -106,7 +106,7 @@ On completion of this operation, it is possible to join the SMB cluster to anoth
 
 ## Remove an SMB cluster <a href="#delete-an-smb-cluster" id="delete-an-smb-cluster"></a>
 
-**Command:** `weka smb cluster remove`
+**Command:** `weka smb cluster destroy`
 
 Use this command to remove an SMB cluster managed by the WEKA system.
 
@@ -114,15 +114,15 @@ Removing an existing SMB cluster managed by the WEKA system does not delete the 
 
 ## Add or remove SMB cluster containers <a href="#add-or-remove-smb-cluster-hosts" id="add-or-remove-smb-cluster-hosts"></a>
 
-**Command:** `weka smb cluster container add`
+**Command:** `weka smb cluster containers add`
 
-**Command:** `weka smb cluster container remove`
+**Command:** `weka smb cluster containers remove`
 
 Use these commands to add or remove containers from the SMB cluster.
 
-`weka smb cluster container add [--container-id container-id]...`
+`weka smb cluster containers add [--container-ids container-id]...`
 
-`weka smb cluster container remove [--container-id container-id]...`
+`weka smb cluster containers remove [--container-ids container-id]...`
 
 {% hint style="info" %}
 This operation might take some time to complete. During that time, SMB IOs are stalled.
@@ -257,15 +257,15 @@ Use the following command line to update an existing share:
 
 ## **Control SMB share user-lists** <a href="#control-smb-share-user-lists" id="control-smb-share-user-lists"></a>
 
-**Command:** `weka smb share list show`
+**Command:** `weka smb share lists show`
 
 Use this command to view the various user-list settings.
 
-**Command:** `weka smb share list add`
+**Command:** `weka smb share lists add`
 
 Use the following command line to add users to a share user-list:
 
-`weka smb share list add <share-id> <user-list-type> <--users users>...`
+`weka smb share lists add <share-id> <user-list-type> <--users users>...`
 
 **Parameters**
 
@@ -277,11 +277,11 @@ Use the following command line to add users to a share user-list:
 
 ***
 
-**Command:** `weka smb share list remove`
+**Command:** `weka smb share lists remove`
 
 Use the following command line to remove users from a share user-list:
 
-`weka smb share list remove <share-id> <user-list-type> <--users users>...`
+`weka smb share lists remove <share-id> <user-list-type> <--users users>...`
 
 **Parameters**
 
@@ -293,11 +293,11 @@ Use the following command line to remove users from a share user-list:
 
 ***
 
-**Command:** `weka smb share list reset`
+**Command:** `weka smb share lists reset`
 
 Use the following command line to remove all users from a share user-list:
 
-`weka smb share list reset <share-id> <user-list-type>`
+`weka smb share lists reset <share-id> <user-list-type>`
 
 **Parameters**
 
