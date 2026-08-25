@@ -6,9 +6,19 @@ description: View and configure object stores and object store buckets using the
 
 ## View object stores
 
+Lists the object stores configured on the cluster, with the connection settings, bucket counts, and per-core transfer limits of each.
+
 **Command:** `weka fs tier obs`
 
-Use this command to view information on all the object stores configured to the WEKA system.
+```sh
+weka fs tier obs [--name <string>]
+```
+
+**Parameters**
+
+| Parameter          | Description                                |
+| ------------------ | ------------------------------------------ |
+| `--name` \<string> | Show only the object store with this name. |
 
 {% hint style="info" %}
 Using the GUI, only object store buckets are present. Adding an object store bucket only adds to the present `local` or `remote` object store. If more than one is present (such as during the time recovering from a remote snapshot), use the CLI.
@@ -16,67 +26,121 @@ Using the GUI, only object store buckets are present. Adding an object store buc
 
 ## Edit an object store
 
-{% hint style="danger" %}
-**INTERNAL, remove before publication. TBD (Engineering):** `--site` is gone from `fs tier obs update` in 6.0. In the legacy CLI it took an ObsSite enum (the local or remote site of the object store); `--region` is not a replacement, as it carries an object-store region string. Confirm whether the local/remote distinction is now set elsewhere or was removed, then drop or repoint the option below.
-{% endhint %}
+Changes an existing object store's endpoint, credentials, protocol, or transfer limits. These settings apply as the defaults for buckets added to this object store.
 
 **Command:** `weka fs tier obs update`
 
-Use the following command line to edit an object store:
-
-`weka fs tier obs update <name> [--new-name new-name] [--site site] [--hostname=<hostname>] [--port=<port>] [--auth-method=<auth-method>] [--region=<region>] [--access-key-id=<access-key-id>] [--secret-key=<secret-key>] [--protocol=<protocol>] [--bandwidth=<bandwidth>] [--download-bandwidth=<download-bandwidth>] [--upload-bandwidth=<upload-bandwidth>] [--remove-bandwidth=<remove-bandwidth>] [--max-concurrent-downloads=<max-concurrent-downloads>] [--max-concurrent-uploads=<max-concurrent-uploads>] [--max-concurrent-removals=<max-concurrent-removals>] [--enable-upload-tags=<enable-upload-tags>]`
+```sh
+weka fs tier obs update <name> [--access-key-id <string>] [--auth-method <s3-auth-method>] [--bandwidth <uint>] [--download-bandwidth <uint>] [--enable-upload-tags] [--hostname <string>] [--max-concurrent-downloads <uint8>] [--max-concurrent-removals <uint8>] [--max-concurrent-uploads <uint8>] [--max-data-blob-size <capacity>] [--max-extents-in-data-blob <uint>] [--new-name <string>] [--obs-type <obs-type>] [--port <uint16>] [--protocol <obs-http-protocol>] [--region <string>] [--remove-bandwidth <uint>] [--secret-key <string>] [--sts-operation-type <sts-operation>] [--sts-role-arn <string>] [--sts-role-session-name <string>] [--sts-session-duration <duration>] [--upload-bandwidth <uint>] [--upload-memory-limit <capacity>]
+```
 
 **Parameters**
 
-| Parameter                  | Description                                                                                                                                                                                                                      |
-| -------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `name` \*                  | Name of the object store to create.                                                                                                                                                                                              |
-| `new-name`                 | New name for the object store.                                                                                                                                                                                                   |
-| `site`                     | Site location of the object store.Possible values:`local` - for tiering+snapshots`remote` - for snapshots only                                                                                                                   |
-| `hostname`                 | Object store host identifier (hostname or IP address) to use as a default for added buckets.                                                                                                                                     |
-| `port`                     | Object store port, to be used as a default for added buckets.                                                                                                                                                                    |
-| `auth-method`              | Authentication method to use as a default for added buckets.Possible values: `None`,`AWSSignature2`,`AWSSignature4`                                                                                                              |
-| `region`                   | Region name to use as a default for added buckets.                                                                                                                                                                               |
-| `access-key-id`            | Object store access key ID to use as a default for added buckets.                                                                                                                                                                |
-| `secret-key`               | Object store secret key to use as a default for added buckets.                                                                                                                                                                   |
-| `protocol`                 | Protocol type to use as a default for added buckets.Possible values: `HTTP`,`HTTPS`,`HTTPS_UNVERIFIED`                                                                                                                           |
-| `bandwidth`                | Bandwidth limitation per core (Mbps).                                                                                                                                                                                            |
-| `download-bandwidth`       | Object store download bandwidth limitation per core (Mbps).                                                                                                                                                                      |
-| `upload-bandwidth`         | Object store upload bandwidth limitation per core (Mbps).                                                                                                                                                                        |
-| `remove-bandwidth`         | A bandwidth (Mbps) to limit the throughput of delete requests sent to the object store.Setting a bandwidth equal to or lower than the object store deletion throughput prevents an increase in the object store deletions queue. |
-| `max-concurrent-downloads` | Maximum number of downloads concurrently performed on this object store in a single IO node.Possible values: `1`-`64`                                                                                                            |
-| `max-concurrent-uploads`   | Maximum number of uploads concurrently performed on this object store in a single IO node.Possible values: `1`-`64`                                                                                                              |
-| `max-concurrent-removals`  | Maximum number of removals concurrently performed on this object store in a single IO node.Possible values: `1`-`64`                                                                                                             |
-| `enable-upload-tags`       | Determines whether to enable object-tagging or not. To use as a default for added buckets. For details, see [Object tagging](../tiering.md#object-tagging).Possible values: `true`,`false`                                       |
+| Parameter                               | Description                                                                                                 |
+| --------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
+| `name`\*                                | Name of the object store.                                                                                   |
+| `--access-key-id` \<string>             | Access key used for AWS Signature authentications.                                                          |
+| `--auth-method` \<s3-auth-method>       | Authentication method.                                                                                      |
+| `--bandwidth` \<uint>                   | Bandwidth limitation. Value is per core (Mbps).                                                             |
+| `--download-bandwidth` \<uint>          | Download bandwidth limitation. Value is per core (Mbps).                                                    |
+| `--enable-upload-tags`                  | Enable tagging of uploaded objects.                                                                         |
+| `--hostname` \<string>                  | Hostname or IP address of object store.                                                                     |
+| `--max-concurrent-downloads` \<uint8>   | Limits how many downloads we concurrently perform on this object store in a single IO node.                 |
+| `--max-concurrent-removals` \<uint8>    | Limits the number of removals we concurrently perform on this object store in a single IO node.             |
+| `--max-concurrent-uploads` \<uint8>     | Limits the number of uploads we concurrently perform on this object store in a single IO node.              |
+| `--max-data-blob-size` \<capacity>      | Maximum size of a data object to upload to an object store data blob.                                       |
+| `--max-extents-in-data-blob` \<uint>    | Limits the number of extents to upload to an object store data blob.                                        |
+| `--new-name` \<string>                  | New name for the object store.                                                                              |
+| `--obs-type` \<obs-type>                | Object store type.                                                                                          |
+| `--port` \<uint16>                      | TCP port to use when connecting to object store (single Accessor or Load Balancer).                         |
+| `--protocol` \<obs-http-protocol>       | Transport protocol.                                                                                         |
+| `--region` \<string>                    | Name of the region we are assigned to work with (usually empty).                                            |
+| `--remove-bandwidth` \<uint>            | Removal bandwidth limitation. Value is per core (Mbps).                                                     |
+| `--secret-key` \<string>                | Secret key used for AWS Signature authentications.                                                          |
+| `--sts-operation-type` \<sts-operation> | AWS STS operation type. Default is none.                                                                    |
+| `--sts-role-arn` \<string>              | The Amazon Resource Name (ARN) of the role to assume. Mandatory when setting sts-operation to ASSUME\_ROLE. |
+| `--sts-role-session-name` \<string>     | An identifier for the assumed role session. Length constraints: Minimum length of 2, maximum length of 64.  |
+| `--sts-session-duration` \<duration>    | Duration of the temporary security credentials in seconds. Must be between 900 and 43200; default is 3600.  |
+| `--upload-bandwidth` \<uint>            | Upload bandwidth limitation. Value is per core (Mbps).                                                      |
+| `--upload-memory-limit` \<capacity>     | Maximum RAM to allocate for concurrent uploads to this object store (per node).                             |
 
 ## View object store buckets
 
+Lists the object store buckets connected to the cluster and the object store each one belongs to.
+
 **Command:** `weka fs tier s3`
 
-Use this command to view information on all the object store buckets configured to the WEKA system.
-
-## Add an object store bucket
-
-**Command:** `weka fs tier s3 add`
-
-Use the following command line to add an S3 object store:
-
-`weka fs tier s3 add <name> [--site site] [--obs-name obs-name] [--hostname=<hostname>] [--port=<port> [--bucket=<bucket>] [--auth-method=<auth-method>] [--region=<region>] [--access-key-id=<access-key-id>] [--secret-key=<secret-key>] [--protocol=<protocol>] [--bandwidth=<bandwidth>] [--download-bandwidth=<download-bandwidth>] [--remove-bandwidth=<remove-bandwidth>] [--upload-bandwidth=<upload-bandwidth>] [--errors-timeout=<errors-timeout>] [--prefetch-mib=<prefetch-mib>] [--enable-upload-tags=<enable-upload-tags>] [--max-concurrent-downloads=<max-concurrent-downloads>] [--max-concurrent-uploads=<max-concurrent-uploads>] [--max-concurrent-removals=<max-concurrent-removals>] [--max-extents-in-data-blob=<max-extents-in-data-blob>] [--max-data-blob-size=<max-data-blob-size>] [--data-storage-class data-storage-class] [--metadata-storage-class metadata-storage-class][--sts-operation-type=<sts-operation-type>] [--sts-role-arn=<sts-role-arn>] [--sts-role-session-name=<sts-role-session-name>] [--sts-session-duration=<sts-session-duration>]`
+```sh
+weka fs tier s3 [--name <string>] [--obs-name <string>]
+```
 
 **Parameters**
 
-<table><thead><tr><th width="236">Name</th><th width="337">Description</th><th>Default</th></tr></thead><tbody><tr><td><code>name</code>*</td><td>Name of the object store to edit.</td><td>​</td></tr><tr><td><code>site</code></td><td><code>local</code> - for tiering+snapshots,<br><code>remote</code> - for snapshots only.<br>It must be the same as the object store site it is added to <code>(obs-name)</code>.</td><td><code>local</code></td></tr><tr><td><code>obs-name</code></td><td>Name of the existing object store to add this object store bucket to.</td><td>If there is only one object store of type mentioned in <code>site</code> it is chosen automatically</td></tr><tr><td><code>hostname</code> *</td><td>Object store host identifier or IP.<br>Mandatory, if not specified at the object store level.</td><td>The <code>hostname</code> specified in <code>obs-name</code> if present</td></tr><tr><td><code>port</code></td><td>A valid object store port.</td><td>The <code>port</code> specified in <code>obs-name</code> if present, otherwise 80</td></tr><tr><td><code>bucket</code></td><td>A valid object store bucket name.</td><td></td></tr><tr><td><code>auth-method</code> *</td><td>Authentication method.<br>Possible values: <code>None</code>, <code>AWSSignature2</code>, <code>AWSSignature4</code>.<br>Mandatory, if not specified in the object store level .</td><td>The <code>auth-method</code> specified in <code>obs-name</code> if present</td></tr><tr><td><code>region</code> *</td><td>Region name.<br>Mandatory, if not specified in the object store level .</td><td>The <code>region</code> specified in <code>obs-name</code> if present</td></tr><tr><td><code>access-key-id</code> *</td><td>Object store bucket access key ID.<br>Mandatory, if not specified in the object store level (can be left empty when using IAM role in AWS or GCP).</td><td>The <code>access-key-id</code> specified in <code>obs-name</code> if present</td></tr><tr><td><code>secret-key</code> *</td><td>Object store bucket secret key.<br>Mandatory, if not specified in the object store level (can be left empty when using IAM role in AWS or GCP).</td><td>The <code>secret-key</code> specified in <code>obs-name</code> if present</td></tr><tr><td><code>protocol</code></td><td>Protocol type to be used.<br>Possible values: <code>HTTP</code>, <code>HTTPS</code> or <code>HTTPS_UNVERIFIED</code>.</td><td>The <code>protocol</code> specified in <code>obs-name</code> if present, otherwise<code>HTTP</code></td></tr><tr><td><code>bandwidth</code></td><td>Bucket bandwidth limitation per core (Mbps).</td><td></td></tr><tr><td><code>download-bandwidth</code></td><td>Bucket download bandwidth limitation per core (Mbps)</td><td></td></tr><tr><td><code>upload-bandwidth</code></td><td>Bucket upload bandwidth limitation per core (Mbps)</td><td></td></tr><tr><td><code>remove-bandwidth</code></td><td>A bandwidth (Mbps) to limit the throughput of delete requests sent to the object store.<br>Setting a bandwidth equal to or lower than the object store deletion throughput prevents an increase in the object store deletions queue.</td><td></td></tr><tr><td><code>errors-timeout</code></td><td>If the object store link is down longer than this timeout period, all IOs that need data return an error.<br>Possible values: <code>1m</code>-<code>15m</code>, or <code>60s</code>-<code>900s</code>.<br>For example, <code>300s</code>.</td><td><code>300s</code></td></tr><tr><td><code>prefetch-mib</code></td><td>The data size (MiB) to prefetch when reading a whole MiB on the object store.</td><td><code>128</code></td></tr><tr><td><code>enable-upload-tags</code></td><td>Enable tagging of uploaded objects. For details, see <a href="../tiering.md#object-tagging">Object tagging</a>.<br>Possible values: <code>true</code> or <code>false</code></td><td><code>false</code></td></tr><tr><td><code>max-concurrent-downloads</code></td><td><p>Maximum number of downloads we concurrently perform on this object store in a single IO node.</p><p>Possible values: <code>1</code>-<code>64</code></p></td><td></td></tr><tr><td><code>max-concurrent-uploads</code></td><td><p>Maximum number of uploads we concurrently perform on this object store in a single IO node.</p><p>Possible values: <code>1</code>-<code>64</code></p></td><td></td></tr><tr><td><code>max-concurrent-removals</code></td><td><p>Maximum number of removals we concurrently perform on this object store in a single IO node.</p><p>Possible values: <code>1</code>-<code>64</code></p></td><td></td></tr><tr><td><code>max-extents-in-data-blob</code></td><td>Maximum number of extents' data to upload to an object store data blob.</td><td></td></tr><tr><td><code>max-data-blob-size</code></td><td><p>Maximum size to upload to an object store data blob.</p><p>Format: capacity in decimal or binary units: 1B, 1KB, 1MB, 1GB, 1TB, 1PB, 1EB, 1KiB, 1MiB, 1GiB, 1TiB, 1PiB, 1EiB.</p></td><td></td></tr><tr><td><code>data-storage-class</code></td><td><p><strong>AWS</strong></p><p>Configurable Amazon S3 storage classes, allowing users to optimize storage based on cost and access needs. Supports STANDARD, REDUCED_REDUNDANCY, STANDARD_IA, ONEZONE_IA, INTELLIGENT_TIERING, OUTPOSTS, GLACIER_IR, and EXPRESS_ONEZONE. For details, see the documentation for Amazon S3 Storage Classes.<br><strong>Azure</strong><br>Configurable Azure access storage tier, allowing users to optimize storage based on cost and access needs. Supports HOT, COOL, and COLD. For details, see the documentation for Azure Access tiers for blob data.</p></td><td></td></tr><tr><td><code>metadata-storage-class</code></td><td><strong>AWS</strong><br>Configurable storage classes for the metadata on AWS.<br><strong>Azure</strong><br>Configurable Azure access storage tier for metadata. Supports HOT, COOL, and COLD.</td><td></td></tr><tr><td><code>sts-operation-type</code></td><td><p>AWS <a data-footnote-ref href="#user-content-fn-1">STS</a> operation type to use.</p><p>Possible values: <code>assume_role</code> or <code>none</code></p></td><td><code>none</code></td></tr><tr><td><code>sts-role-arn</code></td><td>The Amazon Resource Name (ARN) of the role to assume. Mandatory when setting <code>sts-operation</code> to <code>assume_role</code>.</td><td></td></tr><tr><td><code>sts-role-session-name</code></td><td>A unique identifier for the assumed role session.<br>The length must be between 2 and 64 characters. Allowed characters include alphanumeric characters (upper and lower case), underscore (_), equal sign (=), comma (,), period (.), at symbol (@), and hyphen (-). Space is not allowed.</td><td></td></tr><tr><td><code>sts-session-duration</code></td><td><p>The duration of the temporary security credentials in seconds.</p><p>Possible values: <code>900</code> - <code>43200</code>.</p></td><td><code>3600</code></td></tr></tbody></table>
+| Parameter              | Description                                       |
+| ---------------------- | ------------------------------------------------- |
+| `--name` \<string>     | Show only the object store bucket with this name. |
+| `--obs-name` \<string> | Show only buckets belonging to this object store. |
+
+## Add an object store bucket
+
+Connects an S3 bucket to the cluster so that filesystems can tier data to it.
+
+**Command:** `weka fs tier s3 add`
+
+```sh
+weka fs tier s3 add <name> [--access-key-id <string>] [--auth-method <s3-auth-method>] [--bandwidth <uint>] [--bucket <string>] [--data-storage-class <string>] [--download-bandwidth <uint>] [--dry-run] [--enable-upload-tags] [--errors-timeout <duration>] [--gcp-auth-token-file <string>] [--hostname <string>] [--max-concurrent-downloads <uint8>] [--max-concurrent-removals <uint8>] [--max-concurrent-uploads <uint8>] [--max-data-blob-size <capacity>] [--max-extents-in-data-blob <uint>] [--metadata-storage-class <string>] [--obs-name <string>] [--obs-type <obs-type>] [--port <uint16>] [--prefetch-mib <uint16>] [--prefetch-size <capacity>] [--protocol <obs-http-protocol>] [--region <string>] [--remove-bandwidth <uint>] [--secret-key <string>] [--site <obs-site>] [--skip-verification] [--sts-operation-type <sts-operation>] [--sts-role-arn <string>] [--sts-role-session-name <string>] [--sts-session-duration <duration>] [--upload-bandwidth <uint>] [--verbose-errors]
+```
+
+**Parameters**
+
+| Parameter                               | Description                                                                                                               |
+| --------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
+| `name`\*                                | Name of the object store bucket.                                                                                          |
+| `--access-key-id` \<string>             | Access key used for AWS Signature authentications.                                                                        |
+| `--auth-method` \<s3-auth-method>       | Authentication method.                                                                                                    |
+| `--bandwidth` \<uint>                   | Bandwidth limitation. Value is per core (Mbps).                                                                           |
+| `--bucket` \<string>                    | Name of the bucket we are assigned to work with.                                                                          |
+| `--data-storage-class` \<string>        | AWS storage class or Azure access tier to use for uploaded data blobs.                                                    |
+| `--download-bandwidth` \<uint>          | Download bandwidth limitation. Value is per core (Mbps).                                                                  |
+| `--dry-run`                             | Only test the command. Does not affect the system.                                                                        |
+| `--enable-upload-tags`                  | Enable tagging of uploaded objects.                                                                                       |
+| `--errors-timeout` \<duration>          | If the object store bucket link is down for longer than this, all IOs that need data return with an error.                |
+| `--gcp-auth-token-file` \<string>       | File containing a GCP authentication token.                                                                               |
+| `--hostname` \<string>                  | Hostname or IP address of object store.                                                                                   |
+| `--max-concurrent-downloads` \<uint8>   | Limits how many downloads we concurrently perform on this object store in a single IO node.                               |
+| `--max-concurrent-removals` \<uint8>    | Limits the number of removals we concurrently perform on this object store in a single IO node.                           |
+| `--max-concurrent-uploads` \<uint8>     | Limits the number of uploads we concurrently perform on this object store in a single IO node.                            |
+| `--max-data-blob-size` \<capacity>      | Maximum size of a data object to upload to an object store data blob.                                                     |
+| `--max-extents-in-data-blob` \<uint>    | Limits the number of extents to upload to an object store data blob.                                                      |
+| `--metadata-storage-class` \<string>    | AWS storage class or Azure access tier to use for uploaded metadata blobs.                                                |
+| `--obs-name` \<string>                  | Name of the object store to associate this new bucket with.                                                               |
+| `--obs-type` \<obs-type>                | Object store type.                                                                                                        |
+| `--port` \<uint16>                      | TCP port to use when connecting to object store (single Accessor or Load Balancer).                                       |
+| `--prefetch-mib` \<uint16>              | How many MiB of data to prefetch when reading a whole MiB on object store. Default is 128 MiB.                            |
+| `--prefetch-size` \<capacity>           | How much data to prefetch when reading a whole MiB on object store, rounded to nearest MiB. (0-600 MiB, default 128 MiB.) |
+| `--protocol` \<obs-http-protocol>       | Transport protocol.                                                                                                       |
+| `--region` \<string>                    | Name of the region we are assigned to work with (usually empty).                                                          |
+| `--remove-bandwidth` \<uint>            | Removal bandwidth limitation. Value is per core (Mbps).                                                                   |
+| `--secret-key` \<string>                | Secret key used for AWS Signature authentications.                                                                        |
+| `--site` \<obs-site>                    | Site of the object store. Default is local.                                                                               |
+| `--skip-verification`                   | Do not verify the connection to the given storage.                                                                        |
+| `--sts-operation-type` \<sts-operation> | AWS STS operation type. Default is none.                                                                                  |
+| `--sts-role-arn` \<string>              | The Amazon Resource Name (ARN) of the role to assume. Mandatory when setting sts-operation to ASSUME\_ROLE.               |
+| `--sts-role-session-name` \<string>     | An identifier for the assumed role session. Length constraints: Minimum length of 2, maximum length of 64.                |
+| `--sts-session-duration` \<duration>    | Duration of the temporary security credentials in seconds. Must be between 900 and 43200; default is 3600.                |
+| `--upload-bandwidth` \<uint>            | Upload bandwidth limitation. Value is per core (Mbps).                                                                    |
+| `--verbose-errors`                      | Dump HTTP info on error.                                                                                                  |
 
 {% hint style="info" %}
-When using the CLI, by default a misconfigured object store are not created. To create an object store even when it is misconfigured, use the `--skip-verification` option.
+By default, a misconfigured object store is not created. To create an object store even when it is misconfigured, use the `--skip-verification` option.
 {% endhint %}
 
 {% hint style="warning" %}
-The `max-concurrent` settings are applied per WEKA compute process and the minimum setting of all object stores is applied.
+The `max-concurrent` settings are applied per WEKA compute process, and the lowest setting across all object stores is the one applied.
 {% endhint %}
 
 {% hint style="success" %}
-When you create the object store bucket in AWS, to use the storage classes: S3 Intelligent-Tiering, S3 Standard-IA, S3 One Zone-IA, and S3 Glacier Instant Retrieval, do the following:
+When you create the object store bucket in AWS, to use the storage classes S3 Intelligent-Tiering, S3 Standard-IA, S3 One Zone-IA, and S3 Glacier Instant Retrieval, do the following:
 
 1. Create the bucket in S3 Standard.
 2. Create an AWS lifecycle policy to transition objects to these storage classes.
@@ -85,49 +149,83 @@ When you create the object store bucket in AWS, to use the storage classes: S3 I
 
 ## Edit an object store bucket
 
+Changes an existing bucket connection's endpoint, credentials, storage class, or transfer limits.
+
 **Command:** `weka fs tier s3 update`
 
-Use the following command line to edit an object store bucket:
-
-`weka fs tier s3 update <name> [--new-name=<new-name>] [--new-obs-name new-obs-name] [--hostname=<hostname>] [--port=<port> [--bucket=<bucket>] [--auth-method=<auth-method>] [--region=<region>] [--access-key-id=<access-key-id>] [--secret-key=<secret-key>] [--protocol=<protocol>] [--bandwidth=<bandwidth>] [--download-bandwidth=<download-bandwidth>] [--upload-bandwidth=<upload-bandwidth>] [--remove-bandwidth=<remove-bandwidth>] [--errors-timeout=<errors-timeout>] [--prefetch-mib=<prefetch-mib>] [--enable-upload-tags=<enable-upload-tags>] [--max-concurrent-downloads=<max-concurrent-downloads>] [--max-concurrent-uploads=<max-concurrent-uploads>] [--max-concurrent-removals=<max-concurrent-removals>] [--max-extents-in-data-blob=<max-extents-in-data-blob>] [--max-data-blob-size=<max-data-blob-size>] [--sts-operation-type=<sts-operation-type>] [--sts-role-arn=<sts-role-arn>] [--sts-role-session-name=<sts-role-session-name>] [--sts-session-duration=<sts-session-duration>]`
+```sh
+weka fs tier s3 update <name> [--access-key-id <string>] [--auth-method <s3-auth-method>] [--bandwidth <uint>] [--bucket <string>] [--data-storage-class <string>] [--download-bandwidth <uint>] [--dry-run] [--enable-upload-tags] [--errors-timeout <duration>] [--gcp-auth-token-file <string>] [--hostname <string>] [--max-concurrent-downloads <uint8>] [--max-concurrent-removals <uint8>] [--max-concurrent-uploads <uint8>] [--max-data-blob-size <capacity>] [--max-extents-in-data-blob <uint>] [--metadata-storage-class <string>] [--new-name <string>] [--new-obs-name <string>] [--port <uint16>] [--prefetch-mib <uint16>] [--prefetch-size <capacity>] [--protocol <obs-http-protocol>] [--region <string>] [--remove-bandwidth <uint>] [--secret-key <string>] [--skip-verification] [--sts-operation-type <sts-operation>] [--sts-role-arn <string>] [--sts-role-session-name <string>] [--sts-session-duration <duration>] [--upload-bandwidth <uint>] [--verbose-errors]
+```
 
 **Parameters**
 
-<table><thead><tr><th width="250.0972900390625">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>name</code>*</td><td>A valid name of the object store bucket to edit.</td></tr><tr><td><code>new-name</code></td><td>New name for the object store bucket</td></tr><tr><td><code>new-obs-name</code></td><td>A new object store name to add this object store bucket to. It must be an existing object store with the same <code>site</code> value.</td></tr><tr><td><code>hostname</code></td><td>Object store host identifier or IP.</td></tr><tr><td><code>port</code></td><td>A valid object store port</td></tr><tr><td><code>bucket</code></td><td>A valid object store bucket name</td></tr><tr><td><code>auth-method</code></td><td>Authentication method.<br>Possible values: <code>None</code>, <code>AWSSignature2</code> or <code>AWSSignature4</code></td></tr><tr><td><code>region</code></td><td>Region name</td></tr><tr><td><code>access-key-id</code></td><td>Object store bucket access key ID</td></tr><tr><td><code>secret-key</code></td><td>Object store bucket secret key</td></tr><tr><td><code>protocol</code></td><td>Protocol type to be used.<br>Possible values: <code>HTTP</code>, <code>HTTPS</code> or <code>HTTPS_UNVERIFIED</code></td></tr><tr><td><code>bandwidth</code></td><td>Bandwidth limitation per core (Mbps)</td></tr><tr><td><code>download-bandwidth</code></td><td>Bucket download bandwidth limitation per core (Mbps)</td></tr><tr><td><code>upload-bandwidth</code></td><td>Bucket upload bandwidth limitation per core (Mbps)</td></tr><tr><td><code>remove-bandwidth</code></td><td>A bandwidth (Mbps) to limit the throughput of delete requests sent to the object store.<br>Setting a bandwidth equal to or lower than the object store deletion throughput prevents an increase in the object store deletions queue.</td></tr><tr><td><code>errors-timeout</code></td><td>If the object store link is down longer than this timeout period, all IOs that need data return an error.<br>Possible values: <code>1m</code>-<code>15m</code>, or <code>60s</code>-<code>900s</code>.<br>For example, <code>300s</code>.</td></tr><tr><td><code>prefetch-mib</code></td><td>The data size in MiB to prefetch when reading a whole MiB on the object store</td></tr><tr><td><code>enable-upload-tags</code></td><td>Whether to enable <a href="/broken/pages/-M4D3-jpP94VjWGvg4Am#object-tagging">object-tagging</a> or not.<br>Possible values: <code>true</code>, <code>false</code></td></tr><tr><td><code>max-concurrent-downloads</code></td><td><p>Maximum number of downloads we concurrently perform on this object store in a single IO node.</p><p>Possible values: <code>1</code>-<code>64</code></p></td></tr><tr><td><code>max-concurrent-uploads</code></td><td><p>Maximum number of uploads we concurrently perform on this object store in a single IO node.</p><p>Possible values: <code>1</code>-<code>64</code></p></td></tr><tr><td><code>max-concurrent-removals</code></td><td><p>Maximum number of removals we concurrently perform on this object store in a single IO node.</p><p>Possible values: <code>1</code>-<code>64</code></p></td></tr><tr><td><code>max-extents-in-data-blob</code></td><td>Maximum number of extents' data to upload to an object store data blob.</td></tr><tr><td><code>max-data-blob-size</code></td><td><p>Maximum size to upload to an object store data blob.</p><p>Format: capacity in decimal or binary units: 1B, 1KB, 1MB, 1GB, 1TB, 1PB, 1EB, 1KiB, 1MiB, 1GiB, 1TiB, 1PiB, 1EiB.</p></td></tr><tr><td><code>sts-operation-type</code></td><td><p>AWS <a data-footnote-ref href="#user-content-fn-1">STS</a> operation type to use.</p><p>Possible values: <code>assume_role</code> or <code>none</code></p></td></tr><tr><td><code>sts-role-arn</code></td><td>The Amazon Resource Name (ARN) of the role to assume. Mandatory when setting <code>sts-operation</code> to <code>assume_role</code>.</td></tr><tr><td><code>sts-role-session</code></td><td>A unique identifier for the assumed role session.<br>The length must be between 2 and 64 characters. Allowed characters include alphanumeric characters (upper and lower case), underscore (_), equal sign (=), comma (,), period (.), at symbol (@), and hyphen (-). Space is not allowed.</td></tr><tr><td><code>sts-session-duration</code></td><td><p>The duration of the temporary security credentials in seconds.</p><p>Possible values: <code>900</code> - <code>43200</code>.</p></td></tr></tbody></table>
+| Parameter                               | Description                                                                                                               |
+| --------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
+| `name`\*                                | Name of the object store bucket.                                                                                          |
+| `--access-key-id` \<string>             | Access key used for AWS Signature authentications.                                                                        |
+| `--auth-method` \<s3-auth-method>       | Authentication method.                                                                                                    |
+| `--bandwidth` \<uint>                   | Bandwidth limitation. Value is per core (Mbps).                                                                           |
+| `--bucket` \<string>                    | Name of the bucket we are assigned to work with.                                                                          |
+| `--data-storage-class` \<string>        | AWS storage class or Azure access tier to use for uploaded data blobs.                                                    |
+| `--download-bandwidth` \<uint>          | Download bandwidth limitation. Value is per core (Mbps).                                                                  |
+| `--dry-run`                             | Only test the command. Does not affect the system.                                                                        |
+| `--enable-upload-tags`                  | Enable tagging of uploaded objects.                                                                                       |
+| `--errors-timeout` \<duration>          | If the object store bucket link is down for longer than this, all IOs that need data return with an error.                |
+| `--gcp-auth-token-file` \<string>       | File containing a GCP authentication token.                                                                               |
+| `--hostname` \<string>                  | Hostname or IP address of object store.                                                                                   |
+| `--max-concurrent-downloads` \<uint8>   | Limits how many downloads we concurrently perform on this object store in a single IO node.                               |
+| `--max-concurrent-removals` \<uint8>    | Limits the number of removals we concurrently perform on this object store in a single IO node.                           |
+| `--max-concurrent-uploads` \<uint8>     | Limits the number of uploads we concurrently perform on this object store in a single IO node.                            |
+| `--max-data-blob-size` \<capacity>      | Maximum size of a data object to upload to an object store data blob.                                                     |
+| `--max-extents-in-data-blob` \<uint>    | Limits the number of extents to upload to an object store data blob.                                                      |
+| `--metadata-storage-class` \<string>    | AWS storage class or Azure access tier to use for uploaded metadata blobs.                                                |
+| `--new-name` \<string>                  | New name for the object store bucket.                                                                                     |
+| `--new-obs-name` \<string>              | New object store name.                                                                                                    |
+| `--port` \<uint16>                      | TCP port to use when connecting to object store (single Accessor or Load Balancer).                                       |
+| `--prefetch-mib` \<uint16>              | How many MiB of data to prefetch when reading a whole MiB on object store. Default is 128 MiB.                            |
+| `--prefetch-size` \<capacity>           | How much data to prefetch when reading a whole MiB on object store, rounded to nearest MiB. (0-600 MiB, default 128 MiB.) |
+| `--protocol` \<obs-http-protocol>       | Transport protocol.                                                                                                       |
+| `--region` \<string>                    | Name of the region we are assigned to work with (usually empty).                                                          |
+| `--remove-bandwidth` \<uint>            | Removal bandwidth limitation. Value is per core (Mbps).                                                                   |
+| `--secret-key` \<string>                | Secret key used for AWS Signature authentications.                                                                        |
+| `--skip-verification`                   | Do not verify the connection to the given storage.                                                                        |
+| `--sts-operation-type` \<sts-operation> | AWS STS operation type. Default is none.                                                                                  |
+| `--sts-role-arn` \<string>              | The Amazon Resource Name (ARN) of the role to assume. Mandatory when setting sts-operation to ASSUME\_ROLE.               |
+| `--sts-role-session-name` \<string>     | An identifier for the assumed role session. Length constraints: Minimum length of 2, maximum length of 64.                |
+| `--sts-session-duration` \<duration>    | Duration of the temporary security credentials in seconds. Must be between 900 and 43200; default is 3600.                |
+| `--upload-bandwidth` \<uint>            | Upload bandwidth limitation. Value is per core (Mbps).                                                                    |
+| `--verbose-errors`                      | Dump HTTP info on error.                                                                                                  |
 
 ## List recent operations of an object store bucket
 
+Lists the upload, download, and removal operations currently running against an object store, across all containers in the cluster. Omit the name to list operations for every object store.
+
 **Command:** `weka fs tier ops`
 
-Use the following command line to list the recent operations running on an object store:
-
-`weka fs tier ops <name> [--format format] [--output output]...[--sort sort]...[--filter filter]...[--raw-units] [--UTC] [--no-header] [--verbose]`
+```sh
+weka fs tier ops [<name>]
+```
 
 **Parameters**
 
-| Name        | Value                                                                                                                                                                                                                |
-| ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `name`\*    | A valid object store bucket name to show its recent operations.                                                                                                                                                      |
-| `format`    | Specify the output format.Possible values: `view`, `csv`, `markdown`, `json`, or `oldview`Default: `view`                                                                                                            |
-| `output`    | Specify the columns in the output.Possible values:`node`, `obsBucket`, `key`, `type`, `execution`, `phase`, `previous`, `start`, `size`, `results`, `errors`, `lastHTTP`, `concurrency`, `inode`Default: All columns |
-| `sort`      | Specify the column(s) to consider when sorting the output. For the sorting order, ascending or descending, add - or + signs respectively before the column name.                                                     |
-| `filter`    | Specify the values to filter by in a specific column. Usage: `column1=val1[,column2=val2[,..]]`                                                                                                                      |
-| `raw-units` | Print values in a readable format of raw units such as bytes and seconds.Possible value examples: `1KiB` `234MiB` `2GiB`.                                                                                            |
-| `no-header` | Don't show column headers in the output,                                                                                                                                                                             |
-| `verbose`   | Show all columns in the output.                                                                                                                                                                                      |
+| Parameter | Description                      |
+| --------- | -------------------------------- |
+| `name`    | Name of the object store bucket. |
 
 ## Delete an object store bucket
 
+Removes an S3 object store bucket connection from the cluster.
+
 **Command:** `weka fs tier s3 remove`
 
-Use the following command line to delete an object store bucket:
-
-`weka fs tier s3 remove <name>`
+```sh
+weka fs tier s3 remove <name>
+```
 
 **Parameters**
 
-| Name     | Value                                              |
-| -------- | -------------------------------------------------- |
-| `name`\* | A valid name of the object store bucket to delete. |
+| Parameter | Description                      |
+| --------- | -------------------------------- |
+| `name`\*  | Name of the object store bucket. |
 
 [^1]: WEKA supports the AWS Security Token Service (STS) that enables you to request temporary, limited-privilege credentials for users using the [AssumeRole](https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole.html) API.
