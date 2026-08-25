@@ -349,8 +349,12 @@ weka fs replication hydration status <path> [--filesystem <name>] [--snapshot <n
 Return a file's data blocks to on-demand mode to free capacity on the target. The release runs in the background:
 
 ```bash
-weka fs replication release
+weka fs replication release <path> [<path> ...]
 ```
+
+Each `<path>` is a local mount path. Release several files in one command by listing more than one path. Monitor progress with `weka fs replication hydration status`.
+
+This command runs on the container that holds the mount, so it cannot be directed at another cluster with `--HOST`.
 
 ## Remove a replication pair
 
@@ -390,7 +394,13 @@ The command warns that removing the pair stops further snapshot replication and 
 weka fs replication
 ```
 
-The target filesystem remains write-protected after removal. Remove write protection during failover.
+The target filesystem remains write-protected after the pair is removed. To make it writable, run this command on the target cluster:
+
+```bash
+weka fs update <target filesystem> --access rw
+```
+
+Do this only when you intend to promote the target, such as during failover. See [Activate the target site during failover](#activate-the-target-site-during-failover).
 
 ## Remove trust between clusters
 
@@ -406,33 +416,38 @@ weka cluster peer
 
 **Procedure**
 
-1. Remove each replication pair that uses this peer. Pause the pair first:
+1. On the **source** cluster, pause and remove each replication pair that uses this peer:
 
 ```bash
 weka fs replication pause <pair ID>
 weka fs replication remove <pair ID>
 ```
 
-2. Restore write access to each target filesystem. Run this command on the target cluster:
+All pair configuration lives on the source cluster, so run these commands there. The target cluster holds no pair row and has nothing to remove.
+
+2. Remove the peer entry on **each** cluster. Trust is mutual, and every cluster stores its own entry naming the other one, so run `weka cluster peer remove` twice — once per cluster, each time naming the peer that cluster sees:
 
 ```bash
-weka fs update <target filesystem> --access rw --force
+# On the source cluster, naming the target
+weka cluster peer remove <target peer name>
+
+# On the target cluster, naming the source
+weka cluster peer remove <source peer name>
 ```
 
-The `--force` option overrides the replication write protection after pair removal.
+Run `weka cluster peer` on each cluster first if you are unsure of the name it uses for the other.
 
-3. Remove the peer:
+{% hint style="info" %}
+If the command reports that the peer is in use by a cluster task, a replication cycle was running at that moment. Wait a few seconds and run it again.
+{% endhint %}
 
-```bash
-weka cluster peer remove <peer>
-```
-
-4. Remove mutual trust. Repeat the command on the other cluster.
-5. Verify peer removal:
+3. Verify on both clusters that the peer is gone:
 
 ```bash
 weka cluster peer
 ```
+
+Removing trust does not restore write access to the target filesystems. They stay write-protected until you promote them, as described in [Activate the target site during failover](#activate-the-target-site-during-failover).
 
 ## Activate the target site during failover
 
@@ -449,17 +464,55 @@ Failover is a manual procedure. Because replication is asynchronous, the target 
 
 **Before you begin**
 
-Confirm the recovery point. Check the **Last Replication** timestamp:
+* Confirm the recovery point. On the source cluster, if it is still reachable, check the **Last Replication** timestamp:
 
 ```bash
 weka fs replication
 ```
 
+* Confirm that the data you need is already on the target. A pair using `COPY_FIRST` with `--copy-path full` holds all data locally, so no further action is needed. A pair using `INSTANT_ACCESS`, a partial `--copy-path`, or a smaller target still points at data held only on the source, and breaking the pair makes those files permanently unreadable. Hydrate them first with `weka fs replication fetch <path>`. Reading the files is not sufficient, and `fetch` works per path, not per pair. See [Manage file hydration on the target](#manage-file-hydration-on-the-target).
+
+{% hint style="info" %}
+`weka fs replication` returns no rows on the target cluster. This is expected: all pair configuration lives on the source cluster, and the target only executes the work sent to it. The target still tracks the relationship internally; it is not exposed by any command today.
+{% endhint %}
+
 **Procedure**
 
-1. Remove write protection from the target filesystem.\
-   On the target cluster:
+The steps differ depending on whether the source cluster is still reachable.
+
+_Planned failover, source cluster reachable:_
+
+1. On the **source** cluster, pause the pair and remove it. A pair that is running, or that is mid-cycle, cannot be removed:
+
+```bash
+weka fs replication pause <pair ID>
+weka fs replication remove <pair ID>
+```
+
+2. On the **target** cluster, remove the peer:
+
+```bash
+weka cluster peer remove <source peer name>
+```
+
+_Disaster failover, source cluster unavailable:_
+
+1. On the **target** cluster, force the peer removal. The source is unreachable, so trust cannot be torn down cooperatively:
+
+```bash
+weka cluster peer remove <source peer name> --force
+```
+
+{% hint style="info" %}
+If the command reports that the peer is in use by a cluster task, a replication cycle was running at that moment. Wait a few seconds and run it again.
+{% endhint %}
+
+_Both cases, to promote the target:_
+
+2. Remove write protection from the target filesystem. On the target cluster:
 
 ```bash
 weka fs update <name> --access rw
 ```
+
+3. Mount the filesystem on a client and verify the data before redirecting production traffic to it.
