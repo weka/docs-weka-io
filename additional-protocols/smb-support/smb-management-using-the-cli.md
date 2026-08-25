@@ -117,7 +117,7 @@ weka smb cluster update [--encryption <smb-cluster-encryption>] [--force] [--idm
 | `--userdb-trusted-domains` | Enumerate the trusted domains and their domain controllers when the SMB server starts (enabled by default). Set to false in large Active Directory environments where the enumeration times out and the SMB server keeps restarting. While it is off, users from trusted domains cannot be resolved and lose access. |
 
 {% hint style="danger" %}
-**INTERNAL, remove before publication. TBD (Engineering):** `--symlink` is gone from `smb cluster update` in 6.0. The legacy CLI defined it as "Enable or disable symbolic link (symlink) support for the SMB-W cluster", and no 6.0 option replaces it — `--posix-resolution-mode` governs UID/GID resolution, not symlinks. Confirm whether SMB symlink support was removed or moved, then drop or repoint the option in the synopsis and parameter table below.
+**INTERNAL, remove before publication. TBD (Engineering):** `--symlink` no longer exists on `smb cluster update`, and the synopsis above has been resynced with the shipping CLI, so nothing on this page is wrong. The open question is the capability: the legacy CLI defined the option as "Enable or disable symbolic link (symlink) support for the SMB-W cluster", and no 6.0 option replaces it — `--posix-resolution-mode` governs UID/GID resolution, not symlinks. Confirm whether SMB symlink support was removed or moved, and whether this page should say so.
 {% endhint %}
 
 ## Check the status of SMB cluster readiness
