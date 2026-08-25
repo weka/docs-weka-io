@@ -22,13 +22,9 @@ Use wekactl from a workstation for day-to-day remote administration. Run it loca
 
 ## Considerations
 
-* **Local-agent commands:** Commands that use the local agent require a WEKA server. These include `local`, `agent`, `diags`, `version`, `mount`, `umount`, and most `driver` commands. Running wekactl from a workstation gives you 20 command groups. Running it on a cluster server gives you all 28.
+* **Local-agent commands:** Commands that use the local agent require a WEKA server. These include `local`, `agent`, `diags`, `version`, `mount`, `umount`, and most `driver` commands. Running wekactl from a workstation gives you 23 command groups. Running it on a cluster server gives you all 28.
 * **Remote quota management:** Directory-based quota management requires enabled data services. Otherwise, run the commands on a WEKA server.
 * **Profile compatibility:** wekactl profiles do not work with legacy CLI profiles.
-
-{% hint style="danger" %}
-**INTERNAL, remove before publication. TBD (Engineering):** Confirm whether `audit` should be named at all, given it has no subcommands in 6.0. The `smb` question is answered: it no longer requires a WEKA server.
-{% endhint %}
 
 ## Continue with the CLI
 

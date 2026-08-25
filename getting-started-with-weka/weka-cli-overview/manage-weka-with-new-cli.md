@@ -36,10 +36,6 @@ export WEKA_CLI_LEGACY=1
 
 The legacy CLI is a migration aid only. It receives no new features and is planned for removal in a future release. For details on behavior differences that affect existing scripts, see [Migrate from the legacy weka CLI to wekactl](manage-weka-with-new-cli.md).
 
-{% hint style="danger" %}
-**INTERNAL, remove before publication. TBD (Engineering, blocking):** Confirm the exact variable name against a shipping build. The Slack discussion used both `WEKA_CLI_LEGACY=1` and `WEKACTL_CLI_LEGACY=1`, and the variable does not appear in the migration guide draft. Also confirm scope: does the variable affect only the invoking shell session, and does it apply per-command or persistently?
-{% endhint %}
-
 ## Install wekactl on a workstation
 
 1. Go to get.weka.io and open the **CLI** tab.
@@ -70,7 +66,7 @@ Verify the SHA256 fingerprint against the cluster before accepting it. Accepting
 Type `exit` to leave the shell and run commands directly. To add more clusters, see [Manage profiles](manage-weka-with-new-cli.md#manage-profiles).
 
 {% hint style="danger" %}
-**INTERNAL, remove before publication. TBD (Engineering):** Does the first-run prompt also trigger on a first real command such as `wekactl status`, or only on a bare invocation? On Linux, wekactl can reuse an existing legacy CLI token, so confirm whether the prompt appears there at all.
+**INTERNAL, remove before publication. TBD (Engineering):** The prompt question is answered — the setup wizard runs only on a bare invocation in a terminal with no profile saved, never on a command such as `weka status`. Still to confirm: the claim under Manage profiles that wekactl reuses an existing legacy CLI token on Linux. The mechanism exists (`WEKA_TOKEN` / `auth-token.json`), but pickup without a configured profile was not verified.
 {% endhint %}
 
 ## Bootstrap a stateless client
@@ -92,16 +88,12 @@ On the first connection, the CLI establishes trust in the cluster TLS certificat
 | Show a profile            | `weka profile show &#x3C;profile_name>`      |
 | Select the active profile | `weka profile select &#x3C;profile_name>`    |
 | Update a profile          | `weka profile update &#x3C;profile_name>`    |
-| Duplicate a profile       | `weka profile duplicate &#x3C;profile_name>` |
+| Duplicate a profile       | `weka profile duplicate &#x3C;profile_name> &#x3C;new_profile_name>` |
 | Delete a profile          | `weka profile remove &#x3C;profile_name>`    |
 | Log out of a profile      | `weka profile logout &#x3C;profile_name>`    |
-| Delete all profiles       | `weka profile purge`                         |
+| Purge a profile's saved data | `weka profile purge {certs \| cache \| history \| all} [&#x3C;profile_name>]` |
 
 Profile settings are stored as editable JSON files and can be overridden using environment variables. On Linux, when no custom profile is selected, wekactl reuses an existing token created by the legacy weka CLI.
-
-{% hint style="danger" %}
-**INTERNAL, remove before publication. TBD (Engineering):** Confirm the full profile verb set and the exact syntax of `select`, `update`, `duplicate`, `logout`, and `purge` against a shipping build. The migration guide draft lists these verbs without arguments.
-{% endhint %}
 
 ## Control output format and style
 
