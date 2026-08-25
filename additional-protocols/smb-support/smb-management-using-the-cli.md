@@ -10,29 +10,64 @@ description: >-
 The CLI refers to the feature as SMB, but it applies to SMB-W only. Support for the legacy SMB implementation has been removed.
 {% endhint %}
 
-## Show the SMB cluster <a href="#show-the-smb-cluster" id="show-the-smb-cluster"></a>
+## Show the SMB cluster
+
+Shows the SMB cluster configuration, including the containers serving SMB and the domain it is joined to.
 
 **Command:** `weka smb cluster`
 
-Use this command to view information about the SMB cluster managed by the WEKA system.
+```sh
+weka smb cluster
+```
 
-## Show the SMB domain configuration <a href="#show-smb-domain-cfg" id="show-smb-domain-cfg"></a>
+## Show the SMB domain configuration
+
+Shows the Active Directory or workgroup domain the SMB cluster is joined to.
 
 **Command:** `weka smb domain`
 
-Use this command to view information about the SMB domain configuration.
+```sh
+weka smb domain
+```
 
-## Add an SMB cluster <a href="#create-smb-cluster" id="create-smb-cluster"></a>
+## Add an SMB cluster
+
+Creates the SMB service on the cluster, selecting the containers that serve SMB and the filesystem holding its configuration.
 
 **Command:** `weka smb cluster create`
 
-Use the following command line to create a new SMB cluster to be managed by the WEKA system:
-
-`weka smb cluster create <netbios-name> <domain> <config-fs-name> [--domain-netbios-name domain-netbios-name] [--idmap-backend idmap-backend] [--default-domain-mapping-from-id default-domain-mapping-from-id] [--default-domain-mapping-to-id default-domain-mapping-to-id] [--joined-domain-mapping-from-id joined-domain-mapping-from-id] [--joined-domain-mapping-to-id joined-domain-mapping-to-id] [--encryption encryption] [--smb-conf-extra smb-conf-extra] [--container-ids container-ids]... [--smb-ips-pool smb-ips-pool]... [--smb-ips-range smb-ips-range]...[--symlink symlink]`
+```sh
+weka smb cluster create <netbios-name> <domain> <config-fs-name> --container-ids <container-ids>… [--default-domain-mapping-from-id <uint32>] [--default-domain-mapping-to-id <uint32>] [--domain-netbios-name <string>] [--encryption <smb-cluster-encryption>] [--idmap-backend <smb-idmap-backend>] [--joined-domain-mapping-from-id <uint32>] [--joined-domain-mapping-to-id <uint32>] [--ldap-bind-dn <string>] [--ldap-bind-password <string>] [--ldap-domain <string>] [--ldap-search-base <string>] [--ldap-uri <string>] [--posix-resolution-mode <smb-posix-resolution-mode>] [--prompt-ldap-bind-password] [--scale-out-mode <smb-scale-out-mode>] [--smb-conf-extra <string>] [--smb-ips-pool <ips>…] [--smb-ips-range <ips>…] [--symlink] [--userdb-trusted-domains]
+```
 
 **Parameters**
 
-<table><thead><tr><th width="210">Name</th><th width="361">Value</th><th>Default</th></tr></thead><tbody><tr><td><code>netbios-name</code>*</td><td>NetBIOS name for the SMB cluster must be 1-15 characters long, using only alphanumeric characters (A-Z, 0-9) and hyphens (-). Names are case-insensitive, cannot start with a hyphen, and must be unique within the network. Spaces and special characters are not allowed.<br>This will be the name of the Active Directory computer object and the hostname part of the FQDN.</td><td></td></tr><tr><td><code>domain</code>*</td><td>The Active Directory domain to which the SMB cluster will be joined.</td><td>​</td></tr><tr><td><code>config-fs-name</code>*</td><td>The predefined filesystem for storing persistent cluster-wide protocol configurations. Ensure the filesystem exists; if not, create it.<br>For details, see <a data-mention href="../additional-protocols-overview.md#dedicated-filesystem-requirement-for-cluster-wide-persistent-protocol-configurations">#dedicated-filesystem-requirement-for-cluster-wide-persistent-protocol-configurations</a></td><td></td></tr><tr><td><code>domain-netbios-name</code></td><td>Domain NetBIOS name.</td><td>The first part of the <code>domain</code> parameter</td></tr><tr><td><code>idmap-backend</code></td><td>The ID mapping method to use.<br>Possible values: <code>rfc2307</code> or <code>rid</code></td><td><code>rfc2307</code></td></tr><tr><td><code>default-domain-mapping-from-id</code></td><td>The first ID of the range for the default AD ID mapping (for trusted domains that have no defined range).</td><td>4290000001</td></tr><tr><td><code>default-domain-mapping-to-id</code></td><td>The last ID of the range for the default AD ID mapping (for trusted domains that have no defined range).</td><td>4291000000</td></tr><tr><td><code>joined-domain-mapping-from-id</code></td><td>The first ID of the range for the main AD ID mapping.</td><td>0</td></tr><tr><td><code>joined-domain-mapping-to-id</code></td><td>The last ID of the range for the main AD ID mapping.</td><td>4290000000</td></tr><tr><td><code>encryption</code></td><td><p>The global encryption policy to use:</p><ul><li><code>enabled</code> - enables encryption negotiation but doesn't turn it on automatically for supported sessions and share connections.</li><li><code>desired</code> - enables encryption negotiation and turns on data encryption on supported sessions and share connections.</li><li><code>required</code> - enforces data encryption on sessions and share connections. Clients that do not support encryption will be denied access to the server.</li></ul></td><td><code>enabled</code></td></tr><tr><td><code>smb-conf-extra</code></td><td>Additional SMB configuration parameters.<br>Specify one or more key=value pairs to extend the SMB service configuration.<br>When defining multiple entries, separate each pair using the literal <code>\n</code>.<br>Example: <code>--smb-conf-extra "key1=value1\nkey2=value2\nkey3=value3"</code></td><td></td></tr><tr><td><code>container-ids</code></td><td>The container IDs of the containers with a frontend process to serve the SMB service.<br>Minimum of 3 containers.</td><td></td></tr><tr><td><code>smb-ips-pool</code></td><td><p>A pool of virtual IPs, used as floating IPs for the SMB cluster to provide HA to clients.</p><p>These IPs must be unique; do not assign these IPs to any host on the network.<br>Format: comma-separated IP addresses.</p></td><td></td></tr><tr><td><code>smb-ips-range</code></td><td><p>A range of virtual IPs, used as floating IPs for the SMB cluster to provide HA to clients.</p><p>These IPs must be unique; do not assign these IPs to any host on the network.<br>Format: <code>A.B.C.D-E</code><br>Example: <code>10.10.0.1-100</code></p></td><td></td></tr><tr><td><code>symlink</code></td><td><p>Determines if symbolic links are allowed in the SMB cluster.</p><ul><li><code>on</code>: Enables symbolic links. Use with caution, as it can introduce security risks by exposing data across shares.</li><li><code>off</code>: Disables symbolic links, enhancing security by preventing link-based vulnerabilities.</li></ul><p><strong>Important</strong>: If a symbolic link in one share points to a file system in another share, users in the first share can access the data in the second share. Ensure you understand the security implications before enabling this option.</p><p>Only applicable for SMB-W clusters.</p></td><td><code>Off</code></td></tr></tbody></table>
+| Parameter                                              | Description                                                                                                                                                                                                                                                                                                          |
+| --- | --- |
+| `netbios-name`\* | NetBIOS name for the SMB cluster. |
+| `domain`\* | Domain name for the SMB cluster. |
+| `config-fs-name`\* | Filesystem name for SMB configuration storage. For details, see #dedicated-filesystem-requirement-for-cluster-wide-persistent-protocol-configurations |
+| `--container-ids` \<container-ids>\*… | Containers that will serve SMB protocol. Multiple values may be supplied separated by commas, or the option may be repeated. |
+| `--default-domain-mapping-from-id` \<uint32> | Default domain ID mapping range start. |
+| `--default-domain-mapping-to-id` \<uint32> | Default domain ID mapping range end. |
+| `--domain-netbios-name` \<string> | Domain NetBIOS name. |
+| `--encryption` \<smb-cluster-encryption> | Cluster encryption mode. |
+| `--idmap-backend` \<smb-idmap-backend> | ID mapping backend type. Possible values: rfc2307 or rid |
+| `--joined-domain-mapping-from-id` \<uint32> | Joined domain ID mapping range start. |
+| `--joined-domain-mapping-to-id` \<uint32> | Joined domain ID mapping range end. |
+| `--ldap-bind-dn` \<string> | LDAP bind DN used by SSSD. |
+| `--ldap-bind-password` \<string> | LDAP bind password used by SSSD. |
+| `--ldap-domain` \<string> | LDAP domain used by SSSD. |
+| `--ldap-search-base` \<string> | LDAP search base used by SSSD. |
+| `--ldap-uri` \<string> | LDAP server URI used by SSSD. |
+| `--posix-resolution-mode` \<smb-posix-resolution-mode> | POSIX UID/GID resolution mode for SMB-W: 'ad' or 'nss'. |
+| `--prompt-ldap-bind-password` | Prompt interactively for the LDAP bind password instead of passing it on the command line. |
+| `--scale-out-mode` \<smb-scale-out-mode> | Scale-out mode. |
+| `--smb-conf-extra` \<string> | Additional smb.conf configuration. |
+| `--smb-ips-pool` \<ips>… | SMB floating IP addresses. Multiple values may be supplied separated by commas, or the option may be repeated. |
+| `--smb-ips-range` \<ips>… | SMB floating IP address range. Multiple values may be supplied separated by commas, or the option may be repeated. |
+| `--symlink` | Enable symlink support. |
+| `--userdb-trusted-domains` | Enumerate the trusted domains and their domain controllers when the SMB server starts (enabled by default). Set to false in large Active Directory environments where the enumeration times out and the SMB server keeps restarting. While it is off, users from trusted domains cannot be resolved and lose access. |
 
 ### Guidelines for configuring an SMB cluster
 
@@ -59,122 +94,159 @@ weka smb cluster create wekaSMB mydomain --container-ids 0,1,2,3,4 --smb-ips-poo
 ```
 {% endcode %}
 
-## Update the SMB cluster <a href="#update-smb-cluster" id="update-smb-cluster"></a>
+## Update the SMB cluster
+
+Changes SMB cluster settings such as the serving IPs, encryption policy, and identity-mapping backend.
+
+**Command:** `weka smb cluster update`
+
+```sh
+weka smb cluster update [--encryption <smb-cluster-encryption>] [--force] [--idmap-backend <smb-idmap-backend>] [--posix-resolution-mode <smb-posix-resolution-mode>] [--smb-ips-pool <ips>…] [--smb-ips-range <ips>…] [--userdb-trusted-domains]
+```
+
+**Parameters**
+
+| Parameter                                              | Description                                                                                                                                                                                                                                                                                                          |
+| --- | --- |
+| `--encryption` \<smb-cluster-encryption> | Cluster encryption mode. |
+| `-f`, `--force` | Force action. Perform this action without further confirmation. |
+| `--idmap-backend` \<smb-idmap-backend> | ID mapping backend type. Required when switching --posix-resolution-mode to 'ad'; mutually exclusive with --posix-resolution-mode nss. |
+| `--posix-resolution-mode` \<smb-posix-resolution-mode> | Change POSIX UID/GID resolution mode: 'ad' (resolve via the joined Active Directory) or 'nss' (resolve via NSS/SSSD against external LDAP; requires at least one LDAP domain already configured). Flipping the mode bounces the SMB cluster. |
+| `--smb-ips-pool` \<ips>… | SMB floating IP addresses. Multiple values may be supplied separated by commas, or the option may be repeated. |
+| `--smb-ips-range` \<ips>… | SMB floating IP address range. Multiple values may be supplied separated by commas, or the option may be repeated. |
+| `--userdb-trusted-domains` | Enumerate the trusted domains and their domain controllers when the SMB server starts (enabled by default). Set to false in large Active Directory environments where the enumeration times out and the SMB server keeps restarting. While it is off, users from trusted domains cannot be resolved and lose access. |
 
 {% hint style="danger" %}
 **INTERNAL, remove before publication. TBD (Engineering):** `--symlink` is gone from `smb cluster update` in 6.0. The legacy CLI defined it as "Enable or disable symbolic link (symlink) support for the SMB-W cluster", and no 6.0 option replaces it — `--posix-resolution-mode` governs UID/GID resolution, not symlinks. Confirm whether SMB symlink support was removed or moved, then drop or repoint the option in the synopsis and parameter table below.
 {% endhint %}
 
-**Command:** `weka smb cluster update`
+## Check the status of SMB cluster readiness
 
-Use the following command line to update an existing SMB cluster:
-
-`weka smb cluster update [--encryption encryption] [--smb-ips-pool smb-ips-pool]... [--smb-ips-range smb-ips-range]...[--symlink symlink]`
-
-**Parameters**
-
-<table><thead><tr><th width="247">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>encryption</code></td><td><p>The global encryption policy to use:</p><ul><li><code>enabled</code>: enables encryption negotiation but doesn't turn it on automatically for supported sessions and share connections.</li><li><code>desired</code>: enables encryption negotiation and turns on data encryption on supported sessions and share connections.</li><li><code>required</code>: enforces data encryption on sessions and share connections. Clients that do not support encryption are denied access to the server.</li></ul></td></tr><tr><td><code>smb-ips-pool</code></td><td><p>A pool of virtual IPs, used as floating IPs for the SMB cluster to provide HA to clients.</p><p>These IPs must be unique; do not assign these IPs to any host on the network.<br>Format: comma-separated IP addresses.</p></td></tr><tr><td><code>smb-ips-range</code></td><td>A range of public IPs is used as floating IPs to provide high availability for the SMB cluster to serve the SMB clients.<br>These IPs must be unique; do not assign these IPs to any host on the network.<br>Format: <code>A.B.C.D-E</code><br>Example: <code>10.10.0.1-100</code></td></tr><tr><td><code>symlink</code></td><td><p>Determines if symbolic links are allowed in the SMB cluster.</p><ul><li><code>on</code>: Enables symbolic links. Use with caution, as it can introduce security risks by exposing data across shares.</li><li><code>off</code>: Disables symbolic links, enhancing security by preventing link-based vulnerabilities.</li></ul><p><strong>Important</strong>: If a symbolic link in one share points to a file system in another share, users in the first share can access the data in the second share. Ensure you understand the security implications before enabling this option.</p><p>Only applicable for SMB-W clusters.</p></td></tr></tbody></table>
-
-## Check the status of SMB cluster readiness <a href="#check-status-smb-host-readiness" id="check-status-smb-host-readiness"></a>
+Shows whether each container in the SMB cluster is ready to serve traffic.
 
 **Command:** `weka smb cluster status`
 
-The SMB cluster is comprised of three to eight SMB containers. Use this command to check the status of the SMB containers that are part of the SMB cluster. Once all the SMB containers are prepared and ready, it is possible to join an SMB cluster to an Active Directory domain.
+```sh
+weka smb cluster status
+```
 
-## Join an SMB cluster in Active Directory <a href="#join-smb-cluster-in-a-d" id="join-smb-cluster-in-a-d"></a>
+## Join an SMB cluster in Active Directory
+
+Joins the SMB cluster to an Active Directory domain so that domain users can authenticate.
 
 **Command:** `weka smb domain join`
 
-Use the following command line to join the SMB cluster to an Active Directory domain:
+```sh
+weka smb domain join <username> [<password>] [--create-computer <string>] [--debug] [--extra-options <string>] [--server <string>] [--timeout <duration>]
+```
 
-`weka smb domain join <username> <password> [--server server] [--create-computer create-computer]`
+**Parameters**
+
+| Parameter                     | Description                                              |
+| --- | --- |
+| `username`\* | Domain admin username. |
+| `password` | Domain admin password. If omitted, you will be prompted. |
+| `--create-computer` \<string> | Organizational unit for the computer account. |
+| `--debug` | Enable debug output. |
+| `--extra-options` \<string> | Extra options for the domain join. |
+| `--server` \<string> | Domain controller server address. |
+| `-t`, `--timeout` \<duration> | Timeout for the domain join operation. |
 
 {% hint style="info" %}
 Ensure the AD servers are resolvable to all WEKA servers. This resolution enables the WEKA servers to join the AD domain.
 {% endhint %}
 
-**Parameters**
+## Remove an SMB cluster
 
-| Name              | Value                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
-| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `username`\*      | Name of an AD user with permission to add a server to the domain.                                                                                                                                                                                                                                                                                                                                                                                      |
-| `password`\*      | The password of the AD user. This password is not retained or cached.                                                                                                                                                                                                                                                                                                                                                                                  |
-| `server`          | <p>Specifies the remote domain controller for SMB-W domain join commands.<br>WEKA automatically identifies an AD Domain Controller server (from <code>/etc/resolv.conf</code>) based on the AD domain name.<br>You do not need to set the server name. In some cases, specify the AD server if required.<br>See <a data-mention href="smb-management-using-the-gui.md#resolve-the-a-d-domain-controllers">#resolve-the-a-d-domain-controllers</a>.</p> |
-| `create-computer` | <p>Creates an SMB cluster computer account in AD under a specified OU.<br>The default is the "Computers" container in AD.</p>                                                                                                                                                                                                                                                                                                                          |
-
-To join an existing SMB cluster to another Active Directory domain, leave the current Active Directory using the following command line:
-
-`weka smb domain leave <username> <password>`
-
-On completion of this operation, it is possible to join the SMB cluster to another Active Directory domain.
-
-## Remove an SMB cluster <a href="#delete-an-smb-cluster" id="delete-an-smb-cluster"></a>
+Removes the SMB service from the cluster. The underlying filesystems and their data are not deleted.
 
 **Command:** `weka smb cluster destroy`
 
-Use this command to remove an SMB cluster managed by the WEKA system.
+```sh
+weka smb cluster destroy [--force]
+```
 
-Removing an existing SMB cluster managed by the WEKA system does not delete the backend WEKA filesystems but removes the SMB share exposures of these filesystems.
+**Parameters**
 
-## Add or remove SMB cluster containers <a href="#add-or-remove-smb-cluster-hosts" id="add-or-remove-smb-cluster-hosts"></a>
+| Parameter       | Description                                                     |
+| --- | --- |
+| `-f`, `--force` | Force action. Perform this action without further confirmation. |
+
+## Add or remove SMB cluster containers
+
+Adds containers to or removes them from the SMB cluster, changing which containers serve SMB traffic.
 
 **Command:** `weka smb cluster containers add`
 
+```sh
+weka smb cluster containers add --container-ids <container-ids>… [--force]
+```
+
 **Command:** `weka smb cluster containers remove`
 
-Use these commands to add or remove containers from the SMB cluster.
+```sh
+weka smb cluster containers remove --container-ids <container-ids>… [--force]
+```
 
-`weka smb cluster containers add [--container-ids container-id]...`
+**Parameters**
 
-`weka smb cluster containers remove [--container-ids container-id]...`
+| Parameter                             | Description                                                                                                |
+| --- | --- |
+| `--container-ids` \<container-ids>\*… | SMB containers to add. Multiple values may be supplied separated by commas, or the option may be repeated. |
+| `-f`, `--force` | Force action. Perform this action without further confirmation. |
 
 {% hint style="info" %}
 This operation might take some time to complete. During that time, SMB IOs are stalled.
 {% endhint %}
 
-**Parameters**
-
-| Name              | Value                                                                                                                                       |
-| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
-| `container-ids`\* | Container IDs of containers with a frontend process to serve the SMB service.Specify a comma-separated list with a minimum of 3 containers. |
-
 ## Configure trusted domains <a href="#configure-trusted-domains" id="configure-trusted-domains"></a>
+
 
 ### List trusted domains
 
+Lists the trusted domains configured on the SMB cluster and the ID range mapped to each.
+
 **Command:** `weka smb cluster trusted-domains`
 
-Use this command to list all the configured trusted domains and their ID ranges.
+```sh
+weka smb cluster trusted-domains
+```
 
 ### Add trusted domains
 
+Adds a trusted domain and the range of IDs its users map onto.
+
 **Command:** `weka smb cluster trusted-domains add`
 
-Use the following command line to add an SMB trusted domain:
-
-`weka smb cluster trusted-domains add <domain-name> <from-id> <to-id>`
+```sh
+weka smb cluster trusted-domains add <domain-name> <from-id> <to-id> [--force]
+```
 
 **Parameters**
 
-| Name            | Value                                                                                            |
-| --------------- | ------------------------------------------------------------------------------------------------ |
-| `domain-name`\* | The name of the domain to add.                                                                   |
-| `from-id`\*     | The first ID of the range for the domain ID mapping.The range cannot overlap with other domains. |
-| `to-id`\*       | The last ID of the range for the domain ID mapping.The range cannot overlap with other domains   |
+| Parameter       | Description                                                     |
+| --- | --- |
+| `domain-name`\* | Trusted domain name. |
+| `from-id`\* | ID mapping range start. |
+| `to-id`\* | ID mapping range end. |
+| `-f`, `--force` | Force action. Perform this action without further confirmation. |
 
 ### Remove trusted domains
 
+Removes a trusted domain from the SMB cluster.
+
 **Command:** `weka smb cluster trusted-domains remove`
 
-Use the following command line to remove an SMB-trusted domain:
-
-`weka smb cluster trusted-domains remove <domain-id>`
+```sh
+weka smb cluster trusted-domains remove <trusteddomain-id> [--force]
+```
 
 **Parameters**
 
-| Name          | Value                                   |
-| ------------- | --------------------------------------- |
-| `domain-id`\* | The internal ID of the domain to remove |
+| Parameter            | Description                                                     |
+| --- | --- |
+| `trusteddomain-id`\* | Trusted domain ID to remove. |
+| `-f`, `--force` | Force action. Perform this action without further confirmation. |
 
 {% hint style="info" %}
 **SMB-W cluster restart and verification**
@@ -186,33 +258,53 @@ To confirm that the cluster has resumed normal operation following the restart, 
 This command provides the current status of the SMB-W cluster and ensures that it is operational.
 {% endhint %}
 
-## List SMB shares <a href="#list-smb-shares" id="list-smb-shares"></a>
+## List SMB shares
+
+Lists the SMB shares exposed by the cluster.
 
 **Command:** `weka smb share`
 
-Use this command to list all existing SMB shares.
+```sh
+weka smb share
+```
 
-## Add an SMB share <a href="#add-an-smb-share" id="add-an-smb-share"></a>
+## Add an SMB share
+
+Exposes a directory of a filesystem as an SMB share.
 
 **Command:** `weka smb share add`
 
-Use the following command line to add a new share to be exposed by SMB.\
-Ensure the SMB cluster is joined to the Active Directory. For details, see [#join-smb-cluster-in-a-d](smb-management-using-the-cli.md#join-smb-cluster-in-a-d "mention").
+```sh
+weka smb share add <share-name> <fs-name> [--acl] [--allow-guest-access] [--case-sensitivity] [--description <string>] [--directory-create-mask <string>] [--enable-ADS] [--encryption <smb-share-encryption>] [--file-create-mask <string>] [--force] [--hidden] [--internal-path <string>] [--map-acls <smb-map-acls>] [--obs-direct] [--read-only] [--user-list-type <smb-user-list-type>] [--users <strings>…] [--vfs-zerocopy-read]
+```
 
-{% code overflow="wrap" %}
-```
-weka smb share add <share-name> <fs-name> [--description description] [--internal-path internal-path] [--file-create-mask file-create-mask]  [--directory-create-mask directory-create-mask] [--acl acl] [--map-acls map-acls] [--case-sensitivity case-sensitivity] [--obs-direct obs-direct] [--encryption encryption] [--read-only read-only] [--user-list-type user-list-type] [--allow-guest-access allow-guest-access]
-[--enable-ADS enable-ADS] [--hidden hidden] [--vfs-zerocopy-read vfs-zerocopy-read] [--users users]...
-```
-{% endcode %}
+**Parameters**
+
+| Parameter                                | Description                                                                                     |
+| --- | --- |
+| `share-name`\* | Share name. |
+| `fs-name`\* | Filesystem name. |
+| `--acl` | Enable ACLs. For details, see Broken link Possible values: on, off For a MAC client, if acl is off, set enable-ADS to off |
+| `--allow-guest-access` | Allow guest access. Possible values: on, off |
+| `--case-sensitivity` | Case sensitivity. |
+| `--description` \<string> | Share description. |
+| `--directory-create-mask` \<string> | Directory create mask. |
+| `--enable-ADS` | Enable named streams (ADS). Possible values: yes, no macOS clients: If ACLs are disabled (acl=off), set enable-ADS to off. Windows clients: When enabled, ADS data is stored in the file’s extended attributes (XAttr), which consumes XAttr space |
+| `--encryption` \<smb-share-encryption> | Encryption mode. default: The share encryption policy follows the global SMB cluster setting. desired: If negotiation is enabled globally, it turns on data encryption for this share for clients that support encryption. required: Enforces encryption for the shares. Clients that do not support encryption are denied when accessing the share |
+| `--file-create-mask` \<string> | File create mask. |
+| `-f`, `--force` | Force action. Perform this action without further confirmation. |
+| `--hidden` | Hidden share. Possible values: on, off |
+| `--internal-path` \<string> | Internal path within the filesystem. |
+| `--map-acls` \<smb-map-acls> | Map ACLs mode. |
+| `--obs-direct` | OBS direct. For details, see Broken link Possible values: on, off |
+| `--read-only` | Read only share. Possible values: on, off |
+| `--user-list-type` \<smb-user-list-type> | User list type. Possible values: read_only: List of users who have been denied write access to the share, regardless of the read-only setting. read_write: List of users given write access to the share, regardless of the read-only setting. valid : List of users that are allowed to log in to this share (empty list = all users are allowed) invalid: List of users that are not allowed to log in to this share |
+| `--users` \<strings>… | Users list. Multiple values may be supplied separated by commas, or the option may be repeated. Possible values: Up to 8 users/groups for all lists combined per share |
+| `--vfs-zerocopy-read` | VFS zerocopy read. Possible values: on, off |
 
 {% hint style="info" %}
 The mount mode for the SMB share is `readcache` and cannot be modified.
 {% endhint %}
-
-**Parameters**
-
-<table><thead><tr><th>Name</th><th width="322">Value</th><th>Default</th></tr></thead><tbody><tr><td><code>share-name</code>*</td><td><p>A unique name of the share to add to the filesystem. The share name must adhere to the following rules:</p><ul><li>Alphanumeric characters: A-Z, a-z, 0-9.</li><li>Maximum length: 80 characters.</li><li>Allowed special characters: hyphens (<code>-</code>) and underscores (<code>_</code>).</li><li>Prohibited special characters: space ( ), backslash (<code>\</code>), slash (/), colon (<code>:</code>), semicolon (<code>;</code>).</li><li>Prohibited <a data-footnote-ref href="#user-content-fn-1">control characters</a>: 0x00 through 0x1F.</li><li>No reserved names: Avoid using reserved names such as CON, PRN, AUX, NUL, COM1, LPT1. They may cause conflicts.</li></ul><p>SMB-W: Do not create the same share name with different case insensitivity.</p></td><td>​</td></tr><tr><td><code>fs-name</code>*</td><td>Valid name of the filesystem to share.<br>A filesystem with Required Authentication set to ON cannot be used for SMB share.</td><td>​</td></tr><tr><td><code>description</code></td><td>The description of the share received in remote views.</td><td>​</td></tr><tr><td><code>internal-path</code></td><td>The internal valid path within the filesystem (relative to its root) which will be exposed.</td><td>.</td></tr><tr><td><code>file-create-mask</code></td><td>POSIX permissions for the file created through the SMB share.<br>Numeric (octal) notation.</td><td>0744</td></tr><tr><td><code>directory-create-mask</code></td><td>POSIX permissions for directories created through the SMB share.<br>Numeric (octal) notation.<br><br>SMB-W: the specified string must be greater or equal to 0600.</td><td>0755</td></tr><tr><td><code>acl</code></td><td><p>Enable Windows ACLs on the share (translated to POSIX).<br>Supports up to 16 ACLs per file, depending on the available space in the Extended Attribute (xattr).<br>For details, see <a data-mention href="/broken/pages/-LBJvd2jB8hUJhPLHHmk#filesystem-extended-attributes-considerations">Broken link</a><br>Possible values: <code>on</code>, <code>off</code></p><p>For a MAC client, if <code>acl</code> is <code>off</code>, set <code>enable-ADS</code> to <code>off</code>.</p></td><td><code>off</code></td></tr><tr><td><code>map-acls</code></td><td><p>Specifies the type of access control to use for the share. Options include POSIX, Windows, or Hybrid.</p><p>Hybrid ACL allows seamless interoperability between POSIX and Windows systems by exchanging permissions based on timestamps. Regardless of the system it originated from, the most recent permission takes precedence.</p></td><td><code>POSIX</code></td></tr><tr><td><code>case-sensitivity</code></td><td>Enables or disables case sensitivity for the specified SMB share. When enabled, the share distinguishes between files with the same name but different capitalization.</td><td><code>on</code></td></tr><tr><td><code>obs-direct</code></td><td><p>A special mount option to bypass the time-based policies.</p><p>For details, see <a data-mention href="/broken/pages/-LxWGVbB9iYC1u6AKg_O#object-store-direct-mount-option">Broken link</a><br>Possible values: <code>on</code>, <code>off</code></p></td><td><code>off</code></td></tr><tr><td><code>encryption</code></td><td><p>The share encryption policy.</p><ul><li><code>cluster_default:</code> The share encryption policy follows the global SMB cluster setting.</li><li><code>desired</code>: If negotiation is enabled globally, it turns on data encryption for this share for clients that support encryption.</li><li><code>required</code>: Enforces encryption for the shares. Clients that do not support encryption are denied when accessing the share.</li></ul></td><td><code>cluster_default</code></td></tr><tr><td><code>read-only</code></td><td>Sets the share as read-only. Users cannot create or modify files in this share.<br>Possible values: <code>on</code>, <code>off</code></td><td><code>off</code></td></tr><tr><td><code>user-list-type</code></td><td><p>The type of initial permissions list for <code>users</code>.<br>Possible values:<br><code>read_only</code>: List of users who have been denied write access to the share, regardless of the <code>read-only</code> setting.<br><code>read_write</code>: List of users given write access to the share, regardless of the <code>read-only</code> setting.</p><p><code>valid</code> : List of users that are allowed to log in to this share (empty list = all users are allowed)<br><code>invalid</code>: List of users that are not allowed to log in to this share</p></td><td></td></tr><tr><td><code>allow-guest-access</code></td><td>Allows connecting to the SMB service without a password. Permissions are as the <code>nobody</code> user account permissions.<br>Possible values: <code>on</code>, <code>off</code></td><td><code>off</code></td></tr><tr><td><code>enable-ADS</code></td><td><p>Enables using Alternate Data Streams (ADS) on a specified SMB share.<br>Possible values: <code>yes</code>, <code>no</code></p><p><br><strong>macOS clients</strong>:<br>If ACLs are disabled (<code>acl=off</code>), set <code>enable-ADS</code> to <code>off</code>.</p><p><br><strong>Windows clients</strong>:<br>When enabled, ADS data is stored in the file’s extended attributes (XAttr), which consumes XAttr space.</p></td><td><code>on</code></td></tr><tr><td><code>hidden</code></td><td>Sets the share as non-browsable. It will be accessible for mounting and IOs but not discoverable by SMB clients.<br>Possible values: <code>on</code>, <code>off</code></td><td><code>off</code></td></tr><tr><td><code>vfs-zerocopy-read</code></td><td><p>If supported, enable zero-copy reads. This allows data to transfer directly from disk to application memory without intermediate copying, reducing CPU usage and latency and enhancing throughput and efficiency for large file access.</p><p>Possible values: <code>on</code>, <code>off</code>.</p></td><td><code>on</code></td></tr><tr><td><code>users</code></td><td><p>A list of users to use with the <code>user-list-type</code> list.</p><p>Format: Domain short name followed by group name, for example <code>WEKAAD\internalShareUsers</code><br>Possible values: Up to 8 users/groups for all lists combined per share.</p></td><td>Empty list</td></tr></tbody></table>
 
 ### Guidelines for adding an SMB share
 
@@ -247,82 +339,78 @@ The mount mode for the SMB share is `readcache` and cannot be modified.
 
 For more details, see [#filesystem-permissions-and-access-rights-configuration](./#filesystem-permissions-and-access-rights-configuration "mention").
 
-## Update SMB shares <a href="#update-smb-shares" id="update-smb-shares"></a>
+## Update SMB shares
+
+Changes an existing share's encryption, guest access, visibility, or read-only setting.
 
 **Command:** `weka smb share update`
 
-Use the following command line to update an existing share:
-
-`weka smb share update <share-id> [--encryption encryption] [--read-only read-only] [--allow-guest-access allow-guest-access] [--hidden hidden]`
+```sh
+weka smb share update <share-id> [--allow-guest-access] [--encryption <smb-share-encryption>] [--hidden] [--read-only]
+```
 
 **Parameters**
 
-<table><thead><tr><th width="231">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>share-id</code>*</td><td>A valid share ID to update.</td></tr><tr><td><code>encryption</code></td><td><p>The share encryption policy.</p><ul><li><code>cluster_default:</code> The share encryption policy follows the global SMB cluster setting.</li><li><code>desired</code>: If negotiation is enabled globally, it turns on data encryption for this share for clients that support encryption.</li><li><code>required</code>: Enforces encryption for the shares. Clients that do not support encryption are denied when accessing the share. If the global option is <code>disabled</code>, access is restricted to these shares for all clients.</li></ul></td></tr><tr><td><code>read-only</code></td><td>Sets the share as read-only. Users cannot create or modify files in this share.<br>Possible values: <code>on</code>, <code>off</code></td></tr><tr><td><code>allow-guest-access</code></td><td>Allows connecting to the SMB service without a password. Permissions are as the <code>nobody</code> user account permissions.<br>Possible values: <code>on</code>, <code>off</code></td></tr><tr><td><code>hidden</code></td><td>Sets the share as non-browsable. It will be accessible for mounting and IOs but not discoverable by SMB clients.<br>Possible values: <code>on</code>, <code>off</code></td></tr></tbody></table>
+| Parameter                              | Description         |
+| --- | --- |
+| `share-id`\* | Share ID. |
+| `--allow-guest-access` | Allow guest access. Possible values: on, off |
+| `--encryption` \<smb-share-encryption> | Encryption mode. default: The share encryption policy follows the global SMB cluster setting. desired: If negotiation is enabled globally, it turns on data encryption for this share for clients that support encryption. required: Enforces encryption for the shares. Clients that do not support encryption are denied when accessing the share. If the global option is disabled, access is restricted to these shares for all clients |
+| `--hidden` | Hidden share. Possible values: on, off |
+| `--read-only` | Read only share. Possible values: on, off |
 
-## **Control SMB share user-lists** <a href="#control-smb-share-user-lists" id="control-smb-share-user-lists"></a>
+## Control SMB share user-lists
+
+Manages a share's user lists, which allow or deny named users access to that share.
 
 **Command:** `weka smb share lists show`
 
-Use this command to view the various user-list settings.
+```sh
+weka smb share lists show
+```
 
 **Command:** `weka smb share lists add`
 
-Use the following command line to add users to a share user-list:
-
-`weka smb share lists add <share-id> <user-list-type> <--users users>...`
-
-**Parameters**
-
-| Name               | Value                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
-| ------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `share-id`\*       | The ID of the share to update.                                                                                                                                                                                                                                                                                                                                                                                                                                  |
-| `user-list-type`\* | The type of permissions list for `users`:`read_only`: list of users that do not get write access to the SMB share, regardless of the `read-only` setting.`read_write`: list of users get write access to the SMB share, regardless of the `read-only` setting.`valid`: list of users allowed to log in to this SMB share service (an empty list means all users are allowed).`invalid`: list of users that are not allowed to log in to this share SMB service. |
-| `users`\*          | A comma-separated list of users to add to the `user-list-type` list.Can use the `@` notation to allow groups of users. For example, `root, Jack, @domain\admins.`You can set up to 8 users/groups for all lists combined per share.                                                                                                                                                                                                                             |
-
-***
+```sh
+weka smb share lists add <share-id> <user-list-type> [--users <strings>…]
+```
 
 **Command:** `weka smb share lists remove`
 
-Use the following command line to remove users from a share user-list:
-
-`weka smb share lists remove <share-id> <user-list-type> <--users users>...`
-
-**Parameters**
-
-| Name               | Value                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
-| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `share-id`\*       | The ID of the share to be updated.                                                                                                                                                                                                                                                                                                                                                                                                                     |
-| `user-list-type`\* | The type of permissions list for `users`:`read_only`: list of users that do not get write access to the SMB share, regardless of the `read-only` setting.`read_write`: list of users get write access to the SMB share, regardless of the `read-only` setting.`valid`: list of users allowed to log in to this SMB share service (an empty list means all users are allowed).`invalid`: list of users not allowed to log in to this SMB share service. |
-| `users`\*          | A comma-separated list of users to remove from the `user-list-type` list. Can use the `@` notation to allow groups of users, e.g. `root, Jack, @domain\admins.`You can set up to 8 users/groups for all lists combined per share.                                                                                                                                                                                                                      |
-
-***
+```sh
+weka smb share lists remove <share-id> <user-list-type> [--users <strings>…]
+```
 
 **Command:** `weka smb share lists reset`
 
-Use the following command line to remove all users from a share user-list:
-
-`weka smb share lists reset <share-id> <user-list-type>`
+```sh
+weka smb share lists reset <share-id> <user-list-type>
+```
 
 **Parameters**
 
-| Name               | Value                                                                                                                                                                                                                                                                                                                                                                                                                                               |
-| ------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `share-id`\*       | The ID of the share to be updated                                                                                                                                                                                                                                                                                                                                                                                                                   |
-| `user-list-type`\* | The type of permissions list to reset:`read_only`: list of users that do not get write access to the SMB share, regardless of the `read-only` setting.`read_write`: list of users get write access to the SMB share, regardless of the `read-only` setting.`valid`: list of users allowed to log in to this SMB share service (an empty list means all users are allowed).`invalid`: list of users not allowed to log in to this SMB share service. |
+| Parameter             | Description                                                                                       |
+| --- | --- |
+| `share-id`\* | Share ID. |
+| `user-list-type`\* | User list type (read\_only, read\_write, valid, invalid). |
+| `--users` \<strings>… | Users to add. Multiple values may be supplied separated by commas, or the option may be repeated. |
 
-## Remove SMB shares <a href="#remove-smb-shares" id="remove-smb-shares"></a>
+## Remove SMB shares
+
+Removes an SMB share. The underlying directory and its data are not deleted.
 
 **Command:** `weka smb share remove`
 
-Use the following command line to remove a share exposed to SMB:
-
-`weka smb share remove <share-id>`
+```sh
+weka smb share remove <share-id> [--force]
+```
 
 **Parameters**
 
-| Name         | Value                          |
-| ------------ | ------------------------------ |
-| `share-id`\* | The ID of the share to remove. |
+| Parameter       | Description                                                     |
+| --- | --- |
+| `share-id`\* | Share ID. |
+| `-f`, `--force` | Force action. Perform this action without further confirmation. |
 
 {% hint style="success" %}
 **Example:** The following is an example of removing an SMB share defined as ID 1:
@@ -330,46 +418,44 @@ Use the following command line to remove a share exposed to SMB:
 `weka smb share remove 1`
 {% endhint %}
 
-## Control SMB access based on hosts' IP/name <a href="#control-smb-access-based-on-hosts" id="control-smb-access-based-on-hosts"></a>
+## Control SMB access based on hosts' IP/name
 
-You can control which hosts are permitted to access the SMB share. The maximum number of share host access definitions across all shares is 1024.
+Manages a share's host-access rules, which allow or deny clients by IP address or host name.
+
+**Command:** `weka smb share host-access list`
+
+```sh
+weka smb share host-access list
+```
+
+**Command:** `weka smb share host-access add`
+
+```sh
+weka smb share host-access add <share-id> <mode> [--ips <strings>…]
+```
+
+**Command:** `weka smb share host-access remove`
+
+```sh
+weka smb share host-access remove <share-id> <hosts>…
+```
+
+**Command:** `weka smb share host-access reset`
+
+```sh
+weka smb share host-access reset <share-id> <mode> [--force]
+```
+
+**Parameters**
+
+| Parameter           | Description                                                                                       |
+| --- | --- |
+| `share-id`\* | Share ID. |
+| `mode`\* | Access mode (allow/deny). Possible values: allow, deny |
+| `--ips` \<strings>… | IP addresses. Multiple values may be supplied separated by commas, or the option may be repeated. |
+| `hosts`\*… | Hosts to remove. |
+| `-f`, `--force` | Force action. Perform this action without further confirmation. |
 
 {% hint style="info" %}
 SMB-W supports access based on the host IP addresses (but not host names).
 {% endhint %}
-
-**Command:** `weka smb share host-access list`
-
-Use this command to view the various host access settings.
-
-**Command:** `weka smb share host-access add`
-
-Use the following command line to add a host to the allow/deny list:
-
-`weka smb share host-access add <share-id> <mode> <--ips ips> <--hosts hosts>`
-
-**Parameters**
-
-<table><thead><tr><th width="226">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>share-id</code>*</td><td>The ID of the share to update.<br>Mandatory for the share-level command.</td></tr><tr><td><code>mode</code>*</td><td>The access mode of the host.<br>Possible values: <code>allow</code>, <code>deny</code></td></tr><tr><td><code>ips</code></td><td><p>A comma-separated list of host IP addresses to allow or deny.<br>Must provide at least one of the IP addresses.<br>Format example for multiple IPs:<br><code>192.</code></p><p><code>192.168.</code><br><code>192.168.1</code><br><code>192.168.1.1/24</code><br><code>192.168.1.2, 192.168.1.2</code></p></td></tr><tr><td><code>hosts</code></td><td><p>Host names to allow/deny.</p><ul><li>You must provide at least one of the hostnames</li><li>Separate host names with spaces.</li></ul><p>In SMB-W, use the <code>ips</code> parameter instead of <code>hosts</code>.</p></td></tr></tbody></table>
-
-**Command:** `weka smb share host-access remove`
-
-Use the following command line to remove hosts from the allow or deny list.
-
-`weka smb share host-access remove <share-id> <hosts>`
-
-**Parameters**
-
-<table><thead><tr><th width="248">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>share-id</code>*</td><td>The ID of the share to update.<br>Mandatory for the share-level command.</td></tr><tr><td><code>hosts</code>*</td><td><p>A list of hostnames you want to remove from access.</p><ul><li>Separate host names with spaces.</li><li>Use the IP addresses displayed under the <code>HOST</code> column when running the corresponding <code>list</code> command.</li></ul></td></tr></tbody></table>
-
-**Command:** `weka smb share host-access reset`
-
-Use the following command line to remove all hosts from the allow or deny list:
-
-`weka smb share host-access reset <share-id> <mode>`
-
-**Parameters**
-
-<table><thead><tr><th width="301">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>share-id</code>*</td><td>The ID of the share to update.<br>Mandatory for the share-level command.</td></tr><tr><td><code>mode</code>*</td><td><p>The specified access mode will remove all associated hosts from the list.</p><p>Possible values: <code>allow</code>, <code>deny</code>.</p></td></tr></tbody></table>
-
-[^1]: **Control characters** are non-printable characters used to manage the flow of text and commands, such as starting a new line, triggering alerts, or formatting text. They do not represent visible symbols and are typically not allowed in filenames or share names.
