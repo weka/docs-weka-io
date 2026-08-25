@@ -4,32 +4,41 @@ description: Attach or detach object store buckets for filesystems using the CLI
 
 # Attach or detach object store buckets using the CLI
 
-## **Attach an object store bucket** to a filesystem
+## Attach an object store bucket to a filesystem
+
+Attaches a filesystem to an existing object store bucket so the filesystem can tier data to it.
 
 **Command:** `weka fs tier s3 attach`
 
-To attach an object store to a filesystem, use the following command:
-
-`weka fs tier s3 attach <fs-name> <obs-name> [--mode mode]`
+```sh
+weka fs tier s3 attach <filesystem> <obs-name> [--mode <obs-attach-mode>]
+```
 
 **Parameters**
 
-<table><thead><tr><th>Name</th><th width="367.3333333333333">Value</th><th>Default</th></tr></thead><tbody><tr><td><code>fs-name</code>*</td><td>Name of the filesystem to attach with the object store.</td><td>​</td></tr><tr><td><code>obs-name</code>*</td><td>Name of the object store to attach.</td><td></td></tr><tr><td><code>mode</code></td><td><p>The operational mode for the object store bucket.<br>The possible values are:</p><ul><li><code>writable</code>: Local access for read/write operations.</li><li><code>remote</code>: Read-only access for remote object stores.</li></ul></td><td><code>writable</code></td></tr></tbody></table>
+| Parameter                   | Description                                 |
+| --------------------------- | ------------------------------------------- |
+| `filesystem`\* | Name of the filesystem. |
+| `obs-name`\* | Name of the object store bucket to attach. |
+| `--mode` \<obs-attach-mode> | Operation mode for the object store bucket. |
 
-## **Detach an object store bucket** from a filesystem
+## Detach an object store bucket from a filesystem
+
+Detaches a filesystem from an object store bucket.
 
 **Command:** `weka fs tier s3 detach`
 
-To detach an object store from a filesystem, use the following command:
-
-`weka fs tier s3 detach <fs-name> <obs-name>`
+```sh
+weka fs tier s3 detach <filesystem> <obs-name> [--force]
+```
 
 **Parameters**
 
-| Name         | Value                                                       |
-| ------------ | ----------------------------------------------------------- |
-| `fs-name`\*  | Name of the filesystem to be detached from the object store |
-| `obs-name`\* | Name of the object store to be detached                     |
+| Parameter       | Description                                                     |
+| --------------- | --------------------------------------------------------------- |
+| `filesystem`\* | Name of the filesystem. |
+| `obs-name`\* | Name of the object store bucket to detach. |
+| `-f`, `--force` | Force action. Perform this action without further confirmation. |
 
 {% hint style="info" %}
 To [recover from a snapshot](../snap-to-obj/#creating-a-filesystem-from-a-snapshot-using-the-cli) uploaded when two `local` object stores have been attached, use the `--additional-obs` parameter in the `weka fs download` command. The primary object store should be the one where the locator has been uploaded to

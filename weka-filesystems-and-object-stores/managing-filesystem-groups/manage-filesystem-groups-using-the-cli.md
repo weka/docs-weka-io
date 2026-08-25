@@ -4,61 +4,65 @@ description: View, create, edit, and remove filesystem groups using the CLI.
 
 # Manage filesystem groups using the CLI
 
-## **View filesystem groups**
+## View filesystem groups
+
+Lists the filesystem groups on the cluster with the SSD retention and demote timers each one applies.
 
 **Command:** `weka fs group`
 
-Use this command to view information on the filesystem groups in the WEKA system.
+```sh
+weka fs group
+```
 
 ## Add a filesystem group
 
+Creates a filesystem group. The retention and demote timers set here govern when the filesystems in the group release SSD data to the object store.
+
 **Command:** `weka fs group add`
 
-Use the following command to add a filesystem group:
-
-`weka fs group add <name> [--ssd-retention=<ssd-retention>] [--start-demote=<start-demote>]`
+```sh
+weka fs group add <name> [--ssd-retention <duration>] [--start-demote <duration>]
+```
 
 **Parameters**
 
-| Name                   | Value                                                                                                                                                                                     | Default |
-| ---------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| `name`\*               | Set a meaningful name for the filesystem group.                                                                                                                                           | ​       |
-| `target-ssd-retention` | <p>The time for keeping data on the SSD after it is copied to the object store. After this period, the copy of the data is deleted from the SSD.<br>Format: 3s, 2h, 4m, 1d, 1d5h, 1w.</p> | 1d      |
-| `start-demote`         | <p>The time to wait after the last update before the data is copied from the SSD and sent to the object store.<br>Format: 3s, 2h, 4m, 1d, 1d5h, 1w.</p>                                   | 10s     |
+| Parameter                     | Description                                             |
+| ----------------------------- | ------------------------------------------------------- |
+| `name`\* | Name of the filesystem group. |
+| `--ssd-retention` \<duration> | How long to keep an SSD copy of the data. |
+| `--start-demote` \<duration> | How long to wait before copying data to object storage. |
 
 ## Edit a filesystem group
 
+Changes a filesystem group's name or its SSD retention and demote timers.
+
 **Command:** `weka fs group update`
 
-Use the following command to edit a filesystem group:
-
-`weka fs group update <name> [--new-name=<new-name>] [--ssd-retention=<ssd-retention>] [--start-demote=<start-demote>]`
+```sh
+weka fs group update <name> [--new-name <filesystem-group>] [--ssd-retention <duration>] [--start-demote <duration>]
+```
 
 **Parameters**
 
-| Name                   | Value                                                                                                                                                                          |
-| ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `name`\*               | Name of the filesystem group to edit.It must be a valid name.                                                                                                                  |
-| `new-name`             | New name for the filesystem group.                                                                                                                                             |
-| `target-ssd-retention` | The time for keeping data on the SSD after it is copied to the object store. After this period, the copy of the data is deleted from the SSD.Format: 3s, 2h, 4m, 1d, 1d5h, 1w. |
-| `start-demote`         | The time to wait after the last update before the data is copied from the SSD and sent to the object store.Format: 3s, 2h, 4m, 1d, 1d5h, 1w.                                   |
+| Parameter                        | Description                                             |
+| -------------------------------- | ------------------------------------------------------- |
+| `name`\* | Name of the filesystem group. |
+| `--new-name` \<filesystem-group> | Rename the filesystem group. |
+| `--ssd-retention` \<duration> | How long to keep an SSD copy of the data. |
+| `--start-demote` \<duration> | How long to wait before copying data to object storage. |
 
 ## Remove a filesystem group
 
+Removes a filesystem group from the cluster.
+
 **Command:** `weka fs group remove`
 
-Use the following command line to delete a filesystem group:
-
-`weka fs group remove <name>`
+```sh
+weka fs group remove <name>
+```
 
 **Parameters**
 
-| Name     | Value                                  |
-| -------- | -------------------------------------- |
-| `name`\* | Name of the filesystem group to delete |
-
-**Related topics**
-
-To learn about the tiering policy, see:
-
-[tiering.md](../tiering.md "mention")
+| Parameter | Description                   |
+| --------- | ----------------------------- |
+| `name`\* | Name of the filesystem group. |
