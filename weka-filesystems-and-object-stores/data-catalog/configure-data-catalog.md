@@ -41,6 +41,10 @@ The data catalog maintains synchronization through a structured three-step proce
 
 Configure the infrastructure and filesystems required to activate catalog services for your data.
 
+{% hint style="danger" %}
+**INTERNAL, remove before publication. TBD (Docs):** Two sample-output blocks on this page (around the `weka catalog cluster status` examples) still show legacy typed identifiers such as `FSId<4>` and `HostId<23>`. 6.0 prints bare integers, so these read as `4` and `23`. Regenerate both against a 6.0 cluster.
+{% endhint %}
+
 #### Before you begin
 
 * The catalog services require at least five backend servers. Ensure each server has 32 GB for the data catalog service plus 5.5 GB for the data services, and connectivity on port 14400.

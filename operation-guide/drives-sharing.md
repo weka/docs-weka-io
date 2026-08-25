@@ -486,6 +486,10 @@ The SSD Proxy relies on DPDK/SPDK for high-performance I/O. Each queue pair (qpa
 * `weka local ps` indicates the proxy is in a degraded state.
 * New qpairs cannot be allocated, even if hardware queues are available.
 
+{% hint style="danger" %}
+**INTERNAL, remove before publication. TBD (Engineering):** Neither `weka local resources ssdproxy` nor `--dpdk-base-memory-mb` exists in the 6.0 CLI, and neither appears in the legacy D CLI either — `local resources` has no `ssdproxy` subcommand, and no command anywhere declares a `dpdk-base-memory-mb` flag. The closest shipping option is `weka local setup ssdproxy --memory <capacity>`, which sets total container memory rather than a DPDK base allocation. Confirm the correct 6.0 command for this procedure; the three examples below cannot work as written.
+{% endhint %}
+
 **Resolution**
 
 Increase the DPDK memory allocation for the SSD Proxy:

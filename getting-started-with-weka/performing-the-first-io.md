@@ -47,6 +47,14 @@ Create a filesystem group before creating a filesystem in that group.
     0             | new_fs          | my_fs_group | 0 B             | 4.09 KB         | 4.09 KB  | 1.09 TB  | 274.87 GB            | 1.09 TB       | 0 B               | 4.09 KB    | 1.09 TB    | 1.09 TB         | 22107463  | READY  | False     |                 | False
     ```
 
+{% hint style="danger" %}
+**INTERNAL, remove before publication. TBD (Engineering):** A filesystem group created without `--ssd-retention` or `--start-demote` comes back with both set to 0 and renders them blank, while the pre-existing `.meta` and `default` groups report 86400s / 900s. Confirm whether the creation defaults were intentionally dropped in 6.0 or this is a bug. The step 2 output and its note reflect the observed behavior and should be revisited if it is a bug.
+{% endhint %}
+
+{% hint style="danger" %}
+**INTERNAL, remove before publication. TBD (Docs):** Three `weka fs` output blocks on this page are still legacy format — in step 4 above, in the AWS hint below, and under Write data to the filesystem. All use pipe-delimited columns, a `+---+` separator row, and headers (`Filesystem ID`, `Filesystem Name`, `Group`) that no longer exist; 6.0 renders aligned columns headed `ID`, `Name`, `Group ID`, `Used SSD`, `Available SSD`, `Used Total`, `Available Total`, `Thin Provisioned`. The `FSId: 0` line in step 3 is also stale, as 6.0 prints a success message. Regenerate on a cluster with at least 1 TiB free; they could not be captured on the lab cluster, which is smaller than the example.
+{% endhint %}
+
 {% hint style="info" %}
 On NeuralMesh clusters installed in AWS through the [self-service portal,](https://start.weka.io/) a `default` filesystem group and a `default` filesystem are created automatically. The `default` filesystem uses the entire available SSD capacity.
 

@@ -16,6 +16,10 @@ Using the GUI, only object store buckets are present. Adding an object store buc
 
 ## Edit an object store
 
+{% hint style="danger" %}
+**INTERNAL, remove before publication. TBD (Engineering):** `--site` is gone from `fs tier obs update` in 6.0. In the legacy CLI it took an ObsSite enum (the local or remote site of the object store); `--region` is not a replacement, as it carries an object-store region string. Confirm whether the local/remote distinction is now set elsewhere or was removed, then drop or repoint the option below.
+{% endhint %}
+
 **Command:** `weka fs tier obs update`
 
 Use the following command line to edit an object store:

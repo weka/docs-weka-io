@@ -61,6 +61,10 @@ weka smb cluster create wekaSMB mydomain --container-ids 0,1,2,3,4 --smb-ips-poo
 
 ## Update the SMB cluster <a href="#update-smb-cluster" id="update-smb-cluster"></a>
 
+{% hint style="danger" %}
+**INTERNAL, remove before publication. TBD (Engineering):** `--symlink` is gone from `smb cluster update` in 6.0. The legacy CLI defined it as "Enable or disable symbolic link (symlink) support for the SMB-W cluster", and no 6.0 option replaces it — `--posix-resolution-mode` governs UID/GID resolution, not symlinks. Confirm whether SMB symlink support was removed or moved, then drop or repoint the option in the synopsis and parameter table below.
+{% endhint %}
+
 **Command:** `weka smb cluster update`
 
 Use the following command line to update an existing SMB cluster:

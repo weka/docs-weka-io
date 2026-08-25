@@ -47,6 +47,10 @@ The local object store tier that replication uses is created automatically when 
 
 [Manage object stores](https://docs.weka.io/weka-filesystems-and-object-stores/managing-object-stores)
 
+{% hint style="danger" %}
+**INTERNAL, remove before publication. TBD (Engineering):** Anand's review flags the pairing steps below as incorrect and wanting a different structure. The one-directional trust claims have been removed (`local-only` is a warning state meaning the peer has not registered this cluster in return, not a supported mode), but the `peer init` / `peer add` sequence itself is unchanged pending his input. Open question: after `peer init` on site A and `peer add` on site B, does B's token carry enough for A to complete the pairing, or must the admin run both commands on both sides? See also WEKAPP-617203, which introduced the simplified pairing flow.
+{% endhint %}
+
 ## Establish trust between clusters
 
 Establish a trust relationship between two NeuralMesh clusters so they can authenticate each other and replicate filesystems.

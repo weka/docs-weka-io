@@ -135,6 +135,10 @@ If the setup fails, the system rolls back the changes automatically.
 * Choose the remote cluster `NAME` to use for the pairing.
 * Prepare to copy the connection payload from the first cluster to the second cluster.
 
+{% hint style="danger" %}
+**INTERNAL, remove before publication. TBD (Engineering):** `weka cluster remote-cluster setup` does not exist in 6.0. The group survives with `add`, `update`, and `remove`, but `setup` and its `--init` / `--remote` flags are gone. The replacement is the two-command pairing flow: `weka cluster peer init` on the first cluster emits a pairing token, and `weka cluster peer add <name> <token>` registers it on the second. The surrounding text also needs rewriting — it promises a single command per cluster and automatic rollback, neither of which describes the peer flow. Held pending the wider replication review.
+{% endhint %}
+
 **Procedure**
 
 1. On the first cluster, initialize the remote cluster setup and copy the returned payload.

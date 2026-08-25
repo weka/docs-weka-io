@@ -394,6 +394,10 @@ HOST ID  HOSTNAME        CONTAINER                                     IPS      
 15       ip-10-0-102-61  s3x1ffc8818xe647x4e5cxbbb3x95dcd8ca96f8       10.0.102.61  UP      NONE              4.4.1    AUTO            1      1.26 GB  0:02:34h
 
 The command 'weka cluster host' is deprecated. Please use 'weka cluster container' instead.
+{% hint style="danger" %}
+**INTERNAL, remove before publication. TBD (Docs):** The captured session on this page predates 6.0: it shows legacy typed identifiers (`HostId<14>`, `HostId<3>`) where 6.0 prints bare integers, and it uses the deprecated `weka cluster host` spelling — the transcript even includes the deprecation warning. Recapture against a 6.0 cluster using `weka cluster container`.
+{% endhint %}
+
 root@ip-10-0-93-212:/# weka s3 cluster
 S3 Cluster Info
         Status: Online
