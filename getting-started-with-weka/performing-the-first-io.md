@@ -20,7 +20,7 @@ Create a filesystem group before creating a filesystem in that group.
 
     ```bash
     $ weka fs group add my_fs_group
-    Created filesystem group my_fs_group with ID 1.
+    Created filesystem group my_fs_group with ID 2.
     ```
 2.  View the existing filesystem groups to confirm the creation.
 
@@ -28,23 +28,25 @@ Create a filesystem group before creating a filesystem in that group.
     $ weka fs group
     ID  Name         SSD Retention  Start Demote
      0  .meta          1d 0:00:00h      0:15:00h
-     1  my_fs_group
+     1  default        1d 0:00:00h      0:15:00h
+     2  my_fs_group
     ```
 
     A group created without `--ssd-retention` or `--start-demote` shows no value for those columns. Set them with `weka fs group update` if the group needs a tiering policy.
 3.  Create a filesystem within the new group.
 
     ```bash
-    $ weka fs add new_fs 1TiB --fs-group my_fs_group
-    FSId: 0
+    $ weka fs add new_fs 100GiB --fs-group my_fs_group
+    Created filesystem with ID 3.
     ```
 4.  View the existing filesystems to confirm the creation
 
     ```bash
     $ weka fs
-    Filesystem ID | Filesystem Name | Group       | Used SSD (Data) | Used SSD (Meta) | Used SSD | Free SSD | Available SSD (Meta) | Available SSD | Used Total (Data) | Used Total | Free Total | Available Total | Max Files | Status | Encrypted | Object Storages | Auth Required
-    +-------------+-----------------+-------------+-----------------+-----------------+----------+----------+----------------------+---------------+-------------------+------------+------------+-----------------+-----------+--------+-----------+-----------------+---------------+
-    0             | new_fs          | my_fs_group | 0 B             | 4.09 KB         | 4.09 KB  | 1.09 TB  | 274.87 GB            | 1.09 TB       | 0 B               | 4.09 KB    | 1.09 TB    | 1.09 TB         | 22107463  | READY  | False     |                 | False
+    ID  Name        Group ID  Used SSD  Available SSD  Used Total  Available Total  Thin Provisioned
+     0  .config_fs         0  12.29 KB        5.37 GB    12.29 KB          5.37 GB        False
+     1  default            1  12.29 KB      214.75 GB    12.29 KB        214.75 GB        False
+     3  new_fs             2  12.29 KB      107.37 GB    12.29 KB        107.37 GB        False
     ```
 
 {% hint style="danger" %}
@@ -52,7 +54,7 @@ Create a filesystem group before creating a filesystem in that group.
 {% endhint %}
 
 {% hint style="danger" %}
-**INTERNAL, remove before publication. TBD (Docs):** Two `weka fs` output blocks on this page are still legacy format — in step 4 above and under Write data to the filesystem. Both use pipe-delimited columns, a `+---+` separator row, and headers (`Filesystem ID`, `Filesystem Name`, `Group`) that no longer exist; 6.0 renders aligned columns headed `ID`, `Name`, `Group ID`, `Used SSD`, `Available SSD`, `Used Total`, `Available Total`, `Thin Provisioned`. The `FSId: 0` line in step 3 is also stale — 6.0 prints `Created filesystem with ID <n>.` These could not be captured: the example uses a 1 TiB filesystem and both lab clusters total 867.92 GB. Either regenerate on a larger cluster, or reduce the example size so the page is reproducible. The AWS hint block below was captured on a 6.0.0.304 cluster and is current.
+**INTERNAL, remove before publication. TBD (Docs):** One `weka fs` output block is still legacy format — the one under Write data to the filesystem, which shows capacity after the `dd` write. It uses pipe-delimited columns and headers (`Filesystem ID`, `Filesystem Name`, `Group`) that no longer exist, and it lists `default` rather than the `new_fs` the tutorial just created. Capturing it needs a Linux client with the filesystem mounted, which was not available; everything above it was captured on a 6.0.0.304 cluster. The AWS hint block below is also current.
 {% endhint %}
 
 {% hint style="info" %}
