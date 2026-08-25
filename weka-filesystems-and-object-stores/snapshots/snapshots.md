@@ -19,7 +19,7 @@ description: View, create, duplicate, restore, update, and delete snapshots from
 * From the menu, select **Manage > Filesystems**.\
   From the filesystem, select the three dots, and from the menu, select **Go To Snapshots**.
 
-<div data-with-frame="true"><img src="../../.gitbook/assets/wmng_fs_go_to_snapshot_animated.gif" alt="View a snapshot of a specific filesystem"></div>
+<div data-with-frame="true"><img src="../../.gitbook/assets/wmng_fs_go_to_snapshot_animated.png" alt="View a snapshot of a specific filesystem"></div>
 
 ## Create a snapshot
 
@@ -54,7 +54,7 @@ Create a directory for filesystem-level snapshots that serves as the access poin
    * **Upload to local object store**: Determines whether to upload the snapshot to a local object store. You can also upload the snapshot later (see [Snap-To-Object](../snap-to-obj/)).
    * **Upload to remote object store**: Determines whether to upload the snapshot to a remote object store. You can also upload the snapshot later.
 
-<div data-with-frame="true"><img src="../../.gitbook/assets/wmng_create_snapshot_animated.gif" alt="Create a snapshot from the Snapshots page"></div>
+<div data-with-frame="true"><img src="../../.gitbook/assets/wmng_create_snapshot_animated.png" alt="Create a snapshot from the Snapshots page"></div>
 
 3. Select **Create**.
 

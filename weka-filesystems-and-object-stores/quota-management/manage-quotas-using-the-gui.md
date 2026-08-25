@@ -71,7 +71,7 @@ You can view existing directory quotas and the default quota that are already se
 3. Select the filesystem in which the directory quotas are already set.
 4. To view all quotas or only the exceeding quotas, select the **Exceeding quotas/All quotas** switch.
 
-<div data-with-frame="true"><figure><img src="../../.gitbook/assets/wmng_view_dir_quotas.gif" alt=""><figcaption><p>View directory quotas and default quota</p></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/wmng_view_dir_quotas.png" alt=""><figcaption><p>View directory quotas and default quota</p></figcaption></figure></div>
 
 ## Update a directory quota or default quota
 

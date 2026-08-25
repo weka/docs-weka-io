@@ -81,7 +81,9 @@ weka s3 cluster add .config_fs --all-servers
 {% tab title="2. Create an S3 bucket" %}
 Create of an S3 bucket, a fundamental container for storing and organizing objects within the WEKA S3 service.
 
-<div data-with-frame="true"><figure><img src="../../.gitbook/assets/wmng_Create_S3_bucket.gif" alt=""><figcaption><p>Create an S3 bucket</p></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/Create_S3_bucket_1.png" alt=""><figcaption><p>Enter the bucket name and select the filesystem</p></figcaption></figure></div>
+
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/Create_S3_bucket_2.png" alt=""><figcaption><p>The new bucket appears in the bucket list</p></figcaption></figure></div>
 
 **Alternative CLI command**
 
@@ -101,7 +103,9 @@ Create a dedicated local user with S3 role and assign it with an S3 policy to fa
 
 When you create an S3 user in the GUI, the system generates an S3 access key and secret key and displays them once. Copy and store them securely for S3 client access.
 
-<div data-with-frame="true"><figure><img src="../../.gitbook/assets/wmng_create_s3_user.gif" alt=""><figcaption><p>Create a local S3 user</p></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/create_s3_user_1.png" alt=""><figcaption><p>Enter the username and select the S3 role</p></figcaption></figure></div>
+
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/create_s3_user_2.png" alt=""><figcaption><p>The new user appears in the local users list</p></figcaption></figure></div>
 
 **Alternative CLI commands**
 

@@ -18,7 +18,7 @@ When there are no active alerts, the alerts pane is empty and the bell icon does
 2. In the Active Alerts table, review the alerts. Each alert provides description, corrective action, and severity. Muted alerts show also the muted time remaining.
 3. To display alerts with the DEBUG severity level, turn on **Show Debug Alerts**.
 
-<div data-with-frame="true"><img src="../../.gitbook/assets/view_alert_details.gif" alt="View alert details"></div>
+<div data-with-frame="true"><img src="../../.gitbook/assets/view_alert_details.png" alt="View alert details"></div>
 
 ## Mute an alert
 
