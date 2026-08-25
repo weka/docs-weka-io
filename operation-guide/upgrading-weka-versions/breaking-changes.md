@@ -6,7 +6,7 @@ description: >-
 
 # Breaking changes
 
-Each entry takes effect as soon as the upgrade completes. None have a deprecation period, and each can break scripts, monitoring, or clients that worked on the previous version.
+Each entry takes effect as soon as the upgrade completes, with no deprecation period. Most can break scripts, monitoring, or clients that worked on the previous version; where an entry is a convention change that keeps the old form working, the section says so.
 
 Review the section for your target version before running the upgrade workflow in [README.md](./ "mention").
 
@@ -14,7 +14,9 @@ Review the section for your target version before running the upgrade workflow i
 
 ### CLI verb renames
 
-Six NFS subcommands changed from `delete` to `remove`. **There are no aliases** — the old form fails.
+Six NFS subcommands were renamed from `delete` to `remove`. **The `delete` spelling is
+kept as an alias on all six**, so existing scripts continue to work — this is a
+convention change, not a breaking one. Update to the canonical form when convenient.
 
 | Previous | Current |
 | --- | --- |
@@ -25,8 +27,13 @@ Six NFS subcommands changed from `delete` to `remove`. **There are no aliases** 
 | `weka nfs interface-group ip-range delete` | `weka nfs interface-group ip-range remove` |
 | `weka nfs interface-group port delete` | `weka nfs interface-group port remove` |
 
+Each of these also accepts `destroy`. The same pattern holds across the rest of the CLI:
+271 of the 984 commands carry at least one alias, so most `create`/`delete` spellings from
+the legacy CLI still resolve. Run any command with `--help` to see the aliases it accepts.
+
 {% hint style="info" %}
-One command keeps `delete`: `weka nfs interface-group tenant delete`. It is the exception to the rename, not an oversight.
+`weka nfs interface-group tenant delete` is not part of the rename — `delete` is its
+canonical name, and there is no `remove` form.
 {% endhint %}
 
 ### Tightened role requirements

@@ -143,7 +143,7 @@ weka nfs interface-group tenant delete <interface-group> <tenant>
 All three verbs take the same two positional arguments, interface group first and tenant second.
 
 {% hint style="warning" %}
-This command uses `delete`. Six other NFS subcommands were renamed from `delete` to `remove` in this version, with no aliases. `weka nfs interface-group tenant delete` is the exception. See [breaking-changes.md](../upgrading-weka-versions/breaking-changes.md "mention").
+This command uses `delete`. Six other NFS subcommands were renamed from `delete` to `remove` in this version, though all six keep `delete` as an alias. `weka nfs interface-group tenant delete` was not renamed at all — `delete` is its canonical name. See [breaking-changes.md](../upgrading-weka-versions/breaking-changes.md "mention").
 {% endhint %}
 
 ## Inspect tenant network space assignment
