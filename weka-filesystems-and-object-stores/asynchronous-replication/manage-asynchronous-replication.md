@@ -51,7 +51,7 @@ The local object store tier that replication uses is created automatically when 
 
 Establish a trust relationship between two NeuralMesh clusters so they can authenticate each other and replicate filesystems.
 
-Trust is established by a token exchange: you generate a pairing token on one cluster and register it on the peer cluster. Replication requires mutual trust, so you perform the exchange in both directions. If you need only one direction, a one-directional trust is also possible.
+Trust is established by a token exchange: you generate a pairing token on one cluster and register it on the peer cluster. Replication requires mutual trust, so you perform the exchange in both directions. There is no one-directional trust — until both sides have registered each other, the pairing is incomplete.
 
 **Before you begin**
 
@@ -73,7 +73,7 @@ weka cluster peer add siteA <token>
 
 Registering a peer also creates the local object store tier that replication uses (default name: `<peer name>-obs`). Optional flags override individual fields from the decoded token, such as `--join-ips`, `--s3-hostnames`, `--s3-bucket`, `--s3-port`, `--http-port`, `--guid`, and `--obs-tier-name`. Use `--dry-run` to test the command without affecting the system.
 
-3. Making the trust mutual is optional. Generate a token on site B:
+3. Generate a pairing token on site B:
 
 ```bash
 weka cluster peer init
@@ -93,7 +93,7 @@ weka cluster peer
 
 **Example output:**
 
-**SiteA -> SiteB pairing** ( one-way pairing )
+**After step 2 — site B knows site A, but site A does not yet know site B. The pairing is incomplete:**
 
 ```
 ╭────┬───────┬─────────────────────────┬───────────────┬────────────┬────────────┬───────────────────────╮
@@ -103,7 +103,7 @@ weka cluster peer
 ╰────┴───────┴─────────────────────────┴───────────────┴────────────┴────────────┴───────────────────────╯
 ```
 
-**SiteA <-> SiteB pairing** ( Mutual way pairing )
+**After step 4 — both sides are registered and the pairing is complete:**
 
 ```
 ╭────┬───────┬─────────────────────────┬───────────────┬────────────┬─────────┬───────────────────────╮
@@ -113,7 +113,7 @@ weka cluster peer
 ╰────┴───────┴─────────────────────────┴───────────────┴────────────┴─────────┴───────────────────────╯
 ```
 
-Confirm that **Connection** shows `connected` and **Pairing** shows `mutual` or local-only. A `degraded` connection indicates that some peer endpoints are unreachable. For bucket counts and the HTTP port, run `weka cluster peer -v`.
+Confirm that **Connection** shows `connected` and **Pairing** shows `mutual`. A `local-only` pairing is a warning, not a valid end state: it means the peer is reachable but has not registered this cluster in return, so you still need to complete the exchange in the other direction. A `degraded` connection indicates that some peer endpoints are unreachable. For bucket counts and the HTTP port, run `weka cluster peer -v`.
 
 To modify the settings of an existing peer, such as its join IPs or S3 hostnames, use `weka cluster peer update`.
 
