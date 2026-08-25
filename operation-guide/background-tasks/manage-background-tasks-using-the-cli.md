@@ -4,41 +4,57 @@ description: View, limit, pause, resume, and abort WEKA background tasks using t
 
 # Manage background tasks using the CLI
 
-## View active background tasks <a href="#viewing-running-background-tasks" id="viewing-running-background-tasks"></a>
+## View active background tasks
 
-You can view the active background tasks' status, progress, and description.‌
+Lists the background tasks running in the cluster, with the phase and progress of each.
 
-‌**Command:** `weka cluster task`‌
+**Command:** `weka cluster task`
 
-This command is used for viewing all active background tasks.
-
-Example:
-
+```sh
+weka cluster task [--show-catalog] [--show-waiting]
 ```
-# weka cluster task
-Type        | State   | Progress | Description
-------------+---------+----------+-----------------------------------------------------------
-OBS_DETACH2 | RUNNING | 94       | Detaching Object Storage `obs_1` from filesystem `default`
-```
+
+**Parameters**
+
+| Parameter        | Description                          |
+| --- | --- |
+| `--show-catalog` | Include catalog tasks in the output. |
+| `--show-waiting` | Include waiting tasks in the output. |
 
 ## ‌Limit background task resources
 
-It is possible to limit the resources being used by background tasks.
-
-The configured limit affects external tasks and internal low-priority asynchronous operations.‌
+Caps the resources background tasks may consume, so they compete less with client I/O.
 
 **Command:** `weka cluster task limits`
 
-This command is used to view the defined limits.
-
-**Command:** `weka cluster task limits set [--cpu-limit cpu-limit]`
-
-This command is used to update the CPU limit.
+```sh
+weka cluster task limits
+```
 
 ## Pause/Resume/Abort a background task
 
-If there are other background tasks or activities that are of higher priority, you can pause and later resume the background task, or abort it.
+Pauses, resumes, or aborts a running background task.
 
-**Command:** `weka cluster task pause / resume / abort <task-id>`
+**Command:** `weka cluster task pause`
 
-This command is used to pause, resume, or abort a specific task process. The `abort` subcommand is not applicable when downloading a filesystem or a snapshot. Instead, delete them directly.
+```sh
+weka cluster task pause <task-id>
+```
+
+**Command:** `weka cluster task resume`
+
+```sh
+weka cluster task resume <task-id>
+```
+
+**Command:** `weka cluster task abort`
+
+```sh
+weka cluster task abort <task-id>
+```
+
+**Parameters**
+
+| Parameter   | Description    |
+| --- | --- |
+| `task-id`\* | Task to pause. |

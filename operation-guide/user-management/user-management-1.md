@@ -8,21 +8,23 @@ description: >-
 
 ## Create a local user
 
+Creates a local cluster user with a role that determines what the user can do.
+
 **Command:** `weka user add`
 
-Use the following command line to create a local user:
-
-`weka user add <username> <role> [password] [--posix-uid uid] [--posix-gid gid]`
+```sh
+weka user add <username> <role> [<password>] [--posix-gid <uint32>] [--posix-uid <uint32>]
+```
 
 **Parameters**
 
-| Name         | Value                                                                                                                      | Default |
-| ------------ | -------------------------------------------------------------------------------------------------------------------------- | ------- |
-| `username`\* | Name for the new user                                                                                                      |         |
-| `role`       | Role of the new created user.Possible values: `clusteradmin`, `csi`, `tenantadmin`, `readonly`, `regular`, `s3`            |         |
-| `password`   | New user password.If not supplied, the command prompts to supply the password.                                             |         |
-| `posix-uid`  | POSIX UID of underlying files representing objects created by this S3 user access/keys credentials.For S3 user roles only. | 0       |
-| `posix-gid`  | POSIX GID of underlying files representing objects created by this S3 user access/keys credentials.For S3 user roles only. | 0       |
+| Parameter               | Description                                                                                                                                                                                                                                  |
+| --- | --- |
+| `username`\* | Username for new user. The user must present this to login. |
+| `role`\* | Role for new user. Possible values: `clusteradmin`, `csi`, `tenantadmin`, `readonly`, `regular`, `s3` |
+| `password` | Password for new user. Must contain at least 8 characters, and have at least one uppercase letter, one lowercase letter, and one number or special character. Typing special characters as arguments to this command might require escaping. |
+| `--posix-gid` \<uint32> | POSIX group ID for user. Used for S3 only. |
+| `--posix-uid` \<uint32> | POSIX user ID for user. Used for S3 only. |
 
 {% hint style="success" %}
 **Example:**
@@ -59,15 +61,22 @@ my_new_user | Internal | Regular
 
 ## Log-in to the WEKA cluster
 
+Authenticates to the cluster and saves a login token, so later commands run without prompting.
+
 **Command:** `weka user login`
 
-Use the following command to log a user into the WEKA cluster. If login is successful, the user credentials are saved to the user's home directory.
-
-`weka user login [username] [password] [--tenant tenant] [--path path]`
+```sh
+weka user login [<username>] [<password>] [--path <string>] [--tenant <string>]
+```
 
 **Parameters**
 
-<table><thead><tr><th width="175">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>username</code>*</td><td>User's username</td></tr><tr><td><code>password</code>*</td><td>User's password</td></tr><tr><td><code>tenant</code></td><td>Tenant name or ID</td></tr><tr><td><code>path</code></td><td><p>The path where the login token will be saved (default: ~/.weka/auth-token.json). This path can also be specified using the WEKA_TOKEN environment variable.</p><p>After logging-in, use the WEKA_TOKEN environment variable to specify where the login token is located.</p></td></tr></tbody></table>
+| Parameter                  | Description                                                                                                                                                                                                                                                                                                                                                     |
+| --- | --- |
+| `username` | Username of user for authentication. Can be supplied in the envrionment as 'WEKA\_USERNAME'. Prompted for if not set. |
+| `password` | Password of the user to authenticate as. Can be supplied in the environment as 'WEKA\_PASSWORD'. Prompted for if not set. |
+| `-p`, `--path` \<string> | The path where the login token will be saved. This path can also be specified using the WEKA\_TOKEN environment variable. After logging in, use the WEKA\_TOKEN environment variable to specify where the login token is located. Deprecated: Use of profiles is a better solution, or use the weka user generate-token command to create a suitable API token. default: ~/.weka/auth-token.json). This path can also be specified using the WEKA_TOKEN environment variable. After logging-in, use the WEKA_TOKEN environment variable to specify where the login token is located |
+| `-g`, `--tenant` \<string> | Tenant where the user is located. |
 
 {% hint style="success" %}
 **Manage authentication tokens in WEKA**
@@ -99,18 +108,21 @@ weka user login user1 password1
 
 ## Change a local user password
 
+Changes a local user's password.
+
 **Command:** `weka user passwd`
 
-Use the following command to change a local user password:
-
-`weka user passwd <password> [--username username]`
+```sh
+weka user passwd [<password>] [--current-password <string>] [--username <username>]
+```
 
 **Parameters**
 
-| Name         | Value                                                                      | Default                    |
-| ------------ | -------------------------------------------------------------------------- | -------------------------- |
-| `password`\* | New password                                                               |                            |
-| `username`   | Name of the user to change the password for.It must be a valid local user. | The current logged-in user |
+| Parameter                      | Description                                                                                                                                                                                                                         |
+| --- | --- |
+| `password` | New password. Must contain at least 8 characters, and have at least one uppercase letter, one lowercase letter, and one number or special character. Typing special characters as arguments to this command might require escaping. |
+| `--current-password` \<string> | Current password. Only required when changing the current user's own password. |
+| `--username` \<username> | User to change the password for. Defaults to the currently logged-in user. |
 
 {% hint style="info" %}
 * If necessary, provide or set`WEKA_USERNAME` or `WEKA_PASSWORD.`
@@ -143,19 +155,19 @@ Your new S3 credentials are displayed. Store the secret key securely, as it is n
 
 ## Revoke user access
 
+Revokes all of a user's login tokens, forcing the user to authenticate again.
+
 **Command:** `weka user revoke-tokens`
 
-Use the following command to revoke internal user access to the system and mounting filesystems:
-
-`weka user revoke-tokens <username>`
-
-You can revoke the access for LDAP users by changing the `user-revocation-attribute` defined in the LDAP server configuration.
+```sh
+weka user revoke-tokens <username>
+```
 
 **Parameters**
 
-| Name         | Value                                                                                 |
-| ------------ | ------------------------------------------------------------------------------------- |
-| `username`\* | A user with valid credentials within the Tenant Admin's domain executing the command. |
+| Parameter    | Description                                        |
+| --- | --- |
+| `username`\* | Username of the user whose tokens will be revoked. |
 
 {% hint style="warning" %}
 NFS and SMB are different protocols from WekaFS, which require additional security considerations when used. For example, The system grants NFS permissions per server. Therefore, manage the permissions for accessing these servers for NFS export carefully.
@@ -163,34 +175,38 @@ NFS and SMB are different protocols from WekaFS, which require additional securi
 
 ## Update a local user
 
+Changes a local user's role or password policy.
+
 **Command:** `weka user update`
 
-Use the following command line to update a local user:
-
-`weka user update <username> [--role role] [--posix-uid uid] [--posix-gid gid]`
+```sh
+weka user update <username> [--posix-gid <uint32>] [--posix-uid <uint32>] [--role <user-role>]
+```
 
 **Parameters**
 
-| Name         | Value                                                                                                                      |
-| ------------ | -------------------------------------------------------------------------------------------------------------------------- |
-| `username`\* | Name of an existing user.It must be a valid local user.                                                                    |
-| `role`       | Updated user role.Possible values: `regular`, `s3`,`readonly`, `tenantadmin` or `clusteradmin`                             |
-| `posix-uid`  | POSIX UID of underlying files representing objects created by this S3 user access/keys credentials.For S3 user roles only. |
-| `posix-gid`  | POSIX GID of underlying files representing objects created by this S3 user access/keys credentials.For S3 user roles only. |
+| Parameter               | Description                                |
+| --- | --- |
+| `username`\* | Username of user to update. |
+| `--posix-gid` \<uint32> | POSIX group ID for user. Used for S3 only. |
+| `--posix-uid` \<uint32> | POSIX user ID for user. Used for S3 only. |
+| `--role` \<user-role> | New role to set for the user. Possible values: `regular`, `s3`,`readonly`, `tenantadmin` or `clusteradmin` |
 
 ## Delete a local user
 
+Deletes a local user from the cluster.
+
 **Command:** `weka user remove`
 
-To delete a user, use the following command line:
-
-`weka user remove <username>`
+```sh
+weka user remove <username>
+```
 
 **Parameters**
 
-| Name         | Value                                                     |
-| ------------ | --------------------------------------------------------- |
-| `username`\* | Name of the user to delete.It must be a valid local user. |
+| Parameter    | Description                 |
+| --- | --- |
+| `username`\* | Username of user to delete. |
 
 {% hint style="success" %}
 **Example:**
@@ -213,41 +229,46 @@ To authenticate users from an LDAP user directory, the LDAP directory must first
 
 ### Configure an LDAP user directory
 
-**Command:**\
-`weka user ldap setup`\
-`weka user ldap setup-ad`
+Configures the LDAP directory the cluster authenticates users against. Use `setup` for a generic LDAP server and `setup-ad` for Active Directory.
 
-One of two CLI commands is used to configure an LDAP user directory for user authentication. The first is for configuring a general LDAP server and the second is for configuring an Active Directory server.
+**Command:** `weka user ldap setup`
 
-To configure an LDAP server, use the following command line:
+```sh
+weka user ldap setup <server-uri> <base-dn> <user-object-class> <user-id-attribute> <group-object-class> <group-membership-attribute> <group-id-attribute> <reader-username> [<reader-password>] [--cluster-admin-group <string>] [--csi-group <string>] [--ignore-start-tls-failure] [--network-space-id <uint16>] [--protocol-version <uint>] [--readonly-group <string>] [--regular-group <string>] [--server-timeout-secs <duration>] [--start-tls] [--tenant-admin-group <string>] [--user-revocation-attribute <string>] [--user-uuid-attribute <string>]
+```
 
-`weka user ldap setup <server-uri> <base-dn> <user-object-class> <user-id-attribute> <group-object-class> <group-membership-attribute> <group-id-attribute> <reader-username> <reader-password> <cluster-admin-group> <tenant-admin-group> <regular-group> <readonly-group> [--start-tls start-tls] [--ignore-start-tls-failure ignore-start-tls-failure] [--server-timeout-secs server-timeout-secs] [--protocol-version protocol-version] [--user-revocation-attribute user-revocation-attribute]`
+**Command:** `weka user ldap setup-ad`
 
-To configure an Active Directory server, use the following command line:
-
-`weka user ldap setup-ad <server-uri> <domain> <reader-username> <reader-password> <cluster-admin-group> <tenant-admin-group> <regular-group> <readonly-group> [--start-tls start-tls] [--ignore-start-tls-failure ignore-start-tls-failure] [--server-timeout-secs server-timeout-secs] [--user-revocation-attribute user-revocation-attribute]`
+```sh
+weka user ldap setup-ad <server-uri> <domain> <reader-username> [<reader-password>] [--cluster-admin-group <string>] [--csi-group <string>] [--ignore-start-tls-failure] [--network-space-id <uint16>] [--readonly-group <string>] [--regular-group <string>] [--server-timeout-secs <duration>] [--start-tls] [--tenant-admin-group <string>] [--user-revocation-attribute <string>]
+```
 
 **Parameters**
 
-| Name                                      | Value                                                                                                                                                                                                         | Default   |
-| ----------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------- |
-| `server-uri`\*                            | Either the LDAP server hostname/IP or a URI.Format: `ldap://hostname:port` or `ldaps://hostname:port`                                                                                                         |           |
-| `base-dn`\*                               | Base DN under which users are stored.Ensure the name is valid.                                                                                                                                                |           |
-| `user-id-attribute`\*                     | Attribute storing user IDs.Ensure the name is valid.                                                                                                                                                          |           |
-| `user-object-class`\*                     | Object class of users.Ensure the name is valid.                                                                                                                                                               |           |
-| `group-object-class`\*                    | Object class of groups.Ensure the name is valid.                                                                                                                                                              |           |
-| `group-membership-attribute`\*            | Attribute of group containing the DN of a user membership in the group.Ensure the name is valid.                                                                                                              |           |
-| `group-id-attribute`\*                    | Attribute storing the group name.The name must match the names used in the `&#x3C;admin-group>`, `&#x3C;regular group>` and `&#x3C;readonly group>`                                                           |           |
-| `reader-username` and `reader-password`\* | Credentials of a user with read access to the directory.The password is kept in the Weka cluster configuration in plain text, as it is used to authenticate against the directory during user authentication. |           |
-| `cluster-admin-group`\*                   | Group name for Users with Cluster Admin role.Ensure the name is valid.                                                                                                                                        |           |
-| `tenant-admin-group`\*                    | Tenant Admin Group Name.Ensure the name is valid.                                                                                                                                                             |           |
-| `regular-group`\*                         | Name of group containing users defined with regular privileges.Ensure the name is valid.                                                                                                                      |           |
-| `readonly-group`\*                        | Name of group containing users defined with read only privileges.Ensure the name is valid.                                                                                                                    |           |
-| `server-timeout-secs`                     | Server connection timeout in seconds.                                                                                                                                                                         |           |
-| `protocol-version`                        | Selection of LDAP version.Possible values: `LDAP v2` or `LDAP v3`                                                                                                                                             | `LDAP v3` |
-| `user-revocation-attribute`               | The LDAP attribute; when its value changes in the LDAP directory, user access and mount tokens are revoked.The user must re-login after a change is detected.                                                 |           |
-| `start-tls`                               | Issue StartTLS after connecting.Possible values: `yes` or `no`Do not use with `ldaps://`                                                                                                                      | `no`      |
-| `ignore-start-tls-failure`                | Ignore start TLS failure.Possible values: `yes` or `no`                                                                                                                                                       | `no`      |
+| Parameter                               | Description                                                                                                               |
+| --- | --- |
+| `server-uri`\* | LDAP server URI. Format is either \[ldap://]hostname\[:port] or ldaps://hostname\[:port]. |
+| `base-dn`\* | Base DN. |
+| `user-object-class`\* | User object class. |
+| `user-id-attribute`\* | User ID attribute. |
+| `group-object-class`\* | Group object class. |
+| `group-membership-attribute`\* | Group membership attribute. |
+| `group-id-attribute`\* | Group ID attribute. |
+| `reader-username`\* | Reader username. |
+| `reader-password` | Reader password. If omitted, you will be prompted. |
+| `--cluster-admin-group` \<string> | ClusterAdmin LDAP group. Users in this group are assigned the ClusterAdmin role. Only available for the root tenant. |
+| `--csi-group` \<string> | CSI LDAP group. Users in this group are assigned the CSI role. |
+| `--ignore-start-tls-failure` | Ignore StartTLS failure. If StartTLS fails, the connection will not use encryption. Possible values: `yes` or `no` |
+| `--network-space-id` \<uint16> | Network space ID in which to run LDAP queries. Defaults to the host network namespace. |
+| `--protocol-version` \<uint> | LDAP protocol version. Possible values: `LDAP v2` or `LDAP v3` |
+| `--readonly-group` \<string> | ReadOnly LDAP group. Users in this group are assigned the ReadOnly role. |
+| `--regular-group` \<string> | Regular LDAP group. Users in this group are assigned the Regular role. |
+| `--server-timeout-secs` \<duration> | LDAP server connection timeout, specified in seconds. |
+| `--start-tls` | Issue StartTLS after connecting. URL should not be used with ldaps://. Possible values: `yes` or `no`Do not use with `ldaps://` |
+| `--tenant-admin-group` \<string> | TenantAdmin LDAP group. Users in this group are assigned the TenantAdmin role. |
+| `--user-revocation-attribute` \<string> | User revocation attribute. If provided, updating this attribute in the LDAP server automatically revokes all user tokens. |
+| `--user-uuid-attribute` \<string> | User UUID attribute. |
+| `domain`\* | Active Directory domain for principals. |
 
 {% hint style="info" %}
 The `sAMAccountName` (user logon name) for roles such as Cluster Admin, Tenant Admin, Regular User, and Read-only User is limited to 20 characters.
@@ -255,18 +276,35 @@ The `sAMAccountName` (user logon name) for roles such as Cluster Admin, Tenant A
 
 ### View a configured LDAP User Directory
 
-**Command:**\
-`weka user ldap`
+Shows the configured LDAP user directory and its current settings.
 
-This command is used for viewing the current LDAP configuration used for authenticating users.
+**Command:** `weka user ldap`
+
+```sh
+weka user ldap
+```
 
 ### Disable or enable a configured LDAP user directory
 
-**Command:**\
-`weka user ldap disable`\
-`weka user ldap enable`
+Turns LDAP authentication off or back on without discarding the directory configuration.
 
-These commands are used for disabling or enabling user authentication through a configured LDAP user directory.
+**Command:** `weka user ldap disable`
+
+```sh
+weka user ldap disable [--force]
+```
+
+**Command:** `weka user ldap enable`
+
+```sh
+weka user ldap enable
+```
+
+**Parameters**
+
+| Parameter       | Description                                                     |
+| --- | --- |
+| `-f`, `--force` | Force action. Perform this action without further confirmation. |
 
 {% hint style="info" %}
 You can only disable an LDAP configuration, but not delete it.

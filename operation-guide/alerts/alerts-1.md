@@ -8,14 +8,14 @@ description: >-
 
 ## Display alert types
 
-List the identifiers of every alert type the cluster can raise. Use an identifier from this list wherever a command takes an `alert-type` value.
+Lists every alert type the cluster can raise.
 
 **Command:** `weka alerts types`
 
-{% code overflow="wrap" %}
-```bash
+```sh
 weka alerts types
 ```
+
 {% endcode %}
 
 **Example**
@@ -38,27 +38,31 @@ WTracerLostTraces
 
 ### Describe alert types
 
-Show each alert type with its description and the recommended corrective action. Run this command to understand what an alert means before you act on it or mute it.
+Shows the description and recommended action for an alert type.
 
 **Command:** `weka alerts describe`
 
-```bash
+```sh
 weka alerts describe
 ```
 
 ## View alerts
 
-List the alerts currently raised in the cluster. By default, the output shows active alerts of severity `warning` and higher.
+Lists the alerts currently raised in the cluster. By default the output shows active alerts of severity `warning` and higher.
 
 **Command:** `weka alerts`
 
-```bash
-weka alerts [--severity <severity>] [--muted] [--inactive]
+```sh
+weka alerts [--inactive] [--muted] [--severity <severity>]
 ```
 
 **Parameters**
 
-<table><thead><tr><th width="137.8046875">Name</th><th width="480.16015625">Value</th><th>Default</th></tr></thead><tbody><tr><td><code>severity</code></td><td>List alerts of the specified severity and higher. Supported values, from lowest to highest: <code>debug</code> (hidden from the default output), <code>warning</code>, <code>minor</code>, <code>major</code>, <code>critical</code>.</td><td><code>warning</code></td></tr><tr><td><code>muted</code></td><td>Include muted alerts in the output.</td><td>False</td></tr><tr><td><code>inactive</code></td><td>Include alerts that recently transitioned to an inactive state.</td><td>False</td></tr></tbody></table>
+| Parameter                | Description                                         |
+| --- | --- |
+| `--inactive` | List inactive alerts. |
+| `--muted` | List muted alerts alongside the unmuted ones. |
+| `--severity` \<severity> | Include alerts at the specified severity or higher. |
 
 **Output columns**
 
@@ -102,20 +106,24 @@ $ weka alerts --format json
 
 ### Mute an alert type
 
-Mute an alert type for a set duration. Muted alerts do not appear in the default output of `weka alerts`. When the duration expires, the cluster unmutes the alert type automatically.
-
-Mute an alert type for the whole cluster, or limit the mute to specific processes, containers, or servers. These are the mute scope.
+Silences an alert type for a set period, so it stops appearing in the active list.
 
 **Command:** `weka alerts mute`
 
-```bash
-weka alerts mute <alert-type> <duration> [--comment <comment>]
-[--process <process>]... [--container <container>]... [--hostname <hostname>]...
+```sh
+weka alerts mute <alert-type> <duration> [--comment <string>] [--container <container-ids>…] [--hostname <strings>…] [--process <process-ids>…]
 ```
 
 **Parameters**
 
-<table><thead><tr><th width="158.71875">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>alert-type</code> *</td><td>Alert type to mute. Run <code>weka alerts types</code> to list the available types.</td></tr><tr><td><code>duration</code> *</td><td>Length of the mute. Format examples: <code>3s</code>, <code>4m</code>, <code>2h</code>, <code>1d</code>, <code>1d5h</code>, <code>1w</code>, <code>infinite</code>, <code>unlimited</code>.</td></tr><tr><td><code>comment</code></td><td>Comment that records why the alert type is muted.</td></tr><tr><td><code>process</code></td><td>Mute the alert only for the specified process IDs. Applies to process-specific alerts only.</td></tr><tr><td><code>container</code></td><td>Mute the alert only for the specified container IDs. Applies to container-specific alerts only.</td></tr><tr><td><code>hostname</code></td><td>Mute the alert only for the specified servers. Applies to server-specific alerts only.</td></tr></tbody></table>
+| Parameter                       | Description                                                                                                                                                                                                                                        |
+| --- | --- |
+| `alert-type`\* | Alert type to mute. Use 'weka alerts types' to list available types. |
+| `duration`\* | Duration to mute this alert type. |
+| `--comment` \<string> | Explanatory comment. Provides context for the mute action. |
+| `--container` \<container-ids>… | Limit muting to the specified container. Applies only to container-specific alerts; if the alert is not container-specific, all alerts of this type are muted. Multiple values may be supplied separated by commas, or the option may be repeated. |
+| `--hostname` \<strings>… | Limit muting to the specified server. Applies only to server-specific alerts; if the alert is not server-specific, all alerts of this type are muted. Multiple values may be supplied separated by commas, or the option may be repeated. |
+| `--process` \<process-ids>… | Limit muting to the specified process. Applies only to process-specific alerts; if the alert is not process-specific, all alerts of this type are muted. Multiple values may be supplied separated by commas, or the option may be repeated. |
 
 To set a scope with more than one value, provide a comma-separated list or repeat the parameter.
 
@@ -137,28 +145,32 @@ weka alerts mute NodeNetworkUnstable 23m --process 261 --comment "Muted until ne
 
 ### View muted alert types
 
-List the currently muted alert types with their mute duration, comment, and scope.
+Lists the alert types currently muted and how long each mute has left.
 
 **Command:** `weka alerts mute list`
 
-```bash
+```sh
 weka alerts mute list
 ```
 
 ### Add items to a mute scope
 
-Extend the mute scope of an alert type that is already muted. The duration and the comment remain unchanged.
+Narrows a mute to specific containers, processes, or hostnames instead of the whole cluster.
 
 **Command:** `weka alerts mute add`
 
-```bash
-weka alerts mute add <alert-type>
-[--process <process>]... [--container <container>]... [--hostname <hostname>]...
+```sh
+weka alerts mute add <alert-type> [--container <container-ids>…] [--hostname <strings>…] [--process <process-ids>…]
 ```
 
 **Parameters**
 
-<table><thead><tr><th width="159.8359375">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>alert-type</code> *</td><td>Alert type to update. Run <code>weka alerts types</code> to list the available types.</td></tr><tr><td><code>process</code></td><td>Add the specified process IDs to the mute scope. Applies to process-specific alerts only.</td></tr><tr><td><code>container</code></td><td>Add the specified container IDs to the mute scope. Applies to container-specific alerts only.</td></tr><tr><td><code>hostname</code></td><td>Add the specified servers to the mute scope. Applies to server-specific alerts only.</td></tr></tbody></table>
+| Parameter                       | Description                                                                                                                                                                                                                                        |
+| --- | --- |
+| `alert-type`\* | Alert type to modify. Use 'weka alerts types' to list available types. |
+| `--container` \<container-ids>… | Mute alerts for the specified container. Applies only to container-specific alerts; if the alert is not container-specific, all alerts of this type are muted. Multiple values may be supplied separated by commas, or the option may be repeated. |
+| `--hostname` \<strings>… | Mute alerts for the specified server. Applies only to server-specific alerts; if the alert is not server-specific, all alerts of this type are muted. Multiple values may be supplied separated by commas, or the option may be repeated. |
+| `--process` \<process-ids>… | Mute alerts for the specified process. Applies only to process-specific alerts; if the alert is not process-specific, all alerts of this type are muted. Multiple values may be supplied separated by commas, or the option may be repeated. |
 
 To add more than one value, provide a comma-separated list or repeat the parameter.
 
@@ -170,18 +182,22 @@ weka alerts mute add NodeNetworkUnstable --process 261,262
 
 ### Remove items from a mute scope
 
-Remove processes, containers, or servers from the mute scope of an alert type that is already muted.
+Removes containers, processes, or hostnames from an alert type's mute scope.
 
 **Command:** `weka alerts mute remove`
 
-```bash
-weka alerts mute remove <alert-type>
-[--process <process>]... [--container <container>]... [--hostname <hostname>]...
+```sh
+weka alerts mute remove <alert-type> [--container <container-ids>…] [--hostname <strings>…] [--process <process-ids>…]
 ```
 
 **Parameters**
 
-<table><thead><tr><th width="154.83203125">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>alert-type</code> *</td><td>Alert type to update. Run <code>weka alerts types</code> to list the available types.</td></tr><tr><td><code>process</code></td><td>Remove the specified process IDs from the mute scope. Applies to process-specific alerts only.</td></tr><tr><td><code>container</code></td><td>Remove the specified container IDs from the mute scope. Applies to container-specific alerts only.</td></tr><tr><td><code>hostname</code></td><td>Remove the specified servers from the mute scope. Applies to server-specific alerts only.</td></tr></tbody></table>
+| Parameter                       | Description                                                                                                                                                                                                                                                  |
+| --- | --- |
+| `alert-type`\* | Alert type to modify. Use 'weka alerts types' to list available types. |
+| `--container` \<container-ids>… | Remove mute filter for the specified container. Applies only to container-specific alerts; if the alert is not container-specific, all alerts of this type are affected. Multiple values may be supplied separated by commas, or the option may be repeated. |
+| `--hostname` \<strings>… | Remove mute filter for the specified server. Applies only to server-specific alerts; if the alert is not server-specific, all alerts of this type are affected. Multiple values may be supplied separated by commas, or the option may be repeated. |
+| `--process` \<process-ids>… | Remove mute filter for the specified process. Applies only to process-specific alerts; if the alert is not process-specific, all alerts of this type are affected. Multiple values may be supplied separated by commas, or the option may be repeated. |
 
 To remove more than one value, provide a comma-separated list or repeat the parameter.
 
@@ -195,17 +211,19 @@ weka alerts mute remove NodeNetworkUnstable --process 262
 
 ### Unmute an alert type
 
-Unmute an alert type before its mute duration expires. The alert type returns to the default output of `weka alerts`.
+Ends the mute on an alert type so it appears in the active list again.
 
 **Command:** `weka alerts unmute`
 
-```bash
+```sh
 weka alerts unmute <alert-type>
 ```
 
 **Parameters**
 
-<table><thead><tr><th width="165.07421875">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>alert-type</code> *</td><td>Alert type to unmute. Run <code>weka alerts types</code> to list the available types.</td></tr></tbody></table>
+| Parameter      | Description                                                            |
+| --- | --- |
+| `alert-type`\* | Alert type to unmute. Use 'weka alerts types' to list available types. |
 
 **Example**
 

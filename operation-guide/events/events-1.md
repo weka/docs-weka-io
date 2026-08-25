@@ -6,59 +6,65 @@ description: View, filter, and trigger cluster and container events using the CL
 
 ## View events
 
+Lists cluster events, filtered by time range, severity, type, or category.
+
 **Command:** `weka events`
 
-Use the following command line to list events in the Weka cluster:
-
-`weka events [--num-results num-results] [--start-time <start-time>] [--end-time <end-time>] [--severity severity] [--direction direction] [--type type-list] [--exclude-type exclude-type-list] [--category category-list] [--cloud-time] [--show-internal] [--raw-units] [--UTC]`
+```sh
+weka events [--category <event-categories>…] [--cloud-time] [--direction <direction>] [--end-time <time>] [--exclude-type <event-types>…] [--no-proxy] [--num-results <uint>] [--proxy <string>] [--severity <severity>] [--show-internal] [--start-time <time>] [--type <event-types>…]
+```
 
 **Parameters**
 
-| Name                | Value                                                                                                                                                                                                                                                                                                                               | Default                                    |
-| ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------ |
-| `num-results`       | Maximum number of events to display.Positive integer. 0 shows all events.                                                                                                                                                                                                                                                           | 50                                         |
-| `start-time`        | Include events that occurred at this start time and later.Format: `5m`, `-5m`, `-1d`, `-1w`, `1:00, 01:00`, `18:30`, `18:30:07`, `2018-12-31 10:00`, `2018/12/31 10:00`, `2018-12-31T10:00`, `9:15Z`, `10:00+2:00`.                                                                                                                 | -365 days                                  |
-| `end-time`          | Include events that occurred up to this time.Format: `5m`, `-5m`, `-1d`, `-1w`, `1:00, 01:00`, `18:30`, `18:30:07`, `2018-12-31 10:00`, `2018/12/31 10:00`, `2018-12-31T10:00`, `9:15Z`, `10:00+2:00`.                                                                                                                              | Set to a time represents 'now'             |
-| `severity`          | Include events with this level of severity and higher.Possible values: `info`, `warning`, `minor`, `major`, `critical`.                                                                                                                                                                                                             | `info`                                     |
-| `direction`         | Fetch from the first available event (`forward`) or the latest created event (`backward`). Default is `backward`.Possible values: `forward`, `backward`.                                                                                                                                                                                                                                                          | `asc`                                      |
-| `type-list`         | Filter events by type (can be used multiple times).Use `weka events types` to see available types.                                                                                                                                                                                                                             | None                                       |
-| `exclude-type-list` | Filter-out events by type (can be used multiple times).Use `weka events types` to see available types.                                                                                                                                                                                                                         |                                            |
-| `category-list`     | Include only events matching the defined category.Possible values: `Alerts`, `Cloud`, `Clustering`, `Config`, `Custom`, `Drive`, `Events`, `Filesystem`, `InterfaceGroup`, `Kms`, `Licensing`, `NFS, Network`, `Node`, `ObjectStorage`, `Org`, `Raid`, `Resources`, `S3`, `Security`, `Smb`, `System`, `Traces`, `Upgrade`, `User`. | All                                        |
-| `cloud-time`        | Query and sort results by the digested time in the cloud                                                                                                                                                                                                                                                                            | False                                      |
-| `show-internal`     | Also displays internal events                                                                                                                                                                                                                                                                                                       | False                                      |
-| `raw-units`         | Print values in raw units such as bytes and seconds.                                                                                                                                                                                                                                                                                | Readable format. Example: 1KiB 234MiB 2GiB |
-| `UTC`               | Print times in UTC                                                                                                                                                                                                                                                                                                                  | Host's local time                          |
+| Parameter                               | Description                                                                                                                                          |
+| --- | --- |
+| `-c`, `--category` \<event-categories>… | Include only events in this category. Multiple values may be supplied separated by commas, or the option may be repeated. Possible values: `Alerts`, `Cloud`, `Clustering`, `Config`, `Custom`, `Drive`, `Events`, `Filesystem`, `InterfaceGroup`, `Kms`, `Licensing`, `NFS, Network`, `Node`, `ObjectStorage`, `Org`, `Raid`, `Resources`, `S3`, `Security`, `Smb`, `System`, `Traces`, `Upgrade`, `User` |
+| `-l`, `--cloud-time` | Sort by cloud time. |
+| `-d`, `--direction` \<direction> | Fetch events from the first available event (forward) or the latest created event (backward). Default is backward. Possible values: `forward`, `backward` |
+| `--end-time` \<time> | Include only events that occurred at or before this time. |
+| `-x`, `--exclude-type` \<event-types>… | Remove events by type. Glob patterns (\*, ?, \[]) are supported. Multiple values may be supplied separated by commas, or the option may be repeated. |
+| `--no-proxy` | Do not use an HTTP proxy when connecting to the cloud. |
+| `-n`, `--num-results` \<uint> | Maximum number of events to report. |
+| `--proxy` \<string> | Use the given proxy for connecting to the cloud. |
+| `--severity` \<severity> | Include events with equal and higher severity. Possible values: `info`, `warning`, `minor`, `major`, `critical` |
+| `-i`, `--show-internal` | Show internal events. |
+| `--start-time` \<time> | Include only events that occurred at or after this time. |
+| `-t`, `--type` \<event-types>… | Filter events by type. Glob patterns (\*, ?, \[]) are supported. Multiple values may be supplied separated by commas, or the option may be repeated. |
 
 ## View events of a specific container
 
+Lists the events recorded locally by one container, which is useful when the container cannot reach the cluster leader.
+
 **Command:** `weka events local`
 
-Use the following command line to list recent events on the specific container running the command from.
-
-This command is helpful for the following cases:
-
-* No connectivity to the central monitoring site
-* No connectivity from a specific container
-* Containers that are not part of the cluster
-
-`weka events local [--start-time <start-time>] [--end-time <end-time>] [--next next] [--stem-mode] [--show-internal] [--raw-units] [--UTC]`
+```sh
+weka events local [--all] [--end-time <time>] [--next <string>] [--show-internal] [--start-time <time>] [--stem-mode] [--tenant <tenant>]
+```
 
 **Parameters**
 
-| Name            | Value                                                                                                                                                                                                               | Default                                      |
-| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------- |
-| `start-time`    | Include events that occurred at this start time and later.Format: `5m`, `-5m`, `-1d`, `-1w`, `1:00, 01:00`, `18:30`, `18:30:07`, `2018-12-31 10:00`, `2018/12/31 10:00`, `2018-12-31T10:00`, `9:15Z`, `10:00+2:00`. | -365 days                                    |
-| `end-time`      | Include events that occurred up to this time.Format: `5m`, `-5m`, `-1d`, `-1w`, `1:00, 01:00`, `18:30`, `18:30:07`, `2018-12-31 10:00`, `2018/12/31 10:00`, `2018-12-31T10:00`, `9:15Z`, `10:00+2:00`.              | Set to a time represents 'now'               |
-| `next`          | Identifier to the next page of events.As returned in the previous call to `weka events local`.                                                                                                                 |                                              |
-| `stem-mode`     | Displays events when the container has not been attached to the cluster                                                                                                                                             | False                                        |
-| `show-internal` | Also displays internal events                                                                                                                                                                                       | False                                        |
-| `raw-units`     | Print values in raw units, such as bytes and seconds.                                                                                                                                                               | Readable format. Examples: 1KiB 234MiB 2GiB. |
-| `UTC`           | Print times in UTC.                                                                                                                                                                                                 | Server's local time.                         |
+| Parameter               | Description                                                                |
+| --- | --- |
+| `--all` | Instead of only retrieving a single page, get the entire set of events. |
+| `--end-time` \<time> | Include only events that occurred at or before this time. |
+| `--next` \<string> | Token for next page of events. Leave empty to start paging through events. |
+| `-i`, `--show-internal` | Show internal events. |
+| `--start-time` \<time> | Include only events that occurred at or after this time. |
+| `--stem-mode` | Show STEM mode events. |
+| `--tenant` \<tenant> | Filter events by tenant name or ID. |
 
 ## Trigger a custom event
 
+Records a custom event in the cluster event log, for marking a maintenance window or a change made outside the CLI.
+
 **Command:** `weka events trigger`
 
-It can be useful to mark specific activities, maintenance work, or important changes/new usage of the system, and see that as part of the system events timeline.
+```sh
+weka events trigger <message>
+```
 
-To trigger a custom event, use `weka events trigger <text>`
+**Parameters**
+
+| Parameter   | Description                                          |
+| --- | --- |
+| `message`\* | User defined text to trigger as the event parameter. |

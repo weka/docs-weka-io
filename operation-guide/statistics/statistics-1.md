@@ -8,19 +8,20 @@ description: >-
 
 ## List statistics types
 
-Look up the definition of a statistic before you chart it or query it, to confirm its identifier, unit, and category.
+Looks up the definition of a statistic to confirm its identifier, unit, and category.
 
 **Command:** `weka stats types`
 
-{% code overflow="wrap" %}
-```bash
-weka stats types [<name-or-category>] [--show-internal]
+```sh
+weka stats types [<category_or_name>…] [--show-internal]
 ```
-{% endcode %}
 
 **Parameters**
 
-<table><thead><tr><th width="220.75">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>name-or-category</code></td><td>Limit the output to a specific statistic name, category, or category label (in parentheses).</td></tr><tr><td><code>show-internal</code></td><td>Include internal statistics in the output.<br>Default: False</td></tr></tbody></table>
+| Parameter           | Description                                                        |
+| --- | --- |
+| `category_or_name`… | Statistic category or name; only show stats matching one of these. |
+| `--show-internal` | Show internal statistics. Default: False |
 
 **Output columns**
 
@@ -61,38 +62,57 @@ weka stats types config --show-internal
 
 ## View statistics in real-time
 
-Sample the current performance statistics of the processes at a one-second interval. Real-time statistics are the only statistics that are not averaged over one minute.
+Shows a live, continuously updating view of statistics for the selected processes.
 
 **Command:** `weka stats realtime`
 
-{% code overflow="wrap" %}
-```bash
-weka stats realtime [<process-ids>] [--raw-units] [--UTC]
+```sh
+weka stats realtime [<process>…] [--footer] [--hostnames <strings>…] [--role <process-roles>…]
 ```
-{% endcode %}
 
 **Parameters**
 
-<table><thead><tr><th width="159.77734375">Name</th><th width="346.12109375">Value</th><th>Default</th></tr></thead><tbody><tr><td><code>process-ids</code></td><td>Only show real-time stats of the specified processes in a comma-separated list.</td><td>All</td></tr><tr><td><code>raw-units</code></td><td>Print values in raw units such as bytes and seconds.</td><td>Readable format.Examples: 1KiB 234MiB 2GiB.</td></tr><tr><td><code>UTC</code></td><td>Print times in UTC.</td><td>Server's local time.</td></tr></tbody></table>
+| Parameter                  | Description                                                                                                                         |
+| --- | --- |
+| `process`… | Only include the specified processes. |
+| `--footer` | Display a summary at the end of the report showing the totals for the statistics. |
+| `--hostnames` \<strings>… | Only include processes on these hostnames. Multiple values may be supplied separated by commas, or the option may be repeated. |
+| `--role` \<process-roles>… | Only include processes with the specified role. Multiple values may be supplied separated by commas, or the option may be repeated. |
 
-## **View statistics over time**
+## View statistics over time
 
-Query the retained statistics for a period, filtered by category, statistic, process, or parameter.
+Reports statistics for a past time range, aggregated by the interval you choose.
 
 **Command:** `weka stats`
 
-{% code overflow="wrap" %}
-```bash
-weka stats [--start-time <start-time>] [--end-time <end-time>] [--interval <interval>]
-[--resolution-secs <resolution-secs>] [--category <category>] [--stat <stat>]
-[--process-ids <process-ids>] [--param <param>] [--accumulated] [--per-process]
-[--no-zeros] [--show-internal] [--raw-units] [--UTC]
+```sh
+weka stats [--accumulated] [--aggregate-by <grouping>] [--category <statistic-categories>…] [--end-time <time>] [--exclude-process-ids <process-ids>…] [--histogram] [--interval <duration>] [--no-units] [--no-zeros] [--param <strings>…] [--per-process] [--per-role] [--process-ids <process-ids>…] [--query-timeout <duration>] [--resolution-secs <duration>] [--role <process-role>] [--show-internal] [--skip-validations] [--start-time <time>] [--stat <statistic-names>…]
 ```
-{% endcode %}
 
 **Parameters**
 
-<table><thead><tr><th>Name</th><th width="393.86328125">Value</th><th>Default</th></tr></thead><tbody><tr><td><code>start-time</code></td><td>Start time of the reported period. Format examples: <code>5m</code>, <code>-5m</code>, <code>-1d</code>, <code>-1w</code>, <code>1:00</code>, <code>01:00</code>, <code>18:30</code>, <code>18:30:07</code>, <code>2018-12-31 10:00</code>, <code>2018/12/31 10:00</code>, <code>2018-12-31T10:00</code>, <code>9:15Z</code>, <code>10:00+2:00</code>.</td><td><code>-1m</code></td></tr><tr><td><code>end-time</code></td><td>End time of the reported period. Uses the same formats as <code>start-time</code>.</td><td>Current time</td></tr><tr><td><code>interval</code>*</td><td>Period of time to report, in seconds. Must be a positive integer.</td><td></td></tr><tr><td><code>resolution-secs</code></td><td>Length of each interval in the reported period. Must be a multiple of 60 seconds.</td><td>60</td></tr><tr><td><code>category</code></td><td>Retrieve statistics from one category only. Run <code>weka stats types</code> to see the available categories.</td><td>All</td></tr><tr><td><code>stat</code></td><td>Statistic names to retrieve, as listed in the <code>IDENTIFIER</code> column of <code>weka stats types</code>.</td><td>All</td></tr><tr><td><code>process-ids</code></td><td>Retrieve statistics only for the specified process IDs.</td><td>All</td></tr><tr><td><code>param</code></td><td>For parameterized statistics, retrieve only the instantiations where the parameter has the specified value. Format: <code>key:val</code>. Repeat the parameter for multiple values, for example <code>--param method:putBlocks --param method:initBlock</code>.</td><td></td></tr><tr><td><code>accumulated</code></td><td>Display accumulated statistics instead of rate statistics.</td><td>False</td></tr><tr><td><code>per-process</code></td><td>Do not aggregate statistics across processes.</td><td>False</td></tr><tr><td><code>no-zeros</code></td><td>Filter out results whose value is 0.</td><td>False</td></tr><tr><td><code>show-internal</code></td><td>Display internal statistics.</td><td>False</td></tr><tr><td><code>raw-units</code></td><td>Print values in raw units, such as bytes and seconds.</td><td>Readable format.(for example: <code>1KiB</code> <code>234MiB</code> , <code>2GiB</code>)</td></tr><tr><td><code>UTC</code></td><td>Print times in UTC.</td><td>Server's local time.</td></tr></tbody></table>
+| Parameter                               | Description                                                                                                                                                                                                                                                                                                                                |
+| --- | --- |
+| `--accumulated` | Show accumulated statistics. If not set, show rate statistics. |
+| `--aggregate-by` \<grouping> | Aggregate statistics by the specified criteria. |
+| `--category` \<statistic-categories>… | Retrieve only statistics of the specified categories. Multiple values may be supplied separated by commas, or the option may be repeated. |
+| `--end-time` \<time> | Query for statstics up to this time point. |
+| `--exclude-process-ids` \<process-ids>… | Do not include statistics from specified processes. Multiple values may be supplied separated by commas, or the option may be repeated. |
+| `--histogram` | Render histograms visually. |
+| `--interval` \<duration> | Duration (in seconds) of the time report. |
+| `--no-units` | Suppress units from table output. |
+| `-Z`, `--no-zeros` | Do not retrieve statistics with zero values. |
+| `--param` \<strings>… | For parameterized statistics, retrieve only the instantiations where the specified parameter is of the specified value. Multiple values can be supplied for the same key, e.g. '--param method:putBlocks --param method:initBlock'. Multiple values may be supplied separated by commas, or the option may be repeated. |
+| `--per-process` | Aggregate statistics by process. |
+| `--per-role` | Aggregate stats per process role. |
+| `--process-ids` \<process-ids>… | Only include the specified processes. Multiple values may be supplied separated by commas, or the option may be repeated. |
+| `--query-timeout` \<duration> | Per-container timeout (default 5 seconds). |
+| `--resolution-secs` \<duration> | Length of each interval in the report period. |
+| `--role` \<process-role> | Only include processes with the specified role. |
+| `--show-internal` | Show internal statistics. |
+| `--skip-validations` | Do not validate statistic or category names. |
+| `--start-time` \<time> | Query for statistics starting at this time. |
+| `--stat` \<statistic-names>… | Retrieve only these specific statistics. Glob patterns (_, ?, \[]) are supported. For a parameterized statistic, append the parameter value as a suffix, e.g. 'CLIENT\_RPC\_CALLS.writeWithChecksums' for one value or 'CLIENT\_RPC\_CALLS._' for all. Multiple values may be supplied separated by commas, or the option may be repeated. |
 
 Statistics are averaged over one-minute intervals, so a total or any other aggregate relates to a specific minute. Raising `resolution-secs` widens each interval and reduces the number of rows returned.
 
@@ -112,19 +132,20 @@ weka stats --stat TOTAL_4xx_RQ --start-time -1d --per-process
 
 ## Set statistics retention
 
-Set how many days the cluster keeps statistics. A longer retention period consumes more disk space on every server.
+Sets how long the cluster keeps collected statistics before discarding them.
 
 **Command:** `weka stats retention set`
 
-{% code overflow="wrap" %}
-```bash
-weka stats retention set <--days <days>> [--dry-run]
+```sh
+weka stats retention set --days <uint> [--dry-run]
 ```
-{% endcode %}
 
 **Parameters**
 
-<table><thead><tr><th width="168.06640625">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>days</code>*</td><td>Number of days to keep the statistics.</td></tr><tr><td><code>dry-run</code></td><td>Test the capacity required for the retention period without applying it.</td></tr></tbody></table>
+| Parameter          | Description                                                                                                                  |
+| --- | --- |
+| `--days` \<uint>\* | Number of days to keep the statistics (1-30). |
+| `--dry-run` | Only test the command. Does not affect the system. This is primarily useful to verify sufficient space exists for retention. |
 
 **Example**
 
@@ -143,21 +164,26 @@ Shortening the retention period deletes statistics older than the new period. Th
 
 ### View the current retention period
 
+Shows the configured statistics retention period.
+
 **Command:** `weka stats retention status`
 
-```bash
+```sh
 weka stats retention status
 ```
 
 ### Restore the default retention period
 
+Returns the statistics retention period to its default.
+
 **Command:** `weka stats retention reset`
 
-```bash
-weka stats retention reset
+```sh
+weka stats retention reset [--dry-run]
 ```
 
+**Parameters**
 
-
-
-
+| Parameter   | Description                                        |
+| --- | --- |
+| `--dry-run` | Only test the command. Does not affect the system. |
