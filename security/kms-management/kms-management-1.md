@@ -4,7 +4,7 @@ description: >-
   prepare Vault or KMIP using the CLI.
 ---
 
-# Manage KMS using CLI
+# Manage KMS using the CLI
 
 ## Configure the KMS
 

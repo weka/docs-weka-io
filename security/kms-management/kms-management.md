@@ -4,7 +4,7 @@ description: >-
   the GUI.
 ---
 
-# Manage KMS using GUI
+# Manage KMS using the GUI
 
 ## Configure a KMS
 

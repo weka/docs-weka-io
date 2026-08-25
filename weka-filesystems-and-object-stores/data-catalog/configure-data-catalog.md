@@ -459,11 +459,21 @@ Each specification assumes approximately 10% monthly data growth over a 12 to 18
 
 Review and adjust catalog resource allocations every 6–9 months to account for filesystem growth. Run the `filestats.sh` script to get the current object count per filesystem, then use the sizing table to determine whether your existing resources still meet the requirements.
 
-| Parameter                   | Up to 200+ million objects                   | Up to 500+ million objects                   | Up to 1+ billion objects                 |
+{% hint style="info" %}
+**Capacity estimate:** An average file size of 1 MB yields approximately 1 million files per TB. Directories increase the total object count.
+
+Use this estimate as a baseline:
+
+* 200 TB: approximately 200 million files.
+* 500 TB: approximately 500 million files.
+* 1 PB: approximately 1 billion files.
+{% endhint %}
+
+| Parameter                   | Up to 200+ million objects / 200+ TB         | Up to 500+ million objects / 500+ TB         | Up to 1+ billion objects / 1+ PB         |
 | --------------------------- | -------------------------------------------- | -------------------------------------------- | ---------------------------------------- |
 | **Data service containers** | 5 total: 4 workers + 1 coordinator           | 10 total: 9 workers + 1 coordinator          | 10 total: 9 workers + 1 coordinator      |
 | **CPU**                     | 2 spare cores per server (minimum)           | 2 spare cores per server (minimum)           | 2 spare cores per server (minimum)       |
-| **Memory**                  | 32 GB free per server                        | 32 GB free per server                        | 64 GB free per server                    |
+| **Memory**                  | 32 + 5.5 GB free per server                  | 32 + 5.5 GB free per server                  | 64 + 5.5 GB free per server              |
 | **Disk (index filesystem)** | 150 GB – 500 GB (30 days – 1 year retention) | 250 GB – 1.5 TB (30 days – 1 year retention) | 1 TB – 5 TB (30 days – 1 year retention) |
 
 \

@@ -4,7 +4,7 @@ description: >-
   using the CLI.
 ---
 
-# Manage TLS certificates using CLI
+# Manage TLS certificates using the CLI
 
 ## Set the TLS certificate
 

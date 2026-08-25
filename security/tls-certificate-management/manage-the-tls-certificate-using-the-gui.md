@@ -4,7 +4,7 @@ description: >-
   GUI.
 ---
 
-# Manage TLS certificates using GUI
+# Manage TLS certificates using the GUI
 
 ## Set and download TLS certificate
 
