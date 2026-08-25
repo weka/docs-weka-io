@@ -6,27 +6,37 @@ description: Configure and view an S3 API audit webhook using the CLI.
 
 ## Enable an audit webhook for S3 APIs
 
+Starts forwarding S3 API audit events to an external webhook endpoint.
+
 **Command:** `weka s3 cluster audit-webhook enable`
 
-Use the following command line to enable an audit webhook for the S3 cluster:
-
-`weka s3 cluster audit-webhook enable <--endpoint endpoint> <--auth-token auth-token>`
+```sh
+weka s3 cluster audit-webhook enable --auth-token <string> --endpoint <string>
+```
 
 **Parameters**
 
-| Name           | Value                                                       |
-| -------------- | ----------------------------------------------------------- |
-| `endpoint`\*   | The webhook endpoint.                                       |
-| `auth-token`\* | The authentication token obtained from the webhook service. |
+| Parameter                  | Description                   |
+| -------------------------- | ----------------------------- |
+| `--auth-token` \<string>\* | Webhook authentication token. |
+| `--endpoint` \<string>\* | Webhook endpoint URL. |
 
 ## Disable an audit webhook for S3 APIs
 
+Stops forwarding S3 API audit events.
+
 **Command:** `weka s3 cluster audit-webhook disable`
 
-Use this command to disable the audit webhook.
+```sh
+weka s3 cluster audit-webhook disable
+```
 
 ## View the audit webhook configuration
 
+Shows the current S3 audit webhook endpoint and its state.
+
 **Command:** `weka s3 cluster audit-webhook show`
 
-Use this command to view the audit webhook configuration.
+```sh
+weka s3 cluster audit-webhook show
+```

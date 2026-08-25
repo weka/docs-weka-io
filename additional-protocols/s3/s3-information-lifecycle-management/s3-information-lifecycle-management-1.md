@@ -10,55 +10,70 @@ In multi-tenant deployments, lifecycle rules are scoped to the tenant in which t
 
 ## Add a lifecycle rule
 
+Adds a rule that expires objects in a bucket after a set number of days. Limit the rule to a subset of objects with `--prefix` or `--tags`.
+
 **Command:** `weka s3 bucket lifecycle-rule add`
 
-Use the following command line to add a lifecycle rule:
-
-`weka s3 bucket lifecycle-rule add <bucket> <expiry-days> [--prefix prefix] [--tags tags]`
-
-**Parameters**
-
-<table><thead><tr><th width="189">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>bucket</code>*</td><td>The S3 bucket name.</td></tr><tr><td><code>expiry-days</code>*</td><td>The minimum number of days before the object is eligible for expiration. ILM processes the object shortly after this period based on its modified timestamp, but processing may be delayed if the queue is long.<br>Minimum: 1 day</td></tr><tr><td><code>prefix</code></td><td><p>The object prefix to which the rule applies.</p><p>Wildcards are not supported.</p></td></tr><tr><td><code>tags</code></td><td>Key value pair of object tags to apply the rule to.<br>Pairs of key values: <code>'&#x3C;k1>=&#x3C;v1>&#x26;&#x3C;k2=&#x3C;v2>'</code></td></tr></tbody></table>
-
-## View lifecycle rules <a href="#viewing-ilm-rules" id="viewing-ilm-rules"></a>
-
-**Command:** `weka s3 bucket lifecycle-rule list`‌
-
-Use the following command line to view a bucket's existing lifecycle rules:‌
-
-`weka s3 bucket lifecycle-rule list <bucket>`‌
+```sh
+weka s3 bucket lifecycle-rule add <name> <expiry-days> [--noncurrent] [--prefix <string>] [--tags <string>]
+```
 
 **Parameters**
 
-| Name       | Value               | Default  |
-| ---------- | ------------------- | -------- |
-| `bucket`\* | The S3 bucket name. | ​Content |
+| Parameter            | Description                                                             |
+| -------------------- | ----------------------------------------------------------------------- |
+| `name`\* | Name of the S3 bucket. |
+| `expiry-days`\* | Number of days after which objects expire. |
+| `--noncurrent` | Apply expiry to noncurrent object versions only (not current versions). |
+| `--prefix` \<string> | Object key prefix to which the rule applies. |
+| `--tags` \<string> | Object tags to which the rule applies. values: '<k1>=<v1>&#x26;<k2=<v2>' |
+
+## View lifecycle rules
+
+Lists the lifecycle rules defined on a bucket.
+
+**Command:** `weka s3 bucket lifecycle-rule list`
+
+```sh
+weka s3 bucket lifecycle-rule list <name>
+```
+
+**Parameters**
+
+| Parameter | Description            |
+| --------- | ---------------------- |
+| `name`\* | Name of the S3 bucket. |
 
 ## Remove a lifecycle rule
 
+Removes a single lifecycle rule from a bucket.
+
 **Command:** `weka s3 bucket lifecycle-rule remove`
 
-Use the following command line to remove an lifecycle rule of a specified bucket:
-
-`weka s3 bucket lifecycle-rule remove <bucket> <name>`
+```sh
+weka s3 bucket lifecycle-rule remove <name> <rule>
+```
 
 **Parameters**
 
-| Name       | Value               |
-| ---------- | ------------------- |
-| `bucket`\* | The S3 bucket name. |
-| `name`\*   | The rule name.      |
+| Parameter | Description            |
+| --------- | ---------------------- |
+| `name`\* | Name of the S3 bucket. |
+| `rule`\* | Rule ID to remove. |
 
 ## Remove all lifecycle rules
 
+Removes every lifecycle rule from a bucket.
+
 **Command:** `weka s3 bucket lifecycle-rule reset`
 
-Use the following command line to remove all the lifecycle rules of a specified bucket:
-
-`weka s3 bucket lifecycle-rule reset <bucket>`
+```sh
+weka s3 bucket lifecycle-rule reset <name> [--force]
+```
 
 **Parameters**
 
-| Name       | Value               |
-| ---------- | ------------------- |
-| `bucket`\* | The S3 bucket name. |
+| Parameter       | Description                                                     |
+| --------------- | --------------------------------------------------------------- |
+| `name`\* | Name of the S3 bucket. |
+| `-f`, `--force` | Force action. Perform this action without further confirmation. |

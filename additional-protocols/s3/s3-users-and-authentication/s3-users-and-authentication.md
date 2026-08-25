@@ -8,216 +8,119 @@ description: >-
 
 ## View existing IAM policies
 
+Lists the IAM policies defined on the cluster.
+
 **Command:** `weka s3 policy list`
 
-Use this command to list the existing IAM policies.
-
-The command lists the pre-defined and custom policies the Cluster Admin has added.
-
-**Command:** `weka s3 policy show <policy-name>`
-
-Use this command to see the JSON definition of the selected IAM policy.
-
-The pre-defined policy values are:
-
-{% tabs %}
-{% tab title="readonly" %}
-```json
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Effect": "Allow",
-      "Action": [
-        "s3:ListAllMyBuckets",
-        "s3:ListBucket",
-        "s3:ListBucketMultipartUploads",
-        "s3:ListMultipartUploadParts",
-        "s3:GetBucketLocation",
-        "s3:GetBucketPolicy",
-        "s3:GetBucketTagging",
-        "s3:GetObject"
-      ],
-      "Resource": [
-        "arn:aws:s3:::*"
-      ]
-    }
-  ]
-}
+```sh
+weka s3 policy list
 ```
-{% endtab %}
-
-{% tab title="writeonly" %}
-```json
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Effect": "Allow",
-      "Action": [
-        "s3:PutObject"
-      ],
-      "Resource": [
-        "arn:aws:s3:::*"
-      ]
-    }
-  ]
-}
-```
-{% endtab %}
-
-{% tab title="readwrite" %}
-```json
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Effect": "Allow",
-      "Action": [
-        "s3:*"
-      ],
-      "Resource": [
-        "arn:aws:s3:::*"
-      ]
-    }
-  ]
-}
-```
-{% endtab %}
-{% endtabs %}
 
 ## Add an IAM policy
 
+Creates an IAM policy from a JSON document that defines the S3 actions and resources it grants.
+
 **Command:** `weka s3 policy add`
 
-Use the following command line to add an S3 IAM policy:
-
-`weka s3 policy add <policy-name> <policy-file>`
+```sh
+weka s3 policy add <policy-name> <policy-file>
+```
 
 **Parameters**
 
-| Name            | Value                                                                                                          |
-| --------------- | -------------------------------------------------------------------------------------------------------------- |
-| `policy-name`\* | Name of the IAM policy to add.                                                                                 |
-| `policy-file`\* | Path to the custom JSON file representing an IAM policy for anonymous access.See #supported-s3-policy-actions. |
+| Parameter       | Description                     |
+| --------------- | ------------------------------- |
+| `policy-name`\* | Name for the new policy. |
+| `policy-file`\* | File containing policy content. |
 
-## Delete an IAM policy <a href="#creating-a-new-iam-policies" id="creating-a-new-iam-policies"></a>
+## Delete an IAM policy
+
+Deletes an IAM policy. Detach it from all users and groups first.
 
 **Command:** `weka s3 policy remove`
 
-Use the following command line to delete an S3 IAM policy:‌
-
-`weka s3 policy remove <policy-name>`‌
+```sh
+weka s3 policy remove <policy-name>
+```
 
 **Parameters**
 
-| Name            | Value                             |
-| --------------- | --------------------------------- |
-| `policy-name`\* | Name of the IAM policy to remove. |
+| Parameter       | Description                   |
+| --------------- | ----------------------------- |
+| `policy-name`\* | Name of the policy to remove. |
 
-## Attach a policy to an S3 user <a href="#creating-a-new-iam-policies" id="creating-a-new-iam-policies"></a>
+## Attach a policy to an S3 user
+
+Grants a policy to an S3 user or group.
 
 **Command:** `weka s3 policy attach`
 
-Use the following command line to attach an IAM policy to an S3 user:‌
-
-`weka s3 policy attach <policy> <user>`‌
+```sh
+weka s3 policy attach <policy-name> [<user>] [--group <string>] [--user <string>]
+```
 
 **Parameters**
 
-| Name       | Value                           |
-| ---------- | ------------------------------- |
-| `policy`\* | Name of an existing IAM policy. |
-| `user`\*   | Name of a local WEKA S3 user.   |
+| Parameter           | Description                                                                 |
+| ------------------- | --------------------------------------------------------------------------- |
+| `policy-name`\* | Name of the policy to attach. |
+| `user` | User name to attach the policy to (alternative to --user). |
+| `--group` \<string> | Group name to attach the policy to (mutually exclusive with --user). |
+| `--user` \<string> | User name to attach the policy to (alternative to the positional argument). |
 
-If the user does not already have S3 credentials, the system creates them automatically when the policy is attached. The secret key is displayed once and must be saved immediately.
+## Detach a policy from an S3 user
 
-**Example**
-
-```bash
-weka s3 policy attach readwrite alice
-```
-
-## Detach a policy from an S3 user <a href="#creating-a-new-iam-policies-1" id="creating-a-new-iam-policies-1"></a>
+Revokes a policy from an S3 user or group.
 
 **Command:** `weka s3 policy detach`
 
-Use the following command line to detach an IAM policy from an S3 user:‌‌
-
-`weka s3 policy detach <policy> <user>`‌‌
+```sh
+weka s3 policy detach [<user>] [--group <string>] [--user <string>]
+```
 
 **Parameters**
 
-| Name       | Description                       |
-| ---------- | --------------------------------- |
-| `policy`\* | Name of the IAM policy to detach. |
-| `user`\*   | Name of a local WEKA S3 user.     |
-
-Detaching a policy removes S3 data access, but keeps the existing S3 access key and secret key. If you later attach any S3 policy again, the same key pair is used.
-
-**Example**
-
-```bash
-weka s3 policy detach readwrite alice
-```
+| Parameter           | Description                                                                   |
+| ------------------- | ----------------------------------------------------------------------------- |
+| `user` | User name to detach the policy from (alternative to --user). |
+| `--group` \<string> | Group name to detach the policy from (mutually exclusive with --user). |
+| `--user` \<string> | User name to detach the policy from (alternative to the positional argument). |
 
 ## Manage S3 credentials
 
 Manage S3 API credentials separately from the WEKA account password.
 
-### Regenerate your own S3 credentials
+### Regenerate S3 credentials
+
+Generates a new S3 access key and secret, invalidating the previous pair immediately. Without `--user` it rotates your own credentials; naming another user requires the Tenant Admin or Cluster Admin role.
 
 **Command:** `weka s3 user keys-generate`
 
-Use this command to regenerate your own S3 access key and secret key.
-
-```bash
-weka s3 user keys-generate
+```sh
+weka s3 user keys-generate [--user <string>]
 ```
-
-### Regenerate S3 credentials for another user
-
-**Command:** `weka s3 user keys-generate --user <username>`
-
-Use this command as an administrator to regenerate credentials for a specific user.
-
-```bash
-weka s3 user keys-generate --user alice
-```
-
-Behavioral notes:
-
-* Attaching an S3 policy grants S3 access and auto-creates credentials if needed.
-* Detaching an S3 policy removes S3 access, but preserves the credentials.
-* Each S3 access key includes the tenant identifier for correct multi-tenant routing.
-
-If the user has no attached S3 policy, the command fails:
-
-```
-error: S3 API credentials can only be generated for users with an S3 policy attached.
-```
-
-## Generate a temporary security token
-
-**Command:** `weka s3 sts assume-role`
-
-Use the following command line to generate a temporary security token:
-
-`weka s3 sts assume-role <--access-key access-key> [--secret-key secret-key] [--policy-file policy-file] <--duration duration>`
 
 **Parameters**
 
-| Name           | Description                                                                                                                                                                                                                                  | Default                                                        |
-| -------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------- |
-| `access-key`\* | A local WEKA S3 user access key                                                                                                                                                                                                              |                                                                |
-| `secret-key`   | A local WEKA S3 user secret key                                                                                                                                                                                                              | If not supplied, the command prompts to supply the secret-key. |
-| `policy-file`  | Path to a custom JSON file representing an IAM policy for anonymous access.You cannot gain additional capabilities to the IAM policy attached to this S3 user.See [Supported Policy Actions](../s3-limitations.md#supported-policy-actions). | ​                                                              |
-| `duration`\*   | Duration for the token validity.Possible values between 15 minutes and 1 week. Format: `900s`, `60m`, `2d`, `1w`                                                                                                                             | ​                                                              |
+| Parameter          | Description                                                                                         |
+| ------------------ | --------------------------------------------------------------------------------------------------- |
+| `--user` \<string> | Target S3 username for credential generation/rotation. Requires Tenant Admin or Cluster Admin role. |
 
-An example response:
+## Generate a temporary security token
 
+Issues short-lived S3 credentials through AWS STS AssumeRole, for applications that should not hold permanent keys.
+
+**Command:** `weka s3 sts assume-role`
+
+```sh
+weka s3 sts assume-role --access-key <string> --duration <duration> [--policy-file <string>] [--secret-key <string>]
 ```
-Access-Key: JR9O0U6V42KLPFQDO2Z3
-Secret-Key: wM0Q.............VPmRsKbH
-Session-Token: eyJhbGciOiJI........Pa10YBHseh4DkVA
-```
+
+**Parameters**
+
+| Parameter                  | Description                                                                             |
+| -------------------------- | --------------------------------------------------------------------------------------- |
+| `--access-key` \<string>\* | Access key. Essentially an S3 user name. |
+| `--duration` \<duration>\* | Duration of the security token. |
+| `--policy-file` \<string> | File containing JSON policy content. [Supported Policy Actions](../s3-limitations.md#supported-policy-actions) |
+| `--secret-key` \<string> | Secret key for assumed role. Essentially an S3 user password. Prompted if not supplied. |

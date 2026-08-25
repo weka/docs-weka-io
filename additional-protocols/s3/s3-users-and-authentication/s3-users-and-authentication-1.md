@@ -6,60 +6,62 @@ description: Create, view, and remove S3 service accounts using the CLI.
 
 ## View existing S3 service accounts
 
+Lists the S3 service accounts defined on the cluster.
+
 **Command:** `weka s3 service-account list`
 
-Use this command to list the existing S3 service accounts.
-
-The command lists only the access keys of the S3 service accounts added by the S3 user.
+```sh
+weka s3 service-account list
+```
 
 ## Add an S3 service account
 
+Creates an S3 service account, which lets an application authenticate to S3 without a cluster user.
+
 **Command:** `weka s3 service-account add`
 
-Use the following command line to add an S3 user account:
+```sh
+weka s3 service-account add [--policy-file <string>]
+```
 
-`weka s3 service-account add <policy-file>`
+**Parameters**
 
-The system returns an access key and a secret key. If you do not specify a `policy-file`, the S3 service account inherits the IAM policy from the parent S3 user.
+| Parameter                 | Description                          |
+| ------------------------- | ------------------------------------ |
+| `--policy-file` \<string> | File containing JSON policy content. |
 
 {% hint style="warning" %}
 The secret key is visible **only once** when adding the S3 service account. You must save the secret key in a safe place for later use.
 {% endhint %}
 
-**Parameters**
-
-| Name          | Description                                              | Default                                         |
-| ------------- | -------------------------------------------------------- | ----------------------------------------------- |
-| `policy-file` | The IAM policy file to attach to the S3 service account. | Inherits the IAM policy from the parent S3 user |
-
 ## Show an S3 service account details
+
+Shows the details of a single S3 service account.
 
 **Command:** `weka s3 service-account show`
 
-Use the following command line to display the policy details attached to the specified S3 service account:
-
-`weka s3 service-account show <access-key>`
+```sh
+weka s3 service-account show <access-key>
+```
 
 **Parameters**
 
-| Name           | Description                               |
-| -------------- | ----------------------------------------- |
-| `access-key`\* | The access key of the S3 service account. |
+| Parameter      | Description                                |
+| -------------- | ------------------------------------------ |
+| `access-key`\* | Access key of the service account to show. |
 
-## Remove S3 service account <a href="#creating-a-new-iam-policies" id="creating-a-new-iam-policies"></a>
+## Remove S3 service account
+
+Deletes an S3 service account and invalidates its credentials.
 
 **Command:** `weka s3 service-account remove`
 
-Use the following command line to remove an S3 service account:‌
-
-`weka s3 service-account remove <access-key>`‌
+```sh
+weka s3 service-account remove <access-key>
+```
 
 **Parameters**
 
-| Name           | Description                                         |
-| -------------- | --------------------------------------------------- |
-| `access-key`\* | The access key of the S3 service account to remove. |
-
-**Related topics**
-
-[#s3-service-accounts](./#s3-service-accounts "mention")
+| Parameter      | Description                                  |
+| -------------- | -------------------------------------------- |
+| `access-key`\* | Access key of the service account to remove. |
