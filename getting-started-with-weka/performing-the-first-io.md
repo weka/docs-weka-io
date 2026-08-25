@@ -52,7 +52,7 @@ Create a filesystem group before creating a filesystem in that group.
 {% endhint %}
 
 {% hint style="danger" %}
-**INTERNAL, remove before publication. TBD (Docs):** Three `weka fs` output blocks on this page are still legacy format — in step 4 above, in the AWS hint below, and under Write data to the filesystem. All use pipe-delimited columns, a `+---+` separator row, and headers (`Filesystem ID`, `Filesystem Name`, `Group`) that no longer exist; 6.0 renders aligned columns headed `ID`, `Name`, `Group ID`, `Used SSD`, `Available SSD`, `Used Total`, `Available Total`, `Thin Provisioned`. The `FSId: 0` line in step 3 is also stale, as 6.0 prints a success message. Regenerate on a cluster with at least 1 TiB free; they could not be captured on the lab cluster, which is smaller than the example.
+**INTERNAL, remove before publication. TBD (Docs):** Two `weka fs` output blocks on this page are still legacy format — in step 4 above and under Write data to the filesystem. Both use pipe-delimited columns, a `+---+` separator row, and headers (`Filesystem ID`, `Filesystem Name`, `Group`) that no longer exist; 6.0 renders aligned columns headed `ID`, `Name`, `Group ID`, `Used SSD`, `Available SSD`, `Used Total`, `Available Total`, `Thin Provisioned`. The `FSId: 0` line in step 3 is also stale — 6.0 prints `Created filesystem with ID <n>.` These could not be captured: the example uses a 1 TiB filesystem and both lab clusters total 867.92 GB. Either regenerate on a larger cluster, or reduce the example size so the page is reproducible. The AWS hint block below was captured on a 6.0.0.304 cluster and is current.
 {% endhint %}
 
 {% hint style="info" %}
@@ -63,16 +63,18 @@ To create an additional filesystem, first reduce the size of the `default` files
 ```
 # Reduce the size of the default filesystem
 $ weka fs update default --total-capacity 1GiB
+Updated filesystem default.
 
 # Create a new filesystem in the default group
 $ weka fs add new_fs 1GiB --fs-group default
+Created filesystem with ID 2.
 
 # View the existing filesystems
 $ weka fs
-Filesystem ID | Filesystem Name | Group   | Used SSD (Data) | Used SSD (Meta) | Used SSD | Free SSD | Available SSD (Meta) | Available SSD | Used Total (Data) | Used Total | Free Total | Available Total | Max Files | Status | Encrypted | Object Storages | Auth Required
---------------+-----------------+---------+-----------------+-----------------+----------+----------+----------------------+---------------+-------------------+------------+------------+-----------------+-----------+--------+-----------+-----------------+--------------
-0             | default         | default | 0 B             | 4.09 KB         | 4.09 KB  | 1.07 GB  | 268.43 MB            | 1.07 GB       | 0 B               | 4.09 KB    | 1.07 GB    | 1.07 GB         | 21589     | READY  | False     |                 | False
-1             | new_fs          | default | 0 B             | 4.09 KB         | 4.09 KB  | 1.09 TB  | 274.87 GB            | 1.09 TB       | 0 B               | 4.09 KB    | 1.09 TB    | 1.09 TB         | 22107463  | READY  | False     |                 | False
+ID  Name        Group ID  Used SSD  Available SSD  Used Total  Available Total  Thin Provisioned  Thin Provisioned Minimum SSD  Thin Provisioned Maximum SSD
+ 0  .config_fs         0  12.29 KB        5.37 GB    12.29 KB          5.37 GB        False
+ 1  default            1  12.29 KB        1.07 GB    12.29 KB          1.07 GB        False
+ 2  new_fs             1  12.29 KB        1.07 GB    12.29 KB          1.07 GB        False
 ```
 {% endhint %}
 
