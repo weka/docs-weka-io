@@ -8,35 +8,46 @@ description: >-
 
 ## Add a snapshot
 
+Creates a point-in-time snapshot of a filesystem. A snapshot is read-only unless you pass `--writable`, and `--source-snapshot` bases it on an existing snapshot rather than the live filesystem.
+
 **Command:** `weka fs snapshot add`
 
-Use the following command line to create a snapshot:
+```sh
+weka fs snapshot add <filesystem> <name> [--access-point <string>] [--source-snapshot <string>] [--writable]
+```
 
-`weka fs snapshot add <file-system> <name> [--access-point access-point] [--source-snapshot=<source-snapshot>] [--writable]`
+**Parameters**
+
+| Parameter                     | Description                      |
+| ----------------------------- | -------------------------------- |
+| `filesystem`\* | Filesystem name. |
+| `name`\* | Target snapshot name. |
+| `--access-point` \<string> | Snapshot access point name. Default: Controlled by weka fs snapshot access-point-naming-convention update &#x26;#x3C;date/name>. By default, the system uses the date format @GMT_%Y.%m.%d-%H.%M.%S, which is compatible with Windows previous versions for SMB |
+| `--source-snapshot` \<string> | Use this snapshot as the source. |
+| `--writable` | Create the snapshot as writable. |
 
 {% hint style="info" %}
 The newly created snapshot is saved in the `.snapshots` directory.\
 See [#access-the-.snapshots-directory](snapshots-1.md#access-the-.snapshots-directory "mention").
 {% endhint %}
 
-**Parameters**
-
-<table><thead><tr><th width="204.7890625">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>file-system</code>*</td><td>Filesystem on which to create the snapshot.</td></tr><tr><td><code>name</code>*</td><td>Name to assign to the new snapshot.</td></tr><tr><td><code>access-point</code></td><td>Directory name to use as the snapshot access point.Default: Controlled by <code>weka fs snapshot access-point-naming-convention update &#x26;#x3C;date/name></code>. By default, the system uses the date format <code>@GMT_%Y.%m.%d-%H.%M.%S</code>, which is compatible with <a href="../../additional-protocols/smb-support/#windows-previous-versions">Windows previous versions for SMB</a>.</td></tr><tr><td><code>source-snap</code></td><td>Existing snapshot to use as the source for the new snapshot.Default: The latest snapshot of the specified filesystem.</td></tr><tr><td><code>is-writable</code></td><td>Create the snapshot as writable.Default: <code>false</code></td></tr></tbody></table>
-
 ## Remove a snapshot
+
+Deletes a snapshot. The filesystem and any other snapshots are unaffected.
 
 **Command:** `weka fs snapshot remove`
 
-Use the following command line to remove a snapshot:
-
-`weka fs snapshot remove <file-system> <name>`
+```sh
+weka fs snapshot remove <filesystem> <name> [--force]
+```
 
 **Parameters**
 
-| Name            | Value                               |
-| --------------- | ----------------------------------- |
-| `file-system`\* | A valid filesystem identifier       |
-| `name`\*        | Unique name for filesystem snapshot |
+| Parameter       | Description                                                     |
+| --------------- | --------------------------------------------------------------- |
+| `filesystem`\* | Filesystem name. |
+| `name`\* | Snapshot name. |
+| `-f`, `--force` | Force action. Perform this action without further confirmation. |
 
 {% hint style="warning" %}
 A snapshot deletion cannot happen parallel to a snapshot upload to the same filesystem. Since uploading a snapshot to a remote object store might take a while, it is advisable to delete the desired snapshots before uploading to the remote object store.
@@ -72,15 +83,22 @@ When restoring a filesystem from a snapshot (or copying over an existing snapsho
 
 ## Update a snapshot
 
+Renames a snapshot or changes its access point.
+
 **Command:** `weka fs snapshot update`
 
-This command changes the snapshot attributes. Use the following command line to update an existing snapshot:
-
-`weka fs snapshot update <file-system> <name> [--new-name=<new-name>] [--access-point=<access-point>]`
+```sh
+weka fs snapshot update <filesystem> <name> [--access-point <string>] [--new-name <string>]
+```
 
 **Parameters**
 
-<table><thead><tr><th width="211.1171875">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>file-system</code>*</td><td>Filesystem that contains the snapshot to update.</td></tr><tr><td><code>name</code>*</td><td>Current name of the snapshot to update.</td></tr><tr><td><code>new-name</code></td><td>New name to assign to the snapshot.</td></tr><tr><td><code>access-point</code></td><td>Directory name to use as the snapshot access point.</td></tr></tbody></table>
+| Parameter                  | Description                        |
+| -------------------------- | ---------------------------------- |
+| `filesystem`\* | Filesystem name. |
+| `name`\* | Snapshot name. |
+| `--access-point` \<string> | New access point for the snapshot. |
+| `--new-name` \<string> | Rename the snapshot. |
 
 ## Access the `.snapshots` directory
 
@@ -109,17 +127,20 @@ drwxrwxr-x 1 root root 0 Sep 21 02:44 @GMT-2023.09.21-02.44.38
 
 ## Retrieve snapshot details
 
+Lists the snapshots on the cluster. Use `--output` to add columns such as the snapshot UID, its local and remote object locators, and the estimated reclaimable space.
+
 **Command:** `weka fs snapshot`
 
-Use the following command to retrieve snapshot details, such as its UID, local object locator, estimated reclaimable space, and metadata size:
-
-{% code overflow="wrap" %}
 ```sh
-weka fs snapshot [--filesystem file-system] [--name name] [--output output]...
+weka fs snapshot [--filesystem <filesystem>] [--name <string>]
 ```
-{% endcode %}
 
-<table><thead><tr><th width="212.421875">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>--file-system</code></td><td>Filter the output by filesystem name.</td></tr><tr><td><code>--name</code></td><td>Filter the output by snapshot name.</td></tr><tr><td><code>-o</code>, <code>--output</code>...</td><td>Select the columns to display. Supported values are <code>uid</code>, <code>id</code>, <code>filesystem</code>, <code>name</code>, <code>access</code>, <code>writeable</code>, <code>created</code>, <code>local_upload_size</code>, <code>remote_upload_size</code>, <code>local_object_status</code>, <code>local_object_progress</code>, <code>local_object_locator</code>, <code>remote_object_status</code>, <code>remote_object_progress</code>, <code>remote_object_locator</code>, <code>removing</code>, <code>prefetched</code>, <code>est_reclaimable_size</code>, and <code>metadata_size</code>.Repeat the option or use a comma-separated list.</td></tr></tbody></table>
+**Parameters**
+
+| Parameter                    | Description                                 |
+| ---------------------------- | ------------------------------------------- |
+| `--filesystem` \<filesystem> | Filter results to a specific filesystem. |
+| `--name` \<string> | Filter results to a specific snapshot name. |
 
 ## Set up snapshot replication between clusters
 

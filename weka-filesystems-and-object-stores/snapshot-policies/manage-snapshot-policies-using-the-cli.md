@@ -34,40 +34,19 @@ After understanding the workflow for creating policies using the CLI, you can us
 
 ## List snapshot policies
 
-**Command:** `weka fs protection snapshot-policy list`
+Lists the snapshot policies defined on the cluster.
 
-This command displays a list of all existing snapshot policies in the system. The output includes details such as the policy ID, name, enabled status, description, and any filesystems the policy is attached to.
+**Command:** `weka fs protection snapshot-policy list`
 
 ```sh
 weka fs protection snapshot-policy list
 ```
 
-<details>
-
-<summary>Example: List snapshot policies</summary>
-
-```bash
-$ weka fs protection snapshot-policy list
-SNAPSHOT POLICY ID  NAME         IS ENABLED  DESCRIPTION                                                                                         ATTACHED FILESYSTEMS
-0                   sys-default  True        This snapshot policy is a fixed example configuration, it can be used as-is but cannot be modified
-1                   weekly       True        Create a snapshot weekly on Saturdays                                                               fs1
-2                   Policy1      True        Schedule daily snapshots                                                                            fs1, default
-```
-
-</details>
-
 ## Show snapshot policy details
 
+Shows the schedule and retention rules of a single snapshot policy.
+
 **Command:** `weka fs protection snapshot-policy show`
-
-This command displays the configuration of a snapshot policy in JSON format. It provides a detailed representation of the policy, including schedules (hourly, daily, weekly, monthly, and periodic), retention settings, associated filesystems, and whether specific features are enabled.
-
-**JSON overview**
-
-* **Schedules**: Defines hourly, daily, weekly, monthly, and periodic snapshot schedules, including time, days, and upload settings.
-* **Retention**: Specifies the number of snapshots to retain for each schedule type.
-* **Filesystems**: Lists the filesystems attached to the policy.
-* **General settings**: Includes the policy name, description, and enable/disable status.
 
 ```sh
 weka fs protection snapshot-policy show <name>
@@ -75,73 +54,15 @@ weka fs protection snapshot-policy show <name>
 
 **Parameters**
 
-| Parameter | Description |
-| --- | --- |
-| `name`* | Policy name |
-
-<details>
-
-<summary>Example: Show snapshot policy details</summary>
-
-```
-$ weka fs protection snapshot-policy show Policy1
-{
-    "daily": {
-        "days": "monday, wednesday, friday",
-        "enable": true,
-        "retention": 7,
-        "time": "22:05",
-        "upload": "local"
-    },
-    "description": "Policy description",
-    "enabled": true,
-    "filesystems": [
-        "fs1",
-        "default"
-    ],
-    "hourly": {
-        "days": "monday, tuesday, wednesday, thursday, friday",
-        "enable": false,
-        "hours": "09, 10, 11, 12, 13, 14, 15, 16, 17, 18",
-        "minuteOffset": 10,
-        "retention": 10,
-        "upload": "none"
-    },
-    "monthly": {
-        "days": "07",
-        "enable": false,
-        "months": "all",
-        "retention": 12,
-        "time": "00:05",
-        "upload": "local"
-    },
-    "name": "Policy1",
-    "periodic": {
-        "days": "monday, tuesday, wednesday, thursday, friday",
-        "enable": false,
-        "end_time": "18:00",
-        "interval": 30,
-        "retention": 4,
-        "start_time": "09:00",
-        "upload": "none"
-    },
-    "weekly": {
-        "days": "saturday",
-        "enable": false,
-        "retention": 4,
-        "time": "23:05",
-        "upload": "local"
-    }
-}
-```
-
-</details>
+| Parameter | Description  |
+| --------- | ------------ |
+| `name`\* | Policy name. |
 
 ## Export snapshot policy
 
-**Command:** `weka fs protection snapshot-policy export`
+Writes a snapshot policy to a JSON file you can edit and reapply.
 
-This command exports the configuration of an existing snapshot policy to a template file. Use the `sys-default` policy to export the cluster's default configuration as a baseline for creating customized policy templates.
+**Command:** `weka fs protection snapshot-policy export`
 
 ```sh
 weka fs protection snapshot-policy export <name> <path>
@@ -149,21 +70,10 @@ weka fs protection snapshot-policy export <name> <path>
 
 **Parameters**
 
-| Parameter | Description |
-| --- | --- |
-| `name`* | The snapshot policy to export. |
-| `path`* | The path to the directory to save the export policy file. |
-
-<details>
-
-<summary>Example: Export snapshot policy</summary>
-
-```
-$ weka fs protection snapshot-policy export sys-default /tmp/policy_template
-Exported snapshot policy to /tmp/policy_template
-```
-
-</details>
+| Parameter | Description                                              |
+| --------- | -------------------------------------------------------- |
+| `name`\* | The snapshot policy to export. |
+| `path`\* | The path where the exported policy file will be located. |
 
 ### Customize the policy template
 
@@ -233,37 +143,22 @@ $ vi /tmp/policy_template
 
 ## Create snapshot policy
 
+Creates a snapshot policy from a JSON template that defines its schedule and retention rules.
+
 **Command:** `weka fs protection snapshot-policy add`
 
-This command creates a new snapshot policy based on a specified template file. Provide the policy name, template file path, and optional parameters such as a description or enabled status.
-
-{% code overflow="wrap" %}
 ```sh
-weka fs protection snapshot-policy add <name> <path> [--description description] [--enabled enabled]
+weka fs protection snapshot-policy add <name> <path> [--description <string>] [--enabled]
 ```
-{% endcode %}
 
 **Parameters**
 
-| Parameter | Description | Default |
-| --- | --- | --- |
-| `name`* | The snapshot policy name. Up to 12 alphanumeric characters, hyphens (-), underscores (_), and periods (.) |  |
-| `path`* | The path to the snapshot policy file. It must be in JSON format. |  |
-| `description` | Policy description. Up to 128 characters. |  |
-| `enabled` | Set snapshot policy status.Possible values: `true` or `false` | `true` |
-
-<details>
-
-<summary>Example: Create a snapshot policy from a policy template</summary>
-
-In this example, a new snapshot policy named `policy2` is created using the template file located at `/tmp/policy_template`. The system returns the newly created policy's ID.
-
-```
-$ weka fs protection snapshot-policy add policy2 /tmp/policy_template
-SnapPolicyId: 3
-```
-
-</details>
+| Parameter                 | Description                                                                                              |
+| ------------------------- | -------------------------------------------------------------------------------------------------------- |
+| `name`\* | Snapshot policy name. (up to 12 alphanumeric characters, hyphens (-), underscores (\_), and periods (.)) |
+| `path`\* | Path to snapshot policy file. Policy file must be in JSON format. |
+| `--description` \<string> | Policy description. |
+| `--enabled` | Set snapshot policy status. Possible values: `true` or `false` |
 
 ## Attach filesystems to a snapshot policy
 
@@ -300,82 +195,56 @@ SNAPSHOT POLICY ID  NAME         IS ENABLED  DESCRIPTION                     ATT
 
 ## Detach filesystems from a snapshot policy
 
+Detaches filesystems from a snapshot policy, stopping scheduled snapshots for them.
+
 **Command:** `weka fs protection snapshot-policy detach`
 
-This command detaches the specified filesystems from the snapshot policy. To remove waiting tasks associated with the filesystems, add the `--remove-waiting-tasks` option.
-
-<pre data-overflow="wrap"><code><strong>weka fs protection snapshot-policy detach &#x3C;name> [--remove-waiting-tasks] [&#x3C;filesystems>]...
-</strong></code></pre>
+```sh
+weka fs protection snapshot-policy detach <name> <filesystems> [--force] [--remove-waiting-tasks]
+```
 
 **Parameters**
 
-| Parameter | Description |
-| --- | --- |
-| `name`* | The snapshot policy name. |
-| `filesystems`... * | A list of filesystems you want to detach from the policy. |
-| `remove-waiting-tasks` | Allow to delete all waiting tasks corresponding to the filesystems. |
-
-<details>
-
-<summary>Example: Detach a snapshot policy from filesystems</summary>
-
-```
-$ weka fs protection snapshot-policy detach pol1 fs1
-
-Warning: You are about to detach filesystems. This action detach existing filesystem from the snapshot policy and cannot be undone.
-Are you sure you want to continue (yes/no)? yes
-Filesystems detached successfully
-```
-
-</details>
+| Parameter                | Description                                                                      |
+| ------------------------ | -------------------------------------------------------------------------------- |
+| `name`\* | Snapshot policy name. |
+| `filesystems`\* | Filesystems to detach from the policy. |
+| `-f`, `--force` | Force action. Perform this action without further confirmation. |
+| `--remove-waiting-tasks` | Remove waiting tasks. Delete all waiting tasks corresponding to the filesystems. |
 
 ## Update a snapshot policy
 
+Replaces a snapshot policy's schedule and retention rules with those in a JSON template.
+
 **Command:** `weka fs protection snapshot-policy update`
 
-This command updates an existing snapshot policy. You can modify its name, description, policy parameters or enabled status.
-
-{% code overflow="wrap" %}
 ```sh
-weka fs protection snapshot-policy update <name> [--new-name new-name] [--description description] [--path path] [--enabled enabled]
+weka fs protection snapshot-policy update <name> [--description <string>] [--enabled] [--new-name <string>] [--path <string>]
 ```
-{% endcode %}
 
 **Parameters**
 
-| Parameter | Description |
-| --- | --- |
-| `name`* | Existing snapshot policy name. |
-| `new-name` | New policy name. Up to 12 alphanumeric characters, hyphens (-), underscores (_), and periods (.). |
-| `description` | New policy description. Up to 128 characters. |
-| `path` | The path to the new or modified snapshot policy file. It must be in JSON format. |
-| `enabled` | Set snapshot policy status.Possible values: `true` or `false` |
+| Parameter                 | Description                                                           |
+| ------------------------- | --------------------------------------------------------------------- |
+| `name`\* | Snapshot policy name. |
+| `--description` \<string> | Policy description. |
+| `--enabled` | Set snapshot policy status. Possible values: `true` or `false` |
+| `--new-name` \<string> | New policy name. |
+| `--path` \<string> | Path to new or modified snapshot policy file. Must be in JSON format. |
 
 ## Delete a snapshot policy
 
-**Command:** `weka fs protection snapshot-policy remove <name>`
+Deletes a snapshot policy. Detach all filesystems from the policy first.
 
-This command deletes the specified snapshot policy from the system. Ensure that no filesystems are attached to the policy before proceeding with the deletion.
+**Command:** `weka fs protection snapshot-policy remove`
 
-```
-weka fs protection snapshot-policy remove <name>
+```sh
+weka fs protection snapshot-policy remove <name> [--force]
 ```
 
 **Parameters**
 
-| Parameter | Description |
-| --- | --- |
-| `name`* | Existing snapshot policy name. |
-
-<details>
-
-<summary>Example: Delete a snapshot policy</summary>
-
-```
-$ weka fs protection snapshot-policy remove policy2
-Warning: You are about to delete a snapshot policy. This action deletes the snapshot policy and cannot be undone.
-
-Are you sure you want to continue (yes/no)? yes
-```
-
-</details>
+| Parameter       | Description                                                     |
+| --------------- | --------------------------------------------------------------- |
+| `name`\* | Existing snapshot policy name. |
+| `-f`, `--force` | Force action. Perform this action without further confirmation. |
