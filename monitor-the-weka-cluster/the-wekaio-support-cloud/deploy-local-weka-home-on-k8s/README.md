@@ -83,6 +83,25 @@ Configure resources and scaling values in `values.yaml`.
 
 For high stats throughput, use the detailed sizing formulas in [LWH stats: sizing and performance optimization](../lwh-stats-sizing-and-performance-optimization.md).
 
+#### Container resource requirements
+
+The CPU and memory figures above are aggregate requirements for the deployment as a whole. Kubernetes schedules on _per-container_ requests and limits, which the chart sets separately for each component: the API services (`api.*`), the workers (`workers.*`), the scheduled jobs (`jobs.*`), the VictoriaMetrics pods, and the PostgreSQL databases.
+
+The chart is the authoritative source for these per-container values. To review the defaults for the version you plan to deploy:
+
+```bash
+helm repo add wekahome https://weka.github.io/gohome/
+helm repo update
+# Print every default value, including the resources block of each component
+helm show values wekahome/wekahome --version 5.0.0
+# Print the reference table describing each value
+helm show readme wekahome/wekahome --version 5.0.0
+```
+
+Override only the components you need to change in your own `values.yaml`; any value you omit keeps the chart default.
+
+The three components on the statistics path are the ones most often adjusted. See [LWH stats: sizing and performance optimization](../lwh-stats-sizing-and-performance-optimization.md) for their defaults and for sizing them against the monitored process count.
+
 #### Component scaling behavior
 
 LWH components are pre-configured to handle standard production loads. Adjustments are only required when approaching the limits of the default installation.
@@ -152,7 +171,24 @@ The required installation method is Helm. The Operator Lifecycle Manager (OLM) m
 
 Create a `values.yaml` file to customize your WEKA Home deployment. This file overrides the chart's default settings.
 
-The following example highlights common adjustments, particularly for specifying a WEKA storage class for persistent volumes and using `nodeSelector` to schedule pods onto specific nodes (such as those running WEKA clients).
+**Obtain the chart defaults**
+
+Retrieve the complete default `values.yaml` for a specific chart version from the WEKA Home Helm repository, then edit the copy:
+
+```bash
+helm repo add wekahome https://weka.github.io/gohome/
+helm repo update
+# List the available chart versions
+helm search repo wekahome --versions
+# Save the defaults for the version you plan to install
+helm show values wekahome/wekahome --version 5.0.0 > values.yaml
+```
+
+{% hint style="info" %}
+Retrieve the chart and its `values.yaml` from the Helm repository at `https://weka.github.io/gohome/`, as shown above. The GitHub source repository behind it is not publicly browsable, so you cannot download these files from GitHub.
+{% endhint %}
+
+The following example highlights common adjustments, particularly for specifying a WEKA storage class for persistent volumes and using `nodeSelector` to schedule pods onto specific nodes (such as those running WEKA clients). It is an excerpt, not a complete file: keep the defaults you are not overriding.
 
 Configure resource presets, resource requests and limits, and replicas or autoscaling settings directly in `values.yaml`.
 
@@ -382,14 +418,15 @@ You can deploy LWH on a Kubernetes environment using two primary methods: standa
 
 Use this procedure for a standard deployment of LWH using Helm commands.
 
-The LWH Helm chart is publicly available on GitHub. The documentation on GitHub reflects the latest build. For a specific version, download the required `values.yaml` file directly.
+The LWH Helm chart is published to the WEKA Home Helm repository at `https://weka.github.io/gohome/`. Both the chart and its default `values.yaml` are obtained from that repository using the Helm CLI; see [Configure Helm values](./#configure-helm-values).
 
 **Procedure**
 
-1.  Add the WEKA Home Helm repository:
+1.  Add the WEKA Home Helm repository and fetch the current chart index:
 
     ```bash
     helm repo add wekahome https://weka.github.io/gohome/
+    helm repo update
     ```
 2.  Run the Helm `upgrade` command to install or update the chart. Specify your namespace, the chart version, and the path to your customized `values.yaml` file.
 
@@ -562,7 +599,7 @@ Use this procedure to upgrade an existing LWH deployment to a new version using 
 
 **Before you begin**
 
-* Ensure you have the path to your customized `values.yaml` file.
+* Ensure you have the path to your customized `values.yaml` file. If you no longer have it, recover the values in effect on the running release with `helm get values wekahome --namespace weka-home > values.yaml`.
 * Identify the new chart version you want to upgrade to.
 
 **Procedure**
@@ -572,7 +609,18 @@ Use this procedure to upgrade an existing LWH deployment to a new version using 
     ```bash
     helm repo update
     ```
-2.  Run the `helm upgrade` command.
+2.  List the available chart versions and choose the target version:
+
+    ```bash
+    helm search repo wekahome --versions
+    ```
+
+    Review what changed in that version's defaults before upgrading:
+
+    ```bash
+    helm show values wekahome/wekahome --version <new-version>
+    ```
+3.  Run the `helm upgrade` command.
 
     * This command uses `--install` to upgrade the existing `wekahome` release.
     * Replace `<new-version>` with the specific chart version you are upgrading to.

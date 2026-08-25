@@ -37,9 +37,10 @@ Verify that the following requirements are met:
 
 * A dedicated physical server (or VM) for the installation with `systemd`.
 * The user account for installing the LWH must have root privileges.
-* Server minimum CPU core and RAM requirements:
+* Server minimum CPU core and RAM requirements. These figures size the **entire LWH server**, covering every LWH component together, not any single component:
   * Minimum 8 CPU cores and 32 GiB RAM for up to 1000 total processes.
     * Total processes are equal to the cores used on the cluster **backends** for Management/Frontend/Compute/Drives roles and the cores used on **clients** for Management/Frontend roles.
+    * This is the same quantity as the unique (`host_id`, `node_id`) metric pair count used in [LWH stats: sizing and performance optimization](../lwh-stats-sizing-and-performance-optimization.md). One container (`host_id`) holds many processes (`node_id`), so the pair count equals the process count — not the product of containers and processes.
   *   Sizing for additional processes:
 
       * The total number of processes determines the number of CPU cores and RAM required.

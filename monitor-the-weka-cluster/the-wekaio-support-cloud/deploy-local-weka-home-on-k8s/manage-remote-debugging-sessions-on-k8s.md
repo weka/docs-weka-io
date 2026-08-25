@@ -59,7 +59,11 @@ Required parameters are marked with an asterisk (\*); all other parameters are o
 
 **Related information**
 
-[charts/wekahome/values.yaml](https://github.com/weka/gohome/blob/v4.4.0/charts/wekahome/values.yaml)
+To see the chart's defaults for these parameters, print the `values.yaml` of the deployed chart version:
+
+```bash
+helm show values wekahome/wekahome --version <version>
+```
 
 ### Multiple session configuration example
 

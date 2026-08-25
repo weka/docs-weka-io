@@ -19,6 +19,19 @@ Effective sizing requires a clear understanding of the primary components:
 
 Load scales linearly based on the total process count in the cluster. This count equals the number of unique (`host_id`, `node_id`) metric pairs, where one container (`host_id`) can hold many processes (`node_id`).
 
+The relationship is many-to-one, so the pair count is simply the number of processes — it is not the product of the container count and the process count. A cluster with 65 containers and 775 processes has 775 metric pairs, not 50,375.
+
+{% hint style="info" %}
+**This page sizes the statistics components only.** It determines the CPU, memory, and replica counts for `api.stats`, `workers.stats`, and `workers.forwarding`.
+
+To size the host that runs LWH, use the whole-server requirements instead:
+
+* **K3s:** [Verify prerequisites](deploy-local-weka-home-on-k3s/#id-1.-verify-prerequisites) — 8 CPU cores and 32 GiB RAM for up to 1000 processes, plus 1 core and 8 GiB for every additional 1000.
+* **K8s:** [Sizing and scaling guidelines](deploy-local-weka-home-on-k8s/#sizing-and-scaling-guidelines).
+
+Both sets of figures count the same processes. The whole-server figures cover every LWH component together; the figures on this page apply to the statistics path alone, and are what you tune when statistics ingestion is the bottleneck.
+{% endhint %}
+
 ### `workers.stats` capacity references
 
 Use these values to determine the necessary CPU resources for a cluster.
@@ -54,8 +67,7 @@ Determine the required number of pod replicas in a specific environment using th
 
 **Before you begin**
 
-* Identify the total process count in the cluster.
-* Confirm that the process count equals the number of unique (`host_id`, `node_id`) metric pairs.
+* Identify the total process count in the cluster. This is the value to use in the formulas below; it is also the number of unique (`host_id`, `node_id`) metric pairs.
 * Define the CPU limit per pod.
 
 **Procedure**
@@ -229,7 +241,7 @@ workers:
 
 **Related topics**
 
-[https://github.com/weka/docs-weka-io/blob/5.1/monitor-the-weka-cluster/the-wekaio-support-cloud/deploy-local-weka-home-v4.x-on-k8s#upgrade-local-weka-home](https://github.com/weka/docs-weka-io/blob/5.1/monitor-the-weka-cluster/the-wekaio-support-cloud/deploy-local-weka-home-v4.x-on-k8s#upgrade-local-weka-home "mention")
+[#upgrade-local-weka-home](deploy-local-weka-home-on-k8s/#upgrade-local-weka-home "mention")
 
 [#upgrade-the-local-weka-home](deploy-local-weka-home-on-k3s/#upgrade-the-local-weka-home "mention")
 
