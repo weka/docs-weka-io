@@ -17,7 +17,7 @@ weka fs tier s3 attach <filesystem> <obs-name> [--mode <obs-attach-mode>]
 **Parameters**
 
 | Parameter                   | Description                                 |
-| --------------------------- | ------------------------------------------- |
+| --- | --- |
 | `filesystem`\* | Name of the filesystem. |
 | `obs-name`\* | Name of the object store bucket to attach. |
 | `--mode` \<obs-attach-mode> | Operation mode for the object store bucket. |
@@ -35,7 +35,7 @@ weka fs tier s3 detach <filesystem> <obs-name> [--force]
 **Parameters**
 
 | Parameter       | Description                                                     |
-| --------------- | --------------------------------------------------------------- |
+| --- | --- |
 | `filesystem`\* | Name of the filesystem. |
 | `obs-name`\* | Name of the object store bucket to detach. |
 | `-f`, `--force` | Force action. Perform this action without further confirmation. |

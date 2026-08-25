@@ -27,7 +27,7 @@ weka s3 service-account add [--policy-file <string>]
 **Parameters**
 
 | Parameter                 | Description                          |
-| ------------------------- | ------------------------------------ |
+| --- | --- |
 | `--policy-file` \<string> | File containing JSON policy content. |
 
 {% hint style="warning" %}
@@ -47,7 +47,7 @@ weka s3 service-account show <access-key>
 **Parameters**
 
 | Parameter      | Description                                |
-| -------------- | ------------------------------------------ |
+| --- | --- |
 | `access-key`\* | Access key of the service account to show. |
 
 ## Remove S3 service account
@@ -63,5 +63,9 @@ weka s3 service-account remove <access-key>
 **Parameters**
 
 | Parameter      | Description                                  |
-| -------------- | -------------------------------------------- |
+| --- | --- |
 | `access-key`\* | Access key of the service account to remove. |
+
+**Related topics**
+
+[#s3-service-accounts](./#s3-service-accounts "mention")

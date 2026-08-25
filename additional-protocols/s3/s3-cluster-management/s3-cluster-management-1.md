@@ -19,7 +19,7 @@ weka s3 cluster add <config-fs-name>… [--all-servers] [--allow-versioning] [--
 **Parameters**
 
 | Parameter                       | Description                                                                                                                 |
-| ------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| --- | --- |
 | `config-fs-name`\*… | Filesystem name for S3 configuration storage. For details, see #dedicated-filesystem-requirement-for-cluster-wide-persistent-protocol-configurations |
 | `--all-servers` | Install S3 on all servers. |
 | `--allow-versioning` | Enable S3 versioning (default off, cannot be disabled once enabled). |
@@ -31,6 +31,8 @@ weka s3 cluster add <config-fs-name>… [--all-servers] [--allow-versioning] [--
 | `-f`, `--force` | Force action. Perform this action without further confirmation. |
 | `--max-buckets-limit` \<uint> | Maximum buckets that can be created. value: 10000 |
 | `--port` \<uint16> | S3 service port. |
+
+Bucket creation uses the tenant default filesystem first, then the cluster default filesystem. If neither is configured and the bucket command does not specify a filesystem, bucket creation fails.
 
 ## Check the status of the S3 cluster readiness
 
@@ -65,7 +67,7 @@ weka s3 cluster update [--all-servers] [--allow-versioning] [--anonymous-posix-g
 **Parameters**
 
 | Parameter                       | Description                                                                                                                 |
-| ------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| --- | --- |
 | `--all-servers` | Install S3 on all servers. |
 | `--allow-versioning` | Enable S3 versioning (default off, cannot be disabled once enabled). |
 | `--anonymous-posix-gid` \<uint> | POSIX GID for anonymous users. |
@@ -92,7 +94,7 @@ weka s3 cluster setup update [--anonymous-posix-gid <uint>] [--anonymous-posix-u
 **Parameters**
 
 | Parameter                       | Description                                   |
-| ------------------------------- | --------------------------------------------- |
+| --- | --- |
 | `--anonymous-posix-gid` \<uint> | POSIX GID for anonymous users. |
 | `--anonymous-posix-uid` \<uint> | POSIX UID for anonymous users. |
 | `--clear-default-fs` | Clear the default filesystem for this tenant. |
@@ -111,7 +113,7 @@ weka s3 cluster container add <container-id>…
 **Parameters**
 
 | Parameter         | Description                          |
-| ----------------- | ------------------------------------ |
+| --- | --- |
 | `container-id`\*… | Containers to add to the S3 cluster. |
 
 ## Remove containers from the S3 cluster
@@ -127,7 +129,7 @@ weka s3 cluster container remove <container-id>…
 **Parameters**
 
 | Parameter         | Description                               |
-| ----------------- | ----------------------------------------- |
+| --- | --- |
 | `container-id`\*… | Containers to remove from the S3 cluster. |
 
 ## Remove an S3 cluster
@@ -143,5 +145,5 @@ weka s3 cluster remove [--force]
 **Parameters**
 
 | Parameter       | Description                                                     |
-| --------------- | --------------------------------------------------------------- |
+| --- | --- |
 | `-f`, `--force` | Force action. Perform this action without further confirmation. |

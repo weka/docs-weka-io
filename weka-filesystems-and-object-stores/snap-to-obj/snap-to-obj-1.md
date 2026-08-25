@@ -19,7 +19,7 @@ weka fs snapshot upload <filesystem> <name> [--allow-non-chronological] [--site 
 **Parameters**
 
 | Parameter                   | Description                                                                                   |
-| --------------------------- | --------------------------------------------------------------------------------------------- |
+| --- | --- |
 | `filesystem`\* | Filesystem name. |
 | `name`\* | Snapshot name. |
 | `--allow-non-chronological` | Allow uploading snapshots to remote object store in non-chronological order. Not recommended. |
@@ -38,7 +38,7 @@ weka fs download <name> <group-name> <total-capacity> <ssd-capacity> <obs-bucket
 **Parameters**
 
 | Parameter                           | Description                                                                                                                      |
-| ----------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| --- | --- |
 | `name`\* | Name of filesystem for this operation. |
 | `group-name`\* | Filesystem group to create the downloaded filesystem in. |
 | `total-capacity`\* | Total capacity of the downloaded filesystem. |
@@ -58,6 +58,10 @@ weka fs download <name> <group-name> <total-capacity> <ssd-capacity> <obs-bucket
 {% hint style="info" %}
 For encrypted filesystems, when downloading, you must use the same KMS cluster-wide key or, if configured, the per-filesystem encryption parameters to decrypt the snapshot data. For more information, see [kms-management](../../security/kms-management/ "mention").
 {% endhint %}
+
+The `locator` can be a previously saved locator for disaster scenarios, or you can obtain the `locator` using the `weka fs snapshot` command on a system with a live filesystem with snapshots.
+
+If you need to pause and resume the download process, use the command: `weka cluster task pause / resume`. To abort the download process, delete the downloaded filesystem directly. For details, see [background-tasks](../../operation-guide/background-tasks/ "mention").
 
 {% hint style="info" %}
 Use this procedure only when the uploaded snapshot is available in a local object store bucket. Direct download from a remote object store bucket is not allowed because of bandwidth and cost considerations. If the snapshot exists only in a remote bucket, follow [Recover a filesystem from a remote-only snapshot](snap-to-obj-1.md#recover-a-filesystem-from-a-remote-only-snapshot).
@@ -90,13 +94,21 @@ weka fs snapshot download <filesystem> <locator> [--access-point <string>] [--al
 **Parameters**
 
 | Parameter                   | Description                                                                                       |
-| --------------------------- | ------------------------------------------------------------------------------------------------- |
+| --- | --- |
 | `filesystem`\* | Filesystem name. |
 | `locator`\* | Object store locator for the snapshot. |
 | `--access-point` \<string> | Access point. Defaults to the uploaded access point. |
 | `--allow-divergence` | Allow downloading snapshots that are not descendants of the last downloaded snapshot. |
 | `--allow-non-chronological` | Allow downloading snapshots from remote object store in non-chronological order. Not recommended. |
 | `--name` \<string> | Snapshot name. Defaults to the uploaded name. |
+
+If you need to pause and resume the download process, use the command: `weka cluster task pause / resume`. To abort the download process, delete the downloaded snapshot directly.
+
+**Related topics**
+
+[#synchronous-snapshots](./#synchronous-snapshots "mention")
+
+[background-tasks](../../operation-guide/background-tasks/ "mention")
 
 {% hint style="warning" %}
 Make sure to download synchronous snapshots in chronological order. Non-chronological snapshots are inefficient and are not synchronous.

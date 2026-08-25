@@ -21,7 +21,7 @@ weka s3 bucket lifecycle-rule add <name> <expiry-days> [--noncurrent] [--prefix 
 **Parameters**
 
 | Parameter            | Description                                                             |
-| -------------------- | ----------------------------------------------------------------------- |
+| --- | --- |
 | `name`\* | Name of the S3 bucket. |
 | `expiry-days`\* | Number of days after which objects expire. |
 | `--noncurrent` | Apply expiry to noncurrent object versions only (not current versions). |
@@ -41,7 +41,7 @@ weka s3 bucket lifecycle-rule list <name>
 **Parameters**
 
 | Parameter | Description            |
-| --------- | ---------------------- |
+| --- | --- |
 | `name`\* | Name of the S3 bucket. |
 
 ## Remove a lifecycle rule
@@ -57,7 +57,7 @@ weka s3 bucket lifecycle-rule remove <name> <rule>
 **Parameters**
 
 | Parameter | Description            |
-| --------- | ---------------------- |
+| --- | --- |
 | `name`\* | Name of the S3 bucket. |
 | `rule`\* | Rule ID to remove. |
 
@@ -74,6 +74,6 @@ weka s3 bucket lifecycle-rule reset <name> [--force]
 **Parameters**
 
 | Parameter       | Description                                                     |
-| --------------- | --------------------------------------------------------------- |
+| --- | --- |
 | `name`\* | Name of the S3 bucket. |
 | `-f`, `--force` | Force action. Perform this action without further confirmation. |

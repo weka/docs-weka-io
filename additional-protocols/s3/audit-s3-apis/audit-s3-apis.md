@@ -17,7 +17,7 @@ weka s3 cluster audit-webhook enable --auth-token <string> --endpoint <string>
 **Parameters**
 
 | Parameter                  | Description                   |
-| -------------------------- | ----------------------------- |
+| --- | --- |
 | `--auth-token` \<string>\* | Webhook authentication token. |
 | `--endpoint` \<string>\* | Webhook endpoint URL. |
 

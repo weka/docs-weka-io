@@ -27,7 +27,7 @@ weka fs group add <name> [--ssd-retention <duration>] [--start-demote <duration>
 **Parameters**
 
 | Parameter                     | Description                                             |
-| ----------------------------- | ------------------------------------------------------- |
+| --- | --- |
 | `name`\* | Name of the filesystem group. |
 | `--ssd-retention` \<duration> | How long to keep an SSD copy of the data. |
 | `--start-demote` \<duration> | How long to wait before copying data to object storage. |
@@ -45,7 +45,7 @@ weka fs group update <name> [--new-name <filesystem-group>] [--ssd-retention <du
 **Parameters**
 
 | Parameter                        | Description                                             |
-| -------------------------------- | ------------------------------------------------------- |
+| --- | --- |
 | `name`\* | Name of the filesystem group. |
 | `--new-name` \<filesystem-group> | Rename the filesystem group. |
 | `--ssd-retention` \<duration> | How long to keep an SSD copy of the data. |
@@ -64,5 +64,11 @@ weka fs group remove <name>
 **Parameters**
 
 | Parameter | Description                   |
-| --------- | ----------------------------- |
+| --- | --- |
 | `name`\* | Name of the filesystem group. |
+
+**Related topics**
+
+To learn about the tiering policy, see:
+
+[tiering.md](../tiering.md "mention")

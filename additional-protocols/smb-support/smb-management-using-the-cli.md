@@ -117,7 +117,7 @@ weka smb cluster update [--encryption <smb-cluster-encryption>] [--force] [--idm
 | `--userdb-trusted-domains` | Enumerate the trusted domains and their domain controllers when the SMB server starts (enabled by default). Set to false in large Active Directory environments where the enumeration times out and the SMB server keeps restarting. While it is off, users from trusted domains cannot be resolved and lose access. |
 
 {% hint style="danger" %}
-**INTERNAL, remove before publication. TBD (Engineering):** `--symlink` no longer exists on `smb cluster update`, and the synopsis above has been resynced with the shipping CLI, so nothing on this page is wrong. The open question is the capability: the legacy CLI defined the option as "Enable or disable symbolic link (symlink) support for the SMB-W cluster", and no 6.0 option replaces it — `--posix-resolution-mode` governs UID/GID resolution, not symlinks. Confirm whether SMB symlink support was removed or moved, and whether this page should say so.
+**INTERNAL, remove before publication. TBD (Engineering):** `--symlink` no longer exists on `smb cluster update`, and the synopsis above is resynced with the shipping CLI, so nothing on this page is wrong. The open question is the capability: the legacy CLI defined it as "Enable or disable symbolic link (symlink) support for the SMB-W cluster", and no 6.0 option replaces it — `--posix-resolution-mode` governs UID/GID resolution, not symlinks. Confirm whether SMB symlink support was removed or moved.
 {% endhint %}
 
 ## Check the status of SMB cluster readiness
@@ -151,6 +151,12 @@ weka smb domain join <username> [<password>] [--create-computer <string>] [--deb
 | `--extra-options` \<string> | Extra options for the domain join. |
 | `--server` \<string> | Domain controller server address. |
 | `-t`, `--timeout` \<duration> | Timeout for the domain join operation. |
+
+To join an existing SMB cluster to another Active Directory domain, leave the current Active Directory using the following command line:
+
+`weka smb domain leave <username> <password>`
+
+On completion of this operation, it is possible to join the SMB cluster to another Active Directory domain.
 
 {% hint style="info" %}
 Ensure the AD servers are resolvable to all WEKA servers. This resolution enables the WEKA servers to join the AD domain.
@@ -395,6 +401,33 @@ weka smb share lists reset <share-id> <user-list-type>
 | `user-list-type`\* | User list type (read\_only, read\_write, valid, invalid). |
 | `--users` \<strings>… | Users to add. Multiple values may be supplied separated by commas, or the option may be repeated. |
 
+***
+
+Use the following command line to remove users from a share user-list:
+
+`weka smb share lists remove <share-id> <user-list-type> <--users users>...`
+
+**Parameters**
+
+| Name               | Value                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `share-id`\*       | The ID of the share to be updated.                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| `user-list-type`\* | The type of permissions list for `users`:`read_only`: list of users that do not get write access to the SMB share, regardless of the `read-only` setting.`read_write`: list of users get write access to the SMB share, regardless of the `read-only` setting.`valid`: list of users allowed to log in to this SMB share service (an empty list means all users are allowed).`invalid`: list of users not allowed to log in to this SMB share service. |
+| `users`\*          | A comma-separated list of users to remove from the `user-list-type` list. Can use the `@` notation to allow groups of users, e.g. `root, Jack, @domain\admins.`You can set up to 8 users/groups for all lists combined per share.                                                                                                                                                                                                                      |
+
+***
+
+Use the following command line to remove all users from a share user-list:
+
+`weka smb share lists reset <share-id> <user-list-type>`
+
+**Parameters**
+
+| Name               | Value                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| ------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `share-id`\*       | The ID of the share to be updated                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| `user-list-type`\* | The type of permissions list to reset:`read_only`: list of users that do not get write access to the SMB share, regardless of the `read-only` setting.`read_write`: list of users get write access to the SMB share, regardless of the `read-only` setting.`valid`: list of users allowed to log in to this SMB share service (an empty list means all users are allowed).`invalid`: list of users not allowed to log in to this SMB share service. |
+
 ## Remove SMB shares
 
 Removes an SMB share. The underlying directory and its data are not deleted.
@@ -455,6 +488,24 @@ weka smb share host-access reset <share-id> <mode> [--force]
 | `--ips` \<strings>… | IP addresses. Multiple values may be supplied separated by commas, or the option may be repeated. |
 | `hosts`\*… | Hosts to remove. |
 | `-f`, `--force` | Force action. Perform this action without further confirmation. |
+
+Use the following command line to remove hosts from the allow or deny list.
+
+`weka smb share host-access remove <share-id> <hosts>`
+
+**Parameters**
+
+<table><thead><tr><th width="248">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>share-id</code>*</td><td>The ID of the share to update.<br>Mandatory for the share-level command.</td></tr><tr><td><code>hosts</code>*</td><td><p>A list of hostnames you want to remove from access.</p><ul><li>Separate host names with spaces.</li><li>Use the IP addresses displayed under the <code>HOST</code> column when running the corresponding <code>list</code> command.</li></ul></td></tr></tbody></table>
+
+Use the following command line to remove all hosts from the allow or deny list:
+
+`weka smb share host-access reset <share-id> <mode>`
+
+**Parameters**
+
+<table><thead><tr><th width="301">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>share-id</code>*</td><td>The ID of the share to update.<br>Mandatory for the share-level command.</td></tr><tr><td><code>mode</code>*</td><td><p>The specified access mode will remove all associated hosts from the list.</p><p>Possible values: <code>allow</code>, <code>deny</code>.</p></td></tr></tbody></table>
+
+[^1]: **Control characters** are non-printable characters used to manage the flow of text and commands, such as starting a new line, triggering alerts, or formatting text. They do not represent visible symbols and are typically not allowed in filenames or share names.
 
 {% hint style="info" %}
 SMB-W supports access based on the host IP addresses (but not host names).

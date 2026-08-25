@@ -19,7 +19,7 @@ weka fs snapshot add <filesystem> <name> [--access-point <string>] [--source-sna
 **Parameters**
 
 | Parameter                     | Description                      |
-| ----------------------------- | -------------------------------- |
+| --- | --- |
 | `filesystem`\* | Filesystem name. |
 | `name`\* | Target snapshot name. |
 | `--access-point` \<string> | Snapshot access point name. Default: Controlled by weka fs snapshot access-point-naming-convention update &#x26;#x3C;date/name>. By default, the system uses the date format @GMT_%Y.%m.%d-%H.%M.%S, which is compatible with Windows previous versions for SMB |
@@ -44,7 +44,7 @@ weka fs snapshot remove <filesystem> <name> [--force]
 **Parameters**
 
 | Parameter       | Description                                                     |
-| --------------- | --------------------------------------------------------------- |
+| --- | --- |
 | `filesystem`\* | Filesystem name. |
 | `name`\* | Snapshot name. |
 | `-f`, `--force` | Force action. Perform this action without further confirmation. |
@@ -94,7 +94,7 @@ weka fs snapshot update <filesystem> <name> [--access-point <string>] [--new-nam
 **Parameters**
 
 | Parameter                  | Description                        |
-| -------------------------- | ---------------------------------- |
+| --- | --- |
 | `filesystem`\* | Filesystem name. |
 | `name`\* | Snapshot name. |
 | `--access-point` \<string> | New access point for the snapshot. |
@@ -138,9 +138,13 @@ weka fs snapshot [--filesystem <filesystem>] [--name <string>]
 **Parameters**
 
 | Parameter                    | Description                                 |
-| ---------------------------- | ------------------------------------------- |
+| --- | --- |
 | `--filesystem` \<filesystem> | Filter results to a specific filesystem. |
 | `--name` \<string> | Filter results to a specific snapshot name. |
+
+{% endcode %}
+
+<table><thead><tr><th width="212.421875">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>--file-system</code></td><td>Filter the output by filesystem name.</td></tr><tr><td><code>--name</code></td><td>Filter the output by snapshot name.</td></tr><tr><td><code>-o</code>, <code>--output</code>...</td><td>Select the columns to display. Supported values are <code>uid</code>, <code>id</code>, <code>filesystem</code>, <code>name</code>, <code>access</code>, <code>writeable</code>, <code>created</code>, <code>local_upload_size</code>, <code>remote_upload_size</code>, <code>local_object_status</code>, <code>local_object_progress</code>, <code>local_object_locator</code>, <code>remote_object_status</code>, <code>remote_object_progress</code>, <code>remote_object_locator</code>, <code>removing</code>, <code>prefetched</code>, <code>est_reclaimable_size</code>, and <code>metadata_size</code>.Repeat the option or use a comma-separated list.</td></tr></tbody></table>
 
 ## Set up snapshot replication between clusters
 

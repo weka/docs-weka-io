@@ -17,7 +17,7 @@ weka fs tier obs [--name <string>]
 **Parameters**
 
 | Parameter          | Description                                |
-| ------------------ | ------------------------------------------ |
+| --- | --- |
 | `--name` \<string> | Show only the object store with this name. |
 
 {% hint style="info" %}
@@ -37,7 +37,7 @@ weka fs tier obs update <name> [--access-key-id <string>] [--auth-method <s3-aut
 **Parameters**
 
 | Parameter                               | Description                                                                                                 |
-| --------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
+| --- | --- |
 | `name`\* | Name of the object store. |
 | `--access-key-id` \<string> | Access key used for AWS Signature authentications. |
 | `--auth-method` \<s3-auth-method> | Authentication method. Possible values: `None`,`AWSSignature2`,`AWSSignature4` |
@@ -77,7 +77,7 @@ weka fs tier s3 [--name <string>] [--obs-name <string>]
 **Parameters**
 
 | Parameter              | Description                                       |
-| ---------------------- | ------------------------------------------------- |
+| --- | --- |
 | `--name` \<string> | Show only the object store bucket with this name. |
 | `--obs-name` \<string> | Show only buckets belonging to this object store. |
 
@@ -94,7 +94,7 @@ weka fs tier s3 add <name> [--access-key-id <string>] [--auth-method <s3-auth-me
 **Parameters**
 
 | Parameter                               | Description                                                                                                               |
-| --------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
+| --- | --- |
 | `name`\* | Name of the object store bucket. |
 | `--access-key-id` \<string> | Access key used for AWS Signature authentications. |
 | `--auth-method` \<s3-auth-method> | Authentication method. Possible values: None, AWSSignature2, AWSSignature4. Mandatory, if not specified in the object store level |
@@ -136,7 +136,7 @@ When using the CLI, by default a misconfigured object store is not created. To c
 {% endhint %}
 
 {% hint style="warning" %}
-The `max-concurrent` settings are applied per WEKA compute process and the lowest setting across all object stores is the one applied.
+The `max-concurrent` settings are applied per WEKA compute process and the minimum setting of all object stores is applied.
 {% endhint %}
 
 {% hint style="success" %}
@@ -160,7 +160,7 @@ weka fs tier s3 update <name> [--access-key-id <string>] [--auth-method <s3-auth
 **Parameters**
 
 | Parameter                               | Description                                                                                                               |
-| --------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
+| --- | --- |
 | `name`\* | Name of the object store bucket. |
 | `--access-key-id` \<string> | Access key used for AWS Signature authentications. |
 | `--auth-method` \<s3-auth-method> | Authentication method. Possible values: None, AWSSignature2 or AWSSignature4 |
@@ -209,7 +209,7 @@ weka fs tier ops [<name>]
 **Parameters**
 
 | Parameter | Description                      |
-| --------- | -------------------------------- |
+| --- | --- |
 | `name` | Name of the object store bucket. |
 
 ## Delete an object store bucket
@@ -225,5 +225,7 @@ weka fs tier s3 remove <name>
 **Parameters**
 
 | Parameter | Description                      |
-| --------- | -------------------------------- |
+| --- | --- |
 | `name`\* | Name of the object store bucket. |
+
+[^1]: WEKA supports the AWS Security Token Service (STS) that enables you to request temporary, limited-privilege credentials for users using the [AssumeRole](https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole.html) API.

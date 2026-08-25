@@ -21,7 +21,7 @@ weka fs [--force-fresh] [--local] [--name <string>]
 **Parameters**
 
 | Parameter          | Description                                                                                                                                  |
-| ------------------ | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| --- | --- |
 | `--force-fresh` | Refresh capacities to make sure information is most current. |
 | `--local` | Serve the listing from the container this command connects to, without redirecting to the cluster leader. Capacity information may be stale. |
 | `--name` \<string> | Show only the named filesystem. |
@@ -39,7 +39,7 @@ weka fs add <name> <total-capacity> [--allow-no-kms] [--audit-enabled] [--auth-r
 **Parameters**
 
 | Parameter                              | Description                                                                                                                      |
-| -------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| --- | --- |
 | `name`\* | Name of filesystem for this operation. |
 | `total-capacity`\* | Total filesystem capacity. value: 1GiB |
 | `--allow-no-kms` | Allow creation of an encrypted filesystem without a KMS configured. This is insecure. |
@@ -101,7 +101,7 @@ weka fs update <name> [--access <access>] [--audit-enabled] [--auth-required] [-
 **Parameters**
 
 | Parameter                                         | Description                                                                                                                                                                       |
-| ------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| --- | --- |
 | `name`\* | Name of filesystem for this operation. |
 | `--access` \<access> | Set the filesystem access mode: ro (read-only) or rw (read-write). A replication target cannot be set to rw while its pair is active; pause the pair on the source cluster first. |
 | `--audit-enabled` | Enable filesystem auditing. |
@@ -149,7 +149,7 @@ weka fs remove <name> [--force] [--purge-from-obs]
 **Parameters**
 
 | Parameter          | Description                                                                                                           |
-| ------------------ | --------------------------------------------------------------------------------------------------------------------- |
+| --- | --- |
 | `name`\* | Name of filesystem for this operation. |
 | `-f`, `--force` | Force action. Perform this action without further confirmation. |
 | `--purge-from-obs` | Delete the filesystem's objects from the local writable Object Store, making all locally uploaded snapshots unusable. |
@@ -175,5 +175,5 @@ weka fs kms-rewrap <name>
 **Parameters**
 
 | Parameter | Description                            |
-| --------- | -------------------------------------- |
+| --- | --- |
 | `name`\* | Name of filesystem for this operation. |

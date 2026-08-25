@@ -17,7 +17,7 @@ weka s3 bucket add <name> [--existing-path <string>] [--force] [--fs-id <fs-id>]
 **Parameters**
 
 | Parameter                   | Description                                                                                         |
-| --------------------------- | --------------------------------------------------------------------------------------------------- |
+| --- | --- |
 | `name`\* | Name of the bucket to create. [Bucket Naming Limitations](../s3-limitations.md#buckets) section |
 | `--existing-path` \<string> | Existing path to use for the bucket. |
 | `-f`, `--force` | Force when existing path has quota. |
@@ -59,7 +59,7 @@ weka s3 bucket quota set <name> <hard-quota>
 **Parameters**
 
 | Parameter      | Description                          |
-| -------------- | ------------------------------------ |
+| --- | --- |
 | `name`\* | Name of the S3 bucket. |
 | `hard-quota`\* | Hard limit for directory disk usage. |
 
@@ -76,7 +76,7 @@ weka s3 bucket quota reset <name>
 **Parameters**
 
 | Parameter | Description            |
-| --------- | ---------------------- |
+| --- | --- |
 | `name`\* | Name of the S3 bucket. |
 
 {% hint style="info" %}
@@ -96,7 +96,7 @@ weka s3 bucket remove <name> [--force] [--unlink]
 **Parameters**
 
 | Parameter       | Description                                                     |
-| --------------- | --------------------------------------------------------------- |
+| --- | --- |
 | `name`\* | Name of the bucket to remove. |
 | `-f`, `--force` | Force action. Perform this action without further confirmation. |
 | `--unlink` | Leave the data directory in place after removal. |
@@ -118,7 +118,7 @@ weka s3 bucket policy set <bucket-name> <bucket-policy>
 **Parameters**
 
 | Parameter         | Description                            |
-| ----------------- | -------------------------------------- |
+| --- | --- |
 | `bucket-name`\* | Name of the bucket. |
 | `bucket-policy`\* | S3 IAM policy to assign to the bucket. Possible values: `none`, `download`, `upload`, `public` |
 
@@ -135,7 +135,7 @@ weka s3 bucket policy set-custom <bucket-name> <policy-file>
 **Parameters**
 
 | Parameter       | Description                                 |
-| --------------- | ------------------------------------------- |
+| --- | --- |
 | `bucket-name`\* | Name of the bucket. |
 | `policy-file`\* | Path to file containing custom JSON policy. [Supported Policy Actions](../s3-limitations.md#supported-policy-actions) |
 
@@ -158,7 +158,7 @@ weka s3 bucket policy get-json <bucket-name>
 **Parameters**
 
 | Parameter       | Description         |
-| --------------- | ------------------- |
+| --- | --- |
 | `bucket-name`\* | Name of the bucket. |
 
 ### Unset a bucket policy
@@ -174,5 +174,5 @@ weka s3 bucket policy reset <bucket-name>
 **Parameters**
 
 | Parameter       | Description         |
-| --------------- | ------------------- |
+| --- | --- |
 | `bucket-name`\* | Name of the bucket. |
