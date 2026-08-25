@@ -377,7 +377,7 @@ If you create an NFS v4 client permission, verify that a global configuration fi
    * **Anon. GID:** Anonymous group ID. Only relevant for Root and All user squashing.
 3. Select **Submit**.
 
-<div data-with-frame="true"><img src="../../.gitbook/assets/NFS_create_permissions_dialog.gif" alt="Create NFS permission"></div>
+<div data-with-frame="true"><img src="../../.gitbook/assets/NFS_create_permissions_dialog.png" alt="Create NFS permission"></div>
 
 ### Edit NFS client permission <a href="#edit-nfs-client-permission" id="edit-nfs-client-permission"></a>
 
