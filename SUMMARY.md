@@ -106,6 +106,8 @@
 * [Mount filesystems](weka-filesystems-and-object-stores/mounting-filesystems/README.md)
   * [Mount filesystems from Single Client to Multiple Clusters (SCMC)](weka-filesystems-and-object-stores/mounting-filesystems/mount-fs-from-scmc.md)
   * [Manage authentication across multiple clusters with connection profiles](weka-filesystems-and-object-stores/mounting-filesystems/manage-authentication-across-multiple-clusters-with-connection-profiles.md)
+* [POSIX ACLs on the WEKA client](weka-filesystems-and-object-stores/posix-acls-on-the-weka-client/README.md)
+  * [Manage POSIX ACLs WEKA client](weka-filesystems-and-object-stores/posix-acls-on-the-weka-client/manage-posix-acls-weka-client.md)
 * [Snapshots](weka-filesystems-and-object-stores/snapshots/README.md)
   * [Manage snapshots using the GUI](weka-filesystems-and-object-stores/snapshots/snapshots.md)
   * [Manage snapshots using the CLI](weka-filesystems-and-object-stores/snapshots/snapshots-1.md)
