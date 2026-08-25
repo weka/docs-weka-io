@@ -53,13 +53,21 @@ Use the safe capacity value of 550 processes per CPU core. The replica counts as
 
 ### Kubernetes component scaling
 
-Use the following defaults for the FSQ-based statistics components.
+The chart ships the following defaults for the FSQ-based statistics components, as of chart version 5.0.0.
 
-| Component            | Scaling behavior                | CPU request and limit | Memory request and limit |
-| -------------------- | ------------------------------- | --------------------- | ------------------------ |
-| `api.stats`          | Autoscaling. 1 to 10 replicas.  | 200m / 1 core         | 200 MiB / 1 GiB          |
-| `workers.stats`      | Autoscaling. 1 to 300 replicas. | 1 core / 2 cores      | 200 MiB / 1 GiB          |
-| `workers.forwarding` | Autoscaling. 1 to 10 replicas.  | 100m / 500m           | 200 MiB / 400 MiB        |
+| Component | Scaling behavior | CPU request | CPU limit | Memory request | Memory limit |
+| --- | --- | --- | --- | --- | --- |
+| `api.stats` | Autoscaling. 1 to 10 replicas. | 200m | Not set | 200 MiB | Not set |
+| `workers.stats` | Autoscaling. 1 to 300 replicas. | 1 core | 2 cores | 200 MiB | 1 GiB |
+| `workers.forwarding` | Autoscaling. 1 to 10 replicas. | 100m | 500m | 200 MiB | 400 MiB |
+
+`api.stats` ships with no CPU or memory limit, so the pod is scheduled on its requests and can burst above them. Set explicit limits if the deployment needs a bounded ceiling, as the examples further down this page do.
+
+Confirm these values against the chart version you deploy, because defaults change between versions:
+
+```bash
+helm show values wekahome/wekahome --version <version>
+```
 
 ### Calculate required replicas
 
@@ -102,7 +110,7 @@ Modify the Helm configuration for either Kubernetes (K8s) or K3s to support high
 
 <details>
 
-<summary>Example for K8s: <code>api</code> and <code>workers</code> sections with default values</summary>
+<summary>Example for K8s: <code>api</code> and <code>workers</code> sections with starting values</summary>
 
 ```yaml
 api:
@@ -154,7 +162,7 @@ workers:
 
 <details>
 
-<summary>Example for K3s: <code>helmOverrides</code> section with default values</summary>
+<summary>Example for K3s: <code>helmOverrides</code> section with starting values</summary>
 
 ```json
 {
