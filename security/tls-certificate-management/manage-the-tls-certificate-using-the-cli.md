@@ -8,18 +8,20 @@ description: >-
 
 ## Set the TLS certificate
 
+Installs a TLS certificate and private key for the cluster's management interfaces.
+
 **Command:** `weka security tls set`
 
-Use the following command line to use TLS when accessing UI. If TLS is already set, this command updates the key and certificate.
-
-`weka security tls set [--private-key private-key] [--certificate certificate]`
+```sh
+weka security tls set --certificate <string> --private-key <string>
+```
 
 **Parameters**
 
-| Parameter     | Description                                   |
-| ------------- | --------------------------------------------- |
-| `private-key` | Path to TLS private unencrypted key pem file. |
-| `certificate` | Path to TLS certificate pem file.             |
+| Parameter                   | Description                       |
+| --- | --- |
+| `--certificate` \<string>\* | Path to TLS certificate PEM file. |
+| `--private-key` \<string>\* | Path to TLS private key PEM file. |
 
 {% hint style="success" %}
 **Example:**
@@ -29,32 +31,69 @@ This command is similar to the WEKA's OpenSSL command to generate the self-signe
 
 ## Replace the TLS certificate
 
-To replace the TLS certificate with a new one, use the CLI command: `weka security tls set`.
+Replaces the installed certificate with a new one. The new certificate takes effect for subsequent connections; revocation of the old one is handled by your CA.
 
-Once you issue a TLS certificate, it is used for connecting to the cluster (for the time it is issued), while the revocation is handled by the CA and propagating its revocation lists into the various clients.
+**Command:** `weka security tls set`
 
-## Unset the TLS certificate
-
-You can unset your TLS certificates using the CLI command: `weka security tls reset`.
-
-## Download the TLS certificate
-
-To download the TLS certificate, use the CLI command: `weka security tls download`.
-
-## View the TLS certificate status
-
-To view the cluster TLS status and certificate, use the CLI command: `weka security tls status`.
-
-## Set CA certificate
-
-The system uses well-known CA certificates to establish trust with external services. For example, when using a KMS. If a different CA certificate is required for WEKA servers to establish trust, set this custom CA certificate on the WEKA servers.
-
-Use the CLI command:
-
-`weka security ca-cert set [--cert-file cert-file]`
+```sh
+weka security tls set --certificate <string> --private-key <string>
+```
 
 **Parameters**
 
-| Parameter   | Description                   |
-| ----------- | ----------------------------- |
-| `cert-file` | Path to the certificate file. |
+| Parameter                   | Description                       |
+| --- | --- |
+| `--certificate` \<string>\* | Path to TLS certificate PEM file. |
+| `--private-key` \<string>\* | Path to TLS private key PEM file. |
+
+## Unset the TLS certificate
+
+Removes the installed TLS certificate, returning the cluster to its self-signed certificate.
+
+**Command:** `weka security tls reset`
+
+```sh
+weka security tls reset
+```
+
+## Download the TLS certificate
+
+Downloads the cluster's current TLS certificate to a local file.
+
+**Command:** `weka security tls download`
+
+```sh
+weka security tls download [<destination-path>]
+```
+
+**Parameters**
+
+| Parameter          | Description                              |
+| --- | --- |
+| `destination-path` | Path to save the downloaded certificate. |
+
+## View the TLS certificate status
+
+Shows whether a user-supplied certificate is installed, and its details.
+
+**Command:** `weka security tls status`
+
+```sh
+weka security tls status
+```
+
+## Set CA certificate
+
+Installs a CA certificate so the cluster can trust an external service, such as a KMS, whose certificate is not signed by a well-known authority.
+
+**Command:** `weka security ca-cert set`
+
+```sh
+weka security ca-cert set --cert-file <string>
+```
+
+**Parameters**
+
+| Parameter                 | Description               |
+| --- | --- |
+| `--cert-file` \<string>\* | Path to certificate file. |

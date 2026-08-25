@@ -19,35 +19,32 @@ In summary, CORS helps maintain web security by:
 
 ## **CORS CLI commands**
 
+
 ### List the CORS trusted sites
+
+Lists the origins allowed to make cross-origin requests to the cluster's API.
 
 **Command:** `weka security cors-trusted-sites list`
 
-Use the following command line to display the list of trusted sites with configured CORS settings:
-
-`weka security cors-trusted-sites list`
-
-Example:
-
-```
-$ weka security cors-trusted-sites list
-http://site_1.com
-http://Site_2.com
+```sh
+weka security cors-trusted-sites list
 ```
 
 ### Add a CORS trusted site
 
+Adds an origin to the CORS trusted list.
+
 **Command:** `weka security cors-trusted-sites add`
 
-Use the following command line to add a trusted site to the CORS list.
-
-`weka security cors-trusted-sites add <site>`
+```sh
+weka security cors-trusted-sites add <site>
+```
 
 **Parameters**
 
-| Parameter | Description                                                                                                                  |
-| --------- | ---------------------------------------------------------------------------------------------------------------------------- |
-| `site`\*  | Trusted site to add. Include the URL with the `http` or `https` prefix, and specify the port number if it’s not the default. |
+| Parameter | Description                                      |
+| --- | --- |
+| `site`\* | Site to trust for cross origin resource sharing. |
 
 Example:
 
@@ -57,20 +54,26 @@ $ weka security cors-trusted-sites add http://site_3.com
 
 ### Remove a CORS trusted site
 
+Removes a single origin from the CORS trusted list.
+
 **Command:** `weka security cors-trusted-sites remove`
 
-Use the following command line to remove a specified trusted site from the CORS list.
+```sh
+weka security cors-trusted-sites remove <site>
+```
 
-`weka security cors-trusted-sites remove`
+**Parameters**
 
-| Parameter | Description                                |
-| --------- | ------------------------------------------ |
-| `site`\*  | Trusted site to remove from the CORS list. |
+| Parameter | Description                           |
+| --- | --- |
+| `site`\* | Site to remove from the trusted list. |
 
 ### Remove all trusted sites from the CORS list
 
+Clears the CORS trusted list, disallowing all cross-origin requests.
+
 **Command:** `weka security cors-trusted-sites reset`
 
-Use the following command line to remove all trusted sites from the CORS list.
-
-`weka security cors-trusted-sites remove`
+```sh
+weka security cors-trusted-sites reset
+```

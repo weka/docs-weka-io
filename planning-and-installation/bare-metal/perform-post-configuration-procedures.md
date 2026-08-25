@@ -20,21 +20,37 @@ Enable event notifications to the cloud for support purposes using one of the fo
 * Enable support through WEKA Home
 * Enable support through a private instance of WEKA Home
 
-### **Enable support through Weka Home**
+### Enable support through Weka Home
+
+Connects the cluster to WEKA Home so it can upload diagnostics and events for support.
 
 **Command:** `weka cloud enable`
 
-This command enables cloud event notification (via Weka Home), which allows the WEKA Customer Success Team to resolve any issues that may occur.
+```sh
+weka cloud enable [--cloud-url <string>]
+```
 
-To learn more about this and how to enable cloud event notification, see [the-wekaio-support-cloud](../../monitor-the-weka-cluster/the-wekaio-support-cloud/ "mention").
+**Parameters**
 
-### **Enable support through** Local WEKA Home
+| Parameter               | Description                    |
+| --- | --- |
+| `--cloud-url` \<string> | Base URL of the cloud service. |
 
-In closed environments, such as dark sites and private VPCs, it is possible to install Local WEKA Home, which is a private instance of WEKA Home.
+### Enable support through Local WEKA Home
 
-**Command:** `weka cloud enable --cloud-url=http://<weka-home-ip>:<weka-home-port>`
+Connects the cluster to a locally hosted WEKA Home instead of the cloud service.
 
-This command enables the WEKA cluster to send event notifications to the Local WEKA Home.
+**Command:** `weka cloud enable`
+
+```sh
+weka cloud enable [--cloud-url <string>]
+```
+
+**Parameters**
+
+| Parameter               | Description                    |
+| --- | --- |
+| `--cloud-url` \<string> | Base URL of the cloud service. |
 
 {% hint style="info" %}
 For details, see [local-weka-home-overview.md](../../monitor-the-weka-cluster/the-wekaio-support-cloud/local-weka-home-overview.md "mention").
@@ -42,64 +58,61 @@ For details, see [local-weka-home-overview.md](../../monitor-the-weka-cluster/th
 
 ## 2. Set the license
 
+Applies the cluster license.
+
 **Command:** `weka cluster license set`
 
-To run IOs against the cluster, a valid license must be applied. Obtain a valid license and apply it to the WEKA cluster. For details, see [overview.md](../../licensing/overview.md "mention").
+```sh
+weka cluster license set <license>
+```
+
+**Parameters**
+
+| Parameter   | Description             |
+| --- | --- |
+| `license`\* | License key to install. |
 
 ## 3. Start the cluster IO service
 
+Starts the cluster's I/O service, making filesystems available to clients.
+
 **Command:** `weka cluster start-io`
 
-To start the system IO and exit from the initialization state, use the following command line:
+```sh
+weka cluster start-io [--force]
+```
 
-`weka cluster start-io`
+**Parameters**
+
+| Parameter       | Description                                                                                                                            |
+| --- | --- |
+| `-f`, `--force` | Do not prompt before starting I/O for the first time. The prompt is only shown for interactive use; non-interactive use never prompts. |
 
 ## 4. Check the cluster configuration
 
+
 ### Check the cluster container
+
+Lists the containers in the cluster with their status and roles.
 
 **Command:** `weka cluster container`
 
-Use this command to display the list of containers and their details.
-
-<details>
-
-<summary>Example of a list of containers and their details</summary>
-
-```bash
-$ weka cluster container
-HOST ID  HOSTNAME  CONTAINER  IPS             STATUS  RELEASE   FAILURE DOMAIN  CORES  MEMORY    LAST FAILURE  UPTIME
-0        av299-0   drives0    10.108.79.121   UP      4.3.0     DOM-000         7      10.45 GB                1:08:30h
-1        av299-1   drives0    10.108.115.194  UP      4.3.0     DOM-001         7      10.45 GB                1:08:30h
-2        av299-2   drives0    10.108.2.136    UP      4.3.0     DOM-002         7      10.45 GB                1:08:29h
-3        av299-3   drives0    10.108.165.185  UP      4.3.0     DOM-003         7      10.45 GB                1:08:30h
-4        av299-4   drives0    10.108.116.49   UP      4.3.0     DOM-004         7      10.45 GB                1:08:29h
-5        av299-5   drives0    10.108.7.63     UP      4.3.0     DOM-005         7      10.45 GB                1:08:30h
-6        av299-6   drives0    10.108.80.75    UP      4.3.0     DOM-006         7      10.45 GB                1:08:29h
-7        av299-7   drives0    10.108.173.56   UP      4.3.0     DOM-007         7      10.45 GB                1:08:30h
-8        av299-8   drives0    10.108.253.194  UP      4.3.0     DOM-008         7      10.45 GB                1:08:29h
-9        av299-9   drives0    10.108.220.115  UP      4.3.0     DOM-009         7      10.45 GB                1:08:29h
-10       av299-0   compute0   10.108.79.121   UP      4.3.0     DOM-000         6      20.22 GB                1:08:08h
-11       av299-1   compute0   10.108.115.194  UP      4.3.0     DOM-001         6      20.22 GB                1:08:08h
-12       av299-2   compute0   10.108.2.136    UP      4.3.0     DOM-002         6      20.22 GB                1:08:09h
-13       av299-3   compute0   10.108.165.185  UP      4.3.0     DOM-003         6      20.22 GB                1:08:09h
-14       av299-4   compute0   10.108.116.49   UP      4.3.0     DOM-004         6      20.22 GB                1:08:09h
-15       av299-5   compute0   10.108.7.63     UP      4.3.0     DOM-005         6      20.22 GB                1:08:08h
-16       av299-6   compute0   10.108.80.75    UP      4.3.0     DOM-006         6      20.22 GB                1:08:09h
-17       av299-7   compute0   10.108.173.56   UP      4.3.0     DOM-007         6      20.22 GB                1:08:08h
-18       av299-8   compute0   10.108.253.194  UP      4.3.0     DOM-008         6      20.22 GB                1:08:09h
-19       av299-9   compute0   10.108.220.115  UP      4.3.0     DOM-009         6      20.22 GB                1:08:08h
-20       av299-0   frontend0  10.108.79.121   UP      4.3.0     DOM-000         1      1.47 GB                 1:06:57h
-21       av299-1   frontend0  10.108.115.194  UP      4.3.0     DOM-001         1      1.47 GB                 1:06:57h
-22       av299-2   frontend0  10.108.2.136    UP      4.3.0     DOM-002         1      1.47 GB                 1:06:57h
-23       av299-3   frontend0  10.108.165.185  UP      4.3.0     DOM-003         1      1.47 GB                 1:06:56h
-24       av299-4   frontend0  10.108.116.49   UP      4.3.0     DOM-004         1      1.47 GB                 1:06:57h
-25       av299-5   frontend0  10.108.7.63     UP      4.3.0     DOM-005         1      1.47 GB                 1:06:56h
-26       av299-6   frontend0  10.108.80.75    UP      4.3.0     DOM-006         1      1.47 GB                 1:06:57h
-27       av299-7   frontend0  10.108.173.56   UP      4.3.0     DOM-007         1      1.47 GB                 1:06:56h
-28       av299-8   frontend0  10.108.253.194  UP      4.3.0     DOM-008         1      1.47 GB                 1:06:57h
-29       av299-9   frontend0  10.108.220.115  UP      4.3.0     DOM-009         1      1.47 GB                 1:06:56h
+```sh
+weka cluster container [<container-ids>…] [--backends] [--clients] [--council] [--hostnames <strings>…] [--leader] [--leadership] [--local]
 ```
+
+**Parameters**
+
+| Parameter                 | Description                                                                                                                    |
+| --- | --- |
+| `container-ids`… | Only return these container IDs. |
+| `-b`, `--backends` | Only return backend containers. |
+| `-c`, `--clients` | Only return client containers. |
+| `--council` | Get result from cluster leadership members. |
+| `--hostnames` \<strings>… | Only return containers on these hostnames. Multiple values may be supplied separated by commas, or the option may be repeated. |
+| `-L`, `--leader` | Only return the cluster leader. |
+| `-l`, `--leadership` | Only return containers that are part of the cluster leadership. |
+| `--local` | Get result from local weka host. |
 
 </details>
 
@@ -109,39 +122,20 @@ HOST ID  HOSTNAME  CONTAINER  IPS             STATUS  RELEASE   FAILURE DOMAIN  
 
 ### Check cluster container resources
 
+Shows the cores, memory, and network resources assigned to a container.
+
 **Command:** `weka cluster container resources`
 
-Use this command to check the resources of each container in the cluster.
-
-`weka cluster container resources <container-id>`
-
-<details>
-
-<summary>Example for a drive container resources output</summary>
-
-```bash
-$ weka cluster container resources 1
-ROLES       NODE ID  CORE ID
-MANAGEMENT  0        <auto>
-DRIVES      1        4
-
-NET DEVICE    IDENTIFIER    DEFAULT GATEWAY  IPS             NETMASK  NETWORK LABEL
-0000:00:06.0  0000:00:06.0  10.108.0.1       10.108.115.194  UP  16
-
-Allow Protocols           false
-Bandwidth                 <auto>
-Base Port                 14000
-Dedicate Memory           true
-Disable NUMA Balancing    true
-Failure Domain            DOM-001
-Hardware Watchdog         false
-Management IPs            10.108.238.217
-Mask Interrupts           true
-Memory                    <dedicated>
-Mode                      BACKEND
-Non-Weka Reserved Memory  20
-Set CPU Governors         PERFORMANCE
+```sh
+weka cluster container resources <container> [--stable]
 ```
+
+**Parameters**
+
+| Parameter     | Description                               |
+| --- | --- |
+| `container`\* | Container ID. |
+| `--stable` | Show stable resources instead of staging. |
 
 </details>
 
@@ -215,39 +209,39 @@ Set CPU Governors       PERFORMANCE
 
 #### Check cluster drives
 
+Lists the drives in the cluster with their status and the container each belongs to.
+
 **Command:** `weka cluster drive`
 
-Use this command to check all drives in the cluster.
-
-<details>
-
-<summary>Example</summary>
-
-```bash
-$ weka cluster drive
-DISK ID  UUID                                  HOSTNAME  NODE ID  SIZE        STATUS  LIFETIME % USED  ATTACHMENT  DRIVE STATUS
-0        d3d000d4-a76b-405d-a226-c40dcd8d622c  av299-4   87       399.99 GiB  ACTIVE  0                OK          OK
-1        c68cf47a-f91d-499f-83c8-69aa06ed37d4  av299-7   143      399.99 GiB  ACTIVE  0                OK          OK
-2        c97f83b5-b9e3-4ccd-bfb8-d78537fa8a6f  av299-1   23       399.99 GiB  ACTIVE  0                OK          OK
-3        908dadc5-740c-4e08-9cc2-290b4b311f81  av299-0   7        399.99 GiB  ACTIVE  0                OK          OK
-.
-.
-.
-68       1c4c4d54-6553-44b2-bc61-0f0e946919fb  av299-4   84       399.99 GiB  ACTIVE  0                OK          OK
-69       969d3521-9057-4db9-8304-157f50719683  av299-3   62       399.99 GiB  ACTIVE  0                OK          OK
+```sh
+weka cluster drive [<drive>…] [--container <container-ids>…] [--show-removed]
 ```
+
+**Parameters**
+
+| Parameter                       | Description                                                                                                                                                                 |
+| --- | --- |
+| `drive`… | Drive IDs or UUIDs to list. If no ID is specified, all drives are listed. |
+| `--container` \<container-ids>… | Only return the drives of these container IDs. If not specified, all drives are listed. Multiple values may be supplied separated by commas, or the option may be repeated. |
+| `--show-removed` | Show drives that were removed from the cluster. |
 
 </details>
 
 ### Check the Weka cluster status
 
+Shows overall cluster health, capacity, protection level, and I/O activity.
+
 **Command:** `weka status`
 
-The `weka status` command displays the overall status of the WEKA cluster.
+```sh
+weka status [--detailed-capacity]
+```
 
-**Related topic**
+**Parameters**
 
-[#cluster-status](../../getting-started-with-weka/weka-cli-overview/#cluster-status "mention")
+| Parameter             | Description                                        |
+| --- | --- |
+| `--detailed-capacity` | Include capacity details including data reduction. |
 
 ## 5. Bypass the proxy server (optional)
 
@@ -273,21 +267,21 @@ If the WEKA cluster is deployed in an environment with a proxy server, a WEKA cl
 
 ## 6. Configure default data networking (optional)
 
+Sets the default network range, gateway, and netmask used for cluster data traffic.
+
 **Command:** `weka cluster default-net set`
 
-Instead of individually configuring IP addresses for each network device, WEKA supports dynamic IP address allocation. Users can define a range of IP addresses to create a dynamic pool, and these addresses can be automatically allocated on demand.
-
-{% hint style="info" %}
-**Mixed approach for Ethernet networking:** For Ethernet networking, a mixed approach is supported. Administrators can explicitly assign IP addresses for specific network devices, while others in the cluster can receive automatic allocations from the specified IP range. This feature is particularly useful in environments with automated client spawning.
-{% endhint %}
-
-Use the following command to configure default data networking:
-
-`weka cluster default-net set --range <range> [--gateway=<gateway>] [--netmask=<netmask>]`
+```sh
+weka cluster default-net set [--gateway <ip>] [--netmask <uint8>] [--range <ip-range>]
+```
 
 **Parameters**
 
-<table><thead><tr><th width="158">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>range</code>*</td><td><p>A range of IP addresses reserved for dynamic allocation across the entire cluster..<br>Format: <code>A.B.C.D-E</code></p><p>Example: <code>10.10.0.1-100</code></p></td></tr><tr><td><code>netmask-bits</code>*</td><td>Number of bits in the netmask that define a network ID in CIDR notation.</td></tr><tr><td><code>gateway</code></td><td>The IP address assigned to the default routing gateway. It is imperative that the gateway resides within the same IP network as defined by the specified range and netmask-bits.<br>This parameter is not applicable to InfiniBand (IB) or Layer 2 (L2) non-routable networks.</td></tr></tbody></table>
+| Parameter             | Description                     |
+| --- | --- |
+| `--gateway` \<ip> | Default gateway IP address. |
+| `--netmask` \<uint8> | Netmask length in bits. |
+| `--range` \<ip-range> | IP addresses in format IP1-IP2. |
 
 **View current settings:** To view the current default data networking settings, use the command:\
 `weka cluster default-net`
@@ -296,6 +290,10 @@ Use the following command to configure default data networking:
 `weka cluster default-net reset`
 
 **End of the installation and configuration for all workflow paths**
+
+{% hint style="info" %}
+**Mixed approach for Ethernet networking:** For Ethernet networking, a mixed approach is supported. Administrators can explicitly assign IP addresses for specific network devices, while others in the cluster can receive automatic allocations from the specified IP range. This feature is particularly useful in environments with automated client spawning.
+{% endhint %}
 
 ## **What do next?**
 

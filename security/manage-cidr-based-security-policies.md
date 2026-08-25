@@ -116,25 +116,27 @@ Add and manage security policies so that you can apply them on the tenant or fil
 
 ### List security policies
 
+Lists the CIDR-based security policies defined on the cluster.
+
 **Command:** `weka security policy list`
 
-Use the following command line to list security policies defined in the WEKA cluster.
-
-{% code overflow="wrap" %}
 ```sh
-weka security policy list [--action action] [--roles roles]...[--ips ips]...
+weka security policy list [--action <security-action>] [--ips <ip-ranges>…] [--roles <user-roles>…]
 ```
-{% endcode %}
 
 **Parameters**
 
-<table><thead><tr><th width="194">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>action</code></td><td>Lists security policies that match a specific action. (format: <code>allow</code> or <code>deny</code>).</td></tr><tr><td><code>roles</code>...</td><td>Lists security policies that include specific roles. (format: <code>clusteradmin</code>, <code>tenantadmin</code>, <code>regular</code>, <code>readonly</code> or <code>s3</code>, may be repeated or comma-separated).</td></tr><tr><td><code>ips</code>...</td><td>Lists security policies that include specific IP address ranges. (format: IP or IP/CIDR or IP1-IP2 or A.B.C.D-E, may be repeated or comma-separated).</td></tr><tr><td><code>squash-mode</code></td><td>Filters policies by squash mode. For a description of each value, see <a href="manage-cidr-based-security-policies.md#squash-mode">Squash mode</a>.</td></tr><tr><td><code>anon-uid</code></td><td><p>Filters by the anonymous UID configured in the policy.</p><p>Default: <code>65534</code></p></td></tr><tr><td><code>anon-gid</code></td><td>Filters by the anonymous GID configured in the policy.<br>Default: <code>65534</code></td></tr></tbody></table>
+| Parameter                     | Description                                                                                                                                |
+| --- | --- |
+| `--action` \<security-action> | Only show policies that match a specific action. |
+| `--ips` \<ip-ranges>… | Only show policies include specific IP address ranges. Multiple values may be supplied separated by commas, or the option may be repeated. |
+| `--roles` \<user-roles>… | Only show policies naming these user roles. Multiple values may be supplied separated by commas, or the option may be repeated. |
 
 ### Display information of a security policy
 
-**Command:** `weka security policy show`
+Shows a single policy's action, IP ranges, roles, and access attributes.
 
-Displays information about a specific security policy.
+**Command:** `weka security policy show`
 
 ```sh
 weka security policy show <policy>
@@ -142,25 +144,33 @@ weka security policy show <policy>
 
 **Parameters**
 
-| Parameter | Description |
+| Parameter  | Description                            |
 | --- | --- |
-| `policy`* | Name or ID of security policy. |
+| `policy`\* | Name or ID of security policy to show. |
 
 ### Add a new security policy
 
+Creates a security policy that allows or denies access from named IP ranges, optionally restricting roles or filesystem access.
+
 **Command:** `weka security policy add`
 
-Use the following command line to add a new security policy.
-
-{% code overflow="wrap" %}
 ```sh
-weka security policy add <name> [--description description] [--action action] [--read-only read-only]  [--anon-uid anon-uid] [--anon-gid anon-gid] [--squash-mode squash-mode] [--ips ips]...[--roles roles]...
+weka security policy add <name> [--action <security-action>] [--anon-gid <uint32>] [--anon-uid <uint32>] [--description <string>] [--ips <strings>…] [--read-only <on-off>] [--roles <user-roles>…] [--squash-mode <squash-mode>]
 ```
-{% endcode %}
 
 **Parameters**
 
-<table><thead><tr><th width="192">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>name</code>*</td><td>Name of the new security policy. (up to 64 alphanumeric characters, hyphens (<code>-</code>), underscores (<code>_</code>), and periods (<code>.</code>), starting with a letter).</td></tr><tr><td><code>description</code></td><td>Description of the security policy. (up to 256 characters).</td></tr><tr><td><code>action</code></td><td>Whether access is granted or denied when the security policy matches. (format: <code>allow</code> or <code>deny</code>).</td></tr><tr><td><code>read-only</code></td><td><p>The security policy allows read-only mounts only.</p><p>Cannot be combined with <code>squash-mode</code> or <code>roles</code> attributes.</p><p>(format: <code>yes</code>, <code>no</code>, <code>true</code>, <code>false</code>, <code>on</code>, <code>off</code>, <code>y</code> or <code>n</code>).</p></td></tr><tr><td><code>squash-mode</code></td><td><p>Specifies how the storage system maps incoming UIDs and GIDs. Cannot be combined with <code>read-only</code> or <code>roles</code> attributes. For a description of each value, see <a href="manage-cidr-based-security-policies.md#squash-mode">Squash mode</a>.</p><p>Default: <code>none</code></p></td></tr><tr><td><code>anon-uid</code></td><td><p>An anonymous UID to replace the root user when root squashing is enabled.</p><p>Default: <code>65534</code></p></td></tr><tr><td><code>anon-gid</code></td><td>An anonymous GID to replace the root user when root squashing is enabled.<br>Default: <code>65534</code></td></tr><tr><td><code>ips</code>...</td><td><p>IP address ranges to which the security policy applies. (format: IP or IP/CIDR or IP1-IP2 or A.B.C.D-E, may be repeated or comma-separated).</p><p>If omitted, the default range is <code>0.0.0.0/0</code>.</p></td></tr><tr><td><code>roles</code>...</td><td><p>User roles to which the security policy applies.</p><p>Cannot be combined with <code>read-only</code> or <code>squash-mode</code> attributes.</p><p>(format: <code>clusteradmin</code>, <code>tenantadmin</code>, <code>regular</code>, <code>readonly</code> or <code>s3</code>, may be repeated or comma-separated).</p></td></tr></tbody></table>
+| Parameter                      | Description                                                                                                                                                                                                |
+| --- | --- |
+| `name`\* | Name of the new security policy. |
+| `--action` \<security-action> | Whether access is granted or denied when the security policy matches. |
+| `--anon-gid` \<uint32> | Anonymous group ID to which accesses are squashed. Default: 65534 |
+| `--anon-uid` \<uint32> | Anonymous user ID to which accesses are squashed. Default: 65534 |
+| `--description` \<string> | Security policy description. |
+| `--ips` \<strings>… | IPs (or ranges of IPs) to which the security policy applies. Multiple values may be supplied separated by commas, or the option may be repeated. |
+| `--read-only` \<on-off> | The security policy allows read-only mounts only. |
+| `--roles` \<user-roles>… | User roles to which the security policy applies. Used only for administrative interfaces. Multiple values may be supplied separated by commas, or the option may be repeated. |
+| `--squash-mode` \<squash-mode> | Dictates whether user and group IDs accessing mounted filesystems are squashed. If 'root' then converts accesses by root (UID 0/GID 0) to the anonymous UID and GID. If 'all', then converts all accesses. Default: none |
 
 {% hint style="info" %}
 A policy cannot combine `roles` with `read-only` or `squash-mode`. A policy that includes `read-only` or `squash-mode` must use `allow` as its action. The `deny` action is not permitted for filesystem-scoped policies.
@@ -178,36 +188,37 @@ weka security policy add admin_network --action allow --ips 10.1.0.0/16,10.2.1.0
 
 ### Remove a security policy
 
+Deletes a security policy. Detach it from all tenants, filesystems, and the join list first.
+
 **Command:** `weka security policy remove`
 
-Use the following command line to delete a security policy.
-
 ```sh
-weka security policy remove <policy>
+weka security policy remove <policy> [--force]
 ```
 
 **Parameters**
 
-| Parameter | Description |
+| Parameter       | Description                                                     |
 | --- | --- |
-| `policy`* | Name or ID of security policy. |
+| `policy`\* | Policy ID or name of the policy to remove. |
+| `-f`, `--force` | Force action. Perform this action without further confirmation. |
 
 ### Duplicate an existing security policy
 
+Copies an existing policy under a new name, as a starting point for a variant.
+
 **Command:** `weka security policy duplicate`
 
-Use the following command line to duplicate an existing security policy, creating a new one.
-
 ```sh
-weka security policy duplicate <policy> <name>
+weka security policy duplicate <policy> <new-name>
 ```
 
 **Parameters**
 
-| Parameter | Description |
+| Parameter    | Description                               |
 | --- | --- |
-| `policy`* | Name or ID of the security policy to duplicate. |
-| `name`* | Name of the new security policy. (up to 64 alphanumeric characters, hyphens (-), underscores (_), and periods (.), starting with a letter). |
+| `policy`\* | Policy ID or name of the policy to clone. |
+| `new-name`\* | Name for the new policy. |
 
 **Example**
 
@@ -217,20 +228,33 @@ weka security policy duplicate sourcePolicy newPolicyName
 
 ### Update security policy settings
 
+Changes a policy's action, IP ranges, roles, or access attributes.
+
 **Command:** `weka security policy update`
 
-Use the following command line to update the settings of an existing security policy.
-
-{% code overflow="wrap" %}
 ```sh
-weka security policy update <policy> [--description description] [--action action] [--new-name new-name] [--roles roles]... [--add-roles add-roles]... [--remove-roles remove-roles]... [--ips ips]... [--add-ips add-ips]... [--remove-ips remove-ips]...[--squash-mode squash-mode] 
-P
+weka security policy update <policy> [--action <security-action>] [--add-ips <ip-ranges>…] [--add-roles <user-roles>…] [--anon-gid <uint32>] [--anon-uid <uint32>] [--description <string>] [--force] [--ips <ip-ranges>…] [--new-name <string>] [--read-only <on-off>] [--remove-ips <ip-ranges>…] [--remove-roles <user-roles>…] [--roles <user-roles>…] [--squash-mode <squash-mode>]
 ```
-{% endcode %}
 
 **Parameters**
 
-<table><thead><tr><th width="212">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>policy</code>*</td><td>Name or ID of security policy.</td></tr><tr><td><code>--description</code></td><td>Updates the description of the security policy. (up to 256 characters).</td></tr><tr><td><code>--action</code></td><td>Changes whether access is granted when the security policy matches. (format: <code>allow</code> or <code>deny</code>).</td></tr><tr><td><code>--new-name</code></td><td>New name of the security policy. (up to 64 alphanumeric characters, hyphens (-), underscores (_), and periods (.), starting with a letter).</td></tr><tr><td><code>--roles</code>...</td><td>User roles to which the security policy applies. (format: <code>clusteradmin</code>, <code>tenantadmin</code>, <code>regular</code>, <code>readonly</code> or <code>s3</code>, may be repeated or comma-separated).</td></tr><tr><td><code>--add-roles</code>...</td><td>User roles to append to the security policy. (format: <code>clusteradmin</code>, <code>tenantadmin</code>, <code>regular</code>, <code>readonly</code> or <code>s3</code>, may be repeated or comma-separated).</td></tr><tr><td><code>--remove-roles</code>...</td><td>User roles to remove from the security policy. (format: <code>clusteradmin</code>, <code>tenantadmin</code>, <code>regular</code>, <code>readonly</code> or <code>s3</code>, may be repeated or comma-separated).</td></tr><tr><td><code>ips</code></td><td>IP address ranges to which the security policy applies. (format: IP or IP/CIDR or IP1-IP2 or A.B.C.D-E, may be repeated or comma-separated).</td></tr><tr><td><code>add-ips</code></td><td>IP address ranges to append to the security policy. (format: IP or IP/CIDR or IP1-IP2 or A.B.C.D-E, may be repeated or comma-separated).</td></tr><tr><td><code>remove-ips</code></td><td>IP address ranges to remove from the security policy. (format: IP or IP/CIDR or IP1-IP2 or A.B.C.D-E, may be repeated or comma-separated).</td></tr><tr><td><code>squash-mode</code></td><td><p>Updates the squash mode of the security policy. Cannot be combined with <code>read-only</code> or <code>roles</code> attributes. For a description of each value, see <a href="manage-cidr-based-security-policies.md#squash-mode">Squash mode</a>.</p><p>Default: <code>none</code></p></td></tr></tbody></table>
+| Parameter                       | Description                                                                                                                                                                                                |
+| --- | --- |
+| `policy`\* | Policy ID or name of policy to update. |
+| `--action` \<security-action> | Whether access is granted or denied when the security policy matches. |
+| `--add-ips` \<ip-ranges>… | IP addresses or ranges to add to the end of the security policy. Multiple values may be supplied separated by commas, or the option may be repeated. |
+| `--add-roles` \<user-roles>… | These user roles are added to the security policy. Multiple values may be supplied separated by commas, or the option may be repeated. |
+| `--anon-gid` \<uint32> | Anonymous group ID to which accesses are squashed. |
+| `--anon-uid` \<uint32> | Anonymous user ID to which accesses are squashed. |
+| `--description` \<string> | Security policy description. |
+| `-f`, `--force` | Force action. Perform this action without further confirmation. |
+| `--ips` \<ip-ranges>… | IPs (or ranges of IPs) to which the security policy applies. Multiple values may be supplied separated by commas, or the option may be repeated. |
+| `--new-name` \<string> | New name of security policy. |
+| `--read-only` \<on-off> | The security policy allows read-only mounts only. |
+| `--remove-ips` \<ip-ranges>… | IP addresses or IP address ranges to remove from the security policy. Multiple values may be supplied separated by commas, or the option may be repeated. |
+| `--remove-roles` \<user-roles>… | These user roles are removed from the security policy. Multiple values may be supplied separated by commas, or the option may be repeated. |
+| `--roles` \<user-roles>… | User roles to which the security policy applies. Used only for administrative interfaces. Multiple values may be supplied separated by commas, or the option may be repeated. |
+| `--squash-mode` \<squash-mode> | Dictates whether user and group IDs accessing mounted filesystems are squashed. If 'root' then converts accesses by root (UID 0/GID 0) to the anonymous UID and GID. If 'all', then converts all accesses. Default: none |
 
 {% hint style="info" %}
 * Modifying `roles`, `squash-mode`, or `read-only` on a policy may be restricted depending on where the policy is currently attached.
@@ -251,22 +275,22 @@ weka security policy update admin_network --add-roles readonly --description "Li
 
 ### Simulate the effect of one or more security policies
 
+Reports whether a given client IP and role would be allowed, without changing anything.
+
 **Command:** `weka security policy test`
 
-Use the following command line to simulates the effect of one or more security policies.
-
 ```sh
-weka security policy test [--role role] [--ip ip] [--join] [<policy>]...
+weka security policy test <policies>… [--ip <ip>] [--join] [--role <user-role>]
 ```
 
 **Parameters**
 
-| Parameter | Description |
+| Parameter             | Description                                                         |
 | --- | --- |
-| `policy`... | Policies to evaluate, with access verified in the order listed. |
-| `role` | Simulate effect of policies on API access from the given user role. (format: `clusteradmin`, `tenantadmin`, `regular`, `readonly` or `s3`) |
-| `ip` | IP address to evaluate as the source address. |
-| `join` | Simulate effect of policies when joining the cluster. |
+| `policies`\*… | Policies to evaluate, with access verified in the order listed. |
+| `--ip` \<ip> | Use this IP address to evaluate as the source address. |
+| `--join` | Simulate effect of policies when joining the cluster. |
+| `--role` \<user-role> | Simulate effect of policies on API access from the given user role. |
 
 **Example**
 
@@ -276,56 +300,58 @@ weka security policy test policy1 policy2 policy3 --ip 10.2.1.0 --role clusterad
 
 ### List security policies applied when joining containers
 
+Lists the policies applied to containers joining the cluster.
+
 **Command:** `weka security policy join list`
 
-Use the following command line to list security policies applied when joining containers.
-
 ```sh
-weka security policy join list [--client] [--backend]
+weka security policy join list [--backend] [--client]
 ```
 
 **Parameters**
 
-| Parameter | Description |
+| Parameter         | Description                  |
 | --- | --- |
-| `client` | List policies for clients. |
-| `backend` | List policies for backends. |
+| `-b`, `--backend` | Apply to backend containers. |
+| `-c`, `--client` | Apply to client containers. |
 
 ### Set security policies for joining cluster
 
+Replaces the set of policies applied to joining containers.
+
 **Command:** `weka security policy join set`
 
-Use the following command line to set security policies for joining cluster, replacing the existing set of policies.
-
-```bash
-weka security policy join set [--client] [--backend] [<policies>]...
+```sh
+weka security policy join set <policies>… [--backend] [--client] [--force]
 ```
 
 **Parameters**
 
-| Parameter | Description |
+| Parameter         | Description                                                   |
 | --- | --- |
-| `policies`... | Security policy names or IDs applied to cluster join process. |
-| `client` | Apply policies to clients. |
-| `backend` | Apply policies to backends. |
+| `policies`\*… | Security policies to apply, by name or ID. |
+| `-b`, `--backend` | Apply to backend containers. |
+| `-c`, `--client` | Apply to client containers. |
+| `-f`, `--force` | Bypass safeguards when updating. May disrupt cluster members. |
 
 ### Attach a security policy when joining cluster
 
+Adds a policy to the set applied to joining containers.
+
 **Command:** `weka security policy join attach`
 
-Use the following command line to attach security policies applied when joining cluster, adding them to the existing policies.
-
 ```sh
-weka security policy join attach [--client] [--backend] [<policies>]...
+weka security policy join attach <policies>… [--backend] [--client] [--force]
 ```
 
 **Parameters**
 
-| Parameter | Description |
+| Parameter         | Description                                                   |
 | --- | --- |
-| `policies`... | Security policy names or IDs to attach to cluster join process. |
-| `client` | Apply policies to clients. |
-| `backend` | Apply policies to backends. |
+| `policies`\*… | Security policies to apply, by name or ID. |
+| `-b`, `--backend` | Apply to backend containers. |
+| `-c`, `--client` | Apply to client containers. |
+| `-f`, `--force` | Bypass safeguards when updating. May disrupt cluster members. |
 
 {% hint style="info" %}
 Only policies that contain IP ranges only, with no `roles`, `read-only`, or `squash-mode` attributes, can be attached to the join list. Policies already in use by a filesystem or tenant cannot be attached to the join list.
@@ -333,38 +359,39 @@ Only policies that contain IP ranges only, with no `roles`, `read-only`, or `squ
 
 ### Detach a security policy when joining cluster
 
+Removes a policy from the set applied to joining containers.
+
 **Command:** `weka security policy join detach`
 
-Use the following command line to remove security policies applied when joining cluster.
-
 ```sh
-weka security policy join detach [--client] [--backend] [<policies>]...
+weka security policy join detach <policies>… [--backend] [--client] [--force]
 ```
 
 **Parameters**
 
-| Parameter | Description |
+| Parameter         | Description                                                   |
 | --- | --- |
-| `policies`... | Security policy names or IDs to remove from cluster join process. |
-| `client` | Apply policies to clients. |
-| `backend` | Apply policies to backends. |
+| `policies`\*… | Security policies to apply, by name or ID. |
+| `-b`, `--backend` | Apply to backend containers. |
+| `-c`, `--client` | Apply to client containers. |
+| `-f`, `--force` | Bypass safeguards when updating. May disrupt cluster members. |
 
 ### Remove all security policies applied when joining cluster
 
+Clears every policy from the join list.
+
 **Command:** `weka security policy join reset`
 
-Use the following command line to remove all security policies applied when joining cluster.
-
 ```sh
-weka security policy join reset [--client] [--backend]
+weka security policy join reset [--backend] [--client]
 ```
 
 **Parameters**
 
-| Parameter | Description |
+| Parameter         | Description                  |
 | --- | --- |
-| `client` | Apply policies to clients. |
-| `backend` | Apply policies to backends. |
+| `-b`, `--backend` | Apply to backend containers. |
+| `-c`, `--client` | Apply to client containers. |
 
 ## Manage tenant-level security policies
 
@@ -419,9 +446,9 @@ weka tenant security policy set <tenant> [<policies>]...
 
 ### Remove all security policies from a tenant
 
-**Command:** `weka tenant security policy reset`
+Clears every security policy attached to a tenant.
 
-Use the following command to removes all security policies from a tenant.
+**Command:** `weka tenant security policy reset`
 
 ```sh
 weka tenant security policy reset <tenant>
@@ -429,26 +456,26 @@ weka tenant security policy reset <tenant>
 
 **Parameters**
 
-| Parameter | Description |
+| Parameter  | Description                     |
 | --- | --- |
-| `tenant`* | Tenant name or ID. |
+| `tenant`\* | Name or ID of tenant to update. |
 
 ### Attach new security policies to a tenant
 
+Attaches one or more policies to a tenant.
+
 **Command:** `weka tenant security policy attach`
 
-Use the following command to attach new security policies to an tenant, **adding** them to the existing policies. If attaching multiple policies, separate each with a space.
-
 ```sh
-weka tenant security policy attach <tenant> [<policies>]...
+weka tenant security policy attach <tenant> <policies>…
 ```
 
 **Parameters**
 
-| Parameter | Description |
+| Parameter     | Description                                |
 | --- | --- |
-| `tenant`* | Tenant name or ID. |
-| `policies`... | Security policy names or IDs to attach to the tenant, separated by spaces. |
+| `tenant`\* | Name or ID of tenant to update. |
+| `policies`\*… | Security policies to attach to the tenant. |
 
 {% hint style="info" %}
 Only policies that do not contain `read-only` or `squash-mode` attributes can be attached to a tenant. Policies already in use by a filesystem or join list cannot be attached to a tenant.
@@ -456,36 +483,37 @@ Only policies that do not contain `read-only` or `squash-mode` attributes can be
 
 ### Detach security policies from a tenant
 
+Detaches one or more policies from a tenant.
+
 **Command:** `weka tenant security policy detach`
 
-Use the following command to detach (remove) security policies from a tenant. For detaching multiple policies, separate each with a space.
-
 ```sh
-weka tenant security policy detach <tenant>[<policies>]...
+weka tenant security policy detach <tenant> <policies>…
 ```
 
 **Parameters**
 
-| Parameter | Description |
+| Parameter     | Description                                  |
 | --- | --- |
-| `tenant`* | Tenant name or ID. |
-| `policies`... | Security policy names or IDs to detach from the tenant, separated by spaces . |
+| `tenant`\* | Name or ID of tenant to update. |
+| `policies`\*… | Security policies to detach from the tenant. |
 
 ### Revoke all API tokens issued for a tenant
 
+Revokes every API token issued to a tenant's users, forcing them to authenticate again.
+
 **Command:** `weka tenant security revoke-tokens`
 
-Use the following command to revoke all API tokens issued for a specific tenant.
-
 ```sh
-weka tenant security revoke-tokens <tenant>
+weka tenant security revoke-tokens [<tenant>] [--force]
 ```
 
 **Parameters**
 
-| Parameter | Description |
+| Parameter       | Description                                                     |
 | --- | --- |
-| `tenant`* | Tenant name or ID. |
+| `tenant` | Tenant name or ID to revoke tokens for. |
+| `-f`, `--force` | Force action. Perform this action without further confirmation. |
 
 ## Manage filesystem security policies
 
@@ -499,36 +527,36 @@ Once security policies are defined, you can perform the following tasks at the f
 
 ### List security policies for a filesystem
 
+Lists the security policies attached to a filesystem.
+
 **Command:** `weka fs security policy list`
 
-Use the following command to list security policies for a specified filesystem.
-
-```bash
-weka fs security policy list <fs-name>
+```sh
+weka fs security policy list <name>
 ```
 
 **Parameters**
 
-| Parameter | Description |
+| Parameter | Description             |
 | --- | --- |
-| `fs-name`* | Filesystem name. |
+| `name`\* | Name of the filesystem. |
 
 ### Set security policies for a filesystem
 
+Replaces the set of policies attached to a filesystem.
+
 **Command:** `weka fs security policy set`
 
-Use the following command to set security policies for a specified filesystem, replacing the existing list of policies. If setting multiple policies, separate each with a space.
-
-```bash
-weka fs security policy set <fs-name> [<policies>]...
+```sh
+weka fs security policy set <name> <policies>…
 ```
 
 **Parameters**
 
-| Parameter | Description |
+| Parameter     | Description                   |
 | --- | --- |
-| `fs-name`* | Filesystem name. |
-| `policies`... | Security policy names or IDs to set for a filesystem, space separated. |
+| `name`\* | Name of the filesystem. |
+| `policies`\*… | Security policy names or IDs. |
 
 Example to apply two security policies to a filesystem named <kbd>fs0</kbd>:
 
@@ -538,36 +566,36 @@ weka fs security policy set fs0 fs0allow denyall
 
 ### Remove all security policies from a filesystem
 
+Clears every security policy attached to a filesystem.
+
 **Command:** `weka fs security policy reset`
 
-Use the following command to remove all security policies from a specified filesystem.
-
-```bash
-weka fs security policy reset <fs-name>
+```sh
+weka fs security policy reset <name>
 ```
 
 **Parameters**
 
-| Parameter | Description |
+| Parameter | Description             |
 | --- | --- |
-| `fs-name`* | Filesystem name. |
+| `name`\* | Name of the filesystem. |
 
 ### Attach new security policies to a filesystem
 
+Attaches one or more policies to a filesystem.
+
 **Command:** `weka fs security policy attach`
 
-Use the following command to attach additional security policies to the specified filesystem. If attaching multiple policies, separate each with a space.
-
-```bash
-weka fs security policy attach <fs-name> [<policies>]...
+```sh
+weka fs security policy attach <name> <policies>…
 ```
 
 **Parameters**
 
-| Parameter | Description |
+| Parameter     | Description                   |
 | --- | --- |
-| `fs-name`* | Filesystem name. |
-| `policies`... | Security policy names or IDs to attach new security policies to the specified filesystem, space separated. |
+| `name`\* | Name of the filesystem. |
+| `policies`\*… | Security policy names or IDs. |
 
 {% hint style="info" %}
 Only policies that do not contain `roles` attributes can be attached to a filesystem. Policies already in use by a tenant or join list cannot be attached to a filesystem.
@@ -575,20 +603,20 @@ Only policies that do not contain `roles` attributes can be attached to a filesy
 
 ### Detach security policies from a filesystem
 
+Detaches one or more policies from a filesystem.
+
 **Command:** `weka fs security policy detach`
 
-Use the following command to detach (remove) security policies from a filesystem. If detaching multiple policies, separate each with a space.
-
-```bash
-weka fs security policy detach <fs-name> [<policies>]...
+```sh
+weka fs security policy detach <name> <policies>…
 ```
 
 **Parameters**
 
-| Parameter | Description |
+| Parameter     | Description                   |
 | --- | --- |
-| `fs-name`* | Filesystem name. |
-| `policies`... | Security policy names or IDs to remove from the specified filesystem, space separated. |
+| `name`\* | Name of the filesystem. |
+| `policies`\*… | Security policy names or IDs. |
 
 ## Examples: Implementing CIDR-based security policies
 

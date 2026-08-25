@@ -196,20 +196,23 @@ The `--management-ips` option identifies management processes on the data plane 
 
 ### 4. Configure the SSD drives
 
+Adds the SSD drives of a container to the cluster.
+
 **Command:** `weka cluster drive add`
 
-To configure the SSD drives on each server in the cluster, or add multiple drive paths, use the following command:
-
-```
-weka cluster drive add <container-id> <device-paths>
+```sh
+weka cluster drive add <container> <device-paths>… [--allow-format-non-wekafs-drives] [--force] [--pool <drive-pool>]
 ```
 
 **Parameters**
 
-| Name | Value |
+| Parameter                          | Description                                                                                                  |
 | --- | --- |
-| `container-id`* | The Identifier of the drive container to add the local SSD drives. |
-| `device-paths`* | List of block devices that identify local SSDs.It must be a valid Unix network device name**.**Format: Space-separated strings.Example, `/dev/nvme0n1 /dev/nvme1n1` |
+| `container`\* | ID of the container where the drive is attached. |
+| `device-paths`\*… | Device paths or UUIDs of the drive(s) to add. A proxy-physical UUID adds all of its matching virtual drives. |
+| `--allow-format-non-wekafs-drives` | Allow reuse of drives formatted by other software. |
+| `--force` | Force formatting for WEKA. Bypasses all safety checks; use with caution. |
+| `--pool` \<drive-pool> | Disk pool for the drive. Affects how blocks from the drive are used. |
 
 ### 5. Create compute containers
 
@@ -246,19 +249,62 @@ weka local setup container --join-ips <IP addresses> \
 
 ### 7. Configure the number of data and parity drives
 
-**Command:** `weka cluster update --data-drives=<count> --parity-drives=<count>`
+Sets the cluster's protection scheme — how many data and parity drives each stripe uses.
 
-**Example:** `weka cluster update --data-drives=4 --parity-drives=2`
+**Command:** `weka cluster update`
+
+```sh
+weka cluster update [--bucket-raft-size <uint8>] [--cluster-name <string>] [--data-drives <uint8>] [--hot-spare-failure-domains <uint16>] [--parity-drives <uint8>] [--scrubber-bytes-per-sec <bytes>]
+```
+
+**Parameters**
+
+| Parameter                               | Description                              |
+| --- | --- |
+| `--bucket-raft-size` \<uint8> | Number of members in bucket raft. |
+| `--cluster-name` \<string> | Cluster name. |
+| `--data-drives` \<uint8> | Number of RAID data drives. |
+| `--hot-spare-failure-domains` \<uint16> | Number of hot spare failure domains. |
+| `--parity-drives` \<uint8> | Number of RAID protection parity drives. |
+| `--scrubber-bytes-per-sec` \<bytes> | Rate of RAID scrubbing per second. |
 
 ### 8. Configure the number of hot spares
 
-**Command:** `weka cluster hot-spare <count>`
+Sets how many failure domains of spare capacity the cluster reserves for rebuilds.
 
-**Example:** `weka cluster hot-spare 1`
+**Command:** `weka cluster hot-spare`
+
+```sh
+weka cluster hot-spare [<count>] [--skip-resource-validation]
+```
+
+**Parameters**
+
+| Parameter                    | Description                                                                                  |
+| --- | --- |
+| `count` | Number of hot-spare failure-domains to configure. |
+| `--skip-resource-validation` | Do not verify that the cluster has enough RAM and SSD resources allocated for the hot-spare. |
 
 ### 9. Name the cluster
 
-**Command:** `weka cluster update --cluster-name=<cluster name>`
+Sets the cluster name.
+
+**Command:** `weka cluster update`
+
+```sh
+weka cluster update [--bucket-raft-size <uint8>] [--cluster-name <string>] [--data-drives <uint8>] [--hot-spare-failure-domains <uint16>] [--parity-drives <uint8>] [--scrubber-bytes-per-sec <bytes>]
+```
+
+**Parameters**
+
+| Parameter                               | Description                              |
+| --- | --- |
+| `--bucket-raft-size` \<uint8> | Number of members in bucket raft. |
+| `--cluster-name` \<string> | Cluster name. |
+| `--data-drives` \<uint8> | Number of RAID data drives. |
+| `--hot-spare-failure-domains` \<uint16> | Number of hot spare failure domains. |
+| `--parity-drives` \<uint8> | Number of RAID protection parity drives. |
+| `--scrubber-bytes-per-sec` \<bytes> | Rate of RAID scrubbing per second. |
 
 ## What to do next?
 

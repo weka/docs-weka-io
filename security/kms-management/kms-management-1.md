@@ -8,25 +8,39 @@ description: >-
 
 ## Configure the KMS
 
-**Command:** `weka security kms set`
+Connects the cluster to a key management service for filesystem encryption. The KMS type is a subcommand, and each type takes its own options.
 
-Use this command to add or update the KMS configuration. For HashiCorp Vault, you can configure a single cluster-wide encryption key or enable per-filesystem encryption keys.
+**Command:** `weka security kms set vault`
 
-Per-filesystem encryption requires using Vault's [AppRole](https://developer.hashicorp.com/vault/docs/auth/approle) authentication method, which you configure using the `--role-id` and `--secret-id` parameters.
+```sh
+weka security kms set vault <address> <key-name> [--auth-path <string>] [--convert-to-cluster-key-on-fs] [--kubernetes-role <string>] [--namespace <string>] [--network-space-id <uint16>] [--role-id <string>] [--secret-id <string>] [--token <string>] [--transit-path <string>]
+```
 
-Run the following command to establish a connection between the WEKA system and the configured KMS. The KMS type is a subcommand, and each type takes its own options.
+**Command:** `weka security kms set kmip`
 
-For HashiCorp Vault:
-
-`weka security kms set vault <address> <key-name> [--token token] [--role-id role-id] [--secret-id secret-id] [--kubernetes-role kubernetes-role] [--namespace namespace] [--transit-path transit-path] [--auth-path auth-path] [--network-space-id network-space-id] [--convert-to-cluster-key-on-fs]`
-
-For KMIP:
-
-`weka security kms set kmip <address> <key-identifier> --client-cert client-cert --client-key client-key [--ca-cert ca-cert] [--network-space-id network-space-id] [--convert-to-cluster-key-on-fs]`
+```sh
+weka security kms set kmip <address> <key-identifier> --client-cert <string> --client-key <string> [--ca-cert <string>] [--convert-to-cluster-key-on-fs] [--network-space-id <uint16>]
+```
 
 **Parameters**
 
-<table><thead><tr><th width="209">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>address</code>*</td><td><p>KMS server address.<br>Values:<br><code>URL</code> for <code>vault</code></p><p><code>hostname:port</code> for <code>kmip</code></p></td></tr><tr><td><code>key-identifier</code>*</td><td><p>Key name for <code>vault</code></p><p>UID for <code>kmip</code> to secure filesystem keys.</p></td></tr><tr><td><code>token</code></td><td><p>The API token for authenticating with a HashiCorp Vault KMS.</p><p>This parameter applies only to <strong>Vault</strong> and is used for <strong>cluster-wide encryption</strong>. It cannot be used with the <code>role-id</code> or <code>secret-id</code> parameters, which are used for AppRole authentication.</p><p>The access token must have the following permissions in Vault:</p><ul><li><p>Read access to</p><p><code>transit/keys/&#x3C;master-key-name></code></p></li><li><p>Write access to</p><p><code>transit/encrypt/&#x3C;master-key-name></code> and <code>transit/decrypt/&#x3C;master-key-name></code></p></li><li><p>Permissions for</p><p><code>/transit/rewrap</code> and <code>auth/token/lookup</code></p></li></ul></td></tr><tr><td><code>role-id</code></td><td>Role ID for HashiCorp Vault's AppRole authentication method, which is provided by the Vault administrator. This parameter must be used with <code>secret-id</code> and cannot be used with <code>token</code>.</td></tr><tr><td><code>secret-id</code></td><td><p>Secret ID for HashiCorp Vault's AppRole authentication, which is provided by the Vault administrator. This parameter must be used with <code>role-id</code>. Alternatively, you can set this value using the</p><p><code>WEKA_KMS_SECRET_ID</code> environment variable.</p></td></tr><tr><td><code>kubernetes-role</code></td><td>The Kubernetes role used for authentication with HashiCorp Vault.</td></tr><tr><td><code>namespace</code></td><td>The namespace name in HashiCorp Vault.<br>Namespace names must not end with "/", avoid spaces, and refrain from using reserved names like <code>root</code>, <code>sys</code>, <code>audit</code>, <code>auth</code>, <code>cubbyhole</code>, and <code>identity</code>.</td></tr><tr><td><code>client-cert</code></td><td><p>Path to the client certificate PEM file.<br>Must permit <code>encrypt</code> and <code>decrypt</code> permissions.<br>Mandatory for <code>kmip</code> .</p><p>Prohibited for <code>vault</code>.</p></td></tr><tr><td><code>client-key</code></td><td><p>Path to the client key PEM file.<br>Mandatory for <code>kmip</code> .</p><p>Prohibited for <code>vault</code>.</p></td></tr><tr><td><code>ca-cert</code></td><td><p>Path to the CA certificate PEM file.<br>Optional for <code>kmip</code>.</p><p>Prohibited for <code>vault</code>.</p></td></tr><tr><td><code>transit-path</code></td><td>The custom path where the HashiCorp Vault transit secrets engine is enabled.</td></tr><tr><td><code>auth-path</code></td><td>The custom path where the HashiCorp Vault authentication method is enabled.</td></tr><tr><td><code>convert-to-cluster-key-on-fs</code></td><td>Convert all encrypted filesystems to use cluster key.</td></tr></tbody></table>
+| Parameter                        | Description                                                                                 |
+| --- | --- |
+| `address`\* | Server address, usually a hostname:port or URL. Values: URL for vault hostname:port for kmip |
+| `key-name`\* | Key name to secure the filesystems. |
+| `--auth-path` \<string> | Custom auth path URL prefix. |
+| `--convert-to-cluster-key-on-fs` | Convert all encrypted filesystems to use the cluster key. |
+| `--kubernetes-role` \<string> | Kubernetes role for Vault authentication. |
+| `--namespace` \<string> | Namespace in the Vault. |
+| `--network-space-id` \<uint16> | Network space ID in which to run the KMS connector. Defaults to the host network namespace. |
+| `--role-id` \<string> | Role ID to access the KMS. |
+| `--secret-id` \<string> | Secret ID to access the KMS (required with --role-id). |
+| `--token` \<string> | API token to access the KMS. |
+| `--transit-path` \<string> | Custom transit path URL prefix. |
+| `key-identifier`\* | Key UID to secure the filesystems with. |
+| `--client-cert` \<string>\* | Path to the client certificate PEM file. |
+| `--client-key` \<string>\* | Path to the client key PEM file. |
+| `--ca-cert` \<string> | Path to a CA certificate PEM file for the KMIP server. |
 
 ### Obtain `role-id` and `secret-id` from HashiCorp Vault
 
@@ -127,35 +141,53 @@ weka security kms set kmip amer.smartkey.io:5996 b2f81634-c0f6-4y63-b5b3-84a82e2
 
 ## View the KMS configuration
 
+Shows the configured KMS type, address, and key identifier.
+
 **Command:** `weka security kms`
 
-Use this command to show the details of the configured KMS.
+```sh
+weka security kms
+```
 
 ## Remove the KMS configuration
 
+Disconnects the cluster from its KMS.
+
 **Command:** `weka security kms reset`
 
-Use this command to remove the KMS from the WEKA system. It is only possible to remove a KMS configuration if no encrypted filesystems exist.
+```sh
+weka security kms reset [--allow-downgrade] [--force]
+```
+
+**Parameters**
+
+| Parameter           | Description                                                                                         |
+| --- | --- |
+| `--allow-downgrade` | Allow downgrading encrypted filesystems to local encryption instead of a KMS. |
+| `-f`, `--force` | For tenant KMS deletion, switch filesystems to the cluster-wide KMS. Requires cluster KMS to exist. |
 
 {% hint style="warning" %}
 To force remove a KMS even if encrypted filesystems exist, use the `--allow-downgrade` attribute. In such cases, the encrypted filesystem keys are re-encrypted with local encryption and may be compromised.
 {% endhint %}
 
-## **Rewrap filesystem keys**
+## Rewrap filesystem keys
+
+Re-encrypts filesystem keys with the current KMS master key, after the master key has been rotated.
 
 **Command:** `weka security kms rewrap`
 
-If the KMS key is compromised or requires rotation, the KMS administrator can rotate the key in the KMS. In such cases, this command is used to re-encrypt the encrypted filesystem keys with the new KMS cluster key.
-
-`weka security kms rewrap [--new-key-uid new-key-uid] [--all] [--convert-to-cluster-key-on-fs]`
+```sh
+weka security kms rewrap [--all] [--convert-to-cluster-key-on-fs] [--force] [--new-key-uid <string>]
+```
 
 **Parameters**
 
-| Name                           | Value                                                                                                                                                                                                                                         |
-| ------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `new-key-uid`\*                | Unique identifier for the new key to be used to wrap filesystem keys.Mandatory for `kmip` only.Do not specify any value for `vault`.                                                                                                          |
-| `all`                          | Rewrap all the filesystem encryption keys. Applicable when using HashiCorp Vault for per-filesystem encryption keys.Without the `--all` option, the command re-encrypts only the keys of filesystems that use the cluster key for encryption. |
-| `convert-to-cluster-key-on-fs` | Convert all encrypted filesystems to use the KMS cluster key.                                                                                                                                                                                 |
+| Parameter                        | Description                                                                |
+| --- | --- |
+| `--all` | Rewrap all filesystem keys. |
+| `--convert-to-cluster-key-on-fs` | Convert all encrypted filesystems to use the cluster key. |
+| `-f`, `--force` | Force action. Perform this action without further confirmation. |
+| `--new-key-uid` \<string> | Unique identifier for the new key to wrap filesystem keys with. KMIP only. |
 
 {% hint style="info" %}
 WEKA does not automatically re-encrypt existing filesystem keys with the new KMS key for snapshots that were previously uploaded with the old encrypted keys.
@@ -166,6 +198,7 @@ Unlike HashiCorp Vault KMS, re-wrapping a KMIP-based KMS necessitates generating
 {% endhint %}
 
 ## Set up vault configuration
+
 
 ### Enable 'Transit' secret engine in vault
 

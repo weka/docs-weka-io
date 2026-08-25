@@ -50,8 +50,17 @@ The following demonstrates how to generate the API token and authorize it in the
 
 ### Generate a long-lived access token using the CLI
 
-**Command:** `weka user generate-token [--access-token-timeout timeout]`
+Generates a long-lived access token for REST API use, so automation does not have to log in with a password.
 
-The default timeout is 30 days.
+**Command:** `weka user generate-token`
 
-To revoke the access and refresh tokens, use the CLI command: `weka user revoke-tokens`.
+```sh
+weka user generate-token [--access-token-timeout <duration>] [--plain]
+```
+
+**Parameters**
+
+| Parameter                            | Description                                                            |
+| --- | --- |
+| `--access-token-timeout` \<duration> | Duration until the access token expires. |
+| `--plain` | Print the token to the console instead of copying it to the clipboard. |
