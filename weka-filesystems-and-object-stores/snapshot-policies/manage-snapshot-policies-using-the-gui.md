@@ -77,7 +77,7 @@ Detaching filesystems from a snapshot policy can be necessary when you no longer
 
 Updating a snapshot policy is necessary when modifications to schedules, retention settings, or other parameters are required to align with evolving data protection needs. Regularly reviewing and updating policies ensures that they remain effective and consistent with organizational objectives.
 
-<div data-with-frame="true"><figure><img src="../../.gitbook/assets/snap-policy-update.gif" alt=""><figcaption><p>Update a snapshot policy</p></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/snap-policy-update.png" alt=""><figcaption><p>Update a snapshot policy</p></figcaption></figure></div>
 
 **Procedure**
 

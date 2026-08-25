@@ -126,7 +126,7 @@ You can implement either the self-signed certificate or a custom certificate. Th
 
 To apply your chosen certificate, download it to your client and place it in the designated folder for seamless integration.
 
-<div data-with-frame="true"><figure><img src="../../.gitbook/assets/wmng_download_cert.gif" alt=""><figcaption></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/wmng_download_cert.png" alt=""><figcaption></figcaption></figure></div>
 
 **Alternative CLI command**
 
