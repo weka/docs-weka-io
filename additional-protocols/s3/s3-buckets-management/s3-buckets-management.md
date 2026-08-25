@@ -36,7 +36,9 @@ This name cannot be used, please choose another name.
 Tenant 0, also called the root tenant, follows the same tenant-scoped bucket visibility behavior.
 {% endhint %}
 
-<div data-with-frame="true"><img src="../../../.gitbook/assets/Create_S3_bucket.gif" alt="Create a bucket"></div>
+<div data-with-frame="true"><figure><img src="../../../.gitbook/assets/Create_S3_bucket_1.png" alt="Add S3 Bucket dialog"><figcaption><p>Enter the bucket name and select the filesystem</p></figcaption></figure></div>
+
+<div data-with-frame="true"><figure><img src="../../../.gitbook/assets/Create_S3_bucket_2.png" alt="Bucket list"><figcaption><p>The new bucket appears in the bucket list</p></figcaption></figure></div>
 
 ## View a bucket details <a href="#view-a-bucket-details" id="view-a-bucket-details"></a>
 

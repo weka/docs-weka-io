@@ -30,7 +30,9 @@ Local users are accounts created directly in the WEKA system, as distinct from d
 {% tab title="Create S3 user example" %}
 If you create an S3 user and attach an S3 policy, the system generates an S3 access key and secret key and displays them once. Copy and store them securely before closing the dialog. These credentials are used for S3 API access. They are not the WEKA account username and password. If the S3 key pair is lost, use [**Reset S3 Credentials**](user-management.md#reset-s3-credentials) to generate a new pair.
 
-<figure><img src="../../.gitbook/assets/create_s3_user.gif" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/create_s3_user_1.png" alt="Create New User dialog"><figcaption><p>Enter the username and select the S3 role</p></figcaption></figure>
+
+<figure><img src="../../.gitbook/assets/create_s3_user_2.png" alt="Local users list"><figcaption><p>The new user appears in the local users list</p></figcaption></figure>
 {% endtab %}
 
 {% tab title="Create TenantAdmin user example" %}
@@ -101,10 +103,12 @@ weka s3 user keys-generate
 **Procedure**
 
 1. In the **Local Users** tab, select the three dots next to the S3 user, then select **Reset S3 Credentials**.
-2. In the confirmation dialog, select **Yes** to proceed or **No** to close without changes.
+2. In the confirmation dialog, select **Confirm** to proceed or **Cancel** to close without changes.
 3. Copy the new access key and secret key immediately. The system displays them only once.
 
-<div data-with-frame="true"><figure><img src="../../.gitbook/assets/reset_s3_credentials.gif" alt=""><figcaption><p>Reset S3 credentials</p></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/reset_s3_credentials_1.png" alt="Reset credentials confirmation"><figcaption><p>Confirm the reset. The existing credentials stop working immediately</p></figcaption></figure></div>
+
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/reset_s3_credentials_2.png" alt="New S3 credentials"><figcaption><p>Copy the new access key and secret key. They are shown only once</p></figcaption></figure></div>
 
 ### Revoke local user tokens
 
