@@ -24,15 +24,20 @@ Replication transfers data through the S3 infrastructure of the clusters. The ob
 
 Ensure the clusters can reach each other over the network.
 
-### Prerequisites on each cluster
+### What `weka cluster peer init` provisions
 
-Verify or configure the following on both the source and target clusters:
+You do not set up the S3 transport by hand. Running `weka cluster peer init` provisions
+everything replication needs on that cluster: the S3 service, the replication user and
+bucket, and the object store filesystem (default: `weka-repl-fs`).
 
-1. Configure and run an S3 cluster.
-2. Create an S3 system user for replication.
-3. Provide an S3 bucket for replication transport.
+The only decision is which containers serve the S3 traffic:
 
-The local object store tier that replication uses is created automatically when you register a cluster peer. The default tier name is `<peer name>-obs`. It stores the peer cluster's replication S3 credentials. A thin-provisioned tier of about 100 GB is sufficient.
+* To create a new S3 cluster from all backend servers, run `weka cluster peer init --all-servers`.
+* To reuse an existing S3 cluster, pass its containers with `weka cluster peer init --container <container-ids>`.
+
+The two options are mutually exclusive.
+
+The local object store tier that replication uses is created automatically when you register a cluster peer. The default tier name is `<peer name>-obs`. It stores the peer cluster's replication S3 credentials.
 
 **Related topics**
 
@@ -112,47 +117,6 @@ Confirm that **Connection** shows `connected` and **Pairing** shows `mutual` or 
 
 To modify the settings of an existing peer, such as its join IPs or S3 hostnames, use `weka cluster peer update`.
 
-### Rotate replication S3 credentials
-
-Rotate a cluster's replication S3 credentials when they are compromised or when your security policy requires periodic rotation.
-
-Running `weka cluster peer init --reinit` regenerates this cluster's replication S3 credentials. The old credentials stop working immediately. Existing peer relationships remain configured, but peer clusters retain the old credentials. Active replication can be disrupted until you update those credentials.
-
-The command requires interactive confirmation. Its output includes **S3 Access Key** and **S3 Secret**. Use those fields as `<NEW_KEY>` and `<NEW_SECRET>`. The output also includes a new pairing token.
-
-**Procedure**
-
-1.  On this cluster, rotate the credentials:
-
-    ```bash
-    weka cluster peer init --reinit
-    ```
-2.  On each peer cluster that references this cluster, refresh the credentials stored in its local object store tier:
-
-    ```bash
-    weka fs tier obs update <this-cluster's-peer-name>-obs \
-      --access-key-id <NEW_KEY> \
-      --secret-key <NEW_SECRET>
-    ```
-
-    Verify the object store tier:
-
-    ```bash
-    weka fs tier obs
-    ```
-3.  Verify the peer connection:
-
-    ```bash
-    weka cluster peer
-    ```
-4.  Verify replication resumes:
-
-    ```bash
-    weka fs replication
-    ```
-
-    Confirm that **State** is `RUNNING` and **Current Status** is not `ERROR`.
-
 ## Create a replication pair
 
 Create a replication pair between a local filesystem and a filesystem on a trusted peer cluster, and define its replication policy.
@@ -203,7 +167,7 @@ weka fs replication
 | `--target-cluster`        | Name of the configured cluster peer.                                                                                                                                                                                                           |
 | `--target-filesystem`     | Name of the filesystem on the remote cluster.                                                                                                                                                                                                  |
 | `--interval`              | Replication interval, for example, `5m` or `1h`. The minimum is 5 minutes.                                                                                                                                                                     |
-| `--copy-path`             | Specifies up to four paths to copy proactively. Separate paths with commas or repeat the option. Use `full`, `all`, or `/` to copy all data. Use `none` or `null` to replicate metadata only. Default: metadata-only replication.              |
+| `--copy-path`             | Specifies up to 10 paths to copy proactively, each up to 2 KB long. Separate paths with commas or repeat the option. Use `full`, `all`, or `/` to copy all data. Use `none` or `null` to replicate metadata only. Default: metadata-only replication.              |
 | `--access-strategy`       | Controls when a target snapshot becomes accessible. `INSTANT_ACCESS` (default) exposes the snapshot immediately. Data not copied locally is retrieved on demand. `COPY_FIRST` exposes the snapshot only after the `--copy-path` data is local. |
 | `--apply-strategy`        | Controls when the target applies a replicated snapshot. `AUTOMATIC` applies the snapshot after the prerequisite phase completes.                                                                                                               |
 | `--snapshots-to-keep`     | Number of snapshots to retain, from 2 to 25. Retaining more snapshots requires more storage.                                                                                                                                                   |

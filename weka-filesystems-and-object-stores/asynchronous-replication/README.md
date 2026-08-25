@@ -12,7 +12,7 @@ Asynchronous replication is a native, cluster-to-cluster filesystem replication 
 
 * **Disaster recovery**: Maintain a complete, incrementally updated copy of a filesystem on a secondary site. If the primary site becomes unavailable, you point to the target filesystem manually as read-only filesystem. Because replication is asynchronous, the Recovery Point Objective (RPO) is not zero: writes made after the last replicated snapshot may be lost, and recovery time depends on the manual failover procedure.
 * **On-demand caching**: Make a large dataset visible on a remote cluster with limited capacity. The target receives the full filesystem metadata (directories and file hierarchy), and file data is retrieved from the source only when files are accessed. A typical example is a large capacity site that collects data and a smaller GPU cluster that hydrates only the files needed for AI training and inference.
-* **Partial copy**: Replicate only selected directories proactively. Specify up to four directory paths to copy in full, while the rest of the namespace remains available on demand. Use this when a remote site needs local performance for specific projects only.
+* **Partial copy**: Replicate only selected directories proactively. Specify up to 10 directory paths to copy in full, while the rest of the namespace remains available on demand. Use this when a remote site needs local performance for specific projects only.
 
 ## Replication architecture
 
@@ -53,6 +53,6 @@ The RPO is not zero. Expect a lag of at least the replication interval (minimum 
 * Failover is manual. The system does not promote the target automatically.
 * Tiered data on the source is not replicated.
 * Replication management is available through the CLI only.
-* The number of snapshots to keep ranges from 2 to about 250. Retaining more snapshots requires more storage.
+* The number of snapshots to keep ranges from 2 to 25. Retaining more snapshots requires more storage.
 * The target filesystem is write-protected while the replication pair is active.
 * Inode numbers on the target filesystem differ from the source filesystem.
