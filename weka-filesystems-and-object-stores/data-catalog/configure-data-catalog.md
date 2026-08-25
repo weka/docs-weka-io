@@ -42,7 +42,7 @@ The data catalog maintains synchronization through a structured three-step proce
 Configure the infrastructure and filesystems required to activate catalog services for your data.
 
 {% hint style="danger" %}
-**INTERNAL, remove before publication. TBD (Docs):** Two sample-output blocks on this page (around the `weka catalog cluster status` examples) still show legacy typed identifiers such as `FSId<4>` and `HostId<23>`. 6.0 prints bare integers, so these read as `4` and `23`. Regenerate both against a 6.0 cluster.
+**INTERNAL, remove before publication. TBD (Docs):** Two sample-output blocks on this page (the `weka catalog cluster status` examples) still show legacy typed identifiers such as `FSId<4>` and `HostId<23>`. 6.0 prints bare integers, so these read as `4` and `23`. They could not be recaptured here: neither lab cluster has a catalog cluster configured, and standing one up creates an index filesystem and coordinator. Recapture on a cluster where the data catalog is already in use.
 {% endhint %}
 
 #### Before you begin

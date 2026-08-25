@@ -395,7 +395,7 @@ HOST ID  HOSTNAME        CONTAINER                                     IPS      
 
 The command 'weka cluster host' is deprecated. Please use 'weka cluster container' instead.
 {% hint style="danger" %}
-**INTERNAL, remove before publication. TBD (Docs):** The captured session on this page predates 6.0: it shows legacy typed identifiers (`HostId<14>`, `HostId<3>`) where 6.0 prints bare integers, and it uses the deprecated `weka cluster host` spelling — the transcript even includes the deprecation warning. Recapture against a 6.0 cluster using `weka cluster container`.
+**INTERNAL, remove before publication. TBD (Docs):** The captured session below predates 6.0 and its layout no longer matches. Verified against a 6.0.0.304 cluster, `weka s3 cluster` now renders as a right-aligned label/value block titled **S3 Cluster Status** (not `S3 Cluster Info`), with no colons after the labels, and the `S3 Hosts` row is now **S3 Containers**. Typed identifiers such as `HostId<14>` print as bare integers. `weka s3 cluster -v` also gained `Use S3 New Locks`, `Save Metadata As Xattr`, and `Domain` rows. The transcript further uses the deprecated `weka cluster host` spelling and even includes its deprecation warning; use `weka cluster container`. This block could not be recaptured here because it needs a configured, online S3 cluster with the walkthrough's specific container IDs — recapture during a scaling run on a cluster with S3 enabled.
 {% endhint %}
 
 root@ip-10-0-93-212:/# weka s3 cluster
