@@ -23,8 +23,8 @@ weka fs snapshot add <filesystem> <name> [--access-point <string>] [--source-sna
 | `filesystem`\* | Filesystem name. |
 | `name`\* | Target snapshot name. |
 | `--access-point` \<string> | Snapshot access point name. Default: Controlled by weka fs snapshot access-point-naming-convention update &#x26;#x3C;date/name>. By default, the system uses the date format @GMT_%Y.%m.%d-%H.%M.%S, which is compatible with Windows previous versions for SMB |
-| `--source-snapshot` \<string> | Use this snapshot as the source. |
-| `--writable` | Create the snapshot as writable. |
+| `--source-snapshot` \<string> | Use this snapshot as the source. Default: The latest snapshot of the specified filesystem |
+| `--writable` | Create the snapshot as writable. Default: false |
 
 {% hint style="info" %}
 The newly created snapshot is saved in the `.snapshots` directory.\

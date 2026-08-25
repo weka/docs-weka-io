@@ -109,7 +109,7 @@ weka fs quota list [<filesystem>] [--all] [--over <uint8>] [--path <string>] [--
 | `--all` | Include all quotas, not just those over limit. Default: False |
 | `--over` \<uint8> | Show only quotas over this percentage of usage. Possible values: 0-100 |
 | `-p`, `--path` \<string> | Show only the quota for this path. |
-| `-q`, `--quick` | Skip resolving inodes to paths. |
+| `-q`, `--quick` | Skip resolving inodes to paths. Default: False |
 | `--snap-name` \<string> | Optional snapshot name. |
 | `--type` \<quota-type> | Quota type (directory, user, or group). Possible values: directory, user, or group Default: directory |
 | `-u`, `--under` \<string> | List quotas under (and including) this path. |

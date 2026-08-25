@@ -132,15 +132,15 @@ weka fs tier s3 add <name> [--access-key-id <string>] [--auth-method <s3-auth-me
 | `--verbose-errors` | Dump HTTP info on error. |
 
 {% hint style="info" %}
-By default, a misconfigured object store is not created. To create an object store even when it is misconfigured, use the `--skip-verification` option.
+When using the CLI, by default a misconfigured object store is not created. To create an object store even when it is misconfigured, use the `--skip-verification` option.
 {% endhint %}
 
 {% hint style="warning" %}
-The `max-concurrent` settings are applied per WEKA compute process, and the lowest setting across all object stores is the one applied.
+The `max-concurrent` settings are applied per WEKA compute process and the lowest setting across all object stores is the one applied.
 {% endhint %}
 
 {% hint style="success" %}
-When you create the object store bucket in AWS, to use the storage classes S3 Intelligent-Tiering, S3 Standard-IA, S3 One Zone-IA, and S3 Glacier Instant Retrieval, do the following:
+When you create the object store bucket in AWS, to use the storage classes: S3 Intelligent-Tiering, S3 Standard-IA, S3 One Zone-IA, and S3 Glacier Instant Retrieval, do the following:
 
 1. Create the bucket in S3 Standard.
 2. Create an AWS lifecycle policy to transition objects to these storage classes.
@@ -227,5 +227,3 @@ weka fs tier s3 remove <name>
 | Parameter | Description                      |
 | --------- | -------------------------------- |
 | `name`\* | Name of the object store bucket. |
-
-[^1]: WEKA supports the AWS Security Token Service (STS) that enables you to request temporary, limited-privilege credentials for users using the [AssumeRole](https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole.html) API.
