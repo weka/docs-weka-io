@@ -14,8 +14,14 @@ The following EC2 instance models can operate as **backend**, **client,** or **c
 | I3en              | i3en.2xlarge, i3en.3xlarge, i3en.6xlarge, i3en.12xlarge, i3en.24xlarge                               |
 
 {% hint style="info" %}
-Deployment on **i8ge** instance types are supported with Posix and S3 protocol.
+Deployment on i8ge instance types supports POSIX and S3 protocols. In cloud deployments, SMB and NFS do not run on backend instances. Deploy them on dedicated protocol gateways, as described below. For requirements, see [additional-protocols-overview.md](../../additional-protocols/additional-protocols-overview.md "mention").
 {% endhint %}
+
+### Protocol gateway EC2 instances
+
+The Terraform module deploys protocol gateways as separate instances from the backend cluster. The default EC2 instance model for NFS, SMB, and S3 protocol gateways is `c5n.2xlarge`. To use a different model, set the relevant variable in the `main.tf` file.
+
+<table><thead><tr><th width="262.28125">Protocol</th><th>Terraform variable</th></tr></thead><tbody><tr><td>NFS</td><td><code>nfs_protocol_gateway_instance_type</code></td></tr><tr><td>SMB</td><td><code>smb_protocol_gateway_instance_type</code></td></tr><tr><td>S3</td><td><code>s3_protocol_gateway_instance_type</code></td></tr></tbody></table>
 
 ## Client EC2 instances
 
