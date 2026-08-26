@@ -116,8 +116,8 @@ weka smb cluster update [--encryption <smb-cluster-encryption>] [--force] [--idm
 | `--smb-ips-range` \<ips>… | SMB floating IP address range. Multiple values may be supplied separated by commas, or the option may be repeated. |
 | `--userdb-trusted-domains` | Enumerate the trusted domains and their domain controllers when the SMB server starts (enabled by default). Set to false in large Active Directory environments where the enumeration times out and the SMB server keeps restarting. While it is off, users from trusted domains cannot be resolved and lose access. |
 
-{% hint style="danger" %}
-**INTERNAL, remove before publication. TBD (Engineering):** `--symlink` no longer exists on `smb cluster update`, and the synopsis above is resynced with the shipping CLI, so nothing on this page is wrong. The open question is the capability: the legacy CLI defined it as "Enable or disable symbolic link (symlink) support for the SMB-W cluster", and no 6.0 option replaces it — `--posix-resolution-mode` governs UID/GID resolution, not symlinks. Confirm whether SMB symlink support was removed or moved.
+{% hint style="info" %}
+Symlink support is set when the SMB cluster is created, using the `--symlink` option of `weka smb cluster create`. It is not part of `weka smb cluster update`, so you cannot change it on an existing SMB cluster.
 {% endhint %}
 
 ## Check the status of SMB cluster readiness
