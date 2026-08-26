@@ -193,6 +193,7 @@
 * [Manage the SMB protocol](additional-protocols/smb-support/README.md)
   * [Manage SMB using the GUI](additional-protocols/smb-support/smb-management-using-the-gui.md)
   * [Manage SMB using the CLI](additional-protocols/smb-support/smb-management-using-the-cli.md)
+  * [SMB external LDAP POSIX resolution](additional-protocols/smb-support/smb-external-ldap-posix-resolution.md)
 
 ## Security
 
