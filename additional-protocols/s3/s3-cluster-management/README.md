@@ -45,7 +45,7 @@ Append `?c=json` to receive the same values in the body: `/wekas3api/health/read
 {"score":0.73,"rq.active":1500,"rq.max":2048,"mem.active":1473,"mem.max":4096}
 ```
 
-This data enables Global Server Load Balancing (GSLB). GSLB routes traffic across multiple sites or clusters, typically through DNS. Use the score for weighted routing so healthy, lower-loaded servers receive more traffic. Solutions that support header-based routing can read `x-weka-score` directly without parsing the JSON body. One example is [Load balancing WEKA](https://www.loadbalancer.org/applications/weka/).
+This data enables Global Server Load Balancing (GSLB). GSLB routes traffic across multiple sites or clusters, typically through DNS. Use the score for weighted routing so healthy, lower-loaded servers receive more traffic. Solutions that support header-based routing can read `x-weka-score` directly without parsing the JSON body, a deployment model confirmed compatible with [Loadbalancer.org](https://www.loadbalancer.org/applications/weka/) for WEKA S3 load balancing.
 
 ## Round-robin DNS configuration
 
