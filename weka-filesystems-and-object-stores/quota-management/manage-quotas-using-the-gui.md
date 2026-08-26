@@ -58,7 +58,7 @@ The tenant admin can set a quota on a directory, which triggers a background tas
      The system sets the directory quota in the background.
 5. To monitor the directory quota setting background task, select **Monitor > Background Tasks.**
 
-<div data-with-frame="true"><figure><img src="../../.gitbook/assets/DirectoryQuotaSetting.gif" alt=""><figcaption><p>Set a directory quota and monitor the background task</p></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/DirectoryQuotaSetting.png" alt=""><figcaption><p>Set a directory quota</p></figcaption></figure></div>
 
 ## View directory quotas and default quota
 
