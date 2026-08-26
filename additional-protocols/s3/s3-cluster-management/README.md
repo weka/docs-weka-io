@@ -28,8 +28,6 @@ When a bucket creation request does not specify a filesystem, the system resolve
 
 **Related topics**
 
-
-
 .
 
 ## Load balancer configuration
@@ -46,9 +44,7 @@ Append `?c=json` to receive the same values in the body: `/wekas3api/health/read
 {"score":0.73,"rq.active":1500,"rq.max":2048,"mem.active":1473,"mem.max":4096}
 ```
 
-This data enables Global Server Load Balancing (GSLB). GSLB routes traffic across multiple sites or clusters, typically through DNS. Use the score for weighted routing so healthy, lower-loaded servers receive more traffic.&#x20;
-
-Solutions that support header-based routing can read `x-weka-score` directly without parsing the JSON body, a deployment model confirmed compatible with Loadbalancer.org for WEKA S3 load balancing. One example is [Load balancing WEKA](https://www.loadbalancer.org/applications/weka/).
+This data enables Global Server Load Balancing (GSLB). GSLB routes traffic across multiple sites or clusters, typically through DNS. Use the score for weighted routing so healthy, lower-loaded servers receive more traffic. Solutions that support header-based routing can read `x-weka-score` directly without parsing the JSON body, a deployment model confirmed compatible with [Loadbalancer.org](https://www.loadbalancer.org/applications/weka/) for WEKA S3 load balancing.
 
 ## Round-robin DNS configuration
 
@@ -59,6 +55,3 @@ To distribute S3 traffic with this method, create a DNS entry that resolves to t
 For added resilience, use a DNS service that supports health checks to detect and remove unresponsive servers from rotation automatically. Keep in mind that DNS-level health checks are coarser than those of a dedicated load balancer and may be less effective under extreme load.
 
 **Related topics**
-
-
-
