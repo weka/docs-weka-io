@@ -94,11 +94,12 @@ Container "dataserv0" is ready (pid = 66904)
 
 ```bash
 $ weka local ps
-CONTAINER  STATE    DISABLED  UPTIME    MONITORING  PERSISTENT  PORT   PID    STATUS  VERSION  LAST FAILURE
-compute0   Running  False     1:21:58h  True        True        14300  44600  Ready   4.3.2
-dataserv0  Running  False     44.59s    True        True        14400  66904  Ready   4.3.2
-drives0    Running  False     1:22:39h  True        True        14000  43448  Ready   4.3.2
-frontend0  Running  False     1:21:15h  True        True        14200  45680  Ready   4.3.2
+Container  Container ID  State    Disabled    Uptime  Persistent   Port    PID  Status  Version            Recent Failure (5 min)  Container Type
+compute0              9  Running    False   0:33:17h     True     14300  16944  Ready   6.0.0.309-nightly                          weka
+dataserv0            19  Running    False   0:06:35h     True     14400  84273  Ready   6.0.0.309-nightly                          weka
+drives0               0  Running    False   0:34:50h     True     14000  15943  Ready   6.0.0.309-nightly                          weka
+frontend0            17  Running    False   0:33:07h     True     14200  17453  Ready   6.0.0.309-nightly                          weka
+smbw                N/A  Running    False   0:30:42h     True     14000  18612          6.0.0.309-nightly                          smbw
 ```
 
 </details>
@@ -109,27 +110,31 @@ frontend0  Running  False     1:21:15h  True        True        14200  45680  Re
 
 <summary>Example</summary>
 
-See `dataserve0` in the last row (CONTAINER ID 15).
+See `dataserv0` in the last row (ID 19).
 
 ```bash
 $ weka cluster container
-CONTAINER ID  HOSTNAME        CONTAINER  IPS             STATUS  RELEASE  FAILURE DOMAIN  CORES  MEMORY   UPTIME    LAST FAILURE
-0             DataSphere-0    drives0    10.108.249.241  UP      4.3.2    DOM-000         1      1.54 GB  1:29:38h
-1             DataSphere-1    drives0    10.108.211.190  UP      4.3.2    DOM-001         1      1.54 GB  1:29:39h
-2             DataSphere-2    drives0    10.108.47.134   UP      4.3.2    DOM-002         1      1.54 GB  1:29:39h
-3             DataSphere-3    drives0    10.108.234.164  UP      4.3.2    DOM-003         1      1.54 GB  1:29:39h
-4             DataSphere-4    drives0    10.108.166.243  UP      4.3.2    DOM-004         1      1.54 GB  1:29:38h
-5             DataSphere-0    compute0   10.108.249.241  UP      4.3.2    DOM-000         1      1.50 GB  1:28:56h
-6             DataSphere-1    compute0   10.108.211.190  UP      4.3.2    DOM-001         1      1.50 GB  1:28:57h
-7             DataSphere-2    compute0   10.108.47.134   UP      4.3.2    DOM-002         1      1.50 GB  1:28:57h
-8             DataSphere-3    compute0   10.108.234.164  UP      4.3.2    DOM-003         1      1.50 GB  1:28:57h
-9             DataSphere-4    compute0   10.108.166.243  UP      4.3.2    DOM-004         1      1.50 GB  1:28:58h
-10            DataSphere-0    frontend0  10.108.249.241  UP      4.3.2    DOM-000         1      1.47 GB  1:28:13h
-11            DataSphere-1    frontend0  10.108.211.190  UP      4.3.2    DOM-001         1      1.47 GB  1:28:13h
-12            DataSphere-2    frontend0  10.108.47.134   UP      4.3.2    DOM-002         1      1.47 GB  1:28:13h
-13            DataSphere-3    frontend0  10.108.234.164  UP      4.3.2    DOM-003         1      1.47 GB  1:28:14h
-14            DataSphere-4    frontend0  10.108.166.243  UP      4.3.2    DOM-004         1      1.47 GB  1:28:14h
-15            DataSphere-0    dataserv0  10.108.249.241  UP      4.3.2                    1      1.47 GB  0:07:41h
+ID  Hostname                   Name       IPs             Status  Requested Action  Release            Failure Domain  Cores    Memory    Uptime  Recent Failure (5 min)  Requested Action Failure
+ 0  DataSphere-0               drives0    10.108.233.213  UP      NONE              6.0.0.309-nightly  DOM-000             1  1.46 GiB  0:35:19h
+ 1  DataSphere-1               drives0    10.108.111.114  UP      NONE              6.0.0.309-nightly  DOM-001             1  1.46 GiB  0:35:21h
+ 2  DataSphere-2               drives0    10.108.190.195  UP      NONE              6.0.0.309-nightly  DOM-002             1  1.46 GiB  0:35:20h
+ 3  DataSphere-3               drives0    10.108.220.165  UP      NONE              6.0.0.309-nightly  DOM-003             1  1.46 GiB  0:35:20h
+ 4  DataSphere-4               drives0    10.108.107.173  UP      NONE              6.0.0.309-nightly  DOM-004             1  1.46 GiB  0:35:18h
+ 5  DataSphere-5               drives0    10.108.176.219  UP      NONE              6.0.0.309-nightly  DOM-005             1  1.46 GiB  0:35:17h
+ 6  DataSphere-3               compute0   10.108.220.165  UP      NONE              6.0.0.309-nightly  DOM-003             1  1.41 GiB  0:33:47h
+ 7  DataSphere-5               compute0   10.108.176.219  UP      NONE              6.0.0.309-nightly  DOM-005             1  1.41 GiB  0:33:46h
+ 8  DataSphere-4               compute0   10.108.107.173  UP      NONE              6.0.0.309-nightly  DOM-004             1  1.41 GiB  0:33:46h
+ 9  DataSphere-0               compute0   10.108.233.213  UP      NONE              6.0.0.309-nightly  DOM-000             1  1.41 GiB  0:33:45h
+10  DataSphere-1               compute0   10.108.111.114  UP      NONE              6.0.0.309-nightly  DOM-001             1  1.41 GiB  0:33:46h
+11  DataSphere-2               compute0   10.108.190.195  UP      NONE              6.0.0.309-nightly  DOM-002             1  1.41 GiB  0:33:45h
+12  DataSphere-1               frontend0  10.108.111.114  UP      NONE              6.0.0.309-nightly  DOM-001             1  1.38 GiB  0:33:38h
+13  DataSphere-2               frontend0  10.108.190.195  UP      NONE              6.0.0.309-nightly  DOM-002             1  1.38 GiB  0:33:37h
+14  DataSphere-3               frontend0  10.108.220.165  UP      NONE              6.0.0.309-nightly  DOM-003             1  1.38 GiB  0:33:37h
+15  DataSphere-4               frontend0  10.108.107.173  UP      NONE              6.0.0.309-nightly  DOM-004             1  1.38 GiB  0:33:37h
+16  DataSphere-5               frontend0  10.108.176.219  UP      NONE              6.0.0.309-nightly  DOM-005             1  1.38 GiB  0:33:37h
+17  DataSphere-0               frontend0  10.108.233.213  UP      NONE              6.0.0.309-nightly  DOM-000             1  1.38 GiB  0:33:35h
+18  DataSphere-LinuxClients-6  default    10.108.169.39   UP      NONE              6.0.0.309-nightly                      1  1.38 GiB  0:31:32h
+19  DataSphere-0               dataserv0  10.108.233.213  UP      NONE              6.0.0.309-nightly                      0       N/A  0:07:03h
 ```
 
 </details>
@@ -140,43 +145,51 @@ CONTAINER ID  HOSTNAME        CONTAINER  IPS             STATUS  RELEASE  FAILUR
 
 <summary>Example</summary>
 
-See PROCESS IDs 300 and 301.
+See PROCESS IDs 380 and 381.
 
 ```bash
 $ weka cluster process
-PROCESS ID  HOSTNAME      CONTAINER  IPS             STATUS  RELEASE  ROLES       NETWORK  CPU  MEMORY   UPTIME    LAST FAILURE
-0           DataSphere-0  drives0    10.108.249.241  UP      4.3.2    MANAGEMENT  UDP           N/A      1:22:26h  Host joined a new cluster (1 hour ago)
-1           DataSphere-0  drives0    10.108.6.1      UP      4.3.2    DRIVES      DPDK     2    1.54 GB  1:22:24h
-20          DataSphere-1  drives0    10.108.211.190  UP      4.3.2    MANAGEMENT  UDP           N/A      1:22:28h  Host joined a new cluster (1 hour ago)
-21          DataSphere-1  drives0    10.108.18.211   UP      4.3.2    DRIVES      DPDK     4    1.54 GB  1:22:24h
-40          DataSphere-2  drives0    10.108.47.134   UP      4.3.2    MANAGEMENT  UDP           N/A      1:22:27h  Host joined a new cluster (1 hour ago)
-41          DataSphere-2  drives0    10.108.0.189    UP      4.3.2    DRIVES      DPDK     4    1.54 GB  1:22:24h
-60          DataSphere-3  drives0    10.108.234.164  UP      4.3.2    MANAGEMENT  UDP           N/A      1:22:29h
-61          DataSphere-3  drives0    10.108.181.42   UP      4.3.2    DRIVES      DPDK     6    1.54 GB  1:22:24h
-80          DataSphere-4  drives0    10.108.166.243  UP      4.3.2    MANAGEMENT  UDP           N/A      1:22:26h  Host joined a new cluster (1 hour ago)
-81          DataSphere-4  drives0    10.108.32.208   UP      4.3.2    DRIVES      DPDK     2    1.54 GB  1:22:24h
-100         DataSphere-0  compute0   10.108.249.241  UP      4.3.2    MANAGEMENT  UDP           N/A      1:21:52h  Configuration snapshot pulled (1 hour ago)
-101         DataSphere-0  compute0   10.108.150.39   UP      4.3.2    COMPUTE     DPDK     6    1.50 GB  1:21:50h
-120         DataSphere-1  compute0   10.108.211.190  UP      4.3.2    MANAGEMENT  UDP           N/A      1:21:52h  Configuration snapshot pulled (1 hour ago)
-121         DataSphere-1  compute0   10.108.162.229  UP      4.3.2    COMPUTE     DPDK     2    1.50 GB  1:21:50h
-140         DataSphere-2  compute0   10.108.47.134   UP      4.3.2    MANAGEMENT  UDP           N/A      1:21:46h  Removed from cluster: Not reachable by the cluster (1 hour ago)
-141         DataSphere-2  compute0   10.108.38.178   UP      4.3.2    COMPUTE     DPDK     2    1.50 GB  1:21:50h
-160         DataSphere-3  compute0   10.108.234.164  UP      4.3.2    MANAGEMENT  UDP           N/A      1:21:52h  Configuration snapshot pulled (1 hour ago)
-161         DataSphere-3  compute0   10.108.254.134  UP      4.3.2    COMPUTE     DPDK     4    1.50 GB  1:21:50h
-180         DataSphere-4  compute0   10.108.166.243  UP      4.3.2    MANAGEMENT  UDP           N/A      1:21:46h  Removed from cluster: Not reachable by the cluster (1 hour ago)
-181         DataSphere-4  compute0   10.108.0.100    UP      4.3.2    COMPUTE     DPDK     4    1.50 GB  1:21:50h
-200         DataSphere-0  frontend0  10.108.249.241  UP      4.3.2    MANAGEMENT  UDP           N/A      1:21:01h  Removed from cluster: Not reachable by the cluster (1 hour ago)
-201         DataSphere-0  frontend0  10.108.10.152   UP      4.3.2    FRONTEND    DPDK     4    1.47 GB  1:21:05h
-220         DataSphere-1  frontend0  10.108.211.190  UP      4.3.2    MANAGEMENT  UDP           N/A      1:21:01h  Removed from cluster: Not reachable by the cluster (1 hour ago)
-221         DataSphere-1  frontend0  10.108.201.178  UP      4.3.2    FRONTEND    DPDK     6    1.47 GB  1:21:05h
-240         DataSphere-2  frontend0  10.108.47.134   UP      4.3.2    MANAGEMENT  UDP           N/A      1:21:01h  Removed from cluster: Not reachable by the cluster (1 hour ago)
-241         DataSphere-2  frontend0  10.108.172.186  UP      4.3.2    FRONTEND    DPDK     6    1.47 GB  1:21:05h
-260         DataSphere-3  frontend0  10.108.234.164  UP      4.3.2    MANAGEMENT  UDP           N/A      1:21:08h  Configuration snapshot pulled (1 hour ago)
-261         DataSphere-3  frontend0  10.108.145.253  UP      4.3.2    FRONTEND    DPDK     2    1.47 GB  1:21:05h
-280         DataSphere-4  frontend0  10.108.166.243  UP      4.3.2    MANAGEMENT  UDP           N/A      1:21:08h  Configuration snapshot pulled (1 hour ago)
-281         DataSphere-4  frontend0  10.108.219.191  UP      4.3.2    FRONTEND    DPDK     6    1.47 GB  1:21:05h
-300         DataSphere-0  dataserv0  10.108.249.241  UP      4.3.2    MANAGEMENT  UDP           N/A      33.05s    Configuration snapshot pulled (40 seconds ago)
-301         DataSphere-0  dataserv0  10.108.249.241  UP      4.3.2    DATASERV    UDP      1    1.47 GB  14.55s
+Process  Container ID  Slot  Hostname                   Container  IPs             Status  Release            Roles       Network  CPU    Memory    Uptime  Recent Failure (5 min)
+      0             0     0  DataSphere-0               drives0    10.108.233.213  UP      6.0.0.309-nightly  MANAGEMENT  UDP        0       N/A  0:35:23h
+      1             0     1  DataSphere-0               drives0    10.108.62.198   UP      6.0.0.309-nightly  DRIVES      DPDK       4  1.46 GiB  0:35:19h
+     20             1     0  DataSphere-1               drives0    10.108.111.114  UP      6.0.0.309-nightly  MANAGEMENT  UDP        0       N/A  0:35:15h
+     21             1     1  DataSphere-1               drives0    10.108.93.124   UP      6.0.0.309-nightly  DRIVES      DPDK       4  1.46 GiB  0:35:10h
+     40             2     0  DataSphere-2               drives0    10.108.190.195  UP      6.0.0.309-nightly  MANAGEMENT  UDP        0       N/A  0:35:15h
+     41             2     1  DataSphere-2               drives0    10.108.217.168  UP      6.0.0.309-nightly  DRIVES      DPDK       4  1.46 GiB  0:35:10h
+     60             3     0  DataSphere-3               drives0    10.108.220.165  UP      6.0.0.309-nightly  MANAGEMENT  UDP        0       N/A  0:35:15h
+     61             3     1  DataSphere-3               drives0    10.108.199.216  UP      6.0.0.309-nightly  DRIVES      DPDK       4  1.46 GiB  0:35:10h
+     80             4     0  DataSphere-4               drives0    10.108.107.173  UP      6.0.0.309-nightly  MANAGEMENT  UDP        0       N/A  0:35:15h
+     81             4     1  DataSphere-4               drives0    10.108.230.210  UP      6.0.0.309-nightly  DRIVES      DPDK       4  1.46 GiB  0:35:10h
+    100             5     0  DataSphere-5               drives0    10.108.176.219  UP      6.0.0.309-nightly  MANAGEMENT  UDP        0       N/A  0:35:14h
+    101             5     1  DataSphere-5               drives0    10.108.147.66   UP      6.0.0.309-nightly  DRIVES      DPDK       4  1.46 GiB  0:35:10h
+    120             6     0  DataSphere-3               compute0   10.108.220.165  UP      6.0.0.309-nightly  MANAGEMENT  UDP        0       N/A  0:33:54h
+    121             6     1  DataSphere-3               compute0   10.108.94.64    UP      6.0.0.309-nightly  COMPUTE     DPDK       6  1.41 GiB  0:33:49h
+    140             7     0  DataSphere-5               compute0   10.108.176.219  UP      6.0.0.309-nightly  MANAGEMENT  UDP        0       N/A  0:33:54h
+    141             7     1  DataSphere-5               compute0   10.108.213.132  UP      6.0.0.309-nightly  COMPUTE     DPDK       6  1.41 GiB  0:33:49h
+    160             8     0  DataSphere-4               compute0   10.108.107.173  UP      6.0.0.309-nightly  MANAGEMENT  UDP        0       N/A  0:33:54h
+    161             8     1  DataSphere-4               compute0   10.108.143.165  UP      6.0.0.309-nightly  COMPUTE     DPDK       6  1.41 GiB  0:33:49h
+    180             9     0  DataSphere-0               compute0   10.108.233.213  UP      6.0.0.309-nightly  MANAGEMENT  UDP        0       N/A  0:33:54h
+    181             9     1  DataSphere-0               compute0   10.108.197.159  UP      6.0.0.309-nightly  COMPUTE     DPDK       6  1.41 GiB  0:33:48h
+    200            10     0  DataSphere-1               compute0   10.108.111.114  UP      6.0.0.309-nightly  MANAGEMENT  UDP        0       N/A  0:33:49h
+    201            10     1  DataSphere-1               compute0   10.108.112.214  UP      6.0.0.309-nightly  COMPUTE     DPDK       6  1.41 GiB  0:33:43h
+    220            11     0  DataSphere-2               compute0   10.108.190.195  UP      6.0.0.309-nightly  MANAGEMENT  UDP        0       N/A  0:33:49h
+    221            11     1  DataSphere-2               compute0   10.108.35.79    UP      6.0.0.309-nightly  COMPUTE     DPDK       6  1.41 GiB  0:33:43h
+    240            12     0  DataSphere-1               frontend0  10.108.111.114  UP      6.0.0.309-nightly  MANAGEMENT  UDP        0       N/A  0:33:44h
+    241            12     1  DataSphere-1               frontend0  10.108.7.198    UP      6.0.0.309-nightly  FRONTEND    DPDK       2  1.38 GiB  0:33:39h
+    260            13     0  DataSphere-2               frontend0  10.108.190.195  UP      6.0.0.309-nightly  MANAGEMENT  UDP        0       N/A  0:33:44h
+    261            13     1  DataSphere-2               frontend0  10.108.99.123   UP      6.0.0.309-nightly  FRONTEND    DPDK       2  1.38 GiB  0:33:39h
+    280            14     0  DataSphere-3               frontend0  10.108.220.165  UP      6.0.0.309-nightly  MANAGEMENT  UDP        0       N/A  0:33:44h
+    281            14     1  DataSphere-3               frontend0  10.108.118.79   UP      6.0.0.309-nightly  FRONTEND    DPDK       2  1.38 GiB  0:33:39h
+    300            15     0  DataSphere-4               frontend0  10.108.107.173  UP      6.0.0.309-nightly  MANAGEMENT  UDP        0       N/A  0:33:44h
+    301            15     1  DataSphere-4               frontend0  10.108.148.247  UP      6.0.0.309-nightly  FRONTEND    DPDK       2  1.38 GiB  0:33:39h
+    320            16     0  DataSphere-5               frontend0  10.108.176.219  UP      6.0.0.309-nightly  MANAGEMENT  UDP        0       N/A  0:33:44h
+    321            16     1  DataSphere-5               frontend0  10.108.159.245  UP      6.0.0.309-nightly  FRONTEND    DPDK       2  1.38 GiB  0:33:39h
+    340            17     0  DataSphere-0               frontend0  10.108.233.213  UP      6.0.0.309-nightly  MANAGEMENT  UDP        0       N/A  0:33:44h
+    341            17     1  DataSphere-0               frontend0  10.108.200.201  UP      6.0.0.309-nightly  FRONTEND    DPDK       2  1.38 GiB  0:33:39h
+    360            18     0  DataSphere-LinuxClients-6  default    10.108.169.39   UP      6.0.0.309-nightly  MANAGEMENT  UDP        0       N/A  0:31:38h
+    361            18     1  DataSphere-LinuxClients-6  default    10.108.18.155   UP      6.0.0.309-nightly  FRONTEND    DPDK       2  1.38 GiB  0:31:34h
+    380            19     0  DataSphere-0               dataserv0  10.108.233.213  UP      6.0.0.309-nightly  MANAGEMENT  UDP        0       N/A  0:07:09h
+    381            19     1  DataSphere-0               dataserv0  10.108.233.213  UP      6.0.0.309-nightly  DATASERV    UDP        1       N/A  0:07:03h
 ```
 
 </details>
