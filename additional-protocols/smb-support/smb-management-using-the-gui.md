@@ -54,6 +54,8 @@ Due to cloud provider network limitations, setting a list of SMB floating IPs in
 
 Once the system completes configuration, the server statuses change from <img src="../../.gitbook/assets/red_x.png" alt="" data-size="line"> (not ready) to <img src="../../.gitbook/assets/green_check.png" alt="" data-size="line"> (ready).
 
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/smb_config.png" alt=""><figcaption><p>Configured SMB cluster</p></figcaption></figure></div>
+
 ## Edit the SMB cluster <a href="#edit-the-smb-cluster" id="edit-the-smb-cluster"></a>
 
 You can modify the encryption and IP settings according to your needs.
@@ -99,12 +101,12 @@ Replace `8.8.8.8` and `8.8.4.4` with the appropriate nameserver IP addresses for
 **Procedure**
 
 1. In the SMB Cluster Configuration, select **Join**.
-2. In the Join to Active Directory dialog, set the following properties:
+2. In the **Join AD** dialog, set the following properties:
    * **Username** and **Password**: A username and password of an account that has join privileges to the Active Directory domain. WEKA does not save these credentials. Instead, the SMB cluster creates a computer account for use.
    * **Server**: (Optional) WEKA automatically identifies an AD Domain Controller server (from `/etc/resolv.conf`) based on the AD domain name. You do not need to set the server name. In some cases, specify the AD server if required.
    * **Computers Org. Unit**: The default AD organizational unit (OU) for the computer account is the Computers directory. You can define any OU to create the computer account that the joining account has permission to, such as SMB servers or corporate computers.
 
-<div data-with-frame="true"><img src="../../.gitbook/assets/wmng_smb_join_ad_dialog.png" alt="Join Active Directory dialog"></div>
+<div data-with-frame="true"><img src="../../.gitbook/assets/join_ad.png" alt="Join AD dialog"></div>
 
 Once the SMB cluster joins the Active Directory domain, the join status next to the domain changes to **Joined**.
 
@@ -214,7 +216,7 @@ The Shares tab displays the SMB shares created in the system. You can also custo
 3. Select the **Shares** tab.\
    You can filter the list using any column in the table.
 
-<div data-with-frame="true"><img src="../../.gitbook/assets/wmng_smb_list_shares.png" alt="SMB shares list"></div>
+<div data-with-frame="true"><img src="../../.gitbook/assets/view_smb_shares.png" alt="SMB shares list"></div>
 
 ## Add an SMB share <a href="#add-an-smb-share" id="add-an-smb-share"></a>
 
@@ -227,7 +229,7 @@ Once the SMB cluster is created, you can create SMB shares (maximum of 1024). Ea
 
 **Procedure**
 
-1. In the Shares tab, select **+Create**.
+1. In the Shares tab, select **Add**.
 2.  In the Add SMB Share dialog, set the following properties:
 
     * **Name**: A meaningful name for the SMB share.
@@ -241,20 +243,21 @@ Once the SMB cluster is created, you can create SMB shares (maximum of 1024). Ea
     * **Access Control Model:** Specifies the type of access control to use for the share. Options include POSIX, Windows, or Hybrid (default: POSIX). Hybrid ACL allows seamless interoperability between POSIX and Windows systems by exchanging permissions based on timestamps. The most recent permission, regardless of the system it originated from, takes precedence. Only applicable for SMB-W.
     * **File Default Permission:** The new default file permissions for the POSIX mode mask in a numeric (octal) format created through the share. Default 0744.
     * **Directory Default Permission:** The new default directory permissions for the POSIX mode mask in a numeric (octal) format created through the share. Default 0755.
-    * **Access Permissions:** Define the share access permissions. If you select ON, select the access type and the users or groups allowed to access the share (comma-separated users and groups list, add '@' as a group prefix).
-    * **Users List:** Users and groups list (add '@' as a group prefix). Don’t use the following characters: / \[ ] : ; | = + \* ? < > ".
-    * **Types:** Select the users or groups allowed to access the share and the access type.
     * **Read Only:** Select to set the share as read-only.
     * **Hidden:** Select if you want to hide the share so it is not visible when viewing the list of system shares.
-    * **Allow Guest Access:** Select if you want guests to access without authentication.
+    * **Allow Guests Access:** Select if you want guests to access without authentication.
     * **Case Sensitivity**: Enables or disables case sensitivity for the specified SMB share (default: ON). When enabled, the share distinguishes between files with the same name but different capitalization. This option applies exclusively to the SMB-W cluster.
     * **ADS:** Enables using Alternate Data Streams (ADS) on a specified SMB share.\
       Possible values: ON, OFF (default: ON). For **macOS clients**, if ACLs are disabled (`acl=off`), set `enable-ADS` to `off`. For **Windows clients**, when enabled, ADS data is stored in the file’s extended attributes (XAttr), which consumes XAttr space.
     * **Encryption:** Select in-transit encryption enforcement of the share. The global cluster encryption settings can affect the actual encryption.
     * **Direct Object Store Sync:** Enables immediate synchronization of files to the object store, bypassing time-based file retention policies. When enabled, newly created or modified files in the share are prioritized for release without delay.
-3. Select **Save**.
+3. Select **Submit**.
 
-<div data-with-frame="true"><figure><img src="../../.gitbook/assets/Add_SMB_share.png" alt=""><figcaption></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/add_smb_share.png" alt=""><figcaption><p>Add an SMB share</p></figcaption></figure></div>
+
+{% hint style="info" %}
+Access permissions are not set in this dialog. After the share is created, define them from the share's three-dot menu. See [#add-a-share-access-permission](smb-management-using-the-gui.md#add-a-share-access-permission "mention").
+{% endhint %}
 
 <details>
 
@@ -275,11 +278,37 @@ You can update some of the SMB share settings. These include encryption, hiding 
 
 1. In the Shares tab, select the three dots of the share and select **Edit**.
 
-<div data-with-frame="true"><figure><img src="../../.gitbook/assets/wmng_edit_smb_share_button.png" alt=""><figcaption><p>Edit an SMB share</p></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/smb_shares_menu.png" alt=""><figcaption><p>SMB share actions</p></figcaption></figure></div>
 
-2. In the Update Share Settings dialog, update the relevant properties and select **Save**.
+2. In the **Update Share Settings** dialog, update the relevant properties and select **Submit**.
 
-<div data-with-frame="true"><figure><img src="../../.gitbook/assets/wmng_update_share_settings.png" alt="" width="563"><figcaption><p>Update the SMB share settings</p></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/edit_smb_share.png" alt="" width="563"><figcaption><p>Update the SMB share settings</p></figcaption></figure></div>
+
+## Add a share access permission <a href="#add-a-share-access-permission" id="add-a-share-access-permission"></a>
+
+Define which users or groups can access a share, and with which access type. Access permissions are set per share, after the share is created.
+
+**Procedure**
+
+1. In the Shares tab, select the three dots of the share and select **Add Access Permission**.
+2. In the **Add SMB Share "<share>" Access Permission** dialog, set the following:
+   * **Type:** The access type granted to the listed users or groups.
+   * **Users List:** The users and groups allowed to access the share. Add `@` as a group prefix. Do not use the following characters: / \\ [ ] : ; | = + \* ? < > ".
+3. Select **Submit**.
+
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/add_smb_share_access_permission.png" alt=""><figcaption><p>Add a share access permission</p></figcaption></figure></div>
+
+## Remove a share access permission <a href="#remove-a-share-access-permission" id="remove-a-share-access-permission"></a>
+
+Remove a previously defined access permission from a share.
+
+**Procedure**
+
+1. In the Shares tab, select the three dots of the share and select **Remove Access Permission**.
+2. In the **Remove SMB Share "<share>" Access Permission** dialog, select the **Type** of the access permission to remove.
+3. Select **Submit**.
+
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/remove_smb_share_access_permission.png" alt=""><figcaption><p>Remove a share access permission</p></figcaption></figure></div>
 
 ## Remove an SMB share <a href="#remove-an-smb-share" id="remove-an-smb-share"></a>
 
@@ -287,7 +316,7 @@ You can update some of the SMB share settings. These include encryption, hiding 
 
 1. In the Shares tab, select the three dots of the share and select **Remove**.
 
-<div data-with-frame="true"><img src="../../.gitbook/assets/wmng_smb_share_remove.png" alt="Remove an SMB share"></div>
+<div data-with-frame="true"><img src="../../.gitbook/assets/smb_shares_menu.png" alt="Remove an SMB share"></div>
 
 2. In the confirmation message that appears, select **Confirm**.\
    The removed share no longer appears in the SMB Shares list.

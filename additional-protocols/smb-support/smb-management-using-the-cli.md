@@ -319,7 +319,7 @@ The mount mode for the SMB share is `readcache` and cannot be modified.
 
       ```bash
       weka smb share add rootShare default  
-      weka smb share add internalShare default --internal-path some/dir --description "Exposed share"  
+      weka smb share add internalShare default --internal-path /some/dir --description "Exposed share"  
       ```
 
       The first command creates a root SMB share for the `default` filesystem.
