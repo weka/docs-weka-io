@@ -487,7 +487,11 @@ The SSD Proxy relies on DPDK/SPDK for high-performance I/O. Each queue pair (qpa
 * New qpairs cannot be allocated, even if hardware queues are available.
 
 {% hint style="danger" %}
-**INTERNAL, remove before publication. TBD (Engineering):** Neither `weka local resources ssdproxy` nor `--dpdk-base-memory-mb` exists in the 6.0 CLI, and neither appears in the legacy D CLI either — `local resources` has no `ssdproxy` subcommand, and no command anywhere declares a `dpdk-base-memory-mb` flag. The closest shipping option is `weka local setup ssdproxy --memory <capacity>`, which sets total container memory rather than a DPDK base allocation. Confirm the correct 6.0 command for this procedure; the three examples below cannot work as written.
+**INTERNAL, remove before publication. TBD (Engineering):** Neither `weka local resources ssdproxy` nor `--dpdk-base-memory-mb` exists in the 6.0 CLI, and neither appears in the legacy D CLI either — `local resources` has no `ssdproxy` subcommand, and no command anywhere declares a `dpdk-base-memory-mb` flag. The closest shipping option is `weka local setup ssdproxy --memory <capacity>`, which sets total container memory rather than a DPDK base allocation.
+
+The underlying setting does still exist as a container resource: `goweka/api/cluster/container/resources.go:128` carries `DpdkBaseMemoryMB uint64 \`json:"dpdk_base_memory_mb"\`` commented out, under the heading "Unused by the UI, and so undocumented, and left out of our public API for now." So the field was deliberately withheld from the 6.0 public API rather than removed.
+
+Specific question for Engineering: is tuning DPDK base memory still a supported customer operation in 6.0? If yes, what is the supported command, given the field is not exposed. If no, this whole procedure should be dropped rather than rewritten — the three examples below cannot work as written.
 {% endhint %}
 
 **Resolution**
