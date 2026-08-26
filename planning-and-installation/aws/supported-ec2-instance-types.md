@@ -1,4 +1,5 @@
 ---
+description: Identify supported Amazon EC2 instance types for WEKA Terraform deployments.
 metaLinks:
   alternates:
     - >-
@@ -14,8 +15,14 @@ The following EC2 instance models can operate as **backend**, **client,** or **c
 <table><thead><tr><th width="237">EC2 instance type</th><th>Supported instances</th></tr></thead><tbody><tr><td>i8ge</td><td>i8ge.2xlarge, i8ge.3xlarge, i8ge.6xlarge, i8ge.12xlarge, i8ge.18xlarge, i8ge.24xlarge, i8ge.48xlarge</td></tr><tr><td>I3en</td><td>i3en.2xlarge, i3en.3xlarge, i3en.6xlarge, i3en.12xlarge, i3en.24xlarge</td></tr></tbody></table>
 
 {% hint style="info" %}
-Deployment on **i8ge** instance types are supported with Posix and S3 protocol.
+Deployment on i8ge instance types supports POSIX and S3 protocols. In cloud deployments, SMB and NFS do not run on backend instances. Deploy them on dedicated protocol gateways, as described below. For requirements, see [Additional protocol containers](https://app.gitbook.com/s/qDcZwR9zamxPsY03oTOq/additional-protocols/additional-protocols-overview "mention").
 {% endhint %}
+
+### Protocol gateway EC2 instances <a href="#protocol-gateway-ec2-instances" id="protocol-gateway-ec2-instances"></a>
+
+The Terraform module deploys protocol gateways as separate instances from the backend cluster. The default EC2 instance model for NFS, SMB, and S3 protocol gateways is `c5n.2xlarge`. To use a different model, set the relevant variable in the `main.tf` file.
+
+<table><thead><tr><th width="189.83984375">Protocol</th><th>Terraform variable</th></tr></thead><tbody><tr><td>NFS</td><td><code>nfs_protocol_gateway_instance_type</code></td></tr><tr><td>SMB</td><td><code>smb_protocol_gateway_instance_type</code></td></tr><tr><td>S3</td><td><code>s3_protocol_gateway_instance_type</code></td></tr></tbody></table>
 
 ## Client EC2 instances
 
