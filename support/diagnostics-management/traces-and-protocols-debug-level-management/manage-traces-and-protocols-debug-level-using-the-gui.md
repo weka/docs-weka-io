@@ -39,7 +39,7 @@ To resume trace collection, select **Enable traces**.
 
 The verbosity level determines the amount of information in the tracing data. Setting the verbosity level to high provides more troubleshooting detail but can consume more disk space.
 
-<div data-with-frame="true"><figure><img src="../../../.gitbook/assets/traces_change_verbosity.png" alt="" width="563"><figcaption><p>Change traces verbosity level</p></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src="../../../.gitbook/assets/wmng_change_verbosity_level.png" alt="" width="563"><figcaption><p>Change traces verbosity level</p></figcaption></figure></div>
 
 **Procedure**
 
@@ -50,7 +50,7 @@ The verbosity level determines the amount of information in the tracing data. Se
 
 Freeze traces for a selected period to retain data for investigation.
 
-<div data-with-frame="true"><figure><img src="../../../.gitbook/assets/freeze_traces.png" alt="" width="563"><figcaption><p>Freeze traces</p></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src="../../../.gitbook/assets/wmng_freeze_traces.png" alt="" width="563"><figcaption><p>Freeze traces</p></figcaption></figure></div>
 
 **Before you begin**
 
@@ -77,7 +77,7 @@ Clear the freeze period when the investigation is complete. The traces return to
 Resetting the freeze period deletes the existing frozen traces.
 {% endhint %}
 
-<div data-with-frame="true"><figure><img src="../../../.gitbook/assets/freeze_traces_result.png" alt=""><figcaption><p>Reset traces freeze</p></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src="../../../.gitbook/assets/wmng_freeze_traces_result.png" alt=""><figcaption><p>Reset traces freeze</p></figcaption></figure></div>
 
 **Procedure**
 

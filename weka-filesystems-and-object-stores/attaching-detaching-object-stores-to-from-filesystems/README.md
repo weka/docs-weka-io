@@ -1,6 +1,6 @@
 ---
 description: >-
-  Attach and detach local or remote object store buckets for filesystem tiering
+  Attach or detach local and remote object store buckets for tiering, migration,
   and backup.
 ---
 

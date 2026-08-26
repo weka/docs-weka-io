@@ -74,4 +74,3 @@ Each Release Line shows its support phase, its End of Life date, and the release
 [Upgrade WEKA versions](../operation-guide/upgrading-weka-versions/)
 
 [Get support for your WEKA system](getting-support-for-your-weka-system.md)
-

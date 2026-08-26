@@ -50,7 +50,7 @@ Due to cloud provider network limitations, setting a list of SMB floating IPs in
 
 5. Select **Submit**.
 
-<div data-with-frame="true"><figure><img src="../../.gitbook/assets/smb_config.png" alt=""><figcaption><p>SMB cluster configuration</p></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/wmng_smb_configure_dialog_4.3.5.gif" alt=""><figcaption><p>SMB cluster configuration</p></figcaption></figure></div>
 
 Once the system completes configuration, the server statuses change from <img src="../../.gitbook/assets/red_x.png" alt="" data-size="line"> (not ready) to <img src="../../.gitbook/assets/green_check.png" alt="" data-size="line"> (ready).
 
