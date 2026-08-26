@@ -148,34 +148,50 @@ weka fs snapshot [--filesystem <filesystem>] [--name <string>]
 
 ## Set up snapshot replication between clusters
 
-Simplify snapshot replication cluster setup using a single command on each cluster.
+Pair two clusters for snapshot replication using the `weka cluster peer` commands.
 
-Use the `weka cluster remote-cluster setup` command to pair two clusters for snapshot replication. This command replaces several manual setup steps with a single workflow. It automates the setup of the staging filesystem, S3 service, replication bucket, object-store tier, and remote-cluster registration.
+A cluster exposes itself for replication by running `weka cluster peer init`, which provisions the resources replication needs on that cluster — the replication filesystem, an S3 cluster, the `weka-repl-bucket` bucket, and the `weka-repl-user` user with a read-write policy — and then prints the connection details and a pairing token. The administrator of the other cluster registers that token with `weka cluster peer add`.
 
-If the setup fails, the system rolls back the changes automatically.
+Running `weka cluster peer init` again on an already-initialized cluster is safe: it re-emits the same credentials rather than provisioning a second time.
+
+{% hint style="warning" %}
+The pairing token contains the cluster's S3 secret. Treat it as sensitive — anyone holding it can pair a cluster against yours. To rotate the credentials, run `weka cluster peer init --reinit`. This invalidates every existing peer relationship that references the cluster, and each one must be paired again.
+{% endhint %}
 
 **Before you begin**
 
 * Ensure CLI access to both clusters.
-* Choose the remote cluster `NAME` to use for the pairing.
-* Prepare to copy the connection payload from the first cluster to the second cluster.
+* Decide which containers serve S3 for replication on the initializing cluster. Use `--container` to name them, or `--all-servers` to use every backend server. The two options are mutually exclusive, and one of them is required.
+* Choose the name to register the peer cluster under.
 
 {% hint style="danger" %}
-**INTERNAL, remove before publication. TBD (Engineering):** `weka cluster remote-cluster setup` does not exist in 6.0. The group survives with `add`, `update`, and `remove`, but `setup` and its `--init` / `--remote` flags are gone. The replacement is the two-command pairing flow: `weka cluster peer init` on the first cluster emits a pairing token, and `weka cluster peer add <name> <token>` registers it on the second. The surrounding text also needs rewriting — it promises a single command per cluster and automatic rollback, neither of which describes the peer flow. Held pending the wider replication review.
+**INTERNAL, remove before publication. TBD (Engineering):** The commands, flags, and provisioned resources above are verified against the 6.0 CLI. What is still unconfirmed is whether bidirectional replication requires `peer init` and `peer add` to be run on *both* clusters, or whether initializing one side and adding from the other is sufficient. The procedure below documents the one-direction pairing only. Resolve with the wider replication review (Gokul, Anand).
 {% endhint %}
 
 **Procedure**
 
-1. On the first cluster, initialize the remote cluster setup and copy the returned payload.
+1. On the cluster that will be the replication target, provision the replication endpoint and copy the pairing token from the output.
 
 ```bash
-weka cluster remote-cluster setup NAME --init
+weka cluster peer init --all-servers
 ```
 
-2. On the second cluster, complete the pairing using the payload from the first cluster.
+To serve S3 from specific containers instead, use `--container`:
 
 ```bash
-weka cluster remote-cluster setup NAME --remote=<payload>
+weka cluster peer init --container <container-ids>
 ```
 
-Use the same `NAME` value on both clusters.
+The command asks for confirmation before provisioning. Add `-f` to skip the prompt.
+
+2. On the other cluster, register the peer using the token from step 1.
+
+```bash
+weka cluster peer add <name> <token>
+```
+
+3. Verify the pairing.
+
+```bash
+weka cluster peer
+```
