@@ -14,7 +14,7 @@ Filesystems, object stores, and filesystem groups define how WEKA organizes stor
 * **Object store:** An external storage tier that stores warm data and snapshots.
 * **Filesystem group:** A shared policy boundary that controls how member filesystems use capacity and tiering.
 
-Every filesystem belongs to one filesystem group. Tiered filesystems can attach object store buckets according to the policies and limits defined for that group.
+A filesystem belongs to at most one filesystem group. Group membership is optional and is required only when the filesystem has a local object store attached, since the group carries the tiering policy. Tiered filesystems attach object store buckets according to the policies and limits defined for that group.
 
 ### Thin provisioning **in** WEKA filesystems
 

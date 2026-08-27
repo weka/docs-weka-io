@@ -28,7 +28,7 @@ weka fs [--force-fresh] [--local] [--name <string>]
 
 ## Add a filesystem
 
-Creates a filesystem with the specified total capacity. Place it in a filesystem group with `--fs-group`, and make it tiered by naming an object store with `--obs-name`.
+Creates a filesystem with the specified total capacity. A filesystem group is optional; place the filesystem in one with `--fs-group`. Make the filesystem tiered by naming an object store with `--obs-name` — attaching a local object store requires a group whose tiering policy is set.
 
 **Command:** `weka fs add`
 
@@ -120,7 +120,7 @@ weka fs update <name> [--access <access>] [--audit-enabled] [--auth-required] [-
 | `--max-iops` \<uint> | Limit I/O operations per second. This affects how much CPU is used by the filesystem on cluster servers. |
 | `--max-throughput` \<capacity> | Limit throughput per second. This affects how much bandwidth is available to the filesystem. |
 | `--new-name` \<filesystem> | Rename the filesystem. |
-| `--remove-fs-group` | Reset the filesystem to have no group. |
+| `--remove-fs-group` | Reset the filesystem to have no group. Rejected while a local object store is attached to the filesystem; detach the object store first. |
 | `--ssd-capacity` \<capacity> | New SSD capacity for the filesystem. value: 1GiB |
 | `--thin-provision-max-ssd` \<capacity> | Maximum SSD budget for thin provisioning. |
 | `--thin-provision-min-ssd` \<capacity> | Minimum SSD budget for thin provisioning. value: 1GiB. For details, see [Filesystems, object stores, and filesystem groups](../../weka-system-overview/filesystems-object-stores-and-filesystem-groups/#thin-provisioning-in-weka-filesystems) |
