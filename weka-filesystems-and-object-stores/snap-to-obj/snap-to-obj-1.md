@@ -8,12 +8,12 @@ description: >-
 
 Using the CLI, you can:
 
-* [Upload a  snapshot](snap-to-obj-1.md#upload-a-snapshot)
+* [Upload a snapshot](snap-to-obj-1.md#upload-a-snapshot)
 * [Create a filesystem from an uploaded snapshot](snap-to-obj-1.md#create-a-filesystem-from-an-uploaded-snapshot)
 * [Manage synchronous snapshots](snap-to-obj-1.md#manage-synchronous-snapshots)
 * [Recover from a remote snapshot](snap-to-obj-1.md#recover-from-a-remote-snapshot)
 
-## Upload a  snapshot
+## Upload a snapshot
 
 **Command:** `weka fs snapshot upload`
 
@@ -23,7 +23,7 @@ Use the following command line to upload an existing snapshot:
 
 **Parameters**
 
-<table><thead><tr><th width="186.33333333333331">Name</th><th>Value</th><th>Default</th></tr></thead><tbody><tr><td><code>file-system</code>*</td><td>Name of the filesystem</td><td></td></tr><tr><td><code>snapshot</code>*</td><td>Name of the snapshot of the <code>&#x3C;file-system></code> filesystem to upload.<br></td><td></td></tr><tr><td><code>site</code>*</td><td>Location for the snapshot  upload.<br>Mandatory only if both <code>local</code> and <code>remote</code> buckets are attached.<br>Possible values: <code>local</code> or <code>remote</code></td><td>Auto-selected if only one bucket for upload is attached.</td></tr></tbody></table>
+<table><thead><tr><th width="186.33333333333331">Name</th><th>Value</th><th>Default</th></tr></thead><tbody><tr><td><code>file-system</code>*</td><td>Name of the filesystem</td><td></td></tr><tr><td><code>snapshot</code>*</td><td>Name of the snapshot of the <code>&#x3C;file-system></code> filesystem to upload.<br></td><td></td></tr><tr><td><code>site</code>*</td><td>Location for the snapshot upload.<br>Mandatory only if both <code>local</code> and <code>remote</code> buckets are attached.<br>Possible values: <code>local</code> or <code>remote</code></td><td>Auto-selected if only one bucket for upload is attached.</td></tr></tbody></table>
 
 ## Create a filesystem from an uploaded snapshot
 
@@ -37,7 +37,7 @@ When creating a filesystem from a snapshot, a background cluster task automatica
 
 **Parameters**
 
-<table><thead><tr><th width="229">Name</th><th width="332">Value</th><th>Default</th></tr></thead><tbody><tr><td><code>name</code>*</td><td>Name of the filesystem to create.</td><td></td></tr><tr><td><code>group-name</code>*</td><td>Name of the filesystem group in which the new filesystem is placed.</td><td></td></tr><tr><td><code>total-capacity</code>*</td><td>The total capacity of the downloaded filesystem.</td><td></td></tr><tr><td><code>ssd-capacity</code>*</td><td>SSD capacity of the downloaded filesystem.</td><td></td></tr><tr><td><code>obs-bucket</code>*</td><td>Object store name for tiering.</td><td></td></tr><tr><td><code>locator</code>*</td><td>Object store locator obtained from a previously successful snapshot upload.</td><td></td></tr><tr><td><code>auth-required</code></td><td>Require authentication for the mounting user when mounting this filesystem. This setting is only applicable in the root organization; users in non-root organizations must always be authenticated to perform a mount operation. Format: <code>yes</code> or <code>no</code>. </td><td><code>no</code></td></tr><tr><td><code>additional-obs</code></td><td>An additional object-store name.<br>If the data to recover reside in two object stores (a second object store attached to the filesystem, and the filesystem has not undergone full migration), this object store is attached in a <code>read-only</code> mode.<br>The snapshot locator must be in the primary object store specified in the <code>obs</code> parameter.</td><td></td></tr><tr><td><code>snapshot-name</code></td><td>The downloaded snapshot name.</td><td>The uploaded snapshot name.</td></tr><tr><td><code>access-point</code></td><td>The downloaded snapshot access point. </td><td>The uploaded access point.</td></tr><tr><td><code>kms-key-identifier</code> </td><td>Customize KMS key name for this filesystem (applicable only for HashiCorp Vault).</td><td></td></tr><tr><td><code>kms-namespace</code></td><td>Customize the KMS role ID for this filesystem (applicable only for HashiCorp Vault).</td><td></td></tr><tr><td><code>kms-role-id</code></td><td>Customize the KMS role ID for this filesystem (applicable only for HashiCorp Vault).</td><td></td></tr><tr><td><code>kms-secret-id</code></td><td>Customize the KMS secret ID for this filesystem (applicable only for HashiCorp Vault).</td><td></td></tr><tr><td><code>skip-resource-validation</code></td><td>Skip verifying RAM and SSD resource allocation for the downloaded filesystem on the cluster.</td><td></td></tr></tbody></table>
+<table><thead><tr><th width="229">Name</th><th width="332">Value</th><th>Default</th></tr></thead><tbody><tr><td><code>name</code>*</td><td>Name of the filesystem to create.</td><td></td></tr><tr><td><code>group-name</code>*</td><td>Name of the filesystem group in which the new filesystem is placed.</td><td></td></tr><tr><td><code>total-capacity</code>*</td><td>The total capacity of the downloaded filesystem.</td><td></td></tr><tr><td><code>ssd-capacity</code>*</td><td>SSD capacity of the downloaded filesystem.</td><td></td></tr><tr><td><code>obs-bucket</code>*</td><td>Object store name for tiering.</td><td></td></tr><tr><td><code>locator</code>*</td><td>Object store locator obtained from a previously successful snapshot upload.</td><td></td></tr><tr><td><code>auth-required</code></td><td>Require authentication for the mounting user when mounting this filesystem. This setting is only applicable in the root organization; users in non-root organizations must always be authenticated to perform a mount operation. Format: <code>yes</code> or <code>no</code>.</td><td><code>no</code></td></tr><tr><td><code>additional-obs</code></td><td>An additional object-store name.<br>If the data to recover reside in two object stores (a second object store attached to the filesystem, and the filesystem has not undergone full migration), this object store is attached in a <code>read-only</code> mode.<br>The snapshot locator must be in the primary object store specified in the <code>obs</code> parameter.</td><td></td></tr><tr><td><code>snapshot-name</code></td><td>The downloaded snapshot name.</td><td>The uploaded snapshot name.</td></tr><tr><td><code>access-point</code></td><td>The downloaded snapshot access point.</td><td>The uploaded access point.</td></tr><tr><td><code>kms-key-identifier</code></td><td>Customize KMS key name for this filesystem (applicable only for HashiCorp Vault).</td><td></td></tr><tr><td><code>kms-namespace</code></td><td>Customize the KMS role ID for this filesystem (applicable only for HashiCorp Vault).</td><td></td></tr><tr><td><code>kms-role-id</code></td><td>Customize the KMS role ID for this filesystem (applicable only for HashiCorp Vault).</td><td></td></tr><tr><td><code>kms-secret-id</code></td><td>Customize the KMS secret ID for this filesystem (applicable only for HashiCorp Vault).</td><td></td></tr><tr><td><code>skip-resource-validation</code></td><td>Skip verifying RAM and SSD resource allocation for the downloaded filesystem on the cluster.</td><td></td></tr></tbody></table>
 
 {% hint style="info" %}
 For encrypted filesystems, when downloading, you must use the same KMS cluster-wide key or, if configured, the per-filesystem encryption parameters to decrypt the snapshot data. For more information, see [kms-management](../../security/kms-management/ "mention").
@@ -45,7 +45,7 @@ For encrypted filesystems, when downloading, you must use the same KMS cluster-w
 
 The `locator` can be a previously saved locator for disaster scenarios, or you can obtain the `locator` using the `weka fs snapshot` command on a system with a live filesystem with snapshots.
 
-If you need to pause and resume the download process, use the command: `weka cluster task pause / resume`. To abort the download process, delete the downloaded filesystem directly. For details, see [background-tasks](../../operation-guide/background-tasks/ "mention").
+If you need to pause and resume the download process, use the command: `weka cluster task pause / resume`. To abort the download process, delete the downloaded filesystem directly. For details, see [Broken link](/broken/pages/-LpSL2i4k4AK5VcDoYY4 "mention").
 
 {% hint style="info" %}
 Due to the bandwidth characteristics and potential costs when interacting with remote object stores it is not allowed to download a filesystem from a remote object-store bucket. If a snapshot on a local object-store bucket exists, it is advisable to use that one. Otherwise, follow the procedure in[#recover-from-a-remote-snapshot](snap-to-obj-1.md#recover-from-a-remote-snapshot "mention").
@@ -65,10 +65,10 @@ The workflow to manage the synchronous snapshots includes:
 
 Use the following command line to download a synchronous snapshot. This command is only relevant for snapshots uploaded from a system of version 4.3 and later:
 
-&#x20;`weka fs snapshot download <file-system> <locator>`
+`weka fs snapshot download <file-system> <locator>`
 
 {% hint style="warning" %}
-Make sure to download synchronous snapshots in chronological order. Non-chronological snapshots are inefficient and are not synchronous.&#x20;
+Make sure to download synchronous snapshots in chronological order. Non-chronological snapshots are inefficient and are not synchronous.
 
 If you need to download a snapshot earlier than the latest downloaded one, for example, when you need one of the daily synchronous snapshots after the weekly synchronous snapshot was downloaded, add the `--allow-non-chronological` flag to download it anyway.
 {% endhint %}
@@ -77,7 +77,7 @@ If you need to download a snapshot earlier than the latest downloaded one, for e
 
 <table><thead><tr><th width="304">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>file-system</code>*</td><td>Name of the filesystem.</td></tr><tr><td><code>locator</code>*</td><td>Object store locator obtained from a previously successful snapshot upload.</td></tr></tbody></table>
 
-If you need to pause and resume the download process, use the command: `weka cluster task pause / resume`. To abort the download process, delete the downloaded snapshot directly. For details, see [background-tasks](../../operation-guide/background-tasks/ "mention").
+If you need to pause and resume the download process, use the command: `weka cluster task pause / resume`. To abort the download process, delete the downloaded snapshot directly. For details, see [Broken link](/broken/pages/-LpSL2i4k4AK5VcDoYY4 "mention").
 
 **Related topics**
 

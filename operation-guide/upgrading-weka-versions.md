@@ -197,7 +197,7 @@ Ensure the environment meets the necessary prerequisites before proceeding with 
   * **Postpone planned tasks or address running tasks**:
     * If any planned tasks are scheduled during the upgrade, postpone them until after the NDU process.
     * If tasks are currently running, take necessary actions based on their status.
-    * Consult the [**Background tasks**](background-tasks/) topic for comprehensive guidance.
+    * Consult the [**Background tasks**](/broken/pages/-LpSL2i4k4AK5VcDoYY4) topic for comprehensive guidance.
 
 </details>
 

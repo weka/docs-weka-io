@@ -1,4 +1,4 @@
-# WEKA REST API and equivalent CLI commands
+# REST API and equivalent CLI commands
 
 To use the REST API effectively, review the comprehensive documentation, which provides detailed guidance on all available methods. Each REST API method corresponds to a CLI command, and most CLI parameters are also supported through the REST API. Use the CLI command help to view parameter details. This alignment ensures a consistent experience across both interfaces.
 
@@ -81,7 +81,7 @@ Related information: [expanding-and-shrinking-cluster-resources](../operation-gu
 
 ## DataService
 
-Related information: [set-up-a-data-services-container-for-background-tasks.md](../operation-guide/background-tasks/set-up-a-data-services-container-for-background-tasks.md "mention")
+Related information: [set-up-a-data-services-container-for-background-tasks.md](../operation-guide/set-up-a-data-services-container-for-background-tasks.md "mention")
 
 | Task                                                                                                                                                    | REST API                                                                                              | CLI |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | --- |
@@ -488,7 +488,7 @@ Related information: [perform-post-configuration-procedures.md](../planning-and-
 
 ## Tasks
 
-Related information: [background-tasks](../operation-guide/background-tasks/ "mention")
+Related information: [Broken link](/broken/pages/-LpSL2i4k4AK5VcDoYY4 "mention")
 
 | Task                                                                                                                                | REST API                                                                                        | CLI                                  |
 | ----------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ------------------------------------ |

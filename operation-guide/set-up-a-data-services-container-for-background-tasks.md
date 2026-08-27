@@ -16,7 +16,7 @@ If the Data Services container is not operational, the quota coloring task rever
 
 To improve data service performance, you can set up multiple Data Service containers, one per WEKA server.
 
-After setting up the Data Service container, you can manage it like any other container within the cluster. If there’s a need to adjust its resources, use the `weka cluster container resources` or `weka local resources` commands. For more details, see [expansion-of-specific-resources.md](../expanding-and-shrinking-cluster-resources/expansion-of-specific-resources.md "mention").
+After setting up the Data Service container, you can manage it like any other container within the cluster. If there’s a need to adjust its resources, use the `weka cluster container resources` or `weka local resources` commands. For more details, see [expansion-of-specific-resources.md](expanding-and-shrinking-cluster-resources/expansion-of-specific-resources.md "mention").
 
 **Before you begin**
 
@@ -24,9 +24,9 @@ After setting up the Data Service container, you can manage it like any other co
    * 3.5 GB if no dedicated core is specified.
    * 5.5 GB if a dedicated core is specified.
 2. The Data Service containers require a persistent 22 GB filesystem for intermediate global configuration data. Do one of the following:
-   * If a configuration filesystem for the protocol containers exists (typically named `.config_fs`), use it and expand its size by 22 GB. See [#dedicated-filesystem-requirement-for-cluster-wide-persistent-protocol-configurations](../../additional-protocols/additional-protocols-overview.md#dedicated-filesystem-requirement-for-cluster-wide-persistent-protocol-configurations "mention")
+   * If a configuration filesystem for the protocol containers exists (typically named `.config_fs`), use it and expand its size by 22 GB. See [#dedicated-filesystem-requirement-for-cluster-wide-persistent-protocol-configurations](../additional-protocols/additional-protocols-overview.md#dedicated-filesystem-requirement-for-cluster-wide-persistent-protocol-configurations "mention")
    * If a configuration filesystem does not exist, create a dedicated 22 GB configuration filesystem for the Data Service containers.
-3. Set the Data Service global configuration. Run the following command:&#x20;
+3. Set the Data Service global configuration. Run the following command:
 
 ```
 weka dataservice global-config set --config-fs <configuration filesystem name>
@@ -99,7 +99,7 @@ frontend0  Running  False     1:21:15h  True        True        14200  45680  Re
 
 <summary>Example</summary>
 
-See `dataserve0` in the last row (CONTAINER ID 15).&#x20;
+See `dataserve0` in the last row (CONTAINER ID 15).
 
 ```bash
 $ weka cluster container

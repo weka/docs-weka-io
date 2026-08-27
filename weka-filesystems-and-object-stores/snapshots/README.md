@@ -99,4 +99,4 @@ For details, see the [DiffList REST API](../../getting-started-with-weka/weka-re
 
 [snapshots-1.md](snapshots-1.md "mention")
 
-[set-up-a-data-services-container-for-background-tasks.md](../../operation-guide/background-tasks/set-up-a-data-services-container-for-background-tasks.md "mention")
+[set-up-a-data-services-container-for-background-tasks.md](../../operation-guide/set-up-a-data-services-container-for-background-tasks.md "mention")

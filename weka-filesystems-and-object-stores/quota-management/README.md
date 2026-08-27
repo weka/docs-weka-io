@@ -10,7 +10,7 @@ description: >-
 
 The WEKA system offers multiple layers where you can limit capacity usage:
 
-* **Organization level**: You can monitor an organization’s usage (SSD and total) and restrict usage with quotas per organization. This feature can be used for charge-backs based on the capacity used or allocated by SSD or object store data. For more details, see [organizations](../../operation-guide/organizations/ "mention").&#x20;
+* **Organization level**: You can monitor an organization’s usage (SSD and total) and restrict usage with quotas per organization. This feature can be used for charge-backs based on the capacity used or allocated by SSD or object store data. For more details, see [organizations](../../operation-guide/organizations/ "mention").
 * **Filesystem level**: Allocate a unique filesystem for each department or project.
 * **Directory level**: Assign a unique quota for each project directory (beneficial when users are involved in multiple projects) or for each user’s home directory.
 
@@ -33,7 +33,7 @@ When managing quotas, adhere to the following guidelines and requirements:
   * Provide the path to the directory relative to the root of the target filesystem.
 * **Quota coloring:**
   * When setting or unsetting a directory quota, a background process called `QUOTA_COLORING` runs. This process scans the entire directory tree and assigns the quota ID to all files and directories under it.
-  * Configure at least one Data Services container to run this process in the background to maintain system performance. For details, see [set-up-a-data-services-container-for-background-tasks.md](../../operation-guide/background-tasks/set-up-a-data-services-container-for-background-tasks.md "mention").
+  * Configure at least one Data Services container to run this process in the background to maintain system performance. For details, see [set-up-a-data-services-container-for-background-tasks.md](../../operation-guide/set-up-a-data-services-container-for-background-tasks.md "mention").
 * **Nested quotas**:
   * Quotas can be defined within nested directories, up to four levels deep.
   * Over-provisioning is supported under the same directory quota tree.
@@ -46,7 +46,7 @@ When managing quotas, adhere to the following guidelines and requirements:
   * Moving files into or out of quota-enforced directories triggers `EXDEV` (cross-device link error).
   * Applications must fall back to a copy-and-delete workflow: copy the file to the new location, then delete the original.
   * Standard tools such as `mv` in Linux handle this automatically.
-* **Quotas and hard links**:&#x20;
+* **Quotas and hard links**:
   * Once a directory has a quota, only newly created hard links are included in quota accounting.
   * Pre-existing hard links remain unaffected.
 * **Restoring filesystems**:

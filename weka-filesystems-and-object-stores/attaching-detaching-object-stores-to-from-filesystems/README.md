@@ -22,7 +22,7 @@ When detaching, the background task of detaching the object store bucket begins.
 Detaching an object store bucket is irreversible. Attaching the same bucket again is considered as re-attaching a new bucket regardless of the data stored in the bucket.
 {% endhint %}
 
-* **Migration to a different object store:**  When detaching from a filesystem tiered to two local object store buckets, only the read-only object store bucket can be detached. In such cases, the background task copies the relevant data to the writable object store. In addition, the allocated SSD capacity only requires enough SSD capacity for the metadata.
+* **Migration to a different object store:** When detaching from a filesystem tiered to two local object store buckets, only the read-only object store bucket can be detached. In such cases, the background task copies the relevant data to the writable object store. In addition, the allocated SSD capacity only requires enough SSD capacity for the metadata.
 * **Un-tiering a filesystem:** Detaching from a filesystem tiered to one object store bucket un-tiers the filesystem and copies the data back to the SSD. The allocated SSD capacity must be at least the total capacity the filesystem uses.
 
 On completion of detaching, the object store bucket does not appear under the filesystem when using the `weka fs` command. However, it still appears under the object store and can be removed if any other filesystem does not use it. The data in the read-only object store bucket remains in the object store bucket for backup purposes. If this is unnecessary or the reclamation of object store space is required, it is possible to delete the object store bucket.
@@ -41,7 +41,7 @@ When migrating data (using the detach operation), copy only the necessary data (
 
 **Migration workflow**
 
-The order of the following steps is important.&#x20;
+The order of the following steps is important.
 
 1. Attach a new object store bucket (the old object store bucket becomes read-only).
 2. Delete any snapshot that does not need to be migrated. This action keeps the snapshot on the old bucket but does not migrate its data to the new bucket.
@@ -53,17 +53,15 @@ If you perform the workflow steps in a different order, the snapshots can be com
 
 ### Attach a remote object store bucket
 
-One remote object store bucket can be attached to a filesystem. A remote object store bucket is used for backup. Only snapshots are uploaded using **Snap-To-Object**. The snapshot uploads are incremental to the previous one.&#x20;
+One remote object store bucket can be attached to a filesystem. A remote object store bucket is used for backup. Only snapshots are uploaded using **Snap-To-Object**. The snapshot uploads are incremental to the previous one.
 
 ### Detach a remote object store bucket
 
 Detaching a remote object store bucket from a filesystem keeps the backup data within the bucket intact. It is still possible to use these snapshots for recovery.
 
-
-
 **Related topics**
 
-[background-tasks](../../operation-guide/background-tasks/ "mention")
+[Broken link](/broken/pages/-LpSL2i4k4AK5VcDoYY4 "mention")
 
 [snap-to-obj](../snap-to-obj/ "mention")
 

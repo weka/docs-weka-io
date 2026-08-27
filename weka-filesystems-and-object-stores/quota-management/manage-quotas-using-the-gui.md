@@ -27,7 +27,7 @@ The organization admin can set a quota on a directory, which triggers a backgrou
 **Before you begin**
 
 * To apply a quota to a directory, ensure there is a mount point for the relevant filesystem. Do not interrupt the quota set command until the quota accounting process is complete.
-* Ensure a Data Services container is deployed before setting a directory quota. If not active, quota operations default to single-process mode, which might cause the CLI to hang for extended periods. See [set-up-a-data-services-container-for-background-tasks.md](../../operation-guide/background-tasks/set-up-a-data-services-container-for-background-tasks.md "mention").<br>
+* Ensure a Data Services container is deployed before setting a directory quota. If not active, quota operations default to single-process mode, which might cause the CLI to hang for extended periods. See [set-up-a-data-services-container-for-background-tasks.md](../../operation-guide/set-up-a-data-services-container-for-background-tasks.md "mention").<br>
 
 **Procedure**
 

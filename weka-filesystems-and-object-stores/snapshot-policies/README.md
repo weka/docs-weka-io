@@ -74,4 +74,4 @@ The example below demonstrates how to configure a policy using the GUI. The poli
 
 [snapshots](../snapshots/ "mention")
 
-[background-tasks](../../operation-guide/background-tasks/ "mention")
+[Broken link](/broken/pages/-LpSL2i4k4AK5VcDoYY4 "mention")
