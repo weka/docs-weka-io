@@ -30,8 +30,14 @@ Reduce background noise and focus on critical issues by moving alerts from the A
 The occurrence-based muting introduces specific constraints and capabilities:
 
 * **Level exclusivity:** The system prevents mixing different muting levels for the same alert type. If an alert type is muted by process, you cannot add a container or server mute to that same type until you clear the existing mute.
-* **Occurrence management:** You can add or remove specific processes, containers, or servers to an existing muted alert type using the `--add` or `--remove` flags in the CLI.
+* **Occurrence management:** You can add or remove specific processes, containers, or servers to an existing muted alert type using the `weka alerts mute add` and `weka alerts mute remove` commands.
 * **Duration stability:** Adding new alert occurrences to an existing mute does not change the remaining mute duration of the original entry.
 * **Mute list visibility:** The system maintains a list of all active mutes, including those for alert types that are not currently triggered.
+
+#### Muting alerts in a tenant
+
+A tenant administrator can mute alerts for their own tenant. Muting is scoped by the identity of the administrator who runs the command, so a tenant administrator's mute applies only to that tenant and leaves the cluster-wide view unchanged. A cluster administrator's mute applies cluster-wide.
+
+Only tenant-scoped alert types can be muted for a single tenant. Muting any other type for a tenant is rejected; a cluster administrator can mute those types cluster-wide instead.
 
 <div data-with-frame="true"><img src="../../.gitbook/assets/alerts_overview.png" alt="Active alerts page"></div>
