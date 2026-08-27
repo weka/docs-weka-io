@@ -146,6 +146,8 @@
 * [Snapshot policies](weka-filesystems-and-object-stores/snapshot-policies/README.md)
   * [Manage snapshot policies using the GUI](weka-filesystems-and-object-stores/snapshot-policies/manage-snapshot-policies-using-the-gui.md)
   * [Manage snapshot policies using the CLI](weka-filesystems-and-object-stores/snapshot-policies/manage-snapshot-policies-using-the-cli.md)
+* [Asynchronous replication](weka-filesystems-and-object-stores/asynchronous-replication/README.md)
+  * [Manage asynchronous replication](weka-filesystems-and-object-stores/asynchronous-replication/manage-asynchronous-replication.md)
 * [Quota management](weka-filesystems-and-object-stores/quota-management/README.md)
   * [Manage quotas using the GUI](weka-filesystems-and-object-stores/quota-management/manage-quotas-using-the-gui.md)
   * [Manage quotas using the CLI](weka-filesystems-and-object-stores/quota-management/quota-management.md)
@@ -153,8 +155,6 @@
   * [Configure data catalog](weka-filesystems-and-object-stores/data-catalog/configure-data-catalog.md)
   * [Analyze storage distribution](weka-filesystems-and-object-stores/data-catalog/analyze-storage-distribution.md)
   * [Data catalog FAQ](weka-filesystems-and-object-stores/data-catalog/data-catalog-faq.md)
-* [Asynchronous replication](weka-filesystems-and-object-stores/asynchronous-replication/README.md)
-  * [Manage asynchronous replication](weka-filesystems-and-object-stores/asynchronous-replication/manage-asynchronous-replication.md)
 
 ## Additional Protocols
 

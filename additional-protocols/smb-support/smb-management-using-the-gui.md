@@ -50,8 +50,6 @@ Due to cloud provider network limitations, setting a list of SMB floating IPs in
 
 5. Select **Submit**.
 
-<div data-with-frame="true"><figure><img src="../../.gitbook/assets/wmng_smb_configure_dialog_4.3.5.gif" alt=""><figcaption><p>SMB cluster configuration</p></figcaption></figure></div>
-
 Once the system completes configuration, the server statuses change from <img src="../../.gitbook/assets/red_x.png" alt="" data-size="line"> (not ready) to <img src="../../.gitbook/assets/green_check.png" alt="" data-size="line"> (ready).
 
 <div data-with-frame="true"><figure><img src="../../.gitbook/assets/smb_config.png" alt=""><figcaption><p>Configured SMB cluster</p></figcaption></figure></div>
@@ -253,8 +251,6 @@ Once the SMB cluster is created, you can create SMB shares (maximum of 1024). Ea
     * **Direct Object Store Sync:** Enables immediate synchronization of files to the object store, bypassing time-based file retention policies. When enabled, newly created or modified files in the share are prioritized for release without delay.
 3. Select **Submit**.
 
-<div data-with-frame="true"><figure><img src="../../.gitbook/assets/add_smb_share.png" alt=""><figcaption><p>Add an SMB share</p></figcaption></figure></div>
-
 {% hint style="info" %}
 Access permissions are not set in this dialog. After the share is created, define them from the share's three-dot menu. See [#add-a-share-access-permission](smb-management-using-the-gui.md#add-a-share-access-permission "mention").
 {% endhint %}
@@ -280,9 +276,13 @@ You can update some of the SMB share settings. These include encryption, hiding 
 
 <div data-with-frame="true"><figure><img src="../../.gitbook/assets/smb_shares_menu.png" alt=""><figcaption><p>SMB share actions</p></figcaption></figure></div>
 
-2. In the **Update Share Settings** dialog, update the relevant properties and select **Submit**.
+2. In the **Update Share Settings** dialog, update the relevant properties:
+   * **Hidden:** Hides the share from the list of system shares.
+   * **Allow Guests Access:** Allows guest access without authentication.
+   * **Read Only:** Prevents users from writing to the share.
+3. Select **Submit**.
 
-<div data-with-frame="true"><figure><img src="../../.gitbook/assets/edit_smb_share.png" alt="" width="563"><figcaption><p>Update the SMB share settings</p></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/edit_smb_share.png" alt=""><figcaption><p>Update the SMB share settings</p></figcaption></figure></div>
 
 ## Add a share access permission <a href="#add-a-share-access-permission" id="add-a-share-access-permission"></a>
 
@@ -291,9 +291,9 @@ Define which users or groups can access a share, and with which access type. Acc
 **Procedure**
 
 1. In the Shares tab, select the three dots of the share and select **Add Access Permission**.
-2. In the **Add SMB Share "<share>" Access Permission** dialog, set the following:
+2. In the **Add SMB Share "" Access Permission** dialog, set the following:
    * **Type:** The access type granted to the listed users or groups.
-   * **Users List:** The users and groups allowed to access the share. Add `@` as a group prefix. Do not use the following characters: / \\ [ ] : ; | = + \* ? < > ".
+   * **Users List:** The users and groups allowed to access the share. Add `@` as a group prefix. Do not use the following characters: / \ \[ ] : ; | = + \* ? < > ".
 3. Select **Submit**.
 
 <div data-with-frame="true"><figure><img src="../../.gitbook/assets/add_smb_share_access_permission.png" alt=""><figcaption><p>Add a share access permission</p></figcaption></figure></div>
@@ -305,7 +305,7 @@ Remove a previously defined access permission from a share.
 **Procedure**
 
 1. In the Shares tab, select the three dots of the share and select **Remove Access Permission**.
-2. In the **Remove SMB Share "<share>" Access Permission** dialog, select the **Type** of the access permission to remove.
+2. In the **Remove SMB Share "" Access Permission** dialog, select the **Type** of the access permission to remove.
 3. Select **Submit**.
 
 <div data-with-frame="true"><figure><img src="../../.gitbook/assets/remove_smb_share_access_permission.png" alt=""><figcaption><p>Remove a share access permission</p></figcaption></figure></div>
@@ -315,8 +315,5 @@ Remove a previously defined access permission from a share.
 **Procedure**
 
 1. In the Shares tab, select the three dots of the share and select **Remove**.
-
-<div data-with-frame="true"><img src="../../.gitbook/assets/smb_shares_menu.png" alt="Remove an SMB share"></div>
-
 2. In the confirmation message that appears, select **Confirm**.\
    The removed share no longer appears in the SMB Shares list.

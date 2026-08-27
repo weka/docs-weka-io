@@ -56,15 +56,7 @@ weka local setup container --name <container_name> --base-port <base-port> --joi
 
 **Parameters:**
 
-| Parameter               | Description                                                                                                                                                                                                                                    |
-| ----------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `name`\*                | The Data Services container name. Set `dataserv0` to avoid confusion.                                                                                                                                                                          |
-| `only-dataserv-cores`\* | Creates a Data Services container. This parameter is mandatory.                                                                                                                                                                                |
-| `base-port`             | If a base-port is not specified, the Data Services container may still initialize as it attempts to allocate an available port range and could succeed. However, for optimal operation, it is recommended to provide the base port externally. |
-| `join-ips`\*            | Specify the management IP of one of the servers in the cluster to join.                                                                                                                                                                        |
-| `management-ips`        | This is optional. If not provided, it automatically takes the management IP of the server.                                                                                                                                                     |
-| `memory`                | Configure the container memory to be allocated for huge pages. It is recommended to set it to 1.5 GB.                                                                                                                                          |
-| `allow-mix-setting`     | This option enables using specified core IDs, even when containers with AUTO core ID allocation run on the same server. It is required if the core allocation is not explicitly specified.                                                     |
+<table><thead><tr><th width="214.4921875">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>name</code>*</td><td>The Data Services container name. Set <code>dataserv0</code> to avoid confusion.</td></tr><tr><td><code>only-dataserv-cores</code>*</td><td>Creates a Data Services container. This parameter is mandatory.</td></tr><tr><td><code>base-port</code></td><td>If a base-port is not specified, the Data Services container may still initialize as it attempts to allocate an available port range and could succeed. However, for optimal operation, it is recommended to provide the base port externally.</td></tr><tr><td><code>join-ips</code>*</td><td>Specify the management IP of one of the servers in the cluster to join.</td></tr><tr><td><code>management-ips</code></td><td>This is optional. If not provided, it automatically takes the management IP of the server.</td></tr><tr><td><code>memory</code></td><td>Configure the container memory to be allocated for huge pages. It is recommended to set it to 1.5 GB.</td></tr><tr><td><code>allow-mix-setting</code></td><td>This option enables using specified core IDs, even when containers with AUTO core ID allocation run on the same server. It is required if the core allocation is not explicitly specified.</td></tr></tbody></table>
 
 <details>
 
@@ -72,15 +64,15 @@ weka local setup container --name <container_name> --base-port <base-port> --joi
 
 {% code overflow="wrap" %}
 ```bash
-$ weka local setup container --name dataserv0 --base-port 14400 --join-ips 10.108.234.164  --only-dataserv-cores --allow-mix-setting
-Version 4.3.2 is already downloaded.
+$ weka local setup container --name dataserv0 --base-port 14400 --join-ips 10.108.233.213 --only-dataserv-cores --allow-mix-setting
+Version 6.0.0 is already downloaded.
 Created Weka container named dataserv0
-Preparing version 4.3.2 of container dataserv0
+Preparing version 6.0.0 of container dataserv0
 No net parameter specified, configuring in UDP mode
 Successfully set up container dataserv0
 Starting container
 Waiting for container to start up
-Container "dataserv0" is ready (pid = 66904)
+Container "dataserv0" is ready (pid = 84273)
 ```
 {% endcode %}
 
@@ -114,27 +106,27 @@ See `dataserv0` in the last row (ID 19).
 
 ```bash
 $ weka cluster container
-ID  Hostname                   Name       IPs             Status  Requested Action  Release            Failure Domain  Cores    Memory    Uptime  Recent Failure (5 min)  Requested Action Failure
- 0  DataSphere-0               drives0    10.108.233.213  UP      NONE              6.0.0.309-nightly  DOM-000             1  1.46 GiB  0:35:19h
- 1  DataSphere-1               drives0    10.108.111.114  UP      NONE              6.0.0.309-nightly  DOM-001             1  1.46 GiB  0:35:21h
- 2  DataSphere-2               drives0    10.108.190.195  UP      NONE              6.0.0.309-nightly  DOM-002             1  1.46 GiB  0:35:20h
- 3  DataSphere-3               drives0    10.108.220.165  UP      NONE              6.0.0.309-nightly  DOM-003             1  1.46 GiB  0:35:20h
- 4  DataSphere-4               drives0    10.108.107.173  UP      NONE              6.0.0.309-nightly  DOM-004             1  1.46 GiB  0:35:18h
- 5  DataSphere-5               drives0    10.108.176.219  UP      NONE              6.0.0.309-nightly  DOM-005             1  1.46 GiB  0:35:17h
- 6  DataSphere-3               compute0   10.108.220.165  UP      NONE              6.0.0.309-nightly  DOM-003             1  1.41 GiB  0:33:47h
- 7  DataSphere-5               compute0   10.108.176.219  UP      NONE              6.0.0.309-nightly  DOM-005             1  1.41 GiB  0:33:46h
- 8  DataSphere-4               compute0   10.108.107.173  UP      NONE              6.0.0.309-nightly  DOM-004             1  1.41 GiB  0:33:46h
- 9  DataSphere-0               compute0   10.108.233.213  UP      NONE              6.0.0.309-nightly  DOM-000             1  1.41 GiB  0:33:45h
-10  DataSphere-1               compute0   10.108.111.114  UP      NONE              6.0.0.309-nightly  DOM-001             1  1.41 GiB  0:33:46h
-11  DataSphere-2               compute0   10.108.190.195  UP      NONE              6.0.0.309-nightly  DOM-002             1  1.41 GiB  0:33:45h
-12  DataSphere-1               frontend0  10.108.111.114  UP      NONE              6.0.0.309-nightly  DOM-001             1  1.38 GiB  0:33:38h
-13  DataSphere-2               frontend0  10.108.190.195  UP      NONE              6.0.0.309-nightly  DOM-002             1  1.38 GiB  0:33:37h
-14  DataSphere-3               frontend0  10.108.220.165  UP      NONE              6.0.0.309-nightly  DOM-003             1  1.38 GiB  0:33:37h
-15  DataSphere-4               frontend0  10.108.107.173  UP      NONE              6.0.0.309-nightly  DOM-004             1  1.38 GiB  0:33:37h
-16  DataSphere-5               frontend0  10.108.176.219  UP      NONE              6.0.0.309-nightly  DOM-005             1  1.38 GiB  0:33:37h
-17  DataSphere-0               frontend0  10.108.233.213  UP      NONE              6.0.0.309-nightly  DOM-000             1  1.38 GiB  0:33:35h
-18  DataSphere-LinuxClients-6  default    10.108.169.39   UP      NONE              6.0.0.309-nightly                      1  1.38 GiB  0:31:32h
-19  DataSphere-0               dataserv0  10.108.233.213  UP      NONE              6.0.0.309-nightly                      0       N/A  0:07:03h
+ID  Hostname                   Name       IPs             Status  Requested Action  Release Failure Domain  Cores    Memory    Uptime  Recent Failure (5 min)  Requested Action Failure
+ 0  DataSphere-0               drives0    10.108.233.213  UP      NONE              6.0.0   DOM-000             1  1.46 GiB  0:35:19h
+ 1  DataSphere-1               drives0    10.108.111.114  UP      NONE              6.0.0   DOM-001             1  1.46 GiB  0:35:21h
+ 2  DataSphere-2               drives0    10.108.190.195  UP      NONE              6.0.0   DOM-002             1  1.46 GiB  0:35:20h
+ 3  DataSphere-3               drives0    10.108.220.165  UP      NONE              6.0.0   DOM-003             1  1.46 GiB  0:35:20h
+ 4  DataSphere-4               drives0    10.108.107.173  UP      NONE              6.0.0   DOM-004             1  1.46 GiB  0:35:18h
+ 5  DataSphere-5               drives0    10.108.176.219  UP      NONE              6.0.0   DOM-005             1  1.46 GiB  0:35:17h
+ 6  DataSphere-3               compute0   10.108.220.165  UP      NONE              6.0.0   DOM-003             1  1.41 GiB  0:33:47h
+ 7  DataSphere-5               compute0   10.108.176.219  UP      NONE              6.0.0   DOM-005             1  1.41 GiB  0:33:46h
+ 8  DataSphere-4               compute0   10.108.107.173  UP      NONE              6.0.0   DOM-004             1  1.41 GiB  0:33:46h
+ 9  DataSphere-0               compute0   10.108.233.213  UP      NONE              6.0.0   DOM-000             1  1.41 GiB  0:33:45h
+10  DataSphere-1               compute0   10.108.111.114  UP      NONE              6.0.0   DOM-001             1  1.41 GiB  0:33:46h
+11  DataSphere-2               compute0   10.108.190.195  UP      NONE              6.0.0   DOM-002             1  1.41 GiB  0:33:45h
+12  DataSphere-1               frontend0  10.108.111.114  UP      NONE              6.0.0   DOM-001             1  1.38 GiB  0:33:38h
+13  DataSphere-2               frontend0  10.108.190.195  UP      NONE              6.0.0   DOM-002             1  1.38 GiB  0:33:37h
+14  DataSphere-3               frontend0  10.108.220.165  UP      NONE              6.0.0   DOM-003             1  1.38 GiB  0:33:37h
+15  DataSphere-4               frontend0  10.108.107.173  UP      NONE              6.0.0   DOM-004             1  1.38 GiB  0:33:37h
+16  DataSphere-5               frontend0  10.108.176.219  UP      NONE              6.0.0   DOM-005             1  1.38 GiB  0:33:37h
+17  DataSphere-0               frontend0  10.108.233.213  UP      NONE              6.0.0   DOM-000             1  1.38 GiB  0:33:35h
+18  DataSphere-LinuxClients-6  default    10.108.169.39   UP      NONE              6.0.0                       1  1.38 GiB  0:31:32h
+19  DataSphere-0               dataserv0  10.108.233.213  UP      NONE              6.0.0                       0       N/A  0:07:03h
 ```
 
 </details>

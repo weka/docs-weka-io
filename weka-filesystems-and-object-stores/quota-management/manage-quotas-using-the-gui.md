@@ -8,7 +8,7 @@ description: >-
 
 ## Set default directory quota
 
-A default directory quota automatically applies quota limits to every new subdirectory created under a specified parent directory. It does not apply retroactively to existing subdirectories. Use it for cases where new directories should inherit consistent limits by default, such as user home directories or project folders.
+A default directory quota automatically applies quota limits to every new subdirectory created under a specified parent directory. It does not apply retroactively to existing subdirectories. Use it when new directories inherit consistent limits by default, such as user home directories or project folders.
 
 {% hint style="info" %}
 Creating a default directory quota is a CLI operation. Once created, you can view, update, and remove it from the **Default Directory Quotas** tab. See [quota-management.md](quota-management.md "mention").
@@ -35,7 +35,8 @@ The tenant admin can set a quota on a directory, which triggers a background tas
    * **Owner:** The directory’s owner, such as user name, email, or slack ID (up to 48 characters).
    * **Grace Period:** When the soft quota limit is reached, a grace period starts. After this period, data cannot be written to the directory.\
      The system sets the directory quota in the background.
-5. To monitor the directory quota setting background task, select **Monitor > Background Tasks.**
+5. Select **Submit**.
+6. To monitor the directory quota setting background task, select **Monitor > Background Tasks.**
 
 <div data-with-frame="true"><figure><img src="../../.gitbook/assets/DirectoryQuotaSetting.png" alt=""><figcaption><p>Set a directory quota</p></figcaption></figure></div>
 
@@ -76,7 +77,7 @@ You can update an existing directory quota or default directory quota. Updating 
    * **Grace Period:** When the soft quota limit is reached, a grace period starts. After this period, data cannot be written to the directory.
 6. Select **Submit**.
 
-<div align="center" data-with-frame="true"><figure><img src="../../.gitbook/assets/update_quota.png" alt="" width="264"><figcaption><p>Quota Settings Update</p></figcaption></figure></div>
+<div align="center" data-with-frame="true"><figure><img src="../../.gitbook/assets/update_quota.png" alt=""><figcaption><p>Quota Settings Update</p></figcaption></figure></div>
 
 ## Remove a directory quota
 
