@@ -69,6 +69,7 @@ weka cluster network-space add <name> [--vlan vlan]
                                       [--fip-range fip-range]
                                       [--gateway gateway]
                                       [--netmask-bits netmask-bits]
+                                      [--wait]
 ```
 {% endcode %}
 
@@ -82,6 +83,11 @@ weka cluster network-space add <name> [--vlan vlan]
 | `fip-range`    | Floating IP range allocated for tenant NFS services in this space. Maximum 8 addresses. Required only if the network space serves NFS for a tenant. |
 | `gateway`      | Default gateway IP for the network-space.                                                                                                           |
 | `netmask-bits` | Subnet mask bits (1..32). Default: 16.                                                                                                              |
+| `wait`         | Block until every backend applies and verifies the network space, then report the cluster-wide result.                                               |
+
+{% hint style="info" %}
+**Cluster-wide apply.** A network space must be applied on every backend before it can be used. With `--wait`, the command blocks until each backend reports its result, so a success means the space is in place cluster-wide. Creation is all-or-none: if any backend fails, the operation rolls back automatically and no partially applied network space is left behind. Without `--wait`, the command returns once the request is accepted and the backends apply it in the background.
+{% endhint %}
 
 {% hint style="info" %}
 A network space that serves NFS for a tenant supports a maximum of **8 floating IP addresses**, separate from the `range` used for backend containers. See [manage-nfs-for-tenants.md](manage-nfs-for-tenants.md "mention").
@@ -121,6 +127,7 @@ weka cluster network-space update <id> [--name name]
                                        [--fip-range fip-range]
                                        [--gateway gateway]
                                        [--netmask-bits netmask-bits]
+                                       [--wait]
 ```
 {% endcode %}
 
@@ -135,8 +142,11 @@ weka cluster network-space update <id> [--name name]
 | `fip-range`    | New floating IP range for tenant NFS services. Maximum 8 addresses. |
 | `gateway`      | New default gateway IP for the network-space.                       |
 | `netmask-bits` | New subnet mask bits (1..32). Default: 16.                          |
+| `wait`         | Block until every backend applies the change, then report the cluster-wide result. |
 
-TBD \[Confirm `--fip-range` is accepted on both `weka cluster network-space add` and `update`. Documented on both here; the review confirmed the parameter exists but not which subcommands accept it.]
+{% hint style="warning" %}
+Unlike creation, a failed update does not roll back. If the change cannot be applied on a backend, the cluster raises a **NetworkSpaceApplyStuck** alert that stays active until the backend recovers or an administrator resolves the operation. The alert names the commands to inspect and clear it.
+{% endhint %}
 
 ## Remove a network space
 
@@ -156,14 +166,19 @@ A network space cannot be removed while its floating IP range is in use through 
 #### CLI alternative
 
 ```bash
-weka cluster network-space remove <name>
+weka cluster network-space remove <name> [--wait]
 ```
 
 **Parameters**
 
-| Parameter | Description         |
-| --------- | ------------------- |
-| `name`    | Network space name. |
+| Parameter | Description                                                                        |
+| --------- | ---------------------------------------------------------------------------------- |
+| `name`    | Network space name.                                                                |
+| `wait`    | Block until every backend removes the network space, then report the cluster-wide result. |
+
+{% hint style="warning" %}
+As with an update, a failed removal does not roll back and raises a **NetworkSpaceApplyStuck** alert until it is resolved.
+{% endhint %}
 
 ## Create a tenant environment
 
