@@ -6,7 +6,7 @@ description: >-
 
 # Alerts
 
-#### Alert components
+## Alert components
 
 Each alert contains specific details to assist in troubleshooting:
 
@@ -17,15 +17,15 @@ Each alert contains specific details to assist in troubleshooting:
 
 To dismiss an alert, resolve its root cause. The system clears the alert automatically once the underlying problem no longer exists.
 
-#### Related event information
+### Related event information
 
 Alerts often appear with a corresponding event. While the alert represents the ongoing state, the event records the exact time the issue began and provides additional context regarding the root cause. This relationship helps trace problems back to their origin for faster resolution.
 
-#### Alert muting
+## Alert muting concepts
 
 Reduce background noise and focus on critical issues by moving alerts from the Active Alerts list to the Muted Alerts list.
 
-#### Muting rules and behaviors
+### Muting scope and behavior
 
 The occurrence-based muting introduces specific constraints and capabilities:
 
@@ -34,7 +34,7 @@ The occurrence-based muting introduces specific constraints and capabilities:
 * **Duration stability:** Adding new alert occurrences to an existing mute does not change the remaining mute duration of the original entry.
 * **Mute list visibility:** The system maintains a list of all active mutes, including those for alert types that are not currently triggered.
 
-#### Muting alerts in a tenant
+### Tenant alert muting scope
 
 A tenant administrator can mute alerts for their own tenant. Muting is scoped by the identity of the administrator who runs the command, so a tenant administrator's mute applies only to that tenant and leaves the cluster-wide view unchanged. A cluster administrator's mute applies cluster-wide.
 
