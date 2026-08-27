@@ -22,11 +22,12 @@ Replication transfers data through the S3 infrastructure of the clusters. The ob
 
 **Before you begin**
 
-Ensure the clusters can reach each other over the network.
+* Ensure the clusters can reach each other over the network.
+* Ensure each cluster has a configuration filesystem for its protocol containers, typically named `.config_fs`. Protocol or S3 setup creates it. `weka cluster peer init` validates this filesystem but does not create it, so a cluster that has never run protocol setup must have it created first.
 
 ### What `weka cluster peer init` provisions
 
-You do not set up the S3 transport by hand. Running `weka cluster peer init` provisions everything replication needs on that cluster: the S3 service, the replication user and bucket, and the object store filesystem (default: `weka-repl-fs`).
+You do not set up the S3 transport by hand. Running `weka cluster peer init` provisions the S3 service, the replication user and bucket, and the object store filesystem (default: `weka-repl-fs`). It does not create the configuration filesystem; that must already exist.
 
 The only decision is which containers serve the S3 traffic:
 
@@ -34,6 +35,13 @@ The only decision is which containers serve the S3 traffic:
 * To reuse an existing S3 cluster, pass its containers with `weka cluster peer init --container <container-ids>`.
 
 The two options are mutually exclusive.
+
+Two optional parameters control which existing resources the command uses:
+
+| Parameter | Description |
+| --- | --- |
+| `--config-fs-name` \<filesystem> | Names the configuration filesystem to use. Needed only when the cluster's configuration filesystem is not the one the command resolves by default. On a cluster that is already initialized, the name is read from the live S3 configuration; if you supply it, it must match. |
+| `--fs-group` \<filesystem-group> | Names the filesystem group for the replication object store filesystem. Defaults to the cluster's default group, falling back to the first group. Applies only on first-time provisioning. |
 
 The local object store tier that replication uses is created automatically when you register a cluster peer. The default tier name is `<peer name>-obs`. It stores the peer cluster's replication S3 credentials.
 
@@ -157,7 +165,7 @@ weka fs replication
 
 **Parameters**
 
-<table><thead><tr><th width="266.5703125">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>--source-filesystem</code></td><td>Name of the local source filesystem.</td></tr><tr><td><code>--target-cluster</code></td><td>Name of the configured cluster peer.</td></tr><tr><td><code>--target-filesystem</code></td><td>Name of the filesystem on the remote cluster.</td></tr><tr><td><code>--interval</code></td><td>Replication interval, for example, <code>5m</code> or <code>1h</code>. The minimum is 5 minutes.</td></tr><tr><td><code>--copy-path</code></td><td>Specifies up to 10 paths to copy proactively, each up to 2 KB long. Separate paths with commas or repeat the option. Use <code>full</code>, <code>all</code>, or <code>/</code> to copy all data. Use <code>none</code> or <code>null</code> to replicate metadata only. Default: metadata-only replication.</td></tr><tr><td><code>--access-strategy</code></td><td>Controls when a target snapshot becomes accessible. <code>INSTANT_ACCESS</code> (default) exposes the snapshot immediately. Data not copied locally is retrieved on demand. <code>COPY_FIRST</code> exposes the snapshot only after the <code>--copy-path</code> data is local.</td></tr><tr><td><code>--apply-strategy</code></td><td>Controls when the target applies a replicated snapshot. <code>AUTOMATIC</code> applies the snapshot after the prerequisite phase completes.</td></tr><tr><td><code>--snapshots-to-keep</code></td><td>Number of snapshots to retain, from 2 to 25. Retaining more snapshots requires more storage.</td></tr><tr><td><code>--target-total-capacity</code></td><td>Total capacity for the target filesystem. Default: same as the source filesystem. A smaller target is allowed for a partial or metadata-only copy. A full copy requires at least the source size.</td></tr><tr><td><code>--now</code></td><td>Triggers the first replication cycle immediately instead of waiting one full interval.</td></tr></tbody></table>
+<table><thead><tr><th width="266.5703125">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>--source-filesystem</code></td><td>Name of the local source filesystem.</td></tr><tr><td><code>--target-cluster</code></td><td>Name of the configured cluster peer.</td></tr><tr><td><code>--target-filesystem</code></td><td>Name of the filesystem on the remote cluster.</td></tr><tr><td><code>--interval</code></td><td>Replication interval, for example, <code>5m</code> or <code>1h</code>. The minimum is 5 minutes.</td></tr><tr><td><code>--copy-path</code></td><td>Specifies up to 10 paths to copy proactively, each up to 2 KB long. Separate paths with commas or repeat the option. Use <code>full</code>, <code>all</code>, or <code>/</code> to copy all data. Use <code>none</code> or <code>null</code> to replicate metadata only. Default: metadata-only replication.</td></tr><tr><td><code>--access-strategy</code></td><td>Controls when a target snapshot becomes accessible. <code>INSTANT_ACCESS</code> (default) exposes the snapshot immediately. Data not copied locally is retrieved on demand. <code>COPY_FIRST</code> exposes the snapshot only after the <code>--copy-path</code> data is local.</td></tr><tr><td><code>--apply-strategy</code></td><td>Controls when the target applies a replicated snapshot. <code>AUTOMATIC</code> applies the snapshot after the prerequisite phase completes.</td></tr><tr><td><code>--snapshots-to-keep</code></td><td>Number of snapshots to retain, from 2 to 25. Default: 3. Retaining more snapshots requires more storage. Enforced only while the pair is running; see <a href="#pause-and-resume-replication">Pause and resume replication</a>.</td></tr><tr><td><code>--target-total-capacity</code></td><td>Total capacity for the target filesystem. Default: same as the source filesystem. A smaller target is allowed for a partial or metadata-only copy. A full copy requires at least the source size.</td></tr><tr><td><code>--now</code></td><td>Triggers the first replication cycle immediately instead of waiting one full interval.</td></tr></tbody></table>
 
 **Examples**
 
@@ -285,6 +293,10 @@ weka fs replication update 3 --copy-path none --interval 6m
 Pause a replication pair before maintenance or before removing it, and resume it to continue replication.
 
 While a pair is paused, no new snapshot deltas are transferred to the target. On-demand data access on the target continues to work.
+
+{% hint style="info" %}
+Snapshot pruning runs only while a pair is running. A paused pair, or one in an error state, retains all of its snapshots until it resumes, so the `--snapshots-to-keep` limit is not enforced during that time. Expect snapshot count and capacity use to grow while a pair is left paused or unattended in error.
+{% endhint %}
 
 ### Pause a replication pair
 
