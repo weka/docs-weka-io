@@ -20,7 +20,7 @@ If the Data Services container is not operational, the quota coloring task rever
 
 To improve data service performance, you can set up multiple Data Service containers, one per WEKA server.
 
-After setting up the Data Service container, you can manage it like any other container within the cluster. If there’s a need to adjust its resources, use the `weka cluster container resources` or `weka local resources` commands. For more details, see [expansion-of-specific-resources.md](../expanding-and-shrinking-cluster-resources/expansion-of-specific-resources.md "mention").
+After setting up the Data Service container, you can manage it like any other container within the cluster. If there’s a need to adjust its resources, use the `weka cluster container resources` or `weka local resources` commands. For more details, see [expansion-of-specific-resources.md](expanding-and-shrinking-cluster-resources/expansion-of-specific-resources.md "mention").
 
 ## **Set up Data Services container**
 
@@ -30,7 +30,7 @@ After setting up the Data Service container, you can manage it like any other co
    * 3.5 GB if no dedicated core is specified.
    * 5.5 GB if a dedicated core is specified.
 2. The Data Service containers require a persistent 22 GB filesystem for intermediate global configuration data. Do one of the following:
-   * If a configuration filesystem for the protocol containers exists (typically named `.config_fs`), use it and expand its size by 22 GB. See [#dedicated-filesystem-requirement-for-cluster-wide-persistent-protocol-configurations](../../additional-protocols/additional-protocols-overview.md#dedicated-filesystem-requirement-for-cluster-wide-persistent-protocol-configurations "mention")
+   * If a configuration filesystem for the protocol containers exists (typically named `.config_fs`), use it and expand its size by 22 GB. See [#dedicated-filesystem-requirement-for-cluster-wide-persistent-protocol-configurations](../additional-protocols/additional-protocols-overview.md#dedicated-filesystem-requirement-for-cluster-wide-persistent-protocol-configurations "mention")
    * If a configuration filesystem does not exist, create a dedicated 22 GB configuration filesystem for the Data Service containers.
 3. Set the Data Service global configuration. Run the following command:
 
@@ -199,7 +199,7 @@ weka dataservice s3-lifecycle-task set [--max-tasks <max-tasks>] [--interval <in
 
 **Parameters:**
 
-<table><thead><tr><th width="181">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>--max-tasks</code></td><td><p>Maximum number of concurrent S3 lifecycle tasks that can run simultaneously.</p><p>Default: 4</p></td></tr><tr><td><code>--interval</code></td><td><p>Interval between lifecycle task manager runs. </p><p>Accepts time format: <code>3s</code>, <code>2h</code>, <code>4m</code>, <code>1d</code>, <code>1d5h</code>, <code>1w</code>, <code>infinite</code>, or <code>unlimited</code>. Default: 60 seconds</p></td></tr></tbody></table>
+<table><thead><tr><th width="181">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>--max-tasks</code></td><td><p>Maximum number of concurrent S3 lifecycle tasks that can run simultaneously.</p><p>Default: 4</p></td></tr><tr><td><code>--interval</code></td><td><p>Interval between lifecycle task manager runs.</p><p>Accepts time format: <code>3s</code>, <code>2h</code>, <code>4m</code>, <code>1d</code>, <code>1d5h</code>, <code>1w</code>, <code>infinite</code>, or <code>unlimited</code>. Default: 60 seconds</p></td></tr></tbody></table>
 
 **Example:** Set maximum concurrent tasks to 6 and interval to 5 minutes
 

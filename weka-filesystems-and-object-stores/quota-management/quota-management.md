@@ -112,7 +112,7 @@ Before setting a quota, check which scenario applies:
 
 **Related topic**
 
-[set-up-a-data-services-container-for-background-tasks.md](../../operation-guide/background-tasks/set-up-a-data-services-container-for-background-tasks.md "mention").
+[set-up-a-data-services-container-for-background-tasks.md](../../operation-guide/set-up-a-data-services-container-for-background-tasks.md "mention").
 
 Use the following command to set a quota:
 

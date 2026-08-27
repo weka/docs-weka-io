@@ -106,7 +106,7 @@ Related information:
 
 ## DataService
 
-Related information: [set-up-a-data-services-container-for-background-tasks.md](../operation-guide/background-tasks/set-up-a-data-services-container-for-background-tasks.md "mention")
+Related information: [set-up-a-data-services-container-for-background-tasks.md](../operation-guide/set-up-a-data-services-container-for-background-tasks.md "mention")
 
 | Task                                                                                                                                                     | REST API                                                                                              | CLI |
 | -------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | --- |
@@ -535,7 +535,7 @@ Related information: [perform-post-configuration-procedures.md](../planning-and-
 
 ## Tasks
 
-Related information: [background-tasks](../operation-guide/background-tasks/ "mention")
+Related information: [Broken link](/broken/pages/-LpSL2i4k4AK5VcDoYY4 "mention")
 
 | Task                                                                                                                                | REST API                                                                                        | CLI                                  |
 | ----------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ------------------------------------ |

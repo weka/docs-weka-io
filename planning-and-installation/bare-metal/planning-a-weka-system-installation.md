@@ -211,4 +211,4 @@ Clients can be configured with networking as described above to achieve the high
 
 [obtaining-the-weka-install-file.md](obtaining-the-weka-install-file.md "mention") (both paths)
 
-[^1]: For details, see [set-up-a-data-services-container-for-background-tasks.md](../../operation-guide/background-tasks/set-up-a-data-services-container-for-background-tasks.md "mention")
+[^1]: For details, see [set-up-a-data-services-container-for-background-tasks.md](../../operation-guide/set-up-a-data-services-container-for-background-tasks.md "mention")

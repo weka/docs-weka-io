@@ -55,7 +55,7 @@ The tenant admin can set a quota on a directory, which triggers a background tas
 * To apply a quota to a directory, ensure there is a mount point for the relevant filesystem.
 *   Configure at least one Data Services container before setting a directory quota. The **Create** button is not available until a Data Services container is active. See
 
-    &#x20;See [set-up-a-data-services-container-for-background-tasks.md](../../operation-guide/background-tasks/set-up-a-data-services-container-for-background-tasks.md "mention").
+    &#x20;See [set-up-a-data-services-container-for-background-tasks.md](../../operation-guide/set-up-a-data-services-container-for-background-tasks.md "mention").
 
 **Procedure**
 

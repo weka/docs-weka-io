@@ -49,7 +49,7 @@ For encrypted filesystems, when downloading, you must use the same KMS cluster-w
 
 The `locator` can be a previously saved locator for disaster scenarios, or you can obtain the `locator` using the `weka fs snapshot` command on a system with a live filesystem with snapshots.
 
-If you need to pause and resume the download process, use the command: `weka cluster task pause / resume`. To abort the download process, delete the downloaded filesystem directly. For details, see [background-tasks](../../operation-guide/background-tasks/ "mention").
+If you need to pause and resume the download process, use the command: `weka cluster task pause / resume`. To abort the download process, delete the downloaded filesystem directly. For details, see [Broken link](/broken/pages/-LpSL2i4k4AK5VcDoYY4 "mention").
 
 {% hint style="info" %}
 Use this procedure only when the uploaded snapshot is available in a local object store bucket. Direct download from a remote object store bucket is not allowed because of bandwidth and cost considerations. If the snapshot exists only in a remote bucket, follow [Recover a filesystem from a remote-only snapshot](snap-to-obj-1.md#recover-a-filesystem-from-a-remote-only-snapshot).
@@ -93,7 +93,7 @@ If you need to pause and resume the download process, use the command: `weka clu
 
 [#synchronous-snapshots](./#synchronous-snapshots "mention")
 
-[background-tasks](../../operation-guide/background-tasks/ "mention")
+[Broken link](/broken/pages/-LpSL2i4k4AK5VcDoYY4 "mention")
 
 ## Recover a filesystem from a remote-only snapshot
 
