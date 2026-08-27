@@ -21,14 +21,14 @@ weka fs [--force-fresh] [--local] [--name <string>]
 **Parameters**
 
 | Parameter          | Description                                                                                                                                  |
-| --- | --- |
-| `--force-fresh` | Refresh capacities to make sure information is most current. |
-| `--local` | Serve the listing from the container this command connects to, without redirecting to the cluster leader. Capacity information may be stale. |
-| `--name` \<string> | Show only the named filesystem. |
+| ------------------ | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| `--force-fresh`    | Refresh capacities to make sure information is most current.                                                                                 |
+| `--local`          | Serve the listing from the container this command connects to, without redirecting to the cluster leader. Capacity information may be stale. |
+| `--name` \<string> | Show only the named filesystem.                                                                                                              |
 
 ## Add a filesystem
 
-Creates a filesystem with the specified total capacity. A filesystem group is optional; place the filesystem in one with `--fs-group`. Make the filesystem tiered by naming an object store with `--obs-name` — attaching a local object store requires a group whose tiering policy is set.
+Creates a filesystem with the specified total capacity. A filesystem group is optional. Place the filesystem in one with `--fs-group`. Make the filesystem tiered by naming an object store with `--obs-name`. Attaching a local object store requires a group whose tiering policy is set.
 
 **Command:** `weka fs add`
 
@@ -38,27 +38,7 @@ weka fs add <name> <total-capacity> [--allow-no-kms] [--audit-enabled] [--auth-r
 
 **Parameters**
 
-| Parameter                              | Description                                                                                                                      |
-| --- | --- |
-| `name`\* | Name of filesystem for this operation. |
-| `total-capacity`\* | Total filesystem capacity. value: 1GiB |
-| `--allow-no-kms` | Allow creation of an encrypted filesystem without a KMS configured. This is insecure. |
-| `--audit-enabled` | Enable filesystem auditing. |
-| `--auth-required` | Require the mounting user to be authenticated. Effective only in the root organization; non-root users must always authenticate. For details, see user-management |
-| `--data-reduction` | Enable data reduction. For details, see Filesystems, object stores, and filesystem groups |
-| `--encrypted` | Create an encrypted filesystem. |
-| `--fs-group` \<filesystem-group> | Filesystem group to create the filesystem in. |
-| `--index-enabled` | Enable catalog indexing for the filesystem. |
-| `--kms-key-identifier` \<string> | Customize KMS key identifier for this filesystem. Currently only for HashiCorp Vault. |
-| `--kms-namespace` \<string> | Customize KMS namespace for this filesystem. Currently only for HashiCorp Vault. |
-| `--kms-role-id` \<string> | Customize KMS role identifier for this filesystem. Currently only for HashiCorp Vault. |
-| `--kms-secret-id` \<string> | Customize KMS secret identifier for this filesystem. Currently only for HashiCorp Vault. |
-| `--max-iops` \<uint> | Maximum filesystem IOPS. For details, see Filesystems, object stores, and filesystem groups |
-| `--max-throughput` \<capacity> | Maximum filesystem throughput per second (e.g. 1GiB). For details, see Filesystems, object stores, and filesystem groups |
-| `--obs-name` \<string> | Object store bucket name. Mandatory for tiered filesystems. |
-| `--ssd-capacity` \<capacity> | SSD capacity for the filesystem. |
-| `--thin-provision-max-ssd` \<capacity> | Maximum SSD budget for thin provisioning. |
-| `--thin-provision-min-ssd` \<capacity> | Minimum SSD budget for thin provisioning. value: 1GiB. For details, see Filesystems, object stores, and filesystem groups |
+<table><thead><tr><th width="304.16796875">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>name</code>*</td><td>Name of filesystem for this operation.</td></tr><tr><td><code>total-capacity</code>*</td><td>Total filesystem capacity. value: 1GiB</td></tr><tr><td><code>--allow-no-kms</code></td><td>Allow creation of an encrypted filesystem without a KMS configured. This is insecure.</td></tr><tr><td><code>--audit-enabled</code></td><td>Enable filesystem auditing.</td></tr><tr><td><code>--auth-required</code></td><td>Require the mounting user to be authenticated. Effective only in the root organization; non-root users must always authenticate. For details, see user-management</td></tr><tr><td><code>--data-reduction</code></td><td>Enable data reduction. For details, see Filesystems, object stores, and filesystem groups</td></tr><tr><td><code>--encrypted</code></td><td>Create an encrypted filesystem.</td></tr><tr><td><code>--fs-group</code> &#x3C;filesystem-group></td><td>Filesystem group to create the filesystem in.</td></tr><tr><td><code>--index-enabled</code></td><td>Enable catalog indexing for the filesystem.</td></tr><tr><td><code>--kms-key-identifier</code> &#x3C;string></td><td>Customize KMS key identifier for this filesystem. Currently only for HashiCorp Vault.</td></tr><tr><td><code>--kms-namespace</code> &#x3C;string></td><td>Customize KMS namespace for this filesystem. Currently only for HashiCorp Vault.</td></tr><tr><td><code>--kms-role-id</code> &#x3C;string></td><td>Customize KMS role identifier for this filesystem. Currently only for HashiCorp Vault.</td></tr><tr><td><code>--kms-secret-id</code> &#x3C;string></td><td>Customize KMS secret identifier for this filesystem. Currently only for HashiCorp Vault.</td></tr><tr><td><code>--max-iops</code> &#x3C;uint></td><td>Maximum filesystem IOPS. For details, see Filesystems, object stores, and filesystem groups</td></tr><tr><td><code>--max-throughput</code> &#x3C;capacity></td><td>Maximum filesystem throughput per second (e.g. 1GiB). For details, see Filesystems, object stores, and filesystem groups</td></tr><tr><td><code>--obs-name</code> &#x3C;string></td><td>Object store bucket name. Mandatory for tiered filesystems.</td></tr><tr><td><code>--ssd-capacity</code> &#x3C;capacity></td><td>SSD capacity for the filesystem.</td></tr><tr><td><code>--thin-provision-max-ssd</code> &#x3C;capacity></td><td>Maximum SSD budget for thin provisioning.</td></tr><tr><td><code>--thin-provision-min-ssd</code> &#x3C;capacity></td><td>Minimum SSD budget for thin provisioning. value: 1GiB. For details, see Filesystems, object stores, and filesystem groups</td></tr></tbody></table>
 
 {% hint style="info" %}
 To create an encrypted filesystem, you must define a KMS.
@@ -100,32 +80,32 @@ weka fs update <name> [--access <access>] [--audit-enabled] [--auth-required] [-
 
 **Parameters**
 
-| Parameter                                         | Description                                                                                                                                                                       |
-| --- | --- |
-| `name`\* | Name of filesystem for this operation. |
-| `--access` \<access> | Set the filesystem access mode: ro (read-only) or rw (read-write). A replication target cannot be set to rw while its pair is active; pause the pair on the source cluster first. |
-| `--audit-enabled` | Enable filesystem auditing. |
-| `--auth-required` | Require the mounting user to be authenticated. Effective only in the root organization; non-root users must always authenticate. [weka user login](../../operation-guide/user-management/#user-log-in)). Possible values: `yes` or `no` |
-| `--data-reduction` | Enable data reduction. For details, see [Filesystems, object stores, and filesystem groups](../../weka-system-overview/filesystems-object-stores-and-filesystem-groups/#data-reduction-in-weka-filesystems) |
-| `--event-log-enabled` | Enable the reliable event-change log for the filesystem. |
-| `--event-log-max-age-seconds` \<uint> | Set the maximum age in seconds before event-log records are trimmed (0 disables age trim). |
-| `--event-log-max-size-bytes-per-fs-shard` \<uint> | Set the maximum on-disk event-log size in bytes per filesystem shard (minimum 1 MiB; smaller values, including 0, are rejected). |
-| `-f`, `--force` | Force action. Perform this action without further confirmation. |
-| `--fs-group` \<filesystem-group> | Move the filesystem into the specified filesystem group. |
-| `--index-enabled` | Enable catalog indexing for the filesystem. |
-| `--kms-key-identifier` \<string> | Customize KMS key identifier for this filesystem. Currently only for HashiCorp Vault. |
-| `--kms-namespace` \<string> | Customize KMS namespace for this filesystem. Currently only for HashiCorp Vault. |
-| `--kms-role-id` \<string> | Customize KMS role identifier for this filesystem. Currently only for HashiCorp Vault. |
-| `--kms-secret-id` \<string> | Customize KMS secret identifier for this filesystem. Currently only for HashiCorp Vault. |
-| `--max-iops` \<uint> | Limit I/O operations per second. This affects how much CPU is used by the filesystem on cluster servers. |
-| `--max-throughput` \<capacity> | Limit throughput per second. This affects how much bandwidth is available to the filesystem. |
-| `--new-name` \<filesystem> | Rename the filesystem. |
-| `--remove-fs-group` | Reset the filesystem to have no group. Rejected while a local object store is attached to the filesystem; detach the object store first. |
-| `--ssd-capacity` \<capacity> | New SSD capacity for the filesystem. value: 1GiB |
-| `--thin-provision-max-ssd` \<capacity> | Maximum SSD budget for thin provisioning. |
-| `--thin-provision-min-ssd` \<capacity> | Minimum SSD budget for thin provisioning. value: 1GiB. For details, see [Filesystems, object stores, and filesystem groups](../../weka-system-overview/filesystems-object-stores-and-filesystem-groups/#thin-provisioning-in-weka-filesystems) |
-| `--total-capacity` \<capacity> | New total capacity for the filesystem. |
-| `--use-cluster-kms-key-identifier` | Use the cluster KMS configuration for this filesystem, removing any custom KMS configuration. |
+| Parameter                                         | Description                                                                                                                                                                                                                                    |
+| ------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `name`\*                                          | Name of filesystem for this operation.                                                                                                                                                                                                         |
+| `--access` \<access>                              | Set the filesystem access mode: ro (read-only) or rw (read-write). A replication target cannot be set to rw while its pair is active; pause the pair on the source cluster first.                                                              |
+| `--audit-enabled`                                 | Enable filesystem auditing.                                                                                                                                                                                                                    |
+| `--auth-required`                                 | Require the mounting user to be authenticated. Effective only in the root organization; non-root users must always authenticate. [weka user login](../../operation-guide/user-management/#user-log-in)). Possible values: `yes` or `no`        |
+| `--data-reduction`                                | Enable data reduction. For details, see [Filesystems, object stores, and filesystem groups](../../weka-system-overview/filesystems-object-stores-and-filesystem-groups/#data-reduction-in-weka-filesystems)                                    |
+| `--event-log-enabled`                             | Enable the reliable event-change log for the filesystem.                                                                                                                                                                                       |
+| `--event-log-max-age-seconds` \<uint>             | Set the maximum age in seconds before event-log records are trimmed (0 disables age trim).                                                                                                                                                     |
+| `--event-log-max-size-bytes-per-fs-shard` \<uint> | Set the maximum on-disk event-log size in bytes per filesystem shard (minimum 1 MiB; smaller values, including 0, are rejected).                                                                                                               |
+| `-f`, `--force`                                   | Force action. Perform this action without further confirmation.                                                                                                                                                                                |
+| `--fs-group` \<filesystem-group>                  | Move the filesystem into the specified filesystem group.                                                                                                                                                                                       |
+| `--index-enabled`                                 | Enable catalog indexing for the filesystem.                                                                                                                                                                                                    |
+| `--kms-key-identifier` \<string>                  | Customize KMS key identifier for this filesystem. Currently only for HashiCorp Vault.                                                                                                                                                          |
+| `--kms-namespace` \<string>                       | Customize KMS namespace for this filesystem. Currently only for HashiCorp Vault.                                                                                                                                                               |
+| `--kms-role-id` \<string>                         | Customize KMS role identifier for this filesystem. Currently only for HashiCorp Vault.                                                                                                                                                         |
+| `--kms-secret-id` \<string>                       | Customize KMS secret identifier for this filesystem. Currently only for HashiCorp Vault.                                                                                                                                                       |
+| `--max-iops` \<uint>                              | Limit I/O operations per second. This affects how much CPU is used by the filesystem on cluster servers.                                                                                                                                       |
+| `--max-throughput` \<capacity>                    | Limit throughput per second. This affects how much bandwidth is available to the filesystem.                                                                                                                                                   |
+| `--new-name` \<filesystem>                        | Rename the filesystem.                                                                                                                                                                                                                         |
+| `--remove-fs-group`                               | Reset the filesystem to have no group. Rejected while a local object store is attached to the filesystem; detach the object store first.                                                                                                       |
+| `--ssd-capacity` \<capacity>                      | New SSD capacity for the filesystem. value: 1GiB                                                                                                                                                                                               |
+| `--thin-provision-max-ssd` \<capacity>            | Maximum SSD budget for thin provisioning.                                                                                                                                                                                                      |
+| `--thin-provision-min-ssd` \<capacity>            | Minimum SSD budget for thin provisioning. value: 1GiB. For details, see [Filesystems, object stores, and filesystem groups](../../weka-system-overview/filesystems-object-stores-and-filesystem-groups/#thin-provisioning-in-weka-filesystems) |
+| `--total-capacity` \<capacity>                    | New total capacity for the filesystem.                                                                                                                                                                                                         |
+| `--use-cluster-kms-key-identifier`                | Use the cluster KMS configuration for this filesystem, removing any custom KMS configuration.                                                                                                                                                  |
 
 ## Filesystem QoS using the CLI
 
@@ -149,9 +129,9 @@ weka fs remove <name> [--force] [--purge-from-obs]
 **Parameters**
 
 | Parameter          | Description                                                                                                           |
-| --- | --- |
-| `name`\* | Name of filesystem for this operation. |
-| `-f`, `--force` | Force action. Perform this action without further confirmation. |
+| ------------------ | --------------------------------------------------------------------------------------------------------------------- |
+| `name`\*           | Name of filesystem for this operation.                                                                                |
+| `-f`, `--force`    | Force action. Perform this action without further confirmation.                                                       |
 | `--purge-from-obs` | Delete the filesystem's objects from the local writable Object Store, making all locally uploaded snapshots unusable. |
 
 {% hint style="danger" %}
@@ -175,5 +155,5 @@ weka fs kms-rewrap <name>
 **Parameters**
 
 | Parameter | Description                            |
-| --- | --- |
-| `name`\* | Name of filesystem for this operation. |
+| --------- | -------------------------------------- |
+| `name`\*  | Name of filesystem for this operation. |
