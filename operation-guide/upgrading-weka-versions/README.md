@@ -182,7 +182,7 @@ Use the WEKA Upgrade Checker Tool to validate system readiness before every upgr
   * **Postpone planned tasks or address running tasks**:
     * If any planned tasks are scheduled during the upgrade, postpone them until after the NDU process.
     * If tasks are currently running, take necessary actions based on their status.
-    * Consult the [**Background tasks**](../background-tasks/) topic for comprehensive guidance.
+    * Consult the [**Background tasks**](/broken/pages/-LpSL2i4k4AK5VcDoYY4) topic for comprehensive guidance.
   * **Data catalog:**
     * Check the catalog indexing status to ensure it is disabled.
 

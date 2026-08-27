@@ -66,6 +66,6 @@ If you require fully safe shutdowns, disable those hooks or extend the timeout. 
 
 [#graceful-container-management-ensuring-safe-actions](../../../operation-guide/expanding-and-shrinking-cluster-resources/expansion-of-specific-resources.md#graceful-container-management-ensuring-safe-actions "mention") (requested-action workflow)
 
-[background-tasks](../../../operation-guide/background-tasks/ "mention")
+[Broken link](/broken/pages/-LpSL2i4k4AK5VcDoYY4 "mention")
 
-[README.md](../../../operation-guide/upgrading-weka-versions/README.md "mention")
+[upgrading-weka-versions](../../../operation-guide/upgrading-weka-versions/ "mention")

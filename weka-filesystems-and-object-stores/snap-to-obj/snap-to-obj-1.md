@@ -18,12 +18,12 @@ weka fs snapshot upload <filesystem> <name> [--allow-non-chronological] [--site 
 
 **Parameters**
 
-| Parameter                   | Description                                                                                   |
-| --- | --- |
-| `filesystem`\* | Filesystem name. |
-| `name`\* | Snapshot name. |
-| `--allow-non-chronological` | Allow uploading snapshots to remote object store in non-chronological order. Not recommended. |
-| `--site` \<obs-site> | Site of the object store to upload to (LOCAL or REMOTE). Possible values: `local` or `remote`Default: Auto-selected if only one bucket for upload is attached |
+| Parameter                   | Description                                                                                                                                                   |
+| --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `filesystem`\*              | Filesystem name.                                                                                                                                              |
+| `name`\*                    | Snapshot name.                                                                                                                                                |
+| `--allow-non-chronological` | Allow uploading snapshots to remote object store in non-chronological order. Not recommended.                                                                 |
+| `--site` \<obs-site>        | Site of the object store to upload to (LOCAL or REMOTE). Possible values: `local` or `remote`Default: Auto-selected if only one bucket for upload is attached |
 
 ## Create a filesystem from a local uploaded snapshot
 
@@ -37,23 +37,23 @@ weka fs download <name> <group-name> <total-capacity> <ssd-capacity> <obs-bucket
 
 **Parameters**
 
-| Parameter                           | Description                                                                                                                      |
-| --- | --- |
-| `name`\* | Name of filesystem for this operation. |
-| `group-name`\* | Filesystem group to create the downloaded filesystem in. |
-| `total-capacity`\* | Total capacity of the downloaded filesystem. |
-| `ssd-capacity`\* | SSD capacity of the downloaded filesystem. |
-| `obs-bucket`\* | Object Store bucket containing the filesystem data. |
-| `locator`\* | Locator for the filesystem snapshot in object storage. |
-| `--access-point` \<string> | Access point for the downloaded snapshot. Defaults to the uploaded access point. Default: The uploaded access point |
-| `--additional-obs-bucket` \<string> | Additional Object Store bucket for the downloaded filesystem. |
-| `--audit-enabled` | Enable filesystem auditing. |
-| `--auth-required` | Require the mounting user to be authenticated. Effective only in the root organization; non-root users must always authenticate. Default: `no` |
-| `--kms-key-identifier` \<string> | Customize KMS key identifier for this filesystem. Currently only for HashiCorp Vault. |
-| `--kms-namespace` \<string> | Customize KMS namespace for this filesystem. Currently only for HashiCorp Vault. |
-| `--kms-role-id` \<string> | Customize KMS role identifier for this filesystem. Currently only for HashiCorp Vault. |
-| `--kms-secret-id` \<string> | Customize KMS secret identifier for this filesystem. Currently only for HashiCorp Vault. |
-| `--snapshot-name` \<string> | Name for the downloaded snapshot. Defaults to the uploaded name. Default: The uploaded snapshot name |
+| Parameter                           | Description                                                                                                                                    |
+| ----------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| `name`\*                            | Name of filesystem for this operation.                                                                                                         |
+| `group-name`\*                      | Filesystem group to create the downloaded filesystem in.                                                                                       |
+| `total-capacity`\*                  | Total capacity of the downloaded filesystem.                                                                                                   |
+| `ssd-capacity`\*                    | SSD capacity of the downloaded filesystem.                                                                                                     |
+| `obs-bucket`\*                      | Object Store bucket containing the filesystem data.                                                                                            |
+| `locator`\*                         | Locator for the filesystem snapshot in object storage.                                                                                         |
+| `--access-point` \<string>          | Access point for the downloaded snapshot. Defaults to the uploaded access point. Default: The uploaded access point                            |
+| `--additional-obs-bucket` \<string> | Additional Object Store bucket for the downloaded filesystem.                                                                                  |
+| `--audit-enabled`                   | Enable filesystem auditing.                                                                                                                    |
+| `--auth-required`                   | Require the mounting user to be authenticated. Effective only in the root organization; non-root users must always authenticate. Default: `no` |
+| `--kms-key-identifier` \<string>    | Customize KMS key identifier for this filesystem. Currently only for HashiCorp Vault.                                                          |
+| `--kms-namespace` \<string>         | Customize KMS namespace for this filesystem. Currently only for HashiCorp Vault.                                                               |
+| `--kms-role-id` \<string>           | Customize KMS role identifier for this filesystem. Currently only for HashiCorp Vault.                                                         |
+| `--kms-secret-id` \<string>         | Customize KMS secret identifier for this filesystem. Currently only for HashiCorp Vault.                                                       |
+| `--snapshot-name` \<string>         | Name for the downloaded snapshot. Defaults to the uploaded name. Default: The uploaded snapshot name                                           |
 
 {% hint style="info" %}
 For encrypted filesystems, when downloading, you must use the same KMS cluster-wide key or, if configured, the per-filesystem encryption parameters to decrypt the snapshot data. For more information, see [kms-management](../../security/kms-management/ "mention").
@@ -61,7 +61,7 @@ For encrypted filesystems, when downloading, you must use the same KMS cluster-w
 
 The `locator` can be a previously saved locator for disaster scenarios, or you can obtain the `locator` using the `weka fs snapshot` command on a system with a live filesystem with snapshots.
 
-If you need to pause and resume the download process, use the command: `weka cluster task pause / resume`. To abort the download process, delete the downloaded filesystem directly. For details, see [background-tasks](../../operation-guide/background-tasks/ "mention").
+If you need to pause and resume the download process, use the command: `weka cluster task pause / resume`. To abort the download process, delete the downloaded filesystem directly. For details, see [Broken link](/broken/pages/-LpSL2i4k4AK5VcDoYY4 "mention").
 
 {% hint style="info" %}
 Use this procedure only when the uploaded snapshot is available in a local object store bucket. Direct download from a remote object store bucket is not allowed because of bandwidth and cost considerations. If the snapshot exists only in a remote bucket, follow [Recover a filesystem from a remote-only snapshot](snap-to-obj-1.md#recover-a-filesystem-from-a-remote-only-snapshot).
@@ -94,13 +94,13 @@ weka fs snapshot download <filesystem> <locator> [--access-point <string>] [--al
 **Parameters**
 
 | Parameter                   | Description                                                                                       |
-| --- | --- |
-| `filesystem`\* | Filesystem name. |
-| `locator`\* | Object store locator for the snapshot. |
-| `--access-point` \<string> | Access point. Defaults to the uploaded access point. |
-| `--allow-divergence` | Allow downloading snapshots that are not descendants of the last downloaded snapshot. |
+| --------------------------- | ------------------------------------------------------------------------------------------------- |
+| `filesystem`\*              | Filesystem name.                                                                                  |
+| `locator`\*                 | Object store locator for the snapshot.                                                            |
+| `--access-point` \<string>  | Access point. Defaults to the uploaded access point.                                              |
+| `--allow-divergence`        | Allow downloading snapshots that are not descendants of the last downloaded snapshot.             |
 | `--allow-non-chronological` | Allow downloading snapshots from remote object store in non-chronological order. Not recommended. |
-| `--name` \<string> | Snapshot name. Defaults to the uploaded name. |
+| `--name` \<string>          | Snapshot name. Defaults to the uploaded name.                                                     |
 
 If you need to pause and resume the download process, use the command: `weka cluster task pause / resume`. To abort the download process, delete the downloaded snapshot directly.
 
@@ -108,7 +108,7 @@ If you need to pause and resume the download process, use the command: `weka clu
 
 [#synchronous-snapshots](./#synchronous-snapshots "mention")
 
-[background-tasks](../../operation-guide/background-tasks/ "mention")
+[Broken link](/broken/pages/-LpSL2i4k4AK5VcDoYY4 "mention")
 
 {% hint style="warning" %}
 Make sure to download synchronous snapshots in chronological order. Non-chronological snapshots are inefficient and are not synchronous.

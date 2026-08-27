@@ -29,7 +29,7 @@ When managing quotas, adhere to the following guidelines and requirements.
 
 ### Prerequisites
 
-* Configure at least one Data Services container before setting any quotas. This is the recommended approach and does not require a filesystem mount. For details, see [set-up-a-data-services-container-for-background-tasks.md](../../operation-guide/background-tasks/set-up-a-data-services-container-for-background-tasks.md "mention").
+* Configure at least one Data Services container before setting any quotas. This is the recommended approach and does not require a filesystem mount. For details, see [set-up-a-data-services-container-for-background-tasks.md](../../operation-guide/set-up-a-data-services-container-for-background-tasks.md "mention").
 * If no Data Services container is available, quota operations fall back to single-process mode using a filesystem mount. In this mode:
   * The target filesystem must be mounted natively through POSIX on the server where the quota command runs.
   * The quota `set` command must run to completion without interruption, as it triggers quota accounting.

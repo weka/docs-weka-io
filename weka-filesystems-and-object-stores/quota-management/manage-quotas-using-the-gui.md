@@ -21,7 +21,7 @@ The tenant admin can set a quota on a directory, which triggers a background tas
 **Before you begin**
 
 * To apply a quota to a directory, ensure there is a mount point for the relevant filesystem.
-* Configure at least one Data Services container before setting a directory quota. The **Create Quota** button is not available until a Data Services container is active. See [set-up-a-data-services-container-for-background-tasks.md](../../operation-guide/background-tasks/set-up-a-data-services-container-for-background-tasks.md "mention").
+* Configure at least one Data Services container before setting a directory quota. The **Create Quota** button is not available until a Data Services container is active. See [set-up-a-data-services-container-for-background-tasks.md](../../operation-guide/set-up-a-data-services-container-for-background-tasks.md "mention").
 
 **Procedure**
 
@@ -112,7 +112,7 @@ A user or group quota limits the capacity a specific POSIX user or group can con
 **Before you begin**
 
 * Enable user quota accounting on the filesystem. This is a CLI operation. See [quota-management.md](quota-management.md "mention").
-* Configure at least one Data Services container. See [set-up-a-data-services-container-for-background-tasks.md](../../operation-guide/background-tasks/set-up-a-data-services-container-for-background-tasks.md "mention").
+* Configure at least one Data Services container. See [set-up-a-data-services-container-for-background-tasks.md](../../operation-guide/set-up-a-data-services-container-for-background-tasks.md "mention").
 
 **Procedure**
 

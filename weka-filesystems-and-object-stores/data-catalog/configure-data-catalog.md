@@ -23,7 +23,7 @@ The catalog feature integrates several components within the WEKA cluster to man
 
 **Related topics**
 
-[set-up-a-data-services-container-for-background-tasks.md](../../operation-guide/background-tasks/set-up-a-data-services-container-for-background-tasks.md "mention")
+[set-up-a-data-services-container-for-background-tasks.md](../../operation-guide/set-up-a-data-services-container-for-background-tasks.md "mention")
 
 [#track-filesystem-changes-with-the-difflist-rest-api](../snapshots/#track-filesystem-changes-with-the-difflist-rest-api "mention")
 

@@ -38,7 +38,7 @@ You can upload a snapshot to a local, remote, or both object store buckets.
 
 **Related topics**
 
-[#pause-resume-abort-a-background-task](../../operation-guide/background-tasks/#pause-resume-abort-a-background-task "mention")
+[Broken link](/broken/pages/-LpSL2i4k4AK5VcDoYY4#pause-resume-abort-a-background-task "mention")
 
 ## Create a filesystem from an uploaded snapshot
 

@@ -38,7 +38,7 @@ In multi-tenant deployments, ILM rules are scoped to the tenant in which they ar
 
 **Related topics**
 
-[set-up-a-data-services-container-for-background-tasks.md](../../../operation-guide/background-tasks/set-up-a-data-services-container-for-background-tasks.md "mention")
+[set-up-a-data-services-container-for-background-tasks.md](../../../operation-guide/set-up-a-data-services-container-for-background-tasks.md "mention")
 
 [s3-information-lifecycle-management.md](s3-information-lifecycle-management.md "mention")
 
