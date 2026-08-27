@@ -123,7 +123,7 @@ Replace `8.8.8.8` and `8.8.4.4` with the appropriate nameserver IP addresses for
    * **Server**: (Optional) WEKA automatically identifies an AD Domain Controller server (from `/etc/resolv.conf`) based on the AD domain name. You do not need to set the server name. In some cases, specify the AD server if required.
    * **Computers Org. Unit**: The default AD organizational unit (OU) for the computer account is the Computers directory. You can define any OU to create the computer account that the joining account has permission to, such as SMB servers or corporate computers.
 
-![Join Active Directory dialog](../../.gitbook/assets/wmng_smb_join_ad_dialog.png)
+<img src="../../.gitbook/assets/wmng_smb_join_ad_dialog.png" alt="Join Active Directory dialog" width="295">
 
 Once the SMB cluster joins the Active Directory domain, the join status next to the domain changes to **Joined**.
 
@@ -183,8 +183,7 @@ Repeat the following steps for every user consuming WEKA services over the SMB p
 4. Select the **Attribute Editor** tab and modify the following:
    * Locate the **gidNumber** attribute and set its value to an appropriate number or, if unknown, any numeric value between 0 and 4290000000.
    * Locate the **uidNumber** attribute and set its value to an appropriate number or, if unknown, any numeric value between 0 and 4290000000.
-
-5) Select **OK** to save the changes.
+5. Select **OK** to save the changes.
 
 </details>
 
@@ -229,7 +228,7 @@ Deleting the SMB cluster resets its configuration data. Deleting an SMB cluster 
 
 1. In the SMB Cluster Configuration, select the **trash** icon.
 
-![Delete the SMB cluster configuration](../../.gitbook/assets/wmng_smb_cluster_remove.png)
+<img src="../../.gitbook/assets/wmng_smb_cluster_remove.png" alt="Delete the SMB cluster configuration" width="337">
 
 2. In the SMB Configuration Reset message, select **Reset**.
 

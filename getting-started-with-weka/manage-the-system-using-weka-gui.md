@@ -64,7 +64,7 @@ Make sure that port 14000 is open in the firewall of your organization.
 
 2. Sign in with the username and password of an account with cluster administration or\
    organization administration privileges. For details about the account types, see\
-   &#xNAN;_&#x55;ser management_ in the related topics.
+   _&#x55;ser management_ in the related topics.
 
 The system dashboard opens.
 

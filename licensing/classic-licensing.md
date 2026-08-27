@@ -77,7 +77,7 @@ After creating a license, apply it to the cluster. Only one license can be activ
 
 2. In the License Text dialog that opens, select **copy to clipboard**.
 
-![License text dialog](../.gitbook/assets/getwekaio_5_classic_license_text.png)
+<img src="../.gitbook/assets/getwekaio_5_classic_license_text.png" alt="License text dialog" width="563">
 
 3. If you use the CLI to apply the license, run the following command:\
    `weka cluster license set <license-key>`\

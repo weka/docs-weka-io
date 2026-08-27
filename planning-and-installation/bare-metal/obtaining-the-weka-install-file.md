@@ -14,7 +14,7 @@ To sign in to [get.weka.io](http://get.weka.io), you first need to create an acc
 
 1. Go to the [get.weka.io](https://get.weka.io/ui/dashboard) download site, and select **Create an account.**
 
-![Create an account](../../.gitbook/assets/Sign-in\_create\_an\_account.png)
+<img src="../../.gitbook/assets/Sign-in_create_an_account.png" alt="Create an account" width="425">
 
 The Send Registration Email page opens.
 
@@ -27,7 +27,7 @@ The Send Registration Email page opens.
 
 4\. Fill in your email address, full name, and password. Then, select **Create Account**.
 
-![Create account](../../.gitbook/assets/Create\_an\_account.png)
+<img src="../../.gitbook/assets/Create_an_account.png" alt="Create account" width="434">
 
 Your request for access to [get.weka.io](http://get.weka.io) is sent to WEKA for review. Wait for a validation email. Once your registration is approved, you can sign in to [get.weka.io](http://get.weka.io).
 
@@ -45,7 +45,7 @@ You can only sign in and download the packages if you are a registered user.
 
 1. Go to the [get.weka.io](https://get.weka.io/ui/dashboard) download site, and sign in with your registered account.
 
-![Sign in to download and get your WEKA license](../../.gitbook/assets/sign-in-for-download.png)
+<img src="../../.gitbook/assets/sign-in-for-download.png" alt="Sign in to download and get your WEKA license" width="422">
 
 [get.weka.io](http://get.weka.io) page opens.
 

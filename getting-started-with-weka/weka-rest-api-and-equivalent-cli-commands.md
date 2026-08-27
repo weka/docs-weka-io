@@ -92,7 +92,7 @@ Related information: [expanding-and-shrinking-cluster-resources](../operation-gu
 
 ## DataService
 
-Related information: [set-up-a-data-services-container-for-background-tasks.md](../operation-guide/background-tasks/set-up-a-data-services-container-for-background-tasks.md "mention")
+Related information: [set-up-a-data-services-container-for-background-tasks.md](../operation-guide/set-up-a-data-services-container-for-background-tasks.md "mention")
 
 | Task                                                                                                                                                    | REST API                                                                                              | CLI |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | --- |
@@ -146,7 +146,7 @@ Related information: [cluster-capacity-and-redundancy-management.md](../weka-sys
 
 Related information:
 
-* [filesystems](../weka-system-overview/filesystems/ "mention")
+* [https://github.com/weka/docs-weka-io/blob/4.4/weka-system-overview/filesystems/README.md](https://github.com/weka/docs-weka-io/blob/4.4/weka-system-overview/filesystems/README.md "mention")
 * [managing-filesystems](../weka-filesystems-and-object-stores/managing-filesystems/ "mention")
 * [attaching-detaching-object-stores-to-from-filesystems](../weka-filesystems-and-object-stores/attaching-detaching-object-stores-to-from-filesystems/ "mention")
 
@@ -495,7 +495,7 @@ Related information: [perform-post-configuration-procedures.md](../planning-and-
 
 ## Tasks
 
-Related information: [background-tasks](../operation-guide/background-tasks/ "mention")
+Related information: [Broken link](/broken/pages/-LpSL2i4k4AK5VcDoYY4 "mention")
 
 | Task                                                                                                                                | REST API                                                                                        | CLI                                  |
 | ----------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ------------------------------------ |

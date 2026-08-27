@@ -89,4 +89,4 @@ Using the API is a two-step process that supports parallel processing, enabling 
 
 [weka-rest-api-and-equivalent-cli-commands.md](../../getting-started-with-weka/weka-rest-api-and-equivalent-cli-commands.md "mention") (Snapshots)
 
-[set-up-a-data-services-container-for-background-tasks.md](../../operation-guide/background-tasks/set-up-a-data-services-container-for-background-tasks.md "mention")
+[set-up-a-data-services-container-for-background-tasks.md](../../operation-guide/set-up-a-data-services-container-for-background-tasks.md "mention")

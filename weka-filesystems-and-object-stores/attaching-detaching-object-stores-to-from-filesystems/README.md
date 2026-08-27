@@ -63,7 +63,7 @@ Detaching a remote object store bucket from a filesystem keeps the backup data w
 
 **Related topics**
 
-[background-tasks](../../operation-guide/background-tasks/ "mention")
+[Broken link](/broken/pages/-LpSL2i4k4AK5VcDoYY4 "mention")
 
 [snap-to-obj](../snap-to-obj/ "mention")
 

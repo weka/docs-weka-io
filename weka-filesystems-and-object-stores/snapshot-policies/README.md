@@ -80,4 +80,4 @@ The Snapshot Policies feature replaces the external SnapTool, which will be depr
 
 [snapshots](../snapshots/ "mention")
 
-[background-tasks](../../operation-guide/background-tasks/ "mention")
+[Broken link](/broken/pages/-LpSL2i4k4AK5VcDoYY4 "mention")

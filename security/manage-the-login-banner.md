@@ -10,7 +10,7 @@ The login banner provides a security statement or a legal message displayed on t
 
 You can set a login banner containing a security statement or a legal message displayed on the sign-in page. You can also disable, edit, or reset the login banner.
 
-![Sign in page with a banner example](../.gitbook/assets/wmng_login_banner_sign-in-page.png)
+<img src="../.gitbook/assets/wmng_login_banner_sign-in-page.png" alt="Sign in page with a banner example" width="563">
 
 **Procedure**
 
@@ -18,11 +18,11 @@ You can set a login banner containing a security statement or a legal message di
 2. From the Cluster Settings pane, select **Security**.
 3. On the Security page, select **Login Banner**.
 
-![Login Banner](../.gitbook/assets/wmng_login_banner_set.png)
+<img src="../.gitbook/assets/wmng_login_banner_set.png" alt="Login Banner" width="563">
 
 4. Select **Edit Banner**.
 
-![Write the login banner statement](../.gitbook/assets/wmng_login_banner_edit.png)
+<img src="../.gitbook/assets/wmng_login_banner_edit.png" alt="Write the login banner statement" width="563">
 
 5. In the Edit Login Banner, write your organization statement in the banner text box.
 6. Select **Save**.

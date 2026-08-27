@@ -37,7 +37,7 @@ Each section guides you through key processes to ensure a smooth setup and opera
 
 [WEKA Data Platform introduction](https://app.gitbook.com/s/lGKb8DZItQx3Jy6unw5f/weka-system-overview/about "mention")
 
-[Broken link](/broken/pages/KEOEQRdsKM2PB9lTiaPg "mention")
+[Getting Started with WEKA](https://app.gitbook.com/s/VJsIYq2tJgf6IfttPZ6j/getting-started-with-weka "mention")
 
 **Related information**
 

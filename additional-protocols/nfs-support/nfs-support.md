@@ -91,7 +91,7 @@ Configuring the NFS cluster level involves creating an interface group and assig
    * **Subnet mask**: The subnet mask in CIDR (Classless Inter-Domain Routing) format. For example, a value of 16 equals 255.255.0.0.
 5. Select **Save**.
 
-![Create interface group dialog](../../.gitbook/assets/wmng_add_nfs_group_dialog.png)
+<img src="../../.gitbook/assets/wmng_add_nfs_group_dialog.png" alt="Create interface group dialog" width="375">
 
 ### Set interface group ports
 
@@ -110,7 +110,7 @@ Repeat this port setting process for each server participating in the NFS cluste
 
     Select **Save**.
 
-![Add port dialog](../../.gitbook/assets/wmng_add_nfs_group_ports_dialog.png)
+<img src="../../.gitbook/assets/wmng_add_nfs_group_ports_dialog.png" alt="Add port dialog" width="352">
 
 #### Example
 
@@ -125,7 +125,7 @@ You might need to remove an interface group due to a change in network configura
 1. In the Configuration tab, select the interface group.
 2. In the Group Ports table, select the three dots, and from the menu, select **Remove**.&#x20;
 
-![Remove an interface group port](../../.gitbook/assets/wmng_add_nfs_group_ports_remove.png)
+<img src="../../.gitbook/assets/wmng_add_nfs_group_ports_remove.png" alt="Remove an interface group port" width="375">
 
 ### **Set interface group IPs**
 
@@ -140,7 +140,7 @@ Floating IPs are not supported in WEKA installations on Azure and GCP.
 3. In the Add Range IP dialog, set the relevant IP range.
 4. Select **Save**.
 
-![Add range IP dialog](../../.gitbook/assets/wmng_add_nfs_group_ips_dialog.png)
+<img src="../../.gitbook/assets/wmng_add_nfs_group_ips_dialog.png" alt="Add range IP dialog" width="292">
 
 ### Remove an interface group IP range
 
@@ -295,7 +295,7 @@ Creating additional client groups helps in better organization, customization of
 2. In the Create Client Group dialog, set the client group name.
 3. Select **Save**.
 
-![Create client group dialog](../../.gitbook/assets/wmng_add_nfs_client_group_dialog.png)
+<img src="../../.gitbook/assets/wmng_add_nfs_client_group_dialog.png" alt="Create client group dialog" width="375">
 
 ### Assign a DNS and IP to a client group
 
@@ -310,12 +310,12 @@ Assigning a DNS and IP to a client group facilitates network communication and r
 
 3. In the Create Client Group DNS Rule dialog, set the DNS server name. Then, select **Save**.
 
-![Create client group DNS rule dialog](../../.gitbook/assets/wmng_add_nfs_client_group_dns_rule.png)
+<img src="../../.gitbook/assets/wmng_add_nfs_client_group_dns_rule.png" alt="Create client group DNS rule dialog" width="375">
 
 4. In the Permissions tab, select **Add IP** for the relevant Client Group.
 5. In the Create Client Group IP Rule dialog, set the IP address and bitmask. Then, select **Save**.
 
-![Create client group IP rule dialog](../../.gitbook/assets/wmng_add_nfs_client_group_ip_rule.png)
+<img src="../../.gitbook/assets/wmng_add_nfs_client_group_ip_rule.png" alt="Create client group IP rule dialog" width="375">
 
 ### Remove the DNS or IP of a client group
 
@@ -323,7 +323,7 @@ Assigning a DNS and IP to a client group facilitates network communication and r
 
 1. In the Permissions tab, select the **trash** symbol displayed next to the DNS or IP for the relevant Client Group.
 
-![Remove the DNS or IP of a client group](../../.gitbook/assets/wmng_add_nfs_group_ip_remove.png)
+<img src="../../.gitbook/assets/wmng_add_nfs_group_ip_remove.png" alt="Remove the DNS or IP of a client group" width="375">
 
 ### Create NFS client permission <a href="#create-nfs-client-permission" id="create-nfs-client-permission"></a>
 

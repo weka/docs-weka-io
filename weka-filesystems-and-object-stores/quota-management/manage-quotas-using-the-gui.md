@@ -27,7 +27,7 @@ The organization admin can set a quota on a directory. This action initiates cal
 **Before you begin**
 
 * To set a quota on a directory, a mount point to the relevant filesystem is necessary. The quota set command mustn’t be interrupted until the quota accounting process is finished.
-* Deploy at least one Data Services container before setting any quotas. If not running, quota operations defaults to single-process mode, potentially causing CLI to hang for extended periods. See [set-up-a-data-services-container-for-background-tasks.md](../../operation-guide/background-tasks/set-up-a-data-services-container-for-background-tasks.md "mention").<br>
+* Deploy at least one Data Services container before setting any quotas. If not running, quota operations defaults to single-process mode, potentially causing CLI to hang for extended periods. See [set-up-a-data-services-container-for-background-tasks.md](../../operation-guide/set-up-a-data-services-container-for-background-tasks.md "mention").<br>
 
 **Procedure**
 

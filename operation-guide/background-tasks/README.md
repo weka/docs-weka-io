@@ -1,31 +1,70 @@
 ---
 description: >-
-  This page describes the management of background tasks running on the WEKA
-  system.‌
+  Learn how the WEKA system runs asynchronous and maintenance operations in the
+  background, what limits apply to them, and how to monitor and control them.
 ---
 
 # Background tasks
 
-The WEKA system performs internal and external asynchronous operations and maintenance tasks in the background using minimal CPU resources, allowing no interference nor starving the WEKA system from serving high-performing IOs.‌
+Background tasks handle work that must not interfere with serving IO. Examples include checking metadata integrity, uploading and downloading snapshots, detaching an object store, reducing data, and applying a directory quota to existing data.
 
-Background tasks include, for example, checking metadata integrity, downloading and uploading snapshots, and detaching an object store.
+## Resource consumption
 
-Adhere to the following considerations:
+The WEKA system limits background tasks to 5% of the overall CPU. When the CPU is idle, background tasks can use more than the configured resources, and release them immediately when needed to serve IO.
 
-* **CPU resource consumption:** The WEKA system limits these tasks’ CPU resources to 5% of the overall CPU. When the CPU is idle, background tasks can use more than the configured resources but are immediately freed if needed to serve IOs.
-* **Concurrent tasks:** The maximum number of concurrent tasks is 16, with restrictions such as:
-  * Only a single local upload can exist concurrently inside a filesystem.
-  * Only a single remote upload inside a filesystem can be done concurrently (but local and remote uploads can co-exist).
-  * Only a single upload from any filesystem can exist in the same object store bucket to prevent slowing down each other uploads.
-  * Object store snapshot download operation cannot be run simultaneously with other snapshot download or upload operations.
-  * A paused or aborted task is counted as part of the maximum number of concurrent tasks.
-* **Snapshot metadata prefetch:** When a snapshot is downloaded from the object store, the system automatically prefetches its metadata as the initial step.
-* **Multiple background tasks can run in parallel:** For all tasks, except the QUOTA\_COLORING, up to 32 background tasks can run in parallel. A paused or aborted task is also counted as a running background task. For QUOTA\_COLORING, dedicated Data Services containers can run up to 16 tasks in parallel.
+## Concurrency limits
+
+Two separate limits apply to background tasks:
+
+**Queued tasks:** the number of tasks that can exist at the same time. A paused or aborted task still occupies a slot. When the queue is full, a new operation fails rather than waits.
+
+**Running tasks:** the number of queued tasks that perform work at the same time. Additional tasks remain queued until a slot frees.
+
+Both limits apply cluster-wide.
+
+<table><thead><tr><th width="219.8671875">Task group</th><th width="193.953125">Maximum queued</th><th>Maximum running</th></tr></thead><tbody><tr><td>Filesystem tasks</td><td>16</td><td>Set by the task-specific rules below</td></tr><tr><td>Directory quota tasks</td><td>32</td><td>4</td></tr></tbody></table>
+
+If an operation cannot start because the queue is full, it fails with the following message:
+
+```
+Operation cannot start because there are already 32 tasks running
+```
+
+Wait for a running task to finish, then retry.
+
+### Task-specific rules
+
+**Snapshot upload and download:**
+
+* Only a single local upload can exist concurrently inside a filesystem.
+* Only a single remote upload inside a filesystem can be done concurrently. Local and remote uploads can co-exist.
+* Only a single upload from any filesystem can exist in the same object store bucket, to prevent uploads from slowing each other down.
+* An object store snapshot download operation cannot run at the same time as another snapshot download or upload operation.
+
+**Data reduction:**
+
+* Only one data reduction or data defragmentation task runs in the cluster at a time. If either task exists, no new task of either type starts.
+* The cluster starts these tasks automatically. You do not create them.
+
+**Snapshot metadata prefetch:**
+
+* When a snapshot is downloaded from the object store, the system automatically prefetches its metadata as the initial step.
 
 {% hint style="info" %}
-More restrictions exist between different tasks and multiple tasks of the same type. If a background task does not run due to a restriction, the system provides a relevant message.
+Further restrictions exist between different tasks and between multiple tasks of the same type. When a background task does not run because of a restriction, the system provides a relevant message.
 {% endhint %}
 
-### Background tasks list <a href="#managing-background-tasks" id="managing-background-tasks"></a>
+## Background tasks list
 
-<table><thead><tr><th width="317.3333333333333">Taks name</th><th width="279">Task description</th><th>Possible actions</th></tr></thead><tbody><tr><td>OBS_DETACH2</td><td>Detaching Object Storage &#x3C;OBS name> from filesystem &#x3C;fs name>.</td><td>Pause, Resume, Abort</td></tr><tr><td>STOW_UPLOAD</td><td>Uploading snapshot &#x3C;snapshot name> from filesystem &#x3C;fs name> to &#x3C;OBS site> object-store bucket &#x3C;OBS bucket name>.</td><td>Pause, Resume, Abort</td></tr><tr><td>STOW_DOWNLOAD_FILESYSTEM</td><td>Downloading filesystem &#x3C;fs name> from locator &#x3C;snapshot locator> in object-store &#x3C;OBS bucket name>.</td><td>Pause, Resume</td></tr><tr><td>STOW_DOWNLOAD_SNAPSHOT</td><td><p>Downloading the snapshot &#x3C;snapshot name> to &#x3C;fs name> from locator &#x3C;snapshot locator> in object-store &#x3C;OBS bucket name>.<br>This task includes two additional internal phases:</p><ul><li>Fetching the snapshot metadata.</li><li>Squashing the filesystem.</li></ul></td><td>Pause, Resume</td></tr><tr><td>FSCK</td><td>Checking metadata integrity.</td><td>Pause, Resume, Abort</td></tr><tr><td>DATA_REDUCTION</td><td>Compressing data.</td><td>Pause, Resume, Abort</td></tr><tr><td>DATA_REDUCTION_GC</td><td>Garbage collection (GC).</td><td>Pause, Resume, Abort</td></tr><tr><td>QUOTA_COLORING</td><td>Modifies every extent in each existing file included in the quota.</td><td>Pause, Resume, Abort</td></tr></tbody></table>
+| Task name                  | Description                                                                                                                                   | Possible actions                                                      |
+| -------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| OBS\_DETACH2               | Detaches an object store from a filesystem.                                                                                                   | Pause, Resume, Abort until the task reaches the CLEAR\_MANIFEST phase |
+| STOW\_UPLOAD               | Uploads a snapshot from a filesystem to an object store bucket.                                                                               | Pause, Resume, Abort                                                  |
+| STOW\_DOWNLOAD\_FILESYSTEM | Downloads a filesystem from a locator in an object store.                                                                                     | Pause, Resume                                                         |
+| STOW\_DOWNLOAD\_SNAPSHOT   | Downloads a snapshot to a filesystem from a locator in an object store. Includes fetching the snapshot metadata and squashing the filesystem. | Pause, Resume                                                         |
+| SNAPSHOT\_DELETE           | Deletes a snapshot of a filesystem.                                                                                                           | Pause, Resume                                                         |
+| FSCK                       | Checks metadata integrity.                                                                                                                    | Pause, Resume, Abort                                                  |
+| DATA\_REDUCTION            | Reduces data.                                                                                                                                 | Pause, Resume, Abort                                                  |
+| DATA\_DEFRAG               | Defragments data.                                                                                                                             | Pause, Resume, Abort                                                  |
+| FILESYSTEM\_RECOMPRESS     | Rewrites the data of a filesystem to compress or decompress it.                                                                               | Pause, Resume, Abort                                                  |
+| QUOTA\_COLORING            | Applies or clears a directory quota on a directory that already contains data. Requires an active Data Services container.                    | Pause, Resume, Abort                                                  |

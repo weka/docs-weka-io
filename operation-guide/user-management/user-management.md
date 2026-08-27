@@ -30,7 +30,7 @@ Local users are created in the local system instead of domain users that the org
    * **Role:** Select the role for the local user. If you select an S3 user role, select the relevant S3 policy and, optionally, the [POSIX UID](#user-content-fn-1)[^1] and [POSIX GID](#user-content-fn-2)[^2]**.** For role details, see [#role-descriptions](./#role-descriptions "mention").
 4. Select **Save**.
 
-![Create a new user dialog](<../../.gitbook/assets/wmng_local_users_add (2).png>)
+<img src="../../.gitbook/assets/wmng_local_users_add (2).png" alt="Create a new user dialog" width="264">
 
 ### Edit a local user
 
@@ -62,7 +62,7 @@ To regain access to the system after changing the password, the user must re-aut
    * **Revoke Tokens:** If the user's existing tokens are compromised, you can revoke all of the user's tokens and change their password. To regain access to the system, the user must re-authenticate with the new password or obtain new tokens through the API.
 3. Select **Save**.
 
-![Change the password for a local user](../../.gitbook/assets/wmng_local_users_change_psw.png)
+<img src="../../.gitbook/assets/wmng_local_users_change_psw.png" alt="Change the password for a local user" width="313">
 
 ### Change your password
 
@@ -72,7 +72,7 @@ You can change your password at any time.
 
 1. From the top bar, select the signed-in user, then select **Change Password**.
 
-![Change your password (signed-in user)](../../.gitbook/assets/wmng_change_your_password.png)
+<img src="../../.gitbook/assets/wmng_change_your_password.png" alt="Change your password (signed-in user)" width="563">
 
 2. In the Change Password dialog, set the properties described in the [Change a local user password](user-management.md#change-a-local-user-password) topic.
 3. Select **Save**.

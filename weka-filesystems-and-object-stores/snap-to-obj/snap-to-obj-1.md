@@ -45,7 +45,7 @@ For encrypted filesystems, when downloading, you must use the same KMS cluster-w
 
 The `locator` can be a previously saved locator for disaster scenarios, or you can obtain the `locator` using the `weka fs snapshot` command on a system with a live filesystem with snapshots.
 
-If you need to pause and resume the download process, use the command: `weka cluster task pause / resume`. To abort the download process, delete the downloaded filesystem directly. For details, see [background-tasks](../../operation-guide/background-tasks/ "mention").
+If you need to pause and resume the download process, use the command: `weka cluster task pause / resume`. To abort the download process, delete the downloaded filesystem directly. For details, see [Broken link](/broken/pages/-LpSL2i4k4AK5VcDoYY4 "mention").
 
 {% hint style="info" %}
 Due to the bandwidth characteristics and potential costs when interacting with remote object stores it is not allowed to download a filesystem from a remote object-store bucket. If a snapshot on a local object-store bucket exists, it is advisable to use that one. Otherwise, follow the procedure in[#recover-from-a-remote-snapshot](snap-to-obj-1.md#recover-from-a-remote-snapshot "mention").
@@ -77,7 +77,7 @@ If you need to download a snapshot earlier than the latest downloaded one, for e
 
 <table><thead><tr><th width="304">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>file-system</code>*</td><td>Name of the filesystem.</td></tr><tr><td><code>locator</code>*</td><td>Object store locator obtained from a previously successful snapshot upload.</td></tr></tbody></table>
 
-If you need to pause and resume the download process, use the command: `weka cluster task pause / resume`. To abort the download process, delete the downloaded snapshot directly. For details, see [background-tasks](../../operation-guide/background-tasks/ "mention").
+If you need to pause and resume the download process, use the command: `weka cluster task pause / resume`. To abort the download process, delete the downloaded snapshot directly. For details, see [Broken link](/broken/pages/-LpSL2i4k4AK5VcDoYY4 "mention").
 
 **Related topics**
 

@@ -38,7 +38,7 @@ Use the following command to set a default quota of a directory:
 **Command**: `weka fs quota set`
 
 Before using the commands, verify that at least one Data Services container is set to enable the command to run the `QUOTA_COLORING` task in the background.\
-For details, see [set-up-a-data-services-container-for-background-tasks.md](../../operation-guide/background-tasks/set-up-a-data-services-container-for-background-tasks.md "mention").
+For details, see [set-up-a-data-services-container-for-background-tasks.md](../../operation-guide/set-up-a-data-services-container-for-background-tasks.md "mention").
 
 Use the following command to set a directory quota:
 

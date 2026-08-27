@@ -211,9 +211,9 @@
   * [Expand specific resources of a container](operation-guide/expanding-and-shrinking-cluster-resources/expansion-of-specific-resources.md)
   * [Shrink a cluster](operation-guide/expanding-and-shrinking-cluster-resources/shrinking-a-cluster.md)
 * [Background tasks](operation-guide/background-tasks/README.md)
-  * [Set up a Data Services container for background tasks](operation-guide/background-tasks/set-up-a-data-services-container-for-background-tasks.md)
   * [Manage background tasks using the GUI](operation-guide/background-tasks/manage-background-tasks-using-the-gui.md)
   * [Manage background tasks using the CLI](operation-guide/background-tasks/manage-background-tasks-using-the-cli.md)
+* [Set up a Data Services container for background tasks](operation-guide/set-up-a-data-services-container-for-background-tasks.md)
 * [Upgrade WEKA versions](operation-guide/upgrading-weka-versions.md)
 * [Manage WEKA drivers](operation-guide/manage-weka-drivers.md)
 
