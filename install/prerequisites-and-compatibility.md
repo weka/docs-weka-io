@@ -72,7 +72,7 @@ WEKA will support upcoming releases of the operating systems in the lists within
   * 24.04, 22.04, 20.04, 18.04
 * **Amazon Linux:**
   * AMI 2018.03, AMI 2017.09, Amazon Linux 2 LTS
-* **SELS:**
+* **SLES:**
   * 15 LTSS, 12 LTSS
 * **Oracle Linux:**
   * 9
