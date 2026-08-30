@@ -153,6 +153,12 @@ When RDMA and GDS are enabled, the WEKA system automatically uses the RDMA data 
 
 By leveraging RDMA and GDS, you can achieve enhanced performance. A UDP client, which doesn't require dedicating a core to the WEKA system, can deliver significantly higher performance. Additionally, a DPDK client can experience an extra performance boost, or you can assign fewer cores to the WEKA system while maintaining the same level of performance in DPDK mode.
 
+{% hint style="warning" %}
+Priority Flow Control (PFC) and 802.3x global pause are mutually exclusive. A switch port with PFC enabled ignores global pause frames entirely, so a server that emits them runs with no working flow control.
+
+On RoCE deployments, set link-level flow control fully off on the server dataplane interfaces: `ethtool -A <interface> autoneg off rx off tx off`. Autonegotiated flow control is not sufficient, because negotiation can re-enable pause. Apply this as part of the fabric QoS configuration, after the switch no-drop class for the RoCE priority is in place.
+{% endhint %}
+
 ### Requirements and considerations for RDMA and GDS support
 
 RDMA, including RoCE, is enabled by default. To support RDMA and GDS technologies, the following requirements and considerations must be met:
