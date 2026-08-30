@@ -1,28 +1,14 @@
 ---
 description: Version 6.0
-cover: .gitbook/assets/doc_neuralmesh_banner3.gif
+cover: .gitbook/assets/doc_neuralmesh_banner_6.0.png
 coverY: 0
 ---
 
 # NeuralMesh™ by WEKA documentation
 
-Welcome to the NeuralMesh documentation portal, your comprehensive guide to the latest version of NeuralMesh by WEKA. Whether you're a newcomer or a seasoned user, explore topics from system fundamentals to advanced optimization strategies for AI and data-intensive workloads.
+Welcome to the NeuralMesh documentation portal, your guide to the latest version of NeuralMesh by WEKA. Whether you are new to the product or an experienced user, explore topics from system fundamentals to advanced optimization for AI and data-intensive workloads. NeuralMesh introduces a deployment approach built on the WEKA data platform, so references to WEKA in this documentation denote the underlying software components and interfaces. Core functionality, APIs, and packages remain consistent.
 
-{% hint style="info" %}
-**Terminology and deployment model**
-
-NeuralMesh™ by WEKA introduces a new deployment approach built on the WEKA data platform.
-
-In this documentation, references to WEKA denote the underlying software components and interfaces used by NeuralMesh. Core functionality, APIs, and packages remain consistent.
-{% endhint %}
-
-{% hint style="warning" %}
-**Important:** This documentation applies to the **latest revision** (6.0.**X**). For information on new features and supported prerequisites released with each minor version, refer to the relevant release notes available at [get.weka.io](https://get.weka.io/).
-
-Check the release notes for details about any updates or changes accompanying the latest releases.
-{% endhint %}
-
-Select your version from the dropdown menu located at the top of the left-hand navigation bar.
+This documentation covers the latest revision, 6.0.**X**. For the features and supported prerequisites released with each minor version, see the release notes at [get.weka.io](https://get.weka.io/). To read the documentation for another version, select it from the dropdown at the top of the left navigation bar.
 
 <div align="left" data-with-frame="true"><figure><img src=".gitbook/assets/version_selector_6.0.png" alt="" width="277"><figcaption></figcaption></figure></div>
 
@@ -35,7 +21,7 @@ Each answer includes:
 * **Follow-up questions** to help you explore related topics.
 * **Source links** at the bottom of the answer panel, pointing to the documentation pages used to generate the response.
 
-For the best results, ask clear, specific questions.
+Ask clear, specific questions for the best results. Ask AI can return inaccurate information, so follow the source links to verify each answer.
 
 <details>
 
@@ -45,55 +31,53 @@ For the best results, ask clear, specific questions.
 
 </details>
 
-{% hint style="info" %}
-Ask AI is built into the documentation to support your search experience. It might provide inaccurate information. Always verify answers by following the source links included in each response.
-{% endhint %}
-
 ## About NeuralMesh documentation
 
-This portal encompasses all documentation essential for comprehending and operating NeuralMesh, the software-only, high-performance, container-native storage system built for AI and data-intensive workloads at scale. It covers a range of topics:
+NeuralMesh is a software-only, container-native storage system built for AI and data-intensive workloads at scale. This portal covers everything you need to understand and operate it.
 
-**System overview:** Delve into the fundamental components, principles, and architectural elements constituting NeuralMesh, including the Core, Accelerate, Deploy, Enterprise Services, and Observe components that work in unison to power demanding AI pipelines.
+**System overview:** Learn the components, principles, and architecture behind NeuralMesh, including the Core, Accelerate, Deploy, Enterprise Services, and Observe components that power AI pipelines.
 
-**Planning and installation:** Discover prerequisites, compatibility details, and installation procedures for NeuralMesh clusters on bare metal, AWS, GCP, Azure, and Oracle Cloud environments.
+**Planning and installation:** Review the prerequisites and compatibility, then follow the installation procedures for clusters on bare metal, AWS, Azure, GCP, and Oracle Cloud.
 
-**NeuralMesh Axon:** Learn about NeuralMesh Axon converged deployment and maintenance.
+**NeuralMesh Axon:** Deploy and maintain NeuralMesh Axon in a converged configuration.
 
-**Getting started with NeuralMesh:** Initiate your NeuralMesh journey by learning the basics of managing file systems through the GUI and CLI, executing initial IOs, and exploring the REST API.
+**WEKA App Store:** Install the App Store and the WEKA AI Data Platform.
 
-**Performance:** Explore the results of FIO performance tests on the NeuralMesh filesystem, ensuring optimal system performance for AI training, inference, and data-intensive workloads.
+**Getting started with NeuralMesh:** Manage the cluster with the new `weka` CLI, the GUI, and the REST API, and run a first IO sanity check. The CLI reference guide documents every command group.
 
-**Filesystems & object stores:** Understand the role and management of file systems, object stores, file system groups, and key-management systems within NeuralMesh configurations. Learn about integrated tiering, the single namespace architecture, and the data catalog for indexing and querying filesystem metadata at scale.
+**Performance:** Review the FIO and MDTest results for the filesystem, and the procedures used to produce them.
 
-**Additional protocols:** Learn about the supported protocols—NFS, SMB, and S3—for accessing data stored in a WEKA filesystem.
+**Filesystems & object stores:** Manage filesystems, object stores, filesystem groups, and key management systems. Learn about integrated tiering, the single namespace, Snap-to-Object, asynchronous replication between clusters, and the data catalog for indexing and querying filesystem metadata at scale.
 
-**Security:** Learn about the supported security features and recommended configurations to protect sensitive data, comply with industry regulations, and reduce the risk of unauthorized access.
+**Additional protocols:** Access stored data through the supported protocols: NFS, SMB, and S3.
 
-**Licensing:** Gain insights into the system licensing options.
+**Security:** Configure the supported security features to protect sensitive data, meet regulatory requirements, and reduce the risk of unauthorized access.
 
-**Operation guide:** Navigate through various system operations, including events, statistics, user management, multi-tenancy, upgrades, expansion, and more.
+**Licensing:** Understand the licensing options and how to apply them.
 
-**Monitor the cluster:** Use NeuralMesh Observe to validate performance, monitor cluster health, plan capacity, and troubleshoot your WEKA estate. Local WEKA Home collects telemetry from clusters and clients to support troubleshooting.
+**Operation guide:** Run day-to-day operations, including events, statistics, user management, multi-tenancy, quotas, background tasks, upgrades, and expansion.
 
-**Kubernetes**: The Kubernetes guides cover deploying and managing the WEKA Data Platform. Learn how to use the WEKA Operator for high-performance storage deployment and handle day-2 operations including scaling, hardware management, and performance optimization.
+**Monitor the cluster:** Use NeuralMesh Observe to validate performance, monitor health, plan capacity, and troubleshoot across your clusters. Local WEKA Home collects telemetry from clusters and clients to support troubleshooting.
 
-**WEKApod:** Explore the WEKApod Data Platform Appliance Guide for step-by-step instructions on setting up and configuring the WEKApod™. This turnkey solution, designed for NVIDIA DGX SuperPOD, features pre-configured storage and software for quick deployment and faster value.
+**Kubernetes:** Deploy and manage the cluster on Kubernetes with the WEKA Operator, including day-2 operations such as scaling, hardware maintenance, and performance tuning.
 
-**AWS solutions**: Learn how to integrate the system with Amazon SageMaker HyperPod to enable high-performance distributed training of large language and foundation models. Explore best practices for configuring storage, optimizing performance, and scaling machine learning workloads in AWS environments.
+**WEKApod:** Set up and configure the WEKApod™ Data Platform Appliance, a turnkey solution for NVIDIA DGX SuperPOD with pre-configured storage and software.
 
-**Azure solutions**: Learn how to integrate the system with Azure CycleCloud and SLURM scheduler for streamlined HPC cluster management. Learn configuration steps, performance optimization, and architectural patterns for running AI, machine learning, and analytics workloads at scale in Azure environments.
+**AWS solutions:** Integrate with Amazon SageMaker HyperPod for distributed training of large language and foundation models, with guidance on storage configuration, performance, and scaling.
 
-**Best practice guides:** Explore our carefully selected guides, starting with WEKA and Slurm integration, to discover expert-recommended strategies and insights for optimizing your system and achieving peak performance in various scenarios.
+**Azure solutions:** Integrate with Azure CycleCloud and the Slurm scheduler for HPC cluster management, including configuration, performance tuning, and architectural patterns.
 
-**Support:** Find guidance on obtaining support for the system and effectively managing diagnostics.
+**Best practice guides:** Apply expert-recommended strategies for specific scenarios, starting with Slurm integration.
 
-**Appendices:** Explore the Appendices for various topics, including the CSI Plugin, which connects Kubernetes worker nodes to NeuralMesh, and other tools and procedures that can enhance your work with the system.
+**Support:** Get support and manage diagnostics, traces, and protocol debug levels.
 
-{% hint style="info" %}
-For maintenance and troubleshooting articles, search the WEKA Knowledge Base in the [WEKA support portal](https://support.weka.io/s/) or contact the [Customer Success Team](support/getting-support-for-your-weka-system.md#contacting-weka-technical-support-team).
+**Appendices:** Find additional topics, including the CSI Plugin that connects Kubernetes worker nodes to NeuralMesh.
 
-For product training and certification, see [Register for WEKAdemy](support/register-for-wekademy.md).
-{% endhint %}
+### Where to get help
+
+* For maintenance and troubleshooting articles, search the WEKA Knowledge Base in the [WEKA support portal](https://support.weka.io/s/).
+* For technical assistance, contact the [Customer Success Team](support/getting-support-for-your-weka-system.md#contacting-weka-technical-support-team).
+* For product training and certification, see [Register for WEKAdemy](support/register-for-wekademy.md).
 
 ### Conventions
 
