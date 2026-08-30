@@ -234,6 +234,20 @@ Shared networking configuration for NIC models:
 * **PKEY (Partition Key)**\
   A feature specific to InfiniBand networks that enables the creation of isolated virtual networks (partitions) on a single physical fabric, controlling which endpoints can communicate.
 
+*   **Ethernet flow control (pause frames)**
+
+    Disable 802.3x link-level flow control on the dataplane interfaces of all backend servers and clients: `ethtool -A <interface> rx off tx off`. Some NIC drivers force pause frames on without autonegotiation, which appears as `Autonegotiate: off, RX: on, TX: on` in the `ethtool -a` output. Do not run the cluster with this setting. If the site network policy requires flow control and RoCE is not in use, autonegotiate it with the switch (`Autonegotiate: on`) rather than forcing it on.
+
+    Apply the same setting to every backend server and client, and match it to the switch port configuration. Mismatched flow control causes intermittent performance degradation that is difficult to diagnose.
+
+    The `ethtool -A` setting does not survive a reboot or a driver reload. When NetworkManager manages the interface, set `ethtool.pause-autoneg no`, `ethtool.pause-rx off`, and `ethtool.pause-tx off` on the connection profile. NetworkManager reapplies its own ethtool state on every activation and overrides settings applied by scripts or udev rules. Otherwise, apply the setting from a udev rule with `systemd-run --no-block`. A blocking script in the interface-up path can prevent interfaces from coming up on boot. Verify the result with `ethtool -a <interface>`.
+
+{% hint style="warning" %}
+On RoCE fabrics, turn link-level flow control fully off on the dataplane interfaces: `ethtool -A <interface> autoneg off rx off tx off`. Priority Flow Control (PFC) and 802.3x global pause are mutually exclusive. A switch port with PFC enabled ignores global pause frames, so a server that emits them runs with no working flow control. Autonegotiated flow control is also unsafe, because negotiation can re-enable pause.
+
+Disable global pause only after the switch PFC no-drop class is in place. Removing it first leaves the path with no flow control at all.
+{% endhint %}
+
 **Related topics**
 
 [networking-in-wekaio.md](../weka-system-overview/networking-in-wekaio.md "mention")
