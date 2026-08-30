@@ -42,7 +42,14 @@ The data catalog maintains synchronization through a structured three-step proce
 Configure the infrastructure and filesystems required to activate catalog services for your data.
 
 {% hint style="danger" %}
-**INTERNAL, remove before publication. TBD (Docs):** Two sample-output blocks on this page (the `weka catalog cluster status` examples) still show legacy typed identifiers such as `FSId<4>` and `HostId<23>`. 6.0 prints bare integers, so these read as `4` and `23`. They could not be recaptured here: neither lab cluster has a catalog cluster configured, and standing one up creates an index filesystem and coordinator. Recapture on a cluster where the data catalog is already in use.
+**INTERNAL, remove before publication. TBD (Docs):** Two sample-output blocks on this page (the `weka catalog config show` examples) still show legacy typed identifiers, `FSId<4>` and `HostId<23>`. Recapture on a cluster where the data catalog is already in use. Neither lab cluster has a catalog cluster configured, and standing one up creates an index filesystem and coordinator.
+
+Checked against goweka `REL/6.0.0.324` on 2026-08-30, so the recapture only needs to confirm one of the two:
+
+* **Coordinator: expect `23`.** `CoordinatorDisplay()` formats a `container.Id` with `%s`, and `Identifier[T].String()` returns `strconv.FormatInt`, so it prints a bare integer.
+* **Index filesystem: unknown, may still be `FSId<4>`.** `ConfigIndexFS.ID` is a plain `string` that the CLI passes through from the backend without reformatting, so the wire value decides. Do not assume it matches the coordinator.
+
+Fix both lines together. Changing one and leaving the other makes the block internally inconsistent.
 {% endhint %}
 
 #### Before you begin
