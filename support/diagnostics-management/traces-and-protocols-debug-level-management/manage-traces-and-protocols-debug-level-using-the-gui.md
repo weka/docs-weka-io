@@ -92,10 +92,6 @@ Restore the traces configuration to its default settings.
 The default maximum traces capacity is 50 GiB per I/O process, with a minimum of 100 GiB and a maximum of 1000 GiB per server. The default minimum free capacity is 3 GiB.
 {% endhint %}
 
-{% hint style="danger" %}
-**TBD - INTERNAL - Nevo, please confirm before publication**
-{% endhint %}
-
 **Procedure**
 
 1. From the menu, select **Configure > Cluster Settings**, and select the **Support** tab.

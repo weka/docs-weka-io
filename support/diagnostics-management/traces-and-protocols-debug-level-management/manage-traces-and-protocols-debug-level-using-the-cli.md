@@ -32,6 +32,10 @@ description: >-
 
 <table><thead><tr><th width="190.2265625">Parameter</th><th width="267.0234375">Description</th><th>Default</th></tr></thead><tbody><tr><td><code>server-max</code></td><td>Maximum capacity to retain per server.</td><td>50 GiB per I/O process, with a minimum of 100 GiB and a maximum of 1000 GiB per server.</td></tr><tr><td><code>client-max</code></td><td>Maximum capacity to retain per client.</td><td>50 GiB per I/O process, with a minimum of 100 GiB and a maximum of 1000 GiB per client.</td></tr><tr><td><code>server-ensure-free</code></td><td>Always maintain at least this much capacity to remain free on servers.</td><td>3 GiB</td></tr><tr><td><code>client-ensure-free</code></td><td>Always maintain at least this much capacity to remain free on clients.</td><td>3 GiB</td></tr></tbody></table>
 
+{% hint style="info" %}
+The available disk space also limits the effective trace usage. The system always keeps at least the ensure-free reserve available. If it cannot keep even that reserve, it deletes all rotatable traces.
+{% endhint %}
+
 To modify the trace retention setting of a single client, you can use the `traces_capacity_mb` mount option. See Additional mount options using the stateless clients feature.
 
 ### Restore default traces retention values
