@@ -47,7 +47,7 @@ Hardening the network involves a "default deny" policy while explicitly allowing
 * **Disable Unused Protocols:** Disable DCCP, SCTP, RDS, and TIPC.
 * **IPv6:** Disable IPv6 if not explicitly required for the cluster deployment.
 * **Wireless:** Ensure wireless interfaces are disabled.
-* **Packet handling:** Disable packet redirect sending and IP forwarding.
+* **Packet handling:** Disable packet redirect sending and IP forwarding, except where required, such as for Kubernetes CNI networking.
 * **SYN flood:** Enable TCP SYN cookies to mitigate SYN flood attacks.
 
 ### Firewall port requirements
@@ -76,7 +76,7 @@ Implement CIDR-based security policies to strictly regulate access to cluster ma
 
 * **Sudo:** Ensure `sudo` is installed and restricted to authorized users.
 * **SSH configuration:**
-  * Disable `X11Forwarding`.
+  * Disable `X11Forwarding` unless required for other tooling.
   * Set `MaxAuthTries` to 4 or less.
   * Disable `HostbasedAuthentication`.
   * Disable `PermitEmptyPasswords`.
