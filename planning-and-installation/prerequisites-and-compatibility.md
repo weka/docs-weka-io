@@ -104,7 +104,7 @@ For custom kernel certification, contact the [Customer Success Team](https://doc
   * 24.04, 22.04, 20.04, 18.04
 * **Amazon Linux:**
   * AL2023 (x86 and ARM), AMI 2018.03, AMI 2017.09, Amazon Linux 2 LTS
-* **SELS:**
+* **SLES:**
   * 16, 15, 12
 * **Oracle Linux:**
   * 9, 8.9
