@@ -108,8 +108,8 @@ To write to the target filesystem, hydrate all of its data, remove the replicati
 
 * The number of snapshots to keep ranges from 2 to 25. Retaining more snapshots requires more storage.
 * Avoid a snapshot interval shorter than 30 minutes on a filesystem that also has a replication schedule. If snapshot deletion overlaps the start of a replication cycle, the target can fall further behind than the scheduled interval.
-* The anchor snapshot remains after you remove the replication pair and the cluster peer.
-* Resuming an aborted replication pair can fail and move the pair to the error state with a `SNAPSHOT_INCOMPATIBLE` message.
+* The snapshot that replication created on the filesystem remains after you remove the replication pair and the cluster peer, and you cannot delete it.
+* Resuming an aborted replication pair can fail and move the pair to the error state with a `SNAPSHOT_INCOMPATIBLE` message. This is a terminal error. Replication does not retry the pair, and recovering it requires manual intervention.
 
 ### Data copy and hydration
 
@@ -121,7 +121,7 @@ To write to the target filesystem, hydrate all of its data, remove the replicati
 
 * Replication management is available through the CLI only.
 * Replication is not supported on servers that run the NFS or SMB protocols, because the S3 protocol cannot be combined with NFS or SMB.
-* Rotating S3 credentials with `weka cluster peer init --reinit` is not supported. Run `weka fs tier s3 update` on the target cluster with the new credentials.
+* `weka cluster peer init --reinit` rotates the S3 credentials on the cluster where you run it, but it does not update the peer. After rotating, run `weka fs tier s3 update` on the target cluster with the new credentials.
 
 {% hint style="warning" %}
 **INTERNAL, remove before publication. Gokul to review:** these considerations come from the Async replication UAT page. Four of them could not be confirmed against `wekapp` `trunk/v6.0.0` or the shipped CLI, and stand on your authority. Confirm each:
@@ -132,6 +132,12 @@ To write to the target filesystem, hydrate all of its data, remove the replicati
 * The restriction on servers running NFS or SMB.
 
 One conflict to settle. Your notes say source filesystems with tiering are not supported, but nothing in the 6.0 API rejects a tiered source, so this page keeps the existing wording, "Tiered data on the source is not replicated." Which is correct?
+
+Anand raised three of these in GitBook comments on 2026-08-30, and two are now questions for you:
+
+* **`--reinit`.** He asked why we said it was not supported. It is: `initConfirmGate` in `init.go` rotates credentials when the cluster is fully initialized and `--reinit` is passed. The page now says it rotates locally but does not update the peer, which is what your note implies. Confirm that the peer really is not updated.
+* **`SNAPSHOT_INCOMPATIBLE`.** He asked how to recover and when it happens. The page now states it is terminal, which `isTerminalReplicationError` confirms. The recovery procedure is still missing, and `replication_error.d` maps three distinct causes to this code, including `SnapshotDataAlreadyDownloadedByNewerSnapshot`. Which cases should a customer expect, and what should they do?
+* **Anchor snapshot.** He flagged the term as unexplained. It appears nowhere in the product, only in the UAT notes, so the bullet now describes the leftover snapshot without naming it. Say if it needs a name and a definition.
 
 Two numbers in the UAT examples do not match the shipped code, so this page follows the code. `--snapshots-to-keep 250` and `100` exceed the documented range of 2 to 25 (`add.go`), and "up to 4 copy paths" conflicts with `MAX_COPY_PATHS = 10` (`replication_pair.d`). Separately, `replication_pairs.d` enforces that limit with `<` in one place and `<=` in another, so the real ceiling is 9 or 10 depending on the path taken. Worth a look.
 {% endhint %}
