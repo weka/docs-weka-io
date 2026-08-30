@@ -403,10 +403,11 @@ To get the best performance, ensure [TRIM](https://en.wikipedia.org/wiki/Trim_\(
   * GET after a single PUT is strongly consistent
   * Multiple PUTs are eventually consistent
 
-The system integrates with object stores for two primary purposes: extending the filesystem capacity with a lower-cost tier and creating remote backups for disaster recovery. Support for these functions varies by the object store provider and its specific configuration.
+The system integrates with object stores for three primary purposes: extending the filesystem capacity with a lower-cost tier, creating local backups, and creating remote backups for disaster recovery. Support for these functions varies by the object store provider and its specific configuration.
 
-* **Tiering:** Moves inactive data from the high-performance SSD tier to a designated object store bucket. This frees up SSD capacity while keeping the data accessible within the unified filesystem namespace. Tiering requires high performance and consistency from the object store.
-* **Snap-to-Object:** Sends immutable snapshots of a filesystem to a remote object store. This provides an efficient and secure method for remote backup and disaster recovery.
+* **Tiering:** Moves inactive data from the high-performance SSD tier to a local object store bucket. This frees up SSD capacity while keeping the data accessible within the unified filesystem namespace. Tiering requires high performance and consistency from the object store.
+* **Local Snap-to-Object:** Sends immutable snapshots of a filesystem to a local object store bucket, one that is close to the cluster. This provides an efficient and secure method for local backup and fast recovery.
+* **Remote Snap-to-Object:** Sends immutable snapshots of a filesystem to a remote object store bucket, typically in a different geographic location. This provides an efficient and secure method for remote backup and disaster recovery.
 
 ### Certified object stores and support status
 
