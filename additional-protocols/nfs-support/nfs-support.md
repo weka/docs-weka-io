@@ -79,7 +79,7 @@ Configuring the NFS cluster level involves creating an interface group and assig
 When NFS multi-tenancy is enabled, an interface group also serves the floating IP addresses of the tenants assigned to it. Use **Assign Tenant** on the interface group's detail view to assign or move a tenant, and the **Tenant** column on the namespaces table to see and remove existing assignments. See [manage-nfs-for-tenants.md](../../operation-guide/weka-native-multi-tenancy-management/manage-nfs-for-tenants.md "mention").
 {% endhint %}
 
-TBD \[Captures needed for the multi-tenancy screens on this page: the Restart NFS Containers dialog, the Assign Tenant dialog on the interface-group detail view, and the namespaces table showing the Tenant column with its per-row Remove action.]
+**INTERNAL, remove before publication. TBD (Docs):** captures needed for the multi-tenancy screens on this page: the Restart NFS Containers dialog, the Assign Tenant dialog on the interface-group detail view, and the namespaces table showing the Tenant column with its per-row Remove action.
 
 ### Create an interface group <a href="#create-interface-groups" id="create-interface-groups"></a>
 
@@ -191,7 +191,7 @@ Configuring the NFS-Kerberos service integration automatically restarts the NFS 
    * **NFS Service Name**: This refers to the complete domain name for a specific NFS server.
    * **KDC Realm Admin Name**: The username of an administrator who has access to the LDAP directory. This user manages the KDC within a realm.
    * **KDC Realm Admin Password**: The password of the administrative user who manages the KDC within a realm.
-   * **Base OU:** TBD
+   * **Base OU:** INTERNAL, remove before publication. TBD (Engineering): this field description was never written. Needs the meaning of Base OU in the Kerberos AD registration, from whoever owns NFS Kerberos.
 4) Select **Configure** to apply the changes.
 
 <div data-with-frame="true"><figure><img src="../../.gitbook/assets/NFS_conf_kerb_auth_AD.png" alt=""><figcaption><p>Configure Kerberos authentication over AD dialog</p></figcaption></figure></div>

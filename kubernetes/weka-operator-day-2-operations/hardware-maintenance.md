@@ -474,7 +474,7 @@ evicting pod weka-operator-system/cluster-dev-clientsnew-3.252.130.226
 evicting pod default/csi-app-on-dir-api2
 pod/csi-app-on-dir-api2 evicted
 pod/cluster-dev-clientsnew-3.252.130.226 evicted
-node/3.252.130.226 drainedTBD
+node/3.252.130.226 drained
 
 $ kubectl get nodes
 NAME             STATUS                     ROLES                       AGE     VERSION

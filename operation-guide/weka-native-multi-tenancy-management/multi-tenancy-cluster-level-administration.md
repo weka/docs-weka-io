@@ -395,7 +395,9 @@ weka tenant set-qos <tenant> [--max-throughput max-throughput]
 
 ## Configure tenant S3 settings
 
-TBD \[This section requires tenant administrator privileges but sits on the cluster-level page. Should it move to Multi-tenancy tenant-level administration, or is it here because a cluster admin performs it during provisioning? Left in place pending a decision.]
+**INTERNAL, remove before publication. TBD (Docs):** this section requires tenant administrator privileges but sits on the cluster-level page. Should it move to Multi-tenancy tenant-level administration, or is it here because a cluster admin performs it during provisioning? Left in place pending a decision.
+
+**INTERNAL, remove before publication. TBD (Docs):** recapture the **Configure Tenant S3 Settings** screenshot (`tenant_s3_setting.png`) against the 6.0 GUI. The current capture was last touched on 2026-08-10 and predates the 6.0 GUI refresh.
 
 A cluster administrator configures a tenant's S3 settings during provisioning. A tenant administrator can adjust these settings for their own tenant afterwards.
 

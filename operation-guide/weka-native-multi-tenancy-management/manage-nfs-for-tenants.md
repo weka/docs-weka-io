@@ -106,7 +106,7 @@ To remove a tenant, open the interface group's namespaces table and select **Rem
 
 The **Tenant** column on that table shows which tenant each namespace serves.
 
-TBD [Captures needed: the Assign Tenant dialog, and the namespaces table showing the Tenant column with its per-row Remove action.]
+**INTERNAL, remove before publication. TBD (Docs):** captures needed: the Assign Tenant dialog, and the namespaces table showing the Tenant column with its per-row Remove action.
 
 #### CLI alternative
 
