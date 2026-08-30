@@ -360,7 +360,7 @@ iodepth=1
 
 MDTest is an open-source tool designed to test metadata performance, measuring the rate of operations such as file creates, stats, and deletes across the cluster.
 
-MDTest uses an MPI framework to coordinate jobs across multiple nodes. The examples shown here assume the use of MDTest version 1.9.3 with [MPICH](https://www.mpich.org/downloads/) version 3.3.2 ([MPITCH documentation](https://www.mpich.org/documentation/guides/)).
+MDTest uses an MPI framework to coordinate jobs across multiple nodes. The examples shown here assume the use of MDTest version 1.9.3 with [MPICH](https://www.mpich.org/downloads/) version 3.3.2 ([MPICH documentation](https://www.mpich.org/documentation/guides/)).
 
 **Procedure**
 
@@ -369,7 +369,7 @@ Run the MDTest benchmark from a client machine with access to the WEKA filesyste
 **Job definition**
 
 ```bash
-mpiexec -f <hostfile> -np 1088 mdtest-v-N 136i 3 n 18382 -F -u-d /mnt/weka/mdtest
+mpiexec -f <hostfile> -np 1088 mdtest -v -N 136 -i 3 -n 18382 -F -u -d /mnt/weka/mdtest
 ```
 
 **Result example**
