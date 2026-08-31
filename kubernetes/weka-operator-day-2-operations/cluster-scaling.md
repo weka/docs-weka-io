@@ -61,7 +61,7 @@ wekacontainer.weka.weka.io/weka-drivers-builder unchanged
 
 </details>
 
-3. [#perform-the-standard-verification-steps](cluster-scaling.md#perform-the-standard-verification-steps "mention").
+3. [#perform-standard-verification-steps](hardware-maintenance.md#perform-standard-verification-steps "mention").
 
 #### Expected results
 

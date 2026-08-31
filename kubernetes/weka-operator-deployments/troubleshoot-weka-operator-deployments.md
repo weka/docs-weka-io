@@ -66,7 +66,7 @@ uname -r
 apt list --installed | grep linux-headers
 ```
 
-5. If the driver package is missing for the specific kernel version, see [Driver download failures](troubleshoot-weka-operator-deployments.md#driver-download-failures).
+5. If the driver package is missing for the specific kernel version, see [Troubleshoot driver management](weka-operator-driver-management.md#troubleshoot-driver-management).
 
 ### WekaClient containers stuck in Terminating
 

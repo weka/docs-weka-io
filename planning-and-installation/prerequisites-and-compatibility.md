@@ -68,12 +68,12 @@ This policy excludes Linux distributions bundled as part of the WEKA Software Ap
 
 **Lifecycle stages**
 
-* **General Availability (GA):** WEKA aims to support new GA releases within three months of the vendor release date. After addition to the supported list, these versions receive full support, including certification, ongoing validation, and defect remediation aligned to the [Broken link](/broken/pages/Kk43KpiTpQO4vxze2TU3 "mention").
+* **General Availability (GA):** WEKA aims to support new GA releases within three months of the vendor release date. After addition to the supported list, these versions receive full support, including certification, ongoing validation, and defect remediation aligned to the [Release support and commitments](../support/release-support-and-commitments.md).
 * **End of Support and End of Life:** After a vendor EoS date, WEKA stops active testing and validation. Field issues receive best-effort remediation. If vendor backports are unavailable, fixes may require upgrading to a supported version. Plan migrations before the vendor EoL date.
 
 **Custom kernel support**
 
-For custom kernel certification, contact the [Customer Success Team](../support/getting-support-for-your-weka-system.md#contact-customer-success-team).
+For custom kernel certification, contact the [Customer Success Team](../support/getting-support-for-your-weka-system.md#open-a-support-case).
 {% endtab %}
 
 {% tab title="Backends" %}
@@ -372,7 +372,7 @@ The cluster supports the following InfiniBand configurations:
 * Redundant InfiniBand ports can be used for both HA and higher bandwidth.
 
 {% hint style="info" %}
-If it is necessary to change PKEYs, contact the [Customer Success Team](../support/getting-support-for-your-weka-system.md#contacting-weka-technical-support-team).
+If it is necessary to change PKEYs, contact the [Customer Success Team](../support/getting-support-for-your-weka-system.md#open-a-support-case).
 {% endhint %}
 {% endtab %}
 {% endtabs %}
@@ -490,7 +490,7 @@ GCP: [supported-machine-types-and-storage.md](weka-installation-on-gcp/supported
 \
 **Related information**
 
-For additional information and how-to articles, search the WEKA Knowledge Base in the [WEKA support portal](http://support.weka.io) or contact the [Customer Success Team](../support/getting-support-for-your-weka-system.md#contacting-weka-technical-support-team).
+For additional information and how-to articles, search the WEKA Knowledge Base in the [WEKA support portal](http://support.weka.io) or contact the [Customer Success Team](../support/getting-support-for-your-weka-system.md#open-a-support-case).
 
 ## KMS
 

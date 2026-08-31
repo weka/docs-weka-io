@@ -18,7 +18,7 @@ weka s3 bucket add <name> [--existing-path <string>] [--force] [--fs-id <fs-id>]
 
 | Parameter                   | Description                                                                                         |
 | --- | --- |
-| `name`\* | Name of the bucket to create. [Bucket Naming Limitations](../s3-limitations.md#buckets) section |
+| `name`\* | Name of the bucket to create. [Bucket Naming Limitations](../s3-limitations.md#bucket-naming-limitations) section |
 | `--existing-path` \<string> | Existing path to use for the bucket. |
 | `-f`, `--force` | Force when existing path has quota. |
 | `--fs-id` \<fs-id> | Filesystem ID for the bucket. |
@@ -137,7 +137,7 @@ weka s3 bucket policy set-custom <bucket-name> <policy-file>
 | Parameter       | Description                                 |
 | --- | --- |
 | `bucket-name`\* | Name of the bucket. |
-| `policy-file`\* | Path to file containing custom JSON policy. [Supported Policy Actions](../s3-limitations.md#supported-policy-actions) |
+| `policy-file`\* | Path to file containing custom JSON policy. [Supported Policy Actions](../s3-limitations.md#supported-s3-policy-actions) |
 
 ### View a bucket policy
 

@@ -340,8 +340,8 @@ TEST.WEKALAB.IO     Zeus.test.wekalab.io                        Zeus.test.wekala
 
 Integrating Kerberos with AD involves the following:
 
-1. [Register Kerberos with AD](nfs-support-1.md#integrate-kerberos-with-a-d)
-2. [Set up Kerberos to use AD LDAP](nfs-support-1.md#set-up-kerberos-to-use-a-d-ldap)
+1. [Register Kerberos with AD](nfs-support-1.md#integrate-kerberos-with-ad)
+2. [Set up Kerberos to use AD LDAP](nfs-support-1.md#set-up-kerberos-to-use-ad-ldap)
 
 #### Register Kerberos with AD
 

@@ -91,4 +91,4 @@ WEKA uses a follow-the-sun support model. An available manager handles the escal
 
 * [WEKA Home - The WEKA support cloud](../monitor-the-weka-cluster/the-wekaio-support-cloud/)
 * [Diagnostics management](diagnostics-management/)
-* [Release support and commitments](/broken/pages/Kk43KpiTpQO4vxze2TU3)
+* [Release support and commitments](release-support-and-commitments.md)

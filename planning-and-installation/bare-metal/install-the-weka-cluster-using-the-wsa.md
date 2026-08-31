@@ -44,10 +44,10 @@ Before deploying the WSA, do the following:
 
 ## WSA deployment workflow
 
-1. [Install the WSA](install-the-weka-cluster-using-the-wsa.md#1.-install-the-wsa)
-2. [Configure the WSA](install-the-weka-cluster-using-the-wsa.md#2.-configure-the-wsa)
-3. [Test the environment](install-the-weka-cluster-using-the-wsa.md#3.-test-the-environment)
-4. [Validate the WEKA software installation](install-the-weka-cluster-using-the-wsa.md#4.-validate-the-weka-software-installation)
+1. [Install the WSA](install-the-weka-cluster-using-the-wsa.md#id-1.-install-the-wsa)
+2. [Configure the WSA](install-the-weka-cluster-using-the-wsa.md#id-2.-configure-the-wsa)
+3. [Test the environment](install-the-weka-cluster-using-the-wsa.md#id-3.-test-the-environment)
+4. [Validate the WEKA software installation](install-the-weka-cluster-using-the-wsa.md#id-4.-validate-the-weka-software-installation)
 
 ### 1. Install the WSA
 

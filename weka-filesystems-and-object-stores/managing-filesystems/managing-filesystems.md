@@ -95,7 +95,7 @@ Modify filesystem settings as requirements change. You can change the name, capa
 
 <div data-with-frame="true"><img src="../../.gitbook/assets/edit_fs_menu.png" alt="Filesystem menu"></div>
 
-3. In the **Edit Filesystem** dialog, modify the parameters according to your requirements. (See the parameter descriptions in the [Add a filesystem](managing-filesystems.md#add-a-filesystem) topic.)
+3. In the **Edit Filesystem** dialog, modify the parameters according to your requirements. (See the parameter descriptions in the [Add a filesystem](managing-filesystems.md#create-a-filesystem) topic.)
 4. Select **Save**.
 
 ## Delete a filesystem
@@ -103,7 +103,7 @@ Modify filesystem settings as requirements change. You can change the name, capa
 You can delete a filesystem if its data is no longer required. Deleting a filesystem does not delete the data in the tiered object store bucket.
 
 {% hint style="info" %}
-If you must also delete the data in the tiered object store bucket, see the [Delete a filesystem](managing-filesystems-1.md#delete-a-filesystem) topic in the CLI section.
+If you must also delete the data in the tiered object store bucket, see the [Delete a filesystem](managing-filesystems-1.md#remove-a-filesystem) topic in the CLI section.
 {% endhint %}
 
 **Procedure**

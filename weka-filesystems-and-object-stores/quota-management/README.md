@@ -84,5 +84,5 @@ By default, when a hard quota is set on a directory, the `df` utility interprets
 This integration applies to directory quotas only. It is not available for user or group level quotas.
 
 {% hint style="info" %}
-The `df` utility integration with quotas is a global setting in the WEKA system. To change this global behavior to use soft quotas or to ignore quotas instead, contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md#contact-customer-success-team).
+The `df` utility integration with quotas is a global setting in the WEKA system. To change this global behavior to use soft quotas or to ignore quotas instead, contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md#open-a-support-case).
 {% endhint %}

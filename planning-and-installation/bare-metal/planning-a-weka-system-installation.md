@@ -15,7 +15,7 @@ The planning of a WEKA system is essential before the actual installation proces
 5. Network
 
 {% hint style="info" %}
-When implementing an AWS configuration, it is possible to go to the [Self-Service Portal in start.weka.io](/broken/pages/-L7Tv_d53m7ZQP8937LL) to map capacity and performance requirements into various configurations automatically.
+When implementing an AWS configuration, it is possible to go to the [Self-Service Portal in start.weka.io](https://start.weka.io/) to map capacity and performance requirements into various configurations automatically.
 {% endhint %}
 
 ## Total SSD net capacity and performance planning
@@ -23,8 +23,8 @@ When implementing an AWS configuration, it is possible to go to the [Self-Servic
 A WEKA system cluster runs on a group of servers with local SSDs. To plan these servers, the following information must be clarified and defined:
 
 1. **Capacity:** Plan your net SSD capacity. The data management to object stores can be added after the installation. In the context of the planning stage, only the SSD capacity is required.
-2. **Redundancy scheme:** Define the optimal redundancy scheme required for the WEKA system, as explained in [Selecting a Redundancy Scheme](../../weka-system-overview/about.md#selecting-a-redundancy-scheme).
-3. **Failure domains:** Determine whether to use failure domains (optional), and if yes, determine the number of failure domains and the potential number of servers in each failure domain, as described in [Failure Domains](/broken/pages/-L7yY2QmpKSIOpgDhBFf#failure-domains-optional), and plan accordingly.
+2. **Redundancy scheme:** Define the optimal redundancy scheme required for the WEKA system, as explained in [Redundancy and protection levels](../../weka-system-overview/cluster-capacity-and-redundancy-management.md#redundancy-and-protection-levels).
+3. **Failure domains:** Determine whether to use failure domains (optional), and if yes, determine the number of failure domains and the potential number of servers in each failure domain, as described in [Failure domains](../../weka-system-overview/cluster-capacity-and-redundancy-management.md#failure-domains), and plan accordingly.
 4. **Hot spare**: Define the required hot spare count (see [#hot-spare-capacity](../../weka-system-overview/cluster-capacity-and-redundancy-management.md#hot-spare-capacity "mention")).
 
 Once all this data is clarified, you can plan the SSD net storage capacity accordingly (see [#ssd-net-storage-capacity-calculation](../../weka-system-overview/cluster-capacity-and-redundancy-management.md#ssd-net-storage-capacity-calculation "mention")). Adhere to the following information, which is required during the installation process:
@@ -102,7 +102,7 @@ Required memory for metadata: 20 Bytes × 980 million files × 1 unit = \~18.3 G
 Total memory requirement per server = 2.61 + 2.05 + 47.2 + 11.2 + 84.5 + 14.9 + 1.86 + 18.3 = \~182.6 GiB
 
 {% hint style="info" %}
-The memory requirements are conservative and can be reduced in some situations, such as in systems with mostly large files or a system with files 4 KB in size. Contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md#contact-customer-success-team) to receive an estimate for your specific configuration.
+The memory requirements are conservative and can be reduced in some situations, such as in systems with mostly large files or a system with files 4 KB in size. Contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md#open-a-support-case) to receive an estimate for your specific configuration.
 {% endhint %}
 
 ### Client's memory requirements
@@ -178,9 +178,9 @@ Plan the number of physical cores dedicated to the WEKA software according to th
   * Leave enough cores for the container serving the protocol if it runs on the same server.
 * Allocate enough cores to support performance targets.
   * Generally, use 1 drive process per SSD for up to 6 SSDs and 1 drive process per 2 SSDs for more, with a ratio of 2 compute processes per drive process.
-  * For finer tuning, contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md#contact-customer-success-team).
+  * For finer tuning, contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md#open-a-support-case).
 * Allocate enough memory to match core allocation, as discussed above.
-* Running other applications on the same server (converged WEKA system deployment) is supported. For details, contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md#contact-customer-success-team).
+* Running other applications on the same server (converged WEKA system deployment) is supported. For details, contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md#open-a-support-case).
 
 ### Additional protocols CPU usage
 
@@ -188,7 +188,7 @@ The SMB, NFS, and S3 protocol services run in dedicated protocol containers alon
 
 Allocating additional CPU cores to protocol and frontend containers generally improves protocol performance. However, CPU scaling is effective only up to the network limit.
 
-For detailed sizing guidelines and performance tuning recommendations tailored to your specific protocol workloads, contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md#contact-customer-success-team).
+For detailed sizing guidelines and performance tuning recommendations tailored to your specific protocol workloads, contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md#open-a-support-case).
 
 ### Client CPU usage
 

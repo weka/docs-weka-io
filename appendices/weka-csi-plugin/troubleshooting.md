@@ -45,7 +45,7 @@ Due to a [Kubernetes v1.18 issue with allocating mixed hugepages sizes](https://
 **Workaround:** Only if the default memory for the client is increased, do one of the following:
 
 * If the WEKA client is installed on the K8s nodes by a manual stateless client mount, set the `reserve_1g_hugepages` mount option to `false` in the mount command.
-* If this is a WEKA server or a WEKA client part of the WEKA cluster, contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md#contact-customer-success-team).
+* If this is a WEKA server or a WEKA client part of the WEKA cluster, contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md#open-a-support-case).
 
 Advanced examples and detailed instructions are also available at [https://github.com/weka/csi-wekafs/tree/main/examples](https://github.com/weka/csi-wekafs/tree/main/examples).
 

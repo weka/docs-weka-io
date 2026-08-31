@@ -52,7 +52,7 @@ Verify that the following requirements are met:
 * 1 Gbps network
 
 {% hint style="success" %}
-For using other operating systems, contact the [Customer Success Team](../../../support/getting-support-for-your-weka-system.md#contact-customer-success-team).
+For using other operating systems, contact the [Customer Success Team](../../../support/getting-support-for-your-weka-system.md#open-a-support-case).
 {% endhint %}
 
 ### 2. Prepare the physical server (or VM)
@@ -159,7 +159,7 @@ Replace the `cluster-cidr` and `service-cidr` values with your available network
 
 ### 4. Apply security hardening to the LWH server
 
-Configure the server to meet WEKA security standards before deploying the LWH software. See [#hardened-configuration-for-local-weka-home](../local-weka-home-overview.md#hardened-configuration-for-local-weka-home "mention").
+Configure the server to meet WEKA security standards before deploying the LWH software. See [#hardened-configuration-for-local-weka-home](../local-weka-home-overview.md#security-hardening-for-local-weka-home "mention").
 
 ### 5. Download the Local WEKA Home bundle
 
@@ -599,7 +599,7 @@ weka cloud enable --cloud-url https://<ip or hostname of the Local WEKA Home ser
 
 ### 9. Test the deployment
 
-The WEKA cluster periodically and on-demand uploads data to the Local WEKA Home according to its information type (see [#which-information-is-uploaded-to-weka-home](../#which-information-is-uploaded-to-weka-home "mention")).
+The WEKA cluster periodically and on-demand uploads data to the Local WEKA Home according to its information type (see [#upload-information-from-the-weka-cluster-to-weka-home](../#upload-information-from-the-weka-cluster-to-weka-home "mention")).
 
 1. Access the WEKA Home portal and verify that the test data appears.
 2. To trigger a test event, run `weka events trigger test` and verify the test event is received in the Local WEKA Home portal under the **Events** section.
@@ -817,7 +817,7 @@ The probable cause can be, for example, a communication problem.
 
 #### Resolution
 
-1. Check the firewall and node IP settings. If you didn't set up a firewall (see [#id-2.-prepare-the-management-server](./#id-2.-prepare-the-management-server "mention")), set valid rules and run:
+1. Check the firewall and node IP settings. If you didn't set up a firewall (see [#id-2.-prepare-the-physical-server-or-vm](./#id-2.-prepare-the-physical-server-or-vm "mention")), set valid rules and run:
 
 ```
 k3s-killall.sh

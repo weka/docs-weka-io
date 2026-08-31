@@ -16,7 +16,7 @@ The WEKA system supports the following types of networking technologies:
 
 ‌The networking infrastructure dictates the choice between the two. If a WEKA cluster is connected to both infrastructures, it is possible to connect WEKA clients from both networks to the same cluster.
 
-The WEKA system networking can be configured as _performance-optimized_ or _CPU-optimized_. In [performance-optimized](networking-in-wekaio.md#performance-optimized-networking-dpdk) networking, the CPU cores are dedicated to WEKA, and the networking uses DPDK. In [CPU-optimized](networking-in-wekaio.md#cpu-optimized-networking-udp-mode) networking, the CPU cores are not dedicated to WEKA, and the networking uses DPDK (when supported by the NIC drivers) or in-kernel (UDP mode).
+The WEKA system networking can be configured as _performance-optimized_ or _CPU-optimized_. In [performance-optimized](networking-in-wekaio.md#performance-optimized-networking-dpdk) networking, the CPU cores are dedicated to WEKA, and the networking uses DPDK. In [CPU-optimized](networking-in-wekaio.md#cpu-optimized-networking) networking, the CPU cores are not dedicated to WEKA, and the networking uses DPDK (when supported by the NIC drivers) or in-kernel (UDP mode).
 
 {% hint style="info" %}
 This topic covers the cluster's own networking. Multi-tenant clusters add a second construct, the **network space**, which defines a logical network boundary using a VLAN ID and an IP range and provides isolated datapath endpoints for a tenant. Because each network space is isolated by VLAN, two tenants can use overlapping IP ranges within one cluster. See [multi-tenancy-cluster-level-administration.md](../operation-guide/weka-native-multi-tenancy-management/multi-tenancy-cluster-level-administration.md "mention").
@@ -84,7 +84,7 @@ In a typical WEKA system configuration, the WEKA backend servers access the netw
 * High-performance network for data-path traffic.
 
 {% hint style="info" %}
-To run both functions on the same physical interface, contact the [Customer Success Team](../support/getting-support-for-your-weka-system.md#contact-customer-success-team).
+To run both functions on the same physical interface, contact the [Customer Success Team](../support/getting-support-for-your-weka-system.md#open-a-support-case).
 {% endhint %}
 
 The high-performance network used to connect all the backend servers must be DPDK-based. This internal WEKA network also requires a separate IP address space. For details, see [Network planning](../planning-and-installation/bare-metal/planning-a-weka-system-installation.md#network-planning) and [Configure the networking](../planning-and-installation/bare-metal/setting-up-the-hosts/#configure-the-networking).
@@ -239,7 +239,7 @@ PROCESS ID  HOSTNAME  CONTAINER   IPS         STATUS  ROLES       NETWORK      C
 ```
 
 {% hint style="info" %}
-GDS is automatically enabled and detected by the system. To enable or disable RDMA networking for the cluster or a specific client, contact the [Customer Success Team](../support/getting-support-for-your-weka-system.md#contact-customer-success-team).
+GDS is automatically enabled and detected by the system. To enable or disable RDMA networking for the cluster or a specific client, contact the [Customer Success Team](../support/getting-support-for-your-weka-system.md#open-a-support-case).
 {% endhint %}
 
 **Related topic**

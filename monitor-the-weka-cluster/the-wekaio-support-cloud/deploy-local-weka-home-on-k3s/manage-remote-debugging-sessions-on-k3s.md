@@ -268,7 +268,7 @@ Use the `list-recordings` command to view available session recordings stored in
 {% hint style="info" %}
 The default PVC capacity for remote session client recordings is set to 10 GiB. To increase this capacity, modify the `/opt/wekahome/current/config.json` file, and then update the deployment settings accordingly.
 
-For details, see [#id-5.-install-and-configure-local-weka-home](./#id-5.-install-and-configure-local-weka-home "mention").
+For details, see [#id-6.-install-and-configure-local-weka-home](./#id-6.-install-and-configure-local-weka-home "mention").
 {% endhint %}
 
 **Syntax**

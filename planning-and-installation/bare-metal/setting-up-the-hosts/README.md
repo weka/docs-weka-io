@@ -598,7 +598,7 @@ The source-based routing tables select the correct interface for traffic from ea
 
 **Related topic**
 
-[#high-availability-ha](../../../weka-system-overview/networking-in-wekaio.md#high-availability-ha "mention")
+[#high-availability-ha](../../../weka-system-overview/networking-in-wekaio.md#high-availability "mention")
 
 ## 7. Verify the network configuration <a href="#verify-the-network-configuration" id="verify-the-network-configuration"></a>
 

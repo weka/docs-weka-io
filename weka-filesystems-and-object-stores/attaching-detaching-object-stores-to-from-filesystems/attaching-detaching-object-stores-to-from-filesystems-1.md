@@ -41,5 +41,5 @@ weka fs tier s3 detach <filesystem> <obs-name> [--force]
 | `-f`, `--force` | Force action. Perform this action without further confirmation. |
 
 {% hint style="info" %}
-To [recover from a snapshot](../snap-to-obj/#creating-a-filesystem-from-a-snapshot-using-the-cli) uploaded when two `local` object stores have been attached, use the `--additional-obs` parameter in the `weka fs download` command. The primary object store should be the one where the locator has been uploaded to
+To [recover from a snapshot](../snap-to-obj/snap-to-obj-1.md#create-a-filesystem-from-a-local-uploaded-snapshot) uploaded when two `local` object stores have been attached, use the `--additional-obs` parameter in the `weka fs download` command. The primary object store should be the one where the locator has been uploaded to
 {% endhint %}

@@ -38,7 +38,7 @@ You can upload a snapshot to a local, remote, or both object store buckets.
 
 **Related topics**
 
-[Broken link](/broken/pages/-LpSL2i4k4AK5VcDoYY4#pause-resume-abort-a-background-task "mention")
+[Background tasks](../../operation-guide/background-tasks.md#control-background-tasks)
 
 ## Create a filesystem from an uploaded snapshot
 
@@ -46,7 +46,7 @@ You can create (or recreate) a filesystem from an uploaded snapshot, for example
 
 When recreating a filesystem from a snapshot, adhere to the following guidelines:
 
-* **Pay attention to upload and download costs**: Due to the bandwidth characteristics and potential costs when interacting with remote object stores, it is not allowed to download a filesystem from a remote object store bucket. If a snapshot on a local object store bucket exists, it is advisable to use that one. Otherwise, follow the procedure in the [Recover from a remote snapshot](snap-to-obj-1.md#recover-from-a-remote-snapshot) topic using the CLI.
+* **Pay attention to upload and download costs**: Due to the bandwidth characteristics and potential costs when interacting with remote object stores, it is not allowed to download a filesystem from a remote object store bucket. If a snapshot on a local object store bucket exists, it is advisable to use that one. Otherwise, follow the procedure in the [Recover from a remote snapshot](snap-to-obj-1.md#recover-a-filesystem-from-a-remote-only-snapshot) topic using the CLI.
 * **Use the same KMS master key**: For an encrypted filesystem, to decrypt the snapshot data, use the same KMS master key as used in the encrypted filesystem. See the [KMS Management Overview](../../security/kms-management/#overview) topic.
 
 <div data-with-frame="true"><figure><img src="../../.gitbook/assets/Filesystem_from_snapshot.png" alt=""><figcaption><p>Create a filesystem from an uploaded snapshot example</p></figcaption></figure></div>
@@ -99,4 +99,4 @@ Copy the locator of the snapshot you want to sync with the filesystem.
 
 **Related topics**
 
-[#add-a-filesystem](../managing-filesystems/managing-filesystems.md#add-a-filesystem "mention")
+[#add-a-filesystem](../managing-filesystems/managing-filesystems.md#create-a-filesystem "mention")

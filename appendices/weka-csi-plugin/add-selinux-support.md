@@ -155,7 +155,7 @@ $ kubectl delete pod -n csi-wekafs $POD
 ```
 {% endcode %}
 
-8. Collect CSI node server logs from the matching Kubernetes nodes and contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md#contact-customer-success-team).
+8. Collect CSI node server logs from the matching Kubernetes nodes and contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md#open-a-support-case).
 
 ```
 $ POD=$(kubectl get pod -n csi-wekafs -lcomponent=csi-wekafs-node -o wide | grep -w don-kube-8 | cut -d" " -f1)

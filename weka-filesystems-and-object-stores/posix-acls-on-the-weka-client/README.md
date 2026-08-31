@@ -8,7 +8,7 @@ description: >-
 # POSIX ACLs on the WEKA client
 
 {% hint style="info" %}
-POSIX ACLs on the native client apply to wekafs mounts. To enforce ACLs over the NFS protocol, see [Manage the NFS protocol](/broken/pages/23c9b024153dc8488e52ed3b7a8510214a342d1d).
+POSIX ACLs on the native client apply to wekafs mounts. To enforce ACLs over the NFS protocol, see [Manage the NFS protocol](../../additional-protocols/nfs-support/).
 {% endhint %}
 
 ## Standard UNIX permissions and POSIX ACLs
@@ -68,8 +68,8 @@ POSIX ACLs provide directory inheritance only through default ACLs. They do not 
 
 **Related topics**
 
-[Manage POSIX ACLs on the WEKA client](/broken/pages/2c0f4f6b82a795ec92a34afe09abfcdebbbe89a9)
+[Manage POSIX ACLs on the WEKA client](manage-posix-acls-weka-client.md)
 
-[Mount filesystems](/broken/pages/b6738cbdc5bd6742c409ae9be79e517d082f025b)
+[Mount filesystems](../mounting-filesystems/)
 
-[Manage the NFS protocol](/broken/pages/23c9b024153dc8488e52ed3b7a8510214a342d1d)
+[Manage the NFS protocol](../../additional-protocols/nfs-support/)

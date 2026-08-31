@@ -76,7 +76,7 @@ NeuralMesh is a software-only, container-native storage system built for AI and 
 ### Where to get help
 
 * For maintenance and troubleshooting articles, search the WEKA Knowledge Base in the [WEKA support portal](https://support.weka.io/s/).
-* For technical assistance, contact the [Customer Success Team](support/getting-support-for-your-weka-system.md#contacting-weka-technical-support-team).
+* For technical assistance, contact the [Customer Success Team](support/getting-support-for-your-weka-system.md#open-a-support-case).
 * For product training and certification, see [Register for WEKAdemy](support/register-for-wekademy.md).
 
 ### Conventions

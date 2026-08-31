@@ -106,7 +106,7 @@ tmate
 Once completed, the WEKA software is installed on all the allocated servers and runs in stem mode (no cluster is attached).
 
 {% hint style="info" %}
-If a failure occurs during the WEKA software installation process, an error message prompts detailing the source of the failure. Review the details and try to resolve the failure. If required, contact the [Customer Success Team](../../../support/getting-support-for-your-weka-system.md#contact-customer-success-team).
+If a failure occurs during the WEKA software installation process, an error message prompts detailing the source of the failure. Review the details and try to resolve the failure. If required, contact the [Customer Success Team](../../../support/getting-support-for-your-weka-system.md#open-a-support-case).
 {% endhint %}
 
 **Related topic**

@@ -93,7 +93,7 @@ The following diagram illustrates how WEKA integrates with HashiCorp Vault to ma
 
 Administrators must configure multiple keys within the KMS, one for each filesystem. During the creation of a filesystem, specific parameters are required, including the namespace, KMS key identifier, role ID, and secret ID. This configuration ensures that the filesystem operates with its dedicated encryption key.
 
-The `weka fs add` command supports this process. For details, see [#create-a-filesystem](../../weka-filesystems-and-object-stores/managing-filesystems/managing-filesystems-1.md#create-a-filesystem "mention").
+The `weka fs add` command supports this process. For details, see [#create-a-filesystem](../../weka-filesystems-and-object-stores/managing-filesystems/managing-filesystems-1.md#add-a-filesystem "mention").
 
 #### **Key update and fallback**
 
@@ -109,7 +109,7 @@ The `weka fs kms-rewrap` command supports this operation. For details, see [#rew
 
 #### Create a filesystem from an encrypted snapshot
 
-To create a filesystem from an uploaded snapshot originating from an encrypted source, use the `weka fs download` command. For details, see [#create-a-filesystem-from-an-uploaded-snapshot](../../weka-filesystems-and-object-stores/snap-to-obj/snap-to-obj-1.md#create-a-filesystem-from-an-uploaded-snapshot "mention").
+To create a filesystem from an uploaded snapshot originating from an encrypted source, use the `weka fs download` command. For details, see [#create-a-filesystem-from-an-uploaded-snapshot](../../weka-filesystems-and-object-stores/snap-to-obj/snap-to-obj-1.md#create-a-filesystem-from-a-local-uploaded-snapshot "mention").
 
 #### **Security configuration**
 

@@ -343,7 +343,7 @@ The mount mode for the SMB share is `readcache` and cannot be modified.
       umount /mnt/smbw  
       ```
 
-For more details, see [#filesystem-permissions-and-access-rights-configuration](./#filesystem-permissions-and-access-rights-configuration "mention").
+For more details, see [#filesystem-permissions-and-access-rights-for-smb-w](./#filesystem-permissions-and-access-rights-for-smb-w "mention").
 
 ## Update SMB shares
 

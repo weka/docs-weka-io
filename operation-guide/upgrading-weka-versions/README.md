@@ -23,7 +23,7 @@ Support tiers define the lifecycle of a Release Line:
 * **Maintenance (N-1):** Receives service packs with bug fixes and currency updates.
 * **Limited support (N-2):** Receives selective fixes based on need.
 
-For lifecycle details, see [Release support and commitments](/broken/pages/1c0a53bf4014f5596291918832d230f2295d360f).
+For lifecycle details, see [Release support and commitments](../../support/release-support-and-commitments.md).
 
 ## Version compatibility guidelines
 
@@ -54,7 +54,7 @@ Verify that the upgrade path from your source version to the target version is s
 In MCB architecture, each container serves a single process type: drive, compute, or frontend. This allows a rolling upgrade, upgrading one container at a time, while the remaining containers continue serving clients.
 
 {% hint style="info" %}
-Some background tasks, such as snapshot uploads or downloads, must be postponed or aborted. See the [prerequisites](./#1.-verify-prerequisites-for-the-upgrade) in the upgrade workflow for details.
+Some background tasks, such as snapshot uploads or downloads, must be postponed or aborted. See the [prerequisites](./#id-1.-verify-system-upgrade-prerequisites) in the upgrade workflow for details.
 {% endhint %}
 
 #### **Internal upgrade process**
@@ -117,9 +117,9 @@ Complete these checks before running the starting the upgrade workflow.
 
 1. [Verify system upgrade prerequisites](./#id-1.-verify-system-upgrade-prerequisites)
 2. [Prepare the cluster for upgrade](./#id-2.-prepare-the-cluster-for-upgrade)
-3. [Prepare the backend servers for upgrade (optional)](./#3.-optional.-prepare-the-backend-servers-for-upgrade)
-4. [Upgrade the backend servers](./#4.-upgrade-the-backend-servers)
-5. [Enable LLQ and WC in AWS](./#id-5.-enable-llq-and-wc-in-aws)
+3. [Prepare the backend servers for upgrade (optional)](./#id-3.-prepare-the-backend-servers-for-upgrade-optional)
+4. [Upgrade the backend servers](./#id-4.-upgrade-the-backend-servers)
+5. [Enable LLQ and WC in AWS](./#id-5.-verify-llq-and-wc-are-enabled-in-aws)
 6. [Upgrade the clients](./#id-6.-upgrade-the-clients)
 7. [Complete the cluster upgrade](./#id-7.-complete-the-cluster-upgrade)
 
@@ -182,7 +182,7 @@ Use the WEKA Upgrade Checker Tool to validate system readiness before every upgr
   * **Postpone planned tasks or address running tasks**:
     * If any planned tasks are scheduled during the upgrade, postpone them until after the NDU process.
     * If tasks are currently running, take necessary actions based on their status.
-    * Consult the [**Background tasks**](/broken/pages/-LpSL2i4k4AK5VcDoYY4) topic for comprehensive guidance.
+    * Consult the [**Background tasks**](../background-tasks.md) topic for comprehensive guidance.
   * **Data catalog:**
     * Check the catalog indexing status to ensure it is disabled.
 

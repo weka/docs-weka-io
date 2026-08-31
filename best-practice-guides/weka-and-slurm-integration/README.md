@@ -382,7 +382,7 @@ sudo sed -i 's/isolate_cpusets=true/isolate_cpusets=false/g' /etc/wekaio/service
 sudo systemctl restart weka-agent
 ```
 
-For more information, see [#modify-the-cgroups-usage](../../planning-and-installation/bare-metal/adding-clients-bare-metal.md#modify-the-cgroups-usage "mention")
+For more information, see [#cgroups-configuration](../../planning-and-installation/bare-metal/adding-clients-bare-metal.md#cgroups-configuration "mention")
 
 [^1]: See [DPDK Poll Mode Driver](https://doc.dpdk.org/guides-16.04/prog_guide/poll_mode_drv.html)
 

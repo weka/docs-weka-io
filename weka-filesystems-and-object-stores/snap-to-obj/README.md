@@ -17,7 +17,7 @@ The Snap-To-Object feature is helpful for a range of use cases, as follows:
   * [Archiving data](./#archiving-data)
   * [Data replication](./#data-replication)
 * **Cloud-only use cases**
-  * [Cloud pause/restart](./#cloud-pause-restart)
+  * [Cloud pause/restart](./#cloud-pauserestart)
   * [Data protection against cloud availability zone failures](./#data-protection-against-cloud-availability-zone-failures)
   * [Migration of filesystems to another region](./#migration-of-filesystems-to-another-region)
 * **Hybrid cloud use case**

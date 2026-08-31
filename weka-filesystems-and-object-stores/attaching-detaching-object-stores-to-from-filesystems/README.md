@@ -65,7 +65,7 @@ Attaching a bucket after detachment is treated as attaching a new bucket: the fi
 
 **Related topics**
 
-[Broken link](/broken/pages/-LpSL2i4k4AK5VcDoYY4 "mention")
+[Background tasks](../../operation-guide/background-tasks.md)
 
 [snap-to-obj](../snap-to-obj/ "mention")
 

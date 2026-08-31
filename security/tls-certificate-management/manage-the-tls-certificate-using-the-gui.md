@@ -80,4 +80,4 @@ Once a CA certificate is set, you can:
 
 [deploy-local-weka-home-on-k3s](../../monitor-the-weka-cluster/the-wekaio-support-cloud/deploy-local-weka-home-on-k3s/ "mention")
 
-[Broken link](/broken/pages/HnMiUB1GNDahucN9HRj7 "mention")
+[deploy-local-weka-home-on-k8s](../../monitor-the-weka-cluster/the-wekaio-support-cloud/deploy-local-weka-home-on-k8s/ "mention")

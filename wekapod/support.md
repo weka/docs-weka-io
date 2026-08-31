@@ -13,4 +13,4 @@ The WEKApod support process is a multi-tiered system designed to provide compreh
 
 For NVIDIA related issues, contact the [NVIDIA enterprise support services](https://www.nvidia.com/en-us/support/enterprise/).
 
-For storage issues, contact the [WEKA Customer Success Team](../support/getting-support-for-your-weka-system.md#contact-customer-success-team).
+For storage issues, contact the [WEKA Customer Success Team](../support/getting-support-for-your-weka-system.md#open-a-support-case).

@@ -43,7 +43,7 @@ weka fs add <name> <total-capacity> [--allow-no-kms] [--audit-enabled] [--auth-r
 {% hint style="info" %}
 To create an encrypted filesystem, you must define a KMS.
 
-If a KMS is unavailable for a POC, contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md#contact-customer-success-team) for guidance.
+If a KMS is unavailable for a POC, contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md#open-a-support-case) for guidance.
 {% endhint %}
 
 ## Add a filesystem with thin-provisioning
@@ -85,7 +85,7 @@ weka fs update <name> [--access <access>] [--audit-enabled] [--auth-required] [-
 | `name`\*                                          | Name of filesystem for this operation.                                                                                                                                                                                                         |
 | `--access` \<access>                              | Set the filesystem access mode: ro (read-only) or rw (read-write). A replication target cannot be set to rw while its pair is active; pause the pair on the source cluster first.                                                              |
 | `--audit-enabled`                                 | Enable filesystem auditing.                                                                                                                                                                                                                    |
-| `--auth-required`                                 | Require the mounting user to be authenticated. Effective only in the root organization; non-root users must always authenticate. [weka user login](../../operation-guide/user-management/#user-log-in)). Possible values: `yes` or `no`        |
+| `--auth-required`                                 | Require the mounting user to be authenticated. Effective only in the root organization; non-root users must always authenticate. [weka user login](../../operation-guide/user-management/user-management-1.md#log-in-to-the-weka-cluster)). Possible values: `yes` or `no`        |
 | `--data-reduction`                                | Enable data reduction. For details, see [Filesystems, object stores, and filesystem groups](../../weka-system-overview/filesystems-object-stores-and-filesystem-groups/#data-reduction-in-weka-filesystems)                                    |
 | `--event-log-enabled`                             | Enable the reliable event-change log for the filesystem.                                                                                                                                                                                       |
 | `--event-log-max-age-seconds` \<uint>             | Set the maximum age in seconds before event-log records are trimmed (0 disables age trim).                                                                                                                                                     |

@@ -149,4 +149,4 @@ If your benchmark results differ significantly from the expected values, contact
 
 [testing-weka-system-performance](../performance/testing-weka-system-performance/ "mention")
 
-[#contact-customer-success-team](../support/getting-support-for-your-weka-system.md#contact-customer-success-team "mention")
+[#open-a-support-case](../support/getting-support-for-your-weka-system.md#open-a-support-case "mention")

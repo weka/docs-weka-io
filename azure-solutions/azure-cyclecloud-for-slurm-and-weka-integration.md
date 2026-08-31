@@ -71,13 +71,13 @@ Once both solutions are installed, you can proceed with the integration workflow
 
 The integration of **Azure CycleCloud** with the **WEKA Data Platform** involves four key steps:
 
-1. **Download the Azure CycleCloud/WEKA integration template** [>>>](azure-cyclecloud-for-slurm-and-weka-integration.md#step-1-download-the-azure-cyclecloud-weka-integration-template)\
+1. **Download the Azure CycleCloud/WEKA integration template** [>>>](azure-cyclecloud-for-slurm-and-weka-integration.md#step-1-download-the-azure-cyclecloudweka-integration-template)\
    Obtain the pre-built template that simplifies the integration process.
 2. **Configure network parameters for DPDK** [>>>](azure-cyclecloud-for-slurm-and-weka-integration.md#step-2-configure-network-parameters-for-dpdk)\
    Adjust the network settings on the Azure CycleCloud nodes to enable Data Plane Development Kit (DPDK), ensuring optimal data transfer performance.
 3. **Deploy the cluster initialization module** [>>>](azure-cyclecloud-for-slurm-and-weka-integration.md#step-3-deploy-the-cluster-initialization-module)\
    Create and deploy the cluster-init module on the Azure CycleCloud nodes to automatically configure WEKA integration.
-4. **Set up the WEKA blade** [>>>](azure-cyclecloud-for-slurm-and-weka-integration.md#step-4-configure-the-weka-blade-on-the-cyclecloud-weka-template)\
+4. **Set up the WEKA blade** [>>>](azure-cyclecloud-for-slurm-and-weka-integration.md#step-4-configure-the-weka-blade-on-the-cyclecloudweka-template)\
    Configure the WEKA blade using the CycleCloud/WEKA template installed in step 1 to finalize the integration.
 5. **Test the integration** [>>>](azure-cyclecloud-for-slurm-and-weka-integration.md#step-5-test-the-integration)\
    Verify the integration of Azure CycleCloud, SLURM, and the WEKA Data Platform.
@@ -137,7 +137,7 @@ For step-by-step guidance on enabling DPDK and configuring dual NICs for high-pe
 
     <div data-with-frame="true"><figure><img src="../.gitbook/assets/CycleCloud_1-1.png" alt=""><figcaption><p>Log in to the Azure CycleCloud VM</p></figcaption></figure></div>
 2. **Open the CycleCloud/WEKA template**\
-   Navigate to the template downloaded in [**Step 1**](azure-cyclecloud-for-slurm-and-weka-integration.md#step-1-download-the-azure-cyclecloud-weka-integration-template), and open it using a text editor.
+   Navigate to the template downloaded in [**Step 1**](azure-cyclecloud-for-slurm-and-weka-integration.md#step-1-download-the-azure-cyclecloudweka-integration-template), and open it using a text editor.
 3.  **Modify the template to support dual NICs**\
     Locate the section labeled `[[nodearraybase]]` and add the following configuration for dual network interfaces:
 
@@ -238,7 +238,7 @@ The **cluster-init script** used in the previous step requires specific configur
        <div data-with-frame="true"><figure><img src="../.gitbook/assets/CycleCloud_4-3.png" alt=""><figcaption></figcaption></figure></div>
    2.  **Fill in the required parameters**:
 
-       * **WEKA addresses**: Enter the IP addresses of the WEKA backend servers from [**Step 1**](azure-cyclecloud-for-slurm-and-weka-integration.md#step-1-download-the-azure-cyclecloud-weka-integration-template). Separate multiple IP addresses with commas.
+       * **WEKA addresses**: Enter the IP addresses of the WEKA backend servers from [**Step 1**](azure-cyclecloud-for-slurm-and-weka-integration.md#step-1-download-the-azure-cyclecloudweka-integration-template). Separate multiple IP addresses with commas.
        * **Mount point**: Specify the desired mount point for the nodes.
        * **WEKA filesystem**: Enter the name of the selected WEKA filesystem from [**Step 1**](azure-cyclecloud-for-slurm-and-weka-integration.md#workflow-integrate-azure-cyclecloud-with-weka).
 

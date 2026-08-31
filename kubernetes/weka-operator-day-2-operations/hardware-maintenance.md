@@ -429,7 +429,7 @@ DISK ID  UUID                                  HOSTNAME        NODE ID  SIZE    
 
 </details>
 
-4. [#perform-the-standard-verification-steps](hardware-maintenance.md#perform-the-standard-verification-steps "mention").
+4. [#perform-standard-verification-steps](hardware-maintenance.md#perform-standard-verification-steps "mention").
 
 Ensure all the pods, weka containers and the cluster is in a healthy state (`Fully Protected`) and IO operations are running (`STARTED`). Monitor the redistribution progress and alerts.
 
@@ -1218,7 +1218,7 @@ wekamanualoperation.weka.weka.io/sign-specific-drives created
     2. Check that new containers are running on the new node's IP.
     3. Validate cluster status using WEKA CLI.
 
-    For details, see [#verification-steps](hardware-maintenance.md#verification-steps "mention").
+    For details, see [#verification-steps](hardware-maintenance.md#perform-standard-verification-steps "mention").
 
 {% hint style="info" %}
 **Non-functional node replacement**:\

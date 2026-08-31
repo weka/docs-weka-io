@@ -64,7 +64,7 @@ The cluster can be configured with either:
 * **Implicit failure domains**: In this configuration, data and parity blocks are distributed across multiple servers, and each server is implicitly considered a separate failure domain. Additional failure domains and servers can be integrated into existing or new failure domains.
 
 {% hint style="info" %}
-The documentation generally assumes a homogeneous system deployment, meaning an equal number of servers and identical SSD capacities per server in each failure domain. For guidance on heterogeneous configurations, contact the [Customer Success Team](../support/getting-support-for-your-weka-system.md#contact-customer-success-team).
+The documentation generally assumes a homogeneous system deployment, meaning an equal number of servers and identical SSD capacities per server in each failure domain. For guidance on heterogeneous configurations, contact the [Customer Success Team](../support/getting-support-for-your-weka-system.md#open-a-support-case).
 {% endhint %}
 
 ## SSD net storage capacity calculation

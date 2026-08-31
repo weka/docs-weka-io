@@ -11,7 +11,7 @@ description: >-
 
 * Mount the filesystem with ACL support enabled by adding the `acl` mount option. This option enables POSIX ACL handling and enforcement on the WEKA filesystem mount.
 * Install the standard `acl` package on the client server .
-* Review the metadata cost in [POSIX ACLs on the WEKA client](file:///) before you enable ACL support on a production mount.
+* Review the metadata cost in [POSIX ACLs on the WEKA client](./#performance-considerations) before you enable ACL support on a production mount.
 
 ## View mode bits and ACL entries
 
@@ -112,8 +112,8 @@ description: >-
 
 **Related topics**
 
-[POSIX ACLs on the WEKA client](file:///)
+[POSIX ACLs on the WEKA client](./)
 
-[Mount filesystems](/broken/pages/ba91a874ba5566d72c9de29f6f644c9284f488a2)
+[Mount filesystems](../mounting-filesystems/)
 
-[Manage the NFS protocol](/broken/pages/3c45e126a594ccb42deac8473a32000506b8d9ed)
+[Manage the NFS protocol](../../additional-protocols/nfs-support/)

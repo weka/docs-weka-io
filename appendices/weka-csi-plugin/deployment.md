@@ -24,7 +24,7 @@ Kubernetes workloads can access WEKA filesystems using WEKA clients. The WEKA fi
 
 A WEKA client must be installed on all Kubernetes worker nodes.
 
-* **Recommended:** Use a WEKA Operator-based client (WekaClient Custom Resource) with WEKA CSI. This combination provides tight integration and superior resource management. See [#weka-operator-client-deployment-overview](../../kubernetes/weka-operator-deployments/#weka-operator-client-deployment-overview "mention").
+* **Recommended:** Use a WEKA Operator-based client (WekaClient Custom Resource) with WEKA CSI. This combination provides tight integration and superior resource management. See [#deployment-models](../../kubernetes/weka-operator-deployments/#deployment-models "mention").
 * **Alternative:** WEKA also supports persistent and stateless clients for WEKA CSI. If you cannot use the WEKA Operator, WEKA recommends using a persistent client (a client that is part of the cluster) rather than a stateless client.
   * See [adding-clients-bare-metal.md](../../planning-and-installation/bare-metal/adding-clients-bare-metal.md "mention").
   * See [best-practices-for-weka-stateless-client-and-kubernetes.md](../../best-practice-guides/best-practices-for-weka-stateless-client-and-kubernetes.md "mention").

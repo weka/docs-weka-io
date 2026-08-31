@@ -243,7 +243,7 @@ Related information: [managing-filesystem-groups](../weka-filesystems-and-object
 
 ## Health
 
-Related information: [#cluster-protection-and-availability-widget](manage-the-system-using-weka-gui.md#cluster-protection-and-availability-widget "mention")
+Related information: [#cluster-protection-widget](manage-the-system-using-weka-gui.md#cluster-protection-widget "mention")
 
 | Task                                                                  | REST API                                                                                    | CLI |
 | --------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | --- |
@@ -586,7 +586,7 @@ Related information: [perform-post-configuration-procedures.md](../planning-and-
 
 ## Tasks
 
-Related information: [Broken link](/broken/pages/-LpSL2i4k4AK5VcDoYY4 "mention")
+Related information: [Background tasks](../operation-guide/background-tasks.md)
 
 | Task                                                                                                                                | REST API                                                                                        | CLI                                  |
 | ----------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ------------------------------------ |
@@ -649,7 +649,7 @@ Related information: [tls-certificate-management](../security/tls-certificate-ma
 
 ## Traces
 
-Related information: [Broken link](/broken/pages/n61OexetA46x4ACDQFWb "mention")
+Related information: [Traces and protocols debug level management](../support/diagnostics-management/traces-and-protocols-debug-level-management/)
 
 | Task                                                                                                                                                                                                                                                                                                               | REST API                                                                                            | CLI                              |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------- | -------------------------------- |

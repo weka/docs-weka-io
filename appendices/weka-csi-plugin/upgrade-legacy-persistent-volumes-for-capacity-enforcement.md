@@ -25,7 +25,7 @@ Volumes provisioned by the CSI Plugin of version **0.7.0** in the API-Based comm
 To bind legacy volumes to a single secret, perform the following:
 
 1. Create a Kubernetes secret that describes the API communication parameters for legacy volumes. Adhere to the following:
-   * The format of the secret is identical to the secret defined in the [API-Based Communication Model](upgrade-legacy-persistent-volumes-for-capacity-enforcement.md#api-based-communication-model) section.
+   * The format of the secret is identical to the secret defined in the [API-Based communication model](storage-class-configurations.md#api-based-communication-model) section.
    * This secret must be located in the same Kubernetes namespace of the WEKA CSI Plugin.
 2. Set the `legacyVolumeSecretName` parameter to match the secret's name above during the plugin upgrade or installation. Do one of the following:
    * You can modify the `values.yaml` directly.

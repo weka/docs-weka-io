@@ -157,7 +157,7 @@ Integrating the NFS and Kerberos service is critical to setting up a secure netw
 
 **Before you begin**
 
-* Ensure a configuration filesystem is set. See [#configure-nfs-global-settings](nfs-support.md#configure-nfs-global-settings "mention").
+* Ensure a configuration filesystem is set. See [#configure-the-nfs-global-settings](nfs-support.md#configure-the-nfs-global-settings "mention").
 * Ensure the NFS cluster is configured and running. See [#create-interface-groups](nfs-support.md#create-interface-groups "mention").
 * For Active Directory (AD) integration, obtain the required information from the AD administrator. (WEKA handles the generation of the keytab file.)
 * For MIT integration, obtain the required information from the MIT KDC and OpenLDAP administrators, and a pre-generated keytab file stored in an accessible location is required.

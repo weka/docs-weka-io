@@ -177,7 +177,7 @@ weka s3 sts assume-role --access-key <string> --duration <duration> [--policy-fi
 | --- | --- |
 | `--access-key` \<string>\* | Access key. Essentially an S3 user name. |
 | `--duration` \<duration>\* | Duration of the security token. |
-| `--policy-file` \<string> | File containing JSON policy content. [Supported Policy Actions](../s3-limitations.md#supported-policy-actions) |
+| `--policy-file` \<string> | File containing JSON policy content. [Supported Policy Actions](../s3-limitations.md#supported-s3-policy-actions) |
 | `--secret-key` \<string> | Secret key for assumed role. Essentially an S3 user password. Prompted if not supplied. |
 
 An example response:

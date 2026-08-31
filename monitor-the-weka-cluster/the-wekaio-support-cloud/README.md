@@ -73,4 +73,4 @@ Uploading information to WEKA Home from the WEKA cluster backend servers and cli
 
 [statistics-list.md](../../operation-guide/statistics/statistics-list.md "mention")
 
-[Broken link](/broken/pages/-LQYbwoiZPKuvxtPDD12#upload-diagnostics-data-to-weka-home "mention")
+[diagnostics-data-management.md](../../support/diagnostics-management/diagnostics-data-management.md#upload-diagnostics-data-to-weka-home "mention")

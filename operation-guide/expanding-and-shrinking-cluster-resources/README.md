@@ -12,7 +12,7 @@ A WEKA cluster is a collection of backend servers configured with containers, SS
 The expansion and shrinking procedures only apply to homogeneous WEKA clusters in which all the cluster servers are similar and have the same number of cores, memory, SSD capacity per server, and servers per failure domain (if any).
 
 {% hint style="info" %}
-For heterogeneous WEKA cluster configurations and estimation of the performance change, contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md#contact-customer-success-team).
+For heterogeneous WEKA cluster configurations and estimation of the performance change, contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md#open-a-support-case).
 {% endhint %}
 
 The expansion and shrinking procedures include:
