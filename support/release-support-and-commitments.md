@@ -16,7 +16,7 @@ A Release Line is defined by a unique Major number. For example, 5.x, 6.x, and 7
 
 Revisions are cumulative. Each higher revision includes all fixes from prior revisions within the same line.
 
-In the WEKA portal at get.weka.io, each Release Line is identified by the Minor versions it contains. The current line appears as **5.0 / 5.1**, because both Minor versions belong to Major number 5.
+In the WEKA portal at get.weka.io, each Release Line is identified by the Minor versions it contains. A line that contains versions 5.0 and 5.1 appears as **5.0 / 5.1**, because both Minor versions belong to Major number 5.
 
 <div data-with-frame="true"><figure><img src="../.gitbook/assets/version_number.png" alt=""><figcaption><p><em>Version number structure and Release Line grouping</em></p></figcaption></figure></div>
 
@@ -43,8 +43,6 @@ WEKA provides a unified support framework to ensure predictability and simplify 
 WEKA no longer uses LTS or Innovation labels to ensure every release is recognized for its high stability and long-term commitment. Removing these labels creates a transparent, simplified framework that provides clear planning for all deployments.
 {% endhint %}
 
-_Version number structure and Release Line grouping_
-
 ## Support phases
 
 The support phase for a Release Line changes as WEKA introduces newer versions.
@@ -56,7 +54,11 @@ Service packs for Current and Maintenance phases include bug fixes and updates f
 <div data-with-frame="true"><figure><img src="../.gitbook/assets/release_line_lifecycle.png" alt=""><figcaption><p>Release Line lifecycle: Support phase transitions (example)</p></figcaption></figure></div>
 
 {% hint style="info" %}
-This figure shows an example based on the support status as of May 2026. Support phases change as new Release Lines are introduced.
+This figure shows an example. Support phases change as new Release Lines are introduced.
+{% endhint %}
+
+{% hint style="warning" %}
+**INTERNAL, remove before publication. TBD (Docs):** Regenerate `release_line_lifecycle.png` for the 6.0 GA. It is drawn against the May 2026 status, which puts 5.x at N; it needs 6.x as N, 5.x as N-1, and 4.3 / 4.4 as N-2, with End of Life dates 36 months from each line's own GA. Check `version_number.png` in the same pass and confirm it does not label 5.x as current.
 {% endhint %}
 
 ## Check the support phase of a Release Line
