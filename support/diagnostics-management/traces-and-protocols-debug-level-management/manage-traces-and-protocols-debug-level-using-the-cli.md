@@ -6,10 +6,6 @@ description: >-
 
 # Manage traces and protocols debug level using the CLI
 
-{% hint style="danger" %}
-**INTERNAL - Nevo:** `weka debug` commands are hidden from the CLI help but documented on this page. Is that intentional, and if so, whose call? Also, verify the command set on this page against the 6.0 CLI given the wekactl migration.
-{% endhint %}
-
 ## Traces
 
 ### Initiate trace collection
