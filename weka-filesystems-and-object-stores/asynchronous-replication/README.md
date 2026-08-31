@@ -8,11 +8,29 @@ description: >-
 
 Asynchronous replication is a native, cluster-to-cluster filesystem replication solution that synchronizes data and metadata directly between a source cluster and a target cluster. Replication transfers incremental snapshot deltas of the source filesystem on a configurable interval, without disrupting client access to the source.
 
+The main decision is how much data the target holds: the whole filesystem, only its metadata, or selected directories. Set this per pair with `--copy-path`, and change it later without recreating the pair. A full copy needs a target at least the size of the source. A metadata-only or partial copy can be much smaller, sized for the working set.
+
 ## When to use asynchronous replication
 
-* **Disaster recovery**: Maintain a complete, incrementally updated filesystem copy on the target cluster. If the source cluster becomes unavailable, manually activate the target filesystem. Because replication is asynchronous, the Recovery Point Objective (RPO) is not zero: writes made after the last replicated snapshot may be lost, and recovery time depends on the manual failover procedure.
-* **On-demand caching**: Make a large dataset visible on a remote cluster with limited capacity. The target receives the full filesystem metadata (directories and file hierarchy), and file data is retrieved from the source only when files are accessed. A typical example is a large capacity site that collects data and a smaller GPU cluster that hydrates only the files needed for AI training and inference.
-* **Partial copy**: Replicate only selected directories proactively. Specify up to 10 directory paths with size limit of 2k to copy in full, while the rest of the namespace remains available on demand. Use this when a remote site needs local performance for specific projects only.
+### Full data copy
+
+Maintain a complete, incrementally updated filesystem copy on the target cluster. If the source cluster becomes unavailable, manually activate the target filesystem. Because replication is asynchronous, the Recovery Point Objective (RPO) is not zero: writes made after the last replicated snapshot may be lost, and recovery time depends on the manual failover procedure.
+
+* **Disaster recovery under an RPO obligation**: The system raises an alert whenever a replication cycle runs past its interval, so the alert history is your record of RPO compliance. See [Monitor RPO compliance](manage-asynchronous-replication.md#monitor-rpo-compliance).
+* **Ingest site to central compute**: Collection sites replicate continuously to a central cluster that runs the compute — for example, device data feeding a central GPU cluster for training. No shipping media, and no compute at every collection site.
+
+### Metadata-only copy
+
+Make a large dataset visible on a remote cluster that has far less capacity than the source. The target receives the full filesystem metadata (directories and file hierarchy), and file data is retrieved from the source only when files are accessed (hydration).
+
+* **Remote working set**: Users at a remote site browse the entire namespace but hydrate only the projects in active use. Size the target for the working set, not the full dataset.
+* **Bursting to a remote or cloud cluster**: Present the namespace on a cluster that holds none of the data yet. Jobs pull only the files they actually read.
+
+### Partial copy
+
+Replicate selected directories proactively while the rest of the namespace remains available on demand. Specify up to 10 directory paths, each up to 2 KB long. Use this when a remote site needs local performance for specific projects and on-demand access to everything else.
+
+* **Pre-staged projects**: Add a project directory to the copy path set before the work starts, so its data is already local when users arrive. See [Modify the replication policy](manage-asynchronous-replication.md#modify-the-replication-policy).
 
 ## Replication architecture
 
@@ -37,6 +55,10 @@ The replication policy determines how data reaches the target:
 
 With a metadata-only or partial copy, you can also fetch or release the data of individual files on the target.
 
+{% hint style="info" %}
+**Lazy data** is the CLI's term for on-demand data. A file in *lazy mode* is visible on the target, but its data blocks are still on the source. `weka fs replication fetch` pulls them to the target, and `weka fs replication release` returns them to lazy mode.
+{% endhint %}
+
 ### Access strategy
 
 The access strategy determines when users see each replicated snapshot on the target:
@@ -45,6 +67,17 @@ The access strategy determines when users see each replicated snapshot on the ta
 * **Copy first**: The snapshot is applied only after its data and metadata are fully copied. Use this when workloads on the target require immediate local data access with full consistency.
 
 ## Size the target filesystem
+
+Two constraints apply. Size for whichever is larger.
+
+**By copy option:**
+
+* A **full copy** needs a target at least the size of the source filesystem.
+* A **metadata-only or partial copy** can be far smaller. Size it for the working set, plus the directories named in `--copy-path`, plus headroom.
+
+A working-set target runs at a high fill level by design. When it approaches full, the system returns hydrated data to lazy mode (dehydration). Keep the working set below the dehydration threshold, or the target re-fetches data it has just released. See [Data copy and hydration](#data-copy-and-hydration).
+
+**By target cluster capacity:**
 
 Size the target filesystem relative to the SSD capacity of the target cluster, not by its absolute size. The system distributes replicated data evenly across the target cluster. When the target filesystem is small relative to the cluster SSD capacity, each component receives only a small share of the filesystem budget and reaches its internal capacity limit before the filesystem is full. Replication then slows down and can stall until space is freed or the filesystem is enlarged.
 
@@ -93,7 +126,7 @@ The RPO is not zero. Expect a lag of at least the replication interval (minimum 
 * Creating a manual snapshot on the target filesystem halts replication and moves the pair to the error state.
 * Inode numbers on the target filesystem differ from the source filesystem.
 
-To write to the target filesystem, hydrate all of its data, remove the replication pair, and contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md#contact-customer-success-team) to convert the filesystem to read-write.
+To write to the target filesystem, hydrate all of its data, remove the replication pair, and contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md#open-a-support-case) to convert the filesystem to read-write.
 
 ### Failover
 
@@ -117,6 +150,14 @@ To write to the target filesystem, hydrate all of its data, remove the replicati
 * A file that grows after you prefetch it with `weka fs replication fetch` stays unhydrated. Read the file directly to fetch the larger version from the source.
 * Dehydration on the target filesystem starts when the disk occupied space reaches 95% and stops when it drops to 90%. To release data outside these thresholds, run `weka fs replication release`.
 
+### Scale limits
+
+* A cluster can have at most **8 cluster peers**.
+* A cluster can have at most **8 replication pairs**.
+* A filesystem can have at most **8 replica anchors**.
+
+The limits are per cluster and apply to the target as well as the source. A fan-in topology, where several sources replicate to one target, is bounded by them.
+
 ### Deployment
 
 * Replication management is available through the CLI only.
@@ -132,6 +173,11 @@ To write to the target filesystem, hydrate all of its data, remove the replicati
 * The restriction on servers running NFS or SMB.
 
 One conflict to settle. Your notes say source filesystems with tiering are not supported, but nothing in the 6.0 API rejects a tiered source, so this page keeps the existing wording, "Tiered data on the source is not replicated." Which is correct?
+
+**Two items added in this pass need your review and approval:**
+
+1. **Scale limits.** Taken from `weka/common/consts.d` on `origin/CI/6.0/RC`: `MAX_CLUSTER_PEERS = 8`, `MAX_REPLICATION_PAIRS = 8`, `MAX_REPLICA_ANCHORS_PER_FS = 8`. The values are unambiguous, but the source carries `// TODO #REPLICATION : revisit these constraints` directly above them. Confirm 8 is what 6.0 ships.
+2. **Fan-in.** Is several source clusters replicating to one target a supported configuration, or one that simply is not blocked? The *Ingest site to central compute* use case under *When to use* depends on the answer. If it is not supported, delete that bullet and the fan-in sentence under *Scale limits*.
 
 Anand raised three of these in GitBook comments on 2026-08-30, and two are now questions for you:
 

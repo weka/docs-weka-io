@@ -218,12 +218,36 @@ weka fs replication -v
 
 To customize the output, use the `--output`, `--filter`, and `--sort` options with any of the available columns, including `last-error` and `last-error-time` for troubleshooting.
 
+### Monitor RPO compliance
+
+The replication interval is also the RPO target for the pair. There is no separate RPO setting. The system times each cycle from its start and raises an alert when the cycle overruns the interval by more than one minute.
+
+<table><thead><tr><th width="235">Alert</th><th width="120">Severity</th><th>Raised when the current cycle has been running longer than</th></tr></thead><tbody><tr><td>Replication behind schedule</td><td>Minor</td><td>The configured interval, plus one minute</td></tr><tr><td>Replication behind schedule</td><td>Major</td><td>Three times the configured interval, plus one minute</td></tr></tbody></table>
+
+The alert names the filesystem and the peer, and reports the interval, how long the cycle has run, by how much it exceeds the target, and the time of the last completed cycle. Use the alert history as the compliance record.
+
+No RPO alert is raised for a pair that is paused, not running, or still in its first replication cycle.
+
+View active alerts:
+
+```bash
+weka alerts
+```
+
+If an RPO alert fires, inspect the cycle:
+
+```bash
+weka fs replication --verbose
+```
+
+Common causes are a slow or broken link to the peer, or low free capacity on the target. Repair the link or free space. If the source change rate consistently outpaces the link, lengthen the interval or add bandwidth.
+
 ### Troubleshoot S3 authentication failures
 
 Resolve S3 authentication failures that set a replication pair to `ERROR`.
 
 1. Check whether the peer cluster ran `weka cluster peer init --reinit`.
-2. If it did, refresh the peer credentials by following [Rotate replication S3 credentials](/broken/spaces/1tNqZ9KSl64GGavyeX1N/pages/533ef70aca4a392556c455eed0033c09e3ed7a6c).
+2. If it did, refresh the peer credentials by following [Reset S3 credentials](../../operation-guide/user-management/user-management.md#reset-s3-credentials).
 3. Verify that the pair resumes:
 
 ```bash
