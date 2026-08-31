@@ -191,7 +191,7 @@ Configuring the NFS-Kerberos service integration automatically restarts the NFS 
    * **NFS Service Name**: This refers to the complete domain name for a specific NFS server.
    * **KDC Realm Admin Name**: The username of an administrator who has access to the LDAP directory. This user manages the KDC within a realm.
    * **KDC Realm Admin Password**: The password of the administrative user who manages the KDC within a realm.
-   * **Base OU:** INTERNAL, remove before publication. TBD (Engineering): this field description was never written. Needs the meaning of Base OU in the Kerberos AD registration, from whoever owns NFS Kerberos.
+   * **Base OU:** The LDAP organizational unit where the NFS server's computer account is created in Active Directory, in distinguished-name form. For example, `OU=Weka,OU=Servers`. Default: `CN=Computers`.
 4) Select **Configure** to apply the changes.
 
 <div data-with-frame="true"><figure><img src="../../.gitbook/assets/NFS_conf_kerb_auth_AD.png" alt=""><figcaption><p>Configure Kerberos authentication over AD dialog</p></figcaption></figure></div>

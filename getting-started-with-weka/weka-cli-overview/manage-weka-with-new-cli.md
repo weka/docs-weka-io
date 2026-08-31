@@ -14,8 +14,8 @@ Starting with WEKA 6.0.0, wekactl is the default CLI, and the `weka` command on 
 * To manage clusters from a workstation that is not a cluster server, install the standalone binary. See [Install wekactl on a workstation](manage-weka-with-new-cli.md#install-wekactl-on-a-workstation).
 * To install a WEKA version using the CLI, a get.weka.io token is required.
 
-{% hint style="danger" %}
-**INTERNAL, remove before publication. TBD (Engineering):** Confirm the minimum cluster version a standalone wekactl can manage (see the version independence item in the concept topic).
+{% hint style="info" %}
+wekactl detects the API version each cluster offers and falls back automatically, so a single binary manages any cluster in a supported Release Line. See [Release support and commitments](../../support/release-support-and-commitments.md).
 {% endhint %}
 
 ## Access wekactl on a cluster server
@@ -64,10 +64,6 @@ wekactl
 Verify the SHA256 fingerprint against the cluster before accepting it. Accepting saves the certificate for all WEKA hosts used by this profile.
 
 Type `exit` to leave the shell and run commands directly. To add more clusters, see [Manage profiles](manage-weka-with-new-cli.md#manage-profiles).
-
-{% hint style="danger" %}
-**INTERNAL, remove before publication. TBD (Engineering):** The prompt question is answered — the setup wizard runs only on a bare invocation in a terminal with no profile saved, never on a command such as `weka status`. Still to confirm: the claim under Manage profiles that wekactl reuses an existing legacy CLI token on Linux. The mechanism exists (`WEKA_TOKEN` / `auth-token.json`), but pickup without a configured profile was not verified.
-{% endhint %}
 
 ## Bootstrap a stateless client
 

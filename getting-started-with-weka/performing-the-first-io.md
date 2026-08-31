@@ -32,7 +32,7 @@ Create a filesystem group before creating a filesystem in that group.
      2  my_fs_group
     ```
 
-    A group created without `--ssd-retention` or `--start-demote` shows no value for those columns. Set them with `weka fs group update` if the group needs a tiering policy.
+    A group created without `--ssd-retention` or `--start-demote` shows no value for those columns: the group has no tiering policy yet, rather than a policy set to zero. Set both with `weka fs group update` before you attach an object store to a filesystem in the group. The `.meta` and `default` groups created with the cluster already have values.
 3.  Create a filesystem within the new group.
 
     ```bash
@@ -48,10 +48,6 @@ Create a filesystem group before creating a filesystem in that group.
      1  default            1  12.29 KB      214.75 GB    12.29 KB        214.75 GB        False
      3  new_fs             2  12.29 KB      107.37 GB    12.29 KB        107.37 GB        False
     ```
-
-{% hint style="danger" %}
-**INTERNAL, remove before publication. TBD (Engineering):** A filesystem group created without `--ssd-retention` or `--start-demote` comes back with both set to 0 and renders them blank, while the pre-existing `.meta` and `default` groups report 86400s / 900s. Confirm whether the creation defaults were intentionally dropped in 6.0 or this is a bug. The step 2 output and its note reflect the observed behavior and should be revisited if it is a bug.
-{% endhint %}
 
 {% hint style="danger" %}
 **INTERNAL, remove before publication. TBD (Docs):** One `weka fs` output block is still legacy format — the one under Write data to the filesystem, which shows capacity after the `dd` write. It uses pipe-delimited columns and headers (`Filesystem ID`, `Filesystem Name`, `Group`) that no longer exist, and it lists `default` rather than the `new_fs` the tutorial just created. Capturing it needs a Linux client with the filesystem mounted, which was not available; everything above it was captured on a 6.0.0.304 cluster. The AWS hint block below is also current.
