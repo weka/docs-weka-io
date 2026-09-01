@@ -36,12 +36,13 @@ description: >-
 
 ### Async Delete
 
-| Type                                 | Description                                                    | Units      |
-| ------------------------------------ | -------------------------------------------------------------- | ---------- |
-| ASYNC\_DELETE\_DIRS\_QUEUED          | Directories added to async delete queue, categorized by source | Dirs/Sec   |
-| ASYNC\_DELETE\_DIRS\_QUEUED\_SUBDIRS | Subdirectories queued during async delete processing           | Dirs/Sec   |
-| ASYNC\_DELETE\_FILES\_QUEUED         | Files queued for unlink by async delete directory shredder     | Files/Sec  |
-| ASYNC\_DELETE\_SLICES\_SHREDDED      | Directory slices shredded by async delete                      | Slices/Sec |
+| Type                                 | Description                                                                             | Units       |
+| ------------------------------------ | --------------------------------------------------------------------------------------- | ----------- |
+| ASYNC\_DELETE\_DIRS\_QUEUED          | Directories added to async delete queue, categorized by source                          | Dirs/Sec    |
+| ASYNC\_DELETE\_DIRS\_QUEUED\_SUBDIRS | Subdirectories queued during async delete processing                                    | Dirs/Sec    |
+| ASYNC\_DELETE\_DIR\_RETRIES          | async delete passes that ended with the directory not yet empty, so it is retried later | Retries/Sec |
+| ASYNC\_DELETE\_FILES\_QUEUED         | Files queued for unlink by async delete directory shredder                              | Files/Sec   |
+| ASYNC\_DELETE\_SLICES\_SHREDDED      | Directory slices shredded by async delete                                               | Slices/Sec  |
 
 ### Attribute Cache
 
@@ -238,6 +239,7 @@ description: >-
 | REGISTRY\_SEARCHES\_COUNT                                         | Number of registry searches per second                                                                  | Queries/Sec       |
 | REJECTED\_STALE\_PUT\_BLOCKS                                      | Number of putBlocks RPCs rejected due to stale serial number                                            | RPCs/Sec          |
 | REJECTED\_STALE\_PUT\_BLOCKS\_FALSE\_POSITIVES                    | Number of putBlocks RPCs falsely rejected due to stale serial number                                    | RPCs/Sec          |
+| RENAME\_WHITEOUT\_OPS                                             | Number of rename-with-whiteout operations per second                                                    | Ops/Sec           |
 | RESIDENT\_BLOCKS\_COUNT                                           | Number of blocks in the resident blocks table                                                           | Blocks            |
 | SINGLE\_HOP\_MISMATCH\_RECOVERY                                   | Number of single hop read prefix mismatch recoveries                                                    | Issues            |
 | SINGLE\_HOP\_RDMA\_MISMATCH\_DPDK\_FALLBACK                       | Number of single hop read prefix mismatch RDMA fail                                                     | Issues            |
@@ -290,6 +292,12 @@ description: >-
 | INFORMATIVE\_DENY\_BUCKET\_ACCESS      | Number of new-style NotBucketLeaderEx exceptions          | Exceptions      |
 | LEGACY\_DENY\_BUCKET\_ACCESS           | Number of old-style NotBucketLeader exceptions            | Exceptions      |
 
+### CPU
+
+| Type             | Description                                           | Units |
+| ---------------- | ----------------------------------------------------- | ----- |
+| CPU\_UTILIZATION | The percentage of the CPU time used for handling I/Os | %     |
+
 ### Charters
 
 | Type                                | Description                    | Units    |
@@ -325,43 +333,50 @@ description: >-
 
 ### Config
 
-| Type                                                            | Description                                                                                                                      | Units                                                 |
-| --------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------- |
-| AVERAGE\_CHANGES\_IN\_CHANGESET                                 | The average number of changes in a changeset                                                                                     | Changes/Sec                                           |
-| AVERAGE\_CHANGES\_IN\_GENERATION                                | The average number of changes in a generation                                                                                    | Changes/Sec                                           |
-| BACKEND\_NODE\_REJOIN\_TIME                                     | The number of backends rejoin attempts per completion time range                                                                 | Number of rejoins                                     |
-| CHANGESET\_COMMIT\_LATENCY                                      | The average latency of committing a configuration changeset                                                                      | Microseconds                                          |
-| CLIENT\_NODE\_REJOIN\_TIME                                      | The number of clients rejoin attempts per completion time range                                                                  | Number of rejoins                                     |
-| CONFIG\_PROPAGATION\_LATENCY\_BACKENDS                          | The latencies of propagation of a configuration generation to backend nodes                                                      | Generation                                            |
-| CONFIG\_PROPAGATION\_LATENCY\_CLIENTS                           | The latencies of propagation of a configuration generation to client nodes                                                       | Generation                                            |
-| GENERATION\_COMMIT\_LATENCY                                     | The average latency of committing a configuration generation to the RAFT log                                                     | Microseconds                                          |
-| GENERATION\_PROPAGATION\_AND\_APPLY\_LATENCY                    | The duration between when the leader created a ConfigGeneration until a node applies it as its active configuration              | Microseconds                                          |
-| HEARTBEAT\_PROCESSING\_TIME                                     | The number of non-leader heartbeats per processing time range                                                                    | Number of heartbeats                                  |
-| HEARTBEAT\_PROCESSING\_TIME\_OLD                                | The number of non-leader heartbeats per processing time range (OLD)                                                              | Number of heartbeats                                  |
-| HISTOGRAM\_LEADER\_ITERATION\_WAIT\_DURATION\_CONFIG\_ALIGNMENT | Wait duration of leader iteration for all nodes to align on latest configuration generation                                      | Leader iteration wait time                            |
-| LEADER\_HEARTBEAT\_PROCESSING\_TIME                             | The number of leader heartbeats per processing time range                                                                        | Number of heartbeats                                  |
-| LEADER\_HEARTBEAT\_PROCESSING\_TIME\_OLD                        | The number of leader heartbeats per processing time range (OLD)                                                                  | Number of heartbeats                                  |
-| LOCALSTATE\_AGGREGATION\_LATENCY                                | This period between clockSkewReportTime table's update by a management process and the time the leader sees it                   | Time is taken to aggregate LocalState in milliseconds |
-| LOCAL\_STATE\_BLOCKED\_CHANGES                                  | The number of local-state changes that were blocked from propagating to the parent                                               | Blocked LocalState Changes                            |
-| LOCAL\_STATE\_DROPPED\_NON\_REPORTING\_CHILD\_KEYS              | The number of non-reporting local-state entries that a node dropped (when re-aggregating a locally-aggregated local-state table) | Dropped Non-Reporting locally-aggregated Keys         |
-| LOCAL\_STATE\_LOCALLY\_AGGREGATED\_REMOVED                      | The number of times that an inner node removed a locally-aggregated key from parent facing table                                 | Overlay Parent locally-aggregated Keys Removed        |
-| LOCAL\_STATE\_RE\_AGGREGATING\_LOCALLY                          | The number of times that an inner node needed to re-aggregate a locally-aggregated local-state table                             | Re-Aggregations of locally-aggregated Keys            |
-| LOCAL\_STATS\_FETCH\_GENERATION\_LAGGING                        | The number of local-state generations that the parent fetch request still needs to read                                          | local-state generations                               |
-| OVERLAY\_FULL\_SHIFTS                                           | The number of entire overlay shifts                                                                                              | Changes                                               |
-| OVERLAY\_INCREMENTAL\_SHIFTS                                    | The number of incremental overlay shifts                                                                                         | Changes                                               |
-| OVERLAY\_TRACKER\_INCREMENTALS                                  | The number of incremental OverlayTracker applications                                                                            | Changes                                               |
-| OVERLAY\_TRACKER\_RESYNCS                                       | The number of OverlayTracker full-resyncs                                                                                        | Changes                                               |
-| QUEUED\_CONFIG\_COMMIT\_REQUEST                                 | The number of configuration commit requests that await in the queue for RAFT to be available                                     | Commit Requests                                       |
-| TOTAL\_CHANGESETS\_COMMITTED                                    | The total number of committed changesets                                                                                         | Change Sets                                           |
-| TOTAL\_COMMITTED\_CHANGES                                       | The total number of committed configuration change sets                                                                          | Changes                                               |
-| TOTAL\_CONFIG\_SNAPSHOT\_PULLS                                  | The total number of config snapshot pulls                                                                                        | Pulls                                                 |
-| TOTAL\_GENERATIONS\_COMMITTED                                   | The number of committed generations                                                                                              | Generations                                           |
-
-### CPU
-
-| Type             | Description                                           | Units |
-| ---------------- | ----------------------------------------------------- | ----- |
-| CPU\_UTILIZATION | The percentage of the CPU time used for handling I/Os | %     |
+| Type                                                            | Description                                                                                                                                                                                                                                     | Units                                                 |
+| --------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------- |
+| AVERAGE\_CHANGES\_IN\_CHANGESET                                 | The average number of changes in a changeset                                                                                                                                                                                                    | Changes/Sec                                           |
+| AVERAGE\_CHANGES\_IN\_GENERATION                                | The average number of changes in a generation                                                                                                                                                                                                   | Changes/Sec                                           |
+| BACKEND\_NODE\_REJOIN\_TIME                                     | The number of backends rejoin attempts per completion time range                                                                                                                                                                                | Number of rejoins                                     |
+| CHANGESET\_COMMIT\_LATENCY                                      | The average latency of committing a configuration changeset                                                                                                                                                                                     | Microseconds                                          |
+| CLIENT\_NODE\_REJOIN\_TIME                                      | The number of clients rejoin attempts per completion time range                                                                                                                                                                                 | Number of rejoins                                     |
+| CONFIG\_PROPAGATION\_LATENCY\_BACKENDS                          | The latencies of propagation of a configuration generation to backend nodes                                                                                                                                                                     | Generation                                            |
+| CONFIG\_PROPAGATION\_LATENCY\_CLIENTS                           | The latencies of propagation of a configuration generation to client nodes                                                                                                                                                                      | Generation                                            |
+| GENERATION\_COMMIT\_LATENCY                                     | The average latency of committing a configuration generation to the RAFT log                                                                                                                                                                    | Microseconds                                          |
+| GENERATION\_PROPAGATION\_AND\_APPLY\_LATENCY                    | The duration between when the leader created a ConfigGeneration until a node applies it as its active configuration                                                                                                                             | Microseconds                                          |
+| HEARTBEAT\_PROCESSING\_TIME                                     | The number of non-leader heartbeats per processing time range                                                                                                                                                                                   | Number of heartbeats                                  |
+| HEARTBEAT\_PROCESSING\_TIME\_OLD                                | The number of non-leader heartbeats per processing time range (OLD)                                                                                                                                                                             | Number of heartbeats                                  |
+| HISTOGRAM\_LEADER\_ITERATION\_WAIT\_DURATION\_CONFIG\_ALIGNMENT | Wait duration of leader iteration for all nodes to align on latest configuration generation                                                                                                                                                     | Leader iteration wait time                            |
+| LEADER\_HEARTBEAT\_PROCESSING\_TIME                             | The number of leader heartbeats per processing time range                                                                                                                                                                                       | Number of heartbeats                                  |
+| LEADER\_HEARTBEAT\_PROCESSING\_TIME\_OLD                        | The number of leader heartbeats per processing time range (OLD)                                                                                                                                                                                 | Number of heartbeats                                  |
+| LOCALSTATE\_AGGREGATION\_LATENCY                                | This period between clockSkewReportTime table's update by a management process and the time the leader sees it                                                                                                                                  | Time is taken to aggregate LocalState in milliseconds |
+| LOCALSTATE\_AGGREGATION\_LATENCY\_EXTREMES\_BACKENDS            | Latency between a backend (non-CLIENT) host sampling its wall time and the leader observing it via the per-role host wall-time extremes table; all backend roles aggregated                                                                     | Time is taken to aggregate LocalState in milliseconds |
+| LOCALSTATE\_AGGREGATION\_LATENCY\_EXTREMES\_CLIENTS             | Latency between a CLIENT host sampling its wall time and the leader observing it via the per-role host wall-time extremes table                                                                                                                 | Time is taken to aggregate LocalState in milliseconds |
+| LOCALSTATE\_AGGREGATION\_LATENCY\_TOP\_LAGGER\_CLIENT           | Latest top-lagger raw latency (how far the most-lagging host of CLIENT is behind the leader: now - oldest wall time) via the per-role host wall-time extremes table; one gauge per host primary role, raw form, reportInterval not subtracted   | Milliseconds                                          |
+| LOCALSTATE\_AGGREGATION\_LATENCY\_TOP\_LAGGER\_COMPUTE          | Latest top-lagger raw latency (how far the most-lagging host of COMPUTE is behind the leader: now - oldest wall time) via the per-role host wall-time extremes table; one gauge per host primary role, raw form, reportInterval not subtracted  | Milliseconds                                          |
+| LOCALSTATE\_AGGREGATION\_LATENCY\_TOP\_LAGGER\_DATASERV         | Latest top-lagger raw latency (how far the most-lagging host of DATASERV is behind the leader: now - oldest wall time) via the per-role host wall-time extremes table; one gauge per host primary role, raw form, reportInterval not subtracted | Milliseconds                                          |
+| LOCALSTATE\_AGGREGATION\_LATENCY\_TOP\_LAGGER\_DRIVES           | Latest top-lagger raw latency (how far the most-lagging host of DRIVES is behind the leader: now - oldest wall time) via the per-role host wall-time extremes table; one gauge per host primary role, raw form, reportInterval not subtracted   | Milliseconds                                          |
+| LOCALSTATE\_AGGREGATION\_LATENCY\_TOP\_LAGGER\_FRONTEND         | Latest top-lagger raw latency (how far the most-lagging host of FRONTEND is behind the leader: now - oldest wall time) via the per-role host wall-time extremes table; one gauge per host primary role, raw form, reportInterval not subtracted | Milliseconds                                          |
+| LOCALSTATE\_AGGREGATION\_LATENCY\_TOP\_RECENT\_CLIENT           | Latest top-recent raw latency (how far the most-ahead host of CLIENT is ahead of the leader: newest wall time - now) via the per-role host wall-time extremes table; one gauge per host primary role, raw form, reportInterval not subtracted   | Milliseconds                                          |
+| LOCALSTATE\_AGGREGATION\_LATENCY\_TOP\_RECENT\_COMPUTE          | Latest top-recent raw latency (how far the most-ahead host of COMPUTE is ahead of the leader: newest wall time - now) via the per-role host wall-time extremes table; one gauge per host primary role, raw form, reportInterval not subtracted  | Milliseconds                                          |
+| LOCALSTATE\_AGGREGATION\_LATENCY\_TOP\_RECENT\_DATASERV         | Latest top-recent raw latency (how far the most-ahead host of DATASERV is ahead of the leader: newest wall time - now) via the per-role host wall-time extremes table; one gauge per host primary role, raw form, reportInterval not subtracted | Milliseconds                                          |
+| LOCALSTATE\_AGGREGATION\_LATENCY\_TOP\_RECENT\_DRIVES           | Latest top-recent raw latency (how far the most-ahead host of DRIVES is ahead of the leader: newest wall time - now) via the per-role host wall-time extremes table; one gauge per host primary role, raw form, reportInterval not subtracted   | Milliseconds                                          |
+| LOCALSTATE\_AGGREGATION\_LATENCY\_TOP\_RECENT\_FRONTEND         | Latest top-recent raw latency (how far the most-ahead host of FRONTEND is ahead of the leader: newest wall time - now) via the per-role host wall-time extremes table; one gauge per host primary role, raw form, reportInterval not subtracted | Milliseconds                                          |
+| LOCAL\_STATE\_BLOCKED\_CHANGES                                  | The number of local-state changes that were blocked from propagating to the parent                                                                                                                                                              | Blocked LocalState Changes                            |
+| LOCAL\_STATE\_DROPPED\_NON\_REPORTING\_CHILD\_KEYS              | The number of non-reporting local-state entries that a node dropped (when re-aggregating a locally-aggregated local-state table)                                                                                                                | Dropped Non-Reporting locally-aggregated Keys         |
+| LOCAL\_STATE\_LOCALLY\_AGGREGATED\_REMOVED                      | The number of times that an inner node removed a locally-aggregated key from parent facing table                                                                                                                                                | Overlay Parent locally-aggregated Keys Removed        |
+| LOCAL\_STATE\_RE\_AGGREGATING\_LOCALLY                          | The number of times that an inner node needed to re-aggregate a locally-aggregated local-state table                                                                                                                                            | Re-Aggregations of locally-aggregated Keys            |
+| LOCAL\_STATE\_UNMODIFIED\_MARKED\_COMMITS                       | The number of commits of a newly-created local-state key that was marked as modified without its data actually being modified (wasteful commits that propagate no real change)                                                                  | Commits                                               |
+| LOCAL\_STATS\_FETCH\_GENERATION\_LAGGING                        | The number of local-state generations that the parent fetch request still needs to read                                                                                                                                                         | local-state generations                               |
+| OVERLAY\_FULL\_SHIFTS                                           | The number of entire overlay shifts                                                                                                                                                                                                             | Changes                                               |
+| OVERLAY\_INCREMENTAL\_SHIFTS                                    | The number of incremental overlay shifts                                                                                                                                                                                                        | Changes                                               |
+| OVERLAY\_TRACKER\_INCREMENTALS                                  | The number of incremental OverlayTracker applications                                                                                                                                                                                           | Changes                                               |
+| OVERLAY\_TRACKER\_RESYNCS                                       | The number of OverlayTracker full-resyncs                                                                                                                                                                                                       | Changes                                               |
+| QUEUED\_CONFIG\_COMMIT\_REQUEST                                 | The number of configuration commit requests that await in the queue for RAFT to be available                                                                                                                                                    | Commit Requests                                       |
+| TOTAL\_CHANGESETS\_COMMITTED                                    | The total number of committed changesets                                                                                                                                                                                                        | Change Sets                                           |
+| TOTAL\_COMMITTED\_CHANGES                                       | The total number of committed configuration change sets                                                                                                                                                                                         | Changes                                               |
+| TOTAL\_CONFIG\_SNAPSHOT\_PULLS                                  | The total number of config snapshot pulls                                                                                                                                                                                                       | Pulls                                                 |
+| TOTAL\_GENERATIONS\_COMMITTED                                   | The number of committed generations                                                                                                                                                                                                             | Generations                                           |
 
 ### Data Reduction
 
@@ -475,6 +490,10 @@ description: >-
 | DIFFLIST\_RESOLVEPATH\_OPS                                 | Number of getDifflist resolvepath                                                                                                                                                                                                                                                                                           | Ops/Sec           |
 | DIFFLIST\_RESOLVE\_PATH\_BATCH\_LATENCY                    | Average latency of getDifflist resolve-path per batch                                                                                                                                                                                                                                                                       | Microseconds      |
 | DIFFLIST\_RESOLVE\_PATH\_BATCH\_OPS                        | Number of getDifflist resolve-path per batch                                                                                                                                                                                                                                                                                | Ops/Sec           |
+| DIFFLIST\_SCOPE\_CACHE\_BYTES                              | Cross-call scope-ancestry cache size in bytes                                                                                                                                                                                                                                                                               | Bytes             |
+| DIFFLIST\_SCOPE\_CACHE\_EVICTIONS\_LRU                     | Cross-call scope-ancestry cache evictions (LRU)                                                                                                                                                                                                                                                                             | Ops/Sec           |
+| DIFFLIST\_SCOPE\_CACHE\_HITS                               | Cross-call scope-ancestry cache hits                                                                                                                                                                                                                                                                                        | Ops/Sec           |
+| DIFFLIST\_SCOPE\_CACHE\_MISSES                             | Cross-call scope-ancestry cache misses                                                                                                                                                                                                                                                                                      | Ops/Sec           |
 | DS\_BACKEND\_LOAD\_STALL\_TIME                             | Time spent stalling due to high backend load                                                                                                                                                                                                                                                                                | Seconds/Sec       |
 | DS\_CLOSE\_TMP\_FILE\_LATENCY                              | Average latency of closeTmpFile operations                                                                                                                                                                                                                                                                                  | Microseconds      |
 | DS\_CLOSE\_TMP\_FILE\_OPS                                  | Number of closeTmpFile operations per second                                                                                                                                                                                                                                                                                | Ops/Sec           |
@@ -506,6 +525,16 @@ description: >-
 | DS\_READDIR\_OPS                                           | Number of readdir operations per second                                                                                                                                                                                                                                                                                     | Ops/Sec           |
 | DS\_READ\_FILE\_LATENCY                                    | Average latency of readFileContent operations                                                                                                                                                                                                                                                                               | Microseconds      |
 | DS\_READ\_FILE\_OPS                                        | Number of readFileContent operations per second                                                                                                                                                                                                                                                                             | Ops/Sec           |
+| DS\_REPLICATION\_COPY\_TASK\_ADD\_DIR\_ENTRIES             | Number of directory entries added for replication copy task                                                                                                                                                                                                                                                                 | Ops/Sec           |
+| DS\_REPLICATION\_COPY\_TASK\_CREATES                       | Number of replication copy tasks created                                                                                                                                                                                                                                                                                    | Ops               |
+| DS\_REPLICATION\_COPY\_TASK\_DELETES                       | Number of replication copy tasks removed                                                                                                                                                                                                                                                                                    | Ops               |
+| DS\_REPLICATION\_COPY\_TASK\_DELETE\_DIR\_ENTRIES          | Number of entries removed for replication copy task                                                                                                                                                                                                                                                                         | Ops/Sec           |
+| DS\_REPLICATION\_COPY\_TASK\_FILE\_COPY\_LATENCY           | Replication copy task file data copy latency                                                                                                                                                                                                                                                                                | Microseconds      |
+| DS\_REPLICATION\_COPY\_TASK\_FILE\_COPY\_OPS               | Number of file data copy operations for replication copy task                                                                                                                                                                                                                                                               | Ops/Sec           |
+| DS\_REPLICATION\_COPY\_TASK\_PREFETCH\_LATENCY             | Replication copy task inode prefetch latency                                                                                                                                                                                                                                                                                | Microseconds      |
+| DS\_REPLICATION\_COPY\_TASK\_PREFETCH\_OPS                 | Number of inode prefetch operations for replication copy task                                                                                                                                                                                                                                                               | Ops/Sec           |
+| DS\_REPLICATION\_COPY\_TASK\_READDIR\_LATENCY              | Replication copy task readdir operation latency                                                                                                                                                                                                                                                                             | Microseconds      |
+| DS\_REPLICATION\_COPY\_TASK\_READDIR\_OPS                  | Number of replication copy task readdir operations per second                                                                                                                                                                                                                                                               | Ops/Sec           |
 | DS\_RMDIR\_LATENCY                                         | Average latency of rmdir operations                                                                                                                                                                                                                                                                                         | Microseconds      |
 | DS\_RMDIR\_OPS                                             | Number of rmdir operations per second                                                                                                                                                                                                                                                                                       | Ops/Sec           |
 | DS\_SET\_XATTR\_LATENCY                                    | Average latency of setXAttrString operations                                                                                                                                                                                                                                                                                | Microseconds      |
@@ -668,6 +697,7 @@ description: >-
 | OBS\_POLICY\_FREED                                 | Number of bytes freed from disk due to policy per second                        | Bytes/Sec          |
 | OBS\_PROMOTE\_EXTENT\_WRITE                        | Number of extents promoted from object-store per second                         | Extents/Sec        |
 | OBS\_PROMOTE\_EXTENT\_WRITE\_LATENCY               | Average latency of extent promote writes                                        | Microseconds       |
+| OBS\_PROMOTE\_SKIPPED\_NO\_CAPACITY                | Number of extent promotes skipped because the bucket's SSD share had no room    | Extents/Sec        |
 | OBS\_PROMOTE\_WRITE                                | Number of bytes promoted from object-store per second                           | Bytes/Sec          |
 | OBS\_READ                                          | Number of reads that needed data from the object-store per second               | Ops/Sec            |
 | OBS\_RECLAMATION\_PURGED\_BYTES                    | Number of bytes purged per second                                               | Bytes/Sec          |
@@ -777,6 +807,16 @@ description: >-
 | NDU\_DRAINER\_SWAPS                 | Total bucket swaps performed by the NDU drainer                                           | Swaps      |
 | NDU\_DRAINER\_WASTED\_SWAP\_BUCKETS | Buckets that received partial swaps but were not fully drained — wasted work              | Buckets    |
 
+### NODE\_TRANSITIONS
+
+| Type                              | Description                                                 | Units           |
+| --------------------------------- | ----------------------------------------------------------- | --------------- |
+| JOINING\_FENCED\_REASON\_COUNTS   | Counts of reasons JOINING nodes were fenced                 | Occurrences/Sec |
+| JOINING\_TO\_UP\_TRANSITIONS      | Number of nodes transitioned from JOINING to UP             | Nodes           |
+| SYNCING\_TO\_JOINING\_TRANSITIONS | Number of nodes transitioned from SYNCING to JOINING        | Nodes           |
+| SYNC\_TO\_JOIN\_FAILURE\_COUNTS   | Counts of SYNCING to JOINING failures categorized by reason | Occurrences/Sec |
+| UP\_FENCED\_REASON\_COUNTS        | Counts of reasons UP nodes were fenced                      | Occurrences/Sec |
+
 ### Network
 
 | Type                                    | Description                                                                                                         | Units                  |
@@ -865,7 +905,6 @@ description: >-
 | RDMA\_POOL\_ALLOC\_FAILED               | Number of times an RDMA request was not issued due to a pool allocation failure                                     | Failures/Sec           |
 | RDMA\_POOL\_LOW\_CAPACITY               | Number of times an RDMA request was not issued due to low RDMA pool memory                                          | Failures/Sec           |
 | RDMA\_POOL\_MBUF\_LEAKED                | RDMA leaked mbufs                                                                                                   | Occurrences            |
-| RDMA\_PORT\_WAITING\_FIBERS             | Number of fibers pending to send an RDMA request                                                                    | Waiting fibers         |
 | RDMA\_REQUESTS                          | Number of RDMA requests sent to the NIC                                                                             | Requests/Sec           |
 | RDMA\_RX\_BYTES                         | Number of bytes received with RDMA                                                                                  | Bytes/Sec              |
 | RDMA\_SERVER\_BINDING\_RESTARTS         | Number of RDMA server binding restarts                                                                              | Restarts/Sec           |
@@ -905,28 +944,12 @@ description: >-
 | TIMELY\_RESENDS                         | Number of packets resent due to timely resend                                                                       | Packets/Sec            |
 | TIME\_TO\_ACK                           | Histogram of time to acknowledge a data packet                                                                      | Requests               |
 | TIME\_TO\_FIRST\_SEND                   | Time from queueing to first send                                                                                    | Requests               |
-| UCX\_RXQ\_FULL                          | UCX Drop RXQ Full                                                                                                   | Packets/Sec            |
-| UCX\_SEND\_CB                           | UCX Send Callback                                                                                                   | Packets/Sec            |
-| UCX\_SEND\_ERROR                        | UCX Send Error                                                                                                      | Packets/Sec            |
-| UCX\_SENT\_PACKETS\_ASYNC               | UCX Sent Asynchronously                                                                                             | Packets/Sec            |
-| UCX\_SENT\_PACKETS\_IMMEDIATE           | UCX Sent Immediately                                                                                                | Packets/Sec            |
-| UCX\_TXQ\_FULL                          | UCX Drop TXQ Full                                                                                                   | Packets/Sec            |
 | UDP\_SENDMSG\_FAILED\_EAGAIN            | Number of packets that failed to be sent on the socket backend with EAGAIN                                          | Packets/Sec            |
 | UDP\_SENDMSG\_FAILED\_OTHER             | Number of packets that failed to be sent on the socket backend with an unknown error                                | Packets/Sec            |
 | UDP\_SENDMSG\_PARTIAL\_SEND             | Number of packets that we failed to send, but in the same pump, some packets were sent                              | Packets/Sec            |
 | UNACKED\_RESENDS                        | Number of packets resent after receiving an ack                                                                     | Packets/Sec            |
 | ZERO\_CSUM                              | Number of checksum zero received                                                                                    | Packets/Sec            |
 | ZERO\_CSUM\_OVERWRITE                   | Number of packets with zero checksum that were overwritten with 0xFFFF                                              | Packets/Sec            |
-
-### NODE\_TRANSITIONS
-
-| Type                              | Description                                                 | Units           |
-| --------------------------------- | ----------------------------------------------------------- | --------------- |
-| JOINING\_FENCED\_REASON\_COUNTS   | Counts of reasons JOINING nodes were fenced                 | Occurrences/Sec |
-| JOINING\_TO\_UP\_TRANSITIONS      | Number of nodes transitioned from JOINING to UP             | Nodes           |
-| SYNCING\_TO\_JOINING\_TRANSITIONS | Number of nodes transitioned from SYNCING to JOINING        | Nodes           |
-| SYNC\_TO\_JOIN\_FAILURE\_COUNTS   | Counts of SYNCING to JOINING failures categorized by reason | Occurrences/Sec |
-| UP\_FENCED\_REASON\_COUNTS        | Counts of reasons UP nodes were fenced                      | Occurrences/Sec |
 
 ### Object Storage
 
@@ -1123,6 +1146,337 @@ description: >-
 | WRITE\_BYTES   | Number of bytes written per second      | Bytes/Sec    |
 | WRITE\_LATENCY | Average latency of WRITE operations     | Microseconds |
 
+### Operations (Filesystem)
+
+| Type                    | Description                                                                            | Units        |
+| ----------------------- | -------------------------------------------------------------------------------------- | ------------ |
+| METADATA\_LATENCY       | Average latency of metadata operations per filesystem, broken down by operation type   | Microseconds |
+| METADATA\_OPS           | Number of metadata operations per second per filesystem, broken down by operation type | Ops/Sec      |
+| READS                   | Number of read operations per second                                                   | Ops/Sec      |
+| READ\_BYTES             | Number of bytes read per second                                                        | Bytes/Sec    |
+| READ\_LATENCY           | Average latency of READ operations                                                     | Microseconds |
+| READ\_LATENCY\_NO\_QOS  | Average latency of READ operations without QoS delay                                   | Microseconds |
+| READ\_QOS\_DELAY        | Average QoS delay for READ operations                                                  | Microseconds |
+| THROUGHPUT              | Number of bytes read/written per second                                                | Bytes/Sec    |
+| WRITES                  | Number of write operations per second                                                  | Ops/Sec      |
+| WRITE\_BYTES            | Number of bytes written per second                                                     | Bytes/Sec    |
+| WRITE\_LATENCY          | Average latency of WRITE operations                                                    | Microseconds |
+| WRITE\_LATENCY\_NO\_QOS | Average latency of WRITE operations without QoS delay                                  | Microseconds |
+| WRITE\_QOS\_DELAY       | Average QoS delay for WRITE operations                                                 | Microseconds |
+
+### Operations (NFS)
+
+| Type              | Description                                  | Units        |
+| ----------------- | -------------------------------------------- | ------------ |
+| ACCESS\_LATENCY   | Average latency of ACCESS operations         | Microseconds |
+| ACCESS\_OPS       | Number of ACCESS operations per second       | Ops/Sec      |
+| COMMIT\_LATENCY   | Average latency of COMMIT operations         | Microseconds |
+| COMMIT\_OPS       | Number of COMMIT operations per second       | Ops/Sec      |
+| CREATE\_LATENCY   | Average latency of CREATE operations         | Microseconds |
+| CREATE\_OPS       | Number of CREATE operations per second       | Ops/Sec      |
+| FSINFO\_LATENCY   | Average latency of FSINFO operations         | Microseconds |
+| FSINFO\_OPS       | Number of FSINFO operations per second       | Ops/Sec      |
+| GETATTR\_LATENCY  | Average latency of GETATTR operations        | Microseconds |
+| GETATTR\_OPS      | Number of GETATTR operations per second      | Ops/Sec      |
+| LINK\_LATENCY     | Average latency of LINK operations           | Microseconds |
+| LINK\_OPS         | Number of LINK operations per second         | Ops/Sec      |
+| LOOKUP\_LATENCY   | Average latency of LOOKUP operations         | Microseconds |
+| LOOKUP\_OPS       | Number of LOOKUP operations per second       | Ops/Sec      |
+| MKDIR\_LATENCY    | Average latency of MKDIR operations          | Microseconds |
+| MKDIR\_OPS        | Number of MKDIR operations per second        | Ops/Sec      |
+| MKNOD\_LATENCY    | Average latency of MKNOD operations          | Microseconds |
+| MKNOD\_OPS        | Number of MKNOD operations per second        | Ops/Sec      |
+| OPS               | Total number of operations                   | Ops/Sec      |
+| PATHCONF\_LATENCY | Average latency of PATHCONF operations       | Microseconds |
+| PATHCONF\_OPS     | Number of PATHCONF operations per second     | Ops/Sec      |
+| READDIR\_LATENCY  | Average latency of READDIR operations        | Microseconds |
+| READDIR\_OPS      | Number of READDIR operations per second      | Ops/Sec      |
+| READLINK\_LATENCY | Average latency of READLINK operations       | Microseconds |
+| READLINK\_OPS     | Number of READLINK operations per second     | Ops/Sec      |
+| READS             | Number of read operations per second         | Ops/Sec      |
+| READ\_BYTES       | Number of bytes read per second              | Bytes/Sec    |
+| READ\_DURATION    | The number of reads per completion duration  | Reads        |
+| READ\_LATENCY     | Average latency of READ operations           | Microseconds |
+| READ\_SIZES       | NFS read sizes histogram                     | Reads        |
+| REMOVE\_LATENCY   | Average latency of REMOVE operations         | Microseconds |
+| REMOVE\_OPS       | Number of REMOVE operations per second       | Ops/Sec      |
+| RENAME\_LATENCY   | Average latency of RENAME operations         | Microseconds |
+| RENAME\_OPS       | Number of RENAME operations per second       | Ops/Sec      |
+| SETATTR\_LATENCY  | Average latency of SETATTR operations        | Microseconds |
+| SETATTR\_OPS      | Number of SETATTR operations per second      | Ops/Sec      |
+| STATFS\_LATENCY   | Average latency of STATFS operations         | Microseconds |
+| STATFS\_OPS       | Number of STATFS operations per second       | Ops/Sec      |
+| SYMLINK\_LATENCY  | Average latency of SYMLINK operations        | Microseconds |
+| SYMLINK\_OPS      | Number of SYMLINK operations per second      | Ops/Sec      |
+| THROUGHPUT        | Number of bytes read/written per second      | Bytes/Sec    |
+| WRITES            | Number of write operations per second        | Ops/Sec      |
+| WRITE\_BYTES      | Number of bytes written per second           | Bytes/Sec    |
+| WRITE\_DURATION   | The number of writes per completion duration | Writes       |
+| WRITE\_LATENCY    | Average latency of WRITE operations          | Microseconds |
+| WRITE\_SIZES      | NFS write sizes histogram                    | Writes       |
+
+### Operations (NFSw)
+
+| Type                                       | Description                                                   | Units        |
+| ------------------------------------------ | ------------------------------------------------------------- | ------------ |
+| NFS3\_ACCESS\_ID\_LATENCY                  | Average latency of NFS3\_ACCESS operations                    | Microseconds |
+| NFS3\_ACCESS\_ID\_OPS                      | Number of NFS3\_ACCESS operations per second                  | Ops/Sec      |
+| NFS3\_COMMIT\_ID\_LATENCY                  | Average latency of NFS3\_COMMIT operations                    | Microseconds |
+| NFS3\_COMMIT\_ID\_OPS                      | Number of NFS3\_COMMIT operations per second                  | Ops/Sec      |
+| NFS3\_CREATE\_ID\_LATENCY                  | Average latency of NFS3\_CREATE operations                    | Microseconds |
+| NFS3\_CREATE\_ID\_OPS                      | Number of NFS3\_CREATE operations per second                  | Ops/Sec      |
+| NFS3\_FSINFO\_ID\_LATENCY                  | Average latency of NFS3\_FSINFO operations                    | Microseconds |
+| NFS3\_FSINFO\_ID\_OPS                      | Number of NFS3\_FSINFO operations per second                  | Ops/Sec      |
+| NFS3\_GETATTR\_ID\_LATENCY                 | Average latency of NFS3\_GETATTR operations                   | Microseconds |
+| NFS3\_GETATTR\_ID\_OPS                     | Number of NFS3\_GETATTR operations per second                 | Ops/Sec      |
+| NFS3\_LINK\_ID\_LATENCY                    | Average latency of NFS3\_LINK operations                      | Microseconds |
+| NFS3\_LINK\_ID\_OPS                        | Number of NFS3\_LINK operations per second                    | Ops/Sec      |
+| NFS3\_LOOKUP\_ID\_LATENCY                  | Average latency of NFS3\_LOOKUP operations                    | Microseconds |
+| NFS3\_LOOKUP\_ID\_OPS                      | Number of NFS3\_LOOKUP operations per second                  | Ops/Sec      |
+| NFS3\_MKDIR\_ID\_LATENCY                   | Average latency of NFS3\_MKDIR operations                     | Microseconds |
+| NFS3\_MKDIR\_ID\_OPS                       | Number of NFS3\_MKDIR operations per second                   | Ops/Sec      |
+| NFS3\_MKNOD\_ID\_LATENCY                   | Average latency of NFS3\_MKNOD operations                     | Microseconds |
+| NFS3\_MKNOD\_ID\_OPS                       | Number of NFS3\_MKNOD operations per second                   | Ops/Sec      |
+| NFS3\_OPS\_ID                              | Number of NFS3\_OPS per second                                | Ops/Sec      |
+| NFS3\_PATHCONF\_ID\_LATENCY                | Average latency of NFS3\_PATHCONF operations                  | Microseconds |
+| NFS3\_PATHCONF\_ID\_OPS                    | Number of NFS3\_PATHCONF operations per second                | Ops/Sec      |
+| NFS3\_READDIR\_ID\_LATENCY                 | Average latency of NFS3\_READDIR operations                   | Microseconds |
+| NFS3\_READDIR\_ID\_OPS                     | Number of NFS3\_READDIR operations per second                 | Ops/Sec      |
+| NFS3\_READLINK\_ID\_LATENCY                | Average latency of NFS3\_READLINK operations                  | Microseconds |
+| NFS3\_READLINK\_ID\_OPS                    | Number of NFS3\_READLINK operations per second                | Ops/Sec      |
+| NFS3\_READ\_BYTES\_ID                      | Number of NFS3\_READ\_BYTES per second                        | Bytes/Sec    |
+| NFS3\_READ\_ID\_LATENCY                    | Average latency of NFS3\_READ operations                      | Microseconds |
+| NFS3\_READ\_ID\_OPS                        | Number of NFS3\_READ operations per second                    | Ops/Sec      |
+| NFS3\_REMOVE\_ID\_LATENCY                  | Average latency of NFS3\_REMOVE operations                    | Microseconds |
+| NFS3\_REMOVE\_ID\_OPS                      | Number of NFS3\_REMOVE operations per second                  | Ops/Sec      |
+| NFS3\_RENAME\_ID\_LATENCY                  | Average latency of NFS3\_RENAME operations                    | Microseconds |
+| NFS3\_RENAME\_ID\_OPS                      | Number of NFS3\_RENAME operations per second                  | Ops/Sec      |
+| NFS3\_SETATTR\_ID\_LATENCY                 | Average latency of NFS3\_SETATTR operations                   | Microseconds |
+| NFS3\_SETATTR\_ID\_OPS                     | Number of NFS3\_SETATTR operations per second                 | Ops/Sec      |
+| NFS3\_STATFS\_ID\_LATENCY                  | Average latency of NFS3\_STATFS operations                    | Microseconds |
+| NFS3\_STATFS\_ID\_OPS                      | Number of NFS3\_STATFS operations per second                  | Ops/Sec      |
+| NFS3\_SYMLINK\_ID\_LATENCY                 | Average latency of NFS3\_SYMLINK operations                   | Microseconds |
+| NFS3\_SYMLINK\_ID\_OPS                     | Number of NFS3\_SYMLINK operations per second                 | Ops/Sec      |
+| NFS3\_WRITE\_BYTES\_ID                     | Number of NFS3\_WRITE\_BYTES per second                       | Bytes/Sec    |
+| NFS3\_WRITE\_ID\_LATENCY                   | Average latency of NFS3\_WRITE operations                     | Microseconds |
+| NFS3\_WRITE\_ID\_OPS                       | Number of NFS3\_WRITE operations per second                   | Ops/Sec      |
+| NFS4\_ACCESS\_ID\_LATENCY                  | Average latency of NFS4\_ACCESS operations                    | Microseconds |
+| NFS4\_ACCESS\_ID\_OPS                      | Number of NFS4\_ACCESS operations per second                  | Ops/Sec      |
+| NFS4\_BACKCHANNEL\_CTL\_ID\_LATENCY        | Average latency of NFS4\_BACKCHANNEL\_CTL operations          | Microseconds |
+| NFS4\_BACKCHANNEL\_CTL\_ID\_OPS            | Number of NFS4\_BACKCHANNEL\_CTL operations per second        | Ops/Sec      |
+| NFS4\_BIND\_CONN\_TO\_SESSION\_ID\_LATENCY | Average latency of NFS4\_BIND\_CONN\_TO\_SESSION operations   | Microseconds |
+| NFS4\_BIND\_CONN\_TO\_SESSION\_ID\_OPS     | Number of NFS4\_BIND\_CONN\_TO\_SESSION operations per second | Ops/Sec      |
+| NFS4\_CLOSE\_ID\_LATENCY                   | Average latency of NFS4\_CLOSE operations                     | Microseconds |
+| NFS4\_CLOSE\_ID\_OPS                       | Number of NFS4\_CLOSE operations per second                   | Ops/Sec      |
+| NFS4\_COMMIT\_ID\_LATENCY                  | Average latency of NFS4\_COMMIT operations                    | Microseconds |
+| NFS4\_COMMIT\_ID\_OPS                      | Number of NFS4\_COMMIT operations per second                  | Ops/Sec      |
+| NFS4\_CREATE\_ID\_LATENCY                  | Average latency of NFS4\_CREATE operations                    | Microseconds |
+| NFS4\_CREATE\_ID\_OPS                      | Number of NFS4\_CREATE operations per second                  | Ops/Sec      |
+| NFS4\_CREATE\_SESSION\_ID\_LATENCY         | Average latency of NFS4\_CREATE\_SESSION operations           | Microseconds |
+| NFS4\_CREATE\_SESSION\_ID\_OPS             | Number of NFS4\_CREATE\_SESSION operations per second         | Ops/Sec      |
+| NFS4\_DELEGPURGE\_ID\_LATENCY              | Average latency of NFS4\_DELEGPURGE operations                | Microseconds |
+| NFS4\_DELEGPURGE\_ID\_OPS                  | Number of NFS4\_DELEGPURGE operations per second              | Ops/Sec      |
+| NFS4\_DELEGRETURN\_ID\_LATENCY             | Average latency of NFS4\_DELEGRETURN operations               | Microseconds |
+| NFS4\_DELEGRETURN\_ID\_OPS                 | Number of NFS4\_DELEGRETURN operations per second             | Ops/Sec      |
+| NFS4\_DESTROY\_CLIENTID\_ID\_LATENCY       | Average latency of NFS4\_DESTROY\_CLIENTID operations         | Microseconds |
+| NFS4\_DESTROY\_CLIENTID\_ID\_OPS           | Number of NFS4\_DESTROY\_CLIENTID operations per second       | Ops/Sec      |
+| NFS4\_DESTROY\_SESSION\_ID\_LATENCY        | Average latency of NFS4\_DESTROY\_SESSION operations          | Microseconds |
+| NFS4\_DESTROY\_SESSION\_ID\_OPS            | Number of NFS4\_DESTROY\_SESSION operations per second        | Ops/Sec      |
+| NFS4\_EXCHANGEID\_ID\_LATENCY              | Average latency of NFS4\_EXCHANGEID operations                | Microseconds |
+| NFS4\_EXCHANGEID\_ID\_OPS                  | Number of NFS4\_EXCHANGEID operations per second              | Ops/Sec      |
+| NFS4\_FREE\_STATEID\_ID\_LATENCY           | Average latency of NFS4\_FREE\_STATEID operations             | Microseconds |
+| NFS4\_FREE\_STATEID\_ID\_OPS               | Number of NFS4\_FREE\_STATEID operations per second           | Ops/Sec      |
+| NFS4\_GETATTR\_ID\_LATENCY                 | Average latency of NFS4\_GETATTR operations                   | Microseconds |
+| NFS4\_GETATTR\_ID\_OPS                     | Number of NFS4\_GETATTR operations per second                 | Ops/Sec      |
+| NFS4\_GETDEVICEINFO\_ID\_LATENCY           | Average latency of NFS4\_GETDEVICEINFO operations             | Microseconds |
+| NFS4\_GETDEVICEINFO\_ID\_OPS               | Number of NFS4\_GETDEVICEINFO operations per second           | Ops/Sec      |
+| NFS4\_GETDEVICELIST\_ID\_LATENCY           | Average latency of NFS4\_GETDEVICELIST operations             | Microseconds |
+| NFS4\_GETDEVICELIST\_ID\_OPS               | Number of NFS4\_GETDEVICELIST operations per second           | Ops/Sec      |
+| NFS4\_GETFH\_ID\_LATENCY                   | Average latency of NFS4\_GETFH operations                     | Microseconds |
+| NFS4\_GETFH\_ID\_OPS                       | Number of NFS4\_GETFH operations per second                   | Ops/Sec      |
+| NFS4\_GET\_DIR\_DELEGATION\_ID\_LATENCY    | Average latency of NFS4\_GET\_DIR\_DELEGATION operations      | Microseconds |
+| NFS4\_GET\_DIR\_DELEGATION\_ID\_OPS        | Number of NFS4\_GET\_DIR\_DELEGATION operations per second    | Ops/Sec      |
+| NFS4\_LAYOUTCOMMIT\_ID\_LATENCY            | Average latency of NFS4\_LAYOUTCOMMIT operations              | Microseconds |
+| NFS4\_LAYOUTCOMMIT\_ID\_OPS                | Number of NFS4\_LAYOUTCOMMIT operations per second            | Ops/Sec      |
+| NFS4\_LAYOUTGET\_ID\_LATENCY               | Average latency of NFS4\_LAYOUTGET operations                 | Microseconds |
+| NFS4\_LAYOUTGET\_ID\_OPS                   | Number of NFS4\_LAYOUTGET operations per second               | Ops/Sec      |
+| NFS4\_LAYOUTRETURN\_ID\_LATENCY            | Average latency of NFS4\_LAYOUTRETURN operations              | Microseconds |
+| NFS4\_LAYOUTRETURN\_ID\_OPS                | Number of NFS4\_LAYOUTRETURN operations per second            | Ops/Sec      |
+| NFS4\_LINK\_ID\_LATENCY                    | Average latency of NFS4\_LINK operations                      | Microseconds |
+| NFS4\_LINK\_ID\_OPS                        | Number of NFS4\_LINK operations per second                    | Ops/Sec      |
+| NFS4\_LOCKT\_ID\_LATENCY                   | Average latency of NFS4\_LOCKT operations                     | Microseconds |
+| NFS4\_LOCKT\_ID\_OPS                       | Number of NFS4\_LOCKT operations per second                   | Ops/Sec      |
+| NFS4\_LOCKU\_ID\_LATENCY                   | Average latency of NFS4\_LOCKU operations                     | Microseconds |
+| NFS4\_LOCKU\_ID\_OPS                       | Number of NFS4\_LOCKU operations per second                   | Ops/Sec      |
+| NFS4\_LOCK\_ID\_LATENCY                    | Average latency of NFS4\_LOCK operations                      | Microseconds |
+| NFS4\_LOCK\_ID\_OPS                        | Number of NFS4\_LOCK operations per second                    | Ops/Sec      |
+| NFS4\_LOOKUPP\_ID\_LATENCY                 | Average latency of NFS4\_LOOKUPP operations                   | Microseconds |
+| NFS4\_LOOKUPP\_ID\_OPS                     | Number of NFS4\_LOOKUPP operations per second                 | Ops/Sec      |
+| NFS4\_LOOKUP\_ID\_LATENCY                  | Average latency of NFS4\_LOOKUP operations                    | Microseconds |
+| NFS4\_LOOKUP\_ID\_OPS                      | Number of NFS4\_LOOKUP operations per second                  | Ops/Sec      |
+| NFS4\_NVERIFY\_ID\_LATENCY                 | Average latency of NFS4\_NVERIFY operations                   | Microseconds |
+| NFS4\_NVERIFY\_ID\_OPS                     | Number of NFS4\_NVERIFY operations per second                 | Ops/Sec      |
+| NFS4\_OPENATTR\_ID\_LATENCY                | Average latency of NFS4\_OPENATTR operations                  | Microseconds |
+| NFS4\_OPENATTR\_ID\_OPS                    | Number of NFS4\_OPENATTR operations per second                | Ops/Sec      |
+| NFS4\_OPEN\_CONFIRM\_ID\_LATENCY           | Average latency of NFS4\_OPEN\_CONFIRM operations             | Microseconds |
+| NFS4\_OPEN\_CONFIRM\_ID\_OPS               | Number of NFS4\_OPEN\_CONFIRM operations per second           | Ops/Sec      |
+| NFS4\_OPEN\_DOWNGRADE\_ID\_LATENCY         | Average latency of NFS4\_OPEN\_DOWNGRADE operations           | Microseconds |
+| NFS4\_OPEN\_DOWNGRADE\_ID\_OPS             | Number of NFS4\_OPEN\_DOWNGRADE operations per second         | Ops/Sec      |
+| NFS4\_OPEN\_ID\_LATENCY                    | Average latency of NFS4\_OPEN operations                      | Microseconds |
+| NFS4\_OPEN\_ID\_OPS                        | Number of NFS4\_OPEN operations per second                    | Ops/Sec      |
+| NFS4\_OPS\_ID                              | Number of NFS4\_OPS per second                                | Ops/Sec      |
+| NFS4\_PUTFH\_ID\_LATENCY                   | Average latency of NFS4\_PUTFH operations                     | Microseconds |
+| NFS4\_PUTFH\_ID\_OPS                       | Number of NFS4\_PUTFH operations per second                   | Ops/Sec      |
+| NFS4\_PUTPUBFH\_ID\_LATENCY                | Average latency of NFS4\_PUTPUBFH operations                  | Microseconds |
+| NFS4\_PUTPUBFH\_ID\_OPS                    | Number of NFS4\_PUTPUBFH operations per second                | Ops/Sec      |
+| NFS4\_PUTROOTFH\_ID\_LATENCY               | Average latency of NFS4\_PUTROOTFH operations                 | Microseconds |
+| NFS4\_PUTROOTFH\_ID\_OPS                   | Number of NFS4\_PUTROOTFH operations per second               | Ops/Sec      |
+| NFS4\_READDIR\_ID\_LATENCY                 | Average latency of NFS4\_READDIR operations                   | Microseconds |
+| NFS4\_READDIR\_ID\_OPS                     | Number of NFS4\_READDIR operations per second                 | Ops/Sec      |
+| NFS4\_READLINK\_ID\_LATENCY                | Average latency of NFS4\_READLINK operations                  | Microseconds |
+| NFS4\_READLINK\_ID\_OPS                    | Number of NFS4\_READLINK operations per second                | Ops/Sec      |
+| NFS4\_READ\_BYTES\_ID                      | Number of NFS4\_READ\_BYTES per second                        | Bytes/Sec    |
+| NFS4\_READ\_ID\_LATENCY                    | Average latency of NFS4\_READ operations                      | Microseconds |
+| NFS4\_READ\_ID\_OPS                        | Number of NFS4\_READ operations per second                    | Ops/Sec      |
+| NFS4\_RECLAIM\_COMPLETE\_ID\_LATENCY       | Average latency of NFS4\_RECLAIM\_COMPLETE operations         | Microseconds |
+| NFS4\_RECLAIM\_COMPLETE\_ID\_OPS           | Number of NFS4\_RECLAIM\_COMPLETE operations per second       | Ops/Sec      |
+| NFS4\_RELEASE\_LOCKOWNER\_ID\_LATENCY      | Average latency of NFS4\_RELEASE\_LOCKOWNER operations        | Microseconds |
+| NFS4\_RELEASE\_LOCKOWNER\_ID\_OPS          | Number of NFS4\_RELEASE\_LOCKOWNER operations per second      | Ops/Sec      |
+| NFS4\_REMOVE\_ID\_LATENCY                  | Average latency of NFS4\_REMOVE operations                    | Microseconds |
+| NFS4\_REMOVE\_ID\_OPS                      | Number of NFS4\_REMOVE operations per second                  | Ops/Sec      |
+| NFS4\_RENAME\_ID\_LATENCY                  | Average latency of NFS4\_RENAME operations                    | Microseconds |
+| NFS4\_RENAME\_ID\_OPS                      | Number of NFS4\_RENAME operations per second                  | Ops/Sec      |
+| NFS4\_RENEW\_ID\_LATENCY                   | Average latency of NFS4\_RENEW operations                     | Microseconds |
+| NFS4\_RENEW\_ID\_OPS                       | Number of NFS4\_RENEW operations per second                   | Ops/Sec      |
+| NFS4\_RESTOREFH\_ID\_LATENCY               | Average latency of NFS4\_RESTOREFH operations                 | Microseconds |
+| NFS4\_RESTOREFH\_ID\_OPS                   | Number of NFS4\_RESTOREFH operations per second               | Ops/Sec      |
+| NFS4\_SAVEFH\_ID\_LATENCY                  | Average latency of NFS4\_SAVEFH operations                    | Microseconds |
+| NFS4\_SAVEFH\_ID\_OPS                      | Number of NFS4\_SAVEFH operations per second                  | Ops/Sec      |
+| NFS4\_SECINFO\_ID\_LATENCY                 | Average latency of NFS4\_SECINFO operations                   | Microseconds |
+| NFS4\_SECINFO\_ID\_OPS                     | Number of NFS4\_SECINFO operations per second                 | Ops/Sec      |
+| NFS4\_SECINFO\_NO\_NAME\_ID\_LATENCY       | Average latency of NFS4\_SECINFO\_NO\_NAME operations         | Microseconds |
+| NFS4\_SECINFO\_NO\_NAME\_ID\_OPS           | Number of NFS4\_SECINFO\_NO\_NAME operations per second       | Ops/Sec      |
+| NFS4\_SEQUENCE\_ID\_LATENCY                | Average latency of NFS4\_SEQUENCE operations                  | Microseconds |
+| NFS4\_SEQUENCE\_ID\_OPS                    | Number of NFS4\_SEQUENCE operations per second                | Ops/Sec      |
+| NFS4\_SETATTR\_ID\_LATENCY                 | Average latency of NFS4\_SETATTR operations                   | Microseconds |
+| NFS4\_SETATTR\_ID\_OPS                     | Number of NFS4\_SETATTR operations per second                 | Ops/Sec      |
+| NFS4\_SETCLIENTID\_CONFIRM\_ID\_LATENCY    | Average latency of NFS4\_SETCLIENTID\_CONFIRM operations      | Microseconds |
+| NFS4\_SETCLIENTID\_CONFIRM\_ID\_OPS        | Number of NFS4\_SETCLIENTID\_CONFIRM operations per second    | Ops/Sec      |
+| NFS4\_SETCLIENTID\_ID\_LATENCY             | Average latency of NFS4\_SETCLIENTID operations               | Microseconds |
+| NFS4\_SETCLIENTID\_ID\_OPS                 | Number of NFS4\_SETCLIENTID operations per second             | Ops/Sec      |
+| NFS4\_SET\_SSV\_ID\_LATENCY                | Average latency of NFS4\_SET\_SSV operations                  | Microseconds |
+| NFS4\_SET\_SSV\_ID\_OPS                    | Number of NFS4\_SET\_SSV operations per second                | Ops/Sec      |
+| NFS4\_TEST\_STATEID\_ID\_LATENCY           | Average latency of NFS4\_TEST\_STATEID operations             | Microseconds |
+| NFS4\_TEST\_STATEID\_ID\_OPS               | Number of NFS4\_TEST\_STATEID operations per second           | Ops/Sec      |
+| NFS4\_VERIFY\_ID\_LATENCY                  | Average latency of NFS4\_VERIFY operations                    | Microseconds |
+| NFS4\_VERIFY\_ID\_OPS                      | Number of NFS4\_VERIFY operations per second                  | Ops/Sec      |
+| NFS4\_WANT\_DELEGATION\_ID\_LATENCY        | Average latency of NFS4\_WANT\_DELEGATION operations          | Microseconds |
+| NFS4\_WANT\_DELEGATION\_ID\_OPS            | Number of NFS4\_WANT\_DELEGATION operations per second        | Ops/Sec      |
+| NFS4\_WRITE\_BYTES\_ID                     | Number of NFS4\_WRITE\_BYTES per second                       | Bytes/Sec    |
+| NFS4\_WRITE\_ID\_LATENCY                   | Average latency of NFS4\_WRITE operations                     | Microseconds |
+| NFS4\_WRITE\_ID\_OPS                       | Number of NFS4\_WRITE operations per second                   | Ops/Sec      |
+| OPS                                        | Total number of operations                                    | Ops/Sec      |
+| READ\_BYTES                                | Number of bytes read per second                               | Bytes/Sec    |
+| THROUGHPUT                                 | Number of bytes read/written per second                       | Bytes/Sec    |
+| WRITE\_BYTES                               | Number of bytes written per second                            | Bytes/Sec    |
+
+### Operations (S3)
+
+| Type                                    | Description                                                                                                    | Units         |
+| --------------------------------------- | -------------------------------------------------------------------------------------------------------------- | ------------- |
+| API\_FAILURES                           | Total of failures per API                                                                                      | Ops           |
+| API\_OPS                                | Total of Ops per API                                                                                           | Ops           |
+| API\_TTFB                               | Time To First Byte per API                                                                                     | Milliseconds  |
+| API\_TTLB                               | Time To Last Byte per API                                                                                      | Milliseconds  |
+| AVG\_TTLB\_HIST                         | TTLB (Time To Last Byte) Milliseconds Histogram per Tenant                                                     | Count         |
+| AVG\_TTLB\_PERCENT                      | TTLB (Time To Last Byte) Percentile                                                                            | Milliseconds  |
+| FS\_READ\_BYTES                         | Total Read Bytes per Bucket/FS/Tenant                                                                          | Bytes/Sec     |
+| FS\_RQ                                  | Total Requests per Bucket/FS/Tenant                                                                            | Ops           |
+| FS\_STATUS                              | Count HTTP Status Code per Bucket/FS/Tenant                                                                    | Ops           |
+| FS\_WRITE\_BYTES                        | Total Write Bytes per Bucket/FS/Tenant                                                                         | Bytes/Sec     |
+| GET\_OBJECT\_SIZE\_HIST                 | S3 object size distribution on GetObject (bucket edges in MB)                                                  | Count         |
+| ILM\_FILES\_DELETED                     | Files deleted by the ILM scanner                                                                               | Files         |
+| ILM\_FILES\_SCANNED                     | Files scanned by the ILM scanner                                                                               | Files         |
+| LIST\_OBJECTS\_DIR\_SIZE\_HIST          | Directory size distribution observed during list (entry-count edges)                                           | Count         |
+| LIST\_OBJECTS\_INDEXED\_OBJECTS         | Objects (files) indexed by list-indexing, per interval (use --accumulated for lifetime total)                  | Objects       |
+| LIST\_OBJECTS\_INDEXING\_ACTIVE\_TIME   | Aggregate wall-clock time actively spent indexing folders (seconds), per interval                              | Seconds       |
+| LIST\_OBJECTS\_INDEX\_CACHE\_HITS       | Objects (files) returned from index-served folders (cache hit), per interval                                   | Objects       |
+| LIST\_OBJECTS\_INDEX\_CACHE\_MISSES     | Objects (files) returned from folders served by a direct filesystem walk (index cache miss), per interval      | Objects       |
+| LIST\_OBJECTS\_INDEX\_RATE              | Approximate objects indexed per active indexing-second (objects / active indexing time)                        | Obj/s         |
+| LIST\_OBJECTS\_INDEX\_STATUS            | List folder index-check outcomes by status, per interval                                                       | Ops           |
+| LIST\_OBJECTS\_LIST\_ACTIVE\_TIME       | Aggregate wall-clock time actively spent in list operations (seconds), per interval                            | Seconds       |
+| LIST\_OBJECTS\_NONSLASH\_DELIMITER\_OPS | List-object requests with a non-slash delimiter, per interval                                                  | Ops           |
+| LIST\_OBJECTS\_RETURNED\_OBJECTS        | Objects (not common prefixes) returned by list operations, per interval (use --accumulated for lifetime total) | Objects       |
+| LIST\_OBJECTS\_RETURN\_RATE             | Approximate objects returned per active list-second (objects / active list time)                               | Obj/s         |
+| MPU\_COMPLETE\_DURATION\_HIST           | Histogram of multipart-upload duration from first uploaded part to complete (seconds), per interval            | Count         |
+| MPU\_NON\_ALIGNED\_PART\_SIZE\_OBJECTS  | MPU completes with a non-last part size not aligned to 1 MiB, in interval                                      | Ops           |
+| MPU\_NON\_CONSTANT\_PART\_SIZE\_OBJECTS | MPU completes with non-constant part size (last part excluded) in interval                                     | Ops           |
+| MPU\_OBJECT\_SIZE\_HIST                 | S3 object size distribution on CompleteMultipartUpload (bucket edges in MB)                                    | Count         |
+| MPU\_ORPHAN\_PARTS\_OBJECTS             | MPU completes with uploaded parts not referenced in Complete, in interval                                      | Ops           |
+| MPU\_REWRITTEN\_PARTS\_OBJECTS          | MPU completes with a part uploaded more than once before complete, in interval                                 | Ops           |
+| NOTIFICATION\_LOST                      | Total notification lost per notification target                                                                | Notifications |
+| QOS\_BUCKET\_BUSY\_REJECT               | QoS bucket-busy gate 503 rejections in interval, per tenant/API                                                | Ops           |
+| QOS\_IO\_RETRY\_ATTEMPT                 | QoS EXFULL retry attempts in interval, per tenant/op                                                           | Ops           |
+| QOS\_IO\_RETRY\_BUDGET\_EXHAUSTED       | QoS retry sessions that exhausted the budget (503) in interval, per tenant/op                                  | Ops           |
+| QOS\_IO\_RETRY\_CANCELED                | QoS retry sessions aborted by ctx cancel (client disconnect/timeout) in interval, per tenant/op                | Ops           |
+| QOS\_IO\_RETRY\_ENTER                   | QoS retry sessions that observed EXFULL in interval, per tenant/op                                             | Ops           |
+| TOTAL\_BUCKET\_CREATE\_OPS              | Total bucket create operations per second                                                                      | Ops/Sec       |
+| TOTAL\_BUCKET\_DELETE\_OPS              | Total bucket delete operations per second                                                                      | Ops/Sec       |
+| TOTAL\_BUCKET\_LIST\_OPS                | Total bucket list operations per second                                                                        | Ops/Sec       |
+
+### Operations (SLB of S3)
+
+| Type                                    | Description                                                                     | Units       |
+| --------------------------------------- | ------------------------------------------------------------------------------- | ----------- |
+| AVG\_1xx\_RQ                            | Average 1xx replies per second                                                  | Ops/Sec     |
+| AVG\_2xx\_RQ                            | Average 2xx replies per second                                                  | Ops/Sec     |
+| AVG\_3xx\_RQ                            | Average 3xx replies per second                                                  | Ops/Sec     |
+| AVG\_429\_RQ                            | Average 429 replies per second                                                  | Ops/Sec     |
+| AVG\_4xx\_RQ                            | Average 4xx replies per second                                                  | Ops/Sec     |
+| AVG\_503\_RQ                            | Average 503 replies per second                                                  | Ops/Sec     |
+| AVG\_5xx\_RQ                            | Average 5xx replies per second                                                  | Ops/Sec     |
+| LOCAL\_active\_RQ                       | Requests served by the local MinIO, including those offloaded here from a buddy | Ops         |
+| LOCAL\_pending\_RQ                      | Requests queued for the local MinIO                                             | Ops         |
+| LOCAL\_pending\_overflow\_RQ            | Requests rejected because the local pending queue was full                      | Ops         |
+| REMOTE\_active\_RQ                      | Requests offloaded from this host to buddy MinIOs                               | Ops         |
+| REMOTE\_pending\_RQ                     | Requests queued for buddy MinIOs                                                | Ops         |
+| REMOTE\_pending\_overflow\_RQ           | Requests rejected because the remote pending queue was full                     | Ops         |
+| SLB\_1xx\_RQ                            | 1xx responses to traffic originating from adjacent SLBs                         | Ops         |
+| SLB\_2xx\_RQ                            | 2xx responses to traffic originating from adjacent SLBs                         | Ops         |
+| SLB\_3xx\_RQ                            | 3xx responses to traffic originating from adjacent SLBs                         | Ops         |
+| SLB\_4xx\_RQ                            | 4xx responses to traffic originating from adjacent SLBs                         | Ops         |
+| SLB\_5xx\_RQ                            | 5xx responses to traffic originating from adjacent SLBs                         | Ops         |
+| TOTAL\_1xx\_RQ                          | Total 1xx replies                                                               | Ops         |
+| TOTAL\_2xx\_RQ                          | Total 2xx replies                                                               | Ops         |
+| TOTAL\_3xx\_RQ                          | Total 3xx replies                                                               | Ops         |
+| TOTAL\_429\_RQ                          | Total 429 replies                                                               | Ops         |
+| TOTAL\_4xx\_RQ                          | Total 4xx replies                                                               | Ops         |
+| TOTAL\_503\_RQ                          | Total 503 replies                                                               | Ops         |
+| TOTAL\_5xx\_RQ                          | Total 5xx replies                                                               | Ops         |
+| TOTAL\_active\_RQ                       | Active S3 requests currently being processed by envoy                           | Ops         |
+| TOTAL\_active\_connection               | Total SLB Downstream Active Connections                                         | Connections |
+| TOTAL\_max\_duration\_RQ                | Total Max Duration Reached replies                                              | Ops         |
+| TOTAL\_rejected\_via\_ip\_detection\_RQ | Total Rejected by IP Detection replies                                          | Ops         |
+| TOTAL\_response\_before\_complete\_RQ   | Total S3 Responses before Complete replies                                      | Ops         |
+| TOTAL\_rx\_reset\_RQ                    | Total User RX Reset Connection replies                                          | Ops         |
+| TOTAL\_tx\_reset\_RQ                    | Total Envoy TX Reset Connection replies                                         | Ops         |
+
+### Operations (Tenant)
+
+| Type                    | Description                                           | Units        |
+| ----------------------- | ----------------------------------------------------- | ------------ |
+| READS                   | Number of read operations per second                  | Ops/Sec      |
+| READ\_BYTES             | Number of bytes read per second                       | Bytes/Sec    |
+| READ\_LATENCY           | Average latency of READ operations                    | Microseconds |
+| READ\_LATENCY\_NO\_QOS  | Average latency of READ operations without QoS delay  | Microseconds |
+| READ\_QOS\_DELAY        | Average QoS delay for READ operations                 | Microseconds |
+| THROUGHPUT              | Number of bytes read/written per second               | Bytes/Sec    |
+| WRITES                  | Number of write operations per second                 | Ops/Sec      |
+| WRITE\_BYTES            | Number of bytes written per second                    | Bytes/Sec    |
+| WRITE\_LATENCY          | Average latency of WRITE operations                   | Microseconds |
+| WRITE\_LATENCY\_NO\_QOS | Average latency of WRITE operations without QoS delay | Microseconds |
+| WRITE\_QOS\_DELAY       | Average QoS delay for WRITE operations                | Microseconds |
+
 ### Operations (driver)
 
 | Type                                            | Description                                                                                            | Units        |
@@ -1152,6 +1506,9 @@ description: >-
 | GETXATTR\_LATENCY                               | Average latency of GETXATTR operations                                                                 | Microseconds |
 | GETXATTR\_OPS                                   | Number of GETXATTR operations per second                                                               | Ops/Sec      |
 | GETXATTR\_QOS\_DELAY                            | Average QoS delay for GETXATTR operations                                                              | Microseconds |
+| IOCTL\_DEHYDRATE\_LATENCY                       | Average latency of IOCTL\_DEHYDRATE operations                                                         | Microseconds |
+| IOCTL\_DEHYDRATE\_OPS                           | Number of IOCTL\_DEHYDRATE operations per second                                                       | Ops/Sec      |
+| IOCTL\_DEHYDRATE\_QOS\_DELAY                    | Average QoS delay for IOCTL\_DEHYDRATE operations                                                      | Microseconds |
 | IOCTL\_OBS\_PREFETCH\_LATENCY                   | Average latency of IOCTL\_OBS\_PREFETCH operations                                                     | Microseconds |
 | IOCTL\_OBS\_PREFETCH\_OPS                       | Number of IOCTL\_OBS\_PREFETCH operations per second                                                   | Ops/Sec      |
 | IOCTL\_OBS\_PREFETCH\_QOS\_DELAY                | Average QoS delay for IOCTL\_OBS\_PREFETCH operations                                                  | Microseconds |
@@ -1253,434 +1610,6 @@ description: >-
 | WRITE\_SIZES                                    | NFS write sizes histogram                                                                              | Writes       |
 | WRITE\_SIZES\_RATE                              | Number of writes per second by write size range                                                        | Writes       |
 
-### Operations (Filesystem)
-
-| Type                    | Description                                                                            | Units        |
-| ----------------------- | -------------------------------------------------------------------------------------- | ------------ |
-| METADATA\_LATENCY       | Average latency of metadata operations per filesystem, broken down by operation type   | Microseconds |
-| METADATA\_OPS           | Number of metadata operations per second per filesystem, broken down by operation type | Ops/Sec      |
-| READS                   | Number of read operations per second                                                   | Ops/Sec      |
-| READ\_BYTES             | Number of bytes read per second                                                        | Bytes/Sec    |
-| READ\_LATENCY           | Average latency of READ operations                                                     | Microseconds |
-| READ\_LATENCY\_NO\_QOS  | Average latency of READ operations without QoS delay                                   | Microseconds |
-| READ\_QOS\_DELAY        | Average QoS delay for READ operations                                                  | Microseconds |
-| THROUGHPUT              | Number of bytes read/written per second                                                | Bytes/Sec    |
-| WRITES                  | Number of write operations per second                                                  | Ops/Sec      |
-| WRITE\_BYTES            | Number of bytes written per second                                                     | Bytes/Sec    |
-| WRITE\_LATENCY          | Average latency of WRITE operations                                                    | Microseconds |
-| WRITE\_LATENCY\_NO\_QOS | Average latency of WRITE operations without QoS delay                                  | Microseconds |
-| WRITE\_QOS\_DELAY       | Average QoS delay for WRITE operations                                                 | Microseconds |
-
-### Operations (NFS)
-
-| Type              | Description                                  | Units        |
-| ----------------- | -------------------------------------------- | ------------ |
-| ACCESS\_LATENCY   | Average latency of ACCESS operations         | Microseconds |
-| ACCESS\_OPS       | Number of ACCESS operations per second       | Ops/Sec      |
-| COMMIT\_LATENCY   | Average latency of COMMIT operations         | Microseconds |
-| COMMIT\_OPS       | Number of COMMIT operations per second       | Ops/Sec      |
-| CREATE\_LATENCY   | Average latency of CREATE operations         | Microseconds |
-| CREATE\_OPS       | Number of CREATE operations per second       | Ops/Sec      |
-| FSINFO\_LATENCY   | Average latency of FSINFO operations         | Microseconds |
-| FSINFO\_OPS       | Number of FSINFO operations per second       | Ops/Sec      |
-| GETATTR\_LATENCY  | Average latency of GETATTR operations        | Microseconds |
-| GETATTR\_OPS      | Number of GETATTR operations per second      | Ops/Sec      |
-| LINK\_LATENCY     | Average latency of LINK operations           | Microseconds |
-| LINK\_OPS         | Number of LINK operations per second         | Ops/Sec      |
-| LOOKUP\_LATENCY   | Average latency of LOOKUP operations         | Microseconds |
-| LOOKUP\_OPS       | Number of LOOKUP operations per second       | Ops/Sec      |
-| MKDIR\_LATENCY    | Average latency of MKDIR operations          | Microseconds |
-| MKDIR\_OPS        | Number of MKDIR operations per second        | Ops/Sec      |
-| MKNOD\_LATENCY    | Average latency of MKNOD operations          | Microseconds |
-| MKNOD\_OPS        | Number of MKNOD operations per second        | Ops/Sec      |
-| OPS               | Total number of operations                   | Ops/Sec      |
-| PATHCONF\_LATENCY | Average latency of PATHCONF operations       | Microseconds |
-| PATHCONF\_OPS     | Number of PATHCONF operations per second     | Ops/Sec      |
-| READDIR\_LATENCY  | Average latency of READDIR operations        | Microseconds |
-| READDIR\_OPS      | Number of READDIR operations per second      | Ops/Sec      |
-| READLINK\_LATENCY | Average latency of READLINK operations       | Microseconds |
-| READLINK\_OPS     | Number of READLINK operations per second     | Ops/Sec      |
-| READS             | Number of read operations per second         | Ops/Sec      |
-| READ\_BYTES       | Number of bytes read per second              | Bytes/Sec    |
-| READ\_DURATION    | The number of reads per completion duration  | Reads        |
-| READ\_LATENCY     | Average latency of READ operations           | Microseconds |
-| READ\_SIZES       | NFS read sizes histogram                     | Reads        |
-| REMOVE\_LATENCY   | Average latency of REMOVE operations         | Microseconds |
-| REMOVE\_OPS       | Number of REMOVE operations per second       | Ops/Sec      |
-| RENAME\_LATENCY   | Average latency of RENAME operations         | Microseconds |
-| RENAME\_OPS       | Number of RENAME operations per second       | Ops/Sec      |
-| SETATTR\_LATENCY  | Average latency of SETATTR operations        | Microseconds |
-| SETATTR\_OPS      | Number of SETATTR operations per second      | Ops/Sec      |
-| STATFS\_LATENCY   | Average latency of STATFS operations         | Microseconds |
-| STATFS\_OPS       | Number of STATFS operations per second       | Ops/Sec      |
-| SYMLINK\_LATENCY  | Average latency of SYMLINK operations        | Microseconds |
-| SYMLINK\_OPS      | Number of SYMLINK operations per second      | Ops/Sec      |
-| THROUGHPUT        | Number of bytes read/written per second      | Bytes/Sec    |
-| WRITES            | Number of write operations per second        | Ops/Sec      |
-| WRITE\_BYTES      | Number of bytes written per second           | Bytes/Sec    |
-| WRITE\_DURATION   | The number of writes per completion duration | Writes       |
-| WRITE\_LATENCY    | Average latency of WRITE operations          | Microseconds |
-| WRITE\_SIZES      | NFS write sizes histogram                    | Writes       |
-
-### Operations (NFSw)
-
-| Type                                       | Description                                                   | Units        |
-| ------------------------------------------ | ------------------------------------------------------------- | ------------ |
-| ACCESS\_LATENCY                            | Average latency of ACCESS operations                          | Microseconds |
-| ACCESS\_OPS                                | Number of ACCESS operations per second                        | Ops/Sec      |
-| COMMIT\_LATENCY                            | Average latency of COMMIT operations                          | Microseconds |
-| COMMIT\_OPS                                | Number of COMMIT operations per second                        | Ops/Sec      |
-| CREATE\_LATENCY                            | Average latency of CREATE operations                          | Microseconds |
-| CREATE\_OPS                                | Number of CREATE operations per second                        | Ops/Sec      |
-| GETATTR\_LATENCY                           | Average latency of GETATTR operations                         | Microseconds |
-| GETATTR\_OPS                               | Number of GETATTR operations per second                       | Ops/Sec      |
-| LINK\_LATENCY                              | Average latency of LINK operations                            | Microseconds |
-| LINK\_OPS                                  | Number of LINK operations per second                          | Ops/Sec      |
-| LOOKUP\_LATENCY                            | Average latency of LOOKUP operations                          | Microseconds |
-| LOOKUP\_OPS                                | Number of LOOKUP operations per second                        | Ops/Sec      |
-| NFS3\_ACCESS\_ID\_LATENCY                  | Average latency of NFS3\_ACCESS operations                    | Microseconds |
-| NFS3\_ACCESS\_ID\_OPS                      | Number of NFS3\_ACCESS operations per second                  | Ops/Sec      |
-| NFS3\_COMMIT\_ID\_LATENCY                  | Average latency of NFS3\_COMMIT operations                    | Microseconds |
-| NFS3\_COMMIT\_ID\_OPS                      | Number of NFS3\_COMMIT operations per second                  | Ops/Sec      |
-| NFS3\_CREATE\_ID\_LATENCY                  | Average latency of NFS3\_CREATE operations                    | Microseconds |
-| NFS3\_CREATE\_ID\_OPS                      | Number of NFS3\_CREATE operations per second                  | Ops/Sec      |
-| NFS3\_FSINFO\_ID\_LATENCY                  | Average latency of NFS3\_FSINFO operations                    | Microseconds |
-| NFS3\_FSINFO\_ID\_OPS                      | Number of NFS3\_FSINFO operations per second                  | Ops/Sec      |
-| NFS3\_FSINFO\_LATENCY                      | Average latency of NFS3\_FSINFO operations                    | Microseconds |
-| NFS3\_FSINFO\_OPS                          | Number of NFS3\_FSINFO operations per second                  | Ops/Sec      |
-| NFS3\_GETATTR\_ID\_LATENCY                 | Average latency of NFS3\_GETATTR operations                   | Microseconds |
-| NFS3\_GETATTR\_ID\_OPS                     | Number of NFS3\_GETATTR operations per second                 | Ops/Sec      |
-| NFS3\_LINK\_ID\_LATENCY                    | Average latency of NFS3\_LINK operations                      | Microseconds |
-| NFS3\_LINK\_ID\_OPS                        | Number of NFS3\_LINK operations per second                    | Ops/Sec      |
-| NFS3\_LOOKUP\_ID\_LATENCY                  | Average latency of NFS3\_LOOKUP operations                    | Microseconds |
-| NFS3\_LOOKUP\_ID\_OPS                      | Number of NFS3\_LOOKUP operations per second                  | Ops/Sec      |
-| NFS3\_MKDIR\_ID\_LATENCY                   | Average latency of NFS3\_MKDIR operations                     | Microseconds |
-| NFS3\_MKDIR\_ID\_OPS                       | Number of NFS3\_MKDIR operations per second                   | Ops/Sec      |
-| NFS3\_MKDIR\_LATENCY                       | Average latency of NFS3\_MKDIR operations                     | Microseconds |
-| NFS3\_MKDIR\_OPS                           | Number of NFS3\_MKDIR operations per second                   | Ops/Sec      |
-| NFS3\_MKNOD\_ID\_LATENCY                   | Average latency of NFS3\_MKNOD operations                     | Microseconds |
-| NFS3\_MKNOD\_ID\_OPS                       | Number of NFS3\_MKNOD operations per second                   | Ops/Sec      |
-| NFS3\_MKNOD\_LATENCY                       | Average latency of NFS3\_MKNOD operations                     | Microseconds |
-| NFS3\_MKNOD\_OPS                           | Number of NFS3\_MKNOD operations per second                   | Ops/Sec      |
-| NFS3\_OPS\_ID                              | Number of NFS3\_OPS per second                                | Ops/Sec      |
-| NFS3\_PATHCONF\_ID\_LATENCY                | Average latency of NFS3\_PATHCONF operations                  | Microseconds |
-| NFS3\_PATHCONF\_ID\_OPS                    | Number of NFS3\_PATHCONF operations per second                | Ops/Sec      |
-| NFS3\_PATHCONF\_LATENCY                    | Average latency of NFS3\_PATHCONF operations                  | Microseconds |
-| NFS3\_PATHCONF\_OPS                        | Number of NFS3\_PATHCONF operations per second                | Ops/Sec      |
-| NFS3\_READDIR\_ID\_LATENCY                 | Average latency of NFS3\_READDIR operations                   | Microseconds |
-| NFS3\_READDIR\_ID\_OPS                     | Number of NFS3\_READDIR operations per second                 | Ops/Sec      |
-| NFS3\_READLINK\_ID\_LATENCY                | Average latency of NFS3\_READLINK operations                  | Microseconds |
-| NFS3\_READLINK\_ID\_OPS                    | Number of NFS3\_READLINK operations per second                | Ops/Sec      |
-| NFS3\_READ\_BYTES\_ID                      | Number of NFS3\_READ\_BYTES per second                        | Bytes/Sec    |
-| NFS3\_READ\_ID\_LATENCY                    | Average latency of NFS3\_READ operations                      | Microseconds |
-| NFS3\_READ\_ID\_OPS                        | Number of NFS3\_READ operations per second                    | Ops/Sec      |
-| NFS3\_REMOVE\_ID\_LATENCY                  | Average latency of NFS3\_REMOVE operations                    | Microseconds |
-| NFS3\_REMOVE\_ID\_OPS                      | Number of NFS3\_REMOVE operations per second                  | Ops/Sec      |
-| NFS3\_RENAME\_ID\_LATENCY                  | Average latency of NFS3\_RENAME operations                    | Microseconds |
-| NFS3\_RENAME\_ID\_OPS                      | Number of NFS3\_RENAME operations per second                  | Ops/Sec      |
-| NFS3\_SETATTR\_ID\_LATENCY                 | Average latency of NFS3\_SETATTR operations                   | Microseconds |
-| NFS3\_SETATTR\_ID\_OPS                     | Number of NFS3\_SETATTR operations per second                 | Ops/Sec      |
-| NFS3\_STATFS\_ID\_LATENCY                  | Average latency of NFS3\_STATFS operations                    | Microseconds |
-| NFS3\_STATFS\_ID\_OPS                      | Number of NFS3\_STATFS operations per second                  | Ops/Sec      |
-| NFS3\_STATFS\_LATENCY                      | Average latency of NFS3\_STATFS operations                    | Microseconds |
-| NFS3\_STATFS\_OPS                          | Number of NFS3\_STATFS operations per second                  | Ops/Sec      |
-| NFS3\_SYMLINK\_ID\_LATENCY                 | Average latency of NFS3\_SYMLINK operations                   | Microseconds |
-| NFS3\_SYMLINK\_ID\_OPS                     | Number of NFS3\_SYMLINK operations per second                 | Ops/Sec      |
-| NFS3\_SYMLINK\_LATENCY                     | Average latency of NFS3\_SYMLINK operations                   | Microseconds |
-| NFS3\_SYMLINK\_OPS                         | Number of NFS3\_SYMLINK operations per second                 | Ops/Sec      |
-| NFS3\_WRITE\_BYTES\_ID                     | Number of NFS3\_WRITE\_BYTES per second                       | Bytes/Sec    |
-| NFS3\_WRITE\_ID\_LATENCY                   | Average latency of NFS3\_WRITE operations                     | Microseconds |
-| NFS3\_WRITE\_ID\_OPS                       | Number of NFS3\_WRITE operations per second                   | Ops/Sec      |
-| NFS4\_ACCESS\_ID\_LATENCY                  | Average latency of NFS4\_ACCESS operations                    | Microseconds |
-| NFS4\_ACCESS\_ID\_OPS                      | Number of NFS4\_ACCESS operations per second                  | Ops/Sec      |
-| NFS4\_BACKCHANNEL\_CTL\_ID\_LATENCY        | Average latency of NFS4\_BACKCHANNEL\_CTL operations          | Microseconds |
-| NFS4\_BACKCHANNEL\_CTL\_ID\_OPS            | Number of NFS4\_BACKCHANNEL\_CTL operations per second        | Ops/Sec      |
-| NFS4\_BACKCHANNEL\_CTL\_LATENCY            | Average latency of NFS4\_BACKCHANNEL\_CTL operations          | Microseconds |
-| NFS4\_BACKCHANNEL\_CTL\_OPS                | Number of NFS4\_BACKCHANNEL\_CTL operations per second        | Ops/Sec      |
-| NFS4\_BIND\_CONN\_TO\_SESSION\_ID\_LATENCY | Average latency of NFS4\_BIND\_CONN\_TO\_SESSION operations   | Microseconds |
-| NFS4\_BIND\_CONN\_TO\_SESSION\_ID\_OPS     | Number of NFS4\_BIND\_CONN\_TO\_SESSION operations per second | Ops/Sec      |
-| NFS4\_BIND\_CONN\_TO\_SESSION\_LATENCY     | Average latency of NFS4\_BIND\_CONN\_TO\_SESSION operations   | Microseconds |
-| NFS4\_BIND\_CONN\_TO\_SESSION\_OPS         | Number of NFS4\_BIND\_CONN\_TO\_SESSION operations per second | Ops/Sec      |
-| NFS4\_CLOSE\_ID\_LATENCY                   | Average latency of NFS4\_CLOSE operations                     | Microseconds |
-| NFS4\_CLOSE\_ID\_OPS                       | Number of NFS4\_CLOSE operations per second                   | Ops/Sec      |
-| NFS4\_CLOSE\_LATENCY                       | Average latency of NFS4\_CLOSE operations                     | Microseconds |
-| NFS4\_CLOSE\_OPS                           | Number of NFS4\_CLOSE operations per second                   | Ops/Sec      |
-| NFS4\_COMMIT\_ID\_LATENCY                  | Average latency of NFS4\_COMMIT operations                    | Microseconds |
-| NFS4\_COMMIT\_ID\_OPS                      | Number of NFS4\_COMMIT operations per second                  | Ops/Sec      |
-| NFS4\_CREATE\_ID\_LATENCY                  | Average latency of NFS4\_CREATE operations                    | Microseconds |
-| NFS4\_CREATE\_ID\_OPS                      | Number of NFS4\_CREATE operations per second                  | Ops/Sec      |
-| NFS4\_CREATE\_SESSION\_ID\_LATENCY         | Average latency of NFS4\_CREATE\_SESSION operations           | Microseconds |
-| NFS4\_CREATE\_SESSION\_ID\_OPS             | Number of NFS4\_CREATE\_SESSION operations per second         | Ops/Sec      |
-| NFS4\_CREATE\_SESSION\_LATENCY             | Average latency of NFS4\_CREATE\_SESSION operations           | Microseconds |
-| NFS4\_CREATE\_SESSION\_OPS                 | Number of NFS4\_CREATE\_SESSION operations per second         | Ops/Sec      |
-| NFS4\_DELEGPURGE\_ID\_LATENCY              | Average latency of NFS4\_DELEGPURGE operations                | Microseconds |
-| NFS4\_DELEGPURGE\_ID\_OPS                  | Number of NFS4\_DELEGPURGE operations per second              | Ops/Sec      |
-| NFS4\_DELEGPURGE\_LATENCY                  | Average latency of NFS4\_DELEGPURGE operations                | Microseconds |
-| NFS4\_DELEGPURGE\_OPS                      | Number of NFS4\_DELEGPURGE operations per second              | Ops/Sec      |
-| NFS4\_DELEGRETURN\_ID\_LATENCY             | Average latency of NFS4\_DELEGRETURN operations               | Microseconds |
-| NFS4\_DELEGRETURN\_ID\_OPS                 | Number of NFS4\_DELEGRETURN operations per second             | Ops/Sec      |
-| NFS4\_DELEGRETURN\_LATENCY                 | Average latency of NFS4\_DELEGRETURN operations               | Microseconds |
-| NFS4\_DELEGRETURN\_OPS                     | Number of NFS4\_DELEGRETURN operations per second             | Ops/Sec      |
-| NFS4\_DESTROY\_CLIENTID\_ID\_LATENCY       | Average latency of NFS4\_DESTROY\_CLIENTID operations         | Microseconds |
-| NFS4\_DESTROY\_CLIENTID\_ID\_OPS           | Number of NFS4\_DESTROY\_CLIENTID operations per second       | Ops/Sec      |
-| NFS4\_DESTROY\_CLIENTID\_LATENCY           | Average latency of NFS4\_DESTROY\_CLIENTID operations         | Microseconds |
-| NFS4\_DESTROY\_CLIENTID\_OPS               | Number of NFS4\_DESTROY\_CLIENTID operations per second       | Ops/Sec      |
-| NFS4\_DESTROY\_SESSION\_ID\_LATENCY        | Average latency of NFS4\_DESTROY\_SESSION operations          | Microseconds |
-| NFS4\_DESTROY\_SESSION\_ID\_OPS            | Number of NFS4\_DESTROY\_SESSION operations per second        | Ops/Sec      |
-| NFS4\_DESTROY\_SESSION\_LATENCY            | Average latency of NFS4\_DESTROY\_SESSION operations          | Microseconds |
-| NFS4\_DESTROY\_SESSION\_OPS                | Number of NFS4\_DESTROY\_SESSION operations per second        | Ops/Sec      |
-| NFS4\_EXCHANGEID\_ID\_LATENCY              | Average latency of NFS4\_EXCHANGEID operations                | Microseconds |
-| NFS4\_EXCHANGEID\_ID\_OPS                  | Number of NFS4\_EXCHANGEID operations per second              | Ops/Sec      |
-| NFS4\_EXCHANGE\_ID\_LATENCY                | Average latency of NFS4\_EXCHANGE\_ID operations              | Microseconds |
-| NFS4\_EXCHANGE\_ID\_OPS                    | Number of NFS4\_EXCHANGE\_ID operations per second            | Ops/Sec      |
-| NFS4\_FREE\_STATEID\_ID\_LATENCY           | Average latency of NFS4\_FREE\_STATEID operations             | Microseconds |
-| NFS4\_FREE\_STATEID\_ID\_OPS               | Number of NFS4\_FREE\_STATEID operations per second           | Ops/Sec      |
-| NFS4\_FREE\_STATEID\_LATENCY               | Average latency of NFS4\_FREE\_STATEID operations             | Microseconds |
-| NFS4\_FREE\_STATEID\_OPS                   | Number of NFS4\_FREE\_STATEID operations per second           | Ops/Sec      |
-| NFS4\_GETATTR\_ID\_LATENCY                 | Average latency of NFS4\_GETATTR operations                   | Microseconds |
-| NFS4\_GETATTR\_ID\_OPS                     | Number of NFS4\_GETATTR operations per second                 | Ops/Sec      |
-| NFS4\_GETDEVICEINFO\_ID\_LATENCY           | Average latency of NFS4\_GETDEVICEINFO operations             | Microseconds |
-| NFS4\_GETDEVICEINFO\_ID\_OPS               | Number of NFS4\_GETDEVICEINFO operations per second           | Ops/Sec      |
-| NFS4\_GETDEVICEINFO\_LATENCY               | Average latency of NFS4\_GETDEVICEINFO operations             | Microseconds |
-| NFS4\_GETDEVICEINFO\_OPS                   | Number of NFS4\_GETDEVICEINFO operations per second           | Ops/Sec      |
-| NFS4\_GETDEVICELIST\_ID\_LATENCY           | Average latency of NFS4\_GETDEVICELIST operations             | Microseconds |
-| NFS4\_GETDEVICELIST\_ID\_OPS               | Number of NFS4\_GETDEVICELIST operations per second           | Ops/Sec      |
-| NFS4\_GETDEVICELIST\_LATENCY               | Average latency of NFS4\_GETDEVICELIST operations             | Microseconds |
-| NFS4\_GETDEVICELIST\_OPS                   | Number of NFS4\_GETDEVICELIST operations per second           | Ops/Sec      |
-| NFS4\_GETFH\_ID\_LATENCY                   | Average latency of NFS4\_GETFH operations                     | Microseconds |
-| NFS4\_GETFH\_ID\_OPS                       | Number of NFS4\_GETFH operations per second                   | Ops/Sec      |
-| NFS4\_GETFH\_LATENCY                       | Average latency of NFS4\_GETFH operations                     | Microseconds |
-| NFS4\_GETFH\_OPS                           | Number of NFS4\_GETFH operations per second                   | Ops/Sec      |
-| NFS4\_GET\_DIR\_DELEGATION\_ID\_LATENCY    | Average latency of NFS4\_GET\_DIR\_DELEGATION operations      | Microseconds |
-| NFS4\_GET\_DIR\_DELEGATION\_ID\_OPS        | Number of NFS4\_GET\_DIR\_DELEGATION operations per second    | Ops/Sec      |
-| NFS4\_GET\_DIR\_DELEGATION\_LATENCY        | Average latency of NFS4\_GET\_DIR\_DELEGATION operations      | Microseconds |
-| NFS4\_GET\_DIR\_DELEGATION\_OPS            | Number of NFS4\_GET\_DIR\_DELEGATION operations per second    | Ops/Sec      |
-| NFS4\_LAYOUTCOMMIT\_ID\_LATENCY            | Average latency of NFS4\_LAYOUTCOMMIT operations              | Microseconds |
-| NFS4\_LAYOUTCOMMIT\_ID\_OPS                | Number of NFS4\_LAYOUTCOMMIT operations per second            | Ops/Sec      |
-| NFS4\_LAYOUTCOMMIT\_LATENCY                | Average latency of NFS4\_LAYOUTCOMMIT operations              | Microseconds |
-| NFS4\_LAYOUTCOMMIT\_OPS                    | Number of NFS4\_LAYOUTCOMMIT operations per second            | Ops/Sec      |
-| NFS4\_LAYOUTGET\_ID\_LATENCY               | Average latency of NFS4\_LAYOUTGET operations                 | Microseconds |
-| NFS4\_LAYOUTGET\_ID\_OPS                   | Number of NFS4\_LAYOUTGET operations per second               | Ops/Sec      |
-| NFS4\_LAYOUTGET\_LATENCY                   | Average latency of NFS4\_LAYOUTGET operations                 | Microseconds |
-| NFS4\_LAYOUTGET\_OPS                       | Number of NFS4\_LAYOUTGET operations per second               | Ops/Sec      |
-| NFS4\_LAYOUTRETURN\_ID\_LATENCY            | Average latency of NFS4\_LAYOUTRETURN operations              | Microseconds |
-| NFS4\_LAYOUTRETURN\_ID\_OPS                | Number of NFS4\_LAYOUTRETURN operations per second            | Ops/Sec      |
-| NFS4\_LAYOUTRETURN\_LATENCY                | Average latency of NFS4\_LAYOUTRETURN operations              | Microseconds |
-| NFS4\_LAYOUTRETURN\_OPS                    | Number of NFS4\_LAYOUTRETURN operations per second            | Ops/Sec      |
-| NFS4\_LINK\_ID\_LATENCY                    | Average latency of NFS4\_LINK operations                      | Microseconds |
-| NFS4\_LINK\_ID\_OPS                        | Number of NFS4\_LINK operations per second                    | Ops/Sec      |
-| NFS4\_LOCKT\_ID\_LATENCY                   | Average latency of NFS4\_LOCKT operations                     | Microseconds |
-| NFS4\_LOCKT\_ID\_OPS                       | Number of NFS4\_LOCKT operations per second                   | Ops/Sec      |
-| NFS4\_LOCKT\_LATENCY                       | Average latency of NFS4\_LOCKT operations                     | Microseconds |
-| NFS4\_LOCKT\_OPS                           | Number of NFS4\_LOCKT operations per second                   | Ops/Sec      |
-| NFS4\_LOCKU\_ID\_LATENCY                   | Average latency of NFS4\_LOCKU operations                     | Microseconds |
-| NFS4\_LOCKU\_ID\_OPS                       | Number of NFS4\_LOCKU operations per second                   | Ops/Sec      |
-| NFS4\_LOCKU\_LATENCY                       | Average latency of NFS4\_LOCKU operations                     | Microseconds |
-| NFS4\_LOCKU\_OPS                           | Number of NFS4\_LOCKU operations per second                   | Ops/Sec      |
-| NFS4\_LOCK\_ID\_LATENCY                    | Average latency of NFS4\_LOCK operations                      | Microseconds |
-| NFS4\_LOCK\_ID\_OPS                        | Number of NFS4\_LOCK operations per second                    | Ops/Sec      |
-| NFS4\_LOCK\_LATENCY                        | Average latency of NFS4\_LOCK operations                      | Microseconds |
-| NFS4\_LOCK\_OPS                            | Number of NFS4\_LOCK operations per second                    | Ops/Sec      |
-| NFS4\_LOOKUPP\_ID\_LATENCY                 | Average latency of NFS4\_LOOKUPP operations                   | Microseconds |
-| NFS4\_LOOKUPP\_ID\_OPS                     | Number of NFS4\_LOOKUPP operations per second                 | Ops/Sec      |
-| NFS4\_LOOKUPP\_LATENCY                     | Average latency of NFS4\_LOOKUPP operations                   | Microseconds |
-| NFS4\_LOOKUPP\_OPS                         | Number of NFS4\_LOOKUPP operations per second                 | Ops/Sec      |
-| NFS4\_LOOKUP\_ID\_LATENCY                  | Average latency of NFS4\_LOOKUP operations                    | Microseconds |
-| NFS4\_LOOKUP\_ID\_OPS                      | Number of NFS4\_LOOKUP operations per second                  | Ops/Sec      |
-| NFS4\_NVERIFY\_ID\_LATENCY                 | Average latency of NFS4\_NVERIFY operations                   | Microseconds |
-| NFS4\_NVERIFY\_ID\_OPS                     | Number of NFS4\_NVERIFY operations per second                 | Ops/Sec      |
-| NFS4\_NVERIFY\_LATENCY                     | Average latency of NFS4\_NVERIFY operations                   | Microseconds |
-| NFS4\_NVERIFY\_OPS                         | Number of NFS4\_NVERIFY operations per second                 | Ops/Sec      |
-| NFS4\_OPENATTR\_ID\_LATENCY                | Average latency of NFS4\_OPENATTR operations                  | Microseconds |
-| NFS4\_OPENATTR\_ID\_OPS                    | Number of NFS4\_OPENATTR operations per second                | Ops/Sec      |
-| NFS4\_OPENATTR\_LATENCY                    | Average latency of NFS4\_OPENATTR operations                  | Microseconds |
-| NFS4\_OPENATTR\_OPS                        | Number of NFS4\_OPENATTR operations per second                | Ops/Sec      |
-| NFS4\_OPEN\_CONFIRM\_ID\_LATENCY           | Average latency of NFS4\_OPEN\_CONFIRM operations             | Microseconds |
-| NFS4\_OPEN\_CONFIRM\_ID\_OPS               | Number of NFS4\_OPEN\_CONFIRM operations per second           | Ops/Sec      |
-| NFS4\_OPEN\_CONFIRM\_LATENCY               | Average latency of NFS4\_OPEN\_CONFIRM operations             | Microseconds |
-| NFS4\_OPEN\_CONFIRM\_OPS                   | Number of NFS4\_OPEN\_CONFIRM operations per second           | Ops/Sec      |
-| NFS4\_OPEN\_DOWNGRADE\_ID\_LATENCY         | Average latency of NFS4\_OPEN\_DOWNGRADE operations           | Microseconds |
-| NFS4\_OPEN\_DOWNGRADE\_ID\_OPS             | Number of NFS4\_OPEN\_DOWNGRADE operations per second         | Ops/Sec      |
-| NFS4\_OPEN\_DOWNGRADE\_LATENCY             | Average latency of NFS4\_OPEN\_DOWNGRADE operations           | Microseconds |
-| NFS4\_OPEN\_DOWNGRADE\_OPS                 | Number of NFS4\_OPEN\_DOWNGRADE operations per second         | Ops/Sec      |
-| NFS4\_OPEN\_ID\_LATENCY                    | Average latency of NFS4\_OPEN operations                      | Microseconds |
-| NFS4\_OPEN\_ID\_OPS                        | Number of NFS4\_OPEN operations per second                    | Ops/Sec      |
-| NFS4\_OPEN\_LATENCY                        | Average latency of NFS4\_OPEN operations                      | Microseconds |
-| NFS4\_OPEN\_OPS                            | Number of NFS4\_OPEN operations per second                    | Ops/Sec      |
-| NFS4\_OPS\_ID                              | Number of NFS4\_OPS per second                                | Ops/Sec      |
-| NFS4\_PUTFH\_ID\_LATENCY                   | Average latency of NFS4\_PUTFH operations                     | Microseconds |
-| NFS4\_PUTFH\_ID\_OPS                       | Number of NFS4\_PUTFH operations per second                   | Ops/Sec      |
-| NFS4\_PUTFH\_LATENCY                       | Average latency of NFS4\_PUTFH operations                     | Microseconds |
-| NFS4\_PUTFH\_OPS                           | Number of NFS4\_PUTFH operations per second                   | Ops/Sec      |
-| NFS4\_PUTPUBFH\_ID\_LATENCY                | Average latency of NFS4\_PUTPUBFH operations                  | Microseconds |
-| NFS4\_PUTPUBFH\_ID\_OPS                    | Number of NFS4\_PUTPUBFH operations per second                | Ops/Sec      |
-| NFS4\_PUTPUBFH\_LATENCY                    | Average latency of NFS4\_PUTPUBFH operations                  | Microseconds |
-| NFS4\_PUTPUBFH\_OPS                        | Number of NFS4\_PUTPUBFH operations per second                | Ops/Sec      |
-| NFS4\_PUTROOTFH\_ID\_LATENCY               | Average latency of NFS4\_PUTROOTFH operations                 | Microseconds |
-| NFS4\_PUTROOTFH\_ID\_OPS                   | Number of NFS4\_PUTROOTFH operations per second               | Ops/Sec      |
-| NFS4\_PUTROOTFH\_LATENCY                   | Average latency of NFS4\_PUTROOTFH operations                 | Microseconds |
-| NFS4\_PUTROOTFH\_OPS                       | Number of NFS4\_PUTROOTFH operations per second               | Ops/Sec      |
-| NFS4\_READDIR\_ID\_LATENCY                 | Average latency of NFS4\_READDIR operations                   | Microseconds |
-| NFS4\_READDIR\_ID\_OPS                     | Number of NFS4\_READDIR operations per second                 | Ops/Sec      |
-| NFS4\_READLINK\_ID\_LATENCY                | Average latency of NFS4\_READLINK operations                  | Microseconds |
-| NFS4\_READLINK\_ID\_OPS                    | Number of NFS4\_READLINK operations per second                | Ops/Sec      |
-| NFS4\_READ\_BYTES\_ID                      | Number of NFS4\_READ\_BYTES per second                        | Bytes/Sec    |
-| NFS4\_READ\_ID\_LATENCY                    | Average latency of NFS4\_READ operations                      | Microseconds |
-| NFS4\_READ\_ID\_OPS                        | Number of NFS4\_READ operations per second                    | Ops/Sec      |
-| NFS4\_RECLAIM\_COMPLETE\_ID\_LATENCY       | Average latency of NFS4\_RECLAIM\_COMPLETE operations         | Microseconds |
-| NFS4\_RECLAIM\_COMPLETE\_ID\_OPS           | Number of NFS4\_RECLAIM\_COMPLETE operations per second       | Ops/Sec      |
-| NFS4\_RECLAIM\_COMPLETE\_LATENCY           | Average latency of NFS4\_RECLAIM\_COMPLETE operations         | Microseconds |
-| NFS4\_RECLAIM\_COMPLETE\_OPS               | Number of NFS4\_RECLAIM\_COMPLETE operations per second       | Ops/Sec      |
-| NFS4\_RELEASE\_LOCKOWNER\_ID\_LATENCY      | Average latency of NFS4\_RELEASE\_LOCKOWNER operations        | Microseconds |
-| NFS4\_RELEASE\_LOCKOWNER\_ID\_OPS          | Number of NFS4\_RELEASE\_LOCKOWNER operations per second      | Ops/Sec      |
-| NFS4\_RELEASE\_LOCKOWNER\_LATENCY          | Average latency of NFS4\_RELEASE\_LOCKOWNER operations        | Microseconds |
-| NFS4\_RELEASE\_LOCKOWNER\_OPS              | Number of NFS4\_RELEASE\_LOCKOWNER operations per second      | Ops/Sec      |
-| NFS4\_REMOVE\_ID\_LATENCY                  | Average latency of NFS4\_REMOVE operations                    | Microseconds |
-| NFS4\_REMOVE\_ID\_OPS                      | Number of NFS4\_REMOVE operations per second                  | Ops/Sec      |
-| NFS4\_RENAME\_ID\_LATENCY                  | Average latency of NFS4\_RENAME operations                    | Microseconds |
-| NFS4\_RENAME\_ID\_OPS                      | Number of NFS4\_RENAME operations per second                  | Ops/Sec      |
-| NFS4\_RENEW\_ID\_LATENCY                   | Average latency of NFS4\_RENEW operations                     | Microseconds |
-| NFS4\_RENEW\_ID\_OPS                       | Number of NFS4\_RENEW operations per second                   | Ops/Sec      |
-| NFS4\_RENEW\_LATENCY                       | Average latency of NFS4\_RENEW operations                     | Microseconds |
-| NFS4\_RENEW\_OPS                           | Number of NFS4\_RENEW operations per second                   | Ops/Sec      |
-| NFS4\_RESTOREFH\_ID\_LATENCY               | Average latency of NFS4\_RESTOREFH operations                 | Microseconds |
-| NFS4\_RESTOREFH\_ID\_OPS                   | Number of NFS4\_RESTOREFH operations per second               | Ops/Sec      |
-| NFS4\_RESTOREFH\_LATENCY                   | Average latency of NFS4\_RESTOREFH operations                 | Microseconds |
-| NFS4\_RESTOREFH\_OPS                       | Number of NFS4\_RESTOREFH operations per second               | Ops/Sec      |
-| NFS4\_SAVEFH\_ID\_LATENCY                  | Average latency of NFS4\_SAVEFH operations                    | Microseconds |
-| NFS4\_SAVEFH\_ID\_OPS                      | Number of NFS4\_SAVEFH operations per second                  | Ops/Sec      |
-| NFS4\_SAVEFH\_LATENCY                      | Average latency of NFS4\_SAVEFH operations                    | Microseconds |
-| NFS4\_SAVEFH\_OPS                          | Number of NFS4\_SAVEFH operations per second                  | Ops/Sec      |
-| NFS4\_SECINFO\_ID\_LATENCY                 | Average latency of NFS4\_SECINFO operations                   | Microseconds |
-| NFS4\_SECINFO\_ID\_OPS                     | Number of NFS4\_SECINFO operations per second                 | Ops/Sec      |
-| NFS4\_SECINFO\_LATENCY                     | Average latency of NFS4\_SECINFO operations                   | Microseconds |
-| NFS4\_SECINFO\_NO\_NAME\_ID\_LATENCY       | Average latency of NFS4\_SECINFO\_NO\_NAME operations         | Microseconds |
-| NFS4\_SECINFO\_NO\_NAME\_ID\_OPS           | Number of NFS4\_SECINFO\_NO\_NAME operations per second       | Ops/Sec      |
-| NFS4\_SECINFO\_NO\_NAME\_LATENCY           | Average latency of NFS4\_SECINFO\_NO\_NAME operations         | Microseconds |
-| NFS4\_SECINFO\_NO\_NAME\_OPS               | Number of NFS4\_SECINFO\_NO\_NAME operations per second       | Ops/Sec      |
-| NFS4\_SECINFO\_OPS                         | Number of NFS4\_SECINFO operations per second                 | Ops/Sec      |
-| NFS4\_SEQUENCE\_ID\_LATENCY                | Average latency of NFS4\_SEQUENCE operations                  | Microseconds |
-| NFS4\_SEQUENCE\_ID\_OPS                    | Number of NFS4\_SEQUENCE operations per second                | Ops/Sec      |
-| NFS4\_SEQUENCE\_LATENCY                    | Average latency of NFS4\_SEQUENCE operations                  | Microseconds |
-| NFS4\_SEQUENCE\_OPS                        | Number of NFS4\_SEQUENCE operations per second                | Ops/Sec      |
-| NFS4\_SETATTR\_ID\_LATENCY                 | Average latency of NFS4\_SETATTR operations                   | Microseconds |
-| NFS4\_SETATTR\_ID\_OPS                     | Number of NFS4\_SETATTR operations per second                 | Ops/Sec      |
-| NFS4\_SETCLIENTID\_CONFIRM\_ID\_LATENCY    | Average latency of NFS4\_SETCLIENTID\_CONFIRM operations      | Microseconds |
-| NFS4\_SETCLIENTID\_CONFIRM\_ID\_OPS        | Number of NFS4\_SETCLIENTID\_CONFIRM operations per second    | Ops/Sec      |
-| NFS4\_SETCLIENTID\_CONFIRM\_LATENCY        | Average latency of NFS4\_SETCLIENTID\_CONFIRM operations      | Microseconds |
-| NFS4\_SETCLIENTID\_CONFIRM\_OPS            | Number of NFS4\_SETCLIENTID\_CONFIRM operations per second    | Ops/Sec      |
-| NFS4\_SETCLIENTID\_ID\_LATENCY             | Average latency of NFS4\_SETCLIENTID operations               | Microseconds |
-| NFS4\_SETCLIENTID\_ID\_OPS                 | Number of NFS4\_SETCLIENTID operations per second             | Ops/Sec      |
-| NFS4\_SETCLIENTID\_LATENCY                 | Average latency of NFS4\_SETCLIENTID operations               | Microseconds |
-| NFS4\_SETCLIENTID\_OPS                     | Number of NFS4\_SETCLIENTID operations per second             | Ops/Sec      |
-| NFS4\_SET\_SSV\_ID\_LATENCY                | Average latency of NFS4\_SET\_SSV operations                  | Microseconds |
-| NFS4\_SET\_SSV\_ID\_OPS                    | Number of NFS4\_SET\_SSV operations per second                | Ops/Sec      |
-| NFS4\_SET\_SSV\_LATENCY                    | Average latency of NFS4\_SET\_SSV operations                  | Microseconds |
-| NFS4\_SET\_SSV\_OPS                        | Number of NFS4\_SET\_SSV operations per second                | Ops/Sec      |
-| NFS4\_TEST\_STATEID\_ID\_LATENCY           | Average latency of NFS4\_TEST\_STATEID operations             | Microseconds |
-| NFS4\_TEST\_STATEID\_ID\_OPS               | Number of NFS4\_TEST\_STATEID operations per second           | Ops/Sec      |
-| NFS4\_TEST\_STATEID\_LATENCY               | Average latency of NFS4\_TEST\_STATEID operations             | Microseconds |
-| NFS4\_TEST\_STATEID\_OPS                   | Number of NFS4\_TEST\_STATEID operations per second           | Ops/Sec      |
-| NFS4\_VERIFY\_ID\_LATENCY                  | Average latency of NFS4\_VERIFY operations                    | Microseconds |
-| NFS4\_VERIFY\_ID\_OPS                      | Number of NFS4\_VERIFY operations per second                  | Ops/Sec      |
-| NFS4\_VERIFY\_LATENCY                      | Average latency of NFS4\_VERIFY operations                    | Microseconds |
-| NFS4\_VERIFY\_OPS                          | Number of NFS4\_VERIFY operations per second                  | Ops/Sec      |
-| NFS4\_WANT\_DELEGATION\_ID\_LATENCY        | Average latency of NFS4\_WANT\_DELEGATION operations          | Microseconds |
-| NFS4\_WANT\_DELEGATION\_ID\_OPS            | Number of NFS4\_WANT\_DELEGATION operations per second        | Ops/Sec      |
-| NFS4\_WANT\_DELEGATION\_LATENCY            | Average latency of NFS4\_WANT\_DELEGATION operations          | Microseconds |
-| NFS4\_WANT\_DELEGATION\_OPS                | Number of NFS4\_WANT\_DELEGATION operations per second        | Ops/Sec      |
-| NFS4\_WRITE\_BYTES\_ID                     | Number of NFS4\_WRITE\_BYTES per second                       | Bytes/Sec    |
-| NFS4\_WRITE\_ID\_LATENCY                   | Average latency of NFS4\_WRITE operations                     | Microseconds |
-| NFS4\_WRITE\_ID\_OPS                       | Number of NFS4\_WRITE operations per second                   | Ops/Sec      |
-| OPS                                        | Total number of operations                                    | Ops/Sec      |
-| READDIR\_LATENCY                           | Average latency of READDIR operations                         | Microseconds |
-| READDIR\_OPS                               | Number of READDIR operations per second                       | Ops/Sec      |
-| READLINK\_LATENCY                          | Average latency of READLINK operations                        | Microseconds |
-| READLINK\_OPS                              | Number of READLINK operations per second                      | Ops/Sec      |
-| READ\_BYTES                                | Number of bytes read per second                               | Bytes/Sec    |
-| READ\_LATENCY                              | Average latency of READ operations                            | Microseconds |
-| READ\_OPS                                  | Number of READ operations per second                          | Ops/Sec      |
-| REMOVE\_LATENCY                            | Average latency of REMOVE operations                          | Microseconds |
-| REMOVE\_OPS                                | Number of REMOVE operations per second                        | Ops/Sec      |
-| RENAME\_LATENCY                            | Average latency of RENAME operations                          | Microseconds |
-| RENAME\_OPS                                | Number of RENAME operations per second                        | Ops/Sec      |
-| SETATTR\_LATENCY                           | Average latency of SETATTR operations                         | Microseconds |
-| SETATTR\_OPS                               | Number of SETATTR operations per second                       | Ops/Sec      |
-| THROUGHPUT                                 | Number of bytes read/written per second                       | Bytes/Sec    |
-| WRITE\_BYTES                               | Number of bytes written per second                            | Bytes/Sec    |
-| WRITE\_LATENCY                             | Average latency of WRITE operations                           | Microseconds |
-| WRITE\_OPS                                 | Number of WRITE operations per second                         | Ops/Sec      |
-
-### Operations (S3)
-
-| Type                              | Description                                                                                     | Units         |
-| --------------------------------- | ----------------------------------------------------------------------------------------------- | ------------- |
-| API\_FAILURES                     | Total of failures per API                                                                       | Ops           |
-| API\_OPS                          | Total of Ops per API                                                                            | Ops           |
-| API\_TTFB                         | Time To First Byte per API                                                                      | Milliseconds  |
-| API\_TTLB                         | Time To Last Byte per API                                                                       | Milliseconds  |
-| AVG\_TTLB\_HIST                   | TTLB (Time To Last Byte) Milliseconds Histogram per Tenant                                      | Count         |
-| AVG\_TTLB\_PERCENT                | TTLB (Time To Last Byte) Percentile                                                             | Milliseconds  |
-| FS\_READ\_BYTES                   | Total Read Bytes per Bucket/FS/Tenant                                                           | Bytes/Sec     |
-| FS\_RQ                            | Total Requests per Bucket/FS/Tenant                                                             | Ops           |
-| FS\_STATUS                        | Count HTTP Status Code per Bucket/FS/Tenant                                                     | Ops           |
-| FS\_WRITE\_BYTES                  | Total Write Bytes per Bucket/FS/Tenant                                                          | Bytes/Sec     |
-| NOTIFICATION\_LOST                | Total notification lost per notification target                                                 | Notifications |
-| QOS\_BUCKET\_BUSY\_REJECT         | QoS bucket-busy gate 503 rejections in interval, per tenant/API                                 | Ops           |
-| QOS\_IO\_RETRY\_ATTEMPT           | QoS EXFULL retry attempts in interval, per tenant/op                                            | Ops           |
-| QOS\_IO\_RETRY\_BUDGET\_EXHAUSTED | QoS retry sessions that exhausted the budget (503) in interval, per tenant/op                   | Ops           |
-| QOS\_IO\_RETRY\_CANCELED          | QoS retry sessions aborted by ctx cancel (client disconnect/timeout) in interval, per tenant/op | Ops           |
-| QOS\_IO\_RETRY\_ENTER             | QoS retry sessions that observed EXFULL in interval, per tenant/op                              | Ops           |
-| TOTAL\_BUCKET\_CREATE\_OPS        | Total bucket create operations per second                                                       | Ops/Sec       |
-| TOTAL\_BUCKET\_DELETE\_OPS        | Total bucket delete operations per second                                                       | Ops/Sec       |
-| TOTAL\_BUCKET\_LIST\_OPS          | Total bucket list operations per second                                                         | Ops/Sec       |
-
-### Operations (SLB of S3)
-
-| Type                                    | Description                                             | Units       |
-| --------------------------------------- | ------------------------------------------------------- | ----------- |
-| AVG\_1xx\_RQ                            | Average 1xx replies per second                          | Ops/Sec     |
-| AVG\_2xx\_RQ                            | Average 2xx replies per second                          | Ops/Sec     |
-| AVG\_3xx\_RQ                            | Average 3xx replies per second                          | Ops/Sec     |
-| AVG\_429\_RQ                            | Average 429 replies per second                          | Ops/Sec     |
-| AVG\_4xx\_RQ                            | Average 4xx replies per second                          | Ops/Sec     |
-| AVG\_503\_RQ                            | Average 503 replies per second                          | Ops/Sec     |
-| AVG\_5xx\_RQ                            | Average 5xx replies per second                          | Ops/Sec     |
-| SLB\_1xx\_RQ                            | 1xx responses to traffic originating from adjacent SLBs | Ops         |
-| SLB\_2xx\_RQ                            | 2xx responses to traffic originating from adjacent SLBs | Ops         |
-| SLB\_3xx\_RQ                            | 3xx responses to traffic originating from adjacent SLBs | Ops         |
-| SLB\_4xx\_RQ                            | 4xx responses to traffic originating from adjacent SLBs | Ops         |
-| SLB\_5xx\_RQ                            | 5xx responses to traffic originating from adjacent SLBs | Ops         |
-| TOTAL\_1xx\_RQ                          | Total 1xx replies                                       | Ops         |
-| TOTAL\_2xx\_RQ                          | Total 2xx replies                                       | Ops         |
-| TOTAL\_3xx\_RQ                          | Total 3xx replies                                       | Ops         |
-| TOTAL\_429\_RQ                          | Total 429 replies                                       | Ops         |
-| TOTAL\_4xx\_RQ                          | Total 4xx replies                                       | Ops         |
-| TOTAL\_503\_RQ                          | Total 503 replies                                       | Ops         |
-| TOTAL\_5xx\_RQ                          | Total 5xx replies                                       | Ops         |
-| TOTAL\_active\_connection               | Total SLB Downstream Active Connections                 | Connections |
-| TOTAL\_max\_duration\_RQ                | Total Max Duration Reached replies                      | Ops         |
-| TOTAL\_rejected\_via\_ip\_detection\_RQ | Total Rejected by IP Detection replies                  | Ops         |
-| TOTAL\_response\_before\_complete\_RQ   | Total S3 Responses before Complete replies              | Ops         |
-| TOTAL\_rx\_reset\_RQ                    | Total User RX Reset Connection replies                  | Ops         |
-| TOTAL\_tx\_reset\_RQ                    | Total Envoy TX Reset Connection replies                 | Ops         |
-
-### Operations (Tenant)
-
-| Type                    | Description                                           | Units        |
-| ----------------------- | ----------------------------------------------------- | ------------ |
-| READS                   | Number of read operations per second                  | Ops/Sec      |
-| READ\_BYTES             | Number of bytes read per second                       | Bytes/Sec    |
-| READ\_LATENCY           | Average latency of READ operations                    | Microseconds |
-| READ\_LATENCY\_NO\_QOS  | Average latency of READ operations without QoS delay  | Microseconds |
-| READ\_QOS\_DELAY        | Average QoS delay for READ operations                 | Microseconds |
-| THROUGHPUT              | Number of bytes read/written per second               | Bytes/Sec    |
-| WRITES                  | Number of write operations per second                 | Ops/Sec      |
-| WRITE\_BYTES            | Number of bytes written per second                    | Bytes/Sec    |
-| WRITE\_LATENCY          | Average latency of WRITE operations                   | Microseconds |
-| WRITE\_LATENCY\_NO\_QOS | Average latency of WRITE operations without QoS delay | Microseconds |
-| WRITE\_QOS\_DELAY       | Average QoS delay for WRITE operations                | Microseconds |
-
 ### Platform
 
 | Type                          | Description                                             | Units         |
@@ -1757,6 +1686,50 @@ description: >-
 | RAID\_WRITE\_PlacementSpaceN                           | Blocks written by spaces                                                   | Blocks/Sec      |
 | WRONG\_DRIVE\_DELTAS                                   | Delta segments are written to the wrong drive                              | Blocks/Sec      |
 | WRONG\_DRIVE\_REFS                                     | Reference segments are written to the wrong drive                          | Blocks/Sec      |
+
+### RPC
+
+| Type                                                | Description                                                                                  | Units        |
+| --------------------------------------------------- | -------------------------------------------------------------------------------------------- | ------------ |
+| CLIENT\_CANCELED\_REQUESTS                          | Number of requests canceled by the client                                                    | Calls/Sec    |
+| CLIENT\_DROPPED\_RESPONSES                          | Number of responses dropped by the client                                                    | Calls/Sec    |
+| CLIENT\_ENCRYPTION\_AUTH\_FAILURES                  | Number of authentication failures by the client                                              | Calls/Sec    |
+| CLIENT\_MISSING\_ENCRYPTION\_KEY                    | Number of times the client was missing an encryption key                                     | Calls/Sec    |
+| CLIENT\_RECEIVED\_EXCEPTIONS                        | Number of exceptions received by the client                                                  | Calls/Sec    |
+| CLIENT\_RECEIVED\_RESPONSES                         | Number of responses received by the client                                                   | Calls/Sec    |
+| CLIENT\_RECEIVED\_TIMEOUTS                          | Number of timeouts experienced by the client                                                 | Calls/Sec    |
+| CLIENT\_ROUNDTRIP\_AVG                              | Roundtrip average of client normal and low priority RPC calls                                | Microseconds |
+| CLIENT\_ROUNDTRIP\_AVG\_LOW                         | Roundtrip average of client low-priority RPC calls                                           | Microseconds |
+| CLIENT\_ROUNDTRIP\_AVG\_NORM                        | Roundtrip average of client normal priority RPC calls                                        | Microseconds |
+| CLIENT\_RPC\_CALLS                                  | Number of all priorities of RPC calls                                                        | RPC/Sec      |
+| CLIENT\_RPC\_CALLS\_DOWNGRADED                      | Number of client-downgraded RPC calls                                                        | RPC/Sec      |
+| CLIENT\_RPC\_CALLS\_LOW                             | Number of low-priority RPC calls                                                             | RPC/Sec      |
+| CLIENT\_RPC\_CALLS\_NORM                            | Number of normal priority RPC calls                                                          | RPC/Sec      |
+| CLIENT\_SENT\_REQUESTS                              | Number of requests sent by the client                                                        | Calls/Sec    |
+| CLIENT\_USED\_NATIVE\_FORMAT\_FOR\_MISSING\_REFTYPE | Number of RPCs sent to a node whose reftypes lacked a function                               | Calls/Sec    |
+| DEUS\_EX\_MBUF\_LIMITED                             | Number of RPCs slow down due to low MBuf reserves                                            | Ops/Sec      |
+| DEUS\_EX\_NOT\_EMPTY                                | Number of RPCs put in DeusEx to preserve RPC order                                           | Ops/Sec      |
+| DEUS\_EX\_NO\_FIBERS                                | Number of RPCs put in DeusEx due to lack of global fibers                                    | Ops/Sec      |
+| DEUS\_EX\_OVERLOADED                                | Number of RPCs rejected as overloaded by Deus Ex                                             | Ops/Sec      |
+| DEUS\_EX\_RPC\_MAX\_FIBERS                          | Number of RPCs put in DeusEx due to RPC max fibers                                           | Ops/Sec      |
+| FIRST\_RESULTS                                      | Number of first results per second                                                           | Ops/Sec      |
+| MBUF\_LIMITED\_SLEEP                                | Number of times wait due to low MBuf reserves                                                | Actions/Sec  |
+| RPC\_ENCRYPTION\_SETUP\_FAILURES                    | Number of encryption key setup failures                                                      | Failures     |
+| SERVER\_ABORTS                                      | Number of server received aborts                                                             | Calls/Sec    |
+| SERVER\_BACKGROUND\_INHERITED                       | Number of RPC handlers spawned as background fibers because the calling fiber was background | Calls/Sec    |
+| SERVER\_DROPPED\_REQUESTS                           | Number of requests dropped by the server                                                     | Calls/Sec    |
+| SERVER\_ENCRYPTION\_AUTH\_FAILURES                  | Number of encryption authentication failures at the server                                   | Calls/Sec    |
+| SERVER\_INCOMING\_RPCS                              | Number of incoming RPCs                                                                      | RPCs         |
+| SERVER\_MISSING\_ENCRYPTION\_KEY                    | Number of requests missing encryption key at the server                                      | Calls/Sec    |
+| SERVER\_PROCESSING\_AVG                             | Average time to process server RPC calls                                                     | Microseconds |
+| SERVER\_PROCESSING\_TIME                            | Histogram of the time it took the server to process a request                                | RPCs         |
+| SERVER\_REJECTS                                     | Number of times the server rejected a request                                                | Calls/Sec    |
+| SERVER\_RPC\_CALLS                                  | Number of server RPC calls                                                                   | RPC/Sec      |
+| SERVER\_RPC\_CALLS\_UPGRADED                        | Number of server-upgraded RPC calls                                                          | RPC/Sec      |
+| SERVER\_SENT\_EXCEPTIONS                            | Number of exceptions sent by the server as a response                                        | Calls/Sec    |
+| SERVER\_SENT\_RESPONSES                             | Number of responses the server sent                                                          | Calls/Sec    |
+| SERVER\_UNENCRYPTED\_REFUSALS                       | Number of requests refused due to missing encryption at the server                           | Calls/Sec    |
+| TIME\_TO\_FIRST\_RESULT                             | Average latency to the first result of a MultiCall                                           | Microseconds |
 
 ### Reactor
 
@@ -1838,20 +1811,36 @@ description: >-
 
 ### Replication
 
-| Type                                         | Description                                               | Units        |
-| -------------------------------------------- | --------------------------------------------------------- | ------------ |
-| REPLICA\_RX\_BLOBS                           | Number of replica blobs received                          | Blobs/Sec    |
-| REPLICA\_RX\_BLOB\_BAD\_CHECKSUMS            | Number of replica blobs received with checksum mismatch   | Blobs/Sec    |
-| REPLICA\_RX\_BLOB\_BYTES                     | Number of bytes in replica blobs received                 | Bytes/Sec    |
-| REPLICA\_RX\_ON\_DEMAND\_DATA\_READS         | Number of reads receiving replica data on demand          | Extents/Sec  |
-| REPLICA\_RX\_ON\_DEMAND\_DATA\_READ\_BYTES   | Number of bytes read receiving replica data on demand     | Bytes/Sec    |
-| REPLICA\_RX\_ON\_DEMAND\_DATA\_READ\_LATENCY | Average latency of reads receiving replica data on demand | Microseconds |
-| REPLICA\_TX\_BLOBS                           | Number of replica blobs sent                              | Blobs/Sec    |
-| REPLICA\_TX\_BLOB\_BAD\_CHECKSUMS            | Number of replica blobs sent with checksum mismatch       | Blobs/Sec    |
-| REPLICA\_TX\_BLOB\_BYTES                     | Number of bytes in replica blobs sent                     | Bytes/Sec    |
-| REPLICA\_TX\_ON\_DEMAND\_DATA\_READS         | Number of reads sending replica data on demand            | Extents/Sec  |
-| REPLICA\_TX\_ON\_DEMAND\_DATA\_READ\_BYTES   | Number of bytes read sending replica data on demand       | Bytes/Sec    |
-| REPLICA\_TX\_ON\_DEMAND\_DATA\_READ\_LATENCY | Average latency of reads sending replica data on demand   | Microseconds |
+| Type                                         | Description                                                                        | Units        |
+| -------------------------------------------- | ---------------------------------------------------------------------------------- | ------------ |
+| REPLICATION\_APPLY\_PHASES                   | Number of replication apply phases completed                                       | Phases/Sec   |
+| REPLICATION\_APPLY\_PHASE\_LATENCY           | Replication apply phase latency                                                    | Microseconds |
+| REPLICATION\_COPY\_PHASES                    | Number of replication copy phases completed                                        | Phases/Sec   |
+| REPLICATION\_COPY\_PHASE\_LATENCY            | Replication copy phase latency                                                     | Microseconds |
+| REPLICATION\_CYCLES                          | Number of replication cycles completed successfully                                | Cycles/Sec   |
+| REPLICATION\_CYCLES\_FAILED                  | Number of replication cycles that ended in error/failure                           | Cycles/Sec   |
+| REPLICATION\_CYCLE\_LATENCY                  | Overall replication cycle latency (full IDLE-to-IDLE span, successful cycles only) | Microseconds |
+| REPLICATION\_METADATA\_SYNCS                 | Number of replication metadata-sync phases completed                               | Phases/Sec   |
+| REPLICATION\_METADATA\_SYNC\_LATENCY         | Replication metadata-sync phase latency                                            | Microseconds |
+| REPLICATION\_SNAPSHOT\_CREATES               | Number of replication snapshot-create phases completed                             | Phases/Sec   |
+| REPLICATION\_SNAPSHOT\_CREATE\_LATENCY       | Replication snapshot-create phase latency                                          | Microseconds |
+| REPLICATION\_SOURCE\_DELETE\_PHASES          | Number of replication source-snapshot-delete phases completed                      | Phases/Sec   |
+| REPLICATION\_SOURCE\_DELETE\_PHASE\_LATENCY  | Replication source-snapshot-delete phase latency                                   | Microseconds |
+| REPLICATION\_TARGET\_DELETE\_PHASES          | Number of replication target-snapshot-delete phases completed                      | Phases/Sec   |
+| REPLICATION\_TARGET\_DELETE\_PHASE\_LATENCY  | Replication target-snapshot-delete phase latency                                   | Microseconds |
+| REPLICA\_RX\_BLOBS                           | Number of replica blobs received                                                   | Blobs/Sec    |
+| REPLICA\_RX\_BLOB\_BAD\_CHECKSUMS            | Number of replica blobs received with checksum mismatch                            | Blobs/Sec    |
+| REPLICA\_RX\_BLOB\_BYTES                     | Number of bytes in replica blobs received                                          | Bytes/Sec    |
+| REPLICA\_RX\_BLOB\_NO\_CAPACITY              | Number of replica blob receives denied because the bucket's SSD share had no room  | Blobs/Sec    |
+| REPLICA\_RX\_ON\_DEMAND\_DATA\_READS         | Number of reads receiving replica data on demand                                   | Extents/Sec  |
+| REPLICA\_RX\_ON\_DEMAND\_DATA\_READ\_BYTES   | Number of bytes read receiving replica data on demand                              | Bytes/Sec    |
+| REPLICA\_RX\_ON\_DEMAND\_DATA\_READ\_LATENCY | Average latency of reads receiving replica data on demand                          | Microseconds |
+| REPLICA\_TX\_BLOBS                           | Number of replica blobs sent                                                       | Blobs/Sec    |
+| REPLICA\_TX\_BLOB\_BAD\_CHECKSUMS            | Number of replica blobs sent with checksum mismatch                                | Blobs/Sec    |
+| REPLICA\_TX\_BLOB\_BYTES                     | Number of bytes in replica blobs sent                                              | Bytes/Sec    |
+| REPLICA\_TX\_ON\_DEMAND\_DATA\_READS         | Number of reads sending replica data on demand                                     | Extents/Sec  |
+| REPLICA\_TX\_ON\_DEMAND\_DATA\_READ\_BYTES   | Number of bytes read sending replica data on demand                                | Bytes/Sec    |
+| REPLICA\_TX\_ON\_DEMAND\_DATA\_READ\_LATENCY | Average latency of reads sending replica data on demand                            | Microseconds |
 
 ### Resolve Inode Cache
 
@@ -1861,48 +1850,128 @@ description: >-
 | RESOLVER\_INODE\_TO\_PATH\_CACHE\_HITS | Resolve-inode-to-path cache hits                                | Queries |
 | RESOLVER\_INODE\_TO\_PATH\_CACHE\_MISS | Resolve-inode-to-path cache misses                              | Queries |
 
-### RPC
+### SSD
 
-| Type                                                | Description                                                        | Units        |
-| --------------------------------------------------- | ------------------------------------------------------------------ | ------------ |
-| CLIENT\_CANCELED\_REQUESTS                          | Number of requests canceled by the client                          | Calls/Sec    |
-| CLIENT\_DROPPED\_RESPONSES                          | Number of responses dropped by the client                          | Calls/Sec    |
-| CLIENT\_ENCRYPTION\_AUTH\_FAILURES                  | Number of authentication failures by the client                    | Calls/Sec    |
-| CLIENT\_MISSING\_ENCRYPTION\_KEY                    | Number of times the client was missing an encryption key           | Calls/Sec    |
-| CLIENT\_RECEIVED\_EXCEPTIONS                        | Number of exceptions received by the client                        | Calls/Sec    |
-| CLIENT\_RECEIVED\_RESPONSES                         | Number of responses received by the client                         | Calls/Sec    |
-| CLIENT\_RECEIVED\_TIMEOUTS                          | Number of timeouts experienced by the client                       | Calls/Sec    |
-| CLIENT\_ROUNDTRIP\_AVG                              | Roundtrip average of client normal and low priority RPC calls      | Microseconds |
-| CLIENT\_ROUNDTRIP\_AVG\_LOW                         | Roundtrip average of client low-priority RPC calls                 | Microseconds |
-| CLIENT\_ROUNDTRIP\_AVG\_NORM                        | Roundtrip average of client normal priority RPC calls              | Microseconds |
-| CLIENT\_RPC\_CALLS                                  | Number of all priorities of RPC calls                              | RPC/Sec      |
-| CLIENT\_RPC\_CALLS\_DOWNGRADED                      | Number of client-downgraded RPC calls                              | RPC/Sec      |
-| CLIENT\_RPC\_CALLS\_LOW                             | Number of low-priority RPC calls                                   | RPC/Sec      |
-| CLIENT\_RPC\_CALLS\_NORM                            | Number of normal priority RPC calls                                | RPC/Sec      |
-| CLIENT\_SENT\_REQUESTS                              | Number of requests sent by the client                              | Calls/Sec    |
-| CLIENT\_USED\_NATIVE\_FORMAT\_FOR\_MISSING\_REFTYPE | Number of RPCs sent to a node whose reftypes lacked a function     | Calls/Sec    |
-| DEUS\_EX\_MBUF\_LIMITED                             | Number of RPCs slow down due to low MBuf reserves                  | Ops/Sec      |
-| DEUS\_EX\_NOT\_EMPTY                                | Number of RPCs put in DeusEx to preserve RPC order                 | Ops/Sec      |
-| DEUS\_EX\_NO\_FIBERS                                | Number of RPCs put in DeusEx due to lack of global fibers          | Ops/Sec      |
-| DEUS\_EX\_OVERLOADED                                | Number of RPCs rejected as overloaded by Deus Ex                   | Ops/Sec      |
-| DEUS\_EX\_RPC\_MAX\_FIBERS                          | Number of RPCs put in DeusEx due to RPC max fibers                 | Ops/Sec      |
-| FIRST\_RESULTS                                      | Number of first results per second                                 | Ops/Sec      |
-| MBUF\_LIMITED\_SLEEP                                | Number of times wait due to low MBuf reserves                      | Actions/Sec  |
-| RPC\_ENCRYPTION\_SETUP\_FAILURES                    | Number of encryption key setup failures                            | Failures     |
-| SERVER\_ABORTS                                      | Number of server received aborts                                   | Calls/Sec    |
-| SERVER\_DROPPED\_REQUESTS                           | Number of requests dropped by the server                           | Calls/Sec    |
-| SERVER\_ENCRYPTION\_AUTH\_FAILURES                  | Number of encryption authentication failures at the server         | Calls/Sec    |
-| SERVER\_INCOMING\_RPCS                              | Number of incoming RPCs                                            | RPCs         |
-| SERVER\_MISSING\_ENCRYPTION\_KEY                    | Number of requests missing encryption key at the server            | Calls/Sec    |
-| SERVER\_PROCESSING\_AVG                             | Average time to process server RPC calls                           | Microseconds |
-| SERVER\_PROCESSING\_TIME                            | Histogram of the time it took the server to process a request      | RPCs         |
-| SERVER\_REJECTS                                     | Number of times the server rejected a request                      | Calls/Sec    |
-| SERVER\_RPC\_CALLS                                  | Number of server RPC calls                                         | RPC/Sec      |
-| SERVER\_RPC\_CALLS\_UPGRADED                        | Number of server-upgraded RPC calls                                | RPC/Sec      |
-| SERVER\_SENT\_EXCEPTIONS                            | Number of exceptions sent by the server as a response              | Calls/Sec    |
-| SERVER\_SENT\_RESPONSES                             | Number of responses the server sent                                | Calls/Sec    |
-| SERVER\_UNENCRYPTED\_REFUSALS                       | Number of requests refused due to missing encryption at the server | Calls/Sec    |
-| TIME\_TO\_FIRST\_RESULT                             | Average latency to the first result of a MultiCall                 | Microseconds |
+| Type                                               | Description                                                                                    | Units          |
+| -------------------------------------------------- | ---------------------------------------------------------------------------------------------- | -------------- |
+| CHUNK\_ALLOC\_LATENCY                              | Average latency of allocChunk operations per disk                                              | Microseconds   |
+| CHUNK\_ALLOC\_OPS                                  | Number of allocChunk operations per disk                                                       | Operations/Sec |
+| CHUNK\_RELEASE\_LATENCY                            | Average latency of releaseChunk operations per disk                                            | Microseconds   |
+| CHUNK\_RELEASE\_OPS                                | Number of releaseChunk operations per disk                                                     | Operations/Sec |
+| CHUNK\_UPDATE\_LATENCY                             | Average latency of updateChunk operations per disk                                             | Microseconds   |
+| CHUNK\_UPDATE\_OPS                                 | Number of updateChunk operations per disk                                                      | Operations/Sec |
+| CLEAN\_CHUNK\_SKIPPED                              | Number of clean chunks skipped                                                                 | Chunks         |
+| DRIVE\_ACTIVE\_IOS                                 | The number of in-flight IOs against the SSD during sampling                                    | IOs            |
+| DRIVE\_AER\_RECEIVED                               | Number of AER reports                                                                          | reports        |
+| DRIVE\_CANCELLED\_COMPLETED\_BLOCKS                | Drive canceled completed blocks                                                                | Blocks/Sec     |
+| DRIVE\_CANCELLED\_NOT\_SUBMITTED\_BLOCKS           | Drive canceled not submitted blocks                                                            | Blocks/Sec     |
+| DRIVE\_COMPLETED\_OVER\_COUNT                      | Drive completed count > 1 detected                                                             | Occurrences    |
+| DRIVE\_E2E\_CORRECTION\_COUNT                      | Drive E2E correction count                                                                     | Error Count    |
+| DRIVE\_ENDURANCE\_USED                             | Drive endurance percentage used                                                                | %              |
+| DRIVE\_FORFEITS                                    | Number of IOs forfeited due to lack of memory buffers                                          | Operations/Sec |
+| DRIVE\_IDLE\_CYCLES                                | Number of cycles spent in idle                                                                 | Cycles/Sec     |
+| DRIVE\_IDLE\_TIME                                  | Percentage of the CPU time not used for handling I/Os                                          | %              |
+| DRIVE\_IO\_OVERLAPPED                              | Number of overlapping IOs                                                                      | Operations     |
+| DRIVE\_IO\_TOO\_LONG                               | Number of IOs that took longer than expected                                                   | Operations/Sec |
+| DRIVE\_LATENCY                                     | Measure the latencies up to 5ms (higher latencies are grouped)                                 | Requests       |
+| DRIVE\_LOAD                                        | Drive Load at sampling time                                                                    | Load           |
+| DRIVE\_MAX\_ERASE\_COUNT                           | Drive maximum block erase count                                                                | Erase Count    |
+| DRIVE\_MEDIA\_BLOCKS\_READ                         | Blocks read from the SSD media                                                                 | Blocks/Sec     |
+| DRIVE\_MEDIA\_BLOCKS\_WRITE                        | Blocks are written to the SSD media                                                            | Blocks/Sec     |
+| DRIVE\_MEDIA\_ERRORS                               | SSD Media Errors                                                                               | IO/Sec         |
+| DRIVE\_MIN\_ERASE\_COUNT                           | Drive minimum block erase count                                                                | Erase Count    |
+| DRIVE\_NON\_MEDIA\_ERRORS                          | SSD Non-Media Errors                                                                           | IO/Sec         |
+| DRIVE\_PCI\_CORRECTABLE\_ERROR\_COUNT              | Drive PCI Correctable error count                                                              | Error Count    |
+| DRIVE\_PCI\_INACCESSIBLE                           | Number of PCI Inaccessible errors detected                                                     | Count          |
+| DRIVE\_PCI\_LINK\_RETRAIN\_COUNT                   | Drive PCI link retrain count                                                                   | Error Count    |
+| DRIVE\_PENDING\_IOS                                | The number of IOs waiting to start executing during sampling                                   | IOs            |
+| DRIVE\_PUMPED\_IOS                                 | Number of requests returned in a pump                                                          | Pumps          |
+| DRIVE\_PUMPS\_DELAYED                              | Number of Drive pumps that got delayed                                                         | Operations/Sec |
+| DRIVE\_PUMPS\_SEVERELY\_DELAYED                    | Number of Drive pumps that got severely delayed                                                | Operations/Sec |
+| DRIVE\_PUMP\_LATENCY                               | Latency between SSD pumps                                                                      | Microseconds   |
+| DRIVE\_READ\_LATENCY                               | Drive Read Execution Latency                                                                   | Microseconds   |
+| DRIVE\_READ\_OPS                                   | Drive Read Operations                                                                          | IO/Sec         |
+| DRIVE\_READ\_RATIO\_PER\_SSD\_READ                 | Drive Read OPS Per SSD Request                                                                 | Ratio          |
+| DRIVE\_REMAINING\_IOS                              | Number of requests still in the drive after a pump                                             | Pumps          |
+| DRIVE\_REMAINING\_SPARES                           | Drive remaining spares                                                                         | %              |
+| DRIVE\_REQUEST\_BLOCKS                             | Measure drive request size distribution                                                        | Requests       |
+| DRIVE\_SOFT\_ECC\_COUNT                            | Drive Soft ECC Error Count                                                                     | Error Count    |
+| DRIVE\_SSD\_PUMPS                                  | Number of drive pumps that resulted in the data flow from/to drive                             | Pump/Sec       |
+| DRIVE\_UNALIGNED\_IOS                              | Drive unaligned IOs count                                                                      | IOs            |
+| DRIVE\_UNCORRECTABLE\_READ\_COUNT                  | Drive uncorrectable read count                                                                 | Error Count    |
+| DRIVE\_UTILIZATION                                 | Percentage of time the drive had an active IO submitted to it                                  | %              |
+| DRIVE\_WAF\_INTERVAL                               | Drive Interval write amplification                                                             | Factor         |
+| DRIVE\_WAF\_LIFETIME                               | Drive lifetime write amplification                                                             | Factor         |
+| DRIVE\_WRITE\_LATENCY                              | Drive Write Execution Latency                                                                  | Microseconds   |
+| DRIVE\_WRITE\_OPS                                  | Drive Write Operations                                                                         | IO/Sec         |
+| DRIVE\_WRITE\_RATIO\_PER\_SSD\_WRITE               | Drive Write OPS Per SSD Request                                                                | Ratio          |
+| DRIVE\_XOR\_RECOVERY\_COUNT                        | Drive XOR recovery count                                                                       | Error Count    |
+| LEAKED\_AIOVEC\_NETBUF                             | Number of leaked AIOVec netbufs on uncompleted IO                                              | Operations     |
+| MULTI\_TURN\_GET\_COMPRESSED\_BLOCKS               | The number of compressed blocks reads which required more than a single turn                   | Requests/Sec   |
+| NVKV\_CHUNK\_OUT\_OF\_SPACE                        | Number of failed attempts to allocate a stripe in an NVKV chunk                                | Attempts/Sec   |
+| NVKV\_INVALIDATOR\_MATCHED                         | Number of NVKV invalidators matching the data                                                  | Attempts/Sec   |
+| NVKV\_OUT\_OF\_CHUNKS                              | Number of failed attempts to allocate an NVKV chunk                                            | Attempts/Sec   |
+| NVKV\_OUT\_OF\_SUPERBLOCK\_ENTRIES                 | Number of failed attempts to allocate a superblock NVKV entry                                  | Attempts/Sec   |
+| NVME\_NAMESPACE\_CAPACITY                          | NVMe namespace capacity                                                                        | Blocks         |
+| NVME\_NAMESPACE\_SIZE                              | The size of the NVMe namespace                                                                 | Blocks         |
+| NVME\_NAMESPACE\_UTILIZATION                       | NVMe namespace utilization                                                                     | Blocks         |
+| NVME\_SMART\_AVAILABLE\_SPARE                      | Normalized percentage when the available spare falls below the threshold                       | %              |
+| NVME\_SMART\_AVAILABLE\_SPARE\_THRESHOLD           | Normalized percentage of the available spare falls below the threshold                         | %              |
+| NVME\_SMART\_COMPOSITE\_TEMP                       | Current composite temperature of the container in Kelvins                                      | Kelvin         |
+| NVME\_SMART\_CONTROLLER\_BUSY\_TIME                | The duration the controller is busy with I/O commands                                          | Minutes        |
+| NVME\_SMART\_CRITICAL\_COMPOSITE\_TEMP\_TIME       | The time spent in critical composite temperature state                                         | Minutes        |
+| NVME\_SMART\_CRITICAL\_WARNING                     | Critical warnings regarding the drive controller state                                         | BitFields      |
+| NVME\_SMART\_DATA\_UNITS\_READ                     | The number of 512-byte data units the server has read from the controller (in millions)        | Count          |
+| NVME\_SMART\_DATA\_UNITS\_WRITTEN                  | The number of 512-byte data units the host has written to the controller (in millions)         | Count          |
+| NVME\_SMART\_ERROR\_LOG\_ENTRIES                   | The total number of Error Information log entries over the controller's lifetime               | Occurrences    |
+| NVME\_SMART\_HOST\_READ\_CMDS                      | The number of read commands completed by the controller                                        | Occurrences    |
+| NVME\_SMART\_HOST\_WRITE\_CMDS                     | The number of write commands completed by the controller                                       | Occurrences    |
+| NVME\_SMART\_MEDIA\_ERRORS                         | The number of unrecovered data integrity errors detected by the controller                     | Occurrences    |
+| NVME\_SMART\_POWER\_CYCLES                         | The number of power cycles                                                                     | Occurrences    |
+| NVME\_SMART\_TEMP\_SENSOR\_1                       | The current temperature reported by temperature sensor 1                                       | Kelvin         |
+| NVME\_SMART\_TEMP\_SENSOR\_2                       | The current temperature reported by temperature sensor 2                                       | Kelvin         |
+| NVME\_SMART\_TEMP\_SENSOR\_3                       | The current temperature reported by temperature sensor 3                                       | Kelvin         |
+| NVME\_SMART\_TEMP\_SENSOR\_4                       | The current temperature reported by temperature sensor 4                                       | Kelvin         |
+| NVME\_SMART\_TEMP\_SENSOR\_5                       | The current temperature reported by temperature sensor 5                                       | Kelvin         |
+| NVME\_SMART\_TEMP\_SENSOR\_6                       | The current temperature reported by temperature sensor 6                                       | Kelvin         |
+| NVME\_SMART\_TEMP\_SENSOR\_7                       | The current temperature reported by temperature sensor 7                                       | Kelvin         |
+| NVME\_SMART\_TEMP\_SENSOR\_8                       | The current temperature reported by temperature sensor 8                                       | Kelvin         |
+| NVME\_SMART\_THERMAL\_MGMT\_TEMP1\_TRANSITION\_CNT | The number of times the controller entered lower active power states due to thermal management | Occurrences    |
+| NVME\_SMART\_THERMAL\_MGMT\_TEMP2\_TRANSITION\_CNT | The number of times the controller entered lower active power states due to thermal management | Occurrences    |
+| NVME\_SMART\_TOTAL\_THERMAL\_MGMT\_TEMP1\_TIME     | The total time the controller spent in lower power states for thermal management temperature 1 | Seconds        |
+| NVME\_SMART\_TOTAL\_THERMAL\_MGMT\_TEMP2\_TIME     | The total time the controller spent in lower power states for thermal management temperature 2 | Seconds        |
+| NVME\_SMART\_UNSAFE\_SHUTDOWNS                     | The number of unsafe shutdown events                                                           | Occurrences    |
+| NVME\_SMART\_USED\_PERCENTAGE                      | Vendor-specific estimate of the percentage of NVM subsystem life used                          | %              |
+| NVME\_SMART\_WARNING\_COMPOSITE\_TEMP\_TIME        | The time spent in warning composite temperature state                                          | Minutes        |
+| SPDK\_CUSE\_CMDS\_BLOCKED                          | Number of SPDK CUSE commands blocked                                                           | Count          |
+| SPDK\_CUSE\_CMDS\_FAILED                           | Number of SPDK CUSE commands failed                                                            | Count          |
+| SPDK\_CUSE\_CMDS\_INPROGRESS                       | Number of SPDK CUSE commands in-progress                                                       | Count          |
+| SPDK\_CUSE\_CMDS\_ISSUED                           | Number of SPDK CUSE commands issued                                                            | Count          |
+| SPDK\_CUSE\_CMDS\_SUCCEEDED                        | Number of SPDK CUSE commands succeeded                                                         | Count          |
+| SSDS\_IOS                                          | IOs performed on the SSD service                                                               | IO/Sec         |
+| SSDS\_IO\_ERRORS                                   | IO errors on the SSD service                                                                   | Blocks/Sec     |
+| SSD\_BLOCKS\_READ                                  | Number of blocks read from the SSD service                                                     | Blocks/Sec     |
+| SSD\_BLOCKS\_WRITTEN                               | Number of blocks written to the SSD service                                                    | Blocks/Sec     |
+| SSD\_CHUNKS\_IN\_USE                               | Number of allocated chunks                                                                     | Chunks         |
+| SSD\_CHUNK\_ALLOCS                                 | Number of chunk allocations                                                                    | Chunks         |
+| SSD\_CHUNK\_ALLOCS\_TRIMMED                        | Number of chunk allocations from the trimmed queue                                             | Chunks         |
+| SSD\_CHUNK\_ALLOCS\_UNTRIMMED                      | Number of chunk allocations from the untrimmed queue                                           | Chunks         |
+| SSD\_CHUNK\_FREES                                  | Number of chunk frees                                                                          | Chunks         |
+| SSD\_CHUNK\_FREE\_TRIMMED                          | Number of free trimmed chunks                                                                  | Chunks         |
+| SSD\_CHUNK\_FREE\_UNTRIMMED                        | Number of free untrimmed chunks                                                                | Chunks         |
+| SSD\_CHUNK\_TRIMS                                  | Number of trims performed                                                                      | Chunks         |
+| SSD\_E2E\_BAD\_CSUM                                | End-to-End checksum failures                                                                   | IO/Sec         |
+| SSD\_READ\_ERRORS                                  | Errors in reading blocks from the SSD service                                                  | Blocks/Sec     |
+| SSD\_READ\_LATENCY                                 | Avg. latency of read requests from the SSD service                                             | Microseconds   |
+| SSD\_READ\_REQS                                    | Number of read requests from the SSD service                                                   | IO/Sec         |
+| SSD\_READ\_REQS\_LARGE\_NORMAL                     | Number of large normal read requests from the SSD service                                      | IO/Sec         |
+| SSD\_SCRATCH\_BUFFERS\_USED                        | Number of scratch blocks used                                                                  | Blocks         |
+| SSD\_TRIM\_TIMEOUTS                                | Number of trim timeouts                                                                        | Timeouts       |
+| SSD\_UNALIGNED\_WRITES                             | Number of unaligned writes                                                                     | Ops            |
+| SSD\_WRITES                                        | Number of write requests to the SSD service                                                    | IO/Sec         |
+| SSD\_WRITES\_REQS\_LARGE\_NORMAL                   | Number of large normal priority write requests to the SSD service                              | IO/Sec         |
+| SSD\_WRITE\_ERRORS                                 | Errors in writing blocks to the SSD service                                                    | Blocks/Sec     |
+| SSD\_WRITE\_LATENCY                                | Latency of writes to the SSD service                                                           | Microseconds   |
 
 ### Scale Test
 
@@ -2036,129 +2105,6 @@ description: >-
 | TEMPORAL\_SQUELCH\_REGISTRY\_BLOCKS\_READ               | Number of registry blocks read                            | Blocks        |
 | TEMPORAL\_SQUELCH\_SQUELCH\_BLOCKS\_READ                | Number of squelch blocks desquelched                      | Blocks        |
 | TEMPORAL\_SQUELCH\_SQUELCH\_BLOCKS\_READ\_FOR\_DIGEST   | Number of squelch blocks read for registry initialization | Blocks        |
-
-### SSD
-
-| Type                                               | Description                                                                                    | Units          |
-| -------------------------------------------------- | ---------------------------------------------------------------------------------------------- | -------------- |
-| CHUNK\_ALLOC\_LATENCY                              | Average latency of allocChunk operations per disk                                              | Microseconds   |
-| CHUNK\_ALLOC\_OPS                                  | Number of allocChunk operations per disk                                                       | Operations/Sec |
-| CHUNK\_RELEASE\_LATENCY                            | Average latency of releaseChunk operations per disk                                            | Microseconds   |
-| CHUNK\_RELEASE\_OPS                                | Number of releaseChunk operations per disk                                                     | Operations/Sec |
-| CHUNK\_UPDATE\_LATENCY                             | Average latency of updateChunk operations per disk                                             | Microseconds   |
-| CHUNK\_UPDATE\_OPS                                 | Number of updateChunk operations per disk                                                      | Operations/Sec |
-| CLEAN\_CHUNK\_SKIPPED                              | Number of clean chunks skipped                                                                 | Chunks         |
-| DRIVE\_ACTIVE\_IOS                                 | The number of in-flight IOs against the SSD during sampling                                    | IOs            |
-| DRIVE\_AER\_RECEIVED                               | Number of AER reports                                                                          | reports        |
-| DRIVE\_CANCELLED\_COMPLETED\_BLOCKS                | Drive canceled completed blocks                                                                | Blocks/Sec     |
-| DRIVE\_CANCELLED\_NOT\_SUBMITTED\_BLOCKS           | Drive canceled not submitted blocks                                                            | Blocks/Sec     |
-| DRIVE\_COMPLETED\_OVER\_COUNT                      | Drive completed count > 1 detected                                                             | Occurrences    |
-| DRIVE\_E2E\_CORRECTION\_COUNT                      | Drive E2E correction count                                                                     | Error Count    |
-| DRIVE\_ENDURANCE\_USED                             | Drive endurance percentage used                                                                | %              |
-| DRIVE\_FORFEITS                                    | Number of IOs forfeited due to lack of memory buffers                                          | Operations/Sec |
-| DRIVE\_IDLE\_CYCLES                                | Number of cycles spent in idle                                                                 | Cycles/Sec     |
-| DRIVE\_IDLE\_TIME                                  | Percentage of the CPU time not used for handling I/Os                                          | %              |
-| DRIVE\_IO\_OVERLAPPED                              | Number of overlapping IOs                                                                      | Operations     |
-| DRIVE\_IO\_TOO\_LONG                               | Number of IOs that took longer than expected                                                   | Operations/Sec |
-| DRIVE\_LATENCY                                     | Measure the latencies up to 5ms (higher latencies are grouped)                                 | Requests       |
-| DRIVE\_LOAD                                        | Drive Load at sampling time                                                                    | Load           |
-| DRIVE\_MAX\_ERASE\_COUNT                           | Drive maximum block erase count                                                                | Erase Count    |
-| DRIVE\_MEDIA\_BLOCKS\_READ                         | Blocks read from the SSD media                                                                 | Blocks/Sec     |
-| DRIVE\_MEDIA\_BLOCKS\_WRITE                        | Blocks are written to the SSD media                                                            | Blocks/Sec     |
-| DRIVE\_MEDIA\_ERRORS                               | SSD Media Errors                                                                               | IO/Sec         |
-| DRIVE\_MIN\_ERASE\_COUNT                           | Drive minimum block erase count                                                                | Erase Count    |
-| DRIVE\_NON\_MEDIA\_ERRORS                          | SSD Non-Media Errors                                                                           | IO/Sec         |
-| DRIVE\_PCI\_CORRECTABLE\_ERROR\_COUNT              | Drive PCI Correctable error count                                                              | Error Count    |
-| DRIVE\_PCI\_INACCESSIBLE                           | Number of PCI Inaccessible errors detected                                                     | Count          |
-| DRIVE\_PCI\_LINK\_RETRAIN\_COUNT                   | Drive PCI link retrain count                                                                   | Error Count    |
-| DRIVE\_PENDING\_IOS                                | The number of IOs waiting to start executing during sampling                                   | IOs            |
-| DRIVE\_PUMPED\_IOS                                 | Number of requests returned in a pump                                                          | Pumps          |
-| DRIVE\_PUMPS\_DELAYED                              | Number of Drive pumps that got delayed                                                         | Operations/Sec |
-| DRIVE\_PUMPS\_SEVERELY\_DELAYED                    | Number of Drive pumps that got severely delayed                                                | Operations/Sec |
-| DRIVE\_PUMP\_LATENCY                               | Latency between SSD pumps                                                                      | Microseconds   |
-| DRIVE\_READ\_LATENCY                               | Drive Read Execution Latency                                                                   | Microseconds   |
-| DRIVE\_READ\_OPS                                   | Drive Read Operations                                                                          | IO/Sec         |
-| DRIVE\_READ\_RATIO\_PER\_SSD\_READ                 | Drive Read OPS Per SSD Request                                                                 | Ratio          |
-| DRIVE\_REMAINING\_IOS                              | Number of requests still in the drive after a pump                                             | Pumps          |
-| DRIVE\_REMAINING\_SPARES                           | Drive remaining spares                                                                         | %              |
-| DRIVE\_REQUEST\_BLOCKS                             | Measure drive request size distribution                                                        | Requests       |
-| DRIVE\_SOFT\_ECC\_COUNT                            | Drive Soft ECC Error Count                                                                     | Error Count    |
-| DRIVE\_SSD\_PUMPS                                  | Number of drive pumps that resulted in the data flow from/to drive                             | Pump/Sec       |
-| DRIVE\_UNALIGNED\_IOS                              | Drive unaligned IOs count                                                                      | IOs            |
-| DRIVE\_UNCORRECTABLE\_READ\_COUNT                  | Drive uncorrectable read count                                                                 | Error Count    |
-| DRIVE\_UTILIZATION                                 | Percentage of time the drive had an active IO submitted to it                                  | %              |
-| DRIVE\_WAF\_INTERVAL                               | Drive Interval write amplification                                                             | Factor         |
-| DRIVE\_WAF\_LIFETIME                               | Drive lifetime write amplification                                                             | Factor         |
-| DRIVE\_WRITE\_LATENCY                              | Drive Write Execution Latency                                                                  | Microseconds   |
-| DRIVE\_WRITE\_OPS                                  | Drive Write Operations                                                                         | IO/Sec         |
-| DRIVE\_WRITE\_RATIO\_PER\_SSD\_WRITE               | Drive Write OPS Per SSD Request                                                                | Ratio          |
-| DRIVE\_XOR\_RECOVERY\_COUNT                        | Drive XOR recovery count                                                                       | Error Count    |
-| LEAKED\_AIOVEC\_NETBUF                             | Number of leaked AIOVec netbufs on uncompleted IO                                              | Operations     |
-| MULTI\_TURN\_GET\_COMPRESSED\_BLOCKS               | The number of compressed blocks reads which required more than a single turn                   | Requests/Sec   |
-| NVKV\_CHUNK\_OUT\_OF\_SPACE                        | Number of failed attempts to allocate a stripe in an NVKV chunk                                | Attempts/Sec   |
-| NVKV\_INVALIDATOR\_MATCHED                         | Number of NVKV invalidators matching the data                                                  | Attempts/Sec   |
-| NVKV\_OUT\_OF\_CHUNKS                              | Number of failed attempts to allocate an NVKV chunk                                            | Attempts/Sec   |
-| NVKV\_OUT\_OF\_SUPERBLOCK\_ENTRIES                 | Number of failed attempts to allocate a superblock NVKV entry                                  | Attempts/Sec   |
-| NVME\_NAMESPACE\_CAPACITY                          | NVMe namespace capacity                                                                        | Blocks         |
-| NVME\_NAMESPACE\_SIZE                              | The size of the NVMe namespace                                                                 | Blocks         |
-| NVME\_NAMESPACE\_UTILIZATION                       | NVMe namespace utilization                                                                     | Blocks         |
-| NVME\_SMART\_AVAILABLE\_SPARE                      | Normalized percentage when the available spare falls below the threshold                       | %              |
-| NVME\_SMART\_AVAILABLE\_SPARE\_THRESHOLD           | Normalized percentage of the available spare falls below the threshold                         | %              |
-| NVME\_SMART\_COMPOSITE\_TEMP                       | Current composite temperature of the container in Kelvins                                      | Kelvin         |
-| NVME\_SMART\_CONTROLLER\_BUSY\_TIME                | The duration the controller is busy with I/O commands                                          | Minutes        |
-| NVME\_SMART\_CRITICAL\_COMPOSITE\_TEMP\_TIME       | The time spent in critical composite temperature state                                         | Minutes        |
-| NVME\_SMART\_CRITICAL\_WARNING                     | Critical warnings regarding the drive controller state                                         | BitFields      |
-| NVME\_SMART\_DATA\_UNITS\_READ                     | The number of 512-byte data units the server has read from the controller (in millions)        | Count          |
-| NVME\_SMART\_DATA\_UNITS\_WRITTEN                  | The number of 512-byte data units the host has written to the controller (in millions)         | Count          |
-| NVME\_SMART\_ERROR\_LOG\_ENTRIES                   | The total number of Error Information log entries over the controller's lifetime               | Occurrences    |
-| NVME\_SMART\_HOST\_READ\_CMDS                      | The number of read commands completed by the controller                                        | Occurrences    |
-| NVME\_SMART\_HOST\_WRITE\_CMDS                     | The number of write commands completed by the controller                                       | Occurrences    |
-| NVME\_SMART\_MEDIA\_ERRORS                         | The number of unrecovered data integrity errors detected by the controller                     | Occurrences    |
-| NVME\_SMART\_POWER\_CYCLES                         | The number of power cycles                                                                     | Occurrences    |
-| NVME\_SMART\_TEMP\_SENSOR\_1                       | The current temperature reported by temperature sensor 1                                       | Kelvin         |
-| NVME\_SMART\_TEMP\_SENSOR\_2                       | The current temperature reported by temperature sensor 2                                       | Kelvin         |
-| NVME\_SMART\_TEMP\_SENSOR\_3                       | The current temperature reported by temperature sensor 3                                       | Kelvin         |
-| NVME\_SMART\_TEMP\_SENSOR\_4                       | The current temperature reported by temperature sensor 4                                       | Kelvin         |
-| NVME\_SMART\_TEMP\_SENSOR\_5                       | The current temperature reported by temperature sensor 5                                       | Kelvin         |
-| NVME\_SMART\_TEMP\_SENSOR\_6                       | The current temperature reported by temperature sensor 6                                       | Kelvin         |
-| NVME\_SMART\_TEMP\_SENSOR\_7                       | The current temperature reported by temperature sensor 7                                       | Kelvin         |
-| NVME\_SMART\_TEMP\_SENSOR\_8                       | The current temperature reported by temperature sensor 8                                       | Kelvin         |
-| NVME\_SMART\_THERMAL\_MGMT\_TEMP1\_TRANSITION\_CNT | The number of times the controller entered lower active power states due to thermal management | Occurrences    |
-| NVME\_SMART\_THERMAL\_MGMT\_TEMP2\_TRANSITION\_CNT | The number of times the controller entered lower active power states due to thermal management | Occurrences    |
-| NVME\_SMART\_TOTAL\_THERMAL\_MGMT\_TEMP1\_TIME     | The total time the controller spent in lower power states for thermal management temperature 1 | Seconds        |
-| NVME\_SMART\_TOTAL\_THERMAL\_MGMT\_TEMP2\_TIME     | The total time the controller spent in lower power states for thermal management temperature 2 | Seconds        |
-| NVME\_SMART\_UNSAFE\_SHUTDOWNS                     | The number of unsafe shutdown events                                                           | Occurrences    |
-| NVME\_SMART\_USED\_PERCENTAGE                      | Vendor-specific estimate of the percentage of NVM subsystem life used                          | %              |
-| NVME\_SMART\_WARNING\_COMPOSITE\_TEMP\_TIME        | The time spent in warning composite temperature state                                          | Minutes        |
-| SPDK\_CUSE\_CMDS\_BLOCKED                          | Number of SPDK CUSE commands blocked                                                           | Count          |
-| SPDK\_CUSE\_CMDS\_FAILED                           | Number of SPDK CUSE commands failed                                                            | Count          |
-| SPDK\_CUSE\_CMDS\_INPROGRESS                       | Number of SPDK CUSE commands in-progress                                                       | Count          |
-| SPDK\_CUSE\_CMDS\_ISSUED                           | Number of SPDK CUSE commands issued                                                            | Count          |
-| SPDK\_CUSE\_CMDS\_SUCCEEDED                        | Number of SPDK CUSE commands succeeded                                                         | Count          |
-| SSDS\_IOS                                          | IOs performed on the SSD service                                                               | IO/Sec         |
-| SSDS\_IO\_ERRORS                                   | IO errors on the SSD service                                                                   | Blocks/Sec     |
-| SSD\_BLOCKS\_READ                                  | Number of blocks read from the SSD service                                                     | Blocks/Sec     |
-| SSD\_BLOCKS\_WRITTEN                               | Number of blocks written to the SSD service                                                    | Blocks/Sec     |
-| SSD\_CHUNKS\_IN\_USE                               | Number of allocated chunks                                                                     | Chunks         |
-| SSD\_CHUNK\_ALLOCS                                 | Number of chunk allocations                                                                    | Chunks         |
-| SSD\_CHUNK\_ALLOCS\_TRIMMED                        | Number of chunk allocations from the trimmed queue                                             | Chunks         |
-| SSD\_CHUNK\_ALLOCS\_UNTRIMMED                      | Number of chunk allocations from the untrimmed queue                                           | Chunks         |
-| SSD\_CHUNK\_FREES                                  | Number of chunk frees                                                                          | Chunks         |
-| SSD\_CHUNK\_FREE\_TRIMMED                          | Number of free trimmed chunks                                                                  | Chunks         |
-| SSD\_CHUNK\_FREE\_UNTRIMMED                        | Number of free untrimmed chunks                                                                | Chunks         |
-| SSD\_CHUNK\_TRIMS                                  | Number of trims performed                                                                      | Chunks         |
-| SSD\_E2E\_BAD\_CSUM                                | End-to-End checksum failures                                                                   | IO/Sec         |
-| SSD\_READ\_ERRORS                                  | Errors in reading blocks from the SSD service                                                  | Blocks/Sec     |
-| SSD\_READ\_LATENCY                                 | Avg. latency of read requests from the SSD service                                             | Microseconds   |
-| SSD\_READ\_REQS                                    | Number of read requests from the SSD service                                                   | IO/Sec         |
-| SSD\_READ\_REQS\_LARGE\_NORMAL                     | Number of large normal read requests from the SSD service                                      | IO/Sec         |
-| SSD\_SCRATCH\_BUFFERS\_USED                        | Number of scratch blocks used                                                                  | Blocks         |
-| SSD\_TRIM\_TIMEOUTS                                | Number of trim timeouts                                                                        | Timeouts       |
-| SSD\_UNALIGNED\_WRITES                             | Number of unaligned writes                                                                     | Ops            |
-| SSD\_WRITES                                        | Number of write requests to the SSD service                                                    | IO/Sec         |
-| SSD\_WRITES\_REQS\_LARGE\_NORMAL                   | Number of large normal priority write requests to the SSD service                              | IO/Sec         |
-| SSD\_WRITE\_ERRORS                                 | Errors in writing blocks to the SSD service                                                    | Blocks/Sec     |
-| SSD\_WRITE\_LATENCY                                | Latency of writes to the SSD service                                                           | Microseconds   |
 
 ### Statistics
 
