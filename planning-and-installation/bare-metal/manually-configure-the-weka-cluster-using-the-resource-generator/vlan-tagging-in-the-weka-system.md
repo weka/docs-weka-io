@@ -18,6 +18,12 @@ A WEKA tenant cluster operates on a single VLAN ID, where all containers within 
 
 In multi-cluster environments, each tenant cluster can operate on a different VLAN ID. For example, you can assign VLAN ID 100 to Tenant Cluster A and VLAN ID 200 to Tenant Cluster B, providing network isolation between clusters.
 
+{% hint style="info" %}
+Under [native multi-tenancy](../../../operation-guide/weka-native-multi-tenancy-management/), each tenant's VLAN comes from its **network space** and is configured with `weka cluster network-space`, not through the procedure on this page.
+
+The cluster's **default network** — the one carrying backend communication and S3 protocol access — is a separate layer, and it *is* tagged by the procedure on this page. The two are independent: you can tag the default network, the tenant network spaces, or both. Give the default network a VLAN ID that no tenant network space uses.
+{% endhint %}
+
 ## **Enable WEKA tagged VLAN support**
 
 To enable WEKA tagged VLAN support, add the desired VLAN IDs to the switch ports connected to WEKA backends. It is common to include one untagged VLAN and multiple tagged VLAN IDs.
