@@ -31,7 +31,7 @@ Do not disable traces without specific instructions from the Customer Success Te
 **Procedure**
 
 1. From the menu, select **Configure > Cluster Settings**, and select the **Support** tab.
-2. In the Traces section, select **Disable traces**. Then, in the confirmation message, select **Confirm**.
+2. In the Traces section, select **Disable traces**. Then, in the confirmation message, select **Yes**.
 
 To resume trace collection, select **Enable traces**.
 
@@ -82,7 +82,7 @@ Resetting the freeze period deletes the existing frozen traces.
 **Procedure**
 
 1. From the menu, select **Configure > Cluster Settings**, and select the **Support** tab.
-2. In the Traces section, select **Reset traces freeze**. Then, in the confirmation message, select **Confirm**.
+2. In the Traces section, select **Reset traces freeze**. Then, in the confirmation message, select **Yes**.
 
 ### Restore traces default settings
 
@@ -95,7 +95,7 @@ The default maximum traces capacity is 50 GiB per I/O process, with a minimum of
 **Procedure**
 
 1. From the menu, select **Configure > Cluster Settings**, and select the **Support** tab.
-2. In the Traces section, select **Restore traces default settings**. Then, in the confirmation message, select **Confirm**.
+2. In the Traces section, select **Restore traces default settings**. Then, in the confirmation message, select **Yes**.
 
 ## Protocols debug level
 
@@ -126,6 +126,7 @@ The available debug levels are:
    * **Level:** Select the debug level.
    * **All servers:** To apply the update to all servers, switch to **On**. To apply the update to specific servers, switch to **Off** and select the required servers.
 4. Select **Save**.
+5. In the **Confirm S3 debug level change** message, select **Yes**.
 
 ### Change NFS debug level
 
@@ -147,10 +148,7 @@ The available debug levels are:
    * **Level:** Select the debug level.
    * **All servers:** To apply the update to all servers, switch to **On**. To apply the update to specific servers, switch to **Off** and select the required servers.
 4. Select **Save**.
-
-{% hint style="danger" %}
-**TBD - INTERNAL:** verify the confirm button label in the 6.0 dialog
-{% endhint %}
+5. In the **Confirm NFS debug level change** message, select **Yes**.
 
 ### Change SMB debug level
 
@@ -170,11 +168,4 @@ The available debug levels are:
    * **Level:** Select the debug level.
    * **All servers:** To apply the update to all servers, switch to **On**. To apply the update to specific servers, switch to **Off** and select the required servers.
 4. Select **Save**.
-
-{% hint style="danger" %}
-**TBD - INTERNAL:** verify the confirm button label in the 6.0 dialog
-{% endhint %}
-
-{% hint style="danger" %}
-**INTERNAL: dialog names** ("Update S3 Debug Level") and the level lists are taken from the published 4.x topic; verify them against the 6.0 GUI before publication
-{% endhint %}
+5. In the **Confirm SMB debug level change** message, select **Yes**.
