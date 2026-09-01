@@ -112,7 +112,7 @@ A script passing a duration to `-C` supplies a container name in wekactl, and th
 
 ### The -v flag is context-dependent
 
-At the root, `-v` means `--version`. On most subcommands, `-v` means `--verbose`. On `driver ready`, `-v` means `--version` and takes a value, so it consumes the next token. Prefer the long forms in scripts.
+At the root, `-v` means `--version`. On most subcommands, `-v` means `--verbose`. Prefer the long forms in scripts.
 
 ### Glob patterns in type and statistic filters
 
