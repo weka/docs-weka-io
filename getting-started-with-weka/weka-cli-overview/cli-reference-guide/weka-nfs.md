@@ -4,7 +4,7 @@ description: Manage the WEKA NFS service.
 
 # weka nfs
 
-Manage Weka's NFS service.
+Manage the NFS service.
 
 ```sh
 weka nfs
@@ -61,7 +61,7 @@ weka nfs clients
 
 ### weka nfs clients show
 
-NFS clients usage information. If no options are given, all NFS Ganesha containers will be selected.
+NFS clients usage information. If no options are given, all NFS-W containers will be selected.
 
 ```sh
 weka nfs clients show [--container-id <container-id>] [--fip <ip>] [--fsnames <strings>…] [--interface-group <string>]
@@ -170,25 +170,25 @@ Set NFS global config parameters.
 weka nfs global-config set [--acl <on-off>] [--config-fs <string>] [--default-acl-type <acl-type>] [--default-supported-versions <nfs-versions>…] [--direct-io <on-off>] [--enable-auth-types <nfs-auth-types>…] [--enable-multi-tenant <on-off>] [--extended-stats <on-off>] [--force] [--force-config-fs <on-off>] [--lockmgr-port <uint16>] [--max-client-connections <uint>] [--max-open-fds <uint>] [--mountd-port <uint16>] [--no-restart] [--notify-port <uint16>] [--statmon-port <uint16>]
 ```
 
-| Parameter                                       | Description                                                                                                           |
-| ----------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
-| `--acl` \<on-off>                               | Enable or disable ACL.                                                                                                |
-| `--config-fs` \<string>                         | Config filesystem name. Use empty string to invalidate.                                                               |
-| `--default-acl-type` \<acl-type>                | Default ACL type.                                                                                                     |
-| `--default-supported-versions` \<nfs-versions>… | NFS versions for new permissions. Multiple values may be supplied separated by commas, or the option may be repeated. |
-| `--direct-io` \<on-off>                         | Disable readcache and writecache.                                                                                     |
-| `--enable-auth-types` \<nfs-auth-types>…        | List of NFS authentication types. Multiple values may be supplied separated by commas, or the option may be repeated. |
-| `--enable-multi-tenant` \<on-off>               | Enable or disable NFS multi-tenant support (default: Off).                                                            |
-| `--extended-stats` \<on-off>                    | Enable or disable extended stats.                                                                                     |
-| `--force`                                       | Force action; this may cause disruption.                                                                              |
-| `--force-config-fs` \<on-off>                   | Force config-fs update when locks are on.                                                                             |
-| `--lockmgr-port` \<uint16>                      | Port for NFS lock manager. Default 0 selects any available port.                                                      |
-| `--max-client-connections` \<uint>              | Maximum number of concurrent NFS client connections. 0 means auto-tune based on cluster size.                         |
-| `--max-open-fds` \<uint>                        | Maximum number of open file descriptors per NFS server process.                                                       |
-| `--mountd-port` \<uint16>                       | Port number for mountd service.                                                                                       |
-| `--no-restart`                                  | Prevent NFS-W containers from restarting when changes are applied.                                                    |
-| `--notify-port` \<uint16>                       | Port for NFSv3 notification. Default 0 means any available port.                                                      |
-| `--statmon-port` \<uint16>                      | Port for NFS status monitor. Default 0 means any available port.                                                      |
+| Parameter                                       | Description                                                                                                                                                        |
+| ----------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `--acl` \<on-off>                               | Enable or disable ACL.                                                                                                                                             |
+| `--config-fs` \<string>                         | Config filesystem name. Use empty string to invalidate.                                                                                                            |
+| `--default-acl-type` \<acl-type>                | Default ACL type. Valid values: none, posix, nfsv4, hybrid.                                                                                                        |
+| `--default-supported-versions` \<nfs-versions>… | NFS versions for new permissions. Multiple values may be supplied separated by commas, or the option may be repeated. Valid values: v3, v4.                        |
+| `--direct-io` \<on-off>                         | Disable readcache and writecache.                                                                                                                                  |
+| `--enable-auth-types` \<nfs-auth-types>…        | List of NFS authentication types. Multiple values may be supplied separated by commas, or the option may be repeated. Valid values: none, sys, krb5, krb5i, krb5p. |
+| `--enable-multi-tenant` \<on-off>               | Enable or disable NFS multi-tenant support (default: Off).                                                                                                         |
+| `--extended-stats` \<on-off>                    | Enable or disable extended stats.                                                                                                                                  |
+| `-f`, `--force`                                 | Force action. Perform this action without further confirmation.                                                                                                    |
+| `--force-config-fs` \<on-off>                   | Force config-fs update when locks are on.                                                                                                                          |
+| `--lockmgr-port` \<uint16>                      | Port for NFS lock manager. Default 0 selects any available port.                                                                                                   |
+| `--max-client-connections` \<uint>              | Maximum number of concurrent NFS client connections. 0 means auto-tune based on cluster size.                                                                      |
+| `--max-open-fds` \<uint>                        | Maximum number of open file descriptors per NFS server process.                                                                                                    |
+| `--mountd-port` \<uint16>                       | Port number for mountd service.                                                                                                                                    |
+| `--no-restart`                                  | Prevent NFS-W containers from restarting when changes are applied.                                                                                                 |
+| `--notify-port` \<uint16>                       | Port for NFSv3 notification. Default 0 means any available port.                                                                                                   |
+| `--statmon-port` \<uint16>                      | Port for NFS status monitor. Default 0 means any available port.                                                                                                   |
 
 ### weka nfs global-config show
 
@@ -198,7 +198,7 @@ Show NFS global configuration information.
 weka nfs global-config show
 ```
 
-**Columns:** `acl`, `config_fs`, `default_acl_type`, `default_auth_types`, `default_supported_versions`, `direct_io`, `enabled_auth_types`, `enable_multi_tenant`, `extended_stats`, `grace_period`, `lease_lifetime`, `lock_recovery_period`, `lockmgr_port`, `locks`, `max_client_connections`, `max_client_connections_effective`, `max_open_fds`, `mountd_port`, `notify_port`, `statmon_port`, `supported_auth_types`
+**Columns:** `acl`, `config_fs`, `default_acl_type`, `default_auth_types`, `default_supported_versions`, `direct_io`, `enabled_auth_types`, `enable_multi_tenant`, `extended_stats`, `grace_period`, `lease_lifetime`, `lock_recovery_period`, `lockmgr_port`, `locks`, `maxClientConnections`, `max_open_fds`, `mountd_port`, `notify_port`, `statmon_port`, `supported_auth_types`
 
 ## weka nfs interface-group
 
@@ -573,7 +573,7 @@ weka nfs ldap reset [--force] [--no-restart]
 
 ### weka nfs ldap setup-ad
 
-Set up configuration for NFS to use Active Directory LDAP. Running this command without the no-restart option can disrupt IO service for connected NFS clients.
+Set up configuration for NFS to use Active Directory LDAP. Running this command without the no-restart option can disrupt I/O service for connected NFS clients.
 
 ```sh
 weka nfs ldap setup-ad [--force] [--no-restart]
@@ -586,7 +586,7 @@ weka nfs ldap setup-ad [--force] [--no-restart]
 
 ### weka nfs ldap setup-ad-nokrb
 
-Set up configuration for NFS to use Active Directory LDAP for ACL only when Kerberos is not used. Running this command without the no-restart option can disrupt IO service for connected NFS clients.
+Set up configuration for NFS to use Active Directory LDAP for ACL only when Kerberos is not used. Running this command without the no-restart option can disrupt I/O service for connected NFS clients.
 
 ```sh
 weka nfs ldap setup-ad-nokrb <server-name> <ldap-domain> <nfs-service-name> <admin-user-name> [<admin-user-password>] [--base-ou <string>] [--force] [--no-restart]
@@ -672,20 +672,20 @@ weka nfs permission add <filesystem> <group> [--acl-type <acl-type>] [--anon-gid
 | ---------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `filesystem`\*                           | Filesystem name.                                                                                                                                                                                   |
 | `group`\*                                | Client group name.                                                                                                                                                                                 |
-| `--acl-type` \<acl-type>                 | Type of ACL. Default is determined by the NFS global configuration.                                                                                                                                |
+| `--acl-type` \<acl-type>                 | Type of ACL. Default is determined by the NFS global configuration. Valid values: none, posix, nfsv4, hybrid.                                                                                      |
 | `--anon-gid` \<uint32>                   | GID to be used instead of root when root squashing is enabled.                                                                                                                                     |
 | `--anon-uid` \<uint32>                   | UID to be used instead of root when root squashing is enabled.                                                                                                                                     |
-| `--enable-auth-types` \<nfs-auth-types>… | NFS authentication types. Multiple values may be supplied separated by commas, or the option may be repeated.                                                                                      |
-| `--force`                                | Perform this action when the service is already configured.                                                                                                                                        |
+| `--enable-auth-types` \<nfs-auth-types>… | NFS authentication types. Multiple values may be supplied separated by commas, or the option may be repeated. Valid values: none, sys, krb5, krb5i, krb5p.                                         |
+| `-f`, `--force`                          | Force action. Perform this action without further confirmation.                                                                                                                                    |
 | `--force-acl-type` \<on-off>             | Force a change to the ACL type for existing permissions on the same filesystem.                                                                                                                    |
 | `--manage-gids` \<on-off>                | List of group IDs received from the client will be replaced by a list of group IDs determined by an appropriate lookup on the server. Only works with an interface group which allows manage-gids. |
 | `--no-restart`                           | Don't restart the NFS-W containers to apply changes.                                                                                                                                               |
 | `--obs-direct` \<on-off>                 | OBS direct.                                                                                                                                                                                        |
 | `--path` \<string>                       | Filesystem path. Default is '/'.                                                                                                                                                                   |
-| `--permission-type` \<permission-type>   | Permission type.                                                                                                                                                                                   |
+| `--permission-type` \<permission-type>   | Permission type. Valid values: ro, rw.                                                                                                                                                             |
 | `--privileged-port` \<on-off>            | Privileged port.                                                                                                                                                                                   |
-| `--squash` \<squash-mode>                | Permission squashing. The option 'all' can be used only on interface groups with --allow-manage-gids=on.                                                                                           |
-| `--supported-versions` \<nfs-versions>…  | NFS versions for new permissions. Multiple values may be supplied separated by commas, or the option may be repeated.                                                                              |
+| `--squash` \<squash-mode>                | Permission squashing. The option 'all' can be used only on interface groups with --allow-manage-gids=on. Valid values: none, root, all.                                                            |
+| `--supported-versions` \<nfs-versions>…  | NFS versions for new permissions. Multiple values may be supplied separated by commas, or the option may be repeated. Valid values: v3, v4.                                                        |
 
 **Columns:** `export_id`, `container_restart_needed`
 
@@ -716,20 +716,20 @@ weka nfs permission update <filesystem> <group> [--acl-type <acl-type>] [--anon-
 | ---------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `filesystem`\*                           | Filesystem name.                                                                                                                                                                                   |
 | `group`\*                                | Client group name.                                                                                                                                                                                 |
-| `--acl-type` \<acl-type>                 | ACL type. Default is determined by the NFS global configuration.                                                                                                                                   |
+| `--acl-type` \<acl-type>                 | ACL type. Default is determined by the NFS global configuration. Valid values: none, posix, nfsv4, hybrid.                                                                                         |
 | `--anon-gid` \<uint32>                   | GID to be used instead of root when root squashing is enabled.                                                                                                                                     |
 | `--anon-uid` \<uint32>                   | UID to be used instead of root when root squashing is enabled.                                                                                                                                     |
-| `--enable-auth-types` \<nfs-auth-types>… | NFS authentication types. Multiple values may be supplied separated by commas, or the option may be repeated.                                                                                      |
-| `--force`                                | Perform this action when the service is already configured.                                                                                                                                        |
+| `--enable-auth-types` \<nfs-auth-types>… | NFS authentication types. Multiple values may be supplied separated by commas, or the option may be repeated. Valid values: none, sys, krb5, krb5i, krb5p.                                         |
+| `-f`, `--force`                          | Force action. Perform this action without further confirmation.                                                                                                                                    |
 | `--force-acl-type` \<on-off>             | Force a change to the ACL type for existing permissions on the same filesystem.                                                                                                                    |
 | `--manage-gids` \<on-off>                | List of group IDs received from the client will be replaced by a list of group IDs determined by an appropriate lookup on the server. Only works with an interface group which allows manage-gids. |
 | `--no-restart`                           | Don't restart the NFS-W containers to apply changes.                                                                                                                                               |
 | `--obs-direct` \<on-off>                 | OBS direct.                                                                                                                                                                                        |
 | `--path` \<string>                       | Filesystem path. Default is '/'.                                                                                                                                                                   |
-| `--permission-type` \<permission-type>   | Permission type.                                                                                                                                                                                   |
+| `--permission-type` \<permission-type>   | Permission type. Valid values: ro, rw.                                                                                                                                                             |
 | `--privileged-port` \<on-off>            | Privileged port.                                                                                                                                                                                   |
-| `--squash` \<squash-mode>                | Permission squashing. The option 'all' can be used only on interface groups with --allow-manage-gids=on.                                                                                           |
-| `--supported-versions` \<nfs-versions>…  | NFS versions for new permissions. Multiple values may be supplied separated by commas, or the option may be repeated.                                                                              |
+| `--squash` \<squash-mode>                | Permission squashing. The option 'all' can be used only on interface groups with --allow-manage-gids=on. Valid values: none, root, all.                                                            |
+| `--supported-versions` \<nfs-versions>…  | NFS versions for new permissions. Multiple values may be supplied separated by commas, or the option may be repeated. Valid values: v3, v4.                                                        |
 
 ## weka nfs rules
 
@@ -758,7 +758,7 @@ weka nfs rules add dns <name> <dns>
 | Parameter | Description                                        |
 | --------- | -------------------------------------------------- |
 | `name`\*  | Name of the NFS group in which to create the rule. |
-| `dns`\*   | DNS rule with \*?\[] wildcards.                    |
+| `dns`\*   | DNS rule with \*?[] wildcards.                     |
 
 **Columns:** `id`, `uid`, `type`, `rule`
 
@@ -796,7 +796,7 @@ weka nfs rules remove dns <name> <dns>
 | Parameter | Description                                          |
 | --------- | ---------------------------------------------------- |
 | `name`\*  | Name of the NFS group from which to delete the rule. |
-| `dns`\*   | DNS rule with \*?\[] wildcards.                      |
+| `dns`\*   | DNS rule with \*?[] wildcards.                       |
 
 #### weka nfs rules remove ip
 

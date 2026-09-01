@@ -4,23 +4,23 @@ description: View and manage WEKA cluster alerts.
 
 # weka alerts
 
-List alerts in the Weka cluster.
+List alerts in the cluster.
 
 ```sh
 weka alerts [--inactive] [--muted] [--severity <severity>]
 ```
 
-| Parameter                | Description                                         |
-| ------------------------ | --------------------------------------------------- |
-| `--inactive`             | List inactive alerts.                               |
-| `--muted`                | List muted alerts alongside the unmuted ones.       |
-| `--severity` \<severity> | Include alerts at the specified severity or higher. |
+| Parameter                | Description                                                                                        |
+| ------------------------ | -------------------------------------------------------------------------------------------------- |
+| `--inactive`             | List inactive alerts.                                                                              |
+| `--muted`                | List muted alerts alongside the unmuted ones.                                                      |
+| `--severity` \<severity> | Include alerts at the specified severity or higher. Valid values: critical, major, minor, warning. |
 
 **Columns:** `type`, `muted`, `severity`, `time`, `end_time`, `activeDuration`, `count`, `title`, `description`, `action`, `mute_time_remaining`, `mute_reason`
 
 ## weka alerts describe
 
-Describe all the alert types that might be returned from the Weka cluster, including explanations and how to handle them.
+Describe all the alert types that might be returned from the cluster, including explanations and how to handle them.
 
 ```sh
 weka alerts describe
@@ -87,7 +87,7 @@ weka alerts mute remove <alert-type> [--container <container-ids>…] [--hostnam
 
 ## weka alerts types
 
-List all alert types that can be returned from the Weka cluster.
+List all alert types that can be returned from the cluster.
 
 ```sh
 weka alerts types

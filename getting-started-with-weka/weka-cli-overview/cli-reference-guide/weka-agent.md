@@ -4,7 +4,7 @@ description: Manage the local WEKA agent process.
 
 # weka agent
 
-Manage the Weka agent process.
+Manage the WEKA agent process.
 
 ```sh
 weka agent
@@ -20,7 +20,7 @@ weka agent autocomplete
 
 ## weka agent install-agent
 
-Install Weka agent on the local machine.
+Install WEKA agent on the local machine.
 
 ```sh
 weka agent install-agent [--no-start] [--no-update] [--systemd-graceful-shutdown]
@@ -34,7 +34,7 @@ weka agent install-agent [--no-start] [--no-update] [--systemd-graceful-shutdown
 
 ## weka agent restart
 
-Stop and start Weka agent on the server the command is executed from. If the agent is not running yet, it will be started.
+Stop and start WEKA agent on the server the command is executed from. If the agent is not running yet, it will be started.
 
 ```sh
 weka agent restart
@@ -42,7 +42,7 @@ weka agent restart
 
 ## weka agent uninstall
 
-Delete all Weka files, drivers, shared memory and any other remainder from the machine this command is executed from. This action is destructive and might cause a loss of data!
+Delete all WEKA files, drivers, shared memory and any other remainder from the machine this command is executed from. This action is destructive and might cause a loss of data!
 
 ```sh
 weka agent uninstall [--force] [--ignore-wekafs-mounts] [--keep-files]
@@ -52,11 +52,11 @@ weka agent uninstall [--force] [--ignore-wekafs-mounts] [--keep-files]
 | ------------------------ | ----------------------------------------------------------------------- |
 | `-f`, `--force`          | Force action. Perform this action without further confirmation.         |
 | `--ignore-wekafs-mounts` | Proceed even with active wekafs mounts. This may result in hung mounts! |
-| `--keep-files`           | Do not remove Weka version images and keep in installation directory.   |
+| `--keep-files`           | Do not remove WEKA version images and keep in installation directory.   |
 
 ## weka agent update-containers
 
-Update the currently available containers and version specs to the current agent version. This command does not update Weka, only the container's representation on the local machine.
+Update the currently available containers and version specs to the current agent version. This command does not update WEKA, only the container's representation on the local machine.
 
 ```sh
 weka agent update-containers

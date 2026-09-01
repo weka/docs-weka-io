@@ -36,7 +36,7 @@ weka diags rm
 
 ## weka diags upload
 
-Collect and upload diags from all cluster containers to Weka's support cloud.
+Collect and upload diags from all cluster containers to WEKA's support cloud.
 
 ```sh
 weka diags upload

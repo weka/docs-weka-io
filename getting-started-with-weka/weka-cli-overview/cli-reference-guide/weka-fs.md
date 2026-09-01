@@ -4,7 +4,7 @@ description: Manage WEKA filesystems and related storage settings.
 
 # weka fs
 
-List filesystems defined in this Weka cluster.
+List filesystems defined in this cluster.
 
 ```sh
 weka fs [--force-fresh] [--local] [--name <string>]
@@ -26,27 +26,27 @@ Add a new filesystem with the specified parameters.
 weka fs add <name> <total-capacity> [--allow-no-kms] [--audit-enabled] [--auth-required] [--data-reduction] [--encrypted] [--fs-group <filesystem-group>] [--index-enabled] [--kms-key-identifier <string>] [--kms-namespace <string>] [--kms-role-id <string>] [--kms-secret-id <string>] [--max-iops <uint>] [--max-throughput <capacity>] [--obs-name <string>] [--ssd-capacity <capacity>] [--thin-provision-max-ssd <capacity>] [--thin-provision-min-ssd <capacity>]
 ```
 
-| Parameter                              | Description                                                                                                                      |
-| -------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
-| `name`\*                               | Name of filesystem for this operation.                                                                                           |
-| `total-capacity`\*                     | Total filesystem capacity.                                                                                                       |
-| `--allow-no-kms`                       | Allow creation of an encrypted filesystem without a KMS configured. This is insecure.                                            |
-| `--audit-enabled`                      | Enable filesystem auditing.                                                                                                      |
-| `--auth-required`                      | Require the mounting user to be authenticated. Effective only in the root organization; non-root users must always authenticate. |
-| `--data-reduction`                     | Enable data reduction.                                                                                                           |
-| `--encrypted`                          | Create an encrypted filesystem.                                                                                                  |
-| `--fs-group` \<filesystem-group>       | Filesystem group to create the filesystem in.                                                                                    |
-| `--index-enabled`                      | Enable catalog indexing for the filesystem.                                                                                      |
-| `--kms-key-identifier` \<string>       | Customize KMS key identifier for this filesystem. Currently only for HashiCorp Vault.                                            |
-| `--kms-namespace` \<string>            | Customize KMS namespace for this filesystem. Currently only for HashiCorp Vault.                                                 |
-| `--kms-role-id` \<string>              | Customize KMS role identifier for this filesystem. Currently only for HashiCorp Vault.                                           |
-| `--kms-secret-id` \<string>            | Customize KMS secret identifier for this filesystem. Currently only for HashiCorp Vault.                                         |
-| `--max-iops` \<uint>                   | Maximum filesystem IOPS.                                                                                                         |
-| `--max-throughput` \<capacity>         | Maximum filesystem throughput per second (e.g. 1GiB).                                                                            |
-| `--obs-name` \<string>                 | Object store bucket name. Mandatory for tiered filesystems.                                                                      |
-| `--ssd-capacity` \<capacity>           | SSD capacity for the filesystem.                                                                                                 |
-| `--thin-provision-max-ssd` \<capacity> | Maximum SSD budget for thin provisioning.                                                                                        |
-| `--thin-provision-min-ssd` \<capacity> | Minimum SSD budget for thin provisioning.                                                                                        |
+| Parameter                              | Description                                                                                                                |
+| -------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
+| `name`\*                               | Name of filesystem for this operation.                                                                                     |
+| `total-capacity`\*                     | Total filesystem capacity.                                                                                                 |
+| `--allow-no-kms`                       | Allow creation of an encrypted filesystem without a KMS configured. This is insecure.                                      |
+| `--audit-enabled`                      | Enable filesystem auditing.                                                                                                |
+| `--auth-required`                      | Require the mounting user to be authenticated. Effective only in the root tenant; non-root users must always authenticate. |
+| `--data-reduction`                     | Enable data reduction.                                                                                                     |
+| `--encrypted`                          | Create an encrypted filesystem.                                                                                            |
+| `--fs-group` \<filesystem-group>       | Filesystem group to create the filesystem in.                                                                              |
+| `--index-enabled`                      | Enable catalog indexing for the filesystem.                                                                                |
+| `--kms-key-identifier` \<string>       | Customize KMS key identifier for this filesystem. Currently only for HashiCorp Vault.                                      |
+| `--kms-namespace` \<string>            | Customize KMS namespace for this filesystem. Currently only for HashiCorp Vault.                                           |
+| `--kms-role-id` \<string>              | Customize KMS role identifier for this filesystem. Currently only for HashiCorp Vault.                                     |
+| `--kms-secret-id` \<string>            | Customize KMS secret identifier for this filesystem. Currently only for HashiCorp Vault.                                   |
+| `--max-iops` \<uint>                   | Maximum filesystem IOPS.                                                                                                   |
+| `--max-throughput` \<capacity>         | Maximum filesystem throughput per second (e.g. 1GiB).                                                                      |
+| `--obs-name` \<string>                 | Object store bucket name. Mandatory for tiered filesystems.                                                                |
+| `--ssd-capacity` \<capacity>           | SSD capacity for the filesystem.                                                                                           |
+| `--thin-provision-max-ssd` \<capacity> | Maximum SSD budget for thin provisioning.                                                                                  |
+| `--thin-provision-min-ssd` \<capacity> | Minimum SSD budget for thin provisioning.                                                                                  |
 
 ## weka fs download
 
@@ -56,23 +56,23 @@ Download a filesystem from object storage.
 weka fs download <name> <group-name> <total-capacity> <ssd-capacity> <obs-bucket> <locator> [--access-point <string>] [--additional-obs-bucket <string>] [--audit-enabled] [--auth-required] [--kms-key-identifier <string>] [--kms-namespace <string>] [--kms-role-id <string>] [--kms-secret-id <string>] [--snapshot-name <string>]
 ```
 
-| Parameter                           | Description                                                                                                                      |
-| ----------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
-| `name`\*                            | Name of filesystem for this operation.                                                                                           |
-| `group-name`\*                      | Filesystem group to create the downloaded filesystem in.                                                                         |
-| `total-capacity`\*                  | Total capacity of the downloaded filesystem.                                                                                     |
-| `ssd-capacity`\*                    | SSD capacity of the downloaded filesystem.                                                                                       |
-| `obs-bucket`\*                      | Object Store bucket containing the filesystem data.                                                                              |
-| `locator`\*                         | Locator for the filesystem snapshot in object storage.                                                                           |
-| `--access-point` \<string>          | Access point for the downloaded snapshot. Defaults to the uploaded access point.                                                 |
-| `--additional-obs-bucket` \<string> | Additional Object Store bucket for the downloaded filesystem.                                                                    |
-| `--audit-enabled`                   | Enable filesystem auditing.                                                                                                      |
-| `--auth-required`                   | Require the mounting user to be authenticated. Effective only in the root organization; non-root users must always authenticate. |
-| `--kms-key-identifier` \<string>    | Customize KMS key identifier for this filesystem. Currently only for HashiCorp Vault.                                            |
-| `--kms-namespace` \<string>         | Customize KMS namespace for this filesystem. Currently only for HashiCorp Vault.                                                 |
-| `--kms-role-id` \<string>           | Customize KMS role identifier for this filesystem. Currently only for HashiCorp Vault.                                           |
-| `--kms-secret-id` \<string>         | Customize KMS secret identifier for this filesystem. Currently only for HashiCorp Vault.                                         |
-| `--snapshot-name` \<string>         | Name for the downloaded snapshot. Defaults to the uploaded name.                                                                 |
+| Parameter                           | Description                                                                                                                |
+| ----------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
+| `name`\*                            | Name of filesystem for this operation.                                                                                     |
+| `group-name`\*                      | Filesystem group to create the downloaded filesystem in.                                                                   |
+| `total-capacity`\*                  | Total capacity of the downloaded filesystem.                                                                               |
+| `ssd-capacity`\*                    | SSD capacity of the downloaded filesystem.                                                                                 |
+| `obs-bucket`\*                      | Object Store bucket containing the filesystem data.                                                                        |
+| `locator`\*                         | Locator for the filesystem snapshot in object storage.                                                                     |
+| `--access-point` \<string>          | Access point for the downloaded snapshot. Defaults to the uploaded access point.                                           |
+| `--additional-obs-bucket` \<string> | Additional Object Store bucket for the downloaded filesystem.                                                              |
+| `--audit-enabled`                   | Enable filesystem auditing.                                                                                                |
+| `--auth-required`                   | Require the mounting user to be authenticated. Effective only in the root tenant; non-root users must always authenticate. |
+| `--kms-key-identifier` \<string>    | Customize KMS key identifier for this filesystem. Currently only for HashiCorp Vault.                                      |
+| `--kms-namespace` \<string>         | Customize KMS namespace for this filesystem. Currently only for HashiCorp Vault.                                           |
+| `--kms-role-id` \<string>           | Customize KMS role identifier for this filesystem. Currently only for HashiCorp Vault.                                     |
+| `--kms-secret-id` \<string>         | Customize KMS secret identifier for this filesystem. Currently only for HashiCorp Vault.                                   |
+| `--snapshot-name` \<string>         | Name for the downloaded snapshot. Defaults to the uploaded name.                                                           |
 
 ## weka fs group
 
@@ -255,10 +255,10 @@ Run snapshot policy schedule.
 weka fs protection snapshot-policy run-once <name> <schedule-type>
 ```
 
-| Parameter         | Description                                         |
-| ----------------- | --------------------------------------------------- |
-| `name`\*          | Name of snapshot policy.                            |
-| `schedule-type`\* | Schedule type. This schedule type will be run once. |
+| Parameter         | Description                                                                                                 |
+| ----------------- | ----------------------------------------------------------------------------------------------------------- |
+| `name`\*          | Name of snapshot policy.                                                                                    |
+| `schedule-type`\* | Schedule type. This schedule type will be run once. Valid values: periodic, hourly, daily, weekly, monthly. |
 
 #### weka fs protection snapshot-policy show
 
@@ -340,7 +340,7 @@ weka fs quota list [<filesystem>] [--all] [--over <uint8>] [--path <string>] [--
 | `-p`, `--path` \<string>  | Show only the quota for this path.                                                        |
 | `-q`, `--quick`           | Skip resolving inodes to paths.                                                           |
 | `--snap-name` \<string>   | Optional snapshot name.                                                                   |
-| `--type` \<quota-type>    | Quota type (directory, user, or group).                                                   |
+| `--type` \<quota-type>    | Quota type (directory, user, or group). Valid values: directory, user, group.             |
 | `-u`, `--under` \<string> | List quotas under (and including) this path.                                              |
 
 **Columns:** `name`, `quota_id`, `fs_name`, `snap_name`, `path`, `total_bytes`, `data_blocks`, `metadata_blocks`, `soft_limit_bytes`, `hard_limit_bytes`, `usage`, `owner`, `grace_seconds`, `time_over_soft_limit`, `status`
@@ -358,7 +358,7 @@ weka fs quota list-default [<filesystem>] [--path <string>] [--snap-name <string
 | `filesystem`             | Filesystem to list default quotas for. If not specified, all filesystems are listed. |
 | `-p`, `--path` \<string> | Show only the default quota for this directory path.                                 |
 | `--snap-name` \<string>  | Optional snapshot name.                                                              |
-| `--type` \<quota-type>   | Quota type (directory, user, or group).                                              |
+| `--type` \<quota-type>   | Quota type (directory, user, or group). Valid values: directory, user, group.        |
 
 **Columns:** `name`, `fs_name`, `snap_name`, `path`, `soft_limit_bytes`, `hard_limit_bytes`, `owner`, `grace_seconds`
 
@@ -377,7 +377,7 @@ weka fs quota reset [<path>] [--filesystem <filesystem>] [--generation <uint8>] 
 | `--generation` \<uint8>      | Remove a specific generation of quota.                                            |
 | `--id` \<uint32>             | User or group ID (UID or GID). For user or group quotas.                          |
 | `--snap-name` \<string>      | Optional snapshot name.                                                           |
-| `--type` \<quota-type>       | Quota type (directory, user, or group).                                           |
+| `--type` \<quota-type>       | Quota type (directory, user, or group). Valid values: directory, user, group.     |
 
 ### weka fs quota set
 
@@ -398,7 +398,7 @@ weka fs quota set [<path>] [--filesystem <filesystem>] [--grace <duration>] [--h
 | `--owner` \<string>          | Quota owner. For example, an email address.                                       |
 | `--snap-name` \<string>      | Optional snapshot name.                                                           |
 | `--soft` \<capacity>         | Soft limit. Specify 0 for unlimited.                                              |
-| `--type` \<quota-type>       | Quota type (directory, user, or group).                                           |
+| `--type` \<quota-type>       | Quota type (directory, user, or group). Valid values: directory, user, group.     |
 
 ### weka fs quota set-default
 
@@ -418,7 +418,7 @@ weka fs quota set-default [<path>] [--filesystem <filesystem>] [--grace <duratio
 | `--owner` \<string>          | Quota owner. For example, an email address.                                   |
 | `--snap-name` \<string>      | Optional snapshot name.                                                       |
 | `--soft` \<capacity>         | Soft limit. Specify 0 for unlimited.                                          |
-| `--type` \<quota-type>       | Quota type (directory, user, or group).                                       |
+| `--type` \<quota-type>       | Quota type (directory, user, or group). Valid values: directory, user, group. |
 
 ### weka fs quota unset-default
 
@@ -433,7 +433,7 @@ weka fs quota unset-default [<path>] [--filesystem <filesystem>] [--snap-name <s
 | `path`                       | Filesystem name or path (filesystem:/directory) to unset the default quota for. |
 | `--filesystem` \<filesystem> | Name of filesystem.                                                             |
 | `--snap-name` \<string>      | Optional snapshot name.                                                         |
-| `--type` \<quota-type>       | Quota type (directory, user, or group).                                         |
+| `--type` \<quota-type>       | Quota type (directory, user, or group). Valid values: directory, user, group.   |
 
 ## weka fs remove
 
@@ -732,7 +732,7 @@ weka fs security policy set <name> <policies>…
 
 Set quality of service for a filesystem, limiting how it uses I/O resources within the cluster.
 
-This command is deprecated. Use 'wekactl fs update --max-throughput / --max-iops' instead.
+This command is deprecated. Use 'weka fs update --max-throughput / --max-iops' instead.
 
 ```sh
 weka fs set-qos <name> [--max-iops <uint>] [--max-throughput <capacity>]
@@ -785,9 +785,9 @@ Update the convention used for naming filesystem snapshot access points.
 weka fs snapshot access-point-naming-convention update <access-point-naming-convention>
 ```
 
-| Parameter                          | Description                                    |
-| ---------------------------------- | ---------------------------------------------- |
-| `access-point-naming-convention`\* | Access point naming convention (DATE or NAME). |
+| Parameter                          | Description                                                              |
+| ---------------------------------- | ------------------------------------------------------------------------ |
+| `access-point-naming-convention`\* | Access point naming convention (DATE or NAME). Valid values: date, name. |
 
 ### weka fs snapshot add
 
@@ -886,7 +886,7 @@ weka fs snapshot upload <filesystem> <name> [--allow-non-chronological] [--site 
 | `filesystem`\*              | Filesystem name.                                                                              |
 | `name`\*                    | Snapshot name.                                                                                |
 | `--allow-non-chronological` | Allow uploading snapshots to remote object store in non-chronological order. Not recommended. |
-| `--site` \<obs-site>        | Site of the object store to upload to (LOCAL or REMOTE).                                      |
+| `--site` \<obs-site>        | Site of the object store to upload to (LOCAL or REMOTE). Valid values: local, remote.         |
 
 ## weka fs tier
 
@@ -923,10 +923,10 @@ Fetch object-stored files to SSD storage.
 weka fs tier fetch <path>… [--non-existing <non-existing>]
 ```
 
-| Parameter                        | Description                       |
-| -------------------------------- | --------------------------------- |
-| `path`\*…                        | Path(s) to get information about. |
-| `--non-existing` \<non-existing> | Behavior of non-existing files.   |
+| Parameter                        | Description                                                        |
+| -------------------------------- | ------------------------------------------------------------------ |
+| `path`\*…                        | Path(s) to get information about.                                  |
+| `--non-existing` \<non-existing> | Behavior of non-existing files. Valid values: error, warn, ignore. |
 
 ### weka fs tier location
 
@@ -968,7 +968,7 @@ weka fs tier obs update <name> [--access-key-id <string>] [--auth-method <s3-aut
 | --------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
 | `name`\*                                | Name of the object store.                                                                                   |
 | `--access-key-id` \<string>             | Access key used for AWS Signature authentications.                                                          |
-| `--auth-method` \<s3-auth-method>       | Authentication method.                                                                                      |
+| `--auth-method` \<s3-auth-method>       | Authentication method. Valid values: none, awssignature2, awssignature4.                                    |
 | `--bandwidth` \<uint>                   | Bandwidth limitation. Value is per core (Mbps).                                                             |
 | `--download-bandwidth` \<uint>          | Download bandwidth limitation. Value is per core (Mbps).                                                    |
 | `--enable-upload-tags`                  | Enable tagging of uploaded objects.                                                                         |
@@ -979,13 +979,13 @@ weka fs tier obs update <name> [--access-key-id <string>] [--auth-method <s3-aut
 | `--max-data-blob-size` \<capacity>      | Maximum size of a data object to upload to an object store data blob.                                       |
 | `--max-extents-in-data-blob` \<uint>    | Limits the number of extents to upload to an object store data blob.                                        |
 | `--new-name` \<string>                  | New name for the object store.                                                                              |
-| `--obs-type` \<obs-type>                | Object store type.                                                                                          |
+| `--obs-type` \<obs-type>                | Object store type. Valid values: other, aws, hcp, azure.                                                    |
 | `--port` \<uint16>                      | TCP port to use when connecting to object store (single Accessor or Load Balancer).                         |
-| `--protocol` \<obs-http-protocol>       | Transport protocol.                                                                                         |
+| `--protocol` \<obs-http-protocol>       | Transport protocol. Valid values: http, https, https\_unverified.                                           |
 | `--region` \<string>                    | Name of the region we are assigned to work with (usually empty).                                            |
 | `--remove-bandwidth` \<uint>            | Removal bandwidth limitation. Value is per core (Mbps).                                                     |
 | `--secret-key` \<string>                | Secret key used for AWS Signature authentications.                                                          |
-| `--sts-operation-type` \<sts-operation> | AWS STS operation type. Default is none.                                                                    |
+| `--sts-operation-type` \<sts-operation> | AWS STS operation type. Default is none. Valid values: none, assume\_role.                                  |
 | `--sts-role-arn` \<string>              | The Amazon Resource Name (ARN) of the role to assume. Mandatory when setting sts-operation to ASSUME\_ROLE. |
 | `--sts-role-session-name` \<string>     | An identifier for the assumed role session. Length constraints: Minimum length of 2, maximum length of 64.  |
 | `--sts-session-duration` \<duration>    | Duration of the temporary security credentials in seconds. Must be between 900 and 43200; default is 3600.  |
@@ -1014,10 +1014,10 @@ Release object-stored files from SSD storage.
 weka fs tier release <path>… [--non-existing <non-existing>]
 ```
 
-| Parameter                        | Description                                                     |
-| -------------------------------- | --------------------------------------------------------------- |
-| `path`\*…                        | File path(s) to release from SSD storage.                       |
-| `--non-existing` \<non-existing> | Behavior for non-existing files. Default is to report an error. |
+| Parameter                        | Description                                                                                        |
+| -------------------------------- | -------------------------------------------------------------------------------------------------- |
+| `path`\*…                        | File path(s) to release from SSD storage.                                                          |
+| `--non-existing` \<non-existing> | Behavior for non-existing files. Default is to report an error. Valid values: error, warn, ignore. |
 
 ### weka fs tier s3
 
@@ -1046,7 +1046,7 @@ weka fs tier s3 add <name> [--access-key-id <string>] [--auth-method <s3-auth-me
 | --------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
 | `name`\*                                | Name of the object store bucket.                                                                                          |
 | `--access-key-id` \<string>             | Access key used for AWS Signature authentications.                                                                        |
-| `--auth-method` \<s3-auth-method>       | Authentication method.                                                                                                    |
+| `--auth-method` \<s3-auth-method>       | Authentication method. Valid values: none, awssignature2, awssignature4.                                                  |
 | `--bandwidth` \<uint>                   | Bandwidth limitation. Value is per core (Mbps).                                                                           |
 | `--bucket` \<string>                    | Name of the bucket we are assigned to work with.                                                                          |
 | `--data-storage-class` \<string>        | AWS storage class or Azure access tier to use for uploaded data blobs.                                                    |
@@ -1063,17 +1063,17 @@ weka fs tier s3 add <name> [--access-key-id <string>] [--auth-method <s3-auth-me
 | `--max-extents-in-data-blob` \<uint>    | Limits the number of extents to upload to an object store data blob.                                                      |
 | `--metadata-storage-class` \<string>    | AWS storage class or Azure access tier to use for uploaded metadata blobs.                                                |
 | `--obs-name` \<string>                  | Name of the object store to associate this new bucket with.                                                               |
-| `--obs-type` \<obs-type>                | Object store type.                                                                                                        |
+| `--obs-type` \<obs-type>                | Object store type. Valid values: other, aws, hcp, azure.                                                                  |
 | `--port` \<uint16>                      | TCP port to use when connecting to object store (single Accessor or Load Balancer).                                       |
 | `--prefetch-mib` \<uint16>              | How many MiB of data to prefetch when reading a whole MiB on object store. Default is 128 MiB.                            |
 | `--prefetch-size` \<capacity>           | How much data to prefetch when reading a whole MiB on object store, rounded to nearest MiB. (0-600 MiB, default 128 MiB.) |
-| `--protocol` \<obs-http-protocol>       | Transport protocol.                                                                                                       |
+| `--protocol` \<obs-http-protocol>       | Transport protocol. Valid values: http, https, https\_unverified.                                                         |
 | `--region` \<string>                    | Name of the region we are assigned to work with (usually empty).                                                          |
 | `--remove-bandwidth` \<uint>            | Removal bandwidth limitation. Value is per core (Mbps).                                                                   |
 | `--secret-key` \<string>                | Secret key used for AWS Signature authentications.                                                                        |
-| `--site` \<obs-site>                    | Site of the object store. Default is local.                                                                               |
+| `--site` \<obs-site>                    | Site of the object store. Default is local. Valid values: local, remote.                                                  |
 | `--skip-verification`                   | Do not verify the connection to the given storage.                                                                        |
-| `--sts-operation-type` \<sts-operation> | AWS STS operation type. Default is none.                                                                                  |
+| `--sts-operation-type` \<sts-operation> | AWS STS operation type. Default is none. Valid values: none, assume\_role.                                                |
 | `--sts-role-arn` \<string>              | The Amazon Resource Name (ARN) of the role to assume. Mandatory when setting sts-operation to ASSUME\_ROLE.               |
 | `--sts-role-session-name` \<string>     | An identifier for the assumed role session. Length constraints: Minimum length of 2, maximum length of 64.                |
 | `--sts-session-duration` \<duration>    | Duration of the temporary security credentials in seconds. Must be between 900 and 43200; default is 3600.                |
@@ -1088,11 +1088,11 @@ Attach a filesystem to an existing object store.
 weka fs tier s3 attach <filesystem> <obs-name> [--mode <obs-attach-mode>]
 ```
 
-| Parameter                   | Description                                 |
-| --------------------------- | ------------------------------------------- |
-| `filesystem`\*              | Name of the filesystem.                     |
-| `obs-name`\*                | Name of the object store bucket to attach.  |
-| `--mode` \<obs-attach-mode> | Operation mode for the object store bucket. |
+| Parameter                   | Description                                                                 |
+| --------------------------- | --------------------------------------------------------------------------- |
+| `filesystem`\*              | Name of the filesystem.                                                     |
+| `obs-name`\*                | Name of the object store bucket to attach.                                  |
+| `--mode` \<obs-attach-mode> | Operation mode for the object store bucket. Valid values: writable, remote. |
 
 #### weka fs tier s3 detach
 
@@ -1128,7 +1128,7 @@ Obtain information about uploaded snapshots.
 weka fs tier s3 snapshot
 ```
 
-**weka fs tier s3 snapshot list**
+##### weka fs tier s3 snapshot list
 
 List the uploaded snapshots.
 
@@ -1155,7 +1155,7 @@ weka fs tier s3 update <name> [--access-key-id <string>] [--auth-method <s3-auth
 | --------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
 | `name`\*                                | Name of the object store bucket.                                                                                          |
 | `--access-key-id` \<string>             | Access key used for AWS Signature authentications.                                                                        |
-| `--auth-method` \<s3-auth-method>       | Authentication method.                                                                                                    |
+| `--auth-method` \<s3-auth-method>       | Authentication method. Valid values: none, awssignature2, awssignature4.                                                  |
 | `--bandwidth` \<uint>                   | Bandwidth limitation. Value is per core (Mbps).                                                                           |
 | `--bucket` \<string>                    | Name of the bucket we are assigned to work with.                                                                          |
 | `--data-storage-class` \<string>        | AWS storage class or Azure access tier to use for uploaded data blobs.                                                    |
@@ -1176,12 +1176,12 @@ weka fs tier s3 update <name> [--access-key-id <string>] [--auth-method <s3-auth
 | `--port` \<uint16>                      | TCP port to use when connecting to object store (single Accessor or Load Balancer).                                       |
 | `--prefetch-mib` \<uint16>              | How many MiB of data to prefetch when reading a whole MiB on object store. Default is 128 MiB.                            |
 | `--prefetch-size` \<capacity>           | How much data to prefetch when reading a whole MiB on object store, rounded to nearest MiB. (0-600 MiB, default 128 MiB.) |
-| `--protocol` \<obs-http-protocol>       | Transport protocol.                                                                                                       |
+| `--protocol` \<obs-http-protocol>       | Transport protocol. Valid values: http, https, https\_unverified.                                                         |
 | `--region` \<string>                    | Name of the region we are assigned to work with (usually empty).                                                          |
 | `--remove-bandwidth` \<uint>            | Removal bandwidth limitation. Value is per core (Mbps).                                                                   |
 | `--secret-key` \<string>                | Secret key used for AWS Signature authentications.                                                                        |
 | `--skip-verification`                   | Do not verify the connection to the given storage.                                                                        |
-| `--sts-operation-type` \<sts-operation> | AWS STS operation type. Default is none.                                                                                  |
+| `--sts-operation-type` \<sts-operation> | AWS STS operation type. Default is none. Valid values: none, assume\_role.                                                |
 | `--sts-role-arn` \<string>              | The Amazon Resource Name (ARN) of the role to assume. Mandatory when setting sts-operation to ASSUME\_ROLE.               |
 | `--sts-role-session-name` \<string>     | An identifier for the assumed role session. Length constraints: Minimum length of 2, maximum length of 64.                |
 | `--sts-session-duration` \<duration>    | Duration of the temporary security credentials in seconds. Must be between 900 and 43200; default is 3600.                |
@@ -1198,29 +1198,29 @@ Update a filesystem's configuration.
 weka fs update <name> [--access <access>] [--audit-enabled] [--auth-required] [--data-reduction] [--event-log-enabled] [--event-log-max-age-seconds <uint>] [--event-log-max-size-bytes-per-fs-shard <uint>] [--force] [--fs-group <filesystem-group>] [--index-enabled] [--kms-key-identifier <string>] [--kms-namespace <string>] [--kms-role-id <string>] [--kms-secret-id <string>] [--max-iops <uint>] [--max-throughput <capacity>] [--new-name <filesystem>] [--remove-fs-group] [--ssd-capacity <capacity>] [--thin-provision-max-ssd <capacity>] [--thin-provision-min-ssd <capacity>] [--total-capacity <capacity>] [--use-cluster-kms-key-identifier]
 ```
 
-| Parameter                                         | Description                                                                                                                                                                       |
-| ------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `name`\*                                          | Name of filesystem for this operation.                                                                                                                                            |
-| `--access` \<access>                              | Set the filesystem access mode: ro (read-only) or rw (read-write). A replication target cannot be set to rw while its pair is active; pause the pair on the source cluster first. |
-| `--audit-enabled`                                 | Enable filesystem auditing.                                                                                                                                                       |
-| `--auth-required`                                 | Require the mounting user to be authenticated. Effective only in the root organization; non-root users must always authenticate.                                                  |
-| `--data-reduction`                                | Enable data reduction.                                                                                                                                                            |
-| `--event-log-enabled`                             | Enable the reliable event-change log for the filesystem.                                                                                                                          |
-| `--event-log-max-age-seconds` \<uint>             | Set the maximum age in seconds before event-log records are trimmed (0 disables age trim).                                                                                        |
-| `--event-log-max-size-bytes-per-fs-shard` \<uint> | Set the maximum on-disk event-log size in bytes per filesystem shard (minimum 1 MiB; smaller values, including 0, are rejected).                                                  |
-| `-f`, `--force`                                   | Force action. Perform this action without further confirmation.                                                                                                                   |
-| `--fs-group` \<filesystem-group>                  | Move the filesystem into the specified filesystem group.                                                                                                                          |
-| `--index-enabled`                                 | Enable catalog indexing for the filesystem.                                                                                                                                       |
-| `--kms-key-identifier` \<string>                  | Customize KMS key identifier for this filesystem. Currently only for HashiCorp Vault.                                                                                             |
-| `--kms-namespace` \<string>                       | Customize KMS namespace for this filesystem. Currently only for HashiCorp Vault.                                                                                                  |
-| `--kms-role-id` \<string>                         | Customize KMS role identifier for this filesystem. Currently only for HashiCorp Vault.                                                                                            |
-| `--kms-secret-id` \<string>                       | Customize KMS secret identifier for this filesystem. Currently only for HashiCorp Vault.                                                                                          |
-| `--max-iops` \<uint>                              | Limit I/O operations per second. This affects how much CPU is used by the filesystem on cluster servers.                                                                          |
-| `--max-throughput` \<capacity>                    | Limit throughput per second. This affects how much bandwidth is available to the filesystem.                                                                                      |
-| `--new-name` \<filesystem>                        | Rename the filesystem.                                                                                                                                                            |
-| `--remove-fs-group`                               | Reset the filesystem to have no group.                                                                                                                                            |
-| `--ssd-capacity` \<capacity>                      | New SSD capacity for the filesystem.                                                                                                                                              |
-| `--thin-provision-max-ssd` \<capacity>            | Maximum SSD budget for thin provisioning.                                                                                                                                         |
-| `--thin-provision-min-ssd` \<capacity>            | Minimum SSD budget for thin provisioning.                                                                                                                                         |
-| `--total-capacity` \<capacity>                    | New total capacity for the filesystem.                                                                                                                                            |
-| `--use-cluster-kms-key-identifier`                | Use the cluster KMS configuration for this filesystem, removing any custom KMS configuration.                                                                                     |
+| Parameter                                         | Description                                                                                                                                                                                             |
+| ------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `name`\*                                          | Name of filesystem for this operation.                                                                                                                                                                  |
+| `--access` \<access>                              | Set the filesystem access mode: ro (read-only) or rw (read-write). A replication target cannot be set to rw while its pair is active; pause the pair on the source cluster first. Valid values: ro, rw. |
+| `--audit-enabled`                                 | Enable filesystem auditing.                                                                                                                                                                             |
+| `--auth-required`                                 | Require the mounting user to be authenticated. Effective only in the root tenant; non-root users must always authenticate.                                                                              |
+| `--data-reduction`                                | Enable data reduction.                                                                                                                                                                                  |
+| `--event-log-enabled`                             | Enable the reliable event-change log for the filesystem.                                                                                                                                                |
+| `--event-log-max-age-seconds` \<uint>             | Set the maximum age in seconds before event-log records are trimmed (0 disables age trim).                                                                                                              |
+| `--event-log-max-size-bytes-per-fs-shard` \<uint> | Set the maximum on-disk event-log size in bytes per filesystem shard (minimum 1 MiB; smaller values, including 0, are rejected).                                                                        |
+| `-f`, `--force`                                   | Force action. Perform this action without further confirmation.                                                                                                                                         |
+| `--fs-group` \<filesystem-group>                  | Move the filesystem into the specified filesystem group.                                                                                                                                                |
+| `--index-enabled`                                 | Enable catalog indexing for the filesystem.                                                                                                                                                             |
+| `--kms-key-identifier` \<string>                  | Customize KMS key identifier for this filesystem. Currently only for HashiCorp Vault.                                                                                                                   |
+| `--kms-namespace` \<string>                       | Customize KMS namespace for this filesystem. Currently only for HashiCorp Vault.                                                                                                                        |
+| `--kms-role-id` \<string>                         | Customize KMS role identifier for this filesystem. Currently only for HashiCorp Vault.                                                                                                                  |
+| `--kms-secret-id` \<string>                       | Customize KMS secret identifier for this filesystem. Currently only for HashiCorp Vault.                                                                                                                |
+| `--max-iops` \<uint>                              | Limit I/O operations per second. This affects how much CPU is used by the filesystem on cluster servers.                                                                                                |
+| `--max-throughput` \<capacity>                    | Limit throughput per second. This affects how much bandwidth is available to the filesystem.                                                                                                            |
+| `--new-name` \<filesystem>                        | Rename the filesystem.                                                                                                                                                                                  |
+| `--remove-fs-group`                               | Reset the filesystem to have no group.                                                                                                                                                                  |
+| `--ssd-capacity` \<capacity>                      | New SSD capacity for the filesystem.                                                                                                                                                                    |
+| `--thin-provision-max-ssd` \<capacity>            | Maximum SSD budget for thin provisioning.                                                                                                                                                               |
+| `--thin-provision-min-ssd` \<capacity>            | Minimum SSD budget for thin provisioning.                                                                                                                                                               |
+| `--total-capacity` \<capacity>                    | New total capacity for the filesystem.                                                                                                                                                                  |
+| `--use-cluster-kms-key-identifier`                | Use the cluster KMS configuration for this filesystem, removing any custom KMS configuration.                                                                                                           |

@@ -10,7 +10,7 @@ weka tenant
 
 ## weka tenant add
 
-Create a new tenant in the Weka cluster.
+Create a new tenant in the cluster.
 
 ```sh
 weka tenant add <name> <username> [<password>] [--enforce-fs-authentication] [--enforce-mount-netspace-access] [--max-iops <uint>] [--max-throughput <capacity>] [--network-spaces <strings>…] [--ssd-quota <capacity>] [--total-quota <capacity>]
@@ -214,7 +214,7 @@ weka tenant security revoke-tokens [<tenant>] [--force]
 
 Set quality of service for the tenant, limiting how it uses I/O resources within the cluster.
 
-This command is deprecated. Use 'wekactl tenant update --max-throughput / --max-iops' instead.
+This command is deprecated. Use 'weka tenant update --max-throughput / --max-iops' instead.
 
 ```sh
 weka tenant set-qos <tenant> [--max-iops <uint>] [--max-throughput <capacity>]
@@ -230,7 +230,7 @@ weka tenant set-qos <tenant> [--max-iops <uint>] [--max-throughput <capacity>]
 
 Set a tenant's storage capacity quotas. This limits how much capacity a tenant can utilize.
 
-This command is deprecated. Use 'wekactl tenant update --ssd-quota / --total-quota' instead.
+This command is deprecated. Use 'weka tenant update --ssd-quota / --total-quota' instead.
 
 ```sh
 weka tenant set-quota <tenant> [--ssd-quota <capacity>] [--total-quota <capacity>]
@@ -244,7 +244,7 @@ weka tenant set-quota <tenant> [--ssd-quota <capacity>] [--total-quota <capacity
 
 ## weka tenant stats
 
-Show I/O statistics per tenant (equivalent to 'weka stats' --category=tenant\_stats --param tenant:\*). Use --tenant to filter to a specific tenant.
+Show I/O statistics per tenant (equivalent to 'weka stats' --category=tenant_stats --param tenant:*). Use --tenant to filter to a specific tenant.
 
 ```sh
 weka tenant stats [--accumulated] [--aggregate-by <grouping>] [--end-time <time>] [--interval <duration>] [--no-zeros] [--param <strings>…] [--per-process] [--per-role] [--process-ids <process-ids>…] [--query-timeout <duration>] [--resolution-secs <duration>] [--show-internal] [--start-time <time>] [--stat <statistic-names>…] [--tenant <tenant>]
@@ -253,7 +253,7 @@ weka tenant stats [--accumulated] [--aggregate-by <grouping>] [--end-time <time>
 | Parameter                       | Description                                                                                                                                                                                               |
 | ------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `--accumulated`                 | Show accumulated statistics. If not set, show rate statistics.                                                                                                                                            |
-| `--aggregate-by` \<grouping>    | Aggregate statistics by the specified criteria.                                                                                                                                                           |
+| `--aggregate-by` \<grouping>    | Aggregate statistics by the specified criteria. Valid values: process, role, container, server.                                                                                                           |
 | `--end-time` \<time>            | Query for statistics up to this time point.                                                                                                                                                               |
 | `--interval` \<duration>        | Duration (in seconds) of the time report.                                                                                                                                                                 |
 | `-Z`, `--no-zeros`              | Do not retrieve statistics with zero values.                                                                                                                                                              |
@@ -265,7 +265,7 @@ weka tenant stats [--accumulated] [--aggregate-by <grouping>] [--end-time <time>
 | `--resolution-secs` \<duration> | Length of each interval in the report period.                                                                                                                                                             |
 | `--show-internal`               | Show internal statistics.                                                                                                                                                                                 |
 | `--start-time` \<time>          | Query for statistics starting at this time.                                                                                                                                                               |
-| `--stat` \<statistic-names>…    | Retrieve only the specified statistics. Glob patterns (\*, ?, \[]) are supported. Multiple values may be supplied separated by commas, or the option may be repeated.                                     |
+| `--stat` \<statistic-names>…    | Retrieve only the specified statistics. Glob patterns (\*, ?, []) are supported. Multiple values may be supplied separated by commas, or the option may be repeated.                                      |
 | `--tenant` \<tenant>            | Filter by tenant name or ID.                                                                                                                                                                              |
 
 **Columns:** `timestamp`, `stat`, `value`

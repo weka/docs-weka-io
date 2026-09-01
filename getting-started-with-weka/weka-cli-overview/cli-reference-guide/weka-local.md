@@ -4,7 +4,7 @@ description: Manage local WEKA container resources and services.
 
 # weka local
 
-Control local Weka resources and containers.
+Control local resources and containers.
 
 ```sh
 weka local
@@ -77,7 +77,7 @@ weka local enable [<container>…] [--type <strings>…]
 
 ## weka local events
 
-List local events. Does not require authentication and can be used when Weka is not running.
+List local events. Does not require authentication and can be used when the cluster is not running.
 
 ```sh
 weka local events
@@ -107,13 +107,13 @@ weka local monitoring <enabled> [<container>…] [--type <strings>…]
 
 ## weka local ps
 
-List the Weka containers running on the local machine.
+List the containers running on the local machine.
 
 ```sh
 weka local ps
 ```
 
-**Columns:** `name`, `containerId`, `state`, `running`, `disabled`, `uptime`, `ioProcessesNotUp`, `monitoring`, `persistent`, `port`, `hasLease`, `pid`, `status`, `managementIps`, `version`, `lastFailureText`, `lastFailure`, `lastFailureTime`, `recentFailure`, `upgradeState`, `type`
+**Columns:** `name`, `containerId`, `state`, `running`, `disabled`, `uptime`, `ioProcessesNotUp`, `monitoring`, `persistent`, `managed`, `port`, `hasLease`, `pid`, `status`, `managementIps`, `version`, `lastFailureText`, `lastFailure`, `lastFailureTime`, `recentFailure`, `upgradeState`, `type`
 
 ## weka local reset-data
 
@@ -162,17 +162,18 @@ weka local resources apply [--container <container>] [--force] [--timeout <strin
 Configure the auto-remove-timeout (in seconds) to remove inactive client containers.
 
 ```sh
-weka local resources auto-remove-timeout <auto-remove-timeout> [--container <container>]
+weka local resources auto-remove-timeout <auto-remove-timeout> [--container <container>] [--force]
 ```
 
 | Parameter                        | Description                                                              |
 | -------------------------------- | ------------------------------------------------------------------------ |
 | `auto-remove-timeout`\*          | The auto-remove timeout in seconds to remove inactive client containers. |
 | `-C`, `--container` \<container> | Container name.                                                          |
+| `-f`, `--force`                  | Force action. Perform this action without further confirmation.          |
 
 ### weka local resources bandwidth
 
-Limit Weka's bandwidth for the container.
+Limit the container's bandwidth.
 
 ```sh
 weka local resources bandwidth <bandwidth> [--container <container>]
@@ -185,16 +186,16 @@ weka local resources bandwidth <bandwidth> [--container <container>]
 
 ### weka local resources base-port
 
-Change the TCP & UDP port-range used by the container. Weka containers require 100 ports to operate.
+Change the TCP & UDP port-range used by the container. Containers require 100 ports to operate.
 
 ```sh
 weka local resources base-port <base-port> [--container <container>]
 ```
 
-| Parameter                        | Description                                                                          |
-| -------------------------------- | ------------------------------------------------------------------------------------ |
-| `base-port`\*                    | The first port that will be used by the Weka container, out of a total of 100 ports. |
-| `-C`, `--container` \<container> | Container name.                                                                      |
+| Parameter                        | Description                                                                     |
+| -------------------------------- | ------------------------------------------------------------------------------- |
+| `base-port`\*                    | The first port that will be used by the container, out of a total of 100 ports. |
+| `-C`, `--container` \<container> | Container name.                                                                 |
 
 ### weka local resources cores
 
@@ -204,23 +205,23 @@ Change the core configuration for the container.
 weka local resources cores <cores> [--allow-mix-setting] [--compute-dedicated-cores <int>] [--container <container>] [--core-ids <uints>…] [--drives-dedicated-cores <int>] [--frontend-dedicated-cores <int>] [--no-frontends] [--only-compute-cores] [--only-drives-cores] [--only-frontend-cores]
 ```
 
-| Parameter                           | Description                                                                                                                  |
-| ----------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
-| `cores`\*                           | Number of CPU cores dedicated to Weka. If set to 0, no drives can be added to this host.                                     |
-| `--allow-mix-setting`               | Allow specified core-ids even if there are running containers with AUTO core-ids allocation on the same server.              |
-| `--compute-dedicated-cores` \<int>  | Number of cores dedicated to Weka compute (out of the total cores).                                                          |
-| `-C`, `--container` \<container>    | Container name.                                                                                                              |
-| `--core-ids` \<uints>…              | Specify the IDs of Weka dedicated cores. Multiple values may be supplied separated by commas, or the option may be repeated. |
-| `--drives-dedicated-cores` \<int>   | Number of cores dedicated to Weka drives (out of the total cores).                                                           |
-| `--frontend-dedicated-cores` \<int> | Number of cores dedicated to Weka frontend (out of the total cores).                                                         |
-| `--no-frontends`                    | Don't allocate frontend nodes.                                                                                               |
-| `--only-compute-cores`              | Create only nodes with a compute role.                                                                                       |
-| `--only-drives-cores`               | Create only nodes with a drives role.                                                                                        |
-| `--only-frontend-cores`             | Create only nodes with a frontend role.                                                                                      |
+| Parameter                           | Description                                                                                                                 |
+| ----------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| `cores`\*                           | Number of CPU cores dedicated to the container. If set to 0, no drives can be added to this host.                           |
+| `--allow-mix-setting`               | Allow specified core-ids even if there are running containers with AUTO core-ids allocation on the same server.             |
+| `--compute-dedicated-cores` \<int>  | Number of cores dedicated to the compute role (out of the total cores).                                                     |
+| `-C`, `--container` \<container>    | Container name.                                                                                                             |
+| `--core-ids` \<uints>…              | Specify the IDs of the dedicated cores. Multiple values may be supplied separated by commas, or the option may be repeated. |
+| `--drives-dedicated-cores` \<int>   | Number of cores dedicated to the drives role (out of the total cores).                                                      |
+| `--frontend-dedicated-cores` \<int> | Number of cores dedicated to the frontend role (out of the total cores).                                                    |
+| `--no-frontends`                    | Don't allocate frontend nodes.                                                                                              |
+| `--only-compute-cores`              | Create only nodes with a compute role.                                                                                      |
+| `--only-drives-cores`               | Create only nodes with a drives role.                                                                                       |
+| `--only-frontend-cores`             | Create only nodes with a frontend role.                                                                                     |
 
 ### weka local resources dedicate
 
-Set the host as dedicated to Weka. For example it can be rebooted whenever needed, and configured by Weka for optimal performance and stability.
+Set the host as dedicated to WEKA. For example it can be rebooted whenever needed, and configured by WEKA for optimal performance and stability.
 
 ```sh
 weka local resources dedicate <on> [--container <container>]
@@ -228,7 +229,7 @@ weka local resources dedicate <on> [--container <container>]
 
 | Parameter                        | Description                                                        |
 | -------------------------------- | ------------------------------------------------------------------ |
-| `on`\*                           | Set the host as Weka dedicated; off unsets host as Weka dedicated. |
+| `on`\*                           | Set the host as WEKA dedicated; off unsets host as WEKA dedicated. |
 | `-C`, `--container` \<container> | Container name.                                                    |
 
 ### weka local resources drive
@@ -364,12 +365,12 @@ Set the join IPs for a container. A cluster requires at least 5 backend hosts, a
 weka local resources join-ips <management-ips>… [--container <container>] [--join-fqdns <strings>…] [--restricted]
 ```
 
-| Parameter                        | Description                                                                                                                                                                                      |
-| -------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `management-ips`\*…              | New IP:port pairs for the management processes. If no port is used the command will use the default Weka port.                                                                                   |
-| `-C`, `--container` \<container> | Container name.                                                                                                                                                                                  |
-| `--join-fqdns` \<strings>…       | FQDN:port pairs for the management processes. If no port is used the command will use the default Weka port. Multiple values may be supplied separated by commas, or the option may be repeated. |
-| `--restricted`                   | Join using restricted client port.                                                                                                                                                               |
+| Parameter                        | Description                                                                                                                                                                                 |
+| -------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `management-ips`\*…              | New IP:port pairs for the management processes. If no port is used the command will use the default port.                                                                                   |
+| `-C`, `--container` \<container> | Container name.                                                                                                                                                                             |
+| `--join-fqdns` \<strings>…       | FQDN:port pairs for the management processes. If no port is used the command will use the default port. Multiple values may be supplied separated by commas, or the option may be repeated. |
+| `--restricted`                   | Join using restricted client port.                                                                                                                                                          |
 
 ### weka local resources join-secret
 
@@ -419,10 +420,10 @@ Set the memory used by this container.
 weka local resources memory <memory> [--container <container>]
 ```
 
-| Parameter                        | Description                                                           |
-| -------------------------------- | --------------------------------------------------------------------- |
-| `memory`\*                       | Memory dedicated to Weka in bytes, set to 0 to let the system decide. |
-| `-C`, `--container` \<container> | Container name.                                                       |
+| Parameter                        | Description                                                                    |
+| -------------------------------- | ------------------------------------------------------------------------------ |
+| `memory`\*                       | Memory dedicated to the container in bytes, set to 0 to let the system decide. |
+| `-C`, `--container` \<container> | Container name.                                                                |
 
 ### weka local resources net
 
@@ -502,7 +503,7 @@ weka local resources restore [--container <container>]
 
 ## weka local restart
 
-Restart a Weka container.
+Restart a container.
 
 ```sh
 weka local restart [<container>…] [--dont-restart-dependent-containers] [--force] [--timeout <string>] [--type <strings>…] [--wait-time <string>]
@@ -519,7 +520,7 @@ weka local restart [<container>…] [--dont-restart-dependent-containers] [--for
 
 ## weka local rm
 
-Delete a Weka container from the local machine.
+Delete a container from the local machine.
 
 ```sh
 weka local rm [<containers>…] [--all] [--force]
@@ -549,7 +550,7 @@ weka local setup
 
 ### weka local setup client
 
-Setup a persistent Weka client container.
+Setup a persistent client container.
 
 ```sh
 weka local setup client [--allow-mix-setting] [--auto-remove-timeout <uint>] [--bandwidth <float>] [--base-port <uint16>] [--container-id <uint16>] [--core-ids <ints>…] [--cores <uint>] [--dedicate] [--dedicated-mode <string>] [--disable] [--disable-nvidia-vf-single-ip] [--failure-domain <string>] [--force] [--fqdn <string>] [--ignore-used-ports] [--join-fqdns <strings>…] [--join-ips <strings>…] [--management-ips <strings>…] [--management-net <string>] [--memory <capacity>] [--name <string>] [--net <strings>…] [--no-start] [--resources-path <string>] [--restricted] [--scan-rdma <string>] [--skip-management-ips-check] [--timeout <string>] [--weka-version <string>]
@@ -564,7 +565,7 @@ weka local setup client [--allow-mix-setting] [--auto-remove-timeout <uint>] [--
 | `--container-id` \<uint16>      | Designate a container ID to use when joining the cluster.                                                                            |
 | `--core-ids` \<ints>…           | Specific CPU core IDs to use. Multiple values may be supplied separated by commas, or the option may be repeated.                    |
 | `--cores` \<uint>               | Number of CPU cores to allocate.                                                                                                     |
-| `--dedicate`                    | Set the host as Weka-dedicated.                                                                                                      |
+| `--dedicate`                    | Set the host as WEKA-dedicated.                                                                                                      |
 | `--dedicated-mode` \<string>    | DPDK networking dedication mode.                                                                                                     |
 | `--disable`                     | Create the container as disabled.                                                                                                    |
 | `--disable-nvidia-vf-single-ip` | Disable single-IP mode for Nvidia VFs (single IP is the default).                                                                    |
@@ -576,7 +577,7 @@ weka local setup client [--allow-mix-setting] [--auto-remove-timeout <uint>] [--
 | `--join-ips` \<strings>…        | IP:port pairs of management processes to join. Multiple values may be supplied separated by commas, or the option may be repeated.   |
 | `--management-ips` \<strings>…  | IPs for management nodes. Multiple values may be supplied separated by commas, or the option may be repeated.                        |
 | `--management-net` \<string>    | Auto-configure management network IPs.                                                                                               |
-| `--memory` \<capacity>          | Memory dedicated to Weka, set to 0 to let the system decide.                                                                         |
+| `--memory` \<capacity>          | Memory dedicated to the container, set to 0 to let the system decide.                                                                |
 | `-n`, `--name` \<string>        | Container name.                                                                                                                      |
 | `--net` \<strings>…             | Network device specification. Multiple values may be supplied separated by commas, or the option may be repeated.                    |
 | `--no-start`                    | Do not start the container after setup.                                                                                              |
@@ -585,7 +586,7 @@ weka local setup client [--allow-mix-setting] [--auto-remove-timeout <uint>] [--
 | `--scan-rdma` \<string>         | Scan for RDMA devices.                                                                                                               |
 | `--skip-management-ips-check`   | Skip enforcement of management IPs.                                                                                                  |
 | `-t`, `--timeout` \<string>     | Timeout for join operation.                                                                                                          |
-| `--weka-version` \<string>      | Weka version to use for this container.                                                                                              |
+| `--weka-version` \<string>      | Software version to use for this container.                                                                                          |
 
 ### weka local setup compute
 
@@ -603,7 +604,7 @@ weka local setup compute [--allow-mix-setting] [--bandwidth <float>] [--base-por
 | `--container-id` \<uint16>      | Designate a container ID to use when joining the cluster.                                                                            |
 | `--core-ids` \<ints>…           | Specific CPU core IDs to use. Multiple values may be supplied separated by commas, or the option may be repeated.                    |
 | `--cores` \<uint>               | Number of CPU cores to allocate.                                                                                                     |
-| `--dedicate`                    | Set the host as Weka-dedicated.                                                                                                      |
+| `--dedicate`                    | Set the host as WEKA-dedicated.                                                                                                      |
 | `--dedicated-mode` \<string>    | DPDK networking dedication mode.                                                                                                     |
 | `--disable`                     | Create the container as disabled.                                                                                                    |
 | `--disable-nvidia-vf-single-ip` | Disable single-IP mode for Nvidia VFs (single IP is the default).                                                                    |
@@ -615,7 +616,7 @@ weka local setup compute [--allow-mix-setting] [--bandwidth <float>] [--base-por
 | `--join-ips` \<strings>…        | IP:port pairs of management processes to join. Multiple values may be supplied separated by commas, or the option may be repeated.   |
 | `--management-ips` \<strings>…  | IPs for management nodes. Multiple values may be supplied separated by commas, or the option may be repeated.                        |
 | `--management-net` \<string>    | Auto-configure management network IPs.                                                                                               |
-| `--memory` \<capacity>          | Memory dedicated to Weka, set to 0 to let the system decide.                                                                         |
+| `--memory` \<capacity>          | Memory dedicated to the container, set to 0 to let the system decide.                                                                |
 | `-n`, `--name` \<string>        | Container name.                                                                                                                      |
 | `--net` \<strings>…             | Network device specification. Multiple values may be supplied separated by commas, or the option may be repeated.                    |
 | `--no-start`                    | Do not start the container after setup.                                                                                              |
@@ -623,11 +624,11 @@ weka local setup compute [--allow-mix-setting] [--bandwidth <float>] [--base-por
 | `--scan-rdma` \<string>         | Scan for RDMA devices.                                                                                                               |
 | `--skip-management-ips-check`   | Skip enforcement of management IPs.                                                                                                  |
 | `-t`, `--timeout` \<string>     | Timeout for join operation.                                                                                                          |
-| `--weka-version` \<string>      | Weka version to use for this container.                                                                                              |
+| `--weka-version` \<string>      | Software version to use for this container.                                                                                          |
 
 ### weka local setup container
 
-Setup a local weka container with the full set of container options.
+Setup a local container with the full set of container options.
 
 ```sh
 weka local setup container
@@ -650,7 +651,7 @@ weka local setup drives [--allow-mix-setting] [--bandwidth <float>] [--base-port
 | `--container-id` \<uint16>      | Designate a container ID to use when joining the cluster.                                                                            |
 | `--core-ids` \<ints>…           | Specific CPU core IDs to use. Multiple values may be supplied separated by commas, or the option may be repeated.                    |
 | `--cores` \<uint>               | Number of CPU cores to allocate.                                                                                                     |
-| `--dedicate`                    | Set the host as Weka-dedicated.                                                                                                      |
+| `--dedicate`                    | Set the host as WEKA-dedicated.                                                                                                      |
 | `--dedicated-mode` \<string>    | DPDK networking dedication mode.                                                                                                     |
 | `--disable`                     | Create the container as disabled.                                                                                                    |
 | `--disable-nvidia-vf-single-ip` | Disable single-IP mode for Nvidia VFs (single IP is the default).                                                                    |
@@ -663,7 +664,7 @@ weka local setup drives [--allow-mix-setting] [--bandwidth <float>] [--base-port
 | `--join-ips` \<strings>…        | IP:port pairs of management processes to join. Multiple values may be supplied separated by commas, or the option may be repeated.   |
 | `--management-ips` \<strings>…  | IPs for management nodes. Multiple values may be supplied separated by commas, or the option may be repeated.                        |
 | `--management-net` \<string>    | Auto-configure management network IPs.                                                                                               |
-| `--memory` \<capacity>          | Memory dedicated to Weka, set to 0 to let the system decide.                                                                         |
+| `--memory` \<capacity>          | Memory dedicated to the container, set to 0 to let the system decide.                                                                |
 | `-n`, `--name` \<string>        | Container name.                                                                                                                      |
 | `--net` \<strings>…             | Network device specification. Multiple values may be supplied separated by commas, or the option may be repeated.                    |
 | `--no-start`                    | Do not start the container after setup.                                                                                              |
@@ -672,7 +673,7 @@ weka local setup drives [--allow-mix-setting] [--bandwidth <float>] [--base-port
 | `--scan-rdma` \<string>         | Scan for RDMA devices.                                                                                                               |
 | `--skip-management-ips-check`   | Skip enforcement of management IPs.                                                                                                  |
 | `-t`, `--timeout` \<string>     | Timeout for join operation.                                                                                                          |
-| `--weka-version` \<string>      | Weka version to use for this container.                                                                                              |
+| `--weka-version` \<string>      | Software version to use for this container.                                                                                          |
 
 ### weka local setup envoy
 
@@ -752,7 +753,7 @@ weka local start [<container>…] [--skip-start-and-enable-dependent] [--type <s
 
 ## weka local status
 
-Show the status of a local Weka container.
+Show the status of a local container.
 
 ```sh
 weka local status [--type <string>]
@@ -774,13 +775,13 @@ weka local stop [<container>…] [--force] [--reason <string>] [--timeout <strin
 | -------------------------- | -------------------------------------------------------------------------------------------------------------------- |
 | `container`…               | Container name(s).                                                                                                   |
 | `-f`, `--force`            | Force the operation.                                                                                                 |
-| `--reason` \<string>       | The reason weka was stopped.                                                                                         |
+| `--reason` \<string>       | The reason for stopping.                                                                                             |
 | `--timeout` \<string>      | Timeout for the stop operation (e.g. 60s, 1m).                                                                       |
 | `-t`, `--type` \<strings>… | Container type(s) to operate on. Multiple values may be supplied separated by commas, or the option may be repeated. |
 
 ## weka local upgrade
 
-Upgrade a Weka container to its cluster version.
+Upgrade a container to its cluster version.
 
 ```sh
 weka local upgrade

@@ -17,7 +17,7 @@ weka version [--checksum] [--client-only] [--driver-only] [--full]
 
 ## weka version current
 
-Print the current version of Weka. If no version is set, a failure exit status is returned.
+Print the current software version. If no version is set, a failure exit status is returned.
 
 ```sh
 weka version current [--container <container>]
@@ -29,7 +29,7 @@ weka version current [--container <container>]
 
 ## weka version get
 
-Download a Weka version to the local machine.
+Download a software version to the local machine.
 
 ```sh
 weka version get <version> [--agent-only] [--client-only] [--driver-only] [--from <server>…] [--no-progress-bar] [--set-current] [--set-dist-servers] [--token <string>]
@@ -37,7 +37,7 @@ weka version get <version> [--agent-only] [--client-only] [--driver-only] [--fro
 
 | Parameter            | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
 | -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `version`\*          | Weka software version to download.                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| `version`\*          | Software version to download.                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
 | `--agent-only`       | Only download the agent.                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
 | `--client-only`      | Only download the components needed for a client.                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
 | `--driver-only`      | Only download the components required for compiling drivers.                                                                                                                                                                                                                                                                                                                                                                                                                                      |
@@ -49,7 +49,7 @@ weka version get <version> [--agent-only] [--client-only] [--driver-only] [--fro
 
 ## weka version prepare
 
-Prepare the Weka software version for use. This includes compiling the version drivers for the local machine.
+Prepare the software version for use. This includes compiling the version drivers for the local machine.
 
 ```sh
 weka version prepare <version> [<container>…]
@@ -70,7 +70,7 @@ weka version reset
 
 ## weka version rm
 
-Delete a version of Weka from the machine this command is executed from.
+Delete an installed software version from the machine this command is executed from.
 
 ```sh
 weka version rm [<version>…] [--clean-unused] [--force]

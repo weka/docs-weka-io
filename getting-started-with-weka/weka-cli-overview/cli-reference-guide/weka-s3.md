@@ -4,7 +4,7 @@ description: Manage the WEKA S3 service.
 
 # weka s3
 
-Manage the WEKA S3 service.
+Manage the S3 service.
 
 ```sh
 weka s3
@@ -35,7 +35,7 @@ weka s3 bucket add <name> [--existing-path <string>] [--force] [--fs-id <fs-id>]
 | `--fs-name` \<string>       | Filesystem name for the bucket.                                                                     |
 | `--hard-quota` \<capacity>  | Hard limit for the directory.                                                                       |
 | `--object-locking-on`       | Enable S3 Object Lock on the bucket (creation-time only; requires cluster-wide versioning support). |
-| `--policy` \<bucket-policy> | Existing S3 IAM policy to assign to the bucket.                                                     |
+| `--policy` \<bucket-policy> | Existing S3 IAM policy to assign to the bucket. Valid values: none, download, upload, public.       |
 | `--policy-json` \<string>   | Path to policy file. File must contain JSON definition of policy.                                   |
 
 ### weka s3 bucket checksum
@@ -78,10 +78,10 @@ Set the checksum mode for a bucket.
 weka s3 bucket checksum set <name> <checksum>
 ```
 
-| Parameter    | Description                          |
-| ------------ | ------------------------------------ |
-| `name`\*     | Name of the bucket.                  |
-| `checksum`\* | Checksum mode to set for the bucket. |
+| Parameter    | Description                                                   |
+| ------------ | ------------------------------------------------------------- |
+| `name`\*     | Name of the bucket.                                           |
+| `checksum`\* | Checksum mode to set for the bucket. Valid values: none, md5. |
 
 ### weka s3 bucket etag-alg
 
@@ -115,7 +115,7 @@ weka s3 bucket etag-alg set <name> <algorithm> [--force]
 | Parameter       | Description                                                     |
 | --------------- | --------------------------------------------------------------- |
 | `name`\*        | Name of the S3 bucket.                                          |
-| `algorithm`\*   | ETag algorithm to set for the bucket.                           |
+| `algorithm`\*   | ETag algorithm to set for the bucket. Valid values: md5, uid.   |
 | `-f`, `--force` | Force action. Perform this action without further confirmation. |
 
 ### weka s3 bucket integrity-mode
@@ -147,11 +147,11 @@ Set the integrity mode for a performance bucket.
 weka s3 bucket integrity-mode set <name> <mode> [--force]
 ```
 
-| Parameter       | Description                                                     |
-| --------------- | --------------------------------------------------------------- |
-| `name`\*        | Name of the S3 bucket.                                          |
-| `mode`\*        | Integrity mode to set for the bucket.                           |
-| `-f`, `--force` | Force action. Perform this action without further confirmation. |
+| Parameter       | Description                                                                    |
+| --------------- | ------------------------------------------------------------------------------ |
+| `name`\*        | Name of the S3 bucket.                                                         |
+| `mode`\*        | Integrity mode to set for the bucket. Valid values: client\_defined, disabled. |
+| `-f`, `--force` | Force action. Perform this action without further confirmation.                |
 
 ### weka s3 bucket lifecycle-rule
 
@@ -243,14 +243,14 @@ Add a notification for a bucket.
 weka s3 bucket notification add <name> --target-name <string> --target-type <target-type> [--events <string>] [--filter-prefix <string>] [--filter-suffix <string>]
 ```
 
-| Parameter                        | Description                            |
-| -------------------------------- | -------------------------------------- |
-| `name`\*                         | Name of the bucket.                    |
-| `--target-name` \<string>\*      | S3 bucket notification target name.    |
-| `--target-type` \<target-type>\* | S3 bucket notification target type.    |
-| `--events` \<string>             | Comma-separated list of events.        |
-| `--filter-prefix` \<string>      | Filter prefix for notification events. |
-| `--filter-suffix` \<string>      | Filter suffix for notification events. |
+| Parameter                        | Description                                             |
+| -------------------------------- | ------------------------------------------------------- |
+| `name`\*                         | Name of the bucket.                                     |
+| `--target-name` \<string>\*      | S3 bucket notification target name.                     |
+| `--target-type` \<target-type>\* | S3 bucket notification target type. Valid value: kafka. |
+| `--events` \<string>             | Comma-separated list of events.                         |
+| `--filter-prefix` \<string>      | Filter prefix for notification events.                  |
+| `--filter-suffix` \<string>      | Filter suffix for notification events.                  |
 
 #### weka s3 bucket notification list
 
@@ -274,14 +274,14 @@ Remove a notification for a bucket.
 weka s3 bucket notification remove <name> --target-name <string> --target-type <target-type> [--events <string>] [--filter-prefix <string>] [--filter-suffix <string>]
 ```
 
-| Parameter                        | Description                            |
-| -------------------------------- | -------------------------------------- |
-| `name`\*                         | Name of the bucket.                    |
-| `--target-name` \<string>\*      | S3 bucket notification target name.    |
-| `--target-type` \<target-type>\* | S3 bucket notification target type.    |
-| `--events` \<string>             | Comma-separated list of events.        |
-| `--filter-prefix` \<string>      | Filter prefix for notification events. |
-| `--filter-suffix` \<string>      | Filter suffix for notification events. |
+| Parameter                        | Description                                             |
+| -------------------------------- | ------------------------------------------------------- |
+| `name`\*                         | Name of the bucket.                                     |
+| `--target-name` \<string>\*      | S3 bucket notification target name.                     |
+| `--target-type` \<target-type>\* | S3 bucket notification target type. Valid value: kafka. |
+| `--events` \<string>             | Comma-separated list of events.                         |
+| `--filter-prefix` \<string>      | Filter prefix for notification events.                  |
+| `--filter-suffix` \<string>      | Filter suffix for notification events.                  |
 
 ### weka s3 bucket policy
 
@@ -335,10 +335,10 @@ Set S3 policy for a bucket.
 weka s3 bucket policy set <bucket-name> <bucket-policy>
 ```
 
-| Parameter         | Description                            |
-| ----------------- | -------------------------------------- |
-| `bucket-name`\*   | Name of the bucket.                    |
-| `bucket-policy`\* | S3 IAM policy to assign to the bucket. |
+| Parameter         | Description                                                                          |
+| ----------------- | ------------------------------------------------------------------------------------ |
+| `bucket-name`\*   | Name of the bucket.                                                                  |
+| `bucket-policy`\* | S3 IAM policy to assign to the bucket. Valid values: none, download, upload, public. |
 
 #### weka s3 bucket policy set-custom
 
@@ -429,11 +429,11 @@ Set the LIST sorting mode for a performance bucket.
 weka s3 bucket sorting set <name> <mode> [--force]
 ```
 
-| Parameter       | Description                                                     |
-| --------------- | --------------------------------------------------------------- |
-| `name`\*        | Name of the S3 bucket.                                          |
-| `mode`\*        | Sorting mode to set for the bucket.                             |
-| `-f`, `--force` | Force action. Perform this action without further confirmation. |
+| Parameter       | Description                                                         |
+| --------------- | ------------------------------------------------------------------- |
+| `name`\*        | Name of the S3 bucket.                                              |
+| `mode`\*        | Sorting mode to set for the bucket. Valid values: sorted, unsorted. |
+| `-f`, `--force` | Force action. Perform this action without further confirmation.     |
 
 ### weka s3 bucket versioning
 
@@ -489,7 +489,7 @@ weka s3 cluster
 
 ### weka s3 cluster add
 
-Create an S3 cluster backed by WEKA.
+Create an S3 cluster.
 
 ```sh
 weka s3 cluster add <config-fs-name>… [--all-servers] [--allow-versioning] [--anonymous-posix-gid <uint>] [--anonymous-posix-uid <uint>] [--container <container-ids>…] [--default-fs-name <string>] [--domain <strings>…] [--force] [--max-buckets-limit <uint>] [--port <uint16>]
@@ -666,10 +666,10 @@ weka s3 cluster notification-target add --brokers <strings>… --name <string> -
 | `--brokers` \<strings>\*…            | Kafka brokers to which events will be sent (max 8). Multiple values may be supplied separated by commas, or the option may be repeated. |
 | `--name` \<string>\*                 | Notification target name.                                                                                                               |
 | `--topic` \<string>\*                | Kafka topic for generated messages.                                                                                                     |
-| `--type` \<target-type>\*            | Notification target type.                                                                                                               |
+| `--type` \<target-type>\*            | Notification target type. Valid value: kafka.                                                                                           |
 | `--kafka-version` \<string>          | Kafka version.                                                                                                                          |
 | `--sasl`                             | Enable SASL authentication.                                                                                                             |
-| `--sasl-mechanism` \<sasl-mechanism> | SASL mechanism.                                                                                                                         |
+| `--sasl-mechanism` \<sasl-mechanism> | SASL mechanism. Valid values: plain, sha256, sha512.                                                                                    |
 | `--sasl-password` \<string>          | SASL password.                                                                                                                          |
 | `--sasl-username` \<string>          | SASL username.                                                                                                                          |
 | `--tls`                              | Enable or disable TLS. TLS is enabled by default.                                                                                       |
@@ -684,23 +684,22 @@ Manage notification target certificates.
 weka s3 cluster notification-target cert
 ```
 
-**weka s3 cluster notification-target cert add**
+##### weka s3 cluster notification-target cert add
 
 Add a new certificate for a bucket notification target.
 
 ```sh
-weka s3 cluster notification-target cert add <cert-name> --client-tls-cert <string> --client-tls-key <string> --target-type <target-type> [--cert-name <string>]
+weka s3 cluster notification-target cert add <cert-name> --client-tls-cert <string> --client-tls-key <string> --target-type <target-type>
 ```
 
-| Parameter                        | Description                             |
-| -------------------------------- | --------------------------------------- |
-| `cert-name`\*                    | Certificate name.                       |
-| `--client-tls-cert` \<string>\*  | File containing the client certificate. |
-| `--client-tls-key` \<string>\*   | File containing the client private key. |
-| `--target-type` \<target-type>\* | Notification target type.               |
-| `--cert-name` \<string>          | Certificate object name.                |
+| Parameter                        | Description                                   |
+| -------------------------------- | --------------------------------------------- |
+| `cert-name`\*                    | Certificate name.                             |
+| `--client-tls-cert` \<string>\*  | File containing the client certificate.       |
+| `--client-tls-key` \<string>\*   | File containing the client private key.       |
+| `--target-type` \<target-type>\* | Notification target type. Valid value: kafka. |
 
-**weka s3 cluster notification-target cert list**
+##### weka s3 cluster notification-target cert list
 
 List all certificates for a bucket notification target.
 
@@ -708,13 +707,13 @@ List all certificates for a bucket notification target.
 weka s3 cluster notification-target cert list --target-type <target-type>
 ```
 
-| Parameter                        | Description               |
-| -------------------------------- | ------------------------- |
-| `--target-type` \<target-type>\* | Notification target type. |
+| Parameter                        | Description                                   |
+| -------------------------------- | --------------------------------------------- |
+| `--target-type` \<target-type>\* | Notification target type. Valid value: kafka. |
 
 **Columns:** `name`
 
-**weka s3 cluster notification-target cert remove**
+##### weka s3 cluster notification-target cert remove
 
 Remove an existing certificate for a bucket notification target.
 
@@ -722,10 +721,10 @@ Remove an existing certificate for a bucket notification target.
 weka s3 cluster notification-target cert remove <cert-name> --target-type <target-type>
 ```
 
-| Parameter                        | Description                 |
-| -------------------------------- | --------------------------- |
-| `cert-name`\*                    | Certificate name to remove. |
-| `--target-type` \<target-type>\* | Notification target type.   |
+| Parameter                        | Description                                   |
+| -------------------------------- | --------------------------------------------- |
+| `cert-name`\*                    | Certificate name to remove.                   |
+| `--target-type` \<target-type>\* | Notification target type. Valid value: kafka. |
 
 #### weka s3 cluster notification-target list
 
@@ -748,7 +747,7 @@ weka s3 cluster notification-target remove --name <string> --type <target-type> 
 | Parameter                 | Description                                                     |
 | ------------------------- | --------------------------------------------------------------- |
 | `--name` \<string>\*      | Notification target name.                                       |
-| `--type` \<target-type>\* | Notification target type.                                       |
+| `--type` \<target-type>\* | Notification target type. Valid value: kafka.                   |
 | `-f`, `--force`           | Force action. Perform this action without further confirmation. |
 
 #### weka s3 cluster notification-target show
@@ -759,12 +758,12 @@ Show details of a bucket notification target.
 weka s3 cluster notification-target show --name <string> --type <target-type>
 ```
 
-| Parameter                 | Description               |
-| ------------------------- | ------------------------- |
-| `--name` \<string>\*      | Notification target name. |
-| `--type` \<target-type>\* | Notification target type. |
+| Parameter                 | Description                                   |
+| ------------------------- | --------------------------------------------- |
+| `--name` \<string>\*      | Notification target name.                     |
+| `--type` \<target-type>\* | Notification target type. Valid value: kafka. |
 
-**Columns:** `name`, `topic`, `brokers`, `tls`, `tls_skip_verify`, `sasl`, `sasl_user`, `sasl_password`, `sasl_mechanism`, `queue_limit`, `queue_dir`
+**Columns:** `name`, `topic`, `brokers`, `kafka_version`, `tls`, `tls_cert`, `tls_skip_verify`, `sasl`, `sasl_user`, `sasl_password`, `sasl_mechanism`, `queue_limit`, `queue_dir`
 
 #### weka s3 cluster notification-target status
 
@@ -787,11 +786,11 @@ weka s3 cluster notification-target update --name <string> --type <target-type> 
 | Parameter                            | Description                                                                                                                             |
 | ------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------- |
 | `--name` \<string>\*                 | Notification target name.                                                                                                               |
-| `--type` \<target-type>\*            | Notification target type.                                                                                                               |
+| `--type` \<target-type>\*            | Notification target type. Valid value: kafka.                                                                                           |
 | `--brokers` \<strings>…              | Kafka brokers to which events will be sent (max 8). Multiple values may be supplied separated by commas, or the option may be repeated. |
 | `--kafka-version` \<string>          | Kafka version.                                                                                                                          |
 | `--sasl`                             | Enable or disable SASL authentication.                                                                                                  |
-| `--sasl-mechanism` \<sasl-mechanism> | SASL mechanism.                                                                                                                         |
+| `--sasl-mechanism` \<sasl-mechanism> | SASL mechanism. Valid values: plain, sha256, sha512.                                                                                    |
 | `--sasl-password` \<string>          | SASL password.                                                                                                                          |
 | `--sasl-username` \<string>          | SASL username.                                                                                                                          |
 | `--tls`                              | Enable or disable TLS. TLS is enabled by default.                                                                                       |
@@ -815,12 +814,12 @@ Configure OIDC authentication for S3, enabling integration with identity provide
 weka s3 cluster oidc add --config-url <string> --type <oidc-type> [--client-id <string>] [--client-secret <string>]
 ```
 
-| Parameter                   | Description                                  |
-| --------------------------- | -------------------------------------------- |
-| `--config-url` \<string>\*  | OIDC configuration URL.                      |
-| `--type` \<oidc-type>\*     | Identity provider type.                      |
-| `--client-id` \<string>     | OIDC client ID.                              |
-| `--client-secret` \<string> | Client secret (required when type is azure). |
+| Parameter                   | Description                                                     |
+| --------------------------- | --------------------------------------------------------------- |
+| `--config-url` \<string>\*  | OIDC configuration URL.                                         |
+| `--type` \<oidc-type>\*     | Identity provider type. Valid values: generic, azure, keycloak. |
+| `--client-id` \<string>     | OIDC client ID.                                                 |
+| `--client-secret` \<string> | Client secret (required when type is azure).                    |
 
 #### weka s3 cluster oidc remove
 
@@ -848,16 +847,16 @@ Update existing OIDC configuration.
 weka s3 cluster oidc update [--client-id <string>] [--client-secret <string>] [--config-url <string>] [--type <oidc-type>]
 ```
 
-| Parameter                   | Description                                  |
-| --------------------------- | -------------------------------------------- |
-| `--client-id` \<string>     | OIDC client ID.                              |
-| `--client-secret` \<string> | Client secret (required when type is azure). |
-| `--config-url` \<string>    | OIDC configuration URL.                      |
-| `--type` \<oidc-type>       | Identity provider type.                      |
+| Parameter                   | Description                                                     |
+| --------------------------- | --------------------------------------------------------------- |
+| `--client-id` \<string>     | OIDC client ID.                                                 |
+| `--client-secret` \<string> | Client secret (required when type is azure).                    |
+| `--config-url` \<string>    | OIDC configuration URL.                                         |
+| `--type` \<oidc-type>       | Identity provider type. Valid values: generic, azure, keycloak. |
 
 ### weka s3 cluster performance-bucket
 
-Display existing global settings for WEKA S3 performance buckets.
+Display existing global settings for S3 performance buckets.
 
 ```sh
 weka s3 cluster performance-bucket
@@ -965,12 +964,12 @@ Set the default performance settings for all S3 Performance Buckets.
 weka s3 cluster update performance-bucket [--etag-alg <etag-algorithm>] [--force] [--integrity-mode <integrity-mode>] [--sorting <sorting>]
 ```
 
-| Parameter                            | Description                                                     |
-| ------------------------------------ | --------------------------------------------------------------- |
-| `--etag-alg` \<etag-algorithm>       | Default ETag algorithm.                                         |
-| `-f`, `--force`                      | Force action. Perform this action without further confirmation. |
-| `--integrity-mode` \<integrity-mode> | Default integrity mode.                                         |
-| `--sorting` \<sorting>               | Default LIST sorting.                                           |
+| Parameter                            | Description                                                      |
+| ------------------------------------ | ---------------------------------------------------------------- |
+| `--etag-alg` \<etag-algorithm>       | Default ETag algorithm. Valid values: md5, uid.                  |
+| `-f`, `--force`                      | Force action. Perform this action without further confirmation.  |
+| `--integrity-mode` \<integrity-mode> | Default integrity mode. Valid values: client\_defined, disabled. |
+| `--sorting` \<sorting>               | Default LIST sorting. Valid values: sorted, unsorted.            |
 
 ## weka s3 group
 

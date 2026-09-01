@@ -114,6 +114,8 @@ Show quota analytics reporting and path redaction configuration.
 weka cloud quota-analytics status
 ```
 
+**Columns:** `reporting`, `redactPaths`
+
 ## weka cloud status
 
 Show cloud connectivity status.

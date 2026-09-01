@@ -4,7 +4,7 @@ description: Manage WEKA cluster configuration and resources.
 
 # weka cluster
 
-Administer the Weka cluster.
+Administer the cluster.
 
 ```sh
 weka cluster
@@ -12,7 +12,7 @@ weka cluster
 
 ## weka cluster add
 
-Form a Weka cluster from containers that just had Weka installed on them.
+Form a cluster from containers that just had the software installed on them.
 
 ```sh
 weka cluster add <hostnames>… [--admin-password <string>] [--host-fqdn <strings>…] [--host-ips <ip-endpoints>…] [--join-secret <string>]
@@ -38,7 +38,7 @@ weka cluster bucket [<bucket-ids>…]
 | ------------- | ----------------------------- |
 | `bucket-ids`… | Only return these bucket IDs. |
 
-**Columns:** `id`, `leader`, `leader_term`, `last_active_term`, `init_state`, `council`, `previous_leader`, `uptime`, `leader_version_sig`, `electable_mode`, `source_version_members`, `non_source_version_members`, `fill_level_percent`, `rebuild_todo`, `rebuild_total`, `fail_reason`, `activity`
+**Columns:** `id`, `leader`, `leader_term`, `last_active_term`, `init_state`, `fields`, `council`, `previous_leader`, `uptime`, `leader_version_sig`, `electable_mode`, `source_version_members`, `non_source_version_members`, `fill_level_percent`, `rebuild_todo`, `rebuild_total`, `fail_reason`, `activity`
 
 ## weka cluster client-target-version
 
@@ -93,9 +93,9 @@ weka cluster container [<container-ids>…] [--backends] [--clients] [--council]
 | `--hostnames` \<strings>… | Only return containers on these hostnames. Multiple values may be supplied separated by commas, or the option may be repeated. |
 | `-L`, `--leader`          | Only return the cluster leader.                                                                                                |
 | `-l`, `--leadership`      | Only return containers that are part of the cluster leadership.                                                                |
-| `--local`                 | Get result from local weka host.                                                                                               |
+| `--local`                 | Get result from the local container.                                                                                           |
 
-**Columns:** `uid`, `id`, `hostname`, `container`, `machineId`, `ips`, `port`, `status`, `state`, `requestedAction`, `software`, `release`, `mode`, `fdName`, `fdId`, `fdType`, `cores`, `feCores`, `driveCores`, `coreIds`, `bw`, `scrubber_limit`, `dedicated`, `autoRemove`, `leadership`, `memory`, `uptime`, `failureText`, `failure`, `failureTime`, `failureCode`, `recentFailure`, `requestedActionFailureText`, `requestedActionFailure`, `requestedActionFailureTime`, `requestedActionFailureCode`, `addedTime`, `cloudProvider`, `availabilityZone`, `instanceType`, `instanceId`, `hypervisorType`, `osName`, `kernelName`, `kernelRelease`, `kernelVersion`, `architecture`, `tlsStrictnessLevel`, `hardwareMonitoring`
+**Columns:** `uid`, `id`, `hostname`, `container`, `machineId`, `compositeMachineId`, `ips`, `port`, `status`, `state`, `requestedAction`, `software`, `release`, `mode`, `fdName`, `fdId`, `fdType`, `cores`, `feCores`, `driveCores`, `coreIds`, `bw`, `scrubber_limit`, `dedicated`, `autoRemove`, `leadership`, `memory`, `uptime`, `failureText`, `failure`, `failureTime`, `failureCode`, `recentFailure`, `requestedActionFailureText`, `requestedActionFailure`, `requestedActionFailureTime`, `requestedActionFailureCode`, `addedTime`, `cloudProvider`, `availabilityZone`, `instanceType`, `instanceId`, `hypervisorType`, `osName`, `kernelName`, `kernelRelease`, `kernelVersion`, `architecture`, `tlsStrictnessLevel`, `hardwareMonitoring`
 
 ### weka cluster container activate
 
@@ -144,7 +144,7 @@ weka cluster container apply [<container-id>…] [--all] [--force] [--skip-resou
 
 ### weka cluster container bandwidth
 
-Limit weka's bandwidth for the container.
+Limit the container's bandwidth.
 
 This command is deprecated. Use 'weka local resources bandwidth' instead.
 
@@ -171,7 +171,7 @@ weka cluster container clear-failure <container-id>…
 
 ### weka cluster container cores
 
-Dedicate CPU cores to container for WEKA.
+Dedicate CPU cores to the container.
 
 This command is deprecated. Use 'weka local resources cores' instead.
 
@@ -179,19 +179,19 @@ This command is deprecated. Use 'weka local resources cores' instead.
 weka cluster container cores <container-id> <cores> [--allow-mix-setting] [--compute-dedicated-cores <uint>] [--core-ids <uints>…] [--drives-dedicated-cores <uint>] [--frontend-dedicated-cores <uint>] [--no-frontends] [--only-compute-cores] [--only-drives-cores] [--only-frontend-cores]
 ```
 
-| Parameter                            | Description                                                                                                            |
-| ------------------------------------ | ---------------------------------------------------------------------------------------------------------------------- |
-| `container-id`\*                     | Container ID.                                                                                                          |
-| `cores`\*                            | Number of CPU cores dedicated to WEKA.                                                                                 |
-| `--allow-mix-setting`                | Allow specified core-ids even if there are running containers with AUTO core-ids allocation on the same server.        |
-| `--compute-dedicated-cores` \<uint>  | Number of cores for compute.                                                                                           |
-| `--core-ids` \<uints>…               | Core IDs for weka dedicated cores. Multiple values may be supplied separated by commas, or the option may be repeated. |
-| `--drives-dedicated-cores` \<uint>   | Number of cores for drives.                                                                                            |
-| `--frontend-dedicated-cores` \<uint> | Number of cores for frontends.                                                                                         |
-| `--no-frontends`                     | Do not create frontend processes.                                                                                      |
-| `--only-compute-cores`               | Create only compute processes.                                                                                         |
-| `--only-drives-cores`                | Create only drives processes.                                                                                          |
-| `--only-frontend-cores`              | Create only frontend processes.                                                                                        |
+| Parameter                            | Description                                                                                                     |
+| ------------------------------------ | --------------------------------------------------------------------------------------------------------------- |
+| `container-id`\*                     | Container ID.                                                                                                   |
+| `cores`\*                            | Number of CPU cores dedicated to the container.                                                                 |
+| `--allow-mix-setting`                | Allow specified core-ids even if there are running containers with AUTO core-ids allocation on the same server. |
+| `--compute-dedicated-cores` \<uint>  | Number of cores for compute.                                                                                    |
+| `--core-ids` \<uints>…               | IDs of the dedicated cores. Multiple values may be supplied separated by commas, or the option may be repeated. |
+| `--drives-dedicated-cores` \<uint>   | Number of cores for drives.                                                                                     |
+| `--frontend-dedicated-cores` \<uint> | Number of cores for frontends.                                                                                  |
+| `--no-frontends`                     | Do not create frontend processes.                                                                               |
+| `--only-compute-cores`               | Create only compute processes.                                                                                  |
+| `--only-drives-cores`                | Create only drives processes.                                                                                   |
+| `--only-frontend-cores`              | Create only frontend processes.                                                                                 |
 
 ### weka cluster container deactivate
 
@@ -259,10 +259,10 @@ Show hardware information about one or more containers.
 weka cluster container info-hw [<hostname>] [--info-type <info-types>…]
 ```
 
-| Parameter                    | Description                                                                                                     |
-| ---------------------------- | --------------------------------------------------------------------------------------------------------------- |
-| `hostname`                   | Containers to query, by hostname or IP. If none are supplied, all cluster containers are queried.               |
-| `--info-type` \<info-types>… | Information types to query. Multiple values may be supplied separated by commas, or the option may be repeated. |
+| Parameter                    | Description                                                                                                                                                                          |
+| ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `hostname`                   | Containers to query, by hostname or IP. If none are supplied, all cluster containers are queried.                                                                                    |
+| `--info-type` \<info-types>… | Information types to query. Multiple values may be supplied separated by commas, or the option may be repeated. Valid values: version, osinfo, memory, cores, disks, eths, net, ips. |
 
 ### weka cluster container join-secret
 
@@ -294,7 +294,7 @@ weka cluster container management-ips <container-id> <management-ips>…
 
 ### weka cluster container memory
 
-Dedicate a set amount of RAM to weka.
+Dedicate a set amount of RAM to the container.
 
 This command is deprecated. Use 'weka local resources memory' instead.
 
@@ -302,10 +302,10 @@ This command is deprecated. Use 'weka local resources memory' instead.
 weka cluster container memory <container-id> <memory>
 ```
 
-| Parameter        | Description                                                  |
-| ---------------- | ------------------------------------------------------------ |
-| `container-id`\* | Container ID.                                                |
-| `memory`\*       | Memory dedicated to weka. Set to 0 to let the system decide. |
+| Parameter        | Description                                                           |
+| ---------------- | --------------------------------------------------------------------- |
+| `container-id`\* | Container ID.                                                         |
+| `memory`\*       | Memory dedicated to the container. Set to 0 to let the system decide. |
 
 ### weka cluster container net
 
@@ -338,7 +338,7 @@ weka cluster container net add <container-id> <device> [--gateway <ip>] [--inet6
 | `--gateway` \<ip>        | Default gateway IP address.                                                                                                                 |
 | `--inet6`                | Use IPv6 for RoCE v2 RDMA. The default is IPv4; not required and ignored for Infiniband.                                                    |
 | `--ips` \<ips>…          | IP addresses to be allocated to cores using the device. Multiple values may be supplied separated by commas, or the option may be repeated. |
-| `--ips-type` \<ips-type> | IPs allocation type. POOL: IPs from the default data networking IP pool. USER: configured by the user.                                      |
+| `--ips-type` \<ips-type> | IPs allocation type. POOL: IPs from the default data networking IP pool. USER: configured by the user. Valid values: user, pool.            |
 | `--label` \<string>      | Name of the switch or network group to which this network device is attached.                                                               |
 | `--name` \<string>       | Name for the net device. Auto-generated if empty.                                                                                           |
 | `--netmask` \<uint8>     | Netmask length in bits.                                                                                                                     |
@@ -389,16 +389,16 @@ weka cluster container remove <container> [--no-unimprint] [--no-wait]
 
 ### weka cluster container requested-action
 
-Set the requested action of the supplied containers to one of: STOP, RESTART, APPLY\_RESOURCES to gracefully stop, restart or apply resources to the containers.
+Set the requested action of the supplied containers to one of: STOP, RESTART, APPLY_RESOURCES to gracefully stop, restart or apply resources to the containers.
 
 ```sh
 weka cluster container requested-action <action> <container-id>…
 ```
 
-| Parameter         | Description                                     |
-| ----------------- | ----------------------------------------------- |
-| `action`\*        | Action to request.                              |
-| `container-id`\*… | IDs of the containers to request the action on. |
+| Parameter         | Description                                                                      |
+| ----------------- | -------------------------------------------------------------------------------- |
+| `action`\*        | Action to request. Valid values: none, stop, restart, apply\_resources, upgrade. |
+| `container-id`\*… | IDs of the containers to request the action on.                                  |
 
 ### weka cluster container resources
 
@@ -486,7 +486,7 @@ weka cluster drive [<drive>…] [--container <container-ids>…] [--show-removed
 | `--container` \<container-ids>… | Only return the drives of these container IDs. If not specified, all drives are listed. Multiple values may be supplied separated by commas, or the option may be repeated. |
 | `--show-removed`                | Show drives that were removed from the cluster.                                                                                                                             |
 
-**Columns:** `uid`, `id`, `uuid`, `container`, `hostname`, `process`, `path`, `size`, `status`, `should_be_active`, `stime`, `fdName`, `fdId`, `writable`, `used`, `nvkvused`, `nvkvregions`, `attachment`, `vendor`, `firmware`, `serial_number`, `model`, `added`, `removed`, `block`, `remain`, `threshold`, `drive_status_message`, `pool`, `pci_vid`, `pci_id`, `pci_ssvid`, `pci_ssid`, `location`, `needs_phase_out`, `hard_deactivate`, `needs_phase_out_reason`, `auto_ejection_failure`, `auto_ejection_failure_code`, `auto_ejection_failure_time`, `failed_report_count`, `failed_reporters`
+**Columns:** `uid`, `id`, `uuid`, `container`, `hostname`, `process`, `path`, `size`, `status`, `should_be_active`, `stime`, `fdName`, `fdId`, `writable`, `used`, `nvkvused`, `nvkvregions`, `attachment`, `vendor`, `firmware`, `serial_number`, `model`, `added`, `removed`, `block`, `remain`, `threshold`, `drive_status`, `drive_mgmt_status`, `drive_status_message`, `pool`, `pci_vid`, `pci_id`, `pci_ssvid`, `pci_ssid`, `location`, `needs_phase_out`, `hard_deactivate`, `needs_phase_out_reason`, `auto_ejection_failure`, `auto_ejection_failure_code`, `auto_ejection_failure_time`, `failed_report_count`, `failed_reporters`
 
 ### weka cluster drive activate
 
@@ -508,13 +508,13 @@ Add the given drive.
 weka cluster drive add <container> <device-paths>… [--allow-format-non-wekafs-drives] [--force] [--pool <drive-pool>]
 ```
 
-| Parameter                          | Description                                                                                                  |
-| ---------------------------------- | ------------------------------------------------------------------------------------------------------------ |
-| `container`\*                      | ID of the container where the drive is attached.                                                             |
-| `device-paths`\*…                  | Device paths or UUIDs of the drive(s) to add. A proxy-physical UUID adds all of its matching virtual drives. |
-| `--allow-format-non-wekafs-drives` | Allow reuse of drives formatted by other software.                                                           |
-| `--force`                          | Force formatting for WEKA. Bypasses all safety checks; use with caution.                                     |
-| `--pool` \<drive-pool>             | Disk pool for the drive. Affects how blocks from the drive are used.                                         |
+| Parameter                          | Description                                                                                                   |
+| ---------------------------------- | ------------------------------------------------------------------------------------------------------------- |
+| `container`\*                      | ID of the container where the drive is attached.                                                              |
+| `device-paths`\*…                  | Device paths or UUIDs of the drive(s) to add. A proxy-physical UUID adds all of its matching virtual drives.  |
+| `--allow-format-non-wekafs-drives` | Allow reuse of drives formatted by other software.                                                            |
+| `--force`                          | Force formatting for WEKA. Bypasses all safety checks; use with caution.                                      |
+| `--pool` \<drive-pool>             | Disk pool for the drive. Affects how blocks from the drive are used. Valid values: auto, iu4k, iubig, legacy. |
 
 **Columns:** `dev_file`, `dev_uuid`, `size`, `iu_size`
 
@@ -747,7 +747,7 @@ Show the cluster's proxy base subnet.
 weka cluster network-space proxy subnet
 ```
 
-**weka cluster network-space proxy subnet set**
+##### weka cluster network-space proxy subnet set
 
 Set the proxy base subnet. Must be an IPv4 /16 base ending in .0.0. No container may be joined to any network space at the time of the change. Existing network-space definitions are preserved; their proxy IPs are recomputed from the new base when containers next join.
 
@@ -759,7 +759,7 @@ weka cluster network-space proxy subnet set <subnet>
 | ---------- | ----------------------------------------------------- |
 | `subnet`\* | Proxy base subnet (e.g. 198.18.0.0 or 198.18.0.0/16). |
 
-**weka cluster network-space proxy subnet show**
+##### weka cluster network-space proxy subnet show
 
 Show the cluster's proxy base subnet.
 
@@ -925,8 +925,8 @@ weka cluster process [<process-ids>…] [--backends] [--clients] [--container <c
 | `--hostnames` \<strings>…       | Only return processes on these hostnames. Multiple values may be supplied separated by commas, or the option may be repeated.                                                                      |
 | `-L`, `--leader`                | Only return the cluster leader.                                                                                                                                                                    |
 | `-l`, `--leadership`            | Only return processes that are part of the cluster leadership.                                                                                                                                     |
-| `--local`                       | Get result from local weka host instead of leader.                                                                                                                                                 |
-| `--role` \<process-roles>…      | Only return processes with these roles. Multiple values may be supplied separated by commas, or the option may be repeated.                                                                        |
+| `--local`                       | Get result from the local container instead of the leader.                                                                                                                                         |
+| `--role` \<process-roles>…      | Only return processes with these roles. Multiple values may be supplied separated by commas, or the option may be repeated. Valid values: management, compute, drives, frontend, dataserv.         |
 
 **Columns:** `uid`, `process`, `containerId`, `slot`, `hostname`, `container`, `ips`, `status`, `software`, `release`, `role`, `mode`, `netmode`, `configuredNet`, `leadership`, `cpuId`, `core`, `socket`, `numa`, `cpuModel`, `memory`, `uptime`, `fdName`, `fdId`, `traceHistory`, `fencingReason`, `joinRejectReason`, `failureText`, `failure`, `failureTime`, `failureCode`, `recentFailure`, `deniedReason`, `deniedTime`
 
@@ -938,11 +938,11 @@ Manage physical (or in some cases virtual) servers.
 weka cluster server [--roles <machine-roles>…]
 ```
 
-| Parameter                   | Description                                                                                                               |
-| --------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
-| `--roles` \<machine-roles>… | Only return servers with these roles. Multiple values may be supplied separated by commas, or the option may be repeated. |
+| Parameter                   | Description                                                                                                                                                            |
+| --------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `--roles` \<machine-roles>… | Only return servers with these roles. Multiple values may be supplied separated by commas, or the option may be repeated. Valid values: backend, client, s3, nfs, smb. |
 
-**Columns:** `hostname`, `uid`, `ip`, `port`, `roles`, `status`, `up_since`, `uptime`, `cores`, `memory`, `drives`, `processes`, `load`, `versions`, `architecture`, `ready_for_maintenance`, `requested_action`
+**Columns:** `hostname`, `uid`, `ip`, `port`, `roles`, `deployment_mode`, `status`, `up_since`, `uptime`, `cores`, `memory`, `drives`, `processes`, `load`, `versions`, `architecture`, `ready_for_maintenance`, `requested_action`
 
 ### weka cluster server list
 
@@ -952,11 +952,11 @@ List the cluster servers.
 weka cluster server list [--roles <machine-roles>…]
 ```
 
-| Parameter                   | Description                                                                                                               |
-| --------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
-| `--roles` \<machine-roles>… | Only return servers with these roles. Multiple values may be supplied separated by commas, or the option may be repeated. |
+| Parameter                   | Description                                                                                                                                                            |
+| --------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `--roles` \<machine-roles>… | Only return servers with these roles. Multiple values may be supplied separated by commas, or the option may be repeated. Valid values: backend, client, s3, nfs, smb. |
 
-**Columns:** `hostname`, `uid`, `ip`, `port`, `roles`, `status`, `up_since`, `uptime`, `cores`, `memory`, `drives`, `processes`, `load`, `versions`, `architecture`, `ready_for_maintenance`, `requested_action`
+**Columns:** `hostname`, `uid`, `ip`, `port`, `roles`, `deployment_mode`, `status`, `up_since`, `uptime`, `cores`, `memory`, `drives`, `processes`, `load`, `versions`, `architecture`, `ready_for_maintenance`, `requested_action`
 
 ### weka cluster server requested-action
 
@@ -966,11 +966,11 @@ Set the requested action for all backend containers on the supplied servers to g
 weka cluster server requested-action <action> <servers>… [--timeout <duration>]
 ```
 
-| Parameter               | Description                                                         |
-| ----------------------- | ------------------------------------------------------------------- |
-| `action`\*              | Action to request on all backend containers.                        |
-| `servers`\*…            | Server(s) to request action on — specify by server UID or hostname. |
-| `--timeout` \<duration> | Timeout for the action to be applied.                               |
+| Parameter               | Description                                                                                                |
+| ----------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `action`\*              | Action to request on all backend containers. Valid values: none, stop, restart, apply\_resources, upgrade. |
+| `servers`\*…            | Server(s) to request action on — specify by server UID or hostname.                                        |
+| `--timeout` \<duration> | Timeout for the action to be applied.                                                                      |
 
 ### weka cluster server show
 
@@ -989,6 +989,8 @@ weka cluster server show <machine-uid> [--show-all] [--show-containers] [--show-
 | `--show-networks`   | Show network device details.                                |
 | `--show-processes`  | Show process details.                                       |
 
+**Columns:** `hostname`, `uid`, `status`, `up_since`, `uptime`, `ip`, `port`, `roles`, `deployment_mode`, `load`, `memory`, `cores`, `drives`, `processes`, `versions`, `operating_system`, `architecture`, `platform`, `processors`, `logical_cpus`, `nfs`, `s3`, `smb`, `ready_for_maintenance`, `requested_action`
+
 ## weka cluster start-io
 
 Start the cluster IO service.
@@ -1003,7 +1005,7 @@ weka cluster start-io [--force]
 
 ## weka cluster status
 
-Show overall status of the Weka cluster.
+Show overall status of the cluster.
 
 ```sh
 weka cluster status [--detailed-capacity]
@@ -1049,11 +1051,11 @@ Stop I/O service for the cluster.
 weka cluster stop-io [--brutal-no-flush] [--force] [--keep-external-containers]
 ```
 
-| Parameter                    | Description                                                                                                                                                                        |
-| ---------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `--brutal-no-flush`          | Stop I/O services immediately without graceful flushing of ongoing operations. Using this flag may cause data-loss if used without explicit guidance from WekaIO customer support. |
-| `-f`, `--force`              | Force action. Perform this action without further confirmation.                                                                                                                    |
-| `--keep-external-containers` | Keep external containers such as S3, SMB, and NFS running.                                                                                                                         |
+| Parameter                    | Description                                                                                                                                                                      |
+| ---------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `--brutal-no-flush`          | Stop I/O services immediately without graceful flushing of ongoing operations. Using this flag may cause data-loss if used without explicit guidance from WEKA customer support. |
+| `-f`, `--force`              | Force action. Perform this action without further confirmation.                                                                                                                  |
+| `--keep-external-containers` | Keep external containers such as S3, SMB, and NFS running.                                                                                                                       |
 
 ## weka cluster task
 

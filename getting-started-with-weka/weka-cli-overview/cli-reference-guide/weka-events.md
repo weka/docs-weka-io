@@ -10,20 +10,20 @@ List all events that conform to the filter criteria.
 weka events [--category <event-categories>…] [--cloud-time] [--direction <direction>] [--end-time <time>] [--exclude-type <event-types>…] [--no-proxy] [--num-results <uint>] [--proxy <string>] [--severity <severity>] [--show-internal] [--start-time <time>] [--type <event-types>…]
 ```
 
-| Parameter                               | Description                                                                                                                                          |
-| --------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `-c`, `--category` \<event-categories>… | Include only events in this category. Multiple values may be supplied separated by commas, or the option may be repeated.                            |
-| `-l`, `--cloud-time`                    | Sort by cloud time.                                                                                                                                  |
-| `-d`, `--direction` \<direction>        | Fetch events from the first available event (forward) or the latest created event (backward). Default is backward.                                   |
-| `--end-time` \<time>                    | Include only events that occurred at or before this time.                                                                                            |
-| `-x`, `--exclude-type` \<event-types>…  | Remove events by type. Glob patterns (\*, ?, \[]) are supported. Multiple values may be supplied separated by commas, or the option may be repeated. |
-| `--no-proxy`                            | Do not use an HTTP proxy when connecting to the cloud.                                                                                               |
-| `-n`, `--num-results` \<uint>           | Maximum number of events to report.                                                                                                                  |
-| `--proxy` \<string>                     | Use the given proxy for connecting to the cloud.                                                                                                     |
-| `--severity` \<severity>                | Include events with equal and higher severity.                                                                                                       |
-| `-i`, `--show-internal`                 | Show internal events.                                                                                                                                |
-| `--start-time` \<time>                  | Include only events that occurred at or after this time.                                                                                             |
-| `-t`, `--type` \<event-types>…          | Filter events by type. Glob patterns (\*, ?, \[]) are supported. Multiple values may be supplied separated by commas, or the option may be repeated. |
+| Parameter                               | Description                                                                                                                                         |
+| --------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `-c`, `--category` \<event-categories>… | Include only events in this category. Multiple values may be supplied separated by commas, or the option may be repeated.                           |
+| `-l`, `--cloud-time`                    | Sort by cloud time.                                                                                                                                 |
+| `-d`, `--direction` \<direction>        | Fetch events from the first available event (forward) or the latest created event (backward). Default is backward. Valid values: forward, backward. |
+| `--end-time` \<time>                    | Include only events that occurred at or before this time.                                                                                           |
+| `-x`, `--exclude-type` \<event-types>…  | Remove events by type. Glob patterns (\*, ?, []) are supported. Multiple values may be supplied separated by commas, or the option may be repeated. |
+| `--no-proxy`                            | Do not use an HTTP proxy when connecting to the cloud.                                                                                              |
+| `-n`, `--num-results` \<uint>           | Maximum number of events to report.                                                                                                                 |
+| `--proxy` \<string>                     | Use the given proxy for connecting to the cloud.                                                                                                    |
+| `--severity` \<severity>                | Include events with equal and higher severity. Valid values: critical, major, minor, warning, info.                                                 |
+| `-i`, `--show-internal`                 | Show internal events.                                                                                                                               |
+| `--start-time` \<time>                  | Include only events that occurred at or after this time.                                                                                            |
+| `-t`, `--type` \<event-types>…          | Filter events by type. Glob patterns (\*, ?, []) are supported. Multiple values may be supplied separated by commas, or the option may be repeated. |
 
 **Columns:** `timestamp`, `cloudTime`, `process`, `category`, `severity`, `type`, `entity`, `synopsis`, `description`
 

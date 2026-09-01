@@ -1,6 +1,6 @@
 # weka user
 
-List users defined in the Weka cluster.
+List users defined in the cluster.
 
 ```sh
 weka user [--include-tenants]
@@ -23,7 +23,7 @@ weka user add <username> <role> [<password>] [--posix-gid <uint32>] [--posix-uid
 | Parameter               | Description                                                                                                                                                                                                                                  |
 | ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `username`\*            | Username for new user. The user must present this to login.                                                                                                                                                                                  |
-| `role`\*                | Role for new user.                                                                                                                                                                                                                           |
+| `role`\*                | Role for new user. Valid values: clusteradmin, tenantadmin, regular, readonly, s3, csi.                                                                                                                                                      |
 | `password`              | Password for new user. Must contain at least 8 characters, and have at least one uppercase letter, one lowercase letter, and one number or special character. Typing special characters as arguments to this command might require escaping. |
 | `--posix-gid` \<uint32> | POSIX group ID for user. Used for S3 only.                                                                                                                                                                                                   |
 | `--posix-uid` \<uint32> | POSIX user ID for user. Used for S3 only.                                                                                                                                                                                                    |
@@ -38,7 +38,7 @@ weka user generate-token [--access-token-timeout <duration>] [--plain]
 
 | Parameter                            | Description                                                            |
 | ------------------------------------ | ---------------------------------------------------------------------- |
-| `--access-token-timeout` \<duration> | Duration until the access token expires.                               |
+| `--access-token-timeout` \<duration> | Duration until the access token expires. Default: 30 days.             |
 | `--plain`                            | Print the token to the console instead of copying it to the clipboard. |
 
 ## weka user ldap
@@ -103,7 +103,7 @@ weka user ldap setup <server-uri> <base-dn> <user-object-class> <user-id-attribu
 
 | Parameter                               | Description                                                                                                               |
 | --------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
-| `server-uri`\*                          | LDAP server URI. Format is either \[ldap://]hostname\[:port] or ldaps://hostname\[:port].                                 |
+| `server-uri`\*                          | LDAP server URI. Format is either [ldap://]hostname[:port] or ldaps://hostname[:port].                                    |
 | `base-dn`\*                             | Base DN.                                                                                                                  |
 | `user-object-class`\*                   | User object class.                                                                                                        |
 | `user-id-attribute`\*                   | User ID attribute.                                                                                                        |
@@ -175,7 +175,7 @@ weka user ldap update [--base-dn <string>] [--change-reader-password] [--cluster
 | `--readonly-group` \<string>             | ReadOnly LDAP group. Users in this group are assigned the ReadOnly role.                                                  |
 | `--regular-group` \<string>              | Regular LDAP group. Users in this group are assigned the Regular role.                                                    |
 | `--server-timeout-secs` \<duration>      | LDAP server connection timeout, specified in seconds.                                                                     |
-| `--server-uri` \<string>                 | LDAP server URI. Format is either \[ldap://]hostname\[:port] or ldaps://hostname\[:port].                                 |
+| `--server-uri` \<string>                 | LDAP server URI. Format is either [ldap://]hostname[:port] or ldaps://hostname[:port].                                    |
 | `--start-tls`                            | Issue StartTLS after connecting. URL should not be used with ldaps://.                                                    |
 | `--tenant-admin-group` \<string>         | TenantAdmin LDAP group. Users in this group are assigned the TenantAdmin role.                                            |
 | `--user-id-attribute` \<string>          | User ID attribute.                                                                                                        |
@@ -185,22 +185,24 @@ weka user ldap update [--base-dn <string>] [--change-reader-password] [--cluster
 
 ## weka user login
 
-Logs a user into the Weka cluster. If login is successful, the user credentials are saved to the user's profile.
+Logs a user into the cluster. If login is successful, the user credentials are saved to the user's profile.
 
 ```sh
-weka user login [<username>] [<password>] [--path <string>] [--tenant <string>]
+weka user login [<username>] [<password>] [--access-token-timeout <duration>] [--path <string>] [--refresh-token-timeout <duration>] [--tenant <string>]
 ```
 
-| Parameter                  | Description                                                                                                                                                                                                                                                                                                                                                     |
-| -------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `username`                 | Username of user for authentication. Can be supplied in the envrionment as 'WEKA\_USERNAME'. Prompted for if not set.                                                                                                                                                                                                                                           |
-| `password`                 | Password of the user to authenticate as. Can be supplied in the environment as 'WEKA\_PASSWORD'. Prompted for if not set.                                                                                                                                                                                                                                       |
-| `-p`, `--path` \<string>   | The path where the login token will be saved. This path can also be specified using the WEKA\_TOKEN environment variable. After logging in, use the WEKA\_TOKEN environment variable to specify where the login token is located. Deprecated: Use of profiles is a better solution, or use the weka user generate-token command to create a suitable API token. |
-| `-g`, `--tenant` \<string> | Tenant where the user is located.                                                                                                                                                                                                                                                                                                                               |
+| Parameter                             | Description                                                                                                                                                                                                                                                                                                                                                     |
+| ------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `username`                            | Username of user for authentication. Can be supplied in the environment as 'WEKA\_USERNAME'. Prompted for if not set.                                                                                                                                                                                                                                           |
+| `password`                            | Password of the user to authenticate as. Can be supplied in the environment as 'WEKA\_PASSWORD'. Prompted for if not set.                                                                                                                                                                                                                                       |
+| `--access-token-timeout` \<duration>  | Duration until the access token expires. Defaults to the cluster setting.                                                                                                                                                                                                                                                                                       |
+| `-p`, `--path` \<string>              | The path where the login token will be saved. This path can also be specified using the WEKA\_TOKEN environment variable. After logging in, use the WEKA\_TOKEN environment variable to specify where the login token is located. Deprecated: Use of profiles is a better solution, or use the weka user generate-token command to create a suitable API token. |
+| `--refresh-token-timeout` \<duration> | Duration until the refresh token expires. Defaults to the cluster setting.                                                                                                                                                                                                                                                                                      |
+| `-g`, `--tenant` \<string>            | Tenant where the user is located.                                                                                                                                                                                                                                                                                                                               |
 
 ## weka user logout
 
-Log out of the Weka cluster by removing the saved credentials.
+Log out of the cluster by removing the saved credentials.
 
 ```sh
 weka user logout [--all]
@@ -212,7 +214,7 @@ weka user logout [--all]
 
 ## weka user passwd
 
-Set a user's password. Admins can change the password for any user in their organization.
+Set a user's password. Admins can change the password for any user in their tenant.
 
 ```sh
 weka user passwd [<password>] [--current-password <string>] [--username <username>]
@@ -226,7 +228,7 @@ weka user passwd [<password>] [--current-password <string>] [--username <usernam
 
 ## weka user remove
 
-Remove user from the Weka cluster.
+Remove user from the cluster.
 
 ```sh
 weka user remove <username>
@@ -256,12 +258,12 @@ Change parameters of an existing new user.
 weka user update <username> [--posix-gid <uint32>] [--posix-uid <uint32>] [--role <user-role>]
 ```
 
-| Parameter               | Description                                |
-| ----------------------- | ------------------------------------------ |
-| `username`\*            | Username of user to update.                |
-| `--posix-gid` \<uint32> | POSIX group ID for user. Used for S3 only. |
-| `--posix-uid` \<uint32> | POSIX user ID for user. Used for S3 only.  |
-| `--role` \<user-role>   | New role to set for the user.              |
+| Parameter               | Description                                                                                        |
+| ----------------------- | -------------------------------------------------------------------------------------------------- |
+| `username`\*            | Username of user to update.                                                                        |
+| `--posix-gid` \<uint32> | POSIX group ID for user. Used for S3 only.                                                         |
+| `--posix-uid` \<uint32> | POSIX user ID for user. Used for S3 only.                                                          |
+| `--role` \<user-role>   | New role to set for the user. Valid values: clusteradmin, tenantadmin, regular, readonly, s3, csi. |
 
 ## weka user whoami
 
@@ -271,4 +273,4 @@ Get information about currently logged-in user.
 weka user whoami
 ```
 
-**Columns:** `tenantId`, `tenant`, `username`, `source`, `role`, `uid`, `posixUID`, `posixGID`, `s3Policy`
+**Columns:** `tenantId`, `tenant`, `username`, `source`, `role`, `uid`, `posixUID`, `posixGID`, `s3Policy`, `profile`, `credentials`

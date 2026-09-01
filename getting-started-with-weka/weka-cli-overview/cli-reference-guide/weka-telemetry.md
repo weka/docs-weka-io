@@ -37,7 +37,7 @@ weka telemetry exports add kafka <name> [--allow-unverified-certificate] [--ca-c
 | `--ca-cert` \<string>                      | Path to a PEM-encoded CA certificate file to verify the export's TLS connection against (max 16384 bytes).                                                |
 | `--disabled`                               | Create the export in a disabled state.                                                                                                                    |
 | `--key-field` \<string>                    | Message field to use as the Kafka record key.                                                                                                             |
-| `--sasl-mechanism` \<kafka-sasl-mechanism> | SASL mechanism: plain, scram-sha-256, or scram-sha-512.                                                                                                   |
+| `--sasl-mechanism` \<kafka-sasl-mechanism> | SASL mechanism: plain, scram-sha-256, or scram-sha-512. Valid values: plain, scram-sha-256, scram-sha-512.                                                |
 | `--sasl-password` \<string>                | SASL password.                                                                                                                                            |
 | `--sasl-username` \<string>                | SASL username.                                                                                                                                            |
 | `--sources` \<source-type>…                | Telemetry source to attach to this export. Repeat to attach multiple. Multiple values may be supplied separated by commas, or the option may be repeated. |
@@ -104,9 +104,9 @@ weka telemetry exports add syslog <name> [--allow-unverified-certificate] [--ca-
 | `--allow-unverified-certificate` | Allow connecting to the export's target without verifying its TLS certificate.                                                                            |
 | `--ca-cert` \<string>            | Path to a PEM-encoded CA certificate file to verify the export's TLS connection against (max 16384 bytes).                                                |
 | `--disabled`                     | Create the export in a disabled state.                                                                                                                    |
-| `--facility` \<syslog-facility>  | Syslog facility: local0 through local7 (default local0).                                                                                                  |
-| `--mode` \<syslog-mode>          | Syslog transport mode: tcp or udp (default tcp).                                                                                                          |
-| `--rfc` \<syslog-rfc>            | Syslog message framing: rfc5424 or rfc3164 (default rfc5424).                                                                                             |
+| `--facility` \<syslog-facility>  | Syslog facility: local0 through local7 (default local0). Valid values: local0, local1, local2, local3, local4, local5, local6, local7.                    |
+| `--mode` \<syslog-mode>          | Syslog transport mode: tcp or udp (default tcp). Valid values: tcp, udp.                                                                                  |
+| `--rfc` \<syslog-rfc>            | Syslog message framing: rfc5424 or rfc3164 (default rfc5424). Valid values: rfc5424, rfc3164.                                                             |
 | `--sources` \<source-type>…      | Telemetry source to attach to this export. Repeat to attach multiple. Multiple values may be supplied separated by commas, or the option may be repeated. |
 | `--target` \<string>             | Destination target (host:port or URL) for the export.                                                                                                     |
 | `--verify-with-cluster-cacert`   | Verify the export's TLS certificate against the cluster's own CA certificate.                                                                             |
@@ -171,10 +171,10 @@ List configured telemetry export destinations.
 weka telemetry exports list [--name <string>] [--type <export-type>]
 ```
 
-| Parameter               | Description                                                   |
-| ----------------------- | ------------------------------------------------------------- |
-| `--name` \<string>      | Show only the export with this exact name (case-insensitive). |
-| `--type` \<export-type> | Show only exports of this type.                               |
+| Parameter               | Description                                                                            |
+| ----------------------- | -------------------------------------------------------------------------------------- |
+| `--name` \<string>      | Show only the export with this exact name (case-insensitive).                          |
+| `--type` \<export-type> | Show only exports of this type. Valid values: file, splunk, s3, vector, kafka, syslog. |
 
 **Columns:** `id`, `name`, `enabled`, `export_type`, `target`, `sources`
 

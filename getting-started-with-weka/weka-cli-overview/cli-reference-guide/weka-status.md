@@ -1,6 +1,6 @@
 # weka status
 
-Show overall status of the Weka cluster.
+Show overall status of the cluster.
 
 ```sh
 weka status [--detailed-capacity]

@@ -11,7 +11,7 @@ weka upgrade
 Run upgrade using a specific CLI version. Supports only a minimal set of flags.
 
 ```sh
-weka upgrade backends <target> [--allow-alerts <strings>…] [--can-run] [--container <string>] [--distribute-version] [--enable-upgrade-prompt] [--environment <strings>…] [--expect-stopped-io] [--mode <string>] [--prepare-only] [--skip-alerts-check] [--target-release <string>] [--use-requested-action <on-off>]
+weka upgrade backends <target> [--allow-alerts <strings>…] [--can-run] [--container <string>] [--distribute-version] [--enable-upgrade-prompt] [--environment <strings>…] [--expect-stopped-io] [--mode <string>] [--prepare-only] [--skip-alerts-check] [--skip-deleted-overrides-check] [--target-release <string>] [--use-requested-action <on-off>]
 ```
 
 | Parameter                          | Description                                                                                                                                                                                              |
@@ -27,6 +27,7 @@ weka upgrade backends <target> [--allow-alerts <strings>…] [--can-run] [--cont
 | `--mode` \<string>                 | The type of upgrade to perform.                                                                                                                                                                          |
 | `--prepare-only`                   | Check we can upgrade, download and prepare the version on all hosts, but don't actually start the upgrade process.                                                                                       |
 | `--skip-alerts-check`              | Skip the check making sure there are no active alerts.                                                                                                                                                   |
+| `--skip-deleted-overrides-check`   | Skip the check making sure enabled manual overrides are supported by the target version.                                                                                                                 |
 | `--target-release` \<string>       | The target release to upgrade to. This is a release string and should be in the format X.Y.Z.                                                                                                            |
 | `--use-requested-action` \<on-off> | Use the requested-action mechanism to drain containers during upgrade.                                                                                                                                   |
 

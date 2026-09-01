@@ -4,7 +4,7 @@ description: Manage Data Services configuration and background tasks.
 
 # weka dataservice
 
-Manage Weka dataservice configuration and tasks.
+Manage dataservice configuration and tasks.
 
 ```sh
 weka dataservice

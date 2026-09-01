@@ -4,7 +4,7 @@ description: Access the WEKA GUI through the CLI.
 
 # weka gui
 
-Tools for reaching the Weka cluster's web GUI from the CLI.
+Tools for reaching the cluster's web GUI from the CLI.
 
 ```sh
 weka gui
