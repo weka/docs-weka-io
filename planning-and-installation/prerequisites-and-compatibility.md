@@ -225,7 +225,6 @@ Shared networking configuration for NIC models:
     WEKA requires visibility and connectivity to all peers, without interference from networking technologies like Network Address Translation (NAT).
 * **PKEY (Partition Key)**\
   A feature specific to InfiniBand networks that enables the creation of isolated virtual networks (partitions) on a single physical fabric, controlling which endpoints can communicate.
-
 *   **Ethernet flow control (pause frames)**
 
     Disable 802.3x link-level flow control on the dataplane interfaces of all backend servers and clients: `ethtool -A <interface> rx off tx off`. Some NIC drivers force pause frames on without autonegotiation, which appears as `Autonegotiate: off, RX: on, TX: on` in the `ethtool -a` output. Do not run the cluster with this setting. If the site network policy requires flow control and RoCE is not in use, autonegotiate it with the switch (`Autonegotiate: on`) rather than forcing it on.
@@ -422,6 +421,10 @@ WEKA integrates with object stores for three primary purposes: extending the fil
 * **Tiering:** Moves inactive data from the high-performance SSD tier to a local object store bucket. This frees up SSD capacity while keeping the data accessible within the unified filesystem namespace. Tiering requires high performance and consistency from the object store.
 * **Local Snap-to-Object:** Sends immutable snapshots of a filesystem to a local object store bucket, one that is close to the cluster. This provides an efficient and secure method for local backup and fast recovery.
 * **Remote Snap-to-Object:** Sends immutable snapshots of a filesystem to a remote object store bucket, typically in a different geographic location. This provides an efficient and secure method for remote backup and disaster recovery.
+
+**Related topics**
+
+[Snap-To-Object and tiering](../weka-filesystems-and-object-stores/snap-to-obj/#snap-to-object-and-tiering) (how Tiering and Local Snap-to-Object share the same object data when they use the same bucket.)
 
 ### Certified object stores and support status
 
