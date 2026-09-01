@@ -57,10 +57,6 @@ Service packs for Current and Maintenance phases include bug fixes and updates f
 This figure shows an example. Support phases change as new Release Lines are introduced.
 {% endhint %}
 
-{% hint style="warning" %}
-**INTERNAL, remove before publication. TBD (Docs):** Regenerate `release_line_lifecycle.png` for the 6.0 GA. It is drawn against the May 2026 status, which puts 5.x at N; it needs 6.x as N, 5.x as N-1, and 4.3 / 4.4 as N-2, with End of Life dates 36 months from each line's own GA. Check `version_number.png` in the same pass and confirm it does not label 5.x as current.
-{% endhint %}
-
 ## Check the support phase of a Release Line
 
 Identify the current phase and End of Life date of your Release Line before planning an upgrade.
