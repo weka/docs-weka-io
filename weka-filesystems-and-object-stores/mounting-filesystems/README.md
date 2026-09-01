@@ -318,8 +318,14 @@ weka cluster mount-defaults set [--qos-max-throughput qos-max-throughput] [--qos
 
 | Option | Description |
 | --- | --- |
-| `qos_max_throughput` | Specifies the default maximum request rate for Quality of Service (QoS), in megabytes per second. This is an average-based limit applied at the frontend. The system allows short bursts above this value but aims to maintain the specified limit over time. |
-| `qos_preferred_throughput` | Specifies the default preferred request rate for Quality of Service (QoS), in megabytes per second. This is a soft target used to guide bandwidth allocation. The system aims to maintain this rate under normal conditions but allows the frontend to exceed it, up to the maximum, when additional resources are available. |
+| `--qos-max-throughput` | Specifies the default maximum request rate for Quality of Service (QoS), in mebibytes per second (MiB/s). This is an average-based limit applied at the frontend. The system allows short bursts above this value but aims to maintain the specified limit over time. |
+| `--qos-preferred-throughput` | Specifies the default preferred request rate for Quality of Service (QoS), in mebibytes per second (MiB/s). This is a soft target used to guide bandwidth allocation. The system aims to maintain this rate under normal conditions but allows the frontend to exceed it, up to the maximum, when additional resources are available. |
+
+{% hint style="info" %}
+A value with no unit is read as MiB/s, so `--qos-max-throughput 1092` sets 1092 MiB/s.
+
+If you supply a unit, it is honored as written, and binary and decimal units differ: `1092MiB` is 1092 MiB/s, but `1092MB` is 1041 MiB/s.
+{% endhint %}
 
 ### Monitor active mounts per container
 
