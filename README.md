@@ -1,6 +1,6 @@
 ---
 description: Version 6.0
-cover: .gitbook/assets/doc_neuralmesh_banner_6.0.png
+cover: .gitbook/assets/neuralmesh-doc-banner.jpg
 coverY: 0
 ---
 
