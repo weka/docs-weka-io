@@ -1,12 +1,11 @@
 ---
 description: >-
-  Check WEKA system alerts and take necessary actions based on severity and
-  nature.
+  Explore the list of system alerts, their meanings, and the recommended
+  corrective actions. Understanding these alerts helps you respond to system
+  events effectively.
 ---
 
 # List of alerts and corrective actions
-
-Explore the list of system alerts, their meanings, and the recommended corrective actions. Understanding these alerts helps you respond to system events effectively.
 
 For detailed maintenance and troubleshooting articles, search the WEKA Knowledge Base in the [WEKA support portal](https://support.weka.io/s/). Access to the portal requires a login and is available for registered customers and internal users. You can also contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md#open-a-support-case).
 
