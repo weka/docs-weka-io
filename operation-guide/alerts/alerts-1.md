@@ -21,7 +21,7 @@ Using the CLI, you can:
 
 Use this command to list all possible types of alerts that the WEKA cluster can return.
 
-**Command:**`weka alerts describe`
+**Command:** `weka alerts describe`
 
 Use this command to describe all the alert types the WEKA cluster can return, along with possible corrective actions for each alert.
 
