@@ -28,9 +28,9 @@ These packages also apply to clients.
 On Ubuntu, a client with missing required packages runs `apt-get update` and installs them during its first mount. Preinstall the packages during provisioning to avoid repository access and package downloads at mount time.
 {% endhint %}
 
-| RHEL and derivatives                                                                                                               | Ubuntu                                                                                                                                            |
-| ---------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
-| <p>elfutils-libelf-devel<br>gcc<br>glibc-headers<br>glibc-devel<br>make<br>perl<br>rpcbind<br>xfsprogs<br>kernel-devel<br>sssd</p> | <p>libelf-dev<br>linux-headers-$(uname -r)<br>gcc<br>make perl<br>python2-minimal (python3-minimal on >=24.04)<br>rpcbind<br>xfsprogs<br>sssd</p> |
+| RHEL and derivatives                                                                                                               | Ubuntu                                                                                                                                                  |
+| ---------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| <p>elfutils-libelf-devel<br>gcc<br>glibc-headers<br>glibc-devel<br>make<br>perl<br>rpcbind<br>xfsprogs<br>kernel-devel<br>sssd</p> | <p>libelf-dev<br>linux-headers-$(uname -r)<br>gcc<br>make</p><p>perl<br>python2-minimal (python3-minimal on >=24.04)<br>rpcbind<br>xfsprogs<br>sssd</p> |
 
 <details>
 
