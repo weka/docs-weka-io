@@ -26,7 +26,13 @@ For details, see [Use bios\_tool](../../../appendices/bios-tool.md).
 
 **Required packages**
 
-<table><thead><tr><th>RHEL and derivatives</th><th>Ubuntu</th></tr></thead><tbody><tr><td><pre><code>elfutils-libelf-devel
+These packages also apply to clients.
+
+{% hint style="info" %}
+On Ubuntu, a client with missing required packages runs `apt-get update` and installs them during its first mount. Preinstall the packages during provisioning to avoid repository access and package downloads at mount time.
+{% endhint %}
+
+<table><thead><tr><th width="337.30859375">RHEL and derivatives</th><th>Ubuntu</th></tr></thead><tbody><tr><td><pre><code>elfutils-libelf-devel
 gcc
 glibc-headers
 glibc-devel
@@ -41,6 +47,7 @@ linux-headers-$(uname -r)
 gcc
 make
 perl
+python2-minimal (python3-minimal on >=24.04)
 rpcbind
 xfsprogs
 sssd
