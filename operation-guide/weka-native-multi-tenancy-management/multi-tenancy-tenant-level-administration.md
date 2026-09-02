@@ -43,13 +43,18 @@ Tenant Admins see only the alerts that are scoped to their own tenant. Every oth
 
 The following alerts are visible to Tenant Admins:
 
-* `FilesystemKMSError`
 * `FilesystemsThinProvisioningLowSpace`
-* `FilesystemsThinProvisioningReserveReached`
 * `KMSError`
 * `TieredFilesystemOverfillingSSD`
 
 For what each alert means and the recommended corrective action, see [List of alerts and corrective actions](../alerts/list-of-alerts-and-corrective-actions.md).
+
+Two of the tenant-visible alerts have DEBUG severity, so they are informational and do not appear in that list:
+
+| Alert Name                                  | Description                                            | Corrective Action                                                                        |
+| ------------------------------------------- | ------------------------------------------------------ | ---------------------------------------------------------------------------------------- |
+| `FilesystemKMSError`                        | Filesystem KMS error                                   | Review the filesystem's KMS customization and the KMS configuration and connectivity.    |
+| `FilesystemsThinProvisioningReserveReached` | Filesystems thin provisioning capacity reserve reached | Create a new filesystem or expand the filesystem's capacity using the reserved capacity. |
 
 ## Mount authentication for tenant filesystems
 
