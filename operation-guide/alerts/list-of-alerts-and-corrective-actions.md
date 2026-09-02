@@ -8,6 +8,8 @@ description: >-
 
 Explore the list of system alerts, their meanings, and the recommended corrective actions. Understanding these alerts helps you respond to system events effectively.
 
+Alerts with DEBUG severity are informational and are not shown by default: `weka alerts` lists alerts of WARNING severity and above. To include them, run `weka alerts --severity DEBUG`.
+
 For detailed maintenance and troubleshooting articles, search the WEKA Knowledge Base in the [WEKA support portal](https://support.weka.io/s/). Access to the portal requires a login and is available for registered customers and internal users. You can also contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md#contact-customer-success-team).
 
 | Alert Name                                  | Description                                                                                   | Corrective Action                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          | Severity |
