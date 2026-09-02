@@ -40,7 +40,7 @@ make
 perl
 rpcbind
 xfsprogs
-kernel-devel
+kernel-devel-$(uname -r)
 sssd
 </code></pre></td><td><pre><code>libelf-dev
 linux-headers-$(uname -r)
