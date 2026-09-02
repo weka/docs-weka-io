@@ -22,9 +22,15 @@ For details, see [Use bios\_tool](https://app.gitbook.com/s/ZW262oqYA8pNNfGvXjHa
 
 **Required packages**
 
-| RHEL and derivatives | Ubuntu |
-| --- | --- |
-| `elfutils-libelf-devel gcc glibc-headers glibc-devel make perl rpcbind xfsprogs kernel-devel sssd ` | `libelf-dev linux-headers-$(uname -r) gcc make perl rpcbind xfsprogs sssd ` |
+These packages also apply to clients.
+
+{% hint style="info" %}
+On Ubuntu, a client with missing required packages runs `apt-get update` and installs them during its first mount. Preinstall the packages during provisioning to avoid repository access and package downloads at mount time.
+{% endhint %}
+
+| RHEL and derivatives                                                                                                               | Ubuntu                                                                                                                                            |
+| ---------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| <p>elfutils-libelf-devel<br>gcc<br>glibc-headers<br>glibc-devel<br>make<br>perl<br>rpcbind<br>xfsprogs<br>kernel-devel<br>sssd</p> | <p>libelf-dev<br>linux-headers-$(uname -r)<br>gcc<br>make perl<br>python2-minimal (python3-minimal on >=24.04)<br>rpcbind<br>xfsprogs<br>sssd</p> |
 
 <details>
 
