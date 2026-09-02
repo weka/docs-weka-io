@@ -16,8 +16,6 @@ Lists every alert type the cluster can raise.
 weka alerts types
 ```
 
-{% endcode %}
-
 **Example**
 
 {% code overflow="wrap" %}
