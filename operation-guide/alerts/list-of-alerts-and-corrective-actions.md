@@ -1,12 +1,11 @@
 ---
 description: >-
-  Check WEKA system alerts and take necessary actions based on severity and
-  nature.
+  Explore the list of system alerts, their meanings, and the recommended
+  corrective actions. Understanding these alerts helps you respond to system
+  events effectively.
 ---
 
 # List of alerts and corrective actions
-
-Explore the list of system alerts, their meanings, and the recommended corrective actions. Understanding these alerts helps you respond to system events effectively.
 
 Alerts with DEBUG severity are informational and are not shown by default: `weka alerts` lists alerts of WARNING severity and above. To include them, run `weka alerts --severity DEBUG`.
 
