@@ -69,7 +69,26 @@ Per-tenant NFS limits are lower than the root organization's: 8 client groups, 1
 
 ## View alerts for a tenant
 
-Quota alerts are emitted per tenant and are visible to Tenant Admins. Their text was written for cluster administrators, so it may refer to cluster-wide context that a tenant cannot act on.
+Tenant Admins see only the alerts that are scoped to their own tenant. Every other alert is visible to Cluster Admins only. The alert text is written for cluster administrators, so it may refer to cluster-wide context that a tenant cannot act on.
+
+The following alerts are visible to Tenant Admins:
+
+* `FilesystemKMSError`
+* `FilesystemsThinProvisioningLowSpace`
+* `FilesystemsThinProvisioningReserveReached`
+* `GroupQuotasHardLimitReached`
+* `GroupQuotasSoftLimitReached`
+* `JoinTokenExpired`
+* `JoinTokenExpiresSoon`
+* `KMSError`
+* `QuotasHardLimitReached`
+* `QuotasSoftLimitReached`
+* `TenantClockSkew`
+* `TieredFilesystemOverfillingSSD`
+* `UserQuotasHardLimitReached`
+* `UserQuotasSoftLimitReached`
+
+For what each alert means and the recommended corrective action, see [List of alerts and corrective actions](../alerts/list-of-alerts-and-corrective-actions.md).
 
 A Cluster Admin can view the alert list exactly as a Tenant Admin sees it. See [View alerts as a tenant](multi-tenancy-cluster-level-administration.md#view-alerts-as-a-tenant).
 
