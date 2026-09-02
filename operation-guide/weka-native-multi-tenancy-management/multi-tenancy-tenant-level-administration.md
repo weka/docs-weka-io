@@ -37,6 +37,20 @@ For additional guidance on related topics, consult the standard procedures. Thes
 
 [user-management](../user-management/ "mention")
 
+## View alerts for a tenant
+
+Tenant Admins see only the alerts that are scoped to their own tenant. Every other alert is visible to Cluster Admins only. The alert text is written for cluster administrators, so it may refer to cluster-wide context that a tenant cannot act on.
+
+The following alerts are visible to Tenant Admins:
+
+* `FilesystemKMSError`
+* `FilesystemsThinProvisioningLowSpace`
+* `FilesystemsThinProvisioningReserveReached`
+* `KMSError`
+* `TieredFilesystemOverfillingSSD`
+
+For what each alert means and the recommended corrective action, see [List of alerts and corrective actions](../alerts/list-of-alerts-and-corrective-actions.md).
+
 ## Mount authentication for tenant filesystems
 
 The authentication process guarantees that only authorized users from a particular tenant can access their data. This approach enforces strict separation, blocking users from other tenants and even the Cluster Admin from accessing the filesystems of a specific tenant.
