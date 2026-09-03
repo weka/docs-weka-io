@@ -23,7 +23,21 @@ Understanding the terminology related to storage capacity is fundamental:
 
 ## Redundancy and protection levels
 
-WEKA employs a distributed RAID system that supports a range of redundancy configurations. These are based on a **D+P model**, where D represents the number of data blocks and P represents the number of parity blocks. Common configurations are denoted as N+2, N+3, or N+4, where N is the number of data blocks. A critical rule is that the number of data blocks must always be greater than the number of parity blocks (for example, a 3+3 configuration is not allowed).
+WEKA employs a distributed RAID system that supports a range of redundancy configurations. These are based on a **D+P model**, where D is the number of data blocks and P is the number of parity blocks. Together they form a **stripe**, the unit WEKA protects and rebuilds. A 6+2 configuration, for example, writes every stripe as 6 data blocks and 2 parity blocks.
+
+The **protection level** is P, the number of parity blocks. A configuration written as N+2 has protection level 2, N+3 has protection level 3, and so on, where N stands for whichever number of data blocks you choose.
+
+The number of data blocks must always be greater than the number of parity blocks, so a 3+3 configuration is not allowed.
+
+**What a protection level protects against**
+
+The protection level is the number of **failure domains** the cluster can lose at the same time without losing data. A failure domain is a set of hardware that can fail together from a single cause. By default, each backend server is its own failure domain, so protection level 2 means the cluster survives 2 servers failing at once. If you group servers into larger failure domains, for example one per rack, the same protection level then covers that many racks instead.
+
+Individual drives sit below this boundary: losing a drive affects only part of one failure domain, so a cluster survives at least as many simultaneous drive failures as its protection level.
+
+For how to define failure domains, see [planning-a-weka-system-installation.md](../planning-and-installation/bare-metal/planning-a-weka-system-installation.md "mention").
+
+**Choosing a level**
 
 The selection of an appropriate redundancy level is a balance between fault tolerance, usable storage capacity, and system performance:
 
