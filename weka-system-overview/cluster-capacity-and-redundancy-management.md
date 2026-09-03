@@ -28,8 +28,8 @@ WEKA employs a distributed RAID system that supports a range of redundancy confi
 The selection of an appropriate redundancy level is a balance between fault tolerance, usable storage capacity, and system performance:
 
 * **N+2**: This is the recommended level for most environments, providing a standard degree of fault tolerance. A system with protection level 2 can survive up to 2 simultaneous drive or server failures.
-* **N+3**: This level offers increased data protection and is suitable for environments with higher availability requirements. A system with protection level 3 can survive up to 3 simultaneous drive or 2 simultaneous server failures.
-* **N+4**: Designed for very large-scale clusters (typically 100+ backend servers) or for scenarios involving critical data that demands maximum redundancy. Protection level 4 can withstand up to 4 simultaneous drive failures or 2 simultaneous server failures.
+* **N+3**: This level offers increased data protection and is suitable for environments with higher availability requirements. A system with protection level 3 can survive up to 3 simultaneous drive or server failures.
+* **N+4**: Designed for very large-scale clusters (typically 100+ backend servers) or for scenarios involving critical data that demands maximum redundancy. A system with protection level 4 can survive up to 4 simultaneous drive or server failures.
 
 Higher protection levels inherently provide better data durability and availability. However, they also consume more raw storage space for parity blocks and can potentially impact system performance due to the additional processing.
 
