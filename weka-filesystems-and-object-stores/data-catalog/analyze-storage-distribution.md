@@ -47,7 +47,13 @@ Verify that the target filesystem is indexed by the data catalog.
       * File Count by Extension
       * Usage Statistics by Group
       * Usage Statistics by User
-   2. Select **Deep Dive** on a bar to explore the individual files within that segment. This leaves the **Capacity Usage** report and opens **Discovery** with relevant query parameters populated. Select **Run Query** to view the results.
+   2.  Select a bar, then select **Deep Dive** to explore the individual files within that segment.
+
+       **Deep Dive** appears only after you select a bar. It leaves the **Capacity Usage** report and opens **Discovery** with the relevant query parameters populated. Select **Run Query** to view the results.
+
+       The same **Deep Dive** action is available on the **File Size Distribution** and **Capacity by File Age** charts described below.
+
+       <div data-with-frame="true"><figure><img src="../../.gitbook/assets/Catalog_with_deep_dive_button.png" alt=""><figcaption><p>Deep Dive on a File Statistics bar</p></figcaption></figure></div>
 
 ## Monitor storage distribution and trends
 
@@ -68,9 +74,11 @@ Scroll down to view additional distribution metrics.
 1. Review the **File Size Distribution** chart:
    * Identify the number of files within specific size ranges (for example: 1MB-10MB).
    * Hover over a bar to view the exact File Count for that range.
+   * Select a bar, then select **Deep Dive** to open **Discovery** with that size range applied as a query condition.
 2. Review the **Capacity by File Age** chart:
    * Identify the volume of data based on the time elapsed since the last modification (for example: < 1 week or 5+ years).
    * Hover over a bar to view the Total Size of the files in that age category.
+   * Select a bar, then select **Deep Dive** to open **Discovery** with that age range applied as a query condition.
 3. Analyze the **Filesystem Capacity Over Time** chart:
    * Observe historical trends for Total Capacity and Used Capacity.
    * Toggle the **Forecast** switch to ON to view projected storage needs. The chart displays Total Forecast and Used Forecast lines based on current data patterns. This requires at least 24 hours of historical snapshot data.
