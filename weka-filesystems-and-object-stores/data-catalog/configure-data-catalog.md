@@ -139,9 +139,8 @@ weka dataservice global-config set --config-fs .config_fs
        Output example:
 
        ```bash
-       FILESYSTEM   INDEXING  HAS METADATA  SNAPSHOTS  LATEST SNAPSHOT         OLDEST SNAPSHOT         LAST INGEST  LAST ERROR
-       catalogtest  Enabled   Yes           7          cat-ingest-3.2604061605  cat-ingest-3.2604061553 Never       -
-       fs1          Enabled   Yes           6          cat-ingest-5.2604061605  cat-ingest-5.2604061555 Never       -
+       Filesystem  Indexing  Has Metadata  Snapshots  Latest Snapshot          Oldest Snapshot          Last Ingest  Last Error
+       default      Enabled       Yes              1  cat-ingest-1.2609031034  cat-ingest-1.2609031034
        ```
    3.  Verify catalog configuration:
 
