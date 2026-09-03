@@ -396,8 +396,6 @@ weka tenant set-qos <tenant> [--max-throughput max-throughput]
 
 ## Configure tenant S3 settings
 
-**INTERNAL, remove before publication. TBD (Docs):** recapture the **Configure Tenant S3 Settings** screenshot (`tenant_s3_setting.png`) against the 6.0 GUI. The current capture was last touched on 2026-08-10 and predates the 6.0 GUI refresh.
-
 A cluster administrator configures a tenant's S3 settings during provisioning. A tenant administrator can adjust these settings for their own tenant afterwards.
 
 You can configure dedicated S3 settings for a specific tenant. This includes defining a default filesystem for buckets created through the S3 API and assigning an anonymous POSIX User ID (UID) and Group ID (GID) for anonymous or public S3 access.
@@ -408,15 +406,20 @@ Ensure you are logged in with cluster administrator privileges to configure any 
 
 #### **GUI procedure**
 
-1. Select **Manage > Protocols**.
-2. From Protocols, select S3, then select **Configure**.
-3. In the **Configure Tenant S3 Settings** dialog, configure the following fields:
-   * **Default Filesystem:** Select the filesystem to use as a fallback when buckets are created through the S3 API.
-   * **Anonymous Posix UID:** Enter the POSIX User ID to assign for identity mapping during anonymous or public S3 access. The default value is 65534.
-   * **Anonymous Posix GID:** Enter the POSIX Group ID to assign for identity mapping during anonymous or public S3 access. The default value is 65534.
-4. Select **Save**.
+1. Select **Manage > Protocols**, then select **S3** from the protocol selector.
+2.  Select **Configure Tenant S3 Settings** on the **Configuration** tab.
 
-<div data-with-frame="true"><figure><img src="../../.gitbook/assets/tenant_s3_setting.png" alt="" width="346"><figcaption><p>Configure tenant S3 settings</p></figcaption></figure></div>
+    This control is a full-width bar below the Audit Webhook row, not a standard button.
+
+    <div data-with-frame="true"><figure><img src="../../.gitbook/assets/mt_configure_s3_setting_button.png" alt=""><figcaption><p>Configure Tenant S3 Settings control</p></figcaption></figure></div>
+3.  Set the following fields:
+
+    * **Default Filesystem:** Select the filesystem to use as a fallback when buckets are created through the S3 API.
+    * **Anonymous Posix UID:** Enter the POSIX User ID to assign for identity mapping during anonymous or public S3 access. The default value is 65534.
+    * **Anonymous Posix GID:** Enter the POSIX Group ID to assign for identity mapping during anonymous or public S3 access. The default value is 65534.
+
+    <div data-with-frame="true"><figure><img src="../../.gitbook/assets/mt_configure_s3_setting.png" alt="" width="480"><figcaption><p>Configure tenant S3 settings</p></figcaption></figure></div>
+4. Select **Submit**.
 
 #### CLI alternative
 
