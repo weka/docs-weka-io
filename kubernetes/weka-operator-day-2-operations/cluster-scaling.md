@@ -395,7 +395,32 @@ HOST ID  HOSTNAME        CONTAINER                                     IPS      
 
 The command 'weka cluster host' is deprecated. Please use 'weka cluster container' instead.
 {% hint style="danger" %}
-**INTERNAL, remove before publication. TBD (Docs):** The captured session below predates 6.0 and its layout no longer matches. Verified against a 6.0.0.304 cluster, `weka s3 cluster` now renders as a right-aligned label/value block titled **S3 Cluster Status** (not `S3 Cluster Info`), with no colons after the labels, and the `S3 Hosts` row is now **S3 Containers**. Typed identifiers such as `HostId<14>` print as bare integers. `weka s3 cluster -v` also gained `Use S3 New Locks`, `Save Metadata As Xattr`, and `Domain` rows. The transcript further uses the deprecated `weka cluster host` spelling and even includes its deprecation warning; use `weka cluster container`. This block could not be recaptured here because it needs a configured, online S3 cluster with the walkthrough's specific container IDs — recapture during a scaling run on a cluster with S3 enabled.
+**INTERNAL, remove before publication. TBD (Docs):** The captured session below predates 6.0 and its layout no longer matches. It still needs a recapture during a scaling run on an operator-managed cluster with S3 enabled, because the S3 output has to agree with the container IDs in the `weka cluster host` listing above it. Replacing only the S3 blocks would leave the transcript referring to containers that appear nowhere else in the session.
+
+**Every difference below was verified against a live S3 cluster on 6.0.0.356-nightly on 2026-09-03, so the recapture only has to reproduce the walkthrough, not rediscover the format.**
+
+`weka s3 cluster` (plain):
+
+* Titled **S3 Cluster Status**, not `S3 Cluster Info`.
+* Right-aligned label/value block, **no colons** after the labels.
+* **The containers row is gone from the plain output.** It now prints only Status, All Hosts, Port and Filesystem. The old transcript's `S3 Hosts` line has no equivalent here.
+
+`weka s3 cluster -v`:
+
+* The row is named **S3 Containers**, not `S3 Hosts`, and lists **bare integers** (`17, 12, 15, 13, 16, 14`), not `HostId<14>`.
+* `ILM Hosts` is likewise now **ILM Containers**.
+* Gained `Use S3 New Locks` and `Save Metadata As Xattr`, both rendering as `enable`.
+* Gained several SLB and mempool rows absent from the old capture: `SLB Remote LB`, `S3 Mempool Size`, `Downstream Idle Timeout`, `Downstream Conn Duration`.
+* **`Domain` is conditional and will not appear on most clusters.** `cluster.go:339` guards it with `if len(status.Domain) > 0`, so it renders only when virtual-host-style domains are configured. Do not treat its absence as a stale capture.
+
+`weka s3 cluster status`:
+
+* Column headers are **Title Case** (`ID  Hostname  S3 Status  IP  Port  Version  Uptime  Active Requests  Last Failure`), not the old all-caps.
+* The `S3 Status` value is **Online**, not `Ready`.
+
+Also note the old transcript shows `Port: 15300`; a default 6.0 S3 cluster came up on **9000**. Confirm which applies to the walkthrough's cluster rather than assuming either.
+
+The transcript further uses the deprecated `weka cluster host` spelling and even includes its deprecation warning; use `weka cluster container`.
 {% endhint %}
 
 root@ip-10-0-93-212:/# weka s3 cluster
