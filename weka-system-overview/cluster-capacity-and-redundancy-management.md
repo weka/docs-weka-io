@@ -30,9 +30,11 @@ The number of data blocks must always be greater than the number of parity block
 
 **What a protection level protects against**
 
-The protection level is the number of **failure domains** the cluster can lose at the same time without losing data. A failure domain is a set of hardware that can fail together from a single cause. By default, each backend server is its own failure domain, so protection level 2 means the cluster survives 2 servers failing at once. If you group servers into larger failure domains, for example one per rack, the same protection level then covers that many racks instead.
+The protection level is the number of **failure domains** the cluster can lose at the same time without losing data.
 
-Individual drives sit below this boundary: losing a drive affects only part of one failure domain, so the cluster survives at least as many simultaneous drive failures as its protection level.
+A failure domain is a set of hardware that fails together from a single cause. Most often each backend server is its own failure domain, so protection level 2 means the cluster survives 2 servers failing at once. A failure domain can also span several servers, for example a rack whose servers share a power circuit or a top-of-rack switch. The same protection level then covers that many racks.
+
+This is why the protection level is not a count of drives. A failure domain can hold several servers, and each server holds several drives, so the number of individual drives the cluster can lose is larger than the protection level. With protection level 2, one server per failure domain, and 10 drives per server, the cluster tolerates the simultaneous loss of all 20 drives in those 2 servers.
 
 For how to define failure domains, see [planning-a-weka-system-installation.md](../planning-and-installation/bare-metal/planning-a-weka-system-installation.md "mention").
 
@@ -40,9 +42,9 @@ For how to define failure domains, see [planning-a-weka-system-installation.md](
 
 The selection of an appropriate redundancy level is a balance between fault tolerance, usable storage capacity, and system performance:
 
-* **N+2**: This is the recommended level for most environments, providing a standard degree of fault tolerance. A system with protection level 2 can survive up to 2 simultaneous drive or server failures.
-* **N+3**: This level offers increased data protection and is suitable for environments with higher availability requirements. A system with protection level 3 can survive up to 3 simultaneous drive or server failures.
-* **N+4**: Designed for very large-scale clusters (typically 100+ backend servers) or for scenarios involving critical data that demands maximum redundancy. A system with protection level 4 can survive up to 4 simultaneous drive or server failures.
+* **N+2**: This is the recommended level for most environments, providing a standard degree of fault tolerance. A system with protection level 2 survives the simultaneous loss of 2 failure domains, typically 2 servers.
+* **N+3**: This level offers increased data protection and is suitable for environments with higher availability requirements. A system with protection level 3 survives the simultaneous loss of 3 failure domains, typically 3 servers.
+* **N+4**: Designed for very large-scale clusters (typically 100+ backend servers) or for scenarios involving critical data that demands maximum redundancy. A system with protection level 4 survives the simultaneous loss of 4 failure domains, typically 4 servers.
 
 Higher protection levels inherently provide better data durability and availability. However, they also consume more raw storage space for parity blocks and can potentially impact system performance due to the additional processing.
 
