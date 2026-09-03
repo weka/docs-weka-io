@@ -403,7 +403,7 @@ The command 'weka cluster host' is deprecated. Please use 'weka cluster containe
 
 * Titled **S3 Cluster Status**, not `S3 Cluster Info`.
 * Right-aligned label/value block, **no colons** after the labels.
-* **The containers row is gone from the plain output.** It now prints only Status, All Hosts, Port and Filesystem. The old transcript's `S3 Hosts` line has no equivalent here.
+* **The containers row is conditional in the plain output.** `cluster.go:319` wraps it in `if !status.AllContainers`, so it prints only when **All Hosts** is `off`. The transcript's cluster has `All Hosts: off`, so the row does belong there, renamed to **S3 Containers**. On a cluster built with `--all-servers` the row is omitted from the plain output and appears only under `-v`.
 
 `weka s3 cluster -v`:
 
