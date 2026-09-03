@@ -73,6 +73,6 @@ Predefined templates in the data catalog allow you to categorize files by access
 * **Migrate to cost-effective storage:** Move stale data to S3 or low-cost HDD clusters.
 * **Optimize premium resources:** Reserve SSD-based cluster capacity for high-priority, frequently accessed data.
 
-{% embed url="https://youtu.be/6E49xsY0uOw" fullWidth="true" %}
-Demo: WEKA Data Catalog
+{% embed url="https://youtu.be/o_ZnKSCjBQE" fullWidth="true" %}
+Demo: NeuralMesh data catalog
 {% endembed %}
