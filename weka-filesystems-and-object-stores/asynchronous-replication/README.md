@@ -91,16 +91,12 @@ The same filesystem size behaves differently on different clusters. A 5 GB files
 If the target filesystem is smaller than about 0.1% of the target cluster SSD capacity, replication can stall from the first synchronization cycle, before any data is visibly transferred. Increase the filesystem size, or use a target cluster with less SSD capacity.
 {% endhint %}
 
-{% hint style="info" %}
-These values assume an untiered target filesystem with default settings. Datasets that consist mostly of very large files distribute slightly better and can fill a few percentage points higher.
-{% endhint %}
-
 If the target filesystem runs out of space during a full copy, the replication cycle stops and the pair moves to the error state. Run `weka fs tier s3` against the replication bucket for details. Replication resumes after you free space or enlarge the filesystem.
 
 ## Considerations
 
 {% hint style="warning" %}
-The RPO is not zero. The target is always at least one replication interval behind the source, and the minimum interval is 5 minutes. Writes made after the last replicated snapshot are lost on failover.
+The RPO is not zero. Expect a lag of at least the replication interval. The target is always at least 5 minutes behind the source, and writes made after the last replicated snapshot are lost on failover.
 {% endhint %}
 
 ### Target filesystem
