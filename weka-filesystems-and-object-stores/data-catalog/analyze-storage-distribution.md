@@ -49,7 +49,9 @@ Verify that the target filesystem is indexed by the data catalog.
       * Usage Statistics by User
    2.  Select a bar, then select **Deep Dive** to explore the individual files within that segment.
 
-       **Deep Dive** appears only after you select a bar. It leaves the **Capacity Usage** report and opens **Discovery** with the relevant query parameters populated. Select **Run Query** to view the results.
+       **Deep Dive** appears only after you select a bar. It leaves the **Capacity Usage** report, opens **Discovery** with the relevant query parameters populated, and runs the query. The results appear without further action.
+
+       To refine the results, expand **Build a New Query**, adjust the conditions or the **Sort** and **Sort Order** settings, and select **Run Query**. Sorting is set in the query panel; the result table headers are not sort controls.
 
        The same **Deep Dive** action is available on the **File Size Distribution** and **Capacity by File Age** charts described below.
 
