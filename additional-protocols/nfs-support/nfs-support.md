@@ -76,7 +76,7 @@ These ports are only relevant for NFSv3. The default value of 0 indicates using 
 Configuring the NFS cluster level involves creating an interface group and assigning at least one server with its corresponding port.
 
 {% hint style="info" %}
-When NFS multi-tenancy is enabled, an interface group also serves the floating IP addresses of the tenants assigned to it. Use **Assign Tenant** on the interface group's detail view to assign or move a tenant, and the **Tenant** column on the namespaces table to see and remove existing assignments. See [manage-nfs-for-tenants.md](../../operation-guide/weka-native-multi-tenancy-management/manage-nfs-for-tenants.md "mention").
+When NFS multi-tenancy is enabled, an interface group also serves the floating IP addresses of the tenants assigned to it. Use **Add** in the **Name Spaces** section of the interface group's detail view to assign or move a tenant, and the **Tenant** column on that table to see and remove existing assignments. See [manage-nfs-for-tenants.md](../../operation-guide/weka-native-multi-tenancy-management/manage-nfs-for-tenants.md "mention").
 {% endhint %}
 
 **INTERNAL, remove before publication. TBD (Docs):** captures needed for the multi-tenancy screens on this page: the Restart NFS Containers dialog, the Assign Tenant dialog on the interface-group detail view, and the namespaces table showing the Tenant column with its per-row Remove action.

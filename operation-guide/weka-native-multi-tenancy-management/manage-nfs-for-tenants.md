@@ -97,12 +97,16 @@ The root organization is never assigned to an interface group. It uses the inter
 1. From the menu, select **Manage > Protocols**.
 2. Select **NFS**, then open the **Configuration** tab.
 3. Select the target interface group to open its detail view.
-4. Select **Assign Tenant**, and select the tenant.
+4.  Select **Add** in the **Name Spaces** section.
 
-   The same dialog also moves a tenant: a tenant already assigned to another interface group is moved to this one.
-5. Select **Save**.
+    This opens the **Assign Tenant** dialog.
+5.  Select the tenant, then select **Submit**.
 
-To remove a tenant, open the interface group's namespaces table and select **Remove** on the tenant's row.
+    The **Tenant** list offers only tenants. The root organization appears but cannot be selected, because it uses the interface group's floating IPs directly.
+
+    The same dialog also moves a tenant: a tenant already assigned to another interface group is moved to this one.
+
+To remove a tenant, open the **Name Spaces** table on the interface group's detail view and select **Remove** on the tenant's row.
 
 The **Tenant** column on that table shows which tenant each namespace serves.
 
