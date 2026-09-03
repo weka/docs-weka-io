@@ -28,6 +28,37 @@ weka s3 bucket lifecycle-rule add <name> <expiry-days> [--noncurrent] [--prefix 
 | `--prefix` \<string> | Object key prefix to which the rule applies. |
 | `--tags` \<string> | Object tags to which the rule applies. values: '<k1>=<v1>&#x26;<k2=<v2>' |
 
+## Expire noncurrent object versions
+
+A versioned bucket retains every earlier version of an object. Those versions consume capacity until a lifecycle rule expires them, and no rule expires them by default.
+
+A rule created with `--noncurrent` applies only to earlier versions and leaves the current version of each object in place. A rule created without it applies to current versions.
+
+Two alerts identify a versioned bucket that lacks this cleanup:
+
+| Alert | Meaning |
+| --- | --- |
+| `S3VersioningNoNoncurrentExpirationRule` | The bucket uses versioning but has no noncurrent version expiration rule. |
+| `S3VersioningNoDataservIlm` | The bucket uses versioning, but no active Data Services container has lifecycle management configured. |
+
+**Example: expire noncurrent versions after 30 days**
+
+1. Enable the S3 lifecycle task manager.
+
+    ```bash
+    weka dataservice s3-lifecycle-task enable
+    ```
+2. Add the rule to the versioned bucket.
+
+    ```bash
+    weka s3 bucket lifecycle-rule add bucket1 30 --noncurrent
+    ```
+3. Confirm the rule. The `Noncurrent` column reads `true`.
+
+    ```bash
+    weka s3 bucket lifecycle-rule list bucket1
+    ```
+
 ## View lifecycle rules
 
 Lists the lifecycle rules defined on a bucket.

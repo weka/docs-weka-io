@@ -59,7 +59,16 @@ Check, enable, or suspend versioning for an S3 bucket.
 
 **Before you begin**
 
-Ensure the WEKA CLI is configured and you can manage the target bucket.
+* Ensure the WEKA CLI is configured and you can manage the target bucket.
+* Enable versioning for the cluster. Versioning is off by default, and the bucket commands fail with `MethodNotAllowed: The feature is disabled in the global configuration` until you enable it.
+
+    ```bash
+    weka s3 cluster update --allow-versioning
+    ```
+
+{% hint style="warning" %}
+You cannot disable cluster versioning after you enable it. To stop retaining new versions, suspend versioning on the individual buckets.
+{% endhint %}
 
 **CLI commands:**
 
@@ -88,3 +97,19 @@ When you suspend versioning on a bucket:
 * New objects receive a version ID of `null` and overwrite only an existing `null` version. Earlier numbered versions remain retained.
 * Deleting an object with a `null` version ID removes it and inserts a delete marker with a `null` version ID.
 * Deleting a specific version ID still permanently removes that version.
+
+## Reclaim capacity from noncurrent versions
+
+A versioned bucket retains every earlier version of an object, and those versions consume capacity until you expire them. Suspending versioning does not remove the versions already retained.
+
+Add a lifecycle rule with the `--noncurrent` option to expire earlier versions while keeping the current version of each object:
+
+```bash
+weka s3 bucket lifecycle-rule add <bucket-name> <expiry-days> --noncurrent
+```
+
+The cluster raises `S3VersioningNoNoncurrentExpirationRule` on a versioned bucket that has no such rule, and `S3VersioningNoDataservIlm` when no active Data Services container has lifecycle management configured.
+
+**Related topics**
+
+[s3-information-lifecycle-management](s3-information-lifecycle-management/ "mention")

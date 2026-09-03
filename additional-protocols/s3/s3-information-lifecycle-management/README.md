@@ -24,6 +24,7 @@ The system processes lifecycle rules using a scalable, distributed architecture.
 * **Task visibility and control**: Monitor and manage lifecycle tasks using standard cluster task commands, including the ability to view progress, abort tasks, and access detailed statistics.
 * **Comprehensive statistics:** Monitor the performance and health of S3 lifecycle operations, providing insights into metrics such as the number of files deleted, average task runtime, and occurrences of metadata deletion failures.
 * **S3 audit:** The Data Service logs S3 Information Lifecycle Management (ILM) delete operations and automatically pushes them to Splunk. This provides centralized auditability and monitoring for all automated deletions triggered by ILM policies.
+* **Noncurrent version expiration**: On a versioned bucket, expire earlier object versions while keeping the current version of each object. A versioned bucket retains its earlier versions until a rule expires them.
 
 #### Prerequisites
 
@@ -43,3 +44,5 @@ In multi-tenant deployments, ILM rules are scoped to the tenant in which they ar
 [s3-information-lifecycle-management.md](s3-information-lifecycle-management.md "mention")
 
 [s3-information-lifecycle-management-1.md](s3-information-lifecycle-management-1.md "mention")
+
+[s3-versioning.md](../s3-versioning.md "mention")
