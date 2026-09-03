@@ -49,10 +49,6 @@ Create a filesystem group before creating a filesystem in that group.
      3  new_fs             2  12.29 KB      107.37 GB    12.29 KB        107.37 GB        False
     ```
 
-{% hint style="danger" %}
-**INTERNAL, remove before publication. TBD (Docs):** One `weka fs` output block is still legacy format — the one under Write data to the filesystem, which shows capacity after the `dd` write. It uses pipe-delimited columns and headers (`Filesystem ID`, `Filesystem Name`, `Group`) that no longer exist, and it lists `default` rather than the `new_fs` the tutorial just created. Capturing it needs a Linux client with the filesystem mounted, which was not available; everything above it was captured on a 6.0.0.304 cluster. The AWS hint block below is also current.
-{% endhint %}
-
 {% hint style="info" %}
 On NeuralMesh clusters installed in AWS through the [self-service portal,](https://start.weka.io/) a `default` filesystem group and a `default` filesystem are created automatically. The `default` filesystem uses the entire available SSD capacity.
 
@@ -124,9 +120,10 @@ Write a test file to the mounted filesystem to confirm that IO operations are wo
 
     ```bash
     $ weka fs
-    Filesystem ID | Filesystem Name | Group   | Used SSD (Data) | Used SSD (Meta) | Used SSD  | Free SSD | Available SSD (Meta) | Available SSD | Used Total (Data) | Used Total | Free Total | Available Total | Max Files | Status | Encrypted | Object Storages | Auth Required
-    +-------------+-----------------+---------+-----------------+-----------------+-----------+----------+----------------------+---------------+-------------------+------------+------------+-----------------+-----------+--------+-----------+-----------------+---------------+
-    0             | default         | default | 40.95 MB        | 180.22 KB       | 41.14 MB  | 1.03 GB  | 268.43 MB            | 1.07 GB       | 40.95 MB          | 41.14 MB   | 1.03 GB    | 1.07 GB         | 21589     | READY  | False     |                 | False
+    ID  Name        Group ID   Used SSD  Available SSD  Used Total  Available Total  Thin Provisioned  Thin Provisioned Minimum SSD  Thin Provisioned Maximum SSD
+     0  .config_fs         0  442.37 KB       21.47 GB   442.37 KB         21.47 GB        False
+     1  default            1   12.29 KB      200.00 GB    12.29 KB        200.00 GB        False
+     3  new_fs             1   41.19 MB        1.07 GB    41.19 MB          1.07 GB        False
     ```
 
     This completes the basic sanity check.
