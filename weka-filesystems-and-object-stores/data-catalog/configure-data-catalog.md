@@ -41,17 +41,6 @@ The data catalog maintains synchronization through a structured three-step proce
 
 Configure the infrastructure and filesystems required to activate catalog services for your data.
 
-{% hint style="danger" %}
-**INTERNAL, remove before publication. TBD (Docs):** Two sample-output blocks on this page (the `weka catalog config show` examples) still show legacy typed identifiers, `FSId<4>` and `HostId<23>`. Recapture on a cluster where the data catalog is already in use. Neither lab cluster has a catalog cluster configured, and standing one up creates an index filesystem and coordinator.
-
-Checked against goweka `REL/6.0.0.324` on 2026-08-30, so the recapture only needs to confirm one of the two:
-
-* **Coordinator: expect `23`.** `CoordinatorDisplay()` formats a `container.Id` with `%s`, and `Identifier[T].String()` returns `strconv.FormatInt`, so it prints a bare integer.
-* **Index filesystem: unknown, may still be `FSId<4>`.** `ConfigIndexFS.ID` is a plain `string` that the CLI passes through from the backend without reformatting, so the wire value decides. Do not assume it matches the coordinator.
-
-Fix both lines together. Changing one and leaving the other makes the block internally inconsistent.
-{% endhint %}
-
 #### Before you begin
 
 * The catalog services require at least five backend servers. Ensure each server has 32 GB for the data catalog service plus 5.5 GB for the data services, and connectivity on port 14400.
@@ -72,7 +61,7 @@ For details about the .config\_fs sizing, see the [Dedicated filesystem requirem
 
 2. **Create the index filesystem:** Add the `.indexfs`.
 
-<pre class="language-bash"><code class="lang-bash"><strong>weka fs add .indexfs default 500GB
+<pre class="language-bash"><code class="lang-bash"><strong>weka fs add .indexfs 500GB --fs-group default
 </strong></code></pre>
 
 3. **Deploy data service containers:**
@@ -163,14 +152,14 @@ weka dataservice global-config set --config-fs .config_fs
        Output example:
 
        ```bash
-       Indexing enabled: true
-       Index filesystem: .indexfs (ID: FSId<4>)
-       Coordinator: test-catalog (ID: HostId<23>)
-       IP: 10.121.43.123
-       Port: 14511
-       Indexing interval: 1d 0:00:00h
-       Retention period: 30d 0:00:00h
-       Max ingest tasks: 1
+        Indexing Enabled  True
+        Index Filesystem  .indexfs (ID: 2)
+             Coordinator  catalog-5 (ID: 22)
+                      IP  10.120.74.108
+                    Port  14511
+       Indexing Interval  1 days
+        Retention Period  4 weeks and 2 days
+        Max Ingest Tasks  1
        ```
 9.  **Configure index interval and snapshot retention period:** Adjust these settings to match your workload needs. They dictate how often data is indexed and the duration for which point-in-time snapshots are kept. By default, the `--index-interval` is set to 1 day, and the `--retention-period` is 30 days. Use the following command to update these configurations:
 
@@ -351,14 +340,14 @@ Displays the catalog configuration settings, including the index filesystem stat
 
 ```bash
 $ weka catalog config show
-Indexing enabled: true
-Index filesystem: .indexfs (ID: FSId<4>)
-Coordinator: test-catalog (ID: HostId<23>)
-IP: 10.121.43.123
-Port: 14511
-Indexing interval: 0:30:00h
-Retention period: 1d 0:00:00h
-Max ingest tasks: 1
+ Indexing Enabled  True
+ Index Filesystem  .indexfs (ID: 2)
+      Coordinator  catalog-5 (ID: 22)
+               IP  10.120.74.108
+             Port  14511
+Indexing Interval  30 minutes
+ Retention Period  1 days
+ Max Ingest Tasks  1
 ```
 
 </details>
