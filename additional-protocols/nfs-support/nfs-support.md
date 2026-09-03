@@ -79,7 +79,9 @@ Configuring the NFS cluster level involves creating an interface group and assig
 When NFS multi-tenancy is enabled, an interface group also serves the floating IP addresses of the tenants assigned to it. Use **Add** in the **Name Spaces** section of the interface group's detail view to assign or move a tenant, and the **Tenant** column on that table to see and remove existing assignments. See [manage-nfs-for-tenants.md](../../operation-guide/weka-native-multi-tenancy-management/manage-nfs-for-tenants.md "mention").
 {% endhint %}
 
-**INTERNAL, remove before publication. TBD (Docs):** captures needed for the multi-tenancy screens on this page: the Restart NFS Containers dialog, the Assign Tenant dialog on the interface-group detail view, and the namespaces table showing the Tenant column with its per-row Remove action.
+**INTERNAL, remove before publication. TBD (Docs):** two captures still missing for the multi-tenancy screens on this page: the **Restart NFS Containers** dialog, and the **Name Spaces** table showing the **Tenant** column populated with its per-row **Remove** action. The Assign Tenant dialog was captured on 2026-09-03 and is in place on [manage-nfs-for-tenants.md](../../operation-guide/weka-native-multi-tenancy-management/manage-nfs-for-tenants.md "mention").
+
+**The Name Spaces table capture cannot be taken on an OCI lab.** Assigning a tenant there leaves the interface group `Inactive` with every port at `Rule:FAILED`, and the row shows `Assigned Host 0 (total)`. See the note on manage-nfs-for-tenants.md for the full finding and for the ordering constraint it exposed.
 
 ### Create an interface group <a href="#create-interface-groups" id="create-interface-groups"></a>
 

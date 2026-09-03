@@ -99,18 +99,27 @@ The root organization is never assigned to an interface group. It uses the inter
 3. Select the target interface group to open its detail view.
 4.  Select **Add** in the **Name Spaces** section.
 
-    This opens the **Assign Tenant** dialog.
+    <div data-with-frame="true"><figure><img src="../../.gitbook/assets/nfs_assign_tenant_button.png" alt=""><figcaption><p>Add a tenant to an interface group</p></figcaption></figure></div>
 5.  Select the tenant, then select **Submit**.
 
     The **Tenant** list offers only tenants. The root organization appears but cannot be selected, because it uses the interface group's floating IPs directly.
 
     The same dialog also moves a tenant: a tenant already assigned to another interface group is moved to this one.
 
+    <div data-with-frame="true"><figure><img src="../../.gitbook/assets/nfs_assign_tenant.png" alt="" width="480"><figcaption><p>Assign Tenant dialog</p></figcaption></figure></div>
+
 To remove a tenant, open the **Name Spaces** table on the interface group's detail view and select **Remove** on the tenant's row.
 
 The **Tenant** column on that table shows which tenant each namespace serves.
 
-**INTERNAL, remove before publication. TBD (Docs):** captures needed: the Assign Tenant dialog, and the namespaces table showing the Tenant column with its per-row Remove action.
+**INTERNAL, remove before publication. TBD (Docs):** one capture still missing: the **Name Spaces** table showing the **Tenant** column populated and the per-row **Remove** action. The Add control and the Assign Tenant dialog were captured on 2026-09-03 and are in place above.
+
+**Do not attempt this capture on an OCI lab.** It was tried on 2026-09-03 and the result is not publishable. The assignment itself succeeds and the Name Spaces row appears correctly, but the interface group goes `Inactive` with every port at `Rule:FAILED`, and the row reads `Assigned Host 0 (total)` where a working cluster names a host. The floating IPs never reach the NIC: only the DHCP address is present on `enp0s5` afterwards. The likely cause is that OCI does not route secondary IPs that are not registered against the VNIC, which is an environment limit rather than a product defect, but that was not proven. This capture needs bare metal, or a cloud instance whose secondary IPs are registered.
+
+**Two things learned that will otherwise be re-derived:**
+
+* **Add the interface group's IPs before assigning a tenant.** With a tenant assigned and no IPs, `weka nfs interface-group ip-range add` refuses with *"IPs can't be added to the inactive `<name>` interface group"*, and unassigning the tenant does not clear the state. The group has to be deleted and recreated.
+* **An interface group reporting `OK` with no IPs is not evidence that it works.** Nothing is programmed until something uses it. The status only becomes meaningful once the group has IPs or a tenant.
 
 #### CLI alternative
 
