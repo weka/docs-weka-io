@@ -48,7 +48,7 @@ WEKA uses a structured versioning scheme to indicate the scope and type of chang
 
 Verify that the upgrade path from your source version to the target version is supported. The **Upgrade Path** checker on [get.weka.io](https://get.weka.io) validates the path and indicates additional requirements, such as upgrading clients before the backends.
 
-<div data-with-frame="true"><figure><img src="../.gitbook/assets/check_upgrade_path.png" alt="" width="563"><figcaption><p>Check the upgrade path</p></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/check_upgrade_path.png" alt="" width="563"><figcaption><p>Check the upgrade path example</p></figcaption></figure></div>
 
 **Procedure**
 
@@ -58,6 +58,7 @@ Verify that the upgrade path from your source version to the target version is s
 4. Select **Check Path**.
 5. Review the upgrade summary:
    * **Direct Upgrade** indicates the path is supported.
+   * **2 Hops** indicates that the upgrade requires two sequential upgrades.
    * A warning indicates an additional requirement to complete before the upgrade, such as a client upgrade.
    * The path list indicates the recommended target version.
 
@@ -296,9 +297,9 @@ Use this method if the cluster environment has connectivity to [get.weka.io](htt
 
 1. From the Public Releases on the [get.weka.io](https://get.weka.io/ui/releases/), select the required release.
 2. Select the **Install** tab.
-3. From the backend server, run the `curl` command line as shown in the following example.
+3. From the backend server, run the `curl` command shown in this example.
 
-<figure><img src="../.gitbook/assets/get-weka-io-curl.png" alt=""><figcaption><p>Example: Install tab</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/get-weka-io-curl.png" alt=""><figcaption><p>Example Install tab command</p></figcaption></figure>
 {% endtab %}
 
 {% tab title="Method C" %}

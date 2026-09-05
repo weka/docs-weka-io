@@ -10,56 +10,49 @@ metaLinks:
 
 # Obtain the installation packages
 
-## Register to get.weka.io
+## Register with get.weka.io
 
-Create a [get.weka.io](https://get.weka.io/ui/dashboard) account before you download installation files. If you already have an account, skip this section.
+Register with [get.weka.io](https://get.weka.io/ui/dashboard) before downloading installation packages.
+
+**Before you begin:** Use an organization email address. Personal email addresses are not supported. Skip these steps if you already have a get.weka.io account.
 
 **Procedure**
 
-1. Go to the [get.weka.io](https://get.weka.io/ui/dashboard) download site, and select **Create an account.**
+1. Open [get.weka.io](https://get.weka.io/ui/dashboard), then select **Create an account**.
 
 <div data-with-frame="true"><img src="../../.gitbook/assets/get.weka.io.png" alt="Create an account" width="425"></div>
 
-The Send Registration Email page opens.
+2. Enter your organization email address. Select **I’m not a robot**, then select **Send Registration Email**.
+3. Open the registration email from WEKA. Select its confirmation link.
+4. Enter your email address, full name, and password. Then select **Create Account**.
 
-2\. Fill in your organization's email address (private mail is prohibited).\
-Select **I’m not a robot**, and then select **Send Registration Email.**
-
-3\. Check your inbox for a registration email from Weka.io.\
-To confirm your registration, select the link.\
-The Create Your Account page opens.
-
-4\. Fill in your email address, full name, and password. Then, select **Create Account**.
-
-Your request for access to [get.weka.io](http://get.weka.io) is sent to WEKA for review. Wait for a validation email. Once your registration is approved, you can sign in to [get.weka.io](http://get.weka.io).
+WEKA reviews your request. Sign in after you receive the approval email.
 
 ## Download the WEKA installation packages
 
-Download the package that matches your installation path.
+Download the package for your installation path.
 
-* Automated installation with WSA. Download the WSA image from [get.weka.io](https://get.weka.io/ui/dashboard).
-* Manual installation and configuration. Download the WEKA software tarball from [get.weka.io](https://get.weka.io/ui/dashboard).
+**Before you begin:** Register with get.weka.io and receive approval. Identify whether you install with WSA or manually.
 
-You can only sign in and download the packages if you are a registered user.
+**Procedure**
 
-**Procedure: Download from get.weka.io**
+1. Open [get.weka.io](https://get.weka.io/ui/dashboard), then sign in.
 
-1. Go to the [get.weka.io](https://get.weka.io/ui/dashboard) download site, and sign in with your registered account.
+The dashboard lists available installation packages.
 
-<div data-with-frame="true"><figure><img src="../../.gitbook/assets/get.weka_dashboard.png" alt=""><figcaption><p>get.weka.io dashboard</p></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/get.weka_dashboard.png" alt="get.weka.io dashboard showing available installation packages"><figcaption><p>get.weka.io dashboard</p></figcaption></figure></div>
 
 2. Download the required package:
-   * Select the package from the dashboard.
-   * Or, select the **Releases** tab. Select the required release, then follow the download instructions.
+   * For automated installation, download the WSA image from the dashboard.
+   * For manual installation, select **Releases**, select the required release, then download the WEKA software tarball.
 
-The download-link token is intentionally blurred in the image.
+The download link includes an access token. The capture masks this token.
 
-<div data-with-frame="true"><figure><img src="../../.gitbook/assets/get.weka_releases.png" alt=""><figcaption><p>Releases download page</p></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/get.weka_releases.png" alt="Releases page showing the WEKA software tarball download link"><figcaption><p>Releases download page</p></figcaption></figure></div>
 
-## What to do next?
+## Continue installation
 
-Depending on the installation path you follow, go to one of the following:
+Continue with the installation path that matches the downloaded package:
 
-Path A: [Install WSA](install-the-weka-cluster-using-the-wsa.md)
-
-Path B: [Install OS and WEKA software](manually-install-os-and-weka-on-servers/)
+* WSA image: [Install WSA](install-the-weka-cluster-using-the-wsa.md)
+* WEKA software tarball: [Install OS and WEKA software](manually-install-os-and-weka-on-servers/)
