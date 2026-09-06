@@ -92,26 +92,48 @@ This command changes the snapshot attributes. Use the following command line to 
 
 ## Access the `.snapshots` directory
 
-The `.snapshots` directory is located in the root directory of each mounted filesystem. It is not displayed with the `ls -la` command. You can access this directory using the `cd .snapshots` command from the root directory.
+The `.snapshots` directory is available from the root directory of each mounted filesystem. It is not displayed with the `ls -la` command. Access it with the `cd .snapshots` command.
 
-#### Example
+The `.snapshots` directory is also available from a filesystem subdirectory, where it lists only the snapshots taken after that subdirectory was created. As in the root directory, it is not displayed with the `ls -la` command. Users scoped to a subdirectory can browse its snapshots and copy missing content without access to the root `.snapshots` directory.
+
+**Example**
 
 The following example shows a filesystem named `default` mounted to `/mnt/weka`.
 
 To confirm you are in the root directory of the mounted filesystem, change into the `.snapshots` directory, and then display any snapshots in that directory:
 
 ```
-[root@ip-172-31-23-177 weka]# pwd 
-/mnt/weka 
-[root@ip-172-31-23-177 weka]# ls -la 
-total 0 
-drwxrwxr-x 1 root root   0 Sep 19 04:56 . 
-drwxr-xr-x 4 root root  33 Sep 20 06:48 .. 
-drwx------ 1 user1 user1 0 Sep 20 09:26 user1 
-[root@ip-172-31-23-177 weka]# cd .snapshots 
-[root@ip-172-31-23-177 .snapshots]# ls -l 
-total 0 
-drwxrwxr-x 1 root root 0 Sep 21 02:44 @GMT-2023.09.21-02.44.38 
+[root@ip-172-31-23-177 weka]# pwd
+/mnt/weka
+[root@ip-172-31-23-177 weka]# ls -la
+total 0
+drwxrwxr-x 1 root root   0 Sep 19 04:56 .
+drwxr-xr-x 4 root root  33 Sep 20 06:48 ..
+drwx------ 1 user1 user1 0 Sep 20 09:26 user1
+[root@ip-172-31-23-177 weka]# cd .snapshots
+[root@ip-172-31-23-177 .snapshots]# ls -l
+total 0
+drwxrwxr-x 1 root root 0 Sep 19 05:00 @GMT-2023.09.19-05.00.12
+drwxrwxr-x 1 root root 0 Sep 21 02:44 @GMT-2023.09.21-02.44.38
+[root@ip-172-31-23-177 .snapshots]#
+```
+
+**Example: access the `.snapshots` directory from a subdirectory**
+
+The `user1` subdirectory was created on Sep 20. Its `.snapshots` directory lists only the snapshot taken after that date:
+
+```
+[root@ip-172-31-23-177 weka]# cd /mnt/weka/user1
+[root@ip-172-31-23-177 user1]# ls -la
+total 0
+drwx------ 1 user1 user1 0 Sep 20 09:26 .
+drwxrwxr-x 1 root  root  0 Sep 19 04:56 ..
+-rw-r--r-- 1 user1 user1 0 Sep 20 09:30 report.txt
+[root@ip-172-31-23-177 user1]# cd .snapshots
+[root@ip-172-31-23-177 .snapshots]# ls
+@GMT-2023.09.21-02.44.38
+[root@ip-172-31-23-177 .snapshots]# ls @GMT-2023.09.21-02.44.38
+report.txt
 [root@ip-172-31-23-177 .snapshots]#
 ```
 
