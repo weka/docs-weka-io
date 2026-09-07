@@ -42,7 +42,7 @@ weka fs add <name> <total-capacity> [--allow-no-kms] [--audit-enabled] [--auth-r
 | `--kms-role-id` \<string>              | Customize KMS role identifier for this filesystem. Currently only for HashiCorp Vault.                                     |
 | `--kms-secret-id` \<string>            | Customize KMS secret identifier for this filesystem. Currently only for HashiCorp Vault.                                   |
 | `--max-iops` \<uint>                   | Maximum filesystem IOPS.                                                                                                   |
-| `--max-throughput` \<capacity>         | Maximum filesystem throughput per second (e.g. 1GiB).                                                                      |
+| `--max-throughput` \<capacity>         | Maximum filesystem throughput per second. Requires capacity units, for example 1GiB or 500MB. |
 | `--obs-name` \<string>                 | Object store bucket name. Mandatory for tiered filesystems.                                                                |
 | `--ssd-capacity` \<capacity>           | SSD capacity for the filesystem.                                                                                           |
 | `--thin-provision-max-ssd` \<capacity> | Maximum SSD budget for thin provisioning.                                                                                  |
@@ -473,8 +473,8 @@ weka fs replication add --interval <duration> --source-filesystem <filesystem> -
 | `--source-filesystem` \<filesystem>\*  | Name of the local source filesystem.                                                                                                                                                                           |
 | `--target-cluster` \<cluster-peer>\*   | Name of the configured cluster peer.                                                                                                                                                                           |
 | `--target-filesystem` \<filesystem>\*  | Name of the filesystem on the remote cluster.                                                                                                                                                                  |
-| `--access-strategy` \<access-strategy> | When users see the target filesystem: INSTANT\_ACCESS (default) exposes the snapshot immediately and fetches data lazily; COPY\_FIRST blocks the apply until --copy-path data is local.                        |
-| `--apply-strategy` \<apply-strategy>   | When the snapshot becomes visible on the target. AUTOMATIC (the default, and the only value supported in this release) applies it as soon as the prerequisite phase finishes.                                  |
+| `--access-strategy` \<access-strategy> | When users see the target filesystem: INSTANT\_ACCESS (default) exposes the snapshot immediately and fetches data lazily; COPY\_FIRST blocks the apply until --copy-path data is local. Valid values: instant\_access, copy\_first. |
+| `--apply-strategy` \<apply-strategy>   | When the snapshot becomes visible on the target. AUTOMATIC (the default, and the only value supported in this release) applies it as soon as the prerequisite phase finishes. Valid value: automatic. |
 | `--copy-path` \<path>…                 | Eager-copy path. Keywords: 'full', 'all' or '/' for full copy; 'none' or 'null' for no eager copy. Default: no eager copy. Multiple values may be supplied separated by commas, or the option may be repeated. |
 | `--now`                                | Trigger the first replication cycle immediately instead of waiting one full interval.                                                                                                                          |
 | `--snapshots-to-keep` \<count>         | Number of snapshots to retain. Default: 3. Range: 2 to 25.                                                                                                                                                     |
@@ -574,9 +574,9 @@ weka fs replication update <id> [--access-strategy <access-strategy>] [--add-cop
 | Parameter                              | Description                                                                                                                                                                                                                                           |
 | -------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `id`\*                                 | Replication pair ID.                                                                                                                                                                                                                                  |
-| `--access-strategy` \<access-strategy> | When users see the target filesystem: INSTANT\_ACCESS or COPY\_FIRST.                                                                                                                                                                                 |
+| `--access-strategy` \<access-strategy> | When users see the target filesystem: INSTANT\_ACCESS or COPY\_FIRST. Valid values: instant\_access, copy\_first. |
 | `--add-copy-path` \<path>…             | Add a path to a PARTIAL copy set (repeatable). Multiple values may be supplied separated by commas, or the option may be repeated.                                                                                                                    |
-| `--apply-strategy` \<apply-strategy>   | When the snapshot becomes visible on the target. AUTOMATIC is the only value supported in this release.                                                                                                                                               |
+| `--apply-strategy` \<apply-strategy>   | When the snapshot becomes visible on the target. AUTOMATIC is the only value supported in this release. Valid value: automatic. |
 | `--copy-path` \<path>…                 | Replace the entire copy set. Keywords: 'full', 'all' or '/' for full copy; 'none' or 'null' to clear. Mutually exclusive with --add-copy-path/--remove-copy-path. Multiple values may be supplied separated by commas, or the option may be repeated. |
 | `--interval` \<duration>               | Replication interval (e.g. 5m, 1h). Range: 5 minutes to 30 days.                                                                                                                                                                                      |
 | `--remove-copy-path` \<path>…          | Remove a path from a PARTIAL copy set (repeatable). Multiple values may be supplied separated by commas, or the option may be repeated.                                                                                                               |
@@ -727,22 +727,6 @@ weka fs security policy set <name> <policies>…
 | ------------- | ----------------------------- |
 | `name`\*      | Name of the filesystem.       |
 | `policies`\*… | Security policy names or IDs. |
-
-## weka fs set-qos
-
-Set quality of service for a filesystem, limiting how it uses I/O resources within the cluster.
-
-This command is deprecated. Use 'weka fs update --max-throughput / --max-iops' instead.
-
-```sh
-weka fs set-qos <name> [--max-iops <uint>] [--max-throughput <capacity>]
-```
-
-| Parameter                      | Description                                                                                              |
-| ------------------------------ | -------------------------------------------------------------------------------------------------------- |
-| `name`\*                       | Name of filesystem for this operation.                                                                   |
-| `--max-iops` \<uint>           | Limit I/O operations per second. This affects how much CPU is used by the filesystem on cluster servers. |
-| `--max-throughput` \<capacity> | Limit throughput per second. This affects how much bandwidth is available to the filesystem.             |
 
 ## weka fs snapshot
 
@@ -976,7 +960,7 @@ weka fs tier obs update <name> [--access-key-id <string>] [--auth-method <s3-aut
 | `--max-concurrent-downloads` \<uint8>   | Limits how many downloads we concurrently perform on this object store in a single IO node.                 |
 | `--max-concurrent-removals` \<uint8>    | Limits the number of removals we concurrently perform on this object store in a single IO node.             |
 | `--max-concurrent-uploads` \<uint8>     | Limits the number of uploads we concurrently perform on this object store in a single IO node.              |
-| `--max-data-blob-size` \<capacity>      | Maximum size of a data object to upload to an object store data blob.                                       |
+| `--max-data-blob-size` \<capacity>      | Maximum size of a data object to upload to an object store data blob. Requires capacity units, for example 8KiB or 16MiB. |
 | `--max-extents-in-data-blob` \<uint>    | Limits the number of extents to upload to an object store data blob.                                        |
 | `--new-name` \<string>                  | New name for the object store.                                                                              |
 | `--obs-type` \<obs-type>                | Object store type. Valid values: other, aws, hcp, azure.                                                    |
@@ -990,7 +974,7 @@ weka fs tier obs update <name> [--access-key-id <string>] [--auth-method <s3-aut
 | `--sts-role-session-name` \<string>     | An identifier for the assumed role session. Length constraints: Minimum length of 2, maximum length of 64.  |
 | `--sts-session-duration` \<duration>    | Duration of the temporary security credentials in seconds. Must be between 900 and 43200; default is 3600.  |
 | `--upload-bandwidth` \<uint>            | Upload bandwidth limitation. Value is per core (Mbps).                                                      |
-| `--upload-memory-limit` \<capacity>     | Maximum RAM to allocate for concurrent uploads to this object store (per node).                             |
+| `--upload-memory-limit` \<capacity>     | Maximum RAM to allocate for concurrent uploads to this object store (per node). Requires capacity units, for example 128MiB or 256MB. |
 
 ### weka fs tier ops
 
@@ -1059,7 +1043,7 @@ weka fs tier s3 add <name> [--access-key-id <string>] [--auth-method <s3-auth-me
 | `--max-concurrent-downloads` \<uint8>   | Limits how many downloads we concurrently perform on this object store in a single IO node.                               |
 | `--max-concurrent-removals` \<uint8>    | Limits the number of removals we concurrently perform on this object store in a single IO node.                           |
 | `--max-concurrent-uploads` \<uint8>     | Limits the number of uploads we concurrently perform on this object store in a single IO node.                            |
-| `--max-data-blob-size` \<capacity>      | Maximum size of a data object to upload to an object store data blob.                                                     |
+| `--max-data-blob-size` \<capacity>      | Maximum size of a data object to upload to an object store data blob. Requires capacity units, for example 8KiB or 16MiB. |
 | `--max-extents-in-data-blob` \<uint>    | Limits the number of extents to upload to an object store data blob.                                                      |
 | `--metadata-storage-class` \<string>    | AWS storage class or Azure access tier to use for uploaded metadata blobs.                                                |
 | `--obs-name` \<string>                  | Name of the object store to associate this new bucket with.                                                               |
@@ -1168,7 +1152,7 @@ weka fs tier s3 update <name> [--access-key-id <string>] [--auth-method <s3-auth
 | `--max-concurrent-downloads` \<uint8>   | Limits how many downloads we concurrently perform on this object store in a single IO node.                               |
 | `--max-concurrent-removals` \<uint8>    | Limits the number of removals we concurrently perform on this object store in a single IO node.                           |
 | `--max-concurrent-uploads` \<uint8>     | Limits the number of uploads we concurrently perform on this object store in a single IO node.                            |
-| `--max-data-blob-size` \<capacity>      | Maximum size of a data object to upload to an object store data blob.                                                     |
+| `--max-data-blob-size` \<capacity>      | Maximum size of a data object to upload to an object store data blob. Requires capacity units, for example 8KiB or 16MiB. |
 | `--max-extents-in-data-blob` \<uint>    | Limits the number of extents to upload to an object store data blob.                                                      |
 | `--metadata-storage-class` \<string>    | AWS storage class or Azure access tier to use for uploaded metadata blobs.                                                |
 | `--new-name` \<string>                  | New name for the object store bucket.                                                                                     |
@@ -1216,7 +1200,7 @@ weka fs update <name> [--access <access>] [--audit-enabled] [--auth-required] [-
 | `--kms-role-id` \<string>                         | Customize KMS role identifier for this filesystem. Currently only for HashiCorp Vault.                                                                                                                  |
 | `--kms-secret-id` \<string>                       | Customize KMS secret identifier for this filesystem. Currently only for HashiCorp Vault.                                                                                                                |
 | `--max-iops` \<uint>                              | Limit I/O operations per second. This affects how much CPU is used by the filesystem on cluster servers.                                                                                                |
-| `--max-throughput` \<capacity>                    | Limit throughput per second. This affects how much bandwidth is available to the filesystem.                                                                                                            |
+| `--max-throughput` \<capacity>                    | Limit throughput per second. This affects how much bandwidth is available to the filesystem. Requires capacity units, for example 1GiB or 500MB. |
 | `--new-name` \<filesystem>                        | Rename the filesystem.                                                                                                                                                                                  |
 | `--remove-fs-group`                               | Reset the filesystem to have no group.                                                                                                                                                                  |
 | `--ssd-capacity` \<capacity>                      | New SSD capacity for the filesystem.                                                                                                                                                                    |

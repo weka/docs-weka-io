@@ -660,8 +660,8 @@ weka cluster mount-defaults set [--qos-max-ops <uint>] [--qos-max-throughput <ca
 | Parameter                                | Description                                                                          |
 | ---------------------------------------- | ------------------------------------------------------------------------------------ |
 | `--qos-max-ops` \<uint>                  | Limits the number of operations of any kind for the client.                          |
-| `--qos-max-throughput` \<capacity>       | Limits the throughput allowed for the client for either receive or transmit traffic. |
-| `--qos-preferred-throughput` \<capacity> | Throughput that gets preferred state (NORMAL instead of LOW) in QoS.                 |
+| `--qos-max-throughput` \<capacity>       | Limits the throughput allowed for the client for either receive or transmit traffic. A value with no units is in MiB/s. |
+| `--qos-preferred-throughput` \<capacity> | Throughput that gets preferred state (NORMAL instead of LOW) in QoS. A value with no units is in MiB/s. |
 
 ### weka cluster mount-defaults show
 

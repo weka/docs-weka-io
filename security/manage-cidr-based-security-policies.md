@@ -290,7 +290,7 @@ weka security policy test <policies>… [--ip <ip>] [--join] [--role <user-role>
 | `policies`\*… | Policies to evaluate, with access verified in the order listed. |
 | `--ip` \<ip> | Use this IP address to evaluate as the source address. |
 | `--join` | Simulate effect of policies when joining the cluster. |
-| `--role` \<user-role> | Simulate effect of policies on API access from the given user role. |
+| `--role` \<user-role> | Simulate effect of policies on API access from the given user role. Valid values: clusteradmin, tenantadmin, regular, readonly, s3, csi. |
 
 **Example**
 

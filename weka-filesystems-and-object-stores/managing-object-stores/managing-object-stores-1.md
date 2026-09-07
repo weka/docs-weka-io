@@ -48,7 +48,7 @@ weka fs tier obs update <name> [--access-key-id <string>] [--auth-method <s3-aut
 | `--max-concurrent-downloads` \<uint8> | Limits how many downloads we concurrently perform on this object store in a single IO node. Possible values: `1`-`64` |
 | `--max-concurrent-removals` \<uint8> | Limits the number of removals we concurrently perform on this object store in a single IO node. Possible values: `1`-`64` |
 | `--max-concurrent-uploads` \<uint8> | Limits the number of uploads we concurrently perform on this object store in a single IO node. Possible values: `1`-`64` |
-| `--max-data-blob-size` \<capacity> | Maximum size of a data object to upload to an object store data blob. |
+| `--max-data-blob-size` \<capacity> | Maximum size of a data object to upload to an object store data blob. Requires capacity units, for example 8KiB or 16MiB. |
 | `--max-extents-in-data-blob` \<uint> | Limits the number of extents to upload to an object store data blob. |
 | `--new-name` \<string> | New name for the object store. |
 | `--obs-type` \<obs-type> | Object store type. |
@@ -62,7 +62,7 @@ weka fs tier obs update <name> [--access-key-id <string>] [--auth-method <s3-aut
 | `--sts-role-session-name` \<string> | An identifier for the assumed role session. Length constraints: Minimum length of 2, maximum length of 64. |
 | `--sts-session-duration` \<duration> | Duration of the temporary security credentials in seconds. Must be between 900 and 43200; default is 3600. |
 | `--upload-bandwidth` \<uint> | Upload bandwidth limitation. Value is per core (Mbps). |
-| `--upload-memory-limit` \<capacity> | Maximum RAM to allocate for concurrent uploads to this object store (per node). |
+| `--upload-memory-limit` \<capacity> | Maximum RAM to allocate for concurrent uploads to this object store (per node). Requires capacity units, for example 128MiB or 256MB. |
 
 ## View object store buckets
 
@@ -110,7 +110,7 @@ weka fs tier s3 add <name> [--access-key-id <string>] [--auth-method <s3-auth-me
 | `--max-concurrent-downloads` \<uint8> | Limits how many downloads we concurrently perform on this object store in a single IO node. Possible values: 1-64 |
 | `--max-concurrent-removals` \<uint8> | Limits the number of removals we concurrently perform on this object store in a single IO node. Possible values: 1-64 |
 | `--max-concurrent-uploads` \<uint8> | Limits the number of uploads we concurrently perform on this object store in a single IO node. Possible values: 1-64 |
-| `--max-data-blob-size` \<capacity> | Maximum size of a data object to upload to an object store data blob. |
+| `--max-data-blob-size` \<capacity> | Maximum size of a data object to upload to an object store data blob. Requires capacity units, for example 8KiB or 16MiB. |
 | `--max-extents-in-data-blob` \<uint> | Limits the number of extents to upload to an object store data blob. |
 | `--metadata-storage-class` \<string> | AWS storage class or Azure access tier to use for uploaded metadata blobs. |
 | `--obs-name` \<string> | Name of the object store to associate this new bucket with. |
@@ -176,7 +176,7 @@ weka fs tier s3 update <name> [--access-key-id <string>] [--auth-method <s3-auth
 | `--max-concurrent-downloads` \<uint8> | Limits how many downloads we concurrently perform on this object store in a single IO node. Possible values: 1-64 |
 | `--max-concurrent-removals` \<uint8> | Limits the number of removals we concurrently perform on this object store in a single IO node. Possible values: 1-64 |
 | `--max-concurrent-uploads` \<uint8> | Limits the number of uploads we concurrently perform on this object store in a single IO node. Possible values: 1-64 |
-| `--max-data-blob-size` \<capacity> | Maximum size of a data object to upload to an object store data blob. |
+| `--max-data-blob-size` \<capacity> | Maximum size of a data object to upload to an object store data blob. Requires capacity units, for example 8KiB or 16MiB. |
 | `--max-extents-in-data-blob` \<uint> | Limits the number of extents to upload to an object store data blob. |
 | `--metadata-storage-class` \<string> | AWS storage class or Azure access tier to use for uploaded metadata blobs. |
 | `--new-name` \<string> | New name for the object store bucket. |

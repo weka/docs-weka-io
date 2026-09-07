@@ -24,7 +24,7 @@ weka tenant add <name> <username> [<password>] [--enforce-fs-authentication] [--
 | `--enforce-fs-authentication`     | Require authentication to access every filesystem within this tenant.                                                            |
 | `--enforce-mount-netspace-access` | Limit access to every filesystem within this tenant to named network spaces.                                                     |
 | `--max-iops` \<uint>              | Limit I/O operations per second across all filesystems in the tenant. Requires cluster-admin role.                               |
-| `--max-throughput` \<capacity>    | Limit throughput per second across all filesystems in the tenant. Requires cluster-admin role.                                   |
+| `--max-throughput` \<capacity>    | Limit throughput per second across all filesystems in the tenant. Requires capacity units, for example 200GiB or 500GB. Requires cluster-admin role. |
 | `--network-spaces` \<strings>…    | Network space names to assign to the tenant. Multiple values may be supplied separated by commas, or the option may be repeated. |
 | `--ssd-quota` \<capacity>         | SSD quota to allocate for the tenant.                                                                                            |
 | `--total-quota` \<capacity>       | Total quota to allocate for the tenant.                                                                                          |
@@ -224,7 +224,7 @@ weka tenant set-qos <tenant> [--max-iops <uint>] [--max-throughput <capacity>]
 | ------------------------------ | ---------------------------------------------------------------------------------------------------- |
 | `tenant`\*                     | Name or ID of tenant to update.                                                                      |
 | `--max-iops` \<uint>           | Limit I/O operations per second. This affects how much CPU is used by the tenant on cluster servers. |
-| `--max-throughput` \<capacity> | Limit throughput per second. This affects how much bandwidth is available to the tenant.             |
+| `--max-throughput` \<capacity> | Limit throughput per second. This affects how much bandwidth is available to the tenant. Requires capacity units, for example 200GiB or 500GB. |
 
 ## weka tenant set-quota
 
@@ -284,7 +284,7 @@ weka tenant update <tenant> [--enforce-fs-authentication] [--enforce-mount-netsp
 | `--enforce-fs-authentication`     | Require authentication to access every filesystem within this tenant.                              |
 | `--enforce-mount-netspace-access` | Limit access to every filesystem within this tenant to named network spaces.                       |
 | `--max-iops` \<uint>              | Limit I/O operations per second across all filesystems in the tenant. Requires cluster-admin role. |
-| `--max-throughput` \<capacity>    | Limit throughput per second across all filesystems in the tenant. Requires cluster-admin role.     |
+| `--max-throughput` \<capacity>    | Limit throughput per second across all filesystems in the tenant. Requires capacity units, for example 200GiB or 500GB. Requires cluster-admin role. |
 | `--new-name` \<string>            | Rename the tenant. Requires cluster-admin role.                                                    |
 | `--ssd-quota` \<capacity>         | Set the SSD capacity quota for the tenant.                                                         |
 | `--total-quota` \<capacity>       | Set the total capacity quota for the tenant.                                                       |
