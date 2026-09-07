@@ -290,8 +290,6 @@ Terraform uses Azure CLI to pass commands to Azure. It is recommended to install
 brew update && brew install azure-cli
 ```
 
-<figure><img src="https://github.com/weka/docs-weka-io/blob/4.4/.gitbook/assets/azure_cli_install.png" alt=""><figcaption></figcaption></figure>
-
 2. Wait for the installation to complete.
 
 <div data-with-frame="true"><figure><img src="../../.gitbook/assets/image (79).png" alt=""><figcaption></figcaption></figure></div>
@@ -303,8 +301,6 @@ az version
 ```
 
 The installed version of Azure CLI is displayed.
-
-<figure><img src="https://github.com/weka/docs-weka-io/blob/4.4/.gitbook/assets/azure_cli_installed.png" alt=""><figcaption></figcaption></figure>
 
 ### Log in to Azure CLI
 
@@ -327,8 +323,6 @@ az login
 2. A web browser opens, prompting the user to select an account for authentication. Select the user or enter the credentials.
 
 After successful authentication, a confirmation message appears.
-
-<figure><img src="https://github.com/weka/docs-weka-io/blob/4.4/.gitbook/assets/azure_login.png" alt=""><figcaption></figcaption></figure>
 
 3. Return to the terminal, where the authentication status of Azure CLI is displayed.
 
