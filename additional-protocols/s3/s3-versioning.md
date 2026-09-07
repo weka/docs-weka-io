@@ -10,7 +10,7 @@ description: >-
 
 * **Current version:** The most recent version of an object. It's what you retrieve by default.
 * **Non-current version:** Any earlier version of an object, retained after an update or overwrite.
-* **Delete marker:** A placeholder that becomes the current version when you delete an object. It isn't a real object, and it hides the object from standard list and GET requests.
+* **Delete marker:** A placeholder that becomes the current version when you delete an object. It has its own version ID but no data, and it hides the object from standard list and GET requests. Earlier versions remain retrievable by version ID.
 * **Version ID:** A unique identifier for each object version. Objects stored before you enable versioning have a version ID of `null`.
 
 ## Versioning states
@@ -55,7 +55,7 @@ Check, enable, or suspend versioning for an S3 bucket.
 **Before you begin**
 
 * Ensure the WEKA CLI is configured and you can manage the target bucket.
-* Enable versioning for the cluster. Versioning is off by default, and the bucket commands fail with `MethodNotAllowed: The feature is disabled in the global configuration` until you enable it.
+*   Enable versioning for the cluster. Versioning is off by default, and the bucket commands fail with `MethodNotAllowed: The feature is disabled in the global configuration` until you enable it.
 
     ```bash
     weka s3 cluster update --allow-versioning
