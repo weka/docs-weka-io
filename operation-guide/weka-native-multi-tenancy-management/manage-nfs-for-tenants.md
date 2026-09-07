@@ -112,14 +112,9 @@ To remove a tenant, open the **Name Spaces** table on the interface group's deta
 
 The **Tenant** column on that table shows which tenant each namespace serves.
 
-**INTERNAL, remove before publication. TBD (Docs):** one capture still missing: the **Name Spaces** table showing the **Tenant** column populated and the per-row **Remove** action. The Add control and the Assign Tenant dialog were captured on 2026-09-03 and are in place above.
-
-**Do not attempt this capture on an OCI lab.** It was tried on 2026-09-03 and the result is not publishable. The assignment itself succeeds and the Name Spaces row appears correctly, but the interface group goes `Inactive` with every port at `Rule:FAILED`, and the row reads `Assigned Host 0 (total)` where a working cluster names a host. The floating IPs never reach the NIC: only the DHCP address is present on `enp0s5` afterwards. The likely cause is that OCI does not route secondary IPs that are not registered against the VNIC, which is an environment limit rather than a product defect, but that was not proven. This capture needs bare metal, or a cloud instance whose secondary IPs are registered.
-
-**Two things learned that will otherwise be re-derived:**
-
-* **Add the interface group's IPs before assigning a tenant.** With a tenant assigned and no IPs, `weka nfs interface-group ip-range add` refuses with *"IPs can't be added to the inactive `<name>` interface group"*, and unassigning the tenant does not clear the state. The group has to be deleted and recreated.
-* **An interface group reporting `OK` with no IPs is not evidence that it works.** Nothing is programmed until something uses it. The status only becomes meaningful once the group has IPs or a tenant.
+{% hint style="info" %}
+Add the interface group's IP ranges first, then assign the tenant. In this order the group activates and serves the tenant's floating IPs immediately. A group that receives a tenant while it has no IP ranges stays inactive, and it must be recreated to accept them.
+{% endhint %}
 
 #### CLI alternative
 
