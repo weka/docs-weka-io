@@ -6,7 +6,7 @@ description: >-
 
 # Snapshots
 
-Snapshots allow the saving of a filesystem state to a hidden `.snapshots` directory under the root filesystem. They can be used for:
+Snapshots allow the saving of a filesystem state to a hidden `.snapshots` directory, available from the filesystem root and from any subdirectory. They can be used for:
 
 * **Physical backup:** The snapshots directory can be copied into a different storage system, possibly on another site, using either the WEKA system Snap-To-Object feature or third-party software.
 * **Logical backup:** Periodic snapshots enable filesystem restoration to a previous state if logical data corruption occurs.
@@ -36,7 +36,7 @@ The WEKA system supports the following snapshot operations:
 * List the snapshots and obtain their metadata.
 * Schedule automatic snapshots. For details, see [snapshot-policies](../snapshot-policies/ "mention").
 
-To access the hidden `.snapshot` directory, see [#access-the-.snapshots-directory](snapshots-1.md#access-the-.snapshots-directory "mention").
+To access the hidden `.snapshots` directory, see [#access-the-.snapshots-directory](snapshots-1.md#access-the-.snapshots-directory "mention").
 
 ## Working with snapshots considerations
 
