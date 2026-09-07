@@ -8,10 +8,6 @@ description: >-
 
 Manage trace collection and protocol debug levels from **Configure > Cluster Settings > Support**. The screen includes the **Traces** and **Protocols Debug Level** sections.
 
-{% hint style="danger" %}
-**TBD - INTERNAL:** Trace capacity is expected to become configurable in the GUI (under investigation); the screen currently only displays the values. Replace the CLI pointer with a capacity task once the GUI control lands.
-{% endhint %}
-
 <div data-with-frame="true"><figure><img src="../../../.gitbook/assets/support_traces_protocols_debug.png" alt=""><figcaption><p>Support settings</p></figcaption></figure></div>
 
 ## Traces
