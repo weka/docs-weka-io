@@ -43,7 +43,7 @@ If you create an S3 user and attach an S3 policy, the system generates an S3 acc
 {% endtab %}
 
 {% tab title="Create TenantAdmin user example" %}
-<div data-with-frame="true"><img src="../../.gitbook/assets/create_user (1).png" alt="Create TenantAdmin user example" width="352"></div>
+<div data-with-frame="true"><img src="../../.gitbook/assets/create_user.png" alt="Create TenantAdmin user example" width="352"></div>
 {% endtab %}
 {% endtabs %}
 

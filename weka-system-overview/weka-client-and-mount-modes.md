@@ -10,9 +10,9 @@ metaLinks:
 
 # WEKA client and mount modes
 
-## The WEKA client
+## WEKA client
 
-The WEKA client is a standard POSIX-compliant filesystem driver installed on application servers, facilitating file access to WEKA filesystems. Acting as a conventional filesystem driver, it intercepts and executes all filesystem operations, providing applications with local filesystem semantics and performance—distinct from NFS mounts. This approach ensures centrally managed, shareable, and resilient storage for WEKA.
+The WEKA client is a standard POSIX-compliant filesystem driver installed on application servers, facilitating file access to WEKA filesystems. Acting as a conventional filesystem driver, it intercepts and executes all filesystem operations, providing applications with local filesystem semantics and performance, distinct from NFS mounts. This approach ensures centrally managed, shareable, and resilient storage for WEKA.
 
 Tightly integrated with the Linux Page Cache, the WEKA client leverages this transparent caching mechanism to store portions of filesystem content in the client's RAM. The Linux operating system maintains a page cache in the unused RAM, allowing rapid access to cached pages and yielding overall performance enhancements.
 

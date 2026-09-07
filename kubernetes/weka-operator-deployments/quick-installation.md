@@ -38,7 +38,7 @@ Replace the credentials with your values, or copy the generated command from `ge
 
 <summary>get.weka.io: WEKA Operator image pull secrets example</summary>
 
-<figure><img src="../../.gitbook/assets/get-weka-io_weka_operator_example (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/get-weka-io_weka_operator_example.png" alt=""><figcaption></figcaption></figure>
 
 </details>
 

@@ -5,7 +5,7 @@ description: >-
 metaLinks:
   alternates:
     - >-
-      https://app.gitbook.com/s/0yXyIrnroN3zIG3qa4W3/operation-guide/background-tasks/set-up-a-data-services-container-for-background-tasks
+      https://app.gitbook.com/s/0yXyIrnroN3zIG3qa4W3/operation-guide/set-up-a-data-services-container-for-background-tasks
 ---
 
 # Set up a Data Services container for background tasks
