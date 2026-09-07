@@ -13,7 +13,7 @@ You can shrink the cluster by performing one of the following:
 * Remove only some drives from the cluster.
 * Remove containers with their allocated drives.
 
-Track deactivation, draining, and removal progress with [Container state and status fields](https://app.gitbook.com/s/ZW262oqYA8pNNfGvXjHa/operation-guide/expanding-and-shrinking-cluster-resources/container-state-and-status-fields).
+Track deactivation, draining, and removal progress with [Container state and status fields](container-state-and-status-fields.md).
 
 Removing cores, drives, or containers requires deactivating the drives you want to remove. But, if the deactivation leads to insufficient SSD capacity of the currently-provisioned filesystems, the WEKA system does not deactivate the drives, and shrinking the cluster is not allowed.
 
@@ -114,7 +114,7 @@ To deactivate containers with their drives, run the following command:
 | `container-ids`\*   | Space-separated container identifiers                                                                                        |         |
 | `allow-unavailable` | Allow deactivation of an unavailable container.If the `container-id` value returns, it joins the cluster in an active state. | No      |
 
-To interpret container lifecycle and health during deactivation, see [Container state and status fields](https://app.gitbook.com/s/ZW262oqYA8pNNfGvXjHa/operation-guide/expanding-and-shrinking-cluster-resources/container-state-and-status-fields).
+To interpret container lifecycle and health during deactivation, see [Container state and status fields](container-state-and-status-fields.md).
 
 ### Remove containers from the cluster
 

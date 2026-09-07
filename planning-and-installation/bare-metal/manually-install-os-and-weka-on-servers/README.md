@@ -13,7 +13,7 @@ Follow this page if you are using the manual installation and configuration path
 {% hint style="info" %}
 For optimal server performance and configuration, use `bios_tool` to set BIOS settings on your servers.
 
-For details, see [Use bios\_tool](https://app.gitbook.com/s/ZW262oqYA8pNNfGvXjHa/appendices/bios-tool).
+For details, see [Use bios\_tool](../../../appendices/bios-tool.md).
 {% endhint %}
 
 **Procedure**
@@ -134,8 +134,8 @@ If a failure occurs during the WEKA software installation process, an error mess
 
 **Related topic**
 
-[Operating system prerequisites](https://app.gitbook.com/s/ZW262oqYA8pNNfGvXjHa/planning-and-installation/prerequisites-and-compatibility#operating-system)
+[Operating system prerequisites](../../prerequisites-and-compatibility.md#operating-system)
 
 ## What to do next?
 
-Go to [Prepare the system](https://app.gitbook.com/s/ZW262oqYA8pNNfGvXjHa/planning-and-installation/bare-metal/setting-up-the-hosts).
+Go to [Prepare the system](../setting-up-the-hosts/).

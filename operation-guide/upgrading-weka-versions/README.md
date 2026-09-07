@@ -31,7 +31,7 @@ For lifecycle details, see [Release support and commitments](../../support/relea
 * **Release Line progression:** Upgrade across consecutive supported Release Lines. If a multi-hop path is required, complete one Release Line at a time.
 * **Compatibility basis:** Compatibility is determined by the release date of the target version relative to the source version and by the supported source range for that target version.
 * **Client upgrades:** Clients are supported if they are at most one Release Line behind the backend. In multi-hop upgrades, upgrade the clients before the cluster at each hop.
-* **SCMC deployments:** The `client-target-version` parameter must be identical across all clusters and compatible with the target backend version. See [Mount filesystems from Single Client to Multiple Clusters (SCMC)](https://app.gitbook.com/s/ZW262oqYA8pNNfGvXjHa/weka-filesystems-and-object-stores/mounting-filesystems/mount-fs-from-scmc).
+* **SCMC deployments:** The `client-target-version` parameter must be identical across all clusters and compatible with the target backend version. See [Mount filesystems from Single Client to Multiple Clusters (SCMC)](../../weka-filesystems-and-object-stores/mounting-filesystems/mount-fs-from-scmc.md).
 * **Reference information:** For exact supported source and target combinations, see the upgrade section at [get.weka.io](https://get.weka.io).
 
 #### Check the upgrade path
@@ -450,4 +450,4 @@ Verify the upgraded cluster and restore Data Catalog services when required.
     ```bash
     weka status
     ```
-2. For clusters deployed with Data Catalog, create the catalog cluster and index filesystem. Follow [Deploy the catalog services](https://app.gitbook.com/s/ZW262oqYA8pNNfGvXjHa/weka-filesystems-and-object-stores/data-catalog/configure-data-catalog#deploy-the-catalog-services).
+2. For clusters deployed with Data Catalog, create the catalog cluster and index filesystem. Follow [Deploy the catalog services](../../weka-filesystems-and-object-stores/data-catalog/configure-data-catalog.md#deploy-the-catalog-services).

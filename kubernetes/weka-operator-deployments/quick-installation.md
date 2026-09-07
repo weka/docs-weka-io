@@ -9,7 +9,7 @@ description: >-
 #### **Before you begin**
 
 * Access the [WEKA Operator page](https://get.weka.io/ui/operator) to obtain the target `WEKA_OPERATOR_VERSION` and `WEKA_IMAGE_VERSION_TAG`.
-* To obtain your `QUAY_USERNAME`, `QUAY_PASSWORD`, and target version tags, ensure you can access `get.weka.io`. See [Obtain the installation packages](https://app.gitbook.com/s/ZW262oqYA8pNNfGvXjHa/planning-and-installation/bare-metal/obtaining-the-weka-install-file).
+* To obtain your `QUAY_USERNAME`, `QUAY_PASSWORD`, and target version tags, ensure you can access `get.weka.io`. See [Obtain the installation packages](../../planning-and-installation/bare-metal/obtaining-the-weka-install-file.md).
 * Ensure `helm`, `kubectl`, and Docker are installed. Log in to `quay.io` before pulling the Helm chart.
 * Verify all nodes meet the hardware and software requirements described in Prepare Kubernetes environment.
 

@@ -93,7 +93,7 @@ Save the wizard state with **Save Config**. Restore a saved state with **Load Co
 
 **Related topics**
 
-* [Composable clusters for multi-tenancy in Kubernetes](https://app.gitbook.com/s/ZW262oqYA8pNNfGvXjHa/kubernetes/composable-clusters-for-multi-tenancy-in-kubernetes)
+* [Composable clusters for multi-tenancy in Kubernetes](../../composable-clusters-for-multi-tenancy-in-kubernetes.md)
 * [Cloud Deployment Manager Kubernetes deployment types](./)
 * [Deploy dedicated WEKA on Kubernetes using the CDM](deploy-dedicated-weka-on-kubernetes-using-the-cdm.md)
-* [WEKA Operator full deployment workflow](https://app.gitbook.com/s/ZW262oqYA8pNNfGvXjHa/kubernetes/weka-operator-deployments/weka-operator-full-deployment-workflow)
+* [WEKA Operator full deployment workflow](../weka-operator-full-deployment-workflow.md)

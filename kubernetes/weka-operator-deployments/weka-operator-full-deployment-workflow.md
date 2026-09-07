@@ -172,7 +172,7 @@ Enable the static CPU Manager policy on all worker nodes to give WEKA processes 
 
 On Kubernetes v1.32 and later, also enable `strict-cpu-reservation` to prevent Burstable and Best Effort pods from scheduling onto reserved cores.
 
-For the full rationale, sibling-pair guidance, and version-specific reservation details, see [WEKA Operator best practices](https://app.gitbook.com/s/ZW262oqYA8pNNfGvXjHa/kubernetes/weka-operator-deployments/weka-operator-best-practices).
+For the full rationale, sibling-pair guidance, and version-specific reservation details, see [WEKA Operator best practices](weka-operator-best-practices.md).
 
 **Before you begin: identify HyperThreading sibling cores**
 

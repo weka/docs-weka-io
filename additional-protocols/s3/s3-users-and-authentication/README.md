@@ -11,7 +11,7 @@ description: >-
 Use an access key and secret key pair to access the S3 API. These credentials are separate from the WEKA account password. WEKA stores each key pair locally.
 
 * **Local accounts:** Managed in WEKA. The key pair belongs to the local account.
-* **LDAP accounts:** Managed in LDAP. WEKA issues and stores the key pair locally. Use the dedicated API to create a key pair, refresh the IAM policy and UID/GID mapping from LDAP, or remove the local key pair without changing the LDAP account. For details, see [Configure S3 LDAP authentication](https://app.gitbook.com/s/ZW262oqYA8pNNfGvXjHa/additional-protocols/s3/s3-users-and-authentication/configure-s3-ldap-authentication).
+* **LDAP accounts:** Managed in LDAP. WEKA issues and stores the key pair locally. Use the dedicated API to create a key pair, refresh the IAM policy and UID/GID mapping from LDAP, or remove the local key pair without changing the LDAP account. For details, see [Configure S3 LDAP authentication](configure-s3-ldap-authentication.md).
 
 ### Create credentials for local accounts
 
@@ -57,7 +57,7 @@ Access to the S3 API requires an attached IAM policy. Local users also require t
 * **Local users:** A local user needs the **S3** role and an attached S3 IAM policy before using the S3 API.
 * **LDAP users:** An LDAP user needs an attached S3 IAM policy before using the S3 API.
 * **Policy types:** Attach a predefined policy or a custom policy created with the [AWS Policy Generator](https://awspolicygen.s3.amazonaws.com/policygen.html).
-* **Policy size:** IAM policies are limited to 2 KB. Contact the [Customer Success Team](https://app.gitbook.com/s/ZW262oqYA8pNNfGvXjHa/support/getting-support-for-your-weka-system) if you need a larger policy.
+* **Policy size:** IAM policies are limited to 2 KB. Contact the [Customer Success Team](../../../support/getting-support-for-your-weka-system.md) if you need a larger policy.
 * **Identity mapping:** Use `--posix-uid` and `--posix-gid` to control the POSIX ownership of objects created by local S3 users.
 
 ## Manage S3 credentials
@@ -147,10 +147,10 @@ Service accounts are permanent child identities of a single S3 user.
 
 ### Related topics
 
-[Configure S3 LDAP authentication](https://app.gitbook.com/s/ZW262oqYA8pNNfGvXjHa/additional-protocols/s3/s3-users-and-authentication/configure-s3-ldap-authentication)
+[Configure S3 LDAP authentication](configure-s3-ldap-authentication.md)
 
-[Manage S3 users and authentication using the CLI](https://app.gitbook.com/s/ZW262oqYA8pNNfGvXjHa/additional-protocols/s3/s3-users-and-authentication/s3-users-and-authentication)
+[Manage S3 users and authentication using the CLI](s3-users-and-authentication.md)
 
-[User roles and permissions](https://app.gitbook.com/s/ZW262oqYA8pNNfGvXjHa/operation-guide/user-management)
+[User roles and permissions](../../../operation-guide/user-management/)
 
-[Supported S3 APIs](https://app.gitbook.com/s/ZW262oqYA8pNNfGvXjHa/additional-protocols/s3/s3-limitations)
+[Supported S3 APIs](../s3-limitations.md)

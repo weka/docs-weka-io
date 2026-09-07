@@ -137,4 +137,4 @@ The server provides a status report indicating the system is in STEM mode, and i
 
 ## What to do next?
 
-Go to [Configure the cluster with WEKA Configurator](https://app.gitbook.com/s/ZW262oqYA8pNNfGvXjHa/planning-and-installation/bare-metal/configure-the-weka-cluster-using-the-weka-configurator).
+Go to [Configure the cluster with WEKA Configurator](configure-the-weka-cluster-using-the-weka-configurator.md).

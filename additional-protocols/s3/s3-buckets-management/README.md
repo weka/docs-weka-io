@@ -24,7 +24,7 @@ This behavior differs from non-multi-tenant deployments, where all buckets on th
 
 **Related topics**
 
-* [S3 users and authentication](https://app.gitbook.com/s/ZW262oqYA8pNNfGvXjHa/additional-protocols/s3/s3-users-and-authentication)
-* [Naming limitations](https://app.gitbook.com/s/ZW262oqYA8pNNfGvXjHa/additional-protocols/s3/s3-limitations)
-* [Manage S3 buckets using the GUI](https://app.gitbook.com/s/ZW262oqYA8pNNfGvXjHa/additional-protocols/s3/s3-buckets-management/s3-buckets-management)
-* [Manage S3 buckets using the CLI](https://app.gitbook.com/s/ZW262oqYA8pNNfGvXjHa/additional-protocols/s3/s3-buckets-management/s3-buckets-management-1)
+* [S3 users and authentication](../s3-users-and-authentication/)
+* [Naming limitations](../s3-limitations.md)
+* [Manage S3 buckets using the GUI](s3-buckets-management.md)
+* [Manage S3 buckets using the CLI](s3-buckets-management-1.md)

@@ -92,8 +92,8 @@ Related information: [bare-metal](../planning-and-installation/bare-metal/ "ment
 
 Related information:
 
-* [Expand and shrink cluster resources](https://app.gitbook.com/s/ZW262oqYA8pNNfGvXjHa/operation-guide/expanding-and-shrinking-cluster-resources)
-* [Container state and status fields](https://app.gitbook.com/s/ZW262oqYA8pNNfGvXjHa/operation-guide/expanding-and-shrinking-cluster-resources/container-state-and-status-fields)
+* [Expand and shrink cluster resources](../operation-guide/expanding-and-shrinking-cluster-resources/)
+* [Container state and status fields](../operation-guide/expanding-and-shrinking-cluster-resources/container-state-and-status-fields.md)
 
 | Task                                                                                                                                                                                                | REST API                                                                                                                                | CLI                                                          |
 | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ |

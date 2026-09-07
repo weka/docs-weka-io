@@ -23,7 +23,7 @@ Local users are accounts created directly in the WEKA system, as distinct from d
    * **Password:** Set a password according to the requirements. The password must contain at least 8 characters: an uppercase letter, a lowercase letter, and a number or a special character.
    * **Confirm Password:** Type the same password again.
    * **Role:** Select the role for the local user.\
-     The S3 user role is available only when an S3 cluster is configured. If you select the S3 user role, also select the relevant S3 policy and, optionally, the [POSIX UID](#user-content-fn-1)[^1] and [POSIX GID](#user-content-fn-2)[^2]**.** If an S3 policy is attached during user creation, the system generates the S3 access key and secret key automatically. For role details, see [User roles and permissions](https://app.gitbook.com/s/ZW262oqYA8pNNfGvXjHa/operation-guide/user-management).
+     The S3 user role is available only when an S3 cluster is configured. If you select the S3 user role, also select the relevant S3 policy and, optionally, the [POSIX UID](#user-content-fn-1)[^1] and [POSIX GID](#user-content-fn-2)[^2]**.** If an S3 policy is attached during user creation, the system generates the S3 access key and secret key automatically. For role details, see [User roles and permissions](./).
 4. Select **Save**.
 
 {% tabs %}

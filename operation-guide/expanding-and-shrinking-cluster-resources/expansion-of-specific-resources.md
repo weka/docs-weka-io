@@ -8,7 +8,7 @@ description: >-
 
 Expanding resources within a container involves dynamically adjusting the allocation of CPU, memory, storage, and other system resources to meet applications' changing demands. By effectively managing these resources, organizations can optimize performance, enhance scalability, and ensure the smooth operation of their containerized applications.
 
-When a change requires apply, deactivation, or draining, track the container lifecycle and health with [Container state and status fields](https://app.gitbook.com/s/ZW262oqYA8pNNfGvXjHa/operation-guide/expanding-and-shrinking-cluster-resources/container-state-and-status-fields).
+When a change requires apply, deactivation, or draining, track the container lifecycle and health with [Container state and status fields](container-state-and-status-fields.md).
 
 ## Expansion guidelines
 
@@ -325,7 +325,7 @@ If stopping a container would violate minimum failure domain requirements, the g
 
 The graceful process applies exclusively to cluster containers, not to protocol containers.
 
-To interpret `STATUS` output and distinguish live health from administrative lifecycle, see [Container state and status fields](https://app.gitbook.com/s/ZW262oqYA8pNNfGvXjHa/operation-guide/expanding-and-shrinking-cluster-resources/container-state-and-status-fields).
+To interpret `STATUS` output and distinguish live health from administrative lifecycle, see [Container state and status fields](container-state-and-status-fields.md).
 
 <pre class="language-bash" data-title="Example: prioritizing stability" data-full-width="true"><code class="lang-bash"><strong>CONTAINER ID  HOSTNAME  CONTAINER  IPS             STATUS          REQUESTED ACTION  REQUESTED ACTION FAILURE
 </strong>0             Host-0    drives0    10.108.206.201  UP              STOP              Upon completion of this operation, there are 4 reliable containers available for cluster leadership, while the requirement is for 5.                 

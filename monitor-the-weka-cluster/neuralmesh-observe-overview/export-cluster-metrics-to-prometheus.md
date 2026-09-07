@@ -6,7 +6,7 @@ description: Export WEKA cluster metrics from Observe to Prometheus.
 
 ## Export cluster metrics from Observe to Prometheus
 
-Observe exposes WEKA cluster metrics directly as Prometheus scrape endpoints. Configure your Prometheus server to scrape these endpoints and get metrics delivered in standard Prometheus format. For access details, see [NeuralMesh Observe overview](https://app.gitbook.com/s/ZW262oqYA8pNNfGvXjHa/monitor-the-weka-cluster/neuralmesh-observe-overview#connectivity-and-access).
+Observe exposes WEKA cluster metrics directly as Prometheus scrape endpoints. Configure your Prometheus server to scrape these endpoints and get metrics delivered in standard Prometheus format. For access details, see [NeuralMesh Observe overview](./#connectivity-and-access).
 
 Metrics are organized across four endpoints, each covering a distinct area of cluster telemetry. This keeps the cardinality of each individual scrape manageable, rather than one large payload that grows with every drive, client, and filesystem added to the cluster.
 
@@ -117,7 +117,7 @@ Replace the placeholders with your values:
 
 ### Selective metric collection
 
-Limit the exported metrics for this job. See [Configure selective Prometheus metric collection](https://app.gitbook.com/s/ZW262oqYA8pNNfGvXjHa/monitor-the-weka-cluster/the-wekaio-support-cloud/configure-selective-prometheus-metric-collection).
+Limit the exported metrics for this job. See [Configure selective Prometheus metric collection](../the-wekaio-support-cloud/configure-selective-prometheus-metric-collection.md).
 
 ### Grafana dashboards
 

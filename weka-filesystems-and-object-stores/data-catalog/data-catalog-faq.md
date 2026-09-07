@@ -99,6 +99,6 @@ No. Co-locating protocol containers (such as NFS) with Data Catalog services on 
 
 **Related topics**
 
-For deployment steps and sizing guidance, see [Configure data catalog](https://app.gitbook.com/s/ZW262oqYA8pNNfGvXjHa/weka-filesystems-and-object-stores/data-catalog/configure-data-catalog).
+For deployment steps and sizing guidance, see [Configure data catalog](configure-data-catalog.md).
 
-For UI workflows, see [Analyze storage distribution](https://app.gitbook.com/s/ZW262oqYA8pNNfGvXjHa/weka-filesystems-and-object-stores/data-catalog/analyze-storage-distribution).
+For UI workflows, see [Analyze storage distribution](analyze-storage-distribution.md).

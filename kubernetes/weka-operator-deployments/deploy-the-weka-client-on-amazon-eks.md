@@ -31,11 +31,11 @@ Ensure the following conditions are met for all supported cloud environments:
 
 Enable static CPU allocation and reserve core 0 on each client node. Reserve 1.5 GiB using hugepages for the client core.
 
-For the full CPU isolation rationale, HyperThreading sibling guidance, and Kubernetes version-specific reservation options, see [WEKA Operator best practices](https://app.gitbook.com/s/ZW262oqYA8pNNfGvXjHa/kubernetes/weka-operator-deployments/weka-operator-best-practices).
+For the full CPU isolation rationale, HyperThreading sibling guidance, and Kubernetes version-specific reservation options, see [WEKA Operator best practices](weka-operator-best-practices.md).
 
-For HugePages set up, follow the HugePages procedure in [WEKA Operator deployments](https://app.gitbook.com/s/ZW262oqYA8pNNfGvXjHa/kubernetes/weka-operator-deployments) under **Prepare Kubernetes environment**.
+For HugePages set up, follow the HugePages procedure in [WEKA Operator deployments](./) under **Prepare Kubernetes environment**.
 
-Use [Plan system hardware requirements](https://app.gitbook.com/s/ZW262oqYA8pNNfGvXjHa/planning-and-installation/bare-metal/planning-a-weka-system-installation) to calculate the required HugePages allocation for your client nodes.
+Use [Plan system hardware requirements](../../planning-and-installation/bare-metal/planning-a-weka-system-installation.md) to calculate the required HugePages allocation for your client nodes.
 
 ## Cloud-specific configuration
 

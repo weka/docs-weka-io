@@ -58,8 +58,8 @@ The diagram below explains how WEKA and SUNK components interact on a NeuralMesh
 
 **Related topics**
 
-* [WEKA Operator deployments](https://app.gitbook.com/s/ZW262oqYA8pNNfGvXjHa/kubernetes/weka-operator-deployments)
-* [NeuralMesh Axon overview](https://app.gitbook.com/s/ZW262oqYA8pNNfGvXjHa/neuralmesh-axon/neuralmesh-axon-overview)
+* [WEKA Operator deployments](../../kubernetes/weka-operator-deployments/)
+* [NeuralMesh Axon overview](../../neuralmesh-axon/neuralmesh-axon-overview.md)
 
 ***
 
@@ -67,7 +67,7 @@ The diagram below explains how WEKA and SUNK components interact on a NeuralMesh
 
 Configure `kubelet` static CPU management so the OS keeps reserved CPUs and the WEKA client pod receives dedicated CPUs from the allocatable pool.
 
-For the full CPU isolation rationale, HyperThreading sibling guidance, and Kubernetes version-specific reservation options, see [WEKA Operator best practices](https://app.gitbook.com/s/ZW262oqYA8pNNfGvXjHa/kubernetes/weka-operator-deployments/weka-operator-best-practices).
+For the full CPU isolation rationale, HyperThreading sibling guidance, and Kubernetes version-specific reservation options, see [WEKA Operator best practices](../../kubernetes/weka-operator-deployments/weka-operator-best-practices.md).
 
 **Procedure**
 

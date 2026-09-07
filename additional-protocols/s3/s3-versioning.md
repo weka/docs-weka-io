@@ -88,7 +88,7 @@ You cannot disable cluster versioning after you enable it. To stop retaining new
     weka s3 bucket versioning suspend <bucket-name>
     ```
 
-For versioning API support, see [S3 supported APIs and limitations](https://app.gitbook.com/s/ZW262oqYA8pNNfGvXjHa/additional-protocols/s3/s3-limitations#supported-s3-apis).
+For versioning API support, see [S3 supported APIs and limitations](s3-limitations.md#supported-s3-apis).
 
 ## Suspending versioning
 

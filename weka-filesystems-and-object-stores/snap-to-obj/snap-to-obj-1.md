@@ -166,7 +166,7 @@ Recover a filesystem when the required snapshot exists only in a remote object s
     If the delete command reports that the bucket is still in use, wait a few seconds and retry.
 
 {% hint style="info" %}
-For full bucket syntax, see [Manage object stores using the CLI](https://app.gitbook.com/s/ZW262oqYA8pNNfGvXjHa/weka-filesystems-and-object-stores/managing-object-stores/managing-object-stores-1). For attach and detach syntax, see [Attach or detach object store buckets using the CLI](https://app.gitbook.com/s/ZW262oqYA8pNNfGvXjHa/weka-filesystems-and-object-stores/attaching-detaching-object-stores-to-from-filesystems/attaching-detaching-object-stores-to-from-filesystems-1).
+For full bucket syntax, see [Manage object stores using the CLI](../managing-object-stores/managing-object-stores-1.md). For attach and detach syntax, see [Attach or detach object store buckets using the CLI](../attaching-detaching-object-stores-to-from-filesystems/attaching-detaching-object-stores-to-from-filesystems-1.md).
 {% endhint %}
 
 **Related topic**

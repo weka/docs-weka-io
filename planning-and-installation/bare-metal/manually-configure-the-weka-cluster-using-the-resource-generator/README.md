@@ -308,4 +308,4 @@ weka cluster update [--bucket-raft-size <uint8>] [--cluster-name <string>] [--da
 
 ## What to do next?
 
-Go to [Perform post-configuration](https://app.gitbook.com/s/ZW262oqYA8pNNfGvXjHa/planning-and-installation/bare-metal/perform-post-configuration-procedures).
+Go to [Perform post-configuration](../perform-post-configuration-procedures.md).

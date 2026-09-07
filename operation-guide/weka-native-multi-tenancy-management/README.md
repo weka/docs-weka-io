@@ -108,7 +108,7 @@ Choose native multi-tenancy by default.
 
 **Related topic**
 
-[Composable clusters for multi-tenancy in Kubernetes](https://app.gitbook.com/s/ZW262oqYA8pNNfGvXjHa/kubernetes/composable-clusters-for-multi-tenancy-in-kubernetes)
+[Composable clusters for multi-tenancy in Kubernetes](../../kubernetes/composable-clusters-for-multi-tenancy-in-kubernetes.md)
 
 ## Upgrade: Transition to native multi-tenancy
 

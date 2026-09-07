@@ -56,6 +56,6 @@ The download-link token is intentionally blurred in the image.
 
 Depending on the installation path you follow, go to one of the following:
 
-Path A: [Install WSA](https://app.gitbook.com/s/ZW262oqYA8pNNfGvXjHa/planning-and-installation/bare-metal/install-the-weka-cluster-using-the-wsa)
+Path A: [Install WSA](install-the-weka-cluster-using-the-wsa.md)
 
-Path B: [Install OS and WEKA software](https://app.gitbook.com/s/ZW262oqYA8pNNfGvXjHa/planning-and-installation/bare-metal/manually-install-os-and-weka-on-servers)
+Path B: [Install OS and WEKA software](manually-install-os-and-weka-on-servers/)

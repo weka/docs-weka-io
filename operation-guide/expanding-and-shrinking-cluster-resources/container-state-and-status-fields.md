@@ -128,6 +128,6 @@ The typical progression after a restart or network event is `DOWN` → `SYNCING`
 
 **Related topics**
 
-* [Expand specific resources of a container](https://app.gitbook.com/s/ZW262oqYA8pNNfGvXjHa/operation-guide/expanding-and-shrinking-cluster-resources/expansion-of-specific-resources)
-* [Shrink a cluster](https://app.gitbook.com/s/ZW262oqYA8pNNfGvXjHa/operation-guide/expanding-and-shrinking-cluster-resources/shrinking-a-cluster)
-* [WEKA REST API and equivalent CLI commands](https://app.gitbook.com/s/ZW262oqYA8pNNfGvXjHa/getting-started-with-weka/weka-rest-api-and-equivalent-cli-commands)
+* [Expand specific resources of a container](expansion-of-specific-resources.md)
+* [Shrink a cluster](shrinking-a-cluster.md)
+* [WEKA REST API and equivalent CLI commands](../../getting-started-with-weka/weka-rest-api-and-equivalent-cli-commands.md)

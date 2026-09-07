@@ -70,4 +70,4 @@ When rebuild capacity is unavailable, a failed drive reduces data redundancy and
 
 **Related information**
 
-See [Shrink a cluster](https://app.gitbook.com/s/ZW262oqYA8pNNfGvXjHa/operation-guide/expanding-and-shrinking-cluster-resources/shrinking-a-cluster) for drive deactivation and removal details.
+See [Shrink a cluster](expanding-and-shrinking-cluster-resources/shrinking-a-cluster.md) for drive deactivation and removal details.

@@ -6,7 +6,7 @@ description: Export WEKA cluster metrics from Local WEKA Home to Prometheus.
 
 ## Export cluster metrics from LWH to Prometheus
 
-Local WEKA Home (LWH) exposes WEKA cluster metrics as Prometheus scrape endpoints. Configure your Prometheus server to scrape these endpoints and receive metrics in Prometheus format. For LWH access details, see [Local WEKA Home overview](https://app.gitbook.com/s/ZW262oqYA8pNNfGvXjHa/monitor-the-weka-cluster/the-wekaio-support-cloud/local-weka-home-overview).
+Local WEKA Home (LWH) exposes WEKA cluster metrics as Prometheus scrape endpoints. Configure your Prometheus server to scrape these endpoints and receive metrics in Prometheus format. For LWH access details, see [Local WEKA Home overview](local-weka-home-overview.md).
 
 Use the exporter to build alerts on cluster health, track I/O performance and latency, monitor drive health, or visualize metrics in Grafana through Prometheus.
 
@@ -129,7 +129,7 @@ Replace the placeholders with your values:
 
 ### Selective metric collection
 
-Limit the exported metrics for this job. See [Configure selective Prometheus metric collection](https://app.gitbook.com/s/ZW262oqYA8pNNfGvXjHa/monitor-the-weka-cluster/the-wekaio-support-cloud/configure-selective-prometheus-metric-collection).
+Limit the exported metrics for this job. See [Configure selective Prometheus metric collection](configure-selective-prometheus-metric-collection.md).
 
 ### Grafana dashboards
 
