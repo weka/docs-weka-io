@@ -49,10 +49,6 @@ To install a specific WEKA version on a server:
 weka version get <version> --set-current
 ```
 
-{% hint style="danger" %}
-**INTERNAL, remove before publication. TBD (PM/Engineering):** Confirm the get.weka.io delivery channels listed above match what ships for 6.0.0 (open item 1 in the migration guide draft).
-{% endhint %}
-
 ## Connect for the first time
 
 Run wekactl with no arguments. With no profile saved, it prompts for a profile name, cluster hostname, port, username, and password, then presents the cluster TLS certificate fingerprint for you to trust. It saves and activates the profile, then opens the interactive shell.
