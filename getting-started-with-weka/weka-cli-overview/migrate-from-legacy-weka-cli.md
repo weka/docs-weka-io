@@ -257,8 +257,5 @@ These forms continue to work but warn or are hidden. Plan to update them:
 * Container resource settings are deprecated on the cluster commands in favor of `local resources`: `cluster container bandwidth`, `cores`, `dedicate`, `failure-domain`, `management-ips`, `memory`, `net add`, and `net remove`.
 * `fs tier` is deprecated in favor of `fs tier s3`.
 * NFS interface group `--subnet <dotted-mask>` is a hidden, deprecated alias for `--netmask <bits>`; dotted netmask syntax in IP rules warns in favor of CIDR.
-* Relocated s3 forms: `s3 local` becomes `s3 cluster local`, `s3 cluster kv` becomes `s3 kv`, `s3 cluster group` becomes `s3 group`, `s3 profile` becomes `debug s3 profile`, `s3 log-level` becomes `debug s3 log-level`.
+* Relocated s3 forms: `s3 local` becomes `s3 cluster local`, `s3 cluster kv` becomes `s3 kv`, `s3 cluster group` becomes `s3 group`.
 
-{% hint style="danger" %}
-**INTERNAL, remove before publication. TBD (PM):** The last two relocations point customers to the debug command group, which is not documented on docs.weka.io. Decide whether to keep these two items in the customer-facing topic or drop them.
-{% endhint %}
