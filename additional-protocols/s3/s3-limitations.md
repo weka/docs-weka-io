@@ -97,6 +97,10 @@ The following standard S3 APIs are supported for bucket and object management:
 | Maximum number of parts returned for a list parts request                        | 1000                                        |
 | Maximum number of multipart uploads returned in a list multipart uploads request | 1000                                        |
 | User-defined metadata per object                                                 | 2 KB                                        |
+| Maximum number of tags per object                                                | 10                                          |
+| Maximum length of an object tag key                                              | 128 characters                              |
+| Maximum length of an object tag value                                            | 256 characters                              |
+| Maximum connections per server                                                   | 2048                                        |
 | Maximum length of an S3 IAM user policy                                          | 2048                                        |
 | Maximum number of S3 IAM user policies                                           | 1024                                        |
 | Maximum number of S3 regular users                                               | 1024                                        |
