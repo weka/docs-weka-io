@@ -63,7 +63,7 @@ Create an S3 cluster within the WEKA environment, specifying the servers to run 
 
 A predefined configuration filesystem (`.config_fs` in this demo) must exist to maintain the persisting cluster-wide protocol configurations.
 
-<div data-with-frame="true"><figure><img src="../../.gitbook/assets/wmng_Create_S3_cluster.gif" alt=""><figcaption><p>Create an S3 cluster</p></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/S3_cluster_config.png" alt=""><figcaption><p>Create an S3 cluster</p></figcaption></figure></div>
 
 **Alternative CLI command**
 
@@ -75,7 +75,7 @@ weka s3 cluster add .config_fs --all-servers
 
 [#create-an-s3-cluster](s3-cluster-management/s3-cluster-management.md#create-an-s3-cluster "mention") (using the GUI)
 
-[#create-an-s3-cluster](s3-cluster-management/s3-cluster-management-1.md#add-an-s3-cluster "mention") (using the CLI)
+[#add-an-s3-cluster](s3-cluster-management/s3-cluster-management-1.md#add-an-s3-cluster "mention") (using the CLI)
 {% endtab %}
 
 {% tab title="2. Create an S3 bucket" %}
@@ -95,7 +95,7 @@ weka s3 bucket add my_bucket
 
 [#create-a-bucket](s3-buckets-management/s3-buckets-management.md#create-a-bucket "mention") (using the GUI)
 
-[#create-a-bucket](s3-buckets-management/s3-buckets-management-1.md#add-a-bucket "mention") (using the CLI)
+[#add-a-bucket](s3-buckets-management/s3-buckets-management-1.md#add-a-bucket "mention") (using the CLI)
 {% endtab %}
 
 {% tab title="3. Create a local S3 user " %}
