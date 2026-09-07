@@ -470,65 +470,6 @@ weka-sign-drive list -v
 
 <details>
 
-<summary>VID allocation fails due to insufficient DPDK memory</summary>
-
-The SSD Proxy relies on DPDK/SPDK for high-performance I/O. Each queue pair (qpair) requires approximately 540 KB of memory.
-
-**Default allocation**
-
-* \~1.32 GB of DPDK memory supports up to 640 VIDs (2,560 qpairs at 4 queues per VID).
-* Allocating more VIDs requires increasing DPDK memory.
-
-**Symptoms**
-
-* VID creation fails with memory errors.
-* Proxy logs show `"DPDK allocation failed"` or hugepage exhaustion.
-* `weka local ps` indicates the proxy is in a degraded state.
-* New qpairs cannot be allocated, even if hardware queues are available.
-
-{% hint style="danger" %}
-**INTERNAL, remove before publication. TBD (Engineering):** Neither `weka local resources ssdproxy` nor `--dpdk-base-memory-mb` exists in the 6.0 CLI, and neither appears in the legacy D CLI either — `local resources` has no `ssdproxy` subcommand, and no command anywhere declares a `dpdk-base-memory-mb` flag. The closest shipping option is `weka local setup ssdproxy --memory <capacity>`, which sets total container memory rather than a DPDK base allocation.
-
-The underlying setting does still exist as a container resource: `goweka/api/cluster/container/resources.go:128` carries `DpdkBaseMemoryMB uint64 \`json:"dpdk_base_memory_mb"\`` commented out, under the heading "Unused by the UI, and so undocumented, and left out of our public API for now." So the field was deliberately withheld from the 6.0 public API rather than removed.
-
-Specific question for Engineering: is tuning DPDK base memory still a supported customer operation in 6.0? If yes, what is the supported command, given the field is not exposed. If no, this whole procedure should be dropped rather than rewritten — the three examples below cannot work as written.
-{% endhint %}
-
-**Resolution**
-
-Increase the DPDK memory allocation for the SSD Proxy:
-
-```bash
-weka local resources ssdproxy --dpdk-base-memory-mb <value-in-mb>
-weka local resources apply
-```
-
-**Estimating required memory**
-
-* Memory per VID = 4 queues × 540 KB ≈ 2.1 MB
-* Total memory (MB) ≈ (Number of VIDs × 4 × 540) / 1024
-
-**Examples**
-
-* \~640 VIDs: Default 1.32 GB sufficient
-* \~1,000 VIDs: Required memory ≈ 2,109 MB
-
-```bash
-weka local resources ssdproxy --dpdk-base-memory-mb 2560
-```
-
-* Maximum VIDs (40 drives × 64 VIDs = 2,560 VIDs): Required memory ≈ 5,400 MB
-
-```bash
-weka local resources ssdproxy --dpdk-base-memory-mb 6144
-```
-
-This ensures sufficient memory for queue pair allocation and prevents DPDK-related errors during virtual drive operations.
-
-</details>
-
-<details>
-
 <summary>Cannot add a VID to the cluster (“proxy not running”)</summary>
 
 **Cause**
