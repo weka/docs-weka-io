@@ -6,7 +6,7 @@ description: >-
 
 # Manage WEKA with new CLI
 
-Starting with WEKA 6.0.0, wekactl is the default CLI, and the `weka` command on a cluster server invokes it. The examples in this topic use `weka`.
+Starting with WEKA 6.0, wekactl is the default CLI, and the `weka` command on a cluster server invokes it. The examples in this topic use `weka`.
 
 ## Before you begin
 
@@ -20,7 +20,7 @@ wekactl detects the API version each cluster offers and falls back automatically
 
 ## Access wekactl on a cluster server
 
-On any server running WEKA 6.0.0, the `weka` command invokes wekactl. The binary is also available directly at:
+On any server running WEKA 6.0, the `weka` command invokes wekactl. The binary is also available directly at:
 
 ```
 /opt/weka/bin/wekactl

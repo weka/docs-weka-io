@@ -8,7 +8,7 @@ description: >-
 
 Explore wekactl, the modern WEKA command-line interface for cluster administration. It supports most legacy `weka` CLI operations and runs on Linux, macOS, and Windows.
 
-Starting with WEKA 6.0.0, wekactl is the default CLI. Running `weka` on a WEKA server invokes wekactl.
+Starting with WEKA 6.0, wekactl is the default CLI. Running `weka` on a WEKA server invokes wekactl.
 
 Use wekactl from a workstation for day-to-day remote administration. Run it locally on a WEKA server when a command requires the local agent.
 

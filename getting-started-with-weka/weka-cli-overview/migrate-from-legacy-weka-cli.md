@@ -1,13 +1,13 @@
 ---
 description: >-
   Identify the behavior changes that affect existing scripts, monitoring probes,
-  and automation when a cluster upgrades to WEKA 6.0.0 and wekactl becomes the
+  and automation when a cluster upgrades to WEKA 6.0 and wekactl becomes the
   default CLI.
 ---
 
 # Migrate from legacy WEKA CLI
 
-Starting with WEKA 6.0.0, the weka command on a cluster server invokes wekactl. The switch happens automatically on upgrade. For everyday interactive use, the two CLIs are largely compatible and familiar. Deliberate differences in terminology, output, flags, and packaging can affect long-time users, and especially existing shell scripts, as described in this topic.
+Starting with WEKA 6.0, the weka command on a cluster server invokes wekactl. The switch happens automatically on upgrade. For everyday interactive use, the two CLIs are largely compatible and familiar. Deliberate differences in terminology, output, flags, and packaging can affect long-time users, and especially existing shell scripts, as described in this topic.
 
 Automation that uses the REST API is not affected by this change.
 
