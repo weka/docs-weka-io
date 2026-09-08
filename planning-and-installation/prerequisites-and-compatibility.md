@@ -298,7 +298,9 @@ OFED is not a WEKA dependency. When required, it is due to NIC driver behavior n
 * 23.04
 
 {% hint style="info" %}
-Subsequent OFED minor versions are expected to be compatible with Nvidia hardware due to Nvidia's commitment to backward compatibility.
+Qualify a newer OFED version before you deploy it. NVIDIA maintains backward compatibility for its hardware, and a version later than those listed becomes supported once it is qualified with a WEKA release.
+
+To use OFED 25.07, distributed with DOCA 3.1, run WEKA 5.1.33 or later. That release includes the RDMA memory registration handling this driver version requires. On earlier versions, use one of the OFED versions listed above.
 {% endhint %}
 
 **Supported ENA drivers:**
@@ -358,7 +360,9 @@ The cluster supports the following Nvidia major OFED versions for the InfiniBand
 * 23.04
 
 {% hint style="info" %}
-Subsequent OFED minor versions are expected to be compatible with NVIDIA hardware due to Nvidia's commitment to backwards compatibility.
+Qualify a newer OFED version before you deploy it. NVIDIA maintains backward compatibility for its hardware, and a version later than those listed becomes supported once it is qualified with a WEKA release.
+
+To use OFED 25.07, distributed with DOCA 3.1, run WEKA 5.1.33 or later. That release includes the RDMA memory registration handling this driver version requires. On earlier versions, use one of the OFED versions listed above.
 {% endhint %}
 {% endtab %}
 
