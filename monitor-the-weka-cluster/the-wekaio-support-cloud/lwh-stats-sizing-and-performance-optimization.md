@@ -226,7 +226,7 @@ workers:
 
 **Related topics**
 
-[https://github.com/weka/docs-weka-io/blob/5.1/monitor-the-weka-cluster/the-wekaio-support-cloud/deploy-local-weka-home-v4.x-on-k8s#upgrade-local-weka-home](https://github.com/weka/docs-weka-io/blob/5.1/monitor-the-weka-cluster/the-wekaio-support-cloud/deploy-local-weka-home-v4.x-on-k8s#upgrade-local-weka-home "mention")
+[#upgrade-local-weka-home](deploy-local-weka-home-v4.x-on-k8s.md#upgrade-local-weka-home "mention")
 
 [#upgrade-the-local-weka-home](local-weka-home-deployment/#upgrade-the-local-weka-home "mention")
 
