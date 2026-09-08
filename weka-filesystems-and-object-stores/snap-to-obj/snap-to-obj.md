@@ -68,7 +68,7 @@ When recreating a filesystem from a snapshot, adhere to the following guidelines
      In the Access Point, set a meaningful access point name to override the default (uploaded access point name) for the directory that serves as the snapshot's access point.
 4. Select **Create**.
 
-<div data-with-frame="true"><img src="../../.gitbook/assets/create_fs_from_snap.gif" alt="Create a filesystem from an uploaded snapshot"></div>
+<div data-with-frame="true"><img src="../../.gitbook/assets/create_fs_from_snap.png" alt="Create a filesystem from an uploaded snapshot"></div>
 
 ## Sync a filesystem from a snapshot <a href="#sync-a-filesystem-from-a-snapshot" id="sync-a-filesystem-from-a-snapshot"></a>
 
@@ -99,4 +99,4 @@ Copy the locator of the snapshot you want to sync with the filesystem.
 
 **Related topics**
 
-[#add-a-filesystem](../managing-filesystems/managing-filesystems.md#create-a-filesystem "mention")
+[#create-a-filesystem](../managing-filesystems/managing-filesystems.md#create-a-filesystem "mention")

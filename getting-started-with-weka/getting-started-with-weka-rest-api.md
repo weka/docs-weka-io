@@ -2,7 +2,7 @@
 description: Access, authenticate, and call the REST API.
 ---
 
-# Getting started with REST API
+# Get started with REST API
 
 The system provides a RESTful API that allows you to automate operations and integrate them into your workflows or monitoring systems. A solid understanding of the relevant CLI commands and parameters is important when working with the REST API. For example, when creating a filesystem using the `POST /fileSystems` service, refer to the corresponding CLI documentation for guidance.
 
@@ -19,10 +19,6 @@ You can access the REST API using one of the following methods:
 * **Static REST API:** Browse to [api.docs.weka.io](https://api.docs.weka.io/) and select the required REST API version from the definition selector. You can also generate client code by using the OpenAPI client generator with the corresponding .json definition file.
 
 <div data-with-frame="true"><figure><img src="../.gitbook/assets/static_api_docs.png" alt=""><figcaption><p>Static REST API</p></figcaption></figure></div>
-
-## Explore the REST API through the GUI
-
-<div data-with-frame="true"><figure><img src="../.gitbook/assets/get_started_with_rest_api.gif" alt=""><figcaption></figcaption></figure></div>
 
 ## Obtain an access token
 

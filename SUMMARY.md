@@ -109,7 +109,7 @@
     * [weka user](getting-started-with-weka/weka-cli-overview/cli-reference-guide/weka-user.md)
     * [weka version](getting-started-with-weka/weka-cli-overview/cli-reference-guide/weka-version.md)
 * [Perform a basic IO sanity check](getting-started-with-weka/performing-the-first-io.md)
-* [Getting started with REST API](getting-started-with-weka/getting-started-with-weka-rest-api.md)
+* [Get started with REST API](getting-started-with-weka/getting-started-with-weka-rest-api.md)
 * [REST API and equivalent CLI commands](getting-started-with-weka/weka-rest-api-and-equivalent-cli-commands.md)
 
 ## Performance

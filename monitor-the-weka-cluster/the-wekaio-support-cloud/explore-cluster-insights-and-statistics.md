@@ -59,7 +59,9 @@ The Alerts panel displays severity-categorized cluster alerts with interactive d
 
 The Hardware panel provides visibility into physical and logical cluster components through the Backends and Clients tabs, displaying servers, containers, processes, drives, OBS, and link layer with relevant operational metrics. Each component supports drill-down functionality for detailed diagnostics.
 
-<div data-with-frame="true"><figure><img src="../../.gitbook/assets/LWH_overview_panels.gif" alt=""><figcaption><p>Panel functionality</p></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/lwh_hardware_panel_button.png" alt=""><figcaption><p>Panel functionality: Open the hardware panel</p></figcaption></figure></div>
+
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/lwh_hardware_panel.png" alt=""><figcaption><p>Hardware panel</p></figcaption></figure></div>
 
 Additional panels provide similar drill-down functionality for their respective domains, following the same interaction pattern demonstrated in the Alerts and Hardware panels.
 

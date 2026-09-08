@@ -32,7 +32,7 @@ Detach an object store bucket from a filesystem. The system migrates its data to
 4. If two buckets are attached, detach only the read-only bucket. The system migrates its data to the writable bucket.
 5. In the confirmation message, select **Confirm**.
 
-<div data-with-frame="true"><img src="../../.gitbook/assets/detach_obs.gif" alt="Detach an object store bucket from a filesystem"></div>
+<div data-with-frame="true"><img src="/broken/files/uKjeBdWy2fEBIweeKC5B" alt="Detach an object store bucket from a filesystem"></div>
 
 6. If this is the only bucket on a tiered filesystem, select a capacity option:
    * Increase the SSD capacity to match the current total capacity.

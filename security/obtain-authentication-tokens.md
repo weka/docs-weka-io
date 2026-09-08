@@ -29,24 +29,34 @@ When working with the REST API, local users may use a long-lived token (a token 
 
 As a local user, you can generate a long-lived token using the GUI or the CLI.
 
-### Generate a long-live access token using the GUI
+### Generate a long-lived access token using the GUI
 
-**Procedure**
+Generate a long-lived access token for REST API authentication.
 
-1. From the signed-in user menu, select **API Token**.
-2. In the Manage API Token dialog, select Generate token and set the expiration time. Then, select **Generate**.
+#### Before you begin
 
-<div data-with-frame="true"><figure><img src="../.gitbook/assets/manage_api_token.png" alt=""><figcaption><p>Manage API Token</p></figcaption></figure></div>
+Sign in as a local user.
+
+1. Open the signed-in user menu. Select **API Token**.
+2. In **Manage API Token**, select **Generate token**. Set the expiration time. Select **Generate**.
+
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/manage_api_token.png" alt="Manage API Token dialog"><figcaption><p>Manage API Token</p></figcaption></figure></div>
 
 {% hint style="info" %}
 If you want to revoke all existing login tokens of the local user and refresh them, select **Revoke Tokens**.
 {% endhint %}
 
-3\. Copy the generated token and paste it to the REST API authorization dialog.
+3. Copy the generated token.
+4. In the three-dot menu, select **REST API**. The cluster REST API opens in your browser.
+5. Select **Authorize**.
 
-The following demonstrates how to generate the API token and authorize it in the REST API.
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/rest_api_authorize.png" alt=""><figcaption><p>REST API</p></figcaption></figure></div>
 
-<div data-with-frame="true"><figure><img src="../.gitbook/assets/generate_token_example.gif" alt=""><figcaption><p>Generate a long-lived token using the GUI example</p></figcaption></figure></div>
+6. In **Available authorizations**, paste the token. Select **Authorize**.
+
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/Authorize_token.png" alt="Available authorizations dialog for the REST API" width="485"><figcaption><p>Available authorizations</p></figcaption></figure></div>
+
+6. Use the REST API endpoints.
 
 ### Generate a long-lived access token using the CLI
 
@@ -61,6 +71,6 @@ weka user generate-token [--access-token-timeout <duration>] [--plain]
 **Parameters**
 
 | Parameter                            | Description                                                            |
-| --- | --- |
-| `--access-token-timeout` \<duration> | Duration until the access token expires. |
-| `--plain` | Print the token to the console instead of copying it to the clipboard. |
+| ------------------------------------ | ---------------------------------------------------------------------- |
+| `--access-token-timeout` \<duration> | Duration until the access token expires.                               |
+| `--plain`                            | Print the token to the console instead of copying it to the clipboard. |

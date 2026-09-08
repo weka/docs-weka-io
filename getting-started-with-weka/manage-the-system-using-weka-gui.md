@@ -10,7 +10,7 @@ description: >-
 
 The NeuralMesh GUI application is the administration tool for your NeuralMesh system. Use this tool for system configuration, filesystems management, user management, and investigation of alerts, events, and statistics.
 
-<div data-with-frame="true"><figure><img src="../.gitbook/assets/gui_overview.gif" alt=""><figcaption><p>NeuralMesh GUI overview</p></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/gui_overview.png" alt=""><figcaption><p>NeuralMesh GUI overview</p></figcaption></figure></div>
 
 ### Navigation menu
 
@@ -22,44 +22,44 @@ Select **Monitor** or the NeuralMesh logo at any time to return to the system da
 
 Display the system dashboard with all its widgets. This is the default view when you sign in.
 
-| Page | Description |
-| --- | --- |
+| Page                 | Description                                                                |
+| -------------------- | -------------------------------------------------------------------------- |
 | **Background Tasks** | Follow long-running system operations, such as rebuild and redistribution. |
 
 #### Investigate
 
 Analyze the cluster behavior over time.
 
-| Page | Description |
-| --- | --- |
-| **Events** | Review the system events. |
-| **Statistics** | Review overtime statistics, such as total operations, throughput, CPU usage, and read or write latency. |
-| **Insights** | Review the system recommendations and detected anomalies. |
-| **Filesystem Analytics** | Review the capacity and file distribution across the filesystems. |
+| Page                     | Description                                                                                             |
+| ------------------------ | ------------------------------------------------------------------------------------------------------- |
+| **Events**               | Review the system events.                                                                               |
+| **Statistics**           | Review overtime statistics, such as total operations, throughput, CPU usage, and read or write latency. |
+| **Insights**             | Review the system recommendations and detected anomalies.                                               |
+| **Filesystem Analytics** | Review the capacity and file distribution across the filesystems.                                       |
 
 #### Manage
 
 Manage the data services of the cluster.
 
-| Page | Description |
-| --- | --- |
-| **Filesystems** | Manage the filesystems, including tiering, thin provisioning, and encryption. |
-| **Snapshots** | Manage snapshots. |
-| **Snapshot Policies** | Define schedules that create and delete snapshots automatically. |
-| **Object Stores** | Manage the object store buckets. |
-| **Protocols** | Manage the filesystem protocols: SMB, S3, and NFS. |
-| **Directory Quotas** | Manage directory quotas. |
-| **Tenants** | Create and manage tenants and their quotas. |
+| Page                  | Description                                                                   |
+| --------------------- | ----------------------------------------------------------------------------- |
+| **Filesystems**       | Manage the filesystems, including tiering, thin provisioning, and encryption. |
+| **Snapshots**         | Manage snapshots.                                                             |
+| **Snapshot Policies** | Define schedules that create and delete snapshots automatically.              |
+| **Object Stores**     | Manage the object store buckets.                                              |
+| **Protocols**         | Manage the filesystem protocols: SMB, S3, and NFS.                            |
+| **Directory Quotas**  | Manage directory quotas.                                                      |
+| **Tenants**           | Create and manage tenants and their quotas.                                   |
 
 #### Configure
 
 Set up the cluster and control access to it.
 
-| Page | Description |
-| --- | --- |
+| Page                 | Description                                                                                  |
+| -------------------- | -------------------------------------------------------------------------------------------- |
 | **Cluster Settings** | Configure the cluster, such as data availability, license, security, and central monitoring. |
-| **Cluster Servers** | Configure the backend containers and expose the data in different protocols. |
-| **User Management** | Manage local users, set up the user directory, and assign roles. |
+| **Cluster Servers**  | Configure the backend containers and expose the data in different protocols.                 |
+| **User Management**  | Manage local users, set up the user directory, and assign roles.                             |
 
 #### Top bar
 
@@ -181,18 +181,18 @@ Switching the display time may be required when the customer, Customer Success T
 1. Point to the timestamp on the top bar.
 2. Select **Switch to System Time** or **Switch to Local Time**, depending on the displayed time.
 
-<div data-with-frame="true"><img src="../.gitbook/assets/sw_display_time.gif" alt="Switch display time"></div>
+<div data-with-frame="true"><img src="../.gitbook/assets/switch_to_local_time.png" alt="Switch display time"></div>
 
-### Switch the GUI between light and dark modes
+### Switch theme between light and dark modes
 
-You can switch the GUI between light and dark modes according to your preferences. The dark mode is a user interface for content that displays light text on a dark background. The dark mode is beneficial for viewing screens at night. The reduced brightness can reduce eye strain in low-light conditions.
+You can switch the theme between light and dark modes according to your preferences. The dark mode is a user interface for content that displays light text on a dark background. The dark mode is beneficial for viewing screens at night. The reduced brightness can reduce eye strain in low-light conditions.
 
 #### Procedure
 
 1. Point to the sun or moon symbol on the top bar, depending on the current display mode.
-2. Select **Switch to the light mode** or **Switch to dark mode**.
+2. Select **Switch theme**.
 
-<div data-with-frame="true"><img src="../.gitbook/assets/sw_dark_mode.gif" alt="Switch the GUI between light and dark modes"></div>
+<div data-with-frame="true"><img src="../.gitbook/assets/switch_theme.png" alt="Switch theme between light and dark modes"></div>
 
 ## Display servers in 3D view
 
@@ -200,7 +200,7 @@ You can switch the view of the servers to 3D for the backend servers, NFS server
 
 The 3D view provides the server components' status at a glance, including the drives, cores, protocols, and load. The colors indicate, for example, if the drives or processes failed or the container is down.
 
-<div data-with-frame="true"><figure><img src="../.gitbook/assets/display_servers_in_3d.gif" alt=""><figcaption><p>Display servers in 3D view</p></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/switch_3d.gif" alt=""><figcaption><p>Display servers in 3D view</p></figcaption></figure></div>
 
 ## Display tables
 
@@ -226,4 +226,4 @@ Select the unit system used for capacity and performance values.
 
 The GUI updates capacity sizes and metrics to use your selected unit system.
 
-<div data-with-frame="true"><figure><img src="../.gitbook/assets/switch_base2-10.gif" alt=""><figcaption></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/switch_to_base-2.png" alt=""><figcaption><p>Switch display units between Base 2 and Base 10</p></figcaption></figure></div>

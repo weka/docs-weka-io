@@ -48,13 +48,17 @@ The newly created snapshot policy appears in the list on the **Snapshot Policies
 
 Attaching filesystems to a snapshot policy ensures that the policy governs the creation, management, and retention of snapshots for these specific filesystems. This association helps maintain consistent data protection and recovery practices across selected filesystems.
 
-<div data-with-frame="true"><figure><img src="../../.gitbook/assets/snap-policy-attach-fs.gif" alt=""><figcaption><p>Attach a snapshot policy to a filesystem</p></figcaption></figure></div>
-
 **Procedure**
 
 1. Select the snapshot policy to which you want to attach a filesystem from the **Snapshot Policies** list.
 2. In the **Assigned Filesystems** pane on the right, click the **Attach Filesystems** icon (represented by a link symbol) to open the attachment dialog.
+
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/attach_fs_to_snap_button.png" alt=""><figcaption><p>Attach Filesystems icon</p></figcaption></figure></div>
+
 3. Select the required filesystems from the available list.
+
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/attach_fs_to_snap_dialog.png" alt="" width="258"><figcaption><p>Attach a filesystem to a snapshot policy</p></figcaption></figure></div>
+
 4. Select **Attach** to complete the process.
 
 The filesystem is associated with the selected snapshot policy, and the policy's configurations apply to snapshots for the attached filesystem.
@@ -63,21 +67,25 @@ The filesystem is associated with the selected snapshot policy, and the policy's
 
 Detaching filesystems from a snapshot policy can be necessary when you no longer need to associate the filesystems with the policy, either due to changes in backup strategies or system configurations. This procedure ensures that the filesystems are removed from the policy without affecting its data or storage.
 
-<div data-with-frame="true"><figure><img src="../../.gitbook/assets/snap_policy_detach_fs.gif" alt=""><figcaption><p>Detach a snapshot policy from a filesystem</p></figcaption></figure></div>
-
 **Procedure**
 
 1. Navigate to the list of snapshot policies and choose the one from which you want to detach filesystems.
 2. In the **Assigned Filesystems** pane (on the right), locate the filesystems you want to detach.
-3. Move your mouse over the **Detach** icon (represented by an unlink symbol).
+3. Move your mouse over the **Detach** icon (represented by an unlink symbol) and select it.
+
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/snap_detach.png" alt=""><figcaption><p>Detach a filesystem from a snapshot policy</p></figcaption></figure></div>
+
 4. In the Detach dialog, choose **ON** if you also want to remove any waiting tasks associated with the filesystems.
+
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/snap_detach_dialog.png" alt="" width="362"><figcaption><p>Detach a filesysytem from a snapshot policy</p></figcaption></figure></div>
+
 5. Select **Detach** to complete the process.
 
 ## Modify an existing snapshot policy
 
 Updating a snapshot policy is necessary when modifications to schedules, retention settings, or other parameters are required to align with evolving data protection needs. Regularly reviewing and updating policies ensures that they remain effective and consistent with organizational objectives.
 
-<div data-with-frame="true"><figure><img src="../../.gitbook/assets/snap-policy-update.png" alt=""><figcaption><p>Update a snapshot policy</p></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/snap_policy_update.png" alt="" width="563"><figcaption><p>Update a snapshot policy</p></figcaption></figure></div>
 
 **Procedure**
 

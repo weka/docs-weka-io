@@ -158,19 +158,24 @@ Access the Grafana UI to configure the Prometheus data source and import the pre
     `admin` and the password retrieved in the previous step.
 4. Add Prometheus as a data source in Grafana.
    1. On Grafana, select **Data sources**.
-   2. Select **prometheus**.
+   2.  Select **prometheus**.<br>
+
+       <div data-with-frame="true"><figure><img src="../.gitbook/assets/grafana_prometheus.png" alt=""><figcaption></figcaption></figure></div>
    3.  In the **Connection** setting, add the URL
 
-       `http://prometheus-server.prometheus.svc.cluster.local`.
+       `http://prometheus-server.prometheus.svc.cluster.local`.<br>
 
-<div data-with-frame="true"><figure><img src="../.gitbook/assets/Prom datasource.gif" alt=""><figcaption></figcaption></figure></div>
-
+       <div data-with-frame="true"><figure><img src="../.gitbook/assets/grafana_connection.png" alt=""><figcaption></figcaption></figure></div>
 5. Import the WEKA dashboard.
    1. Navigate to the [WEKA GitHub repository](https://raw.githubusercontent.com/balaramesh2/weka-metrics/refs/heads/main/weka-dashboard.json) and copy the `weka-dashboard.json` content.
    2. On Grafana, select **Dashboards**.
    3. Select **WEKA**.
-   4. Select **New > Import**.
-   5. Paste the `weka-dashboard.json` content to the import box, and select **Load.**
-   6. Select **Import**.
+   4.  Select **New > Import**.<br>
 
-<div data-with-frame="true"><figure><img src="../.gitbook/assets/Grafboard (1).gif" alt=""><figcaption></figcaption></figure></div>
+       <div data-with-frame="true"><figure><img src="../.gitbook/assets/grafana_dashboard_Import.png" alt=""><figcaption></figcaption></figure></div>
+   5.  Paste the `weka-dashboard.json` content to the import box, and select **Load.**
+
+       <div data-with-frame="true"><figure><img src="../.gitbook/assets/grafana_load_json.png" alt=""><figcaption></figcaption></figure></div>
+   6.  Select **Import**.
+
+       <div data-with-frame="true"><figure><img src="../.gitbook/assets/grafana_import_dashboard.png" alt=""><figcaption></figcaption></figure></div>
