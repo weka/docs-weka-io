@@ -51,7 +51,7 @@ Verify that the following requirements are met:
 
       Example: 20 backends with 10 processes each = 200 processes; 500 clients with 2 processes each = 1000 processes. The total is 1200 processes. This deployment requires 9 CPU cores and 40 GiB.
 * SSD-backed storage requirements:
-* Size `/opt/wekahome/data` based on the number of monitored WEKA servers and the stats retention period. See [LWH storage sizing](../lwh-storage-sizing.md) for estimated storage requirements. As a rule of thumb, budget \~1 GiB per monitored server per month of retention, plus \~40 GiB fixed overhead. \~500 GiB is the right size for roughly 500 monitored servers at the default 30-day retention. Larger clusters with more monitored servers, or longer retention, need proportionally more.
+* Size `/opt/wekahome/data` based on the number of monitored WEKA processes and the stats retention period. See [LWH storage sizing](../lwh-storage-sizing.md) for estimated storage requirements. As a rule of thumb, budget \~1 GiB per monitored process per month of retention, plus \~40 GiB fixed overhead. \~500 GiB is the right size for roughly 500 monitored processes at the default 30-day retention. Larger clusters with more monitored processes, or longer retention, need proportionally more.
 * 1 Gbps network
 
 {% hint style="success" %}
