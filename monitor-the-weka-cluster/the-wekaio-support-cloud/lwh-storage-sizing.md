@@ -1,7 +1,7 @@
 ---
 description: >-
   Size /opt/wekahome/data for Local WEKA Home deployments on K3s. Capacity
-  depends on monitored WEKA servers and statistics retention. This storage holds
+  depends on monitored WEKA processes and statistics retention. This storage holds
   time-series statistics, events, and queues.
 ---
 
@@ -9,15 +9,17 @@ description: >-
 
 ## Storage sizing summary
 
-* Provision approximately 1 GiB per monitored WEKA server per month of statistics retention.
+* Provision approximately 1 GiB per monitored WEKA process per month of statistics retention.
 * Add 40 GiB for events, queues, and databases.
 * Size for the retention window plus one month. VictoriaMetrics removes complete monthly partitions.
 
-## Storage requirements by server count
+Each process runs on one CPU core, so the monitored process count is the number of cores used on the cluster backends for the Management, Frontend, Compute, and Drives roles, plus the cores used on the clients. This is the same count that `wekaNodesMonitored` takes.
+
+## Storage requirements by process count
 
 Use these capacities for the default 30-day statistics retention. Values include VictoriaMetrics, Postgres, and queue storage.
 
-| Monitored WEKA servers | /opt/wekahome/data |
+| Monitored WEKA processes | /opt/wekahome/data |
 | ---------------------- | ------------------ |
 | 100                    | \~140 GiB          |
 | 250                    | \~290 GiB          |
@@ -28,15 +30,15 @@ Use these capacities for the default 30-day statistics retention. Values include
 | 10,000                 | \~10 TiB           |
 | 20,000                 | \~20 TiB           |
 
-For a different retention, multiply the per-server capacity by `(retention_days + 31) / 61`.
+For a different retention, multiply the per-process capacity by `(retention_days + 31) / 61`.
 
-This is approximately 0.7 for 14 days and 2 for 90 days. For 3,000 servers at 45-day retention, allocate approximately 3.8 TiB.
+This is approximately 0.7 for 14 days and 2 for 90 days. For 3,000 processes at 45-day retention, allocate approximately 3.8 TiB.
 
 ## Storage consumers
 
 | Consumer                   | Scales with                          | Share             |
 | -------------------------- | ------------------------------------ | ----------------- |
-| VictoriaMetrics statistics | Servers × retention                  | Approximately 99% |
+| VictoriaMetrics statistics | Processes × retention                  | Approximately 99% |
 | Events DB (Postgres)       | event activity, bounded by retention | small, bounded    |
 | Main and support databases | Fixed                                | Negligible        |
 | FSQ and NATS queues        | Transient backlog                    | Tens of GiB       |
@@ -47,26 +49,26 @@ VictoriaMetrics statistics consume most of the storage.
 
 **Active series**: A unique time-series measurement stored by VictoriaMetrics.
 
-VictoriaMetrics capacity depends on active series, samples, and sample size. LWH uses approximately 13 MiB per monitored server each day. This estimate uses 60-second raw resolution and no downsampling.
+VictoriaMetrics capacity depends on active series, samples, and sample size. LWH uses approximately 13 MiB per monitored process each day. This estimate uses 60-second raw resolution and no downsampling.
 
 Use this formula. It includes monthly-partition peak usage and VictoriaMetrics merge headroom:
 
 ```
-stats_disk ≈ 13 MiB × servers × (retention_days + 31) × 1.3
+stats_disk ≈ 13 MiB × processes × (retention_days + 31) × 1.3
 ```
 
-This simplifies to approximately 1 GiB per server per month of retention.
+This simplifies to approximately 1 GiB per process per month of retention.
 
 The estimate is validated against these environments:
 
-* **Production fleet**: 124 TiB across six `vmstorage` shards for 336,000 servers. Usage was approximately 12.5 MiB per server daily.
-* **Cluster simulator**: 6,400 servers used 24.5 GB in 6.5 hours. Usage was approximately 13.4 MiB per server daily.
+* **Production fleet**: 124 TiB across six `vmstorage` shards for 336,000 processes. Usage was approximately 12.5 MiB per process daily.
+* **Cluster simulator**: 6,400 processes used 24.5 GB in 6.5 hours. Usage was approximately 13.4 MiB per process daily.
 
 ### Storage requirements by retention period
 
 Values include approximately 40 GiB for events, queues, and databases.
 
-| Monitored servers | 14 days    | 30 days (default) | 90 days   |
+| Monitored processes | 14 days    | 30 days (default) | 90 days   |
 | ----------------- | ---------- | ----------------- | --------- |
 | 100               | \~110 GiB  | \~140 GiB         | \~240 GiB |
 | 500               | \~410 GiB  | \~540 GiB         | \~1.1 TiB |
@@ -76,7 +78,7 @@ Values include approximately 40 GiB for events, queues, and databases.
 
 ### Storage requirements by resource preset
 
-Resource presets use the expected monitored server count:
+Resource presets use the expected monitored process count:
 
 | Preset | wekaNodesMonitored | /opt/wekahome/data @ 30-day retention |
 | --- | --- | --- |
@@ -102,7 +104,7 @@ Typical deployments use less than the default 20 GiB events volume. Do not disab
 
 ## Validate capacity after deployment
 
-Run `homecli local diagnose` to view VictoriaMetrics `data_size` and monitored server count. Calculate the observed daily rate:
+Run `homecli local diagnose` to view VictoriaMetrics `data_size` and monitored process count. Calculate the observed daily rate:
 
 ```
 bytes_per_node_per_day = vmstorage_used ÷ node_count ÷ days_of_data_on_disk
@@ -112,6 +114,6 @@ Measure after several weeks. Adjust capacity using the observed rate. `TimeToFul
 
 ## Sizing considerations
 
-* **Role mix**: I/O-intensive deployments use approximately 13 MiB per server daily. Client-heavy deployments use less. Management-heavy deployments use more.
+* **Role mix**: I/O-intensive deployments use approximately 13 MiB per process daily. Client-heavy deployments use less. Management-heavy deployments use more.
 * **Retention**: LWH stores full-resolution statistics without downsampling. Doubling retention approximately doubles statistics storage.
 * **Measured usage**: Use `homecli local diagnose` to refine estimates for your deployment.
