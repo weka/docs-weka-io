@@ -103,9 +103,9 @@ While the defaults handle common loads, tune the following parameters for very l
 
 #### Size persistent storage
 
-Size `/opt/wekahome/data` based on monitored WEKA servers and statistics retention. Budget approximately 1 GiB per server for each month of retention. Add 40 GiB for events, queues, and databases.
+Size `/opt/wekahome/data` based on monitored WEKA processes and statistics retention. Budget approximately 1 GiB per process for each month of retention. Add 40 GiB for events, queues, and databases.
 
-Allocate 500 GiB for approximately 500 monitored servers at the default 30-day retention. Increase capacity proportionally for more servers or longer retention. See [LWH storage sizing](../lwh-storage-sizing.md) for estimates by server count and retention period.
+Allocate 500 GiB for approximately 500 monitored processes at the default 30-day retention. Increase capacity proportionally for more processes or longer retention. See [LWH storage sizing](../lwh-storage-sizing.md) for estimates by process count and retention period.
 
 ## Prerequisites
 
