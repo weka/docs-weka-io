@@ -47,7 +47,7 @@ Local WEKA Home offers the following features and capabilities, categorized as f
 * **Data forwarding:** Forward data from the Local WEKA Home to the cloud WEKA Home for enhanced support and monitoring by the Customer Success Team.
 * **REST API:** Use the RESTful API for automation and integration with your workflows and monitoring systems.
 
-<div data-with-frame="true"><figure><img src="../../.gitbook/assets/LWH_overview.gif" alt=""><figcaption><p>Local WEKA Home application overview</p></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/lwh-overview.gif" alt=""><figcaption><p>Local WEKA Home application overview</p></figcaption></figure></div>
 
 ## Local WEKA Home deployment options
 
