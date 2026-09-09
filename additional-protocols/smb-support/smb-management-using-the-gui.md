@@ -67,7 +67,7 @@ Due to cloud provider network limitations, setting a list of SMB floating IPs in
 
 5. Select **Save**.
 
-<div data-with-frame="true"><figure><img src="../../.gitbook/assets/wmng_smb_configure_dialog_4.3.5.gif" alt=""><figcaption><p>SMB cluster configuration</p></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/smb_configuration.gif" alt=""><figcaption><p>SMB cluster configuration</p></figcaption></figure></div>
 
 Once the system completes configuration, the server statuses change from not ready (❌) to ready (✅).
 
