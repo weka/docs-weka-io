@@ -21,10 +21,6 @@ You can access the REST API using one of the following methods:
 
     <div data-with-frame="true"><figure><img src="../.gitbook/assets/static_api_docs.png" alt=""><figcaption></figcaption></figure></div>
 
-## Explore the REST API through the GUI
-
-<div data-with-frame="true"><figure><img src="../.gitbook/assets/Get_started_with_REST_API.gif" alt=""><figcaption><p>Explore the REST API through the GUI</p></figcaption></figure></div>
-
 ## Obtain an access token
 
 To use the WEKA REST API, provide an access or refresh token.

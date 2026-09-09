@@ -32,7 +32,7 @@ The process of creating these composable clusters is efficient, taking only a fe
 2. When there are changes to WEKA custom resource definitions, the Operator applies the changes to the running Kubernetes cluster.
 3. The changes are composed sets of resources, which bring about the creation of a new cluster, perform an expansion or contraction of an existing cluster, decommission a cluster, or perform an upgrade.
 
-<div data-with-frame="true"><figure><img src="../.gitbook/assets/weka-multi-tenancy-deplyment-glance.gif" alt=""><figcaption><p>Composable clusters for multi-tenancy deployment at a glance</p></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/Composable_clusters.png" alt=""><figcaption><p>Composable clusters for multi-tenancy deployment at a glance</p></figcaption></figure></div>
 
 ### Resource partitioning across Kubernetes nodes
 
