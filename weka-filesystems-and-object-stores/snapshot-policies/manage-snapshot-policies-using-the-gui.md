@@ -94,7 +94,7 @@ Detaching filesystems from a snapshot policy can be necessary when you no longer
 2. In the **Assigned Filesystems** pane (on the right), locate the filesystems you want to detach.
 3. Move your mouse over the **Detach** icon (represented by an unlink symbol).
 
-<div data-with-frame="true"><figure><img src="../../.gitbook/assets/detach_fs_from_snap_button (1).png" alt=""><figcaption><p>Detach a filesystem from a snapshot policy icon</p></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/detach_fs_from_snap_button.png" alt=""><figcaption><p>Detach a filesystem from a snapshot policy icon</p></figcaption></figure></div>
 
 4. In the Detach dialog, choose **ON** if you also want to remove any waiting tasks associated with the filesystems.
 
