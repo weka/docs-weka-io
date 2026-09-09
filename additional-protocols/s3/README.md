@@ -82,7 +82,7 @@ weka s3 cluster add .config_fs --all-servers
 {% tab title="2. Create an S3 bucket" %}
 Create of an S3 bucket, a fundamental container for storing and organizing objects within the WEKA S3 service.
 
-<div data-with-frame="true"><figure><img src="../../.gitbook/assets/create_s3_bucket.gif" alt=""><figcaption><p>Create an S3 bucket</p></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/Create_S3_bucket.gif" alt=""><figcaption><p>Create an S3 bucket</p></figcaption></figure></div>
 
 **Alternative CLI command**
 
