@@ -64,7 +64,7 @@ Create an S3 cluster within the WEKA environment, specifying the servers to run 
 
 A predefined configuration filesystem (`.config_fs` in this demo) must exist to maintain the persisting cluster-wide protocol configurations.
 
-<div data-with-frame="true"><figure><img src="../../.gitbook/assets/wmng_Create_S3_cluster.gif" alt=""><figcaption><p>Create an S3 cluster</p></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/create_s3_cluster.gif" alt=""><figcaption><p>Create an S3 cluster</p></figcaption></figure></div>
 
 **Alternative CLI command**
 
@@ -82,7 +82,7 @@ weka s3 cluster add .config_fs --all-servers
 {% tab title="2. Create an S3 bucket" %}
 Create of an S3 bucket, a fundamental container for storing and organizing objects within the WEKA S3 service.
 
-<div data-with-frame="true"><figure><img src="../../.gitbook/assets/wmng_Create_S3_bucket.gif" alt=""><figcaption><p>Create an S3 bucket</p></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/create_s3_bucket.gif" alt=""><figcaption><p>Create an S3 bucket</p></figcaption></figure></div>
 
 **Alternative CLI command**
 
@@ -102,7 +102,7 @@ Create a dedicated local user with S3 role and assign it with an S3 policy to fa
 
 When you create an S3 user in the GUI, the system generates an S3 access key and secret key and displays them once. Copy and store them securely for S3 client access.
 
-<div data-with-frame="true"><figure><img src="../../.gitbook/assets/wmng_create_s3_user.gif" alt=""><figcaption><p>Create a local S3 user</p></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/create_s3_user (1).gif" alt=""><figcaption><p>Create a local S3 user</p></figcaption></figure></div>
 
 **Alternative CLI commands**
 
@@ -123,7 +123,7 @@ You can implement either the self-signed certificate or a custom certificate. Th
 
 To apply your chosen certificate, download it to your client and place it in the designated folder for seamless integration.
 
-<div data-with-frame="true"><figure><img src="../../.gitbook/assets/wmng_download_cert.gif" alt=""><figcaption></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/download_cert.gif" alt=""><figcaption></figcaption></figure></div>
 
 **Alternative CLI command**
 
