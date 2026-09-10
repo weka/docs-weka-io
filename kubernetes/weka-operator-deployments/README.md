@@ -40,16 +40,17 @@ Choose the model that matches your infrastructure and operating boundary.
 
 Verify minimum version requirements before deployment or upgrade.
 
-| Feature | Operator (min. version) | WEKA Cluster (min. version) | Notes |
-| --- | --- | --- | --- |
-| S3 | 1.7 | 4.4 | Supported. |
-| NFS | 1.10 | 5.1.0 | Supported. |
-| Audit | 1.10 | 5.1.0 | Supported. |
-| SMB-W | 1.11 | 5.1.20 | Supported. |
-| Data Services | 1.13 | 5.1.20 | Supported for quota coloring.Not supported for Data Catalog. |
-| ssdproxy | 1.12 | 5.1.30 | Supported.Share NVMe drives across multiple clusters. |
-| AlloyFlash | 1.14 | 5.1.30 | Supported.Enable mixed TLC and QLC drive deployments. |
-| Cluster capacity sizing | 1.14.2 | 5.1.0 | Supported.Size the cluster by target usable capacity with `dynamicTemplate.clusterCapacity`. |
+| Feature                 | Operator (min. version) | WEKA Cluster (min. version) | Notes                                                                                        |
+| ----------------------- | ----------------------- | --------------------------- | -------------------------------------------------------------------------------------------- |
+| General support         | 1.16                    | 6.0                         | WEKA 6.0 is supported with Operator 1.16 onwards                                             |
+| S3                      | 1.7                     | 4.4                         | Supported.                                                                                   |
+| NFS                     | 1.10                    | 5.1.0                       | Supported.                                                                                   |
+| Audit                   | 1.10                    | 5.1.0                       | Supported.                                                                                   |
+| SMB-W                   | 1.11                    | 5.1.20                      | Supported.                                                                                   |
+| Data Services           | 1.13                    | 5.1.20                      | Supported for quota coloring.Not supported for Data Catalog.                                 |
+| ssdproxy                | 1.12                    | 5.1.30                      | Supported.Share NVMe drives across multiple clusters.                                        |
+| AlloyFlash              | 1.14                    | 5.1.30                      | Supported.Enable mixed TLC and QLC drive deployments.                                        |
+| Cluster capacity sizing | 1.14.2                  | 5.1.0                       | Supported.Size the cluster by target usable capacity with `dynamicTemplate.clusterCapacity`. |
 
 ## How to use this guide
 
@@ -67,12 +68,12 @@ Kubernetes deployment types
 
 **Start a new deployment:**
 
-| Task                                                                                    | Topic                                                                                                          |
-| --------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| Generate deployment artifacts with a guided wizard (recommended for common deployments) | [Cloud Deployment Manager  Kubernetes deployment types](cloud-deployment-manager-kubernetes-deployment-types/) |
-| Minimal working cluster in five steps                                                   | [Quick installation](quick-installation.md)                                                                    |
-| Full deployment workflow end-to-end                                                     | [WEKA Operator full deployment workflow](weka-operator-full-deployment-workflow.md)                            |
-| Deploy on a cloud-managed Kubernetes service                                            | [Deploy WEKA on cloud-managed Kubernetes services](deploy-the-weka-client-on-amazon-eks.md)                    |
+| Task                                                                                    | Topic                                                                                                         |
+| --------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
+| Generate deployment artifacts with a guided wizard (recommended for common deployments) | [Cloud Deployment Manager Kubernetes deployment types](cloud-deployment-manager-kubernetes-deployment-types/) |
+| Minimal working cluster in five steps                                                   | [Quick installation](quick-installation.md)                                                                   |
+| Full deployment workflow end-to-end                                                     | [WEKA Operator full deployment workflow](weka-operator-full-deployment-workflow.md)                           |
+| Deploy on a cloud-managed Kubernetes service                                            | [Deploy WEKA on cloud-managed Kubernetes services](deploy-the-weka-client-on-amazon-eks.md)                   |
 
 **Go to a specific task:** Use these topics for focused configuration and migration work.
 
@@ -87,7 +88,3 @@ Kubernetes deployment types
 | Upgrade protocol containers              | [Upgrade protocol containers on the WEKA Operator](upgrade-protocol-containers-on-the-weka-operator.md) |
 | Production guidance                      | [WEKA Operator best practices](weka-operator-best-practices.md)                                         |
 | Diagnose issues                          | [Troubleshoot WEKA Operator deployments](troubleshoot-weka-operator-deployments.md)                     |
-
-[^1]: **What is quota coloring?**
-
-    During the procedure of setting or unsetting a directory quota, the Data Services container creates a background task referred to as `QUOTA_COLORING`. This task scans the entire directory tree and assigns the quota ID to each file and directory within the tree.
