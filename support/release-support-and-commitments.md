@@ -50,6 +50,7 @@ The following table provides the end-of-support dates for WEKA version series.
 | 4.3                 | January 1, 2025          | January 1, 2025         | January 1, 2025 |
 | 4.4                 | June 1, 2026             | June 1, 2027            | June 1, 2027    |
 | 5.0                 | January 1, 2026          | January 1, 2026         | January 1, 2026 |
+| 5.1                 | June 1, 2027             | June 1, 2028            | June 1, 2028    |
 
 **Related topic**
 
