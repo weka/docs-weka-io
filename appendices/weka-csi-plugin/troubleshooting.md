@@ -53,4 +53,4 @@ Advanced examples and detailed instructions are also available at [https://githu
 
 Deleting a PersistentVolumeClaim backed by an NFS-mounted filesystem returns HTTP 403. The cluster user in the plugin's API secret has a role that cannot delete NFS permissions.
 
-**Resolution:** upgrade to WEKA 6.0, or 5.1.28 or later, where the role permits editing and deleting NFS permissions. See the [NFS transport prerequisites](deployment.md#prerequisites-for-using-nfs-transport) on the Deployment page.
+**Resolution:** upgrade to WEKA 6.0.1, or 5.1.28 or later, where the role permits editing and deleting NFS permissions. See the [NFS transport prerequisites](deployment.md#prerequisites-for-using-nfs-transport) on the Deployment page.

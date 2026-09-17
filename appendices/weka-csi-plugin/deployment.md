@@ -36,7 +36,7 @@ A WEKA client must be installed on all Kubernetes worker nodes.
 * The NFS protocol must be enabled on the WEKA cluster.
 * An NFS interface group must be created on the WEKA cluster with at least one floating IP address. For optimal performance and load sharing, it's recommended to assign at least one IP address per protocol node in the cluster.
 * NFS interface group IP addresses must be accessible from the Kubernetes cluster nodes.
-* The cluster user configured in the plugin's API secret must have a role that permits editing and deleting NFS permissions. This requires WEKA 6.0, or 5.1.28 and later.
+* The cluster user configured in the plugin's API secret must have a role that permits editing and deleting NFS permissions. This requires WEKA 6.0.1, or 5.1.28 and later.
 
 ### Guidelines for NFS Interface Groups and configuration
 
