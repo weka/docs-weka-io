@@ -25,7 +25,7 @@ The deployment process includes the following main phases:
 5. Add clients.
 
 {% hint style="warning" %}
-WEKA strongly recommends that you coordinate and obtain approval from OCI personnel before deploying any WEKA systems on OCI. This coordination ensures your deployment will be compatible with OCI's architecture and comply with cloud resource management policies.
+WEKA strongly recommends that you coordinate and obtain approval from OCI personnel before deploying any NeuralMesh clusters on OCI. This coordination ensures your deployment will be compatible with OCI's architecture and comply with cloud resource management policies.
 {% endhint %}
 
 ### 1. Prepare OCI bare metal infrastructure for WEKA
