@@ -48,7 +48,7 @@ To ensure seamless operations and safeguard your data, adhere to the following b
 * **High availability:** Ensure that the KMS remains highly available, as the system identifies it through a single address. Downtime in KMS availability could disrupt critical operations.
 * **KMS access:** Ensure that all WEKA backend servers can access the KMS to maintain consistent encryption and decryption functionality.
 * **KMS method verification:** Familiarize yourself with the specific methods your KMS uses for key security, unsealing, and recovery. Different systems have distinct processes; for example, HashiCorp Vault can enable [auto-unsealing](https://developer.hashicorp.com/vault/tutorials/auto-unseal/autounseal-aws-kms) using a trusted service. Understanding these mechanisms is essential for efficient recovery and key management.
-* **Snapshot backup:** When using Snap-To-Object, ensure that encrypted filesystem keys are backed up to an object store. This provides an additional layer of protection in case the WEKA system configuration is compromised.
+* **Snapshot backup:** When using Snap-To-Object, ensure that encrypted filesystem keys are backed up to an object store. This provides an additional layer of protection in case the system configuration is compromised.
 
 For further guidance on securing HashiCorp Vault or OpenBao Vault in production environments, refer to the [HashiCorp Vault Production Hardening](https://learn.hashicorp.com/vault/operations/production-hardening) or [OpenBao Vault Post Installation Hardening](https://openbao.org/docs/install/#post-installation-hardening) documentation.
 

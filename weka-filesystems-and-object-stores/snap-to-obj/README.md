@@ -27,7 +27,7 @@ The Snap-To-Object feature is helpful for a range of use cases, as follows:
 
 Suppose it is required to recover data stored on a WEKA filesystem due to a complete or partial loss of the data within it. You can use a data snapshot saved to an object store to recreate the same data in the snapshot on the same or another WEKA cluster.
 
-This use case supports backup in any of the following WEKA system deployment modes:
+This use case supports backup in any of the following NeuralMesh deployment modes:
 
 * **Local object store:** The WEKA cluster and object store are close to each other and will be highly performant during data recovery operations. The WEKA cluster can recover a filesystem from any snapshot on the object store for which it has a reference locator.
 * **Remote object store:** The WEKA cluster and object store are located in different geographic locations, typically with longer latencies between them. In such a deployment, you can send snapshots to local and remote object stores.

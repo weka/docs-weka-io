@@ -109,7 +109,7 @@ Data encryption settings can only be configured during the initial creation of a
 
 ### Metadata limitations **in** WEKA filesystems
 
-In addition to the capacity constraints, each filesystem in WEKA has specific limitations on metadata. The overall system-wide metadata cap depends on the SSD capacity allocated to the system and the RAM resources allocated to the WEKA system processes.
+In addition to the capacity constraints, each filesystem in WEKA has specific limitations on metadata. The overall system-wide metadata cap depends on the SSD capacity allocated to the system and the RAM resources allocated to the system processes.
 
 WEKA carefully tracks metadata units in RAM. If the metadata units approach the RAM limit, they are intelligently paged to the SSD, triggering alerts. This proactive measure allows administrators sufficient time to increase system resources while sustaining IO operations with minimal performance impact.
 
@@ -183,7 +183,7 @@ When multiple clients or processes are throttled simultaneously, the system appl
 
 ## Object stores overview
 
-Within the system, object stores are an optional external storage medium strategically designed to store warm data. These object stores, employed in tiered WEKA system configurations, can be cloud-based, located in the same location as the WEKA cluster, or at a remote location.
+Within the system, object stores are an optional external storage medium strategically designed to store warm data. These object stores, employed in tiered NeuralMesh configurations, can be cloud-based, located in the same location as the WEKA cluster, or at a remote location.
 
 WEKA extends support for object stores, leveraging their capabilities for tiering (both tiering and local snapshots) and backup (snapshots only). Both tiering and backup functionalities can be concurrently used for the same filesystem, enhancing flexibility.
 

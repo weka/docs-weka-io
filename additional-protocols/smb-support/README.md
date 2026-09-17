@@ -98,7 +98,7 @@ Ensure that a dedicated filesystem exists for storing persistent protocol config
 
 **Workflow**
 
-1. **Configure SMB-W cluster**: Define the WEKA system servers that will participate in the SMB-W cluster and specify the Active Directory (AD) domain name.\
+1. **Configure SMB-W cluster**: Define the NeuralMesh servers that will participate in the SMB-W cluster and specify the Active Directory (AD) domain name.\
    In on-premises deployments, you can configure a pool of public IP addresses distributed across the SMB-W cluster. If a server fails, its IP addresses are reassigned to other servers in the cluster to maintain availability.
 2. **Join the SMB-W cluster to the Active Directory domain:** Connect the system to the target AD domain. This includes required pre-configuration in AD and post-configuration in both the DNS Manager and Active Directory Users and Computers.
 3. **Create SMB shares and set permissions:** Create the required shares and directories. By default, filesystem permissions are `root:root` with 755 access and must initially be set using a WEKA filesystem or NFS mount.

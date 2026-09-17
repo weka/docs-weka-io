@@ -81,7 +81,7 @@ A system reboot is needed for the firmware update to take effect.
 
 ## **Update NVM settings**
 
-To enable WEKA system compatibility, configure certain NVM options to increase the number of Virtual Functions (VFs) and enable TruFlow.
+To enable NeuralMesh compatibility, configure certain NVM options to increase the number of Virtual Functions (VFs) and enable TruFlow.
 
 **Procedure:**
 
