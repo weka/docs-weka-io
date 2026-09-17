@@ -6,7 +6,7 @@ description: Manage KMS integration for cluster and per-filesystem encryption ke
 
 ## Overview
 
-When creating an encrypted filesystem in the WEKA system, a Key Management System (KMS) is essential for securely managing encryption keys. WEKA relies on the KMS to encrypt filesystem keys and decrypt them during system startup, using in-memory capabilities for ongoing data encryption and decryption.
+When creating an encrypted filesystem in the system, a Key Management System (KMS) is essential for securely managing encryption keys. WEKA relies on the KMS to encrypt filesystem keys and decrypt them during system startup, using in-memory capabilities for ongoing data encryption and decryption.
 
 The Snap-To-Object feature stores the encrypted filesystem key alongside the encrypted data when snapshots are taken. During snapshot promotion to a different filesystem or disaster recovery within the WEKA cluster, the KMS decrypts the filesystem key. Therefore, ensuring access to the same KMS configuration is crucial for these operations.
 
@@ -45,7 +45,7 @@ This configuration requires using **AppRole authentication**. Filesystems can sh
 To ensure seamless operations and safeguard your data, adhere to the following best practices:
 
 * **Disaster recovery setup:** Establish a robust backup or replication mechanism for the KMS to minimize the risk of data loss.
-* **High availability:** Ensure that the KMS remains highly available, as the WEKA system identifies it through a single address. Downtime in KMS availability could disrupt critical operations.
+* **High availability:** Ensure that the KMS remains highly available, as the system identifies it through a single address. Downtime in KMS availability could disrupt critical operations.
 * **KMS access:** Ensure that all WEKA backend servers can access the KMS to maintain consistent encryption and decryption functionality.
 * **KMS method verification:** Familiarize yourself with the specific methods your KMS uses for key security, unsealing, and recovery. Different systems have distinct processes; for example, HashiCorp Vault can enable [auto-unsealing](https://developer.hashicorp.com/vault/tutorials/auto-unseal/autounseal-aws-kms) using a trusted service. Understanding these mechanisms is essential for efficient recovery and key management.
 * **Snapshot backup:** When using Snap-To-Object, ensure that encrypted filesystem keys are backed up to an object store. This provides an additional layer of protection in case the WEKA system configuration is compromised.

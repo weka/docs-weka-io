@@ -1,6 +1,6 @@
 ---
 description: >-
-  Learn how the WEKA system runs asynchronous and maintenance operations in the
+  Learn how the system runs asynchronous and maintenance operations in the
   background, what limits apply to them, and how to monitor and control them.
 ---
 
@@ -10,7 +10,7 @@ Background tasks handle work that must not interfere with serving IO. Examples i
 
 ## Resource consumption
 
-The WEKA system limits background tasks to 5% of the overall CPU. When the CPU is idle, background tasks can use more than the configured resources, and release them immediately when needed to serve IO.
+The system limits background tasks to 5% of the overall CPU. When the CPU is idle, background tasks can use more than the configured resources, and release them immediately when needed to serve IO.
 
 ## Concurrency limits
 

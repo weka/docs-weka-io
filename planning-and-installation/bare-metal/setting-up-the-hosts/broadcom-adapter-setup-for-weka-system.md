@@ -105,7 +105,7 @@ To enable WEKA system compatibility, configure certain NVM options to increase t
     ```
 4. **Reboot the server**: Reboot the server to apply the changes.
 
-The adapter is ready for use by the WEKA system.
+The adapter is ready for use by the system.
 
 ## Configure Broadcom P2100G adapters for 200 Gbps operation
 

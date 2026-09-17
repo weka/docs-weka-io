@@ -6,7 +6,7 @@ description: Understand WEKA user types, roles, authentication methods, and logi
 
 ## User types and roles
 
-Access to the WEKA system is managed through user accounts, each uniquely identified by a username and authenticated using a password. The system supports up to 1,152 local users. User permissions and access levels are determined by predefined roles.
+Access to the system is managed through user accounts, each uniquely identified by a username and authenticated using a password. The system supports up to 1,152 local users. User permissions and access levels are determined by predefined roles.
 
 ### Role descriptions
 
