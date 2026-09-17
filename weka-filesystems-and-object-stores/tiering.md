@@ -168,7 +168,7 @@ Policy violations and early releases occur specifically due to capacity or throu
 
 ## Monitor system status
 
-Effective management of a tiered WEKA system requires visibility into capacity utilization, space reclamation status, and data distribution. Use the available tools to monitor the system status and interpret the metrics.
+Effective management of a tiered system requires visibility into capacity utilization, space reclamation status, and data distribution. Use the available tools to monitor the system status and interpret the metrics.
 
 ### View capacity and reclamation status
 

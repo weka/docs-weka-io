@@ -8,7 +8,7 @@ description: >-
 
 Snapshots allow the saving of a filesystem state to a hidden `.snapshots` directory, available from the filesystem root and from any subdirectory. They can be used for:
 
-* **Physical backup:** The snapshots directory can be copied into a different storage system, possibly on another site, using either the WEKA system Snap-To-Object feature or third-party software.
+* **Physical backup:** The snapshots directory can be copied into a different storage system, possibly on another site, using either the system Snap-To-Object feature or third-party software.
 * **Logical backup:** Periodic snapshots enable filesystem restoration to a previous state if logical data corruption occurs.
 * **Archive:** Periodic snapshots enable accessing a previous filesystem state for compliance or other needs.
 * **DevOps environments:** Writable snapshots enable the execution of software tests on copies of the data.
@@ -25,7 +25,7 @@ You can retrieve the estimated reclaimable space using the command: `weka fs sna
 
 You can create a writable snapshot. A writable snapshot cannot be changed to a read-only snapshot.
 
-The WEKA system supports the following snapshot operations:
+The system supports the following snapshot operations:
 
 * View snapshots.
 * Create a snapshot of an existing filesystem.

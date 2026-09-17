@@ -1,6 +1,6 @@
 ---
 description: >-
-  Explore the various events the WEKA system produces, organized according to
+  Explore the various events the system produces, organized according to
   their respective categories.
 ---
 

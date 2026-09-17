@@ -30,7 +30,7 @@ When detaching, the background task of detaching the object store bucket begins.
 On completion of detaching, the object store bucket does not appear under the filesystem when using the `weka fs` command. However, it still appears in the object stores list and can be removed if any other filesystem does not use it. The data in the read-only object store bucket remains in the object store bucket for backup purposes. If this is unnecessary or the reclamation of object store space is required, it is possible to delete the object store bucket.
 
 {% hint style="info" %}
-Before deleting an object store bucket, remember to consider data from another filesystem or data not relevant to the WEKA system on the object store bucket.
+Before deleting an object store bucket, remember to consider data from another filesystem or data not relevant to the system on the object store bucket.
 {% endhint %}
 
 {% hint style="warning" %}

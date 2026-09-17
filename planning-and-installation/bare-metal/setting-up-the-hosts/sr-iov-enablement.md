@@ -6,7 +6,7 @@ description: Enable SR-IOV on supported network adapters for WEKA.
 
 Many hardware vendors ship their products with the SR-IOV feature disabled. The feature must be enabled on such platforms before installing the Weka system. Enabling the SR-IOV applies to the server BIOS.
 
-If the SR-IOV is already enabled, it is recommended to verify the current state before proceeding with the installation of the WEKA system.
+If the SR-IOV is already enabled, it is recommended to verify the current state before proceeding with the installation of the system.
 
 ## Before you begin
 

@@ -27,7 +27,7 @@ The Snap-To-Object feature is helpful for a range of use cases, as follows:
 
 Suppose it is required to recover data stored on a WEKA filesystem due to a complete or partial loss of the data within it. You can use a data snapshot saved to an object store to recreate the same data in the snapshot on the same or another WEKA cluster.
 
-This use case supports backup in any of the following WEKA system deployment modes:
+This use case supports backup in any of the following NeuralMesh deployment modes:
 
 * **Local object store:** The WEKA cluster and object store are close to each other and will be highly performant during data recovery operations. The WEKA cluster can recover a filesystem from any snapshot on the object store for which it has a reference locator.
 * **Remote object store:** The WEKA cluster and object store are located in different geographic locations, typically with longer latencies between them. In such a deployment, you can send snapshots to local and remote object stores.
@@ -58,7 +58,7 @@ Combining a local cluster with a replicated object store in another data center 
 
 ### Cloud pause/restart
 
-In a public cloud, with a WEKA cluster running on compute instances with local SSDs, sometimes the data needs to be retained, even though ongoing access to the WEKA cluster is unnecessary. In such cases, using Snap-To-Object can save the costs of compute instances running the WEKA system.
+In a public cloud, with a WEKA cluster running on compute instances with local SSDs, sometimes the data needs to be retained, even though ongoing access to the WEKA cluster is unnecessary. In such cases, using Snap-To-Object can save the costs of compute instances running the system.
 
 To pause a cluster, you need to take a snapshot of the data and then use Snap-To-Object to upload the snapshot to an S3-compliant object store. When the upload process is complete, the WEKA cluster instances can be stopped, and the data is safe on the object store.
 
@@ -131,7 +131,7 @@ If the snapshot has been (or is) downloaded and used by a different filesystem, 
 
 ## Snap-To-Object and tiering
 
-Snap-To-Object and tiering use SSDs and object stores for data storage. The WEKA system uses the same paradigm for holding SSD and object store data for both Snap-To-Object and tiering to save storage and performance resources.
+Snap-To-Object and tiering use SSDs and object stores for data storage. The system uses the same paradigm for holding SSD and object store data for both Snap-To-Object and tiering to save storage and performance resources.
 
 You can implement this paradigm for each filesystem using one of the following use cases:
 
@@ -139,7 +139,7 @@ You can implement this paradigm for each filesystem using one of the following u
   The allocated SSD capacity must be identical to the filesystem size (total capacity) for each filesystem. The drive retention period must be defined as the longest time possible (which is 60 months).\
   The Tiering Cue must be defined using the same considerations based on IO patterns. In this case, the applications always work with a high-performance SSD storage system and use the object store only as a backup device.
 * **Snap-To-Object on filesystems is used with active tiering between the SSDs and the object store:**\
-  Objects in the object store are used to tier all data and back up using Snap-To-Object. If possible, the WEKA system uses the same object for both purposes, eliminating the unnecessary need to acquire additional storage and copy data.
+  Objects in the object store are used to tier all data and back up using Snap-To-Object. If possible, the system uses the same object for both purposes, eliminating the unnecessary need to acquire additional storage and copy data.
 
 {% hint style="info" %}
 When using Snap-To-Object to promote data from an object store, some metadata may still be in the object store until it is accessed for the first time.
