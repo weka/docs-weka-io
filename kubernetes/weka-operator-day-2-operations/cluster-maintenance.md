@@ -489,7 +489,7 @@ kubectl delete pod -n csi-wekafs <csi-pod-name>
 
 ## Configure trace retention
 
-Set trace retention limits on a Kubernetes-managed WEKA cluster. The Operator applies the settings cluster-wide and propagates them to attached stateless clients automatically.
+Set trace retention limits on a Kubernetes-managed WEKA cluster. The Operator applies the settings cluster-wide and propagates them to the stateless clients it manages.
 
 {% hint style="info" %}
 Do not run `weka cluster` commands to configure trace retention on a Kubernetes-managed deployment. These commands take effect only when `dumperConfigMode` is set to `cluster`. The Operator manages `dumperConfigMode` automatically and sets it to `auto`.
@@ -508,7 +508,7 @@ spec:
 
 | Field                  | Description                                                            | Required            |
 | ---------------------- | ---------------------------------------------------------------------- | ------------------- |
-| `ensureFreeSpace`      | Minimum free space, in GiB, the cluster preserves on each I/O process. | Yes                 |
+| `ensureFreeSpace`      | Minimum free space, in GiB, to keep on the filesystem that backs `/opt/weka/traces` in each container. | Yes                 |
 | `maxCapacityPerIoNode` | Maximum total trace capacity, in GiB, per I/O process.                 | No. Default: 10 GiB |
 
 2. Apply the updated configuration:
@@ -517,13 +517,15 @@ spec:
 kubectl apply -f weka-cluster.yaml
 ```
 
-Cluster-level retention propagates to stateless clients automatically. To override retention on a specific stateless client:
+To set the retention that clients use, run:
 
 ```bash
 weka debug traces retention set \
   --client-ensure-free <value>GiB \
   --client-max <value>GiB
 ```
+
+These values are cluster-wide. Every client attached to the cluster inherits them, including clients that joined outside the Operator, so review them to set the free space and trace capacity you want those clients to keep.
 
 **Related topic:** \[Traces management]
 
