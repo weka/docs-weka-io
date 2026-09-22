@@ -24,7 +24,7 @@ This configuration supports:
 * CoreWeave SUNK v7.3.0 or newer.
 * WEKA Operator v1.11.0 or newer.
 * WEKA software v4.4.26 or newer.
-* Kubernetes v1.32 or newer.
+* Kubernetes v1.35 or newer.
 
 ## SUNK node architecture and CPU isolation
 
