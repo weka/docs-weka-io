@@ -501,7 +501,7 @@ spec:
 | Field                  | Description                                                            | Required            |
 | ---------------------- | ---------------------------------------------------------------------- | ------------------- |
 | `ensureFreeSpace`      | Minimum free space, in GiB, to keep on the filesystem that backs `/opt/weka/traces` in each container. | Yes                 |
-| `maxCapacityPerIoNode` | Maximum total trace capacity, in GiB, per I/O process.                 | No. Default: 10 GiB |
+| `maxCapacityPerIoNode` | Trace capacity, in GiB, that the Operator allocates per process when setting the container's total trace capacity. The allocation covers the container's I/O processes and its management process. | No. Default: 10 GiB |
 
 2. Apply the updated configuration:
 
