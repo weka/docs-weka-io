@@ -170,7 +170,7 @@ For full kernel parameter configuration, see [Set custom kernel parameters](../.
 
 Enable the static CPU Manager policy on all worker nodes to give WEKA processes dedicated CPU cores. Without this, the Kubernetes scheduler can place other workloads on the same cores, causing contention and reducing I/O throughput.
 
-On Kubernetes v1.32 and later, also enable `strict-cpu-reservation` to prevent Burstable and Best Effort pods from scheduling onto reserved cores.
+Also enable `strict-cpu-reservation` to keep Burstable and Best Effort pods off the reserved cores.
 
 For the full rationale, sibling-pair guidance, and version-specific reservation details, see [WEKA Operator best practices](weka-operator-best-practices.md).
 
@@ -237,9 +237,6 @@ apiVersion: kubelet.config.k8s.io/v1beta1
 kind: KubeletConfiguration
 cpuManagerPolicy: "static"
 reservedSystemCPUs: "0,6"
-featureGates:
-  CPUManagerPolicyOptions: "true"
-  CPUManagerPolicyAlphaOptions: "true"
 cpuManagerPolicyOptions:
   strict-cpu-reservation: "true"
 ```
@@ -251,7 +248,7 @@ Kubelet configuration methods vary by Kubernetes distribution. Some environments
 {% endhint %}
 
 {% hint style="info" %}
-`CPUManagerPolicyAlphaOptions` and `strict-cpu-reservation` require Kubernetes v1.32 or later. Omit the `featureGates` and `cpuManagerPolicyOptions` blocks on earlier versions. Without strict reservation, Burstable and Best Effort pods can schedule onto reserved cores under load, reducing WEKA I/O throughput.
+`strict-cpu-reservation` keeps Burstable and Best Effort pods off the reserved cores, which protects WEKA I/O throughput under load.
 {% endhint %}
 
 2. Save the file and restart the Kubelet:

@@ -54,7 +54,7 @@ The diagram below explains how WEKA and SUNK components interact on a NeuralMesh
 * Identify the CPU IDs reserved for the OS and Kubernetes daemons.
 * Decide the whole CPU count required by the WEKA client pod.
 * On hyperthreaded servers, identify the sibling CPU IDs for every reserved physical core.
-* If the cluster runs Kubernetes v1.32 or later, plan to enable `strict-cpu-reservation`.
+* Plan to enable `strict-cpu-reservation`.
 
 **Related topics**
 
@@ -90,11 +90,8 @@ kubectl edit cm -n kube-system kubelet-config
 ```yaml
 cpuManagerPolicy: static
 reservedSystemCPUs: "0,1,64,65"
-featureGates:
-  CPUManagerPolicyOptions: "true"
-  CPUManagerPolicyAlphaOptions: "true"
 cpuManagerPolicyOptions:
-  strict-cpu-reservation: "true"             ##Requires Kubernetes v1.32+
+  strict-cpu-reservation: "true"
 ```
 
 {% hint style="warning" %}
@@ -102,7 +99,7 @@ cpuManagerPolicyOptions:
 {% endhint %}
 
 {% hint style="info" %}
-`strict-cpu-reservation` requires Kubernetes v1.32 or later. On earlier versions, omit the `featureGates` and `cpuManagerPolicyOptions` blocks. Without strict reservation, `Burstable` and `BestEffort` pods can still use reserved system CPUs.
+`strict-cpu-reservation` keeps `Burstable` and `BestEffort` pods off the reserved system CPUs.
 {% endhint %}
 
 4. Apply the updated ConfigMap to the worker nodes by using the CoreWeave SUNK rollout or restart procedure used in your environment.

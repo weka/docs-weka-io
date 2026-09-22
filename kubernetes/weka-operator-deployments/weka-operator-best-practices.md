@@ -70,7 +70,7 @@ For production backend deployments, use five or nine etcd members. Consider dist
 
 Enable the static CPU Manager policy on all worker nodes to give WEKA processes dedicated CPU cores. Without this, the Kubernetes scheduler can place other workloads on the same cores, causing contention and reducing I/O throughput.
 
-On Kubernetes v1.32 and later, also enable `strict-cpu-reservation` to prevent Burstable and Best Effort pods from scheduling onto reserved cores.
+Also enable `strict-cpu-reservation` to keep Burstable and Best Effort pods off the reserved cores.
 
 On hyperthreaded systems, reserve both logical CPUs of the physical core assigned to the OS. Reserving only one sibling leaves the physical core shared.
 
@@ -92,9 +92,6 @@ apiVersion: kubelet.config.k8s.io/v1beta1
 kind: KubeletConfiguration
 cpuManagerPolicy: "static"
 reservedSystemCPUs: "0,6"
-featureGates:
-  CPUManagerPolicyOptions: "true"
-  CPUManagerPolicyAlphaOptions: "true"
 cpuManagerPolicyOptions:
   strict-cpu-reservation: "true"
 ```
