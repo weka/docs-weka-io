@@ -27,7 +27,7 @@ Without this reservation, you may experience:
 * **Incorrect K8s accounting:** The "node allocatable" capacity reported by Kubernetes will be larger than the actual CPU resources available to pods (as defined by cgroups). This can result in lower-than-expected performance for pod workloads.
 
 {% hint style="info" %}
-To protect these reserved cores from _all_ pod QoS classes (including `Burstable` and `Best Effort`), you must also use Kubernetes v1.32+ and enable the `strict-cpu-reservation=true` option, which is detailed in the next section (Enable strict CPU reservation).
+To protect these reserved cores from _all_ pod QoS classes (including `Burstable` and `Best Effort`), also enable the `strict-cpu-reservation=true` option, which is detailed in the next section (Enable strict CPU reservation).
 {% endhint %}
 
 **Procedure**
@@ -48,7 +48,7 @@ reservedSystemCPUs: 0,20-24,44-47
 
 #### Enable strict CPU reservation
 
-This is a high-priority setting, requiring Kubernetes v1.32 or later. By default, the `reservedSystemCPUs` setting only protects cores from `Guaranteed` pods. Enabling `strict-cpu-reservation` extends this protection to `Burstable` and `Best Effort` pods, preventing them from using reserved system and WEKA client CPUs.
+This is a high-priority setting. By default, the `reservedSystemCPUs` setting only protects cores from `Guaranteed` pods. Enabling `strict-cpu-reservation` extends this protection to `Burstable` and `Best Effort` pods, preventing them from using reserved system and WEKA client CPUs.
 
 Without this option, `Burstable` and `Best Effort` pods can be scheduled on WEKA and system CPUs, which can lower IO throughput and create inconsistent performance.
 
@@ -57,9 +57,6 @@ Without this option, `Burstable` and `Best Effort` pods can be scheduled on WEKA
 In `kubelet.conf`, add the following configuration:
 
 ```
-featureGates:
-  CPUManagerPolicyOptions: "true"
-  CPUManagerPolicyAlphaOptions: "true"
 cpuManagerPolicyOptions:
   strict-cpu-reservation: "true"
 ```
