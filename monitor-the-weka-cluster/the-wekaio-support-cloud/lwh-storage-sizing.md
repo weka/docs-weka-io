@@ -80,7 +80,7 @@ Values include approximately 40 GiB for events, queues, and databases.
 
 Resource presets use the expected monitored process count:
 
-<table><thead><tr><th width="152.01171875">Preset</th><th width="192.75">wekaNodesMonitored</th><th>/opt/wekahome/data @ 30-day retention</th></tr></thead><tbody><tr><td><code>small</code></td><td>≤ 1,000</td><td>up to ~1 TiB</td></tr><tr><td><code>medium</code></td><td>1,000 – 5,000</td><td>~1 – 5 TiB</td></tr><tr><td><code>large</code></td><td>5,000 – 10,000</td><td>~5 – 10 TiB</td></tr><tr><td><code>xlarge</code></td><td>10,000+</td><td>10 TiB+</td></tr></tbody></table>
+<table><thead><tr><th width="152.01171875">Preset</th><th width="192.75">wekaNodesMonitored (processes)</th><th>/opt/wekahome/data @ 30-day retention</th></tr></thead><tbody><tr><td><code>small</code></td><td>≤ 1,000</td><td>up to ~1 TiB</td></tr><tr><td><code>medium</code></td><td>1,000 – 5,000</td><td>~1 – 5 TiB</td></tr><tr><td><code>large</code></td><td>5,000 – 10,000</td><td>~5 – 10 TiB</td></tr><tr><td><code>xlarge</code></td><td>10,000+</td><td>10 TiB+</td></tr></tbody></table>
 
 ## VictoriaMetrics partition behavior
 
