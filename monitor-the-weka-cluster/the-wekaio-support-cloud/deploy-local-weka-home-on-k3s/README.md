@@ -382,9 +382,9 @@ The default PVC capacity for remote session recordings is 10 GiB ( `10Gi`). To i
 
 <details>
 
-<summary>Resource presets: Expected node count (v5.0+)</summary>
+<summary>Resource presets: Expected process count (v5.0+)</summary>
 
-Starting in LWH v5.0, set `wekaNodesMonitored` to the number of WEKA cluster nodes (servers) this LWH instance is expected to monitor.
+Starting in LWH v5.0, set `wekaNodesMonitored` to the total number of WEKA **processes** this LWH instance is expected to monitor. The key name carries the legacy term "node": in WEKA, a node is a process pinned to a single CPU core, so one server contributes as many processes as it has cores in the Management, Frontend, Compute, and Drives roles. Count the processes on the cluster backends and on the clients, as described in [#id-1.-verify-prerequisites](./#id-1.-verify-prerequisites "mention").
 
 This selects a resource preset (`small`/`medium`/`large`/`xlarge`) that automatically sets replica counts and autoscaling for the API and worker pods. See **Resource presets** below for the full table and how to pick a value.
 
@@ -477,7 +477,7 @@ FSQ does not support worker autoscaling. Set fixed worker replica counts.
 
     \
     **Resource presets**\
-    Starting in v5.0, running `homecli local setup` interactively also asks how many WEKA servers this instance is expected to monitor:
+    Starting in v5.0, running `homecli local setup` interactively also asks how many WEKA processes this instance is expected to monitor. The prompt and the preset ranges use the legacy term "node"; each one counts a WEKA process, on backends and on clients alike:
 
     ```
     small      0 – 1,000 nodes
@@ -500,8 +500,8 @@ FSQ does not support worker autoscaling. Set fixed worker replica counts.
       `homecli local setup --host <host.domain.com>`
     * Enable HTTPS by providing a certificate and key directly to the command instead of using the `config.json`:\
       `homecli local setup --iface <interface> --tls-cert <cert.pem> --tls-key <key.pem>`
-    * Set the expected node count up front and skip the interactive prompt (v5.0+):\
-      `homecli local setup --weka-nodes <N>`\
+    * Set the expected process count up front and skip the interactive prompt (v5.0+):\
+      `homecli local setup --weka-nodes <N>`, where `N` is the number of processes\
       `0` means "use chart defaults." You can also set this permanently by `"wekaNodesMonitored": N` in `config.json`.
 
 <details>

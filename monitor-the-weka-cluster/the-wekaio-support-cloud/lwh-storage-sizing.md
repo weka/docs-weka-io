@@ -80,7 +80,7 @@ Values include approximately 40 GiB for events, queues, and databases.
 
 Resource presets use the expected monitored process count:
 
-| Preset | wekaNodesMonitored | /opt/wekahome/data @ 30-day retention |
+| Preset | wekaNodesMonitored (processes) | /opt/wekahome/data @ 30-day retention |
 | --- | --- | --- |
 | `small` | ≤ 1,000 | up to ~1 TiB |
 | `medium` | 1,000 – 5,000 | ~1 – 5 TiB |
