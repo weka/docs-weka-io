@@ -62,8 +62,8 @@ Use the following command line to create a new SMB cluster to be managed by the 
   * Ensure all floating IPs reside on the same subnet to enable IP takeover for HA.
 * **Floating IP requirements:**
   * Floating IPs must not be used by any other applications, servers, or WEKA components, including:
-    * WEKA system management nodes
-    * WEKA system IO nodes
+    * Management processes
+    * I/O processes
     * WEKA system NFS floating IPs
   * In all-cloud installations, where listing SMB floating IPs is restricted by cloud provider network limitations, access the SMB service via the primary addresses of the cluster nodes.
 * **Configure SMB floating IPs:**

@@ -95,7 +95,7 @@ In this configuration, NeuralMesh clients installed on application servers acces
 
 * **Resource efficiency:** Combining storage and compute maximizes infrastructure utilization.
 * **Flexibility:** The cluster can be heterogeneous, comprising some servers with both storage processes and clients, and others with clients only.
-* **Availability and durability:** Even in the event of an application server reboot or failure, the system's robust N+2 and N+4 protection schemes seamlessly maintain data availability and durability. With RAFT-9 support, the architecture can tolerate up to 4 concurrent node failures without losing cluster availability, ensuring that the co-located storage backend remains resilient without disrupting operations.
+* **Availability and durability:** Even in the event of an application server reboot or failure, the system's robust N+2 and N+4 protection schemes seamlessly maintain data availability and durability. With RAFT-9 support, the architecture can tolerate up to 4 concurrent server failures without losing cluster availability, ensuring that the co-located storage backend remains resilient without disrupting operations.
 
 This deployment mode mirrors the functionality of the standard dedicated architecture, delivering the same robust features for data protection, failure domains, and linear scalability.
 

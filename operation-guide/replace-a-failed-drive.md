@@ -30,7 +30,7 @@ When rebuild capacity is unavailable, a failed drive reduces data redundancy and
     weka cluster drive -F status=inactive -o id,uuid,host,hostname,node,status
     ```
 
-    A failed drive displays an invalid node ID and an `INACTIVE` status.
+    A failed drive displays an invalid process ID and an `INACTIVE` status.
 2.  Deactivate the failed drive.
 
     ```bash

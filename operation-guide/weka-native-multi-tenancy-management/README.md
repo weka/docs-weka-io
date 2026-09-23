@@ -69,7 +69,7 @@ WEKA native multi-tenancy enforces a distinct separation between cluster-level a
 
 The cluster administrator manages the system's physical fabric and the high-level logical boundaries between tenants. A user with the `ClusterAdmin` role performs the following tasks:
 
-* **Manages infrastructure:** This includes overseeing physical hardware, nodes, drives, and system-wide upgrades.
+* **Manages infrastructure:** This includes overseeing physical hardware, servers, drives, and system-wide upgrades.
 * **Defines network primitives:** The administrator creates and maintains virtual routing and forwarding (VRDF) pools and shared network endpoints.
 * **Manages the tenant lifecycle:** This involves creating, renaming, and deleting tenant entities.
 * **Maps network security:** The administrator attaches or detaches network spaces to tenants and enforces tenant-wide security flags such as `enforceMountToNetworkSpace`.

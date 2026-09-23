@@ -14,7 +14,7 @@ Drives sharing enables multiple Drive IO processes on a single host to access th
 ### Benefits
 
 * **Improved data reduction performance:** Multiple Drive I/O processes can access the same device, increasing CPU parallelism for compression and decompression and improving effective IOPS utilization.
-* **Better Gen5 bandwidth utilization:** Gen5 NVMe drives can exceed 13 GB/s, while per-node network bandwidth is typically lower. Drives sharing enables multiple cores to drive a single device, helping saturate available bandwidth.
+* **Better Gen5 bandwidth utilization:** Gen5 NVMe drives can exceed 13 GB/s, while per-server network bandwidth is typically lower. Drives sharing enables multiple cores to drive a single device, helping saturate available bandwidth.
 * **Multi-tenancy and small-cluster scalability:** Sharing drives across containers or clusters enables smaller, granular capacity allocations, supporting layouts such as 16+2 even in smaller environments.
 * **Flexible capacity management:** Virtual drives can be created at arbitrary sizes, with support for over-provisioning. The total allocated virtual capacity can exceed the physical device capacity, enabling future growth planning.
 
