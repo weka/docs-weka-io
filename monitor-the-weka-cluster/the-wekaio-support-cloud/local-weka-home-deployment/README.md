@@ -480,16 +480,12 @@ FSQ does not support worker autoscaling. Set fixed worker replica counts.
 
     \
     **Resource presets**\
-    Starting in v5.0, running `homecli local setup` interactively also asks how many WEKA processes this instance is expected to monitor. The prompt and the preset ranges use the legacy term "node"; each one counts a WEKA process, on backends and on clients alike:
+    Starting in v5.0, running `homecli local setup` interactively asks for the expected process count, on backends and on clients. Entering `0` uses the chart defaults. The presets are:
 
-    ```
-    small      0 – 1,000 nodes
-    medium     1,000 – 5,000 nodes
-    large      5,000 – 10,000 nodes
-    xlarge     10,000+ nodes (elastic scaling enabled)
-
-    Expected Weka node count [0 = use chart defaults]:
-    ```
+    * `small`: 0 – 1,000 processes
+    * `medium`: 1,000 – 5,000 processes
+    * `large`: 5,000 – 10,000 processes
+    * `xlarge`: 10,000+ processes, with elastic scaling enabled
 
     Your answer selects the resource preset described above, which drives replica counts and autoscaling for the API and worker pods. The prompt is automatically skipped when stdin isn't a terminal, so scripted installs don't hang.\
     \
