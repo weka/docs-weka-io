@@ -38,7 +38,7 @@ The following table describes each audited operation type.
 
 | Operation | Description |
 | --- | --- |
-| `FILEOPEN` | Logs the initial opening of a file for read or write access. For performance reasons, subsequent opens are logged only when the access type changes or moves between system nodes. |
+| `FILEOPEN` | Logs the initial opening of a file for read or write access. For performance reasons, subsequent opens are logged only when the access type changes or moves between processes. |
 | `ATOMIC_FILEOPEN` | Logs the creation and opening of a file as a single, atomic action. Unlike `FILEOPEN`, this operation is always recorded. |
 | `CLOSE` | Logs the closing of a file, which involves releasing the file descriptor associated with it. This operation marks the end of a session or access period for a file and is crucial for tracking file access duration and resource management. |
 | `LOOKUP` | Logs the action of searching for a file or directory by its name. |
@@ -58,7 +58,7 @@ The following table describes each audited operation type.
 | `RMXATTR` | Logs the removal of a custom attribute from a file. |
 | `MOUNT` | Logs the mounting of a filesystem, making it accessible. |
 | `UMOUNT` | Logs the unmounting of a filesystem, making it inaccessible. |
-| `HEARTBEAT` | Sends a periodic message from each node to confirm that the audit system is operational. |
+| `HEARTBEAT` | Sends a periodic message from each process to confirm that the audit system is operational. |
 | `LOST_AUDIT` | Sends a special message to indicate that one or more audit events may have been lost, signaling a potential gap in the audit trail. |
 
 ### Operation categories for configuration

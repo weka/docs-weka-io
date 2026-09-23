@@ -84,8 +84,8 @@ Implement CIDR-based security policies to strictly regulate access to cluster ma
 
 ### Cluster integrity
 
-* **Join secret:** Use Join Secret to ensure only authorized backends can join the cluster. This prevents malicious nodes from infiltrating the storage grid.
-* **Join IP filtering:** In addition to secrets, members can be filtered by IP address. Define a list of authorized IPs using `weka security policy join` and apply it to the join process (e.g., `weka security policy join set --backend <policy>`). This ensures that even if a secret is compromised, a node cannot join from an unauthorized network.
+* **Join secret:** Use Join Secret to ensure only authorized backends can join the cluster. This prevents malicious servers from infiltrating the storage grid.
+* **Join IP filtering:** In addition to secrets, members can be filtered by IP address. Define a list of authorized IPs using `weka security policy join` and apply it to the join process (e.g., `weka security policy join set --backend <policy>`). This ensures that even if a secret is compromised, a server cannot join from an unauthorized network.
 
 ## Data encryption
 
@@ -99,7 +99,7 @@ Implement CIDR-based security policies to strictly regulate access to cluster ma
 
 ### Encryption in Transit
 
-* **RPC (inter-node):** The cluster utilizes a secure RPC mechanism for sensitive internal communication between all cluster members, clients, and servers (e.g., transmitting file keys or handling the edges of unaligned reads/writes). This traffic is secured using **X25519+BLAKE2B-512** for key exchange and the **IETF variant of ChaCha20-Poly1305** for symmetric encryption.
+* **RPC (internal):** The cluster utilizes a secure RPC mechanism for sensitive internal communication between all cluster members, clients, and servers (e.g., transmitting file keys or handling the edges of unaligned reads/writes). This traffic is secured using **X25519+BLAKE2B-512** for key exchange and the **IETF variant of ChaCha20-Poly1305** for symmetric encryption.
 * **POSIX:** The WEKA client is part of the cluster and accesses data as a local filesystem. Therefore, data is not encrypted with a specific in-transit network protocol (like TLS). Instead, security relies on the **filesystem encryption**: if the filesystem is encrypted, the data accessed and transmitted by the POSIX client is encrypted. Some parts of the data, such as unaligned prefixes or suffixes in reads and writes, are encrypted using our RPC encryption rather than XTS-AES. At present, this is the IETF variant of ChaCha20-Poly1305.
 * **S3:** Use TLS 1.2 or 1.3 for all S3 traffic.
 * **OBS (tiering):** Traffic exchanged with the Object Store (OBS) for tiering or Snap-to-Object is encrypted using TLS, but **only** if the target bucket was explicitly configured using the **HTTPS** protocol. If the bucket was added using HTTP, this traffic will be unencrypted.

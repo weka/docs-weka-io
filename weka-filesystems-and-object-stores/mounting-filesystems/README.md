@@ -594,7 +594,7 @@ To influence peer selection and ensure efficient traffic routing, stateless clie
 This configuration is especially beneficial in:
 
 * Two-switch topologies with ISL connections.
-* Deployments where backend nodes are dual-attached and clients are single-attached.
+* Deployments where backend servers are dual-attached and clients are single-attached.
 * Scenarios requiring controlled peering to reduce east-west traffic.
 
 **Configuration**

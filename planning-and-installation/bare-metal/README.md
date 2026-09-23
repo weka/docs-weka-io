@@ -60,7 +60,7 @@ All supported configuration methods lead to the same next step: completing post-
    * Yes. Set them during cluster configuration.
 3. Will the ISO setup mirror RAID on the dual-boot SSDs?
    * Yes, automatically.
-4. Can I set up WEKA with 8 SSDs per node even though I have 12 installed?
+4. Can I set up WEKA with 8 SSDs per server even though I have 12 installed?
    * Not automatically. Pull the drives or manually adjust the configuration before running it. Edit the `config.sh` output from `wekaconfig`.
 5. What must be done to direct the ISO to set up for High Availability (HA)? How about no HA?
    * Set that during cluster configuration with `wekaconfig`.
