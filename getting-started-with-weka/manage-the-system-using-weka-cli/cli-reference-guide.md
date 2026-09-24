@@ -3437,24 +3437,26 @@ weka cluster network-space add <name>
                                [--CONNECT-TIMEOUT CONNECT-TIMEOUT]
                                [--TIMEOUT TIMEOUT]
                                [--profile profile]
+                               [--wait]
                                [--help]
 
 ```
 
-| Parameter                 | Description                                                                                                |
-| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
-| `name`\*                  | network-space name                                                                                         |
-| `--vlan`                  | Vlan Id (1..4094)                                                                                          |
-| `--range`                 | IP range                                                                                                   |
-| `--gateway`               | Default gateway IP for the network-space.                                                                  |
-| `--netmask-bits`          | Subnet mask bits (1..32) - Defaults to 16 if unspecified                                                   |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
-| `--profile`               | Name of the connection and authentication profile to use                                                   |
-| `-h`, `--help`            | Show help message                                                                                          |
+| Parameter                 | Description                                                                                                                                                                                                                                                                |
+| ------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `name`\*                  | network-space name                                                                                                                                                                                                                                                         |
+| `--vlan`                  | Vlan Id (1..4094)                                                                                                                                                                                                                                                          |
+| `--range`                 | IP range                                                                                                                                                                                                                                                                   |
+| `--gateway`               | Default gateway IP for the network-space.                                                                                                                                                                                                                                  |
+| `--netmask-bits`          | Subnet mask bits (1..32) - Defaults to 16 if unspecified                                                                                                                                                                                                                   |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                                                                                                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                                                                                                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                                                                                                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                                                 |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                                                     |
+| `--profile`               | Name of the connection and authentication profile to use                                                                                                                                                                                                                   |
+| `--wait`                  | Block until every backend applies and verifies the new network space, then exit. If any backend fails, the create is rolled back cluster-wide and the command exits non-zero. Waits as long as the cluster waits for its backends (no timeout; interruptible with Ctrl-C). |
+| `-h`, `--help`            | Show help message                                                                                                                                                                                                                                                          |
 
 **weka cluster network-space remove**
 
@@ -3469,21 +3471,23 @@ weka cluster network-space remove <name>
                                   [--TIMEOUT TIMEOUT]
                                   [--profile profile]
                                   [--force]
+                                  [--wait]
                                   [--help]
 
 ```
 
-| Parameter                 | Description                                                                                                |
-| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
-| `name`\*                  | network-space name                                                                                         |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
-| `--profile`               | Name of the connection and authentication profile to use                                                   |
-| `--force`                 | Allow operation even when clients are bound to this network space.                                         |
-| `-h`, `--help`            | Show help message                                                                                          |
+| Parameter                 | Description                                                                                                                                                                                                                                                                                                                                                                               |
+| ------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `name`\*                  | network-space name                                                                                                                                                                                                                                                                                                                                                                        |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                                                                                                                                                                                                                          |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                                                                                                                                                                                                                                          |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                                                                                                                                                                                                                                          |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                                                                                                                                                                |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                                                                                                                                                                    |
+| `--profile`               | Name of the connection and authentication profile to use                                                                                                                                                                                                                                                                                                                                  |
+| `--force`                 | Allow operation even when clients are bound to this network space.                                                                                                                                                                                                                                                                                                                        |
+| `--wait`                  | Block until every backend confirms teardown of the network space, then exit. Removal does not roll back: if a backend fails teardown the operation stays in-flight (the network space remains as a tombstone and the NetworkSpaceApplyStuck alert is raised) and the command exits non-zero. Waits as long as the cluster waits for its backends (no timeout; interruptible with Ctrl-C). |
+| `-h`, `--help`            | Show help message                                                                                                                                                                                                                                                                                                                                                                         |
 
 **weka cluster network-space show-usage**
 
@@ -3556,26 +3560,28 @@ weka cluster network-space update <id>
                                   [--TIMEOUT TIMEOUT]
                                   [--profile profile]
                                   [--force]
+                                  [--wait]
                                   [--help]
 
 ```
 
-| Parameter                 | Description                                                                                                |
-| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
-| `id`\*                    | network-space id                                                                                           |
-| `--name`                  | network-space name                                                                                         |
-| `--vlan`                  | Vlan Id (1..4094)                                                                                          |
-| `--range`                 | IP range                                                                                                   |
-| `--gateway`               | Default gateway IP for the network-space.                                                                  |
-| `--netmask-bits`          | Subnet mask bits (1..32) - Defaults to 16 if unspecified                                                   |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
-| `--profile`               | Name of the connection and authentication profile to use                                                   |
-| `--force`                 | Allow operation even when clients are bound to this network space.                                         |
-| `-h`, `--help`            | Show help message                                                                                          |
+| Parameter                 | Description                                                                                                                                                                                                                                                                                                    |
+| ------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`\*                    | network-space id                                                                                                                                                                                                                                                                                               |
+| `--name`                  | network-space name                                                                                                                                                                                                                                                                                             |
+| `--vlan`                  | Vlan Id (1..4094)                                                                                                                                                                                                                                                                                              |
+| `--range`                 | IP range                                                                                                                                                                                                                                                                                                       |
+| `--gateway`               | Default gateway IP for the network-space.                                                                                                                                                                                                                                                                      |
+| `--netmask-bits`          | Subnet mask bits (1..32) - Defaults to 16 if unspecified                                                                                                                                                                                                                                                       |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                                                                                                                                               |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                                                                                                                                                               |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                                                                                                                                                               |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                                                                                     |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                                                                                         |
+| `--profile`               | Name of the connection and authentication profile to use                                                                                                                                                                                                                                                       |
+| `--force`                 | Allow operation even when clients are bound to this network space.                                                                                                                                                                                                                                             |
+| `--wait`                  | Block until every backend re-applies and verifies the updated network space, then exit. An update is a teardown-then-rebuild; if a backend fails it stays in-flight (no rollback) and the command exits non-zero. Waits as long as the cluster waits for its backends (no timeout; interruptible with Ctrl-C). |
+| `-h`, `--help`            | Show help message                                                                                                                                                                                                                                                                                              |
 
 #### weka cluster process
 
@@ -13853,6 +13859,33 @@ weka security kms rewrap [--new-key-uid new-key-uid]
 | `-h`, `--help`                   | Show help message                                                                                          |
 | `-J`, `--json`                   | Format output as JSON                                                                                      |
 
+**weka security kms scope**
+
+Print the effective KMS type and scope (Cluster or Tenant) for the specified tenant (defaults to the caller's tenant).
+
+```sh
+weka security kms scope [--color color]
+                        [--HOST HOST]
+                        [--PORT PORT]
+                        [--CONNECT-TIMEOUT CONNECT-TIMEOUT]
+                        [--TIMEOUT TIMEOUT]
+                        [--profile profile]
+                        [--help]
+                        [--json]
+
+```
+
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
+| `-J`, `--json`            | Format output as JSON                                                                                      |
+
 **weka security kms set**
 
 Configure the active KMS
@@ -13877,6 +13910,7 @@ weka security kms set kmip <address>
                            [--client-cert client-cert]
                            [--client-key client-key]
                            [--ca-cert ca-cert]
+                           [--network-space-id network-space-id]
                            [--color color]
                            [--HOST HOST]
                            [--PORT PORT]
@@ -13895,6 +13929,7 @@ weka security kms set kmip <address>
 | `--client-cert`                  | Path to the client certificate PEM file                                                                    |
 | `--client-key`                   | Path to the client key PEM file                                                                            |
 | `--ca-cert`                      | Path to the CA certificate PEM file                                                                        |
+| `--network-space-id`             | Weka Network Space ID in which the KMS connector runs (MT 2.0; default: host network namespace)            |
 | `--color`                        | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
 | `-H`, `--HOST`                   | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
 | `-P`, `--PORT`                   | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
@@ -13918,6 +13953,7 @@ weka security kms set vault <address>
                             [--role-id role-id]
                             [--secret-id secret-id]
                             [--kubernetes-role kubernetes-role]
+                            [--network-space-id network-space-id]
                             [--color color]
                             [--HOST HOST]
                             [--PORT PORT]
@@ -13940,6 +13976,7 @@ weka security kms set vault <address>
 | `--role-id`                      | auth: AppRole role ID to access the KMS                                                                    |
 | `--secret-id`                    | auth: AppRole secret ID to access the KMS                                                                  |
 | `--kubernetes-role`              | auth: Kubernetes role                                                                                      |
+| `--network-space-id`             | Weka Network Space ID in which the KMS connector runs (MT 2.0; default: host network namespace)            |
 | `--color`                        | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
 | `-H`, `--HOST`                   | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
 | `-P`, `--PORT`                   | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
@@ -16219,6 +16256,7 @@ weka status rebuild [--color color]
                     [--json]
                     [--raw-units]
                     [--UTC]
+                    [--verbose]
 
 ```
 
@@ -16234,6 +16272,7 @@ weka status rebuild [--color color]
 | `-J`, `--json`            | Format output as JSON                                                                                                             |
 | `-R`, `--raw-units`       | Print values in raw units (bytes, seconds, etc.). When not set, sizes are printed in human-readable format, e.g 1KiB 234MiB 2GiB. |
 | `-U`, `--UTC`             | Print times in UTC. When not set, times are converted to the local time of this host.                                             |
+| `-v`, `--verbose`         | Also show the active hash-ring algorithm when the transition is at a steady endpoint                                              |
 
 #### weka status reduction
 
@@ -17897,6 +17936,7 @@ weka user ldap setup <server-uri>
                      [--protocol-version protocol-version]
                      [--user-uuid-attribute user-uuid-attribute]
                      [--user-revocation-attribute user-revocation-attribute]
+                     [--network-space-id network-space-id]
                      [--color color]
                      [--HOST HOST]
                      [--PORT PORT]
@@ -17929,6 +17969,7 @@ weka user ldap setup <server-uri>
 | `--protocol-version`           | LDAP protocol version                                                                                                              |
 | `--user-uuid-attribute`        | LDAP attribute name for user UUID (default: entryUUID)                                                                             |
 | `--user-revocation-attribute`  | User revocation attribute: If provided, updating this attribute in the LDAP server automatically revokes all user tokens.          |
+| `--network-space-id`           | Weka Network Space ID in which ldapsearch runs (MT 2.0; default: host network namespace)                                           |
 | `--color`                      | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                   |
 | `-H`, `--HOST`                 | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                   |
 | `-P`, `--PORT`                 | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                   |
@@ -17954,6 +17995,7 @@ weka user ldap setup-ad <server-uri>
                         [--ignore-start-tls-failure ignore-start-tls-failure]
                         [--server-timeout-secs server-timeout-secs]
                         [--user-revocation-attribute user-revocation-attribute]
+                        [--network-space-id network-space-id]
                         [--color color]
                         [--HOST HOST]
                         [--PORT PORT]
@@ -17979,6 +18021,7 @@ weka user ldap setup-ad <server-uri>
 | `--ignore-start-tls-failure`  | Ignore start TLS failure (format: 'yes', 'no', 'true', 'false', 'on', 'off', 'y' or 'n')                                           |
 | `--server-timeout-secs`       | LDAP connection timeout in seconds                                                                                                 |
 | `--user-revocation-attribute` | User revocation attribute: If provided, updating this attribute in the LDAP server automatically revokes all user tokens.          |
+| `--network-space-id`          | Weka Network Space ID in which ldapsearch runs (MT 2.0; default: host network namespace)                                           |
 | `--color`                     | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                   |
 | `-H`, `--HOST`                | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                   |
 | `-P`, `--PORT`                | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                   |
@@ -18012,6 +18055,7 @@ weka user ldap update [--server-uri server-uri]
                       [--protocol-version protocol-version]
                       [--user-uuid-attribute user-uuid-attribute]
                       [--user-revocation-attribute user-revocation-attribute]
+                      [--network-space-id network-space-id]
                       [--color color]
                       [--HOST HOST]
                       [--PORT PORT]
@@ -18044,6 +18088,7 @@ weka user ldap update [--server-uri server-uri]
 | `--protocol-version`           | LDAP protocol version                                                                                                              |
 | `--user-uuid-attribute`        | LDAP attribute name for user UUID (default: entryUUID)                                                                             |
 | `--user-revocation-attribute`  | User revocation attribute: If provided, updating this attribute in the LDAP server automatically revokes all user tokens.          |
+| `--network-space-id`           | Weka Network Space ID in which ldapsearch runs (MT 2.0; default: host network namespace)                                           |
 | `--color`                      | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                   |
 | `-H`, `--HOST`                 | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                   |
 | `-P`, `--PORT`                 | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                   |
