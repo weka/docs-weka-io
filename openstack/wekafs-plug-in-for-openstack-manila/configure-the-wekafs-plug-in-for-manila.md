@@ -14,7 +14,6 @@ Prepare the Manila server and add the WEKA backend to the Manila configuration. 
 * A WEKA cluster is running.
 * The Manila server runs RHEL 8 or later, or Ubuntu 20.04 or later, with Python 3.9 or later.
 * The Manila server can reach the cluster on TCP port 14000 (REST API) and on the WEKA data network.
-* For WekaFS shares, the Manila server kernel is earlier than 6.17.
 
 ### Verify network connectivity
 
@@ -50,10 +49,6 @@ Skip this procedure if you use only the NFS protocol.
 ```bash
    echo "wekafsio" | sudo tee /etc/modules-load.d/wekafs.conf
 ```
-
-{% hint style="warning" %}
-The WekaFS kernel module does not compile on Linux kernel 6.17 or later. Check the kernel version with `uname -r`. On kernel 6.17 or later, pin the kernel to an earlier version or use the NFS protocol.
-{% endhint %}
 
 ### Create a dedicated API user
 
