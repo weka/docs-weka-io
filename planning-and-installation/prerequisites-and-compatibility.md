@@ -401,7 +401,7 @@ Review the requirements for SSDs used in the cluster.
 * SSDs must support Power Loss Protection (PLP).
 * Dedicate the entire SSD for the cluster storage. Partitioning the drive is not supported.
 * Use SSDs with a capacity of up to 30 TB.
-* Maintain a capacity ratio of 8:1 or less between the smallest and largest SSDs in the cluster.
+* Maintain a capacity ratio of 8:1 or less between the smallest and largest SSDs in each drive pool.
 * Maintain a ratio of 8000:1 or less between the total SSD capacity and the total RAM of the cluster.
 
 {% hint style="info" %}
