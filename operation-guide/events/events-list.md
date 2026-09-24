@@ -109,6 +109,7 @@ description: >-
 | HostRequestedActionTimeout                | WARNING  | Host requested action timed out.                                                                      |
 | LeaderChanged                             | WARNING  | Cluster leadership modified to different process.                                                     |
 | LeaderSteppingUpAfterUpgrade              | INFO     | New cluster leader assumes control after upgrade completion.                                          |
+| NetnsImprintFailure                       | MINOR    | Netns creation failed during container join                                                           |
 | NodeJoinBlockedByPartialConnectivity      | WARNING  | Process blocked from progressing in cluster join due to partial connectivity.                         |
 | NodeNetworkUnstable                       | MAJOR    | Process experiences unstable network connectivity.                                                    |
 | NodePartiallyConnected                    | MINOR    | Partially connected process removed from cluster.                                                     |
@@ -164,7 +165,7 @@ description: >-
 | QueryRangeErrorCriticalBucketNodeNotInConfig                 | MAJOR    | Unknown process ID in configuration bucket.                                                                         |
 | QueryRangeErrorQueriedBucketNotFound                         | MAJOR    | Bucket Has No Quorum Monitor received unknown BucketId.                                                             |
 | QueryRangeErrorQueriedDownNodeNotFound                       | MAJOR    | Bucket Has No Quorum Monitor received unknown NodeId.                                                               |
-| QueryRangeErrorQueryRangeErrorException                      | MAJOR    | Bucket Has No Quorum Monitor received RangeError exception.                                                         |
+| QueryRangeErrorRangeErrorException                           | MAJOR    | Bucket Has No Quorum Monitor received RangeError exception.                                                         |
 | UpgradeBlockTaskStartInvoked                                 | DEBUG    | Block task upgrade task start invoked.                                                                              |
 | WrongVersionForRaftSnapshot                                  | MINOR    | Attempt to load RAFT snapshot with unsupported version.                                                             |
 
@@ -379,9 +380,10 @@ description: >-
 
 ### KDriver
 
-| Type        | Severity | Description                              |
-| ----------- | -------- | ---------------------------------------- |
-| DriverAlert | WARNING  | Kernel driver generates alert condition. |
+| Type                      | Severity | Description                                          |
+| ------------------------- | -------- | ---------------------------------------------------- |
+| DriverAlert               | WARNING  | Kernel driver generates alert condition.             |
+| DriverReportedBadChecksum | MAJOR    | The client driver detected a data checksum mismatch. |
 
 ### Kms
 
@@ -408,51 +410,57 @@ description: >-
 
 ### Network
 
-| Type                         | Severity | Description                                                                   |
-| ---------------------------- | -------- | ----------------------------------------------------------------------------- |
-| ArpServerDuplicateIPDetected | CRITICAL | ARP server detects duplicate IP address on network.                           |
-| ArpServerFailedToApplyRule   | CRITICAL | ARP server fails to apply configuration rules.                                |
-| ArpServerFailedToInitialize  | CRITICAL | ARP server fails to initialize.                                               |
-| ClientNodeDisconnected       | WARNING  | Client disconnects from cluster.                                              |
-| CloudMoveIpFail              | MINOR    | Fails to reassign IP address in cloud environment.                            |
-| DefaultDataNetworkingChange  | INFO     | Default data networking configuration modified.                               |
-| DpdkIBQkeyMismatch           | MAJOR    | DPDK InfiniBand queue key mismatch detected.                                  |
-| DpdkInitFailed               | CRITICAL | DPDK EAL initialization failed; node will terminate.                          |
-| DpdkIovaModeNotDetermined    | MAJOR    | DPDK unable to determine common IOVA mode across devices.                     |
-| DpdkPoolSummary              | DEBUG    | DPDK memory pool status summary.                                              |
-| FipIsNoLongerOnDevice        | MAJOR    | Floating IP address no longer assigned to expected device.                    |
-| HangingRPCs                  | MAJOR    | Remote procedure calls exceed expected completion time.                       |
-| HugepagesAllocationFailure   | MINOR    | Fails to allocate hugepages memory.                                           |
-| IONodeCannotFetchConfig      | WARNING  | IO node unable to retrieve cluster configuration and join cluster.            |
-| L6PacketFormatNotInSync      | WARNING  | Layer 6 packet format inconsistent with process limit flags.                  |
-| MemoryAllocFailed            | MINOR    | Memory allocation request fails.                                              |
-| MemoryClaimFailed            | MINOR    | Memory claim operation fails.                                                 |
-| MemoryMigratedAfterPin       | MAJOR    | Hugepage memory mapping moves after being pinned to physical memory.          |
-| MemoryMigratedBeforePin      | MINOR    | Hugepage memory mapping moves before being pinned to physical memory.         |
-| MemoryPinningIoctlFailed     | MINOR    | Memory pinning system call fails.                                             |
-| MgmtNodeCannotFetchConfig    | WARNING  | Management process unable to retrieve cluster configuration and join cluster. |
-| NetDeviceLinkDown            | MINOR    | Network interface link status is DOWN.                                        |
-| NetDeviceLinkUp              | MINOR    | Network interface link status is UP.                                          |
-| NetnsConfigureFailure        | MAJOR    | Network namespace configuration failed.                                       |
-| NetSlaveDeviceLinkDown       | MINOR    | Bonded network slave interface link status is DOWN.                           |
-| NetSlaveDeviceLinkUp         | MINOR    | Bonded network slave interface link status is UP.                             |
-| NetspaceAdded                | INFO     | Network Space provisioned                                                     |
-| NetspaceEnableRDMAFailed     | MAJOR    | RDMA endpoint resolution failed for a network namespace after all retries.    |
-| NetspaceRemoved              | INFO     | Network Space removed                                                         |
-| NetspaceUpdated              | INFO     | Network Space updated                                                         |
-| NetworkBan                   | MAJOR    | Network peer banned due to connectivity issues.                               |
-| NetworkPortConfigFail        | MINOR    | Network port configuration operation fails.                                   |
-| NetworkPortDead              | MAJOR    | Network port does not transmit or receive packets for extended period.        |
-| NetworkUnban                 | INFO     | Network peer unbanned and connectivity restored.                              |
-| NICNotFound                  | INFO     | Network interface card not found during initialization.                       |
-| NoConnectivityToLivingNode   | MAJOR    | Process loses connectivity to all active cluster members.                     |
-| NodeCannotJoinCluster        | WARNING  | Process unable to join cluster within expected timeframe.                     |
-| NodeCannotSendJumboFrames    | MINOR    | Process unable to send jumbo frames (packets larger than standard MTU).       |
-| NodeDisconnected             | MINOR    | Process disconnected from cluster.                                            |
-| RDMAClientDisabled           | MINOR    | RDMA client optimization disabled.                                            |
-| RDMAClientEnabled            | MINOR    | RDMA client optimization enabled.                                             |
-| RDMADegraded                 | MINOR    | RDMA performance degraded                                                     |
-| RDMADeviceDead               | MAJOR    | RDMA device does not receive completion notifications for extended period.    |
+| Type                         | Severity | Description                                                                                                                          |
+| ---------------------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| ArpServerDuplicateIPDetected | CRITICAL | ARP server detects duplicate IP address on network.                                                                                  |
+| ArpServerFailedToApplyRule   | CRITICAL | ARP server fails to apply configuration rules.                                                                                       |
+| ArpServerFailedToInitialize  | CRITICAL | ARP server fails to initialize.                                                                                                      |
+| ClientNodeDisconnected       | WARNING  | Client disconnects from cluster.                                                                                                     |
+| CloudMoveIpFail              | MINOR    | Fails to reassign IP address in cloud environment.                                                                                   |
+| DefaultDataNetworkingChange  | INFO     | Default data networking configuration modified.                                                                                      |
+| DpdkIBQkeyMismatch           | MAJOR    | DPDK InfiniBand queue key mismatch detected.                                                                                         |
+| DpdkInitFailed               | CRITICAL | DPDK EAL initialization failed; node will terminate.                                                                                 |
+| DpdkIovaModeNotDetermined    | MAJOR    | DPDK unable to determine common IOVA mode across devices.                                                                            |
+| DpdkPoolSummary              | DEBUG    | DPDK memory pool status summary.                                                                                                     |
+| FipIsNoLongerOnDevice        | MAJOR    | Floating IP address no longer assigned to expected device.                                                                           |
+| HangingRPCs                  | MAJOR    | Remote procedure calls exceed expected completion time.                                                                              |
+| HugepagesAllocationFailure   | MINOR    | Fails to allocate hugepages memory.                                                                                                  |
+| IONodeCannotFetchConfig      | WARNING  | IO node unable to retrieve cluster configuration and join cluster.                                                                   |
+| L6PacketFormatNotInSync      | WARNING  | Layer 6 packet format inconsistent with process limit flags.                                                                         |
+| MemoryAllocFailed            | MINOR    | Memory allocation request fails.                                                                                                     |
+| MemoryClaimFailed            | MINOR    | Memory claim operation fails.                                                                                                        |
+| MemoryMigratedAfterPin       | MAJOR    | Hugepage memory mapping moves after being pinned to physical memory.                                                                 |
+| MemoryMigratedBeforePin      | MINOR    | Hugepage memory mapping moves before being pinned to physical memory.                                                                |
+| MemoryPinningIoctlFailed     | MINOR    | Memory pinning system call fails.                                                                                                    |
+| MgmtNodeCannotFetchConfig    | WARNING  | Management process unable to retrieve cluster configuration and join cluster.                                                        |
+| NetDeviceLinkDown            | MINOR    | Network interface link status is DOWN.                                                                                               |
+| NetDeviceLinkUp              | INFO     | Network interface link status is UP.                                                                                                 |
+| NetnsConfigureFailure        | MAJOR    | Network namespace configuration failed.                                                                                              |
+| NetSlaveDeviceLinkDown       | MINOR    | Bonded network slave interface link status is DOWN.                                                                                  |
+| NetSlaveDeviceLinkUp         | MINOR    | Bonded network slave interface link status is UP.                                                                                    |
+| NetspaceAdded                | INFO     | Network Space provisioned                                                                                                            |
+| NetspaceEnableRDMAFailed     | WARNING  | RDMA could not be enabled on a network interface after repeated attempts, most likely because the NIC's RoCE GID table is exhausted. |
+| NetspaceRemoved              | INFO     | Network Space removed                                                                                                                |
+| NetspaceUpdated              | INFO     | Network Space updated                                                                                                                |
+| NetworkBan                   | MAJOR    | Network peer banned due to connectivity issues.                                                                                      |
+| NetworkPortConfigFail        | MINOR    | Network port configuration operation fails.                                                                                          |
+| NetworkPortDead              | MAJOR    | Network port does not transmit or receive packets for extended period.                                                               |
+| NetworkSpaceApplyFailed      | MAJOR    | Network Space apply failed: first failed backend host reported                                                                       |
+| NetworkSpaceCreated          | INFO     | Network Space create completed on all backend hosts                                                                                  |
+| NetworkSpaceRemoved          | INFO     | Network Space removal confirmed on all backend hosts                                                                                 |
+| NetworkSpaceRolledBack       | MAJOR    | Network Space create/update rolled back after a host reported a failure                                                              |
+| NetworkSpaceUpdated          | INFO     | Network Space update completed on all backend hosts                                                                                  |
+| NetworkUnban                 | INFO     | Network peer unbanned and connectivity restored.                                                                                     |
+| NICNotFound                  | INFO     | Network interface card not found during initialization.                                                                              |
+| NoConnectivityToLivingNode   | MAJOR    | Process loses connectivity to all active cluster members.                                                                            |
+| NodeCannotJoinCluster        | WARNING  | Process unable to join cluster within expected timeframe.                                                                            |
+| NodeCannotSendJumboFrames    | MINOR    | Process unable to send jumbo frames (packets larger than standard MTU).                                                              |
+| NodeDisconnected             | MINOR    | Process disconnected from cluster.                                                                                                   |
+| RDMAClientDisabled           | MINOR    | RDMA client optimization disabled.                                                                                                   |
+| RDMAClientEnabled            | MINOR    | RDMA client optimization enabled.                                                                                                    |
+| RDMADegraded                 | MINOR    | RDMA performance degraded                                                                                                            |
+| RDMADeviceDead               | MAJOR    | RDMA device does not receive completion notifications for extended period.                                                           |
+| RDMAServerDisabled           | MINOR    | RDMA server optimization disabled.                                                                                                   |
 
 ### NFS
 
@@ -551,9 +559,8 @@ description: >-
 | FailedRecoveringData                 | MAJOR    | Detects unexpected data; not enough redundant copies available to recover.                                                                                                                                              |
 | FoundCorruptedBlockInStripe          | CRITICAL | Detects corrupt block in RAID stripe.                                                                                                                                                                                   |
 | FoundOrphanedRaidBlock               | MINOR    | Detects block marked as Used in RAID stripe yet Free on FS.                                                                                                                                                             |
-| HashRingAlgoRedistCompleted          | INFO     | Hash ring algorithm redistribution completed.                                                                                                                                                                           |
-| HashRingAlgoRedistStarted            | INFO     | Hash ring algorithm redistribution started.                                                                                                                                                                             |
-| HashRingAlgoScheduled                | INFO     | Hash ring algorithm switch scheduled.                                                                                                                                                                                   |
+| HashRingAlgoRedistCompleted          | INFO     | Hash ring gradual transition reached an endpoint (fully one algorithm).                                                                                                                                                 |
+| HashRingTransitionStepSet            | INFO     | Hash ring gradual-transition step (velocity) set.                                                                                                                                                                       |
 | HotSpareFailureDomainsUpdated        | INFO     | Hot spare failure domains updated.                                                                                                                                                                                      |
 | IncorrectScannedBlockChecksum        | CRITICAL | Detects used block with mismatching checksum.                                                                                                                                                                           |
 | InFlightCorruptionDetectedByScrubber | MINOR    | Detects in-flight corrupt read result from drive.                                                                                                                                                                       |
@@ -584,36 +591,37 @@ description: >-
 
 ### Resources
 
-| Type                                       | Severity | Description                                             |
-| ------------------------------------------ | -------- | ------------------------------------------------------- |
-| APIServerStarted                           | INFO     | API server started successfully.                        |
-| APIServerStartFailed                       | WARNING  | Fails to start API server.                              |
-| BandwidthSelected                          | INFO     | Bandwidth set for host.                                 |
-| CoreAllocated                              | INFO     | Core allocated.                                         |
-| DeviceIsNotAValidNetworkDevice             | WARNING  | Device is not valid network device.                     |
-| DisabledNumaBalancing                      | INFO     | Disabled NUMA Balancing.                                |
-| DriverLoaded                               | INFO     | Driver attached.                                        |
-| FailedToLoadDriver                         | WARNING  | Fails to load WekaFS driver.                            |
-| HangingHTTPRequest                         | MINOR    | Hanging HTTP request detected.                          |
-| HttpServerFibersExhausted                  | MAJOR    | Hanging HTTP requests exhaust all available fibers.     |
-| HugepagesAllocated                         | INFO     | Hugepages allocated.                                    |
-| HugepagesAllocationRetries                 | WARNING  | Hugepages allocation retried.                           |
-| HugepagesAllocationStarted                 | INFO     | Hugepages allocation started.                           |
-| HugepagesAllocationTookTooLong             | WARNING  | Hugepages allocation takes unexpectedly long duration.  |
-| InactiveHostCannotJoinCluster              | INFO     | Inactive host cannot join cluster.                      |
-| LoadingStableResourcesFailed               | INFO     | Fails loading stable resources.                         |
-| NetBufsExhausted                           | MAJOR    | Netbufs are exhausted.                                  |
-| NetDevDriverReloadFailed                   | MINOR    | Net device driver reload failed                         |
-| NetworkDeviceAllocated                     | INFO     | Network device allocated.                               |
-| NetworkDeviceHasNoIp                       | MAJOR    | Network device has no IP address.                       |
-| NetworkDeviceNotUsedByAnySlots             | MINOR    | Network device not used by any slots.                   |
-| NoIPsConfiguredForHostJoinWithNoDefaultNet | WARNING  | No IP configured for process {nid} with no default-net. |
-| RDMADeviceAllocated                        | INFO     | Allocated dedicated RDMA device                         |
-| RevertToStableResources                    | INFO     | Reverts to stable resources.                            |
-| UnlimitedBandwidthSelected                 | INFO     | Bandwidth set to unlimited.                             |
-| WCGroupContainerEvent                      | MAJOR    | Container Status.                                       |
-| WCGroupUsageMajorEvent                     | MAJOR    | Container {resource} status.                            |
-| WCGroupUsageWarningEvent                   | WARNING  | Container {resource} status.                            |
+| Type                                       | Severity | Description                                                                  |
+| ------------------------------------------ | -------- | ---------------------------------------------------------------------------- |
+| APIServerStarted                           | INFO     | API server started successfully.                                             |
+| APIServerStartFailed                       | WARNING  | Fails to start API server.                                                   |
+| BandwidthSelected                          | INFO     | Bandwidth set for host.                                                      |
+| CoreAllocated                              | INFO     | Core allocated.                                                              |
+| DeviceIsNotAValidNetworkDevice             | WARNING  | Device is not valid network device.                                          |
+| DisabledNumaBalancing                      | INFO     | Disabled NUMA Balancing.                                                     |
+| DriverLoaded                               | INFO     | Driver attached.                                                             |
+| FailedToLoadDriver                         | WARNING  | Fails to load WekaFS driver.                                                 |
+| FrontendNodeMemoryBelowMinimum             | MAJOR    | A frontend process was allocated fewer hugepages than the supported minimum. |
+| HangingHTTPRequest                         | MINOR    | Hanging HTTP request detected.                                               |
+| HttpServerFibersExhausted                  | MAJOR    | Hanging HTTP requests exhaust all available fibers.                          |
+| HugepagesAllocated                         | INFO     | Hugepages allocated.                                                         |
+| HugepagesAllocationRetries                 | WARNING  | Hugepages allocation retried.                                                |
+| HugepagesAllocationStarted                 | INFO     | Hugepages allocation started.                                                |
+| HugepagesAllocationTookTooLong             | WARNING  | Hugepages allocation takes unexpectedly long duration.                       |
+| InactiveHostCannotJoinCluster              | INFO     | Inactive host cannot join cluster.                                           |
+| LoadingStableResourcesFailed               | INFO     | Fails loading stable resources.                                              |
+| NetBufsExhausted                           | MAJOR    | Netbufs are exhausted.                                                       |
+| NetDevDriverReloadFailed                   | MINOR    | Net device driver reload failed                                              |
+| NetworkDeviceAllocated                     | INFO     | Network device allocated.                                                    |
+| NetworkDeviceHasNoIp                       | MAJOR    | Network device has no IP address.                                            |
+| NetworkDeviceNotUsedByAnySlots             | MINOR    | Network device not used by any slots.                                        |
+| NoIPsConfiguredForHostJoinWithNoDefaultNet | WARNING  | No IP configured for process {nid} with no default-net.                      |
+| RDMADeviceAllocated                        | INFO     | Allocated dedicated RDMA device                                              |
+| RevertToStableResources                    | INFO     | Reverts to stable resources.                                                 |
+| UnlimitedBandwidthSelected                 | INFO     | Bandwidth set to unlimited.                                                  |
+| WCGroupContainerEvent                      | MAJOR    | Container Status.                                                            |
+| WCGroupUsageMajorEvent                     | MAJOR    | Container {resource} status.                                                 |
+| WCGroupUsageWarningEvent                   | WARNING  | Container {resource} status.                                                 |
 
 ### S3
 
