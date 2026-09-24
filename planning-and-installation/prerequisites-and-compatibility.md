@@ -400,13 +400,20 @@ Review the requirements for SSDs used in a WEKA cluster.
 
 * SSDs must support Power Loss Protection (PLP).
 * Dedicate the entire SSD for WEKA system storage. Partitioning the drive is not supported.
-* Use SSDs with a capacity of up to 30 TB.
+* Use SSDs with a capacity of up to 122.88 TB.
 * Maintain a capacity ratio of 8:1 or less between the smallest and largest SSDs in each drive pool.
 * Maintain a ratio of 8000:1 or less between the total SSD capacity and the total RAM of the cluster.
 
 {% hint style="info" %}
 To get the best performance, ensure [TRIM](https://en.wikipedia.org/wiki/Trim_\(computing\)) is supported by the device and enabled in the operating system.
 {% endhint %}
+
+### Mixed TLC and QLC configurations (AlloyFlash)
+
+An AlloyFlash<sup>TM</sup> configuration combines TLC and QLC SSDs in one cluster. Apply the following requirements:
+
+* Use TLC drives with a capacity of at least 6.4 TB and an endurance of 3 DWPD (Drive Writes Per Day).
+* Use up to 11 QLC drives for each TLC drive.
 
 ## Object store
 
