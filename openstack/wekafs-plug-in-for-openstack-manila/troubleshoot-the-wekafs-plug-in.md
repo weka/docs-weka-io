@@ -14,26 +14,6 @@ sudo journalctl -u openstack-manila-share --since "1 hour ago"
 
 <details>
 
-<summary>WekaFS kernel module fails to build on kernel 6.17 or later</summary>
-
-**Symptom:** The WekaFS client fails to compile with an incompatible pointer type error, and WekaFS shares cannot mount.
-
-**Cause:** Linux kernel 6.17 changed an internal filesystem interface that the WekaFS kernel module depends on.
-
-**Resolution:** Pin the Manila server kernel to a version earlier than 6.17, or use the NFS protocol. For example, on Ubuntu:
-
-```bash
-uname -r
-sudo apt-mark hold linux-image-$(uname -r) linux-headers-$(uname -r)
-apt-mark showhold
-```
-
-Ubuntu 22.04 with the 5.15 LTS kernel is not affected.
-
-</details>
-
-<details>
-
 <summary>WekaMountError: mount command failed</summary>
 
 **Cause:** The WekaFS kernel module is not loaded on the Manila server.

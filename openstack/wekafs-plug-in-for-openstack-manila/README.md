@@ -28,7 +28,7 @@ The plug-in runs inside the Manila share service on the Manila server and commun
 The plug-in supports two access protocols. Choose based on performance needs and client constraints.
 
 * **WekaFS (recommended):** Clients mount the filesystem directly using the WekaFS POSIX client and kernel module. This protocol provides the lowest latency, full POSIX semantics, native file locking, and native quota enforcement. It requires the WekaFS client on every server that mounts the share. The client version must match the cluster version.
-* **NFS:** Standard NFS exports served by the cluster NFS gateway. NFS requires no additional client software and works on all Linux kernel versions. It has higher latency and partial POSIX semantics. Use NFS when you cannot install the WekaFS client, such as on servers running Linux kernel 6.17 or later.
+* **NFS:** Standard NFS exports served by the cluster NFS gateway. NFS requires no additional client software and works on all Linux kernel versions. It has higher latency and partial POSIX semantics. Use NFS when you cannot install the WekaFS client.
 
 ### Access control model
 
@@ -69,7 +69,6 @@ The plug-in returns the project WekaFS mount credential in the `access_key` fiel
 * **No QoS controls:** The cluster does not expose per-filesystem IOPS or bandwidth limits. Manila share types that set QoS extra-specs are not enforced.
 * **Create share from snapshot copies data:** The WEKA API does not expose a direct clone-from-snapshot operation. The plug-in creates an empty destination filesystem and copies the snapshot contents over NFS. Copy time scales with the amount of data, and the operation requires `weka_nfs_server` to be set.
 * **WekaFS client version must match the cluster:** Install the client from the cluster so the versions always match.
-* **WekaFS kernel module on Linux kernel 6.17 or later:** The module does not compile. Pin the kernel to an earlier version or use NFS.
 
 ### Supported operations
 
