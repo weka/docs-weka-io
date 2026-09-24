@@ -11,7 +11,7 @@ metaLinks:
 # WEKA CLI hierarchy
 
 {% hint style="info" %}
-CLI commands marked with two asterisks (\*\*) are new in version 5.1.21, compared to version 5.0.4.
+CLI commands marked with two asterisks (\*\*) are new in version 5.1.34, compared to version 5.0.4.
 {% endhint %}
 
 ### weka agent
@@ -23,12 +23,12 @@ weka agent
       |install
       |uninstall
    |install-agent
-   |restart **
-   |update-containers
+   |restart
    |uninstall
+   |update-containers
 ```
 
-### **weka alerts**
+### weka alerts
 
 ```
 weka alerts
@@ -41,11 +41,17 @@ weka alerts
    |unmute
 ```
 
-### **weka audit**
+### weka audit
 
 ```
 weka audit
    |cluster
+      |decrypt-filename
+         |disable
+         |enable
+      |decrypt-fullpath
+         |disable
+         |enable
       |disable
       |enable
       |enhancer
@@ -64,144 +70,142 @@ weka audit
       |status
 ```
 
-### **weka cloud**
+### weka catalog \*\*
+
+```
+weka catalog
+   |cluster **
+      |add **
+      |remove **
+      |status **
+      |update **
+   |config **
+      |show **
+      |update **
+   |fs **
+      |status **
+   |metadata **
+      |remove **
+      |show **
+```
+
+### weka cloud
 
 ```
 weka cloud
    |disable
    |enable
    |proxy
+   |quota-analytics **
+      |disable **
+      |enable **
+      |redact-paths **
+         |off **
+         |on **
+      |status **
    |status
-   |update
-   |upload-rate   
+   |upload-rate
       |set
 ```
 
-### weka catalog \*\*
-
-```
-weka catalog
-   |cluster
-      |add
-      |remove
-      |status
-      |update
-   |config
-      |set
-      |show
-   |fs
-      |disable
-      |enable
-      |status
-   |metadata
-      |delete
-      |scan
-      |show
-```
-
-### **weka cluster**
+### weka cluster
 
 ```
 weka cluster
-    |bucket
-    |client-target-version
-       |reset
-       |set
-       |show
-    |container
-       |activate
-       |add
-       |apply
-       |auto-remove-timeout
-       |bandwidth
-       |clear-failure
-       |cores
-       |deactivate
-       |deactivation-chec 
-       |dedicate
-       |failure-domain
-       |info-hw
-       |join-secret
-       |management-ips
-       |memory
-       |net
-          |add
-          |remove
-       |remove
-       |requested-action
-       |resources
-       |restore
-    |add
-    |default-net
-        |reset
-        |set
-        |update  
-    |drive
-        |activate
-        |add
-        |deactivate
-        |remove
-        |scan
-        |identify **
-    |failure-domain
-    |hot-spare
-    |license
-        |reset
-        |set
-    |task
-        |pause
-        |resume
-        |abort
-        |limits
-            |set
-    |mount-defaults
-        |reset
-        |set
-        |show   
-    |network-space **
-        |add
-        |remove
-        |show-usage
-        |update
-    |process
-    |servers
-        |list
-        |requested-action
-        |show
-    |start-io
-    |stop-io
-    |task
-        |abort
-        |bucket
-        |limits
-        |pause
-        |resume
-        |throttle
-    |update    
+   |add
+   |bucket
+   |client-target-version
+      |reset
+      |set
+      |show
+   |container
+      |activate
+      |add
+      |apply
+      |bandwidth
+      |clear-failure
+      |cores
+      |deactivate
+      |deactivation-check
+      |dedicate
+      |failure-domain
+      |info-hw
+      |join-secret
+      |management-ips
+      |memory
+      |net
+         |add
+         |remove
+      |non-datapath-cores **
+      |remove
+      |requested-action
+      |resources
+      |restore
+   |default-net
+      |reset
+      |set
+      |update
+   |drive
+      |activate
+      |add
+      |deactivate
+      |identify **
+      |remove
+      |scan
+   |failure-domain
+   |hot-spare
+   |license
+      |reset
+      |set
+   |mount-defaults
+      |reset
+      |set
+      |show
+   |network-space **
+      |add **
+      |remove **
+      |show-usage **
+      |update **
+   |process
+   |servers
+      |list
+      |requested-action
+      |show
+   |start-io
+   |stop-io
+   |task
+      |abort
+      |bucket
+      |limits
+         |set
+      |pause
+      |resume
+      |throttle
+   |update
 ```
 
 ### weka dataservice
 
 ```
 weka dataservice
-    |global-config
-        |set
-        |show
-    |s3-lifecycle-task **
-        |disable
-        |enable
-        |set
-        |show
+   |global-config
+      |set
+      |show
+   |s3-lifecycle-task **
+      |disable **
+      |enable **
+      |set **
+      |show **
 ```
 
-### **weka diags**
+### weka diags
 
 ```
 weka diags
-    |collect
-    |list
-    |rm
-    |upload
+   |collect
+   |list
+   |rm
+   |upload
 ```
 
 ### weka driver
@@ -216,260 +220,271 @@ weka driver
    |kernel
    |pack
    |ready
-   |sign  
+   |sign
 ```
 
-### **weka events**
+### weka events
 
 ```
 weka events
-    |list-local
-    |list-types
-    |trigger-event
+   |list-local
+   |list-types
+   |trigger-event
 ```
 
-### **weka fs**
+### weka fs
 
 ```
 weka fs
-    |add
-    |remove
-    |download
-    |group
-        |add
-        |remove
-        |update
-    |kms-rewrap
-    |protection
-        |snapshot-policy
-            |attach
-            |add
-            |remove
-            |detach
-            |duplicate
-            |export
+   |add
+   |download
+   |group
+      |add
+      |remove
+      |update
+   |kms-rewrap
+   |protection
+      |snapshot-policy
+         |add
+         |attach
+         |detach
+         |duplicate
+         |export
+         |list
+         |remove
+         |run-once
+         |show
+         |update
+   |quota
+      |disable-users **
+      |enable-users **
+      |list
+      |list-default
+      |reset
+      |set
+      |set-default
+      |unset-default
+   |remove
+   |reserve
+      |reset
+      |set
+      |status
+   |restore
+   |security
+      |policy
+         |attach
+         |detach
+         |list
+         |reset
+         |set
+   |snapshot
+      |access-point-naming-convention
+         |status
+         |update
+      |add
+      |copy
+      |download
+      |remove
+      |update
+      |upload
+   |tier
+      |capacity
+      |fetch
+      |location
+      |obs
+         |update
+      |ops
+      |release
+      |s3
+         |add
+         |attach
+         |detach
+         |remove
+         |snapshot
             |list
-            |run-once
-            |show
-            |update
-     |quota
-        |disable-users
-        |enable-users
-        |list
-        |list-default
-        |set
-        |set-default
-        |reset
-        |unset-default
-    |reserve
-        |set
-        |status
-        |reset
-    |restore
-    |security
-        |policy
-            |attach
-            |detach
-            |list
-            |reset
-            |set
-    |snapshot
-        |access-point-naming-convention
-            |status
-            |update
-        |copy
-        |add
-        |remove
-        |download
-        |update
-        |upload
-     |tier
-        |capacity
-        |fetch
-        |location
-        |obs
-            |update
-        |ops
-        |release
-        |s3
-            |add
-            |attach
-            |remove
-            |detach
-            |snapshot
-                |list
-            |update
-     |update    
+         |update
+   |update
 ```
 
 ### weka interface-group
 
 ```
 weka interface-group
-    |add
-    |assignment
-    |remove
-    |ip-range
-        |add
-        |remove
-    |port
-        |add
-        |remove
-    |update
+   |add
+   |assignment
+   |ip-range
+      |add
+      |remove
+   |port
+      |add
+      |remove
+   |remove
+   |update
 ```
 
-### **weka local**
+### weka local
 
 ```
 weka local
-    |diags
-    |disable
-    |drive **
-       |identify
-       |list
-    |enable
-    |events
-    |extract-hostside
-    |install-agent
-    |monitoring
-    |ps
-    |reset-data
-    |resources
-        |apply
-        |auto-remove-timeout
-        |bandwidth
-        |base-port
-        |cores
-        |dedicate
-        |drive **
-           |add
-           |remove
-           |scan
-        |export
-        |failure-domain
-        |fqdn
-        |hardware-monitor **
-        |import
-        |join-ips
-        |join-secret
-        |management-ips
-        |memory       
-        |net
-            |add
-            |remove
-        |restore
-    |restart
-    |rm
-    |run
-    |setup
-        |client
-        |container
-        |envoy
-        |ssdproxy **
-        |services
-        |taskmon
-        |telemetry
-        |weka
-    |start  
-    |status
-    |stop  
-    |upgrade
+   |diags
+   |disable
+   |drive
+      |identify
+      |list **
+   |enable
+   |events
+   |install-agent
+   |monitoring
+   |ps
+   |reset-data
+   |resources
+      |apply
+      |auto-remove-timeout
+      |bandwidth
+      |base-port
+      |cores
+      |dedicate
+      |drive **
+         |add **
+         |remove **
+         |scan **
+      |export
+      |failure-domain
+      |fqdn
+      |hardware-monitor **
+      |import
+      |join-ips
+      |join-secret
+      |management-ips
+      |management-nets **
+      |memory
+      |net
+         |add
+         |remove
+      |non-datapath-cores **
+      |restore
+   |restart
+   |rm
+   |run
+   |setup
+      |client
+      |container
+      |envoy
+      |ssdproxy **
+      |taskmon
+      |telemetry
+      |weka
+   |start
+   |status
+   |stop
+   |upgrade
 ```
 
-### **weka mount**
+### weka mount
 
 ```
 weka mount
 ```
 
-### **weka nfs**
+### weka nfs
 
 ```
-weka nfs 
-    |client-group
-        |add
-        |remove
-    |clients
-        |show
-    |debug-level
-        |set
-        |show
-    |global-config
-        |set
-        |show
-    |interface-group
-        |add
-        |assignmment
-        |remove
-        |ip-range
-            |add
-            |remove
-        |port
-            |add
-            |remove    
-        |update
-    |kerberos
-        |registration
-            |setup-ad
-            |setup-mit
-            |show
-        |reset
-        |service
-            |setup
-            |show
-     |ldap
-        |export-openldap
-        |import-openldap
-        |reset
-        |setup-ad
-        |setup-ad-nokrb
-        |setup-onhostldap **
-        |setup-openldap
-        |show
-    |permission
-        |add
-        |remove
-        |update
-    |rules
-        |add
-           |dns
-           |ip
-        |remove
-           |dns
-           |ip
+weka nfs
+   |client-group
+      |add
+      |remove
+   |clients
+      |show
+   |debug-level
+      |list **
+      |set
+      |show
+   |global-config
+      |set
+      |show
+   |interface-group
+      |add
+      |assignment
+      |ip-range
+         |add
+         |remove
+      |port
+         |add
+         |remove
+      |remove
+      |update
+   |kerberos
+      |registration
+         |setup-ad
+         |setup-mit
+         |show
+      |reset
+      |service
+         |setup
+         |show
+   |ldap
+      |export-openldap
+      |import-openldap
+      |reset
+      |setup-ad
+      |setup-ad-nokrb
+      |setup-onhostldap **
+      |setup-openldap
+      |show
+   |permission
+      |add
+      |remove
+      |update
+   |rules
+      |add
+         |dns
+         |ip
+      |remove
+         |dns
+         |ip
 ```
 
-### **weka s3**
+### weka s3
 
 ```
 weka s3
    |bucket
       |add
-      |remove
       |etag-alg **
-         |reset
-         |set
+         |reset **
+         |set **
       |integrity-mode **
-         |set
+         |reset **
+         |set **
       |lifecycle-rule
          |add
          |list
          |remove
          |reset
       |list
+      |notification
+         |add
+         |list
+         |remove
       |policy
          |get
          |get-json
+         |reset
          |set
          |set-custom
-         |reset
       |quota
-         |set
          |reset
+         |set
+      |remove
       |sorting **
-         |reset
-         |set
+         |reset **
+         |set **
+      |versioning **
+         |enable **
+         |get **
+         |suspend **
    |cluster
+      |add
       |audit-webhook
          |batch-config **
          |disable
@@ -479,12 +494,14 @@ weka s3
          |add
          |list
          |remove
-      |add
-      |remove
       |etag-alg **
-         |reset
+         |reset **
+      |group **
+         |add **
+         |list **
+         |remove **
       |integrity-mode **
-         |reset
+         |reset **
       |notification-target
          |add
          |cert
@@ -496,21 +513,22 @@ weka s3
          |show
          |status
          |update
-      |performance-bucket **
       |oidc **
          |add **
          |remove **
          |show **
          |update **
+      |performance-bucket **
+      |remove
       |setup **
          |show **
          |update **
       |sorting **
-         |reset
+         |reset **
       |status
       |update
          |performance-bucket **
-  |policy
+   |policy
       |add
       |attach
       |detach
@@ -522,32 +540,37 @@ weka s3
       |list
       |remove
       |show
-    |sts
+   |sts
       |assume-role
+   |user **
+      |keys-generate **
 ```
 
-### **weka security**
+### weka security
 
 ```
 weka security
    |ca-cert
       |download
+      |reset
       |set
       |status
-      |reset
    |cors-trusted-sites
       |add
       |list
       |remove
       |remove-all
    |gui-idle-timeout **
-      |restore-defaults
-      |set
-      |show
+      |restore-defaults **
+      |set **
+      |show **
    |kms
-      |rewrap
-      |set
       |reset
+      |rewrap
+      |scope **
+      |set
+         |kmip **
+         |vault **
    |lockout-config
       |reset
       |set
@@ -560,37 +583,37 @@ weka security
       |show
    |policy
       |add
-      |remove
       |duplicate
       |join
-          |attach
-          |detach
-          |list
-          |reset
-          |set
+         |attach
+         |detach
+         |list
+         |reset
+         |set
       |list
+      |remove
       |show
       |test
-      |update     
+      |update
    |tls
       |download
       |local
-         |set
          |reset
+         |set
+      |reset
       |set
       |status
-      |reset
 ```
 
-### **weka smb**
+### weka smb
 
 ```
 weka smb
    |cluster
+      |add
       |container
          |add
          |remove
-      |add
       |debug
       |remove
       |status
@@ -601,7 +624,7 @@ weka smb
       |wait
    |domain
       |join
-      |leave         
+      |leave
    |share
       |add
       |host-access
@@ -618,7 +641,7 @@ weka smb
       |update
 ```
 
-### **weka stats**
+### weka stats
 
 ```
 weka stats
@@ -630,7 +653,7 @@ weka stats
       |status
 ```
 
-### **weka status**
+### weka status
 
 ```
 weka status
@@ -638,15 +661,16 @@ weka status
    |reduction
 ```
 
-### weka telemetry <a href="#weka-telemetry" id="weka-telemetry"></a>
+### weka telemetry
 
 ```
 weka telemetry
    |exports
       |add
          |kafka
-         |S3
+         |s3
          |splunk
+         |syslog **
       |attach
       |detach
       |disable
@@ -655,55 +679,53 @@ weka telemetry
       |remove
       |status
       |update
-         |S3
+         |s3
          |splunk
+         |syslog **
 ```
 
-### **weka** tenant \*\*
+### weka tenant \*\*
 
 ```
 weka tenant
-   |add
-   |remove
-   |network-space
-      |add
-      |remove
-   |rename
-   |security
-      |policy
-         |attach
-         |detach
-         |list
-         |reset
-         |set
-      |revoke-tokens
-   |set-qos
-   |set-quota
-   |update  
+   |add **
+   |network-space **
+      |add **
+      |remove **
+   |remove **
+   |rename **
+   |security **
+      |policy **
+         |attach **
+         |detach **
+         |list **
+         |reset **
+         |set **
+      |revoke-tokens **
+   |stats **
+   |update **
 ```
 
 ### weka umount
 
 ```
-weka unmount
+weka umount
 ```
 
-### **weka upgrade**
+### weka upgrade
 
 ```
 weka upgrade
-   |pause
-   |resume
+   |backends **
    |supported-features
 ```
 
-### **weka user**
+### weka user
 
 ```
 weka user
    |add
    |change-role
-   |remove
    |generate-token
    |ldap
       |disable
@@ -716,19 +738,20 @@ weka user
    |login
    |logout
    |passwd
+   |remove
    |revoke-tokens
    |update
    |whoami
 ```
 
-### **weka version**
+### weka version
 
 ```
 weka version
    |current
    |get
    |prepare
+   |reset
    |rm
    |set
-   |reset
 ```
