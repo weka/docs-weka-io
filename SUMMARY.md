@@ -276,6 +276,14 @@
   * [Cluster scaling](kubernetes/weka-operator-day-2-operations/cluster-scaling.md)
   * [Cluster maintenance](kubernetes/weka-operator-day-2-operations/cluster-maintenance.md)
 
+## OpenStack
+
+* [WekaFS plug-in for OpenStack Manila](openstack/wekafs-plug-in-for-openstack-manila/README.md)
+  * [Configure the WekaFS plug-in for Manila](openstack/wekafs-plug-in-for-openstack-manila/configure-the-wekafs-plug-in-for-manila.md)
+  * [Manage Manila shares on a WEKA cluster](openstack/wekafs-plug-in-for-openstack-manila/manage-manila-shares-on-a-weka-cluster.md)
+  * [WekaFS plug-in configuration options](openstack/wekafs-plug-in-for-openstack-manila/wekafs-plug-in-configuration-options.md)
+  * [Troubleshoot the WekaFS plug-in](openstack/wekafs-plug-in-for-openstack-manila/troubleshoot-the-wekafs-plug-in.md)
+
 ## WEKApod
 
 * [WEKApod Data Platform Appliance overview](wekapod/overview.md)
