@@ -14,7 +14,7 @@ To use the REST API effectively, review the comprehensive documentation, which p
 [getting-started-with-weka-rest-api.md](getting-started-with-weka-rest-api.md "mention")
 
 {% hint style="info" %}
-New REST APIs in version 5.1.30, compared to 5.0.4, are marked with two asterisks (\*\*).
+New REST APIs in version 5.1.34, compared to 5.0.4, are marked with two asterisks (\*\*).
 {% endhint %}
 
 ## Active directory
