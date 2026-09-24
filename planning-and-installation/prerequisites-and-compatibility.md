@@ -402,6 +402,7 @@ Review the requirements for SSDs used in a WEKA cluster.
 * Dedicate the entire SSD for WEKA system storage. Partitioning the drive is not supported.
 * Use SSDs with a capacity of up to 122.88 TB.
 * Maintain a capacity ratio of 8:1 or less between the smallest and largest SSDs in each drive pool.
+* Use a single SSD capacity where possible, and keep the total SSD capacity equal across failure domains. Equal capacity spreads the load evenly across failure domains.
 * Maintain a ratio of 8000:1 or less between the total SSD capacity and the total RAM of the cluster.
 
 {% hint style="info" %}
@@ -414,6 +415,7 @@ An AlloyFlash<sup>TM</sup> configuration combines TLC and QLC SSDs in one cluste
 
 * Use TLC drives with a capacity of at least 6.4 TB and an endurance of 3 DWPD (Drive Writes Per Day).
 * Use up to 11 QLC drives for each TLC drive.
+* Add drives with `weka cluster drive add --pool auto`. The cluster assigns each drive to a pool by its indirection-unit size. To override the assignment, set `--pool iu4k` (typically TLC) or `--pool iubig` (typically QLC).
 
 ## Object store
 
