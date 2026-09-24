@@ -274,10 +274,15 @@ description: >-
 
 ### Bucket Failovers
 
-| Type                          | Description                                                                  | Units      |
-| ----------------------------- | ---------------------------------------------------------------------------- | ---------- |
-| BUCKET\_FAILOVERS             | Number of failovers detected in remote buckets                               | Failovers  |
-| REMOTE\_BUCKET\_IS\_SECONDARY | Number of times a remote bucket reported it is secondary and cannot serve us | Exceptions |
+| Type                            | Description                                                                                                                    | Units      |
+| ------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ | ---------- |
+| BUCKET\_FAILOVERS               | Number of failovers detected in remote buckets                                                                                 | Failovers  |
+| REMOTE\_BUCKET\_IS\_SECONDARY   | Number of times a remote bucket reported it is secondary and cannot serve us                                                   | Exceptions |
+| SOUL\_ABSENT                    | Number of bucket startups that initialized without a soul (none available, or soul loading disabled)                           | Buckets    |
+| SOUL\_DESERIALIZATION\_FAILURES | Number of bucket soul components whose deserialization failed                                                                  | Failures   |
+| SOUL\_LOADS                     | Number of bucket souls loaded with the current software version's ABI signature                                                | Souls      |
+| SOUL\_UPGRADE\_LOADS            | Number of bucket souls loaded with a different software version's ABI signature (written by another release, upgraded on load) | Souls      |
+| SOUL\_VALIDATION\_FAILURES      | Number of bucket souls discarded as unusable (unrecognized signature or corrupt header)                                        | Souls      |
 
 ### Bucket Rebalances
 
@@ -325,37 +330,50 @@ description: >-
 
 ### Config
 
-| Type                                                            | Description                                                                                                                      | Units                                                 |
-| --------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------- |
-| AVERAGE\_CHANGES\_IN\_CHANGESET                                 | The average number of changes in a changeset                                                                                     | Changes/Sec                                           |
-| AVERAGE\_CHANGES\_IN\_GENERATION                                | The average number of changes in a generation                                                                                    | Changes/Sec                                           |
-| BACKEND\_NODE\_REJOIN\_TIME                                     | The number of backends rejoin attempts per completion time range                                                                 | Number of rejoins                                     |
-| CHANGESET\_COMMIT\_LATENCY                                      | The average latency of committing a configuration changeset                                                                      | Microseconds                                          |
-| CLIENT\_NODE\_REJOIN\_TIME                                      | The number of clients rejoin attempts per completion time range                                                                  | Number of rejoins                                     |
-| CONFIG\_PROPAGATION\_LATENCY\_BACKENDS                          | The latencies of propagation of a configuration generation to backend nodes                                                      | Generation                                            |
-| CONFIG\_PROPAGATION\_LATENCY\_CLIENTS                           | The latencies of propagation of a configuration generation to client nodes                                                       | Generation                                            |
-| GENERATION\_COMMIT\_LATENCY                                     | The average latency of committing a configuration generation to the RAFT log                                                     | Microseconds                                          |
-| GENERATION\_PROPAGATION\_AND\_APPLY\_LATENCY                    | The duration between when the leader created a ConfigGeneration until a node applies it as its active configuration              | Microseconds                                          |
-| HEARTBEAT\_PROCESSING\_TIME                                     | The number of non-leader heartbeats per processing time range                                                                    | Number of heartbeats                                  |
-| HEARTBEAT\_PROCESSING\_TIME\_OLD                                | The number of non-leader heartbeats per processing time range (OLD)                                                              | Number of heartbeats                                  |
-| HISTOGRAM\_LEADER\_ITERATION\_WAIT\_DURATION\_CONFIG\_ALIGNMENT | Wait duration of leader iteration for all nodes to align on latest configuration generation                                      | Leader iteration wait time                            |
-| LEADER\_HEARTBEAT\_PROCESSING\_TIME                             | The number of leader heartbeats per processing time range                                                                        | Number of heartbeats                                  |
-| LEADER\_HEARTBEAT\_PROCESSING\_TIME\_OLD                        | The number of leader heartbeats per processing time range (OLD)                                                                  | Number of heartbeats                                  |
-| LOCALSTATE\_AGGREGATION\_LATENCY                                | This period between clockSkewReportTime table's update by a management process and the time the leader sees it                   | Time is taken to aggregate LocalState in milliseconds |
-| LOCAL\_STATE\_BLOCKED\_CHANGES                                  | The number of local-state changes that were blocked from propagating to the parent                                               | Blocked LocalState Changes                            |
-| LOCAL\_STATE\_DROPPED\_NON\_REPORTING\_CHILD\_KEYS              | The number of non-reporting local-state entries that a node dropped (when re-aggregating a locally-aggregated local-state table) | Dropped Non-Reporting locally-aggregated Keys         |
-| LOCAL\_STATE\_LOCALLY\_AGGREGATED\_REMOVED                      | The number of times that an inner node removed a locally-aggregated key from parent facing table                                 | Overlay Parent locally-aggregated Keys Removed        |
-| LOCAL\_STATE\_RE\_AGGREGATING\_LOCALLY                          | The number of times that an inner node needed to re-aggregate a locally-aggregated local-state table                             | Re-Aggregations of locally-aggregated Keys            |
-| LOCAL\_STATS\_FETCH\_GENERATION\_LAGGING                        | The number of local-state generations that the parent fetch request still needs to read                                          | local-state generations                               |
-| OVERLAY\_FULL\_SHIFTS                                           | The number of entire overlay shifts                                                                                              | Changes                                               |
-| OVERLAY\_INCREMENTAL\_SHIFTS                                    | The number of incremental overlay shifts                                                                                         | Changes                                               |
-| OVERLAY\_TRACKER\_INCREMENTALS                                  | The number of incremental OverlayTracker applications                                                                            | Changes                                               |
-| OVERLAY\_TRACKER\_RESYNCS                                       | The number of OverlayTracker full-resyncs                                                                                        | Changes                                               |
-| QUEUED\_CONFIG\_COMMIT\_REQUEST                                 | The number of configuration commit requests that await in the queue for RAFT to be available                                     | Commit Requests                                       |
-| TOTAL\_CHANGESETS\_COMMITTED                                    | The total number of committed changesets                                                                                         | Change Sets                                           |
-| TOTAL\_COMMITTED\_CHANGES                                       | The total number of committed configuration change sets                                                                          | Changes                                               |
-| TOTAL\_CONFIG\_SNAPSHOT\_PULLS                                  | The total number of config snapshot pulls                                                                                        | Pulls                                                 |
-| TOTAL\_GENERATIONS\_COMMITTED                                   | The number of committed generations                                                                                              | Generations                                           |
+| Type                                                            | Description                                                                                                                                                                                                                                     | Units                                                 |
+| --------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------- |
+| AVERAGE\_CHANGES\_IN\_CHANGESET                                 | The average number of changes in a changeset                                                                                                                                                                                                    | Changes/Sec                                           |
+| AVERAGE\_CHANGES\_IN\_GENERATION                                | The average number of changes in a generation                                                                                                                                                                                                   | Changes/Sec                                           |
+| BACKEND\_NODE\_REJOIN\_TIME                                     | The number of backends rejoin attempts per completion time range                                                                                                                                                                                | Number of rejoins                                     |
+| CHANGESET\_COMMIT\_LATENCY                                      | The average latency of committing a configuration changeset                                                                                                                                                                                     | Microseconds                                          |
+| CLIENT\_NODE\_REJOIN\_TIME                                      | The number of clients rejoin attempts per completion time range                                                                                                                                                                                 | Number of rejoins                                     |
+| CONFIG\_PROPAGATION\_LATENCY\_BACKENDS                          | The latencies of propagation of a configuration generation to backend nodes                                                                                                                                                                     | Generation                                            |
+| CONFIG\_PROPAGATION\_LATENCY\_CLIENTS                           | The latencies of propagation of a configuration generation to client nodes                                                                                                                                                                      | Generation                                            |
+| GENERATION\_COMMIT\_LATENCY                                     | The average latency of committing a configuration generation to the RAFT log                                                                                                                                                                    | Microseconds                                          |
+| GENERATION\_PROPAGATION\_AND\_APPLY\_LATENCY                    | The duration between when the leader created a ConfigGeneration until a node applies it as its active configuration                                                                                                                             | Microseconds                                          |
+| HEARTBEAT\_PROCESSING\_TIME                                     | The number of non-leader heartbeats per processing time range                                                                                                                                                                                   | Number of heartbeats                                  |
+| HEARTBEAT\_PROCESSING\_TIME\_OLD                                | The number of non-leader heartbeats per processing time range (OLD)                                                                                                                                                                             | Number of heartbeats                                  |
+| HISTOGRAM\_LEADER\_ITERATION\_WAIT\_DURATION\_CONFIG\_ALIGNMENT | Wait duration of leader iteration for all nodes to align on latest configuration generation                                                                                                                                                     | Leader iteration wait time                            |
+| LEADER\_HEARTBEAT\_PROCESSING\_TIME                             | The number of leader heartbeats per processing time range                                                                                                                                                                                       | Number of heartbeats                                  |
+| LEADER\_HEARTBEAT\_PROCESSING\_TIME\_OLD                        | The number of leader heartbeats per processing time range (OLD)                                                                                                                                                                                 | Number of heartbeats                                  |
+| LOCALSTATE\_AGGREGATION\_LATENCY                                | This period between clockSkewReportTime table's update by a management process and the time the leader sees it                                                                                                                                  | Time is taken to aggregate LocalState in milliseconds |
+| LOCALSTATE\_AGGREGATION\_LATENCY\_EXTREMES\_BACKENDS            | Latency between a backend (non-CLIENT) host sampling its wall time and the leader observing it via the per-role host wall-time extremes table; all backend roles aggregated                                                                     | Time is taken to aggregate LocalState in milliseconds |
+| LOCALSTATE\_AGGREGATION\_LATENCY\_EXTREMES\_CLIENTS             | Latency between a CLIENT host sampling its wall time and the leader observing it via the per-role host wall-time extremes table                                                                                                                 | Time is taken to aggregate LocalState in milliseconds |
+| LOCALSTATE\_AGGREGATION\_LATENCY\_TOP\_LAGGER\_CLIENT           | Latest top-lagger raw latency (how far the most-lagging host of CLIENT is behind the leader: now - oldest wall time) via the per-role host wall-time extremes table; one gauge per host primary role, raw form, reportInterval not subtracted   | Milliseconds                                          |
+| LOCALSTATE\_AGGREGATION\_LATENCY\_TOP\_LAGGER\_COMPUTE          | Latest top-lagger raw latency (how far the most-lagging host of COMPUTE is behind the leader: now - oldest wall time) via the per-role host wall-time extremes table; one gauge per host primary role, raw form, reportInterval not subtracted  | Milliseconds                                          |
+| LOCALSTATE\_AGGREGATION\_LATENCY\_TOP\_LAGGER\_DATASERV         | Latest top-lagger raw latency (how far the most-lagging host of DATASERV is behind the leader: now - oldest wall time) via the per-role host wall-time extremes table; one gauge per host primary role, raw form, reportInterval not subtracted | Milliseconds                                          |
+| LOCALSTATE\_AGGREGATION\_LATENCY\_TOP\_LAGGER\_DRIVES           | Latest top-lagger raw latency (how far the most-lagging host of DRIVES is behind the leader: now - oldest wall time) via the per-role host wall-time extremes table; one gauge per host primary role, raw form, reportInterval not subtracted   | Milliseconds                                          |
+| LOCALSTATE\_AGGREGATION\_LATENCY\_TOP\_LAGGER\_FRONTEND         | Latest top-lagger raw latency (how far the most-lagging host of FRONTEND is behind the leader: now - oldest wall time) via the per-role host wall-time extremes table; one gauge per host primary role, raw form, reportInterval not subtracted | Milliseconds                                          |
+| LOCALSTATE\_AGGREGATION\_LATENCY\_TOP\_RECENT\_CLIENT           | Latest top-recent raw latency (how far the most-ahead host of CLIENT is ahead of the leader: newest wall time - now) via the per-role host wall-time extremes table; one gauge per host primary role, raw form, reportInterval not subtracted   | Milliseconds                                          |
+| LOCALSTATE\_AGGREGATION\_LATENCY\_TOP\_RECENT\_COMPUTE          | Latest top-recent raw latency (how far the most-ahead host of COMPUTE is ahead of the leader: newest wall time - now) via the per-role host wall-time extremes table; one gauge per host primary role, raw form, reportInterval not subtracted  | Milliseconds                                          |
+| LOCALSTATE\_AGGREGATION\_LATENCY\_TOP\_RECENT\_DATASERV         | Latest top-recent raw latency (how far the most-ahead host of DATASERV is ahead of the leader: newest wall time - now) via the per-role host wall-time extremes table; one gauge per host primary role, raw form, reportInterval not subtracted | Milliseconds                                          |
+| LOCALSTATE\_AGGREGATION\_LATENCY\_TOP\_RECENT\_DRIVES           | Latest top-recent raw latency (how far the most-ahead host of DRIVES is ahead of the leader: newest wall time - now) via the per-role host wall-time extremes table; one gauge per host primary role, raw form, reportInterval not subtracted   | Milliseconds                                          |
+| LOCALSTATE\_AGGREGATION\_LATENCY\_TOP\_RECENT\_FRONTEND         | Latest top-recent raw latency (how far the most-ahead host of FRONTEND is ahead of the leader: newest wall time - now) via the per-role host wall-time extremes table; one gauge per host primary role, raw form, reportInterval not subtracted | Milliseconds                                          |
+| LOCAL\_STATE\_BLOCKED\_CHANGES                                  | The number of local-state changes that were blocked from propagating to the parent                                                                                                                                                              | Blocked LocalState Changes                            |
+| LOCAL\_STATE\_DROPPED\_NON\_REPORTING\_CHILD\_KEYS              | The number of non-reporting local-state entries that a node dropped (when re-aggregating a locally-aggregated local-state table)                                                                                                                | Dropped Non-Reporting locally-aggregated Keys         |
+| LOCAL\_STATE\_LOCALLY\_AGGREGATED\_REMOVED                      | The number of times that an inner node removed a locally-aggregated key from parent facing table                                                                                                                                                | Overlay Parent locally-aggregated Keys Removed        |
+| LOCAL\_STATE\_RE\_AGGREGATING\_LOCALLY                          | The number of times that an inner node needed to re-aggregate a locally-aggregated local-state table                                                                                                                                            | Re-Aggregations of locally-aggregated Keys            |
+| LOCAL\_STATE\_UNMODIFIED\_MARKED\_COMMITS                       | The number of commits of a newly-created local-state key that was marked as modified without its data actually being modified (wasteful commits that propagate no real change)                                                                  | Commits                                               |
+| LOCAL\_STATS\_FETCH\_GENERATION\_LAGGING                        | The number of local-state generations that the parent fetch request still needs to read                                                                                                                                                         | local-state generations                               |
+| OVERLAY\_FULL\_SHIFTS                                           | The number of entire overlay shifts                                                                                                                                                                                                             | Changes                                               |
+| OVERLAY\_INCREMENTAL\_SHIFTS                                    | The number of incremental overlay shifts                                                                                                                                                                                                        | Changes                                               |
+| OVERLAY\_TRACKER\_INCREMENTALS                                  | The number of incremental OverlayTracker applications                                                                                                                                                                                           | Changes                                               |
+| OVERLAY\_TRACKER\_RESYNCS                                       | The number of OverlayTracker full-resyncs                                                                                                                                                                                                       | Changes                                               |
+| QUEUED\_CONFIG\_COMMIT\_REQUEST                                 | The number of configuration commit requests that await in the queue for RAFT to be available                                                                                                                                                    | Commit Requests                                       |
+| TOTAL\_CHANGESETS\_COMMITTED                                    | The total number of committed changesets                                                                                                                                                                                                        | Change Sets                                           |
+| TOTAL\_COMMITTED\_CHANGES                                       | The total number of committed configuration change sets                                                                                                                                                                                         | Changes                                               |
+| TOTAL\_CONFIG\_SNAPSHOT\_PULLS                                  | The total number of config snapshot pulls                                                                                                                                                                                                       | Pulls                                                 |
+| TOTAL\_GENERATIONS\_COMMITTED                                   | The number of committed generations                                                                                                                                                                                                             | Generations                                           |
 
 ### CPU
 
@@ -1134,50 +1152,64 @@ description: >-
 | DOORBELL\_RING\_COUNT                           | The number of times the driver queue's doorbell was ringed                                             | Ops          |
 | FAILED\_1HOP\_READS                             | Number of failed single hop reads per second                                                           | Ops/Sec      |
 | FILEATOMICOPEN\_LATENCY                         | Average latency of FILEATOMICOPEN operations                                                           | Microseconds |
+| FILEATOMICOPEN\_LATENCY\_NO\_QOS                | Average latency of FILEATOMICOPEN operations without QoS delay                                         | Microseconds |
 | FILEATOMICOPEN\_OPS                             | Number of FILEATOMICOPEN operations per second                                                         | Ops/Sec      |
 | FILEATOMICOPEN\_QOS\_DELAY                      | Average QoS delay for FILEATOMICOPEN operations                                                        | Microseconds |
 | FILECLOSE\_LATENCY                              | Average latency of FILECLOSE operations                                                                | Microseconds |
+| FILECLOSE\_LATENCY\_NO\_QOS                     | Average latency of FILECLOSE operations without QoS delay                                              | Microseconds |
 | FILECLOSE\_OPS                                  | Number of FILECLOSE operations per second                                                              | Ops/Sec      |
 | FILECLOSE\_QOS\_DELAY                           | Average QoS delay for FILECLOSE operations                                                             | Microseconds |
 | FILEOPEN\_LATENCY                               | Average latency of FILEOPEN operations                                                                 | Microseconds |
+| FILEOPEN\_LATENCY\_NO\_QOS                      | Average latency of FILEOPEN operations without QoS delay                                               | Microseconds |
 | FILEOPEN\_OPS                                   | Number of FILEOPEN operations per second                                                               | Ops/Sec      |
 | FILEOPEN\_QOS\_DELAY                            | Average QoS delay for FILEOPEN operations                                                              | Microseconds |
 | FLOCK\_LATENCY                                  | Average latency of FLOCK operations                                                                    | Microseconds |
+| FLOCK\_LATENCY\_NO\_QOS                         | Average latency of FLOCK operations without QoS delay                                                  | Microseconds |
 | FLOCK\_OPS                                      | Number of FLOCK operations per second                                                                  | Ops/Sec      |
 | FLOCK\_QOS\_DELAY                               | Average QoS delay for FLOCK operations                                                                 | Microseconds |
 | FORWARDING\_1HOP\_READS                         | Number of forwarding reads per second served single-hop by following the redirect to the target extent | Ops/Sec      |
 | GETATTR\_LATENCY                                | Average latency of GETATTR operations                                                                  | Microseconds |
+| GETATTR\_LATENCY\_NO\_QOS                       | Average latency of GETATTR operations without QoS delay                                                | Microseconds |
 | GETATTR\_OPS                                    | Number of GETATTR operations per second                                                                | Ops/Sec      |
 | GETATTR\_QOS\_DELAY                             | Average QoS delay for GETATTR operations                                                               | Microseconds |
 | GETXATTR\_LATENCY                               | Average latency of GETXATTR operations                                                                 | Microseconds |
+| GETXATTR\_LATENCY\_NO\_QOS                      | Average latency of GETXATTR operations without QoS delay                                               | Microseconds |
 | GETXATTR\_OPS                                   | Number of GETXATTR operations per second                                                               | Ops/Sec      |
 | GETXATTR\_QOS\_DELAY                            | Average QoS delay for GETXATTR operations                                                              | Microseconds |
 | IOCTL\_OBS\_PREFETCH\_LATENCY                   | Average latency of IOCTL\_OBS\_PREFETCH operations                                                     | Microseconds |
+| IOCTL\_OBS\_PREFETCH\_LATENCY\_NO\_QOS          | Average latency of IOCTL\_OBS\_PREFETCH operations without QoS delay                                   | Microseconds |
 | IOCTL\_OBS\_PREFETCH\_OPS                       | Number of IOCTL\_OBS\_PREFETCH operations per second                                                   | Ops/Sec      |
 | IOCTL\_OBS\_PREFETCH\_QOS\_DELAY                | Average QoS delay for IOCTL\_OBS\_PREFETCH operations                                                  | Microseconds |
 | IOCTL\_OBS\_RELEASE\_LATENCY                    | Average latency of IOCTL\_OBS\_RELEASE operations                                                      | Microseconds |
+| IOCTL\_OBS\_RELEASE\_LATENCY\_NO\_QOS           | Average latency of IOCTL\_OBS\_RELEASE operations without QoS delay                                    | Microseconds |
 | IOCTL\_OBS\_RELEASE\_OPS                        | Number of IOCTL\_OBS\_RELEASE operations per second                                                    | Ops/Sec      |
 | IOCTL\_OBS\_RELEASE\_QOS\_DELAY                 | Average QoS delay for IOCTL\_OBS\_RELEASE operations                                                   | Microseconds |
 | KEEPALIVES\_NO\_LEASE                           | Number of driver keepalives sent while we have no lease                                                | Ops/Sec      |
 | LINK\_LATENCY                                   | Average latency of LINK operations                                                                     | Microseconds |
+| LINK\_LATENCY\_NO\_QOS                          | Average latency of LINK operations without QoS delay                                                   | Microseconds |
 | LINK\_OPS                                       | Number of LINK operations per second                                                                   | Ops/Sec      |
 | LINK\_QOS\_DELAY                                | Average QoS delay for LINK operations                                                                  | Microseconds |
 | LISTXATTR\_LATENCY                              | Average latency of LISTXATTR operations                                                                | Microseconds |
+| LISTXATTR\_LATENCY\_NO\_QOS                     | Average latency of LISTXATTR operations without QoS delay                                              | Microseconds |
 | LISTXATTR\_OPS                                  | Number of LISTXATTR operations per second                                                              | Ops/Sec      |
 | LISTXATTR\_QOS\_DELAY                           | Average QoS delay for LISTXATTR operations                                                             | Microseconds |
 | LOOKUP\_LATENCY                                 | Average latency of LOOKUP operations                                                                   | Microseconds |
+| LOOKUP\_LATENCY\_NO\_QOS                        | Average latency of LOOKUP operations without QoS delay                                                 | Microseconds |
 | LOOKUP\_OPS                                     | Number of LOOKUP operations per second                                                                 | Ops/Sec      |
 | LOOKUP\_QOS\_DELAY                              | Average QoS delay for LOOKUP operations                                                                | Microseconds |
 | MKNOD\_LATENCY                                  | Average latency of MKNOD operations                                                                    | Microseconds |
+| MKNOD\_LATENCY\_NO\_QOS                         | Average latency of MKNOD operations without QoS delay                                                  | Microseconds |
 | MKNOD\_OPS                                      | Number of MKNOD operations per second                                                                  | Ops/Sec      |
 | MKNOD\_QOS\_DELAY                               | Average QoS delay for MKNOD operations                                                                 | Microseconds |
 | OPS                                             | Total number of operations                                                                             | Ops/Sec      |
 | PENDING\_IOS\_COUNT                             | Pending IO count per FE container                                                                      | Ops          |
 | RDMA\_WRITE\_REQUESTS                           | Number of RDMA write request operations per second                                                     | Ops/Sec      |
 | READDIR\_LATENCY                                | Average latency of READDIR operations                                                                  | Microseconds |
+| READDIR\_LATENCY\_NO\_QOS                       | Average latency of READDIR operations without QoS delay                                                | Microseconds |
 | READDIR\_OPS                                    | Number of READDIR operations per second                                                                | Ops/Sec      |
 | READDIR\_QOS\_DELAY                             | Average QoS delay for READDIR operations                                                               | Microseconds |
 | READLINK\_LATENCY                               | Average latency of READLINK operations                                                                 | Microseconds |
+| READLINK\_LATENCY\_NO\_QOS                      | Average latency of READLINK operations without QoS delay                                               | Microseconds |
 | READLINK\_OPS                                   | Number of READLINK operations per second                                                               | Ops/Sec      |
 | READLINK\_QOS\_DELAY                            | Average QoS delay for READLINK operations                                                              | Microseconds |
 | READS                                           | Number of read operations per second                                                                   | Ops/Sec      |
@@ -1195,20 +1227,25 @@ description: >-
 | READ\_SIZES                                     | NFS read sizes histogram                                                                               | Reads        |
 | READ\_SIZES\_RATE                               | The number of reads per read size range per second                                                     | Reads        |
 | RENAME\_LATENCY                                 | Average latency of RENAME operations                                                                   | Microseconds |
+| RENAME\_LATENCY\_NO\_QOS                        | Average latency of RENAME operations without QoS delay                                                 | Microseconds |
 | RENAME\_OPS                                     | Number of RENAME operations per second                                                                 | Ops/Sec      |
 | RENAME\_QOS\_DELAY                              | Average QoS delay for RENAME operations                                                                | Microseconds |
 | REQUESTS\_COMPLETED                             | The number of completions frontends sent to the driver's queue                                         | Ops          |
 | REQUESTS\_FETCHED                               | The number of operations frontends fetched from the driver's queue                                     | Ops          |
 | RMDIR\_LATENCY                                  | Average latency of RMDIR operations                                                                    | Microseconds |
+| RMDIR\_LATENCY\_NO\_QOS                         | Average latency of RMDIR operations without QoS delay                                                  | Microseconds |
 | RMDIR\_OPS                                      | Number of RMDIR operations per second                                                                  | Ops/Sec      |
 | RMDIR\_QOS\_DELAY                               | Average QoS delay for RMDIR operations                                                                 | Microseconds |
 | RMXATTR\_LATENCY                                | Average latency of RMXATTR operations                                                                  | Microseconds |
+| RMXATTR\_LATENCY\_NO\_QOS                       | Average latency of RMXATTR operations without QoS delay                                                | Microseconds |
 | RMXATTR\_OPS                                    | Number of RMXATTR operations per second                                                                | Ops/Sec      |
 | RMXATTR\_QOS\_DELAY                             | Average QoS delay for RMXATTR operations                                                               | Microseconds |
 | SETATTR\_LATENCY                                | Average latency of SETATTR operations                                                                  | Microseconds |
+| SETATTR\_LATENCY\_NO\_QOS                       | Average latency of SETATTR operations without QoS delay                                                | Microseconds |
 | SETATTR\_OPS                                    | Number of SETATTR operations per second                                                                | Ops/Sec      |
 | SETATTR\_QOS\_DELAY                             | Average QoS delay for SETATTR operations                                                               | Microseconds |
 | SETXATTR\_LATENCY                               | Average latency of SETXATTR operations                                                                 | Microseconds |
+| SETXATTR\_LATENCY\_NO\_QOS                      | Average latency of SETXATTR operations without QoS delay                                               | Microseconds |
 | SETXATTR\_OPS                                   | Number of SETXATTR operations per second                                                               | Ops/Sec      |
 | SETXATTR\_QOS\_DELAY                            | Average QoS delay for SETXATTR operations                                                              | Microseconds |
 | SINGLE\_HOP\_WRITE\_ATTEMPTS                    | Number of single hop write attempts per second                                                         | Ops/Sec      |
@@ -1231,14 +1268,17 @@ description: >-
 | SKIPPED\_1HOP\_READS\_TOO\_MANY\_DRIVES         | Number of single-hop reads per second skipped because of too many drives                               | Ops/Sec      |
 | SKIPPED\_1HOP\_READS\_TOO\_SMALL                | Number of single-hop reads per second skipped because the IO size is too small                         | Ops/Sec      |
 | STATFS\_LATENCY                                 | Average latency of STATFS operations                                                                   | Microseconds |
+| STATFS\_LATENCY\_NO\_QOS                        | Average latency of STATFS operations without QoS delay                                                 | Microseconds |
 | STATFS\_OPS                                     | Number of STATFS operations per second                                                                 | Ops/Sec      |
 | STATFS\_QOS\_DELAY                              | Average QoS delay for STATFS operations                                                                | Microseconds |
 | SUCCEEDED\_1HOP\_READS                          | Number of successful single hop reads per second                                                       | Ops/Sec      |
 | SYMLINK\_LATENCY                                | Average latency of SYMLINK operations                                                                  | Microseconds |
+| SYMLINK\_LATENCY\_NO\_QOS                       | Average latency of SYMLINK operations without QoS delay                                                | Microseconds |
 | SYMLINK\_OPS                                    | Number of SYMLINK operations per second                                                                | Ops/Sec      |
 | SYMLINK\_QOS\_DELAY                             | Average QoS delay for SYMLINK operations                                                               | Microseconds |
 | THROUGHPUT                                      | Number of bytes read/written per second                                                                | Bytes/Sec    |
 | UNLINK\_LATENCY                                 | Average latency of UNLINK operations                                                                   | Microseconds |
+| UNLINK\_LATENCY\_NO\_QOS                        | Average latency of UNLINK operations without QoS delay                                                 | Microseconds |
 | UNLINK\_OPS                                     | Number of UNLINK operations per second                                                                 | Ops/Sec      |
 | UNLINK\_QOS\_DELAY                              | Average QoS delay for UNLINK operations                                                                | Microseconds |
 | WRITES                                          | Number of write operations per second                                                                  | Ops/Sec      |
@@ -1613,27 +1653,34 @@ description: >-
 
 ### Operations (S3)
 
-| Type                              | Description                                                                                     | Units         |
-| --------------------------------- | ----------------------------------------------------------------------------------------------- | ------------- |
-| API\_FAILURES                     | Total of failures per API                                                                       | Ops           |
-| API\_OPS                          | Total of Ops per API                                                                            | Ops           |
-| API\_TTFB                         | Time To First Byte per API                                                                      | Milliseconds  |
-| API\_TTLB                         | Time To Last Byte per API                                                                       | Milliseconds  |
-| AVG\_TTLB\_HIST                   | TTLB (Time To Last Byte) Milliseconds Histogram per Tenant                                      | Count         |
-| AVG\_TTLB\_PERCENT                | TTLB (Time To Last Byte) Percentile                                                             | Milliseconds  |
-| FS\_READ\_BYTES                   | Total Read Bytes per Bucket/FS/Tenant                                                           | Bytes/Sec     |
-| FS\_RQ                            | Total Requests per Bucket/FS/Tenant                                                             | Ops           |
-| FS\_STATUS                        | Count HTTP Status Code per Bucket/FS/Tenant                                                     | Ops           |
-| FS\_WRITE\_BYTES                  | Total Write Bytes per Bucket/FS/Tenant                                                          | Bytes/Sec     |
-| NOTIFICATION\_LOST                | Total notification lost per notification target                                                 | Notifications |
-| QOS\_BUCKET\_BUSY\_REJECT         | QoS bucket-busy gate 503 rejections in interval, per tenant/API                                 | Ops           |
-| QOS\_IO\_RETRY\_ATTEMPT           | QoS EXFULL retry attempts in interval, per tenant/op                                            | Ops           |
-| QOS\_IO\_RETRY\_BUDGET\_EXHAUSTED | QoS retry sessions that exhausted the budget (503) in interval, per tenant/op                   | Ops           |
-| QOS\_IO\_RETRY\_CANCELED          | QoS retry sessions aborted by ctx cancel (client disconnect/timeout) in interval, per tenant/op | Ops           |
-| QOS\_IO\_RETRY\_ENTER             | QoS retry sessions that observed EXFULL in interval, per tenant/op                              | Ops           |
-| TOTAL\_BUCKET\_CREATE\_OPS        | Total bucket create operations per second                                                       | Ops/Sec       |
-| TOTAL\_BUCKET\_DELETE\_OPS        | Total bucket delete operations per second                                                       | Ops/Sec       |
-| TOTAL\_BUCKET\_LIST\_OPS          | Total bucket list operations per second                                                         | Ops/Sec       |
+| Type                                    | Description                                                                                         | Units         |
+| --------------------------------------- | --------------------------------------------------------------------------------------------------- | ------------- |
+| API\_FAILURES                           | Total of failures per API                                                                           | Ops           |
+| API\_OPS                                | Total of Ops per API                                                                                | Ops           |
+| API\_TTFB                               | Time To First Byte per API                                                                          | Milliseconds  |
+| API\_TTLB                               | Time To Last Byte per API                                                                           | Milliseconds  |
+| AVG\_TTLB\_HIST                         | TTLB (Time To Last Byte) Milliseconds Histogram per Tenant                                          | Count         |
+| AVG\_TTLB\_PERCENT                      | TTLB (Time To Last Byte) Percentile                                                                 | Milliseconds  |
+| FS\_READ\_BYTES                         | Total Read Bytes per Bucket/FS/Tenant                                                               | Bytes/Sec     |
+| FS\_RQ                                  | Total Requests per Bucket/FS/Tenant                                                                 | Ops           |
+| FS\_STATUS                              | Count HTTP Status Code per Bucket/FS/Tenant                                                         | Ops           |
+| FS\_WRITE\_BYTES                        | Total Write Bytes per Bucket/FS/Tenant                                                              | Bytes/Sec     |
+| GET\_OBJECT\_SIZE\_HIST                 | S3 object size distribution on GetObject (bucket edges in MB)                                       | Count         |
+| MPU\_COMPLETE\_DURATION\_HIST           | Histogram of multipart-upload duration from first uploaded part to complete (seconds), per interval | Count         |
+| MPU\_NON\_ALIGNED\_PART\_SIZE\_OBJECTS  | MPU completes with a non-last part size not aligned to 1 MiB, in interval                           | Ops           |
+| MPU\_NON\_CONSTANT\_PART\_SIZE\_OBJECTS | MPU completes with non-constant part size (last part excluded) in interval                          | Ops           |
+| MPU\_OBJECT\_SIZE\_HIST                 | S3 object size distribution on CompleteMultipartUpload (bucket edges in MB)                         | Count         |
+| MPU\_ORPHAN\_PARTS\_OBJECTS             | MPU completes with uploaded parts not referenced in Complete, in interval                           | Ops           |
+| MPU\_REWRITTEN\_PARTS\_OBJECTS          | MPU completes with a part uploaded more than once before complete, in interval                      | Ops           |
+| NOTIFICATION\_LOST                      | Total notification lost per notification target                                                     | Notifications |
+| QOS\_BUCKET\_BUSY\_REJECT               | QoS bucket-busy gate 503 rejections in interval, per tenant/API                                     | Ops           |
+| QOS\_IO\_RETRY\_ATTEMPT                 | QoS EXFULL retry attempts in interval, per tenant/op                                                | Ops           |
+| QOS\_IO\_RETRY\_BUDGET\_EXHAUSTED       | QoS retry sessions that exhausted the budget (503) in interval, per tenant/op                       | Ops           |
+| QOS\_IO\_RETRY\_CANCELED                | QoS retry sessions aborted by ctx cancel (client disconnect/timeout) in interval, per tenant/op     | Ops           |
+| QOS\_IO\_RETRY\_ENTER                   | QoS retry sessions that observed EXFULL in interval, per tenant/op                                  | Ops           |
+| TOTAL\_BUCKET\_CREATE\_OPS              | Total bucket create operations per second                                                           | Ops/Sec       |
+| TOTAL\_BUCKET\_DELETE\_OPS              | Total bucket delete operations per second                                                           | Ops/Sec       |
+| TOTAL\_BUCKET\_LIST\_OPS                | Total bucket list operations per second                                                             | Ops/Sec       |
 
 ### Operations (SLB of S3)
 
@@ -1692,11 +1739,12 @@ description: >-
 
 ### Processes
 
-| Type                      | Description                                                         | Units                   |
-| ------------------------- | ------------------------------------------------------------------- | ----------------------- |
-| ABRUPT\_EXITS             | How many abrupt exits of a process (node) occurred                  | Abrupt process exits    |
-| NO\_JUMBO\_FRAMES\_PEERS  | Number of peers with no jumbo frames (low MTU)                      | Peers                   |
-| PEER\_CONFIGURE\_FAILURES | How many times the node failed to configure peers to sync with them | Peer configure failures |
+| Type                       | Description                                                                                                          | Units                   |
+| -------------------------- | -------------------------------------------------------------------------------------------------------------------- | ----------------------- |
+| ABRUPT\_EXITS              | How many abrupt exits of a process (node) occurred                                                                   | Abrupt process exits    |
+| NETNS\_CONFIGURE\_FAILURES | Number of failed attempts to configure a network space's kernel network namespace (setup or teardown) on this server | Failures                |
+| NO\_JUMBO\_FRAMES\_PEERS   | Number of peers with no jumbo frames (low MTU)                                                                       | Peers                   |
+| PEER\_CONFIGURE\_FAILURES  | How many times the node failed to configure peers to sync with them                                                  | Peer configure failures |
 
 ### RAFT
 
@@ -1715,48 +1763,49 @@ description: >-
 
 ### RAID
 
-| Type                                                   | Description                                                                | Units           |
-| ------------------------------------------------------ | -------------------------------------------------------------------------- | --------------- |
-| IS\_BLOCK\_USED\_FREE                                  | Number of isBlockUsed returning free                                       | Blocks/Sec      |
-| IS\_BLOCK\_USED\_FREE\_LATENCY                         | Average latency of handling an isBlockUsed of a free block                 | Micros          |
-| IS\_BLOCK\_USED\_USED                                  | Number of isBlockUsed returning used                                       | Blocks/Sec      |
-| IS\_BLOCK\_USED\_USED\_LATENCY                         | Average latency of handling an isBlockUsed of a used block                 | Micros          |
-| NVKV\_RECOVERY\_NETBUF\_REREAD\_UNEQUAL                | Number of unequal netbufs encountered that caused NVKV recovery to restart | Blocks/Sec      |
-| RAID\_ALLOCATION\_FAILED\_HOLES                        | Slots failed to be allocated and were left as holes                        | Holes/Sec       |
-| RAID\_BITMAP\_CHECKSUM\_MISMATCH                       | Bitmap checksum mismatches detected                                        | Occurrences/Sec |
-| RAID\_BLOCKS\_COMMITTED\_VIA\_BYPASS\_PlacementSpace0  | Number of blocks committed via bypass-stripes                              | Blocks/Sec      |
-| RAID\_BLOCKS\_COMMITTED\_VIA\_BYPASS\_PlacementSpaceN  | Number of blocks committed via bypass-stripes                              | Blocks/Sec      |
-| RAID\_BLOCKS\_COMMITTED\_VIA\_NVKV\_PlacementSpace0    | Number of blocks committed via NVKV                                        | Blocks/Sec      |
-| RAID\_BLOCKS\_COMMITTED\_VIA\_NVKV\_PlacementSpaceN    | Number of blocks committed via NVKV                                        | Blocks/Sec      |
-| RAID\_BLOCKS\_IN\_PREPARED\_STRIPE                     | Available blocks to commit in prepared stripe                              | Blocks          |
-| RAID\_CHUNKS\_CLEANED\_BY\_SHIFT                       | Dirty chunks cleaned by being shifted out                                  | Occurences      |
-| RAID\_CHUNKS\_SHIFTED                                  | Dirty chunks that shifted out                                              | Occurences      |
-| RAID\_COMMITTED\_STRIPES                               | Number of stripes written                                                  | Stripes         |
-| RAID\_COMPRESSED\_BLOCKS\_WRITTEN                      | Physical blocks are written containing compressed data                     | Blocks/Sec      |
-| RAID\_COMPRESSED\_PADDING                              | Zero-Blocks written to compressed space for alignment                      | Blocks/Sec      |
-| RAID\_CORRUPTION\_RECOVERY\_FAILURE                    | Corrupt data could not be recovered                                        | Occurences      |
-| RAID\_DIRTIED\_CHUNKS                                  | Chunks newly marked DIRTY in a placement after quorum commit               | Chunks/Sec      |
-| RAID\_DRIVE\_FAILURE                                   | Drive failures viewed from compute or front-end nodes                      | Occurrences/Sec |
-| RAID\_PLACEMENT\_ALLOC\_PlacementSpace0                | Number of placement allocations                                            | Occurrences/Sec |
-| RAID\_PLACEMENT\_ALLOC\_PlacementSpaceN\_Compressed    | Number of placement allocations                                            | Occurrences/Sec |
-| RAID\_PLACEMENT\_ALLOC\_PlacementSpaceN\_Uncompressed  | Number of placement allocations                                            | Occurrences/Sec |
-| RAID\_PLACEMENT\_RETIRE\_PlacementSpace0               | Number of placement retirements                                            | Occurrences/Sec |
-| RAID\_PLACEMENT\_RETIRE\_PlacementSpaceN\_Compressed   | Number of placement retirements                                            | Occurrences/Sec |
-| RAID\_PLACEMENT\_RETIRE\_PlacementSpaceN\_Uncompressed | Number of placement retirements                                            | Occurrences/Sec |
-| RAID\_PLACEMENT\_SWITCHES                              | Number of placement switches                                               | Switches        |
-| RAID\_READ\_BATCHES\_PER\_REQUEST\_HISTOGRAM           | Histogram of the number of batches of stripes read in a single request     | Request         |
-| RAID\_READ\_BLOCKS                                     | Number of blocks read by the RAID                                          | Blocks/Sec      |
-| RAID\_READ\_BLOCKS\_STRIPE\_HISTOGRAM                  | Histogram of the number of blocks read from a single stripe                | Reads           |
-| RAID\_READ\_DEGRADED                                   | Degraded mode reads                                                        | Blocks/Sec      |
-| RAID\_READ\_FREE                                       | Read Free                                                                  | Occurences      |
-| RAID\_READ\_IOS                                        | Raw read blocks performed by the RAID                                      | Blocks/Sec      |
-| RAID\_STALE\_WRITES\_DETECTED                          | Stale write detected in read                                               | Occurences      |
-| RAID\_STALE\_WRITES\_REPROTECTIONS                     | Stale write reprotections in read                                          | Occurences      |
-| RAID\_UNDIRTY\_CHUNKS                                  | Dirty chunks un-dirtied in a placement after quorum commit                 | Chunks/Sec      |
-| RAID\_WRITE\_PlacementSpace0                           | Blocks written by spaces                                                   | Blocks/Sec      |
-| RAID\_WRITE\_PlacementSpaceN                           | Blocks written by spaces                                                   | Blocks/Sec      |
-| WRONG\_DRIVE\_DELTAS                                   | Delta segments are written to the wrong drive                              | Blocks/Sec      |
-| WRONG\_DRIVE\_REFS                                     | Reference segments are written to the wrong drive                          | Blocks/Sec      |
+| Type                                                   | Description                                                                           | Units           |
+| ------------------------------------------------------ | ------------------------------------------------------------------------------------- | --------------- |
+| IS\_BLOCK\_USED\_FREE                                  | Number of isBlockUsed returning free                                                  | Blocks/Sec      |
+| IS\_BLOCK\_USED\_FREE\_LATENCY                         | Average latency of handling an isBlockUsed of a free block                            | Micros          |
+| IS\_BLOCK\_USED\_USED                                  | Number of isBlockUsed returning used                                                  | Blocks/Sec      |
+| IS\_BLOCK\_USED\_USED\_LATENCY                         | Average latency of handling an isBlockUsed of a used block                            | Micros          |
+| NVKV\_RECOVERY\_NETBUF\_REREAD\_UNEQUAL                | Number of unequal netbufs encountered that caused NVKV recovery to restart            | Blocks/Sec      |
+| RAID\_ALLOCATION\_FAILED\_HOLES                        | Slots failed to be allocated and were left as holes                                   | Holes/Sec       |
+| RAID\_BITMAP\_CHECKSUM\_MISMATCH                       | Bitmap checksum mismatches detected                                                   | Occurrences/Sec |
+| RAID\_BLOCKS\_COMMITTED\_VIA\_BYPASS\_PlacementSpace0  | Number of blocks committed via bypass-stripes                                         | Blocks/Sec      |
+| RAID\_BLOCKS\_COMMITTED\_VIA\_BYPASS\_PlacementSpaceN  | Number of blocks committed via bypass-stripes                                         | Blocks/Sec      |
+| RAID\_BLOCKS\_COMMITTED\_VIA\_NVKV\_PlacementSpace0    | Number of blocks committed via NVKV                                                   | Blocks/Sec      |
+| RAID\_BLOCKS\_COMMITTED\_VIA\_NVKV\_PlacementSpaceN    | Number of blocks committed via NVKV                                                   | Blocks/Sec      |
+| RAID\_BLOCKS\_IN\_PREPARED\_STRIPE                     | Available blocks to commit in prepared stripe                                         | Blocks          |
+| RAID\_CHUNKS\_CLEANED\_BY\_SHIFT                       | Dirty chunks cleaned by being shifted out                                             | Occurences      |
+| RAID\_CHUNKS\_SHIFTED                                  | Dirty chunks that shifted out                                                         | Occurences      |
+| RAID\_COMMITTED\_STRIPES                               | Number of stripes written                                                             | Stripes         |
+| RAID\_COMPRESSED\_BLOCKS\_WRITTEN                      | Physical blocks are written containing compressed data                                | Blocks/Sec      |
+| RAID\_COMPRESSED\_PADDING                              | Zero-Blocks written to compressed space for alignment                                 | Blocks/Sec      |
+| RAID\_CORRUPTION\_RECOVERY\_FAILURE                    | Corrupt data could not be recovered                                                   | Occurences      |
+| RAID\_DIRTIED\_CHUNKS                                  | Chunks newly marked DIRTY in a placement after quorum commit                          | Chunks/Sec      |
+| RAID\_DRIVE\_FAILURE                                   | Drive failures viewed from compute or front-end nodes                                 | Occurrences/Sec |
+| RAID\_PLACEMENT\_ALLOC\_PlacementSpace0                | Number of placement allocations                                                       | Occurrences/Sec |
+| RAID\_PLACEMENT\_ALLOC\_PlacementSpaceN\_Compressed    | Number of placement allocations                                                       | Occurrences/Sec |
+| RAID\_PLACEMENT\_ALLOC\_PlacementSpaceN\_Uncompressed  | Number of placement allocations                                                       | Occurrences/Sec |
+| RAID\_PLACEMENT\_RETIRE\_PlacementSpace0               | Number of placement retirements                                                       | Occurrences/Sec |
+| RAID\_PLACEMENT\_RETIRE\_PlacementSpaceN\_Compressed   | Number of placement retirements                                                       | Occurrences/Sec |
+| RAID\_PLACEMENT\_RETIRE\_PlacementSpaceN\_Uncompressed | Number of placement retirements                                                       | Occurrences/Sec |
+| RAID\_PLACEMENT\_SWITCHES                              | Number of placement switches                                                          | Switches        |
+| RAID\_READ\_BATCHES\_PER\_REQUEST\_HISTOGRAM           | Histogram of the number of batches of stripes read in a single request                | Request         |
+| RAID\_READ\_BLOCKS                                     | Number of blocks read by the RAID                                                     | Blocks/Sec      |
+| RAID\_READ\_BLOCKS\_STRIPE\_HISTOGRAM                  | Histogram of the number of blocks read from a single stripe                           | Reads           |
+| RAID\_READ\_DEGRADED                                   | Degraded mode reads                                                                   | Blocks/Sec      |
+| RAID\_READ\_FREE                                       | Read Free                                                                             | Occurences      |
+| RAID\_READ\_IOS                                        | Raw read blocks performed by the RAID                                                 | Blocks/Sec      |
+| RAID\_STALE\_WRITES\_DETECTED                          | Stale write detected in read                                                          | Occurences      |
+| RAID\_STALE\_WRITES\_REPROTECTIONS                     | Stale write reprotections in read                                                     | Occurences      |
+| RAID\_UNDIRTY\_CHUNKS                                  | Dirty chunks un-dirtied in a placement after quorum commit                            | Chunks/Sec      |
+| RAID\_WRITE\_PlacementSpace0                           | Blocks written by spaces                                                              | Blocks/Sec      |
+| RAID\_WRITE\_PlacementSpaceN                           | Blocks written by spaces                                                              | Blocks/Sec      |
+| SOUL\_STALE\_DISCARDS                                  | Bucket souls discarded because the on-disk superblock advanced past them (stale soul) | Souls           |
+| WRONG\_DRIVE\_DELTAS                                   | Delta segments are written to the wrong drive                                         | Blocks/Sec      |
+| WRONG\_DRIVE\_REFS                                     | Reference segments are written to the wrong drive                                     | Blocks/Sec      |
 
 ### Reactor
 
@@ -1809,6 +1858,9 @@ description: >-
 | ObsGateway\_USED                                | Number of structs in the ObsGateway pool that are currently being used                                                                                     | Structs                 |
 | PENDING\_FIBERS                                 | Number of fibers pending for external events, such as a network packet or SSD response. Upon such an external event, they change state to scheduled fibers | Fibers                  |
 | QUEUE\_TIME\_FLEX\_TASK\_CYCLES                 | Queue time of deferred flex tasks                                                                                                                          | Cycles/Sec              |
+| RDMARequest\_CAPACITY                           | Number of data structures allocated to the RDMARequest pool                                                                                                | Structs                 |
+| RDMARequest\_STRUCT\_SIZE                       | Number of bytes in each struct of the RDMARequest pool                                                                                                     | Bytes                   |
+| RDMARequest\_USED                               | Number of structs in the RDMARequest pool that are currently being used                                                                                    | Structs                 |
 | REACTOR\_MONITOR\_SCHEDULING\_LATENCY           | Histogram of fiber scheduling latency as measured by the reactor monitor fiber                                                                             | usecs                   |
 | RELENTLESS\_CYCLES                              | Number of cycles spent in relentless fibers                                                                                                                | Cycles/Sec              |
 | RELENTLESS\_FIBERS                              | Number of relentless fibers that are ready to run and eager to get CPU cycles                                                                              | Fibers                  |
