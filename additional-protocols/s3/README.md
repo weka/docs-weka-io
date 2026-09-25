@@ -6,7 +6,7 @@ description: >-
 
 # Manage the S3 protocol
 
-The S3 protocol is integral to numerous cloud-native applications, and within the WEKA system, it offers a range of technical capabilities:
+The S3 protocol is integral to numerous cloud-native applications, and within the system, it offers a range of technical capabilities:
 
 * **Data management:**
   * Ingest data using the S3 protocol.
@@ -53,7 +53,7 @@ Users can access S3 APIs with either authenticated or anonymous methods.
 
 ## Workflow: Managing S3 resources in WEKA
 
-This workflow guides you through the process of setting up and managing S3 resources within the WEKA system. It covers essential procedures, from creating an S3 cluster and bucket to uploading and downloading objects from S3 buckets. Each step demonstrates the seamless integration of WEKA's capabilities in handling data through the S3 protocol.
+This workflow guides you through the process of setting up and managing S3 resources within the system. It covers essential procedures, from creating an S3 cluster and bucket to uploading and downloading objects from S3 buckets. Each step demonstrates the seamless integration of WEKA's capabilities in handling data through the S3 protocol.
 
 Select each tab in the specified order to explore the demonstrations.
 

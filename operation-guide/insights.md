@@ -6,7 +6,7 @@ description: >-
 
 # Insights
 
-Insights provide the top processes usage, remote procedure calls (RPCs), and drives load and latency. The insights help you make informed decisions about future actions to resolve bottlenecks and improve performance. The WEKA system collects insights data from the CPUs and drives.
+Insights provide the top processes usage, remote procedure calls (RPCs), and drives load and latency. The insights help you make informed decisions about future actions to resolve bottlenecks and improve performance. The system collects insights data from the CPUs and drives.
 
 To display insights, select **Investigate > Insights**.
 

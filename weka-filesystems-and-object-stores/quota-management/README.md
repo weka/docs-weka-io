@@ -8,7 +8,7 @@ description: >-
 
 ## Overview
 
-The WEKA system offers multiple layers where you can limit capacity usage:
+The system offers multiple layers where you can limit capacity usage:
 
 * **Tenant level**: Monitor tenant usage, including SSD and total capacity, and restrict usage with quotas per tenant. Use this quota for chargebacks based on consumed or allocated SSD or object store capacity. See [multi-tenancy-cluster-level-administration.md](../../operation-guide/weka-native-multi-tenancy-management/multi-tenancy-cluster-level-administration.md "mention").
 * **Filesystem level**: Allocate a unique filesystem for each department or project.
@@ -84,5 +84,5 @@ By default, when a hard quota is set on a directory, the `df` utility interprets
 This integration applies to directory quotas only. It is not available for user or group level quotas.
 
 {% hint style="info" %}
-The `df` utility integration with quotas is a global setting in the WEKA system. To change this global behavior to use soft quotas or to ignore quotas instead, contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md#open-a-support-case).
+The `df` utility integration with quotas is a global setting in the system. To change this global behavior to use soft quotas or to ignore quotas instead, contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md#open-a-support-case).
 {% endhint %}

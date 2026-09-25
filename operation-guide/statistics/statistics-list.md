@@ -1,6 +1,6 @@
 ---
 description: >-
-  Explore the various statistics the WEKA system produces, organized according
+  Explore the various statistics the system produces, organized according
   to their respective category labels.
 ---
 
