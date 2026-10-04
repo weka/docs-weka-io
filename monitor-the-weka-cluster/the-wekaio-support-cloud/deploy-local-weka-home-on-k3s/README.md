@@ -684,7 +684,7 @@ The upgrade process takes up to 5 minutes. It is recommended to perform the upgr
 
 Certain upgrades require a fresh installation, as direct in-place upgrades are not supported in some cases.
 
-* Upgrading from **minikube or WMS** to the **Local WEKA Home 3.0 bundle** (based on K3s) is not supported. To upgrade, install the new Local WEKA Home bundle on a new server and configure API forwarding from the minikube cluster to the new K3s cluster.
+* Upgrading from **minikube** to the **Local WEKA Home 3.0 bundle** (based on K3s) is not supported. To upgrade, install the new Local WEKA Home bundle on a new server and configure API forwarding from the minikube cluster to the new K3s cluster.
 * **IPv6 support requires a fresh installation.** It is not possible to upgrade an existing LWH deployment with IPv4 to include IPv6. If IPv6 is needed, install a new LWH instance with dual-stack networking configured during cluster creation.
 
 **Procedure**

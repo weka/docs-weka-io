@@ -58,7 +58,7 @@ Adhere to the following concepts:
 ### 2. Configure a WEKA cluster with the WEKA Configurator
 
 1. **Run the `wekaconfig` Tool:**
-   1. Connect to one of the backend servers or the WMS server (if it exists) using SSH.
+   1. Connect to one of the backend servers using SSH.
    2.  Navigate to the tools directory directory:
 
        ```bash
