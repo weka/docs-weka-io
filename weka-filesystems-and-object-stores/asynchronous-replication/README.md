@@ -103,7 +103,7 @@ The RPO is not zero. Expect a lag of at least the replication interval. The targ
 
 * The replication process creates the target filesystem. You cannot replicate to a filesystem that already exists.
 * The target filesystem is write-protected while the replication pair is active. Only the replication process writes to it, and users and applications can read it.
-* `weka fs update --access rw` is not supported on the target filesystem and can cause undefined behavior.
+* Run `weka fs update --access rw` on the target filesystem only after you remove the replication pair.
 * Creating a manual snapshot on the target filesystem halts replication and moves the pair to the error state.
 * Inode numbers on the target filesystem can differ from the source filesystem. They stay the same across replication cycles.
 
