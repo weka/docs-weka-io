@@ -237,6 +237,7 @@
 * [User management](operation-guide/user-management/README.md)
   * [Manage users using the GUI](operation-guide/user-management/user-management.md)
   * [Manage users using the CLI](operation-guide/user-management/user-management-1.md)
+  * [Configure OIDC single sign-on](operation-guide/user-management/configure-oidc-single-sign-on.md)
 * [Native multi-tenancy management](operation-guide/weka-native-multi-tenancy-management/README.md)
   * [Multi-tenancy cluster-level administration](operation-guide/weka-native-multi-tenancy-management/multi-tenancy-cluster-level-administration.md)
   * [Manage NFS for tenants](operation-guide/weka-native-multi-tenancy-management/manage-nfs-for-tenants.md)

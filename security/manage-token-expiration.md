@@ -20,7 +20,7 @@ This command allows you to define the default and maximum expiration times for b
 
 {% code overflow="wrap" %}
 ```
-weka security token-expiry set [--access-token access-token] [--refresh-token refresh-token] [--access-token-max access-token-max] [--refresh-token-max refresh-token-max]
+weka security token-expiry set [--access-token access-token] [--refresh-token refresh-token] [--access-token-max access-token-max] [--refresh-token-max refresh-token-max] [--revalidation-interval revalidation-interval]
 ```
 {% endcode %}
 
@@ -32,6 +32,7 @@ weka security token-expiry set [--access-token access-token] [--refresh-token re
 | `refresh-token`     | Default lifetime of a refresh token.Possible values: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited            |
 | `access-token-max`  | Maximum allowable lifetime for an access token.Possible values: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited |
 | `refresh-token-max` | Maximum allowable lifetime for a refresh token.Possible values: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited |
+| `revalidation-interval` | Maximum access token lifetime for OIDC and LDAP users. Their access token lasts the shorter of this value and `access-token`. Minimum: 1m. Default: 5m. To restore the default, set `0`. |
 
 **Examples:**
 
