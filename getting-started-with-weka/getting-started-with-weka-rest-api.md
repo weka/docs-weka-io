@@ -4,6 +4,10 @@ description: Access, authenticate, and call the REST API.
 
 # Get started with REST API
 
+{% hint style="info" %}
+REST API v2 is deprecated. New development takes place in REST API v3, which a future release introduces. REST API v2 remains available in this release.
+{% endhint %}
+
 The system provides a RESTful API that allows you to automate operations and integrate them into your workflows or monitoring systems. A solid understanding of the relevant CLI commands and parameters is important when working with the REST API. For example, when creating a filesystem using the `POST /fileSystems` service, refer to the corresponding CLI documentation for guidance.
 
 ## Access the REST API
