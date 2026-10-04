@@ -105,9 +105,9 @@ The RPO is not zero. Expect a lag of at least the replication interval. The targ
 * The target filesystem is write-protected while the replication pair is active. Only the replication process writes to it, and users and applications can read it.
 * `weka fs update --access rw` is not supported on the target filesystem and can cause undefined behavior.
 * Creating a manual snapshot on the target filesystem halts replication and moves the pair to the error state.
-* Inode numbers on the target filesystem differ from the source filesystem.
+* Inode numbers on the target filesystem can differ from the source filesystem. They stay the same across replication cycles.
 
-To write to the target filesystem, hydrate all of its data, remove the replication pair, and contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md#open-a-support-case) to convert the filesystem to read-write.
+To write to the target filesystem, hydrate all of its data, remove the replication pair, and then run `weka fs update <name> --access rw`.
 
 ### Failover
 
