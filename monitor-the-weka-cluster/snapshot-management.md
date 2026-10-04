@@ -33,10 +33,6 @@ The SnapTool runs on any Linux-based physical server or VM, communicating with t
 
 <div data-with-frame="true"><figure><img src="../.gitbook/assets/snaptool_deployment.png" alt=""><figcaption><p>SnapTool setup</p></figcaption></figure></div>
 
-{% hint style="info" %}
-If you have deployed the WMS, follow the procedure in:[deploy-monitoring-tools-using-the-weka-management-station-wms.md](deploy-monitoring-tools-using-the-weka-management-station-wms.md "mention"). Otherwise, continue with this workflow.
-{% endhint %}
-
 ### Before you begin
 
 If a previous SnapTool version exists in the physical server, make a copy of your existing `snaptool.yml` file.

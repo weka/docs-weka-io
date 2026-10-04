@@ -137,7 +137,7 @@ In this mode, the tool provides a detailed report on any discrepancies between t
 
 **BMC configuration mode**
 
-Using the `--bmc_config` option, **bios\_tool** will SSH into each server to enable both RedFish and IPMI Over LAN. RedFish is **required** for the tool’s operation, while IPMI Over LAN is necessary for WMS deployment, so it is automatically enabled.
+Using the `--bmc_config` option, **bios\_tool** connects to each server over SSH and enables RedFish and IPMI Over LAN. RedFish is **required** for the tool’s operation.
 
 **Fix mode**
 
