@@ -8,7 +8,7 @@ description: >-
 
 ## Configure a KMS
 
-Configure the KMS of either HashiCorp Vault or KMIP within the WEKA system to encrypt filesystem keys securely.
+Configure the KMS of either HashiCorp Vault or KMIP within the system to encrypt filesystem keys securely.
 
 **Before you begin**
 
@@ -73,7 +73,7 @@ To configure the KMIP connection, set the following properties:
 
 ## Update the KMS configuration
 
-Update the KMS configuration in the WEKA system when changes occur in the KMS server details or cryptographic keys, ensuring seamless integration and continued secure filesystem key encryption.
+Update the KMS configuration in the system when changes occur in the KMS server details or cryptographic keys, ensuring seamless integration and continued secure filesystem key encryption.
 
 {% hint style="info" %}
 If your system is upgraded to version 4.4.2 or higher, the **Update KMS Configuration** screen displays a configuration with the Token parameter. Reset the KMS configuration and configure it using the new **Role ID** and **Secret ID** parameters.

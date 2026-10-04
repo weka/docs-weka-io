@@ -115,7 +115,7 @@ secret_id_ttl         0s
 
 ### **Examples**
 
-**Setting the WEKA system with a HashiCorp Vault KMS for cluster-wide encryption:**
+**Setting the system with a HashiCorp Vault KMS for cluster-wide encryption:**
 
 {% code overflow="wrap" %}
 ```
@@ -123,7 +123,7 @@ weka security kms set vault https://vault-dns:8200 weka_cluster_key --token s.nR
 ```
 {% endcode %}
 
-**Setting the WEKA system with a HashiCorp Vault KMS for per-filesystem encryption:**
+**Setting the system with a HashiCorp Vault KMS for per-filesystem encryption:**
 
 {% code overflow="wrap" %}
 ```
@@ -131,7 +131,7 @@ weka security kms set  vault  https://vault-dns:8200 weka_cluster_key --role-id 
 ```
 {% endcode %}
 
-**Setting the WEKA system with a KMIP complaint KMS (SmartKey example):**
+**Setting the system with a KMIP complaint KMS (SmartKey example):**
 
 {% code overflow="wrap" %}
 ```
@@ -202,7 +202,7 @@ Unlike HashiCorp Vault KMS, re-wrapping a KMIP-based KMS necessitates generating
 
 ### Enable 'Transit' secret engine in vault
 
-The WEKA system uses [encryption-as-a-service](https://learn.hashicorp.com/vault/encryption-as-a-service/eaas-transit) capabilities of the KMS to encrypt/decrypt the filesystem keys. This requires the configuration of Vault with the `transit` secret engine with this command:
+The system uses [encryption-as-a-service](https://learn.hashicorp.com/vault/encryption-as-a-service/eaas-transit) capabilities of the KMS to encrypt/decrypt the filesystem keys. This requires the configuration of Vault with the `transit` secret engine with this command:
 
 ```
 vault secrets enable transit
@@ -215,7 +215,7 @@ The expected output is:
 
 ### Set up a master key for the WEKA system
 
-Once the `transit` secret engine is set up, a master key for use with the WEKA system must be created with this command:
+Once the `transit` secret engine is set up, a master key for use with the system must be created with this command:
 
 ```
 vault write -f transit/keys/weka-key
@@ -258,7 +258,7 @@ vault policy write weka weka_policy.hcl
 
 ### Obtain an API token from the vault
 
-Authentication from the WEKA system to Vault relies on an API token. Since the WEKA system must always be able to communicate with the KMS, a [periodic service token](https://www.vaultproject.io/docs/concepts/tokens.html#periodic-tokens) must be used.
+Authentication from the system to Vault relies on an API token. Since the system must always be able to communicate with the KMS, a [periodic service token](https://www.vaultproject.io/docs/concepts/tokens.html#periodic-tokens) must be used.
 
 * Verify that the`token` authentication method in Vault is enabled. This can be performed using the following command:
 
@@ -292,7 +292,7 @@ vault write auth/token/roles/weka allowed_policies="weka" period="768h"
 {% endcode %}
 
 {% hint style="info" %}
-The `period` is the designated timeframe for a renewal request. If a renewal is not requested within this period, the token is revoked, necessitating the retrieval of a new token from the Vault and its configuration in the WEKA system.
+The `period` is the designated timeframe for a renewal request. If a renewal is not requested within this period, the token is revoked, necessitating the retrieval of a new token from the Vault and its configuration in the system.
 {% endhint %}
 
 * Generate a token for the logged-in identity using the following command:
@@ -320,7 +320,7 @@ policies             ["default"]
 For more information on obtaining an API token, refer to [Vault Tokens documentation](https://learn.hashicorp.com/vault/security/tokens).
 
 {% hint style="warning" %}
-The WEKA system does not automatically renew the API token lease. It can be renewed using the [Vault CLI/API](https://learn.hashicorp.com/vault/security/tokens#step-3-renew-service-tokens). It is also possible to define a higher maximum token value (`max_lease_ttl)`by changing the [Vault Configuration file](https://www.vaultproject.io/docs/configuration/index.html#max_lease_ttl).
+The system does not automatically renew the API token lease. It can be renewed using the [Vault CLI/API](https://learn.hashicorp.com/vault/security/tokens#step-3-renew-service-tokens). It is also possible to define a higher maximum token value (`max_lease_ttl)`by changing the [Vault Configuration file](https://www.vaultproject.io/docs/configuration/index.html#max_lease_ttl).
 {% endhint %}
 
 ## Obtain a certificate for a KMIP-based KMS

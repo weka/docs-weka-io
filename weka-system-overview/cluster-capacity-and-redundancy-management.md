@@ -6,7 +6,7 @@ description: >-
 
 # Cluster capacity and redundancy management
 
-Effective cluster capacity and redundancy management are crucial for ensuring data protection, availability, and optimal performance in WEKA systems. This involves understanding key capacity metrics, redundancy configurations, and the system's mechanisms for handling failures.
+Effective cluster capacity and redundancy management are crucial for ensuring data protection, availability, and optimal performance. This involves understanding key capacity metrics, redundancy configurations, and the system's mechanisms for handling failures.
 
 ## Key capacity terms
 

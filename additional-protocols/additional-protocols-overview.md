@@ -124,7 +124,7 @@ With dedicated protocol servers in place, proceed to manage individual protocols
 
 Learn about the considerations for accessing the same WEKA filesystem data through multiple protocols, including POSIX, NFS, SMB, and S3.
 
-While the WEKA system provides unified data access, each protocol enforces different rules for filenames, permissions, and file locking. Understanding these differences is crucial to prevent access issues or unexpected behavior when data is written by one protocol and read by another.
+While the system provides unified data access, each protocol enforces different rules for filenames, permissions, and file locking. Understanding these differences is crucial to prevent access issues or unexpected behavior when data is written by one protocol and read by another.
 
 ### File naming conventions
 
@@ -143,7 +143,7 @@ A primary source of conflict is the different character sets and case-sensitivit
 
 ### Permissions and access control
 
-Each protocol uses a distinct permission model, which the WEKA system must translate.
+Each protocol uses a distinct permission model, which the system must translate.
 
 * **NFS and POSIX:** Use POSIX mode bits (read, write, execute) for owner, group, and other. NFS can also use NFSv4 ACLs, which provide more granular control. The system can be set to enforce POSIX ACLs, NFSv4 ACLs, or a hybrid model.
 * **SMB:** Uses Windows-style NTFS ACLs, which are fundamentally different from POSIX permissions.
@@ -171,7 +171,7 @@ Protocols handle file locking differently, which is critical in multi-user envir
 
 POSIX, NFS, and SMB clients interact with a traditional hierarchical filesystem of directories and files.
 
-S3 clients interact with a flat object store structure (buckets and keys). The WEKA system presents the filesystem hierarchy to S3 clients by using the forward slash (`/`) as a delimiter in object keys. This simulation allows S3 clients to "browse" the directory structure, but the underlying concept is different.
+S3 clients interact with a flat object store structure (buckets and keys). The system presents the filesystem hierarchy to S3 clients by using the forward slash (`/`) as a delimiter in object keys. This simulation allows S3 clients to "browse" the directory structure, but the underlying concept is different.
 
 ### Interoperability guidelines
 

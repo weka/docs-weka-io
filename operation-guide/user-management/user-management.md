@@ -8,7 +8,7 @@ description: >-
 
 ## Manage local users
 
-Local users are accounts created directly in the WEKA system, as distinct from domain users managed by the tenant's **User Directory**. A WEKA cluster supports up to 1152 local users.
+Local users are accounts created directly in the system, as distinct from domain users managed by the tenant's **User Directory**. A WEKA cluster supports up to 1152 local users.
 
 <div data-with-frame="true"><img src="../../.gitbook/assets/local_users.png" alt="User Management: Local Users page"></div>
 
@@ -133,7 +133,7 @@ You can remove a local user that is no longer required.
 
 ## Configure LDAP/AD in WEKA
 
-Integrate the WEKA system with your tenant's user directory using Lightweight Directory Access Protocol (LDAP) or Active Directory (AD) for centralized user authentication and access management.
+Integrate the system with your tenant's user directory using Lightweight Directory Access Protocol (LDAP) or Active Directory (AD) for centralized user authentication and access management.
 
 To configure the user directory, navigate to **Configure > User Management** and select the **User Directory** tab. If no directory is configured, select **Configure LDAP** or **Configure Active Directory**.
 
@@ -141,7 +141,7 @@ To configure the user directory, navigate to **Configure > User Management** and
 
 ### Configure LDAP
 
-Connect to an LDAP server to authenticate and authorize users for access to the WEKA system.
+Connect to an LDAP server to authenticate and authorize users for access to the system.
 
 <details>
 
@@ -153,7 +153,7 @@ Connect to an LDAP server to authenticate and authorize users for access to the 
 | Protocol Version            | The version of the LDAP protocol. For example: `3`.                                                                                                                                |
 | Start TLS                   | When enabled, initiates a Transport Layer Security (TLS) connection with the LDAP server for encrypted communication.                                                              |
 | Ignore Certificate Failures | When enabled, the LDAP client ignores certificate validation failures during the TLS/SSL handshake. Use this option cautiously, as it may pose a security risk.                    |
-| Server Timeout Seconds      | The number of seconds the WEKA system waits for a response from the LDAP server before the connection attempt times out.                                                           |
+| Server Timeout Seconds      | The number of seconds the system waits for a response from the LDAP server before the connection attempt times out.                                                           |
 | Base DN                     | The base distinguished name (DN) that serves as the starting point for directory tree searches. For example: `dc=example,dc=com`.                                                  |
 | Reader Username             | The username or DN of a dedicated user account for reading data from the LDAP server. For example: `cn=reader,dc=example,dc=com`.                                                  |
 | Reader Password             | The password for the reader user account.                                                                                                                                          |
@@ -182,7 +182,7 @@ After saving the configuration, the **User Directory** tab displays the LDAP con
 
 ### Configure Active Directory
 
-Connect to an Active Directory (AD) domain to authenticate and authorize users for access to the WEKA system.
+Connect to an Active Directory (AD) domain to authenticate and authorize users for access to the system.
 
 <details>
 
@@ -192,7 +192,7 @@ Connect to an Active Directory (AD) domain to authenticate and authorize users f
 | ------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Domain                    | The domain name of the Active Directory environment. For example: `example.com`.                                                                                                             |
 | Server URI                | The address of the Active Directory server. For example: `ldap://ad.example.com`.                                                                                                            |
-| Server Timeout Seconds    | The number of seconds the WEKA system waits for a response from the AD server before the connection attempt times out.                                                                       |
+| Server Timeout Seconds    | The number of seconds the system waits for a response from the AD server before the connection attempt times out.                                                                       |
 | Reader Username           | The username or user principal name (UPN) of a dedicated user account for reading data from Active Directory. For example: `readeruser@ad.example.com`.                                      |
 | Reader Password           | The password for the reader user account.                                                                                                                                                    |
 | Cluster Admin Role Group  | The Active Directory group granted administrative privileges for the cluster. The sAMAccountName can be up to 20 characters. For example: `CN=ClusterAdmins,CN=Users,DC=example,DC=com`.     |

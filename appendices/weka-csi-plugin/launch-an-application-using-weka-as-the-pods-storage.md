@@ -4,7 +4,7 @@ description: Deploy an application pod that uses WEKA storage.
 
 # Launch an application using WEKA as the POD's storage
 
-Once a storage class and a PVC are in place, you can configure the Kubernetes pods to provision volumes via the WEKA system.
+Once a storage class and a PVC are in place, you can configure the Kubernetes pods to provision volumes via the system.
 
 We'll take an example application that echos the current timestamp every 10 seconds and provide it with the previously created `pvc-wekafs-dir` PVC.
 

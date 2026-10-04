@@ -32,7 +32,7 @@ Verify that the dedicated filesystem for persistent protocol configurations is c
      * **enabled:** Enables encryption negotiation but doesn't turn it on automatically for supported sessions and shared connections.
      * **desired**: Enables encryption negotiation and turns on data encryption for supported sessions and shared connections.
      * **required**: Enforces data encryption on sessions and shared connections. Clients that do not support encryption will be denied access to the server.
-   * **Servers**: List 3-8 WEKA system servers to participate in the SMB cluster based on the server IDs in WEKA.
+   * **Servers**: List 3-8 NeuralMesh servers to participate in the SMB cluster based on the server IDs in WEKA.
    * **IPs**: (Optional) List of virtual IPs (comma-separated) used as floating IPs for the SMB cluster to provide HA to clients. These IPs must be unique; do not assign these IPs to any host on the network.\
      For an IP range, use the following format: **a.b.c.x-y**.
    * **Config Filesystem:** select the filesystem used for persisting cluster-wide protocol configurations.

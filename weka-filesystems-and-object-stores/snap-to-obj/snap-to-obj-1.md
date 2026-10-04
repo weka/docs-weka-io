@@ -135,7 +135,7 @@ Recover a filesystem when the required snapshot exists only in a remote object s
     <pre class="language-bash" data-overflow="wrap"><code class="lang-bash">weka fs tier s3 add &#x3C;recovery-bucket-name> [--site local] [--obs-name obs-name] [--hostname hostname] [--bucket bucket] [--auth-method auth-method] [--region region] [--access-key-id access-key-id] [--secret-key secret-key] [--protocol protocol]
     </code></pre>
 
-    Use the bucket that contains the uploaded snapshot. The `recovery-bucket-name` value is the WEKA OBS connection name. Use this name in later `attach` and `detach` commands. If the endpoint is another WEKA system that uses a self-signed certificate, set `--protocol HTTPS_UNVERIFIED`.
+    Use the bucket that contains the uploaded snapshot. The `recovery-bucket-name` value is the WEKA OBS connection name. Use this name in later `attach` and `detach` commands. If the endpoint is another NeuralMesh cluster that uses a self-signed certificate, set `--protocol HTTPS_UNVERIFIED`.
 2.  Create the filesystem from the snapshot:
 
     <pre class="language-bash" data-overflow="wrap"><code class="lang-bash">weka fs download &#x3C;name> &#x3C;group-name> &#x3C;total-capacity> &#x3C;ssd-capacity> &#x3C;recovery-bucket-name> &#x3C;locator>

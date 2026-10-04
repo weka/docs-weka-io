@@ -78,7 +78,7 @@ For **RFC2307** mapping, ensure the following attributes are met:
 
 ### **ID range configuration**
 
-The WEKA system allows custom configuration of AD ID ranges to prevent UID/GID overlap across domains:
+The system allows custom configuration of AD ID ranges to prevent UID/GID overlap across domains:
 
 * Each trusted domain must have a distinct ID range.
 * The primary domain uses a default configurable range.
@@ -90,7 +90,7 @@ For authoritative reference on Active Directory schema attributes, consult Micro
 
 ## Workflow overview: configure SMB support
 
-This workflow outlines the key steps to configure SMB-W support in the WEKA system. For detailed CLI and GUI procedures, refer to the related How-To sections.
+This workflow outlines the key steps to configure SMB-W support in the system. For detailed CLI and GUI procedures, refer to the related How-To sections.
 
 **Before you begin**
 
@@ -98,9 +98,9 @@ Ensure that a dedicated filesystem exists for storing persistent protocol config
 
 **Workflow**
 
-1. **Configure SMB-W cluster**: Define the WEKA system servers that will participate in the SMB-W cluster and specify the Active Directory (AD) domain name.\
+1. **Configure SMB-W cluster**: Define the NeuralMesh servers that will participate in the SMB-W cluster and specify the Active Directory (AD) domain name.\
    In on-premises deployments, you can configure a pool of public IP addresses distributed across the SMB-W cluster. If a server fails, its IP addresses are reassigned to other servers in the cluster to maintain availability.
-2. **Join the SMB-W cluster to the Active Directory domain:** Connect the WEKA system to the target AD domain. This includes required pre-configuration in AD and post-configuration in both the DNS Manager and Active Directory Users and Computers.
+2. **Join the SMB-W cluster to the Active Directory domain:** Connect the system to the target AD domain. This includes required pre-configuration in AD and post-configuration in both the DNS Manager and Active Directory Users and Computers.
 3. **Create SMB shares and set permissions:** Create the required shares and directories. By default, filesystem permissions are `root:root` with 755 access and must initially be set using a WEKA filesystem or NFS mount.
 
 After the initial configuration, administrators can connect through Windows to manage and refine share-level permissions.

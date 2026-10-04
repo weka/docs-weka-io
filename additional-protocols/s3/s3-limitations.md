@@ -183,7 +183,7 @@ The S3 protocol implementation supports the following policy actions:
 
 ## Supported AWS-aligned integrity algorithms
 
-The WEKA system supports end-to-end checksum validation for S3 data integrity protections. The following AWS-aligned integrity algorithms are supported:
+The system supports end-to-end checksum validation for S3 data integrity protections. The following AWS-aligned integrity algorithms are supported:
 
 * CRC32
 * CRC32C

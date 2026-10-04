@@ -62,7 +62,7 @@ To connect the WEKA cluster to LDAP, use the `weka user ldap setup` command.
 
 #### Local
 
-The WEKA system manages user access and roles locally or through directories like LDAP or AD. Local users can have roles just like LDAP or AD users, but you assign them through direct mapping.
+The system manages user access and roles locally or through directories like LDAP or AD. Local users can have roles just like LDAP or AD users, but you assign them through direct mapping.
 
 To manage local users, use the `weka user add/update/delete` commands.
 
@@ -190,7 +190,7 @@ The MAC model enforces access policies from a central authority. Users cannot ch
 
 #### Roles
 
-The WEKA system uses roles to manage user access permissions. You can assign roles to local users or map them to users from a directory service like LDAP or AD. Each user account has a unique display name and is authenticated with a secret. The system supports up to 1,152 local users.
+The system uses roles to manage user access permissions. You can assign roles to local users or map them to users from a directory service like LDAP or AD. Each user account has a unique display name and is authenticated with a secret. The system supports up to 1,152 local users.
 
 When you create a WEKA cluster, the system generates a default Cluster Admin user (`admin`) with a default password. It is critical to reset this password upon first login, as the `admin` user has full administrative privileges across the cluster.
 
@@ -214,7 +214,7 @@ The system provides automatic user mapping from LDAP or AD group memberships to 
 In addition to standard administrative and user roles, WEKA provides special roles for specific services. You can assign these roles only to local users.
 
 * **CSI:** The CSI role facilitates Kubernetes interaction with the WEKA cluster through the WEKA CSI Plugin. It grants permissions limited to filesystem provisioning and management through the CLI and API.
-*   **S3:** The S3 user role provides access to the WEKA system exclusively through the S3 protocol.
+*   **S3:** The S3 user role provides access to the system exclusively through the S3 protocol.
 
     This role allows a user to execute S3 commands and API calls. All actions are governed by the permissions defined in the user's attached S3 IAM policy.
 
@@ -283,7 +283,7 @@ A bucket policy is a JSON document that you attach directly to an S3 bucket. It 
 
 #### SELinux
 
-The WEKA system supports the use of SELinux (Security-Enhanced Linux) on its clients. SELinux is a security architecture in the Linux kernel that enforces mandatory access control (MAC) policies defined by a system administrator.
+The system supports the use of SELinux (Security-Enhanced Linux) on its clients. SELinux is a security architecture in the Linux kernel that enforces mandatory access control (MAC) policies defined by a system administrator.
 
 You can enable SELinux on a client using one of the following methods:
 
@@ -321,7 +321,7 @@ Encryption at rest secures data that is stored on physical media, such as the SS
 
 A Key Management Service (KMS) provides a centralized system to securely manage the entire lifecycle of cryptographic keys, including their generation, storage, distribution, rotation, and destruction. It offers administrators a secure and simplified method for controlling access to the essential keys used for data encryption and decryption.
 
-In the WEKA system, the KMS plays a crucial role during startup by encrypting and decrypting filesystem keys. For ongoing data operations, WEKA relies on efficient in-memory functions to maintain high performance for encryption and decryption. To enhance security, the WEKA system never stores any information that could potentially reconstruct the master encryption keys managed by the KMS.
+In the system, the KMS plays a crucial role during startup by encrypting and decrypting filesystem keys. For ongoing data operations, WEKA relies on efficient in-memory functions to maintain high performance for encryption and decryption. To enhance security, the system never stores any information that could potentially reconstruct the master encryption keys managed by the KMS.
 
 Using a KMS is vital for security when you use the Snap-to-object feature. Without KMS integration, the system protects an encrypted filesystem snapshot with a generic key, meaning the snapshot can potentially be restored on any WEKA cluster. The generic key uses the XTS-AES 256 library.
 
@@ -335,7 +335,7 @@ Encryption in transit protects data as it travels across networks, such as betwe
 
 **POSIX**
 
-The WEKA system provides transparent encryption for data accessed by POSIX clients using the XTS-AES-256 algorithm. An automatic layer encrypts data when it is written to disk and decrypts it when it is read, making the process invisible to POSIX programs.
+The system provides transparent encryption for data accessed by POSIX clients using the XTS-AES-256 algorithm. An automatic layer encrypts data when it is written to disk and decrypts it when it is read, making the process invisible to POSIX programs.
 
 The key features of this encryption method include:
 
@@ -344,7 +344,7 @@ The key features of this encryption method include:
 
 #### **NFS**
 
-The WEKA system supports both NFSv3 and NFSv4. NFSv3 does not have a native data encryption mechanism. In contrast, NFSv4 supports encryption with Kerberos when you configure it to use the `krb5p` security mode. WEKA supports NFSv4 only with the NFS-W service.
+The system supports both NFSv3 and NFSv4. NFSv3 does not have a native data encryption mechanism. In contrast, NFSv4 supports encryption with Kerberos when you configure it to use the `krb5p` security mode. WEKA supports NFSv4 only with the NFS-W service.
 
 #### **SMB**
 

@@ -36,6 +36,6 @@ The cluster is configured with scale-in protection and instance termination prot
 **Result**
 
 * After modifying the desired size, it doesn't immediately impact the Auto Scaling Group (ASG). Instead, a Step Function continuously monitors the configuration.
-* This Step Function runs every minute and identifies that the desired size is less than the current WEKA system's size.
+* This Step Function runs every minute and identifies that the desired size is less than the current system's size.
 * When this condition is met, it initiates a scale-in process, but only if certain conditions are met, such as having enough capacity on the filesystem.
 * If the scale-down is successful, the Step Function subsequently removes the protection from the scaled-in instance, thereby allowing the Auto Scaling Group to proceed with removing it.

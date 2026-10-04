@@ -113,7 +113,7 @@ To securely mount a tenant filesystem, users must first authenticate to generate
 
 **Procedure**
 
-1.  **Log in to the WEKA system:** Use the CLI to create an authentication token, which the system saves on the client (default: `~/.weka/auth-token.json`).
+1.  **Log in to the system:** Use the CLI to create an authentication token, which the system saves on the client (default: `~/.weka/auth-token.json`).
 
     ```bash
     weka user login <username> <password> --tenant <tenant> --HOST <backend-host>

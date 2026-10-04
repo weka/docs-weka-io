@@ -4,7 +4,7 @@ description: Add WEKA clients to a WEKA cluster deployed on Azure.
 
 # Add clients to a WEKA cluster on Azure
 
-When deploying a WEKA cluster, it is possible to create clients using Terraform. After completing this step, you can expand the number of clients in your WEKA system by performing the following procedure.
+When deploying a WEKA cluster, it is possible to create clients using Terraform. After completing this step, you can expand the number of clients in your system by performing the following procedure.
 
 ## Before you begin
 

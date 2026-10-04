@@ -11,7 +11,7 @@ The TLS implementation in a WEKA cluster secures communication between clients a
 * **Data Protection:** Encrypting data in transit to ensure confidentiality and integrity.
 * **Authentication:** Verifying the system’s identity to prevent unauthorized access.
 
-By default, the WEKA system deploys a self-signed TLS certificate to secure access to the Web UI, CLI, and API over HTTPS (port 14000) . Users can enhance security by deploying their own TLS certificates, which requires providing an unencrypted private key and certificate in PEM format.
+By default, the system deploys a self-signed TLS certificate to secure access to the Web UI, CLI, and API over HTTPS (port 14000) . Users can enhance security by deploying their own TLS certificates, which requires providing an unencrypted private key and certificate in PEM format.
 
 The system supports TLS 1.2 and higher, enforcing encrypted communication with a minimum of 128-bit ciphers.
 

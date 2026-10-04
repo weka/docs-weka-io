@@ -109,7 +109,7 @@ Data encryption settings can only be configured during the initial creation of a
 
 ### Metadata limitations **in** WEKA filesystems
 
-In addition to the capacity constraints, each filesystem in WEKA has specific limitations on metadata. The overall system-wide metadata cap depends on the SSD capacity allocated to the WEKA system and the RAM resources allocated to the WEKA system processes.
+In addition to the capacity constraints, each filesystem in WEKA has specific limitations on metadata. The overall system-wide metadata cap depends on the SSD capacity allocated to the system and the RAM resources allocated to the system processes.
 
 WEKA carefully tracks metadata units in RAM. If the metadata units approach the RAM limit, they are intelligently paged to the SSD, triggering alerts. This proactive measure allows administrators sufficient time to increase system resources while sustaining IO operations with minimal performance impact.
 
@@ -119,7 +119,7 @@ The cumulative metadata memory requirements across all filesystems can surpass t
 
 #### Metadata units calculation <a href="#metadata-calculations" id="metadata-calculations"></a>
 
-Every metadata unit within the WEKA system demands 4 KB of SSD space (excluding tiered storage) and occupies 20 bytes of RAM.
+Every metadata unit within the system demands 4 KB of SSD space (excluding tiered storage) and occupies 20 bytes of RAM.
 
 Throughout this documentation, the restriction on metadata per filesystem is denoted as the `max-files` parameter. This parameter includes the files' count and respective sizes.
 
@@ -183,15 +183,15 @@ When multiple clients or processes are throttled simultaneously, the system appl
 
 ## Object stores overview
 
-Within the WEKA system, object stores are an optional external storage medium strategically designed to store warm data. These object stores, employed in tiered WEKA system configurations, can be cloud-based, located in the same location as the WEKA cluster, or at a remote location.
+Within the system, object stores are an optional external storage medium strategically designed to store warm data. These object stores, employed in tiered NeuralMesh configurations, can be cloud-based, located in the same location as the WEKA cluster, or at a remote location.
 
 WEKA extends support for object stores, leveraging their capabilities for tiering (both tiering and local snapshots) and backup (snapshots only). Both tiering and backup functionalities can be concurrently used for the same filesystem, enhancing flexibility.
 
 The optimal usage of object store buckets comes into play when a cost-effective data storage tier is imperative and traditional server-based SSDs prove insufficient in meeting the required price point.
 
-An object store bucket definition comprises crucial components: the object store DNS name, bucket identifier, and access credentials. The bucket must remain dedicated to the WEKA system, ensuring exclusivity and security by prohibiting access from other applications.
+An object store bucket definition comprises crucial components: the object store DNS name, bucket identifier, and access credentials. The bucket must remain dedicated to the system, ensuring exclusivity and security by prohibiting access from other applications.
 
-Moreover, the connectivity between filesystems and object store buckets extends beyond essential storage. This connection proves invaluable in data lifecycle management and facilitates the innovative Snap-to-Object features, offering a holistic approach to efficient data handling within the WEKA system.
+Moreover, the connectivity between filesystems and object store buckets extends beyond essential storage. This connection proves invaluable in data lifecycle management and facilitates the innovative Snap-to-Object features, offering a holistic approach to efficient data handling within the system.
 
 **Related topics**
 
@@ -203,9 +203,9 @@ Moreover, the connectivity between filesystems and object store buckets extends 
 
 ## Filesystem groups overview
 
-Within the WEKA system, the organization of filesystems takes place through the creation of filesystem groups, with a maximum limit set at eight groups.
+Within the system, the organization of filesystems takes place through the creation of filesystem groups, with a maximum limit set at eight groups.
 
-Each of these filesystem groups comes equipped with tiering control parameters. When filesystems are tiered and have associated object stores, the tiering policy remains consistent for all tiered filesystems residing within the same filesystem group. This unification ensures streamlined management and unified control over tiering strategies within the WEKA system.
+Each of these filesystem groups comes equipped with tiering control parameters. When filesystems are tiered and have associated object stores, the tiering policy remains consistent for all tiered filesystems residing within the same filesystem group. This unification ensures streamlined management and unified control over tiering strategies within the system.
 
 **Related topics**
 

@@ -57,7 +57,7 @@ Modifying the **Virtual-hosted-style Domains** parameter automatically triggers 
 
 ## Delete an S3 cluster configuration
 
-Deleting an existing S3 cluster managed by the WEKA system does not delete the backend WEKA filesystem but removes the S3 bucket exposures of these filesystems.
+Deleting an existing S3 cluster managed by the system does not delete the backend WEKA filesystem but removes the S3 bucket exposures of these filesystems.
 
 **Procedure**
 

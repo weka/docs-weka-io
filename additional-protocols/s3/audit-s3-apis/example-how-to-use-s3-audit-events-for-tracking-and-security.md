@@ -57,4 +57,4 @@ The following example illustrates a `PutObject` operation and describes the key 
 * **Authorization:** Credentials used for API authorization.
 * **userAgent:** The user agent string from the requesting client, useful for identifying the client software.
 * **clusterName / serverIP / serverName:** Provides information about the WEKA cluster and access point.
-* **version:** The software version of the WEKA system handling the request.
+* **version:** The software version of the system handling the request.
