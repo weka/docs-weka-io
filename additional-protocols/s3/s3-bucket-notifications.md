@@ -164,26 +164,52 @@ weka s3 cluster notification-target remove --type kafka --name tgt1
 
 ### Manage TLS certificates for notification targets
 
+Store certificates in the S3 certificate store. A notification target then references a certificate by name with `--tls-cert`.
+
 **Add a certificate**
 
 ```bash
-weka s3 cluster notification-target cert add <cert-name> \
-  --target-type kafka \
-  --client-tls-cert <cert-file> \
-  --client-tls-key <key-file>
+weka s3 cert add <cert-name> --type client --cert <cert-file> --key <key-file>
 ```
+
+**Parameters**
+
+| Parameter | Description |
+| --- | --- |
+| `cert-name`\* | Name of the certificate. Up to 32 characters. |
+| `type`\* | `client`: a certificate and private key that the cluster presents to the broker.<br>`server`: a certificate that the cluster trusts. It has no private key. |
+| `cert`\* | File that contains the certificate, in PEM format. |
+| `key` | File that contains the private key, in PEM format. Required for a `client` certificate. Not allowed for a `server` certificate. |
 
 **List certificates**
 
 ```bash
-weka s3 cluster notification-target cert list --target-type kafka
+weka s3 cert list
+```
+
+**Rotate a certificate**
+
+Replace the certificate and key under the same name. Notification targets that reference it pick up the new certificate.
+
+```bash
+weka s3 cert update <cert-name> --type client --cert <cert-file> --key <key-file>
 ```
 
 **Remove a certificate**
 
+Before you remove a certificate, update or remove every notification target that references it.
+
 ```bash
-weka s3 cluster notification-target cert remove <cert-name> --target-type kafka
+weka s3 cert remove <cert-name>
 ```
+
+{% hint style="info" %}
+The `weka s3 cluster notification-target cert` commands are deprecated. Use `weka s3 cert` instead.
+{% endhint %}
+
+{% hint style="danger" %}
+**INTERNAL, remove before publication. TBD (Nir Yaron):** (1) After an upgrade to 6.1, do certificates added with the deprecated commands appear in `weka s3 cert list` without any action? (2) Can `--tls-cert` on a notification target name a `server` certificate, for example to trust a broker with a self-signed certificate, or only a `client` certificate? (3) Is bucket migration (`--tls-cert` on bucket migrate attach) customer-facing in 6.1?
+{% endhint %}
 
 ## Manage bucket notification rules
 
