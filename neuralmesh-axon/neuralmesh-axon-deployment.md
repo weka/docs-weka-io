@@ -736,7 +736,7 @@ Configure Slurm to isolate CPU and memory resources for WEKA processes. This pre
 4.  **Mount the filesystem using the resources excluded from Slurm:** The following example mounts the filesystem using core 46, which is outside the `CpuSpecList` range (47-95) defined for Slurm.
 
     ```bash
-    mount -t wekafs -o core=46 -o net=ib0 backend-host-0/fs1 /mnt/weka
+    mount -t wekafs -o core=46,net=ib0 backend-host-0/fs1 /mnt/weka
     ```
 
 ## Integrate with Kubernetes

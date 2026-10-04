@@ -79,11 +79,11 @@ mount -t wekafs <backend-name> <fs-name> <mount-point> -o container_name=<contai
 ```
 {% endcode %}
 
-To mount a stateless client using UDP mode, add `-o net=udp -o core=<core-id>` to the command line. For example:
+To mount a stateless client using UDP mode, add `-o net=udp,core=<core-id>` to the command line. For example:
 
 {% code overflow="wrap" %}
 ```bash
-mount -t wekafs backend-server-0/my_fs /mnt/weka -o net=udp -o core=2 -o container_name=frontend0
+mount -t wekafs backend-server-0/my_fs /mnt/weka -o net=udp,core=2,container_name=frontend0
 ```
 {% endcode %}
 

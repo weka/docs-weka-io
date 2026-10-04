@@ -98,7 +98,7 @@ Mount the WEKA filesystem on the KVM server using a stateless client mount. Repl
 * `<host_mountpoint>`: the mount point on the KVM server, for example `/mnt/weka`
 
 ```bash
-sudo mount -t wekafs -o net=<interface-name> -o num_cores=1 \
+sudo mount -t wekafs -o net=<interface-name>,num_cores=1 \
   <backend_IP>/<filesystem> <host_mountpoint>
 ```
 

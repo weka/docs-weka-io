@@ -370,7 +370,7 @@ sudo systemctl restart slurmd
 Continuing with this example, Slurm and WEKA in a dedicated backend architecture with DPDK mount modes, we turn to necessary WEKA configurations. To reserve core 47 for the WEKA Frontend node on a compute node using a DPDK mount mode, you can use the `core` mount option as follows:
 
 ```
-mount -t wekafs -o core=47 -o net=ib0 backend-host-0/fs1 /mnt/weka
+mount -t wekafs -o core=47,net=ib0 backend-host-0/fs1 /mnt/weka
 ```
 
 In this example, the NIC used for DPDK is `ib0`, the WEKA backend host can be acceesed at `backend-host-0`, the filesystem name is `fs1`, and the mount location on the compute node is `/mnt/weka`.
