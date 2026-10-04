@@ -99,21 +99,23 @@ Display the license status using one of the following commands:
 
 ```bash
 # weka cluster license
-Licensing status: Classic
+             Licensing Status  Classic
 
-Current usage:
-    29999 GB raw drive capacity
-    13494 GB usable capacity
-    6000 GB object-store capacity
-    Disabled data reduction
+                Current Usage
+           Raw Drive Capacity  30.00 TB
+              Usable Capacity  13.49 TB
+        Object Store Capacity  6.00 TB
+               Data Reduction  Disabled
+    Cross-Cluster Replication  Disabled
 
-Installed license:
-    Valid from 2026-04-23T22:49:40Z
-    Expires at 2026-07-22T22:44:50Z
-    0 GB raw drive capacity
-    14000 GB usable capacity
-    60000 GB object-store capacity
-    Disabled data reduction
+            Installed License
+                   Valid From  2026-04-23T22:49:40Z
+                   Expires At  2026-07-22T22:44:50Z
+           Raw Drive Capacity
+              Usable Capacity  14.00 TB
+        Object Store Capacity  60.00 TB
+               Data Reduction  Disabled
+    Cross-Cluster Replication  Not licensed
 ```
 
 {% hint style="info" %}
