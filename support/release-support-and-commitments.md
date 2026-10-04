@@ -23,9 +23,9 @@ In the WEKA portal at get.weka.io, each Release Line is identified by the Minor 
 {% hint style="info" %}
 Legacy 4.x versions use Release Line groupings that differ from the Major number rule:
 
-* Versions 4.0 and 4.1 share a Release Line.
+* Versions 4.0 and 4.1 share the same Release Line.
 * Version 4.2 is a separate Release Line.
-* Versions 4.3 and 4.4 share a Release Line.
+* Versions 4.3 and 4.4 share the same Release Line.
 {% endhint %}
 
 ## Support phases
