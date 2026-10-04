@@ -37,7 +37,7 @@ Customers using a supported OS with cgroupsV2 or wanting to modify the cgroups u
 
 The cgroups setting includes the following modes:
 
-* `auto`: WEKA tries using cgroupsV1 (default). If it fails, the cgroups is set to none automatically.
+* `auto` (default): WEKA uses cgroupsV1 if the OS supports it, otherwise cgroupsV2. If the OS supports neither, WEKA runs without cgroups.
 * `force`: WEKA uses cgroupsV1. If the OS does not support it, WEKA fails.
 * `force_v2`: WEKA uses cgroupsV2. If the OS does not support it, WEKA fails.
 * `none`: WEKA never uses cgroups, even if it runs on an OS with cgroupsV1.
