@@ -19,6 +19,10 @@ WEKA supports two installation paths for bare metal servers:
 
 ### Path A: Automated installation with WSA
 
+{% hint style="warning" %}
+WSA is deprecated. WEKA plans to remove it in June 2027.
+{% endhint %}
+
 WEKA Software Appliance (WSA): a server image that includes a preconfigured operating system (Rocky Linux 8.10), drivers, WEKA software, and support tools.
 
 WSA speeds up operating system deployment and WEKA software installation. Download WSA and install it on the servers. After installation, the server starts in STEM mode and is ready for configuration.

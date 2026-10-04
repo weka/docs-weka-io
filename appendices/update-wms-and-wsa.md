@@ -10,6 +10,10 @@ metaLinks:
 
 # Update the WSA
 
+{% hint style="warning" %}
+WSA is deprecated. WEKA plans to remove it in June 2027.
+{% endhint %}
+
 Update the WSA regularly to maintain system security and functionality.
 
 ## Before you begin
