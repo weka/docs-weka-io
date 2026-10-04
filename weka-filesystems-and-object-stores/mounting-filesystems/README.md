@@ -143,7 +143,7 @@ mount -t wekafs -o <options> <backend0>[,<backend1>,...,<backendN>]:/<fs> <mount
 
 {% code overflow="wrap" %}
 ```bash
-mount -t wekafs -o restricted -o <options> <backend0>[,<backend1>,...,<backendN>]/<fs> <mount-point>
+mount -t wekafs -o restricted,<options> <backend0>[,<backend1>,...,<backendN>]/<fs> <mount-point>
 ```
 {% endcode %}
 
@@ -157,7 +157,7 @@ This setup ensures that the stateless client operates with restricted privileges
 
 ## Mount command options
 
-Each mount option can be passed by an individual `-o` flag to `mount.`
+Pass mount options to `mount` as a comma-separated list after `-o`, for example `-o num_cores=2,net=ib0`. Repeating `-o` for each option also works.
 
 ### For all client types
 
@@ -200,7 +200,7 @@ The following options trigger a client container restart:
 
 ### **Additional mount options using the stateless clients feature**
 
-<table data-full-width="false"><thead><tr><th width="256.51171875">Option</th><th width="312.5230712890625">Description</th><th width="98.5347900390625">Default</th><th>Remount supported</th></tr></thead><tbody><tr><td><code>memory_mb=&#x3C;memory_mb></code></td><td>The memory size in MiB the client can use for hugepages.</td><td><code>1400</code></td><td>Yes</td></tr><tr><td><code>num_cores=&#x3C;frontend-cores></code></td><td><p>Specifies the number of processing cores allocated to handle client network operations.</p><p><strong>Values:</strong></p><ul><li>1 to N (where N is the maximum available cores)</li><li>0 (only valid with UDP networking mode)</li></ul><p><strong>Notes</strong>:</p><ul><li>Cannot be used with <code>core</code> parameter</li><li>For VF-based configurations, <code>num_cores</code> usually matches the number of configured network devices (<code>net=</code>)</li><li>For NVIDIA VF single-IP configurations, set <code>nvidia_vf_single_ip=true</code>. In that mode, this rule does not apply.</li><li>Higher core counts may improve performance for multi-connection workloads</li></ul><p>Example: <code>num_cores=4</code> # Allocates 4 cores for client processing</p></td><td><code>1</code></td><td>Yes</td></tr><tr><td><code>core=&#x3C;core-id></code></td><td><p>Assigns specific CPU cores to the WEKA client.</p><p>For multiple cores, you can either repeat the <code>core=&#x3C;core-id></code> option for each core, or use a comma-separated list.</p><p>Examples:</p><ul><li>Single core: <code>-o core=1</code></li><li>Multiple cores: <code>-o core=1 -o core=3 -o core=5</code><br>or <code>-o core=1,core=3,core=5</code></li></ul><p><strong>Restrictions:</strong></p><ul><li>Core IDs must be unique and available on the system.</li><li>Cannot be used concurrently with the <code>num_cores</code> parameter.</li><li>Core 0 is reserved for system use and cannot be assigned.</li></ul></td><td></td><td>Yes</td></tr><tr><td><code>net=&#x3C;netdev>[/&#x3C;ip>/&#x3C;bits>[/&#x3C;gateway>]]</code></td><td><p>Specifies network devices for WEKA client connections. Required for on-premises installations.</p><p>Format:</p><ul><li>Single device: <code>-o net=eth1</code></li><li>Multiple devices: <code>-o net=eth1 -o net=eth2 -o net=eth3</code></li></ul><p><strong>Important</strong>:</p><ul><li>For VF-based configurations, the number of network devices usually must equal <code>num_cores</code></li><li>For NVIDIA VF single-IP configurations, set <code>nvidia_vf_single_ip=true</code>. In that mode, this rule does not apply.</li><li>Supports both physical NICs and virtual functions</li><li>Must specify at least one network device</li></ul><p>For additional options, see <a data-mention href="./#advanced-network-configuration-for-stateless-clients">#advanced-network-configuration-for-stateless-clients</a></p></td><td></td><td>Yes</td></tr><tr><td><code>remove_after_secs=&#x3C;secs></code></td><td>The time in seconds without connectivity, after which the client is removed from the cluster.<br>Minimum value: <code>60</code> seconds.<br><code>3600</code> seconds = 1 hour.</td><td><code>3600</code></td><td>Yes</td></tr><tr><td><code>traces_capacity_mb=&#x3C;size-in-mb></code></td><td><p>Traces capacity limit in MB.</p><p>Minimum value: 512 MB.</p></td><td></td><td>No</td></tr><tr><td><code>reserve_1g_hugepages=&#x3C;true or false></code></td><td>Controls the page allocation algorithm to reserve hugepages.<br><strong>Values:</strong><br><code>true</code>: reserves 1 GB<br><code>false</code>: reserves 2 MB</td><td><code>true</code></td><td>Yes</td></tr><tr><td><code>readahead_kb=&#x3C;readahead></code></td><td>The readahead size in KB per mount. A higher readahead is better for sequential reads of large files.</td><td><code>32768</code></td><td>Yes</td></tr><tr><td><code>auth_token_path</code></td><td>The path to the mount authentication token (per mount).</td><td><code>~/.weka/auth-token.json</code></td><td>No</td></tr><tr><td><code>nvidia_vf_single_ip=&#x3C;true or false></code></td><td><p>Treats an NVIDIA VF as a single IP resource.</p><p>Set this option when an NVIDIA VF configuration requires single-IP mapping and the behavior is not detected automatically.</p><p>This option lets multiple frontend processes share the same VF/IP mapping.</p></td><td><code>false</code></td><td>No</td></tr><tr><td><code>dedicated_mode</code></td><td><p>Controls CPU core allocation for DPDK networking.</p><p>Set to <code>full</code> to dedicate an entire core to network processing, or <code>none</code> to operate without core dedication (requires NIC driver support).</p><p>Only applies when DPDK networking is enabled (<code>net=udp</code> not set). See <a href="../../weka-system-overview/networking-in-wekaio.md#dpdk-without-the-core-dedication">DPDK without the core dedication</a>.</p><p><strong>Values:</strong> <code>full</code>, <code>none</code></p></td><td><code>full</code></td><td>Yes</td></tr><tr><td><code>qos_preferred_throughput_mbps</code></td><td>Specifies the preferred request rate for Quality of Service (QoS), in megabytes per second. This is a soft target used to guide bandwidth allocation. The system aims to maintain this rate under normal conditions but allows the frontend to exceed it, up to the maximum, when additional resources are available.<br>The cluster admin can set the default value. See <a href="./#set-mount-option-default-values">Set mount option default values</a>.</td><td><code>0</code> (unlimited)<br></td><td>Yes</td></tr><tr><td><code>qos_max_throughput_mbps</code></td><td>Specifies the maximum request rate for Quality of Service (QoS), in megabytes per second. This is an average-based limit applied at the front end. The system allows short bursts above this value but aims to maintain the specified limit over time.<br>The cluster admin can set the default value. See <a href="./#set-mount-option-default-values">Set mount option default value</a>.</td><td><code>0</code> (unlimited)</td><td>Yes</td></tr><tr><td><code>qos_max_ops</code></td><td>Maximum number of IO operations a client can perform per second.<br>Set a limit to a client or clients to prevent starvation from the rest of the clients. (Do not set this option for mounting from a backend.)</td><td><code>0</code> (unlimited)</td><td>Yes</td></tr><tr><td><code>connect_timeout_secs</code></td><td>The timeout, in seconds, for establishing a connection to a single server. </td><td><code>10</code></td><td>Yes</td></tr><tr><td><code>response_timeout_secs</code></td><td>The timeout, in seconds, waiting for the response from a single server.</td><td><code>60</code></td><td>Yes</td></tr><tr><td><code>join_timeout_secs</code></td><td>The timeout, in seconds, for the client container to join the Weka cluster.</td><td><code>360</code></td><td>Yes</td></tr><tr><td><code>dpdk_base_memory_mb</code></td><td>The base memory in MB to allocate for DPDK. Set this option when mounting to a WEKA cluster on GCP.<br>Example: <code>-o dpdk_base_memory_mb=16</code></td><td><code>0</code></td><td>Yes</td></tr><tr><td><code>weka_version</code></td><td>The WEKA client version to run.</td><td>Cluster version</td><td>No</td></tr><tr><td><code>restricted</code></td><td>Restricts a stateless client’s operations to only the essential APIs for mounting and unmounting operations.</td><td></td><td>No</td></tr></tbody></table>
+<table data-full-width="false"><thead><tr><th width="256.51171875">Option</th><th width="312.5230712890625">Description</th><th width="98.5347900390625">Default</th><th>Remount supported</th></tr></thead><tbody><tr><td><code>memory_mb=&#x3C;memory_mb></code></td><td>The memory size in MiB the client can use for hugepages.</td><td><code>1400</code></td><td>Yes</td></tr><tr><td><code>num_cores=&#x3C;frontend-cores></code></td><td><p>Specifies the number of processing cores allocated to handle client network operations.</p><p><strong>Values:</strong></p><ul><li>1 to N (where N is the maximum available cores)</li><li>0 (only valid with UDP networking mode)</li></ul><p><strong>Notes</strong>:</p><ul><li>Cannot be used with <code>core</code> parameter</li><li>For VF-based configurations, <code>num_cores</code> usually matches the number of configured network devices (<code>net=</code>)</li><li>For NVIDIA VF single-IP configurations, set <code>nvidia_vf_single_ip=true</code>. In that mode, this rule does not apply.</li><li>Higher core counts may improve performance for multi-connection workloads</li></ul><p>Example: <code>num_cores=4</code> # Allocates 4 cores for client processing</p></td><td><code>1</code></td><td>Yes</td></tr><tr><td><code>core=&#x3C;core-id></code></td><td><p>Assigns specific CPU cores to the WEKA client.</p><p>For multiple cores, repeat the <code>core=&#x3C;core-id></code> option in a comma-separated list.</p><p>Examples:</p><ul><li>Single core: <code>-o core=1</code></li><li>Multiple cores: <code>-o core=1,core=3,core=5</code></li></ul><p><strong>Restrictions:</strong></p><ul><li>Core IDs must be unique and available on the system.</li><li>Cannot be used concurrently with the <code>num_cores</code> parameter.</li><li>Core 0 is reserved for system use and cannot be assigned.</li></ul></td><td></td><td>Yes</td></tr><tr><td><code>net=&#x3C;netdev>[/&#x3C;ip>/&#x3C;bits>[/&#x3C;gateway>]]</code></td><td><p>Specifies network devices for WEKA client connections. Required for on-premises installations.</p><p>Format:</p><ul><li>Single device: <code>-o net=eth1</code></li><li>Multiple devices: <code>-o net=eth1,net=eth2,net=eth3</code></li></ul><p><strong>Important</strong>:</p><ul><li>For VF-based configurations, the number of network devices usually must equal <code>num_cores</code></li><li>For NVIDIA VF single-IP configurations, set <code>nvidia_vf_single_ip=true</code>. In that mode, this rule does not apply.</li><li>Supports both physical NICs and virtual functions</li><li>Must specify at least one network device</li></ul><p>For additional options, see <a data-mention href="./#advanced-network-configuration-for-stateless-clients">#advanced-network-configuration-for-stateless-clients</a></p></td><td></td><td>Yes</td></tr><tr><td><code>remove_after_secs=&#x3C;secs></code></td><td>The time in seconds without connectivity, after which the client is removed from the cluster.<br>Minimum value: <code>60</code> seconds.<br><code>3600</code> seconds = 1 hour.</td><td><code>3600</code></td><td>Yes</td></tr><tr><td><code>traces_capacity_mb=&#x3C;size-in-mb></code></td><td><p>Traces capacity limit in MB.</p><p>Minimum value: 512 MB.</p></td><td></td><td>No</td></tr><tr><td><code>reserve_1g_hugepages=&#x3C;true or false></code></td><td>Controls the page allocation algorithm to reserve hugepages.<br><strong>Values:</strong><br><code>true</code>: reserves 1 GB<br><code>false</code>: reserves 2 MB</td><td><code>true</code></td><td>Yes</td></tr><tr><td><code>readahead_kb=&#x3C;readahead></code></td><td>The readahead size in KB per mount. A higher readahead is better for sequential reads of large files.</td><td><code>32768</code></td><td>Yes</td></tr><tr><td><code>auth_token_path</code></td><td>The path to the mount authentication token (per mount).</td><td><code>~/.weka/auth-token.json</code></td><td>No</td></tr><tr><td><code>nvidia_vf_single_ip=&#x3C;true or false></code></td><td><p>Treats an NVIDIA VF as a single IP resource.</p><p>Set this option when an NVIDIA VF configuration requires single-IP mapping and the behavior is not detected automatically.</p><p>This option lets multiple frontend processes share the same VF/IP mapping.</p></td><td><code>false</code></td><td>No</td></tr><tr><td><code>dedicated_mode</code></td><td><p>Controls CPU core allocation for DPDK networking.</p><p>Set to <code>full</code> to dedicate an entire core to network processing, or <code>none</code> to operate without core dedication (requires NIC driver support).</p><p>Only applies when DPDK networking is enabled (<code>net=udp</code> not set). See <a href="../../weka-system-overview/networking-in-wekaio.md#dpdk-without-the-core-dedication">DPDK without the core dedication</a>.</p><p><strong>Values:</strong> <code>full</code>, <code>none</code></p></td><td><code>full</code></td><td>Yes</td></tr><tr><td><code>qos_preferred_throughput_mbps</code></td><td>Specifies the preferred request rate for Quality of Service (QoS), in megabytes per second. This is a soft target used to guide bandwidth allocation. The system aims to maintain this rate under normal conditions but allows the frontend to exceed it, up to the maximum, when additional resources are available.<br>The cluster admin can set the default value. See <a href="./#set-mount-option-default-values">Set mount option default values</a>.</td><td><code>0</code> (unlimited)<br></td><td>Yes</td></tr><tr><td><code>qos_max_throughput_mbps</code></td><td>Specifies the maximum request rate for Quality of Service (QoS), in megabytes per second. This is an average-based limit applied at the front end. The system allows short bursts above this value but aims to maintain the specified limit over time.<br>The cluster admin can set the default value. See <a href="./#set-mount-option-default-values">Set mount option default value</a>.</td><td><code>0</code> (unlimited)</td><td>Yes</td></tr><tr><td><code>qos_max_ops</code></td><td>Maximum number of IO operations a client can perform per second.<br>Set a limit to a client or clients to prevent starvation from the rest of the clients. (Do not set this option for mounting from a backend.)</td><td><code>0</code> (unlimited)</td><td>Yes</td></tr><tr><td><code>connect_timeout_secs</code></td><td>The timeout, in seconds, for establishing a connection to a single server. </td><td><code>10</code></td><td>Yes</td></tr><tr><td><code>response_timeout_secs</code></td><td>The timeout, in seconds, waiting for the response from a single server.</td><td><code>60</code></td><td>Yes</td></tr><tr><td><code>join_timeout_secs</code></td><td>The timeout, in seconds, for the client container to join the Weka cluster.</td><td><code>360</code></td><td>Yes</td></tr><tr><td><code>dpdk_base_memory_mb</code></td><td>The base memory in MB to allocate for DPDK. Set this option when mounting to a WEKA cluster on GCP.<br>Example: <code>-o dpdk_base_memory_mb=16</code></td><td><code>0</code></td><td>Yes</td></tr><tr><td><code>weka_version</code></td><td>The WEKA client version to run.</td><td>Cluster version</td><td>No</td></tr><tr><td><code>restricted</code></td><td>Restricts a stateless client’s operations to only the essential APIs for mounting and unmounting operations.</td><td></td><td>No</td></tr></tbody></table>
 
 {% hint style="info" %}
 The additional mount options parameters above are only effective on the first mount command for each client, unless stated otherwise.
@@ -217,17 +217,17 @@ Look for these options in the stateless client mount table:
 * `qos_preferred_throughput_mbps`: Sets the preferred client throughput target.
 
 {% hint style="info" %}
-By default, the command selects the optimal core allocation for WEKA. If necessary, multiple `core` parameters can be used to allocate specific cores to the WEKA client. For example, `mount -t wekafs -o core=2 -o core=4 -o net=ib0 backend-server-0/my_fs /mnt/weka`
+By default, the command selects the optimal core allocation for WEKA. If necessary, multiple `core` parameters can be used to allocate specific cores to the WEKA client. For example, `mount -t wekafs -o core=2,core=4,net=ib0 backend-server-0/my_fs /mnt/weka`
 {% endhint %}
 
 {% hint style="success" %}
 **Example: On-Premise Installations**
 
-`mount -t wekafs -o num_cores=1 -o net=ib0 backend-server-0/my_fs /mnt/weka`
+`mount -t wekafs -o num_cores=1,net=ib0 backend-server-0/my_fs /mnt/weka`
 
 Running this command on a server installed with the Weka agent downloads the appropriate WEKA version from the `backend-server-0`and creates a WEKA container that allocates a single core and a named network interface (`ib0`). Then it joins the cluster that `backend-server-0` is part of and mounts the filesystem `my_fs` on `/mnt/weka.`
 
-`mount -t wekafs -o num_cores=0 -o net=udp backend-server-0/my_fs /mnt/weka`
+`mount -t wekafs -o num_cores=0,net=udp backend-server-0/my_fs /mnt/weka`
 
 Running this command uses [UDP mode ](../../weka-system-overview/networking-in-wekaio.md#udp-mode)(usually selected when the use of DPDK is not available).
 {% endhint %}
@@ -403,9 +403,7 @@ For resource-based client creation, set the `nvidia_vf_single_ip` parameter to `
 {% code overflow="wrap" %}
 ```bash
 mount -t wekafs \
--o num_cores=4 \
--o net=eth1/192.168.1.100/24/192.168.1.254 \
--o nvidia_vf_single_ip=true \
+-o num_cores=4,net=eth1/192.168.1.100/24/192.168.1.254,nvidia_vf_single_ip=true \
 backend1/my_fs /mnt/weka
 ```
 {% endcode %}
@@ -426,7 +424,7 @@ The following command configures VFs for a specified network device and assigns 
 
 {% code overflow="wrap" %}
 ```bash
-mount -t wekafs -o num_cores=2 -o net=intel0/192.168.1.100+192.168.1.101/24/192.168.1.254 backend1/my_fs /mnt/weka
+mount -t wekafs -o num_cores=2,net=intel0/192.168.1.100+192.168.1.101/24/192.168.1.254 backend1/my_fs /mnt/weka
 ```
 {% endcode %}
 
@@ -453,8 +451,7 @@ For example, the following command allocates two cores and two physical network 
 
 ```bash
 mount -t wekafs \
--o num_cores=2 \
--o net=mlnx0 -o net=mlnx1 \
+-o num_cores=2,net=mlnx0,net=mlnx1 \
 backend1/my_fs /mnt/weka
 ```
 
@@ -471,9 +468,7 @@ For example, the following command uses two network devices (`mlnx0` and `mlnx1`
 {% code overflow="wrap" %}
 ```bash
 mount -t wekafs \
--o num_cores=4 \
--o net:ha=mlnx0,net:ha=mlnx1 \
--o mgmt_ip=10.0.0.1+10.0.0.2 \
+-o num_cores=4,net:ha=mlnx0,net:ha=mlnx1,mgmt_ip=10.0.0.1+10.0.0.2 \
 backend1/my_fs /mnt/weka
 ```
 {% endcode %}
@@ -505,14 +500,11 @@ The following command configures 16 WekaFS client processes. Four processes are 
 
 ```
 mount -t wekafs \
--o core=63 -o core=62 -o core=61 -o core=60 \
--o core=127 -o core=126 -o core=125 -o core=124 \
--o core=191 -o core=190 -o core=189 -o core=188 \
--o core=255 -o core=254 -o core=253 -o core=252 \
--o net:s1-4=ib0 \
--o net:s5-8=ib1 \
--o net:s9-12=ib2 \
--o net:s13-16=ib3 \
+-o core=63,core=62,core=61,core=60 \
+-o core=127,core=126,core=125,core=124 \
+-o core=191,core=190,core=189,core=188 \
+-o core=255,core=254,core=253,core=252 \
+-o net:s1-4=ib0,net:s5-8=ib1,net:s9-12=ib2,net:s13-16=ib3 \
 backend_servers/my_fs /mnt/weka
 ```
 
@@ -548,7 +540,7 @@ For example, in the following command, `mlnx0` is bound to the second Frontend p
 {% code overflow="wrap" %}
 ```bash
 mount -t wekafs \
--o num_cores=2 -o net:s2=mlnx0,net:s1=mlnx1 \
+-o num_cores=2,net:s2=mlnx0,net:s1=mlnx1 \
 backend1/my_fs /mnt/weka
 ```
 {% endcode %}
@@ -558,10 +550,8 @@ For exampl&#x65;**,** in the following mounting command, two cores (two Frontend
 {% code overflow="wrap" %}
 ```bash
 mount -t wekafs \
--o num_cores=2 \
--o net:s2+1=mlnx0,net:s1-2=mlnx1 \
-backend1/my_fs \
--o mgmt_ip=10.0.0.1+10.0.0.2 /mnt/weka
+-o num_cores=2,net:s2+1=mlnx0,net:s1-2=mlnx1,mgmt_ip=10.0.0.1+10.0.0.2 \
+backend1/my_fs /mnt/weka
 ```
 {% endcode %}
 

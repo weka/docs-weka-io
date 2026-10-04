@@ -43,7 +43,7 @@ The `mgmt_ip` option identifies management processes on the data plane network. 
 
 {% code overflow="wrap" %}
 ```bash
-mount -t wekafs -o net=eth1/IP/NETMASK/GATEWAY -o net=eth2/IP/NETMASK/GATEWAY -o net=eth3/IP/NETMASK/GATEWAY -o mgmt_ip=<management IP (eth0)> -o num_cores=4 -o dpdk_base_memory_mb=32 <backend server IP address>/<filesystem name> /mnt/weka
+mount -t wekafs -o net=eth1/IP/NETMASK/GATEWAY,net=eth2/IP/NETMASK/GATEWAY,net=eth3/IP/NETMASK/GATEWAY,mgmt_ip=<management IP (eth0)>,num_cores=4,dpdk_base_memory_mb=32 <backend server IP address>/<filesystem name> /mnt/weka
 ```
 {% endcode %}
 
@@ -51,7 +51,7 @@ Example:
 
 {% code overflow="wrap" %}
 ```bash
-mount -t wekafs -o net=eth1/10.20.30.101/24/10.20.30.1 -o net=eth2/10.20.31.102/24/10.20.31.1 -o net=eth3/10.20.32.103/24/10.20.32.1 -o mgmt_ip=10.20.33.100 -o num_cores=4 -o dpdk_base_memory_mb=32 10.20.30.40/fs1 /mnt/weka
+mount -t wekafs -o net=eth1/10.20.30.101/24/10.20.30.1,net=eth2/10.20.31.102/24/10.20.31.1,net=eth3/10.20.32.103/24/10.20.32.1,mgmt_ip=10.20.33.100,num_cores=4,dpdk_base_memory_mb=32 10.20.30.40/fs1 /mnt/weka
 ```
 {% endcode %}
 
@@ -59,7 +59,7 @@ mount -t wekafs -o net=eth1/10.20.30.101/24/10.20.30.1 -o net=eth2/10.20.31.102/
 
 {% code overflow="wrap" %}
 ```bash
-mount -t wekafs -o net=udp -o num_cores=0 -o mgmt_ip=<management IP (eth0)> <backend server IP address>/<filesystem name> /mnt/weka
+mount -t wekafs -o net=udp,num_cores=0,mgmt_ip=<management IP (eth0)> <backend server IP address>/<filesystem name> /mnt/weka
 ```
 {% endcode %}
 
@@ -67,7 +67,7 @@ Example:
 
 {% code overflow="wrap" %}
 ```bash
-mount -t wekafs -o net=udp -o num_cores=2 -o mgmt_ip=10.20.30.100 10.20.30.40/fs1 /mnt/weka
+mount -t wekafs -o net=udp,num_cores=2,mgmt_ip=10.20.30.100 10.20.30.40/fs1 /mnt/weka
 ```
 {% endcode %}
 

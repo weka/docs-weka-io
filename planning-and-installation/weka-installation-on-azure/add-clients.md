@@ -103,7 +103,7 @@ Example:
 
 {% code overflow="wrap" fullWidth="false" %}
 ```bash
-mount -t wekafs 10.0.0.7/default -o net=enP39539s2np0/10.0.0.31/24 -o mgmt_ip=10.0.0.30 /mnt/weka
+mount -t wekafs 10.0.0.7/default -o net=enP39539s2np0/10.0.0.31/24,mgmt_ip=10.0.0.30 /mnt/weka
 
 ```
 {% endcode %}
