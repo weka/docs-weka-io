@@ -126,3 +126,31 @@ weka audit fs set-operations <name> [<operations>]...
 **Parameters**
 
 <table><thead><tr><th width="175.796875">Name</th><th>Description</th></tr></thead><tbody><tr><td><code>name</code>*</td><td>The name of the filesystem to configure.</td></tr><tr><td><code>operations</code>*</td><td><p>A space-separated list of operation categories to audit. This list replaces any previously set operations for this filesystem.</p><p>Possible values: <code>all</code>, <code>none</code>, <code>open</code>, <code>create</code>, <code>read</code>, <code>modify</code>, <code>delete</code>, <code>rename</code>, <code>close</code>, <code>sessionmanagement</code>.</p></td></tr></tbody></table>
+
+## View telemetry export health
+
+Use the following command to check whether each export delivers audit events from every container:
+
+`weka telemetry exports status [--containers] [--check]`
+
+The output shows one row per export:
+
+* **Reporting:** the number of containers delivering events, out of those expected. For example, `24/24`.
+* **Problems:** what is wrong on the other containers. For example, `2 stalled, 1 container down`.
+* **Health:** one of the following values.
+
+| Health | Meaning |
+| --- | --- |
+| `OK` | Every expected container delivers events. |
+| `DEGRADED` | Some containers deliver events and others report a problem. |
+| `DOWN` | No container delivers events, and at least one reports an error. |
+| `PENDING` | No container delivers events yet, and none reports an error. |
+| `DISABLED` | The export is disabled. |
+| `TELEMETRY OFF` | The export is enabled, but telemetry is off in the cluster. |
+
+**Parameters**
+
+| Name | Description |
+| --- | --- |
+| `--containers` | Shows one row per container instead of one row per export. |
+| `--check` | Exits with code `2` when any export shown is `DOWN`, `DEGRADED`, or `TELEMETRY OFF`. Use it in monitoring scripts. |
