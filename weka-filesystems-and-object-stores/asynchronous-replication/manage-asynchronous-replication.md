@@ -22,6 +22,7 @@ Replication transfers data through the S3 infrastructure of the clusters. The ob
 
 **Before you begin**
 
+* Ensure both clusters are licensed for cross-cluster replication. Run `weka cluster license` and check that **Cross-Cluster Replication** under **Installed License** shows **Licensed**. To add the entitlement, contact your WEKA account team.
 * Ensure the clusters can reach each other over the network.
 * Ensure each cluster has a configuration filesystem for its protocol containers, typically named `.config_fs`. Protocol or S3 setup creates it. `weka cluster peer init` validates this filesystem but does not create it, so a cluster that has never run protocol setup must have it created first.
 
