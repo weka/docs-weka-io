@@ -6,6 +6,10 @@ description: >-
 
 # Update the WSA
 
+{% hint style="warning" %}
+WSA is deprecated. WEKA plans to remove it in June 2027.
+{% endhint %}
+
 ## Before you begin
 
 Before updating the WSA, ensure the following:

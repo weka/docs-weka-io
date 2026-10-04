@@ -6,6 +6,10 @@ description: >-
 
 # Install WSA
 
+{% hint style="warning" %}
+WSA is deprecated. WEKA plans to remove it in June 2027.
+{% endhint %}
+
 Install WEKA on bare metal servers with the WEKA Software Appliance.
 
 WSA includes the operating system image, network drivers, WEKA software, and diagnostic tools. It accelerates server preparation and standardizes the deployment environment.
