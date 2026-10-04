@@ -78,7 +78,9 @@ weka s3 cluster notification-target add \
   --name <target-name> \
   --topic <topic-name> \
   --brokers <broker-addresses> \
-  --queue-limit <limit>
+  --queue-limit <limit> \
+  [--tls-cert <cert-name> | --tls=false] \
+  [--tls-skip-verify]
 ```
 
 **Parameters**
@@ -90,6 +92,9 @@ weka s3 cluster notification-target add \
 | `topic`       | Kafka topic name.                                                              |
 | `brokers`     | Comma-separated list of `&#x3C;IP or hostname>:&#x3C;port>` for Kafka brokers. |
 | `queue-limit` | Maximum queued notifications before dropping events.                           |
+| `tls-cert` | Name of the certificate the target uses for TLS. Required unless TLS is disabled. See [Manage TLS certificates for notification targets](#manage-tls-certificates-for-notification-targets). |
+| `tls` | Enables TLS. Default: enabled. To connect without TLS, pass `--tls=false`. |
+| `tls-skip-verify` | Skips verification of the broker's certificate. Default: disabled. |
 
 **Example**
 
@@ -99,7 +104,8 @@ weka s3 cluster notification-target add \
   --name tgt1 \
   --topic weka-s3 \
   --brokers 10.108.108.28:9092 \
-  --queue-limit 10000
+  --queue-limit 10000 \
+  --tls=false
 ```
 
 ### View notification targets
