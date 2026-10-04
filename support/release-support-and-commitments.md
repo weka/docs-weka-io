@@ -35,7 +35,6 @@ Version 4.2 and older are treated as Release Lines that are older than 4.3.
 WEKA provides a unified support framework to ensure predictability and simplify compliance.
 
 * Support duration: Every Release Line receives 36 months of support starting from its initial General Availability release.
-* Upgrade cadence: Customers should upgrade at least once a year to remain within a supported phase.
 * Feature delivery: New features ship on the current (N) line.
 * New Release Lines: WEKA introduces a new Release Line approximately every 12 months.
 
