@@ -25,9 +25,13 @@ After setting up the Data Service container, you can manage it like any other co
 1. Ensure the server where you’re adding this container has sufficient memory available:
    * 3.5 GB if no dedicated core is specified.
    * 5.5 GB if a dedicated core is specified.
-2. The Data Service containers require a persistent 22 GB filesystem for intermediate global configuration data. Do one of the following:
-   * If a configuration filesystem for the protocol containers exists (typically named `.config_fs`), use it and expand its size by 22 GB. See [#dedicated-filesystem-requirement-for-cluster-wide-persistent-protocol-configurations](../additional-protocols/additional-protocols-overview.md#dedicated-filesystem-requirement-for-cluster-wide-persistent-protocol-configurations "mention")
-   * If a configuration filesystem does not exist, create a dedicated 22 GB configuration filesystem for the Data Service containers.
+2. The Data Service containers require a persistent filesystem of at least 50 GiB for intermediate global configuration data. Do one of the following:
+   * If a configuration filesystem for the protocol containers exists (typically named `.config_fs`), use it and expand its capacity by 50 GiB. See [#dedicated-filesystem-requirement-for-cluster-wide-persistent-protocol-configurations](../additional-protocols/additional-protocols-overview.md#dedicated-filesystem-requirement-for-cluster-wide-persistent-protocol-configurations "mention")
+   * If a configuration filesystem does not exist, create a dedicated configuration filesystem of at least 50 GiB for the Data Service containers.
+
+   Specify the capacity as `50GiB`. The value `50GB` is 50,000,000,000 bytes, which is below the minimum.
+
+   On a cluster upgraded from an earlier version, expand an existing Data Services configuration filesystem to at least 50 GiB.
 3. Set the Data Service global configuration. Run the following command:
 
 ```
