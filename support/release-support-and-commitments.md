@@ -21,32 +21,18 @@ In the WEKA portal at get.weka.io, each Release Line is identified by the Minor 
 <div data-with-frame="true"><figure><img src="../.gitbook/assets/version_number.png" alt=""><figcaption><p><em>Version number structure and Release Line grouping</em></p></figcaption></figure></div>
 
 {% hint style="info" %}
-As an exception, the following legacy versions are grouped into separate Release Lines that do not follow the Major number rule:
+Legacy 4.x versions use Release Line groupings that differ from the Major number rule:
 
-* Versions 4.0 and 4.1
-* Version 4.2
-* Versions 4.3 and 4.4
-
-Version 4.2 and older are treated as Release Lines that are older than 4.3.
-{% endhint %}
-
-## Lifecycle policy
-
-WEKA provides a unified support framework to ensure predictability and simplify compliance.
-
-* Support duration: Every Release Line receives 36 months of support starting from its initial General Availability release.
-* Feature delivery: New features ship on the current (N) line.
-* New Release Lines: WEKA introduces a new Release Line approximately every 12 months.
-
-{% hint style="info" %}
-WEKA no longer uses LTS or Innovation labels to ensure every release is recognized for its high stability and long-term commitment. Removing these labels creates a transparent, simplified framework that provides clear planning for all deployments.
+* Versions 4.0 and 4.1 share the same Release Line.
+* Version 4.2 is a separate Release Line.
+* Versions 4.3 and 4.4 share the same Release Line.
 {% endhint %}
 
 ## Support phases
 
 The support phase for a Release Line changes as WEKA introduces newer versions.
 
-<table><thead><tr><th width="171.34375">Phase</th><th width="170.01953125">Status</th><th>Support details</th></tr></thead><tbody><tr><td>N</td><td>Current</td><td>Receives new features and service packs. This phase receives full engineering investment.</td></tr><tr><td>N-1</td><td>Maintenance</td><td>Receives ongoing service packs containing bug fixes and currency updates. No new features are added.</td></tr><tr><td>N-2</td><td>Limited Support</td><td>Receives selective fix releases on a case-by-case basis. This phase is supported by Customer Success and R&#x26;D jointly.</td></tr><tr><td>N-3 and older</td><td>End of Life</td><td>Receives no further updates. Upgrade immediately.</td></tr></tbody></table>
+<table><thead><tr><th width="171.34375">Phase</th><th width="170.01953125">Status</th><th>Support details</th></tr></thead><tbody><tr><td>N</td><td>Current</td><td>Receives new features and service packs. This phase receives full engineering investment.</td></tr><tr><td>N-1</td><td>Maintenance</td><td>Receives ongoing service packs containing bug fixes and currency updates. No new features are added.</td></tr><tr><td>N-2</td><td>Limited Support</td><td>Receives selective fix releases on a case-by-case basis. This phase is supported by Customer Success Team and R&#x26;D jointly.</td></tr><tr><td>N-3 and older</td><td>End of Life</td><td>Receives no further updates. Upgrade immediately.</td></tr></tbody></table>
 
 Service packs for Current and Maintenance phases include bug fixes and updates for operating systems, cloud instances, and network interface cards. For the Limited Support phase, currency and interoperability updates are provided on a best-effort basis with no committed service pack cadence.
 
@@ -54,6 +40,17 @@ Service packs for Current and Maintenance phases include bug fixes and updates f
 
 {% hint style="info" %}
 This figure shows an example. Support phases change as new Release Lines are introduced.
+{% endhint %}
+
+## Lifecycle policy
+
+WEKA provides a unified support framework to ensure predictability and simplify compliance.
+
+* **Support duration:** Every Release Line receives 36 months of support starting from its initial General Availability release.
+* **New Release Lines:** WEKA introduces a new Release Line approximately every 12 months.
+
+{% hint style="info" %}
+WEKA no longer uses LTS or Innovation labels to ensure every release is recognized for its high stability and long-term commitment. Removing these labels creates a transparent, simplified framework that provides clear planning for all deployments.
 {% endhint %}
 
 ## Check the support phase of a Release Line
