@@ -39,12 +39,13 @@ Use one of the following commands:
 *   Existing filesystem:
 
     ```bash
-    weka fs update <fsname> --enable-weka-delete true <name>
+    weka fs update <name> --enable-weka-delete
     ```
 *   New filesystem:
 
-    <pre class="language-bash" data-overflow="wrap"><code class="lang-bash">weka fs add &#x3C;fsname> --enable-weka-delete true &#x3C;name> &#x3C;group-name> &#x3C;total-capacity> [parameters]
-    </code></pre>
+    ```bash
+    weka fs add <name> <total-capacity> [<group-name>] --enable-weka-delete [parameters]
+    ```
 
 **Restrict the trigger to the filesystem root**
 
@@ -53,12 +54,13 @@ Use one of the following commands:
 *   Existing filesystem:
 
     ```bash
-    weka fs update <fsname> --enable-weka-delete-root-only true <name>
+    weka fs update <name> --enable-weka-delete-root-only
     ```
 *   New filesystem:
 
-    <pre class="language-bash" data-overflow="wrap"><code class="lang-bash">weka fs add &#x3C;fsname> --enable-weka-delete-root-only true &#x3C;name> &#x3C;group-name> &#x3C;total-capacity> [parameters]
-    </code></pre>
+    ```bash
+    weka fs add <name> <total-capacity> [<group-name>] --enable-weka-delete-root-only [parameters]
+    ```
 
 In root-only mode, rename the entry to `.weka-delete` in the filesystem root only. This restricts access to the feature to users who can create new files in the filesystem root directory.
 
@@ -131,7 +133,7 @@ These entries appear in the audit destination configured for the filesystem, for
 To enable auditing on a filesystem:
 
 ```bash
-weka fs update <fsname> --audit-enabled
+weka fs update <name> --audit-enabled
 ```
 
 ### Stats

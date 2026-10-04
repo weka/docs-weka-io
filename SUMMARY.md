@@ -346,6 +346,7 @@
 * [Best practices for WEKA stateless client and Kubernetes](best-practice-guides/best-practices-for-weka-stateless-client-and-kubernetes.md)
 * [Storage expansion best practice](best-practice-guides/storage-expansion-best-practice.md)
 * [Maximize GPU infrastructure resilience with NeuralMesh AXON](best-practice-guides/maximize-gpu-infrastructure-resilience-with-neuralmesh-axon.md)
+* [Async delete](best-practice-guides/async-delete.md)
 * [WEKA and KVM integration](best-practice-guides/weka-and-kvm-integration/README.md)
   * [Deploy the WEKA client on a KVM server](best-practice-guides/weka-and-kvm-integration/deploy-the-weka-client-on-a-kvm-server.md)
   * [Deploy the WEKA client on KVM virtual machines](best-practice-guides/weka-and-kvm-integration/deploy-the-weka-client-on-kvm-virtual-machines.md)
