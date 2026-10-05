@@ -390,7 +390,7 @@ The LWH Helm chart is publicly available on GitHub. The documentation on GitHub 
     helm upgrade --create-namespace \
         --install wekahome wekahome/wekahome \
         --namespace weka-home \
-        --version v5.0.0 \
+        --version v5.0.2 \
         --values /path/to/values.yaml
     ```
 
