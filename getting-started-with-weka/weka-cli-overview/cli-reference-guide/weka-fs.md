@@ -451,34 +451,34 @@ weka fs remove <name> [--force] [--purge-from-obs]
 
 ## weka fs replication
 
-List replication pairs with their current state and progress.
+List replication pairs with their current state and progress, both the pairs this cluster drives and the read-only mirrors of ones replicating into it.
 
 ```sh
 weka fs replication
 ```
 
-**Columns:** `id`, `uid`, `state`, `source`, `target-cluster`, `target`, `interval`, `snapshots-to-keep`, `apply`, `access`, `copy`, `copy-paths`, `last-replication`, `current-status`, `last-error`, `last-error-time`
+**Columns:** `id`, `uid`, `state`, `role`, `source`, `link`, `link-id`, `target`, `interval`, `snapshots-to-keep`, `apply`, `access`, `copy`, `copy-paths`, `last-replication`, `current-status`, `last-error`, `last-error-time`
 
 ### weka fs replication add
 
-Create a new replication pair between a local filesystem and a filesystem on a configured cluster peer.
+Create a new replication pair between a local filesystem and a filesystem on a linked cluster.
 
 ```sh
-weka fs replication add --interval <duration> --source-filesystem <filesystem> --target-cluster <cluster-peer> --target-filesystem <filesystem> [--access-strategy <access-strategy>] [--apply-strategy <apply-strategy>] [--copy-path <path>…] [--now] [--snapshots-to-keep <count>] [--target-total-capacity <capacity>]
+weka fs replication add --interval <duration> --source-filesystem <filesystem> --target-filesystem <filesystem> [--access-strategy <access-strategy>] [--apply-strategy <apply-strategy>] [--copy-path <path>…] [--link-id <cluster-link-id>] [--now] [--snapshots-to-keep <count>] [--target-total-capacity <capacity>]
 ```
 
-| Parameter                              | Description                                                                                                                                                                                                    |
-| -------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `--interval` \<duration>\*             | Replication interval (e.g. 5m, 1h). Range: 5 minutes to 30 days.                                                                                                                                               |
-| `--source-filesystem` \<filesystem>\*  | Name of the local source filesystem.                                                                                                                                                                           |
-| `--target-cluster` \<cluster-peer>\*   | Name of the configured cluster peer.                                                                                                                                                                           |
-| `--target-filesystem` \<filesystem>\*  | Name of the filesystem on the remote cluster.                                                                                                                                                                  |
-| `--access-strategy` \<access-strategy> | When users see the target filesystem: INSTANT\_ACCESS (default) exposes the snapshot immediately and fetches data lazily; COPY\_FIRST blocks the apply until --copy-path data is local. Valid values: instant\_access, copy\_first. |
-| `--apply-strategy` \<apply-strategy>   | When the snapshot becomes visible on the target. AUTOMATIC (the default, and the only value supported in this release) applies it as soon as the prerequisite phase finishes. Valid value: automatic. |
-| `--copy-path` \<path>…                 | Eager-copy path. Keywords: 'full', 'all' or '/' for full copy; 'none' or 'null' for no eager copy. Default: no eager copy. Multiple values may be supplied separated by commas, or the option may be repeated. |
-| `--now`                                | Trigger the first replication cycle immediately instead of waiting one full interval.                                                                                                                          |
-| `--snapshots-to-keep` \<count>         | Number of snapshots to retain. Default: 3. Range: 2 to 25.                                                                                                                                                     |
-| `--target-total-capacity` \<capacity>  | Total capacity for the target filesystem (default: same as the source filesystem). A smaller target is allowed for partial or no eager copy (--copy-path); full copy requires at least the source size.        |
+| Parameter | Description |
+| --------- | ----------- |
+| `--interval` &lt;duration&gt;* | Replication interval (e.g. 5m, 1h). Range: 5 minutes to 30 days. |
+| `--source-filesystem` &lt;filesystem&gt;* | Name of the local source filesystem. |
+| `--target-filesystem` &lt;filesystem&gt;* | Name of the filesystem on the remote cluster. |
+| `--access-strategy` &lt;access-strategy&gt; | When users see the target filesystem: INSTANT_ACCESS (default) exposes the snapshot immediately and fetches data lazily; COPY_FIRST blocks the apply until --copy-path data is local. Valid values: instant_access, copy_first. |
+| `--apply-strategy` &lt;apply-strategy&gt; | When the snapshot becomes visible on the target. AUTOMATIC (the default, and the only value supported in this release) applies it as soon as the prerequisite phase finishes. Valid value: automatic. |
+| `--copy-path` &lt;path&gt;… | Eager-copy path. Keywords: 'full', 'all' or '/' for full copy; 'none' or 'null' for no eager copy. Default: no eager copy. Multiple values may be supplied separated by commas, or the option may be repeated. |
+| `--link-id` &lt;cluster-link-id&gt; | ID of the cluster link to replicate over, as shown by 'weka cluster link'. |
+| `--now` | Trigger the first replication cycle immediately instead of waiting one full interval. |
+| `--snapshots-to-keep` &lt;count&gt; | Number of snapshots to retain. Default: 3. Range: 2 to 25. |
+| `--target-total-capacity` &lt;capacity&gt; | Total capacity for the target filesystem (default: same as the source filesystem). A smaller target is allowed for partial or no eager copy (--copy-path); full copy requires at least the source size. |
 
 ### weka fs replication fetch
 
@@ -543,13 +543,14 @@ weka fs replication release
 Remove an existing replication pair.
 
 ```sh
-weka fs replication remove <id> [--force]
+weka fs replication remove <id> [--force] [--local-only]
 ```
 
-| Parameter       | Description                                                     |
-| --------------- | --------------------------------------------------------------- |
-| `id`\*          | Replication pair ID.                                            |
+| Parameter | Description |
+| --------- | ----------- |
+| `id`* | Replication pair ID. |
 | `-f`, `--force` | Force action. Perform this action without further confirmation. |
+| `--local-only` | Remove the pair on this cluster only, leaving the remote cluster untouched. Use when the remote cluster is unreachable or gone; it is also the only way to remove an incoming pair. |
 
 ### weka fs replication resume
 
