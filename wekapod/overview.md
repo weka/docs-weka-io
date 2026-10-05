@@ -30,10 +30,10 @@ This guide provides detailed instructions for setting up and managing the WEKApo
    A breakdown of the core WEKApod server components, including descriptions of the front and back panels.
 3. [rack-installation.md](rack-installation.md "mention")\
    Step-by-step instructions on unpacking and installing the WEKApod system into a rack, including safety and regulatory information.
-4. [setup.md](setup.md "mention")\
-   An outline of the initial setup tasks and configuration, which will be carried out by the WEKA support team.
-5. [support.md](support.md "mention")\
+4. [support.md](support.md "mention")\
    A description of the WEKApod multi-tiered support system, providing customer assistance.
+
+WEKApod servers ship with the WEKA Platform Appliance (WPA) operating system image. The WEKA support team carries out the initial setup and configuration.
 
 Each section guides you through key processes to ensure a smooth setup and operation of the WEKApod system. For detailed information, click on the relevant section link above.
 
