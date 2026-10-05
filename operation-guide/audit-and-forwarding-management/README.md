@@ -46,6 +46,18 @@ These categories are specified in the command-line and configuration interfaces 
 
 <table><thead><tr><th width="299.78125">Category (configurable operation type)</th><th>Included audit operations</th></tr></thead><tbody><tr><td><code>open</code></td><td><code>FILEOPEN</code>, <code>ATOMIC_FILEOPEN</code></td></tr><tr><td><code>close</code></td><td><code>CLOSE</code></td></tr><tr><td><code>create</code></td><td><code>MKNOD</code>, <code>SYMLINK</code>, <code>LINK</code>, <code>SETATTR</code>, <code>ATOMIC_FILEOPEN</code></td></tr><tr><td><code>read</code></td><td><code>READDIR</code></td></tr><tr><td><code>modify</code></td><td><code>SETATTR</code>, <code>SETXATTR</code>, <code>RMXATTR</code></td></tr><tr><td><code>delete</code></td><td><code>UNLINK</code>, <code>RMDIR</code></td></tr><tr><td><code>rename</code></td><td><code>RENAME</code></td></tr><tr><td><code>session_management</code></td><td><code>MOUNT</code>, <code>UMOUNT</code>, <code>HEARTBEAT</code>, <code>LOST_AUDIT</code></td></tr></tbody></table>
 
+## Considerations
+
+* **Full paths reflect the directory tree at export time.**
+  * The system resolves `fullPath` when it exports a record, shortly after the operation.
+  * If a parent directory is renamed in between, the record shows the new path.
+  * To trace an object across renames, use `inodeId` and the `RENAME` records.
+* **Keep every export target reachable.**
+  * All exports share one pipeline, and every telemetry container runs all exports.
+  * The cluster delivers events to each export while every export target accepts them.
+  * Check exports with `weka telemetry exports status`.
+  * If a target stays unreachable, contact the Customer Success Team.
+
 ## Audit message format
 
 Each audit event sent to an external system is structured in a consistent message format containing fields that provide detailed information about the audited operation. The audit message can contain the following fields:
