@@ -16739,7 +16739,7 @@ weka telemetry exports remove <export-id>
 
 **weka telemetry exports status**
 
-Report the status of a telemetry exports
+Report each telemetry export's health across the cluster: how many of the containers expected to report it do, and what is wrong on the rest. Counts are exact; server names are a sample, the cluster names a limited number of servers per state
 
 ```sh
 weka telemetry exports status [--color color]
@@ -16748,21 +16748,37 @@ weka telemetry exports status [--color color]
                               [--CONNECT-TIMEOUT CONNECT-TIMEOUT]
                               [--TIMEOUT TIMEOUT]
                               [--profile profile]
+                              [--format format]
+                              [--output output]...
+                              [--sort sort]...
+                              [--filter filter]...
+                              [--filter-color filter-color]...
                               [--help]
-                              [--json]
+                              [--check]
+                              [--containers]
+                              [--no-header]
+                              [--verbose]
 
 ```
 
-| Parameter                 | Description                                                                                                |
-| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
-| `--profile`               | Name of the connection and authentication profile to use                                                   |
-| `-h`, `--help`            | Show help message                                                                                          |
-| `-J`, `--json`            | Format output as JSON                                                                                      |
+| Parameter                 | Description                                                                                                                                                                             |
+| ------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                        |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                                        |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                                        |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                              |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                  |
+| `--profile`               | Name of the connection and authentication profile to use                                                                                                                                |
+| `-f`, `--format`          | Specify in what format to output the result (format: 'view', 'csv', 'markdown', 'json' or 'oldview')                                                                                    |
+| `-o`, `--output`...       | Specify which columns to output. May include any of the following: export\_id,name,health,reporting,problems (may be repeated or comma-separated)                                       |
+| `-s`, `--sort`...         | Specify which column(s) to take into account when sorting the output. May include a '+' or '-' before the column name to sort in ascending or descending order respectively. Usage: \[+ |
+| `-F`, `--filter`...       | Specify what values to filter by in a specific column. Usage: column1=val1\[,column2=val2\[,..]] (may be repeated or comma-separated)                                                   |
+| `--filter-color`...       | Filter rows with specific colors (red/yellow/green) (may be repeated or comma-separated)                                                                                                |
+| `-h`, `--help`            | Show help message                                                                                                                                                                       |
+| `--check`                 | Exit with code 2 when any export shown is down, degraded, or telemetry off                                                                                                              |
+| `--containers`            | Show one row per container instead of one row per export. JSON output keeps one object per export, with its containers nested inside; --output and --sort apply to the export view only |
+| `--no-header`             | Don't show column headers when printing the output                                                                                                                                      |
+| `-v`, `--verbose`         | Show all columns in output                                                                                                                                                              |
 
 **weka telemetry exports update**
 
