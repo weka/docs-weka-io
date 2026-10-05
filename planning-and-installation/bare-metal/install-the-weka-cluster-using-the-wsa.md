@@ -42,7 +42,7 @@ A physical server that meets the following requirements:
 
 Before deploying the WSA, do the following:
 
-* Download the latest release of the WSA package from [get.weka.io](https://get.weka.io/ui/dashboard) dashboard.
+* To get the WSA image, contact the Customer Success Team.
 * The root password is `WekaService`
 * The WEKA user password is `weka.io123`
 * If errors occur during installation and the installation halts (no error messages appear), use the system console to review the logs in `/tmp`. The primary log is `/tmp/ks-pre.log`.

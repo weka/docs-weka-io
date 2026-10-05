@@ -43,7 +43,7 @@ The dashboard lists available installation packages.
 <div data-with-frame="true"><figure><img src="../../.gitbook/assets/get.weka_dashboard.png" alt="get.weka.io dashboard showing available installation packages"><figcaption><p>get.weka.io dashboard</p></figcaption></figure></div>
 
 2. Download the required package:
-   * For automated installation, download the WSA image from the dashboard.
+   * For automated installation with WSA, contact the Customer Success Team to get the WSA image.
    * For manual installation, select **Releases**, select the required release, then download the WEKA software tarball.
 
 The download link includes an access token. The capture masks this token.
