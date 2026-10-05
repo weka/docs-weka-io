@@ -4,10 +4,6 @@ description: Map REST API endpoints to equivalent CLI commands.
 
 # REST API and equivalent CLI commands
 
-{% hint style="info" %}
-REST API v2 is deprecated. New development takes place in REST API v3, which a future release introduces. REST API v2 remains available in this release.
-{% endhint %}
-
 To use the REST API effectively, review the comprehensive documentation, which provides detailed guidance on all available methods. Each REST API method corresponds to a CLI command, and most CLI parameters are also supported through the REST API. Use the CLI command help to view parameter details. This alignment ensures a consistent experience across both interfaces.
 
 **Related topic**
