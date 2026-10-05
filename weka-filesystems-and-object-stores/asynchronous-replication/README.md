@@ -40,9 +40,9 @@ The following diagram shows the components and data flow for an asynchronous rep
 
 A replication pair connects a source filesystem with a target filesystem:
 
-* **Trust relationship**: Before you can create a replication pair, the two clusters exchange tokens and establish mutual trust through their APIs.
+* **Cluster link**: Before you can create a replication pair, link the two clusters. One `weka cluster link add` command, run on either cluster, creates the link on both. The link authenticates with a cluster admin account on the other cluster, pins its TLS certificate, and carries replication in both directions. Each replication pair replicates in one direction, from its source to its target.
 * **Snapshot deltas**: On each replication interval, the system takes a snapshot of the source filesystem and transfers the incremental delta to the target. The minimum interval is 5 minutes.
-* **Transport**: Replication uses the S3 infrastructure of the clusters as a transport layer. Data passes through the object store bucket but is not stored in it. Each cluster requires an S3 cluster, an S3 system user, a thin-provisioned object store tier, and an S3 bucket.
+* **Transport**: Replication traffic passes through the S3 service of each cluster, over a dedicated replica route. Replication creates no bucket, S3 user, or object store filesystem of its own. Each cluster requires a cluster name and an S3 cluster with at least one server serving S3.
 * **Source and target roles**: The source filesystem remains fully readable and writable throughout replication. The target filesystem is write-protected: only the replication process can write to it, while users and applications can read it. The target becomes writable only when you remove the write protection, for example, during a failover.
 
 ### Copy options
@@ -57,6 +57,10 @@ With a metadata-only or partial copy, you can also fetch or release the data of 
 
 {% hint style="info" %}
 **Lazy data** is the CLI's term for on-demand data. A file in *lazy mode* is visible on the target, but its data blocks are still on the source. `weka fs replication fetch` pulls them to the target, and `weka fs replication release` returns them to lazy mode.
+{% endhint %}
+
+{% hint style="info" %}
+The replication commands are also grouped under `weka replication`: `weka replication link` runs the same commands as `weka cluster link`, and `weka replication fs-pair` runs the same commands as `weka fs replication`.
 {% endhint %}
 
 ### Access strategy
@@ -91,7 +95,11 @@ The same filesystem size behaves differently on different clusters. A 5 GB files
 If the target filesystem is smaller than about 0.1% of the target cluster SSD capacity, replication can stall from the first synchronization cycle, before any data is visibly transferred. Increase the filesystem size, or use a target cluster with less SSD capacity.
 {% endhint %}
 
-If the target filesystem runs out of space during a full copy, the replication cycle stops and the pair moves to the error state. Run `weka fs tier s3` against the replication bucket for details. Replication resumes after you free space or enlarge the filesystem.
+If the target filesystem runs out of space during a full copy, the replication cycle stops and the pair moves to the error state. Run `weka fs replication -v` and check the **Last Error** column for details. Replication resumes after you free space or enlarge the filesystem.
+
+{% hint style="danger" %}
+**INTERNAL, remove before publication. TBD (Gokul Sreeramaiah):** 6.0.0 pointed to `weka fs tier s3` on the replication bucket here. 6.0.1 has no replication bucket. Is `weka fs replication -v` and **Last Error** the right place to look, and does a full copy still move to the error state when the target fills? The developer known-issues page says a partial or metadata-only copy degrades to on-demand access instead.
+{% endhint %}
 
 ## Considerations
 
@@ -101,7 +109,8 @@ The RPO is not zero. Expect a lag of at least the replication interval. The targ
 
 ### Target filesystem
 
-* The replication process creates the target filesystem. You cannot replicate to a filesystem that already exists.
+* The replication process creates the target filesystem during the first replication cycle. You cannot replicate to a filesystem that already exists.
+* The target filesystem is created in the filesystem group that has the same name as the group of the source filesystem. That group must already exist on the target cluster.
 * The target filesystem is write-protected while the replication pair is active. Only the replication process writes to it, and users and applications can read it.
 * Run `weka fs update --access rw` on the target filesystem only after you remove the replication pair.
 * Creating a manual snapshot on the target filesystem halts replication and moves the pair to the error state.
@@ -122,7 +131,7 @@ To write to the target filesystem, hydrate all of its data, remove the replicati
 
 * The number of snapshots to keep ranges from 2 to 25. Retaining more snapshots requires more storage.
 * Avoid a snapshot interval shorter than 30 minutes on a filesystem that also has a replication schedule. If snapshot deletion overlaps the start of a replication cycle, the target can fall further behind than the scheduled interval.
-* The **anchor snapshot** is the last live snapshot in a replication pair. It remains on the filesystem after you remove the replication pair and the cluster peer, and you cannot delete it.
+* The **anchor snapshot** is the last live snapshot in a replication pair. It remains on the filesystem after you remove the replication pair and the cluster link, and you cannot delete it.
 * Resuming an aborted replication pair can fail and move the pair to the error state with a `SNAPSHOT_INCOMPATIBLE` message. This is a terminal error. Replication does not retry the pair, and recovering it requires manual intervention.
 
 ### Data copy and hydration
@@ -130,9 +139,14 @@ To write to the target filesystem, hydrate all of its data, remove the replicati
 * Changing the policy from on-demand caching to a full or partial copy does not copy files that were never hydrated. Hydrate those files before you change the policy.
 * Dehydration on the target filesystem starts when the disk occupied space reaches 95% and stops when it drops to 90%. To release data outside these thresholds, run `weka fs replication release`.
 
+### Pair topology
+
+* A filesystem can belong to one replication pair only.
+* A target filesystem cannot be the source of another pair, so cascading replication (A to B to C) is not supported.
+
 ### Scale limits
 
-* A cluster can have at most **8 cluster peers**.
+* A cluster can have at most **8 cluster links**.
 * A cluster can have at most **8 replication pairs**.
 * A cluster can have at most **8 replica anchors**.
 
@@ -142,5 +156,5 @@ The limits are per cluster and apply to the target as well as the source. A fan-
 
 * Replication management is available through the CLI only.
 * Replication is not supported on servers that run the NFS or SMB protocols, because the S3 protocol cannot be combined with NFS or SMB.
-* `weka cluster peer init --reinit` rotates the S3 credentials on the cluster where you run it, but it does not update the peer. After rotating, run `weka fs tier s3 update` on the target cluster with the new credentials.
-* `weka cluster peer init` does not deploy frontend containers. Deploy a frontend container manually on each server that runs an S3 container.
+* Both clusters must run version 6.0.1 or later to link. Pairs and peers set up on 6.0.0 are removed before the upgrade and re-created after it. See [Upgrade replication from 6.0.0](manage-asynchronous-replication.md#upgrade-replication-from-6-0-0).
+* A partial copy (`--copy-path` with specific directories) requires a Data Services container on the target cluster.
