@@ -57,8 +57,8 @@ These categories are specified in the command-line and configuration interfaces 
   * If a parent directory is renamed in between, the record shows the new path.
   * To trace an object across renames, use `inodeId` and the `RENAME` records.
 * **Keep every export target reachable.**
-  * Exports on the same telemetry container share one pipeline.
-  * If one target stops accepting events, the other exports on that container are delayed too.
+  * All exports share one pipeline, and every telemetry container runs all exports.
+  * The cluster delivers events to each export while every export target accepts them.
   * Check exports with `weka telemetry exports status`.
   * If a target stays unreachable, contact the Customer Success Team.
 
