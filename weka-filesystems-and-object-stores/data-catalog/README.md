@@ -72,7 +72,3 @@ Predefined templates in the data catalog allow you to categorize files by access
 * **Identify inactive files:** Surface data that is no longer needed by active workloads.
 * **Migrate to cost-effective storage:** Move stale data to S3 or low-cost HDD clusters.
 * **Optimize premium resources:** Reserve SSD-based cluster capacity for high-priority, frequently accessed data.
-
-{% embed url="https://youtu.be/o_ZnKSCjBQE" fullWidth="true" %}
-Demo: NeuralMesh data catalog
-{% endembed %}
