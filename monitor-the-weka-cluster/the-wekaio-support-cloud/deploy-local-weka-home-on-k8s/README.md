@@ -93,9 +93,9 @@ The chart is the authoritative source for these per-container values. To review 
 helm repo add wekahome https://weka.github.io/gohome/
 helm repo update
 # Print every default value, including the resources block of each component
-helm show values wekahome/wekahome --version 5.0.0
+helm show values wekahome/wekahome --version 5.0.2
 # Print the reference table describing each value
-helm show readme wekahome/wekahome --version 5.0.0
+helm show readme wekahome/wekahome --version 5.0.2
 ```
 
 Override only the components you need to change in your own `values.yaml`; any value you omit keeps the chart default.
@@ -181,7 +181,7 @@ helm repo update
 # List the available chart versions
 helm search repo wekahome --versions
 # Save the defaults for the version you plan to install
-helm show values wekahome/wekahome --version 5.0.0 > values.yaml
+helm show values wekahome/wekahome --version 5.0.2 > values.yaml
 ```
 
 {% hint style="info" %}
@@ -434,7 +434,7 @@ The LWH Helm chart is published to the WEKA Home Helm repository at `https://wek
     helm upgrade --create-namespace \
         --install wekahome wekahome/wekahome \
         --namespace weka-home \
-        --version v5.0.0 \
+        --version v5.0.2 \
         --values /path/to/values.yaml
     ```
 
