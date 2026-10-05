@@ -21,7 +21,7 @@ WSA is deprecated. WEKA plans to remove it in June 2027.
 
 WEKA Software Appliance (WSA): a server image that includes a preconfigured operating system (Rocky Linux 8.10), drivers, WEKA software, and support tools.
 
-WSA speeds up operating system deployment and WEKA software installation. Download WSA and install it on the servers. After installation, the server starts in STEM mode and is ready for configuration.
+WSA speeds up operating system deployment and WEKA software installation. To get WSA, contact the Customer Success Team, then install it on the servers. After installation, the server starts in STEM mode and is ready for configuration.
 
 Use this path when the WSA operating system meets your deployment requirements. This is the fastest supported path from bare metal to a working WEKA cluster.
 
