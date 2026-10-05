@@ -78,6 +78,18 @@ These categories are specified in the command-line and configuration interfaces 
 | `rename` | `RENAME` |
 | `session_management` | `MOUNT`, `UMOUNT`, `HEARTBEAT`, `LOST_AUDIT` |
 
+## Considerations
+
+* **Full paths reflect the directory tree at export time.**
+  * The system resolves `fullPath` when it exports a record, shortly after the operation.
+  * If a parent directory is renamed in between, the record shows the new path.
+  * To trace an object across renames, use `inodeId` and the `RENAME` records.
+* **Keep every export target reachable.**
+  * All exports share one pipeline, and every telemetry container runs all exports.
+  * The cluster delivers events to each export while every export target accepts them.
+  * Check exports with `weka telemetry exports status`.
+  * If a target stays unreachable, contact the Customer Success Team.
+
 ## Audit message format
 
 Each audit event sent to an external system is structured in a consistent message format containing fields that provide detailed information about the audited operation. The audit message can contain the following fields:
