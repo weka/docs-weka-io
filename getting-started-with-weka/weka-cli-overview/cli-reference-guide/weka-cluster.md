@@ -34,11 +34,11 @@ List the cluster buckets, logical compute units used to divide the workload in t
 weka cluster bucket [<bucket-ids>…]
 ```
 
-| Parameter     | Description                   |
-| ------------- | ----------------------------- |
+| Parameter | Description |
+| --------- | ----------- |
 | `bucket-ids`… | Only return these bucket IDs. |
 
-**Columns:** `id`, `leader`, `leader_term`, `last_active_term`, `init_state`, `fields`, `council`, `previous_leader`, `uptime`, `leader_version_sig`, `electable_mode`, `source_version_members`, `non_source_version_members`, `fill_level_percent`, `rebuild_todo`, `rebuild_total`, `fail_reason`, `activity`
+**Columns:** `id`, `leader`, `leader_term`, `last_active_term`, `init_state`, `fields`, `council`, `previous_leader`, `uptime`, `leader_version_sig`, `electable_mode`, `source_version_members`, `non_source_version_members`, `fill_level_percent`, `rebuild_todo`, `rebuild_total`, `fail_reason`, `activity`, `allocated_chunks`, `allocated_raw_capacity`
 
 ## weka cluster client-target-version
 
@@ -695,15 +695,15 @@ Add a new network space and corresponding VLAN and IP pool for backend cluster u
 weka cluster network-space add <name> --range <ip-range> --vlan <uint16> [--fip-range <ip-range>] [--gateway <ip>] [--netmask <uint8>] [--wait]
 ```
 
-| Parameter                 | Description                                                                  |
-| ------------------------- | ---------------------------------------------------------------------------- |
-| `name`\*                  | Network space name.                                                          |
-| `--range` \<ip-range>\*   | IP addresses in format IP1-IP2.                                              |
-| `--vlan` \<uint16>\*      | VLAN ID (1..4094).                                                           |
-| `--fip-range` \<ip-range> | Floating IP address range for NFS multi-tenant assignment (format IP1-IP2).  |
-| `--gateway` \<ip>         | Default gateway IP address for the network space.                            |
-| `--netmask` \<uint8>      | Subnet mask length in bits.                                                  |
-| `--wait`                  | Block until every backend applies and verifies the network space, then exit. |
+| Parameter | Description |
+| --------- | ----------- |
+| `name`* | Network space name. |
+| `--range` &lt;ip-range&gt;* | IP addresses in format IP1-IP2. |
+| `--vlan` &lt;uint16&gt;* | VLAN ID (1..4094). |
+| `--fip-range` &lt;ip-range&gt; | Floating IP address range for NFS multi-tenant assignment (format IP1-IP2). |
+| `--gateway` &lt;ip&gt; | Default gateway IP address for the network space. |
+| `--netmask` &lt;uint8&gt; | Subnet mask length in bits. |
+| `--wait` | Block until every backend applies and verifies the new network space, then exit. If any backend fails, the create is rolled back cluster-wide and the command exits non-zero. Waits as long as the cluster waits for its backends (no timeout; interruptible with Ctrl-C). |
 
 **Columns:** `nid`, `name`, `tenant`, `ip_range`, `fip_range`, `vlan`, `gateway`, `netmask_bits`, `rdma_state`
 
@@ -775,11 +775,11 @@ Remove a network space from the cluster.
 weka cluster network-space remove <name> [--force] [--wait]
 ```
 
-| Parameter       | Description                                                                  |
-| --------------- | ---------------------------------------------------------------------------- |
-| `name`\*        | Network space name.                                                          |
-| `-f`, `--force` | Force operation even when clients are present.                               |
-| `--wait`        | Block until every backend applies and verifies the network space, then exit. |
+| Parameter | Description |
+| --------- | ----------- |
+| `name`* | Network space name. |
+| `-f`, `--force` | Force operation even when clients are present. |
+| `--wait` | Block until every backend confirms teardown of the network space, then exit. Removal does not roll back: if a backend fails teardown the operation stays in-flight (the network space remains as a tombstone and the NetworkSpaceApplyStuck alert is raised) and the command exits non-zero. Waits as long as the cluster waits for its backends (no timeout; interruptible with Ctrl-C). |
 
 ### weka cluster network-space show-usage
 
@@ -807,17 +807,17 @@ Update an existing network space's IP pool and VLAN configuration.
 weka cluster network-space update <netspace> [--fip-range <ip-range>] [--force] [--gateway <ip>] [--name <string>] [--netmask <uint8>] [--range <ip-range>] [--vlan <uint16>] [--wait]
 ```
 
-| Parameter                 | Description                                                                  |
-| ------------------------- | ---------------------------------------------------------------------------- |
-| `netspace`\*              | Network space name or ID.                                                    |
-| `--fip-range` \<ip-range> | Floating IP address range for NFS multi-tenant assignment (format IP1-IP2).  |
-| `-f`, `--force`           | Force operation even when clients are present.                               |
-| `--gateway` \<ip>         | Default gateway IP address for the network space.                            |
-| `--name` \<string>        | New name for the network space.                                              |
-| `--netmask` \<uint8>      | Subnet mask length in bits.                                                  |
-| `--range` \<ip-range>     | IP addresses in format IP1-IP2.                                              |
-| `--vlan` \<uint16>        | VLAN ID (1..4094).                                                           |
-| `--wait`                  | Block until every backend applies and verifies the network space, then exit. |
+| Parameter | Description |
+| --------- | ----------- |
+| `netspace`* | Network space name or ID. |
+| `--fip-range` &lt;ip-range&gt; | Floating IP address range for NFS multi-tenant assignment (format IP1-IP2). |
+| `-f`, `--force` | Force operation even when clients are present. |
+| `--gateway` &lt;ip&gt; | Default gateway IP address for the network space. |
+| `--name` &lt;string&gt; | New name for the network space. |
+| `--netmask` &lt;uint8&gt; | Subnet mask length in bits. |
+| `--range` &lt;ip-range&gt; | IP addresses in format IP1-IP2. |
+| `--vlan` &lt;uint16&gt; | VLAN ID (1..4094). |
+| `--wait` | Block until every backend re-applies and verifies the updated network space, then exit. An update is a teardown-then-rebuild; if a backend fails it stays in-flight (no rollback) and the command exits non-zero. Waits as long as the cluster waits for its backends (no timeout; interruptible with Ctrl-C). |
 
 ## weka cluster peer
 
@@ -1008,12 +1008,13 @@ weka cluster start-io [--force]
 Show overall status of the cluster.
 
 ```sh
-weka cluster status [--detailed-capacity]
+weka cluster status [--detailed-capacity] [--no-wait]
 ```
 
-| Parameter             | Description                                        |
-| --------------------- | -------------------------------------------------- |
+| Parameter | Description |
+| --------- | ----------- |
 | `--detailed-capacity` | Include capacity details including data reduction. |
+| `--no-wait` | Return partial status without waiting for leader election or bucket readiness. Not supported with machine-readable output formats or --detailed-capacity. Requires cluster version 6.1 or newer. |
 
 ### weka cluster status meta
 

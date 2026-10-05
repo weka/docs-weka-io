@@ -14,7 +14,7 @@ View info about the managed SMB cluster.
 weka smb cluster
 ```
 
-**Columns:** `status`, `name`, `smb_ips`, `smb_containers`, `idmap_backend`, `joined_idmap_range`, `default_idmap_range`, `encryption`, `config_fs_name`, `type`, `domain_joined`, `domain_name`, `domain_admin_username`, `sssd_health`, `sssd_last_error`, `scale_out`, `userdb_trusted_domains`
+**Columns:** `status`, `name`, `smb_ips`, `smb_containers`, `idmap_backend`, `joined_idmap_range`, `default_idmap_range`, `encryption`, `config_fs_name`, `type`, `domain_joined`, `domain_name`, `domain_admin_username`, `sssd_health`, `sssd_last_error`, `scale_out`, `userdb_trusted_domains`, `container_memory_ceiling`, `container_memory_ceiling_effective`
 
 ### weka smb cluster containers
 
@@ -55,36 +55,37 @@ weka smb cluster containers remove --container-ids <container-ids>… [--force]
 Create an SMB cluster.
 
 ```sh
-weka smb cluster create <netbios-name> <domain> <config-fs-name> --container-ids <container-ids>… [--default-domain-mapping-from-id <uint32>] [--default-domain-mapping-to-id <uint32>] [--domain-netbios-name <string>] [--encryption <smb-cluster-encryption>] [--idmap-backend <smb-idmap-backend>] [--joined-domain-mapping-from-id <uint32>] [--joined-domain-mapping-to-id <uint32>] [--ldap-bind-dn <string>] [--ldap-bind-password <string>] [--ldap-domain <string>] [--ldap-schema <smb-ldap-schema>] [--ldap-search-base <string>] [--ldap-uri <string>] [--posix-resolution-mode <smb-posix-resolution-mode>] [--prompt-ldap-bind-password] [--scale-out-mode <smb-scale-out-mode>] [--smb-conf-extra <string>] [--smb-ips-pool <ips>…] [--smb-ips-range <ip-ranges>…] [--symlink] [--userdb-trusted-domains]
+weka smb cluster create <netbios-name> <domain> <config-fs-name> --container-ids <container-ids>… [--default-domain-mapping-from-id <uint32>] [--default-domain-mapping-to-id <uint32>] [--domain-netbios-name <string>] [--encryption <smb-cluster-encryption>] [--idmap-backend <smb-idmap-backend>] [--joined-domain-mapping-from-id <uint32>] [--joined-domain-mapping-to-id <uint32>] [--ldap-bind-dn <string>] [--ldap-bind-password <string>] [--ldap-domain <string>] [--ldap-schema <smb-ldap-schema>] [--ldap-search-base <string>] [--ldap-uri <string>] [--max-memory <capacity>] [--posix-resolution-mode <smb-posix-resolution-mode>] [--prompt-ldap-bind-password] [--scale-out-mode <smb-scale-out-mode>] [--smb-conf-extra <string>] [--smb-ips-pool <ips>…] [--smb-ips-range <ip-ranges>…] [--symlink] [--userdb-trusted-domains]
 ```
 
-| Parameter                                              | Description                                                                                                                                                                                                                                                                                                                                                                                                                      |
-| ------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `netbios-name`\*                                       | NetBIOS name for the SMB cluster.                                                                                                                                                                                                                                                                                                                                                                                                |
-| `domain`\*                                             | Domain name for the SMB cluster.                                                                                                                                                                                                                                                                                                                                                                                                 |
-| `config-fs-name`\*                                     | Filesystem name for SMB configuration storage.                                                                                                                                                                                                                                                                                                                                                                                   |
-| `--container-ids` \<container-ids>\*…                  | Containers that will serve SMB protocol. Multiple values may be supplied separated by commas, or the option may be repeated.                                                                                                                                                                                                                                                                                                     |
-| `--default-domain-mapping-from-id` \<uint32>           | Default domain ID mapping range start.                                                                                                                                                                                                                                                                                                                                                                                           |
-| `--default-domain-mapping-to-id` \<uint32>             | Default domain ID mapping range end.                                                                                                                                                                                                                                                                                                                                                                                             |
-| `--domain-netbios-name` \<string>                      | Domain NetBIOS name.                                                                                                                                                                                                                                                                                                                                                                                                             |
-| `--encryption` \<smb-cluster-encryption>               | Cluster encryption mode. Valid values: enabled, disabled, desired, required.                                                                                                                                                                                                                                                                                                                                                     |
-| `--idmap-backend` \<smb-idmap-backend>                 | ID mapping backend type. Valid values: rid, rfc2307.                                                                                                                                                                                                                                                                                                                                                                             |
-| `--joined-domain-mapping-from-id` \<uint32>            | Joined domain ID mapping range start.                                                                                                                                                                                                                                                                                                                                                                                            |
-| `--joined-domain-mapping-to-id` \<uint32>              | Joined domain ID mapping range end.                                                                                                                                                                                                                                                                                                                                                                                              |
-| `--ldap-bind-dn` \<string>                             | LDAP bind DN used by SSSD.                                                                                                                                                                                                                                                                                                                                                                                                       |
-| `--ldap-bind-password` \<string>                       | LDAP bind password used by SSSD.                                                                                                                                                                                                                                                                                                                                                                                                 |
-| `--ldap-domain` \<string>                              | LDAP domain used by SSSD.                                                                                                                                                                                                                                                                                                                                                                                                        |
-| `--ldap-schema` \<smb-ldap-schema>                     | LDAP schema type used by SSSD for POSIX attribute resolution. Valid values: rfc2307, rfc2307bis, ad, ipa.                                                                                                                                                                                                                                                                                                                        |
-| `--ldap-search-base` \<string>                         | LDAP search base used by SSSD.                                                                                                                                                                                                                                                                                                                                                                                                   |
-| `--ldap-uri` \<string>                                 | LDAP server URI used by SSSD.                                                                                                                                                                                                                                                                                                                                                                                                    |
-| `--posix-resolution-mode` \<smb-posix-resolution-mode> | POSIX UID/GID resolution mode for SMB-W: 'ad' or 'nss'. 'nss' needs at least one LDAP domain: supply --ldap-domain, or omit it to reuse the LDAP domains that survived a previous cluster destroy. Valid values: ad, nss.                                                                                                                                                                                                        |
-| `--prompt-ldap-bind-password`                          | Prompt interactively for the LDAP bind password instead of passing it on the command line.                                                                                                                                                                                                                                                                                                                                       |
-| `--scale-out-mode` \<smb-scale-out-mode>               | Scale-out mode. Valid values: none, full, partial.                                                                                                                                                                                                                                                                                                                                                                               |
-| `--smb-conf-extra` \<string>                           | Additional smb.conf configuration.                                                                                                                                                                                                                                                                                                                                                                                               |
-| `--smb-ips-pool` \<ips>…                               | SMB floating IP addresses. The pool and --smb-ips-range together hold one to three addresses per container. Multiple values may be supplied separated by commas, or the option may be repeated.                                                                                                                                                                                                                                  |
-| `--smb-ips-range` \<ip-ranges>…                        | SMB floating IP address ranges, each written as a CIDR subnet, a first-last pair, or a first address with the last octets of the final one (10.0.0.0/29, 10.0.0.1-10.0.0.9, 10.0.0.1-9). A /30 or wider CIDR excludes its network and broadcast addresses. The ranges and --smb-ips-pool together hold one to three addresses per container. Multiple values may be supplied separated by commas, or the option may be repeated. |
-| `--symlink`                                            | Enable symlink support.                                                                                                                                                                                                                                                                                                                                                                                                          |
-| `--userdb-trusted-domains`                             | Enumerate the trusted domains and their domain controllers when the SMB server starts (enabled by default). Set to false in large Active Directory environments where the enumeration times out and the SMB server keeps restarting. While it is off, users from trusted domains cannot be resolved and lose access.                                                                                                             |
+| Parameter | Description |
+| --------- | ----------- |
+| `netbios-name`* | NetBIOS name for the SMB cluster. |
+| `domain`* | Domain name for the SMB cluster. |
+| `config-fs-name`* | Filesystem name for SMB configuration storage. |
+| `--container-ids` &lt;container-ids&gt;*… | Containers that will serve SMB protocol. Multiple values may be supplied separated by commas, or the option may be repeated. |
+| `--default-domain-mapping-from-id` &lt;uint32&gt; | Default domain ID mapping range start. |
+| `--default-domain-mapping-to-id` &lt;uint32&gt; | Default domain ID mapping range end. |
+| `--domain-netbios-name` &lt;string&gt; | Domain NetBIOS name. |
+| `--encryption` &lt;smb-cluster-encryption&gt; | Cluster encryption mode. Valid values: enabled, disabled, desired, required. |
+| `--idmap-backend` &lt;smb-idmap-backend&gt; | ID mapping backend type. Valid values: rid, rfc2307. |
+| `--joined-domain-mapping-from-id` &lt;uint32&gt; | Joined domain ID mapping range start. |
+| `--joined-domain-mapping-to-id` &lt;uint32&gt; | Joined domain ID mapping range end. |
+| `--ldap-bind-dn` &lt;string&gt; | LDAP bind DN used by SSSD. |
+| `--ldap-bind-password` &lt;string&gt; | LDAP bind password used by SSSD. |
+| `--ldap-domain` &lt;string&gt; | LDAP domain used by SSSD. |
+| `--ldap-schema` &lt;smb-ldap-schema&gt; | LDAP schema type used by SSSD for POSIX attribute resolution. Valid values: rfc2307, rfc2307bis, ad, ipa. |
+| `--ldap-search-base` &lt;string&gt; | LDAP search base used by SSSD. |
+| `--ldap-uri` &lt;string&gt; | LDAP server URI used by SSSD. |
+| `--max-memory` &lt;capacity&gt; | Override the SMB container's memory ceiling, in whole GiB (e.g. 32GiB). Left unset, the compiled default applies. Only settable at cluster creation. |
+| `--posix-resolution-mode` &lt;smb-posix-resolution-mode&gt; | POSIX UID/GID resolution mode for SMB-W: 'ad' or 'nss'. 'nss' needs at least one LDAP domain: supply --ldap-domain, or omit it to reuse the LDAP domains that survived a previous cluster destroy. Valid values: ad, nss. |
+| `--prompt-ldap-bind-password` | Prompt interactively for the LDAP bind password instead of passing it on the command line. |
+| `--scale-out-mode` &lt;smb-scale-out-mode&gt; | Scale-out mode. Valid values: none, full, partial. |
+| `--smb-conf-extra` &lt;string&gt; | Additional smb.conf configuration. |
+| `--smb-ips-pool` &lt;ips&gt;… | SMB floating IP addresses. The pool and --smb-ips-range together hold one to three addresses per container. Multiple values may be supplied separated by commas, or the option may be repeated. |
+| `--smb-ips-range` &lt;ip-ranges&gt;… | SMB floating IP address ranges, each written as a CIDR subnet, a first-last pair, or a first address with the last octets of the final one (10.0.0.0/29, 10.0.0.1-10.0.0.9, 10.0.0.1-9). A /30 or wider CIDR excludes its network and broadcast addresses. The ranges and --smb-ips-pool together hold one to three addresses per container. Multiple values may be supplied separated by commas, or the option may be repeated. |
+| `--symlink` | Enable symlink support. |
+| `--userdb-trusted-domains` | Enumerate the trusted domains and their domain controllers when the SMB server starts (enabled by default). Set to false in large Active Directory environments where the enumeration times out and the SMB server keeps restarting. While it is off, users from trusted domains cannot be resolved and lose access. |
 
 ### weka smb cluster debug
 
@@ -245,21 +246,22 @@ weka smb ldap-domain
 Add an SSSD/external-LDAP domain for POSIX UID/GID resolution.
 
 ```sh
-weka smb ldap-domain add <domain> [<ldap-bind-password>] [--ca-cert <string>] [--case-sensitive] [--ldap-bind-dn <string>] [--ldap-schema <smb-ldap-schema>] [--ldap-search-base <string>] [--ldap-uri <string>] [--start-tls] [--validate-before-commit]
+weka smb ldap-domain add <domain> [<ldap-bind-password>] [--ca-cert <string>] [--case-sensitive] [--ldap-bind-dn <string>] [--ldap-group-nesting-level <uint>] [--ldap-schema <smb-ldap-schema>] [--ldap-search-base <string>] [--ldap-uri <string>] [--start-tls] [--validate-before-commit]
 ```
 
-| Parameter                          | Description                                                                                               |
-| ---------------------------------- | --------------------------------------------------------------------------------------------------------- |
-| `domain`\*                         | SSSD domain label (must be unique).                                                                       |
-| `ldap-bind-password`               | LDAP bind password. If omitted, you will be prompted.                                                     |
-| `--ca-cert` \<string>              | Path to a CA certificate PEM file used to verify the LDAP server's TLS certificate.                       |
-| `--case-sensitive`                 | Enable case-sensitive POSIX name lookups in SSSD.                                                         |
-| `--ldap-bind-dn` \<string>         | Bind DN used to authenticate to the LDAP server.                                                          |
-| `--ldap-schema` \<smb-ldap-schema> | LDAP schema type used by SSSD for POSIX attribute resolution. Valid values: rfc2307, rfc2307bis, ad, ipa. |
-| `--ldap-search-base` \<string>     | LDAP search base.                                                                                         |
-| `--ldap-uri` \<string>             | LDAP server URI.                                                                                          |
-| `--start-tls`                      | Use StartTLS to secure the LDAP connection.                                                               |
-| `--validate-before-commit`         | Probe the LDAP server (bind + POSIX attributes) before committing; abort if the probe fails.              |
+| Parameter | Description |
+| --------- | ----------- |
+| `domain`* | SSSD domain label (must be unique). |
+| `ldap-bind-password` | LDAP bind password. If omitted, you will be prompted. |
+| `--ca-cert` &lt;string&gt; | Path to a CA certificate PEM file used to verify the LDAP server's TLS certificate. |
+| `--case-sensitive` | Enable case-sensitive POSIX name lookups in SSSD. |
+| `--ldap-bind-dn` &lt;string&gt; | Bind DN used to authenticate to the LDAP server. |
+| `--ldap-group-nesting-level` &lt;uint&gt; | Levels of nested groups SSSD expands when building a user's group list (SSSD ldap_group_nesting_level; 0 disables nested-group expansion, default: 2). |
+| `--ldap-schema` &lt;smb-ldap-schema&gt; | LDAP schema type used by SSSD for POSIX attribute resolution. Valid values: rfc2307, rfc2307bis, ad, ipa. |
+| `--ldap-search-base` &lt;string&gt; | LDAP search base. |
+| `--ldap-uri` &lt;string&gt; | LDAP server URI. |
+| `--start-tls` | Use StartTLS to secure the LDAP connection. |
+| `--validate-before-commit` | Probe the LDAP server (bind + POSIX attributes) before committing; abort if the probe fails. |
 
 ### weka smb ldap-domain remove
 
@@ -296,11 +298,11 @@ List the SSSD/external-LDAP domains used for POSIX UID/GID resolution, or show o
 weka smb ldap-domain show [<domain>]
 ```
 
-| Parameter | Description                                   |
-| --------- | --------------------------------------------- |
-| `domain`  | SSSD domain label to show (omit to list all). |
+| Parameter | Description |
+| --------- | ----------- |
+| `domain` | SSSD domain label to show (omit to list all). |
 
-**Columns:** `domain`, `ldap_uri`, `search_base`, `bind_dn`, `has_bind_password`, `schema`, `case_sensitive`, `status`
+**Columns:** `domain`, `ldap_uri`, `search_base`, `bind_dn`, `has_bind_password`, `schema`, `ldap_group_nesting_level`, `case_sensitive`, `status`
 
 ### weka smb ldap-domain test
 
@@ -319,21 +321,22 @@ weka smb ldap-domain test <domain>
 Update fields of an existing SSSD/external-LDAP domain; only the provided fields change.
 
 ```sh
-weka smb ldap-domain update <domain> [--ca-cert <string>] [--case-sensitive] [--ldap-bind-dn <string>] [--ldap-bind-password <string>] [--ldap-schema <smb-ldap-schema>] [--ldap-search-base <string>] [--ldap-uri <string>] [--start-tls] [--validate-before-commit]
+weka smb ldap-domain update <domain> [--ca-cert <string>] [--case-sensitive] [--ldap-bind-dn <string>] [--ldap-bind-password <string>] [--ldap-group-nesting-level <uint>] [--ldap-schema <smb-ldap-schema>] [--ldap-search-base <string>] [--ldap-uri <string>] [--start-tls] [--validate-before-commit]
 ```
 
-| Parameter                          | Description                                                                                               |
-| ---------------------------------- | --------------------------------------------------------------------------------------------------------- |
-| `domain`\*                         | SSSD domain label to update.                                                                              |
-| `--ca-cert` \<string>              | Path to a CA certificate PEM file used to verify the LDAP server's TLS certificate.                       |
-| `--case-sensitive`                 | Enable case-sensitive POSIX name lookups in SSSD.                                                         |
-| `--ldap-bind-dn` \<string>         | Bind DN used to authenticate to the LDAP server.                                                          |
-| `--ldap-bind-password` \<string>   | New LDAP bind password.                                                                                   |
-| `--ldap-schema` \<smb-ldap-schema> | LDAP schema type used by SSSD for POSIX attribute resolution. Valid values: rfc2307, rfc2307bis, ad, ipa. |
-| `--ldap-search-base` \<string>     | LDAP search base.                                                                                         |
-| `--ldap-uri` \<string>             | LDAP server URI.                                                                                          |
-| `--start-tls`                      | Use StartTLS to secure the LDAP connection.                                                               |
-| `--validate-before-commit`         | Probe the LDAP server (bind + POSIX attributes) before committing; abort if the probe fails.              |
+| Parameter | Description |
+| --------- | ----------- |
+| `domain`* | SSSD domain label to update. |
+| `--ca-cert` &lt;string&gt; | Path to a CA certificate PEM file used to verify the LDAP server's TLS certificate. |
+| `--case-sensitive` | Enable case-sensitive POSIX name lookups in SSSD. |
+| `--ldap-bind-dn` &lt;string&gt; | Bind DN used to authenticate to the LDAP server. |
+| `--ldap-bind-password` &lt;string&gt; | New LDAP bind password. |
+| `--ldap-group-nesting-level` &lt;uint&gt; | Levels of nested groups SSSD expands when building a user's group list (SSSD ldap_group_nesting_level; 0 disables nested-group expansion, default: 2). |
+| `--ldap-schema` &lt;smb-ldap-schema&gt; | LDAP schema type used by SSSD for POSIX attribute resolution. Valid values: rfc2307, rfc2307bis, ad, ipa. |
+| `--ldap-search-base` &lt;string&gt; | LDAP search base. |
+| `--ldap-uri` &lt;string&gt; | LDAP server URI. |
+| `--start-tls` | Use StartTLS to secure the LDAP connection. |
+| `--validate-before-commit` | Probe the LDAP server (bind + POSIX attributes) before committing; abort if the probe fails. |
 
 ## weka smb share
 

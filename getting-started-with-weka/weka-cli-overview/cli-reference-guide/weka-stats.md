@@ -62,6 +62,26 @@ weka stats realtime [<process>…] [--footer] [--hostnames <strings>…] [--role
 
 **Columns:** `process`, `hostname`, `roles`, `mode`, `writeps`, `writebps`, `wlatency`, `readps`, `readbps`, `rlatency`, `ops`, `cpu`, `l6recv`, `l6send`, `upload`, `download`, `rdmarecv`, `rdmasend`
 
+### weka stats realtime top
+
+Show the top containers (or servers, with --per-server) by realtime load, separately for backends and clients. The ranking is done on the cluster; idle containers and servers are omitted from the lists, while the totals (--show-total) include all of them.
+
+```sh
+weka stats realtime top [<count>…] [--backends] [--clients] [--footer] [--per-server] [--perf] [--sort-by <sort-by>]
+```
+
+| Parameter | Description |
+| --------- | ----------- |
+| `count`… | Number of top entries to show in each list (1-100, default 10). |
+| `--backends` | Show only backends. |
+| `--clients` | Show only clients. |
+| `--footer` | Show the totals of each printed list (including idle containers and servers). |
+| `--per-server` | Aggregate all the containers of each server into a single entry. |
+| `--perf` | Also show a performance report of the request (timings and sizes). |
+| `--sort-by` &lt;sort-by&gt; | Rank by: iops, throughput or latency (default: iops). Valid values: iops, throughput, latency. |
+
+**Columns:** `id`, `containername`, `hostname`, `mode`, `ops`, `readps`, `writeps`, `readbps`, `writebps`, `bps`, `rlatency`, `wlatency`, `avglatency`, `cpu`, `processes`
+
 ## weka stats retention
 
 Configure retention for statistics. Longer retention periods consume more storage.

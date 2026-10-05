@@ -123,20 +123,33 @@ weka nfs debug-level list <what> [--full-list]
 
 **Columns:** `name`
 
-### weka nfs debug-level set
+### weka nfs debug-level reset
 
-Set NFS debug level.
+Clear persisted NFS debug levels. A component returns to the level persisted for all components, or to the default. Requires Cluster Admin role.
 
 ```sh
-weka nfs debug-level set <level> [--full-list] [--nfs-components <strings>…] [--nfs-hosts <container-ids>…]
+weka nfs debug-level reset [--nfs-components <strings>…]
 ```
 
-| Parameter                       | Description                                                                                                         |
-| ------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
-| `level`\*                       | One of the supported debug levels.                                                                                  |
-| `--full-list`                   | Set log level for all components.                                                                                   |
-| `--nfs-components` \<strings>…  | List of component names. Multiple values may be supplied separated by commas, or the option may be repeated.        |
-| `--nfs-hosts` \<container-ids>… | Only apply to these containers. Multiple values may be supplied separated by commas, or the option may be repeated. |
+| Parameter | Description |
+| --------- | ----------- |
+| `--nfs-components` &lt;strings&gt;… | Only reset these components. Multiple values may be supplied separated by commas, or the option may be repeated. |
+
+### weka nfs debug-level set
+
+Set NFS debug level. A cluster-wide level persists across restarts and requires Cluster Admin role; with --transient or --nfs-hosts it applies only to the running servers and requires Tenant Admin role.
+
+```sh
+weka nfs debug-level set <level> [--full-list] [--nfs-components <strings>…] [--nfs-hosts <container-ids>…] [--transient]
+```
+
+| Parameter | Description |
+| --------- | ----------- |
+| `level`* | One of the supported debug levels. |
+| `--full-list` | Set log level for all components. |
+| `--nfs-components` &lt;strings&gt;… | List of component names. Multiple values may be supplied separated by commas, or the option may be repeated. |
+| `--nfs-hosts` &lt;container-ids&gt;… | Only apply to these containers. Multiple values may be supplied separated by commas, or the option may be repeated. |
+| `--transient` | Apply to the running NFS servers only, without persisting across restarts. |
 
 ### weka nfs debug-level show
 
@@ -146,13 +159,13 @@ Show NFS debug level settings information.
 weka nfs debug-level show [--full-list] [--nfs-components <strings>…] [--nfs-hosts <container-ids>…]
 ```
 
-| Parameter                       | Description                                                                                                            |
-| ------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
-| `--full-list`                   | Show the full list of components.                                                                                      |
-| `--nfs-components` \<strings>…  | List of component names. Multiple values may be supplied separated by commas, or the option may be repeated.           |
-| `--nfs-hosts` \<container-ids>… | Only return from these containers. Multiple values may be supplied separated by commas, or the option may be repeated. |
+| Parameter | Description |
+| --------- | ----------- |
+| `--full-list` | Show the full list of components. |
+| `--nfs-components` &lt;strings&gt;… | List of component names. Multiple values may be supplied separated by commas, or the option may be repeated. |
+| `--nfs-hosts` &lt;container-ids&gt;… | Only return from these containers. Multiple values may be supplied separated by commas, or the option may be repeated. |
 
-**Columns:** `container`, `debug_level`, `component`
+**Columns:** `container`, `debug_level`, `component`, `persisted`
 
 ## weka nfs global-config
 
@@ -167,28 +180,29 @@ weka nfs global-config
 Set NFS global config parameters.
 
 ```sh
-weka nfs global-config set [--acl <on-off>] [--config-fs <string>] [--default-acl-type <acl-type>] [--default-supported-versions <nfs-versions>…] [--direct-io <on-off>] [--enable-auth-types <nfs-auth-types>…] [--enable-multi-tenant <on-off>] [--extended-stats <on-off>] [--force] [--force-config-fs <on-off>] [--lockmgr-port <uint16>] [--max-client-connections <uint>] [--max-open-fds <uint>] [--mountd-port <uint16>] [--no-restart] [--notify-port <uint16>] [--statmon-port <uint16>]
+weka nfs global-config set [--acl <on-off>] [--config-fs <string>] [--default-acl-type <acl-type>] [--default-supported-versions <nfs-versions>…] [--direct-io <on-off>] [--enable-auth-types <nfs-auth-types>…] [--enable-multi-tenant <on-off>] [--extended-stats <on-off>] [--force] [--force-config-fs <on-off>] [--lockmgr-port <uint16>] [--max-client-connections <uint>] [--max-memory <capacity>] [--max-open-fds <uint>] [--mountd-port <uint16>] [--no-restart] [--notify-port <uint16>] [--statmon-port <uint16>]
 ```
 
-| Parameter                                       | Description                                                                                                                                                        |
-| ----------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `--acl` \<on-off>                               | Enable or disable ACL.                                                                                                                                             |
-| `--config-fs` \<string>                         | Config filesystem name. Use empty string to invalidate.                                                                                                            |
-| `--default-acl-type` \<acl-type>                | Default ACL type. Valid values: none, posix, nfsv4, hybrid.                                                                                                        |
-| `--default-supported-versions` \<nfs-versions>… | NFS versions for new permissions. Multiple values may be supplied separated by commas, or the option may be repeated. Valid values: v3, v4.                        |
-| `--direct-io` \<on-off>                         | Disable readcache and writecache.                                                                                                                                  |
-| `--enable-auth-types` \<nfs-auth-types>…        | List of NFS authentication types. Multiple values may be supplied separated by commas, or the option may be repeated. Valid values: none, sys, krb5, krb5i, krb5p. |
-| `--enable-multi-tenant` \<on-off>               | Enable or disable NFS multi-tenant support (default: Off).                                                                                                         |
-| `--extended-stats` \<on-off>                    | Enable or disable extended stats.                                                                                                                                  |
-| `-f`, `--force`                                 | Force action. Perform this action without further confirmation.                                                                                                    |
-| `--force-config-fs` \<on-off>                   | Force config-fs update when locks are on.                                                                                                                          |
-| `--lockmgr-port` \<uint16>                      | Port for NFS lock manager. Default 0 selects any available port.                                                                                                   |
-| `--max-client-connections` \<uint>              | Maximum number of concurrent NFS client connections. 0 means auto-tune based on cluster size.                                                                      |
-| `--max-open-fds` \<uint>                        | Maximum number of open file descriptors per NFS server process.                                                                                                    |
-| `--mountd-port` \<uint16>                       | Port number for mountd service.                                                                                                                                    |
-| `--no-restart`                                  | Prevent NFS-W containers from restarting when changes are applied.                                                                                                 |
-| `--notify-port` \<uint16>                       | Port for NFSv3 notification. Default 0 means any available port.                                                                                                   |
-| `--statmon-port` \<uint16>                      | Port for NFS status monitor. Default 0 means any available port.                                                                                                   |
+| Parameter | Description |
+| --------- | ----------- |
+| `--acl` &lt;on-off&gt; | Enable or disable ACL. |
+| `--config-fs` &lt;string&gt; | Config filesystem name. Use empty string to invalidate. |
+| `--default-acl-type` &lt;acl-type&gt; | Default ACL type. Valid values: none, posix, nfsv4, hybrid. |
+| `--default-supported-versions` &lt;nfs-versions&gt;… | NFS versions for new permissions. Multiple values may be supplied separated by commas, or the option may be repeated. Valid values: v3, v4. |
+| `--direct-io` &lt;on-off&gt; | Disable readcache and writecache. |
+| `--enable-auth-types` &lt;nfs-auth-types&gt;… | List of NFS authentication types. Multiple values may be supplied separated by commas, or the option may be repeated. Valid values: none, sys, krb5, krb5i, krb5p. |
+| `--enable-multi-tenant` &lt;on-off&gt; | Enable or disable NFS multi-tenant support (default: Off). |
+| `--extended-stats` &lt;on-off&gt; | Enable or disable extended stats. |
+| `-f`, `--force` | Force action. Perform this action without further confirmation. |
+| `--force-config-fs` &lt;on-off&gt; | Force config-fs update when locks are on. |
+| `--lockmgr-port` &lt;uint16&gt; | Port for NFS lock manager. Default 0 selects any available port. |
+| `--max-client-connections` &lt;uint&gt; | Maximum number of concurrent NFS client connections. 0 means auto-tune based on cluster size. |
+| `--max-memory` &lt;capacity&gt; | Override the NFS container's memory ceiling, in whole GiB (e.g. 32GiB). Left unset, the compiled default applies. Only settable before any NFS container exists. |
+| `--max-open-fds` &lt;uint&gt; | Maximum number of files each NFS server may hold open. From WEKA 6.1, 0 restores the default of 500000; earlier releases require a value between 10000 and 10000000. The derived process descriptor limit (connections + open files + reserve) and the NFS server's file-cache thresholds both apply without a restart. |
+| `--mountd-port` &lt;uint16&gt; | Port number for mountd service. |
+| `--no-restart` | Prevent NFS-W containers from restarting when changes are applied. |
+| `--notify-port` &lt;uint16&gt; | Port for NFSv3 notification. Default 0 means any available port. |
+| `--statmon-port` &lt;uint16&gt; | Port for NFS status monitor. Default 0 means any available port. |
 
 ### weka nfs global-config show
 
@@ -198,7 +212,7 @@ Show NFS global configuration information.
 weka nfs global-config show
 ```
 
-**Columns:** `acl`, `config_fs`, `default_acl_type`, `default_auth_types`, `default_supported_versions`, `direct_io`, `enabled_auth_types`, `enable_multi_tenant`, `extended_stats`, `grace_period`, `lease_lifetime`, `lock_recovery_period`, `lockmgr_port`, `locks`, `maxClientConnections`, `max_open_fds`, `mountd_port`, `notify_port`, `statmon_port`, `supported_auth_types`
+**Columns:** `acl`, `config_fs`, `container_memory_ceiling`, `container_memory_ceiling_effective`, `default_acl_type`, `default_auth_types`, `default_supported_versions`, `direct_io`, `enabled_auth_types`, `enable_multi_tenant`, `extended_stats`, `grace_period`, `lease_lifetime`, `lock_recovery_period`, `lockmgr_port`, `locks`, `maxClientConnections`, `maxOpenFiles`, `fdRlimit`, `memoryLimit`, `mountd_port`, `notify_port`, `statmon_port`, `supported_auth_types`
 
 ## weka nfs interface-group
 
@@ -525,38 +539,74 @@ Manage NFS LDAP and AD configuration.
 weka nfs ldap
 ```
 
+### weka nfs ldap export-ad
+
+Export Active Directory LDAP configuration.
+
+```sh
+weka nfs ldap export-ad <server-name> <ldap-domain> <sssd-conf-file> <idmapd-conf-file> [<ca-cert-file>]
+```
+
+| Parameter | Description |
+| --------- | ----------- |
+| `server-name`* | AD server name. |
+| `ldap-domain`* | AD domain. |
+| `sssd-conf-file`* | Path to sssd configuration file. |
+| `idmapd-conf-file`* | Path to idmapd configuration file. |
+| `ca-cert-file` | Path to CA Certificate file. |
+
 ### weka nfs ldap export-openldap
 
 Export OpenLDAP configuration.
 
 ```sh
-weka nfs ldap export-openldap <server-name> <ldap-domain> <sssd-conf-file> <idmapd-conf-file>
+weka nfs ldap export-openldap <server-name> <ldap-domain> <sssd-conf-file> <idmapd-conf-file> [<ca-cert-file>]
 ```
 
-| Parameter            | Description                        |
-| -------------------- | ---------------------------------- |
-| `server-name`\*      | OpenLDAP server name.              |
-| `ldap-domain`\*      | OpenLDAP domain.                   |
-| `sssd-conf-file`\*   | Path to sssd configuration file.   |
-| `idmapd-conf-file`\* | Path to idmapd configuration file. |
+| Parameter | Description |
+| --------- | ----------- |
+| `server-name`* | OpenLDAP server name. |
+| `ldap-domain`* | OpenLDAP domain. |
+| `sssd-conf-file`* | Path to sssd configuration file. |
+| `idmapd-conf-file`* | Path to idmapd configuration file. |
+| `ca-cert-file` | Path to CA Certificate file. |
+
+### weka nfs ldap import-ad
+
+Import Active Directory LDAP configuration.
+
+```sh
+weka nfs ldap import-ad <server-name> <ldap-domain> <sssd-conf-file> <idmapd-conf-file> [<ca-cert-file>] [--force] [--no-restart]
+```
+
+| Parameter | Description |
+| --------- | ----------- |
+| `server-name`* | AD server name. |
+| `ldap-domain`* | AD domain. |
+| `sssd-conf-file`* | Path to sssd configuration file. |
+| `idmapd-conf-file`* | Path to idmapd configuration file. |
+| `ca-cert-file` | Path to CA Certificate file. |
+| `--force` | Perform this action without further confirmation. |
+| `--no-restart` | Don't restart the NFS-W containers to apply changes. |
 
 ### weka nfs ldap import-openldap
 
 Import OpenLDAP configuration.
 
 ```sh
-weka nfs ldap import-openldap <server-name> <ldap-domain> <sssd-conf-file> <idmapd-conf-file> [--force] [--no-restart] [--verify]
+weka nfs ldap import-openldap <server-name> <ldap-domain> <sssd-conf-file> <idmapd-conf-file> [<ca-cert-file>] [--force] [--no-restart] [--verify]
 ```
 
-| Parameter            | Description                                          |
-| -------------------- | ---------------------------------------------------- |
-| `server-name`\*      | OpenLDAP server name.                                |
-| `ldap-domain`\*      | OpenLDAP domain.                                     |
-| `sssd-conf-file`\*   | Path to sssd configuration file.                     |
-| `idmapd-conf-file`\* | Path to idmapd configuration file.                   |
-| `--force`            | Perform this action without further confirmation.    |
-| `--no-restart`       | Don't restart the NFS-W containers to apply changes. |
-| `--verify`           | Verify connectivity with the OpenLDAP server.        |
+| Parameter | Description |
+| --------- | ----------- |
+| `server-name`* | OpenLDAP server name. |
+| `ldap-domain`* | OpenLDAP domain. |
+| `sssd-conf-file`* | Path to sssd configuration file. |
+| `idmapd-conf-file`* | Path to idmapd configuration file. |
+| `ca-cert-file` | Path to CA Certificate file. |
+| `--force` | Perform this action without further confirmation. |
+| `--no-restart` | Don't restart the NFS-W containers to apply changes. |
+| `--verify` | Verify connectivity with the OpenLDAP server. |
 
 ### weka nfs ldap reset
 
@@ -731,6 +781,20 @@ weka nfs permission update <filesystem> <group> [--acl-type <acl-type>] [--anon-
 | `--squash` \<squash-mode>                | Permission squashing. The option 'all' can be used only on interface groups with --allow-manage-gids=on. Valid values: none, root, all.                                                            |
 | `--supported-versions` \<nfs-versions>…  | NFS versions for new permissions. Multiple values may be supplied separated by commas, or the option may be repeated. Valid values: v3, v4.                                                        |
 
+## weka nfs resource-usage
+
+Show NFS server resource usage per container.
+
+```sh
+weka nfs resource-usage [--container-id <container-id>]
+```
+
+| Parameter | Description |
+| --------- | ----------- |
+| `--container-id` &lt;container-id&gt; | Specify container ID. |
+
+**Columns:** `container_id`, `hostname`, `connections`, `max_connections`, `connections_percent`, `connections_state`, `connections_refused_rate`, `open_files`, `max_open_files`, `files_percent`, `files_state`, `memory_usage_bytes`, `memory_limit_bytes`, `memory_percent`, `memory_state`, `source`, `sample_age_secs`, `fd_state`, `pinned_fd_count`, `reapable_fd_count`, `open_state_count`, `fd_hwmark`, `fd_lwmark`, `process_fd_count`, `socket_fd_count`, `fd_rlimit`, `listeners`, `server_memory_total_bytes`
+
 ## weka nfs rules
 
 Manage NFS rules, or list with no arguments.
@@ -770,10 +834,10 @@ Add an IP rule to an NFS client group.
 weka nfs rules add ip <name> <ip>
 ```
 
-| Parameter | Description                                                                    |
-| --------- | ------------------------------------------------------------------------------ |
-| `name`\*  | Name of the NFS group in which to create the rule.                             |
-| `ip`\*    | IP with netmask or CIDR rule, in the 1.1.1.1/255.255.0.0 or 1.1.1.1/16 format. |
+| Parameter | Description |
+| --------- | ----------- |
+| `name`* | Name of the NFS group in which to create the rule. |
+| `ip`* | IPv4 address with a prefix length (e.g. 1.1.1.0/16). |
 
 **Columns:** `id`, `uid`, `type`, `rule`
 
@@ -806,7 +870,7 @@ Remove an IP rule from an NFS client group.
 weka nfs rules remove ip <name> <ip>
 ```
 
-| Parameter | Description                                                                    |
-| --------- | ------------------------------------------------------------------------------ |
-| `name`\*  | Name of the NFS group from which to delete the rule.                           |
-| `ip`\*    | IP with netmask or CIDR rule, in the 1.1.1.1/255.255.0.0 or 1.1.1.1/16 format. |
+| Parameter | Description |
+| --------- | ----------- |
+| `name`* | Name of the NFS group from which to delete the rule. |
+| `ip`* | IPv4 address with a prefix length (e.g. 1.1.1.0/16). |

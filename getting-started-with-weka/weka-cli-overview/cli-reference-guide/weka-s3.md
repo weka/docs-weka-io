@@ -479,6 +479,67 @@ weka s3 bucket versioning suspend <name>
 | --------- | ---------------------- |
 | `name`\*  | Name of the S3 bucket. |
 
+## weka s3 cert
+
+Manage certificates stored for S3 notification targets and bucket migrations.
+
+```sh
+weka s3 cert
+```
+
+### weka s3 cert add
+
+Add a certificate. To replace the contents of an existing certificate, use 'weka s3 cert update'.
+
+```sh
+weka s3 cert add <name> --cert <string> --type <cert-usage> [--key <string>]
+```
+
+| Parameter | Description |
+| --------- | ----------- |
+| `name`* | Certificate name. |
+| `--cert` &lt;string&gt;* | File containing the certificate, in PEM format. |
+| `--type` &lt;cert-usage&gt;* | Certificate usage: 'client' to present to a remote peer, 'server' to trust one. Valid values: client, server. |
+| `--key` &lt;string&gt; | File containing the private key, in PEM format. Required for a client certificate. |
+
+### weka s3 cert list
+
+List the stored S3 certificates.
+
+```sh
+weka s3 cert list
+```
+
+**Columns:** `name`, `type`
+
+### weka s3 cert remove
+
+Remove a certificate. A certificate still referenced by a notification target or a bucket migration cannot be removed.
+
+```sh
+weka s3 cert remove <name> [--force]
+```
+
+| Parameter | Description |
+| --------- | ----------- |
+| `name`* | Certificate name to remove. |
+| `-f`, `--force` | Force action. Perform this action without further confirmation. |
+
+### weka s3 cert update
+
+Replace the contents of an existing certificate. This is how a certificate is rotated.
+
+```sh
+weka s3 cert update <name> --cert <string> --type <cert-usage> [--key <string>]
+```
+
+| Parameter | Description |
+| --------- | ----------- |
+| `name`* | Certificate name. |
+| `--cert` &lt;string&gt;* | File containing the new certificate, in PEM format. |
+| `--type` &lt;cert-usage&gt;* | Certificate usage: 'client' to present to a remote peer, 'server' to trust one. Valid values: client, server. |
+| `--key` &lt;string&gt; | File containing the new private key, in PEM format. Required for a client certificate. |
+
 ## weka s3 cluster
 
 Manage S3 cluster configuration.
@@ -492,22 +553,23 @@ weka s3 cluster
 Create an S3 cluster.
 
 ```sh
-weka s3 cluster add <config-fs-name>… [--all-servers] [--allow-versioning] [--anonymous-posix-gid <uint>] [--anonymous-posix-uid <uint>] [--container <container-ids>…] [--default-fs-name <string>] [--domain <strings>…] [--force] [--max-buckets-limit <uint>] [--port <uint16>]
+weka s3 cluster add <config-fs-name>… [--all-servers] [--allow-versioning] [--anonymous-posix-gid <uint>] [--anonymous-posix-uid <uint>] [--container <container-ids>…] [--default-fs-name <string>] [--domain <strings>…] [--force] [--max-buckets-limit <uint>] [--max-memory <capacity>] [--port <uint16>]
 ```
 
-| Parameter                       | Description                                                                                                                 |
-| ------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
-| `config-fs-name`\*…             | Filesystem name for S3 configuration storage.                                                                               |
-| `--all-servers`                 | Install S3 on all servers.                                                                                                  |
-| `--allow-versioning`            | Enable S3 versioning (default off, cannot be disabled once enabled).                                                        |
-| `--anonymous-posix-gid` \<uint> | POSIX GID for anonymous users.                                                                                              |
-| `--anonymous-posix-uid` \<uint> | POSIX UID for anonymous users.                                                                                              |
-| `--container` \<container-ids>… | Containers that will serve S3 protocol. Multiple values may be supplied separated by commas, or the option may be repeated. |
-| `--default-fs-name` \<string>   | Default filesystem name for S3 buckets.                                                                                     |
-| `--domain` \<strings>…          | Virtual host-style domains. Multiple values may be supplied separated by commas, or the option may be repeated.             |
-| `-f`, `--force`                 | Force action. Perform this action without further confirmation.                                                             |
-| `--max-buckets-limit` \<uint>   | Maximum buckets that can be created.                                                                                        |
-| `--port` \<uint16>              | S3 service port.                                                                                                            |
+| Parameter | Description |
+| --------- | ----------- |
+| `config-fs-name`*… | Filesystem name for S3 configuration storage. |
+| `--all-servers` | Install S3 on all servers. |
+| `--allow-versioning` | Enable S3 versioning (default off, cannot be disabled once enabled). |
+| `--anonymous-posix-gid` &lt;uint&gt; | POSIX GID for anonymous users. |
+| `--anonymous-posix-uid` &lt;uint&gt; | POSIX UID for anonymous users. |
+| `--container` &lt;container-ids&gt;… | Containers that will serve S3 protocol. Multiple values may be supplied separated by commas, or the option may be repeated. |
+| `--default-fs-name` &lt;string&gt; | Default filesystem name for S3 buckets. |
+| `--domain` &lt;strings&gt;… | Virtual host-style domains. Multiple values may be supplied separated by commas, or the option may be repeated. |
+| `-f`, `--force` | Force action. Perform this action without further confirmation. |
+| `--max-buckets-limit` &lt;uint&gt; | Maximum buckets that can be created. |
+| `--max-memory` &lt;capacity&gt; | Override the S3 container's memory ceiling, in whole GiB (e.g. 16GiB). Left unset, the compiled default applies. Only settable at cluster creation. |
+| `--port` &lt;uint16&gt; | S3 service port. |
 
 ### weka s3 cluster audit-webhook
 
@@ -688,28 +750,32 @@ weka s3 cluster notification-target cert
 
 Add a new certificate for a bucket notification target.
 
+This command is deprecated. Use 'weka s3 cert add --type client' instead.
+
 ```sh
 weka s3 cluster notification-target cert add <cert-name> --client-tls-cert <string> --client-tls-key <string> --target-type <target-type>
 ```
 
-| Parameter                        | Description                                   |
-| -------------------------------- | --------------------------------------------- |
-| `cert-name`\*                    | Certificate name.                             |
-| `--client-tls-cert` \<string>\*  | File containing the client certificate.       |
-| `--client-tls-key` \<string>\*   | File containing the client private key.       |
-| `--target-type` \<target-type>\* | Notification target type. Valid value: kafka. |
+| Parameter | Description |
+| --------- | ----------- |
+| `cert-name`* | Certificate name. |
+| `--client-tls-cert` &lt;string&gt;* | File containing the client certificate. |
+| `--client-tls-key` &lt;string&gt;* | File containing the client private key. |
+| `--target-type` &lt;target-type&gt;* | Notification target type. Valid value: kafka. |
 
 ##### weka s3 cluster notification-target cert list
 
 List all certificates for a bucket notification target.
 
+This command is deprecated. Use 'weka s3 cert list' instead.
+
 ```sh
 weka s3 cluster notification-target cert list --target-type <target-type>
 ```
 
-| Parameter                        | Description                                   |
-| -------------------------------- | --------------------------------------------- |
-| `--target-type` \<target-type>\* | Notification target type. Valid value: kafka. |
+| Parameter | Description |
+| --------- | ----------- |
+| `--target-type` &lt;target-type&gt;* | Notification target type. Valid value: kafka. |
 
 **Columns:** `name`
 
@@ -717,14 +783,16 @@ weka s3 cluster notification-target cert list --target-type <target-type>
 
 Remove an existing certificate for a bucket notification target.
 
+This command is deprecated. Use 'weka s3 cert remove' instead.
+
 ```sh
 weka s3 cluster notification-target cert remove <cert-name> --target-type <target-type>
 ```
 
-| Parameter                        | Description                                   |
-| -------------------------------- | --------------------------------------------- |
-| `cert-name`\*                    | Certificate name to remove.                   |
-| `--target-type` \<target-type>\* | Notification target type. Valid value: kafka. |
+| Parameter | Description |
+| --------- | ----------- |
+| `cert-name`* | Certificate name to remove. |
+| `--target-type` &lt;target-type&gt;* | Notification target type. Valid value: kafka. |
 
 #### weka s3 cluster notification-target list
 
@@ -1216,3 +1284,88 @@ weka s3 user keys-generate [--user <string>]
 | `--user` \<string> | Target S3 username for credential generation/rotation. Requires Tenant Admin or Cluster Admin role. |
 
 **Columns:** `access_key`, `secret_key`
+
+## weka s3 xattr-conversion
+
+Manage conversion of S3 object metadata to extended attributes.
+
+```sh
+weka s3 xattr-conversion
+```
+
+### weka s3 xattr-conversion abort
+
+Abort the running S3 metadata conversion task. Starting the conversion again resumes it.
+
+```sh
+weka s3 xattr-conversion abort [--force]
+```
+
+| Parameter | Description |
+| --------- | ----------- |
+| `--force` | Abort even when no conversion task is running, discarding the recorded error log so a later start begins from scratch. |
+
+### weka s3 xattr-conversion complete
+
+Force-complete the S3 metadata conversion, marking it done even though some objects failed to convert. The metadata of those objects stays in the legacy trees.
+
+```sh
+weka s3 xattr-conversion complete --force --reason <string> [--acknowledged-errors <uint>]
+```
+
+| Parameter | Description |
+| --------- | ----------- |
+| `--force`* | Required: confirm force-completion. |
+| `--reason` &lt;string&gt;* | Justification for force-completing the conversion, recorded with it. |
+| `--acknowledged-errors` &lt;uint&gt; | Number of conversion errors being acknowledged. Required when the conversion has errors, and must match the count reported by `weka s3 xattr-conversion status`. |
+
+### weka s3 xattr-conversion graveyard
+
+Manage the legacy S3 metadata trees that the conversion's cleanup phase quarantined instead of deleting.
+
+```sh
+weka s3 xattr-conversion graveyard
+```
+
+#### weka s3 xattr-conversion graveyard list
+
+List the quarantined legacy S3 metadata trees retained by the conversion's cleanup phase. They hold capacity until purged.
+
+```sh
+weka s3 xattr-conversion graveyard list
+```
+
+**Columns:** `bucket`, `area`, `path`, `task`, `quarantined`
+
+#### weka s3 xattr-conversion graveyard purge
+
+Permanently delete quarantined legacy S3 metadata trees. A background delete task is spawned per tree, and the capacity is reclaimed once those tasks finish.
+
+```sh
+weka s3 xattr-conversion graveyard purge [--bucket <string>] [--force]
+```
+
+| Parameter | Description |
+| --------- | ----------- |
+| `--bucket` &lt;string&gt; | Only purge quarantined metadata for this bucket. Omit to purge every quarantined bucket. |
+| `-f`, `--force` | Force action. Perform this action without further confirmation. |
+
+### weka s3 xattr-conversion start
+
+Start the S3 metadata conversion task. Running it again after an abort resumes the conversion.
+
+```sh
+weka s3 xattr-conversion start
+```
+
+### weka s3 xattr-conversion status
+
+Show the status of the S3 metadata conversion.
+
+```sh
+weka s3 xattr-conversion status [--errors]
+```
+
+| Parameter | Description |
+| --------- | ----------- |
+| `--errors` | Include the list of objects that failed conversion. |

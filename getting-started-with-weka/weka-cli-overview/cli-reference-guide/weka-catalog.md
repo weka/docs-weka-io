@@ -93,12 +93,12 @@ Update catalog configuration including index policy.
 weka catalog config update [--index-enabled] [--index-interval <duration>] [--max-ingest-tasks <uint16>] [--retention-period <duration>]
 ```
 
-| Parameter                        | Description                                                                                                    |
-| -------------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `--index-enabled`                | Enable or disable catalog indexing.                                                                            |
-| `--index-interval` \<duration>   | Index task execution interval. Default: 1 day. Supports time units: s (seconds), m (minutes), h (hours).       |
-| `--max-ingest-tasks` \<uint16>   | Maximum number of ingest tasks that can run in parallel (default: 2).                                          |
-| `--retention-period` \<duration> | Retention period for index snapshots. Default: 30 days. Supports time units: m (minutes), h (hours), d (days). |
+| Parameter | Description |
+| --------- | ----------- |
+| `--index-enabled` | Enable or disable catalog indexing. |
+| `--index-interval` &lt;duration&gt; | Index task execution interval, between 30 minutes and 7 days. Default: 1 day. |
+| `--max-ingest-tasks` &lt;uint16&gt; | Maximum number of ingest tasks that can run in parallel. |
+| `--retention-period` &lt;duration&gt; | Retention period for index snapshots, between 1 hour and 366 days, and at least the index interval. Default: 30 days. |
 
 ## weka catalog fs
 

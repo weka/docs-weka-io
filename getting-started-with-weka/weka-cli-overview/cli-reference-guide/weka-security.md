@@ -339,17 +339,17 @@ Add a new security policy.
 weka security policy add <name> [--action <security-action>] [--anon-gid <uint32>] [--anon-uid <uint32>] [--description <string>] [--ips <strings>…] [--read-only <on-off>] [--roles <user-roles>…] [--squash-mode <squash-mode>]
 ```
 
-| Parameter                      | Description                                                                                                                                                                                                                                        |
-| ------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `name`\*                       | Name of the new security policy.                                                                                                                                                                                                                   |
-| `--action` \<security-action>  | Whether access is granted or denied when the security policy matches. Valid values: allow, deny.                                                                                                                                                   |
-| `--anon-gid` \<uint32>         | Anonymous group ID to which accesses are squashed.                                                                                                                                                                                                 |
-| `--anon-uid` \<uint32>         | Anonymous user ID to which accesses are squashed.                                                                                                                                                                                                  |
-| `--description` \<string>      | Security policy description.                                                                                                                                                                                                                       |
-| `--ips` \<strings>…            | IPs (or ranges of IPs) to which the security policy applies. Multiple values may be supplied separated by commas, or the option may be repeated.                                                                                                   |
-| `--read-only` \<on-off>        | The security policy allows read-only mounts only.                                                                                                                                                                                                  |
-| `--roles` \<user-roles>…       | User roles to which the security policy applies. Used only for administrative interfaces. Multiple values may be supplied separated by commas, or the option may be repeated. Valid values: clusteradmin, tenantadmin, regular, readonly, s3, csi. |
-| `--squash-mode` \<squash-mode> | Dictates whether user and group IDs accessing mounted filesystems are squashed. If 'root' then converts accesses by root (UID 0/GID 0) to the anonymous UID and GID. If 'all', then converts all accesses. Valid values: none, root, all.          |
+| Parameter | Description |
+| --------- | ----------- |
+| `name`* | Name of the new security policy. |
+| `--action` &lt;security-action&gt; | Whether access is granted or denied when the security policy matches. Valid values: allow, deny. |
+| `--anon-gid` &lt;uint32&gt; | Anonymous group ID to which accesses are squashed. |
+| `--anon-uid` &lt;uint32&gt; | Anonymous user ID to which accesses are squashed. |
+| `--description` &lt;string&gt; | Security policy description. |
+| `--ips` &lt;strings&gt;… | IPs (or ranges of IPs) to which the security policy applies. Multiple values may be supplied separated by commas, or the option may be repeated. |
+| `--read-only` &lt;on-off&gt; | The security policy allows read-only mounts only. |
+| `--roles` &lt;user-roles&gt;… | User roles to which the security policy applies. Used only for administrative interfaces. Multiple values may be supplied separated by commas, or the option may be repeated. Valid values: clusteradmin, tenantadmin, regular, readonly, s3, csi, quotamanager. |
+| `--squash-mode` &lt;squash-mode&gt; | Dictates whether user and group IDs accessing mounted filesystems are squashed. If 'root' then converts accesses by root (UID 0/GID 0) to the anonymous UID and GID. If 'all', then converts all accesses. Valid values: none, root, all. |
 
 ### weka security policy duplicate
 
@@ -453,11 +453,11 @@ Show the list of security policies.
 weka security policy list [--action <security-action>] [--ips <ip-ranges>…] [--roles <user-roles>…]
 ```
 
-| Parameter                     | Description                                                                                                                                                                                          |
-| ----------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `--action` \<security-action> | Only show policies that match a specific action. Valid values: allow, deny.                                                                                                                          |
-| `--ips` \<ip-ranges>…         | Only show policies include specific IP address ranges. Multiple values may be supplied separated by commas, or the option may be repeated.                                                           |
-| `--roles` \<user-roles>…      | Only show policies naming these user roles. Multiple values may be supplied separated by commas, or the option may be repeated. Valid values: clusteradmin, tenantadmin, regular, readonly, s3, csi. |
+| Parameter | Description |
+| --------- | ----------- |
+| `--action` &lt;security-action&gt; | Only show policies that match a specific action. Valid values: allow, deny. |
+| `--ips` &lt;ip-ranges&gt;… | Only show policies include specific IP address ranges. Multiple values may be supplied separated by commas, or the option may be repeated. |
+| `--roles` &lt;user-roles&gt;… | Only show policies naming these user roles. Multiple values may be supplied separated by commas, or the option may be repeated. Valid values: clusteradmin, tenantadmin, regular, readonly, s3, csi, quotamanager. |
 
 **Columns:** `uid`, `id`, `name`, `ref_count`, `description`, `action`, `roles`, `ips`, `read_only`, `squash_mode`, `anon_uid`, `anon_gid`, `created_by`, `created_at`, `modified_by`, `modified_at`
 
@@ -496,12 +496,12 @@ Simulates the effect of one or more security policies against a proposed access.
 weka security policy test <policies>… [--ip <ip>] [--join] [--role <user-role>]
 ```
 
-| Parameter             | Description                                                         |
-| --------------------- | ------------------------------------------------------------------- |
-| `policies`\*…         | Policies to evaluate, with access verified in the order listed.     |
-| `--ip` \<ip>          | Use this IP address to evaluate as the source address.              |
-| `--join`              | Simulate effect of policies when joining the cluster.               |
-| `--role` \<user-role> | Simulate effect of policies on API access from the given user role. Valid values: clusteradmin, tenantadmin, regular, readonly, s3, csi. |
+| Parameter | Description |
+| --------- | ----------- |
+| `policies`*… | Policies to evaluate, with access verified in the order listed. |
+| `--ip` &lt;ip&gt; | Use this IP address to evaluate as the source address. |
+| `--join` | Simulate effect of policies when joining the cluster. |
+| `--role` &lt;user-role&gt; | Simulate effect of policies on API access from the given user role. Valid values: clusteradmin, tenantadmin, regular, readonly, s3, csi, quotamanager. |
 
 ### weka security policy update
 
@@ -511,23 +511,23 @@ Updates the settings of an existing security policy.
 weka security policy update <policy> [--action <security-action>] [--add-ips <ip-ranges>…] [--add-roles <user-roles>…] [--anon-gid <uint32>] [--anon-uid <uint32>] [--description <string>] [--force] [--ips <ip-ranges>…] [--new-name <string>] [--read-only <on-off>] [--remove-ips <ip-ranges>…] [--remove-roles <user-roles>…] [--roles <user-roles>…] [--squash-mode <squash-mode>]
 ```
 
-| Parameter                       | Description                                                                                                                                                                                                                                        |
-| ------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `policy`\*                      | Policy ID or name of policy to update.                                                                                                                                                                                                             |
-| `--action` \<security-action>   | Whether access is granted or denied when the security policy matches. Valid values: allow, deny.                                                                                                                                                   |
-| `--add-ips` \<ip-ranges>…       | IP addresses or ranges to add to the end of the security policy. Multiple values may be supplied separated by commas, or the option may be repeated.                                                                                               |
-| `--add-roles` \<user-roles>…    | These user roles are added to the security policy. Multiple values may be supplied separated by commas, or the option may be repeated. Valid values: clusteradmin, tenantadmin, regular, readonly, s3, csi.                                        |
-| `--anon-gid` \<uint32>          | Anonymous group ID to which accesses are squashed.                                                                                                                                                                                                 |
-| `--anon-uid` \<uint32>          | Anonymous user ID to which accesses are squashed.                                                                                                                                                                                                  |
-| `--description` \<string>       | Security policy description.                                                                                                                                                                                                                       |
-| `-f`, `--force`                 | Force action. Perform this action without further confirmation.                                                                                                                                                                                    |
-| `--ips` \<ip-ranges>…           | IPs (or ranges of IPs) to which the security policy applies. Multiple values may be supplied separated by commas, or the option may be repeated.                                                                                                   |
-| `--new-name` \<string>          | New name of security policy.                                                                                                                                                                                                                       |
-| `--read-only` \<on-off>         | The security policy allows read-only mounts only.                                                                                                                                                                                                  |
-| `--remove-ips` \<ip-ranges>…    | IP addresses or IP address ranges to remove from the security policy. Multiple values may be supplied separated by commas, or the option may be repeated.                                                                                          |
-| `--remove-roles` \<user-roles>… | These user roles are removed from the security policy. Multiple values may be supplied separated by commas, or the option may be repeated. Valid values: clusteradmin, tenantadmin, regular, readonly, s3, csi.                                    |
-| `--roles` \<user-roles>…        | User roles to which the security policy applies. Used only for administrative interfaces. Multiple values may be supplied separated by commas, or the option may be repeated. Valid values: clusteradmin, tenantadmin, regular, readonly, s3, csi. |
-| `--squash-mode` \<squash-mode>  | Dictates whether user and group IDs accessing mounted filesystems are squashed. If 'root' then converts accesses by root (UID 0/GID 0) to the anonymous UID and GID. If 'all', then converts all accesses. Valid values: none, root, all.          |
+| Parameter | Description |
+| --------- | ----------- |
+| `policy`* | Policy ID or name of policy to update. |
+| `--action` &lt;security-action&gt; | Whether access is granted or denied when the security policy matches. Valid values: allow, deny. |
+| `--add-ips` &lt;ip-ranges&gt;… | IP addresses or ranges to add to the end of the security policy. Multiple values may be supplied separated by commas, or the option may be repeated. |
+| `--add-roles` &lt;user-roles&gt;… | These user roles are added to the security policy. Multiple values may be supplied separated by commas, or the option may be repeated. Valid values: clusteradmin, tenantadmin, regular, readonly, s3, csi, quotamanager. |
+| `--anon-gid` &lt;uint32&gt; | Anonymous group ID to which accesses are squashed. |
+| `--anon-uid` &lt;uint32&gt; | Anonymous user ID to which accesses are squashed. |
+| `--description` &lt;string&gt; | Security policy description. |
+| `-f`, `--force` | Force action. Perform this action without further confirmation. |
+| `--ips` &lt;ip-ranges&gt;… | IPs (or ranges of IPs) to which the security policy applies. Multiple values may be supplied separated by commas, or the option may be repeated. |
+| `--new-name` &lt;string&gt; | New name of security policy. |
+| `--read-only` &lt;on-off&gt; | The security policy allows read-only mounts only. |
+| `--remove-ips` &lt;ip-ranges&gt;… | IP addresses or IP address ranges to remove from the security policy. Multiple values may be supplied separated by commas, or the option may be repeated. |
+| `--remove-roles` &lt;user-roles&gt;… | These user roles are removed from the security policy. Multiple values may be supplied separated by commas, or the option may be repeated. Valid values: clusteradmin, tenantadmin, regular, readonly, s3, csi, quotamanager. |
+| `--roles` &lt;user-roles&gt;… | User roles to which the security policy applies. Used only for administrative interfaces. Multiple values may be supplied separated by commas, or the option may be repeated. Valid values: clusteradmin, tenantadmin, regular, readonly, s3, csi, quotamanager. |
+| `--squash-mode` &lt;squash-mode&gt; | Dictates whether user and group IDs accessing mounted filesystems are squashed. If 'root' then converts accesses by root (UID 0/GID 0) to the anonymous UID and GID. If 'all', then converts all accesses. Valid values: none, root, all. |
 
 ## weka security tls
 

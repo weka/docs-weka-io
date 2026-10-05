@@ -3,12 +3,13 @@
 Show overall status of the cluster.
 
 ```sh
-weka status [--detailed-capacity]
+weka status [--detailed-capacity] [--no-wait]
 ```
 
-| Parameter             | Description                                        |
-| --------------------- | -------------------------------------------------- |
+| Parameter | Description |
+| --------- | ----------- |
 | `--detailed-capacity` | Include capacity details including data reduction. |
+| `--no-wait` | Return partial status without waiting for leader election or bucket readiness. Not supported with machine-readable output formats or --detailed-capacity. Requires cluster version 6.1 or newer. |
 
 ## weka status meta
 

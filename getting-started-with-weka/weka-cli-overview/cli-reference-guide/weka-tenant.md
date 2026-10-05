@@ -6,7 +6,7 @@ List tenants defined in the cluster.
 weka tenant
 ```
 
-**Columns:** `uid`, `id`, `name`, `allocTotal`, `quotaTotal`, `pctAllocated`, `allocSSD`, `quotaSSD`, `pctAllocatedSSD`, `qos`, `enforceFsAuth`, `enforceNetspace`, `policyNames`, `policyIds`, `maxThroughput`, `maxIops`
+**Columns:** `uid`, `id`, `name`, `allocTotal`, `quotaTotal`, `pctAllocated`, `allocSSD`, `quotaSSD`, `pctAllocatedSSD`, `qos`, `enforceFsAuth`, `enforceNetspace`, `allowContextSwitch`, `policyNames`, `policyIds`, `maxThroughput`, `maxIops`
 
 ## weka tenant add
 
@@ -49,6 +49,30 @@ weka tenant chown fs <filesystem> <target-tenant>
 | ----------------- | --------------------------------------------------------- |
 | `filesystem`\*    | Name of the filesystem to move.                           |
 | `target-tenant`\* | Name, ID, or UID of the tenant to move the filesystem to. |
+
+## weka tenant context-switch
+
+Control whether a cluster administrator may assume this tenant's identity.
+
+```sh
+weka tenant context-switch
+```
+
+### weka tenant context-switch allow
+
+Let a cluster administrator re-scope their session to this tenant with `weka user assume-tenant`. This is the default for every tenant. It does not change what a cluster administrator may do to this tenant, which is the same either way. Only this tenant's own administrator can run this.
+
+```sh
+weka tenant context-switch allow
+```
+
+### weka tenant context-switch deny
+
+Stop a cluster administrator from re-scoping their session to this tenant with `weka user assume-tenant`. Any such session that is already open ends at its next token refresh. This does not change what a cluster administrator may do to this tenant, which is the same either way, and a cluster administrator can override it. Only this tenant's own administrator can run this.
+
+```sh
+weka tenant context-switch deny
+```
 
 ## weka tenant network-space
 

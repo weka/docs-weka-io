@@ -193,13 +193,31 @@ weka telemetry exports remove <export-id> [--force]
 
 ### weka telemetry exports status
 
-Show the current status of every telemetry export.
+Show the health of every telemetry export, measured against the containers expected to report it.
+
+Stalled means the export delivered nothing for over a minute. The cluster sends an audit heartbeat through every export once a minute, so a stalled export is stuck or its destination stopped accepting data.
+
+The cluster reports export state per server, so containers on the same server share one state.
+
+The ratio counts the containers the cluster expects a report from: those that own drive or compute cores. A container that reports an export without being expected to — a protocol container, say — is not in the ratio, but a problem it reports is listed and makes the export degraded.
+
+TELEMETRY OFF means the cluster's telemetry is switched off, so nothing is exported whatever an export's own state says. Turn it on with 'weka audit cluster enable'.
+
+Counts are exact. Server names are a sample: the cluster names a limited number of servers per state, so a container beyond that sample is counted but not named.
+
+The numbers are a point in time. The cluster is read four times, not in one atomic snapshot, so during a scale event the ratio can disagree with itself. Let an alert built on this output hold for a few minutes before it fires.
 
 ```sh
-weka telemetry exports status
+weka telemetry exports status [<export-id>] [--check] [--containers]
 ```
 
-**Columns:** `export_id`, `name`, `state`, `servers`, `containers_reporting`
+| Parameter | Description |
+| --------- | ----------- |
+| `export-id` | Export ID to report on. Reports on every export when omitted. |
+| `--check` | Exit with code 2 when any export shown is down, degraded, telemetry off, or in a health state this version cannot read. |
+| `--containers` | Show one row per container instead of one row per export. JSON output keeps one object per export, with its containers nested inside. |
+
+**Columns:** `export_id`, `name`, `health`, `reporting`, `problems`
 
 ### weka telemetry exports update
 
