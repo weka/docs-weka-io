@@ -20,22 +20,18 @@ The WEKApod's core component is a 1U server that includes:
   * NVIDIA CX-7 MCX75210AAS-NEAT (WEKApod Nitro)
 * **Networking:** Network Interface Card (NIC) for general-purpose networking.
 
-{% hint style="info" %}
-A WEKApod server installed with WSA is referred to as a **WSA server**.
-{% endhint %}
-
 ## Front view of the WEKApod servers
 
 The front view of the WEKApod server configuration is order-dependent:
 
-* WEKApod Prime: A WSA server equipped with 10 X 2.5-inch NVMe drives.
-* WEKApod Nitro: A WSA server equipped with 14 X E3.S NVMe drives.
+* WEKApod Prime: A WEKApod server equipped with 10 X 2.5-inch NVMe drives.
+* WEKApod Nitro: A WEKApod server equipped with 14 X E3.S NVMe drives.
 
-<div data-with-frame="true"><figure><img src="../.gitbook/assets/wekapod_front_view_10-2.5.png" alt=""><figcaption><p>Front view of the WSA server Prime (10 X 2.5-inch NVMe drives)</p></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/wekapod_front_view_10-2.5.png" alt=""><figcaption><p>Front view of the WEKApod server Prime (10 X 2.5-inch NVMe drives)</p></figcaption></figure></div>
 
-<div data-with-frame="true"><figure><img src="../.gitbook/assets/wekapod_front_view_E3S.png" alt=""><figcaption><p>Front view of the WSA server Nitro (14 E3.S NVMe drives)</p></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/wekapod_front_view_E3S.png" alt=""><figcaption><p>Front view of the WEKApod server Nitro (14 E3.S NVMe drives)</p></figcaption></figure></div>
 
-**Front view of the WSA servers: Ports, panels, and slots descriptions** (all configurations)
+**Front view of the WEKApod servers: Ports, panels, and slots descriptions** (all configurations)
 
 | Item | Ports, panels, and slots | Description                                                                                                                                                                                                                                                          |
 | ---- | ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -46,9 +42,9 @@ The front view of the WEKApod server configuration is order-dependent:
 | 5    | Information tag          | The Express Service Tag is a slide-out label panel that contains system information such as Service Tag, NIC, MAC address, and so on. If you have opted for the secure default access to iDRAC, the Information tag also contains the iDRAC secure default password. |
 | 6    | E3.S blank               | Enables you to install blanks for 14 x E3.S configuration.                                                                                                                                                                                                           |
 
-## Rear view of the WSA servers
+## Rear view of the WEKApod servers
 
-<div data-with-frame="true"><figure><img src="../.gitbook/assets/wekapod_wsa_server_rear.png" alt=""><figcaption><p>Rear view of the WSA server</p></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/wekapod_wsa_server_rear.png" alt=""><figcaption><p>Rear view of the WEKApod server</p></figcaption></figure></div>
 
 **Rear view of the WEKApod server: Ports, panels, and slots**
 

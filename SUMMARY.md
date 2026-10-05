@@ -323,7 +323,6 @@
 * [WEKApod Data Platform Appliance overview](wekapod/overview.md)
 * [WEKApod servers overview](wekapod/server-overview.md)
 * [Rack installation](wekapod/rack-installation.md)
-* [WEKApod initial system setup and configuration](wekapod/setup.md)
 * [WEKApod support process](wekapod/support.md)
 
 ## AWS Solutions
@@ -376,5 +375,4 @@
   * [Troubleshooting](appendices/weka-csi-plugin/troubleshooting.md)
   * [Create a Volume Snapshot](appendices/weka-csi-plugin/create-a-volume-snapshot.md)
 * [Create a client image](appendices/create-a-client-image.md)
-* [Update the WSA](appendices/update-wms-and-wsa.md)
 * [BIOS tool](appendices/bios-tool.md)
