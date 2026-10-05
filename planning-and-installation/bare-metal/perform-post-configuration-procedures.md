@@ -234,7 +234,7 @@ Shows overall cluster health, capacity, protection level, and I/O activity.
 **Command:** `weka status`
 
 ```sh
-weka status [--detailed-capacity]
+weka status [--detailed-capacity] [--no-wait]
 ```
 
 **Parameters**
@@ -242,6 +242,11 @@ weka status [--detailed-capacity]
 | Parameter             | Description                                        |
 | --- | --- |
 | `--detailed-capacity` | Include capacity details including data reduction. |
+| `--no-wait` | Return the status available now, without waiting for the leader election or for the buckets to be ready. Use it with the default table output, without `--detailed-capacity`. Requires cluster version 6.1 or later. |
+
+By default, `weka status` waits until the cluster has elected a leader and its buckets are ready. While the cluster starts up or recovers, run `weka status --no-wait` to see its current state right away. The output adds a **reason** row that explains why the result is partial, and omits the rebuild details. If the cluster leader cannot be reached, the output shows the status `UNKNOWN` and the reason only.
+
+`weka cluster status --no-wait` works the same way.
 
 ## 5. Bypass the proxy server (optional)
 
