@@ -33,7 +33,7 @@ Your request for access to [get.weka.io](http://get.weka.io) is sent to WEKA for
 
 Download the package that matches your installation path.
 
-* Automated installation with WSA. Download the WSA image from [get.weka.io](https://get.weka.io/ui/dashboard).
+* Automated installation with WSA. To get the WSA image, contact the Customer Success Team.
 * Manual installation and configuration. Download the WEKA software tarball from [get.weka.io](https://get.weka.io/ui/dashboard).
 
 You can only sign in and download the packages if you are a registered user.
