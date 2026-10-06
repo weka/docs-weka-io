@@ -39,7 +39,7 @@ Each section guides you through key processes to ensure a smooth setup and opera
 
 **Related topics**
 
-[WEKA Data Platform introduction](https://app.gitbook.com/s/lGKb8DZItQx3Jy6unw5f/weka-system-overview/about "mention")
+[about.md](../weka-system-overview/about.md "mention")
 
 [Getting Started with NeuralMesh](https://app.gitbook.com/s/qDcZwR9zamxPsY03oTOq/getting-started-with-weka "mention")
 
