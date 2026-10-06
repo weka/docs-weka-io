@@ -18,8 +18,6 @@ All procedures require ClusterAdmin privileges. Manage asynchronous replication 
 
 After you create a pair, use the on-demand procedures to monitor, modify, pause, or remove replication, manage file hydration, and fail over to the target cluster.
 
-If the clusters replicated on 6.0.0, see [Upgrade replication from 6.0.0](#upgrade-replication-from-6-0-0) first.
-
 ## Set up and prepare for replication
 
 Prepare both clusters for replication. Replication traffic passes through the S3 service of each cluster, over a dedicated replica route. Replication creates no bucket, S3 user, or object store filesystem of its own.
@@ -27,7 +25,6 @@ Prepare both clusters for replication. Replication traffic passes through the S3
 **Before you begin**
 
 * Ensure both clusters are licensed for cross-cluster replication. Run `weka cluster license` and check that **Cross-Cluster Replication** under **Installed License** shows **Licensed**. Linking checks the license of each cluster, so both clusters need the entitlement. To add the entitlement, contact your WEKA account team.
-* Ensure both clusters run version 6.0.1 or later.
 * Ensure the clusters can reach each other over the management network (port 14000 by default) and over the S3 port of each cluster.
 * Ensure each cluster has a cluster name. The link is named after the cluster at the other end. To set the name, run `weka cluster update --cluster-name <name>`.
 * Ensure each cluster has an S3 cluster with at least one server serving S3. To create one, run `weka s3 cluster add`. See [Manage the S3 cluster using the CLI](../../additional-protocols/s3/s3-cluster-management/s3-cluster-management-1.md).
@@ -514,69 +511,3 @@ weka fs update <name> --access rw
 3. Mount the filesystem on a client and verify the data before redirecting production traffic to it.
 
 When the source cluster returns, its pair moves to the error state on the next cycle. Remove the pair on the source cluster with `weka fs replication remove <pair ID>`.
-
-## Upgrade replication from 6.0.0
-
-6.0.1 replicates over cluster links. Before the upgrade, remove the replication pairs and cluster peers set up on 6.0.0. After both clusters run 6.0.1, link the clusters and re-create the pairs.
-
-**Before the upgrade, on 6.0.0**
-
-1. On the **source** cluster, pause every pair:
-
-```bash
-weka fs replication pause <pair ID>
-```
-
-Run `weka fs replication` until every pair shows `PAUSED` and `IDLE`, then remove each pair:
-
-```bash
-weka fs replication remove <pair ID>
-```
-
-2. Remove the cluster peers on **both** clusters. On the target cluster, add `--force`, because the target filesystem still holds the replica received from the source:
-
-```bash
-# On the source cluster
-weka cluster peer remove <target peer name>
-
-# On the target cluster
-weka cluster peer remove <source peer name> --force
-```
-
-3. On the **target** cluster, decide what to do with each target filesystem. A new pair cannot replicate into an existing filesystem, and its first cycle copies the whole source filesystem again. Either:
-   * Remove the old target filesystem, so the new pair can use the same `--target-filesystem` name: `weka fs remove <target filesystem> -f`.
-   * Keep it as a point-in-time copy, and give the new pair a different `--target-filesystem` name.
-
-4. On **each** cluster where they exist, remove the S3 objects that 6.0.0 replication created. 6.0.1 does not use them:
-
-```bash
-weka s3 policy detach weka-repl-user
-weka user remove weka-repl-user
-weka s3 bucket remove weka-repl-bucket
-```
-
-Then run `weka s3 cluster`. If `weka-repl-fs` is not the default filesystem of the S3 cluster and holds no other buckets, remove it with `weka fs remove weka-repl-fs -f`. Otherwise, keep it.
-
-**Upgrade**
-
-5. Upgrade both clusters to 6.0.1. The upgrade does not start while any pair is running or mid-cycle.
-
-**After the upgrade, on 6.0.1**
-
-6. Link the clusters. See [Link the clusters](#link-the-clusters).
-7. On the source cluster, re-create each pair with `--link-id` set to the new link ID, and `--target-filesystem` set as decided in step 3. See [Create a replication pair](#create-a-replication-pair). The first cycle copies the whole source filesystem.
-
-**If a cluster was upgraded before its pairs and peers were removed**
-
-The 6.0.0 peers appear in `weka cluster link` with **Connection** `disconnected` and **Pairing** `unknown`, and their pairs stay paused. Remove these pairs instead of resuming them, then remove the old links:
-
-```bash
-# On the source cluster
-weka fs replication remove <pair ID>
-weka cluster link remove <old link ID>
-
-# On the target cluster
-weka cluster link remove <old link ID> --local-only
-```
-
-Then continue with steps 3, 4, 6, and 7.
