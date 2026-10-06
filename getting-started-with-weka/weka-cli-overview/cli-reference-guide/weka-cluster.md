@@ -819,93 +819,65 @@ weka cluster network-space update <netspace> [--fip-range <ip-range>] [--force] 
 | `--vlan` \<uint16>        | VLAN ID (1..4094).                                                           |
 | `--wait`                  | Block until every backend applies and verifies the network space, then exit. |
 
-## weka cluster peer
+## weka cluster link
 
-List cluster peers configuration and status.
-
-```sh
-weka cluster peer [--name <cluster-peer>]
-```
-
-| Parameter                | Description                  |
-| ------------------------ | ---------------------------- |
-| `--name` \<cluster-peer> | Filter by cluster peer name. |
-
-**Columns:** `id`, `uid`, `name`, `peer_guid`, `obs_bucket_id`, `num_buckets`, `task_ids`, `connection`, `pairing`, `join_ips`, `http_port`
-
-### weka cluster peer add
-
-Register a remote peer cluster for cross-cluster replication. Paste the token from the peer's 'weka cluster peer init' output as the second argument. Optional flags override individual fields from the decoded token.
+List and manage links to remote clusters for cross-cluster replication. Both clusters need an S3 cluster configured. Per-filesystem replication pairs are managed under 'weka fs replication'.
 
 ```sh
-weka cluster peer add <name> [<token>] [--dry-run] [--guid <uuid>] [--http-port <port>] [--join-ips <ip>…] [--obs-bucket <object-store>] [--s3-bucket <bucket>] [--s3-hostname <hostname>] [--s3-port <port>]
+weka cluster link [--link-id <cluster-link-id>] [--name <cluster-link>]
 ```
 
-| Parameter                      | Description                                                                                                                                              |
-| ------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `name`\*                       | Name for the peer cluster.                                                                                                                               |
-| `token`                        | Pairing token from the peer's 'weka cluster peer init' output.                                                                                           |
-| `--dry-run`                    | Only test the command, don't affect the system.                                                                                                          |
-| `--guid` \<uuid>               | Override the peer GUID from the token.                                                                                                                   |
-| `--http-port` \<port>          | Override the peer's management HTTP port from the token.                                                                                                 |
-| `--join-ips` \<ip>…            | Override the peer's management IPs (comma-separated) from the token. Multiple values may be supplied separated by commas, or the option may be repeated. |
-| `--obs-bucket` \<object-store> | Local object-store bucket to create on this cluster for communication with the peer (default: \<peer-name>-obs).                                         |
-| `--s3-bucket` \<bucket>        | Override the peer's S3 bucket name from the token.                                                                                                       |
-| `--s3-hostname` \<hostname>    | Override the peer's S3 hostname from the token.                                                                                                          |
-| `--s3-port` \<port>            | Override the peer's S3 port from the token.                                                                                                              |
+| Parameter | Description |
+| --------- | ----------- |
+| `--link-id` &lt;cluster-link-id&gt; | Show only the cluster link with this ID. |
+| `--name` &lt;cluster-link&gt; | Show only cluster links with this name. Names can repeat, so more than one link may match. |
 
-### weka cluster peer init
+**Columns:** `id`, `uid`, `name`, `peer_guid`, `connection_status`, `pairing_status`, `mgmtIps`, `data_ips`, `data_port`
 
-Provision (or re-emit) this cluster's cross-cluster replication endpoint. Prints the connection details and a pairing token the peer admin feeds into 'weka cluster peer add' on the other side. Re-running on an already-initialized cluster is safe. Use --reinit to rotate credentials.
+### weka cluster link add
+
+Link this cluster to a remote one for cross-cluster replication. Creates the link on both clusters, and may be run from either. Both must have an S3 cluster and a cluster name set — the link is named after the cluster at the other end.
 
 ```sh
-weka cluster peer init [--all-servers] [--config-fs-name <filesystem>] [--container <container-ids>…] [--force] [--fs-group <filesystem-group>] [--obs-fs <filesystem>] [--obs-hostname <hostname>] [--reinit]
+weka cluster link add --peer-host <hostname> --username <string> [--auto-accept-peer-cert] [--fingerprint <string>] [--password <string>] [--peer-port <port>]
 ```
 
-| Parameter                        | Description                                                                                                                                                                                                               |
-| -------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `--all-servers`                  | All backend servers will form an S3 cluster and will be used for replication via the S3 protocol. Mutually exclusive with --container.                                                                                    |
-| `--config-fs-name` \<filesystem> | Filesystem holding cluster-wide protocol configuration (default: the cluster's existing config filesystem; required only if the cluster has none yet).                                                                    |
-| `--container` \<container-ids>…  | These containers will form an S3 cluster and will be used for replication via the S3 protocol. Mutually exclusive with --all-servers. Multiple values may be supplied separated by commas, or the option may be repeated. |
-| `-f`, `--force`                  | Force action. Perform this action without further confirmation.                                                                                                                                                           |
-| `--fs-group` \<filesystem-group> | Filesystem group for the replication OBS filesystem (default: the cluster's default group). Only meaningful on first-time provisioning.                                                                                   |
-| `--obs-fs` \<filesystem>         | Filesystem name for the OBS used by replication (default: weka-repl-fs). Only meaningful on first-time provisioning; ignored on subsequent runs.                                                                          |
-| `--obs-hostname` \<hostname>     | S3 endpoint advertised to the peer (default: an S3-serving host's IP; pass a DNS name for failover).                                                                                                                      |
-| `--reinit`                       | Rotate this cluster's S3 credentials. All existing peer relationships that reference this cluster become invalid and must be re-paired. Requires interactive confirmation.                                                |
+| Parameter | Description |
+| --------- | ----------- |
+| `--peer-host` &lt;hostname&gt;* | Management hostname or IP of the cluster to link to. |
+| `--username` &lt;string&gt;* | Cluster admin username on the peer cluster. |
+| `--auto-accept-peer-cert` | Accept whatever TLS certificate the peer presents, without confirming its fingerprint. The certificate is still pinned and checked on every later connection. |
+| `--fingerprint` &lt;string&gt; | Expected SHA256 fingerprint of the peer's TLS certificate (colon-separated hex), shown by 'weka security tls status' on the peer cluster. |
+| `--password` &lt;string&gt; | Password for --username. Alternatively use the WEKA_PEER_PASSWORD env variable or the interactive prompt. |
+| `--peer-port` &lt;port&gt; | Management API port of the peer cluster (default 14000). |
 
-### weka cluster peer remove
+### weka cluster link refresh
 
-Remove an existing cluster peer. Specify the peer by name (positional), by --guid, or by --peer-id; exactly one selector must be supplied.
+Refresh a cluster link: both clusters re-read each other's replication configuration.
 
 ```sh
-weka cluster peer remove [<name>] [--force] [--guid <uuid>] [--peer-id <cluster-peer-id>]
+weka cluster link refresh <link-id> [--peer-host <hostname>] [--peer-port <port>]
 ```
 
-| Parameter                      | Description                                                                                                                                                                                                         |
-| ------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `name`                         | Name of the cluster peer to remove.                                                                                                                                                                                 |
-| `-f`, `--force`                | Remove the peer even if it still holds a replica received from it (teardown/escape hatch, e.g. the source cluster is gone). Still refused while a replication task is actively running or a pair targets this peer. |
-| `--guid` \<uuid>               | GUID of the peer cluster to remove.                                                                                                                                                                                 |
-| `--peer-id` \<cluster-peer-id> | Local cluster-peer ID of the peer to remove.                                                                                                                                                                        |
+| Parameter | Description |
+| --------- | ----------- |
+| `link-id`* | ID of the cluster link to refresh. |
+| `--peer-host` &lt;hostname&gt; | Management hostname or IP to reach the peer on for this run, when its recorded addresses no longer do. Not stored. |
+| `--peer-port` &lt;port&gt; | Management API port to reach the peer on for this run, when its recorded port no longer does. Not stored. |
 
-### weka cluster peer update
+### weka cluster link remove
 
-Update the configuration of a cluster peer.
+Remove a cluster link. Both clusters drop the link, so it need only be run from one of them. Per-filesystem replication pairs using the link must be removed first.
 
 ```sh
-weka cluster peer update <name> [--dry-run] [--guid <uuid>] [--http-port <port>] [--join-ips <ip>…] [--new-name <cluster-peer>] [--obs-bucket <object-store>] [--peer-public-key <public-key>]
+weka cluster link remove <link-id> [--force] [--local-only]
 ```
 
-| Parameter                         | Description                                                                                                                             |
-| --------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
-| `name`\*                          | Name of the cluster peer to update.                                                                                                     |
-| `--dry-run`                       | Only test the command, don't affect the system.                                                                                         |
-| `--guid` \<uuid>                  | New GUID of the peer cluster.                                                                                                           |
-| `--http-port` \<port>             | Override management HTTP port.                                                                                                          |
-| `--join-ips` \<ip>…               | Replace the peer's reachable IPs (comma-separated). Multiple values may be supplied separated by commas, or the option may be repeated. |
-| `--new-name` \<cluster-peer>      | New name for the cluster peer.                                                                                                          |
-| `--obs-bucket` \<object-store>    | New Object Store bucket for communication with the peer cluster.                                                                        |
-| `--peer-public-key` \<public-key> | New peer public inter-cluster key.                                                                                                      |
+| Parameter | Description |
+| --------- | ----------- |
+| `link-id`* | ID of the cluster link to remove. |
+| `-f`, `--force` | Force action. Perform this action without further confirmation. |
+| `--local-only` | Remove only this cluster's link, leaving the peer's in place. Use it to clear a link left on one side by a failed add, or when the peer is unreachable. |
 
 ## weka cluster process
 
