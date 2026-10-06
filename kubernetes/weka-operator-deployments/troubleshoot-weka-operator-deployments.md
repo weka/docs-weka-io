@@ -24,12 +24,12 @@ kubectl describe pod <pod-name> -n <namespace>
 
 <summary>Common pending conditions and resolutions</summary>
 
-| Condition | Cause | Resolution |
-| --- | --- | --- |
-| Pod blocked on `weka.io/drives` | The operator cannot allocate the required drives for the WekaContainer. Either more drives were requested than are available on the node, or too many `driveContainers` are already running. | Verify that drives are signed and that the number of drives requested in the WekaCluster spec does not exceed those available on the target nodes. |
-| Image pull failure | The `imagePullSecret` is missing, incorrect, or not present in the target namespace. | Verify that a valid robot secret for `quay.io` exists in every namespace where WEKA resources are deployed. Each deployment requires a unique secret. |
-| Insufficient resources | The node does not have enough CPU, memory, or HugePages to schedule the pod. | Verify node resource availability and confirm HugePages are configured correctly. See [Configure HugePages for Kubernetes worker nodes]. |
-| No matching node | The pod's `nodeSelector` does not match any available node labels. | See [WekaCluster or WekaClient not creating WekaContainers](https://claude.ai/chat/32ea7d82-ebfc-4f46-808a-3a71f2d67250#wekacluster-or-wekaclient-not-creating-wekacontainers) below. |
+| Condition                       | Cause                                                                                                                                                                                        | Resolution                                                                                                                                                                            |
+| ------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Pod blocked on `weka.io/drives` | The operator cannot allocate the required drives for the WekaContainer. Either more drives were requested than are available on the node, or too many `driveContainers` are already running. | Verify that drives are signed and that the number of drives requested in the WekaCluster spec does not exceed those available on the target nodes.                                    |
+| Image pull failure              | The `imagePullSecret` is missing, incorrect, or not present in the target namespace.                                                                                                         | Verify that a valid robot secret for `quay.io` exists in every namespace where WEKA resources are deployed. Each deployment requires a unique secret.                                 |
+| Insufficient resources          | The node does not have enough CPU, memory, or HugePages to schedule the pod.                                                                                                                 | Verify node resource availability and confirm HugePages are configured correctly. See \[Configure HugePages for Kubernetes worker nodes].                                             |
+| No matching node                | The pod's `nodeSelector` does not match any available node labels.                                                                                                                           | See [WekaCluster or WekaClient not creating WekaContainers](https://claude.ai/chat/32ea7d82-ebfc-4f46-808a-3a71f2d67250#wekacluster-or-wekaclient-not-creating-wekacontainers) below. |
 
 </details>
 
@@ -204,6 +204,39 @@ kubectl get daemonset -n <csi-namespace> -o jsonpath='{.spec.template.spec.nodeS
 kubectl get pods -n <csi-namespace> -o wide
 kubectl get pods -n <namespace> -l app=weka-client -o wide
 ```
+
+### CSI volume ownership or metrics not as expected
+
+**Symptom:** Pods that set `securityContext.fsGroup` cannot write to WEKA volumes, or Prometheus does not collect metrics from the CSI controller or CSI node plugin.
+
+**Cause:** Starting with Operator v1.16.2, a WekaPolicy with a `configurationPayload` controls operator-wide CSI settings. If `csi.fsGroupPolicy` is set to `None`, Kubernetes does not apply the pod `fsGroup` to the volume. If `csi.metricsEnabled` is set to `false`, the CSI metrics endpoints are disabled.
+
+**Procedure**
+
+1. List the WekaPolicy resources and inspect the policy that contains a `configurationPayload`:
+
+```bash
+kubectl get wekapolicy -n weka-operator-system
+kubectl get wekapolicy <policy-name> -n weka-operator-system -o yaml
+```
+
+2. Check the `fsGroupPolicy` value applied to the CSIDriver object:
+
+```bash
+kubectl get csidriver -o custom-columns=NAME:.metadata.name,FSGROUPPOLICY:.spec.fsGroupPolicy
+```
+
+3. In the WekaPolicy manifest, set the required `configurationPayload` value:
+   * Set `csi.fsGroupPolicy` to `File` to allow Kubernetes to apply the pod `fsGroup`.
+   * Set `csi.metricsEnabled` to `true` to enable CSI metrics endpoints.
+   * Remove either attribute to restore its default value.
+4. Apply the updated manifest:
+
+```bash
+kubectl apply -f weka-configuration.yaml
+```
+
+For the configuration attributes and default values, see [Configure operator-wide settings](weka-operator-full-deployment-workflow.md#id-3.1-configure-operator-wide-settings).
 
 **Related topics**
 
