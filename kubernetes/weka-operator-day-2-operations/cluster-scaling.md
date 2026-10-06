@@ -225,7 +225,7 @@ Annotations:  <none>
 API Version:  weka.weka.io/v1alpha1
 Kind:         WekaCluster
 Metadata:
-  Creation Timestamp:  2024-11-16T11:13:19Z
+  Creation Timestamp:  2026-10-06T11:13:19Z
   Finalizers:
     weka.weka.io/finalizer
   Generation:        3
@@ -247,7 +247,7 @@ Spec:
     s3Containers:             4
   Graceful Destroy Duration:  24h0m0s
   Hot Spare:                  0
-  Image:                      quay.io/weka.io/weka-in-container:4.4.1
+  Image:                      quay.io/weka.io/weka-in-container:6.0.1
   Image Pull Secret:          quay-io-robot-secret
   Network:
   Node Selector:
@@ -258,92 +258,92 @@ Spec:
 Status:
   Cluster ID:  cd596d28-be9a-4864-b34b-dbe45e8914cc
   Conditions:
-    Last Transition Time:  2024-11-16T11:13:19Z
+    Last Transition Time:  2026-10-06T11:13:19Z
     Message:               Cluster secrets are created
     Reason:                Init
     Status:                True
     Type:                  ClusterSecretsCreated
-    Last Transition Time:  2024-11-16T11:13:21Z
+    Last Transition Time:  2026-10-06T11:13:21Z
     Message:               Completed successfully
     Reason:                Init
     Status:                True
     Type:                  PodsCreated
-    Last Transition Time:  2024-11-16T11:22:41Z
+    Last Transition Time:  2026-10-06T11:22:41Z
     Message:               Completed successfully
     Reason:                Init
     Status:                True
     Type:                  ContainerResourcesAllocated
-    Last Transition Time:  2024-11-16T11:19:06Z
+    Last Transition Time:  2026-10-06T11:19:06Z
     Message:               Completed successfully
     Reason:                Init
     Status:                True
     Type:                  PodsReady
-    Last Transition Time:  2024-11-16T11:19:29Z
+    Last Transition Time:  2026-10-06T11:19:29Z
     Message:               Completed successfully
     Reason:                Init
     Status:                True
     Type:                  ClusterCreated
-    Last Transition Time:  2024-11-16T11:19:29Z
+    Last Transition Time:  2026-10-06T11:19:29Z
     Message:               Completed successfully
     Reason:                Init
     Status:                True
     Type:                  JoinedCluster
-    Last Transition Time:  2024-11-16T11:19:30Z
+    Last Transition Time:  2026-10-06T11:19:30Z
     Message:               Completed successfully
     Reason:                Init
     Status:                True
     Type:                  DrivesAdded
-    Last Transition Time:  2024-11-16T11:20:11Z
+    Last Transition Time:  2026-10-06T11:20:11Z
     Message:               Completed successfully
     Reason:                Init
     Status:                True
     Type:                  IoStarted
-    Last Transition Time:  2024-11-16T11:20:12Z
+    Last Transition Time:  2026-10-06T11:20:12Z
     Message:               Completed successfully
     Reason:                Init
     Status:                True
     Type:                  ClusterSecretsApplied
-    Last Transition Time:  2024-11-16T11:20:14Z
+    Last Transition Time:  2026-10-06T11:20:14Z
     Message:               Completed successfully
     Reason:                Init
     Status:                True
     Type:                  CondDefaultFsCreated
-    Last Transition Time:  2024-11-16T11:20:14Z
+    Last Transition Time:  2026-10-06T11:20:14Z
     Message:               Completed successfully
     Reason:                Init
     Status:                True
     Type:                  CondS3ClusterCreated
-    Last Transition Time:  2024-11-16T11:20:15Z
+    Last Transition Time:  2026-10-06T11:20:15Z
     Message:               Completed successfully
     Reason:                Init
     Status:                True
     Type:                  ClusterClientsSecretsCreated
-    Last Transition Time:  2024-11-16T11:20:15Z
+    Last Transition Time:  2026-10-06T11:20:15Z
     Message:               Completed successfully
     Reason:                Init
     Status:                True
     Type:                  ClusterClientsSecretsApplied
-    Last Transition Time:  2024-11-16T11:20:15Z
+    Last Transition Time:  2026-10-06T11:20:15Z
     Message:               Completed successfully
     Reason:                Init
     Status:                True
     Type:                  ClusterCSIsSecretsCreated
-    Last Transition Time:  2024-11-16T11:20:16Z
+    Last Transition Time:  2026-10-06T11:20:16Z
     Message:               Completed successfully
     Reason:                Init
     Status:                True
     Type:                  ClusterCSIsSecretsApplied
-    Last Transition Time:  2024-11-16T11:20:16Z
+    Last Transition Time:  2026-10-06T11:20:16Z
     Message:               Completed successfully
     Reason:                Init
     Status:                True
     Type:                  WekaHomeConfigured
-    Last Transition Time:  2024-11-16T11:20:16Z
+    Last Transition Time:  2026-10-06T11:20:16Z
     Message:               Completed successfully
     Reason:                Init
     Status:                True
     Type:                  ClusterIsReady
-  Last Applied Image:      quay.io/weka.io/weka-in-container:4.4.1
+  Last Applied Image:      quay.io/weka.io/weka-in-container:6.0.1
   Last Applied Spec:       571bbabc250fb7cfb19ed709bc40b8cb752931a7b3080e300e1b58db8c9559ee
   Ports:
     Base Port:      15000
@@ -356,109 +356,103 @@ Status:
 Events:             <none>
 $ kubectl exec -it cluster-dev-compute-05a6a09a-432d-42fe-9df4-c129780aa410 -n weka-operator-system -- /bin/bash
 root@ip-10-0-93-212:/# weka status
-WekaIO v4.4.1 (CLI build 4.4.1)
-
-       cluster: cluster-dev (cd596d28-be9a-4864-b34b-dbe45e8914cc)
-        status: OK (16 backend containers UP, 6 drives UP)
-    protection: 3+2 (Fully protected)
-     hot spare: 0 failure domains
- drive storage: 22.09 TiB total, 21.86 TiB unprovisioned
-         cloud: connected
-       license: Unlicensed
-
-     io status: STARTED 5 minutes ago (16 io-nodes UP, 138 Buckets UP)
-    link layer: Ethernet
-       clients: 0 connected
-         reads: 0 B/s (0 IO/s)
-        writes: 0 B/s (0 IO/s)
-    operations: 12 ops/s
-        alerts: 31 active alerts, use `weka alerts` to list them
-
-root@ip-10-0-93-212:/# weka cluster host
-HOST ID  HOSTNAME        CONTAINER                                     IPS          STATUS  REQUESTED ACTION  RELEASE  FAILURE DOMAIN  CORES  MEMORY   UPTIME    LAST FAILURE  REQUESTED ACTION FAILURE
-0        ip-10-0-124-65  drivexac3824eexcb66x469exbca9xf2c7274db4ec    10.0.124.65  UP      NONE              4.4.1    AUTO            1      1.54 GB  0:06:42h
-1        ip-10-0-102-61  computex723230f4x6ed1x4ff3x94dfxe8c7ebcede75  10.0.102.61  UP      NONE              4.4.1    AUTO            1      2.94 GB  0:06:40h
-2        ip-10-0-93-212  computex05a6a09ax432dx42fex9df4xc129780aa410  10.0.93.212  UP      NONE              4.4.1    AUTO            1      2.94 GB  0:06:26h
-3        ip-10-0-79-87   s3xce450cebx58c9x4049x986ax75327fa0d76a       10.0.79.87   UP      NONE              4.4.1    AUTO            1      1.26 GB  0:06:36h
-4        ip-10-0-113-26  drivex65376aa9x24f0x4eb2x9dfexd72e408916e0    10.0.113.26  UP      NONE              4.4.1    AUTO            1      1.54 GB  0:06:33h
-5        ip-10-0-64-53   computexf3df3e56xaad6x4d29xb303xfdc60132f870  10.0.64.53   UP      NONE              4.4.1    AUTO            1      2.94 GB  0:06:35h
-6        ip-10-0-107-12  s3x78a7332fx1a54x429cxa34exaa96fbbff216       10.0.107.12  UP      NONE              4.4.1    AUTO            1      1.26 GB  0:06:43h
-7        ip-10-0-93-212  drivexd7414597x3a96x459ex99a0x7965345c3fa0    10.0.93.212  UP      NONE              4.4.1    AUTO            1      1.54 GB  0:06:26h
-8        ip-10-0-124-65  computexe6269c4exb392x4951xb41bxa401a59fb11a  10.0.124.65  UP      NONE              4.4.1    AUTO            1      2.94 GB  0:06:42h
-9        ip-10-0-113-26  computexf25ee328x7ea6x4d83x9e53x113996c91a78  10.0.113.26  UP      NONE              4.4.1    AUTO            1      2.94 GB  0:06:33h
-10       ip-10-0-64-53   drivexdad14164xf118x4cfdx9401x6e061f44209d    10.0.64.53   UP      NONE              4.4.1    AUTO            1      1.54 GB  0:06:35h
-11       ip-10-0-79-87   drivexaf464a29x7180x445ax869dx64e274b47993    10.0.79.87   UP      NONE              4.4.1    AUTO            1      1.54 GB  0:06:36h
-12       ip-10-0-102-61  drivex79df7254xcee6x4411xb78ax1e503e331e9f    10.0.102.61  UP      NONE              4.4.1    AUTO            1      1.54 GB  0:06:39h
-13       ip-10-0-107-12  computex6d9f3d37xb8e7x4db6x9df1x5aa2a82e423e  10.0.107.12  UP      NONE              4.4.1    AUTO            1      2.94 GB  0:06:43h
-14       ip-10-0-124-65  s3x75aaeac7xda47x44bbx82d3xc3c273575bd3       10.0.124.65  UP      NONE              4.4.1    AUTO            1      1.26 GB  0:02:34h
-15       ip-10-0-102-61  s3x1ffc8818xe647x4e5cxbbb3x95dcd8ca96f8       10.0.102.61  UP      NONE              4.4.1    AUTO            1      1.26 GB  0:02:34h
-
-The command 'weka cluster host' is deprecated. Please use 'weka cluster container' instead.
-{% hint style="danger" %}
-**INTERNAL, remove before publication. TBD (Docs):** The captured session below predates 6.0 and its layout no longer matches. It still needs a recapture during a scaling run on an operator-managed cluster with S3 enabled, because the S3 output has to agree with the container IDs in the `weka cluster host` listing above it. Replacing only the S3 blocks would leave the transcript referring to containers that appear nowhere else in the session.
-
-**Every difference below was verified against a live S3 cluster on 6.0.0.356-nightly on 2026-09-03, so the recapture only has to reproduce the walkthrough, not rediscover the format.**
-
-`weka s3 cluster` (plain):
-
-* Titled **S3 Cluster Status**, not `S3 Cluster Info`.
-* Right-aligned label/value block, **no colons** after the labels.
-* **The containers row is conditional in the plain output.** `cluster.go:319` wraps it in `if !status.AllContainers`, so it prints only when **All Hosts** is `off`. The transcript's cluster has `All Hosts: off`, so the row does belong there, renamed to **S3 Containers**. On a cluster built with `--all-servers` the row is omitted from the plain output and appears only under `-v`.
-
-`weka s3 cluster -v`:
-
-* The row is named **S3 Containers**, not `S3 Hosts`, and lists **bare integers** (`17, 12, 15, 13, 16, 14`), not `HostId<14>`.
-* `ILM Hosts` is likewise now **ILM Containers**.
-* Gained `Use S3 New Locks` and `Save Metadata As Xattr`, both rendering as `enable`.
-* Gained several SLB and mempool rows absent from the old capture: `SLB Remote LB`, `S3 Mempool Size`, `Downstream Idle Timeout`, `Downstream Conn Duration`.
-* **`Domain` is conditional and will not appear on most clusters.** `cluster.go:339` guards it with `if len(status.Domain) > 0`, so it renders only when virtual-host-style domains are configured. Do not treat its absence as a stale capture.
-
-`weka s3 cluster status`:
-
-* Column headers are **Title Case** (`ID  Hostname  S3 Status  IP  Port  Version  Uptime  Active Requests  Last Failure`), not the old all-caps.
-* The `S3 Status` value is **Online**, not `Ready`.
-
-Also note the old transcript shows `Port: 15300`; a default 6.0 S3 cluster came up on **9000**. Confirm which applies to the walkthrough's cluster rather than assuming either.
-
-The transcript further uses the deprecated `weka cluster host` spelling and even includes its deprecation warning; use `weka cluster container`.
-{% endhint %}
-
+╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│                                                    WekaIO 6.0.1                                                   │
+│                                                  CLI build 6.0.1                                                  │
+├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│              cluster  kenny-dev (7b8a91c4-d11a-4436-8574-0115fa70bef2)                                            │
+│       leader process  40 (container 2, uptime 59 days)                                                            │
+│ leadership processes  80, 100, 20, 40, 60                                                                         │
+│      deployment mode  dedicated                                                                                   │
+│               status  OK (18 backend containers UP, 6 drives UP)                                                  │
+│           protection  3+2 (Fully protected)                                                                       │
+│            hot spare  1 failure domain (173.58 GB)                                                                │
+│        drive storage  867.92 GB total, 462.55 GB unprovisioned                                                    │
+│                cloud  connected                                                                                   │
+│              license  There's a problem with your license, please use 'weka cluster license' to see what is wrong │
+├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│            io status  STARTED 59 days ago (18 io-nodes UP, 36 Buckets UP)                                         │
+│           link layer  Ethernet                                                                                    │
+│              clients  0 connected                                                                                 │
+│                reads  0 B/s (0 IO/s)                                                                              │
+│               writes  0 B/s (0 IO/s)                                                                              │
+│           operations  6 ops/s                                                                                     │
+│               alerts  6 active alerts, use 'weka alerts' to list them                                             │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+root@ip-10-0-93-212:/# weka cluster container
+╭────┬─────────────┬───────────┬───────────────┬────────┬──────────────────┬─────────┬────────────────┬───────┬──────────┬───────────────┬────────────────────────┬──────────────────────────╮
+│ ID │ Hostname    │ Name      │ IPs           │ Status │ Requested Action │ Release │ Failure Domain │ Cores │   Memory │        Uptime │ Recent Failure (5 min) │ Requested Action Failure │
+├────┼─────────────┼───────────┼───────────────┼────────┼──────────────────┼─────────┼────────────────┼───────┼──────────┼───────────────┼────────────────────────┼──────────────────────────┤
+│  0 │ kenny-dev-0 │ drives0   │ 10.121.21.107 │ UP     │ NONE             │ 6.0.1   │ DOM-000        │     1 │ 1.46 GiB │ 50d 13:56:57h │                        │                          │
+│  1 │ kenny-dev-1 │ drives0   │ 10.121.119.42 │ UP     │ NONE             │ 6.0.1   │ DOM-001        │     1 │ 1.46 GiB │ 59d 18:21:00h │                        │                          │
+│  2 │ kenny-dev-2 │ drives0   │ 10.121.89.42  │ UP     │ NONE             │ 6.0.1   │ DOM-002        │     1 │ 1.46 GiB │ 59d 18:21:02h │                        │                          │
+│  3 │ kenny-dev-3 │ drives0   │ 10.121.5.186  │ UP     │ NONE             │ 6.0.1   │ DOM-003        │     1 │ 1.46 GiB │ 59d 18:20:59h │                        │                          │
+│  4 │ kenny-dev-4 │ drives0   │ 10.121.8.68   │ UP     │ NONE             │ 6.0.1   │ DOM-004        │     1 │ 1.46 GiB │ 59d 18:21:00h │                        │                          │
+│  5 │ kenny-dev-5 │ drives0   │ 10.121.16.124 │ UP     │ NONE             │ 6.0.1   │ DOM-005        │     1 │ 1.46 GiB │ 59d 18:21:01h │                        │                          │
+│  6 │ kenny-dev-3 │ compute0  │ 10.121.5.186  │ UP     │ NONE             │ 6.0.1   │ DOM-003        │     1 │ 1.41 GiB │ 59d 18:20:04h │                        │                          │
+│  7 │ kenny-dev-4 │ compute0  │ 10.121.8.68   │ UP     │ NONE             │ 6.0.1   │ DOM-004        │     1 │ 1.41 GiB │ 59d 18:20:05h │                        │                          │
+│  8 │ kenny-dev-5 │ compute0  │ 10.121.16.124 │ UP     │ NONE             │ 6.0.1   │ DOM-005        │     1 │ 1.41 GiB │ 59d 18:20:05h │                        │                          │
+│  9 │ kenny-dev-2 │ compute0  │ 10.121.89.42  │ UP     │ NONE             │ 6.0.1   │ DOM-002        │     1 │ 1.41 GiB │ 59d 18:20:05h │                        │                          │
+│ 10 │ kenny-dev-1 │ compute0  │ 10.121.119.42 │ UP     │ NONE             │ 6.0.1   │ DOM-001        │     1 │ 1.41 GiB │ 59d 18:20:04h │                        │                          │
+│ 11 │ kenny-dev-0 │ compute0  │ 10.121.21.107 │ UP     │ NONE             │ 6.0.1   │ DOM-000        │     1 │ 1.41 GiB │ 50d 13:57:02h │                        │                          │
+│ 12 │ kenny-dev-2 │ frontend0 │ 10.121.89.42  │ UP     │ NONE             │ 6.0.1   │ DOM-002        │     1 │ 1.38 GiB │ 59d 18:19:55h │                        │                          │
+│ 13 │ kenny-dev-1 │ frontend0 │ 10.121.119.42 │ UP     │ NONE             │ 6.0.1   │ DOM-001        │     1 │ 1.38 GiB │ 16d 21:17:26h │                        │                          │
+│ 14 │ kenny-dev-3 │ frontend0 │ 10.121.5.186  │ UP     │ NONE             │ 6.0.1   │ DOM-003        │     1 │ 1.38 GiB │ 59d 18:19:56h │                        │                          │
+│ 15 │ kenny-dev-4 │ frontend0 │ 10.121.8.68   │ UP     │ NONE             │ 6.0.1   │ DOM-004        │     1 │ 1.38 GiB │ 59d 18:19:55h │                        │                          │
+│ 16 │ kenny-dev-0 │ frontend0 │ 10.121.21.107 │ UP     │ NONE             │ 6.0.1   │ DOM-000        │     1 │ 1.38 GiB │ 43d 20:43:19h │                        │                          │
+│ 17 │ kenny-dev-5 │ frontend0 │ 10.121.16.124 │ UP     │ NONE             │ 6.0.1   │ DOM-005        │     1 │ 1.38 GiB │ 59d 18:19:54h │                        │                          │
+╰────┴─────────────┴───────────┴───────────────┴────────┴──────────────────┴─────────┴────────────────┴───────┴──────────┴───────────────┴────────────────────────┴──────────────────────────╯
 root@ip-10-0-93-212:/# weka s3 cluster
-S3 Cluster Info
-        Status: Online
-     All Hosts: off
-          Port: 15300
-    Filesystem: default
-      S3 Hosts: HostId<14>, HostId<3>, HostId<6>, HostId<15>
-
+╭───────────────────────────────────╮
+│         S3 Cluster Status         │
+├───────────────────────────────────┤
+│        Status  Online             │
+│     All Hosts  off                │
+│          Port  443                │
+│    Filesystem  fs1                │
+│ S3 Containers  17, 12, 15, 13, 14 │
+╰───────────────────────────────────╯
 root@ip-10-0-93-212:/# weka s3 cluster -v
-S3 Cluster Info
-        Status: Online
-     All Hosts: off
-          Port: 15300
-    Filesystem: default
-     Config FS: .config_fs
-      S3 Hosts: HostId<14>, HostId<3>, HostId<6>, HostId<15>
- Mount Options: rw,relatime,readcache,readahead_kb=32768,dentry_max_age_positive=1000,dentry_max_age_negative=0,container_name=s3xce450cebx58c9x4049x986ax75327fa0d76a
-           TLS: on
-           ILM: on
- Creator Owner: off
-Max Buckets Limit: 10000
-MPU Background: on
-     ILM Hosts: HostId<3>
-Anonymous Posix UID/GID: 65534/65534
- Internal Port: 15302
-SLB Admin Port: 15301
-SLB Max Connections: 1024
-SLB Max Pending Requests: 1024
-SLB Max Requests: 1024
-
+╭────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│                                                                          S3 Cluster Status                                                                         │
+├────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│                   Status  Online                                                                                                                                   │
+│                All Hosts  off                                                                                                                                      │
+│                     Port  443                                                                                                                                      │
+│               Filesystem  fs1                                                                                                                                      │
+├────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│                Config FS  .config_fs                                                                                                                               │
+│            S3 Containers  17, 12, 15, 13, 14                                                                                                                       │
+│            Mount Options  rw,relatime,readcache,inode_bits=auto,readahead_kb=32768,dentry_max_age_positive=1000,dentry_max_age_negative=0,container_name=frontend0 │
+│                      TLS  off                                                                                                                                      │
+│                      ILM  on                                                                                                                                       │
+│            Creator Owner  off                                                                                                                                      │
+│        Max Buckets Limit  50000                                                                                                                                    │
+│           MPU Background  on                                                                                                                                       │
+│         Use S3 New Locks  enable                                                                                                                                   │
+│   Save Metadata As Xattr  enable                                                                                                                                   │
+│           ILM Containers  17                                                                                                                                       │
+│  Anonymous Posix UID/GID  65534/65534                                                                                                                              │
+│            Internal Port  9001                                                                                                                                     │
+│           SLB Admin Port  9901                                                                                                                                     │
+│      SLB Max Connections  2048                                                                                                                                     │
+│ SLB Max Pending Requests  1024                                                                                                                                     │
+│         SLB Max Requests  2048                                                                                                                                     │
+│            SLB Remote LB  5                                                                                                                                        │
+│          S3 Mempool Size  3072                                                                                                                                     │
+│  Downstream Idle Timeout  1m                                                                                                                                       │
+│ Downstream Conn Duration  0s                                                                                                                                       │
+╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
 root@ip-10-0-93-212:/# weka s3 cluster status
-ID  HOSTNAME        S3 STATUS  IP           PORT   VERSION  UPTIME    ACTIVE REQUESTS  LAST FAILURE
-14  ip-10-0-124-65  Ready      10.0.124.65  15300  4.4.1    0:02:33h  0
-15  ip-10-0-102-61  Ready      10.0.102.61  15300  4.4.1    0:02:31h  0
-3   ip-10-0-79-87   Ready      10.0.79.87   15300  4.4.1    0:05:26h  0
-6   ip-10-0-107-12  Ready      10.0.107.12  15300  4.4.1    0:05:26h  0
+╭────┬─────────────┬───────────┬───────────────┬──────┬─────────┬───────────────┬─────────────────┬───────────────────────╮
+│ ID │ Hostname    │ S3 Status │ IP            │ Port │ Version │        Uptime │ Active Requests │ Last Failure          │
+├────┼─────────────┼───────────┼───────────────┼──────┼─────────┼───────────────┼─────────────────┼───────────────────────┤
+│ 12 │ kenny-dev-2 │ Online    │ 10.121.89.42  │  443 │ 6.0.1   │ 59d 18:17:33h │               0 │                       │
+│ 13 │ kenny-dev-1 │ Online    │ 10.121.119.42 │  443 │ 6.0.1   │ 13d 15:04:57h │               0 │ Server is unreachable │
+│ 14 │ kenny-dev-3 │ Online    │ 10.121.5.186  │  443 │ 6.0.1   │ 59d 18:17:33h │               0 │                       │
+│ 15 │ kenny-dev-4 │ Online    │ 10.121.8.68   │  443 │ 6.0.1   │ 59d 18:17:33h │               0 │                       │
+│ 17 │ kenny-dev-5 │ Online    │ 10.121.16.124 │  443 │ 6.0.1   │ 59d 18:17:34h │               0 │                       │
+╰────┴─────────────┴───────────┴───────────────┴──────┴─────────┴───────────────┴─────────────────┴───────────────────────╯
 ```
 
 </details>
