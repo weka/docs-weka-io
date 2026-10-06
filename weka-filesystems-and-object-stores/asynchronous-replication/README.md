@@ -156,5 +156,4 @@ The limits are per cluster and apply to the target as well as the source. A fan-
 
 * Replication management is available through the CLI only.
 * Replication is not supported on servers that run the NFS or SMB protocols, because the S3 protocol cannot be combined with NFS or SMB.
-* Both clusters must run version 6.0.1 or later to link. Pairs and peers set up on 6.0.0 are removed before the upgrade and re-created after it. See [Upgrade replication from 6.0.0](manage-asynchronous-replication.md#upgrade-replication-from-6-0-0).
 * A partial copy (`--copy-path` with specific directories) requires a Data Services container on the target cluster.

@@ -235,7 +235,7 @@ JSON field naming can differ between the CLIs. Re-verify any `--json` parsing ag
 ## New capabilities with no legacy equivalent
 
 * `fs replication` (`add`, `update`, `pause`, `resume`, `remove`, `fetch`): persistent replication-pair management, distinct from the one-shot `fs replicate`.
-* `cluster link` (`add`, `refresh`, `remove`): links to remote clusters, which replication pairs are built on. Cluster links require cluster version 6.0.1 or later. The same commands are also grouped under `replication link`, and the replication-pair commands under `replication fs-pair`.
+* `cluster link` (`add`, `refresh`, `remove`): links to remote clusters, which replication pairs are built on. The same commands are also grouped under `replication link`, and the replication-pair commands under `replication fs-pair`.
 * `profile` (16 commands): named connection, authentication, and display profiles, with `purge` subcommands for certificates, cached completion data, and command history.
 * `completion` (14 commands): shell completion for Bash, Zsh, fish, and PowerShell, replacing `agent autocomplete`.
 * `prompt` and `gui bridge`: an interactive command prompt, and a local endpoint that forwards to the cluster web GUI over the CLI connection.
