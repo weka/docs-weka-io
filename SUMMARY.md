@@ -99,6 +99,7 @@
     * [weka profile](getting-started-with-weka/weka-cli-overview/cli-reference-guide/weka-profile.md)
     * [weka prompt](getting-started-with-weka/weka-cli-overview/cli-reference-guide/weka-prompt.md)
     * [weka rbac](getting-started-with-weka/weka-cli-overview/cli-reference-guide/weka-rbac.md)
+    * [weka replication](getting-started-with-weka/weka-cli-overview/cli-reference-guide/weka-replication.md)
     * [weka s3](getting-started-with-weka/weka-cli-overview/cli-reference-guide/weka-s3.md)
     * [weka security](getting-started-with-weka/weka-cli-overview/cli-reference-guide/weka-security.md)
     * [weka smb](getting-started-with-weka/weka-cli-overview/cli-reference-guide/weka-smb.md)
