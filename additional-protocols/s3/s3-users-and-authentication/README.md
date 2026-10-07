@@ -15,7 +15,7 @@ metaLinks:
 Use an access key and secret key pair to access the S3 API. These credentials are separate from the WEKA account password. WEKA stores each key pair locally.
 
 * **Local accounts:** Managed in WEKA. The key pair belongs to the local account.
-* **LDAP accounts:** Managed in LDAP. WEKA issues and stores the key pair locally. Use the dedicated API to create a key pair, refresh the IAM policy and UID/GID mapping from LDAP, or remove the local key pair without changing the LDAP account. For details, see [Configure S3 LDAP authentication](configure-s3-ldap-authentication.md).
+* **LDAP accounts:** Managed in LDAP. Use the dedicated API to create a local S3 account for the LDAP user, refresh its IAM policy and UID/GID mapping from LDAP, or remove it without changing the LDAP account. Generate the account's key pair with `weka s3 user keys-generate`. For details, see [Configure S3 LDAP authentication](configure-s3-ldap-authentication.md).
 
 ### Create credentials for local accounts
 
