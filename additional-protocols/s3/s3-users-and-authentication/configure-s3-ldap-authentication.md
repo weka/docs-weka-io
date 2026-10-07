@@ -15,7 +15,7 @@ The system manages the entire credential lifecycle using the following mechanism
 * **Account provisioning:** The first import request for an LDAP user creates an S3 account for that user in the cluster. The response returns the account name and password.
 * **Separate S3 keys:** The S3 access key and secret key are separate from the account name and password. Generate them with `weka s3 user keys-generate`, either as the user or as an administrator.
 * **Policy-driven access control:** User permissions are enforced by aligning LDAP attributes with S3 IAM policies. Creating the account requires an S3 IAM policy in the user's LDAP attributes.
-* **Consistent identity mapping:** To maintain consistent permissions across protocols, the system retrieves UID and GID values directly from LDAP attributes. When an attribute is empty or not a number, the system assigns its default UID or GID.
+* **Consistent identity mapping:** To maintain consistent permissions across protocols, the system retrieves UID and GID values directly from LDAP attributes. When the `uidNumber` or `gidNumber` attribute is missing, empty, not a number, or 0, objects the user creates keep the S3 service's default ownership.
 * **Revocation management:** Administrators can manage revocation by removing an IAM policy linked to an LDAP attribute or by deleting the key pair, ensuring the primary LDAP account remains unaffected.
 
 ## Manage the S3 credential lifecycle
