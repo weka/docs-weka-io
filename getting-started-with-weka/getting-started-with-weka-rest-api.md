@@ -15,9 +15,10 @@ You can access the REST API using one of the following methods:
 
 * **Direct access:** Use port 14000 and the URL `/api/v2`.
 * **Through the cluster:** Browse to `https://<cluster name or IP>:14000/api/v2/docs`.
+* **OpenAPI definition from the cluster:** Browse to `https://<cluster name or IP>:14000/api/v2/docs/schema` to get the OpenAPI definition, in JSON, for the version the cluster runs. To generate client code that matches your cluster, use this definition.
 * **Through the WEKA GUI:** Select the three dots on the upper right menu and select **REST API**.\
   <img src="../.gitbook/assets/wmng_access_rest_api.png" alt="" data-size="original">
-*   **WEKA static API:** Browse to [api.docs.weka.io](https://api.docs.weka.io/) and select the required REST API version from the definition selector. You can also generate client code by using the OpenAPI client generator with the corresponding .json definition file.<br>
+*   **WEKA static API:** Browse to [api.docs.weka.io](https://api.docs.weka.io/) and select the required REST API version from the definition selector. You can also generate client code by using the OpenAPI client generator with the corresponding .json definition file. Each definition file covers a release line, such as 5.1. To match the exact version your cluster runs, use the OpenAPI definition from the cluster.<br>
 
     <div data-with-frame="true"><figure><img src="../.gitbook/assets/static_api_docs.png" alt=""><figcaption></figcaption></figure></div>
 
