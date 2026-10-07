@@ -30,13 +30,13 @@ WEKA containers run in `hostNetwork` mode, giving them direct access to the host
 
 Identify and select the appropriate driver provisioning mode based on your network environment and kernel requirements.
 
-|  | Pre-built (drivers.weka.io) | Locally-built (Drivers-Builder) |
-| --- | --- | --- |
-| **Recommended for** | Standard Linux distributions with supported kernel versions and outbound network access | Air-gapped or outbound-restricted environments; custom, patched, or uncommon kernel versions |
-| **How it works** | Operator downloads ready-made signed packages directly from `drivers.weka.io`. No compilation required. | Operator builds, signs, and distributes drivers entirely within the cluster using the Drivers-Builder component. |
-| **Main advantage** | Fastest path. No build infrastructure required in the cluster. | Full control over the build environment, including custom build flags through `extraBuildArgs`. |
-| **Constraints** | Not suitable for air-gapped environments. Cannot be used with custom or patched kernels absent from the registry. | Increases overall provisioning time due to compilation. Requires Drivers-Dist with persistent storage. |
-| **Fallback behavior** | If a kernel version is not found in the registry, the operator falls back to locally-built mode if a Drivers-Builder is configured. | Failed builds are retried indefinitely. |
+|                       | Pre-built (drivers.weka.io)                                                                                                         | Locally-built (Drivers-Builder)                                                                                  |
+| --------------------- | ----------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| **Recommended for**   | Standard Linux distributions with supported kernel versions and outbound network access                                             | Air-gapped or outbound-restricted environments; custom, patched, or uncommon kernel versions                     |
+| **How it works**      | Operator downloads ready-made signed packages directly from `drivers.weka.io`. No compilation required.                             | Operator builds, signs, and distributes drivers entirely within the cluster using the Drivers-Builder component. |
+| **Main advantage**    | Fastest path. No build infrastructure required in the cluster.                                                                      | Full control over the build environment, including custom build flags through `extraBuildArgs`.                  |
+| **Constraints**       | Not suitable for air-gapped environments. Cannot be used with custom or patched kernels absent from the registry.                   | Increases overall provisioning time due to compilation. Requires Drivers-Dist with persistent storage.           |
+| **Fallback behavior** | If a kernel version is not found in the registry, the operator falls back to locally-built mode if a Drivers-Builder is configured. | Failed builds are retried indefinitely.                                                                          |
 
 ## Pre-built drivers mode
 
@@ -101,9 +101,48 @@ Before the operator can initiate a local build, ensure the environment meets the
 * **Network access:** Ensure port 60002 is open to allow communication between the operator, Drivers-Builder, Drivers-Dist, and Drivers-Loader.
 * **WekaPolicy:** Prepare a WekaPolicy resource that defines the build and distribution settings. See [Configure WekaPolicy for local driver builds](weka-operator-driver-management.md#configure-wekapolicy-for-local-driver-builds).
 
-### Configure WekaPolicy for local driver builds
+### Configure driver builds for NixOS nodes
 
-Define the driver distribution endpoint and builder settings in a WekaPolicy resource, then apply it to the cluster.
+To build drivers on NixOS nodes, set the drivers-builder init containers to use the WEKA CLI from the builder image.
+
+By default, the drivers-builder init containers use the WEKA CLI from the cluster image. On NixOS nodes, that CLI lacks components needed to build the drivers. The builder image's CLI includes them.
+
+You configure this in the operator configuration WekaPolicy (`weka-configuration`), not in the `enable-local-drivers-distribution` policy.
+
+**Before you begin**
+
+Make sure the WEKA Operator is v1.16.2 or later.
+
+**Procedure**
+
+1. Create a file named `weka-configuration.yaml` and set `drivers.forceBuilderCli` to `true` in the `configurationPayload`:
+
+```yaml
+   apiVersion: weka.weka.io/v1alpha1
+   kind: WekaPolicy
+   metadata:
+     name: weka-configuration
+     namespace: weka-operator-system
+   spec:
+     payload:
+       configurationPayload:
+         drivers:
+           forceBuilderCli: true
+```
+
+{% hint style="warning" %}
+If a `weka-configuration` WekaPolicy already exists, add the `drivers` attribute to its `configurationPayload` and keep the other attributes. If you apply a file that leaves them out, they are removed.
+{% endhint %}
+
+2. Apply the policy:
+
+```bash
+   kubectl apply -f weka-configuration.yaml
+```
+
+**Related topics**
+
+[Configure operator-wide settings](weka-operator-full-deployment-workflow.md#id-3.1-configure-operator-wide-settings)
 
 ### Configure the driver distribution endpoint
 
@@ -111,8 +150,8 @@ Set the `driversDistService` field in the WekaCluster or WekaClient resource to 
 
 **Field reference**
 
-| Field | Description | Type |
-| --- | --- | --- |
+| Field                | Description                                                         | Type                                    |
+| -------------------- | ------------------------------------------------------------------- | --------------------------------------- |
 | `driversDistService` | Internal Drivers-Dist service endpoint that serves driver packages. | string, required for locally-built mode |
 
 **WekaCluster example**

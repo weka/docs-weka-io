@@ -405,9 +405,13 @@ Manage the lifecycle of WEKA resources by installing the WEKA Operator. This pro
       chmod 700 get_helm.sh && ./get_helm.sh
     ```
 * Confirm `kubectl` is installed and configured against the target cluster.
-*   Identify your deployment configuration before running the Helm command:
+* Identify your deployment configuration before running the Helm command:
 
-    \| Condition | Required flag | | --- | --- | | Operator v1.7.0 and later | `--set csi.installationEnabled=true` | | Operator v1.10 and later with AlloyFlash | `--set driveSharing.driveTypesRatio='{tlc: 9, qlc: 1}'` | | Operator v1.10 and later with single drive type | `--set driveSharing.driveTypesRatio='{qlc: 0}'` |
+| Condition                                       | Required flag                                           |
+| ----------------------------------------------- | ------------------------------------------------------- |
+| Operator v1.7.0 and later                       | `--set csi.installationEnabled=true`                    |
+| Operator v1.10 and later with AlloyFlash        | `--set driveSharing.driveTypesRatio='{tlc: 9, qlc: 1}'` |
+| Operator v1.10 and later with single drive type | `--set driveSharing.driveTypesRatio='{qlc: 0}'`         |
 
 **Procedure**
 
@@ -461,6 +465,58 @@ weka-operator-controller-manager-564bfd6b49-p6k7d    2/2     Running   0        
 ```
 
 If the pod does not reach `Running` state, see [Troubleshoot WEKA Operator deployments](troubleshoot-weka-operator-deployments.md).
+
+### 3.1 Configure operator-wide settings
+
+Configure embedded CSI and driver build settings that apply across the operator.
+
+From WEKA Operator v1.16.2, use a WekaPolicy with `configurationPayload` for these settings. Create the policy only when you must change a default.
+
+Helm values, including `csi.installationEnabled` and `csi.storageClassCreationDisabled`, remain Helm settings. Do not add them to the WekaPolicy.
+
+**Before you begin**
+
+* Install WEKA Operator v1.16.2 or later.
+* Identify the configuration attributes that require non-default values.
+
+**Procedure**
+
+1. Create `weka-configuration.yaml` with only the attributes you need to change. This example forces driver builder containers to use the WEKA CLI in the builder image:
+
+```yaml
+apiVersion: weka.weka.io/v1alpha1
+kind: WekaPolicy
+metadata:
+  name: weka-configuration
+  namespace: weka-operator-system
+spec:
+  payload:
+    configurationPayload:
+      drivers:
+        forceBuilderCli: true
+```
+
+2. Apply the manifest:
+
+```bash
+kubectl apply -f weka-configuration.yaml
+```
+
+3. Verify that the policy was created:
+
+```bash
+kubectl get wekapolicy weka-configuration -n weka-operator-system
+```
+
+**Configuration attributes**
+
+| Attribute                 | Description                                                                                                                                                                                                                                                       | Default |
+| ------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| `csi.metricsEnabled`      | Enables the Prometheus metrics endpoints of the CSI controller, the CSI node plugin, and the controller sidecars. Set to `false` to disable the endpoints.                                                                                                        | `true`  |
+| `csi.fsGroupPolicy`       | Sets `fsGroupPolicy` on the CSIDriver object. This setting determines whether Kubernetes applies the pod `fsGroup` to the volume. Possible values: `File`, `None`, `ReadWriteOnceWithFSType`.                                                                     | `File`  |
+| `drivers.forceBuilderCli` | Forces the drivers-builder init containers to use the WEKA CLI from the builder image instead of the cluster image. Set to `true` when the WEKA CLI in the cluster image lacks components required to build drivers for the node operating system, such as NixOS. | `false` |
+
+The `interval` attribute does not apply to this policy. For the complete list of fields, see the [WekaPolicy API reference](https://weka.github.io/weka-k8s-api/wekapolicy/#configurationpayload).
 
 ***
 
@@ -701,13 +757,14 @@ payload:
 Review the [WekaPolicy API reference](https://weka.github.io/weka-k8s-api/wekapolicy/) for all available resource options.
 {% endhint %}
 
-| Attribute             | Description                                                                              |
-| --------------------- | ---------------------------------------------------------------------------------------- |
-| `image`               | The WEKA container image used for the distributor and default builder.                   |
-| `interval`            | How often the operator reconciles the policy. Default: `1m`.                             |
-| `builderPreRunScript` | Optional script to run before the build, for example to install a compiler.              |
-| `ensureNICsPayload`   | Defines the configuration for ensuring a specific number of data NICs on selected nodes. |
-| `signDrivesPayload`   | Configures parameters to scan and sign drives for WEKA backend containers.               |
+| Attribute              | Description                                                                                                                                                                                                                                                   |
+| ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `image`                | The WEKA container image used for the distributor and default builder.                                                                                                                                                                                        |
+| `interval`             | How often the operator reconciles the policy. Default: `1m`.                                                                                                                                                                                                  |
+| `builderPreRunScript`  | Optional script to run before the build, for example to install a compiler.                                                                                                                                                                                   |
+| `ensureNICsPayload`    | Defines the configuration for ensuring a specific number of data NICs on selected nodes.                                                                                                                                                                      |
+| `signDrivesPayload`    | Configures parameters to scan and sign drives for WEKA backend containers.                                                                                                                                                                                    |
+| `configurationPayload` | Defines operator-wide settings for the embedded CSI plugin (`csi`) and driver builds (`drivers`). Available from Operator v1.16.2. See [Configure operator-wide settings](weka-operator-full-deployment-workflow.md#id-3.1-configure-operator-wide-settings). |
 
 4. Apply the configuration:
 

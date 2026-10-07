@@ -40,17 +40,18 @@ Choose the model that matches your infrastructure and operating boundary.
 
 Verify minimum version requirements before deployment or upgrade.
 
-| Feature                 | Operator (min. version) | WEKA Cluster (min. version) | Notes                                                                                        |
-| ----------------------- | ----------------------- | --------------------------- | -------------------------------------------------------------------------------------------- |
-| General support         | 1.16                    | 6.0                         | WEKA 6.0 is supported with Operator 1.16 onwards                                             |
-| S3                      | 1.7                     | 4.4                         | Supported.                                                                                   |
-| NFS                     | 1.10                    | 5.1.0                       | Supported.                                                                                   |
-| Audit                   | 1.10                    | 5.1.0                       | Supported.                                                                                   |
-| SMB-W                   | 1.11                    | 5.1.20                      | Supported.                                                                                   |
-| Data Services           | 1.13                    | 5.1.20                      | Supported for quota coloring.Not supported for Data Catalog.                                 |
-| ssdproxy                | 1.12                    | 5.1.30                      | Supported.Share NVMe drives across multiple clusters.                                        |
-| AlloyFlash              | 1.14                    | 5.1.30                      | Supported.Enable mixed TLC and QLC drive deployments.                                        |
-| Cluster capacity sizing | 1.14.2                  | 5.1.0                       | Supported.Size the cluster by target usable capacity with `dynamicTemplate.clusterCapacity`. |
+| Feature                                   | Operator (min. version) | WEKA Cluster (min. version) | Notes                                                                                                       |
+| ----------------------------------------- | ----------------------- | --------------------------- | ----------------------------------------------------------------------------------------------------------- |
+| General support                           | 1.16                    | 6.0                         | WEKA 6.0 is supported with Operator 1.16 onwards                                                            |
+| S3                                        | 1.7                     | 4.4                         | Supported.                                                                                                  |
+| NFS                                       | 1.10                    | 5.1.0                       | Supported.                                                                                                  |
+| Audit                                     | 1.10                    | 5.1.0                       | Supported.                                                                                                  |
+| SMB-W                                     | 1.11                    | 5.1.20                      | Supported.                                                                                                  |
+| Data Services                             | 1.13                    | 5.1.20                      | Supported for quota coloring.Not supported for Data Catalog.                                                |
+| ssdproxy                                  | 1.12                    | 5.1.30                      | Supported.Share NVMe drives across multiple clusters.                                                       |
+| AlloyFlash                                | 1.14                    | 5.1.30                      | Supported.Enable mixed TLC and QLC drive deployments.                                                       |
+| Cluster capacity sizing                   | 1.14.2                  | 5.1.0                       | Supported.Size the cluster by target usable capacity with `dynamicTemplate.clusterCapacity`.                |
+| Operator configuration through WekaPolicy | 1.16.2                  | 6.0                         | Supported. Configure the embedded CSI plugin and driver builds with `configurationPayload` in a WekaPolicy. |
 
 ## How to use this guide
 
@@ -64,8 +65,6 @@ Use this guide to choose the right starting point for deployment and operations 
 
 [WekaCluster and WekaContainer lifecycle](wekacluster-and-wekacontainer-lifecycle.md)
 
-Kubernetes deployment types
-
 **Start a new deployment:**
 
 | Task                                                                                    | Topic                                                                                                         |
@@ -77,7 +76,7 @@ Kubernetes deployment types
 
 **Go to a specific task:** Use these topics for focused configuration and migration work.
 
-<table data-search="false"><thead><tr><th>Task</th><th>Topic</th></tr></thead><tbody><tr><td>Manage drivers</td><td><a href="weka-operator-driver-management.md">WEKA Operator driver management</a></td></tr><tr><td>Configure networking</td><td><a href="networking-with-the-weka-operator.md">Networking with the WEKA Operator</a></td></tr><tr><td>Configure encryption at rest</td><td><a href="encryption-with-the-weka-operator.md">Encryption with the WEKA Operator</a></td></tr><tr><td>Configure protocols</td><td><a href="set-up-protocols-on-k8s-with-weka-operator.md">Set up protocols on K8s with WEKA Operator</a></td></tr><tr><td>Configure audit log export</td><td><a href="set-up-audit-logs-on-k8s-with-weka-operator.md">Set up audit logs on K8s with WEKA Operator</a></td></tr><tr><td>Manage credentials</td><td><a href="weka-operator-secrets-management.md">Weka Operator secrets management</a></td></tr><tr><td>Migrate from standalone CSI</td><td><a href="migrate-standalone-csi-to-weka-operator-embedded.md">Migrate standalone CSI to WEKA Operator-embedded</a></td></tr></tbody></table>
+<table data-search="false"><thead><tr><th>Task</th><th>Topic</th></tr></thead><tbody><tr><td>Manage drivers</td><td><a href="weka-operator-driver-management.md">WEKA Operator driver management</a></td></tr><tr><td>Configure networking</td><td><a href="networking-with-the-weka-operator.md">Networking with the WEKA Operator</a></td></tr><tr><td>Configure encryption at rest</td><td><a href="encryption-with-the-weka-operator.md">Encryption with the WEKA Operator</a></td></tr><tr><td>Configure protocols</td><td><a href="set-up-protocols-on-k8s-with-weka-operator.md">Set up protocols on K8s with WEKA Operator</a></td></tr><tr><td>Configure audit log export</td><td><a href="set-up-audit-logs-on-k8s-with-weka-operator.md">Set up audit logs on K8s with WEKA Operator</a></td></tr><tr><td>Manage credentials</td><td><a href="weka-operator-secrets-management.md">Weka Operator secrets management</a></td></tr><tr><td>Migrate from standalone CSI</td><td><a href="migrate-standalone-csi-to-weka-operator-embedded.md">Migrate standalone CSI to WEKA Operator-embedded</a></td></tr><tr><td>Configure embedded CSI and driver settings.</td><td><a href="weka-operator-full-deployment-workflow.md#id-3.1-configure-operator-wide-settings">Configure operator-wide settings</a></td></tr></tbody></table>
 
 **Operate and maintain after deployment:** Use these topics to upgrade, optimize, and troubleshoot the environment.
 
