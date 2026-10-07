@@ -178,6 +178,12 @@ The WEKA system supports end-to-end checksum validation for S3 data integrity pr
 
 The system provides validation at the whole-object (`FULL_OBJECT`) and part-level, and supports trailer-based signed chunked uploads. Clients can select the desired algorithm on a per-request basis.
 
+For multipart uploads, each algorithm supports specific checksum types:
+
+* CRC32 and CRC32C: `FULL_OBJECT` or `COMPOSITE`.
+* CRC64NVME: `FULL_OBJECT`. When creating the multipart upload, set the `x-amz-checksum-type` header to `FULL_OBJECT`. The default type is `COMPOSITE`.
+* SHA1 and SHA256: `COMPOSITE`.
+
 {% hint style="info" %}
 For optimal performance, CRC32 or CRC32C is recommended.
 {% endhint %}
