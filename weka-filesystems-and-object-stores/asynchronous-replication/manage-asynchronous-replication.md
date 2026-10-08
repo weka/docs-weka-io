@@ -25,8 +25,11 @@ Prepare both clusters for replication. Replication traffic passes through the S3
 **Before you begin**
 
 * Ensure both clusters are licensed for cross-cluster replication. Run `weka cluster license` and check that **Cross-Cluster Replication** under **Installed License** shows **Licensed**. Linking checks the license of each cluster, so both clusters need the entitlement. To add the entitlement, contact your WEKA account team.
-* Ensure the clusters can reach each other over the network.
+* Ensure the clusters can reach each other over the management network (port 14000 by default) and over the S3 port of each cluster.
+* Ensure each cluster has a cluster name. The link is named after the cluster at the other end. To set the name, run `weka cluster update --cluster-name <name>`.
+* Ensure each cluster has an S3 cluster with at least one server serving S3. To create one, run `weka s3 cluster add`. See [Manage the S3 cluster using the CLI](../../additional-protocols/s3/s3-cluster-management/s3-cluster-management-1.md).
 * Ensure each cluster has a configuration filesystem for its protocol containers, typically named `.config_fs`. Protocol or S3 setup creates it.
+* For Selective copy - critical paths (`--copy-path` with specific directories), set up a Data Services container on the **target** cluster. Full data copy and Selective copy - metadata only copy do not need it. See [Set up a Data Services container for background tasks](../../operation-guide/set-up-a-data-services-container-for-background-tasks.md).
 
 ## Link the clusters
 
@@ -146,7 +149,7 @@ weka fs replication
 
 **Parameters**
 
-<table><thead><tr><th width="266.5703125">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>--source-filesystem</code></td><td>Name of the local source filesystem.</td></tr><tr><td><code>--link-id</code></td><td>ID of the cluster link to the target cluster, as shown by <code>weka cluster link</code>.</td></tr><tr><td><code>--target-filesystem</code></td><td>Name of the filesystem on the remote cluster. It can be the same as the source filesystem name.</td></tr><tr><td><code>--interval</code></td><td>Replication interval, for example, <code>5m</code> or <code>1h</code>. The minimum is 5 minutes.</td></tr><tr><td><code>--copy-path</code></td><td>Specifies up to 10 paths to copy proactively, each up to 2 KB long. Separate paths with commas or repeat the option. Use <code>full</code>, <code>all</code>, or <code>/</code> to copy all data. Use <code>none</code> or <code>null</code> to replicate metadata only. Default: metadata-only replication.</td></tr><tr><td><code>--access-strategy</code></td><td>Controls when a target snapshot becomes accessible. <code>INSTANT_ACCESS</code> (default) exposes the snapshot immediately. Data not copied locally is retrieved on demand. <code>COPY_FIRST</code> exposes the snapshot only after the <code>--copy-path</code> data is local.</td></tr><tr><td><code>--apply-strategy</code></td><td>Controls when the target applies a replicated snapshot. <code>AUTOMATIC</code> applies the snapshot after the prerequisite phase completes.</td></tr><tr><td><code>--snapshots-to-keep</code></td><td>Number of snapshots to retain, from 2 to 25. Default: 3. Retaining more snapshots requires more storage. Enforced only while the pair is running; see <a href="manage-asynchronous-replication.md#pause-and-resume-replication">Pause and resume replication</a>.</td></tr><tr><td><code>--target-total-capacity</code></td><td>Total capacity for the target filesystem. Default: same as the source filesystem. A smaller target is allowed for a partial or metadata-only copy. A full copy requires at least the source size.</td></tr><tr><td><code>--now</code></td><td>Triggers the first replication cycle immediately instead of waiting one full interval.</td></tr></tbody></table>
+<table><thead><tr><th width="266.5703125">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>--source-filesystem</code></td><td>Name of the local source filesystem.</td></tr><tr><td><code>--link-id</code></td><td>ID of the cluster link to the target cluster, as shown by <code>weka cluster link</code>.</td></tr><tr><td><code>--target-filesystem</code></td><td>Name of the filesystem on the remote cluster. It can be the same as the source filesystem name.</td></tr><tr><td><code>--interval</code></td><td>Replication interval, for example, <code>5m</code> or <code>1h</code>. The minimum is 5 minutes.</td></tr><tr><td><code>--copy-path</code></td><td>Specifies up to 10 paths to copy proactively, each up to 2 KB long. Separate paths with commas or repeat the option. Use <code>full</code>, <code>all</code>, or <code>/</code> to copy all data. Use <code>none</code> or <code>null</code> to replicate metadata only. Default: metadata-only replication.</td></tr><tr><td><code>--access-strategy</code></td><td>Controls when a target snapshot becomes accessible. <code>INSTANT_ACCESS</code> (default) exposes the snapshot immediately. Data not copied locally is retrieved on demand. <code>COPY_FIRST</code> exposes the snapshot only after the <code>--copy-path</code> data is local.</td></tr><tr><td><code>--apply-strategy</code></td><td>Controls when the target applies a replicated snapshot. <code>AUTOMATIC</code> applies the snapshot after the prerequisite phase completes.</td></tr><tr><td><code>--snapshots-to-keep</code></td><td>Number of snapshots to retain, from 2 to 25. Default: 3. Retaining more snapshots requires more storage. Enforced only while the pair is running; see <a href="manage-asynchronous-replication.md#pause-and-resume-replication">Pause and resume replication</a>.</td></tr><tr><td><code>--target-total-capacity</code></td><td>Total capacity for the target filesystem. Default: same as the source filesystem. A smaller target is allowed for a selective copy. A full copy requires at least the source size.</td></tr><tr><td><code>--now</code></td><td>Triggers the first replication cycle immediately instead of waiting one full interval.</td></tr></tbody></table>
 
 **Examples**
 
@@ -268,8 +271,8 @@ weka fs replication update <pair ID> \
 Use the parameter descriptions in the preceding table, with the following additions:
 
 * `--copy-path` replaces the entire copy path set. Use `none` or `null` to clear the set. Mutually exclusive with `--add-copy-path` and `--remove-copy-path`.
-* `--add-copy-path` adds paths to a partial copy set. Separate multiple paths with commas or repeat the option.
-* `--remove-copy-path` removes paths from a partial copy set. Separate multiple paths with commas or repeat the option.
+* `--add-copy-path` adds paths to the copy path set. Separate multiple paths with commas or repeat the option.
+* `--remove-copy-path` removes paths from the copy path set. Separate multiple paths with commas or repeat the option.
 
 2. Verify the updated policy:
 
@@ -279,7 +282,7 @@ weka fs replication
 
 **Example**
 
-Switch a pair to a metadata-only copy and lengthen its interval:
+Switch a pair to Selective copy - metadata only copy and lengthen its interval:
 
 ```bash
 weka fs replication update 3 --copy-path none --interval 6m
@@ -313,7 +316,7 @@ Replication continues from the last consistent state.
 
 Fetch the data of individual files to the target cluster proactively, monitor hydration progress, and release file data back to on-demand mode.
 
-With a metadata-only or partial copy policy, file data is retrieved from the source cluster when files are accessed on the target. Use the hydration commands to control this behavior per file: fetch a file before a workload needs it, or release local data to free capacity on the target.
+With a selective copy policy, file data is retrieved from the source cluster when files are accessed on the target. Use the hydration commands to control this behavior per file: fetch a file before a workload needs it, or release local data to free capacity on the target.
 
 ### Fetch a file proactively
 
@@ -351,7 +354,7 @@ This command runs on the container that holds the mount, so it cannot be directe
 Remove a replication pair when you no longer need to synchronize the source and target filesystems, or as part of a failover procedure.
 
 {% hint style="warning" %}
-Removing a pair stops further snapshot replication for the filesystem pair, including the retrieval of data on demand. If the target filesystem was created with a metadata-only or partial copy policy, files that were never hydrated become inaccessible after removal. Verify the hydration state before removal. Pause the pair, then run `weka fs replication` and confirm that **State** is not `RUNNING`.
+Removing a pair stops further snapshot replication for the filesystem pair, including the retrieval of data on demand. If the target filesystem was created with a selective copy policy, files that were never hydrated become inaccessible after removal. Verify the hydration state before removal. Pause the pair, then run `weka fs replication` and confirm that **State** is not `RUNNING`.
 {% endhint %}
 
 **Before you begin**
@@ -462,7 +465,7 @@ weka fs replication
 
 * Confirm that the target contains the data you need:
   * With `COPY_FIRST` and `--copy-path full`, all data is local. No action is required.
-  * Hydrate data before breaking any other pair type. This includes `INSTANT_ACCESS`, partial copies, and smaller targets.
+  * Hydrate data before breaking any other pair type. This includes `INSTANT_ACCESS`, Selective copy - critical paths pairs, and smaller targets.
   * These pairs can reference source-only data. Breaking the pair makes that data permanently unreadable.
   * Run `weka fs replication fetch <path>` for each required path. Reading files does not hydrate them. See [Manage file hydration on the target](manage-asynchronous-replication.md#manage-file-hydration-on-the-target).
 

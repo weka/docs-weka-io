@@ -14,7 +14,7 @@ The main decision is how much data the target holds: the whole filesystem, only 
 
 ### Full data copy
 
-Maintain a complete, incrementally updated filesystem copy on the target cluster. If the source cluster becomes unavailable, manually activate the target filesystem. Because replication is asynchronous, the replication interval is not zero: writes made after the last replicated snapshot may be lost, and recovery time depends on the manual failover procedure.
+Maintain a complete, incrementally updated filesystem copy on the target cluster. If the source cluster becomes unavailable, manually activate the target filesystem. Because replication is asynchronous, the target lags the source by at least the replication interval: writes made after the last replicated snapshot may be lost, and recovery time depends on the manual failover procedure.
 
 * **Disaster recovery with a replication interval requirement**: The system raises an alert whenever a replication cycle runs past its interval. Use the alert history to verify replication interval compliance. See [Monitor replication interval compliance](manage-asynchronous-replication.md#monitor-replication-interval-compliance).
 * **Ingest site to central compute**: Collection sites replicate continuously to a central cluster that runs the compute — for example, device data feeding a central GPU cluster for training. No shipping media, and no compute at every collection site.
@@ -42,7 +42,7 @@ A replication pair connects a source filesystem with a target filesystem:
 
 * **Cluster link**: Before you can create a replication pair, link the two clusters. One `weka cluster link add` command, run on either cluster, creates the link on both. The link authenticates with a cluster admin account on the other cluster, pins its TLS certificate, and carries replication in both directions. Each replication pair replicates in one direction, from its source to its target.
 * **Snapshot deltas**: On each replication interval, the system takes a snapshot of the source filesystem and transfers the incremental delta to the target. The minimum interval is 5 minutes.
-* **Transport**: Replication uses the S3 infrastructure of the clusters as a transport layer. Data passes through the object store
+* **Transport**: Replication uses the S3 infrastructure of the clusters as a transport layer. Data passes through the S3 service of each cluster, over a dedicated replica route.
 * **Source and target roles**: The source filesystem remains fully readable and writable throughout replication. The target filesystem is write-protected: only the replication process can write to it, while users and applications can read it. The target becomes writable only when you remove the write protection, for example, during a failover.
 
 ### Copy options
@@ -56,7 +56,7 @@ The replication policy determines how data reaches the target:
 With selective copy, you can also fetch or release the data of individual files on the target.
 
 {% hint style="info" %}
-**Lazy data** is the CLI's term for on-demand data. A file in _lazy mode_ is visible on the target, but its data blocks are still on the source. `weka replication fs-pair fetch` pulls them to the target, and `weka replication fs-pair release` returns them to lazy mode.
+**Lazy data** is the CLI's term for on-demand data. A file in _lazy mode_ is visible on the target, but its data blocks are still on the source. `weka fs replication fetch` pulls them to the target, and `weka fs replication release` returns them to lazy mode.
 {% endhint %}
 
 {% hint style="info" %}
@@ -76,7 +76,9 @@ Two constraints apply. Size for whichever is larger.
 
 **By copy option:**
 
-A full data copy needs a target at least the size of the source filesystem. Size it for the working set, represented by the directories named in `--copy-path`, plus headroom.
+A full data copy needs a target at least the size of the source filesystem.
+
+A selective copy can be far smaller. Size it for the working set, which includes the directories named in `--copy-path`, plus headroom.
 
 A working-set target runs at a high fill level by design. When it approaches full, the system returns hydrated data to lazy mode (dehydration). Keep the working set below the dehydration threshold, or the target re-fetches data it has just released. See [Data copy and hydration](./#data-copy-and-hydration).
 
@@ -84,7 +86,7 @@ A working-set target runs at a high fill level by design. When it approaches ful
 
 Size the target filesystem to at least 5% of the target cluster SSD capacity.
 
-The same filesystem size behaves differently on different clusters. A 5 GB filesystem can work well on a small cluster but may stall immediately&#x20;
+The same filesystem size behaves differently on different clusters. A 5 GB filesystem can work well on a small cluster but stall immediately on a large one.
 
 {% hint style="warning" %}
 If the target filesystem is smaller than about 1% of the target cluster SSD capacity, replication can stall from the first synchronization cycle, before any data is visibly transferred. Increase the filesystem size, or use a target cluster with less SSD capacity.
@@ -131,8 +133,8 @@ To write to the target filesystem, hydrate all of its data, remove the replicati
 
 ### Data copy and hydration
 
-* Changing the policy from on-demand caching to a full data copy or selective copy does not copy files that were never hydrated. Hydrate those files before you change the policy.
-* Dehydration on the target filesystem starts when the disk occupied space reaches 95% and stops when it drops to 90%. To release data outside these thresholds, run `weka replication fs-pair release`.
+* Changing the policy from on-demand caching to Full data copy or Selective copy - critical paths does not copy files that were never hydrated. Hydrate those files before you change the policy.
+* Dehydration on the target filesystem starts when the disk occupied space reaches 95% and stops when it drops to 90%. To release data outside these thresholds, run `weka fs replication release`.
 
 ### Pair topology
 
@@ -151,4 +153,4 @@ The limits are per cluster and apply to the target as well as the source. A fan-
 
 * Replication management is available through the CLI only.
 * Replication is not supported on servers that run the NFS or SMB protocols, because the S3 protocol cannot be combined with NFS or SMB.
-* A partial copy (`--copy-path` with specific directories) requires a Data Services container on the target cluster.
+* Selective copy - critical paths (`--copy-path` with specific directories) requires a Data Services container on the target cluster.
