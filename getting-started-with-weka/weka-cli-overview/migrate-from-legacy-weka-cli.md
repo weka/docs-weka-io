@@ -37,6 +37,26 @@ Follow these principles to make a migrated script robust against future changes:
 
 The legacy CLI wraps identifiers in output as `HostId<3>`, `NodeId<15>`, `DiskId<5>`, and similar. wekactl prints the bare integer, and JSON carries a number, not a string. Update any parsing that expects the `XxxId<N>` form.
 
+For example, `weka s3 cluster` lists the containers that serve S3.
+
+Legacy CLI:
+
+```
+      S3 Hosts: HostId<14>, HostId<3>, HostId<6>, HostId<15>
+```
+
+wekactl:
+
+```
+ S3 Containers  14, 3, 6, 15
+```
+
+wekactl with `--json`:
+
+```json
+"containers": [14, 3, 6, 15]
+```
+
 ### Units follow industry conventions
 
 * Throughput and storage capacities: decimal units (KB, MB, GB, TB, PB, EB).
@@ -164,13 +184,18 @@ A command name search does not surface these. The option changed instead.
 | `events`                                 | `--exclude-type-list`    | `--exclude-type`                |
 | `fs group add` and `update`              | `--target-ssd-retention` | `--ssd-retention`               |
 | `fs snapshot add`                        | `--is-writable`          | `--writable`                    |
-| `local setup client`                     | `--nvidia-vf-single-ip`  | `--disable-nvidia-vf-single-ip` |
 
 Both spellings of the netmask option take a length in bits, so only the name changes.
 
-{% hint style="warning" %}
-`--nvidia-vf-single-ip` and `--disable-nvidia-vf-single-ip` are opposites, not synonyms. A script that renames the option in place gets the opposite behavior. Remove the option to keep the legacy behavior.
-{% endhint %}
+### Single-IP mode for NVIDIA VFs is the default
+
+Starting with 6.0, the `weka local setup` commands configure NVIDIA virtual functions (VFs) in single-IP mode by default, in both the legacy CLI and wekactl. In earlier versions, single-IP mode was off unless you set `--nvidia-vf-single-ip`. The new option, `--disable-nvidia-vf-single-ip`, turns single-IP mode off. It is the inverse of `--nvidia-vf-single-ip`, so update scripts by the result you want:
+
+| Script before 6.0                                           | Update for 6.0                            |
+| ----------------------------------------------------------- | ----------------------------------------- |
+| Sets `--nvidia-vf-single-ip` to `yes`, `true`, or `on`        | Remove the option.                        |
+| Sets `--nvidia-vf-single-ip` to `no`, `false`, or `off`       | Replace it with `--disable-nvidia-vf-single-ip`. |
+| Omits the option                                            | Add `--disable-nvidia-vf-single-ip` to keep single-IP mode off. |
 
 ## Deprecated and hidden options
 
