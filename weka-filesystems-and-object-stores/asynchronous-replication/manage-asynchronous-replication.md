@@ -25,17 +25,8 @@ Prepare both clusters for replication. Replication traffic passes through the S3
 **Before you begin**
 
 * Ensure both clusters are licensed for cross-cluster replication. Run `weka cluster license` and check that **Cross-Cluster Replication** under **Installed License** shows **Licensed**. Linking checks the license of each cluster, so both clusters need the entitlement. To add the entitlement, contact your WEKA account team.
-* Ensure the clusters can reach each other over the management network (port 14000 by default) and over the S3 port of each cluster.
-* Ensure each cluster has a cluster name. The link is named after the cluster at the other end. To set the name, run `weka cluster update --cluster-name <name>`.
-* Ensure each cluster has an S3 cluster with at least one server serving S3. To create one, run `weka s3 cluster add`. See [Manage the S3 cluster using the CLI](../../additional-protocols/s3/s3-cluster-management/s3-cluster-management-1.md).
-* For a partial copy (`--copy-path` with specific directories), set up a Data Services container on the **target** cluster. A full copy and a metadata-only copy do not need it. See [Set up a Data Services container for background tasks](../../operation-guide/set-up-a-data-services-container-for-background-tasks.md).
-* Ensure both clusters show `OK` in `weka status`.
-
-**Related topics**
-
-[Manage the S3 protocol](https://docs.weka.io/additional-protocols/s3)
-
-[User management](https://docs.weka.io/operation-guide/user-management)
+* Ensure the clusters can reach each other over the network.
+* Ensure each cluster has a configuration filesystem for its protocol containers, typically named `.config_fs`. Protocol or S3 setup creates it.
 
 ## Link the clusters
 
@@ -89,7 +80,7 @@ If you run the command interactively without `--fingerprint`, it displays the fi
 
 A link is identified by its ID. Its name follows the name of the other cluster, so two links can have the same name. Every link command, and `weka fs replication add --link-id`, takes the ID.
 
-If a link to the other cluster already exists on either cluster, the command reports which cluster holds it and makes no change. Remove the existing link, then add it again. See [Remove a cluster link](#remove-a-cluster-link).
+If a link to the other cluster already exists on either cluster, the command reports which cluster holds it and makes no change. Remove the existing link, then add it again. See [Remove a cluster link](manage-asynchronous-replication.md#remove-a-cluster-link).
 
 If the clusters can reach each other only through public addresses, contact the Customer Success Team before you link them.
 
@@ -206,15 +197,15 @@ weka fs replication -v
 
 To customize the output, use the `--output`, `--filter`, and `--sort` options with any of the available columns, including `last-error` and `last-error-time` for troubleshooting.
 
-### Monitor RPO compliance
+### Monitor replication interval compliance
 
-The replication interval is also the RPO target for the pair. There is no separate RPO setting. The system times each cycle from its start and raises an alert when the cycle overruns the interval by more than one minute.
+The replication interval sets the target for each pair. There is no separate setting. The system times each cycle from its start and raises an alert when the cycle overruns the interval by more than one minute.
 
 <table><thead><tr><th width="235">Alert</th><th width="120">Severity</th><th>Raised when the current cycle has been running longer than</th></tr></thead><tbody><tr><td>Replication behind schedule</td><td>Minor</td><td>The configured interval, plus one minute</td></tr><tr><td>Replication behind schedule</td><td>Major</td><td>Three times the configured interval, plus one minute</td></tr></tbody></table>
 
 The alert names the filesystem and the linked cluster, and reports the interval, how long the cycle has run, by how much it exceeds the target, and the time of the last completed cycle. Use the alert history as the compliance record.
 
-No RPO alert is raised for a pair that is paused, not running, or still in its first replication cycle.
+No replication interval alert is raised for a pair that is paused, not running, or still in its first replication cycle.
 
 View active alerts:
 
@@ -222,7 +213,7 @@ View active alerts:
 weka alerts
 ```
 
-If an RPO alert fires, inspect the cycle:
+If a replication interval alert fires, inspect the cycle:
 
 ```bash
 weka fs replication --verbose
@@ -243,7 +234,7 @@ weka cluster link
 
 For the link UID, data IPs, and data port, run `weka cluster link -v`.
 
-`weka cluster link` checks the management endpoints of the other cluster, not its S3 service. To detect an S3 service problem on the other cluster, watch the **Last Error** column of the pairs that use the link, and the RPO alerts.
+`weka cluster link` checks the management endpoints of the other cluster, not its S3 service. To detect an S3 service problem on the other cluster, watch the **Last Error** column of the pairs that use the link, and the replication interval alerts.
 
 {% hint style="danger" %}
 **INTERNAL, remove before publication. TBD (Gokul Sreeramaiah):** The 6.0.0 page had "Troubleshoot S3 authentication failures", based on `weka cluster peer init --reinit`, which 6.0.1 removes. Links mint their own credentials, and rotation is a manual override (`cluster_link.rotate_s3_credentials`, applied by the next refresh). What should a customer do when a pair fails S3 authentication: run `weka cluster link refresh`, or contact the Customer Success Team?
@@ -421,7 +412,7 @@ Remove a cluster link when replication between the two clusters is no longer req
 
 **Before you begin**
 
-Remove every replication pair that uses the link, in both directions. See [Remove a replication pair](#remove-a-replication-pair). Identify the link ID:
+Remove every replication pair that uses the link, in both directions. See [Remove a replication pair](manage-asynchronous-replication.md#remove-a-replication-pair). Identify the link ID:
 
 ```bash
 weka cluster link
