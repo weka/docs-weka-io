@@ -18,6 +18,8 @@ All procedures require ClusterAdmin privileges. Manage asynchronous replication 
 
 After you create a pair, use the on-demand procedures to monitor, modify, pause, or remove replication, manage file hydration, and fail over to the target cluster.
 
+The procedures use `weka cluster link` and `weka fs replication`. The same commands are also available under `weka replication`, as `weka replication link` and `weka replication fs-pair`.
+
 ## Set up and prepare for replication
 
 Prepare both clusters for replication. Replication traffic passes through the S3 service of each cluster, over a dedicated replica route. Replication creates no bucket, S3 user, or object store filesystem of its own.

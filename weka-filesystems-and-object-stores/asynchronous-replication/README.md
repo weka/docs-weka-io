@@ -53,15 +53,7 @@ The replication policy determines how data reaches the target:
 * **Selective copy - metadata only copy**: Only metadata is pushed from the source cluster to the target cluster. File data is pulled from the source cluster when accessed on the target cluster (hydration). Use this for on-demand caching.
 * **Selective copy - critical paths**: Selected directory paths are pushed in full. All other data behaves as metadata-only.
 
-With selective copy, you can also fetch or release the data of individual files on the target.
-
-{% hint style="info" %}
-**Lazy data** is the CLI's term for on-demand data. A file in _lazy mode_ is visible on the target, but its data blocks are still on the source. `weka fs replication fetch` pulls them to the target, and `weka fs replication release` returns them to lazy mode.
-{% endhint %}
-
-{% hint style="info" %}
-The replication commands are also grouped under `weka replication`: `weka replication link` runs the same commands as `weka cluster link`, and `weka replication fs-pair` runs the same commands as `weka fs replication`.
-{% endhint %}
+With selective copy, a file whose data blocks are still on the source is in _lazy mode_: the file is visible on the target, and its data is pulled from the source when the file is accessed. To control this per file, use `weka fs replication fetch` to pull a file's data to the target, and `weka fs replication release` to return it to lazy mode. See [Manage file hydration on the target](manage-asynchronous-replication.md#manage-file-hydration-on-the-target).
 
 ### Access strategy
 
