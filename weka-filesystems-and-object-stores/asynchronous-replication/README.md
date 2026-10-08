@@ -28,7 +28,7 @@ Make a large dataset visible on a remote cluster that has far less capacity than
 
 ### Selective copy - critical paths
 
-Replicate selected directories proactively while the rest of the namespace remains available on demand. Specify up to 10 directory paths, each up to 2 KB long. Use this when a remote site needs local performance for specific projects and on-demand access to everything else.
+Replicate selected directories proactively while the rest of the namespace remains available on demand. Specify up to 10 directory paths. Each path can be up to 1,023 characters long, and all paths together up to 2,048 characters. Use this when a remote site needs local performance for specific projects and on-demand access to everything else.
 
 * **Pre-staged projects**: Add a project directory to the copy path set before the work starts, so its data is already local when users arrive. See [Modify the replication policy](manage-asynchronous-replication.md#modify-the-replication-policy).
 
@@ -84,11 +84,9 @@ The same filesystem size behaves differently on different clusters. A 5 GB files
 If the target filesystem is smaller than about 1% of the target cluster SSD capacity, replication can stall from the first synchronization cycle, before any data is visibly transferred. Increase the filesystem size, or use a target cluster with less SSD capacity.
 {% endhint %}
 
-If the target filesystem runs out of space during a full copy, the replication cycle stops and the pair moves to the error state. Run `weka fs replication -v` and check the **Last Error** column for details. Replication resumes after you free space or enlarge the filesystem.
+If the target filesystem runs out of space during a full data copy, the replication cycle waits and retries until space is available. The pair stays in the `RUNNING` state, and its **Current Status** in `weka fs replication` ends with `(stuck: Target filesystem is full)`. Free space on the target filesystem or increase its size, and the cycle continues. While the cycle runs past its interval, the system raises the replication interval alerts.
 
-{% hint style="danger" %}
-**INTERNAL, remove before publication. TBD (Gokul Sreeramaiah):** 6.0.0 pointed to `weka fs tier s3` on the replication bucket here. 6.0.1 has no replication bucket. Is `weka fs replication -v` and **Last Error** the right place to look, and does a full copy still move to the error state when the target fills? The developer known-issues page says a partial or metadata-only copy degrades to on-demand access instead.
-{% endhint %}
+With a selective copy, file data that does not fit on the target stays in lazy mode and is read from the source when accessed.
 
 ## Considerations
 
@@ -109,7 +107,7 @@ To write to the target filesystem, hydrate all of its data, remove the replicati
 
 ### Failover
 
-* Failover is manual. The system does not promote the target filesystem automatically, and it does not fail back.
+* Failover is manual. The system does not promote the target filesystem automatically, and it does not fail back. To return to the original source cluster, see [Fail back to the original source cluster](manage-asynchronous-replication.md#fail-back-to-the-original-source-cluster).
 * The target cluster does not fail over automatically if its S3 endpoint becomes degraded.
 
 ### Source filesystem
@@ -136,10 +134,10 @@ To write to the target filesystem, hydrate all of its data, remove the replicati
 ### Scale limits
 
 * A cluster can have at most **8 cluster links**.
-* A cluster can have at most **8 replication pairs**.
-* A cluster can have at most **8 replica anchors**.
+* A cluster can be the source of at most **8 replication pairs**. The limit counts only the pairs that replicate from the cluster.
+* A filesystem can have at most **8 replica anchors**.
 
-The limits are per cluster and apply to the target as well as the source. A fan-in topology, where several sources replicate to one target, is bounded by them.
+In a fan-in topology, where several clusters replicate to one target, the target is bounded by its 8 cluster links.
 
 ### Deployment
 

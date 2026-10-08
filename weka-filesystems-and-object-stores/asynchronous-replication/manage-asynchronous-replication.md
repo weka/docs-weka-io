@@ -6,17 +6,13 @@ description: >-
 
 # Manage asynchronous replication
 
-{% hint style="danger" %}
-**INTERNAL, remove before publication. TBD (Gokul Sreeramaiah):** This page describes the 6.0.1 cluster-link flow (setup, link, pair, and failover). `addClusterLink` reached `trunk/v6.0.0` on 6 Oct (wekapp #49980). Please review every procedure on this page. Also confirm that linking needs no frontend container on the S3 servers: 6.0.0 required one per S3 server, and no such check was found in the 6.0.1 link code.
-{% endhint %}
-
 All procedures require ClusterAdmin privileges. Manage asynchronous replication through this workflow:
 
 1. Prepare both clusters.
 2. Link the clusters.
 3. Create a replication pair.
 
-After you create a pair, use the on-demand procedures to monitor, modify, pause, or remove replication, manage file hydration, and fail over to the target cluster.
+After you create a pair, use the on-demand procedures to monitor, modify, pause, or remove replication, manage file hydration, fail over to the target cluster, and fail back to the original source cluster.
 
 The procedures use `weka cluster link` and `weka fs replication`. The same commands are also available under `weka replication`, as `weka replication link` and `weka replication fs-pair`.
 
@@ -72,10 +68,6 @@ weka cluster link
 ```
 
 Confirm that **Connection** shows `connected` and **Pairing** shows `mutual`. Record the link **ID**. You use it to create replication pairs.
-
-{% hint style="danger" %}
-**INTERNAL, remove before publication. TBD (Gokul Sreeramaiah):** Please share a `weka cluster link` output captured on 6.0.1, so this step can show an example. The columns are ID, Name, Peer Cluster GUID, Connection, Pairing, and Management IPs.
-{% endhint %}
 
 **Parameters**
 
@@ -151,7 +143,7 @@ weka fs replication
 
 **Parameters**
 
-<table><thead><tr><th width="266.5703125">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>--source-filesystem</code></td><td>Name of the local source filesystem.</td></tr><tr><td><code>--link-id</code></td><td>ID of the cluster link to the target cluster, as shown by <code>weka cluster link</code>.</td></tr><tr><td><code>--target-filesystem</code></td><td>Name of the filesystem on the remote cluster. It can be the same as the source filesystem name.</td></tr><tr><td><code>--interval</code></td><td>Replication interval, for example, <code>5m</code> or <code>1h</code>. The minimum is 5 minutes.</td></tr><tr><td><code>--copy-path</code></td><td>Specifies up to 10 paths to copy proactively, each up to 2 KB long. Separate paths with commas or repeat the option. Use <code>full</code>, <code>all</code>, or <code>/</code> to copy all data. Use <code>none</code> or <code>null</code> to replicate metadata only. Default: metadata-only replication.</td></tr><tr><td><code>--access-strategy</code></td><td>Controls when a target snapshot becomes accessible. <code>INSTANT_ACCESS</code> (default) exposes the snapshot immediately. Data not copied locally is retrieved on demand. <code>COPY_FIRST</code> exposes the snapshot only after the <code>--copy-path</code> data is local.</td></tr><tr><td><code>--apply-strategy</code></td><td>Controls when the target applies a replicated snapshot. <code>AUTOMATIC</code> applies the snapshot after the prerequisite phase completes.</td></tr><tr><td><code>--snapshots-to-keep</code></td><td>Number of snapshots to retain, from 2 to 25. Default: 3. Retaining more snapshots requires more storage. Enforced only while the pair is running; see <a href="manage-asynchronous-replication.md#pause-and-resume-replication">Pause and resume replication</a>.</td></tr><tr><td><code>--target-total-capacity</code></td><td>Total capacity for the target filesystem. Default: same as the source filesystem. A smaller target is allowed for a selective copy. A full copy requires at least the source size.</td></tr><tr><td><code>--now</code></td><td>Triggers the first replication cycle immediately instead of waiting one full interval.</td></tr></tbody></table>
+<table><thead><tr><th width="266.5703125">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>--source-filesystem</code></td><td>Name of the local source filesystem.</td></tr><tr><td><code>--link-id</code></td><td>ID of the cluster link to the target cluster, as shown by <code>weka cluster link</code>.</td></tr><tr><td><code>--target-filesystem</code></td><td>Name of the filesystem on the remote cluster. It can be the same as the source filesystem name.</td></tr><tr><td><code>--interval</code></td><td>Replication interval, for example, <code>5m</code> or <code>1h</code>. From 5 minutes to 30 days.</td></tr><tr><td><code>--copy-path</code></td><td>Specifies up to 10 paths to copy proactively. Each path can be up to 1,023 characters long, and all paths together up to 2,048 characters. Separate paths with commas or repeat the option. Use <code>full</code>, <code>all</code>, or <code>/</code> to copy all data. Use <code>none</code> or <code>null</code> to replicate metadata only. Default: metadata-only replication.</td></tr><tr><td><code>--access-strategy</code></td><td>Controls when a target snapshot becomes accessible. <code>INSTANT_ACCESS</code> (default) exposes the snapshot immediately. Data not copied locally is retrieved on demand. <code>COPY_FIRST</code> exposes the snapshot only after the <code>--copy-path</code> data is local.</td></tr><tr><td><code>--apply-strategy</code></td><td>Controls when the target applies a replicated snapshot. <code>AUTOMATIC</code> applies the snapshot after the prerequisite phase completes.</td></tr><tr><td><code>--snapshots-to-keep</code></td><td>Number of snapshots to retain, from 2 to 25. Default: 3. Retaining more snapshots requires more storage. Enforced only while the pair is running; see <a href="manage-asynchronous-replication.md#pause-and-resume-replication">Pause and resume replication</a>.</td></tr><tr><td><code>--target-total-capacity</code></td><td>Total capacity for the target filesystem. Default: same as the source filesystem. A smaller target is allowed for a selective copy. A full copy requires at least the source size.</td></tr><tr><td><code>--now</code></td><td>Triggers the first replication cycle immediately instead of waiting one full interval.</td></tr></tbody></table>
 
 **Examples**
 
@@ -178,10 +170,6 @@ List the replication pairs and their current status:
 ```bash
 weka fs replication
 ```
-
-{% hint style="danger" %}
-**INTERNAL, remove before publication. TBD (Gokul Sreeramaiah):** Please share a `weka fs replication` output captured on 6.0.1, from both the source and the target cluster. The 6.0.0 example on this page had a Target Cluster column, which 6.0.1 replaces with Role, Link, and Link ID.
-{% endhint %}
 
 The output shows for each pair:
 
@@ -235,15 +223,13 @@ weka cluster link
 ```
 
 * **Connection**: `connected` when every management endpoint of the other cluster answers, `degraded` when some answer, and `disconnected` when none answer.
-* **Pairing**: `mutual` when the other cluster holds a link back to this one. `local-only` means only this cluster holds the link. To repair it, remove the link and add it again.
+* **Pairing**: `mutual` when the other cluster holds a link back to this one. `local-only` means only this cluster holds the link. To repair it, remove the link and add it again. `unknown` means no management endpoint answered, so the pairing could not be checked.
 
 For the link UID, data IPs, and data port, run `weka cluster link -v`.
 
 `weka cluster link` checks the management endpoints of the other cluster, not its S3 service. To detect an S3 service problem on the other cluster, watch the **Last Error** column of the pairs that use the link, and the replication interval alerts.
 
-{% hint style="danger" %}
-**INTERNAL, remove before publication. TBD (Gokul Sreeramaiah):** The 6.0.0 page had "Troubleshoot S3 authentication failures", based on `weka cluster peer init --reinit`, which 6.0.1 removes. Links mint their own credentials, and rotation is a manual override (`cluster_link.rotate_s3_credentials`, applied by the next refresh). What should a customer do when a pair fails S3 authentication: run `weka cluster link refresh`, or contact the Customer Success Team?
-{% endhint %}
+Each cluster link has its own replication credentials. `weka cluster link add` creates them and stores them on both clusters, so there are no S3 users or keys to manage for replication. If **Last Error** reports an S3 authentication failure for a pair, or if you need to rotate the credentials of a link, contact the Customer Success Team.
 
 ## Modify the replication policy
 
@@ -356,7 +342,7 @@ This command runs on the container that holds the mount, so it cannot be directe
 Remove a replication pair when you no longer need to synchronize the source and target filesystems, or as part of a failover procedure.
 
 {% hint style="warning" %}
-Removing a pair stops further snapshot replication for the filesystem pair, including the retrieval of data on demand. If the target filesystem was created with a selective copy policy, files that were never hydrated become inaccessible after removal. Verify the hydration state before removal. Pause the pair, then run `weka fs replication` and confirm that **State** is not `RUNNING`.
+Removing a pair stops further snapshot replication for the filesystem pair, including the retrieval of data on demand. If the target filesystem was created with a selective copy policy, files that were never hydrated become inaccessible after removal. Verify the hydration state before removal. Pause the pair, then run `weka fs replication` and confirm that **Current Status** shows `IDLE`.
 {% endhint %}
 
 **Before you begin**
@@ -369,7 +355,7 @@ weka fs replication
 
 **Procedure**
 
-1. On the **source** cluster, pause the replication pair. A running pair cannot be removed:
+1. On the **source** cluster, pause the replication pair. A running pair cannot be removed. A pair in the `ERROR` state can be removed without pausing it:
 
 ```bash
 weka fs replication pause <pair ID>
@@ -439,7 +425,7 @@ The command prompts for confirmation. Use `--force` to skip the confirmation pro
 weka cluster link
 ```
 
-If the command reports that the link is in use, a replication pair or a task still uses it. Remove the remaining pairs, or wait for the task to finish, and run the command again.
+If the command reports that the link is in use, a replication pair or a task still uses it, or a filesystem on this cluster still receives a replica over it. Remove the remaining pairs, or wait for the task to finish, and run the command again.
 
 To remove the link on this cluster only, add `--local-only`. Use it when the other cluster is unreachable or no longer exists, or when the link exists on only one of the clusters. `--local-only` also removes a link that a target filesystem still receives a replica over.
 
@@ -451,10 +437,6 @@ Activate the target filesystem when the source cluster becomes unavailable, and 
 
 {% hint style="warning" %}
 Failover is a manual procedure. Because replication is asynchronous, the target reflects the last replicated snapshot. Writes made on the source after that snapshot are lost.
-{% endhint %}
-
-{% hint style="danger" %}
-**INTERNAL, remove before publication. TBD (Gokul Sreeramaiah):** The 6.0.0 page had two open lines here: "Reverse replication from the target cluster after recovery is not confirmed for this release" and "The trust relationship behavior when the source cluster returns online requires verification." In 6.0.1 the link is bidirectional, and the developer setup guide says it supports failback without further configuration. Is failback supported in 6.0.1? If so, what is the procedure: create a new pair from the former target with a new target filesystem name? Should the link be kept after a failover?
 {% endhint %}
 
 **Before you begin**
@@ -507,3 +489,35 @@ weka fs update <name> --access rw
 3. Mount the filesystem on a client and verify the data before redirecting production traffic to it.
 
 When the source cluster returns, its pair moves to the error state on the next cycle. Remove the pair on the source cluster with `weka fs replication remove <pair ID>`.
+
+## Fail back to the original source cluster
+
+After a failover, return replication and clients to the original source cluster by creating a replication pair in the reverse direction, from the former target to the original source. Keep the cluster link: one link carries replication in both directions. The new pair starts with a full first replication cycle.
+
+**Before you begin**
+
+* Confirm that the original source cluster is running. On the former target cluster, run `weka cluster link` and check that the link shows **Connection** `connected` or `degraded` and **Pairing** `mutual`.
+* After a disaster failover, the original source cluster still lists the old pair, in the `ERROR` state. Remove it on that cluster with `weka fs replication remove <pair ID>`. A pair in the `ERROR` state does not need to be paused. After a planned failover, the pair is already removed from both clusters.
+* Choose the filesystem name on the original source cluster. The replication pair creates this filesystem in its first cycle, so the name must not exist there. Use a new name, or remove the original filesystem first.
+
+**Procedure**
+
+1. On the former target cluster, identify the link ID:
+
+```bash
+weka cluster link
+```
+
+2. On the former target cluster, create the pair. Use a full data copy with `COPY_FIRST`, so all data is local on the original source cluster before you move clients back:
+
+```bash
+weka fs replication add --source-filesystem <name> --link-id <link ID> --target-filesystem <name on the original source> --interval 5m --copy-path full --access-strategy COPY_FIRST
+```
+
+3. Wait until **Last Replication** shows a completed cycle:
+
+```bash
+weka fs replication
+```
+
+4. Move clients back by following [Activate the target cluster during failover](manage-asynchronous-replication.md#activate-the-target-cluster-during-failover), with the original source cluster as the target.
