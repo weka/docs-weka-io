@@ -53,6 +53,12 @@ Verify that the upgrade path from your source version to the target version is s
 
 In MCB architecture, each container serves a single process type: drive, compute, or frontend. This allows a rolling upgrade, upgrading one container at a time, while the remaining containers continue serving clients.
 
+{% hint style="warning" %}
+**Performance during the upgrade:** An NDU keeps the cluster online, but performance is not guaranteed to stay at its normal level. Each container restart temporarily removes resources from the cluster and moves internal workloads to the remaining containers. Client read and write performance can drop and latency can rise substantially, especially during the rolling upgrade of the compute containers.
+
+The impact depends on the cluster size and resources. It is greater on clusters with fewer backend servers, where each server is a larger share of the cluster, and on clusters that run close to their compute capacity. Schedule the upgrade for a maintenance window with reduced I/O activity.
+{% endhint %}
+
 {% hint style="info" %}
 Some background tasks, such as snapshot uploads or downloads, must be postponed or aborted. See the [prerequisites](./#id-1.-verify-system-upgrade-prerequisites) in the upgrade workflow for details.
 {% endhint %}

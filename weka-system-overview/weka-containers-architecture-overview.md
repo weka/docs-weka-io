@@ -32,6 +32,7 @@ Each server implements a multi-container backend architecture where containers a
   * Enables true non-disruptive upgrades where containers can run different software versions independently without system interruption
   * Supports individual container rollback without impacting cluster operations
   * Maintains continuous network control plane access throughout the upgrade process, ensuring uninterrupted client service
+  * Non-disruptive refers to availability. Client I/O continues during the upgrade, but performance can be reduced while containers restart. See [Performance during the upgrade](../operation-guide/upgrading-weka-versions/#non-disruptive-upgrade-ndu-overview).
 * **Optimized hardware utilization:**
   * Supports up to 512 cores per server
   * Multiple containers per process type
