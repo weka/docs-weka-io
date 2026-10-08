@@ -42,6 +42,12 @@ Theoretically, this process can continue - subject to sufficient available SSD c
 
 In the event of serial server failures coupled with insufficient SSD capacity to complete rebuilds, the cluster attempts to **tier data** that currently resides on SSD out to its configured object stores. This is called [**backpressure mode**](#user-content-fn-2)[^2] where the tiering does not consider the age of the data (unlike normal, orderly tiering) but instead tiers data in an approximately random fashion. This process prioritizes data integrity by offloading data to an object store when SSD available capacity is critically low.
 
+### Performance in a degraded state
+
+Data protection keeps the filesystem available when failure domains are lost, but it does not keep performance at its normal level. While one or more servers or containers are unavailable, the remaining servers take over their share of the workload, and a rebuild consumes additional drive, network, and CPU resources. Read and write performance can drop and latency can rise substantially until the cluster returns to full health.
+
+The impact depends on the cluster size and resources. On a cluster with few backend servers, each server is a larger share of the cluster. For example, one unavailable server removes 1/8 of the backend resources of an 8-server cluster, but only 1/20 of a 20-server cluster. Clusters that run close to their compute capacity have less headroom to absorb the extra load. The same applies to planned maintenance that takes servers or containers out of service, such as a [rolling upgrade](../operation-guide/upgrading-weka-versions/#non-disruptive-upgrade-ndu-overview).
+
 ### Failure domain folding
 
 {% hint style="warning" %}
