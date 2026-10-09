@@ -14,7 +14,7 @@ All procedures require ClusterAdmin privileges. Manage asynchronous replication 
 
 After you create a pair, use the on-demand procedures to monitor, modify, pause, or remove replication, manage file hydration, fail over to the target cluster, and fail back to the original source cluster.
 
-The procedures use `weka cluster link` and `weka fs replication`. The same commands are also available under `weka replication`, as `weka replication link` and `weka replication fs-pair`.
+The procedures use `weka cluster link` and `weka replication fs-pair`. The link commands are also available as `weka replication link`, and the pair commands as `weka fs replication`.
 
 ## Set up and prepare for replication
 
@@ -75,7 +75,7 @@ Confirm that **Connection** shows `connected` and **Pairing** shows `mutual`. Re
 
 If you run the command interactively without `--fingerprint`, it displays the fingerprint the other cluster presents and asks you to confirm it. Compare it with the `weka security tls status` output from the other cluster before you continue.
 
-A link is identified by its ID. Its name follows the name of the other cluster, so two links can have the same name. Every link command, and `weka fs replication add --link-id`, takes the ID.
+A link is identified by its ID. Its name follows the name of the other cluster, so two links can have the same name. Every link command, and `weka replication fs-pair add --link-id`, takes the ID.
 
 If a link to the other cluster already exists on either cluster, the command reports which cluster holds it and makes no change. Remove the existing link, then add it again. See [Remove a cluster link](manage-asynchronous-replication.md#remove-a-cluster-link).
 
@@ -114,7 +114,7 @@ The replication policy determines the replication interval, which paths are copi
 1. Create the replication pair on the source cluster:
 
 ```bash
-weka fs replication add \
+weka replication fs-pair add \
   --source-filesystem <filesystem> \
   --link-id <link ID> \
   --target-filesystem <name> \
@@ -138,7 +138,7 @@ The target filesystem is created automatically on the target cluster during the 
 2. Verify that the pair is created and running:
 
 ```bash
-weka fs replication
+weka replication fs-pair
 ```
 
 **Parameters**
@@ -150,13 +150,13 @@ weka fs replication
 Create a full data copy pair for disaster recovery over link 1, replicating every 5 minutes:
 
 ```bash
-weka fs replication add --source-filesystem data_fs --link-id 1 --target-filesystem data_fs_dest --interval 5m --copy-path full --snapshots-to-keep 25
+weka replication fs-pair add --source-filesystem data_fs --link-id 1 --target-filesystem data_fs_dest --interval 5m --copy-path full --snapshots-to-keep 25
 ```
 
 Replicate only selected directories:
 
 ```bash
-weka fs replication add --source-filesystem data_fs3 --link-id 1 --target-filesystem data_fs3_dest --interval 5m --copy-path "/dir1,/dir2" --snapshots-to-keep 10
+weka replication fs-pair add --source-filesystem data_fs3 --link-id 1 --target-filesystem data_fs3_dest --interval 5m --copy-path "/dir1,/dir2" --snapshots-to-keep 10
 ```
 
 ## Monitor replication status
@@ -168,7 +168,7 @@ Monitor the state, progress, and health of replication pairs and cluster links.
 List the replication pairs and their current status:
 
 ```bash
-weka fs replication
+weka replication fs-pair
 ```
 
 The output shows for each pair:
@@ -185,7 +185,7 @@ Each cluster assigns its own pair IDs, so the same pair can have different IDs o
 For the pair UID, the link ID, and the number of snapshots to keep, run:
 
 ```bash
-weka fs replication -v
+weka replication fs-pair -v
 ```
 
 To customize the output, use the `--output`, `--filter`, and `--sort` options with any of the available columns, including `last-error` and `last-error-time` for troubleshooting.
@@ -209,7 +209,7 @@ weka alerts
 If a replication interval alert fires, inspect the cycle:
 
 ```bash
-weka fs replication --verbose
+weka replication fs-pair --verbose
 ```
 
 Common causes are a slow or broken connection to the linked cluster, an S3 service problem on the linked cluster, or low free capacity on the target. Repair the connection or the S3 service, or free space. If the source change rate consistently outpaces the connection, lengthen the interval or add bandwidth.
@@ -240,7 +240,7 @@ Modify the policy of an existing replication pair without recreating it. Run the
 Identify the replication pair ID:
 
 ```bash
-weka fs replication
+weka replication fs-pair
 ```
 
 **Procedure**
@@ -248,7 +248,7 @@ weka fs replication
 1. Update the pair policy:
 
 ```bash
-weka fs replication update <pair ID> \
+weka replication fs-pair update <pair ID> \
   [--interval <duration>] \
   [--copy-path <paths> | --add-copy-path <paths> --remove-copy-path <paths>] \
   [--access-strategy <INSTANT_ACCESS | COPY_FIRST>] \
@@ -265,7 +265,7 @@ Use the parameter descriptions in the preceding table, with the following additi
 2. Verify the updated policy:
 
 ```bash
-weka fs replication
+weka replication fs-pair
 ```
 
 **Example**
@@ -273,7 +273,7 @@ weka fs replication
 Switch a pair to Selective copy - metadata only copy and lengthen its interval:
 
 ```bash
-weka fs replication update 3 --copy-path none --interval 6m
+weka replication fs-pair update 3 --copy-path none --interval 6m
 ```
 
 ## Pause and resume replication
@@ -289,13 +289,13 @@ Snapshot pruning runs only while a pair is running. A paused pair, or one in an 
 ### Pause a replication pair
 
 ```bash
-weka fs replication pause <pair ID>
+weka replication fs-pair pause <pair ID>
 ```
 
 ### Resume a replication pair
 
 ```bash
-weka fs replication resume <pair ID>
+weka replication fs-pair resume <pair ID>
 ```
 
 Replication continues from the last consistent state.
@@ -311,7 +311,7 @@ With a selective copy policy, file data is retrieved from the source cluster whe
 Fetch a file's data blocks from the source cluster in the background:
 
 ```bash
-weka fs replication fetch <path> [--filesystem <name>] [--snapshot <name>]
+weka replication fs-pair fetch <path> [--filesystem <name>] [--snapshot <name>]
 ```
 
 * `<path>` is a local mount path. Alternatively, specify `--filesystem` and provide a path relative to the filesystem root.
@@ -322,7 +322,7 @@ weka fs replication fetch <path> [--filesystem <name>] [--snapshot <name>]
 Fetch and release operations run in the background. Check the hydration status for a file:
 
 ```bash
-weka fs replication hydration status <path> [--filesystem <name>] [--snapshot <name>]
+weka replication fs-pair hydration status <path> [--filesystem <name>] [--snapshot <name>]
 ```
 
 ### Release file data
@@ -330,10 +330,10 @@ weka fs replication hydration status <path> [--filesystem <name>] [--snapshot <n
 Return a file's data blocks to on-demand mode to free capacity on the target. The release runs in the background:
 
 ```bash
-weka fs replication release <path> [<path> ...]
+weka replication fs-pair release <path> [<path> ...]
 ```
 
-Each `<path>` is a local mount path. Release several files in one command by listing more than one path. Monitor progress with `weka fs replication hydration status`.
+Each `<path>` is a local mount path. Release several files in one command by listing more than one path. Monitor progress with `weka replication fs-pair hydration status`.
 
 This command runs on the container that holds the mount, so it cannot be directed at another cluster with `--HOST`.
 
@@ -342,7 +342,7 @@ This command runs on the container that holds the mount, so it cannot be directe
 Remove a replication pair when you no longer need to synchronize the source and target filesystems, or as part of a failover procedure.
 
 {% hint style="warning" %}
-Removing a pair stops further snapshot replication for the filesystem pair, including the retrieval of data on demand. If the target filesystem was created with a selective copy policy, files that were never hydrated become inaccessible after removal. Verify the hydration state before removal. Pause the pair, then run `weka fs replication` and confirm that **Current Status** shows `IDLE`.
+Removing a pair stops further snapshot replication for the filesystem pair, including the retrieval of data on demand. If the target filesystem was created with a selective copy policy, files that were never hydrated become inaccessible after removal. Verify the hydration state before removal. Pause the pair, then run `weka replication fs-pair` and confirm that **Current Status** shows `IDLE`.
 {% endhint %}
 
 **Before you begin**
@@ -350,7 +350,7 @@ Removing a pair stops further snapshot replication for the filesystem pair, incl
 Identify the replication pair ID on the source cluster:
 
 ```bash
-weka fs replication
+weka replication fs-pair
 ```
 
 **Procedure**
@@ -358,7 +358,7 @@ weka fs replication
 1. On the **source** cluster, pause the replication pair. A running pair cannot be removed. A pair in the `ERROR` state can be removed without pausing it:
 
 ```bash
-weka fs replication pause <pair ID>
+weka replication fs-pair pause <pair ID>
 ```
 
 Wait until the pair finishes its current cycle and **Current Status** shows `IDLE`.
@@ -366,7 +366,7 @@ Wait until the pair finishes its current cycle and **Current Status** shows `IDL
 2. Remove the pair:
 
 ```bash
-weka fs replication remove <pair ID> [--force]
+weka replication fs-pair remove <pair ID> [--force]
 ```
 
 The command removes the pair from both clusters, and reports success only after both are done. It prompts for confirmation. Use `--force` to skip the confirmation prompt, for example, in scripts.
@@ -376,7 +376,7 @@ If the target cluster is unreachable, the removal fails and the pair stays on bo
 3. Verify that the pair is no longer listed:
 
 ```bash
-weka fs replication
+weka replication fs-pair
 ```
 
 The target filesystem remains write-protected after the pair is removed. To make it writable, run this command on the target cluster:
@@ -389,10 +389,10 @@ Do this only when you intend to promote the target, such as during failover. See
 
 ### Remove a pair on the target cluster
 
-On the target cluster, `weka fs replication remove` removes an incoming pair (role `TARGET`) only with `--local-only`. Use it when the source cluster is unavailable. The pair does not need to be paused:
+On the target cluster, `weka replication fs-pair remove` removes an incoming pair (role `TARGET`) only with `--local-only`. Use it when the source cluster is unavailable. The pair does not need to be paused:
 
 ```bash
-weka fs replication remove <pair ID on the target> --local-only
+weka replication fs-pair remove <pair ID on the target> --local-only
 ```
 
 If the source cluster is still running, its next replication cycle for the pair moves to the error state. Remove the pair on the source cluster as well.
@@ -444,17 +444,17 @@ Failover is a manual procedure. Because replication is asynchronous, the target 
 * Confirm the recovery point. On the source cluster, if it is still reachable, check the **Last Replication** timestamp:
 
 ```bash
-weka fs replication
+weka replication fs-pair
 ```
 
 * Confirm that the target contains the data you need:
   * With `COPY_FIRST` and `--copy-path full`, all data is local. No action is required.
   * Hydrate data before breaking any other pair type. This includes `INSTANT_ACCESS`, Selective copy - critical paths pairs, and smaller targets.
   * These pairs can reference source-only data. Breaking the pair makes that data permanently unreadable.
-  * Run `weka fs replication fetch <path>` for each required path. Reading files does not hydrate them. See [Manage file hydration on the target](manage-asynchronous-replication.md#manage-file-hydration-on-the-target).
+  * Run `weka replication fs-pair fetch <path>` for each required path. Reading files does not hydrate them. See [Manage file hydration on the target](manage-asynchronous-replication.md#manage-file-hydration-on-the-target).
 
 {% hint style="info" %}
-On the target cluster, `weka fs replication` lists the pair with the role `TARGET`. Its pair ID on the target can differ from its ID on the source.
+On the target cluster, `weka replication fs-pair` lists the pair with the role `TARGET`. Its pair ID on the target can differ from its ID on the source.
 {% endhint %}
 
 **Procedure**
@@ -466,8 +466,8 @@ _Planned failover, source cluster reachable:_
 1. On the **source** cluster, pause the pair, wait until **Current Status** shows `IDLE`, and remove it. The removal clears the pair on both clusters:
 
 ```bash
-weka fs replication pause <pair ID>
-weka fs replication remove <pair ID>
+weka replication fs-pair pause <pair ID>
+weka replication fs-pair remove <pair ID>
 ```
 
 _Disaster failover, source cluster unavailable:_
@@ -475,7 +475,7 @@ _Disaster failover, source cluster unavailable:_
 1. On the **target** cluster, remove the incoming pair. The source is unreachable, so the pair is removed on the target only:
 
 ```bash
-weka fs replication remove <pair ID on the target> --local-only
+weka replication fs-pair remove <pair ID on the target> --local-only
 ```
 
 _Both cases, to promote the target:_
@@ -488,7 +488,7 @@ weka fs update <name> --access rw
 
 3. Mount the filesystem on a client and verify the data before redirecting production traffic to it.
 
-When the source cluster returns, its pair moves to the error state on the next cycle. Remove the pair on the source cluster with `weka fs replication remove <pair ID>`.
+When the source cluster returns, its pair moves to the error state on the next cycle. Remove the pair on the source cluster with `weka replication fs-pair remove <pair ID>`.
 
 ## Fail back to the original source cluster
 
@@ -497,7 +497,7 @@ After a failover, return replication and clients to the original source cluster 
 **Before you begin**
 
 * Confirm that the original source cluster is running. On the former target cluster, run `weka cluster link` and check that the link shows **Connection** `connected` or `degraded` and **Pairing** `mutual`.
-* After a disaster failover, the original source cluster still lists the old pair, in the `ERROR` state. Remove it on that cluster with `weka fs replication remove <pair ID>`. A pair in the `ERROR` state does not need to be paused. After a planned failover, the pair is already removed from both clusters.
+* After a disaster failover, the original source cluster still lists the old pair, in the `ERROR` state. Remove it on that cluster with `weka replication fs-pair remove <pair ID>`. A pair in the `ERROR` state does not need to be paused. After a planned failover, the pair is already removed from both clusters.
 * Choose the filesystem name on the original source cluster. The replication pair creates this filesystem in its first cycle, so the name must not exist there. Use a new name, or remove the original filesystem first.
 
 **Procedure**
@@ -511,13 +511,13 @@ weka cluster link
 2. On the former target cluster, create the pair. Use a full data copy with `COPY_FIRST`, so all data is local on the original source cluster before you move clients back:
 
 ```bash
-weka fs replication add --source-filesystem <name> --link-id <link ID> --target-filesystem <name on the original source> --interval 5m --copy-path full --access-strategy COPY_FIRST
+weka replication fs-pair add --source-filesystem <name> --link-id <link ID> --target-filesystem <name on the original source> --interval 5m --copy-path full --access-strategy COPY_FIRST
 ```
 
 3. Wait until **Last Replication** shows a completed cycle:
 
 ```bash
-weka fs replication
+weka replication fs-pair
 ```
 
 4. Move clients back by following [Activate the target cluster during failover](manage-asynchronous-replication.md#activate-the-target-cluster-during-failover), with the original source cluster as the target.

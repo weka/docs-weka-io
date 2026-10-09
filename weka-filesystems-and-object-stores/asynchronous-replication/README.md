@@ -53,7 +53,7 @@ The replication policy determines how data reaches the target:
 * **Selective copy - metadata only copy**: Only metadata is pushed from the source cluster to the target cluster. File data is pulled from the source cluster when accessed on the target cluster (hydration). Use this for on-demand caching.
 * **Selective copy - critical paths**: Selected directory paths are pushed in full. All other data behaves as metadata-only.
 
-With selective copy, a file whose data blocks are still on the source is in _lazy mode_: the file is visible on the target, and its data is pulled from the source when the file is accessed. To control this per file, use `weka fs replication fetch` to pull a file's data to the target, and `weka fs replication release` to return it to lazy mode. See [Manage file hydration on the target](manage-asynchronous-replication.md#manage-file-hydration-on-the-target).
+With selective copy, a file whose data blocks are still on the source is in _lazy mode_: the file is visible on the target, and its data is pulled from the source when the file is accessed. To control this per file, use `weka replication fs-pair fetch` to pull a file's data to the target, and `weka replication fs-pair release` to return it to lazy mode. See [Manage file hydration on the target](manage-asynchronous-replication.md#manage-file-hydration-on-the-target).
 
 ### Access strategy
 
@@ -84,7 +84,7 @@ The same filesystem size behaves differently on different clusters. A 5 GB files
 If the target filesystem is smaller than about 1% of the target cluster SSD capacity, replication can stall from the first synchronization cycle, before any data is visibly transferred. Increase the filesystem size, or use a target cluster with less SSD capacity.
 {% endhint %}
 
-If the target filesystem runs out of space during a full data copy, the replication cycle waits and retries until space is available. The pair stays in the `RUNNING` state, and its **Current Status** in `weka fs replication` ends with `(stuck: Target filesystem is full)`. Free space on the target filesystem or increase its size, and the cycle continues. While the cycle runs past its interval, the system raises the replication interval alerts.
+If the target filesystem runs out of space during a full data copy, the replication cycle waits and retries until space is available. The pair stays in the `RUNNING` state, and its **Current Status** in `weka replication fs-pair` ends with `(stuck: Target filesystem is full)`. Free space on the target filesystem or increase its size, and the cycle continues. While the cycle runs past its interval, the system raises the replication interval alerts.
 
 With a selective copy, file data that does not fit on the target stays in lazy mode and is read from the source when accessed.
 
@@ -124,7 +124,7 @@ To write to the target filesystem, hydrate all of its data, remove the replicati
 ### Data copy and hydration
 
 * Changing the policy from on-demand caching to Full data copy or Selective copy - critical paths does not copy files that were never hydrated. Hydrate those files before you change the policy.
-* Dehydration on the target filesystem starts when the disk occupied space reaches 95% and stops when it drops to 90%. To release data outside these thresholds, run `weka fs replication release`.
+* Dehydration on the target filesystem starts when the disk occupied space reaches 95% and stops when it drops to 90%. To release data outside these thresholds, run `weka replication fs-pair release`.
 
 ### Pair topology
 
