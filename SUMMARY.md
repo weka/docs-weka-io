@@ -241,7 +241,6 @@
 
 * [Composable clusters for multi-tenancy in Kubernetes](kubernetes/composable-clusters-for-multi-tenancy-in-kubernetes.md)
 * [WEKA Operator deployment](kubernetes/weka-operator-deployment/README.md)
-  * [Deploy the WEKA client on Amazon EKS](kubernetes/weka-operator-deployment/deploy-the-weka-client-on-amazon-eks.md)
 * [WEKA Operator day-2 operations](kubernetes/weka-operator-day-2-operations.md)
 
 ## WEKApod
@@ -285,15 +284,6 @@
 ## Appendices
 
 * [WEKA CSI Plugin](appendices/weka-csi-plugin/README.md)
-  * [Deployment](appendices/weka-csi-plugin/deployment.md)
-  * [Storage class configurations](appendices/weka-csi-plugin/storage-class-configurations.md)
-  * [Configure storage class mount options](appendices/weka-csi-plugin/tailor-your-storage-class-configuration-with-mount-options.md)
-  * [Dynamic and static provisioning](appendices/weka-csi-plugin/dynamic-and-static-provisioning.md)
-  * [Launch an application using WEKA as the POD's storage](appendices/weka-csi-plugin/launch-an-application-using-weka-as-the-pods-storage.md)
-  * [Add SELinux support](appendices/weka-csi-plugin/add-selinux-support.md)
-  * [NFS transport failback](appendices/weka-csi-plugin/nfs-transport-failback.md)
-  * [Upgrade legacy persistent volumes for capacity enforcement](appendices/weka-csi-plugin/upgrade-legacy-persistent-volumes-for-capacity-enforcement.md)
-  * [Troubleshooting](appendices/weka-csi-plugin/troubleshooting.md)
 * [Convert cluster to multi-container backend](appendices/convert-the-cluster-architecture-from-a-single-container-backend-to-a-multi-container-backend.md)
 * [Create a client image](appendices/create-a-client-image.md)
 * [Update WMS and WSA](appendices/update-wms-and-wsa.md)
