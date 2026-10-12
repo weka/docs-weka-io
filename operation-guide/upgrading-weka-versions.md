@@ -67,6 +67,12 @@ Verify that the upgrade path from your source version to the target version is s
 In MCB architecture, each container serves a single type of process, drive, frontend, or compute function. Therefore, upgrading one container at a time (rolling upgrade) is possible while the remaining containers continue serving the clients.
 
 {% hint style="info" %}
+**Performance during the upgrade:** An NDU keeps the cluster online while each container restarts. During a restart, the cluster serves the workload with the remaining resources, so performance follows the resources in service. If the workload uses the full capacity of the cluster, performance decreases in proportion to the resources out of service. If the workload uses less, performance stays the same as long as the remaining resources cover it. See [Performance in a degraded state](../weka-system-overview/cluster-capacity-and-redundancy-management.md#performance-in-a-degraded-state).
+
+Schedule the upgrade for a maintenance window with reduced I/O activity.
+{% endhint %}
+
+{% hint style="info" %}
 Some background tasks, such as snapshot uploads or downloads, must be postponed or aborted. See the [prerequisites](upgrading-weka-versions.md#1.-verify-prerequisites-for-the-upgrade) in the upgrade workflow for details.
 {% endhint %}
 

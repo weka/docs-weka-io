@@ -25,6 +25,10 @@ In certain instances, WEKA collaborates with Strategic Server Partners to conduc
 The minimal configuration for a new WEKA cluster installation is **8 servers**. This ensures optimal performance, resilience, and scalability for most deployments.
 
 {% hint style="info" %}
+On a small cluster, each server is a larger share of the cluster's resources. While servers or containers are out of service, such as during a failure or a rolling upgrade, performance follows the resources in service. See [Performance in a degraded state](../weka-system-overview/cluster-capacity-and-redundancy-management.md#performance-in-a-degraded-state).
+{% endhint %}
+
+{% hint style="info" %}
 For cloud-based installations, WEKA supports a minimal configuration of **6 servers** to accommodate the unique requirements of cloud environments.
 {% endhint %}
 
