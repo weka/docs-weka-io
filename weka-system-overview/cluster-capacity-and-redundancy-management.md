@@ -44,9 +44,11 @@ In the event of serial server failures coupled with insufficient SSD capacity to
 
 ### Performance in a degraded state
 
-Data protection keeps the filesystem available when failure domains are lost, but it does not keep performance at its normal level. While one or more servers or containers are unavailable, the remaining servers take over their share of the workload, and a rebuild consumes additional drive, network, and CPU resources. Read and write performance can drop and latency can rise substantially until the cluster returns to full health.
+Data protection keeps the filesystem available while one or more servers, containers, or drives are out of service. During that time, the cluster serves the workload with the remaining resources, so performance follows the resources in service.
 
-The impact depends on the cluster size and resources. On a cluster with few backend servers, each server is a larger share of the cluster. For example, one unavailable server removes 1/8 of the backend resources of an 8-server cluster, but only 1/20 of a 20-server cluster. The performance drop can be considerably larger than the share of resources removed, because the remaining servers also take over the filesystem metadata work of the unavailable servers, in addition to their I/O. Clusters that run close to their compute capacity have less headroom to absorb the extra load. The same applies to planned maintenance that takes servers or containers out of service, such as a [rolling upgrade](../operation-guide/upgrading-weka-versions/#non-disruptive-upgrade-ndu-overview).
+If the workload uses the full capacity of the cluster, performance decreases in proportion to the resources out of service. For example, when 10% of the resources are out of service, performance decreases by 10%. If the workload uses less than the full capacity, performance stays the same as long as the remaining resources cover it.
+
+The share of resources that one server represents depends on the cluster size. For example, one server is 1/8 of the backend resources of an 8-server cluster and 1/20 of a 20-server cluster. The same applies to planned maintenance that takes servers or containers out of service, such as a [rolling upgrade](../operation-guide/upgrading-weka-versions/#non-disruptive-upgrade-ndu-overview).
 
 ### Failure domain folding
 
