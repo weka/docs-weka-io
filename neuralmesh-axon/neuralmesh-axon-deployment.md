@@ -115,7 +115,7 @@ Configure SELinux support for NeuralMesh Axon clusters hosted in a Kubernetes ru
    3. Install the SELinux module (example using `pdsh`): \
       `pdsh -w neuralmesh-axon-[001-200] "sudo semodule -i ~/selinux/csi-wekafs.pp"` \
       This command defines a new SELinux boolean labeled `container_use_wekafs`. \
-      If the `container_use_wekafs` boolean does not appear in the list, compile the policy package that matches the target Linux server. See [#install-a-custom-selink-p](../appendices/weka-csi-plugin/add-selinux-support.md#install-a-custom-selink-p "mention").
+      If the `container_use_wekafs` boolean does not appear in the list, compile the policy package that matches the target Linux server. See [Install a custom SELinux policy](https://docs.weka.io/appendices/weka-csi-plugin/add-selinux-support#install-a-custom-selink-p).
    4. Enable the SELinux boolean: \
       `pdsh -w neuralmesh-axon-[001-200] "sudo setsebool container_use_wekafs=on"`
 2.  **Update the WEKA Operator definition:** Update the definition file with the SELinux support flag set to either `mixed` or `enforced`.
