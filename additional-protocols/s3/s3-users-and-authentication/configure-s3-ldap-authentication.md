@@ -13,8 +13,8 @@ The S3 LDAP authentication feature facilitates access management by offering an 
 The system manages the entire credential lifecycle using the following mechanisms:
 
 * **Dynamic key generation:** When an authentication request is made for the first time, the API creates a unique and permanent access key and secret key for the S3 service.
-* **Policy-driven access control:** User permissions are enforced by aligning LDAP attributes with S3 IAM policies. During authentication, the system strictly validates, if an LDAP user lacks a policy or has malformed UID or GID strings, credential retrieval fails.
-* **Consistent identity mapping:** To maintain consistent permissions across protocols, the system retrieves UID and GID values directly from LDAP attributes. Empty fields are automatically set to 0, ensuring structural uniformity.
+* **Policy-driven access control:** User permissions are enforced by aligning LDAP attributes with S3 IAM policies. The first authentication request for a user requires an S3 IAM policy in the user's LDAP attributes.
+* **Consistent identity mapping:** To maintain consistent permissions across protocols, the system retrieves UID and GID values directly from LDAP attributes. When the `uidNumber` or `gidNumber` attribute is missing, empty, not a number, or 0, objects the user creates keep the S3 service's default ownership.
 * **Revocation management:** Administrators can manage revocation by removing an IAM policy linked to an LDAP attribute or by deleting the key pair, ensuring the primary LDAP account remains unaffected.
 
 ## Manage the S3 credential lifecycle
