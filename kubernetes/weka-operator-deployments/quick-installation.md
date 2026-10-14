@@ -62,7 +62,7 @@ kubectl create secret docker-registry quay-io-robot-secret \
 ```
 
 {% hint style="info" %}
-Quick installation uses `https://drivers.weka.io` by default. Configure local driver distribution for example, air-gapped environments or custom kernels. See [Driver management with the WEKA Operator](/broken/spaces/ZW262oqYA8pNNfGvXjHa/pages/CnmsppNCO6Z9dfmCPGL1).
+Quick installation uses `https://drivers.weka.io` by default. Configure local driver distribution for example, air-gapped environments or custom kernels. See [WEKA Operator driver management](weka-operator-driver-management.md).
 {% endhint %}
 
 **3. Sign drives**
