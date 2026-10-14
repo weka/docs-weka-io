@@ -19,7 +19,7 @@ In multi-cluster environments, each tenant cluster can operate on a different VL
 
 Under [native multi-tenancy](../../../operation-guide/weka-native-multi-tenancy-management/), tenants exist inside a *single* cluster and each tenant's VLAN comes from its **network space** rather than from the cluster's own VLAN ID. Because each network space is isolated by VLAN, two tenants can use overlapping IP ranges. A tenant's VLAN is configured on its network space, not through the procedure on this page.
 
-The cluster's **default network** — the one carrying backend communication and S3 protocol access — is a separate layer, and it *is* tagged by the procedure on this page. The two are independent: you can tag the default network, the tenant network spaces, or both. Give the default network a VLAN ID that no tenant network space uses.
+The cluster's **default network** — the one carrying backend communication and S3 protocol access — is a separate layer, and it *is* tagged by the procedure on this page. The two are independent: you can tag the default network, the tenant network spaces, or both. If you plan to use native multi-tenancy, set the default network's VLAN ID during deployment to a value that no network space will use, and configure the backend switch ports as trunks that carry the default network's VLAN and every network-space VLAN.
 {% endhint %}
 
 ## **Enable WEKA tagged VLAN support**
