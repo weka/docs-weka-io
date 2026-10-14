@@ -271,4 +271,4 @@ You may need to adjust the steps according to your specific setup and requiremen
 
 ### 5. Set up WEKA storage for GKE pods
 
-To set up WEKA storage for use by GKE pods, follow the procedures in [Dynamic and static provisioning](https://docs.weka.io/appendices/weka-csi-plugin/dynamic-and-static-provisioning) in the WEKA CSI Plugin documentation.
+To set up WEKA storage for use by GKE pods, follow the procedures in the[dynamic-and-static-provisioning.md](../../appendices/weka-csi-plugin/dynamic-and-static-provisioning.md "mention") section, in the CSI Plugin section.
