@@ -166,13 +166,14 @@ WEKA supports NFS byte-range [advisory locking](#user-content-fn-3)[^3] for NFS 
         ```
         weka nfs global-config set --lockmgr-port 47000 --statmon-port 46999
         ```
-      * On the clients, define the ports in `/etc/services` and restart the `rpc.statd`. For example:
+      * On the clients, set the ports in `/etc/nfs.conf`, and then restart the `rpc-statd` service before mounting NFSv3 shares. For example:
 
         ```
-        status		46999/tcp		# rpc status
-        status		46999/udp		# rpc status
-        nlockmgr 	47000/tcp		# nlockmgr
-        nlockmgr 	47000/udp		# nlockmgr
+        [statd]
+        port=46999
+        [lockd]
+        port=47000
+        udp-port=47000
         ```
 * **NFS client prerequisite:** To use NFSv3 with locking on an NFS client, ensure the `rpc.statd` service runs in the NFS client. This enables clients to mount NFSv3 shares.
 
