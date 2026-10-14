@@ -393,6 +393,7 @@ See [#high-availability](../weka-system-overview/networking-in-wekaio.md#high-av
 
 * The SSDs must support PLP (Power Loss Protection).
 * WEKA system storage must be dedicated, and partitioning is not supported.
+* The SSDs must support an LBA format with a metadata size of 0. When the SSD supports a 4K block size, the system formats it to 4K blocks when you add it to the cluster.
 * The supported drive capacity is up to 30 TB.
 * The ratio between the cluster's smallest and the largest SSD capacity must not exceed 8:1.
 
