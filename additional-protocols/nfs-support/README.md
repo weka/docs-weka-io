@@ -168,14 +168,20 @@ WEKA supports NFS byte-range [advisory locking](#user-content-fn-3)[^3] for NFS 
       systemctl stop firewalld.service
       systemctl disable firewalld.service
       ```
-  *   Define the ports in `/etc/services` and restart the `rpc.statd` (ensure the port numbers are open). For example:
+  *   Set fixed ports and open them:
+      * On the servers, set the lock manager and status monitor ports. For example:
 
-      ```
-      status		46999/tcp		# rpc status
-      status		46999/udp		# rpc status
-      nlockmgr 	47000/tcp		# nlockmgr
-      nlockmgr 	47000/udp		# nlockmgr
-      ```
+        ```
+        weka nfs global-config set --lockmgr-port 47000 --statmon-port 46999
+        ```
+      * On the clients, define the ports in `/etc/services` and restart the `rpc.statd`. For example:
+
+        ```
+        status		46999/tcp		# rpc status
+        status		46999/udp		# rpc status
+        nlockmgr 	47000/tcp		# nlockmgr
+        nlockmgr 	47000/udp		# nlockmgr
+        ```
 * **NFS client prerequisite:** To use NFSv3 with locking on an NFS client, ensure the `rpc.statd` service runs in the NFS client. This enables clients to mount NFSv3 shares.
 
 #### View file locks
