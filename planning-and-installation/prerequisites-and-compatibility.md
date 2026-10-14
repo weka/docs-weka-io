@@ -404,6 +404,7 @@ Review the requirements for SSDs used in a WEKA cluster.
 
 * SSDs must support Power Loss Protection (PLP).
 * Dedicate the entire SSD for WEKA system storage. Partitioning the drive is not supported.
+* SSDs must support an LBA format with a metadata size of 0. When the SSD supports a 4K block size, the system formats it to 4K blocks when you add it to the cluster.
 * Use SSDs with a capacity of up to 122.88 TB.
 * Maintain a capacity ratio of 8:1 or less between the smallest and largest SSDs in each drive pool.
 * Use a single SSD capacity where possible, and keep the total SSD capacity equal across failure domains. Equal capacity spreads the load evenly across failure domains.
