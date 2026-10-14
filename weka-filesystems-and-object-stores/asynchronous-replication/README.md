@@ -14,12 +14,16 @@ The main decision is how much data the target holds: the whole filesystem, only 
 
 ### Full data copy
 
-Maintain a complete, incrementally updated filesystem copy on the target cluster. If the source cluster becomes unavailable, manually activate the target filesystem. Because replication is asynchronous, the target lags the source by at least the replication interval: writes made after the last replicated snapshot may be lost, and recovery time depends on the manual failover procedure.
+Maintain a complete, incrementally updated filesystem copy on the target cluster. If the source cluster becomes unavailable, manually activate the target filesystem. Recovery time depends on the manual failover procedure.
+
+{% hint style="warning" %}
+Because replication is asynchronous, the target lags the source by at least the replication interval. Writes made after the last replicated snapshot are lost on failover.
+{% endhint %}
 
 * **Disaster recovery with a replication interval requirement**: The system raises an alert whenever a replication cycle runs past its interval. Use the alert history to verify replication interval compliance. See [Monitor replication interval compliance](manage-asynchronous-replication.md#monitor-replication-interval-compliance).
-* **Ingest site to central compute**: Collection sites replicate continuously to a central cluster that runs the compute — for example, device data feeding a central GPU cluster for training. No shipping media, and no compute at every collection site.
+* **Ingest site to central compute**: Collection sites replicate continuously to a central cluster that runs the compute, for example, device data feeding a central GPU cluster for training. Data reaches the central cluster without shipped media, and the collection sites need no compute of their own.
 
-### Selective copy - metadata only copy
+### Selective copy - metadata only
 
 Make a large dataset visible on a remote cluster that has far less capacity than the source. The target receives the full filesystem metadata (directories and file hierarchy), and file data is retrieved from the source only when files are accessed (hydration).
 
@@ -40,7 +44,7 @@ The following diagram shows the components and data flow for an asynchronous rep
 
 A replication pair connects a source filesystem with a target filesystem:
 
-* **Cluster link**: Before you can create a replication pair, link the two clusters. One `weka cluster link add` command, run on either cluster, creates the link on both. The link authenticates with a cluster admin account on the other cluster, pins its TLS certificate, and carries replication in both directions. Each replication pair replicates in one direction, from its source to its target.
+* **Cluster link**: Before you can create a replication pair, link the two clusters. One `weka replication link add` command, run on either cluster, creates the link on both. The link authenticates with a cluster admin account on the other cluster, pins its TLS certificate, and carries replication in both directions. Each replication pair replicates in one direction, from its source to its target.
 * **Snapshot deltas**: On each replication interval, the system takes a snapshot of the source filesystem and transfers the incremental delta to the target. The minimum interval is 5 minutes.
 * **Transport**: Replication uses the S3 infrastructure of the clusters as a transport layer. Data passes through the S3 service of each cluster, over a dedicated replica route.
 * **Source and target roles**: The source filesystem remains fully readable and writable throughout replication. The target filesystem is write-protected: only the replication process can write to it, while users and applications can read it. The target becomes writable only when you remove the write protection, for example, during a failover.
@@ -50,7 +54,7 @@ A replication pair connects a source filesystem with a target filesystem:
 The replication policy determines how data reaches the target:
 
 * **Full data copy**: All data and metadata are pushed from the source cluster to the target cluster as a one-way incremental copy. Use this for disaster recovery.
-* **Selective copy - metadata only copy**: Only metadata is pushed from the source cluster to the target cluster. File data is pulled from the source cluster when accessed on the target cluster (hydration). Use this for on-demand caching.
+* **Selective copy - metadata only**: Only metadata is pushed from the source cluster to the target cluster. File data is pulled from the source cluster when accessed on the target cluster (hydration). Use this for on-demand caching.
 * **Selective copy - critical paths**: Selected directory paths are pushed in full. All other data behaves as metadata-only.
 
 With selective copy, a file whose data blocks are still on the source is in _lazy mode_: the file is visible on the target, and its data is pulled from the source when the file is accessed. To control this per file, use `weka replication fs-pair fetch` to pull a file's data to the target, and `weka replication fs-pair release` to return it to lazy mode. See [Manage file hydration on the target](manage-asynchronous-replication.md#manage-file-hydration-on-the-target).
@@ -99,7 +103,6 @@ Replication is asynchronous. Expect a lag of at least the replication interval. 
 * The replication process creates the target filesystem during the first replication cycle. You cannot replicate to a filesystem that already exists.
 * The target filesystem is created in the filesystem group that has the same name as the group of the source filesystem. That group must already exist on the target cluster.
 * The target filesystem is write-protected while the replication pair is active. Only the replication process writes to it, and users and applications can read it.
-* Run `weka fs update --access rw` on the target filesystem only after you remove the replication pair.
 * Creating a manual snapshot on the target filesystem halts replication and moves the pair to the error state.
 * Inode numbers on the target filesystem can differ from the source filesystem. They stay the same across replication cycles.
 
@@ -113,6 +116,7 @@ To write to the target filesystem, hydrate all of its data, remove the replicati
 ### Source filesystem
 
 * Tiered data on the source is not replicated.
+* Filesystems with the data catalog enabled cannot be replicated.
 
 ### Snapshots and scheduling
 
@@ -123,8 +127,8 @@ To write to the target filesystem, hydrate all of its data, remove the replicati
 
 ### Data copy and hydration
 
-* Changing the policy from on-demand caching to Full data copy or Selective copy - critical paths does not copy files that were never hydrated. Hydrate those files before you change the policy.
-* Dehydration on the target filesystem starts when the disk occupied space reaches 95% and stops when it drops to 90%. To release data outside these thresholds, run `weka replication fs-pair release`.
+* Changing the policy from Selective copy - metadata only to Full data copy or Selective copy - critical paths does not copy files that were never hydrated. Hydrate those files before you change the policy.
+* Dehydration on the target filesystem starts when it uses 95% of its SSD capacity and stops when usage falls to 90%. To release data outside these thresholds, run `weka replication fs-pair release`.
 
 ### Pair topology
 
