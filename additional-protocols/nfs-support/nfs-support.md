@@ -64,7 +64,7 @@ To support NFS file-locking, ensure the system meets the prerequisites outlined 
 * **Notification Port:** Set the port for the notification’s registration.
 
 {% hint style="success" %}
-These ports are only relevant for NFSv3. The default value of 0 indicates using the default published ports.
+These ports apply to NFSv3 only. The default value 0 assigns a dynamic port. To allow NFSv3 locking through a firewall, set fixed ports and open them.
 {% endhint %}
 
 5.  Select **Submit** to apply the settings.
