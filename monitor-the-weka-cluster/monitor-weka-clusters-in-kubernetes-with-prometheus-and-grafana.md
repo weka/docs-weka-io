@@ -10,7 +10,7 @@ Use Prometheus and Grafana to monitor the health and performance of WEKA cluster
 
 **Related topic**
 
-[weka-operator-day-2-operations.md](../kubernetes/weka-operator-day-2-operations.md "mention")
+[weka-operator-day-2-operations.md](../kubernetes/weka-operator-day-2-operations/ "mention")
 
 ### Before you begin
 
