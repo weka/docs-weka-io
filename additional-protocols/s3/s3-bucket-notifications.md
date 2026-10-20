@@ -177,9 +177,9 @@ weka s3 cert add <cert-name> --type client --cert <cert-file> --key <key-file>
 | Parameter | Description |
 | --- | --- |
 | `cert-name`\* | Name of the certificate. Up to 32 characters. |
-| `type`\* | `client`: a certificate and private key that the cluster presents to the broker.<br>`server`: a certificate that the cluster trusts. It has no private key. |
+| `type`\* | `client`: a certificate and private key that the cluster presents to the broker.<br>`ca`: a CA certificate that the cluster trusts. It has no private key. |
 | `cert`\* | File that contains the certificate, in PEM format. |
-| `key` | File that contains the private key, in PEM format. Required for a `client` certificate. Not allowed for a `server` certificate. |
+| `key` | File that contains the private key, in PEM format. Required for a `client` certificate. Not allowed for a `ca` certificate. |
 
 **List certificates**
 
@@ -208,7 +208,7 @@ The `weka s3 cluster notification-target cert` commands are deprecated. Use `wek
 {% endhint %}
 
 {% hint style="danger" %}
-**INTERNAL, remove before publication. TBD (Nir Yaron):** (1) After an upgrade to 6.1, do certificates added with the deprecated commands appear in `weka s3 cert list` without any action? (2) Can `--tls-cert` on a notification target name a `server` certificate, for example to trust a broker with a self-signed certificate, or only a `client` certificate? (3) Is bucket migration (`--tls-cert` on bucket migrate attach) customer-facing in 6.1?
+**INTERNAL, remove before publication. TBD (Nir Yaron):** (1) After an upgrade to 6.1, do certificates added with the deprecated commands appear in `weka s3 cert list` without any action? (2) Can `--tls-cert` on a notification target name a `ca` certificate, for example to trust a broker with a self-signed certificate, or only a `client` certificate?
 {% endhint %}
 
 ## Manage bucket notification rules
