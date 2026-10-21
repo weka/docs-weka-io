@@ -32,7 +32,7 @@ weka nfs global-config set [--acl <on-off>] [--config-fs <string>] [--default-ac
 | `--force-config-fs` \<on-off> | Force config-fs update when locks are on. |
 | `--lockmgr-port` \<uint16> | Port for NFS lock manager. Default 0 selects any available port. |
 | `--max-client-connections` \<uint> | Maximum number of concurrent NFS client connections. 0 means auto-tune based on cluster size. Default: 0 |
-| `--max-open-fds` \<uint> | Maximum number of open file descriptors per NFS server process. Default: 0 |
+| `--max-open-fds` \<uint> | Maximum number of files each NFS server can hold open, between 10000 and 10000000. Default: 500000 |
 | `--mountd-port` \<uint16> | Port number for mountd service. Default: 0 |
 | `--no-restart` | Prevent NFS-W containers from restarting when changes are applied. |
 | `--notify-port` \<uint16> | Port for NFSv3 notification. Default 0 means any available port. |
@@ -712,7 +712,7 @@ weka nfs rules add dns <name> <dns>
 
 | Parameter | Description                                        |
 | --- | --- |
-| `name`\* | Name of the NFS group in which to create the rule. |
+| `name`\* | Name of the NFS client group in which to create the rule. |
 | `dns`\* | DNS rule with \*?\[] wildcards. |
 
 **Example**
@@ -733,7 +733,7 @@ weka nfs rules remove dns <name> <dns>
 
 | Parameter | Description                                          |
 | --- | --- |
-| `name`\* | Name of the NFS group from which to delete the rule. |
+| `name`\* | Name of the NFS client group from which to delete the rule. |
 | `dns`\* | DNS rule with \*?\[] wildcards. |
 
 **Example**
@@ -754,13 +754,13 @@ weka nfs rules add ip <name> <ip>
 
 | Parameter | Description                                                                    |
 | --- | --- |
-| `name`\* | Name of the NFS group in which to create the rule. |
-| `ip`\* | IP with netmask or CIDR rule, in the 1.1.1.1/255.255.0.0 or 1.1.1.1/16 format. |
+| `name`\* | Name of the NFS client group in which to create the rule. |
+| `ip`\* | IPv4 address with a prefix length, for example, 1.1.1.0/16. |
 
 **Examples**
 
 `weka nfs rules add ip client-group1 192.168.114.0/8`\
-`weka nfs rules add ip client-group2 172.16.0.0/255.255.0.0`
+`weka nfs rules add ip client-group2 172.16.0.0/16`
 
 #### Remove IP-based client group rules
 
@@ -776,12 +776,12 @@ weka nfs rules remove ip <name> <ip>
 
 | Parameter | Description                                                                    |
 | --- | --- |
-| `name`\* | Name of the NFS group from which to delete the rule. |
-| `ip`\* | IP with netmask or CIDR rule, in the 1.1.1.1/255.255.0.0 or 1.1.1.1/16 format. |
+| `name`\* | Name of the NFS client group from which to delete the rule. |
+| `ip`\* | IPv4 address with a prefix length, for example, 1.1.1.0/16. |
 
 **Examples**
 
-`weka nfs rules remove ip client-group1 192.168.114.0/255.255.255.0`\
+`weka nfs rules remove ip client-group1 192.168.114.0/24`\
 `weka nfs rules remove ip client-group2 172.16.0.0/16`
 
 ### Manage NFS client permissions
