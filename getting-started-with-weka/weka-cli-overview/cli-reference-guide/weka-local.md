@@ -145,7 +145,7 @@ weka local resources [--container <container>] [--stable]
 
 ### weka local resources apply
 
-Apply changes to the resources locally.
+Apply changes to the resources locally. A container that cannot start on the new resources reverts to its stable ones; the command then warns instead of reporting success and, with --json, reports status "reverted".
 
 ```sh
 weka local resources apply [--container <container>] [--force] [--timeout <string>]

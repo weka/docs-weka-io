@@ -11,6 +11,8 @@ weka status [--detailed-capacity] [--no-wait]
 | `--detailed-capacity` | Include capacity details including data reduction. |
 | `--no-wait` | Return partial status without waiting for leader election or bucket readiness. Not supported with machine-readable output formats or --detailed-capacity. Requires cluster version 6.1 or newer. |
 
+**Columns:** `build_options`, `cluster`, `leader_process`, `leadership_processes`, `deployment_mode`, `status`, `rebuild`, `init_error`, `protection`, `hot_spare`, `drive_storage`, `data_reduction_ratio`, `data_reduction_saved`, `cloud`, `license`, `io_status`, `link_layer`, `clients`, `reads`, `writes`, `operations`, `upgrade`, `data_upgrade`, `alerts`, `denied`, `reason`
+
 ## weka status meta
 
 Show metadata about the API service.

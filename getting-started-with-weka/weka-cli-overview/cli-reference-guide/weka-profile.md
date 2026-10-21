@@ -15,7 +15,7 @@ weka profile
 Create a new profile. Profiles are used to provide default connection, authentication, and display preferences.
 
 ```sh
-weka profile add <profile> [--accent-color <string>] [--activate] [--auto-accept-cert] [--binary-units] [--brand-color <string>] [--color <color-mode>] [--container <string>] [--current] [--history-size <int>] [--host <string>] [--insecure] [--jump-host <string>] [--kube-context <string>] [--kube-namespace <string>] [--kube-weka-cluster <string>] [--kubeconfig <string>] [--kubectl-path <string>] [--no-dynamic-completions] [--no-icons] [--no-update-check] [--port <uint16>] [--prefix-match-only] [--prompt <template>] [--ssh-opts <string>] [--ssh-path <string>] [--tab-to-complete] [--tenant <string>] [--theme <theme>] [--username <string>] [--viewer-mouse] [--viewer-theme <theme>]
+weka profile add <profile> [--accent-color <string>] [--activate] [--auto-accept-cert] [--binary-units] [--brand-color <string>] [--color <color-mode>] [--container <string>] [--current] [--history-size <int>] [--host <string>] [--insecure] [--jump-host <string>] [--kube-context <string>] [--kube-namespace <string>] [--kube-weka-cluster <string>] [--kubeconfig <string>] [--kubectl-path <string>] [--no-dynamic-completions] [--no-icons] [--no-update-check] [--port <uint16>] [--prefix-match-only] [--prompt <template>] [--ssh-opts <string>] [--ssh-path <string>] [--tab-to-complete] [--tenant <string>] [--theme <theme>] [--timezone <string>] [--username <string>] [--viewer-mouse] [--viewer-theme <theme>]
 ```
 
 | Parameter                       | Description                                                                                                                                                                                                                                          |
@@ -49,9 +49,10 @@ weka profile add <profile> [--accent-color <string>] [--activate] [--auto-accept
 | `--tab-to-complete`             | Show completion in interactive mode only after pressing TAB.                                                                                                                                                                                         |
 | `--tenant` \<string>            | Tenant name or ID to use when authenticating.                                                                                                                                                                                                        |
 | `--theme` \<theme>              | Select the default theme to use, which controls the appearance command results. Valid values: default, pretty, plain, classic.                                                                                                                       |
+| `--timezone` \<string> | Show times in this timezone: a zone name (Asia/Tokyo), an offset from GMT (+5:30, -03), or "local". An empty value follows the system timezone. |
 | `--username` \<string>          | Default username to use when authenticating.                                                                                                                                                                                                         |
 | `--viewer-mouse`                | Capture the mouse in the `debug viewer` (click selects a line, wheel scrolls). Off by default so the terminal keeps drag-to-select for copying text; toggle live with M.                                                                             |
-| `--viewer-theme` \<theme>       | Default color theme for the `debug viewer` trace viewer. Valid values: dark, light, classic, mono.                                                                                                                                                   |
+| `--viewer-theme` \<theme> | Default color theme for the `debug viewer` trace viewer. Valid values: classic, dark, light, mono. |
 
 ## weka profile deselect
 
@@ -66,7 +67,7 @@ weka profile deselect
 Create a new profile by copying from an old one
 
 ```sh
-weka profile duplicate <profile> <new-profile> [--accent-color <string>] [--activate] [--auto-accept-cert] [--binary-units] [--brand-color <string>] [--color <color-mode>] [--container <string>] [--history-size <int>] [--host <string>] [--insecure] [--jump-host <string>] [--kube-context <string>] [--kube-namespace <string>] [--kube-weka-cluster <string>] [--kubeconfig <string>] [--kubectl-path <string>] [--no-dynamic-completions] [--no-icons] [--no-update-check] [--port <uint16>] [--prefix-match-only] [--prompt <template>] [--ssh-opts <string>] [--ssh-path <string>] [--tab-to-complete] [--tenant <string>] [--theme <theme>] [--username <string>] [--viewer-mouse] [--viewer-theme <theme>]
+weka profile duplicate <profile> <new-profile> [--accent-color <string>] [--activate] [--auto-accept-cert] [--binary-units] [--brand-color <string>] [--color <color-mode>] [--container <string>] [--history-size <int>] [--host <string>] [--insecure] [--jump-host <string>] [--kube-context <string>] [--kube-namespace <string>] [--kube-weka-cluster <string>] [--kubeconfig <string>] [--kubectl-path <string>] [--no-dynamic-completions] [--no-icons] [--no-update-check] [--port <uint16>] [--prefix-match-only] [--prompt <template>] [--ssh-opts <string>] [--ssh-path <string>] [--tab-to-complete] [--tenant <string>] [--theme <theme>] [--timezone <string>] [--username <string>] [--viewer-mouse] [--viewer-theme <theme>]
 ```
 
 | Parameter                       | Description                                                                                                                                                                                                                                          |
@@ -100,9 +101,10 @@ weka profile duplicate <profile> <new-profile> [--accent-color <string>] [--acti
 | `--tab-to-complete`             | Show completion in interactive mode only after pressing TAB.                                                                                                                                                                                         |
 | `--tenant` \<string>            | Tenant name or ID to use when authenticating.                                                                                                                                                                                                        |
 | `--theme` \<theme>              | Select the default theme to use, which controls the appearance command results. Valid values: default, pretty, plain, classic.                                                                                                                       |
+| `--timezone` \<string> | Show times in this timezone: a zone name (Asia/Tokyo), an offset from GMT (+5:30, -03), or "local". An empty value follows the system timezone. |
 | `--username` \<string>          | Default username to use when authenticating.                                                                                                                                                                                                         |
 | `--viewer-mouse`                | Capture the mouse in the `debug viewer` (click selects a line, wheel scrolls). Off by default so the terminal keeps drag-to-select for copying text; toggle live with M.                                                                             |
-| `--viewer-theme` \<theme>       | Default color theme for the `debug viewer` trace viewer. Valid values: dark, light, classic, mono.                                                                                                                                                   |
+| `--viewer-theme` \<theme> | Default color theme for the `debug viewer` trace viewer. Valid values: classic, dark, light, mono. |
 
 ## weka profile list
 
@@ -227,14 +229,14 @@ weka profile show [<profile>]
 | --------- | ---------------- |
 | `profile` | Profile to show. |
 
-**Columns:** `name`, `WEKA_HOST`, `WEKA_PORT`, `WEKA_CONTAINER`, `WEKA_JUMP_HOST`, `WEKA_SSH`, `WEKA_SSH_OPTS`, `WEKA_KUBE_CLUSTER`, `WEKA_KUBE_CONTEXT`, `WEKA_KUBE_NAMESPACE`, `WEKA_KUBECONFIG`, `WEKA_KUBECTL`, `WEKA_INSECURE`, `WEKA_AUTO_ACCEPT_CERT`, `WEKA_CERTS_DIR`, `WEKA_ORG`, `WEKA_USERNAME`, `WEKA_THEME`, `WEKA_VIEWER_THEME`, `WEKA_VIEWER_MOUSE`, `WEKA_CONNECT_TIMEOUT`, `WEKA_BRAND_COLOR`, `WEKA_ACCENT_COLOR`, `WEKA_COLOR_MODE`, `WEKA_DEBUG`, `WEKA_API_VERSION`, `WEKA_REST_URL`, `WEKA_NO_CLIP`, `WEKA_TOKEN`, `WEKA_NO_ICONS`, `WEKA_BINARY_UNITS`, `WEKA_TAB_COMPLETION`, `WEKA_PREFIX_MATCH_ONLY`, `WEKA_NO_DYNAMIC_COMPLETIONS`, `WEKA_NO_UPDATE_CHECK`, `WEKA_HISTORY_SIZE`, `WEKA_PROMPT`, `WEKA_ACTIVITY_LOG`, `WEKA_ACTIVITY_LOG_SIZE`
+**Columns:** `name`, `WEKA_HOST`, `WEKA_PORT`, `WEKA_CONTAINER`, `WEKA_JUMP_HOST`, `WEKA_SSH`, `WEKA_SSH_OPTS`, `WEKA_KUBE_CLUSTER`, `WEKA_KUBE_CONTEXT`, `WEKA_KUBE_NAMESPACE`, `WEKA_KUBECONFIG`, `WEKA_KUBECTL`, `WEKA_INSECURE`, `WEKA_AUTO_ACCEPT_CERT`, `WEKA_CERTS_DIR`, `WEKA_ORG`, `WEKA_USERNAME`, `WEKA_THEME`, `WEKA_VIEWER_THEME`, `WEKA_VIEWER_MOUSE`, `WEKA_CONNECT_TIMEOUT`, `WEKA_BRAND_COLOR`, `WEKA_ACCENT_COLOR`, `WEKA_COLOR_MODE`, `WEKA_DEBUG`, `WEKA_API_VERSION`, `WEKA_REST_URL`, `WEKA_NO_CLIP`, `WEKA_TOKEN`, `WEKA_NO_ICONS`, `WEKA_BINARY_UNITS`, `WEKA_TIMEZONE`, `WEKA_TAB_COMPLETION`, `WEKA_PREFIX_MATCH_ONLY`, `WEKA_NO_DYNAMIC_COMPLETIONS`, `WEKA_NO_UPDATE_CHECK`, `WEKA_HISTORY_SIZE`, `WEKA_PROMPT`, `WEKA_ACTIVITY_LOG`, `WEKA_ACTIVITY_LOG_SIZE`
 
 ## weka profile update
 
 Update profile settings.
 
 ```sh
-weka profile update [<profile>] [--accent-color <string>] [--activate] [--auto-accept-cert] [--binary-units] [--brand-color <string>] [--color <color-mode>] [--container <string>] [--history-size <int>] [--host <string>] [--insecure] [--jump-host <string>] [--kube-context <string>] [--kube-namespace <string>] [--kube-weka-cluster <string>] [--kubeconfig <string>] [--kubectl-path <string>] [--no-dynamic-completions] [--no-icons] [--no-update-check] [--port <uint16>] [--prefix-match-only] [--prompt <template>] [--ssh-opts <string>] [--ssh-path <string>] [--tab-to-complete] [--tenant <string>] [--theme <theme>] [--username <string>] [--viewer-mouse] [--viewer-theme <theme>]
+weka profile update [<profile>] [--accent-color <string>] [--activate] [--auto-accept-cert] [--binary-units] [--brand-color <string>] [--color <color-mode>] [--container <string>] [--history-size <int>] [--host <string>] [--insecure] [--jump-host <string>] [--kube-context <string>] [--kube-namespace <string>] [--kube-weka-cluster <string>] [--kubeconfig <string>] [--kubectl-path <string>] [--no-dynamic-completions] [--no-icons] [--no-update-check] [--port <uint16>] [--prefix-match-only] [--prompt <template>] [--ssh-opts <string>] [--ssh-path <string>] [--tab-to-complete] [--tenant <string>] [--theme <theme>] [--timezone <string>] [--username <string>] [--viewer-mouse] [--viewer-theme <theme>]
 ```
 
 | Parameter                       | Description                                                                                                                                                                                                                                          |
@@ -267,6 +269,7 @@ weka profile update [<profile>] [--accent-color <string>] [--activate] [--auto-a
 | `--tab-to-complete`             | Show completion in interactive mode only after pressing TAB.                                                                                                                                                                                         |
 | `--tenant` \<string>            | Tenant name or ID to use when authenticating.                                                                                                                                                                                                        |
 | `--theme` \<theme>              | Select the default theme to use, which controls the appearance command results. Valid values: default, pretty, plain, classic.                                                                                                                       |
+| `--timezone` \<string> | Show times in this timezone: a zone name (Asia/Tokyo), an offset from GMT (+5:30, -03), or "local". An empty value follows the system timezone. |
 | `--username` \<string>          | Default username to use when authenticating.                                                                                                                                                                                                         |
 | `--viewer-mouse`                | Capture the mouse in the `debug viewer` (click selects a line, wheel scrolls). Off by default so the terminal keeps drag-to-select for copying text; toggle live with M.                                                                             |
-| `--viewer-theme` \<theme>       | Default color theme for the `debug viewer` trace viewer. Valid values: dark, light, classic, mono.                                                                                                                                                   |
+| `--viewer-theme` \<theme> | Default color theme for the `debug viewer` trace viewer. Valid values: classic, dark, light, mono. |
