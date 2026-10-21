@@ -219,7 +219,7 @@ Removes an S3 object store bucket connection from the cluster.
 **Command:** `weka fs tier s3 remove`
 
 ```sh
-weka fs tier s3 remove <name>
+weka fs tier s3 remove <name> [--force]
 ```
 
 **Parameters**
@@ -227,5 +227,6 @@ weka fs tier s3 remove <name>
 | Parameter | Description                      |
 | --- | --- |
 | `name`\* | Name of the object store bucket. |
+| `-f`, `--force` | Remove without asking for confirmation. |
 
 [^1]: WEKA supports the AWS Security Token Service (STS) that enables you to request temporary, limited-privilege credentials for users using the [AssumeRole](https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole.html) API.
