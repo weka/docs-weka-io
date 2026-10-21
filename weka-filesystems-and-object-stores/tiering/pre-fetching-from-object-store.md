@@ -23,14 +23,14 @@ Use the following command to fetch files:
 
 **Parameters**
 
-<table><thead><tr><th>Name</th><th width="333.3333333333333">Value</th><th>Default</th></tr></thead><tbody><tr><td><code>path</code>*</td><td>A comma-separated list of file paths.</td><td>​</td></tr><tr><td><code>-v, --verbose</code></td><td>Showing fetch requests as they are submitted.</td><td>Off</td></tr></tbody></table>
+<table><thead><tr><th>Name</th><th width="333.3333333333333">Value</th><th>Default</th></tr></thead><tbody><tr><td><code>path</code>*</td><td>One or more file paths, separated by spaces.</td><td>​</td></tr><tr><td><code>-v, --verbose</code></td><td>Showing fetch requests as they are submitted.</td><td>Off</td></tr></tbody></table>
 
 ### Fetch a directory containing many files
 
 To fetch a directory that contains a large number of files, it is recommended to use the `xargs` command in a similar manner as follows:
 
 ```bash
-find -L <directory path> -type f | xargs -r -n512 -P64 weka fs tier fetch -v
+find -L <directory path> -type f -print0 | xargs -0 -r -n512 -P64 weka fs tier fetch -v
 ```
 
 {% hint style="info" %}
@@ -58,7 +58,7 @@ Use the following command to release files:
 
 | Name            | Value                                          | Default |
 | --------------- | ---------------------------------------------- | ------- |
-| `path`\*        | A comma-separated list of file paths.          | ​       |
+| `path`\*        | One or more file paths, separated by spaces.   | ​       |
 | `-v, --verbose` | Showing release requests as they are submitted | Off     |
 
 ### Release a directory containing many files
@@ -67,10 +67,10 @@ To release a directory that contains a large number of files, it is recommended 
 
 ```bash
 # directory
-find -L <directory path> -type f | xargs -r -n512 -P64 weka fs tier release
+find -L <directory path> -type f -print0 | xargs -0 -r -n512 -P64 weka fs tier release
  
-# similarly, a file containing a list of paths can be used
-cat file-list | xargs -P32 -n200 weka fs tier release
+# similarly, a file containing a list of paths, one per line, can be used
+cat file-list | xargs -d '\n' -r -P32 -n200 weka fs tier release
 ```
 
 ## Find the location of tiered files
