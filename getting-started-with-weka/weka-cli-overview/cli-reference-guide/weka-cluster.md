@@ -38,7 +38,7 @@ weka cluster bucket [<bucket-ids>…]
 | ------------- | ----------------------------- |
 | `bucket-ids`… | Only return these bucket IDs. |
 
-**Columns:** `id`, `leader`, `leader_term`, `last_active_term`, `init_state`, `fields`, `council`, `previous_leader`, `uptime`, `leader_version_sig`, `electable_mode`, `source_version_members`, `non_source_version_members`, `fill_level_percent`, `rebuild_todo`, `rebuild_total`, `fail_reason`, `activity`
+**Columns:** `id`, `leader`, `leader_term`, `last_active_term`, `init_state`, `init_status`, `council`, `previous_leader`, `uptime`, `leader_version_sig`, `electable_mode`, `source_version_members`, `non_source_version_members`, `fill_level_percent`, `rebuild_todo`, `rebuild_total`, `fail_reason`, `activity`, `allocated_chunks`, `allocated_raw_capacity`
 
 ## weka cluster client-target-version
 
@@ -703,7 +703,7 @@ weka cluster network-space add <name> --range <ip-range> --vlan <uint16> [--fip-
 | `--fip-range` \<ip-range> | Floating IP address range for NFS multi-tenant assignment (format IP1-IP2).  |
 | `--gateway` \<ip>         | Default gateway IP address for the network space.                            |
 | `--netmask` \<uint8>      | Subnet mask length in bits.                                                  |
-| `--wait`                  | Block until every backend applies and verifies the network space, then exit. |
+| `--wait` | Block until every backend applies and verifies the new network space, then exit. If any backend fails, the create is rolled back cluster-wide and the command exits non-zero. Waits as long as the cluster waits for its backends (no timeout; interruptible with Ctrl-C). |
 
 **Columns:** `nid`, `name`, `tenant`, `ip_range`, `fip_range`, `vlan`, `gateway`, `netmask_bits`, `rdma_state`
 
@@ -779,7 +779,7 @@ weka cluster network-space remove <name> [--force] [--wait]
 | --------------- | ---------------------------------------------------------------------------- |
 | `name`\*        | Network space name.                                                          |
 | `-f`, `--force` | Force operation even when clients are present.                               |
-| `--wait`        | Block until every backend applies and verifies the network space, then exit. |
+| `--wait` | Block until every backend confirms teardown of the network space, then exit. Removal does not roll back: if a backend fails teardown the operation stays in-flight (the network space remains as a tombstone and the NetworkSpaceApplyStuck alert is raised) and the command exits non-zero. Waits as long as the cluster waits for its backends (no timeout; interruptible with Ctrl-C). |
 
 ### weka cluster network-space show-usage
 
@@ -817,7 +817,7 @@ weka cluster network-space update <netspace> [--fip-range <ip-range>] [--force] 
 | `--netmask` \<uint8>      | Subnet mask length in bits.                                                  |
 | `--range` \<ip-range>     | IP addresses in format IP1-IP2.                                              |
 | `--vlan` \<uint16>        | VLAN ID (1..4094).                                                           |
-| `--wait`                  | Block until every backend applies and verifies the network space, then exit. |
+| `--wait` | Block until every backend re-applies and verifies the updated network space, then exit. An update is a teardown-then-rebuild; if a backend fails it stays in-flight (no rollback) and the command exits non-zero. Waits as long as the cluster waits for its backends (no timeout; interruptible with Ctrl-C). |
 
 ## weka cluster link
 
@@ -847,7 +847,7 @@ weka cluster link add --peer-host <hostname> --username <string> [--auto-accept-
 | `--peer-host` &lt;hostname&gt;* | Management hostname or IP of the cluster to link to. |
 | `--username` &lt;string&gt;* | Cluster admin username on the peer cluster. |
 | `--auto-accept-peer-cert` | Accept whatever TLS certificate the peer presents, without confirming its fingerprint. The certificate is still pinned and checked on every later connection. |
-| `--fingerprint` &lt;string&gt; | Expected SHA256 fingerprint of the peer's TLS certificate (colon-separated hex), shown by 'weka security tls status' on the peer cluster. |
+| `--fingerprint` &lt;string&gt; | Expected SHA256 fingerprint of the peer's TLS certificate (64 hex digits), shown by 'weka security tls status' on the peer cluster. |
 | `--password` &lt;string&gt; | Password for --username. Alternatively use the WEKA_PEER_PASSWORD env variable or the interactive prompt. |
 | `--peer-port` &lt;port&gt; | Management API port of the peer cluster (default 14000). |
 
@@ -986,6 +986,8 @@ weka cluster status [--detailed-capacity]
 | Parameter             | Description                                        |
 | --------------------- | -------------------------------------------------- |
 | `--detailed-capacity` | Include capacity details including data reduction. |
+
+**Columns:** `build_options`, `cluster`, `leader_process`, `leadership_processes`, `deployment_mode`, `status`, `rebuild`, `init_error`, `protection`, `hot_spare`, `drive_storage`, `data_reduction_ratio`, `data_reduction_saved`, `cloud`, `license`, `io_status`, `link_layer`, `clients`, `reads`, `writes`, `operations`, `upgrade`, `data_upgrade`, `alerts`, `denied`, `reason`
 
 ### weka cluster status meta
 

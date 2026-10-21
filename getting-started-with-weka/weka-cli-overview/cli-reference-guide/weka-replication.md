@@ -172,7 +172,7 @@ weka replication link add --peer-host <hostname> --username <string> [--auto-acc
 | `--peer-host` &lt;hostname&gt;* | Management hostname or IP of the cluster to link to. |
 | `--username` &lt;string&gt;* | Cluster admin username on the peer cluster. |
 | `--auto-accept-peer-cert` | Accept whatever TLS certificate the peer presents, without confirming its fingerprint. The certificate is still pinned and checked on every later connection. |
-| `--fingerprint` &lt;string&gt; | Expected SHA256 fingerprint of the peer's TLS certificate (colon-separated hex), shown by 'weka security tls status' on the peer cluster. |
+| `--fingerprint` &lt;string&gt; | Expected SHA256 fingerprint of the peer's TLS certificate (64 hex digits), shown by 'weka security tls status' on the peer cluster. |
 | `--password` &lt;string&gt; | Password for --username. Alternatively use the WEKA_PEER_PASSWORD env variable or the interactive prompt. |
 | `--peer-port` &lt;port&gt; | Management API port of the peer cluster (default 14000). |
 

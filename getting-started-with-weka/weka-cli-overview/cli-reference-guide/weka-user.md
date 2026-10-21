@@ -250,6 +250,22 @@ weka user revoke-tokens <username>
 | ------------ | -------------------------------------------------- |
 | `username`\* | Username of the user whose tokens will be revoked. |
 
+## weka user show
+
+Show details for one cluster user.
+
+```sh
+weka user show <username> [--include-tenants] [--tenant <tenant>]
+```
+
+| Parameter | Description |
+| --------- | ----------- |
+| `username`\* | Username of the user to show. |
+| `--include-tenants` | Search all tenants for the user, not only the caller's own tenant. |
+| `--tenant` \<tenant> | Tenant holding the user. Required when the username exists in more than one tenant. |
+
+**Columns:** `tenantId`, `tenant`, `username`, `source`, `role`, `uid`, `posix_uid`, `posix_gid`, `s3policy`
+
 ## weka user update
 
 Change parameters of an existing new user.
@@ -273,4 +289,4 @@ Get information about currently logged-in user.
 weka user whoami
 ```
 
-**Columns:** `tenantId`, `tenant`, `username`, `source`, `role`, `uid`, `posixUID`, `posixGID`, `s3Policy`, `profile`, `credentials`
+**Columns:** `tenantId`, `tenant`, `username`, `source`, `role`, `uid`, `posixUID`, `posixGID`, `s3Policy`, `profile`, `credentials`, `assumed`, `assumedFromTenant`

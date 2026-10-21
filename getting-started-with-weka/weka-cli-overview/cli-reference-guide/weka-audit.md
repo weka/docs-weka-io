@@ -26,12 +26,44 @@ Manage decryption of filenames in audit traces.
 weka audit cluster decrypt-filename
 ```
 
+#### weka audit cluster decrypt-filename disable
+
+Disable decrypting filenames in audit traces.
+
+```sh
+weka audit cluster decrypt-filename disable
+```
+
+#### weka audit cluster decrypt-filename enable
+
+Enable decrypting filenames in audit traces.
+
+```sh
+weka audit cluster decrypt-filename enable
+```
+
 ### weka audit cluster decrypt-fullpath
 
 Manage decryption of full file paths in audit traces.
 
 ```sh
 weka audit cluster decrypt-fullpath
+```
+
+#### weka audit cluster decrypt-fullpath disable
+
+Disable decrypting full file paths in audit traces.
+
+```sh
+weka audit cluster decrypt-fullpath disable
+```
+
+#### weka audit cluster decrypt-fullpath enable
+
+Enable decrypting full file paths in audit traces.
+
+```sh
+weka audit cluster decrypt-fullpath enable
 ```
 
 ### weka audit cluster disable
@@ -56,6 +88,22 @@ Manage audit logging enhancement.
 
 ```sh
 weka audit cluster enhancer
+```
+
+#### weka audit cluster enhancer disable
+
+Disable audit logging enhancement cluster-wide.
+
+```sh
+weka audit cluster enhancer disable
+```
+
+#### weka audit cluster enhancer enable
+
+Enable audit logging enhancement cluster-wide.
+
+```sh
+weka audit cluster enhancer enable
 ```
 
 ### weka audit cluster resolve-paths

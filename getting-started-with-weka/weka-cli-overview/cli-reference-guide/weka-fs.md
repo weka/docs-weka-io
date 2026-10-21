@@ -16,7 +16,7 @@ weka fs [--force-fresh] [--local] [--name <string>]
 | `--local`          | Serve the listing from the container this command connects to, without redirecting to the cluster leader. Capacity information may be stale. |
 | `--name` \<string> | Show only the named filesystem.                                                                                                              |
 
-**Columns:** `uid`, `id`, `name`, `group`, `groupId`, `usedSSD`, `usedSSDD`, `usedSSDM`, `freeSSD`, `availableSSDM`, `availableSSD`, `usedTotal`, `usedTotalD`, `freeTotal`, `availableTotal`, `maxFiles`, `status`, `encrypted`, `stores`, `authRequired`, `thinProvisioned`, `thinProvisioningMinSSDBudget`, `thinProvisioningMaxSSDBudget`, `usedSSDWD`, `usedSSDRD`, `reductionRatio`, `pendingReduction`, `dataReduction`, `reducedProcessSize`, `reducedSize`, `kmsKey`, `kmsNamespace`, `kmsRole`, `processedReductionRatio`, `audit`, `auditOpenClose`, `permissions`, `ownerGuid`, `maxThroughput`, `maxIops`
+**Columns:** `uid`, `id`, `name`, `group`, `groupId`, `usedSSD`, `usedSSDD`, `usedSSDM`, `freeSSD`, `availableSSDM`, `availableSSD`, `usedTotal`, `usedTotalD`, `freeTotal`, `availableTotal`, `maxFiles`, `status`, `encrypted`, `stores`, `authRequired`, `thinProvisioned`, `thinProvisioningMinSSDBudget`, `thinProvisioningMaxSSDBudget`, `usedSSDWD`, `usedSSDRD`, `reductionRatio`, `pendingReduction`, `dataReduction`, `reducedProcessedSize`, `reducedSize`, `kmsKey`, `kmsNamespace`, `kmsRole`, `processedReductionRatio`, `audit`, `auditOpenClose`, `indexEnabled`, `permissions`, `ownerGuid`, `maxThroughput`, `maxIops`
 
 ## weka fs add
 
@@ -1098,12 +1098,13 @@ weka fs tier s3 detach <filesystem> <obs-name> [--force]
 Remove an existing S3 object store connection.
 
 ```sh
-weka fs tier s3 remove <name>
+weka fs tier s3 remove <name> [--force]
 ```
 
 | Parameter | Description                      |
 | --------- | -------------------------------- |
 | `name`\*  | Name of the object store bucket. |
+| `-f`, `--force` | Force action. Perform this action without further confirmation. |
 
 #### weka fs tier s3 snapshot
 

@@ -184,7 +184,7 @@ weka nfs global-config set [--acl <on-off>] [--config-fs <string>] [--default-ac
 | `--force-config-fs` \<on-off>                   | Force config-fs update when locks are on.                                                                                                                          |
 | `--lockmgr-port` \<uint16>                      | Port for NFS lock manager. Default 0 selects any available port.                                                                                                   |
 | `--max-client-connections` \<uint>              | Maximum number of concurrent NFS client connections. 0 means auto-tune based on cluster size.                                                                      |
-| `--max-open-fds` \<uint>                        | Maximum number of open file descriptors per NFS server process.                                                                                                    |
+| `--max-open-fds` \<uint> | Maximum number of files each NFS server may hold open. From WEKA 6.1, 0 restores the default of 500000; earlier releases require a value between 10000 and 10000000. The derived process descriptor limit (connections + open files + reserve) and the NFS server's file-cache thresholds both apply without a restart. |
 | `--mountd-port` \<uint16>                       | Port number for mountd service.                                                                                                                                    |
 | `--no-restart`                                  | Prevent NFS-W containers from restarting when changes are applied.                                                                                                 |
 | `--notify-port` \<uint16>                       | Port for NFSv3 notification. Default 0 means any available port.                                                                                                   |
@@ -198,7 +198,7 @@ Show NFS global configuration information.
 weka nfs global-config show
 ```
 
-**Columns:** `acl`, `config_fs`, `default_acl_type`, `default_auth_types`, `default_supported_versions`, `direct_io`, `enabled_auth_types`, `enable_multi_tenant`, `extended_stats`, `grace_period`, `lease_lifetime`, `lock_recovery_period`, `lockmgr_port`, `locks`, `maxClientConnections`, `max_open_fds`, `mountd_port`, `notify_port`, `statmon_port`, `supported_auth_types`
+**Columns:** `acl`, `config_fs`, `default_acl_type`, `default_auth_types`, `default_supported_versions`, `direct_io`, `enabled_auth_types`, `enable_multi_tenant`, `extended_stats`, `grace_period`, `lease_lifetime`, `lock_recovery_period`, `lockmgr_port`, `locks`, `maxClientConnections`, `maxOpenFiles`, `mountd_port`, `notify_port`, `statmon_port`, `supported_auth_types`
 
 ## weka nfs interface-group
 
@@ -757,7 +757,7 @@ weka nfs rules add dns <name> <dns>
 
 | Parameter | Description                                        |
 | --------- | -------------------------------------------------- |
-| `name`\*  | Name of the NFS group in which to create the rule. |
+| `name`\* | Name of the NFS client group in which to create the rule. |
 | `dns`\*   | DNS rule with \*?[] wildcards.                     |
 
 **Columns:** `id`, `uid`, `type`, `rule`
@@ -772,8 +772,8 @@ weka nfs rules add ip <name> <ip>
 
 | Parameter | Description                                                                    |
 | --------- | ------------------------------------------------------------------------------ |
-| `name`\*  | Name of the NFS group in which to create the rule.                             |
-| `ip`\*    | IP with netmask or CIDR rule, in the 1.1.1.1/255.255.0.0 or 1.1.1.1/16 format. |
+| `name`\* | Name of the NFS client group in which to create the rule. |
+| `ip`\* | IPv4 address with a prefix length (e.g. 1.1.1.0/16). |
 
 **Columns:** `id`, `uid`, `type`, `rule`
 
@@ -795,7 +795,7 @@ weka nfs rules remove dns <name> <dns>
 
 | Parameter | Description                                          |
 | --------- | ---------------------------------------------------- |
-| `name`\*  | Name of the NFS group from which to delete the rule. |
+| `name`\* | Name of the NFS client group from which to delete the rule. |
 | `dns`\*   | DNS rule with \*?[] wildcards.                       |
 
 #### weka nfs rules remove ip
@@ -808,5 +808,5 @@ weka nfs rules remove ip <name> <ip>
 
 | Parameter | Description                                                                    |
 | --------- | ------------------------------------------------------------------------------ |
-| `name`\*  | Name of the NFS group from which to delete the rule.                           |
-| `ip`\*    | IP with netmask or CIDR rule, in the 1.1.1.1/255.255.0.0 or 1.1.1.1/16 format. |
+| `name`\* | Name of the NFS client group from which to delete the rule. |
+| `ip`\* | IPv4 address with a prefix length (e.g. 1.1.1.0/16). |
