@@ -328,7 +328,7 @@ weka fs tier fetch <path> [--verbose]
 
 **Parameters**
 
-* `<path>`: A comma-separated list of file paths to fetch.
+* `<path>`: One or more file paths to fetch, separated by spaces.
 * `-v`, `--verbose`: Displays fetch requests as the system submits them. Default is Off.
 
 #### Batch fetching
@@ -336,7 +336,7 @@ weka fs tier fetch <path> [--verbose]
 To fetch large directory trees efficiently, for example, combine the command with Unix tools to parallelize the operation.&#x20;
 
 ```bash
-find -L <directory_path> -type f | xargs -r -n512 -P64 weka fs tier fetch -v
+find -L <directory_path> -type f -print0 | xargs -0 -r -n512 -P64 weka fs tier fetch -v
 ```
 
 #### Constraints and considerations
@@ -363,7 +363,7 @@ weka fs tier release <path> [--verbose]
 
 **Parameters**
 
-* `<path>`: A comma-separated list of file paths to release.
+* `<path>`: One or more file paths to release, separated by spaces.
 * `-v`, `--verbose`: Displays release requests as the system submits them. Default is Off.
 
 #### Release large datasets
@@ -373,13 +373,13 @@ To release a directory containing a large number of files or a specific list of 
 **Release a directory:** Use `find` combined with `xargs` to release all files within a specific path:
 
 ```sh
-find -L <directory_path> -type f | xargs -r -n512 -P64 weka fs tier release
+find -L <directory_path> -type f -print0 | xargs -0 -r -n512 -P64 weka fs tier release
 ```
 
-**Release from a file list:** Use `cat` combined with `xargs` to release files listed in a text file:
+**Release from a file list:** Use `cat` combined with `xargs` to release files listed in a text file, one path per line:
 
 ```sh
-cat file-list | xargs -P32 -n200 weka fs tier release
+cat file-list | xargs -d '\n' -r -P32 -n200 weka fs tier release
 ```
 
 ### Direct object store mount (`obs_direct`)
