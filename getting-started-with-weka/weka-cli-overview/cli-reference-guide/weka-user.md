@@ -31,7 +31,7 @@ weka user add <username> <role> [<password>] [--posix-gid <uint32>] [--posix-uid
 
 ## weka user assume-tenant
 
-Re-scope the current cluster-admin session to a tenant. Cluster administrators only.
+Assume a tenant: act in it with your own identity, for this session only. Requires the `tenant.assume` action; a private tenant cannot be assumed.
 
 ```sh
 weka user assume-tenant [<tenant>] [--revert]
@@ -268,18 +268,26 @@ weka user oidc rotate-seal-key [--force]
 Create or update the calling tenant's OIDC connector. An enabled connector takes over management login for the tenant; an LDAP configuration may stay enabled alongside it to serve the S3 user lifecycle.
 
 ```sh
-weka user oidc set [--clear-client-secret] [--client-id <string>] [--client-secret <string>] [--enabled] [--issuer <string>] [--require-mfa] [--role-claim <string>] [--vendor <oidc-vendor>]
+weka user oidc set [--clear-client-secret] [--clear-redirect-uris] [--client-id <string>] [--client-secret <string>] [--cluster-admin-group <string>] [--enabled] [--groups-claim <string>] [--issuer <string>] [--quota-manager-group <string>] [--readonly-group <string>] [--redirect-uris <redirect-uri>…] [--regular-group <string>] [--require-mfa] [--role-claim <string>] [--tenant-admin-group <string>] [--vendor <oidc-vendor>]
 ```
 
 | Parameter | Description |
 | --------- | ----------- |
 | `--clear-client-secret` | Clear a stored client secret, re-registering WEKA as a public client. Does the same as entering an empty value at the --client-secret prompt, without needing a terminal. |
+| `--clear-redirect-uris` | Remove every configured redirect origin, so the browser sign-in accepts any https origin again. |
 | `--client-id` &lt;string&gt; | OIDC client ID. Required to enable the connector. |
 | `--client-secret` &lt;string&gt; | Client secret issued by the identity provider, for an application registered as a confidential client. Omit it to register WEKA as a public client; pass an empty value to be prompted, where an empty entry clears a secret set earlier. It is never displayed again once stored. |
+| `--cluster-admin-group` &lt;string&gt; | Identity-provider group (object ID or name) assigned the ClusterAdmin role. Role resolution uses group mapping only when no role claim is set — clear it with --role-claim "" first, as the two cannot coexist. Pass an empty value to clear this entry. |
 | `--enabled` | Enable OIDC authentication for this tenant. Defaults to false when the connector is created. |
+| `--groups-claim` &lt;string&gt; | JWT claim holding the user's group identifiers, used with the role group mappings. Defaults to "groups"; pass an empty value to revert to the default. |
 | `--issuer` &lt;string&gt; | OIDC issuer URL. Required to enable the connector. |
+| `--quota-manager-group` &lt;string&gt; | Identity-provider group (object ID or name) assigned the QuotaManager role. Pass an empty value to clear this entry. |
+| `--readonly-group` &lt;string&gt; | Identity-provider group (object ID or name) assigned the ReadOnly role. Pass an empty value to clear this entry. |
+| `--redirect-uris` &lt;redirect-uri&gt;… | Origins (https://host[:port]) the browser sign-in may be started from and redirected back to; the cluster appends /auth/callback. Replaces the current list; use --clear-redirect-uris to accept any https origin again. Multiple values may be supplied separated by commas, or the option may be repeated. |
+| `--regular-group` &lt;string&gt; | Identity-provider group (object ID or name) assigned the Regular role. Pass an empty value to clear this entry. |
 | `--require-mfa` | Require the identity provider to attest multi-factor authentication. Defaults to true when the connector is created. |
 | `--role-claim` &lt;string&gt; | JWT claim name to map to a role. May be required to enable the connector. Pass an explicit empty value to clear it when moving the connector to group mapping. |
+| `--tenant-admin-group` &lt;string&gt; | Identity-provider group (object ID or name) assigned the TenantAdmin role. Pass an empty value to clear this entry. |
 | `--vendor` &lt;oidc-vendor&gt; | Identity provider vendor. Only `entra` is accepted when enabling the connector. Valid value: entra. |
 
 ### weka user oidc show
@@ -290,7 +298,7 @@ Display the calling tenant's OIDC connector configuration.
 weka user oidc show
 ```
 
-**Columns:** `enabled`, `vendor`, `issuer`, `client_id`, `role_claim`, `require_mfa`, `client_secret_set`
+**Columns:** `enabled`, `vendor`, `issuer`, `client_id`, `role_claim`, `groups_claim`, `role_groups`, `require_mfa`, `redirect_uris`, `client_secret_set`
 
 ## weka user passwd
 

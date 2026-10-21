@@ -77,7 +77,7 @@ weka smb cluster create <netbios-name> <domain> <config-fs-name> --container-ids
 | `--ldap-schema` &lt;smb-ldap-schema&gt; | LDAP schema type used by SSSD for POSIX attribute resolution. Valid values: rfc2307, rfc2307bis, ad, ipa. |
 | `--ldap-search-base` &lt;string&gt; | LDAP search base used by SSSD. |
 | `--ldap-uri` &lt;string&gt; | LDAP server URI used by SSSD. |
-| `--max-memory` &lt;capacity&gt; | Override the SMB container's memory ceiling, in whole GiB (e.g. 32GiB). Left unset, the compiled default applies. Only settable at cluster creation. |
+| `--max-memory` &lt;capacity&gt; | Override the SMB container's memory ceiling, in whole GiB (e.g. 32GiB). Left unset, the compiled default applies. |
 | `--posix-resolution-mode` &lt;smb-posix-resolution-mode&gt; | POSIX UID/GID resolution mode for SMB-W: 'ad' or 'nss'. 'nss' needs at least one LDAP domain: supply --ldap-domain, or omit it to reuse the LDAP domains that survived a previous cluster destroy. Valid values: ad, nss. |
 | `--prompt-ldap-bind-password` | Prompt interactively for the LDAP bind password instead of passing it on the command line. |
 | `--scale-out-mode` &lt;smb-scale-out-mode&gt; | Scale-out mode. Valid values: none, full, partial. |

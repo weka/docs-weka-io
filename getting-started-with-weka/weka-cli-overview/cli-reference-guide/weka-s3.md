@@ -499,7 +499,7 @@ weka s3 cert add <name> --cert <string> --type <cert-usage> [--key <string>]
 | --------- | ----------- |
 | `name`* | Certificate name. |
 | `--cert` &lt;string&gt;* | File containing the certificate, in PEM format. |
-| `--type` &lt;cert-usage&gt;* | Certificate usage: 'client' to present to a remote peer, 'server' to trust one. Valid values: client, server. |
+| `--type` &lt;cert-usage&gt;* | Certificate usage: 'client' to present to a remote peer, 'ca' to trust one. Valid values: client, ca. |
 | `--key` &lt;string&gt; | File containing the private key, in PEM format. Required for a client certificate. |
 
 ### weka s3 cert list
@@ -537,7 +537,7 @@ weka s3 cert update <name> --cert <string> --type <cert-usage> [--key <string>]
 | --------- | ----------- |
 | `name`* | Certificate name. |
 | `--cert` &lt;string&gt;* | File containing the new certificate, in PEM format. |
-| `--type` &lt;cert-usage&gt;* | Certificate usage: 'client' to present to a remote peer, 'server' to trust one. Valid values: client, server. |
+| `--type` &lt;cert-usage&gt;* | Certificate usage: 'client' to present to a remote peer, 'ca' to trust one. Valid values: client, ca. |
 | `--key` &lt;string&gt; | File containing the new private key, in PEM format. Required for a client certificate. |
 
 ## weka s3 cluster
@@ -568,7 +568,7 @@ weka s3 cluster add <config-fs-name>… [--all-servers] [--allow-versioning] [--
 | `--domain` &lt;strings&gt;… | Virtual host-style domains. Multiple values may be supplied separated by commas, or the option may be repeated. |
 | `-f`, `--force` | Force action. Perform this action without further confirmation. |
 | `--max-buckets-limit` &lt;uint&gt; | Maximum buckets that can be created. |
-| `--max-memory` &lt;capacity&gt; | Override the S3 container's memory ceiling, in whole GiB (e.g. 16GiB). Left unset, the compiled default applies. Only settable at cluster creation. |
+| `--max-memory` &lt;capacity&gt; | Override the S3 container's memory ceiling, in whole GiB (e.g. 16GiB). Left unset, the compiled default applies. |
 | `--port` &lt;uint16&gt; | S3 service port. |
 
 ### weka s3 cluster audit-webhook

@@ -38,7 +38,7 @@ weka cluster bucket [<bucket-ids>…]
 | --------- | ----------- |
 | `bucket-ids`… | Only return these bucket IDs. |
 
-**Columns:** `id`, `leader`, `leader_term`, `last_active_term`, `init_state`, `fields`, `council`, `previous_leader`, `uptime`, `leader_version_sig`, `electable_mode`, `source_version_members`, `non_source_version_members`, `fill_level_percent`, `rebuild_todo`, `rebuild_total`, `fail_reason`, `activity`, `allocated_chunks`, `allocated_raw_capacity`
+**Columns:** `id`, `leader`, `leader_term`, `last_active_term`, `init_state`, `init_status`, `council`, `previous_leader`, `uptime`, `leader_version_sig`, `electable_mode`, `source_version_members`, `non_source_version_members`, `fill_level_percent`, `rebuild_todo`, `rebuild_total`, `fail_reason`, `activity`, `allocated_chunks`, `allocated_raw_capacity`
 
 ## weka cluster client-target-version
 
@@ -847,7 +847,7 @@ weka cluster link add --peer-host <hostname> --username <string> [--auto-accept-
 | `--peer-host` &lt;hostname&gt;* | Management hostname or IP of the cluster to link to. |
 | `--username` &lt;string&gt;* | Cluster admin username on the peer cluster. |
 | `--auto-accept-peer-cert` | Accept whatever TLS certificate the peer presents, without confirming its fingerprint. The certificate is still pinned and checked on every later connection. |
-| `--fingerprint` &lt;string&gt; | Expected SHA256 fingerprint of the peer's TLS certificate (colon-separated hex), shown by 'weka security tls status' on the peer cluster. |
+| `--fingerprint` &lt;string&gt; | Expected SHA256 fingerprint of the peer's TLS certificate (64 hex digits), shown by 'weka security tls status' on the peer cluster. |
 | `--password` &lt;string&gt; | Password for --username. Alternatively use the WEKA_PEER_PASSWORD env variable or the interactive prompt. |
 | `--peer-port` &lt;port&gt; | Management API port of the peer cluster (default 14000). |
 
@@ -987,6 +987,8 @@ weka cluster status [--detailed-capacity] [--no-wait]
 | --------- | ----------- |
 | `--detailed-capacity` | Include capacity details including data reduction. |
 | `--no-wait` | Return partial status without waiting for leader election or bucket readiness. Not supported with machine-readable output formats or --detailed-capacity. Requires cluster version 6.1 or newer. |
+
+**Columns:** `build_options`, `cluster`, `leader_process`, `leadership_processes`, `deployment_mode`, `status`, `rebuild`, `init_error`, `protection`, `hot_spare`, `drive_storage`, `data_reduction_ratio`, `data_reduction_saved`, `cloud`, `license`, `io_status`, `link_layer`, `clients`, `reads`, `writes`, `operations`, `upgrade`, `data_upgrade`, `alerts`, `denied`, `reason`
 
 ### weka cluster status meta
 

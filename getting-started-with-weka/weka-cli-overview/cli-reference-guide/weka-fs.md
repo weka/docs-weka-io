@@ -478,7 +478,7 @@ weka fs replication add --interval <duration> --source-filesystem <filesystem> -
 | `--source-filesystem` &lt;filesystem&gt;* | Name of the local source filesystem. |
 | `--target-filesystem` &lt;filesystem&gt;* | Name of the filesystem on the remote cluster. |
 | `--access-strategy` &lt;access-strategy&gt; | When users see the target filesystem: INSTANT_ACCESS (default) exposes the snapshot immediately and fetches data lazily; COPY_FIRST blocks the apply until --copy-path data is local. Valid values: instant_access, copy_first. |
-| `--apply-strategy` &lt;apply-strategy&gt; | When the snapshot becomes visible on the target. AUTOMATIC (the default, and the only value supported in this release) applies it as soon as the prerequisite phase finishes. Valid value: automatic. |
+| `--apply-strategy` &lt;apply-strategy&gt; | When the snapshot becomes visible on the target. AUTOMATIC (the default, and the only value supported in this release) applies it as soon as the prerequisite phase finishes. Valid values: automatic, manual. |
 | `--copy-path` &lt;path&gt;… | Eager-copy path. Keywords: 'full', 'all' or '/' for full copy; 'none' or 'null' for no eager copy. Default: no eager copy. Multiple values may be supplied separated by commas, or the option may be repeated. |
 | `--link-id` &lt;cluster-link-id&gt; | ID of the cluster link to replicate over, as shown by 'weka cluster link'. |
 | `--now` | Trigger the first replication cycle immediately instead of waiting one full interval. |
@@ -1103,12 +1103,13 @@ weka fs tier s3 detach <filesystem> <obs-name> [--force]
 Remove an existing S3 object store connection.
 
 ```sh
-weka fs tier s3 remove <name>
+weka fs tier s3 remove <name> [--force]
 ```
 
 | Parameter | Description                      |
 | --------- | -------------------------------- |
 | `name`\*  | Name of the object store bucket. |
+| `-f`, `--force` | Force action. Perform this action without further confirmation. |
 
 #### weka fs tier s3 snapshot
 
