@@ -84,10 +84,10 @@ description: >-
 | ClientsUnavailable                        | CRITICAL | Some clients are unavailable due to insufficient backends.                                                                                                           |
 | ClockSkewedHostJoin                       | MINOR    | Container cannot join cluster due to clock skew with existing container.                                                                                             |
 | ClusterDeploymentModeChanged              | INFO     | Cluster deployment mode changed (auto-detected)                                                                                                                      |
+| ClusteringFailure                         | MINOR    | Container fails to join cluster.                                                                                                                                     |
 | ClusterInitializationFailed               | MAJOR    | Cluster initialization process failed.                                                                                                                               |
 | ClusterInitialized                        | INFO     | Cluster successfully initialized.                                                                                                                                    |
 | ClusterLeaderInsufficientPeerConnectivity | INFO     | The cluster leader has connectivity issues with too many peers.                                                                                                      |
-| ClusteringFailure                         | MINOR    | Container fails to join cluster.                                                                                                                                     |
 | ConfigChangeSetsSliderErasedUponStartup   | WARNING  | Configuration ChangeSet buffer was erased upon startup.                                                                                                              |
 | ConfigChangeSetsSliderFull                | MINOR    | Configuration changeset buffer is full while process pulls configuration updates.                                                                                    |
 | ConfigChangeSetsSliderReset               | INFO     | Configuration ChangeSet buffer was reset.                                                                                                                            |
@@ -119,8 +119,8 @@ description: >-
 | NodeNetworkUnstable                       | MAJOR    | Process experiences unstable network connectivity.                                                                                                                   |
 | NodePartiallyConnected                    | MINOR    | Partially connected process removed from cluster.                                                                                                                    |
 | NodeRejoined                              | INFO     | Process successfully rejoined cluster.                                                                                                                               |
-| NodeUnreachable                           | MINOR    | Unreachable process removed from cluster.                                                                                                                            |
 | NodesNotInExpectedState                   | MAJOR    | Some processes are not in expected operational state.                                                                                                                |
+| NodeUnreachable                           | MINOR    | Unreachable process removed from cluster.                                                                                                                            |
 | OperationTookTooLong                      | WARNING  | Cluster operation exceeds expected completion time.                                                                                                                  |
 | PersistentUnresponsiveBuckets             | CRITICAL | Some compute resources unresponsive for more than {longUnresponsivenessMinutes} minutes.                                                                             |
 | PreviousCluster                           | INFO     | Container was previously part of different cluster.                                                                                                                  |
@@ -193,8 +193,8 @@ description: >-
 | Type                                  | Severity | Description                                                                     |
 | ------------------------------------- | -------- | ------------------------------------------------------------------------------- |
 | AioVecMaxLeakedExceded                | DEBUG    | AioVec {leaked} netbuf leaked.                                                  |
-| CorruptRPCRequest                     | CRITICAL | Corrupt RPC request received by DRIVES process                                  |
 | CorruptedDrive                        | MAJOR    | Drive has valid header but is corrupted.                                        |
+| CorruptRPCRequest                     | CRITICAL | Corrupt RPC request received by DRIVES process                                  |
 | DriveAdded                            | INFO     | Drive provisioned.                                                              |
 | DriveCorrupted                        | MAJOR    | Drive has valid header but is corrupted.                                        |
 | DriveDeactivated                      | INFO     | Drive deactivated.                                                              |
@@ -252,7 +252,6 @@ description: >-
 | BlockSeekFinished                          | MAJOR    | Block seek finished.                                                                  |
 | BlockSeekStarted                           | MAJOR    | Block seek started for secondary metadata block that could not be read.               |
 | BrokenFile                                 | MAJOR    | File metadata corruption.                                                             |
-| CWTaskTemplateFinished                     | INFO     | Cluster-wide task (CWTask) template finished.                                         |
 | CacheFlushHanging                          | MAJOR    | Host hangs while syncing file's write cache to cluster.                               |
 | CatalogTaskAborted                         | INFO     | Catalog task aborted                                                                  |
 | CharterNotificationDropped                 | MAJOR    | Dropped a charter notification to an unresponsive client                              |
@@ -261,12 +260,10 @@ description: >-
 | ChecksumErrorInCommit                      | MAJOR    | Checksum error detected by SSD node in committing block.                              |
 | ChecksumErrorInWrite                       | CRITICAL | Checksum error detected by COMPUTE process in write.                                  |
 | ChokingBlockingIOs                         | MAJOR    | Backend choking is now blocking IOs.                                                  |
-| ClusterPeerAdded                           | INFO     | Cluster peer configuration change                                                     |
-| ClusterPeerRemoved                         | INFO     | Cluster peer configuration change                                                     |
-| ClusterPeerUpdated                         | INFO     | Cluster peer configuration change                                                     |
 | ClusterwideJobAborting                     | INFO     | Clusterwide Job configuration change                                                  |
 | ClusterwideJobAdded                        | INFO     | Clusterwide Job configuration change                                                  |
 | ClusterwideJobRemoved                      | INFO     | Clusterwide Job configuration change                                                  |
+| CWTaskTemplateFinished                     | INFO     | Cluster-wide task (CWTask) template finished.                                         |
 | DefaultDirectoryQuotaSet                   | INFO     | Default directory quota set.                                                          |
 | DefaultDirectoryQuotaUnset                 | INFO     | Default directory quota unset.                                                        |
 | DestageBlocked                             | CRITICAL | Cannot start destage of bucket.                                                       |
@@ -279,9 +276,9 @@ description: >-
 | FailedToSplitSliceNoRetry                  | CRITICAL | Fails to split directory slice; will not retry.                                       |
 | FilesystemAdded                            | INFO     | Filesystem configuration change                                                       |
 | FilesystemCreated                          | INFO     | Filesystem created.                                                                   |
+| FilesystemDeleted                          | INFO     | Filesystem configuration change                                                       |
 | FilesystemDeleteFinished                   | INFO     | Filesystem deletion finished.                                                         |
 | FilesystemDeleteStarted                    | INFO     | Filesystem deletion started.                                                          |
-| FilesystemDeleted                          | INFO     | Filesystem configuration change                                                       |
 | FilesystemDownloadAborted                  | INFO     | Filesystem download aborted.                                                          |
 | FilesystemDownloadFinished                 | INFO     | Filesystem download finished.                                                         |
 | FilesystemDownloadStarted                  | INFO     | Filesystem download started.                                                          |
@@ -356,12 +353,6 @@ description: >-
 | UserGraceExpired                           | WARNING  | User soft capacity quota reached and grace period expired.                            |
 | UserHardLimitReached                       | WARNING  | User hard capacity quota reached.                                                     |
 
-### IO
-
-| Type                 | Severity | Description                                               |
-| -------------------- | -------- | --------------------------------------------------------- |
-| SystemDriveIsTooSlow | MAJOR    | System drive response times exceed acceptable thresholds. |
-
 ### InterfaceGroup
 
 | Type                          | Severity | Description                                        |
@@ -376,6 +367,12 @@ description: >-
 | InterfaceGroupPortAdded       | INFO     | Interface group port configuration change          |
 | InterfaceGroupPortDeleted     | INFO     | Interface group port configuration change          |
 | InterfaceGroupUpdated         | INFO     | Interface group configuration change               |
+
+### IO
+
+| Type                 | Severity | Description                                               |
+| -------------------- | -------- | --------------------------------------------------------- |
+| SystemDriveIsTooSlow | MAJOR    | System drive response times exceed acceptable thresholds. |
 
 ### KDriver
 
@@ -407,6 +404,63 @@ description: >-
 | --------------------- | -------- | --------------------------------------- |
 | ManualOverrideChanged | INFO     | Manual configuration override modified. |
 
+### Network
+
+| Type                            | Severity | Description                                                                                                                                                                           |
+| ------------------------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ArpServerDuplicateIPDetected    | CRITICAL | ARP server detects duplicate IP address on network.                                                                                                                                   |
+| ArpServerFailedToApplyRule      | MAJOR    | ARP server fails to install the ARP-blocking rule for a floating IP.                                                                                                                  |
+| ArpServerFailedToInitialize     | CRITICAL | ARP server fails to initialize.                                                                                                                                                       |
+| ClientNodeDisconnected          | WARNING  | Client disconnects from cluster.                                                                                                                                                      |
+| CloudMoveIpFail                 | MINOR    | Fails to reassign IP address in cloud environment.                                                                                                                                    |
+| DefaultDataNetworkingChange     | INFO     | Default data networking configuration modified.                                                                                                                                       |
+| DpdkIBQkeyMismatch              | MAJOR    | DPDK InfiniBand queue key mismatch detected.                                                                                                                                          |
+| DpdkInitFailed                  | CRITICAL | DPDK EAL initialization failed; node will terminate.                                                                                                                                  |
+| DpdkIovaModeNotDetermined       | MAJOR    | DPDK unable to determine common IOVA mode across devices.                                                                                                                             |
+| DpdkPoolSummary                 | DEBUG    | DPDK memory pool status summary.                                                                                                                                                      |
+| FipIsNoLongerOnDevice           | MAJOR    | Floating IP address no longer assigned to expected device.                                                                                                                            |
+| HangingRPCs                     | MAJOR    | Remote procedure calls exceed expected completion time.                                                                                                                               |
+| HugepagesAllocationFailure      | MINOR    | Fails to allocate hugepages memory.                                                                                                                                                   |
+| IONodeCannotFetchConfig         | WARNING  | IO node unable to retrieve cluster configuration and join cluster.                                                                                                                    |
+| L6PacketFormatNotInSync         | WARNING  | Layer 6 packet format inconsistent with process limit flags.                                                                                                                          |
+| MemoryAllocFailed               | MINOR    | Memory allocation request fails.                                                                                                                                                      |
+| MemoryClaimFailed               | MINOR    | Memory claim operation fails.                                                                                                                                                         |
+| MemoryMigratedAfterPin          | MAJOR    | Hugepage memory mapping moves after being pinned to physical memory.                                                                                                                  |
+| MemoryMigratedBeforePin         | MINOR    | Hugepage memory mapping moves before being pinned to physical memory.                                                                                                                 |
+| MemoryPinningIoctlFailed        | MINOR    | Memory pinning system call fails.                                                                                                                                                     |
+| MgmtNodeCannotFetchConfig       | WARNING  | Management process unable to retrieve cluster configuration and join cluster.                                                                                                         |
+| NetDeviceLinkDown               | MINOR    | Network interface link status is DOWN.                                                                                                                                                |
+| NetDeviceLinkUp                 | INFO     | Network interface link status is UP.                                                                                                                                                  |
+| NetnsConfigureFailure           | MAJOR    | Network namespace configuration failed.                                                                                                                                               |
+| NetSlaveDeviceLinkDown          | MINOR    | Bonded network slave interface link status is DOWN.                                                                                                                                   |
+| NetSlaveDeviceLinkUp            | MINOR    | Bonded network slave interface link status is UP.                                                                                                                                     |
+| NetspaceAdded                   | INFO     | Network Space provisioned                                                                                                                                                             |
+| NetspaceEnableRDMAFailed        | WARNING  | RDMA could not be enabled on a network interface after repeated attempts, most likely because the NIC's RoCE GID table is exhausted.                                                  |
+| NetspaceRemoved                 | INFO     | Network Space removed                                                                                                                                                                 |
+| NetspaceUpdated                 | INFO     | Network Space updated                                                                                                                                                                 |
+| NetworkBan                      | MAJOR    | Network peer banned due to connectivity issues.                                                                                                                                       |
+| NetworkPortConfigFail           | MINOR    | Network port configuration operation fails.                                                                                                                                           |
+| NetworkPortDead                 | MAJOR    | Network port does not transmit or receive packets for extended period.                                                                                                                |
+| NetworkSpaceApplyFailed         | MAJOR    | Network Space apply failed: first failed backend host reported                                                                                                                        |
+| NetworkSpaceCreated             | INFO     | Network Space create completed on all backend hosts                                                                                                                                   |
+| NetworkSpaceRemoved             | INFO     | Network Space removal confirmed on all backend hosts                                                                                                                                  |
+| NetworkSpaceRolledBack          | MAJOR    | Network Space create/update rolled back after a host reported a failure                                                                                                               |
+| NetworkSpaceUpdated             | INFO     | Network Space update completed on all backend hosts                                                                                                                                   |
+| NetworkUnban                    | INFO     | Network peer unbanned and connectivity restored.                                                                                                                                      |
+| NICNotFound                     | INFO     | Network interface card not found during initialization.                                                                                                                               |
+| NoConnectivityToLivingNode      | MAJOR    | Process loses connectivity to all active cluster members.                                                                                                                             |
+| NodeCannotJoinCluster           | WARNING  | Process unable to join cluster within expected timeframe.                                                                                                                             |
+| NodeCannotSendJumboFrames       | MINOR    | Process unable to send jumbo frames (packets larger than standard MTU).                                                                                                               |
+| NodeDisconnected                | MINOR    | Process disconnected from cluster.                                                                                                                                                    |
+| RDMAClientDisabled              | MINOR    | RDMA client optimization disabled.                                                                                                                                                    |
+| RDMAClientEnabled               | MINOR    | RDMA client optimization enabled.                                                                                                                                                     |
+| RDMADegraded                    | MINOR    | RDMA performance degraded                                                                                                                                                             |
+| RDMADeviceDead                  | MAJOR    | RDMA device does not receive completion notifications for extended period.                                                                                                            |
+| RDMAServerDisabled              | MINOR    | RDMA server optimization disabled.                                                                                                                                                    |
+| TenantNetworkApplyFailed        | MAJOR    | A floating netns failed to come up on the host that owns it.                                                                                                                          |
+| TenantNetworkNoEligibleServer   | MAJOR    | Failover freed tenant networks, but no frontend server is eligible to receive them; reassignment is stalled until a frontend network port is healthy and ready to serve floating IPs. |
+| TenantNetworkServerMarkedFailed | MAJOR    | A host repeatedly failed to apply a floating netns; its port for that subnet was marked FAILED so the netns can be redistributed.                                                     |
+
 ### NFS
 
 | Type                                | Severity | Description                                                                                        |
@@ -437,61 +491,6 @@ description: >-
 | NfswServiceCriticalEvent            | CRITICAL | NFS-W posts event.                                                                                 |
 | NfswServiceInfoEvent                | INFO     | NFS-W posts event.                                                                                 |
 | NfswServiceWarningEvent             | WARNING  | NFS-W posts event.                                                                                 |
-
-### Network
-
-| Type                            | Severity | Description                                                                                                                                                                           |
-| ------------------------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| ArpServerDuplicateIPDetected    | CRITICAL | ARP server detects duplicate IP address on network.                                                                                                                                   |
-| ArpServerFailedToInitialize     | CRITICAL | ARP server fails to initialize.                                                                                                                                                       |
-| ClientNodeDisconnected          | WARNING  | Client disconnects from cluster.                                                                                                                                                      |
-| CloudMoveIpFail                 | MINOR    | Fails to reassign IP address in cloud environment.                                                                                                                                    |
-| DefaultDataNetworkingChange     | INFO     | Default data networking configuration modified.                                                                                                                                       |
-| DpdkIBQkeyMismatch              | MAJOR    | DPDK InfiniBand queue key mismatch detected.                                                                                                                                          |
-| DpdkInitFailed                  | CRITICAL | DPDK EAL initialization failed; node will terminate.                                                                                                                                  |
-| DpdkIovaModeNotDetermined       | MAJOR    | DPDK unable to determine common IOVA mode across devices.                                                                                                                             |
-| DpdkPoolSummary                 | DEBUG    | DPDK memory pool status summary.                                                                                                                                                      |
-| FipIsNoLongerOnDevice           | MAJOR    | Floating IP address no longer assigned to expected device.                                                                                                                            |
-| HangingRPCs                     | MAJOR    | Remote procedure calls exceed expected completion time.                                                                                                                               |
-| HugepagesAllocationFailure      | MINOR    | Fails to allocate hugepages memory.                                                                                                                                                   |
-| IONodeCannotFetchConfig         | WARNING  | IO node unable to retrieve cluster configuration and join cluster.                                                                                                                    |
-| L6PacketFormatNotInSync         | WARNING  | Layer 6 packet format inconsistent with process limit flags.                                                                                                                          |
-| MemoryAllocFailed               | MINOR    | Memory allocation request fails.                                                                                                                                                      |
-| MemoryClaimFailed               | MINOR    | Memory claim operation fails.                                                                                                                                                         |
-| MemoryMigratedAfterPin          | MAJOR    | Hugepage memory mapping moves after being pinned to physical memory.                                                                                                                  |
-| MemoryMigratedBeforePin         | MINOR    | Hugepage memory mapping moves before being pinned to physical memory.                                                                                                                 |
-| MemoryPinningIoctlFailed        | MINOR    | Memory pinning system call fails.                                                                                                                                                     |
-| MgmtNodeCannotFetchConfig       | WARNING  | Management process unable to retrieve cluster configuration and join cluster.                                                                                                         |
-| NICNotFound                     | INFO     | Network interface card not found during initialization.                                                                                                                               |
-| NetDeviceLinkDown               | MINOR    | Network interface link status is DOWN.                                                                                                                                                |
-| NetDeviceLinkUp                 | INFO     | Network interface link status is UP.                                                                                                                                                  |
-| NetSlaveDeviceLinkDown          | MINOR    | Bonded network slave interface link status is DOWN.                                                                                                                                   |
-| NetSlaveDeviceLinkUp            | MINOR    | Bonded network slave interface link status is UP.                                                                                                                                     |
-| NetnsConfigureFailure           | MAJOR    | Network namespace configuration failed.                                                                                                                                               |
-| NetspaceAdded                   | INFO     | Network Space provisioned                                                                                                                                                             |
-| NetspaceEnableRDMAFailed        | WARNING  | RDMA could not be enabled on a network interface after repeated attempts, most likely because the NIC's RoCE GID table is exhausted.                                                  |
-| NetspaceRemoved                 | INFO     | Network Space removed                                                                                                                                                                 |
-| NetspaceUpdated                 | INFO     | Network Space updated                                                                                                                                                                 |
-| NetworkBan                      | MAJOR    | Network peer banned due to connectivity issues.                                                                                                                                       |
-| NetworkPortConfigFail           | MINOR    | Network port configuration operation fails.                                                                                                                                           |
-| NetworkPortDead                 | MAJOR    | Network port does not transmit or receive packets for extended period.                                                                                                                |
-| NetworkSpaceApplyFailed         | MAJOR    | Network Space apply failed: first failed backend host reported                                                                                                                        |
-| NetworkSpaceCreated             | INFO     | Network Space create completed on all backend hosts                                                                                                                                   |
-| NetworkSpaceRemoved             | INFO     | Network Space removal confirmed on all backend hosts                                                                                                                                  |
-| NetworkSpaceRolledBack          | MAJOR    | Network Space create/update rolled back after a host reported a failure                                                                                                               |
-| NetworkSpaceUpdated             | INFO     | Network Space update completed on all backend hosts                                                                                                                                   |
-| NetworkUnban                    | INFO     | Network peer unbanned and connectivity restored.                                                                                                                                      |
-| NoConnectivityToLivingNode      | MAJOR    | Process loses connectivity to all active cluster members.                                                                                                                             |
-| NodeCannotJoinCluster           | WARNING  | Process unable to join cluster within expected timeframe.                                                                                                                             |
-| NodeCannotSendJumboFrames       | MINOR    | Process unable to send jumbo frames (packets larger than standard MTU).                                                                                                               |
-| NodeDisconnected                | MINOR    | Process disconnected from cluster.                                                                                                                                                    |
-| RDMAClientDisabled              | MINOR    | RDMA client optimization disabled.                                                                                                                                                    |
-| RDMAClientEnabled               | MINOR    | RDMA client optimization enabled.                                                                                                                                                     |
-| RDMADegraded                    | MINOR    | RDMA performance degraded                                                                                                                                                             |
-| RDMADeviceDead                  | MAJOR    | RDMA device does not receive completion notifications for extended period.                                                                                                            |
-| TenantNetworkApplyFailed        | MAJOR    | A floating netns failed to come up on the host that owns it.                                                                                                                          |
-| TenantNetworkNoEligibleServer   | MAJOR    | Failover freed tenant networks, but no frontend server is eligible to receive them; reassignment is stalled until a frontend network port is healthy and ready to serve floating IPs. |
-| TenantNetworkServerMarkedFailed | MAJOR    | A host repeatedly failed to apply a floating netns; its port for that subnet was marked FAILED so the netns can be redistributed.                                                     |
 
 ### Node
 
@@ -566,8 +565,8 @@ description: >-
 | HashRingAlgoRedistCompleted            | INFO     | Hash ring gradual transition reached an endpoint (fully one algorithm).                                                                                                                                                 |
 | HashRingTransitionStepSet              | INFO     | Hash ring gradual-transition step (velocity) set.                                                                                                                                                                       |
 | HotSpareFailureDomainsUpdated          | INFO     | Hot spare failure domains updated.                                                                                                                                                                                      |
-| InFlightCorruptionDetectedByScrubber   | MINOR    | Detects in-flight corrupt read result from drive.                                                                                                                                                                       |
 | IncorrectScannedBlockChecksum          | CRITICAL | Detects used block with mismatching checksum.                                                                                                                                                                           |
+| InFlightCorruptionDetectedByScrubber   | MINOR    | Detects in-flight corrupt read result from drive.                                                                                                                                                                       |
 | NoDataProtection                       | MAJOR    | No data protection.                                                                                                                                                                                                     |
 | PersistentNoDataProtection             | CRITICAL | Cluster is without data protection for significant period.                                                                                                                                                              |
 | PersistentTooManyFailures              | CRITICAL | Cluster experiences excessive failures accessing drives for extended period.                                                                                                                                            |
@@ -602,31 +601,36 @@ description: >-
 
 | Type                              | Severity | Description                                                          |
 | --------------------------------- | -------- | -------------------------------------------------------------------- |
+| ClusterLinkAdded                  | INFO     | Cluster link configuration change                                    |
+| ClusterLinkEstablished            | DEBUG    | A link to a remote cluster was established.                          |
+| ClusterLinkRemoved                | INFO     | Cluster link configuration change                                    |
+| ClusterLinkUpdated                | INFO     | Cluster link configuration change                                    |
 | ReplicaPairCreated                | INFO     | Replication pair was created                                         |
 | ReplicaPairPaused                 | INFO     | Replication pair was paused                                          |
+| ReplicaPairRemovalFailed          | MAJOR    | Replication pair removal failed and the pair was left in place.      |
 | ReplicaPairRemoved                | INFO     | Replication pair was removed                                         |
 | ReplicaPairResumed                | INFO     | Replication pair was resumed                                         |
 | ReplicaPairUpdated                | INFO     | Replication pair configuration was updated                           |
 | ReplicaSnapshotApplyFailed        | MAJOR    | Failed to apply replicated snapshot to filesystem                    |
-| ReplicaSnapshotApplyFinished      | INFO     | Finished applying replicated snapshot to filesystem                  |
-| ReplicaSnapshotApplyStarted       | INFO     | Started applying replicated snapshot to filesystem                   |
-| ReplicaSnapshotCopyAborted        | INFO     | Aborted copying snapshot replica data                                |
+| ReplicaSnapshotApplyFinished      | DEBUG    | Finished applying replicated snapshot to filesystem                  |
+| ReplicaSnapshotApplyStarted       | DEBUG    | Started applying replicated snapshot to filesystem                   |
+| ReplicaSnapshotCopyAborted        | WARNING  | Aborted copying snapshot replica data                                |
 | ReplicaSnapshotCopyFilesSkipped   | MINOR    | Some files failed to copy during replication data hydration          |
-| ReplicaSnapshotCopyFinished       | INFO     | Finished copying snapshot replica data                               |
+| ReplicaSnapshotCopyFinished       | DEBUG    | Finished copying snapshot replica data                               |
 | ReplicaSnapshotCopyPathMissing    | MINOR    | Configured replication copy paths not present on target              |
-| ReplicaSnapshotCopyStarted        | INFO     | Started copying snapshot replica data                                |
+| ReplicaSnapshotCopyStarted        | DEBUG    | Started copying snapshot replica data                                |
 | ReplicaSnapshotCycleAborted       | WARNING  | Replication engine aborted a replication cycle and will retry        |
 | ReplicaSnapshotCycleCompleted     | INFO     | Replication engine completed a replication cycle                     |
 | ReplicaSnapshotCycleFailed        | MAJOR    | Replication engine failed a replication cycle                        |
 | ReplicaSnapshotCycleStarted       | INFO     | Replication engine started a replication cycle                       |
-| ReplicaSnapshotPhaseStarted       | INFO     | Replication engine started a replication phase on the source cluster |
-| ReplicaSnapshotReceiveAborted     | INFO     | Aborted receiving snapshot replica                                   |
-| ReplicaSnapshotReceiveFinished    | INFO     | Finished receiving snapshot replica                                  |
-| ReplicaSnapshotReceiveStarted     | INFO     | Started receiving snapshot replica                                   |
-| ReplicaSnapshotSendAborted        | INFO     | Aborted sending snapshot replica                                     |
-| ReplicaSnapshotSendCopyFinished   | INFO     | Finished sending data of snapshot replica (copy)                     |
-| ReplicaSnapshotSendFinished       | INFO     | Finished sending snapshot replica                                    |
-| ReplicaSnapshotSendStarted        | INFO     | Started sending snapshot replica                                     |
+| ReplicaSnapshotPhaseStarted       | DEBUG    | Replication engine started a replication phase on the source cluster |
+| ReplicaSnapshotReceiveAborted     | WARNING  | Aborted receiving snapshot replica                                   |
+| ReplicaSnapshotReceiveFinished    | DEBUG    | Finished receiving snapshot replica                                  |
+| ReplicaSnapshotReceiveStarted     | DEBUG    | Started receiving snapshot replica                                   |
+| ReplicaSnapshotSendAborted        | WARNING  | Aborted sending snapshot replica                                     |
+| ReplicaSnapshotSendCopyFinished   | DEBUG    | Finished sending data of snapshot replica (copy)                     |
+| ReplicaSnapshotSendFinished       | DEBUG    | Finished sending snapshot replica                                    |
+| ReplicaSnapshotSendStarted        | DEBUG    | Started sending snapshot replica                                     |
 | ReplicaSnapshotSourceDeleteFailed | MINOR    | Failed to delete the source snapshot                                 |
 | ReplicaSnapshotTargetDeleteFailed | MINOR    | Failed to delete the replica snapshot on the target cluster          |
 
@@ -634,8 +638,8 @@ description: >-
 
 | Type                                       | Severity | Description                                                                  |
 | ------------------------------------------ | -------- | ---------------------------------------------------------------------------- |
-| APIServerStartFailed                       | WARNING  | Fails to start API server.                                                   |
 | APIServerStarted                           | INFO     | API server started successfully.                                             |
+| APIServerStartFailed                       | WARNING  | Fails to start API server.                                                   |
 | DeviceIsNotAValidNetworkDevice             | WARNING  | Device is not valid network device.                                          |
 | DriverLoaded                               | INFO     | Driver attached.                                                             |
 | FailedToLoadDriver                         | WARNING  | Fails to load WekaFS driver.                                                 |
@@ -644,6 +648,7 @@ description: >-
 | HttpServerFibersExhausted                  | MAJOR    | Hanging HTTP requests exhaust all available fibers.                          |
 | HugepagesAllocationRetries                 | WARNING  | Hugepages allocation retried.                                                |
 | HugepagesAllocationTookTooLong             | WARNING  | Hugepages allocation takes unexpectedly long duration.                       |
+| HugepagesPoolCappedForMaxMapCount          | WARNING  | Hugepages pool reduced to fit the host's mapping limit                       |
 | InactiveHostCannotJoinCluster              | INFO     | Inactive host cannot join cluster.                                           |
 | LoadingStableResourcesFailed               | INFO     | Fails loading stable resources.                                              |
 | NetBufsExhausted                           | MAJOR    | Netbufs are exhausted.                                                       |
@@ -676,8 +681,8 @@ description: >-
 | S3BucketTypeChangedEvent                | INFO     | The S3 bucket type changed                                                                           |
 | S3BucketVersioningChangedEvent          | INFO     | The versioning state of an S3 bucket changed.                                                        |
 | S3ClusterCreated                        | INFO     | A new S3 cluster is successfully created.                                                            |
-| S3ClusterDestroyFailed                  | MAJOR    | The attempt to destroy the S3 cluster fails.                                                         |
 | S3ClusterDestroyed                      | INFO     | The S3 cluster is successfully destroyed.                                                            |
+| S3ClusterDestroyFailed                  | MAJOR    | The attempt to destroy the S3 cluster fails.                                                         |
 | S3ClusterPerformanceConfigReset         | INFO     | S3 cluster performance configuration reset                                                           |
 | S3ClusterSetupEvent                     | INFO     | S3 cluster setup is updated.                                                                         |
 | S3ClusterStatusActiveEvent              | INFO     | The S3 cluster returns to an operational state.                                                      |
@@ -707,19 +712,19 @@ description: >-
 | S3MigrationDetachEvent                  | INFO     | S3 detach migration.                                                                                 |
 | S3MigrationUpdateEvent                  | INFO     | S3 update migration.                                                                                 |
 | S3MultipleContainersStatusInactiveEvent | CRITICAL | Multiple S3 containers become inactive.                                                              |
-| S3NotSupportedInMixedVersion            | INFO     | Not supported on mixed version.                                                                      |
 | S3NotificationDropped                   | CRITICAL | Some S3 notifications are lost or dropped.                                                           |
 | S3NotificationTargetAdded               | INFO     | S3 notification-target added.                                                                        |
 | S3NotificationTargetCertificateAdded    | INFO     | S3 notification-target certificate added.                                                            |
 | S3NotificationTargetCertificateRemoved  | INFO     | S3 notification-target certificate removed.                                                          |
 | S3NotificationTargetRemoved             | INFO     | S3 notification-target removed.                                                                      |
 | S3NotificationTargetUpdated             | INFO     | S3 notification-target updated.                                                                      |
-| S3OIDCAddedEvent                        | INFO     | The S3 OIDC configuration is added.                                                                  |
-| S3OIDCRemovedEvent                      | INFO     | The S3 OIDC configuration is removed.                                                                |
-| S3OIDCUpdatedEvent                      | INFO     | The S3 OIDC configuration is updated.                                                                |
+| S3NotSupportedInMixedVersion            | INFO     | Not supported on mixed version.                                                                      |
 | S3ObjectLegalHoldChangedEvent           | INFO     | The legal-hold status of an S3 object version was set.                                               |
 | S3ObjectRetentionBypassedEvent          | INFO     | A valid governance retention on an S3 object version was bypassed.                                   |
 | S3ObjectRetentionSetEvent               | INFO     | A retention period was set on an S3 object version.                                                  |
+| S3OIDCAddedEvent                        | INFO     | The S3 OIDC configuration is added.                                                                  |
+| S3OIDCRemovedEvent                      | INFO     | The S3 OIDC configuration is removed.                                                                |
+| S3OIDCUpdatedEvent                      | INFO     | The S3 OIDC configuration is updated.                                                                |
 | S3RemoveBucketILMRuleEvent              | INFO     | An ILM rule is removed from an S3 bucket.                                                            |
 | S3RemoveGroupEvent                      | INFO     | An S3 group is removed.                                                                              |
 | S3RemoveIAMPolicyEvent                  | INFO     | An IAM policy is deleted from the system.                                                            |
@@ -756,11 +761,11 @@ description: >-
 | SecurityPolicyCreated               | INFO     | Security policy configuration change                               |
 | SecurityPolicyDeleted               | INFO     | Security policy configuration change                               |
 | SecurityPolicyUpdated               | INFO     | Security policy configuration change                               |
+| TenantSecurityPoliciesChanged       | INFO     | Tenant security policies updated.                                  |
+| TenantTokensRevoked                 | INFO     | Tenant API tokens revoked.                                         |
 | TLSSet                              | INFO     | TLS set.                                                           |
 | TLSStrictnessUpdated                | INFO     | TLS strictness updated.                                            |
 | TLSUnset                            | INFO     | TLS unset.                                                         |
-| TenantSecurityPoliciesChanged       | INFO     | Tenant security policies updated.                                  |
-| TenantTokensRevoked                 | INFO     | Tenant API tokens revoked.                                         |
 | TokenTimeoutsChange                 | INFO     | Token timeouts for authentication updated.                         |
 
 ### Smb
@@ -805,10 +810,10 @@ description: >-
 | ClusterTaskResumed                 | INFO     | Cluster task resumed                                                                     |
 | ClusterTasksCpuLimitUpdated        | INFO     | Cluster tasks CPU limit set.                                                             |
 | ClusterwideTaskChanged             | DEBUG    | Cluster-wide task changed.                                                               |
-| DSAsyncDeleteConfigUpdated         | INFO     | Data service async-delete config changed                                                 |
 | DataServiceLogWriterFlushFailed    | MAJOR    | Data service log writer flush failed                                                     |
 | DataServiceTaskFailedWithError     | MINOR    | Data service task fails.                                                                 |
 | DataServiceTaskWaitingForChildTask | INFO     | Data service task waiting.                                                               |
+| DSAsyncDeleteConfigUpdated         | INFO     | Data service async-delete config changed                                                 |
 | DsShardViewChanged                 | INFO     | Change in data service shard view.                                                       |
 | GcHighExecutionTime                | MINOR    | GC execution time percent of total time is too high.                                     |
 | GcTooManyScans                     | MINOR    | Too many GC scans in a short period.                                                     |
@@ -864,9 +869,9 @@ description: >-
 
 | Type                               | Severity | Description                                  |
 | ---------------------------------- | -------- | -------------------------------------------- |
-| RemoteTraceStreamerEndpointInvalid | INFO     | Invalid remote trace streamer endpoint.      |
 | RemoteTracesDisabled               | INFO     | Remote traces disabled.                      |
 | RemoteTracesEnabled                | INFO     | Remote traces enabled.                       |
+| RemoteTraceStreamerEndpointInvalid | INFO     | Invalid remote trace streamer endpoint.      |
 | TracesConfigurationActivated       | INFO     | Traces configuration change                  |
 | TracesConfigurationDeactivated     | INFO     | Traces configuration change                  |
 | TracesConfigurationReset           | INFO     | Traces configuration change                  |
