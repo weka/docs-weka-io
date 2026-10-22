@@ -4,8 +4,7 @@ description: >-
   storage control.
 metaLinks:
   alternates:
-    - >-
-      https://app.gitbook.com/s/0yXyIrnroN3zIG3qa4W3/appendices/weka-csi-plugin/tailor-your-storage-class-configuration-with-mount-options
+    - /broken/spaces/0yXyIrnroN3zIG3qa4W3/pages/EHzExx3F3Zu5Ky8Q44jg
 ---
 
 # Configure storage class mount options

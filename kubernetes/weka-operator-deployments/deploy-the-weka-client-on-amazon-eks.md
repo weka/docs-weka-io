@@ -4,8 +4,7 @@ description: >-
   filesystems from application pods running in a managed cluster.
 metaLinks:
   alternates:
-    - >-
-      https://app.gitbook.com/s/0yXyIrnroN3zIG3qa4W3/kubernetes/weka-operator-deployments/deploy-the-weka-client-on-amazon-eks
+    - /broken/spaces/0yXyIrnroN3zIG3qa4W3/pages/dZmFiaT8TZM90iakOzJo
 ---
 
 # Deploy WEKA on cloud-managed Kubernetes services

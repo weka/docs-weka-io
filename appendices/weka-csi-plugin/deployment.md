@@ -1,8 +1,7 @@
 ---
 metaLinks:
   alternates:
-    - >-
-      https://app.gitbook.com/s/0yXyIrnroN3zIG3qa4W3/appendices/weka-csi-plugin/deployment
+    - /broken/spaces/0yXyIrnroN3zIG3qa4W3/pages/UO9xWM3vcdZvlyoyyahK
 ---
 
 # Deployment

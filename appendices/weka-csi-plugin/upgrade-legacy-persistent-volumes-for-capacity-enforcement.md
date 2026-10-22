@@ -1,8 +1,7 @@
 ---
 metaLinks:
   alternates:
-    - >-
-      https://app.gitbook.com/s/0yXyIrnroN3zIG3qa4W3/appendices/weka-csi-plugin/upgrade-legacy-persistent-volumes-for-capacity-enforcement
+    - /broken/spaces/0yXyIrnroN3zIG3qa4W3/pages/RbFr4Mi22lHp0BOihnCJ
 ---
 
 # Upgrade legacy persistent volumes for capacity enforcement

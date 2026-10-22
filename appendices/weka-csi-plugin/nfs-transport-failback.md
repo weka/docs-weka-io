@@ -1,8 +1,7 @@
 ---
 metaLinks:
   alternates:
-    - >-
-      https://app.gitbook.com/s/0yXyIrnroN3zIG3qa4W3/appendices/weka-csi-plugin/nfs-transport-failback
+    - /broken/spaces/0yXyIrnroN3zIG3qa4W3/pages/3jSrm8wzn4gT8XBqfeXv
 ---
 
 # NFS transport failback

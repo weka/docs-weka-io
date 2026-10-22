@@ -1,8 +1,7 @@
 ---
 metaLinks:
   alternates:
-    - >-
-      https://app.gitbook.com/s/0yXyIrnroN3zIG3qa4W3/appendices/weka-csi-plugin/dynamic-and-static-provisioning
+    - /broken/spaces/0yXyIrnroN3zIG3qa4W3/pages/SG8B7UwrUfMK9CKUCfVm
 ---
 
 # Dynamic and static provisioning

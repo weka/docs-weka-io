@@ -1,8 +1,7 @@
 ---
 metaLinks:
   alternates:
-    - >-
-      https://app.gitbook.com/s/0yXyIrnroN3zIG3qa4W3/appendices/weka-csi-plugin/launch-an-application-using-weka-as-the-pods-storage
+    - /broken/spaces/0yXyIrnroN3zIG3qa4W3/pages/KhXrzzqZn4WF5sUewAnt
 ---
 
 # Launch an application using WEKA as the POD's storage

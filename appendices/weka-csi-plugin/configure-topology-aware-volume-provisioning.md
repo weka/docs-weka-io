@@ -4,8 +4,7 @@ description: >-
   feature to control where volumes are provisioned based on availability zones.
 metaLinks:
   alternates:
-    - >-
-      https://app.gitbook.com/s/0yXyIrnroN3zIG3qa4W3/appendices/weka-csi-plugin/configure-topology-aware-volume-provisioning
+    - /broken/spaces/0yXyIrnroN3zIG3qa4W3/pages/d31VKYuUyTvZ9WJaO1Pj
 ---
 
 # Configure topology-aware volume provisioning
