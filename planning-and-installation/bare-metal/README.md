@@ -23,7 +23,7 @@ WEKA Software Appliance (WSA): a server image that includes a preconfigured oper
 
 WSA speeds up operating system deployment and WEKA software installation. To get WSA, contact the Customer Success Team, then install it on the servers. After installation, the server starts in STEM mode and is ready for configuration.
 
-Use this path when the WSA operating system meets your deployment requirements. This is the fastest supported path from bare metal to a working WEKA cluster.
+Use this path for existing WSA deployments. For new deployments, use Path B.
 
 ### Path B: Manual installation
 

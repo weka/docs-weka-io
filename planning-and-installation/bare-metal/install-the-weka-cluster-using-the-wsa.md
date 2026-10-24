@@ -23,7 +23,7 @@ Do not install the WSA using PXE boot. Boot the WSA image from virtual media, DV
 {% endhint %}
 
 {% hint style="info" %}
-WEKA releases WSA updates addressing critical security issues found in the underlying Linux distribution within five days of discovery and availability. Customers can update their WSA instance from the repository where these updates are provided. WEKA notifies customers when updates are available, enabling timely updates to minimize potential risks. For any questions, contact the Customer Success Team.
+For operating system updates on WSA servers, contact the Customer Success Team.
 {% endhint %}
 
 ## WSA deployment prerequisites
