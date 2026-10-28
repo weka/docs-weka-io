@@ -27,7 +27,7 @@ S3 does not support creating buckets on filesystems with names containing the ch
 5. In the Add S3 Bucket dialog, do the following:
    * **Bucket Name:** Set a bucket name according to the naming conventions.
    * **Filesystem:** Set the filesystem to host the bucket.
-   * **Use Existing Directory:** If you want to expose an existing directory, set its path. Make sure that the directory is not below the hierarchy of the already configured S3 bucket.
+   * **Use Existing Directory:** If you want to expose an existing directory, turn it on and set the path relative to the filesystem root. To use the filesystem root, set `.`. When this option is off, the system creates a directory named after the bucket. Make sure that the directory is not below the hierarchy of the already configured S3 bucket.
    * **Hard Quota:** Set the maximum capacity for the bucket. If you want to remove the hard quota setting, enter 0.
    * **Bucket Policy:** Select the policy to attach to the bucket: none, download, upload, public, or custom. If you select a custom policy, add it in JSON format.
 6. Select **Save**.
