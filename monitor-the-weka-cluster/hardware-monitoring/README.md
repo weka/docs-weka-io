@@ -6,7 +6,9 @@ description: Monitor the health of server hardware components, such as drives, m
 
 The cluster reads the health of each server's hardware components from the server's baseboard management controller (BMC). It keeps an inventory of the components, raises an alert when a component reports a problem or is no longer detected, and records an event when a component changes state or is replaced.
 
+{% hint style="danger" %}
 **INTERNAL, remove before publication. TBD (Ehud):** Which servers are supported: WekaPod 3 only, or any server with a Redfish BMC? The code resolves any BMC and handles AMI, Supermicro, and Dell iDRAC.
+{% endhint %}
 
 ## Monitored components
 
@@ -20,7 +22,9 @@ The inventory covers the components the BMC reports:
 * Fans
 * Chassis and drive bays
 
+{% hint style="danger" %}
 **INTERNAL, remove before publication. TBD (Ehud):** Confirm the component list and the type names the CLI shows, for example `drive` and `power_supply`.
+{% endhint %}
 
 ## How monitoring works
 
@@ -32,7 +36,9 @@ The inventory covers the components the BMC reports:
    * A component in the same slot with a new serial number is recorded as replaced.
 4. One container per server publishes the inventory to the cluster.
 
+{% hint style="danger" %}
 **INTERNAL, remove before publication. TBD (Ehud):** Is the 3-minute interval worth stating to customers?
+{% endhint %}
 
 ## Component states
 
@@ -45,7 +51,9 @@ The inventory covers the components the BMC reports:
 | `disabled` | The BMC reports the component as disabled. |
 | `missing` | The component was expected but is no longer reported. |
 
+{% hint style="danger" %}
 **INTERNAL, remove before publication. TBD (Ehud):** `identity-lost` appears as a reason, not a state. Document it?
+{% endhint %}
 
 ## Alerts and events
 
@@ -64,11 +72,15 @@ Events: HardwareComponentStateWorsened, HardwareComponentStateImproved, Hardware
 
 The CLI commands and the alerts work without an internet connection. To receive the alerts outside the cluster, deploy Local WEKA Home and create an integration: Email (SMTP), PagerDuty, SNMP trap, or Syslog.
 
+{% hint style="danger" %}
 **INTERNAL, remove before publication. TBD (Ehud):** Does Local WEKA Home show the hardware inventory, or only receive the alerts?
+{% endhint %}
 
 ## Hardware monitoring in NeuralMesh Observe
 
+{% hint style="danger" %}
 **INTERNAL, remove before publication. TBD (Ehud):** Inventory view and alerts view, with screenshots from a 6.1 cluster on physical servers connected to Cloud WEKA Home.
+{% endhint %}
 
 **Related topics**
 

@@ -8,7 +8,9 @@ description: Enable hardware monitoring, view the hardware inventory of a server
 
 Hardware monitoring reads component health from the server's BMC.
 
+{% hint style="danger" %}
 **INTERNAL, remove before publication. TBD (Ehud):** Is monitoring on by default on WekaPod 3, so this task applies only to other servers?
+{% endhint %}
 
 **Before you begin**
 
@@ -16,7 +18,9 @@ Hardware monitoring reads component health from the server's BMC.
 * The BMC address and credentials, unless the monitor finds the BMC on its own. The monitor finds it through the `redfish-localhost` DNS alias, the fixed address of a WekaPod 2.6 unit, or the BMC IP address that `ipmitool` reports.
 * Root access on the server.
 
+{% hint style="danger" %}
 **INTERNAL, remove before publication. TBD (Ehud):** Minimum BMC firmware or Redfish version?
+{% endhint %}
 
 **Procedure**
 
@@ -28,7 +32,9 @@ Hardware monitoring reads component health from the server's BMC.
 
    * Omit the BMC parameters when the monitor finds the BMC on its own.
 
+   {% hint style="danger" %}
    **INTERNAL, remove before publication. TBD (Ehud):** Which container to target with `--container`, and whether a restart or `weka local resources apply` is needed.
+   {% endhint %}
 2. Verify that the inventory lists the server's components:
 
    ```bash
@@ -57,7 +63,9 @@ View the inventory of any server from anywhere in the cluster, or of the local s
 
      Add `-v` to show the last-seen time, component ID, PCI address, MAC address, and port link state.
 
+{% hint style="danger" %}
 **INTERNAL, remove before publication. TBD (Ehud):** Output samples, reconstructed from the CLI renderer or taken from a WekaPod 3 cluster.
+{% endhint %}
 
 ## Forget a removed component
 
@@ -89,7 +97,9 @@ Reset the expected hardware after a planned change to many components of a serve
 After the reset, a component that is missing at the time of the reset is no longer reported as missing.
 {% endhint %}
 
+{% hint style="danger" %}
 **INTERNAL, remove before publication. TBD (Ehud):** When should a customer reset instead of forgetting a component? A motherboard or sled swap?
+{% endhint %}
 
 **Before you begin**
 
