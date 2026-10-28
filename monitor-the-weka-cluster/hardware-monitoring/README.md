@@ -72,13 +72,7 @@ The CLI commands and the alerts work without an internet connection. To receive 
 
 **Related topics**
 
-[enable-hardware-monitoring.md](enable-hardware-monitoring.md "mention")
-
-[view-the-hardware-inventory.md](view-the-hardware-inventory.md "mention")
-
-[forget-a-removed-component.md](forget-a-removed-component.md "mention")
-
-[reset-the-expected-hardware.md](reset-the-expected-hardware.md "mention")
+[manage-hardware-monitoring.md](manage-hardware-monitoring.md "mention")
 
 [list-of-alerts-and-corrective-actions.md](../../operation-guide/alerts/list-of-alerts-and-corrective-actions.md "mention")
 
