@@ -19,7 +19,7 @@ weka s3 bucket add <name> [--existing-path <string>] [--force] [--fs-id <fs-id>]
 | Parameter                   | Description                                                                                         |
 | --- | --- |
 | `name`\* | Name of the bucket to create. [Bucket Naming Limitations](../s3-limitations.md#bucket-naming-limitations) section |
-| `--existing-path` \<string> | Existing path to use for the bucket. |
+| `--existing-path` \<string> | Existing directory to expose as the bucket, relative to the filesystem root. To create the bucket on the filesystem root, set `.`. If omitted, the system creates a directory named after the bucket. |
 | `-f`, `--force` | Force when existing path has quota. |
 | `--fs-id` \<fs-id> | Filesystem ID for the bucket. |
 | `--fs-name` \<string> | Filesystem name for the bucket. |
