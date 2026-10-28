@@ -329,6 +329,7 @@ To use OFED 25.07, distributed with DOCA 3.1, run WEKA 5.1.33 or later. That rel
   * 400 GbE / 200 GbE / 100 GbE / 50GbE / 40 GbE / 25 GbE / 10 GbE.
 * **IEEE 802.1Q VLAN encapsulation:**
   * Supports VLAN tagging with a single VLAN tag on NVIDIA Mellanox NICs.
+  * Network spaces for native multi-tenancy use VLAN tagging and require an NVIDIA Mellanox NIC on every backend server. Broadcom NICs do not support VLAN tagging or network spaces. See [multi-tenancy-cluster-level-administration.md](../operation-guide/weka-native-multi-tenancy-management/multi-tenancy-cluster-level-administration.md "mention").
 * **VXLAN:**
   * Virtual Extensible LANs are not supported.
 * **DPDK backends and clients using NICs supporting shared networking (single IP):**
