@@ -6,8 +6,10 @@ description: Monitor the health of server hardware components, such as drives, m
 
 The cluster reads the health of each server's hardware components from the server's baseboard management controller (BMC). It keeps an inventory of the components, raises an alert when a component reports a problem or is no longer detected, and records an event when a component changes state or is replaced.
 
+Hardware monitoring is supported on WEKApod 3 servers.
+
 {% hint style="danger" %}
-**INTERNAL, remove before publication. TBD (Ehud):** Which servers are supported: WekaPod 3 only, or any server with a Redfish BMC? The code resolves any BMC and handles AMI, Supermicro, and Dell iDRAC.
+**INTERNAL, remove before publication. TBD (Sibrina):** Confirm the customer-facing product name for WEKApod 3, and whether WEKApod 2.6 is added after QA.
 {% endhint %}
 
 ## Monitored components

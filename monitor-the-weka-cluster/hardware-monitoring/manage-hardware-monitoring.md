@@ -9,7 +9,7 @@ description: Enable hardware monitoring, view the hardware inventory of a server
 Hardware monitoring reads component health from the server's BMC.
 
 {% hint style="danger" %}
-**INTERNAL, remove before publication. TBD (Ehud):** Is monitoring on by default on WekaPod 3, so this task applies only to other servers?
+**INTERNAL, remove before publication. TBD (Ehud):** Is monitoring on by default on WEKApod 3? If so, this task becomes a verification step.
 {% endhint %}
 
 **Before you begin**
@@ -64,7 +64,7 @@ View the inventory of any server from anywhere in the cluster, or of the local s
      Add `-v` to show the last-seen time, component ID, PCI address, MAC address, and port link state.
 
 {% hint style="danger" %}
-**INTERNAL, remove before publication. TBD (Ehud):** Output samples, reconstructed from the CLI renderer or taken from a WekaPod 3 cluster.
+**INTERNAL, remove before publication. TBD (Ehud):** Output samples, reconstructed from the CLI renderer or taken from a WEKApod 3 cluster.
 {% endhint %}
 
 ## Forget a removed component
