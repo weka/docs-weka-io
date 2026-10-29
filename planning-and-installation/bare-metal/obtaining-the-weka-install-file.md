@@ -49,14 +49,14 @@ You can only sign in and download the packages if you are a registered user.
 
 [get.weka.io](http://get.weka.io) page opens.
 
-<figure><img src="../../.gitbook/assets/2023-12-20_09-17-44 (2).jpg" alt=""><figcaption><p>get.weka.io dashboard</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/get.weka_dashboard.png" alt="get.weka.io dashboard showing the current release, Local WEKA Home, and the WEKA Operator, with a link to all release lines"><figcaption><p>get.weka.io dashboard</p></figcaption></figure>
 
 2. Do one of the following:
    * Select the required package from the dashboard.
-   * Select the **Releases** tab, select the required release, and follow the download instructions.\
+   * Select the **Release Lines** tab. Expand the release line, select the release, and then on the **Download** tab, copy the `curl` or `wget` command, or select the file to download it directly.\
      (The token in the download link is purposely blurred.)
 
-<figure><img src="../../.gitbook/assets/2023-12-20_09-18-13.jpg" alt=""><figcaption><p>Releases download page: tar file, WSA, and WMS (in a separate tab)</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/get.weka_release_lines.png" alt="Release Lines tab with a release selected, showing the curl, wget, and direct download options on the Download tab"><figcaption><p>Release Lines download page</p></figcaption></figure>
 
 ## What to do next?
 
