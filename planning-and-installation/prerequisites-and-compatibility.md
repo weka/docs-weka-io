@@ -283,6 +283,10 @@ The following network adapters support Ethernet and SR-IOV VF for clients only:
 Broadcom NICs are unsupported for guest VMs on KVM or VMware.
 {% endhint %}
 
+The following NVIDIA BlueField adapters are supported in NIC mode for clients only:
+
+<table><thead><tr><th width="199">Adapter</th><th width="114">Protocol</th><th>Supported features</th></tr></thead><tbody><tr><td>NVIDIA BlueField-3</td><td><p>Ethernet</p><p>InfiniBand</p></td><td><p>✅ LACP</p><p>✅ RDMA</p><p>✅ Mixed networks</p></td></tr><tr><td>NVIDIA BlueField-4</td><td><p>Ethernet</p><p>InfiniBand</p></td><td><p>✅ LACP</p><p>✅ RDMA</p><p>✅ Mixed networks</p></td></tr></tbody></table>
+
 ### OFED drivers
 
 OFED is not required for standard Ethernet deployments. OFED is required only when using LACP on a single NIC with dual ports to enable load balancing between the ports, on adapters that support LACP load balancing (CX-6 DX and CX-7-ETH dual-port). This requirement is driven by the NIC networking stack, not by WEKA.
