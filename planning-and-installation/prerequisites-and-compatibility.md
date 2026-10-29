@@ -289,7 +289,7 @@ The following NVIDIA BlueField adapters are supported in NIC mode for clients on
 
 ### OFED drivers
 
-OFED is not required for standard Ethernet deployments. OFED is required only when using LACP on a single NIC with dual ports to enable load balancing between the ports, on adapters that support LACP load balancing (CX-6 DX and CX-7-ETH dual-port). This requirement is driven by the NIC networking stack, not by WEKA.
+OFED is not required for standard Ethernet deployments. OFED is required only when using LACP on a single NIC with dual ports to enable load balancing between the ports, on adapters that support LACP load balancing (CX-6 DX, CX-7-ETH dual-port, CX-8, and BlueField-4). This requirement is driven by the NIC networking stack, not by WEKA.
 
 {% hint style="info" %}
 OFED is not a WEKA dependency. When required, it is due to NIC driver behavior needed to support LACP load balancing.
