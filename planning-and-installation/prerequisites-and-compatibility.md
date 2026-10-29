@@ -285,7 +285,8 @@ Broadcom NICs are unsupported for guest VMs on KVM or VMware.
 
 The following NVIDIA BlueField adapters are supported in NIC mode for clients only:
 
-<table><thead><tr><th width="199">Adapter</th><th width="114">Protocol</th><th>Supported features</th></tr></thead><tbody><tr><td>NVIDIA BlueField-3</td><td><p>Ethernet</p><p>InfiniBand</p></td><td><p>✅ LACP</p><p>✅ RDMA</p><p>✅ Mixed networks</p></td></tr><tr><td>NVIDIA BlueField-4</td><td><p>Ethernet</p><p>InfiniBand</p></td><td><p>✅ LACP</p><p>✅ RDMA</p><p>✅ Mixed networks</p></td></tr></tbody></table>
+* NVIDIA BlueField-3
+* NVIDIA BlueField-4
 
 ### OFED drivers
 
