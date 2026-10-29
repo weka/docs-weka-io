@@ -56,7 +56,7 @@ You can only sign in and download the packages if you are a registered user.
    * Select the **Release Lines** tab. Expand the release line, select the release, and then on the **Download** tab, copy the `curl` or `wget` command, or select the file to download it directly.\
      (The token in the download link is purposely blurred.)
 
-<div data-with-frame="true"><figure><img src="../../.gitbook/assets/get.weka_release_lines.png" alt="Release Lines tab with a release selected, showing the curl, wget, and direct download options on the Download tab"><figcaption><p>Release Lines download page</p></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/get.weka_release_lines.png" alt="Release Lines tab with release 5.1.42.17 selected, showing the curl, wget, and direct download options for the WEKA software tarball"><figcaption><p>Release Lines download page</p></figcaption></figure></div>
 
 ## What to do next?
 
