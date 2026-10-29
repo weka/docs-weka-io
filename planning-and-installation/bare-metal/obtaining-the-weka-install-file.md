@@ -48,7 +48,7 @@ The dashboard shows the current release, Local WEKA Home, and the WEKA Operator,
 
 The download link includes an access token. The capture masks this token.
 
-<div data-with-frame="true"><figure><img src="../../.gitbook/assets/get.weka_release_lines.png" alt="Release Lines tab with a release selected, showing the curl, wget, and direct download options for the WEKA software tarball"><figcaption><p>Release Lines download page</p></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/get.weka_release_lines.png" alt="Release Lines tab with release 5.1.42.17 selected, showing the curl, wget, and direct download options for the WEKA software tarball"><figcaption><p>Release Lines download page</p></figcaption></figure></div>
 
 ## Continue installation
 
