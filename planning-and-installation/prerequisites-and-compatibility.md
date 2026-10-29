@@ -268,6 +268,10 @@ The following network adapters support Ethernet and SR-IOV VF for clients only:
 * Broadcom BCM957508-P2100G
 * Broadcom BCM957608-P2200G
 
+The following NVIDIA BlueField adapter is supported in NIC mode for clients only:
+
+<table><thead><tr><th>Adapter</th><th width="126">Protocol</th><th>Supported features</th></tr></thead><tbody><tr><td>NVIDIA BlueField-3</td><td>Ethernet<br>InfiniBand</td><td><ul><li>LACP</li><li>RDMA</li><li>Mixed networks</li></ul></td></tr></tbody></table>
+
 ### OFED drivers
 
 OFED is not required for standard Ethernet deployments. OFED is required only when using LACP on a single NIC with dual ports to enable proper load balancing between the ports. This requirement is driven by the NIC networking stack, not by WEKA.
