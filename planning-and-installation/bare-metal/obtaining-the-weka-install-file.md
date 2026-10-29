@@ -38,17 +38,17 @@ Download the package for your installation path.
 
 1. Open [get.weka.io](https://get.weka.io/ui/dashboard), then sign in.
 
-The dashboard lists available installation packages.
+The dashboard shows the current release, Local WEKA Home, and the WEKA Operator, with a link to all release lines.
 
-<div data-with-frame="true"><figure><img src="../../.gitbook/assets/get.weka_dashboard.png" alt="get.weka.io dashboard showing available installation packages"><figcaption><p>get.weka.io dashboard</p></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/get.weka_dashboard.png" alt="get.weka.io dashboard showing the current release, Local WEKA Home, and the WEKA Operator, with a link to all release lines"><figcaption><p>get.weka.io dashboard</p></figcaption></figure></div>
 
 2. Download the required package:
    * For automated installation with WSA, contact the Customer Success Team to get the WSA image.
-   * For manual installation, select **Releases**, select the required release, then download the WEKA software tarball.
+   * For manual installation, select the **Release Lines** tab. Expand the release line, select the release, and then on the **Download** tab, download the WEKA software tarball.
 
 The download link includes an access token. The capture masks this token.
 
-<div data-with-frame="true"><figure><img src="../../.gitbook/assets/get.weka_releases.png" alt="Releases page showing the WEKA software tarball download link"><figcaption><p>Releases download page</p></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/get.weka_release_lines.png" alt="Release Lines tab with a release selected, showing the curl, wget, and direct download options for the WEKA software tarball"><figcaption><p>Release Lines download page</p></figcaption></figure></div>
 
 ## Continue installation
 
