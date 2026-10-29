@@ -56,7 +56,7 @@ You can only sign in and download the packages if you are a registered user.
    * Select the **Release Lines** tab. Expand the release line, select the release, and then on the **Download** tab, copy the `curl` or `wget` command, or select the file to download it directly.\
      (The token in the download link is purposely blurred.)
 
-<figure><img src="../../.gitbook/assets/get.weka_release_lines.png" alt="Release Lines tab with a release selected, showing the curl, wget, and direct download options on the Download tab"><figcaption><p>Release Lines download page</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/get.weka_release_lines.png" alt="Release Lines tab listing each release line with its status and planned end of life"><figcaption><p>Release Lines page</p></figcaption></figure>
 
 ## What to do next?
 
