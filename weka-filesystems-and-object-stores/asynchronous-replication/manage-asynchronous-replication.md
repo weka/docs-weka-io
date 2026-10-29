@@ -79,7 +79,7 @@ If a link to the other cluster already exists on either cluster, the command rep
 weka replication link
 ```
 
-Confirm that **Connection** shows `connected` and **Pairing** shows `mutual`. Record the link **ID**. You use it to create replication pairs.
+Confirm that **Connection** shows `connected`. Record the link **ID**. You use it to create replication pairs.
 
 A link is identified by its ID. Its name follows the name of the other cluster, so two links can have the same name. Every `weka replication link` command, and `weka replication fs-pair add --link-id`, takes the ID.
 
@@ -108,7 +108,7 @@ The replication policy determines the replication interval, which paths are copi
 **Before you begin**
 
 * Choose the copy option and access strategy for the workload. See [.](./ "mention"). For a full data copy, ensure the target capacity is at least the source filesystem size.
-* Ensure the link to the target cluster shows **Connection** `connected` or `degraded` and **Pairing** `mutual` in `weka replication link`.
+* Ensure the link to the target cluster shows **Connection** `connected` or `degraded` in `weka replication link`.
 * Ensure the target cluster has a filesystem group with the same name as the group of the source filesystem. The target filesystem is created in that group.
 
 **Procedure**
@@ -220,7 +220,7 @@ Common causes are a slow or broken connection to the linked cluster, an S3 servi
 
 ### View replication link health
 
-Check the connection and pairing status of each replication link. The status reflects the management endpoints of the other cluster. To check its S3 service, watch the **Last Error** column of the pairs that use the link, and the replication interval alerts. If **Last Error** reports an S3 authentication failure, contact the Customer Success Team.
+Check the connection status of each replication link. The status reflects the management endpoints of the other cluster. To check its S3 service, watch the **Last Error** column of the pairs that use the link, and the replication interval alerts. If **Last Error** reports an S3 authentication failure, contact the Customer Success Team.
 
 **Procedure**
 
@@ -232,9 +232,9 @@ weka replication link
 
 To include the link UID, data IPs, and data port, add `-v`.
 
-2. Check the **Connection** and **Pairing** columns:
+2. Check the **Connection** column:
 
-<table><thead><tr><th width="114.98828125">Column</th><th width="134.7578125">Value</th><th>Meaning</th></tr></thead><tbody><tr><td>Connection</td><td><code>connected</code></td><td>Every management endpoint of the other cluster answers.</td></tr><tr><td>Connection</td><td><code>degraded</code></td><td>Some management endpoints of the other cluster answer.</td></tr><tr><td>Connection</td><td><code>disconnected</code></td><td>No management endpoint of the other cluster answers.</td></tr><tr><td>Pairing</td><td><code>mutual</code></td><td>The other cluster holds a matching link.</td></tr><tr><td>Pairing</td><td><code>local-only</code></td><td>The other cluster holds no matching link. To repair it, remove the link and add it again.</td></tr><tr><td>Pairing</td><td><code>unknown</code></td><td>No management endpoint of the other cluster answers, so the pairing can’t be determined.</td></tr></tbody></table>
+<table><thead><tr><th width="134.7578125">Value</th><th>Meaning</th></tr></thead><tbody><tr><td><code>connected</code></td><td>Every management endpoint of the other cluster answers, and the other cluster holds a matching link.</td></tr><tr><td><code>degraded</code></td><td>The other cluster holds a matching link, and some of its management endpoints answer.</td></tr><tr><td><code>unpaired</code></td><td>The other cluster answers but holds no matching link. To repair it, remove the link and add it again.</td></tr><tr><td><code>disconnected</code></td><td>No management endpoint of the other cluster answers.</td></tr></tbody></table>
 
 ## Modify the replication policy
 
@@ -512,7 +512,7 @@ After a failover, return replication and clients to the original source cluster 
 
 **Before you begin**
 
-* Confirm that the original source cluster is running. On the former target cluster, run `weka replication link` and check that the link shows **Connection** `connected` or `degraded` and **Pairing** `mutual`.
+* Confirm that the original source cluster is running. On the former target cluster, run `weka replication link` and check that the link shows **Connection** `connected` or `degraded`.
 * After a disaster failover, the original source cluster still lists the old pair, in the `ERROR` state. Remove it on that cluster with `weka replication fs-pair remove <pair ID>`. A pair in the `ERROR` state does not need to be paused. After a planned failover, the pair is already removed from both clusters.
 * Choose the filesystem name on the original source cluster. The replication pair creates this filesystem in its first cycle, so the name must not exist there. Use a new name, or remove the original filesystem first.
 
