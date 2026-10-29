@@ -42,15 +42,15 @@ You can only sign in and download the packages if you are a registered user.
 
 1. Go to the [get.weka.io](https://get.weka.io/ui/dashboard) download site, and sign in with your registered account.
 
-<div data-with-frame="true"><figure><img src="../../.gitbook/assets/get.weka_dashboard.png" alt=""><figcaption><p>get.weka.io dashboard</p></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/get.weka_dashboard.png" alt="get.weka.io dashboard showing the current release, Local WEKA Home, and the WEKA Operator, with a link to all release lines"><figcaption><p>get.weka.io dashboard</p></figcaption></figure></div>
 
 2. Download the required package:
    * Select the package from the dashboard.
-   * Or, select the **Releases** tab. Select the required release, then follow the download instructions.
+   * Or, select the **Release Lines** tab. Expand the release line, select the release, and then on the **Download** tab, copy the `curl` or `wget` command, or select the file to download it directly.
 
 The download-link token is intentionally blurred in the image.
 
-<div data-with-frame="true"><figure><img src="../../.gitbook/assets/get.weka_releases.png" alt=""><figcaption><p>Releases download page</p></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/get.weka_release_lines.png" alt="Release Lines tab with release 6.0.1 selected, showing the curl, wget, and direct download options on the Download tab"><figcaption><p>Release Lines download page</p></figcaption></figure></div>
 
 ## What to do next?
 
