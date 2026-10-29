@@ -24,6 +24,10 @@ This topic covers management sign-in. For S3 access with OIDC, see [Configure S3
   * The **issuer URL**, for example `https://login.microsoftonline.com/<directory-id>/v2.0`.
   * The **client ID**, which is the application ID.
   * A **client secret**, only if you register the application as a confidential client.
+* In the Entra ID application, register the redirect URIs for browser sign-in:
+  * **GUI:** `https://<address>/auth/callback` for each address users open the GUI at. These are the origins you set with `--redirect-uris`, followed by `/auth/callback`.
+  * **CLI:** `http://127.0.0.1/auth/callback`. The CLI uses a different port at each sign-in, and Entra ID ignores the port of a loopback redirect URI. Add this URI in the application manifest, in `replyUrlsWithType`. The **Redirect URIs** box in the Entra admin center accepts only `https` loopback addresses.
+  * Sign-in with `--use-device-code` needs no redirect URI.
 * Choose how users receive their WEKA role. Use one method per connector:
   * **App roles:** In the application, create app roles whose values are WEKA role names, and assign users or groups to them. The values are `ClusterAdmin`, `TenantAdmin`, `ReadOnly`, `Regular`, or `QuotaManager`. Matching ignores case.
   * **Group mapping:** Configure the application to include group claims in the token, then map each group to a WEKA role on the cluster. See [Map groups to roles](#map-groups-to-roles).
@@ -31,7 +35,7 @@ This topic covers management sign-in. For S3 access with OIDC, see [Configure S3
 * In a tenant other than the root tenant, `ClusterAdmin` is not granted. Use `TenantAdmin` instead.
 
 {% hint style="danger" %}
-**INTERNAL, remove before publication. TBD (Navin Adarsh Gunamani):** Which redirect URIs must be registered in the Entra ID application, for the GUI and for the CLI browser sign-in? The CLI listens on `127.0.0.1`, and it is unclear whether Entra ID accepts that or requires `localhost`. Also confirm whether **Allow public client flows** must be enabled for `--use-device-code`.
+**INTERNAL, remove before publication. TBD (Navin Adarsh Gunamani):** (1) Under which Entra ID platform are the two redirect URIs registered: **Web** or **Mobile and desktop applications**? The cluster, not the browser, redeems the authorization code. (2) Must **Allow public client flows** be enabled for `--use-device-code`, or for a public client without a secret? (3) The `amr` claim that MFA checking reads: is any Entra ID configuration needed for the token to carry it?
 {% endhint %}
 
 ## Configure the OIDC connector
