@@ -365,7 +365,7 @@ When assigning a network device to the WEKA system, no other application can cre
 
 {% tabs %}
 {% tab title="InfiniBand drivers" %}
-The cluster supports the following Nvidia major OFED versions for the InfiniBand adapters:
+The cluster supports the following NVIDIA major OFED versions for the InfiniBand adapters:
 
 * 24.10
 * 24.04
