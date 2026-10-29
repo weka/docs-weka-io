@@ -65,6 +65,7 @@ The following EC2 instance models can operate as **client** instances. The defau
 | C6in              | c6in.2xlarge, c6in.4xlarge, c6in.8xlarge, c6in.12xlarge, c6in.16xlarge, c6in.24xlarge, c6in.32xlarge        |
 | C7a               | c7a.2xlarge, c7a.4xlarge, c7a.8xlarge, c7a.12xlarge, c7a.16xlarge, c7a.24xlarge, c7a.32xlarge, c7a.48xlarge |
 | C7g               | c7g.2xlarge, c7g.4xlarge, c7g.8xlarge, c7g.12xlarge, c7g.16xlarge                                           |
+| C7gn              | c7gn.2xlarge, c7gn.4xlarge, c7gn.8xlarge, c7gn.12xlarge, c7gn.16xlarge                                      |
 | C7gd              | c7gd.2xlarge, c7gd.4xlarge, c7gd.8xlarge, c7gd.12xlarge, c7gd.16xlarge                                      |
 | C7i               | c7i.2xlarge, c7i.4xlarge, c7i.8xlarge, c7i.12xlarge, c7i.16xlarge, c7i.24xlarge, cC7i.48xlarge              |
 
@@ -101,13 +102,15 @@ The following EC2 instance models can operate as **client** instances. The defau
 | G5                | g5.xlarge, g5.2xlarge, g5.4xlarge, g5.8xlarge, g5.12xlarge, g5.16xlarge                           |
 | G5g               | g5g.2xlarge, g5g.4xlarge, g5g.8xlarge, g5g.16xlarge                                               |
 | G6                | g6.xlarge, g6.2xlarge, g6.4xlarge, g6.8xlarge, g6.12xlarge, g6.16xlarge, g6.24xlarge, g6.48xlarge |
+| G6e               | g6e.2xlarge, g6e.4xlarge, g6e.8xlarge, g6e.12xlarge, g6e.16xlarge, g6e.24xlarge, g6e.48xlarge     |
 | GR6               | gr6.4xlarge, gr6.8xlarge                                                                          |
 | Inf1              | inf1.2xlarge, inf1.6xlarge, inf1.24xlarge                                                         |
 | Inf2              | inf2.xlarge, inf2.8xlarge, inf2.24xlarge, inf2.48xlarge                                           |
 | P2                | p2.xlarge, p2.8xlarge, p2.16xlarge                                                                |
 | P3                | p3.2xlarge, p3.8xlarge, p3.16xlarge                                                               |
 | P4                | p4d.24xlarge, p4de.24xlarge                                                                       |
-| P5                | p5.48xlarge                                                                                       |
+| P5                | p5.48xlarge, p5e.48xlarge                                                                         |
+| P6                | p6-b200.48xlarge                                                                                  |
 | Trn1              | trn1.2xlarge, trn1.32xlarge , trn1n.32xlarge                                                      |
 
 ### Storage optimized
@@ -122,7 +125,9 @@ The following EC2 instance models can operate as **client** instances. The defau
 | ----------------- | ---------------------------------------------- |
 | HPc6              | hpc6.48xlarge                                  |
 | HPc6a             | hpc6a.48xlarge                                 |
+| HPc6id            | hpc6id.32xlarge                                |
 | HPc7a             | hpc7a.12xlarge, hpc7a.48xlarge, hpc7a.96xlarge |
+| HPc7g             | hpc7g.4xlarge, hpc7g.8xlarge, hpc7g.16xlarge   |
 
 **Related information**
 
