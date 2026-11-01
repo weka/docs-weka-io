@@ -190,7 +190,7 @@ weka user update <username> [--posix-gid <uint32>] [--posix-uid <uint32>] [--rol
 | `username`\* | Username of user to update. |
 | `--posix-gid` \<uint32> | POSIX group ID for user. Used for S3 only. |
 | `--posix-uid` \<uint32> | POSIX user ID for user. Used for S3 only. |
-| `--role` \<user-role> | New role to set for the user. Possible values: `regular`, `s3`,`readonly`, `tenantadmin` or `clusteradmin` |
+| `--role` \<user-role> | New role to set for the user. Possible values: `clusteradmin`, `csi`, `tenantadmin`, `readonly`, `regular`, `s3` |
 
 ## Delete a local user
 
