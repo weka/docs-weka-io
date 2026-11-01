@@ -147,7 +147,7 @@ Use the following command line to update a local user:
 
 **Parameters**
 
-<table><thead><tr><th width="181">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>username</code>*</td><td>Name of an existing user.<br>It must be a valid local user.</td></tr><tr><td><code>role</code></td><td>Updated user role.<br>Possible values: <code>regular</code>, <code>s3</code>,<code>readonly</code>, <code>orgadmin</code> or <code>clusteradmin</code></td></tr><tr><td><code>posix-uid</code></td><td>POSIX UID of underlying files representing objects created by this S3 user access/keys credentials.<br>For S3 user roles only.</td></tr><tr><td><code>posix-gid</code></td><td>POSIX GID of underlying files representing objects created by this S3 user access/keys credentials.<br>For S3 user roles only.</td></tr></tbody></table>
+<table><thead><tr><th width="181">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>username</code>*</td><td>Name of an existing user.<br>It must be a valid local user.</td></tr><tr><td><code>role</code></td><td>Updated user role.<br>Possible values: <code>clusteradmin</code>, <code>csi</code>, <code>orgadmin</code>, <code>readonly</code>, <code>regular</code>, <code>s3</code></td></tr><tr><td><code>posix-uid</code></td><td>POSIX UID of underlying files representing objects created by this S3 user access/keys credentials.<br>For S3 user roles only.</td></tr><tr><td><code>posix-gid</code></td><td>POSIX GID of underlying files representing objects created by this S3 user access/keys credentials.<br>For S3 user roles only.</td></tr></tbody></table>
 
 ## Delete a local user
 
