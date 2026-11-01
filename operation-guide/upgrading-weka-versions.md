@@ -33,7 +33,7 @@ For lifecycle details, see [Release support and commitments](../support/release-
 
 * **Upgrade direction:** Always upgrade from older to newer versions.
 * **Release Line progression:** Upgrade across consecutive supported Release Lines. If a multi-hop path is required, complete one Release Line at a time.
-* **Compatibility basis:** Compatibility is determined by the release date of the target version relative to the source version and by the supported source range for that target version.
+* **Compatibility basis:** A target version supports upgrades from source versions whose fixes it already includes, within the supported source range for that target version. A service pack on an older Release Line can include fixes that reach the newer Release Line only in a later service pack. In that case, upgrade to the later service pack.
 * **Client upgrades:** Clients are supported if they are at most one Release Line behind the backend. In multi-hop upgrades, upgrade the clients before the cluster at each hop.
 * **SCMC deployments:** The `client-target-version` parameter must be identical across all clusters and compatible with the target backend version. See [Mount filesystems from Single Client to Multiple Clusters (SCMC)](../weka-filesystems-and-object-stores/mounting-filesystems/mount-fs-from-scmc.md).
 * **Reference information:** For exact supported source and target combinations, see the upgrade section at [get.weka.io](https://get.weka.io).
