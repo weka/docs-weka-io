@@ -30,7 +30,7 @@ WEKA uses a structured versioning scheme to indicate the scope and type of chang
 ## Version compatibility guidelines
 
 * **Upgrade direction:** Upgrades must always progress from older to newer versions.
-* **Compatibility basis:** Compatibility is determined by the release date of the target version relative to the source version.
+* **Compatibility basis:** A target version supports upgrades from source versions whose fixes it already includes, within the supported source range for that target version. A service pack on an older Release Line can include fixes that reach the newer Release Line only in a later service pack. In that case, upgrade to the later service pack.
 * **Major version upgrades:** Upgrades must follow consecutive order (for example, 4.2  → 4.3). LTS releases upgrade to Innovation, and Innovation releases upgrade to the next LTS.
 * **LTS upgrades:** Clusters and clients can be upgraded between consecutive LTS releases (for example, 4.2.6 and above may be upgraded to the latest minor release of 4.4).
 * **Client upgrades:** Clients are supported if they are at most one major version behind the backend. For example, 4.2 client → 4.4 backend target version.
