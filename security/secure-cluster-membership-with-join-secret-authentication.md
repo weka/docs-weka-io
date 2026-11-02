@@ -17,7 +17,7 @@ Join secret authentication is not supported on cloud deployments.
 Join secret authentication is enabled during cluster creation by specifying a secret:
 
 ```
-weka cluster add --join-secret <join-secret>
+weka cluster add <hostnames>... --join-secret <join-secret>
 ```
 
 The `<join-secret>` acts as a shared credential required for all backend containers that need to join the cluster.
