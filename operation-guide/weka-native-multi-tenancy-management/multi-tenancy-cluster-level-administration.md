@@ -280,22 +280,20 @@ A network space must be created in advance by a ClusterAdmin. You cannot assign 
 
 {% code overflow="wrap" %}
 ```bash
-weka tenant network-space add [--tenant tenant]
-                              [<network-spaces>]...
+weka tenant network-space add <network-spaces>... [--tenant <tenant>]
 ```
 {% endcode %}
 
 ```bash
-weka tenant network-space remove [--tenant tenant]
-                                 [<network-spaces>]...
+weka tenant network-space remove <network-spaces>... [--tenant <tenant>]
 ```
 
 **Parameters**
 
 | Parameter           | Description                                                                                 |
 | ------------------- | ------------------------------------------------------------------------------------------- |
-| `tenant`\*          | Tenant name (default: current user's tenant).                                               |
-| `network-spaces`... | Network space names to add to or remove from a tenant (can be repeated or comma-separated). |
+| `network-spaces`...\* | Network space names to add to or remove from a tenant (can be repeated or comma-separated). |
+| `--tenant`            | Tenant name (default: current user's tenant).                                               |
 
 **Update tenant quotas**
 
@@ -316,8 +314,7 @@ weka tenant set-quota <tenant> [--ssd-quota <ssd-quota>]
 
 {% code overflow="wrap" %}
 ```bash
-weka tenant update <tenant> [--enforce-fs-authentication enforce-fs-authentication]
-                            [--enforce-mount-netspace-access enforce-mount-netspace-access]
+weka tenant update <tenant> [--enforce-fs-authentication] [--enforce-mount-netspace-access]
 ```
 {% endcode %}
 
