@@ -43,31 +43,31 @@ weka smb cluster create <netbios-name> <domain> <config-fs-name> --container-ids
 **Parameters**
 
 | Parameter                                              | Description                                                                                                                                                                                                                                                                                                          |
-| --- | --- |
-| `netbios-name`\* | NetBIOS name for the SMB cluster. |
-| `domain`\* | Domain name for the SMB cluster. |
-| `config-fs-name`\* | Filesystem name for SMB configuration storage. For details, see #dedicated-filesystem-requirement-for-cluster-wide-persistent-protocol-configurations |
-| `--container-ids` \<container-ids>\*… | Containers that will serve SMB protocol. Multiple values may be supplied separated by commas, or the option may be repeated. |
-| `--default-domain-mapping-from-id` \<uint32> | Default domain ID mapping range start. |
-| `--default-domain-mapping-to-id` \<uint32> | Default domain ID mapping range end. |
-| `--domain-netbios-name` \<string> | Domain NetBIOS name. |
-| `--encryption` \<smb-cluster-encryption> | Cluster encryption mode. |
-| `--idmap-backend` \<smb-idmap-backend> | ID mapping backend type. Possible values: rfc2307 or rid |
-| `--joined-domain-mapping-from-id` \<uint32> | Joined domain ID mapping range start. |
-| `--joined-domain-mapping-to-id` \<uint32> | Joined domain ID mapping range end. |
-| `--ldap-bind-dn` \<string> | LDAP bind DN used by SSSD. |
-| `--ldap-bind-password` \<string> | LDAP bind password used by SSSD. |
-| `--ldap-domain` \<string> | LDAP domain used by SSSD. |
-| `--ldap-search-base` \<string> | LDAP search base used by SSSD. |
-| `--ldap-uri` \<string> | LDAP server URI used by SSSD. |
-| `--posix-resolution-mode` \<smb-posix-resolution-mode> | POSIX UID/GID resolution mode for SMB-W: 'ad' or 'nss'. |
-| `--prompt-ldap-bind-password` | Prompt interactively for the LDAP bind password instead of passing it on the command line. |
-| `--scale-out-mode` \<smb-scale-out-mode> | Scale-out mode. |
-| `--smb-conf-extra` \<string> | Additional smb.conf configuration. |
-| `--smb-ips-pool` \<ips>… | SMB floating IP addresses. Multiple values may be supplied separated by commas, or the option may be repeated. |
-| `--smb-ips-range` \<ips>… | SMB floating IP address range. Multiple values may be supplied separated by commas, or the option may be repeated. |
-| `--symlink` | Enable symlink support. |
-| `--userdb-trusted-domains` | Enumerate the trusted domains and their domain controllers when the SMB server starts (enabled by default). Set to false in large Active Directory environments where the enumeration times out and the SMB server keeps restarting. While it is off, users from trusted domains cannot be resolved and lose access. |
+| ------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `netbios-name`\*                                       | NetBIOS name for the SMB cluster.                                                                                                                                                                                                                                                                                    |
+| `domain`\*                                             | Domain name for the SMB cluster.                                                                                                                                                                                                                                                                                     |
+| `config-fs-name`\*                                     | Filesystem name for SMB configuration storage. For details, see #dedicated-filesystem-requirement-for-cluster-wide-persistent-protocol-configurations                                                                                                                                                                |
+| `--container-ids` \<container-ids>\*…                  | Containers that will serve SMB protocol. Multiple values may be supplied separated by commas, or the option may be repeated.                                                                                                                                                                                         |
+| `--default-domain-mapping-from-id` \<uint32>           | Default domain ID mapping range start.                                                                                                                                                                                                                                                                               |
+| `--default-domain-mapping-to-id` \<uint32>             | Default domain ID mapping range end.                                                                                                                                                                                                                                                                                 |
+| `--domain-netbios-name` \<string>                      | Domain NetBIOS name.                                                                                                                                                                                                                                                                                                 |
+| `--encryption` \<smb-cluster-encryption>               | Cluster encryption mode.                                                                                                                                                                                                                                                                                             |
+| `--idmap-backend` \<smb-idmap-backend>                 | ID mapping backend type. Possible values: rfc2307 or rid                                                                                                                                                                                                                                                             |
+| `--joined-domain-mapping-from-id` \<uint32>            | Joined domain ID mapping range start.                                                                                                                                                                                                                                                                                |
+| `--joined-domain-mapping-to-id` \<uint32>              | Joined domain ID mapping range end.                                                                                                                                                                                                                                                                                  |
+| `--ldap-bind-dn` \<string>                             | LDAP bind DN used by SSSD.                                                                                                                                                                                                                                                                                           |
+| `--ldap-bind-password` \<string>                       | LDAP bind password used by SSSD.                                                                                                                                                                                                                                                                                     |
+| `--ldap-domain` \<string>                              | LDAP domain used by SSSD.                                                                                                                                                                                                                                                                                            |
+| `--ldap-search-base` \<string>                         | LDAP search base used by SSSD.                                                                                                                                                                                                                                                                                       |
+| `--ldap-uri` \<string>                                 | LDAP server URI used by SSSD.                                                                                                                                                                                                                                                                                        |
+| `--posix-resolution-mode` \<smb-posix-resolution-mode> | POSIX UID/GID resolution mode for SMB-W: 'ad' or 'nss'.                                                                                                                                                                                                                                                              |
+| `--prompt-ldap-bind-password`                          | Prompt interactively for the LDAP bind password instead of passing it on the command line.                                                                                                                                                                                                                           |
+| `--scale-out-mode` \<smb-scale-out-mode>               | Scale-out mode.                                                                                                                                                                                                                                                                                                      |
+| `--smb-conf-extra` \<string>                           | Additional smb.conf configuration.                                                                                                                                                                                                                                                                                   |
+| `--smb-ips-pool` \<ips>…                               | SMB floating IP addresses. Multiple values may be supplied separated by commas, or the option may be repeated.                                                                                                                                                                                                       |
+| `--smb-ips-range` \<ips>…                              | SMB floating IP address range. Multiple values may be supplied separated by commas, or the option may be repeated.                                                                                                                                                                                                   |
+| `--symlink`                                            | Enable symlink support.                                                                                                                                                                                                                                                                                              |
+| `--userdb-trusted-domains`                             | Enumerate the trusted domains and their domain controllers when the SMB server starts (enabled by default). Set to false in large Active Directory environments where the enumeration times out and the SMB server keeps restarting. While it is off, users from trusted domains cannot be resolved and lose access. |
 
 ### Guidelines for configuring an SMB cluster
 
@@ -86,11 +86,11 @@ weka smb cluster create <netbios-name> <domain> <config-fs-name> --container-ids
   * If global options for the SMB library need adjustment, contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md).
 
 **Example command:**\
-In this example, an SMB cluster named `wekaSMB` is created using containers 0-4, within the domain `mydomain`. The cluster is configured with virtual IPs ranging from 1.1.1.1 to 1.1.1.5.
+In this example, an SMB cluster named `wekaSMB` is created using containers 0-4, within the domain `mydomain`, with its configuration stored on the `.config_fs` filesystem. The cluster is configured with virtual IPs ranging from 1.1.1.1 to 1.1.1.5.
 
 {% code overflow="wrap" %}
 ```bash
-weka smb cluster create wekaSMB mydomain --container-ids 0,1,2,3,4 --smb-ips-pool 1.1.1.1,1.1.1.2 --smb-ips-range 1.1.1.3-5  
+weka smb cluster create wekaSMB mydomain .config_fs --container-ids 0,1,2,3,4 --smb-ips-pool 1.1.1.1,1.1.1.2 --smb-ips-range 1.1.1.3-5  
 ```
 {% endcode %}
 
@@ -107,14 +107,14 @@ weka smb cluster update [--encryption <smb-cluster-encryption>] [--force] [--idm
 **Parameters**
 
 | Parameter                                              | Description                                                                                                                                                                                                                                                                                                          |
-| --- | --- |
-| `--encryption` \<smb-cluster-encryption> | Cluster encryption mode. |
-| `-f`, `--force` | Force action. Perform this action without further confirmation. |
-| `--idmap-backend` \<smb-idmap-backend> | ID mapping backend type. Required when switching --posix-resolution-mode to 'ad'; mutually exclusive with --posix-resolution-mode nss. |
-| `--posix-resolution-mode` \<smb-posix-resolution-mode> | Change POSIX UID/GID resolution mode: 'ad' (resolve via the joined Active Directory) or 'nss' (resolve via NSS/SSSD against external LDAP; requires at least one LDAP domain already configured). Flipping the mode bounces the SMB cluster. |
-| `--smb-ips-pool` \<ips>… | SMB floating IP addresses. Multiple values may be supplied separated by commas, or the option may be repeated. |
-| `--smb-ips-range` \<ips>… | SMB floating IP address range. Multiple values may be supplied separated by commas, or the option may be repeated. |
-| `--userdb-trusted-domains` | Enumerate the trusted domains and their domain controllers when the SMB server starts (enabled by default). Set to false in large Active Directory environments where the enumeration times out and the SMB server keeps restarting. While it is off, users from trusted domains cannot be resolved and lose access. |
+| ------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `--encryption` \<smb-cluster-encryption>               | Cluster encryption mode.                                                                                                                                                                                                                                                                                             |
+| `-f`, `--force`                                        | Force action. Perform this action without further confirmation.                                                                                                                                                                                                                                                      |
+| `--idmap-backend` \<smb-idmap-backend>                 | ID mapping backend type. Required when switching --posix-resolution-mode to 'ad'; mutually exclusive with --posix-resolution-mode nss.                                                                                                                                                                               |
+| `--posix-resolution-mode` \<smb-posix-resolution-mode> | Change POSIX UID/GID resolution mode: 'ad' (resolve via the joined Active Directory) or 'nss' (resolve via NSS/SSSD against external LDAP; requires at least one LDAP domain already configured). Flipping the mode bounces the SMB cluster.                                                                         |
+| `--smb-ips-pool` \<ips>…                               | SMB floating IP addresses. Multiple values may be supplied separated by commas, or the option may be repeated.                                                                                                                                                                                                       |
+| `--smb-ips-range` \<ips>…                              | SMB floating IP address range. Multiple values may be supplied separated by commas, or the option may be repeated.                                                                                                                                                                                                   |
+| `--userdb-trusted-domains`                             | Enumerate the trusted domains and their domain controllers when the SMB server starts (enabled by default). Set to false in large Active Directory environments where the enumeration times out and the SMB server keeps restarting. While it is off, users from trusted domains cannot be resolved and lose access. |
 
 {% hint style="info" %}
 Symlink support is set when the SMB cluster is created, using the `--symlink` option of `weka smb cluster create`. It is not part of `weka smb cluster update`, so you cannot change it on an existing SMB cluster.
@@ -143,14 +143,14 @@ weka smb domain join <username> [<password>] [--create-computer <string>] [--deb
 **Parameters**
 
 | Parameter                     | Description                                              |
-| --- | --- |
-| `username`\* | Domain admin username. |
-| `password` | Domain admin password. If omitted, you will be prompted. |
-| `--create-computer` \<string> | Organizational unit for the computer account. |
-| `--debug` | Enable debug output. |
-| `--extra-options` \<string> | Extra options for the domain join. |
-| `--server` \<string> | Domain controller server address. |
-| `-t`, `--timeout` \<duration> | Timeout for the domain join operation. |
+| ----------------------------- | -------------------------------------------------------- |
+| `username`\*                  | Domain admin username.                                   |
+| `password`                    | Domain admin password. If omitted, you will be prompted. |
+| `--create-computer` \<string> | Organizational unit for the computer account.            |
+| `--debug`                     | Enable debug output.                                     |
+| `--extra-options` \<string>   | Extra options for the domain join.                       |
+| `--server` \<string>          | Domain controller server address.                        |
+| `-t`, `--timeout` \<duration> | Timeout for the domain join operation.                   |
 
 To join an existing SMB cluster to another Active Directory domain, leave the current Active Directory using the following command line:
 
@@ -175,7 +175,7 @@ weka smb cluster destroy [--force]
 **Parameters**
 
 | Parameter       | Description                                                     |
-| --- | --- |
+| --------------- | --------------------------------------------------------------- |
 | `-f`, `--force` | Force action. Perform this action without further confirmation. |
 
 ## Add or remove SMB cluster containers
@@ -197,16 +197,15 @@ weka smb cluster containers remove --container-ids <container-ids>… [--force]
 **Parameters**
 
 | Parameter                             | Description                                                                                                |
-| --- | --- |
+| ------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
 | `--container-ids` \<container-ids>\*… | SMB containers to add. Multiple values may be supplied separated by commas, or the option may be repeated. |
-| `-f`, `--force` | Force action. Perform this action without further confirmation. |
+| `-f`, `--force`                       | Force action. Perform this action without further confirmation.                                            |
 
 {% hint style="info" %}
 This operation might take some time to complete. During that time, SMB IOs are stalled.
 {% endhint %}
 
 ## Configure trusted domains <a href="#configure-trusted-domains" id="configure-trusted-domains"></a>
-
 
 ### List trusted domains
 
@@ -231,10 +230,10 @@ weka smb cluster trusted-domains add <domain-name> <from-id> <to-id> [--force]
 **Parameters**
 
 | Parameter       | Description                                                     |
-| --- | --- |
-| `domain-name`\* | Trusted domain name. |
-| `from-id`\* | ID mapping range start. |
-| `to-id`\* | ID mapping range end. |
+| --------------- | --------------------------------------------------------------- |
+| `domain-name`\* | Trusted domain name.                                            |
+| `from-id`\*     | ID mapping range start.                                         |
+| `to-id`\*       | ID mapping range end.                                           |
 | `-f`, `--force` | Force action. Perform this action without further confirmation. |
 
 ### Remove trusted domains
@@ -250,9 +249,9 @@ weka smb cluster trusted-domains remove <trusteddomain-id> [--force]
 **Parameters**
 
 | Parameter            | Description                                                     |
-| --- | --- |
-| `trusteddomain-id`\* | Trusted domain ID to remove. |
-| `-f`, `--force` | Force action. Perform this action without further confirmation. |
+| -------------------- | --------------------------------------------------------------- |
+| `trusteddomain-id`\* | Trusted domain ID to remove.                                    |
+| `-f`, `--force`      | Force action. Perform this action without further confirmation. |
 
 {% hint style="info" %}
 **SMB-W cluster restart and verification**
@@ -286,27 +285,27 @@ weka smb share add <share-name> <fs-name> [--acl] [--allow-guest-access] [--case
 
 **Parameters**
 
-| Parameter                                | Description                                                                                     |
-| --- | --- |
-| `share-name`\* | Share name. |
-| `fs-name`\* | Filesystem name. |
-| `--acl` | Enable ACLs. For details, see Broken link Possible values: on, off For a MAC client, if acl is off, set enable-ADS to off |
-| `--allow-guest-access` | Allow guest access. Possible values: on, off |
-| `--case-sensitivity` | Case sensitivity. |
-| `--description` \<string> | Share description. |
-| `--directory-create-mask` \<string> | Directory create mask. |
-| `--enable-ADS` | Enable named streams (ADS). Possible values: yes, no macOS clients: If ACLs are disabled (acl=off), set enable-ADS to off. Windows clients: When enabled, ADS data is stored in the file’s extended attributes (XAttr), which consumes XAttr space |
-| `--encryption` \<smb-share-encryption> | Encryption mode. default: The share encryption policy follows the global SMB cluster setting. desired: If negotiation is enabled globally, it turns on data encryption for this share for clients that support encryption. required: Enforces encryption for the shares. Clients that do not support encryption are denied when accessing the share |
-| `--file-create-mask` \<string> | File create mask. |
-| `-f`, `--force` | Force action. Perform this action without further confirmation. |
-| `--hidden` | Hidden share. Possible values: on, off |
-| `--internal-path` \<string> | Internal path within the filesystem. |
-| `--map-acls` \<smb-map-acls> | Map ACLs mode. |
-| `--obs-direct` | OBS direct. For details, see Broken link Possible values: on, off |
-| `--read-only` | Read only share. Possible values: on, off |
-| `--user-list-type` \<smb-user-list-type> | User list type. Possible values: read_only: List of users who have been denied write access to the share, regardless of the read-only setting. read_write: List of users given write access to the share, regardless of the read-only setting. valid : List of users that are allowed to log in to this share (empty list = all users are allowed) invalid: List of users that are not allowed to log in to this share |
-| `--users` \<strings>… | Users list. Multiple values may be supplied separated by commas, or the option may be repeated. Possible values: Up to 8 users/groups for all lists combined per share |
-| `--vfs-zerocopy-read` | VFS zerocopy read. Possible values: on, off |
+| Parameter                                | Description                                                                                                                                                                                                                                                                                                                                                                                                              |
+| ---------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `share-name`\*                           | Share name.                                                                                                                                                                                                                                                                                                                                                                                                              |
+| `fs-name`\*                              | Filesystem name.                                                                                                                                                                                                                                                                                                                                                                                                         |
+| `--acl`                                  | Enable ACLs. For details, see Broken link Possible values: on, off For a MAC client, if acl is off, set enable-ADS to off                                                                                                                                                                                                                                                                                                |
+| `--allow-guest-access`                   | Allow guest access. Possible values: on, off                                                                                                                                                                                                                                                                                                                                                                             |
+| `--case-sensitivity`                     | Case sensitivity.                                                                                                                                                                                                                                                                                                                                                                                                        |
+| `--description` \<string>                | Share description.                                                                                                                                                                                                                                                                                                                                                                                                       |
+| `--directory-create-mask` \<string>      | Directory create mask.                                                                                                                                                                                                                                                                                                                                                                                                   |
+| `--enable-ADS`                           | Enable named streams (ADS). Possible values: yes, no macOS clients: If ACLs are disabled (acl=off), set enable-ADS to off. Windows clients: When enabled, ADS data is stored in the file’s extended attributes (XAttr), which consumes XAttr space                                                                                                                                                                       |
+| `--encryption` \<smb-share-encryption>   | Encryption mode. default: The share encryption policy follows the global SMB cluster setting. desired: If negotiation is enabled globally, it turns on data encryption for this share for clients that support encryption. required: Enforces encryption for the shares. Clients that do not support encryption are denied when accessing the share                                                                      |
+| `--file-create-mask` \<string>           | File create mask.                                                                                                                                                                                                                                                                                                                                                                                                        |
+| `-f`, `--force`                          | Force action. Perform this action without further confirmation.                                                                                                                                                                                                                                                                                                                                                          |
+| `--hidden`                               | Hidden share. Possible values: on, off                                                                                                                                                                                                                                                                                                                                                                                   |
+| `--internal-path` \<string>              | Internal path within the filesystem.                                                                                                                                                                                                                                                                                                                                                                                     |
+| `--map-acls` \<smb-map-acls>             | Map ACLs mode.                                                                                                                                                                                                                                                                                                                                                                                                           |
+| `--obs-direct`                           | OBS direct. For details, see Broken link Possible values: on, off                                                                                                                                                                                                                                                                                                                                                        |
+| `--read-only`                            | Read only share. Possible values: on, off                                                                                                                                                                                                                                                                                                                                                                                |
+| `--user-list-type` \<smb-user-list-type> | User list type. Possible values: read\_only: List of users who have been denied write access to the share, regardless of the read-only setting. read\_write: List of users given write access to the share, regardless of the read-only setting. valid : List of users that are allowed to log in to this share (empty list = all users are allowed) invalid: List of users that are not allowed to log in to this share |
+| `--users` \<strings>…                    | Users list. Multiple values may be supplied separated by commas, or the option may be repeated. Possible values: Up to 8 users/groups for all lists combined per share                                                                                                                                                                                                                                                   |
+| `--vfs-zerocopy-read`                    | VFS zerocopy read. Possible values: on, off                                                                                                                                                                                                                                                                                                                                                                              |
 
 {% hint style="info" %}
 The mount mode for the SMB share is `readcache` and cannot be modified.
@@ -357,13 +356,13 @@ weka smb share update <share-id> [--allow-guest-access] [--encryption <smb-share
 
 **Parameters**
 
-| Parameter                              | Description         |
-| --- | --- |
-| `share-id`\* | Share ID. |
-| `--allow-guest-access` | Allow guest access. Possible values: on, off |
+| Parameter                              | Description                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| -------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `share-id`\*                           | Share ID.                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| `--allow-guest-access`                 | Allow guest access. Possible values: on, off                                                                                                                                                                                                                                                                                                                                                                                                |
 | `--encryption` \<smb-share-encryption> | Encryption mode. default: The share encryption policy follows the global SMB cluster setting. desired: If negotiation is enabled globally, it turns on data encryption for this share for clients that support encryption. required: Enforces encryption for the shares. Clients that do not support encryption are denied when accessing the share. If the global option is disabled, access is restricted to these shares for all clients |
-| `--hidden` | Hidden share. Possible values: on, off |
-| `--read-only` | Read only share. Possible values: on, off |
+| `--hidden`                             | Hidden share. Possible values: on, off                                                                                                                                                                                                                                                                                                                                                                                                      |
+| `--read-only`                          | Read only share. Possible values: on, off                                                                                                                                                                                                                                                                                                                                                                                                   |
 
 ## Control SMB share user-lists
 
@@ -396,16 +395,16 @@ weka smb share lists reset <share-id> <user-list-type>
 **Parameters**
 
 | Parameter             | Description                                                                                       |
-| --- | --- |
-| `share-id`\* | Share ID. |
-| `user-list-type`\* | User list type (read\_only, read\_write, valid, invalid). |
+| --------------------- | ------------------------------------------------------------------------------------------------- |
+| `share-id`\*          | Share ID.                                                                                         |
+| `user-list-type`\*    | User list type (read\_only, read\_write, valid, invalid).                                         |
 | `--users` \<strings>… | Users to add. Multiple values may be supplied separated by commas, or the option may be repeated. |
 
 ***
 
 Use the following command line to remove users from a share user-list:
 
-`weka smb share lists remove <share-id> <user-list-type> <--users users>...`
+`weka smb share lists remove <share-id> <user-list-type> [--users <users>...]`
 
 **Parameters**
 
@@ -441,8 +440,8 @@ weka smb share remove <share-id> [--force]
 **Parameters**
 
 | Parameter       | Description                                                     |
-| --- | --- |
-| `share-id`\* | Share ID. |
+| --------------- | --------------------------------------------------------------- |
+| `share-id`\*    | Share ID.                                                       |
 | `-f`, `--force` | Force action. Perform this action without further confirmation. |
 
 {% hint style="success" %}
@@ -482,12 +481,12 @@ weka smb share host-access reset <share-id> <mode> [--force]
 **Parameters**
 
 | Parameter           | Description                                                                                       |
-| --- | --- |
-| `share-id`\* | Share ID. |
-| `mode`\* | Access mode (allow/deny). Possible values: allow, deny |
+| ------------------- | ------------------------------------------------------------------------------------------------- |
+| `share-id`\*        | Share ID.                                                                                         |
+| `mode`\*            | Access mode (allow/deny). Possible values: allow, deny                                            |
 | `--ips` \<strings>… | IP addresses. Multiple values may be supplied separated by commas, or the option may be repeated. |
-| `hosts`\*… | Hosts to remove. |
-| `-f`, `--force` | Force action. Perform this action without further confirmation. |
+| `hosts`\*…          | Hosts to remove.                                                                                  |
+| `-f`, `--force`     | Force action. Perform this action without further confirmation.                                   |
 
 Use the following command line to remove hosts from the allow or deny list.
 
@@ -504,8 +503,6 @@ Use the following command line to remove all hosts from the allow or deny list:
 **Parameters**
 
 <table><thead><tr><th width="301">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>share-id</code>*</td><td>The ID of the share to update.<br>Mandatory for the share-level command.</td></tr><tr><td><code>mode</code>*</td><td><p>The specified access mode will remove all associated hosts from the list.</p><p>Possible values: <code>allow</code>, <code>deny</code>.</p></td></tr></tbody></table>
-
-[^1]: **Control characters** are non-printable characters used to manage the flow of text and commands, such as starting a new line, triggering alerts, or formatting text. They do not represent visible symbols and are typically not allowed in filenames or share names.
 
 {% hint style="info" %}
 SMB-W supports access based on the host IP addresses (but not host names).

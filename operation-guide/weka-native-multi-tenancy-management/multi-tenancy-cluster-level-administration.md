@@ -85,7 +85,7 @@ weka cluster network-space add <name> [--vlan vlan]
 | `fip-range`    | Floating IP range allocated for tenant NFS services in this space. Maximum 8 addresses. Required only if the network space serves NFS for a tenant. |
 | `gateway`      | Default gateway IP for the network-space.                                                                                                           |
 | `netmask-bits` | Subnet mask bits (1..32). Default: 16.                                                                                                              |
-| `wait`         | Block until every backend applies and verifies the network space, then report the cluster-wide result.                                               |
+| `wait`         | Block until every backend applies and verifies the network space, then report the cluster-wide result.                                              |
 
 {% hint style="info" %}
 **Cluster-wide apply.** A network space must be applied on every backend before it can be used. With `--wait`, the command blocks until each backend reports its result, so a success means the space is in place cluster-wide. Creation is all-or-none: if any backend fails, the operation rolls back automatically and no partially applied network space is left behind. Without `--wait`, the command returns once the request is accepted and the backends apply it in the background.
@@ -111,7 +111,7 @@ While a tenant is attached to an interface group, the network space's **VLAN and
 
 <div data-with-frame="true"><figure><img src="../../.gitbook/assets/mt_edit_net_space_button.png" alt=""><figcaption></figcaption></figure></div>
 
-3. Modify the network space properties as needed. For detailed information on these fields, refer to the network space creation procedure:&#x20;
+3. Modify the network space properties as needed. For detailed information on these fields, refer to the network space creation procedure:
    1. Update the VLAN ID if required.
    2. Modify the IP Range as described in the creation procedure.
    3. Update the Gateway or Netmask (Bits) if the subnet routing or size has changed.
@@ -135,15 +135,15 @@ weka cluster network-space update <id> [--name name]
 
 **Parameters**
 
-| Parameter      | Description                                                         |
-| -------------- | ------------------------------------------------------------------- |
-| `id`\*         | Network space id.                                                   |
-| `name`         | New name for the network-space.                                     |
-| `vlan`         | New VLAN ID (1..4094) for tagged traffic.                           |
-| `range`        | New IP range for the network-space.                                 |
-| `fip-range`    | New floating IP range for tenant NFS services. Maximum 8 addresses. |
-| `gateway`      | New default gateway IP for the network-space.                       |
-| `netmask-bits` | New subnet mask bits (1..32). Default: 16.                          |
+| Parameter      | Description                                                                        |
+| -------------- | ---------------------------------------------------------------------------------- |
+| `id`\*         | Network space id.                                                                  |
+| `name`         | New name for the network-space.                                                    |
+| `vlan`         | New VLAN ID (1..4094) for tagged traffic.                                          |
+| `range`        | New IP range for the network-space.                                                |
+| `fip-range`    | New floating IP range for tenant NFS services. Maximum 8 addresses.                |
+| `gateway`      | New default gateway IP for the network-space.                                      |
+| `netmask-bits` | New subnet mask bits (1..32). Default: 16.                                         |
 | `wait`         | Block until every backend applies the change, then report the cluster-wide result. |
 
 {% hint style="warning" %}
@@ -173,9 +173,9 @@ weka cluster network-space remove <name> [--wait]
 
 **Parameters**
 
-| Parameter | Description                                                                        |
-| --------- | ---------------------------------------------------------------------------------- |
-| `name`    | Network space name.                                                                |
+| Parameter | Description                                                                               |
+| --------- | ----------------------------------------------------------------------------------------- |
+| `name`    | Network space name.                                                                       |
 | `wait`    | Block until every backend removes the network space, then report the cluster-wide result. |
 
 {% hint style="warning" %}
@@ -217,8 +217,8 @@ During creation, you can assign multiple network spaces to a single tenant. This
 ```bash
 weka tenant add <name> <username> [--ssd-quota ssd-quota]
                                   [--total-quota total-quota]
-                                  [--enforce-fs-authentication enforce-fs-authentication]
-                                  [--enforce-mount-netspace-access enforce-mount-netspace-access]
+                                  [--enforce-fs-authentication]
+                                  [--enforce-mount-netspace-access]
                                   [--network-spaces network-spaces]...
 ```
 
@@ -280,22 +280,20 @@ A network space must be created in advance by a ClusterAdmin. You cannot assign 
 
 {% code overflow="wrap" %}
 ```bash
-weka tenant network-space add [--tenant tenant]
-                              [<network-spaces>]...
+weka tenant network-space add <network-spaces>... [--tenant <tenant>]
 ```
 {% endcode %}
 
 ```bash
-weka tenant network-space remove [--tenant tenant]
-                                 [<network-spaces>]...
+weka tenant network-space remove <network-spaces>... [--tenant <tenant>]
 ```
 
 **Parameters**
 
-| Parameter           | Description                                                                                 |
-| ------------------- | ------------------------------------------------------------------------------------------- |
-| `tenant`\*          | Tenant name (default: current user's tenant).                                               |
-| `network-spaces`... | Network space names to add to or remove from a tenant (can be repeated or comma-separated). |
+| Parameter             | Description                                                                                 |
+| --------------------- | ------------------------------------------------------------------------------------------- |
+| `--tenant`            | Tenant name (default: current user's tenant).                                               |
+| `network-spaces`...\* | Network space names to add to or remove from a tenant (can be repeated or comma-separated). |
 
 **Update tenant quotas**
 
@@ -316,8 +314,7 @@ weka tenant set-quota <tenant> [--ssd-quota <ssd-quota>]
 
 {% code overflow="wrap" %}
 ```bash
-weka tenant update <tenant> [--enforce-fs-authentication enforce-fs-authentication]
-                            [--enforce-mount-netspace-access enforce-mount-netspace-access]
+weka tenant update <tenant> [--enforce-fs-authentication] [--enforce-mount-netspace-access]
 ```
 {% endcode %}
 
