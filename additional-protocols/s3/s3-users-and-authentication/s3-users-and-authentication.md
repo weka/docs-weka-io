@@ -138,7 +138,7 @@ Detaching a policy removes S3 data access, but keeps the existing S3 access key 
 **Example**
 
 ```bash
-weka s3 policy detach alice
+weka s3 policy detach readwrite alice
 ```
 
 ## Manage S3 credentials

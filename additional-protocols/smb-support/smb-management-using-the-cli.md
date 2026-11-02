@@ -86,11 +86,11 @@ weka smb cluster create <netbios-name> <domain> <config-fs-name> --container-ids
   * If global options for the SMB library need adjustment, contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md).
 
 **Example command:**\
-In this example, an SMB cluster named `wekaSMB` is created using containers 0-4, within the domain `mydomain`, with its configuration stored on the `.config_fs` filesystem. The cluster is configured with virtual IPs ranging from 1.1.1.1 to 1.1.1.5.
+In this example, an SMB cluster named `wekaSMB` is created using containers 0-4, within the domain `mydomain`. The cluster is configured with virtual IPs ranging from 1.1.1.1 to 1.1.1.5.
 
 {% code overflow="wrap" %}
 ```bash
-weka smb cluster create wekaSMB mydomain .config_fs --container-ids 0,1,2,3,4 --smb-ips-pool 1.1.1.1,1.1.1.2 --smb-ips-range 1.1.1.3-5  
+weka smb cluster create wekaSMB mydomain --container-ids 0,1,2,3,4 --smb-ips-pool 1.1.1.1,1.1.1.2 --smb-ips-range 1.1.1.3-5  
 ```
 {% endcode %}
 
@@ -405,7 +405,7 @@ weka smb share lists reset <share-id> <user-list-type>
 
 Use the following command line to remove users from a share user-list:
 
-`weka smb share lists remove <share-id> <user-list-type> [--users <users>...]`
+`weka smb share lists remove <share-id> <user-list-type> <--users users>...`
 
 **Parameters**
 

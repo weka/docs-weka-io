@@ -115,8 +115,8 @@ openstack share delete <share-id>
 **Resolution:** Remove orphan client groups whose names start with `manila-snap-` and that do not belong to an in-progress operation:
 
 ```bash
-weka nfs client-group | grep manila-snap-
-weka nfs client-group remove <group-name>
+weka nfs client-group list | grep manila-snap-
+weka nfs client-group delete <group-name>
 ```
 
 </details>

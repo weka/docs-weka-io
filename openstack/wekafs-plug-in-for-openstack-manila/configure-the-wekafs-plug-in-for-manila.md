@@ -57,11 +57,11 @@ Create a dedicated WEKA user for Manila instead of using the admin account. This
 1. Create the user:
 
 ```bash
-   weka user login admin "<weka-admin-password>" --HOST "<weka-ip>"
-   weka user add manila-driver TenantAdmin "<manila-user-password>"
+   weka user login admin "<weka-admin-password>" --hostname "<weka-ip>"
+   weka user add manila-driver --password "<manila-user-password>" --role OrgAdmin
 ```
 
-The `TenantAdmin` role grants permission to create and manage filesystems and organizations.
+The `OrgAdmin` role grants permission to create and manage filesystems and organizations.
 
 2. Confirm that the new credentials work:
 
