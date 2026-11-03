@@ -139,22 +139,25 @@ Use the following command to check whether each export delivers audit events fro
 The output shows one row per export:
 
 * **Reporting:** the number of containers delivering events, out of those expected. For example, `24/24`.
-* **Problems:** what is wrong on the other containers. For example, `2 stalled, 1 container down`.
+* **Problems:** what is wrong on the other containers. For example, `2 stalled, 1 container down`. A destination that cannot be reached shows as send errors, and an export that stopped delivering audit events shows as stalled. The telemetry gateway keeps retrying an unreachable destination, so the export recovers on its own once the destination is reachable again.
 * **Health:** one of the following values.
 
-| Health | Meaning |
-| --- | --- |
-| `OK` | Every expected container delivers events. |
-| `DEGRADED` | Some containers deliver events and others report a problem. |
-| `DOWN` | No container delivers events, and at least one reports an error. |
-| `PENDING` | No container delivers events yet, and none reports an error. Also shown when the containers that don't deliver events yet report no problem, for example, right after the export is added. |
-| `DISABLED` | The export is disabled. |
-| `TELEMETRY OFF` | The export is enabled, but telemetry is off in the cluster. |
+| Health          | Meaning                                                                                                                                                                                    |
+| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `OK`            | Every expected container delivers events.                                                                                                                                                  |
+| `DEGRADED`      | Some containers deliver events and others report a problem.                                                                                                                                |
+| `DOWN`          | No container delivers events, and at least one reports an error.                                                                                                                           |
+| `PENDING`       | No container delivers events yet, and none reports an error. Also shown when the containers that don't deliver events yet report no problem, for example, right after the export is added. |
+| `DISABLED`      | The export is disabled.                                                                                                                                                                    |
+| `TELEMETRY OFF` | The export is enabled, but telemetry is off in the cluster.                                                                                                                                |
 
 **Parameters**
 
-| Name | Description |
-| --- | --- |
-| `export-id` | The ID of the export to show. Shows every export when omitted. |
-| `--containers` | Shows one row per container instead of one row per export. |
-| `--check` | Exits with code `2` when any export shown is `DOWN`, `DEGRADED`, or `TELEMETRY OFF`. Use it in monitoring scripts. |
+| Name           | Description                                                                                                                                                                                                                                                                                                                                                                                                             |
+| -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `export-id`    | The ID of the export to show. Shows every export when omitted.                                                                                                                                                                                                                                                                                                                                                          |
+| `--containers` | Shows one row per container instead of one row per export. Each row shows the container's server, its state, and its source. `reported` means the container reported its own state. `server` means the server runs several containers, so the state can come from any of them. `derived` means no report exists for the container, so the CLI set the state, for example, when the container is down or never reported. |
+| `--check`      | Exits with code `2` when any export shown is `DOWN`, `DEGRADED`, or `TELEMETRY OFF`. Use it in monitoring scripts.                                                                                                                                                                                                                                                                                                      |
+| `-J`           | Prints one JSON object per export with the same fields, including the per-container list.                                                                                                                                                                                                                                                                                                                               |
+
+Counts are exact at any cluster size. Server names are sampled: the cluster names a limited number of servers per state. When some containers are counted but not named, the `--containers` output shows the limit and how many containers are not named.
