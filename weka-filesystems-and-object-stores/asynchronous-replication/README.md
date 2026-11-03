@@ -103,6 +103,7 @@ Replication is asynchronous. Expect a lag of at least the replication interval. 
 * The replication process creates the target filesystem during the first replication cycle. You cannot replicate to a filesystem that already exists.
 * The target filesystem is created in the filesystem group that has the same name as the group of the source filesystem. That group must already exist on the target cluster.
 * The target filesystem is write-protected while the replication pair is active. Only the replication process writes to it, and users and applications can read it.
+* A target filesystem with Data Catalog indexing enabled is not supported.
 * Creating a manual snapshot on the target filesystem halts replication and moves the pair to the error state.
 * Inode numbers on the target filesystem can differ from the source filesystem. They stay the same across replication cycles.
 
@@ -115,8 +116,8 @@ To write to the target filesystem, hydrate all of its data, remove the replicati
 
 ### Source filesystem
 
-* Tiered data on the source is not replicated.
-* Filesystems with the data catalog enabled cannot be replicated.
+* A tiered source filesystem is supported. The target filesystem is SSD-only. For a source with 100 TB of SSD capacity and 500 TB of total capacity, set `--target-total-capacity 500TB`. The target needs 500 TB of SSD capacity.
+* A source filesystem with Data Catalog indexing enabled is supported.
 
 ### Snapshots and scheduling
 
