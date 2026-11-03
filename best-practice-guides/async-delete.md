@@ -44,7 +44,7 @@ Use one of the following commands:
 *   New filesystem:
 
     ```bash
-    weka fs add <name> <total-capacity> [<group-name>] --enable-weka-delete [parameters]
+    weka fs add <name> <total-capacity> [--fs-group <group-name>] --enable-weka-delete [parameters]
     ```
 
 **Restrict the trigger to the filesystem root**
@@ -59,7 +59,7 @@ Use one of the following commands:
 *   New filesystem:
 
     ```bash
-    weka fs add <name> <total-capacity> [<group-name>] --enable-weka-delete-root-only [parameters]
+    weka fs add <name> <total-capacity> [--fs-group <group-name>] --enable-weka-delete-root-only [parameters]
     ```
 
 In root-only mode, rename the entry to `.weka-delete` in the filesystem root only. This restricts access to the feature to users who can create new files in the filesystem root directory.

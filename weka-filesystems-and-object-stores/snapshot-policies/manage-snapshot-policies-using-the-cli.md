@@ -263,7 +263,7 @@ SnapPolicyId: 3
 This command attaches existing filesystems to a snapshot policy. Before proceeding, ensure each filesystem is attached to an object store.
 
 ```sh
-weka fs protection snapshot-policy attach <name> [<filesystems>]...
+weka fs protection snapshot-policy attach <name> <filesystems>
 ```
 
 **Parameters**
@@ -271,7 +271,7 @@ weka fs protection snapshot-policy attach <name> [<filesystems>]...
 | Parameter           | Description                                             |
 | ------------------- | ------------------------------------------------------- |
 | `name`\*            | The snapshot policy name.                               |
-| `filesystems`... \* | A list of filesystems you want to attach to the policy. |
+| `filesystems`\*     | A comma-separated list of filesystems to attach to the policy. |
 
 <details>
 
@@ -280,7 +280,7 @@ weka fs protection snapshot-policy attach <name> [<filesystems>]...
 This command attaches the snapshot policy `policy1` to the filesystems `fs1` and `default`.
 
 ```
-$ weka fs protection snapshot-policy attach policy1 fs1 default
+$ weka fs protection snapshot-policy attach policy1 fs1,default
 $ weka fs protection snapshot-policy list
 SNAPSHOT POLICY ID  NAME         IS ENABLED  DESCRIPTION                     ATTACHED FILESYSTEMS
 0                   sys-default  True        Cluster default configuration  

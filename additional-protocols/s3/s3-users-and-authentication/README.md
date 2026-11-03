@@ -100,7 +100,7 @@ Run the appropriate command based on the required credential action:
 *   Detach an S3 policy and preserve credentials:
 
     ```bash
-    weka s3 policy detach <policy> <user>
+    weka s3 policy detach <user>
     ```
 
 ## Admin behavior
