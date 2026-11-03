@@ -51,73 +51,81 @@ The following requirements must be met:
 
 ## Operating system
 
-{% hint style="info" %}
-Every effort is made to support upcoming releases of the operating systems in the lists within one quarter (three months) of their respective General Availability (GA) dates. When an operating system version is deprecated, WEKA will cease to ensure its software continues to work with that operating system version.
-{% endhint %}
-
 {% tabs %}
 {% tab title="Support policy" %}
 **Manage operating system and kernel lifecycle**
 
-Maintain system reliability by following the WEKA support policy for Linux distributions. This policy applies to WEKA software on customer-managed Linux servers in on-premises and cloud environments.
+This policy applies to WEKA software on customer-managed Linux servers. Support is declared per operating system version, separately for backends and clients.
 
 {% hint style="info" %}
-This policy excludes Linux distributions bundled as part of the WEKA Software Appliance (WSA).
+This policy excludes Linux distributions bundled as part of the WEKA Platform Appliance (WPA).
 {% endhint %}
 
-**Lifecycle definitions**
+**What this means for you**
 
-* **End of Support (EoS):** The date a vendor stops providing routine updates and patches.
-* **End of Life (EoL):** The date a vendor ceases all standard support and maintenance for a distribution or kernel version.
+* Your cluster keeps its operating system version for the life of its Release Line. WEKA does not remove a version from a Release Line after GA.
+* Full support lasts as long as vendor standard support. After that, support is best-effort.
+* To move to a different operating system version, choose one with at least 12 months of vendor standard support remaining, and upgrade one server at a time. Each server restarts while the cluster stays available, and if the version you want was added in a later Release Line or Service Pack, upgrade WEKA in the same maintenance window.
+* To upgrade to a new Release Line, run a version listed for that line. See the **Backends** and **Clients** tabs.
 
-**Lifecycle stages**
+**Definitions**
 
-* **General Availability (GA):** WEKA aims to support new GA releases within three months of the vendor release date. After addition to the supported list, these versions receive full support, including certification, ongoing validation, and defect remediation aligned to the [Release support and commitments](../support/release-support-and-commitments.md).
-* **End of Support and End of Life:** After a vendor EoS date, WEKA stops active testing and validation. Field issues receive best-effort remediation. If vendor backports are unavailable, fixes may require upgrading to a supported version. Plan migrations before the vendor EoL date.
+* **Baseline:** The operating system versions WEKA supports for a Release Line, published at its GA. Reviewed at the start of each stage (N, N-1, N-2): a version with under 12 months of vendor standard support left is not carried into that stage. The Backends and Clients tabs list the baseline for this Release Line.
+* **Carried:** A baseline version that passes the stage review and stays on the baseline for that stage. A version that is not carried gets no Service Packs from that stage, and clusters running it stay on their last Service Pack.
+* **Supported:** WEKA investigates, fixes, and validates issues on the version. Applies while the version is on the baseline, or not carried but still within vendor standard support.
+* **Best-effort:** Vendor standard support has ended. Customer Success continues to take your cases. WEKA does not test or certify anything specific to that version, so resolution may require moving to a supported operating system version.
+* **Vendor standard support:** The period in which the vendor provides routine updates at no additional cost. Paid extensions, such as RHEL Extended Life Cycle Support, SLES Long Term Service Pack Support, and Ubuntu Expanded Security Maintenance, are not vendor standard support.
 
 **Custom kernel support**
 
-For custom kernel certification, contact the [Customer Success Team](../support/getting-support-for-your-weka-system.md#open-a-support-case).
+Support covers the kernel the vendor ships for the listed version. For derivative distributions or custom kernels, contact the [Customer Success Team](../support/getting-support-for-your-weka-system.md#open-a-support-case).
+{% endtab %}
+
+{% tab title="Versions per distribution" %}
+WEKA supports a fixed number of the most recent versions of each distribution. When a vendor releases a new major version, the oldest version is not included in the next Release Line baseline. The count is a maximum: a version is supported only while the vendor provides standard support.
+
+| Distribution                | Backends                     | Clients                       |
+| --------------------------- | ---------------------------- | ----------------------------- |
+| Ubuntu                      | 3 most recent LTS            | 3 most recent LTS             |
+| RHEL                        | 3 most recent major versions | 3 most recent major versions  |
+| Rocky Linux                 | 3 most recent major versions | 3 most recent major versions  |
+| Amazon Linux                | 2 most recent major versions | 2 most recent major versions  |
+| AlmaLinux OS                | Not supported                | 3 most recent major versions  |
+| Oracle Linux                | Not supported                | 3 most recent major versions  |
+| Debian                      | Not supported                | 3 most recent stable versions |
+| CentOS Stream               | Not supported                | 2 most recent major versions  |
+| SLES                        | Not supported                | 2 most recent major versions  |
+| Proxmox Virtual Environment | Not supported                | 2 most recent major versions  |
+| Azure Linux                 | Not supported                | 2 most recent major versions  |
+
+***
+
+​
 {% endtab %}
 
 {% tab title="Backends" %}
-* **Rocky Linux:**
-  * 10 (x86 and ARM), 9, 8 Release lines
-* **RHEL:**
-  * 10, 9, 8 Release lines
-* **CentOS Stream:**
-  * 10, 9, 8 Release lines
-* **AlmaLinux OS:**
-  * 10, 9, 8 Release lines
-* **Ubuntu:**
-  * 24.04, 22.04, 20.04, 18.04
-* **Amazon Linux:**
-  * AL2023 (x86 and ARM), AMI 2018.03, AMI 2017.09, Amazon Linux 2 LTS
+| Family       | Supported              |
+| ------------ | ---------------------- |
+| Ubuntu       | 26.04, 24.04           |
+| RHEL         | 10, 9, 8               |
+| Rocky Linux  | 10 (x86 and ARM), 9, 8 |
+| Amazon Linux | AL2023 (x86 and ARM)   |
 {% endtab %}
 
 {% tab title="Clients" %}
-* **Rocky Linux:**
-  * 10 (x86 and ARM), 9, 8 Release lines
-* **RHEL:**
-  * 10, 9, 8 Release lines
-* **CentOS Stream:**
-  * 10, 9, 8 Release lines
-* **AlmaLinux OS:**
-  * 10, 9, 8 Release lines
-* **Ubuntu:**
-  * 24.04, 22.04, 20.04, 18.04
-* **Amazon Linux:**
-  * AL2023 (x86 and ARM), AMI 2018.03, AMI 2017.09, Amazon Linux 2 LTS
-* **SLES:**
-  * 16, 15, 12
-* **Oracle Linux:**
-  * 9, 8.9
-* **Debian:**
-  * 13, 12 (with Linux kernel 6.6), 10
-* **Proxmox Virtual Environment**:
-  * 9, 8.2, 8.14
-* **Azure Linux**
-  * 3
+| Family        | Supported              |
+| ------------- | ---------------------- |
+| Ubuntu        | 26.04, 24.04           |
+| RHEL          | 10, 9, 8               |
+| Rocky Linux   | 10 (x86 and ARM), 9, 8 |
+| Amazon Linux  | AL2023 (x86 and ARM)   |
+| AlmaLinux     | 10, 9, 8               |
+| Oracle Linux  | 10, 9, 8               |
+| Debian        | 13, 12                 |
+| CentOS Stream | 10                     |
+| SLES          | 16, 15                 |
+| Proxmox VE    | 9                      |
+| Azure Linux   | 3                      |
 {% endtab %}
 
 {% tab title="Configuration" %}
@@ -255,7 +263,7 @@ The system is compatible with various network adapters for both backend servers 
 
 Use this information to verify hardware compatibility and understand the specific capabilities of each adapter within the environment.
 
-<table><thead><tr><th width="199">Adapter</th><th width="114">Protocol</th><th width="248">Supported features</th><th>Unsupported features</th></tr></thead><tbody><tr><td>Amazon ENA</td><td>Ethernet</td><td>✅ SR-IOV VF</td><td><p>❌ Single IP</p><p>❌ LACP</p><p>❌ RDMA</p><p>❌ RX interrupts</p><p>❌ HA</p><p>❌ Routed network</p><p>❌ IOMMU</p><p>❌ Mixed networks</p></td></tr><tr><td>NVIDIA Mellanox CX-8</td><td><p>Ethernet</p><p>InfiniBand</p></td><td><p>✅ Single IP</p><p>✅ LACP</p><p>✅ RDMA</p><p>✅ RX interrupts</p><p>✅ HA</p><p>✅ Routed network (ETH only)</p><p>✅ PKEY (IB only)</p><p>✅ IOMMU</p><p>✅ Mixed networks</p></td><td><p>❌ SR-IOV VF</p></td></tr><tr><td>NVIDIA Mellanox CX-7 single-port</td><td>InfiniBand</td><td><p>✅ Single IP</p><p>✅ RDMA</p><p>✅ RX interrupts</p><p>✅ HA</p><p>✅ PKEY</p><p>✅ IOMMU</p><p>✅ Mixed networks</p></td><td><p>❌ Routed network</p><p>❌ SR-IOV VF</p></td></tr><tr><td>NVIDIA Mellanox CX-7 dual-port</td><td>InfiniBand</td><td><p>✅ Single IP</p><p>✅ RDMA</p><p>✅ RX interrupts</p><p>✅ HA</p><p>✅ PKEY</p><p>✅ IOMMU</p><p>✅ Mixed networks</p></td><td><p>❌ Routed network</p><p>❌ SR-IOV VF</p></td></tr><tr><td>NVIDIA Mellanox CX-7-ETH single-port</td><td>Ethernet</td><td><p>✅ Single IP</p><p>✅ RDMA</p><p>✅ HA</p><p>✅ Routed network</p><p>✅ IOMMU</p><p>✅ Mixed networks</p></td><td><p>❌ LACP</p><p>❌ RX interrupts</p><p>❌ SR-IOV VF</p></td></tr><tr><td>NVIDIA Mellanox CX-7-ETH dual-port</td><td>Ethernet</td><td><p>✅ Single IP</p><p>✅ LACP</p><p>✅ RDMA</p><p>✅ HA</p><p>✅ Routed network</p><p>✅ IOMMU</p><p>✅ Mixed networks</p></td><td><p>❌ RX interrupts</p><p>❌ SR-IOV VF</p></td></tr><tr><td>NVIDIA Mellanox CX-6 LX</td><td>Ethernet</td><td><p>✅ Single IP</p><p>✅ LACP (failover only)</p><p>✅ RDMA</p><p>✅ RX interrupts</p><p>✅ HA</p><p>✅ Routed network</p><p>✅ IOMMU</p><p>✅ Mixed networks</p></td><td><p>❌ SR-IOV VF</p></td></tr><tr><td>NVIDIA Mellanox CX-6 DX</td><td>Ethernet</td><td><p>✅ Single IP</p><p>✅ LACP</p><p>✅ RDMA</p><p>✅ RX interrupts</p><p>✅ HA</p><p>✅ Routed network</p><p>✅ IOMMU</p><p>✅ Mixed networks</p></td><td><p>❌ SR-IOV VF</p></td></tr><tr><td>NVIDIA Mellanox CX-6</td><td>Ethernet InfiniBand</td><td><p>✅ Single IP</p><p>✅ LACP (failover only)</p><p>✅ RDMA</p><p>✅ RX interrupts</p><p>✅ HA</p><p>✅ IOMMU</p><p>✅ Mixed networks</p></td><td><p>❌ Routed network</p><p>❌ SR-IOV VF</p></td></tr><tr><td>NVIDIA Mellanox CX-5 EX</td><td>Ethernet InfiniBand</td><td><p>✅ Single IP</p><p>✅ LACP (failover only)</p><p>✅ RDMA</p><p>✅ HA</p><p>✅ PKEY (IB only)</p><p>✅ IOMMU</p><p>✅ Mixed networks</p></td><td><p>❌ RX interrupts</p><p>❌ Routed network</p><p>❌ SR-IOV VF</p></td></tr><tr><td>NVIDIA Mellanox CX-5 BF</td><td>Ethernet</td><td><p>✅ Single IP</p><p>✅ LACP (failover only)</p><p>✅ RDMA</p><p>✅ HA</p><p>✅ IOMMU</p><p>✅ Mixed networks</p></td><td><p>❌ RX interrupts</p><p>❌ Routed network</p><p>❌ SR-IOV VF</p></td></tr><tr><td>NVIDIA Mellanox CX-5</td><td>Ethernet InfiniBand</td><td><p>✅ Single IP</p><p>✅ LACP (failover only)</p><p>✅ RDMA</p><p>✅ RX interrupts</p><p>✅ HA</p><p>✅ Routed network (ETH only)</p><p>✅ PKEY (IB only)</p><p>✅ IOMMU</p><p>✅ Mixed networks</p></td><td><p>❌ Routed network (IB)</p><p>❌ SR-IOV VF</p></td></tr><tr><td>VirtIO</td><td>Ethernet</td><td><p>✅ HA</p><p>✅ Routed network</p></td><td><p>❌ Single IP</p><p>❌ LACP</p><p>❌ RX interrupts</p><p>❌ IOMMU</p><p>❌ Mixed networks</p><p>❌ SR-IOV VF</p></td></tr></tbody></table>
+<table><thead><tr><th width="199">Adapter</th><th width="114">Protocol</th><th width="248">Supported features</th><th>Unsupported features</th></tr></thead><tbody><tr><td>Amazon ENA</td><td>Ethernet</td><td>✅ SR-IOV VF</td><td><p>❌ Single IP</p><p>❌ LACP</p><p>❌ RDMA</p><p>❌ RX interrupts</p><p>❌ HA</p><p>❌ Routed network</p><p>❌ IOMMU</p><p>❌ Mixed networks</p></td></tr><tr><td>NVIDIA Mellanox CX-8</td><td><p>Ethernet</p><p>InfiniBand</p></td><td><p>✅ Single IP</p><p>✅ LACP</p><p>✅ RDMA</p><p>✅ RX interrupts</p><p>✅ HA</p><p>✅ Routed network (ETH only)</p><p>✅ PKEY (IB only)</p><p>✅ IOMMU</p><p>✅ Mixed networks</p></td><td>❌ SR-IOV VF</td></tr><tr><td>NVIDIA Mellanox CX-7 single-port</td><td>InfiniBand</td><td><p>✅ Single IP</p><p>✅ RDMA</p><p>✅ RX interrupts</p><p>✅ HA</p><p>✅ PKEY</p><p>✅ IOMMU</p><p>✅ Mixed networks</p></td><td><p>❌ Routed network</p><p>❌ SR-IOV VF</p></td></tr><tr><td>NVIDIA Mellanox CX-7 dual-port</td><td>InfiniBand</td><td><p>✅ Single IP</p><p>✅ RDMA</p><p>✅ RX interrupts</p><p>✅ HA</p><p>✅ PKEY</p><p>✅ IOMMU</p><p>✅ Mixed networks</p></td><td><p>❌ Routed network</p><p>❌ SR-IOV VF</p></td></tr><tr><td>NVIDIA Mellanox CX-7-ETH single-port</td><td>Ethernet</td><td><p>✅ Single IP</p><p>✅ RDMA</p><p>✅ HA</p><p>✅ Routed network</p><p>✅ IOMMU</p><p>✅ Mixed networks</p></td><td><p>❌ LACP</p><p>❌ RX interrupts</p><p>❌ SR-IOV VF</p></td></tr><tr><td>NVIDIA Mellanox CX-7-ETH dual-port</td><td>Ethernet</td><td><p>✅ Single IP</p><p>✅ LACP</p><p>✅ RDMA</p><p>✅ HA</p><p>✅ Routed network</p><p>✅ IOMMU</p><p>✅ Mixed networks</p></td><td><p>❌ RX interrupts</p><p>❌ SR-IOV VF</p></td></tr><tr><td>NVIDIA Mellanox CX-6 LX</td><td>Ethernet</td><td><p>✅ Single IP</p><p>✅ LACP (failover only)</p><p>✅ RDMA</p><p>✅ RX interrupts</p><p>✅ HA</p><p>✅ Routed network</p><p>✅ IOMMU</p><p>✅ Mixed networks</p></td><td>❌ SR-IOV VF</td></tr><tr><td>NVIDIA Mellanox CX-6 DX</td><td>Ethernet</td><td><p>✅ Single IP</p><p>✅ LACP</p><p>✅ RDMA</p><p>✅ RX interrupts</p><p>✅ HA</p><p>✅ Routed network</p><p>✅ IOMMU</p><p>✅ Mixed networks</p></td><td>❌ SR-IOV VF</td></tr><tr><td>NVIDIA Mellanox CX-6</td><td>Ethernet InfiniBand</td><td><p>✅ Single IP</p><p>✅ LACP (failover only)</p><p>✅ RDMA</p><p>✅ RX interrupts</p><p>✅ HA</p><p>✅ IOMMU</p><p>✅ Mixed networks</p></td><td><p>❌ Routed network</p><p>❌ SR-IOV VF</p></td></tr><tr><td>NVIDIA Mellanox CX-5 EX</td><td>Ethernet InfiniBand</td><td><p>✅ Single IP</p><p>✅ LACP (failover only)</p><p>✅ RDMA</p><p>✅ HA</p><p>✅ PKEY (IB only)</p><p>✅ IOMMU</p><p>✅ Mixed networks</p></td><td><p>❌ RX interrupts</p><p>❌ Routed network</p><p>❌ SR-IOV VF</p></td></tr><tr><td>NVIDIA Mellanox CX-5 BF</td><td>Ethernet</td><td><p>✅ Single IP</p><p>✅ LACP (failover only)</p><p>✅ RDMA</p><p>✅ HA</p><p>✅ IOMMU</p><p>✅ Mixed networks</p></td><td><p>❌ RX interrupts</p><p>❌ Routed network</p><p>❌ SR-IOV VF</p></td></tr><tr><td>NVIDIA Mellanox CX-5</td><td>Ethernet InfiniBand</td><td><p>✅ Single IP</p><p>✅ LACP (failover only)</p><p>✅ RDMA</p><p>✅ RX interrupts</p><p>✅ HA</p><p>✅ Routed network (ETH only)</p><p>✅ PKEY (IB only)</p><p>✅ IOMMU</p><p>✅ Mixed networks</p></td><td><p>❌ Routed network (IB)</p><p>❌ SR-IOV VF</p></td></tr><tr><td>VirtIO</td><td>Ethernet</td><td><p>✅ HA</p><p>✅ Routed network</p></td><td><p>❌ Single IP</p><p>❌ LACP</p><p>❌ RX interrupts</p><p>❌ IOMMU</p><p>❌ Mixed networks</p><p>❌ SR-IOV VF</p></td></tr></tbody></table>
 
 {% hint style="info" %}
 **NVIDIA Mellanox ConnectX-4 (CX-4 / CX-4 LX)**
