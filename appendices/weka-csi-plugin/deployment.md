@@ -4,6 +4,10 @@ description: Deploy the WEKA CSI Plugin in a Kubernetes cluster.
 
 # Deployment
 
+{% hint style="warning" %}
+**Deprecated:** Standalone installation of the WEKA CSI Plugin using the `csi-wekafs` Helm chart is deprecated. Deploy and manage the CSI plugin through the WEKA Operator. To move an existing standalone installation, see [migrate-standalone-csi-to-weka-operator-embedded.md](../../kubernetes/weka-operator-deployments/migrate-standalone-csi-to-weka-operator-embedded.md "mention").
+{% endhint %}
+
 You can deploy the WEKA CSI Plugin using the helm chart from the official [WEKA ArtifactHub repository](https://artifacthub.io/packages/helm/csi-wekafs/csi-wekafsplugin).
 
 ## Prerequisites
