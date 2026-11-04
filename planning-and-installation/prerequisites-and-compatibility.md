@@ -84,36 +84,35 @@ Support covers the kernel the vendor ships for the listed version. For derivativ
 {% tab title="Versions per distribution" %}
 WEKA supports a fixed number of the most recent versions of each distribution. When a vendor releases a new major version, the oldest version is not included in the next Release Line baseline. The count is a maximum: a version is supported only while the vendor provides standard support.
 
-<table><thead><tr><th width="165.4296875">Distribution</th><th>Backends</th><th>Clients</th></tr></thead><tbody><tr><td>Ubuntu</td><td>3 most recent LTS</td><td>3 most recent LTS</td></tr><tr><td>RHEL</td><td>3 most recent major versions</td><td>3 most recent major versions</td></tr><tr><td>Rocky Linux</td><td>3 most recent major versions</td><td>3 most recent major versions</td></tr><tr><td>Amazon Linux</td><td>2 most recent major versions</td><td>2 most recent major versions</td></tr><tr><td>AlmaLinux OS</td><td>Not supported</td><td>3 most recent major versions</td></tr><tr><td>Oracle Linux</td><td>Not supported</td><td>3 most recent major versions</td></tr><tr><td>Debian</td><td>Not supported</td><td>3 most recent stable versions</td></tr><tr><td>CentOS Stream</td><td>Not supported</td><td>2 most recent major versions</td></tr><tr><td>SLES</td><td>Not supported</td><td>2 most recent major versions</td></tr><tr><td>Proxmox Virtual Environment</td><td>Not supported</td><td>2 most recent major versions</td></tr><tr><td>Azure Linux</td><td>Not supported</td><td>2 most recent major versions</td></tr></tbody></table>
-
-***
-
-
+<table><thead><tr><th width="165.4296875">Distribution</th><th>Backends</th><th>Clients</th></tr></thead><tbody><tr><td>Ubuntu</td><td>3 most recent LTS</td><td>3 most recent LTS</td></tr><tr><td>RHEL</td><td>3 most recent major versions</td><td>3 most recent major versions</td></tr><tr><td>Rocky Linux</td><td>3 most recent major versions</td><td>3 most recent major versions</td></tr><tr><td>Amazon Linux</td><td>2 most recent major versions</td><td>2 most recent major versions</td></tr><tr><td>DGX OS</td><td>2 most recent major versions</td><td>2 most recent major versions</td></tr><tr><td>AlmaLinux OS</td><td>Not supported</td><td>3 most recent major versions</td></tr><tr><td>Oracle Linux</td><td>Not supported</td><td>3 most recent major versions</td></tr><tr><td>Debian</td><td>Not supported</td><td>3 most recent stable versions</td></tr><tr><td>CentOS Stream</td><td>Not supported</td><td>2 most recent major versions</td></tr><tr><td>SLES</td><td>Not supported</td><td>2 most recent major versions</td></tr><tr><td>Proxmox Virtual Environment</td><td>Not supported</td><td>2 most recent major versions</td></tr><tr><td>Azure Linux</td><td>Not supported</td><td>2 most recent major versions</td></tr><tr><td>TencentOS</td><td>Not supported</td><td>2 most recent major versions</td></tr></tbody></table>
 {% endtab %}
 
 {% tab title="Backends" %}
 | Family       | Supported              |
 | ------------ | ---------------------- |
-| Ubuntu       | 26.04, 24.04           |
+| Amazon Linux | AL2023 (x86 and ARM)   |
+| DGX OS       | 8, 7.4                 |
 | RHEL         | 10, 9, 8               |
 | Rocky Linux  | 10 (x86 and ARM), 9, 8 |
-| Amazon Linux | AL2023 (x86 and ARM)   |
+| Ubuntu       | 26.04, 24.04           |
 {% endtab %}
 
 {% tab title="Clients" %}
 | Family        | Supported              |
 | ------------- | ---------------------- |
-| Ubuntu        | 26.04, 24.04           |
+| AlmaLinux     | 10, 9, 8               |
+| Amazon Linux  | AL2023 (x86 and ARM)   |
+| Azure Linux   | 3                      |
+| CentOS Stream | 10                     |
+| Debian        | 13, 12                 |
+| DGX OS        | 8 (x86 and ARM), 7.4   |
+| Oracle Linux  | 10, 9, 8               |
+| Proxmox VE    | 9                      |
 | RHEL          | 10, 9, 8               |
 | Rocky Linux   | 10 (x86 and ARM), 9, 8 |
-| Amazon Linux  | AL2023 (x86 and ARM)   |
-| AlmaLinux     | 10, 9, 8               |
-| Oracle Linux  | 10, 9, 8               |
-| Debian        | 13, 12                 |
-| CentOS Stream | 10                     |
 | SLES          | 16, 15                 |
-| Proxmox VE    | 9                      |
-| Azure Linux   | 3                      |
+| TencentOS     | V4                     |
+| Ubuntu        | 26.04, 24.04           |
 {% endtab %}
 
 {% tab title="Configuration" %}
