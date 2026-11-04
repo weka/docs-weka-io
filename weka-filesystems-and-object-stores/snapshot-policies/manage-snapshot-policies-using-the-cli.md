@@ -69,8 +69,8 @@ weka fs protection snapshot-policy show <name>
 **Parameters**
 
 | Parameter | Description  |
-| --- | --- |
-| `name`\* | Policy name. |
+| --------- | ------------ |
+| `name`\*  | Policy name. |
 
 <details>
 
@@ -143,9 +143,9 @@ weka fs protection snapshot-policy export <name> <path>
 **Parameters**
 
 | Parameter | Description                                              |
-| --- | --- |
-| `name`\* | The snapshot policy to export. |
-| `path`\* | The path where the exported policy file will be located. |
+| --------- | -------------------------------------------------------- |
+| `name`\*  | The snapshot policy to export.                           |
+| `path`\*  | The path where the exported policy file will be located. |
 
 <details>
 
@@ -237,11 +237,11 @@ weka fs protection snapshot-policy add <name> <path> [--description <string>] [-
 **Parameters**
 
 | Parameter                 | Description                                                                                              |
-| --- | --- |
-| `name`\* | Snapshot policy name. (up to 12 alphanumeric characters, hyphens (-), underscores (\_), and periods (.)) |
-| `path`\* | Path to snapshot policy file. Policy file must be in JSON format. |
-| `--description` \<string> | Policy description. |
-| `--enabled` | Set snapshot policy status. Possible values: `true` or `false` |
+| ------------------------- | -------------------------------------------------------------------------------------------------------- |
+| `name`\*                  | Snapshot policy name. (up to 12 alphanumeric characters, hyphens (-), underscores (\_), and periods (.)) |
+| `path`\*                  | Path to snapshot policy file. Policy file must be in JSON format.                                        |
+| `--description` \<string> | Policy description.                                                                                      |
+| `--enabled`               | Set snapshot policy status. Possible values: `true` or `false`                                           |
 
 <details>
 
@@ -263,15 +263,15 @@ SnapPolicyId: 3
 This command attaches existing filesystems to a snapshot policy. Before proceeding, ensure each filesystem is attached to an object store.
 
 ```sh
-weka fs protection snapshot-policy attach <name> [<filesystems>]...
+weka fs protection snapshot-policy attach <name> <filesystems>
 ```
 
 **Parameters**
 
-| Parameter           | Description                                             |
-| ------------------- | ------------------------------------------------------- |
-| `name`\*            | The snapshot policy name.                               |
-| `filesystems`... \* | A list of filesystems you want to attach to the policy. |
+| Parameter       | Description                                                    |
+| --------------- | -------------------------------------------------------------- |
+| `name`\*        | The snapshot policy name.                                      |
+| `filesystems`\* | A comma-separated list of filesystems to attach to the policy. |
 
 <details>
 
@@ -280,7 +280,7 @@ weka fs protection snapshot-policy attach <name> [<filesystems>]...
 This command attaches the snapshot policy `policy1` to the filesystems `fs1` and `default`.
 
 ```
-$ weka fs protection snapshot-policy attach policy1 fs1 default
+$ weka fs protection snapshot-policy attach policy1 fs1,default
 $ weka fs protection snapshot-policy list
 SNAPSHOT POLICY ID  NAME         IS ENABLED  DESCRIPTION                     ATTACHED FILESYSTEMS
 0                   sys-default  True        Cluster default configuration  
@@ -302,10 +302,10 @@ weka fs protection snapshot-policy detach <name> <filesystems> [--force] [--remo
 **Parameters**
 
 | Parameter                | Description                                                                      |
-| --- | --- |
-| `name`\* | Snapshot policy name. |
-| `filesystems`\* | Filesystems to detach from the policy. |
-| `-f`, `--force` | Force action. Perform this action without further confirmation. |
+| ------------------------ | -------------------------------------------------------------------------------- |
+| `name`\*                 | Snapshot policy name.                                                            |
+| `filesystems`\*          | Filesystems to detach from the policy.                                           |
+| `-f`, `--force`          | Force action. Perform this action without further confirmation.                  |
 | `--remove-waiting-tasks` | Remove waiting tasks. Delete all waiting tasks corresponding to the filesystems. |
 
 <details>
@@ -335,12 +335,12 @@ weka fs protection snapshot-policy update <name> [--description <string>] [--ena
 **Parameters**
 
 | Parameter                 | Description                                                           |
-| --- | --- |
-| `name`\* | Snapshot policy name. |
-| `--description` \<string> | Policy description. |
-| `--enabled` | Set snapshot policy status. Possible values: `true` or `false` |
-| `--new-name` \<string> | New policy name. |
-| `--path` \<string> | Path to new or modified snapshot policy file. Must be in JSON format. |
+| ------------------------- | --------------------------------------------------------------------- |
+| `name`\*                  | Snapshot policy name.                                                 |
+| `--description` \<string> | Policy description.                                                   |
+| `--enabled`               | Set snapshot policy status. Possible values: `true` or `false`        |
+| `--new-name` \<string>    | New policy name.                                                      |
+| `--path` \<string>        | Path to new or modified snapshot policy file. Must be in JSON format. |
 
 ## Delete a snapshot policy
 
@@ -355,8 +355,8 @@ weka fs protection snapshot-policy remove <name> [--force]
 **Parameters**
 
 | Parameter       | Description                                                     |
-| --- | --- |
-| `name`\* | Existing snapshot policy name. |
+| --------------- | --------------------------------------------------------------- |
+| `name`\*        | Existing snapshot policy name.                                  |
 | `-f`, `--force` | Force action. Perform this action without further confirmation. |
 
 <details>

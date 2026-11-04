@@ -78,54 +78,41 @@ This policy excludes Linux distributions bundled as part of the WEKA Platform Ap
 
 **Custom kernel support**
 
-Support covers the kernel the vendor ships for the listed version. For derivative distributions or custom kernels, contact the [Customer Success Team](../support/getting-support-for-your-weka-system.md#open-a-support-case).
+Support covers the kernel the vendor ships for the listed version. For derivative distributions or custom kernels, contact the Customer Success Team.
 {% endtab %}
 
 {% tab title="Versions per distribution" %}
 WEKA supports a fixed number of the most recent versions of each distribution. When a vendor releases a new major version, the oldest version is not included in the next Release Line baseline. The count is a maximum: a version is supported only while the vendor provides standard support.
 
-| Distribution                | Backends                     | Clients                       |
-| --------------------------- | ---------------------------- | ----------------------------- |
-| Ubuntu                      | 3 most recent LTS            | 3 most recent LTS             |
-| RHEL                        | 3 most recent major versions | 3 most recent major versions  |
-| Rocky Linux                 | 3 most recent major versions | 3 most recent major versions  |
-| Amazon Linux                | 2 most recent major versions | 2 most recent major versions  |
-| AlmaLinux OS                | Not supported                | 3 most recent major versions  |
-| Oracle Linux                | Not supported                | 3 most recent major versions  |
-| Debian                      | Not supported                | 3 most recent stable versions |
-| CentOS Stream               | Not supported                | 2 most recent major versions  |
-| SLES                        | Not supported                | 2 most recent major versions  |
-| Proxmox Virtual Environment | Not supported                | 2 most recent major versions  |
-| Azure Linux                 | Not supported                | 2 most recent major versions  |
-
-***
-
-​
+<table><thead><tr><th width="165.4296875">Distribution</th><th>Backends</th><th>Clients</th></tr></thead><tbody><tr><td>Ubuntu</td><td>3 most recent LTS</td><td>3 most recent LTS</td></tr><tr><td>RHEL</td><td>3 most recent major versions</td><td>3 most recent major versions</td></tr><tr><td>Rocky Linux</td><td>3 most recent major versions</td><td>3 most recent major versions</td></tr><tr><td>Amazon Linux</td><td>2 most recent major versions</td><td>2 most recent major versions</td></tr><tr><td>DGX OS</td><td>2 most recent major versions</td><td>2 most recent major versions</td></tr><tr><td>AlmaLinux OS</td><td>Not supported</td><td>3 most recent major versions</td></tr><tr><td>Oracle Linux</td><td>Not supported</td><td>3 most recent major versions</td></tr><tr><td>Debian</td><td>Not supported</td><td>3 most recent stable versions</td></tr><tr><td>CentOS Stream</td><td>Not supported</td><td>2 most recent major versions</td></tr><tr><td>SLES</td><td>Not supported</td><td>2 most recent major versions</td></tr><tr><td>Proxmox Virtual Environment</td><td>Not supported</td><td>2 most recent major versions</td></tr><tr><td>Azure Linux</td><td>Not supported</td><td>2 most recent major versions</td></tr><tr><td>TencentOS</td><td>Not supported</td><td>2 most recent major versions</td></tr></tbody></table>
 {% endtab %}
 
 {% tab title="Backends" %}
 | Family       | Supported              |
 | ------------ | ---------------------- |
-| Ubuntu       | 26.04, 24.04           |
+| Amazon Linux | AL2023 (x86 and ARM)   |
+| DGX OS       | 8, 7.4                 |
 | RHEL         | 10, 9, 8               |
 | Rocky Linux  | 10 (x86 and ARM), 9, 8 |
-| Amazon Linux | AL2023 (x86 and ARM)   |
+| Ubuntu       | 26.04, 24.04           |
 {% endtab %}
 
 {% tab title="Clients" %}
 | Family        | Supported              |
 | ------------- | ---------------------- |
-| Ubuntu        | 26.04, 24.04           |
+| AlmaLinux     | 10, 9, 8               |
+| Amazon Linux  | AL2023 (x86 and ARM)   |
+| Azure Linux   | 3                      |
+| CentOS Stream | 10                     |
+| Debian        | 13, 12                 |
+| DGX OS        | 8 (x86 and ARM), 7.4   |
+| Oracle Linux  | 10, 9, 8               |
+| Proxmox VE    | 9                      |
 | RHEL          | 10, 9, 8               |
 | Rocky Linux   | 10 (x86 and ARM), 9, 8 |
-| Amazon Linux  | AL2023 (x86 and ARM)   |
-| AlmaLinux     | 10, 9, 8               |
-| Oracle Linux  | 10, 9, 8               |
-| Debian        | 13, 12                 |
-| CentOS Stream | 10                     |
 | SLES          | 16, 15                 |
-| Proxmox VE    | 9                      |
-| Azure Linux   | 3                      |
+| TencentOS     | V4                     |
+| Ubuntu        | 26.04, 24.04           |
 {% endtab %}
 
 {% tab title="Configuration" %}
@@ -182,7 +169,7 @@ WEKA supports a fixed number of the most recent versions of each distribution. W
 
 Adhere to the following considerations when choosing the adapters:
 
-* [**LACP**](#user-content-fn-4)[^4]**:** LACP is supported when bonding ports from dual-port Mellanox NICs into a single Mellanox device but is not compatible when using Virtual Functions (VFs). On CX-5, CX-5 EX, CX-5 BF, CX-6, and CX-6 LX adapters, LACP provides link failover only; throughput is that of a single link.
+* [**LACP**](#user-content-fn-4)[^4]**:** LACP is supported when bonding the ports of a dual-port Mellanox NIC, or ports on two different Mellanox NICs. A bond across two NICs works like an HA dual-NIC configuration and uses the bond's IP address. LACP is not compatible with Virtual Functions (VFs). On CX-5, CX-5 EX, CX-5 BF, CX-6, and CX-6 LX adapters, an LACP bond on a single NIC provides link failover only; throughput is that of a single link.
 * [**MTU**](#user-content-fn-5)[^5]\
   It is recommended to set the MTU to at least 4k on the NICs of the cluster servers and the connected switches.
 * [**Jumbo Frames**](#user-content-fn-6)[^6]\
@@ -342,7 +329,7 @@ Qualify a newer OFED version before you deploy it. NVIDIA maintains backward com
 
 {% tab title="Ethernet configurations" %}
 * **NICs bonding:**
-  * Supports bonding dual ports on the same NVIDIA Mellanox NIC using mode 4 (LACP) for redundancy. On adapters that support LACP load balancing, the bond also increases throughput.
+  * Supports bonding dual ports on the same NVIDIA Mellanox NIC using mode 4 (LACP) for redundancy. On adapters that support LACP load balancing, the bond also increases throughput. Also supports LACP or static bonding across ports on two different NVIDIA Mellanox NICs. The cluster handles the bond like an HA dual-NIC configuration, with one IP address.
 * **Ethernet speeds:**
   * 400 GbE / 200 GbE / 100 GbE / 50GbE / 40 GbE / 25 GbE / 10 GbE.
 * **IEEE 802.1Q VLAN encapsulation:**

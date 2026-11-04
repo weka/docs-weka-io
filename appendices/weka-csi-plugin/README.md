@@ -6,6 +6,10 @@ description: >-
 
 # WEKA CSI Plugin
 
+{% hint style="warning" %}
+**Deprecated:** Standalone installation of the WEKA CSI Plugin using the `csi-wekafs` Helm chart is deprecated. Deploy and manage the CSI plugin through the WEKA Operator. To move an existing standalone installation, see [migrate-standalone-csi-to-weka-operator-embedded.md](../../kubernetes/weka-operator-deployments/migrate-standalone-csi-to-weka-operator-embedded.md "mention").
+{% endhint %}
+
 The WEKA CSI Plugin interfaces Kubernetes worker nodes and control plane with the WEKA clients. It enables the creation and configuration of persistent storage external to Kubernetes. It is based on the CSI Plugin standard.
 
 <details>

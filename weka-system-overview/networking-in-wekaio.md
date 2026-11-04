@@ -130,14 +130,12 @@ To achieve HA, the WEKA system requires multiple network switches with servers c
 **Interface configuration**
 
 * **Non-LACP configuration**: Each server uses two network interfaces for redundancy and bandwidth enhancement. This approach doubles the number of IP addresses required on backend containers and IO processes.
-*   **LACP configuration (Ethernet-only)**: LACP aggregates interfaces on a single Mellanox NIC for improved reliability and load balancing in Ethernet-only setups.
-
-    Specifications and requirements:
-
-    * LACP is not supported with Virtual Functions (VFs).
-    * NIC must be set to `HW_LAG` (IEEE 802.3ad) with `queue_affinity` enabled and hashing disabled.
-    * At least two WEKA processes must use DPDK.
-    * Switch must support IEEE 802.3ad in active/active mode.
+* **LACP configuration (Ethernet-only)**: LACP aggregates interfaces on a single Mellanox NIC for improved reliability and load balancing in Ethernet-only setups. An LACP or static bond across ports on two different Mellanox NICs is handled like the non-LACP configuration, for redundancy and bandwidth, and uses the bond's single IP address.
+* The following specifications and requirements apply to an LACP bond on a single NIC:
+  * LACP is not supported with Virtual Functions (VFs).
+  * NIC must be set to `HW_LAG` (IEEE 802.3ad) with `queue_affinity` enabled and hashing disabled.
+  * At least two WEKA processes must use DPDK.
+  * Switch must support IEEE 802.3ad in active/active mode.
 
 **Failover and load balancing**
 
@@ -169,11 +167,11 @@ On RoCE deployments, set link-level flow control fully off on the server datapla
 
 When a server includes RDMA-capable network adapters, each adapter can be assigned one of the following roles that define how it handles traffic:
 
-| Role | Description |
-| --- | --- |
-| IP-only | Handles management process and data-path IP traffic. RDMA is not used on this adapter. |
-| IP and RDMA | Handles both IP traffic and RDMA operations. |
-| RDMA-only | Dedicated exclusively to RDMA traffic. Does not carry IP traffic. |
+| Role        | Description                                                                            |
+| ----------- | -------------------------------------------------------------------------------------- |
+| IP-only     | Handles management process and data-path IP traffic. RDMA is not used on this adapter. |
+| IP and RDMA | Handles both IP traffic and RDMA operations.                                           |
+| RDMA-only   | Dedicated exclusively to RDMA traffic. Does not carry IP traffic.                      |
 
 Assigning dedicated roles allows you to isolate RDMA traffic from IP traffic, improving network utilization and predictability. Adapters without RDMA capability can coexist on the same server when assigned to the IP-only role.
 

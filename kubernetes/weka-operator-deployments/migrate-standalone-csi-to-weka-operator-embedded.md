@@ -71,18 +71,17 @@ Before starting the migration, ensure the environment meets these criteria:
        ```
 5. **Verify the deployment:** Validate the status of the migration and all components.
 
-| Component         | Validation command                                                                        |
-| ----------------- | ----------------------------------------------------------------------------------------- |
-| Deployment status | `kubectl get wekaclient <client-name> -n <namespace> -o jsonpath='{.status.csiDeployed}'` |
-| Storage classes   | `kubectl get storageclass`                                                                |
-| Controller status | `kubectl get deployment -n <csi-namespace>`                                               |
-| Node pods         | `kubectl get pods -n <csi-namespace> -l component=csi-weka-csi-node`                      |
+<table><thead><tr><th width="197.125">Component</th><th>Validation command</th></tr></thead><tbody><tr><td>Deployment status</td><td><code>kubectl get wekaclient &#x3C;client-name> -n &#x3C;namespace> -o jsonpath='{.status.conditions[?(@.type=="CsiDeployed")].status}'</code></td></tr><tr><td>Storage classes</td><td><code>kubectl get storageclass</code></td></tr><tr><td>Controller status</td><td><code>kubectl get deployment -n &#x3C;csi-namespace></code></td></tr><tr><td>Node pods</td><td><code>kubectl get pods -n &#x3C;csi-namespace> -l component=csi-weka-csi-node</code></td></tr></tbody></table>
+
+{% hint style="info" %}
+The WekaClient reports the CSI deployment state as the `CsiDeployed` condition in `.status.conditions`. The WekaClient status has no `csiDeployed` field. To list all conditions, run `kubectl describe wekaclient <client-name> -n <namespace>`.
+{% endhint %}
 
 ### Transfer standalone CSI settings
 
 The embedded CSI plugin does not inherit values from the standalone `csi-wekafs` Helm chart. Before uninstalling the standalone plugin, identify every non-default value and set its equivalent in the embedded deployment. Otherwise, the embedded CSI plugin uses its defaults. This can change volume behavior after migration.
 
-With WEKA Operator v1.16.2 or later, set these values in the `configurationPayload` of a WekaPolicy. For the procedure, see [Configure operator-wide settings](weka-operator-full-deployment-workflow.md#id-3.1-configure-operator-wide-settings).
+With WEKA Operator v1.16.2 or later, set these values in the `configurationPayload` of a WekaPolicy. For the procedure, see [Configure operator-wide settings](weka-operator-full-deployment-workflow.md).
 
 | Standalone Helm value        | WekaPolicy setting                        | Embedded default |
 | ---------------------------- | ----------------------------------------- | ---------------- |
