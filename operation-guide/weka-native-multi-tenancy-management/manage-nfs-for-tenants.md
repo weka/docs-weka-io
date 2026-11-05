@@ -208,7 +208,9 @@ Tenants have lower NFS object limits than the root organization.
 | Exports (permissions) | 1024 | 64 |
 | Floating IPs per network space | Not applicable | 8 |
 
-Each limit is enforced per organization at creation time. A cluster supports up to **255 network spaces**, and a single tenant can own more than one, so there is no per-tenant network space quota.
+Each limit is enforced per organization at creation time. With NFS multi-tenancy enabled, the automatic client connections maximum of each NFS server is sized from the number of NFS containers. See [#nfs-server-resources](../../additional-protocols/nfs-support/#nfs-server-resources "mention").
+
+A cluster supports up to **255 network spaces**, and a single tenant can own more than one, so there is no per-tenant network space quota.
 
 The root organization's 200 floating IP addresses come from the interface group's own address pool. Tenant floating IPs are allocated from their network spaces and do not count against it.
 

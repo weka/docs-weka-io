@@ -243,6 +243,57 @@ To ensure service resilience, if a server fails, the system reassigns all IP add
 During a floating IP takeover, two servers can briefly answer for the same address. A 30-second grace window suppresses duplicate-address detection for that period, so `ArpServerDuplicateIPDetected` is not raised for a normal failover. The event still fires for a genuine address conflict.
 {% endhint %}
 
+## NFS server resources
+
+Each NFS container serves clients within three resources: client connections, open files, and memory. The maximum of each resource applies to every NFS container on its own, not to the cluster, a tenant, or an export.
+
+| Resource | Default | Accepted values | Setting |
+| --- | --- | --- | --- |
+| Client connections | Automatic: 1024 for each NFS server. With NFS multi-tenancy, the automatic value is sized from the number of NFS containers. | `0` (automatic), or 1024 to 65536 | `--max-client-connections` |
+| Open files | 500000 | `0` (default), or 10000 to 10000000 | `--max-open-fds` |
+| Memory ceiling | 32 GiB | 2 GiB to 512 GiB, in whole GiB | `--max-memory` |
+
+Set these with `weka nfs global-config set`, and view the usage with `weka nfs resource-usage`. See [#configure-the-nfs-global-settings](nfs-support-1.md#configure-the-nfs-global-settings "mention") and [#view-nfs-server-resource-usage](nfs-support-1.md#view-nfs-server-resource-usage "mention").
+
+Changes to the client connections and open files maximums apply to the running NFS servers. Set the memory ceiling before you configure the first NFS container. It then applies to every NFS container.
+
+Each NFS server process has a file descriptor limit equal to the client connections maximum, plus the open files maximum, plus 4096. The kernel settings `fs.nr_open` and `fs.file-max` on each server must allow this value. If a server's kernel settings are lower, the cluster raises the `NfsResourceLimitNotApplied` alert, which names the setting to raise.
+
+**Resource states**
+
+| State | Usage of the maximum |
+| --- | --- |
+| `OK` | Below 70% |
+| `HIGH` | 70% or more |
+| `LIMIT` | 90% or more |
+
+The cluster raises an alert for each resource that approaches its maximum. See [list-of-alerts-and-corrective-actions.md](../../operation-guide/alerts/list-of-alerts-and-corrective-actions.md "mention").
+
+{% hint style="danger" %}
+**INTERNAL, remove before publication. TBD (Hemant):** Two NFS resource alerts name internal commands or files in their corrective action, which contradicts the rule of keeping internal commands out of customer documentation. The alerts list is generated from these texts, so they appear on docs.weka.io as written:
+
+* `NfsFdReaperStalled`: "Collect `weka debug manhole dump_ganesha_fd_state` on the leader and open a support case; restarting the NFS container releases the descriptors."
+* `NfsMappingsApproachingLimit`: "Make sure the NFS server runs with the jemalloc retain:true default (a custom nfs/custom/jemalloc.conf may override it) and restart it on this host, or raise vm.max_map_count on the host."
+
+Can these actions point to the Customer Success Team instead (for example, "Contact the Customer Success Team. Restarting the NFS container releases the descriptors.")? If the internal commands must stay, confirm that this is intended.
+{% endhint %} The `nfs_resources` statistics category records the same values over time. See [statistics-list.md](../../operation-guide/statistics/statistics-list.md "mention").
+
+**Behavior at a maximum**
+
+* **Client connections:** New connections wait until a connection closes. Existing connections continue.
+* **Open files:** A request that needs another open file is delayed, and the client retries it.
+* **Memory:** The NFS container restarts, and clients reclaim their open and lock state during the grace period.
+
+{% hint style="danger" %}
+**INTERNAL, remove before publication. TBD (Hemant):** Confirm the behavior at each maximum for publication. It comes from the resource-usage guide (3.1 to 3.3), not from the code.
+{% endhint %}
+
+**Considerations**
+
+* Each `nconnect` channel that a client opens counts as one client connection.
+* Lowering the client connections maximum below the current usage keeps the existing connections. The new maximum applies to new connections.
+* Usage is reported for each NFS container. To find the clients that use a container's connections, run client-side tools such as `ss` on the clients.
+
 ## NFS file-locking support
 
 NFS byte-range [advisory locking](#user-content-fn-3)[^3] is supported for NFS versions 3, 4, and 4.1. This mechanism ensures synchronized access to files in a networked environment by allowing multiple processes to coordinate access to shared files. It helps maintain data integrity and consistency by preventing concurrent modifications that could lead to data corruption. The implementation is interoperable with POSIX byte-range advisory locks, enabling compatibility and coordination between NFS clients and the filesystem.

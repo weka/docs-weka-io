@@ -13,7 +13,7 @@ Sets the cluster-wide NFS configuration, including the configuration filesystem,
 **Command:** `weka nfs global-config set`
 
 ```sh
-weka nfs global-config set [--acl <on-off>] [--config-fs <string>] [--default-acl-type <acl-type>] [--default-supported-versions <nfs-versions>…] [--direct-io <on-off>] [--enable-auth-types <nfs-auth-types>…] [--enable-multi-tenant <on-off>] [--extended-stats <on-off>] [--force] [--force-config-fs <on-off>] [--lockmgr-port <uint16>] [--max-client-connections <uint>] [--max-open-fds <uint>] [--mountd-port <uint16>] [--no-restart] [--notify-port <uint16>] [--statmon-port <uint16>]
+weka nfs global-config set [--acl <on-off>] [--config-fs <string>] [--default-acl-type <acl-type>] [--default-supported-versions <nfs-versions>…] [--direct-io <on-off>] [--enable-auth-types <nfs-auth-types>…] [--enable-multi-tenant <on-off>] [--extended-stats <on-off>] [--force] [--force-config-fs <on-off>] [--lockmgr-port <uint16>] [--max-client-connections <uint>] [--max-memory <capacity>] [--max-open-fds <uint>] [--mountd-port <uint16>] [--no-restart] [--notify-port <uint16>] [--statmon-port <uint16>]
 ```
 
 **Parameters**
@@ -31,17 +31,22 @@ weka nfs global-config set [--acl <on-off>] [--config-fs <string>] [--default-ac
 | `--force` | Force action; this may cause disruption. |
 | `--force-config-fs` \<on-off> | Force config-fs update when locks are on. |
 | `--lockmgr-port` \<uint16> | Port for NFS lock manager. Default 0 selects any available port. |
-| `--max-client-connections` \<uint> | Maximum number of concurrent NFS client connections. 0 means auto-tune based on cluster size. Default: 0 |
-| `--max-open-fds` \<uint> | Maximum number of files each NFS server can hold open, between 10000 and 10000000. Default: 500000 |
+| `--max-client-connections` \<uint> | Maximum number of concurrent client connections for each NFS server: `0` (automatic) or a value from 1024 to 65536. Default: `0` |
+| `--max-memory` \<capacity> | Memory ceiling of each NFS container, in whole GiB from 2GiB to 512GiB, for example, `64GiB`. Set it before the first NFS container is configured. Default: 32GiB |
+| `--max-open-fds` \<uint> | Maximum number of files each NFS server can hold open: `0` (default, 500000) or a value from 10000 to 10000000. |
 | `--mountd-port` \<uint16> | Port number for mountd service. Default: 0 |
 | `--no-restart` | Prevent NFS-W containers from restarting when changes are applied. |
 | `--notify-port` \<uint16> | Port for NFSv3 notification. Default 0 means any available port. |
 | `--statmon-port` \<uint16> | Port for NFS status monitor. Default 0 means any available port. |
 
 {% hint style="info" %}
-`max-client-connections` and `max-open-fds` are the supported way to raise these limits. If an alert directs you to a `weka debug config override` command for either value, use the `global-config set` option instead.
+`--max-client-connections`, `--max-open-fds`, and `--max-memory` set the resources of each NFS server. For their defaults and the effect of each setting, see [#nfs-server-resources](./#nfs-server-resources "mention"). To view the current usage, see [#view-nfs-server-resource-usage](nfs-support-1.md#view-nfs-server-resource-usage "mention").
 
-Both are available through the CLI and the API only. They are not in the GUI global settings dialog, which exposes the Multi-Tenancy toggle and the NFS port fields.
+These options are available through the CLI and the API. The GUI global settings dialog exposes the Multi-Tenancy toggle and the NFS port fields.
+{% endhint %}
+
+{% hint style="danger" %}
+**INTERNAL, remove before publication. TBD (Hemant):** The backend rejects `--max-memory` once any NFS container exists ("container_memory_ceiling can only be set before any NFS host is configured"), but the CLI help says a running cluster applies it at each container's next start. The text above follows the backend. Which is intended for 6.1.0?
 {% endhint %}
 
 {% hint style="info" %}
@@ -60,41 +65,51 @@ weka nfs global-config show
 
 {% hint style="info" %}
 The parameters `Default Auth Types` and `Supported Auth Types` are determined internally.
-
-The `Effective` line reports the value actually in force. When the configured value is `0`, the effective value is the one the system sized automatically.
 {% endhint %}
 
 {% hint style="info" %}
 A tenant administrator running this command sees a reduced view. The Kerberos authentication types are omitted, so the output differs from what a cluster administrator sees. See [multi-tenancy-tenant-level-administration.md](../../operation-guide/weka-native-multi-tenancy-management/multi-tenancy-tenant-level-administration.md "mention").
 {% endhint %}
 
-**Example**
+The resource rows of the output show the configured value and the value in force:
 
-<pre><code>$ weka nfs global-config show
-NFS Global Configuration
-   mountd port: 0
-     Config FS: .config_fs
-   acl: on
-   default acl type: posix
-   Default Supported Versions: V3
-<strong>   Enabled Auth Types: KRB5, KRB5i, KRB5p
-</strong>   Default Auth Types: KRB5
-   Supported Auth Types: NONE, SYS, KRB5, KRB5i, KRB5p
-   Multi-Tenant: false
-   Max Client Connections: 0
-   Max Client Connections Effective: 2048
-   Max Open FDs: 0
-</code></pre>
+| Row | Shows |
+| --- | --- |
+| `Max Client Connections` | `auto (effective <n>)` when set to `0`, or `<setting> (effective <n>)`. |
+| `Max Open Files` | `default (effective <n>)` when set to `0`, or `<setting> (effective <n>)`. |
+| `FD Rlimit` | The file descriptor limit of each NFS server process, derived from the two settings above: `<derived> (effective <n>)`. |
+| `Container Memory Ceiling` | The configured memory ceiling. Empty when the default applies. |
+| `Container Memory Ceiling Effective` | The memory ceiling in force. |
 
-{% hint style="info" %}
-The parameters `Default Auth Types` and `Supported Auth Types` are determined internally.
-
-The `Effective` line reports the value actually in force. When the configured value is `0`, the effective value is the one the system sized automatically.
+{% hint style="danger" %}
+**INTERNAL, remove before publication. TBD (Ari):** Recapture the `weka nfs global-config show` example on Monday, 9 November, on Gokul's 6.1 cluster, and add it here as the **Example**. The previous example used labels that the 6.1 CLI no longer prints (`Max Open FDs`, a separate `Max Client Connections Effective` row).
 {% endhint %}
 
-{% hint style="info" %}
-A tenant administrator running this command sees a reduced view. The Kerberos authentication types are omitted, so the output differs from what a cluster administrator sees. See [multi-tenancy-tenant-level-administration.md](../../operation-guide/weka-native-multi-tenancy-management/multi-tenancy-tenant-level-administration.md "mention").
-{% endhint %}
+### View NFS server resource usage
+
+Shows the client connections, open files, and memory of each NFS container against its maximums, with a state for each resource. Running this command requires the Cluster Admin role.
+
+**Command:** `weka nfs resource-usage`
+
+```sh
+weka nfs resource-usage [--container-id <container-id>]
+```
+
+**Parameters**
+
+| Parameter | Description |
+| --- | --- |
+| `--container-id` | ID of one NFS container. Without this option, the command shows every NFS container from its latest sample. With it, the command reads the container directly. |
+
+The **Source** column shows `sampled` or `live`, and **Sample Age** shows how old a sampled reading is. The cluster samples each NFS container every 30 seconds.
+
+| Column | Description |
+| --- | --- |
+| `Connections`, `Conn Limit`, `Conn %`, `Conn State` | Client connections to the NFS server, the maximum, the percentage used, and the state. |
+| `Open Files`, `File Limit`, `File %`, `File State` | Files the NFS server holds open, the maximum, the percentage used, and the state. |
+| `Memory`, `Mem Limit`, `Mem %`, `Mem State` | Memory used by the NFS container, its memory ceiling, the percentage used, and the state. |
+
+Each state is `OK`, `HIGH`, or `LIMIT`. For the thresholds, see [#nfs-server-resources](./#nfs-server-resources "mention"). Add `-v` for the file descriptor and socket counts behind these values, or `-J` for JSON output.
 
 ## **Configure the NFS cluster level**
 
