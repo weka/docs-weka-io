@@ -61,7 +61,6 @@ The following table lists the supported LWH versions for each deployment environ
 | ---------------------- | ---------------------- | ------------------ |
 | Kubernetes (K8s)       | 4.x and above          | `values.yaml`      |
 | K3s                    | 3.x, 4.x and above     | `config.json`      |
-| Minikube               | 2.x                    | `config.yaml`      |
 
 #### Deploy Local WEKA Home on K8s
 
@@ -71,17 +70,11 @@ Deploy LWH on K8s to support scale-out environments and large cluster configurat
 
 Deploy LWH on K3s for a lightweight Kubernetes implementation installed on a single-node cluster. This deployment method supports LWH versions 3.x, 4.x and above. You can customize the deployment by specifying configuration parameters in the `config.json` file.
 
-#### Deploy Local WEKA Home on Minikube
-
-Deploy LWH on Minikube for a lightweight Kubernetes implementation installed on a single Docker container. This deployment method supports LWH version 2.x. You can customize the deployment by specifying configuration parameters in the `config.yaml` file.
-
 **Related topics**
 
-[#deploy-local-weka-home-on-k8s](local-weka-home-overview.md#deploy-local-weka-home-on-k8s "mention")
+[deploy-local-weka-home-on-k8s](deploy-local-weka-home-on-k8s/ "mention")
 
 [deploy-local-weka-home-on-k3s](deploy-local-weka-home-on-k3s/ "mention")
-
-[deploy-local-weka-home-on-k8s](deploy-local-weka-home-on-k8s/ "mention")
 
 ## Security hardening for Local WEKA Home
 
