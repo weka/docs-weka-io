@@ -10,6 +10,14 @@ Each entry takes effect as soon as the upgrade completes, with no deprecation pe
 
 Review the section for your target version before running the upgrade workflow in [README.md](./ "mention").
 
+## 6.1
+
+### NFS debug level
+
+`POST /nfs/debug/set` now persists the level when the request does not name containers in `host_uids`. A persisted level is kept across NFS container restarts until it is reset with `POST /nfs/debug/reset` or `weka nfs debug-level reset`. To apply a level to the running NFS servers only, send `"transient": true`.
+
+The route now requires the Cluster Admin role for every request. In 6.0, it accepted the Tenant Admin role.
+
 ## 6.0
 
 ### CLI verb renames

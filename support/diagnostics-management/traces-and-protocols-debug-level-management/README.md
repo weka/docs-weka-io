@@ -24,10 +24,30 @@ Do not disable the traces without specific instructions from the Customer Succes
 
 Each protocol container in the cluster writes logs at a configurable debug level. A higher debug level provides more details for investigating issues. While investigating issues, you can increase the debug level for the S3, NFS, and SMB protocols, for all servers or specified servers.
 
-After the protocol container restarts, the debug level reverts to its default.
+For S3 and SMB, the debug level returns to its default when the protocol container restarts. For NFS, a debug level set for all NFS servers is kept across NFS container restarts until you reset it.
 
 {% hint style="warning" %}
 Do not change the protocols debug level without specific instructions from the Customer Success Team.
+{% endhint %}
+
+### NFS debug level scopes
+
+An NFS debug level applies to one of three scopes:
+
+| Scope | How to set it | Kept after an NFS container restart | Required role |
+| --- | --- | --- | --- |
+| Persisted | Set the level for all NFS servers. | Yes, until you reset it | Cluster Admin |
+| Transient | Set the level for all NFS servers with `--transient`. | No | Tenant Admin |
+| Container | Set the level for specific NFS containers with `--nfs-hosts`. | No | Tenant Admin |
+
+The NFS debug levels are `EVENT` (the default), `INFO`, `DEBUG`, `MID_DEBUG`, and `FULL_DEBUG`. A level applies to the NFS server components you name, or to all components with `--full-list`. To list the components, run `weka nfs debug-level list components`.
+
+Resetting the debug level applies to all NFS servers and requires the Cluster Admin role. Each component returns to the level persisted for all components, or to `EVENT`.
+
+While a persisted level is above `EVENT`, the cluster raises the `NfsDebugLevelElevated` alert. Each persisted change and reset is recorded in the `NfsDebugLevelChangedEvent` event.
+
+{% hint style="danger" %}
+**INTERNAL, remove before publication. TBD (Hemant):** Confirm the roles in the table. The CLI help and the default `weka` CLI path accept Tenant Admin for transient and container sets, but the debug-level guide says every set requires Cluster Admin, and the legacy API path (`--api v1`) requires Cluster Admin for every set.
 {% endhint %}
 
 **Related topics**

@@ -146,6 +146,10 @@ The available debug levels are:
 4. Select **Save**.
 5. In the **Confirm NFS debug level change** message, select **Yes**.
 
+{% hint style="danger" %}
+**INTERNAL, remove before publication. TBD (Hemant):** In 6.1, does this dialog persist the level when **All servers** is on, and does it require the Cluster Admin role? Does the GUI offer a reset? The page describes the 6.0 dialog. To reset a persisted level now, use `weka nfs debug-level reset`.
+{% endhint %}
+
 ### Change SMB debug level
 
 If the SMB protocol is configured, you can change the debug level for all servers or specified servers.

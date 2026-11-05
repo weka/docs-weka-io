@@ -74,13 +74,78 @@ Resetting the freeze period deletes the existing frozen traces.
 
 **Command:** `weka s3 log-level get`
 
-### Manage NFS debug level
+### Show the NFS debug level
 
-**Command:** `weka nfs debug-level show|set`
+Shows the running debug level of each NFS server component, and the persisted level. A container whose NFS server is not running shows `not ready`.
 
-**Command options**
+**Command:** `weka nfs debug-level show`
 
-<table><thead><tr><th width="137.89453125">Option</th><th>Description</th></tr></thead><tbody><tr><td><code>show</code></td><td>Shows the debug level for the NFS servers.</td></tr><tr><td><code>set</code></td><td>Sets the debug level for the NFS servers. When you complete debugging, return the debug level to default (creates an event).</td></tr></tbody></table>
+```sh
+weka nfs debug-level show [--full-list] [--nfs-components <strings>…] [--nfs-hosts <container-ids>…]
+```
+
+**Parameters**
+
+| Parameter | Description |
+| --- | --- |
+| `--full-list` | Show all NFS server components. |
+| `--nfs-components` | Components to show. |
+| `--nfs-hosts` | IDs of the NFS containers to show. |
+
+### Set the NFS debug level
+
+Sets the debug level of the NFS server components. A level set for all NFS servers is persisted and requires the Cluster Admin role. With `--transient` or `--nfs-hosts`, the level applies to the running NFS servers until they restart, and requires the Tenant Admin role. For the scopes, see [#nfs-debug-level-scopes](./#nfs-debug-level-scopes "mention").
+
+**Command:** `weka nfs debug-level set`
+
+```sh
+weka nfs debug-level set <level> [--full-list] [--nfs-components <strings>…] [--nfs-hosts <container-ids>…] [--transient]
+```
+
+**Parameters**
+
+| Parameter | Description |
+| --- | --- |
+| `level`\* | Debug level: `EVENT`, `INFO`, `DEBUG`, `MID_DEBUG`, or `FULL_DEBUG`. |
+| `--full-list` | Apply the level to all NFS server components. |
+| `--nfs-components` | Components to apply the level to. |
+| `--nfs-hosts` | IDs of the NFS containers to apply the level to. The level applies until each container restarts. |
+| `--transient` | Apply the level to the running NFS servers only, without persisting it. |
+
+When the investigation is complete, reset the debug level.
+
+### Reset the NFS debug level
+
+Clears the persisted NFS debug levels on all NFS servers. Each component returns to the level persisted for all components, or to `EVENT`. Requires the Cluster Admin role.
+
+**Command:** `weka nfs debug-level reset`
+
+```sh
+weka nfs debug-level reset [--nfs-components <strings>…]
+```
+
+**Parameters**
+
+| Parameter | Description |
+| --- | --- |
+| `--nfs-components` | Components to reset. Without this option, all components are reset. |
+
+### List the NFS debug components and levels
+
+Lists the NFS server components or the debug levels that `weka nfs debug-level set` accepts.
+
+**Command:** `weka nfs debug-level list`
+
+```sh
+weka nfs debug-level list <what> [--full-list]
+```
+
+**Parameters**
+
+| Parameter | Description |
+| --- | --- |
+| `what`\* | `components` or `levels`. |
+| `--full-list` | Show the full list. |
 
 ### Set SMB debug level
 
