@@ -46,7 +46,7 @@ Resolve these first. The error lists every conflicting feature type at once, so 
 Cannot enable NFS multi-tenant; the following unsupported features are configured: <list>. Remove them first, then retry
 ```
 
-In the GUI only, one further condition applies: the **Multi-Tenancy** toggle is disabled while LDAP or Kerberos authentication is configured, with the tooltip *"Multi-tenancy cannot be enabled while LDAP or Kerberos authentication is configured. Reset them first."* The CLI has no such restriction — with the CLI, Kerberos and LDAP simply become root-organization only once multi-tenancy is enabled.
+In the GUI only, one further condition applies: the **Multi-Tenancy** toggle is disabled while LDAP or Kerberos authentication is configured, with the tooltip *"Multi-tenancy cannot be enabled while LDAP or Kerberos authentication is configured. Reset them first."* The CLI has no such restriction. With the CLI, Kerberos and LDAP become available only in the root organization once multi-tenancy is enabled.
 
 {% hint style="warning" %}
 Enabling or disabling NFS multi-tenancy requires an NFS container restart to take effect. Plan the change for a maintenance window.
@@ -66,7 +66,7 @@ Enabling or disabling NFS multi-tenancy requires an NFS container restart to tak
 weka nfs global-config set --enable-multi-tenant on
 ```
 
-The CLI does not restart the containers. On success it prints `Restart of NFS-W containers needed to apply changes.` — restarting is a separate step.
+The CLI does not restart the containers. On success, it prints `Restart of NFS-W containers needed to apply changes.` Restart the containers as a separate step.
 
 To confirm the current state:
 
@@ -75,7 +75,7 @@ weka nfs global-config show
 ```
 
 {% hint style="info" %}
-Mutating NFS commands wait for the configuration to propagate to every NFS server before returning — normally a few seconds, bounded by a 55-second timeout. If the timeout expires, the command fails with an error naming the servers that did not confirm.
+Mutating NFS commands wait for the configuration to propagate to every NFS server before returning. This normally takes a few seconds, with a 55-second timeout. If the timeout expires, the command fails with an error naming the servers that did not confirm.
 {% endhint %}
 
 ## Assign a tenant to an interface group
@@ -118,7 +118,7 @@ Add the interface group's IP ranges first, then assign the tenant. In this order
 
 #### CLI alternative
 
-List the tenants currently assigned to interface groups. This is the bare parent command — there is no `list` subcommand:
+List the tenants currently assigned to interface groups. Run the parent command itself, which has no `list` subcommand:
 
 ```bash
 weka nfs interface-group tenant
@@ -151,7 +151,7 @@ weka nfs interface-group tenant delete <interface-group> <tenant>
 All three verbs take the same two positional arguments, interface group first and tenant second.
 
 {% hint style="warning" %}
-This command uses `delete`. Six other NFS subcommands were renamed from `delete` to `remove` in this version, though all six keep `delete` as an alias. `weka nfs interface-group tenant delete` was not renamed at all — `delete` is its canonical name. See [breaking-changes.md](../upgrading-weka-versions/breaking-changes.md "mention").
+This command uses `delete`. Six other NFS subcommands were renamed from `delete` to `remove` in this version, though all six keep `delete` as an alias. `weka nfs interface-group tenant delete` was not renamed: `delete` is its canonical name. See [breaking-changes.md](../upgrading-weka-versions/breaking-changes.md "mention").
 {% endhint %}
 
 ## Inspect tenant network space assignment
@@ -170,16 +170,16 @@ Several NFS features remain available only in the root organization while NFS mu
 
 | Feature | Root organization | Tenant |
 | --- | --- | --- |
-| Kerberos authentication | Yes | No — connections using `RPCSEC_GSS` are rejected with `AUTH_TOOWEAK` |
+| Kerberos authentication | Yes | No. Connections that use `RPCSEC_GSS` are rejected with `AUTH_TOOWEAK`. |
 | LDAP for NFS group resolution | Yes | No |
 | Manage GIDs | Yes | No |
-| Name-based (DNS) client rules | Yes | No — use IP-based rules |
-| Netgroups | Yes | No — use IP-based rules |
+| Name-based (DNS) client rules | Yes | No. Use IP-based rules. |
+| Netgroups | Yes | No. Use IP-based rules. |
 | ACLs | Yes | No |
-| NFSv3 file locking (NLM) | Yes | No — NFSv4.1 locking is available |
+| NFSv3 file locking (NLM) | Yes | No. NFSv4.1 locking is available. |
 
 {% hint style="info" %}
-NFS multi-tenancy cannot be enabled on clusters running the Kubernetes NFS deployment mode; the two are mutually exclusive. This is a cluster-wide constraint rather than a tenant restriction — the deployment mode is not available to the root organization under multi-tenancy either. Kubernetes workloads that mount NFS exports as clients are unaffected.
+NFS multi-tenancy cannot be enabled on clusters running the Kubernetes NFS deployment mode; the two are mutually exclusive. This is a cluster-wide constraint, not a tenant restriction: under multi-tenancy, the deployment mode is unavailable to the root organization as well. Kubernetes workloads that mount NFS exports as clients are unaffected.
 {% endhint %}
 
 {% hint style="warning" %}
@@ -187,7 +187,7 @@ NFS multi-tenancy cannot be enabled on clusters running the Kubernetes NFS deplo
 
 A tenant administrator can configure LDAP or Active Directory for tenant **user accounts**, as described in [multi-tenancy-tenant-level-administration.md](multi-tenancy-tenant-level-administration.md "mention").
 
-The LDAP used for **NFS group resolution** — the configuration that supports more than 16 user groups — is available only in the root organization. As a result, NFS requests from a tenant always use numeric owner and group strings. Names are not resolved, and unknown names map to `anon`. On a tenant mount, `ls -l` shows numeric UIDs and GIDs unless the client performs its own mapping.
+The LDAP used for **NFS group resolution**, which supports more than 16 user groups, is available only in the root organization. As a result, NFS requests from a tenant always use numeric owner and group strings. Names are not resolved, and unknown names map to `anon`. On a tenant mount, `ls -l` shows numeric UIDs and GIDs unless the client performs its own mapping.
 
 Configuring tenant LDAP successfully does not change NFS identity behavior.
 {% endhint %}
@@ -206,7 +206,7 @@ Tenants have lower NFS object limits than the root organization.
 | Client groups | 50 | 8 |
 | Client group rules | 512 | 64 |
 | Exports (permissions) | 1024 | 64 |
-| Floating IPs per network space | — | 8 |
+| Floating IPs per network space | Not applicable | 8 |
 
 Each limit is enforced per organization at creation time. A cluster supports up to **255 network spaces**, and a single tenant can own more than one, so there is no per-tenant network space quota.
 
