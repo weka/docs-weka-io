@@ -297,6 +297,58 @@ To ensure service resilience, if a server fails, the system reassigns all IP add
 During a floating IP takeover, two servers can briefly answer for the same address. A 30-second grace window suppresses duplicate-address detection for that period, so `ArpServerDuplicateIPDetected` is not raised for a normal failover. The event still fires for a genuine address conflict.
 {% endhint %}
 
+## External load balancer integration
+
+When NFS clients reach the NFS containers through an external layer 4 (passthrough) load balancer instead of floating IPs, the load balancer needs to know which NFS containers are serving. The cluster reports a serving verdict for each NFS container and interface group, and a cluster-wide indicator of correlated failures. The load balancer uses them to send new connections only to serving NFS containers.
+
+**Verdicts**
+
+`OK` is the only serving verdict. Treat every other value as not serving, including a value that is not in this table. The cluster evaluates the verdicts in this order and reports the first that applies:
+
+| Verdict | Meaning |
+| --- | --- |
+| `UNREACHABLE` | No process can be resolved for the container and interface group, or the process is down. |
+| `NODE_NOT_SERVING` | The process is known but does not carry traffic, for example, while it joins or is removed. |
+| `LINK_DOWN` | The network interface of the port reports link down. |
+| `NFS_SERVER_DOWN` | The link is up, but the NFS server process or its container is not running. |
+| `MAINTENANCE` | The container is administratively taken out of service. |
+| `FAILED` | Removing a floating IP from this port failed. Applies to floating IP deployments only. |
+| `MISCONFIGURED` | Assigning a floating IP failed, or the container has no port in the interface group. |
+| `CANARY_FAILED` | All other checks pass, but the serving probe failed three consecutive times. |
+| `OK` | Serving. |
+
+**Serving probe**
+
+Each NFS container checks its own NFS server every 5 seconds with an NFSv3 mount and a filesystem status request, with a 3-second timeout. After three consecutive failures, the verdict is `CANARY_FAILED`. The serving probe does not move floating IPs and does not change the port status of the interface group.
+
+**Correlated failures**
+
+When at least half of the probed NFS containers fail at the same time, with a minimum of two, the cluster reports a cluster-wide degraded condition and raises the `NfsCanaryClusterDegraded` alert. The verdict of each container stays as it is.
+
+**How a load balancer uses the signal**
+
+* **Health check on each container:** The load balancer reads `GET /nfs/health/self` on each NFS container's management port (14000) and checks that `lb_healthy` is `true`. While the cluster is degraded, `lb_healthy` stays `true`, so the load balancer keeps all containers in rotation instead of removing most of them at once.
+* **Monitor program:** A program reads the cluster-wide report, `GET /nfs/health`, from any management address, and updates the load balancer.
+
+Reading the health API requires the `nfs_health_view` permission. The Read Only role has it, and a custom role can hold it on its own. For the endpoints, fields, and errors, see the REST API reference at [api.docs.weka.io](https://api.docs.weka.io).
+
+{% hint style="danger" %}
+**INTERNAL, remove before publication. TBD (Hemant):** Which REST surface should customers integrate with in 6.1: v2 `/api/v2/nfs/health` or v3 `/nfs/health`? Can a custom role that holds only `nfs_health_view` be assigned to a user in 6.1.0 (the developer reference says not yet)? The paths above are written without a version prefix until you confirm.
+{% endhint %}
+
+**Considerations**
+
+* The health check target is the management port (14000) of each NFS container's server, not the NFS serving address. Make sure the load balancer can reach port 14000 on every NFS server.
+* The cluster reports the faults it can observe on its own containers. Pair the health API with a TCP check on port 2049 of each serving address, from the load balancer.
+* When the load balancer moves a client to another NFS container, the client's NFSv4 state and NLM locks stay with the original container. Configure client retries and application recovery for this case.
+* The serving probe reaches the NFS frontend. Faults in the backend data path affect all containers together, and the cluster alerts report them.
+* Authentication and identity services are not part of the serving probe.
+* Damping, such as how many failed reads remove a container from rotation, is configured on the load balancer or the monitor program.
+
+{% hint style="danger" %}
+**INTERNAL, remove before publication. TBD (Hemant):** (1) Is "tenant network spaces are not scored" accurate, and does a tenant-assigned interface group appear in the report? (2) The `MAINTENANCE` verdict is set with `weka debug nfs port disable`, which is a debug command. Is there a supported way for customers to drain a container? (3) Are the detection windows in your guide (about 15 to 25 seconds for `CANARY_FAILED`, about 45 seconds for `NFS_SERVER_DOWN`) committed behavior to publish? The text above gives the code defaults only.
+{% endhint %}
+
 ## NFS server resources
 
 Each NFS container serves clients within three resources: client connections, open files, and memory. The maximum of each resource applies to every NFS container on its own, not to the cluster, a tenant, or an export.
