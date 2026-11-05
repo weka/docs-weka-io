@@ -161,7 +161,7 @@ Integrating the NFS and Kerberos service is critical to setting up a secure netw
 * For MIT integration, obtain the required information from the MIT KDC and OpenLDAP administrators, and a pre-generated keytab file stored in an accessible location is required.
 
 {% hint style="info" %}
-In all KDC and LDAP parameters, use the FQDN format. The hostname part of the FQDN is restricted to a maximum of 20 characters.
+In all KDC and LDAP parameters, use the FQDN format. The hostname part of the NFS service name has up to 19 characters for Active Directory or up to 63 characters for MIT Kerberos, and differs from the names of the KDC and directory servers.
 {% endhint %}
 
 **Procedure**

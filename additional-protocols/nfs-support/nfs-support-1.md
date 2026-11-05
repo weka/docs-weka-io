@@ -295,9 +295,13 @@ Integrating the NFS and Kerberos service is critical to setting up a secure netw
 * For MIT integration, ensure the following:
   * Obtain the required information from the MIT Key Distribution Center (KDC) and OpenLDAP administrators.
   * A pre-generated keytab file in base64[^1] format stored in an accessible location is required.
+* Ensure you have the Tenant Admin role or higher. With NFS multi-tenancy enabled, run the commands in the root tenant.
+* Ensure the directory accounts have the required privileges. See [#nfs-user-and-group-resolution](./#nfs-user-and-group-resolution "mention").
 
 {% hint style="info" %}
-In all KDC and LDAP parameters, use the FQDN format. The hostname part of the FQDN is restricted to a maximum of 20 characters.
+In all KDC and LDAP parameters, use the FQDN format.
+
+The NFS service name is a DNS name dedicated to the NFS service, in the form `<hostname>.<domain>`, where the domain is the domain of the realm. The hostname contains only letters, digits, and inner hyphens, and has up to 19 characters for Active Directory or up to 63 characters for MIT Kerberos. Use a name that differs from the names of the KDC and directory servers.
 {% endhint %}
 
 ### Set the Kerberos service
@@ -511,9 +515,15 @@ ActiveDirectory  test.wekalab.io               0                                
 ```
 {% endcode %}
 
+{% hint style="danger" %}
+**INTERNAL, remove before publication. TBD (Ari):** Recapture the `weka nfs ldap show` example on Monday, 9 November, on Gokul's 6.1 cluster. This example is from the legacy CLI layout.
+{% endhint %}
+
 ### Clear the Kerberos LDAP configuration
 
-Removes the LDAP configuration used for NFS user and group resolution.
+Removes the LDAP configuration used for NFS user and group resolution: the identity service configuration, the ID mapping configuration, the stored reader password, and the CA certificate. The Kerberos service and registration remain. To remove them, see [#clear-kerberos-configuration](nfs-support-1.md#clear-kerberos-configuration "mention"). The Active Directory computer account remains in Active Directory.
+
+While Kerberos is configured or ACLs are enabled, add `--force` to reset the configuration.
 
 **Command:** `weka nfs ldap reset`
 
@@ -527,6 +537,98 @@ weka nfs ldap reset [--force] [--no-restart]
 | --- | --- |
 | `--force` | Perform this action without further confirmation. |
 | `--no-restart` | Don't restart the NFS-W containers to apply changes. |
+
+### Export and import the LDAP configuration
+
+Exports the identity service configuration that the cluster generated, and imports a configuration that you edited. Use export and import to add Active Directory domains, to verify the certificate of the directory server, or to copy the configuration to another cluster. The commands write and read these files:
+
+* `sssd-conf-file`: The identity service (SSSD) configuration.
+* `idmapd-conf-file`: The NFSv4 ID mapping configuration.
+* `ca-cert-file`: Optional. The CA certificate of the directory server, in PEM format, up to 16 KiB.
+
+**Command:** `weka nfs ldap export-ad`
+
+```sh
+weka nfs ldap export-ad <server-name> <ldap-domain> <sssd-conf-file> <idmapd-conf-file> [<ca-cert-file>]
+```
+
+**Command:** `weka nfs ldap export-openldap`
+
+```sh
+weka nfs ldap export-openldap <server-name> <ldap-domain> <sssd-conf-file> <idmapd-conf-file> [<ca-cert-file>]
+```
+
+**Command:** `weka nfs ldap import-ad`
+
+```sh
+weka nfs ldap import-ad <server-name> <ldap-domain> <sssd-conf-file> <idmapd-conf-file> [<ca-cert-file>] [--force] [--no-restart]
+```
+
+**Command:** `weka nfs ldap import-openldap`
+
+```sh
+weka nfs ldap import-openldap <server-name> <ldap-domain> <sssd-conf-file> <idmapd-conf-file> [<ca-cert-file>] [--force] [--no-restart] [--verify]
+```
+
+**Parameters**
+
+| Parameter | Description |
+| --- | --- |
+| `server-name`\* | Directory server name. |
+| `ldap-domain`\* | Directory domain. |
+| `sssd-conf-file`\* | Path to the identity service configuration file. Export writes it, and import reads it. |
+| `idmapd-conf-file`\* | Path to the ID mapping configuration file. Export writes it, and import reads it. |
+| `ca-cert-file` | Path to the CA certificate file. Export writes the stored certificate, and import stores the certificate in the file. |
+| `--force` | Import over an existing configuration of the same directory type. To import a configuration of the other type, reset the LDAP configuration first. |
+| `--no-restart` | Do not restart the NFS containers to apply the change. |
+| `--verify` | Verify the connection to the OpenLDAP server. |
+
+#### Add Active Directory domains
+
+Lists the domains of an Active Directory forest explicitly, instead of relying on discovery.
+
+**Procedure**
+
+1. Export the configuration:
+
+   ```sh
+   weka nfs ldap export-ad dc1.corp.example.com corp.example.com sssd.conf idmapd.conf
+   ```
+2. In `sssd.conf`, add the domains to the `domains` line, for example, `domains = corp.example.com,eu.corp.example.com`, and add a `[domain/<domain name>]` section for each added domain. Keep the domain from the command line in the list, with `id_provider = ad`.
+3. Import the configuration:
+
+   ```sh
+   weka nfs ldap import-ad dc1.corp.example.com corp.example.com sssd.conf idmapd.conf --force
+   ```
+
+The NFS service stays registered in one domain. Each domain in the `domains` line needs its own section in the file.
+
+#### Verify the directory server certificate
+
+Imports the CA certificate of the directory server, so the identity service uses StartTLS and verifies the server certificate.
+
+**Procedure**
+
+1. Export the configuration with `weka nfs ldap export-ad` or `weka nfs ldap export-openldap`.
+2. For OpenLDAP, add the reader password to the exported `sssd.conf`, which does not include it:
+
+   ```
+   ldap_default_authok_type = password
+   ldap_default_authok = <password>
+   ```
+
+   The cluster stores the password encrypted and removes these lines from the stored file.
+3. Import the configuration with the CA certificate as the fifth argument, for example:
+
+   ```sh
+   weka nfs ldap import-openldap ldap1.example.com example.com sssd.conf idmapd.conf ldap-ca.pem --verify
+   ```
+
+A later import without a certificate keeps the stored certificate. To remove the certificate, reset the LDAP configuration. See [#clear-the-kerberos-ldap-configuration](nfs-support-1.md#clear-the-kerberos-ldap-configuration "mention").
+
+#### Copy the LDAP configuration to another cluster
+
+Export the configuration on the source cluster, and import it on the target cluster with the same server and domain. For Active Directory, register the target cluster in the domain before you import. See [#register-kerberos-with-ad](nfs-support-1.md#register-kerberos-with-ad "mention").
 
 ### Show Kerberos registration information
 

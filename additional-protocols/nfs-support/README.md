@@ -209,7 +209,11 @@ Kerberos authentication for NFS is supported using AD and Kerberos MIT:
 * **Kerberos MIT:** NFS integrates with Kerberos MIT, implementing the Kerberos protocol, which uses secret-key cryptography for authentication across insecure networks. This protocol is widely standardized and utilized.
 
 {% hint style="info" %}
-**Realm consistency:** To use Kerberos with the NFS service, the NFS service, the NFS clients, and the Key Distribution Center (KDC) must all reside within the same Kerberos realm.
+**Realm consistency:** The NFS service is registered in one Kerberos realm. With MIT Kerberos, the NFS clients and the Key Distribution Center (KDC) reside in the same realm as the NFS service. With Active Directory, clients in other domains of the same forest authenticate through the forest trusts.
+{% endhint %}
+
+{% hint style="danger" %}
+**INTERNAL, remove before publication. TBD (Hemant):** With several Active Directory domains, do the forest trusts cover clients in the other domains, or must clients still share the NFS service's realm? The LDAP guide (1.3, 4.5) says the 6.0 single-realm rule no longer applies to AD. This was not checked in the code.
 {% endhint %}
 
 ### Kerberos service interactions basic outline
@@ -227,6 +231,56 @@ The following Kerberos service interactions ensure secure communication between 
 
 {% hint style="info" %}
 This diagram illustrates the Kerberos service interactions in a simplified manner. It highlights how secure communication is established over insecure networks. Note that this is a broad representation, and actual implementations may differ.
+{% endhint %}
+
+## NFS user and group resolution
+
+The NFS service resolves user and group names and IDs for NFSv4 ownership, ACLs, Kerberos principals, and manage-gids. With manage-gids, the NFS server looks up a user's supplementary groups instead of using the up to 16 groups that the client sends. Each NFS container runs its own identity service (SSSD), configured with `weka nfs ldap`.
+
+| Mode | Command | Directory | How the cluster connects to the directory |
+| --- | --- | --- | --- |
+| Active Directory with Kerberos | `weka nfs ldap setup-ad`, after `weka nfs kerberos registration setup-ad` | Active Directory | The machine account of the NFS service, through its keytab |
+| Active Directory without Kerberos | `weka nfs ldap setup-ad-nokrb` | Active Directory | A machine account that the command creates, through its keytab |
+| OpenLDAP | `weka nfs ldap setup-openldap` | OpenLDAP or another RFC 2307 LDAP directory | A read-only bind user and its password |
+| On-host | `weka nfs ldap setup-onhostldap` | The directory that the server's own SSSD uses | The configuration of each server |
+
+The identity configuration is stored on the NFS configuration filesystem, so every NFS container uses the same configuration. Set the configuration filesystem before you configure any mode except on-host.
+
+**Applying a change**
+
+The `weka nfs ldap` commands restart the NFS containers after they succeed, unless you add `--no-restart`. The `weka nfs kerberos` commands restart the NFS containers only with `--restart`. A restart pauses I/O for connected clients during the restart and the grace period. With `--no-restart`, the running NFS containers keep the previous configuration until they restart.
+
+**Several Active Directory domains**
+
+After `setup-ad` or `setup-ad-nokrb`, the identity service discovers the other domains of the Active Directory forest, so users and groups from trusted domains in the forest resolve without more configuration. To list the domains explicitly, export the configuration, add the domains, and import it. See [#add-active-directory-domains](nfs-support-1.md#add-active-directory-domains "mention").
+
+**TLS to the directory**
+
+To verify the certificate of the directory server, import the configuration with the CA certificate. For each configured domain, the cluster then sets the certificate path, StartTLS, and certificate verification (`ldap_tls_reqcert = demand`). Other values in the imported file are kept. See [#verify-the-directory-server-certificate](nfs-support-1.md#verify-the-directory-server-certificate "mention").
+
+**Required roles and directory privileges**
+
+| Account | Requirement |
+| --- | --- |
+| Cluster user who runs the commands | The Tenant Admin role or higher. With NFS multi-tenancy enabled, run the commands in the root tenant. |
+| Active Directory account for `kerberos registration setup-ad` and `ldap setup-ad-nokrb` | Can get a Kerberos ticket and create a computer object under the base OU (default `CN=Computers`). When you register the same service name again, can reset the password of that computer object and write its `servicePrincipalName` and `userPrincipalName`. The password is used once and is not stored. |
+| OpenLDAP reader user for `ldap setup-openldap` | Can bind and search under the base DN. The command runs this search before it writes the configuration. |
+| Machine account or reader user, while NFS runs | Can read the users and groups and their POSIX attributes (`uidNumber` and `gidNumber`). |
+
+{% hint style="danger" %}
+**INTERNAL, remove before publication. TBD (Hemant):** Confirm the Active Directory rights above for publication, and whether Domain Admin is ever required. They come from the LDAP guide (3.3, 3.4) and the commands the registration runs. Also confirm that the registration password is not stored. Is any privilege beyond reading the POSIX attributes needed for the machine account (the ticket asks about "LDAP View")?
+{% endhint %}
+
+**Considerations**
+
+* User and group IDs come from the POSIX attributes `uidNumber` and `gidNumber`, not from Active Directory SIDs. Populate these attributes for every user and group that accesses NFS.
+* An OpenLDAP configuration covers one domain.
+* To use Active Directory without Kerberos on a cluster with a Kerberos registration, reset the Kerberos registration first.
+* Exports with manage-gids need a working identity source on each NFS server. The cluster raises the `NfsIdentitySourceUnavailable` alert for a server without one.
+* The on-host mode uses the SSSD service of each server. Keep SSSD running on every NFS server.
+
+{% hint style="danger" %}
+**INTERNAL, remove before publication. TBD (Hemant):** Confirm two points: an OpenLDAP configuration is one domain on one server by design, and the on-host mode does not need the configuration filesystem.
 {% endhint %}
 
 ## Scalability, load balancing, and resiliency
