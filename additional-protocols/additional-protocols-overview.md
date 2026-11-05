@@ -11,6 +11,8 @@ metaLinks:
 
 In a WEKA cluster, the frontend container provides the default POSIX protocol, serving as the primary access point for the distributed filesystem. You can also define protocol containers for NFS, SMB, and S3 clients.
 
+A server that runs protocol containers is a member of the cluster. It connects to the cluster's data network like any backend server, and serves its protocol to clients over the data network or a separate network.
+
 To configure protocol containers, you have two options for creating a cluster for the specified protocol:
 
 1. Set up protocol services on existing backend servers.
@@ -72,6 +74,11 @@ Dedicated protocol servers offer the following advantages:
 * **Independent protocol scaling:** Scale specific protocols independently, mitigating resource contention and ensuring consistent performance across the cluster.
 
 <div data-with-frame="true"><figure><img src="../.gitbook/assets/Protocols_on_dedicated_servers.png" alt=""><figcaption><p>Protocol containers in dedicated servers</p></figcaption></figure></div>
+
+**Before you begin**
+
+* Connect each dedicated protocol server to the cluster's data network, using the same network technology as the backend servers. On an InfiniBand cluster, connect an InfiniBand port to the same fabric as the backend servers. See [#networking](../planning-and-installation/prerequisites-and-compatibility.md#networking "mention").
+* Connect each dedicated protocol server to the network that the NFS, SMB, or S3 clients use. This can be the data network or a separate network.
 
 **Procedure**
 
