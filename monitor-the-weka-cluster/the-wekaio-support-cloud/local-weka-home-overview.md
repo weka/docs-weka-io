@@ -72,9 +72,9 @@ Deploy LWH on K3s for a lightweight Kubernetes implementation installed on a sin
 
 **Related topics**
 
-[deploy-local-weka-home-on-k3s](deploy-local-weka-home-on-k3s/ "mention")
-
 [deploy-local-weka-home-on-k8s](deploy-local-weka-home-on-k8s/ "mention")
+
+[deploy-local-weka-home-on-k3s](deploy-local-weka-home-on-k3s/ "mention")
 
 ## Security hardening for Local WEKA Home
 
