@@ -690,7 +690,7 @@ weka nfs client-group remove <name> [--force]
 
 ### Manage client access groups' rules
 
-Lists the rules defined on the client access groups. A rule matches clients by DNS name or by IP range.
+Lists the rules defined on the client access groups. A rule matches clients by IP address or range, by DNS name, or by netgroup membership. For the order in which the NFS server checks the rules, see [#nfs-client-access-rules](./#nfs-client-access-rules "mention").
 
 **Command:** `weka nfs rules`
 
@@ -759,8 +759,10 @@ weka nfs rules add ip <name> <ip>
 
 **Examples**
 
-`weka nfs rules add ip client-group1 192.168.114.0/8`\
+`weka nfs rules add ip client-group1 192.168.0.0/16`\
 `weka nfs rules add ip client-group2 172.16.0.0/16`
+
+The system stores an IP rule as its network address. For example, `10.1.2.3/24` is stored and listed as `10.1.2.0/24`, and either form removes it.
 
 #### Remove IP-based client group rules
 
@@ -783,6 +785,231 @@ weka nfs rules remove ip <name> <ip>
 
 `weka nfs rules remove ip client-group1 192.168.114.0/24`\
 `weka nfs rules remove ip client-group2 172.16.0.0/16`
+
+#### Add netgroup client group rules
+
+Adds a rule that admits every member of a netgroup to a client group. Create the netgroup first. See [#manage-nfs-netgroups](nfs-support-1.md#manage-nfs-netgroups "mention").
+
+**Command:** `weka nfs rules add netgroup`
+
+```sh
+weka nfs rules add netgroup <name> <netgroup>
+```
+
+**Parameters**
+
+| Parameter | Description |
+| --- | --- |
+| `name`\* | Name of the NFS client group in which to create the rule. |
+| `netgroup`\* | Name of the netgroup whose members get access. A leading `@`, as shown in listings, is accepted. |
+
+**Example**
+
+`weka nfs rules add netgroup compute eng`
+
+The client group listing shows the rule as `@eng`.
+
+#### Remove netgroup client group rules
+
+Removes a netgroup rule from a client access group. The netgroup and its members remain.
+
+**Command:** `weka nfs rules remove netgroup`
+
+```sh
+weka nfs rules remove netgroup <name> <netgroup>
+```
+
+**Parameters**
+
+| Parameter | Description |
+| --- | --- |
+| `name`\* | Name of the NFS client group from which to delete the rule. |
+| `netgroup`\* | Name of the netgroup to detach from the client group. A leading `@` is accepted. |
+
+**Example**
+
+`weka nfs rules remove netgroup compute eng`
+
+### Manage NFS netgroups
+
+A netgroup is a named list of client hostnames that a client group rule can reference. For how the NFS server matches netgroup members, the requirements, and the maximums, see [#netgroups](./#netgroups "mention").
+
+To grant a list of hosts access to an export:
+
+1. Create a netgroup.
+2. Add the hostnames as members.
+3. Add a netgroup rule to a client group. See [#add-netgroup-client-group-rules](nfs-support-1.md#add-netgroup-client-group-rules "mention").
+4. Grant the client group a permission on the export. See [#manage-nfs-client-permissions](nfs-support-1.md#manage-nfs-client-permissions "mention").
+
+**Example**
+
+```sh
+weka nfs netgroup add eng
+weka nfs netgroup member add eng --from-file eng-hosts.txt
+weka nfs client-group add compute
+weka nfs rules add netgroup compute eng
+weka nfs permission add default compute --path /projects --permission-type RW
+```
+
+#### Create a netgroup
+
+Creates an empty netgroup.
+
+**Command:** `weka nfs netgroup add`
+
+```sh
+weka nfs netgroup add <name>
+```
+
+**Parameters**
+
+| Parameter | Description |
+| --- | --- |
+| `name`\* | Name of the netgroup to create. Starts with a letter or an underscore, and contains only letters, digits, `.`, `_`, and `-`, up to 64 characters. |
+
+#### Add members to a netgroup
+
+Adds hostnames to a netgroup in one operation. Give the hostnames with `--hosts` or `--from-file`, not both.
+
+The command stores the valid hostnames and lists each rejected entry with its reason, for example, an IP address or a wildcard pattern. A hostname that is already a member is counted under **Already Present**. Running the command again with the same list changes nothing.
+
+**Command:** `weka nfs netgroup member add`
+
+```sh
+weka nfs netgroup member add <name> [--from-file <string>] [--hosts <hostnames>…]
+```
+
+**Parameters**
+
+| Parameter | Description |
+| --- | --- |
+| `name`\* | Name of the netgroup. |
+| `--hosts` | Member hostnames, comma-separated or by repeating the option. |
+| `--from-file` | Path to a host list file. |
+
+The host list file holds one or more comma-separated hostnames on each line. A `#` starts a comment that runs to the end of the line, and blank lines are ignored. The file can be up to 1 MiB.
+
+```
+# lab machines
+node01.lab.example.com
+node02.lab.example.com   # rack 4
+node03.lab.example.com,node04.lab.example.com
+```
+
+**Example**
+
+```
+$ weka nfs netgroup member add eng --hosts node01.lab.example.com,node02.lab.example.com,10.1.2.3
+Members Added
+Netgroup  Added  Already Present  Members
+eng       2      0                2
+
+Rejected
+Hostname  Reason
+10.1.2.3  is an IP address; use an IP rule on the client group
+```
+
+#### Remove members from a netgroup
+
+Removes hostnames from a netgroup in one operation. A hostname that is not a member is listed under **Not Found**.
+
+**Command:** `weka nfs netgroup member remove`
+
+```sh
+weka nfs netgroup member remove <name> [--from-file <string>] [--hosts <hostnames>…]
+```
+
+**Parameters**
+
+| Parameter | Description |
+| --- | --- |
+| `name`\* | Name of the netgroup. |
+| `--hosts` | Member hostnames, comma-separated or by repeating the option. |
+| `--from-file` | Path to a host list file, in the format described in [#add-members-to-a-netgroup](nfs-support-1.md#add-members-to-a-netgroup "mention"). |
+
+**Example**
+
+`weka nfs netgroup member remove eng --hosts node02.lab.example.com`
+
+#### View netgroups
+
+Lists the netgroups with the number of members, the number of unresolved members, and the number of client groups that reference each netgroup.
+
+**Command:** `weka nfs netgroup list`
+
+```sh
+weka nfs netgroup list [--name <nfs-netgroup>]
+```
+
+To show one netgroup with the status of each member and the client groups and exports that reference it, run:
+
+**Command:** `weka nfs netgroup show`
+
+```sh
+weka nfs netgroup show <name>
+```
+
+The **Resolution** column shows the result of the latest membership check for each member:
+
+| Resolution | Description |
+| --- | --- |
+| `resolved` | The hostname resolves, and the PTR record of its address returns the member name. |
+| `unresolved` | The hostname does not resolve. The **Reason** column shows the resolver result, for example, `nxdomain` or `timeout`. |
+| `ptr_mismatch` | The hostname resolves, but the PTR record of its address returns another name, shown in **Resolves To**. A client with this address does not match the netgroup. To fix it, correct the PTR record or add the name it returns as the member. |
+| `unchecked` | No membership check has covered the member yet. |
+
+**Example**
+
+```
+$ weka nfs netgroup show eng
+Netgroup
+Name  Members  Unresolved
+eng   3        1
+
+Members
+Hostname                Resolution    Resolves To                  Reason
+node01.lab.example.com  resolved
+node02.lab.example.com  unresolved                                 nxdomain
+node03.lab.example.com  ptr_mismatch  node03-mgmt.lab.example.com  ptr_differs
+Resolution reported by nfs-01 at 2026-10-20 09:12:03. Resolution is advisory: access is decided by the reverse name a client presents when it connects.
+
+Referencing Client Groups
+Client Group  Exports
+compute       default:/projects
+```
+
+#### Rename a netgroup
+
+Renames a netgroup. Client group rules that reference the netgroup use the new name.
+
+**Command:** `weka nfs netgroup rename`
+
+```sh
+weka nfs netgroup rename <name> <new-name>
+```
+
+**Parameters**
+
+| Parameter | Description |
+| --- | --- |
+| `name`\* | Current name of the netgroup. |
+| `new-name`\* | New name for the netgroup. |
+
+#### Remove a netgroup
+
+Removes a netgroup and its members. Before you remove a netgroup, remove its rule from every client group that references it. To list those client groups, run `weka nfs netgroup show <name>`.
+
+**Command:** `weka nfs netgroup remove`
+
+```sh
+weka nfs netgroup remove <name>
+```
+
+**Parameters**
+
+| Parameter | Description |
+| --- | --- |
+| `name`\* | Name of the netgroup to remove. |
 
 ### Manage NFS client permissions
 
@@ -826,6 +1053,67 @@ weka nfs permission remove <filesystem> <group> [--force] [--path <string>]
 | `--privileged-port` \<on-off> | Privileged port. Values: on, off |
 | `--squash` \<squash-mode> | Permission squashing. The option 'all' can be used only on interface groups with --allow-manage-gids=on. Values: none, root, all Use all only on interface groups with --allow-manage-gids=on |
 | `--supported-versions` \<nfs-versions>… | NFS versions for new permissions. Multiple values may be supplied separated by commas, or the option may be repeated. Values: v3, v4 |
+
+### Look up the NFS access of a client
+
+Shows every export a client can mount, the access level the client gets, and the client group rule that grants it. The lookup resolves the target through the DNS configuration of an NFS server, the same way the NFS server resolves a connecting client, and checks the rules in the order the NFS server checks them.
+
+**Command:** `weka nfs access lookup`
+
+```sh
+weka nfs access lookup <target> [--exact] [--host]
+```
+
+**Parameters**
+
+| Parameter | Description |
+| --- | --- |
+| `target`\* | Hostname, IPv4 address, or IPv4 subnet to look up, for example, `node01.lab.example.com`, `10.1.2.7`, or `10.1.2.0/24`. For a subnet, the lookup checks IP rules only. |
+| `--host` | List as related only the configured names for the same host, in short or fully qualified form. |
+| `--exact` | List as related only the configured names spelled exactly as the target. |
+
+Without `--host` or `--exact`, the **Member Entries** table also lists configured names that start with the target, so that a name that almost matches is visible. Use at most one of the two options.
+
+The output has four tables:
+
+| Table | Description |
+| --- | --- |
+| **Access Lookup** | The target, the address the lookup checked, the name that address resolves to, and the NFS server that resolved it (**Resolved By**). |
+| **Member Entries** | The configured rules and netgroup members the lookup checked, with **Matches** set to `yes` or `no` and the reason. |
+| **Client Groups** | The client groups that admit the client. **Granted By** shows the rule the NFS server applies. **Also Matches** shows other matching rules in the same client group, which the NFS server does not reach. |
+| **Exports** | The exports the client can mount, in the order the NFS server checks the permissions. **Effective** marks the access the client gets. |
+
+**Example**
+
+```
+$ weka nfs access lookup 10.1.2.7
+Access Lookup
+Target    Kind  Address   Resolves To             Resolved By
+10.1.2.7  ip    10.1.2.7  node01.lab.example.com  nfs-01
+
+Member Entries
+Entry                   Kind      Held By  Matches  Reason
+10.1.2.0/24             ip        compute  yes      10.1.2.7 is inside 10.1.2.0/24
+node01.lab.example.com  netgroup  eng      yes      node01.lab.example.com is the name 10.1.2.7 resolves to
+
+Client Groups
+A client group serves a client by the first entry that matches, in the order ip, dns, netgroup; the rest are listed as also matching.
+Client Group  Granted By      Also Matches
+compute       ip 10.1.2.0/24  @eng
+ro-all        netgroup @eng
+
+Exports
+Permissions on one path are consulted in priority order; the effective one is the access the client gets.
+Path       Filesystem  Access  Effective  Via
+/projects  default     RO      yes        ro-all
+/projects  default     RW      no         compute
+```
+
+In this example, the `compute` client group admits the client through its IP rule, so the netgroup rule of `compute` is listed under **Also Matches**. Two client groups grant access to `/projects`. Permissions are processed in ascending priority order, and the read-only permission has the lower priority number, so the client gets read-only access.
+
+If no client group admits the client, the command shows `No client group grants <target> access to any export.` and the **Member Entries** table.
+
+If the command shows that too many lookups are running, run it again.
 
 ### View connected NFS clients
 

@@ -106,6 +106,83 @@ ACL configuration and management in NFS can be done through various interfaces:
 
 When upgrading, the default ACL flavor for all permissions sets to **POSIX**. ACLs are enabled by default. To ensure proper ACL functionality, both `.config_fs` and LDAP must be configured.
 
+## NFS client access rules
+
+An NFS export grants access to client groups. Each client group holds rules that describe the clients that belong to it. A rule matches a client in one of three ways:
+
+| Rule type | Example | Matches a client when |
+| --- | --- | --- |
+| IP address or subnet | `10.1.2.0/24` | The client's source address is inside the network. |
+| DNS name or pattern | `node07.lab.example.com`, `*.lab.example.com` | A hostname resolves to the client's address, or a pattern matches the client's reverse DNS name. |
+| Netgroup | `@gpu-nodes` | The client's reverse DNS name is a member of the netgroup. |
+
+A client group can mix all three rule types. Listings show a netgroup rule as `@<netgroup name>`.
+
+**Evaluation order**
+
+Within a client group, the NFS server checks the IP rules first, then the DNS rules, and then the netgroup rules. The first rule that matches applies. The order in which the rules were created has no effect. When several client groups grant different access to the same export path, the permission priority determines the access the client gets.
+
+### Netgroups
+
+A netgroup is a named list of client hostnames. One netgroup rule on a client group admits every member of the netgroup, so a single rule replaces one hostname rule per client. You add and remove members in bulk, from the command line or from a file, and every export that uses the client group applies the change. Several client groups can use the same netgroup, for example, one client group with read-write access and one with read-only access.
+
+When a client connects, the NFS server looks up the PTR record of the client's address and checks whether the returned name is a member of the netgroup. Members are therefore hostnames, not IP addresses. Add each member exactly as its PTR record returns it: if the PTR record returns a fully qualified name, add the fully qualified name.
+
+{% hint style="danger" %}
+**INTERNAL, remove before publication. TBD (Hemant):** Is "add each member exactly as its PTR record returns it, short or fully qualified" the rule to publish? The admin guide (5.2) says so; the matching code in the NFS server was not read.
+{% endhint %}
+
+**Membership check**
+
+One NFS server checks every netgroup member every 10 minutes: whether the hostname resolves, and whether the PTR record of its address returns the member name. A member that fails two consecutive checks is counted as unresolved, and the cluster raises the `NfsNetgroupUnresolvedMembers` alert. The check reports the status only. Access is decided by the name a client's PTR record returns when the client connects.
+
+### Choose a rule type
+
+Each rule type relies on different DNS records and covers a different number of clients:
+
+| Rule type | Clients per rule | DNS records the rule relies on |
+| --- | --- | --- |
+| IP address or subnet | All addresses in the network | None |
+| DNS name | One | A forward (A) record for the name |
+| DNS pattern | Any number of names that match the pattern | A reverse (PTR) record for each client address |
+| Netgroup | Up to 512 members per netgroup | A reverse (PTR) record for each member address |
+
+Each netgroup rule counts as one rule toward the client group rule maximum, regardless of the number of members.
+
+### Netgroup requirements and maximums
+
+**Requirements**
+
+* The cluster upgrade is complete on all containers. Adding netgroups, members, and netgroup rules is available after every container runs the upgraded version.
+* An NFS configuration filesystem is set. See [Configuration filesystem](#configuration-filesystem).
+* When NFS multi-tenancy is enabled, netgroups are available only in the root tenant.
+* Changing netgroups requires the Tenant Admin role or higher. Listing and showing netgroups requires the Read Only role or higher.
+
+**Maximums**
+
+| Object | Maximum |
+| --- | --- |
+| Netgroups | 128 |
+| Members per netgroup | 512 |
+| Members across all netgroups | 8,192 |
+| Hostnames in one member add or remove request | 512 |
+| Netgroup name length | 64 characters |
+| Member hostname length | 253 characters |
+| Host list file size | 1 MiB |
+| Client group rules, across all client groups | 512 |
+
+A netgroup name starts with a letter or an underscore, and contains only letters, digits, periods (`.`), underscores (`_`), and hyphens (`-`). Names are unique regardless of letter case. Member hostnames are stored in lowercase.
+
+**Considerations**
+
+* A netgroup rule matches a client only through the PTR record of the client's address. Keep a PTR record for each member address. To give access to a client without a PTR record, use an IP rule.
+* An IP rule matches first. A client that an IP rule admits is not checked against the netgroup rules of the same client group.
+* Netgroups are managed from the CLI.
+
+{% hint style="danger" %}
+**INTERNAL, remove before publication. TBD (Hemant):** Confirm that the 6.1.0 GUI has no netgroup support. The dashboard package has no netgroup code at the 6.1.0 tag.
+{% endhint %}
+
 ## NFS integration with Kerberos service
 
 NFS integrates with an existing Kerberos service to provide client authentication, data integrity, and data privacy over the wire, ensuring robust security even across untrusted networks.

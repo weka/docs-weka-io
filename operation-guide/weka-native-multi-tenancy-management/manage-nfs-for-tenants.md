@@ -174,6 +174,7 @@ Several NFS features remain available only in the root organization while NFS mu
 | LDAP for NFS group resolution | Yes | No |
 | Manage GIDs | Yes | No |
 | Name-based (DNS) client rules | Yes | No — use IP-based rules |
+| Netgroups | Yes | No — use IP-based rules |
 | ACLs | Yes | No |
 | NFSv3 file locking (NLM) | Yes | No — NFSv4.1 locking is available |
 
@@ -203,7 +204,7 @@ Tenants have lower NFS object limits than the root organization.
 | Object | Root organization | Tenant |
 | --- | --- | --- |
 | Client groups | 50 | 8 |
-| Client group rules | 200 | 16 |
+| Client group rules | 512 | 64 |
 | Exports (permissions) | 1024 | 64 |
 | Floating IPs per network space | — | 8 |
 
@@ -212,11 +213,11 @@ Each limit is enforced per organization at creation time. A cluster supports up 
 The root organization's 200 floating IP addresses come from the interface group's own address pool. Tenant floating IPs are allocated from their network spaces and do not count against it.
 
 {% hint style="info" %}
-The rule limit is counted across the whole organization, not per client group. A tenant with 8 client groups has 16 rules to distribute among them.
+The rule limit is counted across the whole organization, not per client group. A tenant with 8 client groups has 64 rules to distribute among them.
 {% endhint %}
 
 ## Remove NFS resources before deleting a tenant
 
-Deleting a tenant is blocked while the tenant still holds NFS resources. Remove the tenant's exports and client groups, and remove the tenant from its interface group, before deleting it.
+Deleting a tenant is blocked while the tenant still holds NFS resources. Remove the tenant's exports, client groups, and netgroups, and remove the tenant from its interface group, before deleting it.
 
 A network space cannot be edited or deleted while a tenant is attached to it.
