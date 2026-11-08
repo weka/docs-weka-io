@@ -8,7 +8,7 @@ description: >-
 
 Asynchronous replication is a native, cluster-to-cluster filesystem replication solution that synchronizes data and metadata directly between a source cluster and a target cluster. Replication transfers incremental snapshot deltas of the source filesystem on a configurable interval, without disrupting client access to the source.
 
-The main decision is how much data the target holds: the whole filesystem, only its metadata, or selected directories. Set this per pair with `--copy-path`, and change it later without recreating the pair. A full copy needs a target at least the size of the source. A selective copy can be much smaller, sized for the working set.
+The main decision is how much data the target holds: the whole filesystem, only its metadata, or selected directories. Set this per pair with `--copy-path`, and change it later without recreating the pair. A full copy needs a target at least the size of the source. A selective copy can be much smaller, sized for the working set. If you plan to attach an object store to the target filesystem, use a full copy.
 
 ## When to use asynchronous replication
 
@@ -103,9 +103,10 @@ Replication is asynchronous. Expect a lag of at least the replication interval. 
 * The replication process creates the target filesystem during the first replication cycle. You cannot replicate to a filesystem that already exists.
 * The target filesystem is created in the filesystem group that has the same name as the group of the source filesystem. That group must already exist on the target cluster.
 * The target filesystem is write-protected while the replication pair is active. Only the replication process writes to it, and users and applications can read it.
-* A target filesystem with Data Catalog indexing enabled is not supported.
 * Creating a manual snapshot on the target filesystem halts replication and moves the pair to the error state.
 * Inode numbers on the target filesystem can differ from the source filesystem. They stay the same across replication cycles.
+* A target filesystem with Data Catalog indexing enabled is not supported.
+* If you attach an object store to the target filesystem, use a full copy (`--copy-path full`). Only a full copy can place replicated data in the target's object store. A selective copy, metadata only (`--copy-path none`) or critical paths, brings data to the target's SSD only and is not supported on a tiered target.
 
 To write to the target filesystem, hydrate all of its data, remove the replication pair, and then run `weka fs update <name> --access rw`.
 
@@ -116,7 +117,7 @@ To write to the target filesystem, hydrate all of its data, remove the replicati
 
 ### Source filesystem
 
-* A tiered source filesystem is supported. The target filesystem is SSD-only. For a source with 100 TB of SSD capacity and 500 TB of total capacity, set `--target-total-capacity 500TB`. The target needs 500 TB of SSD capacity.
+* A tiered source filesystem is supported. The target filesystem is created SSD-only. For a source with 100 TB of SSD capacity and 500 TB of total capacity, set `--target-total-capacity 500TB`. The target needs 500 TB of SSD capacity.
 * A source filesystem with Data Catalog indexing enabled is supported.
 
 ### Snapshots and scheduling
