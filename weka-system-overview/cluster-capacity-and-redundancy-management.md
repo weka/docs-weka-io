@@ -32,7 +32,7 @@ The number of data blocks must always be greater than the number of parity block
 
 **What a protection level protects against**
 
-The protection level is the number of **failure domains** the cluster can lose at the same time without losing data. Each block in a stripe is written to exactly one failure domain, so in a 6+2 cluster, when writing a new stripe, data for a file is written to **8** unique failure domains.
+The protection level is the number of **failure domains** that can fail at the same time without data loss. By default, the cluster stays online when up to 2 failure domains fail at the same time, at every protection level. A higher protection level adds data protection: with protection level 4, the data is safe when 4 failure domains fail at the same time. Each block in a stripe is written to exactly one failure domain, so in a 6+2 cluster, when writing a new stripe, data for a file is written to **8** unique failure domains.
 
 Beyond the configured **simultaneous failure protection** (N+2, N+3, or N+4), a WEKA cluster also exhibits resilience to [**serial failures**](#user-content-fn-1)[^1] of additional failure domains. This means that as long as each data rebuild operation completes successfully **and** there is sufficient **available** SSD capacity in the cluster, the system can tolerate subsequent serial failure domain losses.
 
