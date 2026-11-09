@@ -106,7 +106,7 @@ Replication is asynchronous. Expect a lag of at least the replication interval. 
 * A target filesystem with Data Catalog indexing enabled is not supported.
 * Creating a manual snapshot on the target filesystem halts replication and moves the pair to the error state.
 * Inode numbers on the target filesystem can differ from the source filesystem. They stay the same across replication cycles.
-* A tired target filesystem is not supported for replication.
+* A tiered target filesystem is not supported for replication.
 
 To write to the target filesystem, hydrate all of its data, remove the replication pair, and then run `weka fs update <name> --access rw`.
 
