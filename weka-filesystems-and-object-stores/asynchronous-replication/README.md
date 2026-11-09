@@ -106,6 +106,7 @@ Replication is asynchronous. Expect a lag of at least the replication interval. 
 * A target filesystem with Data Catalog indexing enabled is not supported.
 * Creating a manual snapshot on the target filesystem halts replication and moves the pair to the error state.
 * Inode numbers on the target filesystem can differ from the source filesystem. They stay the same across replication cycles.
+* A tired target filesystem is not supported for replication.
 
 To write to the target filesystem, hydrate all of its data, remove the replication pair, and then run `weka fs update <name> --access rw`.
 
@@ -116,7 +117,7 @@ To write to the target filesystem, hydrate all of its data, remove the replicati
 
 ### Source filesystem
 
-* A tiered source filesystem is supported. The target filesystem is SSD-only. For a source with 100 TB of SSD capacity and 500 TB of total capacity, set `--target-total-capacity 500TB`. The target needs 500 TB of SSD capacity.
+* A tiered source filesystem is supported for replication. The target filesystem is created SSD-only. For a source with 100 TB of SSD capacity and 500 TB of total capacity, set `--target-total-capacity 500TB`. An SSD-only target needs 500 TB of SSD capacity.
 * A source filesystem with Data Catalog indexing enabled is supported.
 
 ### Snapshots and scheduling
