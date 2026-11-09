@@ -120,7 +120,10 @@ As part of the upgrade to this version, the system transitions to a native multi
 
 Example CLI mapping:
 
-* Deprecated: `weka tenant add <name>`
-* Replacement: `weka tenant add <name>`
+| Deprecated                                 | Replacement                                   |
+| ------------------------------------------ | --------------------------------------------- |
+| `weka org add <name> <username>`           | `weka tenant add <name> <username>`           |
+| `weka user login --org <tenant>`           | `weka user login --tenant <tenant>`           |
+| `weka user ldap setup --org-admin-group`   | `weka user ldap setup --tenant-admin-group`   |
 
 The upgrade process is performed by the Customer Success Team.
