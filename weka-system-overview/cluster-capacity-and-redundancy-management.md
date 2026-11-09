@@ -33,7 +33,7 @@ The number of data blocks must always be greater than the number of parity block
 
 **What a protection level protects against**
 
-The protection level is the number of **failure domains** the cluster can lose at the same time without losing data. Each block in a stripe is written to exactly one failure domain, so in a 6+2 cluster, when writing a new stripe, data for a file is written to **8** unique failure domains.
+The protection level is the number of **failure domains** that can fail at the same time without data loss. By default, the cluster stays online when up to 2 failure domains fail at the same time, at every protection level. A higher protection level adds data protection: with protection level 4, the data is safe when 4 failure domains fail at the same time. Each block in a stripe is written to exactly one failure domain, so in a 6+2 cluster, when writing a new stripe, data for a file is written to **8** unique failure domains.
 
 ## Failure domains
 
@@ -52,10 +52,10 @@ For instructions on how to define failure domains, see [planning-a-weka-system-i
 The selection of an appropriate redundancy level is a balance between fault tolerance, usable storage capacity, and system performance:
 
 * **D+2**: This is the recommended level for most environments, providing a standard degree of fault tolerance. A system with protection level 2 survives the simultaneous loss of 2 failure domains (typically 2 servers).
-* **D+3**: This level offers increased data protection and is suitable for environments with higher availability requirements. A system with protection level 3 survives the simultaneous loss of 3 failure domains, (typically 3 servers).
-* **D+4**: Designed for very large-scale clusters (typically 100+ backend servers) or for scenarios involving critical data that demands maximum redundancy. A system with protection level 4 survives the simultaneous loss of 4 failure domains, (typically 4 servers).
+* **D+3**: This level offers increased data protection and is suitable for environments with stricter data protection requirements. A system with protection level 3 keeps the data safe when 3 failure domains (typically 3 servers) fail at the same time.
+* **D+4**: Designed for very large-scale clusters (typically 100+ backend servers) or for scenarios involving critical data that demands maximum redundancy. A system with protection level 4 keeps the data safe when 4 failure domains (typically 4 servers) fail at the same time.
 
-Higher protection levels inherently provide better data durability and availability. However, they also consume more raw storage space for parity blocks, and add a small amount of overhead due to the additional parity calculations for each write.
+Higher protection levels inherently provide better data durability. However, they also consume more raw storage space for parity blocks, and add a small amount of overhead due to the additional parity calculations for each write.
 
 The protection level for a WEKA cluster is determined at the time of its formation and **cannot be changed later**. If no specific protection level is configured, the system defaults to protection level 2.
 
