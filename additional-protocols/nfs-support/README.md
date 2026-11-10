@@ -126,11 +126,12 @@ Within a client group, the NFS server checks the IP rules first, then the DNS ru
 
 A netgroup is a named list of client hostnames. One netgroup rule on a client group admits every member of the netgroup, so a single rule replaces one hostname rule per client. You add and remove members in bulk, from the command line or from a file, and every export that uses the client group applies the change. Several client groups can use the same netgroup, for example, one client group with read-write access and one with read-only access.
 
-When a client connects, the NFS server looks up the PTR record of the client's address and checks whether the returned name is a member of the netgroup. Members are therefore hostnames, not IP addresses. Add each member exactly as its PTR record returns it: if the PTR record returns a fully qualified name, add the fully qualified name.
+When a client connects, the NFS server resolves the client's address to a hostname and checks whether that name is a member of the netgroup. Members are therefore hostnames, not IP addresses. Add each member exactly as the NFS server resolves it. The resolver order in `/etc/nsswitch.conf` on the NFS server determines the name:
 
-{% hint style="danger" %}
-**INTERNAL, remove before publication. TBD (Hemant):** Is "add each member exactly as its PTR record returns it, short or fully qualified" the rule to publish? The admin guide (5.2) says so; the matching code in the NFS server was not read.
-{% endhint %}
+* **DNS resolves the address:** The PTR record returns a fully qualified name, for example, `node01.cluster.internal`.
+* **Local files (`/etc/hosts`) or NIS come before DNS:** The returned name can be a short name, if the primary name in `/etc/hosts` has no domain.
+
+To find the name to add for a client, run `getent hosts <client-ip>` on an NFS server. The first name after the IP address is the canonical name. Use this check when the environment mixes resolvers, has dual-homed interfaces, or moves between local files and DNS.
 
 **Membership check**
 
@@ -155,8 +156,11 @@ Each netgroup rule counts as one rule toward the client group rule maximum, rega
 
 * The cluster upgrade is complete on all containers. Adding netgroups, members, and netgroup rules is available after every container runs the upgraded version.
 * An NFS configuration filesystem is set. See [Configuration filesystem](#configuration-filesystem).
-* When NFS multi-tenancy is enabled, netgroups are available only in the root tenant.
 * Changing netgroups requires the Tenant Admin role or higher. Listing and showing netgroups requires the Read Only role or higher.
+
+{% hint style="info" %}
+**Multi-tenancy:** When NFS multi-tenancy is enabled, netgroups are available only in the root tenant. See [manage-nfs-for-tenants.md](../../operation-guide/weka-native-multi-tenancy-management/manage-nfs-for-tenants.md "mention").
+{% endhint %}
 
 **Maximums**
 
@@ -177,11 +181,7 @@ A netgroup name starts with a letter or an underscore, and contains only letters
 
 * A netgroup rule matches a client only through the PTR record of the client's address. Keep a PTR record for each member address. To give access to a client without a PTR record, use an IP rule.
 * An IP rule matches first. A client that an IP rule admits is not checked against the netgroup rules of the same client group.
-* Netgroups are managed from the CLI.
-
-{% hint style="danger" %}
-**INTERNAL, remove before publication. TBD (Hemant):** Confirm that the 6.1.0 GUI has no netgroup support. The dashboard package has no netgroup code at the 6.1.0 tag.
-{% endhint %}
+* Netgroups are managed from the CLI only. The GUI does not support netgroups in this version.
 
 ## NFS integration with Kerberos service
 
@@ -209,11 +209,11 @@ Kerberos authentication for NFS is supported using AD and Kerberos MIT:
 * **Kerberos MIT:** NFS integrates with Kerberos MIT, implementing the Kerberos protocol, which uses secret-key cryptography for authentication across insecure networks. This protocol is widely standardized and utilized.
 
 {% hint style="info" %}
-**Realm consistency:** The NFS service is registered in one Kerberos realm. With MIT Kerberos, the NFS clients and the Key Distribution Center (KDC) reside in the same realm as the NFS service. With Active Directory, clients in other domains of the same forest authenticate through the forest trusts.
+**Realm consistency:** The NFS service is registered in one Kerberos realm. With MIT Kerberos, the NFS clients and the Key Distribution Center (KDC) reside in the same realm as the NFS service. With Active Directory, clients that belong to another domain in the same Active Directory forest, such as a child domain, authenticate through the trusts between the domains of the forest.
 {% endhint %}
 
 {% hint style="danger" %}
-**INTERNAL, remove before publication. TBD (Hemant):** With several Active Directory domains, do the forest trusts cover clients in the other domains, or must clients still share the NFS service's realm? The LDAP guide (1.3, 4.5) says the 6.0 single-realm rule no longer applies to AD. This was not checked in the code.
+**INTERNAL, remove before publication. TBD (Hemant):** With several Active Directory domains, do the forest trusts cover clients in the other domains, or must clients still share the NFS service's realm? The LDAP guide (1.3, 4.5) says the 6.0 single-realm rule no longer applies to AD. This was not checked in the code. Vinay (5 Nov) asked what "other domains" means; the text now says "another domain in the same Active Directory forest, such as a child domain". Confirm that this scope is correct, and whether other trees in the forest are included.
 {% endhint %}
 
 ### Kerberos service interactions basic outline
@@ -244,7 +244,7 @@ The NFS service resolves user and group names and IDs for NFSv4 ownership, ACLs,
 | OpenLDAP | `weka nfs ldap setup-openldap` | OpenLDAP or another RFC 2307 LDAP directory | A read-only bind user and its password |
 | On-host | `weka nfs ldap setup-onhostldap` | The directory that the server's own SSSD uses | The configuration of each server |
 
-The identity configuration is stored on the NFS configuration filesystem, so every NFS container uses the same configuration. Set the configuration filesystem before you configure any mode except on-host.
+The identity configuration is stored on the NFS configuration filesystem, so every NFS container uses the same configuration. Set the configuration filesystem before you configure any mode.
 
 **Applying a change**
 
@@ -274,14 +274,10 @@ To verify the certificate of the directory server, import the configuration with
 **Considerations**
 
 * User and group IDs come from the POSIX attributes `uidNumber` and `gidNumber`, not from Active Directory SIDs. Populate these attributes for every user and group that accesses NFS.
-* An OpenLDAP configuration covers one domain.
+* An OpenLDAP configuration supports a single domain.
 * To use Active Directory without Kerberos on a cluster with a Kerberos registration, reset the Kerberos registration first.
 * Exports with manage-gids need a working identity source on each NFS server. The cluster raises the `NfsIdentitySourceUnavailable` alert for a server without one.
 * The on-host mode uses the SSSD service of each server. Keep SSSD running on every NFS server.
-
-{% hint style="danger" %}
-**INTERNAL, remove before publication. TBD (Hemant):** Confirm two points: an OpenLDAP configuration is one domain on one server by design, and the on-host mode does not need the configuration filesystem.
-{% endhint %}
 
 ## Scalability, load balancing, and resiliency
 
@@ -332,8 +328,10 @@ When at least half of the probed NFS containers fail at the same time, with a mi
 
 Reading the health API requires the `nfs_health_view` permission. The Read Only role has it, and a custom role can hold it on its own. For the endpoints, fields, and errors, see the REST API reference at [api.docs.weka.io](https://api.docs.weka.io).
 
+Integrate with the v3 health endpoints above. The v2 endpoint, `/api/v2/nfs/health`, is deprecated.
+
 {% hint style="danger" %}
-**INTERNAL, remove before publication. TBD (Hemant):** Which REST surface should customers integrate with in 6.1: v2 `/api/v2/nfs/health` or v3 `/nfs/health`? Can a custom role that holds only `nfs_health_view` be assigned to a user in 6.1.0 (the developer reference says not yet)? The paths above are written without a version prefix until you confirm.
+**INTERNAL, remove before publication. TBD (Hemant):** Can a custom role that holds only `nfs_health_view` be assigned to a user in 6.1.0 (the developer reference says not yet)? Resolved (Vinay, 10 Nov): use the v3 API; v2 `/api/v2/nfs/health` is deprecated.
 {% endhint %}
 
 **Considerations**
@@ -346,7 +344,7 @@ Reading the health API requires the `nfs_health_view` permission. The Read Only 
 * Damping, such as how many failed reads remove a container from rotation, is configured on the load balancer or the monitor program.
 
 {% hint style="danger" %}
-**INTERNAL, remove before publication. TBD (Hemant):** (1) Is "tenant network spaces are not scored" accurate, and does a tenant-assigned interface group appear in the report? (2) The `MAINTENANCE` verdict is set with `weka debug nfs port disable`, which is a debug command. Is there a supported way for customers to drain a container? (3) Are the detection windows in your guide (about 15 to 25 seconds for `CANARY_FAILED`, about 45 seconds for `NFS_SERVER_DOWN`) committed behavior to publish? The text above gives the code defaults only.
+**INTERNAL, remove before publication. TBD (Hemant):** (1) Is "tenant network spaces are not scored" accurate, and does a tenant-assigned interface group appear in the report? (2) The `MAINTENANCE` verdict is set with `weka debug nfs port disable`, which is a debug command. Is there a supported way for customers to drain a container? (3) Are the detection windows in your guide (about 15 to 25 seconds for `CANARY_FAILED`, about 45 seconds for `NFS_SERVER_DOWN`) committed behavior to publish? The text above gives the code defaults only. Vinay (10 Nov): needs clarification from the NFS team; Vinay will follow up.
 {% endhint %}
 
 ## NFS server resources
@@ -375,14 +373,11 @@ Each NFS server process has a file descriptor limit equal to the client connecti
 
 The cluster raises an alert for each resource that approaches its maximum. See [list-of-alerts-and-corrective-actions.md](../../operation-guide/alerts/list-of-alerts-and-corrective-actions.md "mention").
 
+The `nfs_resources` statistics category records the same values over time. See [statistics-list.md](../../operation-guide/statistics/statistics-list.md "mention").
+
 {% hint style="danger" %}
-**INTERNAL, remove before publication. TBD (Hemant):** Two NFS resource alerts name internal commands or files in their corrective action, which contradicts the rule of keeping internal commands out of customer documentation. The alerts list is generated from these texts, so they appear on docs.weka.io as written:
-
-* `NfsFdReaperStalled`: "Collect `weka debug manhole dump_ganesha_fd_state` on the leader and open a support case; restarting the NFS container releases the descriptors."
-* `NfsMappingsApproachingLimit`: "Make sure the NFS server runs with the jemalloc retain:true default (a custom nfs/custom/jemalloc.conf may override it) and restart it on this host, or raise vm.max_map_count on the host."
-
-Can these actions point to the Customer Success Team instead (for example, "Contact the Customer Success Team. Restarting the NFS container releases the descriptors.")? If the internal commands must stay, confirm that this is intended.
-{% endhint %} The `nfs_resources` statistics category records the same values over time. See [statistics-list.md](../../operation-guide/statistics/statistics-list.md "mention").
+**INTERNAL, remove before publication. To do (Ari), when regenerating the alerts list for 6.1:** The source texts of `NfsFdReaperStalled` and `NfsMappingsApproachingLimit` name internal commands (`weka debug manhole dump_ganesha_fd_state`, the jemalloc configuration, `vm.max_map_count`). Vinay (9 Nov): these are for the Customer Success Team only, not for customers, and the alert descriptions must include "Contact the Customer Success Team." The product fix is tracked in WEKAPP-697046 for the next release. Until then, publish the corrective action of both alerts as "Contact the Customer Success Team." and leave out the internal commands.
+{% endhint %}
 
 **Behavior at a maximum**
 
