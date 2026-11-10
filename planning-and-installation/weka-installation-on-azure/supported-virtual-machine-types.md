@@ -6,7 +6,7 @@ description: Select supported Azure virtual machine types for WEKA deployments.
 
 ## Supported VM sizes for backends
 
-On Azure, WEKA is deployed in a multi-container architecture using the storage-optimized Lsv3-series and Lasv3-series Azure Virtual Machines (Azure VMs). These VMs feature high throughput, low latency, and directly mapped local NVMe storage.
+On Azure, WEKA is deployed in a multi-container architecture using the storage-optimized Lsv3-series, Lasv3-series, and Lsv4-series Azure Virtual Machines (Azure VMs). These VMs feature high throughput, low latency, and directly mapped local NVMe storage.
 
 Each VM size has a specific number of NICs, but only one is used for all traffic in UDP mode through the management interface.
 
@@ -26,6 +26,13 @@ The following table lists the VM sizes applied by the Terraform package on the b
 | Standard\_L48as\_v3 | 48   | 384          | 6x1.92 TB  | 8        | 24000     |
 | Standard\_L64as\_v3 | 64   | 512          | 8x1.92 TB  | 8        | 32000     |
 | Standard\_L80as\_v3 | 80   | 640          | 10x1.92 TB | 8        | 32000     |
+| Standard\_L8s\_v4   | 8    | 64           | 4x480 GB   | 4        | 12500     |
+| Standard\_L16s\_v4  | 16   | 128          | 4x960 GB   | 8        | 12500     |
+| Standard\_L32s\_v4  | 32   | 256          | 8x960 GB   | 8        | 16000     |
+| Standard\_L48s\_v4  | 48   | 384          | 6x1.92 TB  | 8        | 24000     |
+| Standard\_L64s\_v4  | 64   | 512          | 8x1.92 TB  | 8        | 30000     |
+| Standard\_L80s\_v4  | 80   | 640          | 10x1.92 TB | 8        | 36000     |
+| Standard\_L96s\_v4  | 96   | 768          | 12x1.92 TB | 8        | 41000     |
 
 {% hint style="info" %}
 Using the Azure Console, the client instances can have different virtual machine types provisioned separately from the WEKA cluster.
@@ -33,7 +40,7 @@ Using the Azure Console, the client instances can have different virtual machine
 
 **Related information**
 
-[Lsv3-series](https://learn.microsoft.com/en-us/azure/virtual-machines/lsv3-series) and [Lasv3-series](https://learn.microsoft.com/en-us/azure/virtual-machines/lasv3-series) (Azure learning site)
+[Lsv3-series](https://learn.microsoft.com/en-us/azure/virtual-machines/lsv3-series), [Lasv3-series](https://learn.microsoft.com/en-us/azure/virtual-machines/lasv3-series), and [Lsv4-series](https://learn.microsoft.com/en-us/azure/virtual-machines/sizes/storage-optimized/lsv4-series) (Azure learning site)
 
 ### Mapped cores to processes
 
