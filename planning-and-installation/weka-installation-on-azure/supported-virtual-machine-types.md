@@ -123,6 +123,7 @@ In each virtual machine size, the cores are mapped to a specific number of the c
 | HBv4      | Standard\_HB176rs\_v4, Standard\_HB176-24rs\_v4, Standard\_HB176-96rs\_v4 |
 | HBv3      | Standard\_HB120rs\_v3                                                     |
 | HBv5      | Standard\_HB368rs\_v5 (UDP only)                                          |
+| HX        | Standard\_HX176rs                                                         |
 
 ### GPU - accelerated compute
 
