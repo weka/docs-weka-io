@@ -53,8 +53,8 @@ All supported configuration methods lead to the same next step: completing post-
 
 <summary>Frequently asked questions</summary>
 
-1. What is the root password? Is this configurable, and can it be encrypted?
-   * **INTERNAL, remove before publication. TBD (Jon Hamill):** default WPA `root` and `weka` passwords.
+1. What are the WPA sign-in credentials?
+   * WPA sets passwords for the `root` and `weka` users. Find them under **OS login** on the WPA download page on [get.weka.io](https://get.weka.io). Change both passwords after installation.
 2. Can we choose the number of cores and containers to use?
    * Yes. Set them during cluster configuration.
 3. Does WPA mirror the boot drives?
