@@ -209,11 +209,7 @@ Kerberos authentication for NFS is supported using AD and Kerberos MIT:
 * **Kerberos MIT:** NFS integrates with Kerberos MIT, implementing the Kerberos protocol, which uses secret-key cryptography for authentication across insecure networks. This protocol is widely standardized and utilized.
 
 {% hint style="info" %}
-**Realm consistency:** The NFS service is registered in one Kerberos realm. With MIT Kerberos, the NFS clients and the Key Distribution Center (KDC) reside in the same realm as the NFS service. With Active Directory, clients that belong to another domain in the same Active Directory forest, such as a child domain, authenticate through the trusts between the domains of the forest.
-{% endhint %}
-
-{% hint style="danger" %}
-**INTERNAL, remove before publication. TBD (Hemant):** With several Active Directory domains, do the forest trusts cover clients in the other domains, or must clients still share the NFS service's realm? The LDAP guide (1.3, 4.5) says the 6.0 single-realm rule no longer applies to AD. This was not checked in the code. Vinay (5 Nov) asked what "other domains" means; the text now says "another domain in the same Active Directory forest, such as a child domain". Confirm that this scope is correct, and whether other trees in the forest are included.
+**Realm consistency:** The NFS service is registered in one Kerberos realm. With MIT Kerberos, the NFS clients and the Key Distribution Center (KDC) reside in the same realm as the NFS service. With Active Directory, clients that belong to another domain in the same forest, such as a child domain or a domain in another tree of the forest, authenticate through the trusts between the domains of the forest.
 {% endhint %}
 
 ### Kerberos service interactions basic outline
@@ -326,13 +322,9 @@ When at least half of the probed NFS containers fail at the same time, with a mi
 * **Health check on each container:** The load balancer reads `GET /nfs/health/self` on each NFS container's management port (14000) and checks that `lb_healthy` is `true`. While the cluster is degraded, `lb_healthy` stays `true`, so the load balancer keeps all containers in rotation instead of removing most of them at once.
 * **Monitor program:** A program reads the cluster-wide report, `GET /nfs/health`, from any management address, and updates the load balancer.
 
-Reading the health API requires the `nfs_health_view` permission. The Read Only role has it, and a custom role can hold it on its own. For the endpoints, fields, and errors, see the REST API reference at [api.docs.weka.io](https://api.docs.weka.io).
+The user that reads the health API needs the Read Only role. For the endpoints, fields, and errors, see the REST API reference at [api.docs.weka.io](https://api.docs.weka.io).
 
 Integrate with the v3 health endpoints above. The v2 endpoint, `/api/v2/nfs/health`, is deprecated.
-
-{% hint style="danger" %}
-**INTERNAL, remove before publication. TBD (Hemant):** Can a custom role that holds only `nfs_health_view` be assigned to a user in 6.1.0 (the developer reference says not yet)? Resolved (Vinay, 10 Nov): use the v3 API; v2 `/api/v2/nfs/health` is deprecated.
-{% endhint %}
 
 **Considerations**
 
