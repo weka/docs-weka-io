@@ -6,7 +6,7 @@ description: Select supported Azure virtual machine types for WEKA deployments.
 
 ## Supported VM sizes for backends
 
-On Azure, WEKA is deployed in a multi-container architecture using the storage-optimized Lsv3-series and Lasv3-series Azure Virtual Machines (Azure VMs). These VMs feature high throughput, low latency, and directly mapped local NVMe storage.
+On Azure, WEKA is deployed in a multi-container architecture using the storage-optimized Lsv3-series, Lasv3-series, and Lsv4-series Azure Virtual Machines (Azure VMs). These VMs feature high throughput, low latency, and directly mapped local NVMe storage.
 
 Each VM size has a specific number of NICs, but only one is used for all traffic in UDP mode through the management interface.
 
@@ -26,9 +26,16 @@ The following table lists the VM sizes applied by the Terraform package on the b
 | Standard\_L48as\_v3 | 48   | 384          | 6x1.92 TB  | 8        | 24000     |
 | Standard\_L64as\_v3 | 64   | 512          | 8x1.92 TB  | 8        | 32000     |
 | Standard\_L80as\_v3 | 80   | 640          | 10x1.92 TB | 8        | 32000     |
+| Standard\_L8s\_v4   | 8    | 64           | 4x480 GB   | 4        | 12500     |
+| Standard\_L16s\_v4  | 16   | 128          | 4x960 GB   | 8        | 12500     |
+| Standard\_L32s\_v4  | 32   | 256          | 8x960 GB   | 8        | 16000     |
+| Standard\_L48s\_v4  | 48   | 384          | 6x1.92 TB  | 8        | 24000     |
+| Standard\_L64s\_v4  | 64   | 512          | 8x1.92 TB  | 8        | 30000     |
+| Standard\_L80s\_v4  | 80   | 640          | 10x1.92 TB | 8        | 36000     |
+| Standard\_L96s\_v4  | 96   | 768          | 12x1.92 TB | 8        | 41000     |
 
 {% hint style="danger" %}
-**INTERNAL, remove before publication. TBD (Shai, Cloud team):** Lsv4 backends (Standard\_L8s\_v4 to Standard\_L96s\_v4, WEKAPP-647129) are not listed yet. To add them, confirm: which sizes passed certification (no recorded result for L80s\_v4), the minimum version, the Terraform module version (4.0.23 per WEKAPP-658242), the NVMe disk layout per size, and the cores-per-process mapping. Open: WEKAPP-665044 (L64s\_v4 single-client read), WEKAPP-666287 (clusterization crash on L32s\_v4 and L64s\_v4). Is Lsv4 also supported as a client (no dedicated ticket)?
+**INTERNAL, remove before publication. TBD (Shai, Cloud team):** Lsv4 cores-per-process mapping for each size (the mapping table lists only Lsv3 and Lasv3). Is Lsv4 also supported as a client (no dedicated ticket)? Open: WEKAPP-665044 (L64s\_v4 single-client read), WEKAPP-666287 (clusterization crash on L32s\_v4 and L64s\_v4).
 {% endhint %}
 
 {% hint style="info" %}
@@ -37,7 +44,7 @@ Using the Azure Console, the client instances can have different virtual machine
 
 **Related information**
 
-[Lsv3-series](https://learn.microsoft.com/en-us/azure/virtual-machines/lsv3-series) and [Lasv3-series](https://learn.microsoft.com/en-us/azure/virtual-machines/lasv3-series) (Azure learning site)
+[Lsv3-series](https://learn.microsoft.com/en-us/azure/virtual-machines/lsv3-series), [Lasv3-series](https://learn.microsoft.com/en-us/azure/virtual-machines/lasv3-series), and [Lsv4-series](https://learn.microsoft.com/en-us/azure/virtual-machines/sizes/storage-optimized/lsv4-series) (Azure learning site)
 
 ### Mapped cores to processes
 
@@ -120,9 +127,10 @@ In each virtual machine size, the cores are mapped to a specific number of the c
 | HBv4      | Standard\_HB176rs\_v4, Standard\_HB176-24rs\_v4, Standard\_HB176-96rs\_v4 |
 | HBv3      | Standard\_HB120rs\_v3                                                     |
 | HBv5      | Standard\_HB368rs\_v5 (UDP only)                                          |
+| HX        | Standard\_HX176rs                                                         |
 
 {% hint style="danger" %}
-**INTERNAL, remove before publication. TBD (Shai):** Standard\_HX176rs passed client validation only on 6.2.0.4-nightly (CLOUD-3487), DPDK or UDP not stated. Is it supported on 6.1, and in which mode? Standard\_HB368rs\_v5 passed over UDP; DPDK failed on MANA (CLOUD-3332). Does DPDK work on 6.1? HBv4 on MANA (CLOUD-3486) is still Queued: does HBv4 need a MANA note?
+**INTERNAL, remove before publication. TBD (Shai):** Standard\_HB368rs\_v5 passed over UDP; DPDK failed on MANA (CLOUD-3332). Does DPDK work on 6.1, so that "(UDP only)" can be removed?
 {% endhint %}
 
 ### GPU - accelerated compute
