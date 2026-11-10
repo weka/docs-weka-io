@@ -371,7 +371,7 @@ The `nfs_resources` statistics category records the same values over time. See [
 
 * **Client connections:** New connections wait until a connection closes. Existing connections continue.
 * **Open files:** A request that needs another open file is delayed, and the client retries it.
-* **Memory:** The NFS container restarts, and clients reclaim their open and lock state during the grace period.
+* **Memory:** The NFS container restarts.
 
 {% hint style="danger" %}
 **INTERNAL, remove before publication. TBD (Hemant):** Confirm the behavior at each maximum for publication. It comes from the resource-usage guide (3.1 to 3.3), not from the code.
