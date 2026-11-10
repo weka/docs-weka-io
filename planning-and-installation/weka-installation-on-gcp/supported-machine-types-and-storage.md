@@ -11,7 +11,7 @@ metaLinks:
 
 The following table provides the supported machine types (VM instance) for backends (and clients) applied by the Terraform package:
 
-<table><thead><tr><th width="183">Machine series</th><th>Machine types</th></tr></thead><tbody><tr><td>C2</td><td>c2-standard-8, c2-standard-16</td></tr><tr><td>N2</td><td>n2-standard-8, n2-standard-16</td></tr><tr><td>Z3</td><td>z3-highmem-8-highlssd, z3-highmem-16-highlssd, z3-highmem-22-highlssd, z3-highmem-32-highlssd, z3-highmem-44-highlssd, z3-highmem-88-highlssd</td></tr></tbody></table>
+<table><thead><tr><th width="183">Machine series</th><th>Machine types</th></tr></thead><tbody><tr><td>C2</td><td>c2-standard-8, c2-standard-16</td></tr><tr><td>N2</td><td>n2-standard-8, n2-standard-16</td></tr><tr><td>Z3</td><td>z3-highmem-8-highlssd, z3-highmem-16-highlssd, z3-highmem-22-highlssd, z3-highmem-32-highlssd, z3-highmem-44-highlssd, z3-highmem-88-highlssd</td></tr><tr><td>Z4M</td><td>z4m-highmem-16, z4m-highmem-32, z4m-highmem-48</td></tr></tbody></table>
 
 {% hint style="info" %}
 * WEKA supports deploying the C2 machine type with 2, 4, or 8 local SSD drives and the N2 machine type with 2, 4, 8 or 16 local SSD drives. Each drive has 375 GB (maximum 3 TB per instance). These drives are not individual SSDs but partitions locally to the physical server.
