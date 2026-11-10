@@ -375,10 +375,6 @@ The cluster raises an alert for each resource that approaches its maximum. See [
 
 The `nfs_resources` statistics category records the same values over time. See [statistics-list.md](../../operation-guide/statistics/statistics-list.md "mention").
 
-{% hint style="danger" %}
-**INTERNAL, remove before publication. To do (Ari), when regenerating the alerts list for 6.1:** The source texts of `NfsFdReaperStalled` and `NfsMappingsApproachingLimit` name internal commands (`weka debug manhole dump_ganesha_fd_state`, the jemalloc configuration, `vm.max_map_count`). Vinay (9 Nov): these are for the Customer Success Team only, not for customers, and the alert descriptions must include "Contact the Customer Success Team." The product fix is tracked in WEKAPP-697046 for the next release. Until then, publish the corrective action of both alerts as "Contact the Customer Success Team." and leave out the internal commands.
-{% endhint %}
-
 **Behavior at a maximum**
 
 * **Client connections:** New connections wait until a connection closes. Existing connections continue.

@@ -232,7 +232,7 @@ weka nfs global-config set [--acl <on-off>] [--config-fs <string>] [--default-ac
 | `--lockmgr-port` &lt;uint16&gt; | Port for NFS lock manager. Default 0 selects any available port. |
 | `--max-client-connections` &lt;uint&gt; | Maximum number of concurrent NFS client connections. 0 means auto-tune based on cluster size. |
 | `--max-memory` &lt;capacity&gt; | Override the NFS container's memory ceiling, in whole GiB (e.g. 32GiB). Left unset, the compiled default applies. On a running cluster, applies to each NFS-Ganesha container at its next start. |
-| `--max-open-fds` &lt;uint&gt; | Maximum number of files each NFS server may hold open. From WEKA 6.1, 0 restores the default of 500000; earlier releases require a value between 10000 and 10000000. The derived process descriptor limit (connections + open files + reserve) and the NFS server's file-cache thresholds both apply without a restart. |
+| `--max-open-fds` &lt;uint&gt; | Maximum number of files each NFS server can hold open: 0 (default, 500000) or 10000 to 10000000. |
 | `--mountd-port` &lt;uint16&gt; | Port number for mountd service. |
 | `--no-restart` | Prevent NFS-W containers from restarting when changes are applied. |
 | `--notify-port` &lt;uint16&gt; | Port for NFSv3 notification. Default 0 means any available port. |
