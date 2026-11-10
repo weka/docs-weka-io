@@ -20,10 +20,6 @@ The following table provides the supported machine types (VM instance) for backe
 * The C2 series may not be available in your chosen [GCP region](https://cloud.google.com/compute/docs/regions-zones).
 {% endhint %}
 
-{% hint style="danger" %}
-**INTERNAL, remove before publication. TBD (Shai):** Z4M backends (WEKAPP-676615) are not listed yet. Need the machine types, the local SSD configuration, the minimum version, and the publication date relative to the Google announcement.
-{% endhint %}
-
 ## Supported machine types for clients
 
 Explore the two key technologies in network virtualization: **VirtIO in DPDK mode** and **gVNIC in UDP and DPDK modes**.

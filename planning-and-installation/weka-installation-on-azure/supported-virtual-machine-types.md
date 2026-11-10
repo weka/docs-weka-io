@@ -27,10 +27,6 @@ The following table lists the VM sizes applied by the Terraform package on the b
 | Standard\_L64as\_v3 | 64   | 512          | 8x1.92 TB  | 8        | 32000     |
 | Standard\_L80as\_v3 | 80   | 640          | 10x1.92 TB | 8        | 32000     |
 
-{% hint style="danger" %}
-**INTERNAL, remove before publication. TBD (Shai, Cloud team):** Lsv4 backends (Standard\_L8s\_v4 to Standard\_L96s\_v4, WEKAPP-647129) are not listed yet. To add them, confirm: which sizes passed certification (no recorded result for L80s\_v4), the minimum version, the Terraform module version (4.0.23 per WEKAPP-658242), the NVMe disk layout per size, and the cores-per-process mapping. Open: WEKAPP-665044 (L64s\_v4 single-client read), WEKAPP-666287 (clusterization crash on L32s\_v4 and L64s\_v4). Is Lsv4 also supported as a client (no dedicated ticket)?
-{% endhint %}
-
 {% hint style="info" %}
 Using the Azure Console, the client instances can have different virtual machine types provisioned separately from the WEKA cluster.
 {% endhint %}
@@ -120,10 +116,6 @@ In each virtual machine size, the cores are mapped to a specific number of the c
 | HBv4      | Standard\_HB176rs\_v4, Standard\_HB176-24rs\_v4, Standard\_HB176-96rs\_v4 |
 | HBv3      | Standard\_HB120rs\_v3                                                     |
 | HBv5      | Standard\_HB368rs\_v5 (UDP only)                                          |
-
-{% hint style="danger" %}
-**INTERNAL, remove before publication. TBD (Shai):** Standard\_HX176rs passed client validation only on 6.2.0.4-nightly (CLOUD-3487), DPDK or UDP not stated. Is it supported on 6.1, and in which mode? Standard\_HB368rs\_v5 passed over UDP; DPDK failed on MANA (CLOUD-3332). Does DPDK work on 6.1? HBv4 on MANA (CLOUD-3486) is still Queued: does HBv4 need a MANA note?
-{% endhint %}
 
 ### GPU - accelerated compute
 
