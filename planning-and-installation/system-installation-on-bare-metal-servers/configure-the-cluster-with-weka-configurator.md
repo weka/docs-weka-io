@@ -30,9 +30,9 @@ Adhere to the following concepts:
 ## Prerequisites
 
 * **System preparation validation:**\
-  Ensure the system preparation is validated using the `wekachecker` tool (on WSA installations this is already installed under `/opt/tools/install`). For additional details, refer to the [Validate the system preparation](setting-up-the-hosts/#id-11.-validate-the-system-preparation) section.
+  Ensure the system preparation is validated using the `wekachecker` tool (on WPA installations, it is preinstalled under `/opt/tools/install`). For additional details, refer to the [Validate the system preparation](prepare-the-system/#id-11.-validate-the-system-preparation) section.
 * **WEKA software installation on cluster servers:**\
-  Verify that the WEKA software is installed on all cluster servers. If it is not installed through the WSA, follow the installation instructions provided in the **Install** tab of [get.weka.io](https://get.weka.io). Once the installation is complete, the WEKA software will be deployed on all allocated servers and running in STEM mode.
+  Verify that the WEKA software is installed on all cluster servers, following the instructions in the **Install** tab of [get.weka.io](https://get.weka.io). Once the installation is complete, the WEKA software runs in STEM mode on all allocated servers.
 
 ## Workflow
 
@@ -42,13 +42,13 @@ Adhere to the following concepts:
 
 ### 1. Access the WEKA tools
 
-1.  **If you do not use WSA or WEKApod**:\
+1.  **If you do not use WPA**:\
     Download the WEKA tools repository to one of the servers by running the following command:
 
     ```bash
     git clone https://github.com/weka/tools
     ```
-2.  **If you use WSA or WEKApod**:\
+2.  **If you use WPA, including on WEKApod**:\
     The tools are pre-installed and can be found at the following location:
 
     ```bash
@@ -162,7 +162,7 @@ The stripe and other settings include:
 * **Hot Spares:** The number of Hot Spare members.
 * **Reserved RAM per Host:** Extra RAM in GB reserved on each host for various purposes, like supporting Protocols or Applications.
 
-These settings are in terms of servers, not SSDs. WEKA stripes over the entire servers, not over individual drives. For more details, see [manually-configure-the-weka-cluster-using-the-resource-generator](manually-configure-the-weka-cluster-using-the-resource-generator/ "mention").
+These settings are in terms of servers, not SSDs. WEKA stripes over the entire servers, not over individual drives. For more details, see [configure-the-cluster-with-resources-generator](configure-the-cluster-with-resources-generator/ "mention").
 
 The following example shows a stripe width of 6 (4+2) on 7 servers, and one hot spare.
 
@@ -356,4 +356,4 @@ The configuration takes a few minutes and possibly longer for large clusters. Se
 
 ## What to do next?
 
-[perform-post-configuration-procedures.md](perform-post-configuration-procedures.md "mention")
+Go to [perform-post-configuration.md](perform-post-configuration.md "mention").

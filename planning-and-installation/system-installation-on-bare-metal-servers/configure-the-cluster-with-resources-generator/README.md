@@ -8,7 +8,7 @@ description: >-
 
 Perform this workflow only if you are following the manual installation and configuration path.
 
-Do not use this workflow if you are using the WSA or WEKA Configurator.
+Skip this workflow if you configure the cluster with the WEKA Configurator.
 
 The resources generator generates three resource files on each server in the `/tmp` directory: `drives0.json`, `compute0.json`, and `frontend0.json`. Then, you create the containers using these generated files of the cluster servers.
 
@@ -207,12 +207,12 @@ weka cluster drive add <container> <device-paths>… [--allow-format-non-wekafs-
 **Parameters**
 
 | Parameter                          | Description                                                                                                  |
-| --- | --- |
-| `container`\* | ID of the container where the drive is attached. |
-| `device-paths`\*… | Device paths or UUIDs of the drive(s) to add. A proxy-physical UUID adds all of its matching virtual drives. |
-| `--allow-format-non-wekafs-drives` | Allow reuse of drives formatted by other software. |
-| `--force` | Force formatting for WEKA. Bypasses all safety checks; use with caution. |
-| `--pool` \<drive-pool> | Disk pool for the drive. Affects how blocks from the drive are used. |
+| ---------------------------------- | ------------------------------------------------------------------------------------------------------------ |
+| `container`\*                      | ID of the container where the drive is attached.                                                             |
+| `device-paths`\*…                  | Device paths or UUIDs of the drive(s) to add. A proxy-physical UUID adds all of its matching virtual drives. |
+| `--allow-format-non-wekafs-drives` | Allow reuse of drives formatted by other software.                                                           |
+| `--force`                          | Force formatting for WEKA. Bypasses all safety checks; use with caution.                                     |
+| `--pool` \<drive-pool>             | Disk pool for the drive. Affects how blocks from the drive are used.                                         |
 
 ### 5. Create compute containers
 
@@ -242,10 +242,10 @@ weka local setup container --join-ips <IP addresses> \
 
 **Parameters**
 
-| Name | Value |
-| --- | --- |
-| `resources-path`* | A valid path to the resource file. |
-| `join-ips` | IP:port pairs for the management processes to join the cluster. In the absence of a specified port, the command defaults to using the standard WEKA port 14000. Set the values, only if you want to customize the port.Format: comma-separated IP addresses.Example: `--join-ips 10.10.10.1,10.10.10.2,10.10.10.3:15000` |
+| Name               | Value                                                                                                                                                                                                                                                                                                                    |
+| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `resources-path`\* | A valid path to the resource file.                                                                                                                                                                                                                                                                                       |
+| `join-ips`         | IP:port pairs for the management processes to join the cluster. In the absence of a specified port, the command defaults to using the standard WEKA port 14000. Set the values, only if you want to customize the port.Format: comma-separated IP addresses.Example: `--join-ips 10.10.10.1,10.10.10.2,10.10.10.3:15000` |
 
 ### 7. Configure the number of data and parity drives
 
@@ -260,13 +260,13 @@ weka cluster update [--bucket-raft-size <uint8>] [--cluster-name <string>] [--da
 **Parameters**
 
 | Parameter                               | Description                              |
-| --- | --- |
-| `--bucket-raft-size` \<uint8> | Number of members in bucket raft. |
-| `--cluster-name` \<string> | Cluster name. |
-| `--data-drives` \<uint8> | Number of RAID data drives. |
-| `--hot-spare-failure-domains` \<uint16> | Number of hot spare failure domains. |
-| `--parity-drives` \<uint8> | Number of RAID protection parity drives. |
-| `--scrubber-bytes-per-sec` \<bytes> | Rate of RAID scrubbing per second. |
+| --------------------------------------- | ---------------------------------------- |
+| `--bucket-raft-size` \<uint8>           | Number of members in bucket raft.        |
+| `--cluster-name` \<string>              | Cluster name.                            |
+| `--data-drives` \<uint8>                | Number of RAID data drives.              |
+| `--hot-spare-failure-domains` \<uint16> | Number of hot spare failure domains.     |
+| `--parity-drives` \<uint8>              | Number of RAID protection parity drives. |
+| `--scrubber-bytes-per-sec` \<bytes>     | Rate of RAID scrubbing per second.       |
 
 ### 8. Configure the number of hot spares
 
@@ -281,8 +281,8 @@ weka cluster hot-spare [<count>] [--skip-resource-validation]
 **Parameters**
 
 | Parameter                    | Description                                                                                  |
-| --- | --- |
-| `count` | Number of hot-spare failure-domains to configure. |
+| ---------------------------- | -------------------------------------------------------------------------------------------- |
+| `count`                      | Number of hot-spare failure-domains to configure.                                            |
 | `--skip-resource-validation` | Do not verify that the cluster has enough RAM and SSD resources allocated for the hot-spare. |
 
 ### 9. Name the cluster
@@ -298,14 +298,14 @@ weka cluster update [--bucket-raft-size <uint8>] [--cluster-name <string>] [--da
 **Parameters**
 
 | Parameter                               | Description                              |
-| --- | --- |
-| `--bucket-raft-size` \<uint8> | Number of members in bucket raft. |
-| `--cluster-name` \<string> | Cluster name. |
-| `--data-drives` \<uint8> | Number of RAID data drives. |
-| `--hot-spare-failure-domains` \<uint16> | Number of hot spare failure domains. |
-| `--parity-drives` \<uint8> | Number of RAID protection parity drives. |
-| `--scrubber-bytes-per-sec` \<bytes> | Rate of RAID scrubbing per second. |
+| --------------------------------------- | ---------------------------------------- |
+| `--bucket-raft-size` \<uint8>           | Number of members in bucket raft.        |
+| `--cluster-name` \<string>              | Cluster name.                            |
+| `--data-drives` \<uint8>                | Number of RAID data drives.              |
+| `--hot-spare-failure-domains` \<uint16> | Number of hot spare failure domains.     |
+| `--parity-drives` \<uint8>              | Number of RAID protection parity drives. |
+| `--scrubber-bytes-per-sec` \<bytes>     | Rate of RAID scrubbing per second.       |
 
 ## What to do next?
 
-Go to [Perform post-configuration](../perform-post-configuration-procedures.md).
+Go to [Perform post-configuration](../perform-post-configuration.md).

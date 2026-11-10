@@ -46,7 +46,7 @@ The following requirements must be met:
 
 ## Memory
 
-* Sufficient memory to support the cluster needs as described in [memory requirements](bare-metal/planning-a-weka-system-installation.md#memory-resource-planning).
+* Sufficient memory to support the cluster needs as described in [memory requirements](system-installation-on-bare-metal-servers/plan-hardware-requirements.md#memory-resource-planning).
 * More memory support for the OS kernel or any other application.
 
 ## Operating system
@@ -340,7 +340,7 @@ Qualify a newer OFED version before you deploy it. NVIDIA maintains backward com
   * SR-IOV enabled is not required.
 * **DPDK backends clients using NICs supporting non-shared networking:**
   * IP address for management: One per NIC (configured before WEKA installation).
-  * IP address for data plane: One per [WEKA core](bare-metal/planning-a-weka-system-installation.md#cpu-resource-planning) in each server (applied during cluster initialization).
+  * IP address for data plane: One per [WEKA core](system-installation-on-bare-metal-servers/plan-hardware-requirements.md#cpu-resource-planning) in each server (applied during cluster initialization).
   * [Virtual Functions](https://en.wikipedia.org/wiki/Network_function_virtualization) (VFs):
     * Ensure the device supports a maximum number of VFs greater than the number of physical cores on the server.
     * Set the number of VFs to match the cores you intend to dedicate to WEKA.

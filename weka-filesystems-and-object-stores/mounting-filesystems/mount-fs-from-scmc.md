@@ -44,7 +44,7 @@ When a stateless client mounts a filesystem in a cluster, it creates a client co
 {% hint style="warning" %}
 The client target version must be consistent across all clusters. It can match the cluster version or be one major version earlier (regardless the minor), provided that version is available in the cluster for client download.
 
-To upgrade the cluster to a version higher than the first major release above the client version, see [README.md](../../operation-guide/upgrading-weka-versions/README.md "mention").
+To upgrade the cluster to a version higher than the first major release above the client version, see [upgrading-weka-versions](../../operation-guide/upgrading-weka-versions/ "mention").
 {% endhint %}
 
 #### Procedure:
@@ -117,6 +117,6 @@ This approach ensures that your WEKA CLI command targets the correct WEKA cluste
 
 #### Related topics
 
-[adding-clients-bare-metal.md](../../planning-and-installation/bare-metal/adding-clients-bare-metal.md "mention")
+[add-clients.md](../../planning-and-installation/system-installation-on-bare-metal-servers/add-clients.md "mention")
 
 [.](./ "mention")

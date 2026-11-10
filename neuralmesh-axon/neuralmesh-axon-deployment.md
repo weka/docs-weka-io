@@ -62,7 +62,7 @@ NeuralMesh Axon requires specific infrastructure configurations for both Linux s
 * **Hardware requirements:** Deploy servers that meet these specifications:
   * **CPU architecture**: AMD (single socket required), Intel (dual-socket supported), or NVIDIA Grace (ARM).
   * **CPU allocation**: Contention-free CPU allocation for each NUMA domain.
-  * **Memory**: Sufficient RAM to allocate [HugeTLB pages](#user-content-fn-1)[^1] at runtime. For details, see [#memory-resource-planning](../planning-and-installation/bare-metal/planning-a-weka-system-installation.md#memory-resource-planning "mention").
+  * **Memory**: Sufficient RAM to allocate [HugeTLB pages](#user-content-fn-1)[^1] at runtime. For details, see [#memory-resource-planning](../planning-and-installation/system-installation-on-bare-metal-servers/plan-hardware-requirements.md#memory-resource-planning "mention").
   * **Storage**: Adequate NVME capacity for the selected protection scheme.
 * **Software prerequisites:** Install and configure these software components:
   * Unified CGROUPs or CGROUP v2 enabled.
@@ -139,14 +139,14 @@ Configure SELinux support for NeuralMesh Axon clusters hosted in a Kubernetes ru
 
 Configure firewall rules to allow these ports and protocols on all cluster servers:
 
-| Port/NodePort | Protocol | Purpose |
-| --- | --- | --- |
-| 14000-14100, 15000-15100, 16000-16100 | TCP + UDP | NeuralMesh Axon Core container traffic |
-| 443 | TCP | NeuralMesh Axon Core traces remote viewer |
-| 22 | TCP | SSH management access |
-| 123 | TCP | NTP management access |
-| 8200, 8201 | TCP | Hashicorp Vault traffic |
-| 5696 | TCP | KMIP traffic |
+| Port/NodePort                         | Protocol  | Purpose                                   |
+| ------------------------------------- | --------- | ----------------------------------------- |
+| 14000-14100, 15000-15100, 16000-16100 | TCP + UDP | NeuralMesh Axon Core container traffic    |
+| 443                                   | TCP       | NeuralMesh Axon Core traces remote viewer |
+| 22                                    | TCP       | SSH management access                     |
+| 123                                   | TCP       | NTP management access                     |
+| 8200, 8201                            | TCP       | Hashicorp Vault traffic                   |
+| 5696                                  | TCP       | KMIP traffic                              |
 
 ### CPU core management
 

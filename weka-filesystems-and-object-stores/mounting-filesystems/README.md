@@ -38,7 +38,7 @@ In addition, you can mount a filesystem using **fstab** or **autofs**.
 
 To mount a WEKA filesystem persistently, follow these steps:
 
-1. **Install the WEKA client**: Ensure the WEKA persistent client is installed, configured, and connected to your cluster. See [Add a persistent client to the cluster](../../planning-and-installation/bare-metal/adding-clients-bare-metal.md#add-a-persistent-client-to-the-cluster).
+1. **Install the WEKA client**: Ensure the WEKA persistent client is installed, configured, and connected to your cluster. See [Add a persistent client to the cluster](../../planning-and-installation/system-installation-on-bare-metal-servers/add-clients.md#add-a-persistent-client-to-the-cluster).
 2. **Identify the filesystem**: Determine the name of the filesystem you want to mount. For this example, we use a filesystem named `demo`.
 3.  **Create a mount point**: SSH into one of your cluster servers and create a directory to serve as the mount point for the filesystem:
 
@@ -78,7 +78,7 @@ The stateless mount mode simplifies client management by deferring the joining o
 **Prerequisites**
 
 * The stateless clients must have a connection to all the backends, dedicated protocol servers (gateways), and persistent clients.
-* Ensure the WEKA agent is installed on your client to utilize the stateless mount mode. See [adding-clients-bare-metal.md](../../planning-and-installation/bare-metal/adding-clients-bare-metal.md "mention").
+* Ensure the WEKA agent is installed on your client to utilize the stateless mount mode. See [add-clients.md](../../planning-and-installation/system-installation-on-bare-metal-servers/add-clients.md "mention").
 
 **Mount a filesystem**
 
@@ -149,12 +149,12 @@ This setup ensures that the stateless client operates with restricted privileges
 
 **Parameters**
 
-| Name | Value |
-| --- | --- |
-| `options` | See Additional Mount Options below. |
-| `backend` | IP/hostname of a backend container.Mandatory. |
-| `fs` | Filesystem name.Mandatory. |
-| `mount-point` | Path to mount on the local server.Mandatory. |
+| Name          | Value                                         |
+| ------------- | --------------------------------------------- |
+| `options`     | See Additional Mount Options below.           |
+| `backend`     | IP/hostname of a backend container.Mandatory. |
+| `fs`          | Filesystem name.Mandatory.                    |
+| `mount-point` | Path to mount on the local server.Mandatory.  |
 
 ***
 
@@ -173,11 +173,8 @@ Run the mount command with the subdirectory path appended to the filesystem name
 
 *   Stateless client:
 
-    {% code overflow="wrap" %}
-    ```bash
-    mount -t wekafs -o <options> <backend0>[,<backend1>,...,<backendN>]/<fs>/<subdir-path> <mount-point>
-    ```
-    {% endcode %}
+    <pre class="language-bash" data-overflow="wrap"><code class="lang-bash">mount -t wekafs -o &#x3C;options> &#x3C;backend0>[,&#x3C;backend1>,...,&#x3C;backendN>]/&#x3C;fs>/&#x3C;subdir-path> &#x3C;mount-point>
+    </code></pre>
 *   Persistent client:
 
     ```bash
@@ -360,9 +357,9 @@ weka cluster mount-defaults set [--qos-max-throughput qos-max-throughput] [--qos
 
 **Parameters**
 
-| Option | Description |
-| --- | --- |
-| `--qos-max-throughput` | Specifies the default maximum request rate for Quality of Service (QoS), in mebibytes per second (MiB/s). This is an average-based limit applied at the frontend. The system allows short bursts above this value but aims to maintain the specified limit over time. |
+| Option                       | Description                                                                                                                                                                                                                                                                                                                           |
+| ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `--qos-max-throughput`       | Specifies the default maximum request rate for Quality of Service (QoS), in mebibytes per second (MiB/s). This is an average-based limit applied at the frontend. The system allows short bursts above this value but aims to maintain the specified limit over time.                                                                 |
 | `--qos-preferred-throughput` | Specifies the default preferred request rate for Quality of Service (QoS), in mebibytes per second (MiB/s). This is a soft target used to guide bandwidth allocation. The system aims to maintain this rate under normal conditions but allows the frontend to exceed it, up to the maximum, when additional resources are available. |
 
 {% hint style="info" %}

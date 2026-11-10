@@ -98,7 +98,7 @@ Ensure SSH access to the GKE worker nodes is available to install the WEKA clien
 
 <div data-with-frame="true"><figure><img src="https://lh7-us.googleusercontent.com/docsz/AD_4nXfaFLru7kgPoKpFe9FplHvpt-yQs4oWT0FlnD8zwt6U7kRx9Krn1ezVpn7H6yWmiQkn8BqEQWsUPGyzbWF8LeW5XMnLh9R3Y2Uw5x4hJMYqdyfjQ-IRaw2cutTjJCJsJj7J8hxw-wAf27wa0U_yyrtevScRS8aJN84zEvcueQ?key=pmcWhfRW5GQA1x-KXJSIuA" alt=""><figcaption></figcaption></figure></div>
 
-3. To avoid CPU pinning conflicts with GKE, start the WEKA client using a stateless client mount. Authorize the SSH connection, then add the WEKA client from the existing WEKA cluster. For details, see the [adding-clients-bare-metal.md](../bare-metal/adding-clients-bare-metal.md "mention") procedure.
+3. To avoid CPU pinning conflicts with GKE, start the WEKA client using a stateless client mount. Authorize the SSH connection, then add the WEKA client from the existing WEKA cluster. For details, see the [add-clients.md](../system-installation-on-bare-metal-servers/add-clients.md "mention") procedure.
 
 {% tabs %}
 {% tab title="Transferring SSH keys to the VM" %}

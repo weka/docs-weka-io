@@ -6,12 +6,12 @@ description: Complete the required configuration tasks after creating a WEKA clu
 
 Once the WEKA cluster is installed and configured, perform the following:
 
-1. [Enable event notifications to the cloud (optional)](perform-post-configuration-procedures.md#id-1.-enable-event-notifications-to-the-cloud-optional).
-2. [Set the license](perform-post-configuration-procedures.md#id-2.-set-the-license).
-3. [Start the cluster IO service](perform-post-configuration-procedures.md#id-3.-start-the-cluster-io-service).
-4. [Check the cluster configuration](perform-post-configuration-procedures.md#id-4.-check-the-cluster-configuration).
-5. [Bypass the proxy server (optional)](perform-post-configuration-procedures.md#id-5.-bypass-the-proxy-server-optional).
-6. [Configure default data networking (optional)](perform-post-configuration-procedures.md#id-6.-configure-default-data-networking-optional).
+1. [Enable event notifications to the cloud (optional)](perform-post-configuration.md#id-1.-enable-event-notifications-to-the-cloud-optional).
+2. [Set the license](perform-post-configuration.md#id-2.-set-the-license).
+3. [Start the cluster IO service](perform-post-configuration.md#id-3.-start-the-cluster-io-service).
+4. [Check the cluster configuration](perform-post-configuration.md#id-4.-check-the-cluster-configuration).
+5. [Bypass the proxy server (optional)](perform-post-configuration.md#id-5.-bypass-the-proxy-server-optional).
+6. [Configure default data networking (optional)](perform-post-configuration.md#id-6.-configure-default-data-networking-optional).
 
 ## 1. Enable event notifications to the cloud (optional)
 
@@ -33,7 +33,7 @@ weka cloud enable [--cloud-url <string>]
 **Parameters**
 
 | Parameter               | Description                    |
-| --- | --- |
+| ----------------------- | ------------------------------ |
 | `--cloud-url` \<string> | Base URL of the cloud service. |
 
 ### Enable support through Local WEKA Home
@@ -49,7 +49,7 @@ weka cloud enable [--cloud-url <string>]
 **Parameters**
 
 | Parameter               | Description                    |
-| --- | --- |
+| ----------------------- | ------------------------------ |
 | `--cloud-url` \<string> | Base URL of the cloud service. |
 
 {% hint style="info" %}
@@ -69,7 +69,7 @@ weka cluster license set <license>
 **Parameters**
 
 | Parameter   | Description             |
-| --- | --- |
+| ----------- | ----------------------- |
 | `license`\* | License key to install. |
 
 ## 3. Start the cluster IO service
@@ -85,11 +85,10 @@ weka cluster start-io [--force]
 **Parameters**
 
 | Parameter       | Description                                                                                                                            |
-| --- | --- |
+| --------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
 | `-f`, `--force` | Do not prompt before starting I/O for the first time. The prompt is only shown for interactive use; non-interactive use never prompts. |
 
 ## 4. Check the cluster configuration
-
 
 ### Check the cluster container
 
@@ -104,17 +103,15 @@ weka cluster container [<container-ids>…] [--backends] [--clients] [--council]
 **Parameters**
 
 | Parameter                 | Description                                                                                                                    |
-| --- | --- |
-| `container-ids`… | Only return these container IDs. |
-| `-b`, `--backends` | Only return backend containers. |
-| `-c`, `--clients` | Only return client containers. |
-| `--council` | Get result from cluster leadership members. |
+| ------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| `container-ids`…          | Only return these container IDs.                                                                                               |
+| `-b`, `--backends`        | Only return backend containers.                                                                                                |
+| `-c`, `--clients`         | Only return client containers.                                                                                                 |
+| `--council`               | Get result from cluster leadership members.                                                                                    |
 | `--hostnames` \<strings>… | Only return containers on these hostnames. Multiple values may be supplied separated by commas, or the option may be repeated. |
-| `-L`, `--leader` | Only return the cluster leader. |
-| `-l`, `--leadership` | Only return containers that are part of the cluster leadership. |
-| `--local` | Get result from local weka host. |
-
-</details>
+| `-L`, `--leader`          | Only return the cluster leader.                                                                                                |
+| `-l`, `--leadership`      | Only return containers that are part of the cluster leadership.                                                                |
+| `--local`                 | Get result from local weka host.                                                                                               |
 
 **Related topic**
 
@@ -133,11 +130,9 @@ weka cluster container resources <container> [--stable]
 **Parameters**
 
 | Parameter     | Description                               |
-| --- | --- |
-| `container`\* | Container ID. |
-| `--stable` | Show stable resources instead of staging. |
-
-</details>
+| ------------- | ----------------------------------------- |
+| `container`\* | Container ID.                             |
+| `--stable`    | Show stable resources instead of staging. |
 
 <details>
 
@@ -220,12 +215,10 @@ weka cluster drive [<drive>…] [--container <container-ids>…] [--show-removed
 **Parameters**
 
 | Parameter                       | Description                                                                                                                                                                 |
-| --- | --- |
-| `drive`… | Drive IDs or UUIDs to list. If no ID is specified, all drives are listed. |
+| ------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `drive`…                        | Drive IDs or UUIDs to list. If no ID is specified, all drives are listed.                                                                                                   |
 | `--container` \<container-ids>… | Only return the drives of these container IDs. If not specified, all drives are listed. Multiple values may be supplied separated by commas, or the option may be repeated. |
-| `--show-removed` | Show drives that were removed from the cluster. |
-
-</details>
+| `--show-removed`                | Show drives that were removed from the cluster.                                                                                                                             |
 
 ### Check the Weka cluster status
 
@@ -240,7 +233,7 @@ weka status [--detailed-capacity]
 **Parameters**
 
 | Parameter             | Description                                        |
-| --- | --- |
+| --------------------- | -------------------------------------------------- |
 | `--detailed-capacity` | Include capacity details including data reduction. |
 
 ## 5. Bypass the proxy server (optional)
@@ -278,9 +271,9 @@ weka cluster default-net set [--gateway <ip>] [--netmask <uint8>] [--range <ip-r
 **Parameters**
 
 | Parameter             | Description                     |
-| --- | --- |
-| `--gateway` \<ip> | Default gateway IP address. |
-| `--netmask` \<uint8> | Netmask length in bits. |
+| --------------------- | ------------------------------- |
+| `--gateway` \<ip>     | Default gateway IP address.     |
+| `--netmask` \<uint8>  | Netmask length in bits.         |
 | `--range` \<ip-range> | IP addresses in format IP1-IP2. |
 
 **View current settings:** To view the current default data networking settings, use the command:\
@@ -297,4 +290,4 @@ weka cluster default-net set [--gateway <ip>] [--netmask <uint8>] [--range <ip-r
 
 ## **What do next?**
 
-[adding-clients-bare-metal.md](adding-clients-bare-metal.md "mention")
+Go to [add-clients.md](add-clients.md "mention").

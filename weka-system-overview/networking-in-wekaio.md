@@ -87,7 +87,7 @@ In a typical WEKA system configuration, the WEKA backend servers access the netw
 To run both functions on the same physical interface, contact the [Customer Success Team](../support/getting-support-for-your-weka-system.md#open-a-support-case).
 {% endhint %}
 
-The high-performance network used to connect all the backend servers must be DPDK-based. This internal WEKA network also requires a separate IP address space. For details, see [Network planning](../planning-and-installation/bare-metal/planning-a-weka-system-installation.md#network-planning) and [Configure the networking](../planning-and-installation/bare-metal/setting-up-the-hosts/#configure-the-networking).
+The high-performance network used to connect all the backend servers must be DPDK-based. This internal WEKA network also requires a separate IP address space. For details, see [Network planning](../planning-and-installation/system-installation-on-bare-metal-servers/plan-hardware-requirements.md#network-planning) and [Configure the networking](../planning-and-installation/system-installation-on-bare-metal-servers/prepare-the-system/#configure-the-networking).
 
 The WEKA system maintains a separate ARP database for its IP addresses and virtual functions and does not use the kernel or operating system ARP services.
 
@@ -102,7 +102,7 @@ While WEKA backend servers must include DPDK and SR-IOV, WEKA clients in applica
   * SR-IOV enabled is not required.
 * **DPDK backends and clients using NICs supporting dedicated networking:**
   * IP address for management process on data plane: One per NIC (configured before WEKA installation).
-  * IP address for data plane: One per [WEKA core](../planning-and-installation/bare-metal/planning-a-weka-system-installation.md#cpu-resource-planning) in each server (applied during cluster initialization).
+  * IP address for data plane: One per [WEKA core](../planning-and-installation/system-installation-on-bare-metal-servers/plan-hardware-requirements.md#cpu-resource-planning) in each server (applied during cluster initialization).
   * [Virtual Functions](https://en.wikipedia.org/wiki/Network_function_virtualization) (VFs):
     * Ensure the device supports a maximum number of VFs greater than the number of physical cores on the server.
     * Set the number of VFs to match the cores you intend to dedicate to WEKA.

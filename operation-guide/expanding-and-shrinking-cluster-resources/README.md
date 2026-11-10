@@ -42,7 +42,7 @@ To calculate the capacity of the WEKA cluster after expansion, see [#ssd-net-sto
 
 **Related topics**
 
-* [System installation on bare metal servers](../../planning-and-installation/bare-metal/)
+* [System installation on bare metal servers](../../planning-and-installation/system-installation-on-bare-metal-servers/)
 * [Cluster architecture overview](../../weka-system-overview/weka-containers-architecture-overview.md)
 * [Container state and status fields](container-state-and-status-fields.md)
 

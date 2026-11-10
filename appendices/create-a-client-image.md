@@ -65,4 +65,4 @@ This client image creation procedure is effective in on-premises environments, u
 
 **Related topics**
 
-[obtaining-the-weka-install-file.md](../planning-and-installation/bare-metal/obtaining-the-weka-install-file.md "mention")
+[obtain-the-installation-packages.md](../planning-and-installation/system-installation-on-bare-metal-servers/obtain-the-installation-packages.md "mention")

@@ -123,7 +123,7 @@ In the dedicated backend architecture, the WEKA filesystem is mounted on the log
 
 Servers are provisioned to provide servers with compute, network, and storage resources to run the WEKA data platform.
 
-The login and compute nodes from the Slurm cluster mount WEKA filesystems and participate in the WEKA cluster as clients. When mounting in UDP or DPDK mode, some memory must be reserved for WEKA. To determine the amount of memory appropriate for your setup, see the [Plan the WEKA system hardware requirements](../../planning-and-installation/bare-metal/planning-a-weka-system-installation.md) topic.
+The login and compute nodes from the Slurm cluster mount WEKA filesystems and participate in the WEKA cluster as clients. When mounting in UDP or DPDK mode, some memory must be reserved for WEKA. To determine the amount of memory appropriate for your setup, see the [Plan the WEKA system hardware requirements](../../planning-and-installation/system-installation-on-bare-metal-servers/plan-hardware-requirements.md) topic.
 
 In UDP mount mode, the WEKA Frontend nodes can run on any available core on the login and compute nodes (WEKA clients).
 
@@ -302,7 +302,7 @@ ConstrainRamSpace=yes
 
 This example uses the a2-ultragpu-8g instances on Google Cloud Platform, which have 1360 GB (1360000 MB) of available memory, 48 physical cores on two sockets with two hyperthreads per core, and 8 A100 GPUs.
 
-Following the [Plan the WEKA system hardware requirements](../../planning-and-installation/bare-metal/planning-a-weka-system-installation.md) topic, suppose we want to set aside 5 GB of memory and the last core (Core ID 47) for the WEKA Frontend node in a dedicated backend architecture using a DPDK mount mode.
+Following the [Plan the WEKA system hardware requirements](../../planning-and-installation/system-installation-on-bare-metal-servers/plan-hardware-requirements.md) topic, suppose we want to set aside 5 GB of memory and the last core (Core ID 47) for the WEKA Frontend node in a dedicated backend architecture using a DPDK mount mode.
 
 In this example, we set the `RealMemory` to the total memory available and then set the `MemSpecLimit` to 5000 (MB) to set aside that amount of memory for the WEKA agent and the operating system.
 
@@ -382,7 +382,7 @@ sudo sed -i 's/isolate_cpusets=true/isolate_cpusets=false/g' /etc/wekaio/service
 sudo systemctl restart weka-agent
 ```
 
-For more information, see [#cgroups-configuration](../../planning-and-installation/bare-metal/adding-clients-bare-metal.md#cgroups-configuration "mention")
+For more information, see [#cgroups-configuration](../../planning-and-installation/system-installation-on-bare-metal-servers/add-clients.md#cgroups-configuration "mention")
 
 [^1]: See [DPDK Poll Mode Driver](https://doc.dpdk.org/guides-16.04/prog_guide/poll_mode_drv.html)
 

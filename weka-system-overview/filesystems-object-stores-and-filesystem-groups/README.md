@@ -133,7 +133,7 @@ Each directory requires two metadata units instead of one for a small file.
 
 **Related topics**
 
-[#memory-resource-planning](../../planning-and-installation/bare-metal/planning-a-weka-system-installation.md#memory-resource-planning "mention")
+[#memory-resource-planning](../../planning-and-installation/system-installation-on-bare-metal-servers/plan-hardware-requirements.md#memory-resource-planning "mention")
 
 ### Filesystem Extended Attributes considerations
 

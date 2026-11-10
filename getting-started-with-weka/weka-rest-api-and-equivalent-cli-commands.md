@@ -79,7 +79,7 @@ Related information: [the-wekaio-support-cloud](../monitor-the-weka-cluster/the-
 
 ## Cluster
 
-Related information: [bare-metal](../planning-and-installation/bare-metal/ "mention")
+Related information: [system-installation-on-bare-metal-servers](../planning-and-installation/system-installation-on-bare-metal-servers/ "mention")
 
 | Task                                                                                                                                            | REST API                                                                                                         | CLI                                 |
 | ----------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- | ----------------------------------- |
@@ -590,7 +590,7 @@ Related information: [statistics](../operation-guide/statistics/ "mention")
 
 ## System IO
 
-Related information: [perform-post-configuration-procedures.md](../planning-and-installation/bare-metal/perform-post-configuration-procedures.md "mention")
+Related information: [perform-post-configuration.md](../planning-and-installation/system-installation-on-bare-metal-servers/perform-post-configuration.md "mention")
 
 | Task                                                                            | REST API                                                                              | CLI                     |
 | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ----------------------- |
