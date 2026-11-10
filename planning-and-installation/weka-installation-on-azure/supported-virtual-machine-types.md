@@ -27,7 +27,7 @@ Using the Azure Console, the client instances can have different virtual machine
 
 ### Mapped cores to processes
 
-In each virtual machine size, the cores are mapped to a specific number of the compute, drive, and frontend processes. For example, in the Standard\_L16s\_v3 size, the cores are mapped to the following processes:
+The Terraform package maps the cores in each VM size to a specific number of compute, drive, and frontend processes. For example, in the Standard\_L16s\_v3 size, the cores are mapped to the following processes:
 
 * Compute: 4
 * Drive: 2
@@ -35,7 +35,9 @@ In each virtual machine size, the cores are mapped to a specific number of the c
 
 <div data-with-frame="true"><figure><img src="../../.gitbook/assets/azure_lvs16.png" alt="" width="563"><figcaption><p>Mapped WEKA processes for a standard_L16s_v3</p></figcaption></figure></div>
 
-<table><thead><tr><th>VM size</th><th width="180"># of compute cores</th><th width="161"># of drive cores</th><th># of frontend cores</th></tr></thead><tbody><tr><td>Standard_L8s_v3</td><td>1</td><td>1</td><td>1</td></tr><tr><td>Standard_L16s_v3</td><td>4</td><td>2</td><td>1</td></tr><tr><td>Standard_L32s_v3</td><td>4</td><td>2</td><td>1</td></tr><tr><td>Standard_L48s_v3</td><td>3</td><td>3</td><td>1</td></tr><tr><td>Standard_L64s_v3</td><td>4</td><td>2</td><td>1</td></tr><tr><td>Standard_L80s_v3</td><td>4</td><td>2</td><td>1</td></tr><tr><td>Standard_L8as_v3</td><td>1</td><td>1</td><td>1</td></tr><tr><td>Standard_L16as_v3</td><td>4</td><td>2</td><td>1</td></tr><tr><td>Standard_L32as_v3</td><td>4</td><td>2</td><td>1</td></tr><tr><td>Standard_L48as_v3</td><td>3</td><td>3</td><td>1</td></tr><tr><td>Standard_L64as_v3</td><td>4</td><td>2</td><td>1</td></tr><tr><td>Standard_L80as_v3</td><td>4</td><td>2</td><td>1</td></tr></tbody></table>
+The following table shows the mapping for a few more VM sizes:
+
+<table><thead><tr><th>VM size</th><th width="180"># of compute cores</th><th width="161"># of drive cores</th><th># of frontend cores</th></tr></thead><tbody><tr><td>Standard_L8s_v3</td><td>1</td><td>1</td><td>1</td></tr><tr><td>Standard_L48s_v3</td><td>3</td><td>3</td><td>1</td></tr><tr><td>Standard_L80s_v3</td><td>4</td><td>2</td><td>1</td></tr></tbody></table>
 
 ## Supported VM sizes for clients
 
