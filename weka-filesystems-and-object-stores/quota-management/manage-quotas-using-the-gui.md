@@ -25,8 +25,8 @@ The tenant admin can set a quota on a directory, which triggers a background tas
 
 **Procedure**
 
-1. From the menu, select **Manage > Directory Quotas**.
-2. Select **Directory Quotas**.
+1. From the menu, select **Manage > Quotas**.
+2. Select the **Directory Quotas** tab.
 3. Select the filesystem the directory quota applies to.
 4. In the Create Quota dialog, set the following:
    * **Directory Path:** The full path to the directory quota to be set on.
@@ -46,7 +46,7 @@ You can view existing directory quotas and the default quota that are already se
 
 **Procedure**
 
-1. From the menu, select **Manage > Directory Quotas**.
+1. From the menu, select **Manage > Quotas**.
 2. Select the relevant tab: **Directory Quotas** or **Default Directory Quotas**.
 3. Select the filesystem in which the directory quotas are already set.
 4. On the **Directory Quotas** tab, to view all quotas or only the exceeding quotas, select the **Exceeding quotas/All quotas** switch.
@@ -61,7 +61,7 @@ You can update an existing directory quota or default directory quota. Updating 
 
 **Procedure**
 
-1. From the menu, select **Manage > Directory Quotas**.
+1. From the menu, select **Manage > Quotas**.
 2. Select the relevant tab: **Directory Quotas** or **Default Directory Quotas**.
 3. Select the filesystem in which the quotas are set.
 4. Select the three dots on the right of the required quota. From the menu, select **Update**.
@@ -85,7 +85,7 @@ You can remove (unset) a directory quota if it is no longer required.
 
 **Procedure**
 
-1. From the menu, select **Manage > Directory Quotas**.
+1. From the menu, select **Manage > Quotas**.
 2. Select the **Directory Quotas** tab.
 3. Select the filesystem in which the directory quota is set.
 4. Select the three dots on the right of the required directory quota. From the menu, select **Remove**.
@@ -99,7 +99,7 @@ You can remove (unset) the default quota settings for new directories created in
 
 **Procedure**
 
-1. From the menu, select **Manage > Directory Quotas**.
+1. From the menu, select **Manage > Quotas**.
 2. Select the **Default Directory Quotas** tab.
 3. Select the filesystem in which the default quotas are already set.
 4. Select the three dots on the right of the required default quota. From the menu, select **Remove**.
@@ -116,7 +116,7 @@ A user or group quota limits the capacity a specific POSIX user or group can con
 
 **Procedure**
 
-1. From the menu, select **Manage > Directory Quotas**.
+1. From the menu, select **Manage > Quotas**.
 2. Select the **User & Group Quotas** tab.
 3. Select the filesystem the quota applies to.
 4. Select **Create Quota**.
@@ -136,7 +136,7 @@ You can view the user and group quotas set on a filesystem, along with the capac
 
 **Procedure**
 
-1. From the menu, select **Manage > Directory Quotas**.
+1. From the menu, select **Manage > Quotas**.
 2. Select the **User & Group Quotas** tab.
 3. Select the filesystem in which the quotas are already set.
 4. To view all quotas or only the exceeding quotas, select the **Exceeding quotas/All quotas** switch.

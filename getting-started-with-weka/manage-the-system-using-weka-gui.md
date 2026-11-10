@@ -48,7 +48,8 @@ Manage the data services of the cluster.
 | **Snapshot Policies** | Define schedules that create and delete snapshots automatically.              |
 | **Object Stores**     | Manage the object store buckets.                                              |
 | **Protocols**         | Manage the filesystem protocols: SMB, S3, and NFS.                            |
-| **Directory Quotas**  | Manage directory quotas.                                                      |
+| **Replication**       | Manage asynchronous replication between clusters.                             |
+| **Quotas**            | Manage directory, user, and group quotas.                                     |
 | **Tenants**           | Create and manage tenants and their quotas.                                   |
 
 #### Configure
