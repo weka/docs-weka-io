@@ -44,7 +44,7 @@ Using the Azure Console, the client instances can have different virtual machine
 
 ### Mapped cores to processes
 
-In each virtual machine size, the cores are mapped to a specific number of the compute, drive, and frontend processes. For example, in the Standard\_L16s\_v3 size, the cores are mapped to the following processes:
+The Terraform package maps the cores in each VM size to a specific number of compute, drive, and frontend processes. For example, in the Standard\_L16s\_v3 size, the cores are mapped to the following processes:
 
 * Compute: 4
 * Drive: 2
@@ -52,20 +52,13 @@ In each virtual machine size, the cores are mapped to a specific number of the c
 
 <div data-with-frame="true"><figure><img src="../../.gitbook/assets/azure_lvs16.png" alt="" width="563"><figcaption><p>Mapped WEKA processes for a standard_L16s_v3</p></figcaption></figure></div>
 
-| VM size             | # of compute cores | # of drive cores | # of frontend cores |
-| ------------------- | ------------------ | ---------------- | ------------------- |
-| Standard\_L8s\_v3   | 1                  | 1                | 1                   |
-| Standard\_L16s\_v3  | 4                  | 2                | 1                   |
-| Standard\_L32s\_v3  | 4                  | 2                | 1                   |
-| Standard\_L48s\_v3  | 3                  | 3                | 1                   |
-| Standard\_L64s\_v3  | 4                  | 2                | 1                   |
-| Standard\_L80s\_v3  | 4                  | 2                | 1                   |
-| Standard\_L8as\_v3  | 1                  | 1                | 1                   |
-| Standard\_L16as\_v3 | 4                  | 2                | 1                   |
-| Standard\_L32as\_v3 | 4                  | 2                | 1                   |
-| Standard\_L48as\_v3 | 3                  | 3                | 1                   |
-| Standard\_L64as\_v3 | 4                  | 2                | 1                   |
-| Standard\_L80as\_v3 | 4                  | 2                | 1                   |
+The following table shows the mapping for a few more VM sizes:
+
+| VM size            | # of compute cores | # of drive cores | # of frontend cores |
+| ------------------ | ------------------ | ---------------- | ------------------- |
+| Standard\_L8s\_v3  | 1                  | 1                | 1                   |
+| Standard\_L48s\_v3 | 3                  | 3                | 1                   |
+| Standard\_L80s\_v3 | 4                  | 2                | 1                   |
 
 ## Supported VM sizes for clients
 
