@@ -14,7 +14,7 @@ Only users with the Account Owner role can manage licenses.
 
 Before you start, confirm the following prerequisites:
 
-1. You have a WEKA account. If not, follow the instructions in [obtaining-the-weka-install-file.md](../planning-and-installation/bare-metal/obtaining-the-weka-install-file.md "mention").
+1. You have a WEKA account. If not, follow the instructions in [obtain-the-installation-packages.md](../planning-and-installation/system-installation-on-bare-metal-servers/obtain-the-installation-packages.md "mention").
 2. You have access to the target cluster.
 3. You can retrieve the cluster GUID and capacity values by running the following command:
 

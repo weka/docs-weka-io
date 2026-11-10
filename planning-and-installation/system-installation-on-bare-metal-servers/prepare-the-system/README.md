@@ -4,46 +4,45 @@ description: Set the networking and other tasks before configuring the WEKA clus
 
 # Prepare the system
 
-Once the hardware and software prerequisites are met, prepare the backend servers and clients for the WEKA system configuration.
+Once the hardware and software prerequisites are met, configure the backend servers and clients to be ready for the WEKA software installation.
 
 This preparation consists of the following steps:
 
-1. Install NIC drivers
-2. Enable SR-IOV (when required)
-3. Set up ConnectX cards
-4. Set custom kernel parameters
-5. Configure the networking
-6. Configure the HA networking
-7. Verify the network configuration
-8. Configure the clock synchronization
-9. Enable kdump
-10. Disable swap (if any)
-11. Validate the system preparation
+1. Enable SR-IOV in system BIOS (if required)
+2. Install NIC driver packages
+3. Set required kernel parameters
+4. Configure the networking
+5. Verify the network configuration
+6. Configure the clock synchronization
+7. Disable swap
+8. Validate system readiness
 
 {% hint style="info" %}
 Some of the examples contain version-specific information. The software is updated frequently, so the package versions available to you may differ from those presented here.
 {% endhint %}
 
-**Related topics**
+## Preparation on WPA servers
 
-[prerequisites-and-compatibility.md](../../prerequisites-and-compatibility.md "mention")
+WPA completes part of the system preparation during installation. On servers installed with WPA, complete the remaining steps as follows. This table applies to WPA 1.2.1 and later.
 
-## 1. Install NIC drivers <a href="#install-nic-drivers" id="install-nic-drivers"></a>
+<table><thead><tr><th>Step</th><th width="190.76953125">Done by WPA</th><th>What to do on WPA servers</th></tr></thead><tbody><tr><td>1. Enable SR-IOV</td><td>No</td><td>Complete this step in the system BIOS.</td></tr><tr><td>2. Install NIC driver packages</td><td>Yes, for NVIDIA ConnectX</td><td>None.  WPA installs the latest NVIDIA DOCA package as of the WPA release date.</td></tr><tr><td>3. Set required kernel parameters</td><td>Yes</td><td>None.  WPA sets the parameters in <code>/etc/sysctl.d/90-weka-required.conf</code>.</td></tr><tr><td>4. Configure the networking</td><td>No</td><td>Complete this step with NetworkManager (<code>nmcli</code>), or with Netplan using <code>renderer: NetworkManager</code>.</td></tr><tr><td>5. Verify the network configuration</td><td>No</td><td>Complete this step by pinging each IP address on the high-speed network with jumbo frames.</td></tr><tr><td>6. Configure the clock synchronization</td><td>No</td><td>Complete this step with your preferred NTP client. WPA includes <code>chrony</code>.</td></tr><tr><td>7. Disable swap</td><td>Yes</td><td>None.  WPA installs without swap enabled.</td></tr><tr><td>8. Validate system readiness</td><td>No</td><td>Complete this step with the wekachecker tool in <code>/opt/tools/install</code>.</td></tr></tbody></table>
 
-For Mellanox OFED setup, see NVIDIA Documentation.
-
-## 2. Enable SR-IOV <a href="#enable-sr-iov" id="enable-sr-iov"></a>
+## 1. Enable SR-IOV in system BIOS <a href="#install-nic-drivers" id="install-nic-drivers"></a>
 
 SR-IOV only needs to be enabled if any of the following statements are true:
 
 * If WEKA is running on a VM
-* If WEKA data plane is running on Broadcom highspeed NICs
+* If WEKA data plane is running on Broadcom high-speed NICs
 
 **Related topic**
 
-[sr-iov-enablement.md](sr-iov-enablement.md "mention")
+[enable-the-sr-iov.md](enable-the-sr-iov.md "mention")&#x20;
 
-## 3. Set up ConnectX cards <a href="#set-up-connectx-cards" id="set-up-connectx-cards"></a>
+## 2. Install NIC driver packages <a href="#install-nic-drivers" id="install-nic-drivers"></a>
+
+### NVIDIA ConnectX
+
+WPA installs NVIDIA DOCA, including its OFED drivers. On other servers, install DOCA-OFED as described in the NVIDIA documentation.
 
 1.  **Configure firmware parameters:** All ConnectX ports used directly with WEKA servers and clients require specific firmware settings for optimal performance. Set the following non-default parameters:
 
@@ -59,14 +58,16 @@ SR-IOV only needs to be enabled if any of the following statements are true:
    If applicable, set the port mode with the following command, where 1=InfiniBand and 2=Ethernet:\
    `mlxconfig -y -d /dev/mst/<dev> set LINK_TYPE_P<1,2>=<1,2>`\
    \
-   For example, the following command sets port 2 to InfiniBand: `mlxconfig -y -d /dev/mst/<dev> set LINK_TYPE_P2=1`<br>
+   For example, the following command sets port 2 to InfiniBand: `mlxconfig -y -d /dev/mst/<dev> set LINK_TYPE_P2=1`
 3. **Reboot the system:** A reboot is required after applying the firmware settings to ensure the changes take effect.
-
-**Related information**
 
 For additional details, refer to the NVIDIA ConnectX documentation.
 
-## 4. Set custom kernel parameters <a href="#set-custom-kernel-parameters" id="set-custom-kernel-parameters"></a>
+### Broadcom
+
+See [Broadcom adapter setup for WEKA clients](https://app.gitbook.com/o/-L7Tp-Uy9BMSCSCx0MlK/sites/site_LBE3n/s/qDcZwR9zamxPsY03oTOq/~/edit/~/changes/55/planning-and-installation/system-installation-on-bare-metal-servers/prepare-the-system/broadcom-adapter-setup-for-weka-clients)
+
+## 3. Set required kernel parameters <a href="#set-custom-kernel-parameters" id="set-custom-kernel-parameters"></a>
 
 To ensure optimal performance and stability, configure the Linux kernel with custom parameters that:
 
@@ -139,11 +140,11 @@ The recommended approach is to consolidate all custom kernel parameters into a s
        kernel.panic = 300
        ```
 
-## 5. Configure the networking <a href="#configure-the-networking" id="configure-the-networking"></a>
+## 4. Configure the networking <a href="#configure-the-networking" id="configure-the-networking"></a>
 
 ### Ethernet configuration
 
-The following example of the `ifcfg` script is a reference for configuring the Ethernet interface.
+The following example of the `ifcfg` config file is a reference for configuring the Ethernet interface.
 
 {% code title="/etc/sysconfig/network-scripts/ifcfg-enp24s0" %}
 ```
@@ -314,44 +315,15 @@ ignore-carrier=ib0,ib1
 
 3. Restart the NetworkManager service for the changes to take effect.
 
-### RoCE configuration
+### Configure each dataplane interface with policy-based routes <a href="#configure-dual-network-links-with-policy-based-routing" id="configure-dual-network-links-with-policy-based-routing"></a>
 
-Configure RoCE (RDMA over Converged Ethernet) when the data plane runs over Ethernet and RDMA traffic must be carried losslessly across it. Skip this section for InfiniBand fabrics.
+Policy-based routes are **required** for any Linux server that has two or more network interfaces connected to the high-speed network.&#x20;
 
-{% hint style="info" %}
-Follow NVIDIA's RoCE configuration procedure for your switch operating system and NIC. Apply the WEKA-required values below wherever the NVIDIA procedure asks for a traffic class, DSCP value, or priority.
+Policy-based routes ensure that both the switches and the Linux servers agree on a solitary/uniquely-ranked path for each individual link on the high-speed network.
 
-NVIDIA owns and maintains this procedure, and updates it as switch operating system versions change. The links below may move or be replaced over time. If a link is broken or outdated, search NVIDIA's documentation site for the current RoCE configuration procedure matching your switch operating system version.
-{% endhint %}
+The following steps provide guidance for configuring policy-based routing on Linux systems. Adjust IP addresses and interface names according to your environment.
 
-**Before you begin**
-
-Confirm the switch operating system (NVIDIA Onyx or Cumulus Linux) and check NVIDIA's documentation for the procedure matching your switch software version:
-
-* [RDMA Over Converged Ethernet (RoCE), NVIDIA Onyx documentation](https://networking-docs.nvidia.com/onyxum/3104606lts/rdma-over-converged-ethernet-roce)
-* [RDMA over Converged Ethernet (RoCE), NVIDIA Cumulus Linux documentation](https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-59/Layer-1-and-Switch-Ports/Quality-of-Service/RDMA-over-Converged-Ethernet-RoCE/)
-* [Lossless RoCE configuration for Onyx switches in DSCP-based QoS mode, NVIDIA Enterprise Support](https://enterprise-support.nvidia.com/s/article/lossless-roce-configuration-for-mlnx-os-switches-in-dscp-based-qos-mode--advanced-mode-x)
-
-**Required parameters for WEKA**
-
-| Parameter                                    | Value          | Notes                                                                                                                                                 |
-| -------------------------------------------- | -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Marking method                               | Layer 3 (DSCP) | Required when WEKA traffic is routed across subnets. Layer 2 (TOS) marking works only when all servers share a subnet, but WEKA doesn't recommend it. |
-| DSCP value                                   | 24             | Register value 96 (DSCP x 4) on the NIC.                                                                                                              |
-| Traffic class, data                          | 3              | Maps to switch priority 3.                                                                                                                            |
-| Traffic class, congestion notification (CNP) | 6              | Maps to switch priority 6.                                                                                                                            |
-| PFC priority                                 | 3              | Enable Priority Flow Control on this priority so RoCE traffic isn't dropped.                                                                          |
-| Congestion control                           | ECN            | Enable alongside PFC.                                                                                                                                 |
-
-Configure the switch first, using the `roce` macro (Onyx) or `nv set qos roce` (Cumulus Linux) from the NVIDIA procedure, then configure each server's NIC with `mlnx_qos` and `cma_roce_tos` using the values above.
-
-After configuration, verify the network as described in step 7.
-
-## 6. Configure dual-network links with policy-based routing <a href="#configure-dual-network-links-with-policy-based-routing" id="configure-dual-network-links-with-policy-based-routing"></a>
-
-The following steps provide guidance for configuring dual-network links with policy-based routing on Linux systems. Adjust IP addresses and interface names according to your environment.
-
-### **RHEL/Rocky/CentOS routing configuration using the network scripts**
+#### **RHEL/Rocky/CentOS routing configuration using the network scripts**
 
 {% hint style="info" %}
 Network scripts are deprecated in RHEL/Rocky 8. For RHEL/Rocky 8 and onwards, use the Network Manager.
@@ -384,7 +356,7 @@ Network scripts are deprecated in RHEL/Rocky 8. For RHEL/Rocky 8 and onwards, us
     ```
 6. Save the changes.
 
-### RHEL/Rocky 8+ routing configuration using the Network Manager
+#### RHEL/Rocky 8+ routing configuration using the Network Manager
 
 You can configure routing for your Ethernet or InfiniBand connections using Network Manager command-line interface (`nmcli`) commands.
 
@@ -474,7 +446,7 @@ DNS configuration:
         interface: eno12409
 ```
 
-### **Ubuntu Netplan configuration**
+#### **Ubuntu Netplan configuration**
 
 Configure source-based routing for each data plane interface. This preserves the management default route in the main routing table.
 
@@ -562,7 +534,7 @@ Identify the data plane gateway and every remote network reachable from the data
 
 The source-based routing tables select the correct interface for traffic from each data plane IP. The main-table routes reach data plane networks when the data plane is not the default network.
 
-### **SLES/SUSE configuration**
+#### **SLES/SUSE configuration**
 
 1.  Create `/etc/sysconfig/network/ifrule-eth2` with:
 
@@ -598,9 +570,35 @@ The source-based routing tables select the correct interface for traffic from ea
 
 **Related topic**
 
-[#high-availability-ha](../../../weka-system-overview/networking-in-wekaio.md#high-availability "mention")
+[#high-availability](../../../weka-system-overview/networking-in-wekaio.md#high-availability "mention")
 
-## 7. Verify the network configuration <a href="#verify-the-network-configuration" id="verify-the-network-configuration"></a>
+### RoCE configuration
+
+Configure RoCE (RDMA over Converged Ethernet) when the data plane runs over Ethernet and RDMA traffic must be carried losslessly across it. Skip this section for InfiniBand fabrics.
+
+{% hint style="info" %}
+Follow NVIDIA's RoCE configuration procedure for your switch operating system and NIC. Apply the WEKA-required values below wherever the NVIDIA procedure asks for a traffic class, DSCP value, or priority.
+
+NVIDIA owns and maintains this procedure, and updates it as switch operating system versions change. The links below may move or be replaced over time. If a link is broken or outdated, search NVIDIA's documentation site for the current RoCE configuration procedure matching your switch operating system version.
+{% endhint %}
+
+**Before you begin**
+
+Confirm the switch operating system (NVIDIA Onyx or Cumulus Linux) and check NVIDIA's documentation for the procedure matching your switch software version:
+
+* [RDMA Over Converged Ethernet (RoCE), NVIDIA Onyx documentation](https://networking-docs.nvidia.com/onyxum/3104606lts/rdma-over-converged-ethernet-roce)
+* [RDMA over Converged Ethernet (RoCE), NVIDIA Cumulus Linux documentation](https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-59/Layer-1-and-Switch-Ports/Quality-of-Service/RDMA-over-Converged-Ethernet-RoCE/)
+* [Lossless RoCE configuration for Onyx switches in DSCP-based QoS mode, NVIDIA Enterprise Support](https://enterprise-support.nvidia.com/s/article/lossless-roce-configuration-for-mlnx-os-switches-in-dscp-based-qos-mode--advanced-mode-x)
+
+**Required parameters for WEKA**
+
+<table><thead><tr><th>Parameter</th><th width="157.0546875">Value</th><th>Notes</th></tr></thead><tbody><tr><td>Marking method</td><td>Layer 3 (DSCP)</td><td>Required when WEKA traffic is routed across subnets. Layer 2 (TOS) marking works only when all servers share a subnet, but WEKA doesn't recommend it.</td></tr><tr><td>DSCP value</td><td>24</td><td>Register value 96 (DSCP x 4) on the NIC.</td></tr><tr><td>Traffic class, data</td><td>3</td><td>Maps to switch priority 3.</td></tr><tr><td>Traffic class, congestion notification (CNP)</td><td>6</td><td>Maps to switch priority 6.</td></tr><tr><td>PFC priority</td><td>3</td><td>Enable Priority Flow Control on this priority so RoCE traffic isn't dropped.</td></tr><tr><td>Congestion control</td><td>ECN</td><td>Enable alongside PFC.</td></tr></tbody></table>
+
+Configure the switch first, using the `roce` macro (Onyx) or `nv set qos roce` (Cumulus Linux) from the NVIDIA procedure, then configure each server's NIC with `mlnx_qos` and `cma_roce_tos` using the values above.
+
+After configuration, verify the network as described in step 5.
+
+## 5. Verify the network configuration <a href="#verify-the-network-configuration" id="verify-the-network-configuration"></a>
 
 Use a large-size ICMP ping to check the basic TCP/IP connectivity between the interfaces of the servers:
 
@@ -616,7 +614,7 @@ PING 192.168.1.2 (192.168.1.2) 8972(9000) bytes of data.
 rtt min/avg/max/mdev = 0.063/0.075/0.087/0.009 ms
 ```
 
-The`-M do` flag prohibits packet fragmentation, which allows verification of correct MTU configuration between the two endpoints.
+The `-M do` flag prohibits packet fragmentation, which allows verification of correct MTU configuration between the two endpoints.
 
 `-s 8972` is the maximum ICMP packet size that can be transferred with MTU 9000, due to the overhead of ICMP and IP protocols.
 
@@ -624,35 +622,21 @@ The`-M do` flag prohibits packet fragmentation, which allows verification of cor
 All WEKA server interfaces within the same subnet must have connectivity and be able to ping each other.
 {% endhint %}
 
-## 8. Configure the clock synchronization <a href="#configure-the-clock-synchronization" id="configure-the-clock-synchronization"></a>
+## 6. Configure the clock synchronization <a href="#configure-the-clock-synchronization" id="configure-the-clock-synchronization"></a>
 
 The synchronization of time on computers and networks is considered good practice and is vitally important for the stability of the WEKA system. Proper timestamp alignment in packets and logs is very helpful for the efficient and quick resolution of issues.
 
 Configure the clock synchronization software on the backends and clients according to the specific vendor instructions (see your OS documentation), before installing the WEKA software.
 
-## **9. (Optional) Enable kdump** <a href="#enable-kdump" id="enable-kdump"></a>
-
-Enabling kdump ensures crash diagnostic data is captured (`/var/crash`).
-
-1. Install kdump tools (if not exist): `sudo yum install kexec-tools crash`.
-2. Enable the kdump service: `sudo systemctl enable kdump.service`.
-3. Open the file located at: `/etc/kdump.conf`.
-4. Set the crash dump path and size. Example:
-
-```plaintext
-path /var/crash
-core_collector makedumpfile -c --message-level 1 -d 31
-```
-
-## 10. Disable swap
+## 7. Disable swap
 
 WEKA highly recommends that any servers used as backends have no swap configured. This is distribution-dependent but is often a case of commenting out any `swap` entries in `/etc/fstab` and rebooting.
 
-## 11. Validate the system preparation
+## 8. Validate system readiness
 
 The `wekachecker` is a tool that validates the readiness of the servers in the cluster before installing the WEKA software.
 
-The `wekachecker` performs the following validations:
+The `wekachecker` connects to each server and performs the following validations:
 
 * Dataplane IP, jumbo frames, and routing
 * ssh connection to all servers
@@ -672,7 +656,7 @@ The `wekachecker` performs the following validations:
 * CPU has a supported AES, and it is enabled
 * Numa balancing is disabled
 * RAM state
-* XFS FS type installed
+* XFS package is installed
 * Mellanox OFED is installed
 * IOMMU setting in all servers is consistent, either all enabled or all disabled.
 * rpcbind utility is enabled
@@ -686,9 +670,11 @@ The `wekachecker`tool applies to all WEKA versions. From V4.0, the following val
 * Network Manager is disabled.
 {% endhint %}
 
-**Procedure**
+**On WPA servers, skip the first two steps and run wekachecker from `/opt/tools/install`.**&#x20;
 
-1. Clone the the **tools** repository:\
+To run the `wekachecker` program:
+
+1. Clone the **tools** repository:\
    `git clone --depth 1` [`https://github.com/weka/tools.git`](https://github.com/weka/tools.git)
 2. Change directory to **tools/install**.
 3. From the **install** directory, run `./wekachecker <hostnames/IPs>`\
@@ -742,8 +728,8 @@ RESULTS: 21 Tests Passed, 0 Failed, 5 Warnings
 
 If you can use the WEKA Configurator, go to:
 
-[configure-the-weka-cluster-using-the-weka-configurator.md](../configure-the-weka-cluster-using-the-weka-configurator.md "mention")
+* [configure-the-cluster-with-weka-configurator.md](../configure-the-cluster-with-weka-configurator.md "mention")
 
 Otherwise, go to:
 
-[manually-configure-the-weka-cluster-using-the-resource-generator](../manually-configure-the-weka-cluster-using-the-resource-generator/ "mention")
+* [configure-the-cluster-with-resources-generator](../configure-the-cluster-with-resources-generator/ "mention")

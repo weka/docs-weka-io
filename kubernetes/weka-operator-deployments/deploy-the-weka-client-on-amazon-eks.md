@@ -10,13 +10,13 @@ description: >-
 
 The following table describes the support levels for different cloud services:
 
-| Cloud service | Instance type | WekaCluster (backends) | WekaClient: UDP | WekaClient: DPDK | NIC provisioning for DPDK |
-| --- | --- | --- | --- | --- | --- |
-| Amazon EKS | VM | Supported | Supported | Supported | Operator creates and attaches NICs automatically |
-| Oracle OKE | Bare metal | Supported | Supported | Supported | Manual |
-| Oracle OKE | VM | Not supported | Supported | Supported | Operator verifies required number of NICs |
-| Google GKE | VM | Not supported | Supported | Not Supported |  |
-| Azure AKS | VM | Not supported | Supported | Not Supported |  |
+| Cloud service | Instance type | WekaCluster (backends) | WekaClient: UDP | WekaClient: DPDK | NIC provisioning for DPDK                        |
+| ------------- | ------------- | ---------------------- | --------------- | ---------------- | ------------------------------------------------ |
+| Amazon EKS    | VM            | Supported              | Supported       | Supported        | Operator creates and attaches NICs automatically |
+| Oracle OKE    | Bare metal    | Supported              | Supported       | Supported        | Manual                                           |
+| Oracle OKE    | VM            | Not supported          | Supported       | Supported        | Operator verifies required number of NICs        |
+| Google GKE    | VM            | Not supported          | Supported       | Not Supported    |                                                  |
+| Azure AKS     | VM            | Not supported          | Supported       | Not Supported    |                                                  |
 
 ## Prerequisites
 
@@ -35,7 +35,7 @@ For the full CPU isolation rationale, HyperThreading sibling guidance, and Kuber
 
 For HugePages set up, follow the HugePages procedure in [WEKA Operator deployments](./) under **Prepare Kubernetes environment**.
 
-Use [Plan system hardware requirements](../../planning-and-installation/bare-metal/planning-a-weka-system-installation.md) to calculate the required HugePages allocation for your client nodes.
+Use [Plan system hardware requirements](../../planning-and-installation/system-installation-on-bare-metal-servers/plan-hardware-requirements.md) to calculate the required HugePages allocation for your client nodes.
 
 ## Cloud-specific configuration
 

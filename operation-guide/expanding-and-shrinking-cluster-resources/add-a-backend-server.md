@@ -122,5 +122,5 @@ weka cluster drive add <container-id> <device-paths>
 
 **Related topics**
 
-[bare-metal](../../planning-and-installation/bare-metal/ "mention")\
+[system-installation-on-bare-metal-servers](../../planning-and-installation/system-installation-on-bare-metal-servers/ "mention")\
 (see Path C: Manual installation and configuration)

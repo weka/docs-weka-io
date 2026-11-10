@@ -210,6 +210,6 @@ Clients can be configured with networking as described above to achieve the high
 
 ## What to do next?
 
-[obtaining-the-weka-install-file.md](obtaining-the-weka-install-file.md "mention") (both paths)
+[obtain-the-installation-packages.md](obtain-the-installation-packages.md "mention") (both paths)
 
 [^1]: For details, see [set-up-a-data-services-container-for-background-tasks.md](../../operation-guide/set-up-a-data-services-container-for-background-tasks.md "mention")

@@ -10,7 +10,7 @@ If the SR-IOV is already enabled, it is recommended to verify the current state 
 
 ## Before you begin
 
-Verify that the NIC drivers are installed and loaded successfully. If it still needs to be done, perform the [Install NIC drivers](./#install-nic-drivers) procedure.
+Verify that the NIC drivers are installed and loaded successfully. If it still needs to be done, perform the [Install NIC driver packages](./#install-nic-drivers-1) procedure.
 
 ## Enable SR-IOV in the server BIOS
 

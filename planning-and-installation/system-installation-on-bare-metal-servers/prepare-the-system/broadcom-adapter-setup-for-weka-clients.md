@@ -11,7 +11,7 @@ To enable a WEKA client to use Broadcom adapters, ensure the server has the appr
 * **Deployment:** Only supported for **WEKA clients**.
 * **Core limits:** Official support for configurations with a maximum of 40 cores.
 * **Virtualization:** Not supported for guest VMs on KVM or VMware.
-* **SR-IOV:** Ensure SR-IOV is enabled in both the BIOS and NIC settings. See [sr-iov-enablement.md](sr-iov-enablement.md "mention").
+* **SR-IOV:** Ensure SR-IOV is enabled in both the BIOS and NIC settings. See [enable-the-sr-iov.md](enable-the-sr-iov.md "mention").
 
 ## **Set up the drivers and software**
 

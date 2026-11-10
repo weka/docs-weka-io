@@ -39,11 +39,11 @@ When establishing a Data Services container for background tasks, increase the `
 
 **Related topics**
 
-[#add-a-filesystem-group](../weka-filesystems-and-object-stores/managing-filesystem-groups/managing-filesystem-groups.md#create-a-filesystem-group "mention") (a prerequisite for creating a filesystem using the GUI)
+[#create-a-filesystem-group](../weka-filesystems-and-object-stores/managing-filesystem-groups/managing-filesystem-groups.md#create-a-filesystem-group "mention") (a prerequisite for creating a filesystem using the GUI)
 
 [#create-a-filesystem](../weka-filesystems-and-object-stores/managing-filesystems/managing-filesystems.md#create-a-filesystem "mention") (using the GUI)
 
-[#create-a-filesystem](../weka-filesystems-and-object-stores/managing-filesystems/managing-filesystems-1.md#add-a-filesystem "mention") (using the CLI)
+[#add-a-filesystem](../weka-filesystems-and-object-stores/managing-filesystems/managing-filesystems-1.md#add-a-filesystem "mention") (using the CLI)
 
 </details>
 
@@ -80,7 +80,7 @@ Dedicated protocol servers offer the following advantages:
 **Procedure**
 
 1. **Install the WEKA software on the dedicated protocol servers:** Do one of the following:
-   * Follow the default method as specified in [manually-install-os-and-weka-on-servers](../planning-and-installation/bare-metal/manually-install-os-and-weka-on-servers/ "mention").
+   * Follow the default method as specified in [install-the-operating-system.md](../planning-and-installation/system-installation-on-bare-metal-servers/install-the-operating-system.md "mention").
    *   Use the WEKA agent to install from a working backend. The following commands demonstrate this method:
 
        ```bash

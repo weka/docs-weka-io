@@ -41,7 +41,7 @@ A network space serves as a cluster-level boundary defined by a Name, IP Range, 
   * **Routing isolation:** Each tenant operates under its own distinct routing domain, ensuring that traffic is contained and preventing cross-tenant leakage.
   * **Dedicated POSIX endpoints:** Network spaces provide isolated datapath endpoints for POSIX filesystem traffic within the tenant's private network boundary. These endpoints support DPDK and RoCE.
 * **Global and protocol connectivity:**
-  * **Default network access:** The cluster maintains a default network for backend communication and S3 protocol access. This network can run untagged, or on its own tagged VLAN. Its VLAN is a property of the backend containers' network interfaces, not of a network space, so you configure it with [Enable WEKA tagged VLAN support](../../planning-and-installation/bare-metal/manually-configure-the-weka-cluster-using-the-resource-generator/vlan-tagging-in-the-weka-system.md#enable-weka-tagged-vlan-support) rather than with `weka cluster network-space`. Assign a VLAN ID that no tenant network space uses. Tagging the default network affects backend traffic cluster-wide and requires restarting the containers on each server, so it is not a per-tenant setting.
+  * **Default network access:** The cluster maintains a default network for backend communication and S3 protocol access. This network can run untagged, or on its own tagged VLAN. Its VLAN is a property of the backend containers' network interfaces, not of a network space, so you configure it with [Enable WEKA tagged VLAN support](../../planning-and-installation/system-installation-on-bare-metal-servers/configure-the-cluster-with-resources-generator/vlan-tagging-in-the-weka-system.md#enable-weka-tagged-vlan-support) rather than with `weka cluster network-space`. Assign a VLAN ID that no tenant network space uses. Tagging the default network affects backend traffic cluster-wide and requires restarting the containers on each server, so it is not a per-tenant setting.
   * **Protocol differentiation:** While filesystem access is routed through tenant-specific VLANs and trunk ports, S3 access can be provided both through the cluster's default network and tenant's specific VLAN. If the default network is tagged, S3 clients that reach the cluster through it must send their traffic on that VLAN.
 * **IP and connectivity flexibility:**
   * **Overlapping IP support:** Tenants can share identical IP ranges without conflicts by using distinct network spaces isolated by VLANs (for example, Tenant 1 and Tenant 2 sharing the `10.100.x.x` range).
@@ -120,10 +120,10 @@ As part of the upgrade to this version, the system transitions to a native multi
 
 Example CLI mapping:
 
-| Deprecated                                 | Replacement                                   |
-| ------------------------------------------ | --------------------------------------------- |
-| `weka org add <name> <username>`           | `weka tenant add <name> <username>`           |
-| `weka user login --org <tenant>`           | `weka user login --tenant <tenant>`           |
-| `weka user ldap setup --org-admin-group`   | `weka user ldap setup --tenant-admin-group`   |
+| Deprecated                               | Replacement                                 |
+| ---------------------------------------- | ------------------------------------------- |
+| `weka org add <name> <username>`         | `weka tenant add <name> <username>`         |
+| `weka user login --org <tenant>`         | `weka user login --tenant <tenant>`         |
+| `weka user ldap setup --org-admin-group` | `weka user ldap setup --tenant-admin-group` |
 
 The upgrade process is performed by the Customer Success Team.

@@ -164,7 +164,7 @@ net.ipv4.ip_local_reserved_ports = 35000-37600
 
 The range 35000–37600 covers 2,600 ports, which supports up to 10 WekaCluster instances at 260 ports each. If you plan to deploy more than 10 clusters, extend the upper bound by 260 ports per additional cluster.
 
-For full kernel parameter configuration, see [Set custom kernel parameters](../../planning-and-installation/bare-metal/setting-up-the-hosts/#configure-the-networking).
+For full kernel parameter configuration, see [Set custom kernel parameters](../../planning-and-installation/system-installation-on-bare-metal-servers/prepare-the-system/#configure-the-networking).
 
 #### Configure Kubelet requirements
 

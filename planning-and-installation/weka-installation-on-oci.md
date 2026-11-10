@@ -93,7 +93,7 @@ Supported images:
 
 ### 3. Install WEKA on the OCI bare metal infrastructure
 
-1. Download the WEKA software. See [obtaining-the-weka-install-file.md](bare-metal/obtaining-the-weka-install-file.md "mention").
+1. Download the WEKA software. See [obtain-the-installation-packages.md](system-installation-on-bare-metal-servers/obtain-the-installation-packages.md "mention").
 2.  Install the WEKA software.
 
     * Once the WEKA software tarball is downloaded from [get.weka.io](https://get.weka.io/), run the untar command.
@@ -115,15 +115,15 @@ Refer to the related topics for detailed instructions on each step.
 
 **Related topics**
 
-[manually-configure-the-weka-cluster-using-the-resource-generator](bare-metal/manually-configure-the-weka-cluster-using-the-resource-generator/ "mention")
+[configure-the-cluster-with-resources-generator](system-installation-on-bare-metal-servers/configure-the-cluster-with-resources-generator/ "mention")
 
-[perform-post-configuration-procedures.md](bare-metal/perform-post-configuration-procedures.md "mention").
+[perform-post-configuration.md](system-installation-on-bare-metal-servers/perform-post-configuration.md "mention").
 
 ### 5. Add clients or use converged mode
 
 Depending on your deployment mode, you can choose one of the following options to access the WEKA filesystem:
 
-* **Client-server mode:** In this configuration, client functionality is deployed on dedicated client servers, similar to a bare-metal WEKA cluster. This setup separates client and backend functionality. For detailed instructions, refer to [adding-clients-bare-metal.md](bare-metal/adding-clients-bare-metal.md "mention").
+* **Client-server mode:** In this configuration, client functionality is deployed on dedicated client servers, similar to a bare-metal WEKA cluster. This setup separates client and backend functionality. For detailed instructions, refer to [add-clients.md](system-installation-on-bare-metal-servers/add-clients.md "mention").
 * **Converged mode:** In this configuration, client functionality is integrated with the backend servers. You can create a filesystem and mount it directly on each of the WEKA backend servers.
 
 ### What to do next

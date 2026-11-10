@@ -31,10 +31,10 @@ Your request for access to [get.weka.io](http://get.weka.io) is sent to WEKA for
 
 ## Download the WEKA installation packages
 
-Download the package that matches your installation path.
+Download the packages that match your installation path.
 
-* Automated installation with WSA. To get the WSA image, contact the Customer Success Team.
-* Manual installation and configuration. Download the WEKA software tarball from [get.weka.io](https://get.weka.io/ui/dashboard).
+* Automated operating system installation with WPA: Download the WPA ISO image from the [WPA page](https://get.weka.io/ui/wpa/) on get.weka.io, and the WEKA software tarball.
+* Manual installation and configuration: Download the WEKA software tarball.
 
 You can only sign in and download the packages if you are a registered user.
 
@@ -50,12 +50,13 @@ You can only sign in and download the packages if you are a registered user.
 
 The download-link token is intentionally blurred in the image.
 
-<div data-with-frame="true"><figure><img src="../../.gitbook/assets/get.weka_release_lines.png" alt="Release Lines tab with release 6.0.1 selected, showing the curl, wget, and direct download options on the Download tab"><figcaption><p>Release Lines download page</p></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/get.weka_release_lines (1).png" alt="Release Lines tab with release 6.0.1 selected, showing the curl, wget, and direct download options on the Download tab"><figcaption><p>Release Lines download page</p></figcaption></figure></div>
+
+3\. If you use WPA, download the WPA ISO image from the [WPA page](https://get.weka.io/ui/wpa/), and verify it against the MD5 checksum in the WPA release notes.
 
 ## What to do next?
 
 Depending on the installation path you follow, go to one of the following:
 
-Path A: [Install WSA](install-the-weka-cluster-using-the-wsa.md)
-
-Path B: [Install OS and WEKA software](manually-install-os-and-weka-on-servers/)
+* Path A: [Install WPA](install-wpa.md)
+* Path B: [Install the operating system](install-the-operating-system.md)

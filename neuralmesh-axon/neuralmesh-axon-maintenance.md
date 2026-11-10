@@ -53,7 +53,7 @@ For Kubernetes-based systems, run the following commands:
       The output displays only the new device and drives not used for the dataplane. The system unloads storage devices from the kernel to control them by SPDK.
 4. **Integrate the new drive:**
    1. Access the shell of the server or pod running NeuralMesh Axon.
-   2. Add the new drive device path to the Drives container on the specific storage server. See [#id-4.-configure-the-ssd-drives](../planning-and-installation/bare-metal/manually-configure-the-weka-cluster-using-the-resource-generator/#id-4.-configure-the-ssd-drives "mention").
+   2. Add the new drive device path to the Drives container on the specific storage server. See [#id-4.-configure-the-ssd-drives](../planning-and-installation/system-installation-on-bare-metal-servers/configure-the-cluster-with-resources-generator/#id-4.-configure-the-ssd-drives "mention").
 
 ## Server maintenance
 

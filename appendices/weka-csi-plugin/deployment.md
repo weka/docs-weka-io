@@ -30,7 +30,7 @@ A WEKA client must be installed on all Kubernetes worker nodes.
 
 * **Recommended:** Use a WEKA Operator-based client (WekaClient Custom Resource) with WEKA CSI. This combination provides tight integration and superior resource management. See [#deployment-models](../../kubernetes/weka-operator-deployments/#deployment-models "mention").
 * **Alternative:** WEKA also supports persistent and stateless clients for WEKA CSI. If you cannot use the WEKA Operator, WEKA recommends using a persistent client (a client that is part of the cluster) rather than a stateless client.
-  * See [adding-clients-bare-metal.md](../../planning-and-installation/bare-metal/adding-clients-bare-metal.md "mention").
+  * See [add-clients.md](../../planning-and-installation/system-installation-on-bare-metal-servers/add-clients.md "mention").
   * See [best-practices-for-weka-stateless-client-and-kubernetes.md](../../best-practice-guides/best-practices-for-weka-stateless-client-and-kubernetes.md "mention").
 * **Converged mode:** If the Kubernetes worker nodes run on WEKA cluster backends (converged mode), ensure the WEKA processes are running before the `kubelet` process starts.
 

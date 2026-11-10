@@ -1,19 +1,19 @@
 ---
 description: >-
-  Install a supported operating system and the WEKA software on each bare metal
-  server when using the manual installation path.
+  Install a supported operating system and the required packages on each bare
+  metal server when using the manual installation path.
 ---
 
-# Install OS and WEKA software
+# Install the operating system
 
-Install a supported operating system and the WEKA software manually on each bare metal server.
+Install a supported operating system and the required packages manually on each bare metal server.
 
 Follow this page if you are using the manual installation and configuration path.
 
 {% hint style="info" %}
 For optimal server performance and configuration, use `bios_tool` to set BIOS settings on your servers.
 
-For details, see [Use bios\_tool](../../../appendices/bios-tool.md).
+For details, see [Use bios\_tool](../../appendices/bios-tool.md).
 {% endhint %}
 
 **Procedure**
@@ -117,25 +117,10 @@ tmate
 
 </details>
 
-2. Install the WEKA software.
-   * Once the WEKA software tarball is downloaded from [get.weka.io](https://get.weka.io), run the untar command.
-   * Run the installation command on each server, following the instructions in the **Install** tab of [get.weka.io](https://get.weka.io/ui/dashboard).
-   *   (Optional) Enable safe shutdown:
-
-       To ensure data integrity during server reboots or shutdowns, you can enable the safe shutdown feature during installation. This is highly recommended for converged servers.
-
-       For instructions, see [safe-server-shutdown.md](safe-server-shutdown.md "mention").
-
-Once completed, the WEKA software is installed on all the allocated servers and runs in stem mode (no cluster is attached).
-
-{% hint style="info" %}
-If a failure occurs during the WEKA software installation process, an error message prompts detailing the source of the failure. Review the details and try to resolve the failure. If required, contact the [Customer Success Team](../../../support/getting-support-for-your-weka-system.md#open-a-support-case).
-{% endhint %}
-
 **Related topic**
 
-[Operating system prerequisites](../../prerequisites-and-compatibility.md#operating-system)
+[Operating system prerequisites](../prerequisites-and-compatibility.md#operating-system)
 
 ## What to do next?
 
-Go to [Prepare the system](../setting-up-the-hosts/).
+Go to [Install the WEKA software](install-the-weka-software/).

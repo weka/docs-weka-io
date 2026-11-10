@@ -71,4 +71,4 @@ Select the WEKA-KVM integration model that best fits your environment.
 
 [Deploy the WEKA client on KVM virtual machines](deploy-the-weka-client-on-kvm-virtual-machines.md)
 
-[Add clients to a bare-metal cluster](../../planning-and-installation/bare-metal/adding-clients-bare-metal.md)
+[Add clients to a bare-metal cluster](../../planning-and-installation/system-installation-on-bare-metal-servers/add-clients.md)
