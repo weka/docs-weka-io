@@ -111,6 +111,7 @@ WEKA supports a fixed number of the most recent versions of each distribution. W
 | RHEL          | 10, 9, 8               |
 | Rocky Linux   | 10 (x86 and ARM), 9, 8 |
 | SLES          | 16, 15                 |
+| TencentOS     | V4                     |
 | Ubuntu        | 26.04, 24.04           |
 {% endtab %}
 
