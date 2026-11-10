@@ -81,9 +81,38 @@ The resource rows of the output show the configured value and the value in force
 | `Container Memory Ceiling` | The configured memory ceiling. Empty when the default applies. |
 | `Container Memory Ceiling Effective` | The memory ceiling in force. |
 
-{% hint style="danger" %}
-**INTERNAL, remove before publication. TBD (Ari):** Recapture the `weka nfs global-config show` example on Monday, 9 November, on Gokul's 6.1 cluster, and add it here as the **Example**. The previous example used labels that the 6.1 CLI no longer prints (`Max Open FDs`, a separate `Max Client Connections Effective` row).
-{% endhint %}
+**Example**
+
+The following output is from a cluster with the default resource settings.
+
+{% code fullWidth="true" %}
+```bash
+$ weka nfs global-config show
+               ACL Feature Enabled  true
+                         Config FS  .config_fs
+          Container Memory Ceiling
+Container Memory Ceiling Effective  32.00 GiB
+                  Default ACL Type  POSIX
+                Default Auth Types  SYS
+        Default Supported Versions  V3
+                        Direct I/O  true
+                Enabled Auth Types  SYS
+                      Multi-Tenant  false
+                    Extended Stats  false
+                      Grace Period  45
+                      Lease Period  30
+              Lock Recovery Period  75
+                 Lock Manager Port  0
+           Locking Feature Enabled  true
+            Max Client Connections  auto (effective 1024)
+                    Max Open Files  default (effective 500000)
+                         FD Rlimit  505120 (effective 505120)
+                       Mountd Port  0
+                       Notify Port  0
+               Status Monitor Port  0
+              Supported Auth Types  NONE,SYS
+```
+{% endcode %}
 
 ### View NFS server resource usage
 
@@ -503,21 +532,17 @@ Shows the LDAP configuration used for NFS user and group resolution.
 weka nfs ldap show
 ```
 
-{% endcode %}
-
 **Example**
+
+The following output is from a cluster without an LDAP configuration. After you configure a mode, the row shows the server type, the domain, and the `CONFIGURED` status.
 
 {% code fullWidth="true" %}
 ```bash
 $ weka nfs ldap show
-SERVER TYPE      LDAP DOMAIN      SERVER NAME  SERVER PORT  BASE DN  READER NAME  READER PASSWORD  GENERATION ID  SETUP STATUS
-ActiveDirectory  test.wekalab.io               0                                                   1              CONFIGURED
+Server Type  LDAP Domain  Server Name  Server Port  Base DN  Reader Name  Reader Password  Generation ID  Status
+None                                             0                                                     0  UNCONFIGURED
 ```
 {% endcode %}
-
-{% hint style="danger" %}
-**INTERNAL, remove before publication. TBD (Ari):** Recapture the `weka nfs ldap show` example on Monday, 9 November, on Gokul's 6.1 cluster. This example is from the legacy CLI layout.
-{% endhint %}
 
 ### Clear the Kerberos LDAP configuration
 
