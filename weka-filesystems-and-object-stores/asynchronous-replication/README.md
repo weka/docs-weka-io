@@ -147,6 +147,6 @@ In a fan-in topology, where several clusters replicate to one target, the target
 
 ### Deployment
 
-* Replication management is available through the CLI only.
+* You can view and manage replication links and pairs in the GUI from **Manage > Replication**, in the **Replication Dashboard** and **Replication Links** tabs. The procedures in this section use the CLI.
 * Replication is not supported on servers that run the NFS or SMB protocols, because the S3 protocol cannot be combined with NFS or SMB.
 * Selective copy - critical paths (`--copy-path` with specific directories) requires a Data Services container on the target cluster.

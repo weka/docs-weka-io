@@ -28,15 +28,16 @@ The tenant admin can set a quota on a directory, which triggers a background tas
 1. From the menu, select **Manage > Quotas**.
 2. Select the **Directory Quotas** tab.
 3. Select the filesystem the directory quota applies to.
-4. In the Create Quota dialog, set the following:
+4. Select **Create Quota**.
+5. In the **Create Quota** dialog, set the following:
    * **Directory Path:** The full path to the directory quota to be set on.
    * **Hard Quota Limit:** The hard quota limit defines the maximum used capacity above the soft quota limit, which prevents writing to the directory.
    * **Soft Quota Limit:** The soft quota limit defines the maximum used capacity that triggers a grace period timer. Data can be written to the directory until the grace period ends or the hard quota limit is reached.
    * **Owner:** The directory’s owner, such as user name, email, or slack ID (up to 48 characters).
    * **Grace Period:** When the soft quota limit is reached, a grace period starts. After this period, data cannot be written to the directory.\
      The system sets the directory quota in the background.
-5. Select **Submit**.
-6. To monitor the directory quota setting background task, select **Monitor > Background Tasks.**
+6. Select **Submit**.
+7. To monitor the directory quota setting background task, select **Monitor > Background Tasks.**
 
 <div data-with-frame="true"><figure><img src="../../.gitbook/assets/DirectoryQuotaSetting.png" alt=""><figcaption><p>Set a directory quota</p></figcaption></figure></div>
 

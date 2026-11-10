@@ -14,7 +14,7 @@ All procedures require ClusterAdmin privileges. Manage asynchronous replication 
 
 After you create a pair, use the on-demand procedures to monitor, modify, pause, or remove replication, manage file hydration, fail over to the target cluster, and fail back to the original source cluster.
 
-The procedures use the `weka replication link` and `weka replication fs-pair` command groups.
+The procedures use the `weka replication link` and `weka replication fs-pair` command groups. To view and manage replication links and pairs in the GUI, select **Manage > Replication**.
 
 ## Prepare the clusters for replication
 
