@@ -4,7 +4,7 @@ description: >-
   CLI.
 ---
 
-# Manage NFS networking using the CLI
+# Manage NFS using the CLI
 
 ## Configure the NFS global settings
 

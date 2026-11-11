@@ -4,7 +4,7 @@ description: >-
   GUI.
 ---
 
-# Manage NFS networking using the GUI
+# Manage NFS using the GUI
 
 ## Configure the NFS global settings
 
