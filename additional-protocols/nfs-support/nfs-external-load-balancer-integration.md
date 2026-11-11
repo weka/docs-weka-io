@@ -4,7 +4,7 @@ description: >-
   only to serving NFS containers.
 ---
 
-# External load balancer integration
+# NFS external load balancer integration
 
 When NFS clients reach the NFS containers through an external layer 4 (passthrough) load balancer instead of floating IPs, the load balancer needs to know which NFS containers are serving. The cluster reports a serving verdict for each NFS container and interface group, and a cluster-wide indicator of correlated failures. The load balancer uses them to send new connections only to serving NFS containers.
 

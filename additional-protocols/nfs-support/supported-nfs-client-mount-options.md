@@ -8,7 +8,7 @@ description: >-
 
 To ensure optimal performance and reliability when using NFS clients, it is essential to configure specific mandatory and recommended mount parameters. These parameters have been tested and validated in various real-world scenarios.
 
-## **Mandatory parameters**
+## Mandatory parameters
 
 The following parameters **must** be included alongside the client's default mount options:
 
@@ -27,12 +27,12 @@ For enhanced performance and stability, include the following parameters in addi
 
 ## Additional information
 
-* **Specifying NFS Client Version:** Always explicitly define the NFS client version (`vers=3` or `vers=4`) to prevent unexpected protocol negotiation during server configuration changes.
-* **Resiliency to network interruptions:** Use the `hard` option to ensure the client retries operations during temporary network interruptions, maintaining data integrity and operation continuity.
-* **Improving NFS performance:** Set the `nconnect` parameter to a value greater than `1` to open multiple TCP connections per mount. Supported for NFSv3, NFSv4.0, and NFSv4.1 on any supported WEKA version, and requires a Linux client kernel 5.3 or later. The maximum is `nconnect=16`, which is the Linux client's own limit. Each `nconnect` channel counts toward the client connections maximum of the NFS server. See [#nfs-server-resources](nfs-server-resources.md "mention").
-* **Default NFS client options:** Beyond the parameters listed above, the default options negotiated by the NFS client at mount time are suitable for most use cases. For advanced configurations or additional NFS client options, refer to the documentation provided by your operating system.
+* **NFS client version:** Always explicitly define the NFS client version (`vers=3` or `vers=4`) to prevent unexpected protocol negotiation during server configuration changes.
+* **Network interruptions:** Use the `hard` option to ensure the client retries operations during temporary network interruptions, maintaining data integrity and operation continuity.
+* **Performance:** Set the `nconnect` parameter to a value greater than `1` to open multiple TCP connections per mount. Supported for NFSv3, NFSv4.0, and NFSv4.1 on any supported WEKA version, and requires a Linux client kernel 5.3 or later. The maximum is `nconnect=16`, which is the Linux client's own limit. Each `nconnect` channel counts toward the client connections maximum of the NFS server. See [#nfs-server-resources](nfs-server-resources.md "mention").
+* **Default client options:** Beyond the parameters listed above, the default options negotiated by the NFS client at mount time are suitable for most use cases. For advanced configurations or additional NFS client options, refer to the documentation provided by your operating system.
 
-## Mounting a tenant export
+## Tenant exports
 
 When NFS multi-tenancy is enabled, exports belonging to a tenant are reached through the tenant's floating IP addresses. Mounting works the same way, and no extra parameters are required:
 

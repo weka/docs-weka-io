@@ -167,7 +167,7 @@
   * [NFS client access rules](additional-protocols/nfs-support/nfs-client-access-rules.md)
   * [NFS authentication, identity, and ACLs](additional-protocols/nfs-support/nfs-authentication-identity-and-acls.md)
   * [NFS server resources](additional-protocols/nfs-support/nfs-server-resources.md)
-  * [External load balancer integration](additional-protocols/nfs-support/nfs-external-load-balancer-integration.md)
+  * [NFS external load balancer integration](additional-protocols/nfs-support/nfs-external-load-balancer-integration.md)
   * [NFS file locking](additional-protocols/nfs-support/nfs-file-locking.md)
   * [Supported NFS client mount parameters](additional-protocols/nfs-support/supported-nfs-client-mount-options.md)
   * [Manage NFS networking using the GUI](additional-protocols/nfs-support/nfs-support.md)
