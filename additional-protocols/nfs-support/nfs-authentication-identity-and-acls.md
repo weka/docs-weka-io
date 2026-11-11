@@ -26,9 +26,9 @@ NFS exports created before configuring Kerberos are not updated automatically wh
 **Multi-tenancy:** Kerberos is available only in the root organization. Tenant connections that attempt `RPCSEC_GSS` are rejected with `AUTH_TOOWEAK`, and tenant mounts use `sec=sys` only. The Kerberos flavors are also removed from the tenant view of `weka nfs global-config`, so a cluster administrator and a tenant administrator running that command see different output. See [manage-nfs-for-tenants.md](../../operation-guide/weka-native-multi-tenancy-management/manage-nfs-for-tenants.md "mention").
 {% endhint %}
 
-### Kerberos LDAP configurations
+### Supported Kerberos services
 
-Kerberos authentication for NFS is supported using AD and Kerberos MIT:
+The NFS service works with the Kerberos service that your environment already runs. Kerberos authentication for NFS is supported using AD and Kerberos MIT:
 
 * **Active Directory (AD):** NFS integrates with Active Directory (AD), which includes built-in Kerberos services. The system interacts with the AD using the Kerberos protocol to authenticate service requests among trusted devices.
 * **Kerberos MIT:** NFS integrates with Kerberos MIT, implementing the Kerberos protocol, which uses secret-key cryptography for authentication across insecure networks. This protocol is widely standardized and utilized.
@@ -37,9 +37,9 @@ Kerberos authentication for NFS is supported using AD and Kerberos MIT:
 **Realm consistency:** The NFS service is registered in one Kerberos realm. The NFS clients and the Key Distribution Center (KDC) reside in the same realm as the NFS service.
 {% endhint %}
 
-### Kerberos service interactions basic outline
+### How Kerberos authenticates an NFS client
 
-The following Kerberos service interactions ensure secure communication between the client and the NFS server:
+Understanding the ticket exchange helps you plan the network access and the services that each client and NFS server need. The following Kerberos service interactions ensure secure communication between the client and the NFS server:
 
 1. **Client authentication and ticket request:** The client sends a request, including encrypted credentials, to the Authentication Server for a Ticket Granting Ticket (TGT).
 2. **Ticket generation and delivery:** The Authentication Server verifies the client’s identity, generates a session key, forms a TGT, and sends these to the client.
@@ -56,7 +56,9 @@ This diagram illustrates the Kerberos service interactions in a simplified manne
 
 ## NFS user and group resolution
 
-The NFS service resolves user and group names and IDs for NFSv4 ownership, ACLs, Kerberos principals, and manage-gids. With manage-gids, the NFS server looks up a user's supplementary groups instead of using the up to 16 groups that the client sends. Each NFS container runs its own identity service (SSSD), configured with `weka nfs ldap`.
+File ownership, ACLs, and Kerberos access depend on mapping each NFS user to the right user and groups. The NFS service resolves user and group names and IDs for NFSv4 ownership, ACLs, Kerberos principals, and manage-gids. With manage-gids, the NFS server looks up a user's supplementary groups instead of using the up to 16 groups that the client sends.
+
+Each NFS container runs its own identity service (SSSD), configured with `weka nfs ldap`. Choose the mode that matches your directory:
 
 | Mode | Command | Directory | How the cluster connects to the directory |
 | --- | --- | --- | --- |
@@ -67,11 +69,11 @@ The NFS service resolves user and group names and IDs for NFSv4 ownership, ACLs,
 
 The identity configuration is stored on the NFS configuration filesystem, so every NFS container uses the same configuration. Set the configuration filesystem before you configure any mode.
 
-**Several Active Directory domains**
+### Several Active Directory domains
 
-After `setup-ad` or `setup-ad-nokrb`, the identity service discovers the other domains of the Active Directory forest, so users and groups from other domains of the forest resolve without more configuration, provided that their POSIX attributes are readable through the Global Catalog. To list the domains explicitly, see [#add-active-directory-domains](nfs-support-1.md#add-active-directory-domains "mention").
+Users and groups can come from more than one domain of an Active Directory forest. After `setup-ad` or `setup-ad-nokrb`, the identity service discovers the other domains of the Active Directory forest, so users and groups from other domains of the forest resolve without more configuration, provided that their POSIX attributes are readable through the Global Catalog. To list the domains explicitly, see [#add-active-directory-domains](nfs-support-1.md#add-active-directory-domains "mention").
 
-**Considerations**
+### Considerations
 
 * User and group IDs come from the POSIX attributes `uidNumber` and `gidNumber`, not from Active Directory SIDs. Populate these attributes for every user and group that accesses NFS.
 * An OpenLDAP configuration supports a single domain.
@@ -79,8 +81,6 @@ After `setup-ad` or `setup-ad-nokrb`, the identity service discovers the other d
 * Exports with manage-gids need a working identity source on each NFS server. The cluster raises the `NfsIdentitySourceUnavailable` alert for a server without one.
 * The on-host mode uses the SSSD service of each server. Keep SSSD running on every NFS server.
 * Changing the identity or Kerberos configuration can restart the NFS containers, which pauses I/O for connected clients. See [#integrate-the-nfs-and-kerberos-service](nfs-support-1.md#integrate-the-nfs-and-kerberos-service "mention").
-* The cluster user and the directory accounts need specific roles and privileges. See [#required-roles-and-directory-privileges](nfs-support-1.md#required-roles-and-directory-privileges "mention").
-* To verify the certificate of the directory server, see [#verify-the-directory-server-certificate](nfs-support-1.md#verify-the-directory-server-certificate "mention").
 
 ## Access Control List (ACL) in NFS
 
@@ -94,9 +94,9 @@ To enable ACL functionality, you must configure LDAP to manage user and group in
 **Multi-tenancy:** ACLs are available only in the root organization. On a tenant export, an explicitly requested ACL type is rejected, and an ACL type left at its default is silently set to `NONE`. An export created without naming an ACL type therefore has weaker access control than the default described here. See [manage-nfs-for-tenants.md](../../operation-guide/weka-native-multi-tenancy-management/manage-nfs-for-tenants.md "mention").
 {% endhint %}
 
-**ACL flavors in NFS**
+### ACL flavors in NFS
 
-NFS supports the following ACL flavors:
+The ACL flavor sets how NFS enforces ACLs, and whether other protocols can share the same files. Choose the flavor that matches your interoperability needs:
 
 * **None**: No ACL enforcement or updates occur, even if POSIX ACLs exist on a file or directory. This flavor is used when ACL management is unnecessary.
 * **POSIX**: NFS enforces POSIX ACLs, ensuring compatibility with other protocols. However, the finer granularity of NFSv4 ACLs is lost when mapped to POSIX ACLs. This option is suitable for environments requiring basic ACL management across multiple protocols.
@@ -107,20 +107,21 @@ NFS supports the following ACL flavors:
 **NFSv3 and ACLs:** The NFSv3 implementation does not support ACLs. Access control for NFSv3 clients is enforced by the underlying filesystem using standard POSIX file permissions.
 {% endhint %}
 
-**Where ACLs are set**
+### Where ACLs are set
 
 The default ACL flavor is part of the NFS global settings, and each NFS permission (export) can set its own ACL flavor. Changes to ACL settings may require restarting the NFS containers. ACL flavors and related configurations are stored in the configuration filesystem, so the permissions are managed consistently across the cluster. See [#configure-the-nfs-global-settings](nfs-support-1.md#configure-the-nfs-global-settings "mention") and [#manage-nfs-client-permissions](nfs-support-1.md#manage-nfs-client-permissions "mention").
 
-{% hint style="info" %}
-**ACL flavors and shared filesystems:** NFS exports backed by the same filesystem must use the same ACL flavor. To use ACL flavors (POSIX, NFSv4, or Hybrid), ensure all exports on that filesystem use NFSv4.
-{% endhint %}
+### Considerations
 
-**Upgrading and ACLs**
-
-When upgrading, the default ACL flavor for all permissions sets to **POSIX**. ACLs are enabled by default. To ensure proper ACL functionality, both `.config_fs` and LDAP must be configured.
+* NFS exports backed by the same filesystem must use the same ACL flavor. To use ACL flavors (POSIX, NFSv4, or Hybrid), ensure all exports on that filesystem use NFSv4.
+* When upgrading, the default ACL flavor for all permissions sets to **POSIX**. ACLs are enabled by default. To ensure proper ACL functionality, both `.config_fs` and LDAP must be configured.
 
 **Related topics**
 
 [#integrate-the-nfs-and-kerberos-service](nfs-support.md#integrate-the-nfs-and-kerberos-service "mention") (GUI)
 
 [#integrate-the-nfs-and-kerberos-service](nfs-support-1.md#integrate-the-nfs-and-kerberos-service "mention") (CLI)
+
+[#required-roles-and-directory-privileges](nfs-support-1.md#required-roles-and-directory-privileges "mention")
+
+[#verify-the-directory-server-certificate](nfs-support-1.md#verify-the-directory-server-certificate "mention")
