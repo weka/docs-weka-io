@@ -59,7 +59,7 @@ Check the requirements before you create netgroups, and plan the netgroups withi
 ### Requirements
 
 * The cluster upgrade is complete on all containers. Adding netgroups, members, and netgroup rules is available after every container runs the upgraded version.
-* An NFS configuration filesystem is set. See [#configuration-filesystem](./#configuration-filesystem "mention").
+* An NFS configuration filesystem is set. See [#dedicated-filesystem-requirement-for-cluster-wide-persistent-protocol-configurations](../additional-protocols-overview.md#dedicated-filesystem-requirement-for-cluster-wide-persistent-protocol-configurations "mention").
 * Changing netgroups requires the Tenant Admin role or higher. Listing and showing netgroups requires the Read Only role or higher.
 
 {% hint style="info" %}

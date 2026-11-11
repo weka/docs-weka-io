@@ -13,29 +13,25 @@ The NFS implementation is compatible with NFSv3 or NFSv4[^1] protocols and overc
 **Multi-tenancy:** When NFS multi-tenancy is enabled, each tenant gets isolated client groups, exports, and floating IP addresses, and several NFS features become available only in the root organization. See [manage-nfs-for-tenants.md](../../operation-guide/weka-native-multi-tenancy-management/manage-nfs-for-tenants.md "mention").
 {% endhint %}
 
+## Requirements
+
+Make sure the cluster meets these requirements before you deploy the NFS service:
+
+* **Configuration filesystem:** A persistent cluster-wide configuration filesystem is required for the protocol's internal operations using NFSv4 or Kerberos integration. See [#dedicated-filesystem-requirement-for-cluster-wide-persistent-protocol-configurations](../additional-protocols-overview.md#dedicated-filesystem-requirement-for-cluster-wide-persistent-protocol-configurations "mention").
+* **Interface groups:** An interface group provides the floating IP addresses that NFS clients connect to, and moves them to a healthy server when a server fails. An interface group requires a minimum of two servers. See [nfs-networking-and-high-availability.md](nfs-networking-and-high-availability.md "mention").
+* **Round-robin DNS:** Resolve a round-robin DNS name to the floating IPs, with a TTL of 0, and mount the NFS clients by that name. See [#round-robin-dns-server-configuration](nfs-networking-and-high-availability.md#round-robin-dns-server-configuration "mention").
+
 ## NFS service deployment high-level workflow
+
+The workflow shows the order of the deployment tasks, from the NFS global settings to mounting the filesystems on the clients. Follow it to deploy the NFS service for the first time. Two of the tasks run outside the cluster: the round-robin DNS configuration and the client mounts.
 
 <div data-with-frame="true"><figure><img src="../../.gitbook/assets/NFS_deploy_workflow.png" alt=""><figcaption><p>NFS service deployment high-level workflow</p></figcaption></figure></div>
 
 For the procedures, see [nfs-support.md](nfs-support.md "mention") or [nfs-support-1.md](nfs-support-1.md "mention").
 
-## NFS service deployment guidelines and requirements
-
-Adhere to the following guidelines and requirements when deploying the NFS service.
-
-### **Configuration filesystem**
-
-A persistent cluster-wide configuration filesystem is required for the protocol's internal operations using NFSv4 or Kerberos integration. See [#dedicated-filesystem-requirement-for-cluster-wide-persistent-protocol-configurations](../additional-protocols-overview.md#dedicated-filesystem-requirement-for-cluster-wide-persistent-protocol-configurations "mention").
-
-### Interface groups and floating IPs
-
-An interface group provides the floating IP addresses that NFS clients connect to, and moves them to a healthy server when a server fails. An interface group requires a minimum of two servers. See [nfs-networking-and-high-availability.md](nfs-networking-and-high-availability.md "mention").
-
-### Round-robin DNS
-
-Resolve a round-robin DNS name to the floating IPs, with a TTL of 0, and mount the NFS clients by that name. See [#round-robin-dns-server-configuration](nfs-networking-and-high-availability.md#round-robin-dns-server-configuration "mention").
-
 ## NFS concepts
+
+Read the concept that matches what you plan before you configure it:
 
 | Topic | Description |
 | --- | --- |
