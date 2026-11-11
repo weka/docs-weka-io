@@ -98,7 +98,7 @@ The default maximum traces capacity is 50 GiB per I/O process, with a minimum of
 The Protocols Debug Level section displays the debug level for the S3, NFS, and SMB protocols. If a protocol is not configured, the section indicates it, and you cannot change its debug level.
 
 {% hint style="info" %}
-After the protocol container restarts, the debug level reverts to its default.
+After the protocol container restarts, the S3 and SMB debug levels revert to their defaults. For NFS, see [#change-nfs-debug-level](#change-nfs-debug-level "mention").
 {% endhint %}
 
 ### Change S3 debug level
@@ -126,7 +126,12 @@ The available debug levels are:
 
 ### Change NFS debug level
 
-If the NFS protocol is configured, you can change the debug level for all servers or specified servers.
+If the NFS protocol is configured, a Cluster Admin can change the debug level for all servers or specified servers.
+
+* **All servers:** The level is saved to the cluster configuration and applies immediately. It persists after the NFS containers restart.
+* **Specific servers:** The level applies immediately to the selected servers only. When a selected server's NFS container restarts, it returns to the saved level.
+
+The GUI does not reset the NFS debug level. To return to the default level, run `weka nfs debug-level reset`.
 
 The available debug levels are:
 
@@ -145,10 +150,6 @@ The available debug levels are:
    * **All servers:** To apply the update to all servers, switch to **On**. To apply the update to specific servers, switch to **Off** and select the required servers.
 4. Select **Save**.
 5. In the **Confirm NFS debug level change** message, select **Yes**.
-
-{% hint style="danger" %}
-**INTERNAL, remove before publication. TBD (Hemant):** In 6.1, does this dialog persist the level when **All servers** is on, and does it require the Cluster Admin role? Does the GUI offer a reset? The page describes the 6.0 dialog. To reset a persisted level now, use `weka nfs debug-level reset`.
-{% endhint %}
 
 ### Change SMB debug level
 

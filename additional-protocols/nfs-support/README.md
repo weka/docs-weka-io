@@ -209,7 +209,7 @@ Kerberos authentication for NFS is supported using AD and Kerberos MIT:
 * **Kerberos MIT:** NFS integrates with Kerberos MIT, implementing the Kerberos protocol, which uses secret-key cryptography for authentication across insecure networks. This protocol is widely standardized and utilized.
 
 {% hint style="info" %}
-**Realm consistency:** The NFS service is registered in one Kerberos realm. With MIT Kerberos, the NFS clients and the Key Distribution Center (KDC) reside in the same realm as the NFS service. With Active Directory, clients that belong to another domain in the same forest, such as a child domain or a domain in another tree of the forest, authenticate through the trusts between the domains of the forest.
+**Realm consistency:** The NFS service is registered in one Kerberos realm. The NFS clients and the Key Distribution Center (KDC) reside in the same realm as the NFS service.
 {% endhint %}
 
 ### Kerberos service interactions basic outline
@@ -248,7 +248,7 @@ The `weka nfs ldap` commands restart the NFS containers after they succeed, unle
 
 **Several Active Directory domains**
 
-After `setup-ad` or `setup-ad-nokrb`, the identity service discovers the other domains of the Active Directory forest, so users and groups from trusted domains in the forest resolve without more configuration. To list the domains explicitly, export the configuration, add the domains, and import it. See [#add-active-directory-domains](nfs-support-1.md#add-active-directory-domains "mention").
+After `setup-ad` or `setup-ad-nokrb`, the identity service discovers the other domains of the Active Directory forest, so users and groups from other domains of the forest resolve without more configuration, provided that their POSIX attributes are readable through the Global Catalog. To list the domains explicitly, export the configuration, add the domains, and import it. See [#add-active-directory-domains](nfs-support-1.md#add-active-directory-domains "mention").
 
 **TLS to the directory**
 
@@ -259,13 +259,9 @@ To verify the certificate of the directory server, import the configuration with
 | Account | Requirement |
 | --- | --- |
 | Cluster user who runs the commands | The Tenant Admin role or higher. With NFS multi-tenancy enabled, run the commands in the root tenant. |
-| Active Directory account for `kerberos registration setup-ad` and `ldap setup-ad-nokrb` | Can get a Kerberos ticket and create a computer object under the base OU (default `CN=Computers`). When you register the same service name again, can reset the password of that computer object and write its `servicePrincipalName` and `userPrincipalName`. The password is used once and is not stored. |
+| Active Directory account for `kerberos registration setup-ad` and `ldap setup-ad-nokrb` | Can create and manage the NFS computer account under the base OU (default `CN=Computers`), including its delegation flag. The password is used once and is not stored. |
 | OpenLDAP reader user for `ldap setup-openldap` | Can bind and search under the base DN. The command runs this search before it writes the configuration. |
 | Machine account or reader user, while NFS runs | Can read the users and groups and their POSIX attributes (`uidNumber` and `gidNumber`). |
-
-{% hint style="danger" %}
-**INTERNAL, remove before publication. TBD (Hemant):** Confirm the Active Directory rights above for publication, and whether Domain Admin is ever required. They come from the LDAP guide (3.3, 3.4) and the commands the registration runs. Also confirm that the registration password is not stored. Is any privilege beyond reading the POSIX attributes needed for the machine account (the ticket asks about "LDAP View")?
-{% endhint %}
 
 **Considerations**
 
@@ -303,7 +299,6 @@ When NFS clients reach the NFS containers through an external layer 4 (passthrou
 | `NODE_NOT_SERVING` | The process is known but does not carry traffic, for example, while it joins or is removed. |
 | `LINK_DOWN` | The network interface of the port reports link down. |
 | `NFS_SERVER_DOWN` | The link is up, but the NFS server process or its container is not running. |
-| `MAINTENANCE` | The container is administratively taken out of service. |
 | `FAILED` | Removing a floating IP from this port failed. Applies to floating IP deployments only. |
 | `MISCONFIGURED` | Assigning a floating IP failed, or the container has no port in the interface group. |
 | `CANARY_FAILED` | All other checks pass, but the serving probe failed three consecutive times. |
@@ -311,7 +306,7 @@ When NFS clients reach the NFS containers through an external layer 4 (passthrou
 
 **Serving probe**
 
-Each NFS container checks its own NFS server every 5 seconds with an NFSv3 mount and a filesystem status request, with a 3-second timeout. After three consecutive failures, the verdict is `CANARY_FAILED`. The serving probe does not move floating IPs and does not change the port status of the interface group.
+Each NFS container checks its own NFS server every 5 seconds with an NFSv3 mount and a filesystem status request, with a 3-second timeout. After three consecutive failures, the verdict is `CANARY_FAILED`. With the default settings, a server that hangs or stays down is typically reported as `CANARY_FAILED` within about 20 seconds, and as `NFS_SERVER_DOWN` within about 50 seconds. A server that crashes and restarts automatically within a few seconds might not be reported. The serving probe does not move floating IPs and does not change the port status of the interface group.
 
 **Correlated failures**
 
@@ -324,7 +319,7 @@ When at least half of the probed NFS containers fail at the same time, with a mi
 
 The user that reads the health API needs the Read Only role. For the endpoints, fields, and errors, see the REST API reference at [api.docs.weka.io](https://api.docs.weka.io).
 
-Integrate with the v3 health endpoints above. The v2 endpoint, `/api/v2/nfs/health`, is deprecated.
+Use the v3 health endpoints for new integrations. The v2 endpoint, `/api/v2/nfs/health`, is deprecated and remains available for existing integrations. Some field names differ between the versions. For example, `hosts` and `canary_eligible_hosts` in v2 are `containers` and `canary_eligible_containers` in v3.
 
 **Considerations**
 
@@ -334,10 +329,8 @@ Integrate with the v3 health endpoints above. The v2 endpoint, `/api/v2/nfs/heal
 * The serving probe reaches the NFS frontend. Faults in the backend data path affect all containers together, and the cluster alerts report them.
 * Authentication and identity services are not part of the serving probe.
 * Damping, such as how many failed reads remove a container from rotation, is configured on the load balancer or the monitor program.
-
-{% hint style="danger" %}
-**INTERNAL, remove before publication. TBD (Hemant):** (1) Is "tenant network spaces are not scored" accurate, and does a tenant-assigned interface group appear in the report? (2) The `MAINTENANCE` verdict is set with `weka debug nfs port disable`, which is a debug command. Is there a supported way for customers to drain a container? (3) Are the detection windows in your guide (about 15 to 25 seconds for `CANARY_FAILED`, about 45 seconds for `NFS_SERVER_DOWN`) committed behavior to publish? The text above gives the code defaults only. Vinay (10 Nov): needs clarification from the NFS team; Vinay will follow up.
-{% endhint %}
+* The report lists interface groups, including an interface group assigned to a tenant, which appears without a tenant label. Tenant network spaces are not in the report.
+* On a multi-tenant cluster, only users of the root tenant can read the report.
 
 ## NFS server resources
 
@@ -372,10 +365,6 @@ The `nfs_resources` statistics category records the same values over time. See [
 * **Client connections:** New connections wait until a connection closes. Existing connections continue.
 * **Open files:** A request that needs another open file is delayed, and the client retries it.
 * **Memory:** The NFS container restarts.
-
-{% hint style="danger" %}
-**INTERNAL, remove before publication. TBD (Hemant):** Confirm the behavior at each maximum for publication. It comes from the resource-usage guide (3.1 to 3.3), not from the code.
-{% endhint %}
 
 **Considerations**
 

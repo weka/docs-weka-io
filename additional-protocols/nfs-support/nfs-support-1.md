@@ -45,10 +45,6 @@ weka nfs global-config set [--acl <on-off>] [--config-fs <string>] [--default-ac
 These options are available through the CLI and the API. The GUI global settings dialog exposes the Multi-Tenancy toggle and the NFS port fields.
 {% endhint %}
 
-{% hint style="danger" %}
-**INTERNAL, remove before publication. TBD (Hemant):** The backend rejects `--max-memory` once any NFS container exists ("container_memory_ceiling can only be set before any NFS host is configured"), but the CLI help says a running cluster applies it at each container's next start. The text above follows the backend. Which is intended for 6.1.0?
-{% endhint %}
-
 {% hint style="info" %}
 Commands that change NFS configuration wait for the change to propagate to every NFS server before returning — normally a few seconds, bounded by a 55-second timeout. If the timeout expires, the command fails with an error naming the servers that did not confirm.
 {% endhint %}
