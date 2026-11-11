@@ -44,7 +44,7 @@ Resolve a round-robin DNS name to the floating IPs, with a TTL of 0, and mount t
 | [nfs-authentication-identity-and-acls.md](nfs-authentication-identity-and-acls.md "mention") | Kerberos authentication, user and group resolution from a directory, and ACL flavors. |
 | [nfs-server-resources.md](nfs-server-resources.md "mention") | Client connections, open files, and memory of each NFS container, and the behavior at each maximum. |
 | [nfs-external-load-balancer-integration.md](nfs-external-load-balancer-integration.md "mention") | The health API that tells an external load balancer which NFS containers are serving. |
-| [nfs-file-locking.md](nfs-file-locking.md "mention") | Byte-range advisory locking and the NFSv3 locking prerequisites. |
+| [nfs-file-locking.md](nfs-file-locking.md "mention") | Byte-range advisory locking, and how to prepare the servers and clients for NFSv3 locking. |
 
 **Related topics**
 

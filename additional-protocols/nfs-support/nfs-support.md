@@ -18,7 +18,7 @@ The possible Kerberos authentication types are available only after configuring 
 
 **Before you begin**
 
-To support NFS file-locking, ensure the system meets the prerequisites outlined in [#nfs-file-locking-support](nfs-file-locking.md "mention").
+To support NFSv3 file locking, prepare the servers and clients first. See [#prepare-the-servers-and-clients-for-nfsv3-locking](nfs-file-locking.md#prepare-the-servers-and-clients-for-nfsv3-locking "mention").
 
 **Procedure**
 

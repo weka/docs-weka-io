@@ -8,31 +8,33 @@ description: >-
 
 NFS byte-range advisory locking[^1] is supported for NFS versions 3, 4, and 4.1. This mechanism ensures synchronized access to files in a networked environment by allowing multiple processes to coordinate access to shared files. It helps maintain data integrity and consistency by preventing concurrent modifications that could lead to data corruption. The implementation is interoperable with POSIX byte-range advisory locks, enabling compatibility and coordination between NFS clients and the filesystem.
 
+Inspecting active file locks is not exposed as a supported operation. If you need to identify which client holds a lock on a file, contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md).
+
 {% hint style="warning" %}
 **Multi-tenancy:** NFSv3 locking (NLM) is not offered on tenant floating IP addresses. Clients that mount a tenant export with NFSv3 cannot take locks. NFSv4.1 locking is available to tenants. Plan client compatibility accordingly. See [manage-nfs-for-tenants.md](../../operation-guide/weka-native-multi-tenancy-management/manage-nfs-for-tenants.md "mention").
 {% endhint %}
 
-## NFS file-locking prerequisites for NFSv3
+## Prepare the servers and clients for NFSv3 locking
 
-* **Port prerequisites:** Ports used by the `nlockmgr` and `status` services must be open on the clients and the servers. Use **one** of the following methods to meet this requirement:
-  *   Disable and stop `firewalld` using the commands:
+NFSv3 locking uses the lock manager (`nlockmgr`) and status monitor (`status`) services, which run on their own ports on the servers and the clients. Before NFS clients use NFSv3 with locking, open these ports and make sure the clients run the status service.
 
-      ```
-      systemctl stop firewalld.service
-      systemctl disable firewalld.service
-      ```
-  *   Set fixed ports and open them:
-      * On the servers, set the lock manager and status monitor ports. For example:
+**Procedure**
 
-        ```
-        weka nfs global-config set --lockmgr-port 47000 --statmon-port 46999
-        ```
-      * On the clients, set fixed ports for the status monitor and lock manager by using the NFS configuration of the client's operating system, and open them.
-* **NFS client prerequisite:** To use NFSv3 with locking on an NFS client, ensure the `rpc.statd` service runs in the NFS client. This enables clients to mount NFSv3 shares.
+1. Open the ports of the `nlockmgr` and `status` services on the servers and the clients. Use one of the following methods:
+   * **Disable the firewall:** Stop and disable `firewalld`:
 
-## Considerations
+     ```
+     systemctl stop firewalld.service
+     systemctl disable firewalld.service
+     ```
+   * **Set fixed ports and open them:**
+     * On the servers, set the lock manager and status monitor ports. For example:
 
-* Inspecting active file locks is not exposed as a supported operation. If you need to identify which client holds a lock on a file, contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md).
+       ```
+       weka nfs global-config set --lockmgr-port 47000 --statmon-port 46999
+       ```
+     * On the clients, set fixed ports for the status monitor and lock manager in the NFS configuration of the client's operating system, and open them.
+2. On each NFS client, make sure the `rpc.statd` service runs. The client needs it to mount NFSv3 shares with locking.
 
 [^1]: **Advisory locking**
 
