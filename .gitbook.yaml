@@ -1,0 +1,10 @@
+root: ./
+
+structure:
+  readme: README.md
+  summary: SUMMARY.md
+
+redirects:
+  additional-protocols/nfs-support/nfs-support: additional-protocols/nfs-support/manage-nfs-using-the-gui.md
+  additional-protocols/nfs-support/nfs-support-1: additional-protocols/nfs-support/manage-nfs-using-the-cli.md
+  additional-protocols/nfs-support/supported-nfs-client-mount-options: additional-protocols/nfs-support/supported-nfs-client-mount-parameters.md

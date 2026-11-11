@@ -155,8 +155,8 @@ Integrating the NFS and Kerberos service is critical to setting up a secure netw
 
 **Before you begin**
 
-* Ensure a configuration filesystem is set. See [#configure-the-nfs-global-settings](nfs-support.md#configure-the-nfs-global-settings "mention").
-* Ensure the NFS cluster is configured and running. See [#create-interface-groups](nfs-support.md#create-interface-groups "mention").
+* Ensure a configuration filesystem is set. See [#configure-the-nfs-global-settings](manage-nfs-using-the-gui.md#configure-the-nfs-global-settings "mention").
+* Ensure the NFS cluster is configured and running. See [#create-interface-groups](manage-nfs-using-the-gui.md#create-interface-groups "mention").
 * For Active Directory (AD) integration, obtain the required information from the AD administrator. (WEKA handles the generation of the keytab file.)
 * For MIT integration, obtain the required information from the MIT KDC and OpenLDAP administrators, and a pre-generated keytab file stored in an accessible location is required.
 
@@ -218,7 +218,7 @@ Configuring the NFS-Kerberos service integration automatically restarts the NFS 
 {% endtabs %}
 
 {% hint style="info" %}
-After completing the kerberos integration settings, the enabled authentication type is **KRB5**. If you want to modify the enabled authentication types, in the Configure NFS Global Settings, select **Update**, and set the authentication types. See [#configure-the-nfs-global-settings](nfs-support.md#configure-the-nfs-global-settings "mention").
+After completing the kerberos integration settings, the enabled authentication type is **KRB5**. If you want to modify the enabled authentication types, in the Configure NFS Global Settings, select **Update**, and set the authentication types. See [#configure-the-nfs-global-settings](manage-nfs-using-the-gui.md#configure-the-nfs-global-settings "mention").
 {% endhint %}
 
 ### **Reset the** Kerberos configuration <a href="#create-interface-groups" id="create-interface-groups"></a>
@@ -350,7 +350,7 @@ NFS permissions also provide flexibility and foster collaboration. They can be a
 
 **Before you begin**
 
-If you create an NFS v4 client permission, verify that a global configuration filesystem is already set in the system. See [#configure-the-nfs-global-settings](nfs-support.md#configure-the-nfs-global-settings "mention").
+If you create an NFS v4 client permission, verify that a global configuration filesystem is already set in the system. See [#configure-the-nfs-global-settings](manage-nfs-using-the-gui.md#configure-the-nfs-global-settings "mention").
 
 **Procedure**
 
@@ -393,4 +393,4 @@ You can edit the existing NFS permission settings for a client group. You can al
 
 **Related topics**
 
-[supported-nfs-client-mount-options.md](supported-nfs-client-mount-options.md "mention")
+[supported-nfs-client-mount-parameters.md](supported-nfs-client-mount-parameters.md "mention")

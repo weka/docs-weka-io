@@ -54,6 +54,6 @@ Each resource affects clients differently when an NFS container reaches its maxi
 
 **Related topics**
 
-[#configure-the-nfs-global-settings](nfs-support-1.md#configure-the-nfs-global-settings "mention") (set the maximums)
+[#configure-the-nfs-global-settings](manage-nfs-using-the-cli.md#configure-the-nfs-global-settings "mention") (set the maximums)
 
-[#view-nfs-server-resource-usage](nfs-support-1.md#view-nfs-server-resource-usage "mention") (view the usage)
+[#view-nfs-server-resource-usage](manage-nfs-using-the-cli.md#view-nfs-server-resource-usage "mention") (view the usage)

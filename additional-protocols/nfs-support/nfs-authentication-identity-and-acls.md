@@ -71,7 +71,7 @@ The identity configuration is stored on the NFS configuration filesystem, so eve
 
 ### Several Active Directory domains
 
-Users and groups can come from more than one domain of an Active Directory forest. After `setup-ad` or `setup-ad-nokrb`, the identity service discovers the other domains of the Active Directory forest, so users and groups from other domains of the forest resolve without more configuration, provided that their POSIX attributes are readable through the Global Catalog. To list the domains explicitly, see [#add-active-directory-domains](nfs-support-1.md#add-active-directory-domains "mention").
+Users and groups can come from more than one domain of an Active Directory forest. After `setup-ad` or `setup-ad-nokrb`, the identity service discovers the other domains of the Active Directory forest, so users and groups from other domains of the forest resolve without more configuration, provided that their POSIX attributes are readable through the Global Catalog. To list the domains explicitly, see [#add-active-directory-domains](manage-nfs-using-the-cli.md#add-active-directory-domains "mention").
 
 ### Considerations
 
@@ -80,7 +80,7 @@ Users and groups can come from more than one domain of an Active Directory fores
 * To use Active Directory without Kerberos on a cluster with a Kerberos registration, reset the Kerberos registration first.
 * Exports with manage-gids need a working identity source on each NFS server. The cluster raises the `NfsIdentitySourceUnavailable` alert for a server without one.
 * The on-host mode uses the SSSD service of each server. Keep SSSD running on every NFS server.
-* Changing the identity or Kerberos configuration can restart the NFS containers, which pauses I/O for connected clients. See [#integrate-the-nfs-and-kerberos-service](nfs-support-1.md#integrate-the-nfs-and-kerberos-service "mention").
+* Changing the identity or Kerberos configuration can restart the NFS containers, which pauses I/O for connected clients. See [#integrate-the-nfs-and-kerberos-service](manage-nfs-using-the-cli.md#integrate-the-nfs-and-kerberos-service "mention").
 
 ## Access Control List (ACL) in NFS
 
@@ -109,7 +109,7 @@ The ACL flavor sets how NFS enforces ACLs, and whether other protocols can share
 
 ### Where ACLs are set
 
-The default ACL flavor is part of the NFS global settings, and each NFS permission (export) can set its own ACL flavor. Changes to ACL settings may require restarting the NFS containers. ACL flavors and related configurations are stored in the configuration filesystem, so the permissions are managed consistently across the cluster. See [#configure-the-nfs-global-settings](nfs-support-1.md#configure-the-nfs-global-settings "mention") and [#manage-nfs-client-permissions](nfs-support-1.md#manage-nfs-client-permissions "mention").
+The default ACL flavor is part of the NFS global settings, and each NFS permission (export) can set its own ACL flavor. Changes to ACL settings may require restarting the NFS containers. ACL flavors and related configurations are stored in the configuration filesystem, so the permissions are managed consistently across the cluster. See [#configure-the-nfs-global-settings](manage-nfs-using-the-cli.md#configure-the-nfs-global-settings "mention") and [#manage-nfs-client-permissions](manage-nfs-using-the-cli.md#manage-nfs-client-permissions "mention").
 
 ### Considerations
 
@@ -118,10 +118,10 @@ The default ACL flavor is part of the NFS global settings, and each NFS permissi
 
 **Related topics**
 
-[#integrate-the-nfs-and-kerberos-service](nfs-support.md#integrate-the-nfs-and-kerberos-service "mention") (GUI)
+[#integrate-the-nfs-and-kerberos-service](manage-nfs-using-the-gui.md#integrate-the-nfs-and-kerberos-service "mention") (GUI)
 
-[#integrate-the-nfs-and-kerberos-service](nfs-support-1.md#integrate-the-nfs-and-kerberos-service "mention") (CLI)
+[#integrate-the-nfs-and-kerberos-service](manage-nfs-using-the-cli.md#integrate-the-nfs-and-kerberos-service "mention") (CLI)
 
-[#required-roles-and-directory-privileges](nfs-support-1.md#required-roles-and-directory-privileges "mention")
+[#required-roles-and-directory-privileges](manage-nfs-using-the-cli.md#required-roles-and-directory-privileges "mention")
 
-[#verify-the-directory-server-certificate](nfs-support-1.md#verify-the-directory-server-certificate "mention")
+[#verify-the-directory-server-certificate](manage-nfs-using-the-cli.md#verify-the-directory-server-certificate "mention")

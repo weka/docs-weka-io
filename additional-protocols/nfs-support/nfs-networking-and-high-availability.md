@@ -51,7 +51,7 @@ A round-robin DNS name spreads the NFS clients across the servers that serve NFS
 Set the TTL (Time to Live) for all records assigned to the NFS servers to 0 (Zero). This action ensures that the client or the DNS server does not cache the IP.
 {% endhint %}
 
-NFS clients mount with the standard NFS stack of their operating system. The NFS server address in the mount command is the round-robin DNS name. See [supported-nfs-client-mount-options.md](supported-nfs-client-mount-options.md "mention").
+NFS clients mount with the standard NFS stack of their operating system. The NFS server address in the mount command is the round-robin DNS name. See [supported-nfs-client-mount-parameters.md](supported-nfs-client-mount-parameters.md "mention").
 
 ## Scalability, load balancing, and resiliency
 
@@ -71,9 +71,9 @@ To send clients to the NFS containers through an external load balancer instead 
 
 **Related topics**
 
-[#configure-the-nfs-cluster-level](nfs-support.md#configure-the-nfs-cluster-level "mention") (GUI)
+[#configure-the-nfs-cluster-level](manage-nfs-using-the-gui.md#configure-the-nfs-cluster-level "mention") (GUI)
 
-[#configure-the-nfs-cluster-level](nfs-support-1.md#configure-the-nfs-cluster-level "mention") (CLI)
+[#configure-the-nfs-cluster-level](manage-nfs-using-the-cli.md#configure-the-nfs-cluster-level "mention") (CLI)
 
 [Round-robin DNS](https://en.wikipedia.org/wiki/Round-robin_DNS) (external)
 

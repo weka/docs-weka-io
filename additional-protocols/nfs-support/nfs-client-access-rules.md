@@ -89,8 +89,8 @@ A netgroup name starts with a letter or an underscore, and contains only letters
 
 **Related topics**
 
-[#manage-the-nfs-export-level-permissions](nfs-support-1.md#manage-the-nfs-export-level-permissions "mention") (CLI)
+[#manage-the-nfs-export-level-permissions](manage-nfs-using-the-cli.md#manage-the-nfs-export-level-permissions "mention") (CLI)
 
-[#manage-nfs-netgroups](nfs-support-1.md#manage-nfs-netgroups "mention") (CLI)
+[#manage-nfs-netgroups](manage-nfs-using-the-cli.md#manage-nfs-netgroups "mention") (CLI)
 
-[#configure-the-nfs-export-level-permissions](nfs-support.md#configure-the-nfs-export-level-permissions "mention") (GUI)
+[#configure-the-nfs-export-level-permissions](manage-nfs-using-the-gui.md#configure-the-nfs-export-level-permissions "mention") (GUI)

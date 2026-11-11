@@ -27,7 +27,7 @@ The workflow shows the order of the deployment tasks, from the NFS global settin
 
 <div data-with-frame="true"><figure><img src="../../.gitbook/assets/NFS_deploy_workflow.png" alt=""><figcaption><p>NFS service deployment high-level workflow</p></figcaption></figure></div>
 
-For the procedures, see [nfs-support.md](nfs-support.md "mention") or [nfs-support-1.md](nfs-support-1.md "mention").
+For the procedures, see [manage-nfs-using-the-gui.md](manage-nfs-using-the-gui.md "mention") or [manage-nfs-using-the-cli.md](manage-nfs-using-the-cli.md "mention").
 
 ## NFS concepts
 
@@ -44,11 +44,11 @@ Read the concept that matches what you plan before you configure it:
 
 **Related topics**
 
-[nfs-support.md](nfs-support.md "mention")
+[manage-nfs-using-the-gui.md](manage-nfs-using-the-gui.md "mention")
 
-[nfs-support-1.md](nfs-support-1.md "mention")
+[manage-nfs-using-the-cli.md](manage-nfs-using-the-cli.md "mention")
 
-[supported-nfs-client-mount-options.md](supported-nfs-client-mount-options.md "mention")
+[supported-nfs-client-mount-parameters.md](supported-nfs-client-mount-parameters.md "mention")
 
 [manage-nfs-for-tenants.md](../../operation-guide/weka-native-multi-tenancy-management/manage-nfs-for-tenants.md "mention")
 

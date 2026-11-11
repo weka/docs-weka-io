@@ -40,7 +40,7 @@ weka nfs global-config set [--acl <on-off>] [--config-fs <string>] [--default-ac
 | `--statmon-port` \<uint16> | Port for NFS status monitor. Default 0 means any available port. |
 
 {% hint style="info" %}
-`--max-client-connections`, `--max-open-fds`, and `--max-memory` set the resources of each NFS server. For their defaults and the effect of each setting, see [#nfs-server-resources](nfs-server-resources.md "mention"). To view the current usage, see [#view-nfs-server-resource-usage](nfs-support-1.md#view-nfs-server-resource-usage "mention").
+`--max-client-connections`, `--max-open-fds`, and `--max-memory` set the resources of each NFS server. For their defaults and the effect of each setting, see [#nfs-server-resources](nfs-server-resources.md "mention"). To view the current usage, see [#view-nfs-server-resource-usage](manage-nfs-using-the-cli.md#view-nfs-server-resource-usage "mention").
 
 These options are available through the CLI and the API. The GUI global settings dialog exposes the Multi-Tenancy toggle and the NFS port fields.
 {% endhint %}
@@ -243,9 +243,9 @@ NFS can authenticate more than 16 user groups, but it requires the external reso
 **Procedure**
 
 1. **Configure interface groups:**
-   * See [Create interface groups](nfs-support-1.md#create-interface-groups).
+   * See [Create interface groups](manage-nfs-using-the-cli.md#create-interface-groups).
 2. **Configure NFS client permissions:**
-   * See [Set the NFS client permissions](nfs-support-1.md#manage-nfs-client-permissions).
+   * See [Set the NFS client permissions](manage-nfs-using-the-cli.md#manage-nfs-client-permissions).
 3. **Set up servers for group-IDs retrieval:**
    * Configure relevant servers to retrieve user group-IDs information.\
      This task is performed on the server's operating system and is not managed by the cluster. See the following procedure.
@@ -314,14 +314,14 @@ Integrating the NFS and Kerberos service is critical to setting up a secure netw
 
 **Before you begin**
 
-* Ensure a configuration filesystem is set. See [#configure-the-nfs-global-settings](nfs-support-1.md#configure-the-nfs-global-settings "mention").
-* Ensure the NFS cluster is configured and running. see [#configure-the-nfs-cluster-level](nfs-support-1.md#configure-the-nfs-cluster-level "mention").
+* Ensure a configuration filesystem is set. See [#configure-the-nfs-global-settings](manage-nfs-using-the-cli.md#configure-the-nfs-global-settings "mention").
+* Ensure the NFS cluster is configured and running. see [#configure-the-nfs-cluster-level](manage-nfs-using-the-cli.md#configure-the-nfs-cluster-level "mention").
 * For Active Directory (AD) integration, obtain the required information from the AD administrator. (The keytab file is generated automatically.)
 * For MIT integration, ensure the following:
   * Obtain the required information from the MIT Key Distribution Center (KDC) and OpenLDAP administrators.
   * A pre-generated keytab file in base64[^1] format stored in an accessible location is required.
 * Ensure you have the Tenant Admin role or higher. With NFS multi-tenancy enabled, run the commands in the root tenant.
-* Ensure the directory accounts have the required privileges. See [#required-roles-and-directory-privileges](nfs-support-1.md#required-roles-and-directory-privileges "mention").
+* Ensure the directory accounts have the required privileges. See [#required-roles-and-directory-privileges](manage-nfs-using-the-cli.md#required-roles-and-directory-privileges "mention").
 
 {% hint style="info" %}
 In all KDC and LDAP parameters, use the FQDN format.
@@ -399,8 +399,8 @@ TEST.WEKALAB.IO     Zeus.test.wekalab.io                        Zeus.test.wekala
 
 Integrating Kerberos with AD involves the following:
 
-1. [Register Kerberos with AD](nfs-support-1.md#integrate-kerberos-with-ad)
-2. [Set up Kerberos to use AD LDAP](nfs-support-1.md#set-up-kerberos-to-use-ad-ldap)
+1. [Register Kerberos with AD](manage-nfs-using-the-cli.md#integrate-kerberos-with-ad)
+2. [Set up Kerberos to use AD LDAP](manage-nfs-using-the-cli.md#set-up-kerberos-to-use-ad-ldap)
 
 #### Register Kerberos with AD
 
@@ -464,8 +464,8 @@ weka nfs ldap setup-ad
 
 Integrating Kerberos with MIT involves the following:
 
-1. [Register Kerberos with MIT](nfs-support-1.md#register-kerberos-with-mit)
-2. [Set up Kerberos to use OpenLDAP](nfs-support-1.md#set-up-kerberos-to-use-openldap)
+1. [Register Kerberos with MIT](manage-nfs-using-the-cli.md#register-kerberos-with-mit)
+2. [Set up Kerberos to use OpenLDAP](manage-nfs-using-the-cli.md#set-up-kerberos-to-use-openldap)
 
 #### Register Kerberos with MIT
 
@@ -557,7 +557,7 @@ None                                             0                              
 
 ### Clear the Kerberos LDAP configuration
 
-Removes the LDAP configuration used for NFS user and group resolution: the identity service configuration, the ID mapping configuration, the stored reader password, and the CA certificate. The Kerberos service and registration remain. To remove them, see [#clear-kerberos-configuration](nfs-support-1.md#clear-kerberos-configuration "mention"). The Active Directory computer account remains in Active Directory.
+Removes the LDAP configuration used for NFS user and group resolution: the identity service configuration, the ID mapping configuration, the stored reader password, and the CA certificate. The Kerberos service and registration remain. To remove them, see [#clear-kerberos-configuration](manage-nfs-using-the-cli.md#clear-kerberos-configuration "mention"). The Active Directory computer account remains in Active Directory.
 
 While Kerberos is configured or ACLs are enabled, add `--force` to reset the configuration.
 
@@ -662,11 +662,11 @@ Imports the CA certificate of the directory server, so the identity service uses
 
 For each configured domain, the cluster sets the certificate path, StartTLS, and certificate verification (`ldap_tls_reqcert = demand`). Other values in the imported file are kept.
 
-A later import without a certificate keeps the stored certificate. To remove the certificate, reset the LDAP configuration. See [#clear-the-kerberos-ldap-configuration](nfs-support-1.md#clear-the-kerberos-ldap-configuration "mention").
+A later import without a certificate keeps the stored certificate. To remove the certificate, reset the LDAP configuration. See [#clear-the-kerberos-ldap-configuration](manage-nfs-using-the-cli.md#clear-the-kerberos-ldap-configuration "mention").
 
 #### Copy the LDAP configuration to another cluster
 
-Export the configuration on the source cluster, and import it on the target cluster with the same server and domain. For Active Directory, register the target cluster in the domain before you import. See [#register-kerberos-with-ad](nfs-support-1.md#register-kerberos-with-ad "mention").
+Export the configuration on the source cluster, and import it on the target cluster with the same server and domain. For Active Directory, register the target cluster in the domain before you import. See [#register-kerberos-with-ad](manage-nfs-using-the-cli.md#register-kerberos-with-ad "mention").
 
 ### Show Kerberos registration information
 
@@ -943,7 +943,7 @@ weka nfs rules remove ip <name> <ip>
 
 #### Add netgroup client group rules
 
-Adds a rule that admits every member of a netgroup to a client group. Create the netgroup first. See [#manage-nfs-netgroups](nfs-support-1.md#manage-nfs-netgroups "mention").
+Adds a rule that admits every member of a netgroup to a client group. Create the netgroup first. See [#manage-nfs-netgroups](manage-nfs-using-the-cli.md#manage-nfs-netgroups "mention").
 
 **Command:** `weka nfs rules add netgroup`
 
@@ -993,8 +993,8 @@ To grant a list of hosts access to an export:
 
 1. Create a netgroup.
 2. Add the hostnames as members.
-3. Add a netgroup rule to a client group. See [#add-netgroup-client-group-rules](nfs-support-1.md#add-netgroup-client-group-rules "mention").
-4. Grant the client group a permission on the export. See [#manage-nfs-client-permissions](nfs-support-1.md#manage-nfs-client-permissions "mention").
+3. Add a netgroup rule to a client group. See [#add-netgroup-client-group-rules](manage-nfs-using-the-cli.md#add-netgroup-client-group-rules "mention").
+4. Grant the client group a permission on the export. See [#manage-nfs-client-permissions](manage-nfs-using-the-cli.md#manage-nfs-client-permissions "mention").
 
 **Example**
 
@@ -1080,7 +1080,7 @@ weka nfs netgroup member remove <name> [--from-file <string>] [--hosts <hostname
 | --- | --- |
 | `name`\* | Name of the netgroup. |
 | `--hosts` | Member hostnames, comma-separated or by repeating the option. |
-| `--from-file` | Path to a host list file, in the format described in [#add-members-to-a-netgroup](nfs-support-1.md#add-members-to-a-netgroup "mention"). |
+| `--from-file` | Path to a host list file, in the format described in [#add-members-to-a-netgroup](manage-nfs-using-the-cli.md#add-members-to-a-netgroup "mention"). |
 
 **Example**
 
