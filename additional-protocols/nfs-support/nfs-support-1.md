@@ -22,7 +22,7 @@ weka nfs global-config set [--acl <on-off>] [--config-fs <string>] [--default-ac
 | --- | --- |
 | `--acl` \<on-off> | Enable or disable ACL. Default: on |
 | `--config-fs` \<string> | Config filesystem name. Use empty string to invalidate. For details, see #dedicated-filesystem-requirement-for-cluster-wide-persistent-protocol-configurations |
-| `--default-acl-type` \<acl-type> | Default ACL type. For details, see #access-control-list-acl-in-nfs. Default: posix |
+| `--default-acl-type` \<acl-type> | Default ACL type. For details, see [#access-control-list-acl-in-nfs](nfs-authentication-identity-and-acls.md#access-control-list-acl-in-nfs "mention"). Default: posix |
 | `--default-supported-versions` \<nfs-versions>… | NFS versions for new permissions. Multiple values may be supplied separated by commas, or the option may be repeated. Possible values: v3 , v4, v3,v4 Default: v3 |
 | `--direct-io` \<on-off> | Disable readcache and writecache. |
 | `--enable-auth-types` \<nfs-auth-types>… | List of NFS authentication types. Multiple values may be supplied separated by commas, or the option may be repeated. Possible values: none,sys,krb5,krb5i,krb5p Example: krb5,krb5i,krb5p Default: If Kerberos is not configured: sys If Kerberos is configured: krb5 |
@@ -40,7 +40,7 @@ weka nfs global-config set [--acl <on-off>] [--config-fs <string>] [--default-ac
 | `--statmon-port` \<uint16> | Port for NFS status monitor. Default 0 means any available port. |
 
 {% hint style="info" %}
-`--max-client-connections`, `--max-open-fds`, and `--max-memory` set the resources of each NFS server. For their defaults and the effect of each setting, see [#nfs-server-resources](./#nfs-server-resources "mention"). To view the current usage, see [#view-nfs-server-resource-usage](nfs-support-1.md#view-nfs-server-resource-usage "mention").
+`--max-client-connections`, `--max-open-fds`, and `--max-memory` set the resources of each NFS server. For their defaults and the effect of each setting, see [#nfs-server-resources](nfs-server-resources.md "mention"). To view the current usage, see [#view-nfs-server-resource-usage](nfs-support-1.md#view-nfs-server-resource-usage "mention").
 
 These options are available through the CLI and the API. The GUI global settings dialog exposes the Multi-Tenancy toggle and the NFS port fields.
 {% endhint %}
@@ -134,7 +134,7 @@ The **Source** column shows `sampled` or `live`, and **Sample Age** shows how ol
 | `Open Files`, `File Limit`, `File %`, `File State` | Files the NFS server holds open, the maximum, the percentage used, and the state. |
 | `Memory`, `Mem Limit`, `Mem %`, `Mem State` | Memory used by the NFS container, its memory ceiling, the percentage used, and the state. |
 
-Each state is `OK`, `HIGH`, or `LIMIT`. For the thresholds, see [#nfs-server-resources](./#nfs-server-resources "mention"). Add `-v` for the file descriptor and socket counts behind these values, or `-J` for JSON output.
+Each state is `OK`, `HIGH`, or `LIMIT`. For the thresholds, see [#nfs-server-resources](nfs-server-resources.md "mention"). Add `-v` for the file descriptor and socket counts behind these values, or `-J` for JSON output.
 
 ## **Configure the NFS cluster level**
 
@@ -321,13 +321,28 @@ Integrating the NFS and Kerberos service is critical to setting up a secure netw
   * Obtain the required information from the MIT Key Distribution Center (KDC) and OpenLDAP administrators.
   * A pre-generated keytab file in base64[^1] format stored in an accessible location is required.
 * Ensure you have the Tenant Admin role or higher. With NFS multi-tenancy enabled, run the commands in the root tenant.
-* Ensure the directory accounts have the required privileges. See [#nfs-user-and-group-resolution](./#nfs-user-and-group-resolution "mention").
+* Ensure the directory accounts have the required privileges. See [#required-roles-and-directory-privileges](nfs-support-1.md#required-roles-and-directory-privileges "mention").
 
 {% hint style="info" %}
 In all KDC and LDAP parameters, use the FQDN format.
 
 The NFS service name is a DNS name dedicated to the NFS service, in the form `<hostname>.<domain>`, where the domain is the domain of the realm. The hostname contains only letters, digits, and inner hyphens, and has up to 19 characters for Active Directory or up to 63 characters for MIT Kerberos. Use a name that differs from the names of the KDC and directory servers.
 {% endhint %}
+
+{% hint style="info" %}
+**Applying a change:** The `weka nfs ldap` commands restart the NFS containers after they succeed, unless you add `--no-restart`. The `weka nfs kerberos` commands restart the NFS containers only with `--restart`. A restart pauses I/O for connected clients during the restart and the grace period. With `--no-restart`, the running NFS containers keep the previous configuration until they restart.
+{% endhint %}
+
+### Required roles and directory privileges
+
+| Account | Requirement |
+| --- | --- |
+| Cluster user who runs the commands | The Tenant Admin role or higher. With NFS multi-tenancy enabled, run the commands in the root tenant. |
+| Active Directory account for `kerberos registration setup-ad` and `ldap setup-ad-nokrb` | Can create and manage the NFS computer account under the base OU (default `CN=Computers`), including its delegation flag. The password is used once and is not stored. |
+| OpenLDAP reader user for `ldap setup-openldap` | Can bind and search under the base DN. The command runs this search before it writes the configuration. |
+| Machine account or reader user, while NFS runs | Can read the users and groups and their POSIX attributes (`uidNumber` and `gidNumber`). |
+
+For the identity modes and how the NFS service resolves users and groups, see [#nfs-user-and-group-resolution](nfs-authentication-identity-and-acls.md#nfs-user-and-group-resolution "mention").
 
 ### Set the Kerberos service
 
@@ -645,6 +660,8 @@ Imports the CA certificate of the directory server, so the identity service uses
    weka nfs ldap import-openldap ldap1.example.com example.com sssd.conf idmapd.conf ldap-ca.pem --verify
    ```
 
+For each configured domain, the cluster sets the certificate path, StartTLS, and certificate verification (`ldap_tls_reqcert = demand`). Other values in the imported file are kept.
+
 A later import without a certificate keeps the stored certificate. To remove the certificate, reset the LDAP configuration. See [#clear-the-kerberos-ldap-configuration](nfs-support-1.md#clear-the-kerberos-ldap-configuration "mention").
 
 #### Copy the LDAP configuration to another cluster
@@ -828,7 +845,7 @@ weka nfs client-group remove <name> [--force]
 
 ### Manage client access groups' rules
 
-Lists the rules defined on the client access groups. A rule matches clients by IP address or range, by DNS name, or by netgroup membership. For the order in which the NFS server checks the rules, see [#nfs-client-access-rules](./#nfs-client-access-rules "mention").
+Lists the rules defined on the client access groups. A rule matches clients by IP address or range, by DNS name, or by netgroup membership. For the order in which the NFS server checks the rules, see [#nfs-client-access-rules](nfs-client-access-rules.md "mention").
 
 **Command:** `weka nfs rules`
 
@@ -970,7 +987,7 @@ weka nfs rules remove netgroup <name> <netgroup>
 
 ### Manage NFS netgroups
 
-A netgroup is a named list of client hostnames that a client group rule can reference. For how the NFS server matches netgroup members, the requirements, and the maximums, see [#netgroups](./#netgroups "mention").
+A netgroup is a named list of client hostnames that a client group rule can reference. For how the NFS server matches netgroup members, the requirements, and the maximums, see [#netgroups](nfs-client-access-rules.md#netgroups "mention").
 
 To grant a list of hosts access to an export:
 
@@ -1177,7 +1194,7 @@ weka nfs permission remove <filesystem> <group> [--force] [--path <string>]
 | --- | --- |
 | `filesystem`\* | Filesystem name. |
 | `group`\* | Client group name. |
-| `--acl-type` \<acl-type> | Type of ACL. Default is determined by the NFS global configuration. Values: none, posix, nfsv4, hybrid For details, see #access-control-list-acl-in-nfs |
+| `--acl-type` \<acl-type> | Type of ACL. Default is determined by the NFS global configuration. Values: none, posix, nfsv4, hybrid For details, see [#access-control-list-acl-in-nfs](nfs-authentication-identity-and-acls.md#access-control-list-acl-in-nfs "mention"). |
 | `--anon-gid` \<uint32> | GID to be used instead of root when root squashing is enabled. Values: 1 to 65535 |
 | `--anon-uid` \<uint32> | UID to be used instead of root when root squashing is enabled. Values: 1 to 65535 |
 | `--enable-auth-types` \<nfs-auth-types>… | NFS authentication types. Multiple values may be supplied separated by commas, or the option may be repeated. |

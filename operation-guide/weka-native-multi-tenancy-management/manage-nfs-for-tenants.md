@@ -162,7 +162,7 @@ Each tenant network space is hosted on a specific server. Use this command to se
 weka nfs interface-group ns-assignment
 ```
 
-For the failover behavior that moves a tenant's floating IPs between servers, see [Scalability, load balancing, and resiliency](../../additional-protocols/nfs-support/README.md#scalability-load-balancing-and-resiliency).
+For the failover behavior that moves a tenant's floating IPs between servers, see [Scalability, load balancing, and resiliency](../../additional-protocols/nfs-support/nfs-networking-and-high-availability.md#scalability-load-balancing-and-resiliency).
 
 ## Feature availability: root organization and tenants
 
@@ -208,7 +208,7 @@ Tenants have lower NFS object limits than the root organization.
 | Exports (permissions) | 1024 | 64 |
 | Floating IPs per network space | Not applicable | 8 |
 
-Each limit is enforced per organization at creation time. With NFS multi-tenancy enabled, the automatic client connections maximum of each NFS server is sized from the number of NFS containers. See [#nfs-server-resources](../../additional-protocols/nfs-support/#nfs-server-resources "mention").
+Each limit is enforced per organization at creation time. With NFS multi-tenancy enabled, the automatic client connections maximum of each NFS server is sized from the number of NFS containers. See [nfs-server-resources.md](../../additional-protocols/nfs-support/nfs-server-resources.md "mention").
 
 A cluster supports up to **255 network spaces**, and a single tenant can own more than one, so there is no per-tenant network space quota.
 

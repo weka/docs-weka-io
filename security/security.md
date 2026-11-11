@@ -36,7 +36,7 @@ To enable these modes, list `krb5`, `krb5i`, or `krb5p` in the `--enable-auth-ty
 
 **Related topic**
 
-[#nfs-integration-with-kerberos-service](../additional-protocols/nfs-support/#nfs-integration-with-kerberos-service "mention")
+[#nfs-integration-with-kerberos-service](../additional-protocols/nfs-support/nfs-authentication-identity-and-acls.md#nfs-integration-with-kerberos-service "mention")
 
 #### Active Directory
 
