@@ -27,7 +27,7 @@ The relationship is many-to-one, so the pair count is simply the number of proce
 To size the host that runs LWH, use the whole-server requirements instead:
 
 * **K3s:** [Verify prerequisites](deploy-local-weka-home-on-k3s/#id-1.-verify-prerequisites) — 8 CPU cores and 32 GiB RAM for up to 1000 processes, plus 1 core and 8 GiB for every additional 1000.
-* **K8s:** [Sizing and scaling guidelines](deploy-local-weka-home-on-k8s/#sizing-and-scaling-guidelines).
+* **Kubernetes:** [Sizing and scaling guidelines](deploy-local-weka-home-on-k8s/#sizing-and-scaling-guidelines).
 
 Both sets of figures count the same processes. The whole-server figures cover every LWH component together; the figures on this page apply to the statistics path alone, and are what you tune when statistics ingestion is the bottleneck.
 {% endhint %}
@@ -103,14 +103,14 @@ To ensure safe usage at 70%, round up to 2 replicas.
 
 ## Configure resource overrides for high stats throughput
 
-Modify the Helm configuration for either Kubernetes (K8s) or K3s to support high stats throughput by defining resource requests, limits, and autoscaling parameters.
+Modify the Helm configuration for either Kubernetes or K3s to support high stats throughput by defining resource requests, limits, and autoscaling parameters.
 
-* **K8s Helm values:** Manage performance tuning in K8s environments through a `values.yaml` file. Define overrides within the `api` and `workers` sections to govern resources for the entire cluster. Use the Helm CLI to apply these settings and update the deployment state.
+* **Kubernetes Helm values:** Manage performance tuning in Kubernetes environments through a `values.yaml` file. Define overrides within the `api` and `workers` sections to govern resources for the entire cluster. Use the Helm CLI to apply these settings and update the deployment state.
 * **K3s configuration JSON:** Manage performance tuning in K3s environments, typically running on a dedicated server. Define overrides within the `helmOverrides` block of the `/opt/wekahome/config/config.json` file. The `homecli local upgrade` command ingests this JSON to apply the specified CPU and memory limits to the local containers.
 
 <details>
 
-<summary>Example for K8s: <code>api</code> and <code>workers</code> sections with starting values</summary>
+<summary>Example for Kubernetes: <code>api</code> and <code>workers</code> sections with starting values</summary>
 
 ```yaml
 api:
@@ -239,12 +239,12 @@ workers:
 **Procedure**
 
 1. Open the configuration file depending on your LWH environment:
-   * **K8s:** Update the `api` and `workers` sections in the `values.yaml` file.
+   * **Kubernetes:** Update the `api` and `workers` sections in the `values.yaml` file.
    * **K3s:** Update the `helmOverrides` section in the `config.json` file.
 2. Define the resources and autoscaling blocks for `api.stats`, `workers.stats`, and `workers.forwarding`.
 3. Set the `minReplicas` to a baseline value that ensures stability and the `maxReplicas` to a level that accounts for traffic bursts.
 4. Apply the configuration:
-   * **K8s:** Run the `helm upgrade` command specifying your values file.
+   * **Kubernetes:** Run the `helm upgrade` command specifying your values file.
    * **K3s:** Run `homecli local upgrade`.
 
 **Related topics**
