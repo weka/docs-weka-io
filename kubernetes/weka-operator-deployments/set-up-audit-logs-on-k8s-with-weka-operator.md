@@ -4,7 +4,7 @@ description: >-
   operator.
 ---
 
-# Set up audit logs on K8s with WEKA Operator
+# Set up audit logs on Kubernetes with WEKA Operator
 
 ## Set up audit logs
 

@@ -115,4 +115,4 @@ To connect a WekaClient to an in-cluster WekaCluster, set `targetCluster` in the
 
 [WekaCluster and WekaContainer lifecycle](wekacluster-and-wekacontainer-lifecycle.md)
 
-[Set up protocols on K8s with WEKA Operator](set-up-protocols-on-k8s-with-weka-operator.md)
+[Set up protocols on Kubernetes with WEKA Operator](set-up-protocols-on-k8s-with-weka-operator.md)

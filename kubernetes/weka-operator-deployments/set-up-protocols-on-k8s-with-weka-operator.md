@@ -4,7 +4,7 @@ description: >-
   provide object and file access to filesystems.
 ---
 
-# Set up protocols on K8s with WEKA Operator
+# Set up protocols on Kubernetes with WEKA Operator
 
 ## Overview of WEKA Operator protocols
 
