@@ -5,7 +5,7 @@ description: >-
   deployment.
 ---
 
-# Manage remote debugging sessions on K8s
+# Manage remote debugging sessions on Kubernetes
 
 ### Overview
 

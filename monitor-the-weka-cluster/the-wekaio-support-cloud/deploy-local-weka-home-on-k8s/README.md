@@ -5,7 +5,7 @@ description: >-
   on-premises observability solution for WEKA clusters.
 ---
 
-# Deploy Local WEKA Home on K8s
+# Deploy Local WEKA Home on Kubernetes
 
 ## Overview
 
