@@ -1096,7 +1096,7 @@ spec:
 
 </details>
 
-3. Apply the manifest.
+2. Apply the manifest.
 
 ```bash
 kubectl apply -f weka-client.yaml
