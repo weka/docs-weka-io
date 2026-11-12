@@ -1,7 +1,7 @@
 ---
 description: >-
   Manage the deployment, upgrade, and maintenance of Local WEKA Home (LWH) on
-  Kubernetes (K8s) cluster. This deployment method provides a scalable,
+  Kubernetes cluster. This deployment method provides a scalable,
   on-premises observability solution for WEKA clusters.
 ---
 
@@ -9,19 +9,19 @@ description: >-
 
 ## Overview
 
-The LWH deployment provides an on-premises observability and monitoring solution for WEKA clusters. Organizations use this model to operate within their own infrastructure instead of relying on the WEKA-hosted cloud service. Running on a K8s cluster offers enhanced scalability, resilience, and control over system resources and data.
+The LWH deployment provides an on-premises observability and monitoring solution for WEKA clusters. Organizations use this model to operate within their own infrastructure instead of relying on the WEKA-hosted cloud service. Running on a Kubernetes cluster offers enhanced scalability, resilience, and control over system resources and data.
 
-Deploying LWH on K8s supports scale-out environments and large cluster configurations. This architecture leverages Kubernetes orchestration capabilities for high availability, automated recovery, and simplified lifecycle management of the LWH components.
+Deploying LWH on Kubernetes supports scale-out environments and large cluster configurations. This architecture leverages Kubernetes orchestration capabilities for high availability, automated recovery, and simplified lifecycle management of the LWH components.
 
 {% hint style="info" %}
-Deployment on K8s is supported for LWH version 4.x and above.
+Deployment on Kubernetes is supported for LWH version 4.x and above.
 {% endhint %}
 
 The deployment is managed through a configuration file to ensure a consistent, reproducible, and upgradeable installation process.
 
 ## Solution architecture
 
-The diagram below illustrates the overall solution architecture and how the core components interact within the Kubernetes (K8s) environment.
+The diagram below illustrates the overall solution architecture and how the core components interact within the Kubernetes environment.
 
 <div data-with-frame="true"><figure><img src="../../../.gitbook/assets/LWH_on_k8s_arch_5.0.png" alt=""><figcaption><p>Local WEKA Home v4.x solution architecture</p></figcaption></figure></div>
 

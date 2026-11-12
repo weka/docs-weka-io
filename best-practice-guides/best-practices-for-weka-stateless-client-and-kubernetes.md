@@ -20,7 +20,7 @@ Without this reservation, you may experience:
 
 * **WEKA IO impact:** Pod workloads can consume CPU time needed by the WEKA client, degrading IO performance.
 * **OS instability:** Pods can impact critical OS processes, including WEKA management functions.
-* **Incorrect K8s accounting:** The "node allocatable" capacity reported by Kubernetes will be larger than the actual CPU resources available to pods (as defined by cgroups). This can result in lower-than-expected performance for pod workloads.
+* **Incorrect Kubernetes accounting:** The "node allocatable" capacity reported by Kubernetes will be larger than the actual CPU resources available to pods (as defined by cgroups). This can result in lower-than-expected performance for pod workloads.
 
 {% hint style="info" %}
 To protect these reserved cores from _all_ pod QoS classes (including `Burstable` and `Best Effort`), also enable the `strict-cpu-reservation=true` option, which is detailed in the next section (Enable strict CPU reservation).

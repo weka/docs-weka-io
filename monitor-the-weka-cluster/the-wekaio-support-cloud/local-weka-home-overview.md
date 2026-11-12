@@ -59,12 +59,12 @@ The following table lists the supported LWH versions for each deployment environ
 
 | Deployment environment | Supported LWH Versions | Configuration file |
 | ---------------------- | ---------------------- | ------------------ |
-| Kubernetes (K8s)       | 4.x and above          | `values.yaml`      |
+| Kubernetes       | 4.x and above          | `values.yaml`      |
 | K3s                    | 3.x, 4.x and above     | `config.json`      |
 
 #### Deploy Local WEKA Home on Kubernetes
 
-Deploy LWH on K8s to support scale-out environments and large cluster configurations. This architecture uses Kubernetes orchestration capabilities for high availability, automated recovery, and simplified lifecycle management of the LWH components. This deployment method supports LWH version 4.x and above. You can customize the deployment by specifying configuration parameters in the `values.yaml` file.
+Deploy LWH on Kubernetes to support scale-out environments and large cluster configurations. This architecture uses Kubernetes orchestration capabilities for high availability, automated recovery, and simplified lifecycle management of the LWH components. This deployment method supports LWH version 4.x and above. You can customize the deployment by specifying configuration parameters in the `values.yaml` file.
 
 #### Deploy Local WEKA Home on K3s
 

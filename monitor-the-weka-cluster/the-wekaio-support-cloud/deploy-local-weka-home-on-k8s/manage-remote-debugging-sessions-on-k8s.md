@@ -1,7 +1,7 @@
 ---
 description: >-
   Configure and control secure, real-time access for WEKA Customer Success Team
-  to troubleshoot cluster issues using charts/wekahome/values.yaml on K8s
+  to troubleshoot cluster issues using charts/wekahome/values.yaml on Kubernetes
   deployment.
 ---
 

@@ -19,7 +19,7 @@ When a technical issue requires advanced diagnostics, the Customer Success Team 
 * **Audit capability:** Support team actions are recorded as `.cast` files and stored in a Persistent Volume Claim (PVC), allowing for complete review.
 
 {% hint style="info" %}
-The `homecli` tool is included in the Local WEKA Home deployment for K3s. For K8s, it is managed entirely through Helm charts. The `homecli remote-access` command group is supported in version **4.4.0** and later of LWH.
+The `homecli` tool is included in the Local WEKA Home deployment for K3s. For Kubernetes, it is managed entirely through Helm charts. The `homecli remote-access` command group is supported in version **4.4.0** and later of LWH.
 {% endhint %}
 
 ### Available commands
