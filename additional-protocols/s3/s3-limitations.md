@@ -85,7 +85,7 @@ The following standard S3 APIs are supported for bucket and object management:
   * [PutObjectLegalHold](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutObjectLegalHold.html)
   * [GetObjectLegalHold](https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetObjectLegalHold.html)
 
-## General limits
+## Maximums
 
 | Item                                                                             | Limits                                      |
 | -------------------------------------------------------------------------------- | ------------------------------------------- |
