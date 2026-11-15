@@ -208,6 +208,7 @@
 * [WEKA native multi-tenancy management](operation-guide/weka-native-multi-tenancy-management/README.md)
   * [Multi-tenancy cluster-level administration](operation-guide/weka-native-multi-tenancy-management/multi-tenancy-cluster-level-administration.md)
   * [Multi-tenancy tenant-level administration](operation-guide/weka-native-multi-tenancy-management/multi-tenancy-tenant-level-administration.md)
+  * [Multi-tenancy maximums](operation-guide/weka-native-multi-tenancy-management/multi-tenancy-maximums.md)
 * [Expand and shrink cluster resources](operation-guide/expanding-and-shrinking-cluster-resources/README.md)
   * [Add a backend server](operation-guide/expanding-and-shrinking-cluster-resources/add-a-backend-server.md)
   * [Expand specific resources of a container](operation-guide/expanding-and-shrinking-cluster-resources/expansion-of-specific-resources.md)
