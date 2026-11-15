@@ -91,7 +91,7 @@ The following standard S3 APIs are supported for bucket and object management:
 | -------------------------------------------------------------------------------- | ------------------------------------------- |
 | Maximum number of buckets                                                        | 10000                                       |
 | Maximum object size (single PUT)                                                 | 5 TiB                                       |
-| Maximum object size (multipart upload)                                           | 48.8 TiB (10000 parts of 5 GiB)             |
+| Maximum object size (multipart upload)                                           | 50 TB                                       |
 | Maximum number of parts per upload                                               | 10000                                       |
 | Part numbers                                                                     | 1 to 10000 (inclusive)                      |
 | Part size                                                                        | 5 MiB to 5 GiB. The last part can be less than 5 MiB |
