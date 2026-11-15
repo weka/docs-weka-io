@@ -130,9 +130,9 @@ Adhere to the following considerations:
 
 * **Protocol separation**: Upgrading a WEKA cluster with a server used for more than one of the following protocols, NFS, SMB, or S3, is not permitted. If such a case arises, the upgrade process does not initiate and indicates the servers that require protocol separation. Contact the Customer Success Team to ensure only one additional protocol is installed on each server.
 * **Legacy NFS protocol**: If a legacy NFS protocol is implemented, contact the Customer Success Team. In this case, the upgrade is blocked.
-* **NFS file-locking prerequisite before upgrade:** Ensure the `rpc.statd` and `rpc-statd-notifiy` services are stopped on the WEKA servers. If not, run the following commands:\
-  `systemctl disable rpc-statd.service`\
-  `systemctl disable srpc-statd-notify-service`
+* **NFS file-locking prerequisite before upgrade:** Stop and mask the `rpc-statd` and `rpc-statd-notify` services on the WEKA servers. Masking prevents the services from starting again:\
+  `systemctl stop rpc-statd.service rpc-statd-notify.service`\
+  `systemctl mask rpc-statd.service rpc-statd-notify.service`
 * **S3 Cluster Creation**: If you plan to create an S3 cluster, it’s crucial to ensure the upgrade process is complete and all containers are up before initiating the creation.
 {% endhint %}
 
