@@ -51,7 +51,7 @@ The system uses an internal proxy with a default NAT subnet of **198.18.0.0/16**
    * **Network Space Name:** Enter a unique name for the network space (for example, `Eng_net`).
    * **VLAN ID:** Enter the VLAN ID assigned to this network boundary (for example, `100`).
 4. In the **IP Range** section, provide the following:
-   1. **IP Range:** Enter the starting and ending IP addresses for the network space. (Do not use the CIDR notation option.)
+   1. **IP Range:** Enter the starting and ending IP addresses for the network space. (Do not use the CIDR notation option.) IPs in this range are reserved for WEKA backend use only. Do not assign them to clients or any other resource.
    2. **Floating IP Range:** Enter the starting and ending addresses reserved for tenant NFS services, up to 8 addresses. Provide this range if the network space serves NFS for a tenant. A tenant cannot be assigned to an NFS interface group until its network space has floating IPs.
    3. **Netmask (Bits):** Provide the subnet mask bits (for example, `24`). Default: 16.
    4. **Gateway:** Provide an optional default gateway IP address to specify the routing exit point for traffic leaving the local network space. The gateway must be visible from all IPs in range.
