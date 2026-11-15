@@ -518,7 +518,7 @@ chmod +x filestats.sh
 
 **Script example output**
 
-Use the **Total Items** count from the script output to select the appropriate column in the sizing tables below. For example, 40 million objects falls under the 200+ million objects column.
+Use the **Total Items** count from the script output to find the matching filesystem size in the sizing tables below. For example, 40 million objects falls in the smallest size (up to 200 million objects).
 
 {% code overflow="wrap" %}
 ```
@@ -559,28 +559,23 @@ Each specification assumes approximately 10% monthly data growth over a 12 to 18
 Review and adjust catalog resource allocations every 6–9 months to account for filesystem growth. Run the `filestats.sh` script to get the current object count per filesystem, then use the sizing table to determine whether your existing resources still meet the requirements.
 
 {% hint style="info" %}
-**Capacity estimate:** An average file size of 1 MB yields approximately 1 million files per TB. Directories increase the total object count.
-
-Use this estimate as a baseline:
-
-* 200 TB: approximately 200 million files.
-* 500 TB: approximately 500 million files.
-* 1 PB: approximately 1 billion files.
+**Capacity estimate:** With an average file size of 1 MB, 1 TB holds approximately 1 million files. Directories add to the total object count. The capacity values in the table are based on this estimate.
 {% endhint %}
 
-| Parameter                   | Up to 200+ million objects / 200+ TB         | Up to 500+ million objects / 500+ TB         | Up to 1+ billion objects / 1+ PB         |
-| --------------------------- | -------------------------------------------- | -------------------------------------------- | ---------------------------------------- |
-| **Data service containers** | 5 total: 4 workers + 1 coordinator           | 10 total: 9 workers + 1 coordinator          | 10 total: 9 workers + 1 coordinator      |
-| **CPU**                     | 2 spare cores per server (minimum)           | 2 spare cores per server (minimum)           | 2 spare cores per server (minimum)       |
-| **Memory**                  | 32 + 5.5 GB free per server                  | 32 + 5.5 GB free per server                  | 64 + 5.5 GB free per server              |
-| **Disk (index filesystem)** | 150 GB – 500 GB (30 days – 1 year retention) | 250 GB – 1.5 TB (30 days – 1 year retention) | 1 TB – 5 TB (30 days – 1 year retention) |
+| Filesystem size                    | Data service containers         | Memory per dedicated server | Free memory per backend server | Index filesystem disk |
+| ---------------------------------- | ------------------------------- | --------------------------- | ------------------------------ | --------------------- |
+| Up to 200 million objects (200 TB) | 5 (4 workers + 1 coordinator)   | 64 GB                       | 37.5 GB                        | 200 GB – 1 TB         |
+| Up to 500 million objects (500 TB) | 10 (9 workers + 1 coordinator)  | 64 GB                       | 37.5 GB                        | 500 GB – 2.5 TB       |
+| Up to 1 billion objects (1 PB)     | 10 (9 workers + 1 coordinator)  | 128 GB                      | 69.5 GB                        | 1 TB – 5 TB           |
+| Up to 5 billion objects (5 PB)     | 25 (24 workers + 1 coordinator) | 128 GB                      | 69.5 GB                        | 5 TB – 25 TB          |
 
-\
-The following considerations apply to all deployment sizes:
+Keep the following in mind when sizing the deployment:
 
-* The catalog supports selective manual assignment of data service containers or automatic assignment of all backend servers. Coordinator and worker servers cannot be assigned manually.
+* Each server requires at least 2 spare CPU cores.
 * Deploy one data service container per server.
-* Disk sizing for the index filesystem depends on the snapshot retention period configured with `--retention-period`.
+* The index filesystem disk range covers a snapshot retention period of 30 days (lower value) to 1 year (upper value). Set the retention period with `--retention-period`.
+* The catalog supports selective manual assignment of data service containers or automatic assignment of all backend servers. Coordinator and worker servers cannot be assigned manually.
+* For filesystems larger than 5 PB, use the 5 PB row as the baseline and scale proportionally. For example, 10 PB requires twice the 5 PB resources, and 15 PB requires three times.
 
 ### Sizing for baseline indexing time
 
