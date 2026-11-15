@@ -47,7 +47,7 @@ The system uses an internal proxy with a default NAT subnet of **198.18.0.0/16**
    * **Network Space Name:** Enter a unique name for the network space (for example, `Eng_net`).
    * **VLAN ID:** Enter the VLAN ID assigned to this network boundary (for example, `100`).
 4. In the **IP Range** section, provide the following:
-   1. **IP Range:** Enter the starting and ending IP addresses for the network space. If the UI shows a CIDR notation option, do not use it.
+   1. **IP Range:** Enter the starting and ending IP addresses for the network space. If the UI shows a CIDR notation option, do not use it. IPs in this range are reserved for WEKA backend use only. Do not assign them to clients or any other resource.
    2. **Netmask (Bits):** Provide the subnet mask bits (for example, `24`). Default: 16.
    3. **Gateway:** Provide an optional default gateway IP address to specify the routing exit point for traffic leaving the local network space. The gateway must be visible from all IPs in range.
 
