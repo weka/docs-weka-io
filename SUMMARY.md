@@ -158,6 +158,9 @@
   * [Configure data catalog](weka-filesystems-and-object-stores/data-catalog/configure-data-catalog.md)
   * [Analyze storage distribution](weka-filesystems-and-object-stores/data-catalog/analyze-storage-distribution.md)
   * [Data catalog FAQ](weka-filesystems-and-object-stores/data-catalog/data-catalog-faq.md)
+* [Rich ACLs on the WEKA client](weka-filesystems-and-object-stores/rich-acls-on-the-weka-client/README.md)
+  * [Manage Rich ACLs on the WEKA client](weka-filesystems-and-object-stores/rich-acls-on-the-weka-client/manage-rich-acls-on-the-weka-client.md)
+  * [Rich ACL permission reference](weka-filesystems-and-object-stores/rich-acls-on-the-weka-client/rich-acl-permission-reference.md)
 
 ## Additional Protocols
 
