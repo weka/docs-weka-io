@@ -276,8 +276,6 @@
 
 * [NeuralMesh Observe overview](monitor-the-weka-cluster/neuralmesh-observe-overview/README.md)
   * [Export cluster metrics from Observe to Prometheus](monitor-the-weka-cluster/neuralmesh-observe-overview/export-cluster-metrics-to-prometheus.md)
-* [Hardware monitoring](monitor-the-weka-cluster/hardware-monitoring/README.md)
-  * [Manage hardware monitoring](monitor-the-weka-cluster/hardware-monitoring/manage-hardware-monitoring.md)
 * [WEKA Home - The WEKA support cloud](monitor-the-weka-cluster/the-wekaio-support-cloud/README.md)
   * [Local WEKA Home overview](monitor-the-weka-cluster/the-wekaio-support-cloud/local-weka-home-overview.md)
   * [Deploy Local WEKA Home on Kubernetes](monitor-the-weka-cluster/the-wekaio-support-cloud/deploy-local-weka-home-on-k8s/README.md)

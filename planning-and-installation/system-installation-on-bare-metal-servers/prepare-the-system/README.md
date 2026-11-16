@@ -25,7 +25,7 @@ Some of the examples contain version-specific information. The software is updat
 
 WPA completes part of the system preparation during installation. On servers installed with WPA, complete the remaining steps as follows. This table applies to WPA 1.2.1 and later.
 
-<table><thead><tr><th>Step</th><th width="190.76953125">Done by WPA</th><th>What to do on WPA servers</th></tr></thead><tbody><tr><td>1. Enable SR-IOV</td><td>No</td><td>Complete this step in the system BIOS.</td></tr><tr><td>2. Install NIC driver packages</td><td>Yes, for NVIDIA ConnectX</td><td>None.  WPA installs the latest NVIDIA DOCA package as of the WPA release date.</td></tr><tr><td>3. Set required kernel parameters</td><td>Yes</td><td>None.  WPA sets the parameters in <code>/etc/sysctl.d/90-weka-required.conf</code>.</td></tr><tr><td>4. Configure the networking</td><td>No</td><td>Complete this step with NetworkManager (<code>nmcli</code>), or with Netplan using <code>renderer: NetworkManager</code>.</td></tr><tr><td>5. Verify the network configuration</td><td>No</td><td>Complete this step by pinging each IP address on the high-speed network with jumbo frames.</td></tr><tr><td>6. Configure the clock synchronization</td><td>No</td><td>Complete this step with your preferred NTP client. WPA includes <code>chrony</code>.</td></tr><tr><td>7. Disable swap</td><td>Yes</td><td>None.  WPA installs without swap enabled.</td></tr><tr><td>8. Validate system readiness</td><td>No</td><td>Complete this step with the wekachecker tool in <code>/opt/tools/install</code>.</td></tr></tbody></table>
+<table><thead><tr><th>Step</th><th width="190.76953125">Done by WPA</th><th>What to do on WPA servers</th></tr></thead><tbody><tr><td>1. Enable SR-IOV</td><td>No</td><td>Complete this step in the system BIOS.</td></tr><tr><td>2. Install NIC driver packages</td><td>Yes, for NVIDIA ConnectX</td><td>None. WPA installs the latest NVIDIA DOCA package as of the WPA release date.</td></tr><tr><td>3. Set required kernel parameters</td><td>Yes</td><td>None. WPA sets the parameters in <code>/etc/sysctl.d/90-weka-required.conf</code>.</td></tr><tr><td>4. Configure the networking</td><td>No</td><td>Complete this step with NetworkManager (<code>nmcli</code>), or with Netplan using <code>renderer: NetworkManager</code>.</td></tr><tr><td>5. Verify the network configuration</td><td>No</td><td>Complete this step by pinging each IP address on the high-speed network with jumbo frames.</td></tr><tr><td>6. Configure the clock synchronization</td><td>No</td><td>Complete this step with your preferred NTP client. WPA includes <code>chrony</code>.</td></tr><tr><td>7. Disable swap</td><td>Yes</td><td>None. WPA installs without swap enabled.</td></tr><tr><td>8. Validate system readiness</td><td>No</td><td>Complete this step with the wekachecker tool in <code>/opt/tools/install</code>.</td></tr></tbody></table>
 
 ## 1. Enable SR-IOV in system BIOS <a href="#install-nic-drivers" id="install-nic-drivers"></a>
 
@@ -36,7 +36,7 @@ SR-IOV only needs to be enabled if any of the following statements are true:
 
 **Related topic**
 
-[enable-the-sr-iov.md](enable-the-sr-iov.md "mention")&#x20;
+[enable-the-sr-iov.md](enable-the-sr-iov.md "mention")
 
 ## 2. Install NIC driver packages <a href="#install-nic-drivers" id="install-nic-drivers"></a>
 
@@ -65,7 +65,7 @@ For additional details, refer to the NVIDIA ConnectX documentation.
 
 ### Broadcom
 
-See [Broadcom adapter setup for WEKA clients](https://app.gitbook.com/o/-L7Tp-Uy9BMSCSCx0MlK/sites/site_LBE3n/s/qDcZwR9zamxPsY03oTOq/~/edit/~/changes/55/planning-and-installation/system-installation-on-bare-metal-servers/prepare-the-system/broadcom-adapter-setup-for-weka-clients)
+See [Broadcom adapter setup for WEKA clients](https://app.gitbook.com/s/qDcZwR9zamxPsY03oTOq/planning-and-installation/system-installation-on-bare-metal-servers/prepare-the-system/broadcom-adapter-setup-for-weka-clients)
 
 ## 3. Set required kernel parameters <a href="#set-custom-kernel-parameters" id="set-custom-kernel-parameters"></a>
 
@@ -317,7 +317,7 @@ ignore-carrier=ib0,ib1
 
 ### Configure each dataplane interface with policy-based routes <a href="#configure-dual-network-links-with-policy-based-routing" id="configure-dual-network-links-with-policy-based-routing"></a>
 
-Policy-based routes are **required** for any Linux server that has two or more network interfaces connected to the high-speed network.&#x20;
+Policy-based routes are **required** for any Linux server that has two or more network interfaces connected to the high-speed network.
 
 Policy-based routes ensure that both the switches and the Linux servers agree on a solitary/uniquely-ranked path for each individual link on the high-speed network.
 
@@ -670,7 +670,7 @@ The `wekachecker`tool applies to all WEKA versions. From V4.0, the following val
 * Network Manager is disabled.
 {% endhint %}
 
-**On WPA servers, skip the first two steps and run wekachecker from `/opt/tools/install`.**&#x20;
+**On WPA servers, skip the first two steps and run wekachecker from `/opt/tools/install`.**
 
 To run the `wekachecker` program:
 
