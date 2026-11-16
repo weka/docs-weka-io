@@ -31,11 +31,13 @@ Hardware monitoring reads component health from the server's BMC.
    ```
 
    * Omit the BMC parameters when the monitor finds the BMC on its own.
+   * The command targets the server's SSD proxy container on its own; use `--container` to name a container explicitly.
+2. Apply the staged settings:
 
-   {% hint style="danger" %}
-   **INTERNAL, remove before publication. TBD (Ehud):** Which container to target with `--container`, and whether a restart or `weka local resources apply` is needed.
-   {% endhint %}
-2. Verify that the inventory lists the server's components:
+   ```bash
+   weka local resources apply
+   ```
+3. Verify that the inventory lists the server's components:
 
    ```bash
    weka local hardware list
@@ -91,14 +93,10 @@ A component that is still present is learned again on the next read.
 
 ## Reset the expected hardware
 
-Reset the expected hardware after a planned change to many components of a server. The monitor learns the components present at the time of the reset as the new expected hardware.
+Reset the expected hardware after a planned change to many components of a server, for example a sled or motherboard replacement. The monitor learns the components present at the time of the reset as the new expected hardware. After removing a single component, [forget that component](#forget-a-removed-component) instead.
 
 {% hint style="warning" %}
 After the reset, a component that is missing at the time of the reset is no longer reported as missing.
-{% endhint %}
-
-{% hint style="danger" %}
-**INTERNAL, remove before publication. TBD (Ehud):** When should a customer reset instead of forgetting a component? A motherboard or sled swap?
 {% endhint %}
 
 **Before you begin**

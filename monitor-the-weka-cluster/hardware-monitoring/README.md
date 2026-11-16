@@ -14,19 +14,15 @@ Hardware monitoring is supported on WEKApod 3 servers.
 
 ## Monitored components
 
-The inventory covers the components the BMC reports:
+The inventory covers the components the BMC reports. Each component has a type, which the CLI shows and accepts:
 
-* Drives
-* Memory modules
-* Processors
-* Network adapters, including the link state and speed of each port
-* Power supplies
-* Fans
-* Chassis and drive bays
-
-{% hint style="danger" %}
-**INTERNAL, remove before publication. TBD (Ehud):** Confirm the component list and the type names the CLI shows, for example `drive` and `power_supply`.
-{% endhint %}
+* Drives (`drive`)
+* Memory modules (`dimm`)
+* Processors (`processor`)
+* Network adapters (`nic`), including the link state and speed of each port
+* Power supplies (`power_supply`)
+* Fans (`fan`)
+* The chassis and its drive bays (`enclosure`)
 
 ## How monitoring works
 
@@ -37,10 +33,6 @@ The inventory covers the components the BMC reports:
    * A component that is missing from two consecutive reads is reported as not detected, 3 to 6 minutes after it was removed.
    * A component in the same slot with a new serial number is recorded as replaced.
 4. One container per server publishes the inventory to the cluster.
-
-{% hint style="danger" %}
-**INTERNAL, remove before publication. TBD (Ehud):** Is the 3-minute interval worth stating to customers?
-{% endhint %}
 
 ## Component states
 
@@ -53,9 +45,7 @@ The inventory covers the components the BMC reports:
 | `disabled` | The BMC reports the component as disabled. |
 | `missing` | The component was expected but is no longer reported. |
 
-{% hint style="danger" %}
-**INTERNAL, remove before publication. TBD (Ehud):** `identity-lost` appears as a reason, not a state. Document it?
-{% endhint %}
+A component in a state other than `ok` also shows a reason: `health_warning`, `health_critical`, `rollup_degraded` (a contained component reports the problem), `not_detected`, or `identity_lost`. A component that is present but whose identity, such as the serial number, can no longer be read is `critical` with the `identity_lost` reason.
 
 ## Alerts and events
 
