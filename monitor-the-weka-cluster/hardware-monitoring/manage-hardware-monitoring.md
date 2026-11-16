@@ -9,7 +9,7 @@ description: Enable hardware monitoring, view the hardware inventory of a server
 Hardware monitoring reads component health from the server's BMC.
 
 {% hint style="danger" %}
-**INTERNAL, remove before publication. TBD (Ehud):** Is monitoring on by default on WEKApod 3? If so, this task becomes a verification step.
+**INTERNAL, remove before publication. TBD (Sibrina):** Is monitoring on by default on WEKApod 3, or does anything need to be activated? If on by default, this task becomes a verification step. (Redirected from Ehud, 16 Nov.)
 {% endhint %}
 
 **Before you begin**
@@ -19,7 +19,7 @@ Hardware monitoring reads component health from the server's BMC.
 * Root access on the server.
 
 {% hint style="danger" %}
-**INTERNAL, remove before publication. TBD (Ehud):** Minimum BMC firmware or Redfish version?
+**INTERNAL, remove before publication. TBD (Sibrina):** Minimum BMC firmware or Redfish version? (Redirected from Ehud, 16 Nov.)
 {% endhint %}
 
 **Procedure**
@@ -66,7 +66,7 @@ View the inventory of any server from anywhere in the cluster, or of the local s
      Add `-v` to show the last-seen time, component ID, PCI address, MAC address, and port link state.
 
 {% hint style="danger" %}
-**INTERNAL, remove before publication. TBD (Ehud):** Output samples, reconstructed from the CLI renderer or taken from a WEKApod 3 cluster.
+**INTERNAL, remove before publication. TBD (Sibrina):** Output samples, taken from a WEKApod 3 cluster. (Redirected from Ehud, 16 Nov.)
 {% endhint %}
 
 ## Forget a removed component

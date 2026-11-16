@@ -64,16 +64,6 @@ Events: HardwareComponentStateWorsened, HardwareComponentStateImproved, Hardware
 
 The CLI commands and the alerts work without an internet connection. To receive the alerts outside the cluster, deploy Local WEKA Home and create an integration: Email (SMTP), PagerDuty, SNMP trap, or Syslog.
 
-{% hint style="danger" %}
-**INTERNAL, remove before publication. TBD (Ehud):** Does Local WEKA Home show the hardware inventory, or only receive the alerts?
-{% endhint %}
-
-## Hardware monitoring in NeuralMesh Observe
-
-{% hint style="danger" %}
-**INTERNAL, remove before publication. TBD (Ehud):** Inventory view and alerts view, with screenshots from a 6.1 cluster on physical servers connected to Cloud WEKA Home.
-{% endhint %}
-
 **Related topics**
 
 [manage-hardware-monitoring.md](manage-hardware-monitoring.md "mention")
