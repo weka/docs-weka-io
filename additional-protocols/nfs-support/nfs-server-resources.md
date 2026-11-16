@@ -10,11 +10,11 @@ Each NFS container serves clients within three resources: client connections, op
 
 The maximum of each resource applies to every NFS container on its own, not to the cluster, a tenant, or an export.
 
-| Resource | Default | Accepted values | Setting |
-| --- | --- | --- | --- |
-| Client connections | Automatic: 1024 for each NFS server. With NFS multi-tenancy, the automatic value is sized from the number of NFS containers. | `0` (automatic), or 1024 to 65536 | `--max-client-connections` |
-| Open files | 500000 | `0` (default), or 10000 to 10000000 | `--max-open-fds` |
-| Memory ceiling | 32 GiB | 2 GiB to 512 GiB, in whole GiB | `--max-memory` |
+| Resource           | Default                                                                                                                      | Accepted values                     | Setting                    |
+| ------------------ | ---------------------------------------------------------------------------------------------------------------------------- | ----------------------------------- | -------------------------- |
+| Client connections | Automatic: 1024 for each NFS server. With NFS multi-tenancy, the automatic value is sized from the number of NFS containers. | `0` (automatic), or 1024 to 65536   | `--max-client-connections` |
+| Open files         | 500000                                                                                                                       | `0` (default), or 10000 to 10000000 | `--max-open-fds`           |
+| Memory ceiling     | 32 GiB                                                                                                                       | 2 GiB to 512 GiB, in whole GiB      | `--max-memory`             |
 
 ## When a change to a maximum applies
 
@@ -28,15 +28,21 @@ Each NFS server process has a file descriptor limit equal to the client connecti
 
 The state of each resource shows how close an NFS container is to the maximum, so you can act before the container reaches it.
 
-| State | Usage of the maximum |
-| --- | --- |
-| `OK` | Below 70% |
-| `HIGH` | 70% or more |
-| `LIMIT` | 90% or more |
+| State   | Usage of the maximum |
+| ------- | -------------------- |
+| `OK`    | Below 70%            |
+| `HIGH`  | 70% or more          |
+| `LIMIT` | 90% or more          |
 
-The cluster raises an alert for each resource that approaches its maximum. See [list-of-alerts-and-corrective-actions.md](../../operation-guide/alerts/list-of-alerts-and-corrective-actions.md "mention").
+The cluster raises an alert for each resource that approaches its maximum.
 
-The `nfs_resources` statistics category records the same values over time. See [statistics-list.md](../../operation-guide/statistics/statistics-list.md "mention").
+The `nfs_resources` statistics category records the same values over time.
+
+**Related topics**
+
+[list-of-alerts-and-corrective-actions.md](../../operation-guide/alerts/list-of-alerts-and-corrective-actions.md "mention")
+
+&#x20;[statistics-list.md](../../operation-guide/statistics/statistics-list.md "mention")
 
 ## Behavior at a maximum
 

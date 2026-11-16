@@ -60,12 +60,12 @@ File ownership, ACLs, and Kerberos access depend on mapping each NFS user to the
 
 Each NFS container runs its own identity service (SSSD), configured with `weka nfs ldap`. Choose the mode that matches your directory:
 
-| Mode | Command | Directory | How the cluster connects to the directory |
-| --- | --- | --- | --- |
-| Active Directory with Kerberos | `weka nfs ldap setup-ad`, after `weka nfs kerberos registration setup-ad` | Active Directory | The machine account of the NFS service, through its keytab |
-| Active Directory without Kerberos | `weka nfs ldap setup-ad-nokrb` | Active Directory | A machine account that the command creates, through its keytab |
-| OpenLDAP | `weka nfs ldap setup-openldap` | OpenLDAP or another RFC 2307 LDAP directory | A read-only bind user and its password |
-| On-host | `weka nfs ldap setup-onhostldap` | The directory that the server's own SSSD uses | The configuration of each server |
+| Mode                              | Command                                                                   | Directory                                     | How the cluster connects to the directory                      |
+| --------------------------------- | ------------------------------------------------------------------------- | --------------------------------------------- | -------------------------------------------------------------- |
+| Active Directory with Kerberos    | `weka nfs ldap setup-ad`, after `weka nfs kerberos registration setup-ad` | Active Directory                              | The machine account of the NFS service, through its keytab     |
+| Active Directory without Kerberos | `weka nfs ldap setup-ad-nokrb`                                            | Active Directory                              | A machine account that the command creates, through its keytab |
+| OpenLDAP                          | `weka nfs ldap setup-openldap`                                            | OpenLDAP or another RFC 2307 LDAP directory   | A read-only bind user and its password                         |
+| On-host                           | `weka nfs ldap setup-onhostldap`                                          | The directory that the server's own SSSD uses | The configuration of each server                               |
 
 The identity configuration is stored on the NFS configuration filesystem, so every NFS container uses the same configuration. Set the configuration filesystem before you configure any mode.
 
@@ -109,7 +109,13 @@ The ACL flavor sets how NFS enforces ACLs, and whether other protocols can share
 
 ### Where ACLs are set
 
-The default ACL flavor is part of the NFS global settings, and each NFS permission (export) can set its own ACL flavor. Changes to ACL settings may require restarting the NFS containers. ACL flavors and related configurations are stored in the configuration filesystem, so the permissions are managed consistently across the cluster. See [#configure-the-nfs-global-settings](manage-nfs-using-the-cli.md#configure-the-nfs-global-settings "mention") and [#manage-nfs-client-permissions](manage-nfs-using-the-cli.md#manage-nfs-client-permissions "mention").
+The default ACL flavor is part of the NFS global settings, and each NFS permission (export) can set its own ACL flavor. Changes to ACL settings may require restarting the NFS containers. ACL flavors and related configurations are stored in the configuration filesystem, so the permissions are managed consistently across the cluster.
+
+**Related topics**
+
+[#configure-the-nfs-global-settings](manage-nfs-using-the-cli.md#configure-the-nfs-global-settings "mention")
+
+[#manage-nfs-client-permissions](manage-nfs-using-the-cli.md#manage-nfs-client-permissions "mention").
 
 ### Considerations
 

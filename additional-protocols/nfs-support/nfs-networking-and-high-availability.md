@@ -33,11 +33,11 @@ Floating IP addresses used by the NFS service are configured automatically on th
 
 ### Maximums
 
-| Object | Maximum |
-| --- | --- |
-| Interface groups | 10 |
-| Servers in an interface group | 50 |
-| Floating IPs in the cluster | 200 |
+| Object                        | Maximum |
+| ----------------------------- | ------- |
+| Interface groups              | 10      |
+| Servers in an interface group | 50      |
+| Floating IPs in the cluster   | 200     |
 
 {% hint style="info" %}
 **Multi-tenancy:** These limits apply to the root organization. A tenant network space supports a maximum of 8 floating IP addresses, and a tenant is assigned to an interface group rather than owning one. See [manage-nfs-for-tenants.md](../../operation-guide/weka-native-multi-tenancy-management/manage-nfs-for-tenants.md "mention").
@@ -51,7 +51,11 @@ A round-robin DNS name spreads the NFS clients across the servers that serve NFS
 Set the TTL (Time to Live) for all records assigned to the NFS servers to 0 (Zero). This action ensures that the client or the DNS server does not cache the IP.
 {% endhint %}
 
-NFS clients mount with the standard NFS stack of their operating system. The NFS server address in the mount command is the round-robin DNS name. See [supported-nfs-client-mount-parameters.md](supported-nfs-client-mount-parameters.md "mention").
+NFS clients mount with the standard NFS stack of their operating system. The NFS server address in the mount command is the round-robin DNS name.
+
+**Related topic**
+
+[supported-nfs-client-mount-parameters.md](supported-nfs-client-mount-parameters.md "mention")
 
 ## Scalability, load balancing, and resiliency
 

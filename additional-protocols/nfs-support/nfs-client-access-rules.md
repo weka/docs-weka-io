@@ -8,11 +8,11 @@ description: >-
 
 Client access rules decide which NFS clients can mount an export and with which access. An NFS export grants access to client groups. Each client group holds rules that describe the clients that belong to it. A rule matches a client in one of three ways:
 
-| Rule type | Example | Matches a client when |
-| --- | --- | --- |
-| IP address or subnet | `10.1.2.0/24` | The client's source address is inside the network. |
-| DNS name or pattern | `node07.lab.example.com`, `*.lab.example.com` | A hostname resolves to the client's address, or a pattern matches the client's reverse DNS name. |
-| Netgroup | `@gpu-nodes` | The client's reverse DNS name is a member of the netgroup. |
+| Rule type            | Example                                       | Matches a client when                                                                            |
+| -------------------- | --------------------------------------------- | ------------------------------------------------------------------------------------------------ |
+| IP address or subnet | `10.1.2.0/24`                                 | The client's source address is inside the network.                                               |
+| DNS name or pattern  | `node07.lab.example.com`, `*.lab.example.com` | A hostname resolves to the client's address, or a pattern matches the client's reverse DNS name. |
+| Netgroup             | `@gpu-nodes`                                  | The client's reverse DNS name is a member of the netgroup.                                       |
 
 A client group can mix all three rule types. Listings show a netgroup rule as `@<netgroup name>`.
 
@@ -20,12 +20,12 @@ A client group can mix all three rule types. Listings show a netgroup rule as `@
 
 The right rule type depends on how many clients the rule must cover and which DNS records your environment keeps. Each rule type relies on different DNS records and covers a different number of clients:
 
-| Rule type | Clients per rule | DNS records the rule relies on |
-| --- | --- | --- |
-| IP address or subnet | All addresses in the network | None |
-| DNS name | One | A forward (A) record for the name |
-| DNS pattern | Any number of names that match the pattern | A reverse (PTR) record for each client address |
-| Netgroup | Up to 512 members per netgroup | A reverse (PTR) record for each member address |
+| Rule type            | Clients per rule                           | DNS records the rule relies on                 |
+| -------------------- | ------------------------------------------ | ---------------------------------------------- |
+| IP address or subnet | All addresses in the network               | None                                           |
+| DNS name             | One                                        | A forward (A) record for the name              |
+| DNS pattern          | Any number of names that match the pattern | A reverse (PTR) record for each client address |
+| Netgroup             | Up to 512 members per netgroup             | A reverse (PTR) record for each member address |
 
 Each netgroup rule counts as one rule toward the client group rule maximum, regardless of the number of members.
 
@@ -59,25 +59,29 @@ Check the requirements before you create netgroups, and plan the netgroups withi
 ### Requirements
 
 * The cluster upgrade is complete on all containers. Adding netgroups, members, and netgroup rules is available after every container runs the upgraded version.
-* An NFS configuration filesystem is set. See [#dedicated-filesystem-requirement-for-cluster-wide-persistent-protocol-configurations](../additional-protocols-overview.md#dedicated-filesystem-requirement-for-cluster-wide-persistent-protocol-configurations "mention").
+* An NFS configuration filesystem is set.
 * Changing netgroups requires the Tenant Admin role or higher. Listing and showing netgroups requires the Read Only role or higher.
 
 {% hint style="info" %}
 **Multi-tenancy:** When NFS multi-tenancy is enabled, netgroups are available only in the root tenant. See [manage-nfs-for-tenants.md](../../operation-guide/weka-native-multi-tenancy-management/manage-nfs-for-tenants.md "mention").
 {% endhint %}
 
+**Related topic**
+
+&#x20;[#dedicated-filesystem-requirement-for-cluster-wide-persistent-protocol-configurations](../additional-protocols-overview.md#dedicated-filesystem-requirement-for-cluster-wide-persistent-protocol-configurations "mention")
+
 ### Maximums
 
-| Object | Maximum |
-| --- | --- |
-| Netgroups | 128 |
-| Members per netgroup | 512 |
-| Members across all netgroups | 8,192 |
-| Hostnames in one member add or remove request | 512 |
-| Netgroup name length | 64 characters |
-| Member hostname length | 253 characters |
-| Host list file size | 1 MiB |
-| Client group rules, across all client groups | 512 |
+| Object                                        | Maximum        |
+| --------------------------------------------- | -------------- |
+| Netgroups                                     | 128            |
+| Members per netgroup                          | 512            |
+| Members across all netgroups                  | 8,192          |
+| Hostnames in one member add or remove request | 512            |
+| Netgroup name length                          | 64 characters  |
+| Member hostname length                        | 253 characters |
+| Host list file size                           | 1 MiB          |
+| Client group rules, across all client groups  | 512            |
 
 A netgroup name starts with a letter or an underscore, and contains only letters, digits, periods (`.`), underscores (`_`), and hyphens (`-`). Names are unique regardless of letter case. Member hostnames are stored in lowercase.
 
