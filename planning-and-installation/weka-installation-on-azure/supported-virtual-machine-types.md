@@ -108,6 +108,7 @@ The following table shows the mapping for a few more VM sizes:
 | VM series | VM size                                                                                                               |
 | --------- | --------------------------------------------------------------------------------------------------------------------- |
 | Lsv3      | Standard\_L8s\_v3, Standard\_L16s\_v3, Standard\_L32s\_v3, Standard\_L48s\_v3, Standard\_L64s\_v3, Standard\_L80s\_v3 |
+| Lsv4      | Standard\_L8s\_v4, Standard\_L16s\_v4, Standard\_L32s\_v4, Standard\_L48s\_v4, Standard\_L64s\_v4, Standard\_L80s\_v4, Standard\_L96s\_v4 |
 
 ### High performance optimized
 
@@ -115,7 +116,7 @@ The following table shows the mapping for a few more VM sizes:
 | --------- | ------------------------------------------------------------------------- |
 | HBv4      | Standard\_HB176rs\_v4, Standard\_HB176-24rs\_v4, Standard\_HB176-96rs\_v4 |
 | HBv3      | Standard\_HB120rs\_v3                                                     |
-| HBv5      | Standard\_HB368rs\_v5 (UDP only)                                          |
+| HBv5      | Standard\_HB368rs\_v5                                                     |
 | HX        | Standard\_HX176rs                                                         |
 
 ### GPU - accelerated compute
