@@ -46,10 +46,6 @@ Resetting the debug level applies to all NFS servers and requires the Cluster Ad
 
 While a persisted level is above `EVENT`, the cluster raises the `NfsDebugLevelElevated` alert. Each persisted change and reset is recorded in the `NfsDebugLevelChangedEvent` event.
 
-{% hint style="danger" %}
-**INTERNAL, remove before publication. TBD (Hemant):** Confirm the roles in the table. The CLI help and the default `weka` CLI path accept Tenant Admin for transient and container sets, but the debug-level guide says every set requires Cluster Admin, and the legacy API path (`--api v1`) requires Cluster Admin for every set.
-{% endhint %}
-
 **Related topics**
 
 [Manage traces and protocols debug level using the GUI](manage-traces-and-protocols-debug-level-using-the-gui.md)
