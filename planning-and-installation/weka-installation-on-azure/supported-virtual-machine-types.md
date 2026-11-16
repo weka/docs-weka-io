@@ -34,10 +34,6 @@ The following table lists the VM sizes applied by the Terraform package on the b
 | Standard\_L80s\_v4  | 80   | 640          | 10x1.92 TB | 8        | 36000     |
 | Standard\_L96s\_v4  | 96   | 768          | 12x1.92 TB | 8        | 41000     |
 
-{% hint style="danger" %}
-**INTERNAL, remove before publication. TBD (Shai, Cloud team):** Is Lsv4 also supported as a client (no dedicated ticket)? Open: WEKAPP-665044 (L64s\_v4 single-client read), WEKAPP-666287 (clusterization crash on L32s\_v4 and L64s\_v4).
-{% endhint %}
-
 {% hint style="info" %}
 Using the Azure Console, the client instances can have different virtual machine types provisioned separately from the WEKA cluster.
 {% endhint %}
@@ -122,10 +118,6 @@ The following table shows the mapping for a few more VM sizes:
 | HBv3      | Standard\_HB120rs\_v3                                                     |
 | HBv5      | Standard\_HB368rs\_v5                                                     |
 | HX        | Standard\_HX176rs                                                         |
-
-{% hint style="danger" %}
-**INTERNAL, remove before publication. TBD (Shai):** Standard\_HB368rs\_v5 passed over UDP; DPDK failed on MANA (CLOUD-3332). Does DPDK work on 6.1, so that "(UDP only)" can be removed?
-{% endhint %}
 
 ### GPU - accelerated compute
 
