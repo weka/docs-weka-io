@@ -8,7 +8,7 @@ description: >-
 
 Asynchronous replication is a native, cluster-to-cluster filesystem replication solution that synchronizes data and metadata directly between a source cluster and a target cluster. Replication transfers incremental snapshot deltas of the source filesystem on a configurable interval, without disrupting client access to the source.
 
-The main decision is how much data the target holds: the whole filesystem, only its metadata, or selected directories. Set this per pair with `--copy-path`, and change it later without recreating the pair. A full copy needs a target at least the size of the source. A selective copy can be much smaller, sized for the working set. If you plan to attach an object store to the target filesystem, use a full copy.
+The main decision is how much data the target holds: the whole filesystem, only its metadata, or selected directories. Set the replication policy for each pair. For Selective Replication, specify the directories to pre-copy. You can change these settings later without recreating the pair. A Full Data Replication pair needs a target at least the size of the source. A Selective Replication pair can be much smaller, sized for the working set.
 
 ## When to use asynchronous replication
 
@@ -78,7 +78,7 @@ A full data copy needs a target at least the size of the source filesystem. The 
 
 A selective copy can be far smaller. Size it for the working set, which includes the directories named in `--copy-path`, plus headroom.
 
-A working-set target runs at a high fill level by design. When it approaches full, the system returns hydrated data to lazy mode (dehydration). Keep the working set below the dehydration threshold, or the target re-fetches data it has just released. See [Data copy and hydration](./#data-copy-and-hydration).
+A working-set target runs at a high fill level by design. When it approaches full, the system returns hydrated data to lazy mode (dehydration). Keep the working set below the dehydration threshold, or the target re-fetches data it has just released. See [Considerations](./#considerations).
 
 **By target cluster capacity:**
 
@@ -98,61 +98,59 @@ When the target filesystem runs out of space, the result depends on what the cyc
 
 ## Considerations
 
-{% hint style="warning" %}
-Replication is asynchronous. Expect a lag of at least the replication interval. The target is always at least 5 minutes behind the source, and writes made after the last replicated snapshot are lost on failover.
-{% endhint %}
+**Limits**
 
-### Target filesystem
-
-* The replication process creates the target filesystem during the first replication cycle. You cannot replicate to a filesystem that already exists.
-* The target filesystem is created in the filesystem group that has the same name as the group of the source filesystem. That group must already exist on the target cluster.
-* The target filesystem is write-protected while the replication pair is active. Only the replication process writes to it, and users and applications can read it.
-* Creating a manual snapshot on the target filesystem halts replication and moves the pair to the error state.
-* Inode numbers on the target filesystem can differ from the source filesystem. They stay the same across replication cycles.
-* A target filesystem with Data Catalog indexing enabled is not supported.
-* If you attach an object store to the target filesystem, use a full copy (`--copy-path full`). Only a full copy can place replicated data in the target's object store. A selective copy, metadata only (`--copy-path none`) or critical paths, brings data to the target's SSD only and is not supported on a tiered target.
-
-To write to the target filesystem, hydrate all of its data, remove the replication pair, and then run `weka fs update <name> --access rw`.
-
-### Failover
-
-* Failover is manual. The system does not promote the target filesystem automatically, and it does not fail back. To return to the original source cluster, see [Fail back to the original source cluster](manage-asynchronous-replication.md#fail-back-to-the-original-source-cluster).
-* The target cluster does not fail over automatically if its S3 endpoint becomes degraded.
-
-### Source filesystem
-
-* A tiered source filesystem is supported. The target filesystem is created SSD-only. For a source with 100 TB of SSD capacity and 500 TB of total capacity, set `--target-total-capacity 500TB`. The target needs 500 TB of SSD capacity.
-* A source filesystem with Data Catalog indexing enabled is supported.
-
-### Snapshots and scheduling
-
-* The number of snapshots to keep ranges from 2 to 25. Retaining more snapshots requires more storage.
-* Avoid a snapshot interval shorter than 30 minutes on a filesystem that also has a replication schedule. If snapshot deletion overlaps the start of a replication cycle, the target can fall further behind than the scheduled interval.
-* Each cycle ends by deleting the snapshots beyond the `--snapshots-to-keep` limit, on the target and then on the source. By default, the cluster runs one snapshot deletion at a time across all filesystems, so this step waits for other deletions to finish. While it waits, a paused pair shows `PAUSING`. Remove the pair after the deletion finishes.
-* The **anchor snapshot** is the last live snapshot in a replication pair. It remains on the filesystem after you remove the replication pair and the cluster link, and you cannot delete it.
-
-### Data copy and hydration
-
-* Changing the policy from Selective copy - metadata only to Full data copy or Selective copy - critical paths does not copy files that were never hydrated. Hydrate those files before you change the policy.
-* Dehydration on the target filesystem starts when it uses 95% of its SSD capacity and stops when usage falls to 90%. To release data outside these thresholds, run `weka replication fs-pair release`
-* The system checks the syntax of each copy path when you add or update a pair. A copy path that does not exist in the filesystem is skipped in each cycle, and the system raises a `ReplicaSnapshotCopyPathMissing` event. To correct the path, run `weka replication fs-pair update`.
-
-### Pair topology
-
-* A filesystem can belong to one replication pair only.
-* A target filesystem cannot be the source of another pair, so cascading replication (A to B to C) is not supported.
-
-### Scale limits
-
-* A cluster can have at most **8 cluster links**.
-* A cluster can be the source of at most **8 replication pairs**. The limit counts only the pairs that replicate from the cluster.
-* A filesystem can have at most **8 replica anchors**.
+| Item                                 | Limit                                                                                |
+| ------------------------------------ | ------------------------------------------------------------------------------------ |
+| Cluster links per cluster            | 8                                                                                    |
+| Replication pairs per source cluster | 8. Only the pairs that replicate from the cluster count.                             |
+| Replication pairs per filesystem     | 1                                                                                    |
+| Replica anchors per filesystem       | 8                                                                                    |
+| Snapshots to keep per pair           | 2 to 25. Retaining more snapshots requires more storage.                             |
+| Replication interval                 | 5 minutes to 30 days                                                                 |
+| Copy paths per pair                  | 10. Each path up to 1,023 characters, and all paths together up to 2,048 characters. |
 
 In a fan-in topology, where several clusters replicate to one target, the target is bounded by its 8 cluster links.
 
-### Deployment
+**Target filesystem and failover**
 
-* You can view and manage replication links and pairs in the GUI from **Manage > Replication**, in the **Replication Dashboard** and **Replication Links** tabs. The procedures in this section use the CLI.
+* The replication process creates the target filesystem during the first replication cycle. You cannot replicate to a filesystem that already exists.
+* You can mount the target filesystem only after the first replication cycle completes.
+* The target filesystem is created in the filesystem group that has the same name as the group of the source filesystem. That group must already exist on the target cluster.
+* The target filesystem is write-protected while the replication pair is active. Only the replication process writes to it, and users and applications can read it. To write to it, hydrate all of its data, remove the replication pair, and then run `weka fs update <name> --access rw`.
+* A target filesystem cannot be the source of another pair, so cascading replication (A to B to C) is not supported.
+* Creating a manual snapshot on the target filesystem halts replication and moves the pair to the error state.
+* Inode numbers on the target filesystem can differ from the source filesystem. They stay the same across replication cycles.
+* Rich ACL enforcement on the source filesystem does not carry over to the target filesystem.
+* A target filesystem with Data Catalog indexing enabled is not supported.
+* If you attach an object store to the target filesystem, use a full copy (`--copy-path full`). Only a full copy can place replicated data in the target's object store. A selective copy, metadata only (`--copy-path none`) or critical paths, brings data to the target's SSD only and is not supported on a tiered target.
+* Failover is manual. The system does not promote the target filesystem automatically, and it does not fail back. To return to the original source cluster, see [Fail back to the original source cluster](manage-asynchronous-replication.md#fail-back-to-the-original-source-cluster).
+* The target cluster does not fail over automatically if its S3 endpoint becomes degraded.
+
+**Source filesystem and data copy**
+
+* A tiered source filesystem is supported. The target filesystem is SSD-only. For a source with 100 TB of SSD capacity and 500 TB of total capacity, set `--target-total-capacity 500TB`. The target needs 500 TB of SSD capacity.
+* A source filesystem with Data Catalog indexing enabled is supported.
+* Changing the policy from Selective copy - metadata only to Full data copy or Selective copy - critical paths does not copy files that were never hydrated. Hydrate those files before you change the policy.
+* A selective copy can leave a file partly hydrated: part of its data is on the target, and the rest is retrieved from the source when the file is accessed.
+* Dehydration on the target filesystem starts when it uses 95% of its SSD capacity and stops when usage falls to 90%. To release data outside these thresholds, run `weka replication fs-pair release`.
+* The system checks the syntax of each copy path when you add or update a pair. A copy path that does not exist in the filesystem is skipped in each cycle, and the system raises a `ReplicaSnapshotCopyPathMissing` event. To correct the path, run `weka replication fs-pair update`.
+
+**Snapshots**
+
+* Avoid a snapshot interval shorter than 30 minutes on a filesystem that also has a replication schedule. If snapshot deletion overlaps the start of a replication cycle, the target can fall further behind than the scheduled interval.
+* The **anchor snapshot** is the last live snapshot in a replication pair. It remains on the filesystem after you remove the replication pair and the cluster link, and you cannot delete it.
+* Each cycle ends by deleting the snapshots beyond the `--snapshots-to-keep` limit, on the target and then on the source. By default, the cluster runs one snapshot deletion at a time across all filesystems, so this step waits for other deletions to finish. While it waits, a paused pair shows `PAUSING`. Remove the pair after the deletion finishes.
+
+**Deployment**
+
 * Replication is not supported on servers that run the NFS or SMB protocols, because the S3 protocol cannot be combined with NFS or SMB.
-* Selective copy - critical paths (`--copy-path` with specific directories) requires a Data Services container on the target cluster.
+* Selective copy - critical paths requires a Data Services container on the target cluster. Set the paths in **Paths to Pre-Copy** in the GUI, or with `--copy-path` in the CLI.
 * To replicate an encrypted filesystem, both clusters must use the same key management service (KMS).
+* Keep the clocks of the two clusters synchronized to within 5 minutes of each other, for example with NTP.
+
+**Related topics**
+
+[Manage asynchronous replication using the GUI](manage-asynchronous-replication-using-the-gui.md)
+
+[Manage asynchronous replication using the CLI](manage-asynchronous-replication.md)

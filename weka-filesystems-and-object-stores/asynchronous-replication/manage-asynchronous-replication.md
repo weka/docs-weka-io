@@ -4,7 +4,7 @@ description: >-
   clusters.
 ---
 
-# Manage asynchronous replication
+# Manage asynchronous replication using the CLI
 
 All procedures require ClusterAdmin privileges. Manage asynchronous replication through this workflow:
 
@@ -22,6 +22,8 @@ Prepare both clusters for replication. Replication traffic passes through the S3
 
 **Before you begin**
 
+* Ensure the clusters can reach each other over the management network (port 14000 by default) and over the S3 port of each cluster (9000 by default).
+* Keep the clocks of the two clusters synchronized to within 5 minutes of each other, for example with NTP.
 * Ensure the network between the clusters meets the requirements in [Network requirements for asynchronous replication](network-requirements-for-asynchronous-replication.md).
 
 **Procedure**
