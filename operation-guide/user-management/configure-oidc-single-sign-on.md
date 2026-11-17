@@ -141,7 +141,6 @@ The cluster rechecks an OIDC user with Entra ID when the session's access token 
 
 The access token of an OIDC or LDAP user lasts at most the revalidation interval. Default: 5 minutes. To change it, see [Manage token expiration](../../security/manage-token-expiration.md).
 
-## Considerations
-
-* Microsoft Entra ID is the only supported identity provider.
-* The cluster checks Entra ID reachability when users sign in or refresh a session. The provider events appear only then.
+{% hint style="info" %}
+The cluster contacts Entra ID when users sign in and when a session refreshes, so the provider reachability events appear at those moments.
+{% endhint %}
