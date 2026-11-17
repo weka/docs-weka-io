@@ -19,6 +19,8 @@ Make sure the cluster meets these requirements before you deploy the NFS service
 * **Configuration filesystem:** A persistent cluster-wide configuration filesystem is required for the protocol's internal operations using NFSv4 or Kerberos integration.
 * **Interface groups:** An interface group provides the floating IP addresses that NFS clients connect to, and moves them to a healthy server when a server fails. An interface group requires a minimum of two servers.
 * **Round-robin DNS:** Resolve a round-robin DNS name to the floating IPs, with a TTL of 0, and mount the NFS clients by that name.
+* **File-locking services:** Stop and mask the operating system's `rpc-statd` and `rpc-statd-notify` services on each server that runs the WEKA NFS service, and keep them masked after upgrades.
+* **NFS mounts:** Do not mount NFS filesystems, WEKA or external, on a server that runs the WEKA NFS service.
 
 **Related topics**
 
