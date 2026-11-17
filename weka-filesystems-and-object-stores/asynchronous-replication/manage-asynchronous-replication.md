@@ -22,7 +22,7 @@ Prepare both clusters for replication. Replication traffic passes through the S3
 
 **Before you begin**
 
-* Ensure the clusters can reach each other over the management network (port 14000 by default) and over the S3 port of each cluster.
+* Ensure the network between the clusters meets the requirements in [Network requirements for asynchronous replication](network-requirements-for-asynchronous-replication.md).
 
 **Procedure**
 
@@ -99,6 +99,8 @@ Use `--peer-host` and `--peer-port` to reach the other cluster for this run when
 
 If a different cluster answers at the recorded address, the refresh stops. Remove the link and add it again.
 
+To confirm replication after you refresh a link, write data to a source filesystem and check that **Last Replication** advances in `weka replication fs-pair`.
+
 ## Create a replication pair
 
 Create a replication pair between a local filesystem and a filesystem on a linked cluster, and define its replication policy.
@@ -141,7 +143,7 @@ The target filesystem is created automatically on the target cluster during the 
 
 The following parameters apply to `weka replication fs-pair add`. They do not apply to `weka replication fs-pair`.
 
-<table><thead><tr><th width="266.5703125">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>--source-filesystem</code></td><td>Name of the local source filesystem.</td></tr><tr><td><code>--link-id</code></td><td>ID of the replication link to the target cluster, as shown by <code>weka replication link</code>.</td></tr><tr><td><code>--target-filesystem</code></td><td>Name of the filesystem on the remote cluster. It can be the same as the source filesystem name.</td></tr><tr><td><code>--interval</code></td><td>Replication interval, for example, <code>5m</code> or <code>1h</code>. From 5 minutes to 30 days.</td></tr><tr><td><code>--copy-path</code></td><td>Specifies up to 10 paths to copy proactively. Each path can be up to 1,023 characters long, and all paths together up to 2,048 characters. Separate paths with commas or repeat the option. Use <code>full</code>, <code>all</code>, or <code>/</code> to copy all data. Use <code>none</code> or <code>null</code> to replicate metadata only. Default: metadata-only replication.</td></tr><tr><td><code>--access-strategy</code></td><td>Controls when a target snapshot becomes accessible. <code>INSTANT_ACCESS</code> (default) exposes the snapshot immediately. Data not copied locally is retrieved on demand. <code>COPY_FIRST</code> exposes the snapshot only after the <code>--copy-path</code> data is local.</td></tr><tr><td><code>--apply-strategy</code></td><td>Controls when the target applies a replicated snapshot. <code>AUTOMATIC</code> applies the snapshot after the prerequisite phase completes.</td></tr><tr><td><code>--snapshots-to-keep</code></td><td>Number of snapshots to retain, from 2 to 25. Default: 3. Retaining more snapshots requires more storage. Enforced only while the pair is running; see <a href="manage-asynchronous-replication.md#pause-and-resume-replication">Pause and resume replication</a>.</td></tr><tr><td><code>--target-total-capacity</code></td><td>Total capacity for the target filesystem. Default: same as the source filesystem. A smaller target is allowed for a selective copy. A full copy requires at least the source size.</td></tr><tr><td><code>--now</code></td><td>Triggers the first replication cycle immediately instead of waiting one full interval.</td></tr></tbody></table>
+<table><thead><tr><th width="266.5703125">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>--source-filesystem</code></td><td>Name of the local source filesystem.</td></tr><tr><td><code>--link-id</code></td><td>ID of the replication link to the target cluster, as shown by <code>weka replication link</code>.</td></tr><tr><td><code>--target-filesystem</code></td><td>Name of the filesystem on the remote cluster. It can be the same as the source filesystem name.</td></tr><tr><td><code>--interval</code></td><td>Replication interval, for example, <code>5m</code> or <code>1h</code>. From 5 minutes to 30 days.</td></tr><tr><td><code>--copy-path</code></td><td>Specifies up to 10 paths to copy proactively. Each path can be up to 1,023 characters long, and all paths together up to 2,048 characters. Separate paths with commas or repeat the option. Use <code>full</code>, <code>all</code>, or <code>/</code> to copy all data. Use <code>none</code> or <code>null</code> to replicate metadata only. Default: metadata-only replication. The command checks the syntax of each path, not whether it exists.</td></tr><tr><td><code>--access-strategy</code></td><td>Controls when a target snapshot becomes accessible. <code>INSTANT_ACCESS</code> (default) exposes the snapshot immediately. Data not copied locally is retrieved on demand. <code>COPY_FIRST</code> exposes the snapshot only after the <code>--copy-path</code> data is local.</td></tr><tr><td><code>--apply-strategy</code></td><td>Controls when the target applies a replicated snapshot. <code>AUTOMATIC</code> applies the snapshot after the prerequisite phase completes.</td></tr><tr><td><code>--snapshots-to-keep</code></td><td>Number of snapshots to retain, from 2 to 25. Default: 3. Retaining more snapshots requires more storage. Enforced only while the pair is running; see <a href="manage-asynchronous-replication.md#pause-and-resume-replication">Pause and resume replication</a>.</td></tr><tr><td><code>--target-total-capacity</code></td><td>Total capacity for the target filesystem. Default: same as the source filesystem. A smaller target is allowed for a selective copy. A full copy requires at least the source size.</td></tr><tr><td><code>--now</code></td><td>Triggers the first replication cycle immediately instead of waiting one full interval.</td></tr></tbody></table>
 
 **Examples**
 
@@ -182,17 +184,34 @@ The output shows for each pair:
 * **Link**: The name of the linked cluster.
 * **Interval, Apply, Access, Copy**: The configured replication policy.
 * **Last Replication**: The timestamp of the last completed replication cycle. Use it to assess the current recovery point.
-* **Current Status**: The current activity of the pair, such as `COPY`, `IDLE`, or `ERROR`. If a copy task is stuck, the status includes the reason.
+* **Current Status**: The phase of the running cycle, with its progress and snapshot, or `IDLE` between cycles. When a transfer phase stops progressing, the status ends with `(stuck: <reason>)`. For the `SNAPSHOT_CREATE` and `PRUNE_*` phases, the status shows the phase name only. Check **Last Error** for these phases.
 
 Each cluster assigns its own pair IDs, so the same pair can have different IDs on the source and the target clusters.
 
-For the pair UID, the link ID, and the number of snapshots to keep, run:
+**Replication cycle phases**
+
+| Phase                                | Description                                                                                                                     |
+| ------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------- |
+| `SNAPSHOT_CREATE`                    | The system takes a snapshot of the source filesystem.                                                                           |
+| `METADATA_SYNC`                      | The source sends the snapshot metadata to the target.                                                                           |
+| `METADATA_SYNC + COPY`               | The source sends metadata and data together. Applies to Copy first pairs with a full data copy.                                 |
+| `COPY`                               | The target copies file data from the source: the whole filesystem for a full data copy, or the copy paths for a selective copy. |
+| `APPLY`                              | The target applies the snapshot to the target filesystem.                                                                       |
+| `PRUNE_AT_TARGET`, `PRUNE_AT_SOURCE` | The system deletes snapshots beyond the `--snapshots-to-keep` limit.                                                            |
+| `IDLE`                               | No cycle is running.                                                                                                            |
+
+For the pair UID, the link ID, the number of snapshots to keep, and the last error, run:
 
 ```bash
 weka replication fs-pair -v
 ```
 
 To customize the output, use the `--output`, `--filter`, and `--sort` options with any of the available columns, including `last-error` and `last-error-time` for troubleshooting.
+
+**Last Error** records the cause of the most recent failure or stall, in the form `<CODE> on <ORIGIN> during <PHASE>`, for example, `PEER_UNREACHABLE on TARGET during COPY`. **Last Error Time** shows when it was recorded.
+
+* The system records the first cause of a stall. If the cause changes while the pair stays stuck, **Last Error** keeps the first cause.
+* A successful cycle clears **Last Error**. Resuming the pair keeps it. To tell whether the value describes the current cycle, compare **Last Error Time** with the time you resumed the pair.
 
 ### Monitor replication interval compliance
 
@@ -220,7 +239,7 @@ Common causes are a slow or broken connection to the linked cluster, an S3 servi
 
 ### View replication link health
 
-Check the connection and pairing status of each replication link. The status reflects the management endpoints of the other cluster. To check its S3 service, watch the **Last Error** column of the pairs that use the link, and the replication interval alerts. If **Last Error** reports an S3 authentication failure, contact the Customer Success Team.
+Check the connection and pairing status of each replication link. The status reflects the management endpoints of the other cluster. To check its S3 service, watch the **Current Status** of the pairs that use the link, and the replication interval alerts. If a pair shows `(stuck: OBS connectivity errors)` while the link shows **Connection** `connected`, contact the Customer Success Team.
 
 **Procedure**
 
@@ -235,6 +254,37 @@ To include the link UID, data IPs, and data port, add `-v`.
 2. Check the **Connection** and **Pairing** columns:
 
 <table><thead><tr><th width="114.98828125">Column</th><th width="134.7578125">Value</th><th>Meaning</th></tr></thead><tbody><tr><td>Connection</td><td><code>connected</code></td><td>Every management endpoint of the other cluster answers.</td></tr><tr><td>Connection</td><td><code>degraded</code></td><td>Some management endpoints of the other cluster answer.</td></tr><tr><td>Connection</td><td><code>disconnected</code></td><td>No management endpoint of the other cluster answers.</td></tr><tr><td>Pairing</td><td><code>mutual</code></td><td>The other cluster holds a matching link.</td></tr><tr><td>Pairing</td><td><code>local-only</code></td><td>The other cluster holds no matching link. To repair it, remove the link and add it again.</td></tr><tr><td>Pairing</td><td><code>unknown</code></td><td>No management endpoint of the other cluster answers, so the pairing can’t be determined.</td></tr></tbody></table>
+
+### Troubleshoot replication
+
+Use the **Current Status** and **Last Error** of a pair to identify the cause of a stall or an error, and the action that clears it.
+
+**Stuck reasons**
+
+A stuck pair stays in the `RUNNING` state and retries. After you fix the cause, the cycle continues without a resume.
+
+| Current Status ends with                   | Action                                                                                                                                                                                                              |
+| ------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `(stuck: OBS connectivity errors)`         | Check whether the target filesystem of any pair on this link is full. Check the S3 service of the target cluster and the network path between the clusters. If both are healthy, contact the Customer Success Team. |
+| `(stuck: Target filesystem is full)`       | Increase the size of the target filesystem.                                                                                                                                                                         |
+| `(stuck: Target cluster version mismatch)` | Upgrade the clusters to compatible versions.                                                                                                                                                                        |
+| `(stuck: Corrupt transmissions)`           | Check the network path between the clusters.                                                                                                                                                                        |
+
+**Last Error codes**
+
+For a recoverable cause, such as an unreachable cluster, the system retries for about 30 minutes before it moves the pair to the `ERROR` state. After you fix the cause, resume the pair with `weka replication fs-pair resume <pair ID>`.
+
+| Code                                                     | Action                                                                                                                                                                                       |
+| -------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `PEER_UNREACHABLE`                                       | Restore the connection to the other cluster.                                                                                                                                                 |
+| `PEER_DIVERGING_SNAPSHOT`                                | Delete the snapshot that was created manually on the target filesystem.                                                                                                                      |
+| `UPGRADE_IN_PROGRESS`                                    | Wait for the upgrade of the target cluster to complete.                                                                                                                                      |
+| `VERSION_MISMATCH`                                       | Upgrade the target cluster to the version of the source cluster or later.                                                                                                                    |
+| `SNAPSHOT_DELETION_IN_PROGRESS`                          | Wait for the snapshot deletions on the filesystem to finish. If the pair's own snapshot deletions delay its cycles, lengthen the interval.                                                   |
+| `FILE_COPY_FAILED`                                       | A file in a copy path could not be copied. Free space on the target filesystem, and check that the copy paths exist on the source. If the error persists, contact the Customer Success Team. |
+| `FILESYSTEM_GROUP_NOT_FOUND`                             | Create a filesystem group on the target cluster with the same name as the group of the source filesystem.                                                                                    |
+| `TASK_STUCK during PRUNE_AT_TARGET` or `PRUNE_AT_SOURCE` | The pair stays `RUNNING`. The cycle continues after the competing snapshot deletion or task finishes. To list running tasks, run `weka cluster task`.                                        |
+| `RETRIES_EXHAUSTED`                                      | Contact the Customer Success Team.                                                                                                                                                           |
 
 ## Modify the replication policy
 
@@ -332,6 +382,8 @@ You can run up to five fetch commands concurrently. A sixth concurrent fetch com
 * `<path>` is a local mount path. Alternatively, specify `--filesystem` and provide a path relative to the filesystem root.
 * Use `--snapshot` to resolve the path within a snapshot view instead of the live filesystem.
 
+To confirm that the data is on the target, run `weka replication fs-pair hydration status <path>` and check that the status is `Copied`. If the status is `Partial-Copy` or `Pointer` after the fetch completes, free space on the target filesystem and run the fetch again.
+
 ### Monitor hydration progress
 
 Fetch and release operations run in the background. Check the hydration status for a file:
@@ -339,6 +391,15 @@ Fetch and release operations run in the background. Check the hydration status f
 ```bash
 weka replication fs-pair hydration status <path> [--filesystem <name>] [--snapshot <name>]
 ```
+
+The command reports one of these statuses:
+
+| Status         | Description                                                                             |
+| -------------- | --------------------------------------------------------------------------------------- |
+| `Copied`       | All file data is on the target cluster.                                                 |
+| `In-Progress`  | A fetch is running on the filesystem, and part of the file data is still on the source. |
+| `Partial-Copy` | Part of the file data is on the target. The rest is read from the source when accessed. |
+| `Pointer`      | The file data is on the source only, and is read from the source when accessed.         |
 
 ### Release file data
 
@@ -359,7 +420,7 @@ This command runs on the container that holds the mount, so it cannot be directe
 Remove a replication pair when you no longer need to synchronize the source and target filesystems, or as part of a failover procedure.
 
 {% hint style="warning" %}
-Removing a pair stops further snapshot replication for the filesystem pair, including the retrieval of data on demand. If the target filesystem was created with a selective replication policy, files that were never hydrated become inaccessible after removal. Verify the hydration state before removal. Pause the pair, then run `weka replication fs-pair` and confirm that **Current Status** shows `IDLE`.
+Removing a pair stops further snapshot replication for the filesystem pair, including the retrieval of data on demand. If the target filesystem was created with a selective replication policy, files that were never hydrated become inaccessible after removal. Before removal, run `weka replication fs-pair hydration status` on the files you need, and confirm that each shows `Copied`. Pause the pair, then run `weka replication fs-pair` and confirm that **Current Status** shows `IDLE`.
 {% endhint %}
 
 **Before you begin**
@@ -467,7 +528,7 @@ weka replication fs-pair
 * Confirm that the target contains the data you need:
   * With `COPY_FIRST` and `--copy-path full`, all data is local. No action is required.
   * Hydrate data before breaking any other pair type. This includes `INSTANT_ACCESS`, Selective copy - critical paths pairs, and smaller targets.
-  * Run `weka replication fs-pair fetch <path>` for each path you need on the target. Any file you do not fetch is retrieved on demand: opening or reading it on the target filesystem fetches its data from the source. See [Manage file hydration on the target](manage-asynchronous-replication.md#manage-file-hydration-on-the-target).
+  * Run `weka replication fs-pair fetch <path>` for each path you need on the target, and confirm that `weka replication fs-pair hydration status <path>` shows `Copied` for each one. Reading a file on the target returns its data, and does not always store it on the target. See [Manage file hydration on the target](manage-asynchronous-replication.md#manage-file-hydration-on-the-target).
 
 {% hint style="info" %}
 On the target cluster, `weka replication fs-pair` lists the pair with the role `TARGET`. Its pair ID on the target can differ from its ID on the source.
