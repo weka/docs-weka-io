@@ -66,13 +66,15 @@ The access strategy determines when users see each replicated snapshot on the ta
 * **Instant access** (default): The snapshot is exposed immediately, and its data is visible under the `.snapshot` directory. Data is copied in the background and retrieved on demand when accessed.
 * **Copy first**: The snapshot is applied only after its data and metadata are fully copied. Use this when workloads on the target require immediate local data access with full consistency.
 
+Copy first with a full data copy keeps all data on the target after every cycle. Its data moves together with the metadata, so its **Current Status** shows `METADATA_SYNC + COPY`, and it has no separate `COPY` phase.
+
 ## Size the target filesystem
 
 Two constraints apply. Size for whichever is larger.
 
 **By copy option:**
 
-A full data copy needs a target at least the size of the source filesystem.
+A full data copy needs a target at least the size of the source filesystem. The system checks this when you add or update the pair. If you later increase the size of the source filesystem, keep the target filesystem at least the source size, plus room for the snapshots the pair retains. To increase the size of the target filesystem, run `weka fs update <target filesystem> --total-capacity <size>` on the target cluster.
 
 A selective copy can be far smaller. Size it for the working set, which includes the directories named in `--copy-path`, plus headroom.
 
@@ -88,9 +90,11 @@ The same filesystem size behaves differently on different clusters. A 5 GB files
 If the target filesystem is smaller than about 1% of the target cluster SSD capacity, replication can stall from the first synchronization cycle, before any data is visibly transferred. Increase the filesystem size, or use a target cluster with less SSD capacity.
 {% endhint %}
 
-If the target filesystem runs out of space during a full data copy, the replication cycle waits and retries until space is available. The pair stays in the `RUNNING` state, and its **Current Status** in `weka replication fs-pair` ends with `(stuck: Target filesystem is full)`. Free space on the target filesystem or increase its size, and the cycle continues. While the cycle runs past its interval, the system raises the replication interval alerts.
+When the target filesystem runs out of space, the result depends on what the cycle transfers:
 
-With a selective copy, file data that does not fit on the target stays in lazy mode and is read from the source when accessed.
+* **Metadata, and the data of a Copy first pair with a full data copy:** The cycle waits and retries until space is available. The pair stays in the `RUNNING` state, and its **Current Status** in `weka replication fs-pair` ends with `(stuck: Target filesystem is full)`. Free space on the target filesystem or increase its size, and the cycle continues. While the cycle runs past its interval, the system raises the replication interval alerts.
+* **Data of an Instant access pair, or of a selective copy - metadata only:** Data that does not fit stays in lazy mode, and the cycle completes. To check which files are on the target, run `weka replication fs-pair hydration status`.
+* **Data in a copy path of a selective copy - critical paths:** The `COPY` phase fails with `FILE_COPY_FAILED`, and the pair moves to the `ERROR` state. Free space on the target filesystem, and then resume the pair.
 
 ## Considerations
 
@@ -124,13 +128,14 @@ To write to the target filesystem, hydrate all of its data, remove the replicati
 
 * The number of snapshots to keep ranges from 2 to 25. Retaining more snapshots requires more storage.
 * Avoid a snapshot interval shorter than 30 minutes on a filesystem that also has a replication schedule. If snapshot deletion overlaps the start of a replication cycle, the target can fall further behind than the scheduled interval.
+* Each cycle ends by deleting the snapshots beyond the `--snapshots-to-keep` limit, on the target and then on the source. By default, the cluster runs one snapshot deletion at a time across all filesystems, so this step waits for other deletions to finish. While it waits, a paused pair shows `PAUSING`. Remove the pair after the deletion finishes.
 * The **anchor snapshot** is the last live snapshot in a replication pair. It remains on the filesystem after you remove the replication pair and the cluster link, and you cannot delete it.
-* Resuming an aborted replication pair can fail and move the pair to the error state with a `SNAPSHOT_INCOMPATIBLE` message. This is a terminal error. Replication does not retry the pair, and recovering it requires manual intervention.
 
 ### Data copy and hydration
 
 * Changing the policy from Selective copy - metadata only to Full data copy or Selective copy - critical paths does not copy files that were never hydrated. Hydrate those files before you change the policy.
-* Dehydration on the target filesystem starts when it uses 95% of its SSD capacity and stops when usage falls to 90%. To release data outside these thresholds, run `weka replication fs-pair release`.
+* Dehydration on the target filesystem starts when it uses 95% of its SSD capacity and stops when usage falls to 90%. To release data outside these thresholds, run `weka replication fs-pair release`
+* The system checks the syntax of each copy path when you add or update a pair. A copy path that does not exist in the filesystem is skipped in each cycle, and the system raises a `ReplicaSnapshotCopyPathMissing` event. To correct the path, run `weka replication fs-pair update`.
 
 ### Pair topology
 
@@ -150,3 +155,4 @@ In a fan-in topology, where several clusters replicate to one target, the target
 * You can view and manage replication links and pairs in the GUI from **Manage > Replication**, in the **Replication Dashboard** and **Replication Links** tabs. The procedures in this section use the CLI.
 * Replication is not supported on servers that run the NFS or SMB protocols, because the S3 protocol cannot be combined with NFS or SMB.
 * Selective copy - critical paths (`--copy-path` with specific directories) requires a Data Services container on the target cluster.
+* To replicate an encrypted filesystem, both clusters must use the same key management service (KMS).
