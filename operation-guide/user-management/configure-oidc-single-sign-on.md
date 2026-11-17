@@ -120,12 +120,14 @@ weka user oidc set --redirect-uris https://cluster.example.com:14000
 
 **Command:** `weka user login`
 
-Run the command without a username, in an interactive terminal. The CLI opens a browser to the Entra ID sign-in page. After you sign in, the CLI saves the credentials to your profile.
+Run the command without a username, in an interactive terminal. The CLI opens a browser to the Entra ID sign-in page. After you sign in, the CLI saves the credentials to your profile. In a remote session, the CLI prints an `ssh` command to run on your local computer, so the sign-in completes in your local browser.
+
+The sign-in can also complete away from the default browser:
 
 * To sign in from another device, add `--use-device-code`. The CLI shows a URL and a code to enter on any device.
 * To print the sign-in URL instead of opening a browser, add `--no-open`.
-* In a remote session, the CLI prints an `ssh` command to run on your local computer, so the sign-in completes in your local browser.
-* Single sign-on uses the cluster's default token lifetimes. `--access-token-timeout` and `--refresh-token-timeout` apply only to username and password sign-in.
+
+Single sign-on uses the cluster's default token lifetimes. `--access-token-timeout` and `--refresh-token-timeout` apply only to username and password sign-in.
 
 To sign in as a local user, pass the username: `weka user login <username>`.
 
