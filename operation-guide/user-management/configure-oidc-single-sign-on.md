@@ -116,7 +116,7 @@ weka user oidc set --redirect-uris https://cluster.example.com:14000
 
 ## Sign in with OIDC
 
-With the connector enabled, users of the tenant sign in with their Entra ID account in two places: the CLI and the GUI.
+With the connector enabled, users of the tenant sign in with their Entra ID account, in the CLI or in the GUI.
 
 ### Sign in to the CLI
 
