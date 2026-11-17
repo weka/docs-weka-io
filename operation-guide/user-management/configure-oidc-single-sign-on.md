@@ -20,20 +20,24 @@ This topic covers management sign-in. For S3 access with OIDC, see [Configure S3
 ## Before you begin
 
 * Run the commands as a Cluster Admin or Tenant Admin of the tenant.
-* In Entra ID, register an application for the cluster and note:
-  * The **issuer URL**, for example `https://login.microsoftonline.com/<directory-id>/v2.0`.
-  * The **client ID**, which is the application ID.
-  * A **client secret**, only if you register the application as a confidential client.
-* In the Entra ID application, register the redirect URIs for browser sign-in. The cluster redeems the authorization code, presenting the client secret when one is stored, so register the URIs under the platform that matches the client type: **Web** for a confidential client, **Mobile and desktop applications** for a public client.
-  * **GUI:** `https://<address>/auth/callback` for each address users open the GUI at. These are the origins you set with `--redirect-uris`, followed by `/auth/callback`.
-  * **CLI:** `http://127.0.0.1/auth/callback`. The CLI uses a different port at each sign-in, and Entra ID ignores the port of a loopback redirect URI. Add this URI in the application manifest, in `replyUrlsWithType`. The **Redirect URIs** box in the Entra admin center accepts only `https` loopback addresses.
-  * Sign-in with `--use-device-code` needs no redirect URI. Instead, in the application's **Authentication** settings, set **Allow public client flows** to **Yes**.
-* With MFA required, the default, add the `amr` claim to the application's ID token: in the application, select **Token configuration > Add optional claim > ID > amr**. The cluster reads this claim to confirm that a sign-in was multi-factor.
-* Choose how users receive their WEKA role. Use one method per connector:
-  * **App roles:** In the application, create app roles whose values are WEKA role names, and assign users or groups to them. The values are `ClusterAdmin`, `TenantAdmin`, `ReadOnly`, `Regular`, or `QuotaManager`. Matching ignores case.
-  * **Group mapping:** Configure the application to include group claims in the token, then map each group to a WEKA role on the cluster. See [Map groups to roles](#map-groups-to-roles).
-* With either method, if a user has several roles, the highest one applies.
 * In a tenant other than the root tenant, `ClusterAdmin` is not granted. Use `TenantAdmin` instead.
+
+## Set up the application in Entra ID
+
+1. Register an application for the cluster, and note:
+   * The **issuer URL**, for example `https://login.microsoftonline.com/<directory-id>/v2.0`.
+   * The **client ID**, which is the application ID.
+   * A **client secret**, only if you register the application as a confidential client.
+2. Register the redirect URIs for browser sign-in. The cluster redeems the authorization code, presenting the client secret when one is stored, so register the URIs under the platform that matches the client type: **Web** for a confidential client, **Mobile and desktop applications** for a public client.
+   * **GUI:** `https://<address>/auth/callback` for each address users open the GUI at. These are the origins you set with `--redirect-uris`, followed by `/auth/callback`.
+   * **CLI:** `http://127.0.0.1/auth/callback`. The CLI uses a different port at each sign-in, and Entra ID ignores the port of a loopback redirect URI. Add this URI in the application manifest, in `replyUrlsWithType`. The **Redirect URIs** box in the Entra admin center accepts only `https` loopback addresses.
+   * Sign-in with `--use-device-code` needs no redirect URI. Instead, in the application's **Authentication** settings, set **Allow public client flows** to **Yes**.
+3. With MFA required, the default, add the `amr` claim to the application's ID token: select **Token configuration > Add optional claim > ID > amr**. The cluster reads this claim to confirm that a sign-in was multi-factor.
+4. Set up how users receive their WEKA role. Use one method per connector:
+   * **App roles:** Create app roles whose values are WEKA role names, and assign users or groups to them. The values are `ClusterAdmin`, `TenantAdmin`, `ReadOnly`, `Regular`, or `QuotaManager`. Matching ignores case.
+   * **Group mapping:** Configure the application to include group claims in the token, then map each group to a WEKA role on the cluster. See [Map groups to roles](#map-groups-to-roles).
+
+   With either method, if a user has several roles, the highest one applies.
 
 ## Configure the OIDC connector
 
@@ -42,7 +46,7 @@ This topic covers management sign-in. For S3 access with OIDC, see [Configure S3
 Creates or updates the tenant's OIDC connector. When you enable the connector, the cluster contacts the issuer to validate the configuration.
 
 {% code overflow="wrap" %}
-```
+```bash
 weka user oidc set [--issuer <url>] [--client-id <id>] [--vendor entra] [--role-claim <claim>] [--groups-claim <claim>] [--cluster-admin-group <group>] [--tenant-admin-group <group>] [--readonly-group <group>] [--regular-group <group>] [--quota-manager-group <group>] [--client-secret <secret> | --clear-client-secret] [--redirect-uris <origin>[,<origin>...] | --clear-redirect-uris] [--require-mfa[=false]] [--enabled[=false]]
 ```
 {% endcode %}
@@ -67,7 +71,7 @@ weka user oidc set [--issuer <url>] [--client-id <id>] [--vendor entra] [--role-
 **Example**
 
 {% code overflow="wrap" %}
-```
+```bash
 weka user oidc set --vendor entra --issuer https://login.microsoftonline.com/<directory-id>/v2.0 --client-id <application-id> --role-claim roles --enabled
 ```
 {% endcode %}
@@ -84,7 +88,7 @@ Group mapping assigns WEKA roles by the user's group membership in Entra ID, ins
 **Example**
 
 {% code overflow="wrap" %}
-```
+```bash
 weka user oidc set --role-claim "" --tenant-admin-group <admins-group-id> --readonly-group <viewers-group-id>
 ```
 {% endcode %}
@@ -99,7 +103,7 @@ By default, the browser sign-in accepts any HTTPS origin, and the `OIDCRedirectO
 **Example**
 
 {% code overflow="wrap" %}
-```
+```bash
 weka user oidc set --redirect-uris https://cluster.example.com:14000
 ```
 {% endcode %}
@@ -136,23 +140,6 @@ To sign in as a local user, pass the username: `weka user login <username>`.
 The cluster rechecks an OIDC user with Entra ID when the session's access token is refreshed. Changes in Entra ID, such as a disabled account or a removed role, take effect at the next refresh.
 
 The access token of an OIDC or LDAP user lasts at most the revalidation interval. Default: 5 minutes. To change it, see [Manage token expiration](../../security/manage-token-expiration.md).
-
-## Monitor OIDC
-
-**Events**
-
-| Event | Raised when |
-| --- | --- |
-| `OIDCConfigUpdated` | The connector configuration changes. |
-| `OIDCAuthEnabled`, `OIDCAuthDisabled` | The connector is enabled, disabled, or reset. |
-| `OIDCSealKeyRotated` | The session key is rotated. |
-| `OIDCSessionRefreshRefused` | A session refresh is refused, for example because the account is disabled, the role is removed, or MFA is no longer reported. |
-| `UserLoggedIn`, `UserLoginFailed` | A user signs in through OIDC, or the sign-in fails. |
-| `OIDCProviderUnreachable`, `OIDCProviderRecovered` | The cluster can't reach Entra ID, or reaches it again. |
-
-**Alert**
-
-`OIDCRedirectOriginsUnrestricted`: the connector accepts browser sign-in from any HTTPS origin. To clear it, see [Restrict sign-in origins](#restrict-sign-in-origins).
 
 ## Considerations
 
