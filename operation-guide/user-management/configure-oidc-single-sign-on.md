@@ -32,18 +32,19 @@ This topic covers management sign-in. For S3 access with OIDC, see [Configure S3
    * **GUI:** `https://<address>/auth/callback` for each address users open the GUI at. These are the origins you set with `--redirect-uris`, followed by `/auth/callback`.
    * **CLI:** `http://127.0.0.1/auth/callback`. The CLI uses a different port at each sign-in, and Entra ID ignores the port of a loopback redirect URI. Add this URI in the application manifest, in `replyUrlsWithType`. The **Redirect URIs** box in the Entra admin center accepts only `https` loopback addresses.
    * Sign-in with `--use-device-code` needs no redirect URI. Instead, in the application's **Authentication** settings, set **Allow public client flows** to **Yes**.
-3. With MFA required, the default, add the `amr` claim to the application's ID token. In **Manifest**, set `optionalClaims` so that its `idToken` list carries the claim:
+3.  With MFA required, the default, add the `amr` claim to the application's ID token. In **Manifest**, set `optionalClaims` so that its `idToken` list carries the claim:
 
-   ```json
-   "optionalClaims": {"accessToken": [], "idToken": [{"name": "amr", "source": null, "essential": false, "additionalProperties": []}], "saml2Token": []}
-   ```
+    ```json
+    "optionalClaims": {"accessToken": [], "idToken": [{"name": "amr", "source": null, "essential": false, "additionalProperties": []}], "saml2Token": []}
+    ```
 
-   The cluster reads this claim to confirm that a sign-in was multi-factor.
-4. Set up how users receive their WEKA role. Use one method per connector:
-   * **App roles:** Create app roles whose values are WEKA role names, and assign users or groups to them. The values are `ClusterAdmin`, `TenantAdmin`, `ReadOnly`, `Regular`, or `QuotaManager`. Matching ignores case.
-   * **Group mapping:** Configure the application to include group claims in the token, then map each group to a WEKA role on the cluster. See [Map groups to roles](#map-groups-to-roles).
+    The cluster reads this claim to confirm that a sign-in was multi-factor.
+4.  Set up how users receive their WEKA role. Use one method per connector:
 
-   With either method, if a user has several roles, the highest one applies.
+    * **App roles:** Create app roles whose values are WEKA role names, and assign users or groups to them. The values are `ClusterAdmin`, `TenantAdmin`, `ReadOnly`, `Regular`, or `QuotaManager`. Matching ignores case.
+    * **Group mapping:** Configure the application to include group claims in the token, then map each group to a WEKA role on the cluster. See [Map groups to roles](configure-oidc-single-sign-on.md#map-groups-to-roles).
+
+    With either method, if a user has several roles, the highest one applies.
 
 ## Configure the OIDC connector
 
@@ -59,20 +60,20 @@ weka user oidc set [--issuer <url>] [--client-id <id>] [--vendor entra] [--role-
 
 **Parameters**
 
-| Parameter | Description |
-| --- | --- |
-| `issuer` | Issuer URL of the Entra ID directory. Required to enable the connector. |
-| `client-id` | Application (client) ID. Required to enable the connector. |
-| `vendor` | Identity provider. Possible value: `entra`. |
-| `role-claim` | Token claim that carries the WEKA role names. For Entra ID app roles, the claim is `roles`. To clear it, pass an empty value: `--role-claim ""`. |
-| `groups-claim` | Token claim that carries the user's groups, for group mapping. Default: `groups`. To return to the default, pass an empty value. |
-| `cluster-admin-group`<br>`tenant-admin-group`<br>`readonly-group`<br>`regular-group`<br>`quota-manager-group` | Group that receives the `ClusterAdmin`, `TenantAdmin`, `ReadOnly`, `Regular`, or `QuotaManager` role. Specify the group object ID or name, as the token carries it. To clear a mapping, pass an empty value. |
-| `client-secret` | Client secret, for a confidential client. Omit it for a public client. To be prompted, pass an empty value. The secret is never displayed again. |
-| `clear-client-secret` | Removes a stored client secret, making the cluster a public client. |
-| `redirect-uris` | Origins that the browser sign-in can start from, in the format `https://<host>[:<port>]`. Up to 8 origins, comma-separated. Replaces the current list. |
-| `clear-redirect-uris` | Removes every origin from the list, so the browser sign-in accepts any HTTPS origin. |
-| `require-mfa` | Accepts only sign-ins that Entra ID reports as multi-factor. Default when the connector is created: `true`. |
-| `enabled` | Enables the connector for the tenant. Default when the connector is created: `false`. To disable it, pass `--enabled=false`. |
+| Parameter                                                                                                                                                                   | Description                                                                                                                                                                                                  |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `issuer`                                                                                                                                                                    | Issuer URL of the Entra ID directory. Required to enable the connector.                                                                                                                                      |
+| `client-id`                                                                                                                                                                 | Application (client) ID. Required to enable the connector.                                                                                                                                                   |
+| `vendor`                                                                                                                                                                    | Identity provider. Possible value: `entra`.                                                                                                                                                                  |
+| `role-claim`                                                                                                                                                                | Token claim that carries the WEKA role names. For Entra ID app roles, the claim is `roles`. To clear it, pass an empty value: `--role-claim ""`.                                                             |
+| `groups-claim`                                                                                                                                                              | Token claim that carries the user's groups, for group mapping. Default: `groups`. To return to the default, pass an empty value.                                                                             |
+| <p><code>cluster-admin-group</code><br><code>tenant-admin-group</code><br><code>readonly-group</code><br><code>regular-group</code><br><code>quota-manager-group</code></p> | Group that receives the `ClusterAdmin`, `TenantAdmin`, `ReadOnly`, `Regular`, or `QuotaManager` role. Specify the group object ID or name, as the token carries it. To clear a mapping, pass an empty value. |
+| `client-secret`                                                                                                                                                             | Client secret, for a confidential client. Omit it for a public client. To be prompted, pass an empty value. The secret is never displayed again.                                                             |
+| `clear-client-secret`                                                                                                                                                       | Removes a stored client secret, making the cluster a public client.                                                                                                                                          |
+| `redirect-uris`                                                                                                                                                             | Origins that the browser sign-in can start from, in the format `https://<host>[:<port>]`. Up to 8 origins, comma-separated. Replaces the current list.                                                       |
+| `clear-redirect-uris`                                                                                                                                                       | Removes every origin from the list, so the browser sign-in accepts any HTTPS origin.                                                                                                                         |
+| `require-mfa`                                                                                                                                                               | Accepts only sign-ins that Entra ID reports as multi-factor. Default when the connector is created: `true`.                                                                                                  |
+| `enabled`                                                                                                                                                                   | Enables the connector for the tenant. Default when the connector is created: `false`. To disable it, pass `--enabled=false`.                                                                                 |
 
 **Example**
 
@@ -146,7 +147,7 @@ To sign in as a local user, pass the username: `weka user login <username>`.
 
 The GUI opens with the WEKA role granted by your Entra ID assignment.
 
-<div data-with-frame="true"><figure><img src="../../.gitbook/assets/sign-in-with-sso.png" alt="The GUI sign-in screen with the Sign in with SSO option"><figcaption><p>Sign in with SSO</p></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/sign-in_with-SSO.png" alt="The GUI sign-in screen with the Sign in with SSO option" width="338"><figcaption><p>Sign in with SSO</p></figcaption></figure></div>
 
 ## Control how long an OIDC session stays valid
 
