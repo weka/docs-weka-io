@@ -17,6 +17,13 @@ The NFS implementation is compatible with NFSv3 or NFSv4[^1] protocols and overc
 
 Adhere to the following guidelines and requirements when deploying the NFS service.
 
+### **Servers that run the NFS service**
+
+On each server that runs the WEKA NFS service:
+
+* Stop and mask the operating system's `rpc-statd` and `rpc-statd-notify` services, and keep them masked after upgrades.
+* Do not mount NFS filesystems, WEKA or external, on the server.
+
 ### **Configuration filesystem**
 
 A persistent cluster-wide configuration filesystem is required for the protocol's internal operations using NFSv4 or Kerberos integration. See [#dedicated-filesystem-requirement-for-cluster-wide-persistent-protocol-configurations](../additional-protocols-overview.md#dedicated-filesystem-requirement-for-cluster-wide-persistent-protocol-configurations "mention").

@@ -90,7 +90,7 @@ Complete these checks before running the starting the upgrade workflow.
 
 1. **Verify protocol separation.** Assign only one of NFS, SMB, or S3 to each server. The upgrade does not start when a server runs multiple protocols. Contact the Customer Success Team to separate the protocols.
 2. **Verify the NFS protocol version.** Contact the Customer Success Team if legacy NFS is configured. The upgrade is blocked until it is resolved.
-3.  **Stop NFS file-locking services.** On each WEKA server, stop and mask the `rpc-statd` and `rpc-statd-notify` services. Masking prevents the services from starting again.
+3.  **Stop NFS file-locking services.** On each server that runs the WEKA NFS service, stop and mask the `rpc-statd` and `rpc-statd-notify` services. Masking prevents the services from starting again.
 
     ```bash
     systemctl stop rpc-statd.service rpc-statd-notify.service
