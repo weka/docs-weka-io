@@ -18,7 +18,7 @@ List replication pairs with their current state and progress, both the pairs thi
 weka replication fs-pair
 ```
 
-**Columns:** `id`, `uid`, `state`, `role`, `source`, `link`, `link-id`, `target`, `interval`, `snapshots-to-keep`, `apply`, `access`, `copy`, `copy-paths`, `last-replication`, `current-status`, `last-error`, `last-error-time`
+**Columns:** `id`, `uid`, `state`, `role`, `source`, `link`, `link-id`, `target`, `interval`, `snapshots-to-keep`, `apply`, `access`, `copy`, `copy-paths`, `last-replication`, `last-replicated-snapshot`, `next-cycle`, `current-status`, `last-error`, `last-error-time`
 
 ### weka replication fs-pair add
 
@@ -157,7 +157,7 @@ weka replication link [--link-id <cluster-link-id>] [--name <cluster-link>]
 | `--link-id` &lt;cluster-link-id&gt; | Show only the cluster link with this ID. |
 | `--name` &lt;cluster-link&gt; | Show only cluster links with this name. Names can repeat, so more than one link may match. |
 
-**Columns:** `id`, `uid`, `name`, `peer_guid`, `connection_status`, `pairing_status`, `mgmtIps`, `data_ips`, `data_port`
+**Columns:** `id`, `uid`, `name`, `peer_guid`, `connection_status`, `mgmtIps`, `data_ips`, `data_port`
 
 ### weka replication link add
 

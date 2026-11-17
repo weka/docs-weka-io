@@ -95,7 +95,7 @@ weka cluster container [<container-ids>…] [--backends] [--clients] [--council]
 | `-l`, `--leadership`      | Only return containers that are part of the cluster leadership.                                                                |
 | `--local`                 | Get result from the local container.                                                                                           |
 
-**Columns:** `uid`, `id`, `hostname`, `container`, `machineId`, `compositeMachineId`, `ips`, `port`, `status`, `state`, `requestedAction`, `software`, `release`, `mode`, `fdName`, `fdId`, `fdType`, `cores`, `feCores`, `driveCores`, `coreIds`, `bw`, `scrubber_limit`, `dedicated`, `autoRemove`, `leadership`, `memory`, `uptime`, `failureText`, `failure`, `failureTime`, `failureCode`, `recentFailure`, `requestedActionFailureText`, `requestedActionFailure`, `requestedActionFailureTime`, `requestedActionFailureCode`, `addedTime`, `cloudProvider`, `availabilityZone`, `instanceType`, `instanceId`, `hypervisorType`, `osName`, `kernelName`, `kernelRelease`, `kernelVersion`, `architecture`, `tlsStrictnessLevel`, `hardwareMonitoring`
+**Columns:** `uid`, `id`, `hostname`, `container`, `machineId`, `compositeMachineId`, `chassisSerial`, `chassisLocation`, `ips`, `port`, `status`, `state`, `requestedAction`, `software`, `release`, `mode`, `fdName`, `fdId`, `fdType`, `cores`, `feCores`, `driveCores`, `coreIds`, `bw`, `scrubber_limit`, `dedicated`, `autoRemove`, `leadership`, `memory`, `uptime`, `failureText`, `failure`, `failureTime`, `failureCode`, `recentFailure`, `requestedActionFailureText`, `requestedActionFailure`, `requestedActionFailureTime`, `requestedActionFailureCode`, `addedTime`, `cloudProvider`, `availabilityZone`, `instanceType`, `instanceId`, `hypervisorType`, `osName`, `kernelName`, `kernelRelease`, `kernelVersion`, `architecture`, `tlsStrictnessLevel`, `hardwareMonitoring`
 
 ### weka cluster container activate
 
@@ -262,7 +262,7 @@ weka cluster container info-hw [<hostname>] [--info-type <info-types>…]
 | Parameter                    | Description                                                                                                                                                                          |
 | ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `hostname`                   | Containers to query, by hostname or IP. If none are supplied, all cluster containers are queried.                                                                                    |
-| `--info-type` \<info-types>… | Information types to query. Multiple values may be supplied separated by commas, or the option may be repeated. Valid values: version, osinfo, memory, cores, disks, eths, net, ips. |
+| `--info-type` \<info-types>… | Information types to query. Multiple values may be supplied separated by commas, or the option may be repeated. Valid values: version, osinfo, memory, cores, disks, eths, net, ips, components. |
 
 ### weka cluster container join-secret
 
@@ -319,7 +319,7 @@ weka cluster container net [<container>…]
 | ------------ | ------------------------ |
 | `container`… | Container IDs to filter. |
 
-**Columns:** `uid`, `name`, `id`, `container`, `hostname`, `nics`, `ips`, `netmask`, `gateway`, `max_cores`, `processes`, `vlan`, `lablel`
+**Columns:** `uid`, `name`, `id`, `container`, `hostname`, `nics`, `ips`, `netmask`, `gateway`, `max_cores`, `processes`, `vlan`, `label`
 
 #### weka cluster container net add
 
@@ -832,7 +832,7 @@ weka cluster link [--link-id <cluster-link-id>] [--name <cluster-link>]
 | `--link-id` &lt;cluster-link-id&gt; | Show only the cluster link with this ID. |
 | `--name` &lt;cluster-link&gt; | Show only cluster links with this name. Names can repeat, so more than one link may match. |
 
-**Columns:** `id`, `uid`, `name`, `peer_guid`, `connection_status`, `pairing_status`, `mgmtIps`, `data_ips`, `data_port`
+**Columns:** `id`, `uid`, `name`, `peer_guid`, `connection_status`, `mgmtIps`, `data_ips`, `data_port`
 
 ### weka cluster link add
 
@@ -914,7 +914,7 @@ weka cluster server [--roles <machine-roles>…]
 | --------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `--roles` \<machine-roles>… | Only return servers with these roles. Multiple values may be supplied separated by commas, or the option may be repeated. Valid values: backend, client, s3, nfs, smb. |
 
-**Columns:** `hostname`, `uid`, `ip`, `port`, `roles`, `deployment_mode`, `status`, `up_since`, `uptime`, `cores`, `memory`, `drives`, `processes`, `load`, `versions`, `architecture`, `ready_for_maintenance`, `requested_action`
+**Columns:** `hostname`, `uid`, `ip`, `port`, `roles`, `deployment_mode`, `status`, `up_since`, `uptime`, `cores`, `memory`, `drives`, `processes`, `load`, `versions`, `architecture`, `chassis_serial`, `chassis_location`, `ready_for_maintenance`, `requested_action`
 
 ### weka cluster server list
 
@@ -928,7 +928,7 @@ weka cluster server list [--roles <machine-roles>…]
 | --------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `--roles` \<machine-roles>… | Only return servers with these roles. Multiple values may be supplied separated by commas, or the option may be repeated. Valid values: backend, client, s3, nfs, smb. |
 
-**Columns:** `hostname`, `uid`, `ip`, `port`, `roles`, `deployment_mode`, `status`, `up_since`, `uptime`, `cores`, `memory`, `drives`, `processes`, `load`, `versions`, `architecture`, `ready_for_maintenance`, `requested_action`
+**Columns:** `hostname`, `uid`, `ip`, `port`, `roles`, `deployment_mode`, `status`, `up_since`, `uptime`, `cores`, `memory`, `drives`, `processes`, `load`, `versions`, `architecture`, `chassis_serial`, `chassis_location`, `ready_for_maintenance`, `requested_action`
 
 ### weka cluster server requested-action
 
@@ -949,19 +949,20 @@ weka cluster server requested-action <action> <servers>… [--timeout <duration>
 Show details for one cluster server.
 
 ```sh
-weka cluster server show <machine-uid> [--show-all] [--show-containers] [--show-drives] [--show-networks] [--show-processes]
+weka cluster server show <server> [--show-all] [--show-containers] [--show-drives] [--show-hardware] [--show-networks] [--show-processes]
 ```
 
 | Parameter           | Description                                                 |
 | ------------------- | ----------------------------------------------------------- |
-| `machine-uid`\*     | Machine UID to display.                                     |
-| `--show-all`        | Include containers, processes, drives, and network devices. |
+| `server`\* | Server to display: its machine UID, hostname, or IP address, or the ID of one of its containers. |
+| `--show-all` | Include containers, processes, drives, network devices, and hardware components. |
 | `--show-containers` | Show container details.                                     |
 | `--show-drives`     | Show drive details.                                         |
+| `--show-hardware` | Show the hardware components the server reports, such as drives, memory modules, power supplies, and network adapters. |
 | `--show-networks`   | Show network device details.                                |
 | `--show-processes`  | Show process details.                                       |
 
-**Columns:** `hostname`, `uid`, `status`, `up_since`, `uptime`, `ip`, `port`, `roles`, `deployment_mode`, `load`, `memory`, `cores`, `drives`, `processes`, `versions`, `operating_system`, `architecture`, `platform`, `processors`, `logical_cpus`, `nfs`, `s3`, `smb`, `ready_for_maintenance`, `requested_action`
+**Columns:** `hostname`, `uid`, `status`, `up_since`, `uptime`, `ip`, `port`, `roles`, `deployment_mode`, `load`, `memory`, `cores`, `drives`, `processes`, `versions`, `operating_system`, `architecture`, `platform`, `chassis_serial`, `chassis_location`, `processors`, `logical_cpus`, `nfs`, `s3`, `smb`, `ready_for_maintenance`, `requested_action`
 
 ## weka cluster start-io
 

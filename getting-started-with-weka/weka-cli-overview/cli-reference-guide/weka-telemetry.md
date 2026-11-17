@@ -27,7 +27,7 @@ weka telemetry exports add
 Add a new Kafka telemetry export destination.
 
 ```sh
-weka telemetry exports add kafka <name> [--allow-unverified-certificate] [--ca-cert <string>] [--disabled] [--key-field <string>] [--sasl-mechanism <kafka-sasl-mechanism>] [--sasl-password <string>] [--sasl-username <string>] [--sources <source-type>…] [--target <string>] [--topic <string>] [--use-sasl] [--verify-with-cluster-cacert] [--without-sources]
+weka telemetry exports add kafka <name> [--allow-unverified-certificate] [--ca-cert <string>] [--disabled] [--key-field <string>] [--sasl-mechanism <kafka-sasl-mechanism>] [--sasl-password <string>] [--sasl-username <string>] [--sources <source-type>] [--target <string>] [--topic <string>] [--use-sasl] [--verify-with-cluster-cacert] [--without-sources]
 ```
 
 | Parameter                                  | Description                                                                                                                                               |
@@ -40,7 +40,7 @@ weka telemetry exports add kafka <name> [--allow-unverified-certificate] [--ca-c
 | `--sasl-mechanism` \<kafka-sasl-mechanism> | SASL mechanism: plain, scram-sha-256, or scram-sha-512. Valid values: plain, scram-sha-256, scram-sha-512.                                                |
 | `--sasl-password` \<string>                | SASL password.                                                                                                                                            |
 | `--sasl-username` \<string>                | SASL username.                                                                                                                                            |
-| `--sources` \<source-type>… | Telemetry source to attach to this export: audit or s3_events. An export carries at most one source. Multiple values may be supplied separated by commas, or the option may be repeated. |
+| `--sources` \<source-type> | Telemetry source to attach to this export. Valid value: audit. |
 | `--target` \<string>                       | Destination target (host:port or URL) for the export.                                                                                                     |
 | `--topic` \<string>                        | Kafka topic to publish telemetry to.                                                                                                                      |
 | `--use-sasl`                               | Authenticate to the Kafka brokers using SASL.                                                                                                             |
@@ -52,7 +52,7 @@ weka telemetry exports add kafka <name> [--allow-unverified-certificate] [--ca-c
 Add a new S3 telemetry export destination.
 
 ```sh
-weka telemetry exports add s3 <name> [--access-key-id <string>] [--allow-unverified-certificate] [--bucket-name <string>] [--ca-cert <string>] [--disabled] [--region <string>] [--secret-key <string>] [--sources <source-type>…] [--target <string>] [--verify-with-cluster-cacert] [--without-sources]
+weka telemetry exports add s3 <name> [--access-key-id <string>] [--allow-unverified-certificate] [--bucket-name <string>] [--ca-cert <string>] [--disabled] [--region <string>] [--secret-key <string>] [--sources <source-type>] [--target <string>] [--verify-with-cluster-cacert] [--without-sources]
 ```
 
 | Parameter                        | Description                                                                                                                                               |
@@ -65,7 +65,7 @@ weka telemetry exports add s3 <name> [--access-key-id <string>] [--allow-unverif
 | `--disabled`                     | Create the export in a disabled state.                                                                                                                    |
 | `--region` \<string>             | S3 bucket region.                                                                                                                                         |
 | `--secret-key` \<string>         | S3 secret access key.                                                                                                                                     |
-| `--sources` \<source-type>… | Telemetry source to attach to this export: audit or s3_events. An export carries at most one source. Multiple values may be supplied separated by commas, or the option may be repeated. |
+| `--sources` \<source-type> | Telemetry source to attach to this export. Valid value: audit. |
 | `--target` \<string>             | Destination target (host:port or URL) for the export.                                                                                                     |
 | `--verify-with-cluster-cacert`   | Verify the export's TLS certificate against the cluster's own CA certificate.                                                                             |
 | `--without-sources`              | Create the export with no sources attached, without being prompted for --sources.                                                                         |
@@ -75,7 +75,7 @@ weka telemetry exports add s3 <name> [--access-key-id <string>] [--allow-unverif
 Add a new Splunk telemetry export destination.
 
 ```sh
-weka telemetry exports add splunk <name> [--allow-unverified-certificate] [--auth-token <string>] [--ca-cert <string>] [--disabled] [--sources <source-type>…] [--target <string>] [--verify-with-cluster-cacert] [--without-sources]
+weka telemetry exports add splunk <name> [--allow-unverified-certificate] [--auth-token <string>] [--ca-cert <string>] [--disabled] [--sources <source-type>] [--target <string>] [--verify-with-cluster-cacert] [--without-sources]
 ```
 
 | Parameter                        | Description                                                                                                                                               |
@@ -85,7 +85,7 @@ weka telemetry exports add splunk <name> [--allow-unverified-certificate] [--aut
 | `--auth-token` \<string>         | Splunk HTTP Event Collector authentication token.                                                                                                         |
 | `--ca-cert` \<string>            | Path to a PEM-encoded CA certificate file to verify the export's TLS connection against (max 16384 bytes).                                                |
 | `--disabled`                     | Create the export in a disabled state.                                                                                                                    |
-| `--sources` \<source-type>… | Telemetry source to attach to this export: audit or s3_events. An export carries at most one source. Multiple values may be supplied separated by commas, or the option may be repeated. |
+| `--sources` \<source-type> | Telemetry source to attach to this export. Valid value: audit. |
 | `--target` \<string>             | Destination target (host:port or URL) for the export.                                                                                                     |
 | `--verify-with-cluster-cacert`   | Verify the export's TLS certificate against the cluster's own CA certificate.                                                                             |
 | `--without-sources`              | Create the export with no sources attached, without being prompted for --sources.                                                                         |
@@ -95,7 +95,7 @@ weka telemetry exports add splunk <name> [--allow-unverified-certificate] [--aut
 Add a new Syslog telemetry export destination.
 
 ```sh
-weka telemetry exports add syslog <name> [--allow-unverified-certificate] [--ca-cert <string>] [--disabled] [--facility <syslog-facility>] [--mode <syslog-mode>] [--rfc <syslog-rfc>] [--sources <source-type>…] [--target <string>] [--verify-with-cluster-cacert] [--without-sources]
+weka telemetry exports add syslog <name> [--allow-unverified-certificate] [--ca-cert <string>] [--disabled] [--facility <syslog-facility>] [--mode <syslog-mode>] [--rfc <syslog-rfc>] [--sources <source-type>] [--target <string>] [--verify-with-cluster-cacert] [--without-sources]
 ```
 
 | Parameter                        | Description                                                                                                                                               |
@@ -107,7 +107,7 @@ weka telemetry exports add syslog <name> [--allow-unverified-certificate] [--ca-
 | `--facility` \<syslog-facility>  | Syslog facility: local0 through local7 (default local0). Valid values: local0, local1, local2, local3, local4, local5, local6, local7.                    |
 | `--mode` \<syslog-mode>          | Syslog transport mode: tcp or udp (default tcp). Valid values: tcp, udp.                                                                                  |
 | `--rfc` \<syslog-rfc>            | Syslog message framing: rfc5424 or rfc3164 (default rfc5424). Valid values: rfc5424, rfc3164.                                                             |
-| `--sources` \<source-type>… | Telemetry source to attach to this export: audit or s3_events. An export carries at most one source. Multiple values may be supplied separated by commas, or the option may be repeated. |
+| `--sources` \<source-type> | Telemetry source to attach to this export. Valid value: audit. |
 | `--target` \<string>             | Destination target (host:port or URL) for the export.                                                                                                     |
 | `--verify-with-cluster-cacert`   | Verify the export's TLS certificate against the cluster's own CA certificate.                                                                             |
 | `--without-sources`              | Create the export with no sources attached, without being prompted for --sources.                                                                         |
@@ -117,13 +117,13 @@ weka telemetry exports add syslog <name> [--allow-unverified-certificate] [--ca-
 Attach sources to a telemetry export.
 
 ```sh
-weka telemetry exports attach <export-id> <sources>…
+weka telemetry exports attach <export-id> <source>
 ```
 
 | Parameter     | Description                     |
 | ------------- | ------------------------------- |
 | `export-id`\* | Export ID to attach sources to. |
-| `sources`\*…  | Sources to attach.              |
+| `source`\* | Source to attach. Valid value: audit. |
 
 ### weka telemetry exports detach
 
@@ -174,7 +174,7 @@ weka telemetry exports list [--name <string>] [--type <export-type>]
 | Parameter               | Description                                                                            |
 | ----------------------- | -------------------------------------------------------------------------------------- |
 | `--name` \<string>      | Show only the export with this exact name (case-insensitive).                          |
-| `--type` \<export-type> | Show only exports of this type. Valid values: file, splunk, s3, vector, kafka, syslog. |
+| `--type` \<export-type> | Show only exports of this type. Valid values: file, splunk, s3, vector, kafka, syslog, webhook. |
 
 **Columns:** `id`, `name`, `enabled`, `export_type`, `target`, `sources`
 
@@ -201,7 +201,7 @@ The cluster reports export state per server, so containers on the same server sh
 
 The ratio counts the containers the cluster expects a report from: those that own drive or compute cores. A container that reports an export without being expected to — a protocol container, say — is not in the ratio, but a problem it reports is listed and makes the export degraded.
 
-TELEMETRY OFF means the cluster's telemetry is switched off, so nothing is exported whatever an export's own state says. Turn it on with 'weka audit cluster enable'.
+TELEMETRY OFF means the cluster's telemetry is switched off, so the export sends nothing whatever its own state says. An export whose only source is S3Events keeps running and shows its own health. Turn telemetry on with 'weka audit cluster enable'.
 
 Counts are exact. Server names are a sample: the cluster names a limited number of servers per state, so a container beyond that sample is counted but not named.
 
@@ -232,7 +232,7 @@ weka telemetry exports update
 Update an existing Kafka telemetry export's configuration.
 
 ```sh
-weka telemetry exports update kafka <export-id> [--allow-unverified-certificate] [--ca-cert <string>] [--clear-tls-settings] [--key-field <string>] [--name <string>] [--sasl-mechanism <kafka-sasl-mechanism>] [--sasl-password <string>] [--sasl-username <string>] [--sources <source-type>…] [--target <string>] [--topic <string>] [--use-sasl] [--verify-with-cluster-cacert]
+weka telemetry exports update kafka <export-id> [--allow-unverified-certificate] [--ca-cert <string>] [--clear-tls-settings] [--key-field <string>] [--name <string>] [--sasl-mechanism <kafka-sasl-mechanism>] [--sasl-password <string>] [--sasl-username <string>] [--sources <source-type>] [--target <string>] [--topic <string>] [--use-sasl] [--verify-with-cluster-cacert]
 ```
 
 | Parameter                                  | Description                                                                                                                                                                                  |
@@ -246,7 +246,7 @@ weka telemetry exports update kafka <export-id> [--allow-unverified-certificate]
 | `--sasl-mechanism` \<kafka-sasl-mechanism> | New SASL mechanism: plain, scram-sha-256, or scram-sha-512. Valid values: plain, scram-sha-256, scram-sha-512. |
 | `--sasl-password` \<string>                | New SASL password.                                                                                                                                                                           |
 | `--sasl-username` \<string>                | New SASL username.                                                                                                                                                                           |
-| `--sources` \<source-type>… | Attach this source to the export. An export carries at most one source, so this fails on an export that already carries a different source; use detach first. Multiple values may be supplied separated by commas, or the option may be repeated. |
+| `--sources` \<source-type> | Attach this source to the export. Sources cannot be removed here; use detach. Valid value: audit. |
 | `--target` \<string>                       | New destination target (host:port or URL) for the export.                                                                                                                                    |
 | `--topic` \<string>                        | New Kafka topic to publish telemetry to.                                                                                                                                                     |
 | `--use-sasl`                               | Enable or disable SASL authentication to the Kafka brokers.                                                                                                                                  |
@@ -257,7 +257,7 @@ weka telemetry exports update kafka <export-id> [--allow-unverified-certificate]
 Update an existing S3 telemetry export's configuration.
 
 ```sh
-weka telemetry exports update s3 <export-id> [--access-key-id <string>] [--allow-unverified-certificate] [--bucket-name <string>] [--ca-cert <string>] [--clear-tls-settings] [--name <string>] [--region <string>] [--secret-key <string>] [--sources <source-type>…] [--target <string>] [--verify-with-cluster-cacert]
+weka telemetry exports update s3 <export-id> [--access-key-id <string>] [--allow-unverified-certificate] [--bucket-name <string>] [--ca-cert <string>] [--clear-tls-settings] [--name <string>] [--region <string>] [--secret-key <string>] [--sources <source-type>] [--target <string>] [--verify-with-cluster-cacert]
 ```
 
 | Parameter                        | Description                                                                                                                                                                                  |
@@ -271,7 +271,7 @@ weka telemetry exports update s3 <export-id> [--access-key-id <string>] [--allow
 | `--name` \<string>               | New name for the export.                                                                                                                                                                     |
 | `--region` \<string>             | New S3 bucket region.                                                                                                                                                                        |
 | `--secret-key` \<string>         | New S3 secret access key.                                                                                                                                                                    |
-| `--sources` \<source-type>… | Attach this source to the export. An export carries at most one source, so this fails on an export that already carries a different source; use detach first. Multiple values may be supplied separated by commas, or the option may be repeated. |
+| `--sources` \<source-type> | Attach this source to the export. Sources cannot be removed here; use detach. Valid value: audit. |
 | `--target` \<string>             | New destination target (host:port or URL) for the export.                                                                                                                                    |
 | `--verify-with-cluster-cacert`   | Verify the export's TLS certificate against the cluster's own CA certificate.                                                                                                                |
 
@@ -280,7 +280,7 @@ weka telemetry exports update s3 <export-id> [--access-key-id <string>] [--allow
 Update an existing Splunk telemetry export's configuration.
 
 ```sh
-weka telemetry exports update splunk <export-id> [--allow-unverified-certificate] [--auth-token <string>] [--ca-cert <string>] [--clear-tls-settings] [--name <string>] [--sources <source-type>…] [--target <string>] [--verify-with-cluster-cacert]
+weka telemetry exports update splunk <export-id> [--allow-unverified-certificate] [--auth-token <string>] [--ca-cert <string>] [--clear-tls-settings] [--name <string>] [--sources <source-type>] [--target <string>] [--verify-with-cluster-cacert]
 ```
 
 | Parameter                        | Description                                                                                                                                                                                  |
@@ -291,7 +291,7 @@ weka telemetry exports update splunk <export-id> [--allow-unverified-certificate
 | `--ca-cert` \<string>            | Path to a PEM-encoded CA certificate file to verify the export's TLS connection against (max 16384 bytes).                                                                                   |
 | `--clear-tls-settings`           | Clear the export's TLS settings, reverting it to the default (unverified) certificate handling.                                                                                              |
 | `--name` \<string>               | New name for the export.                                                                                                                                                                     |
-| `--sources` \<source-type>… | Attach this source to the export. An export carries at most one source, so this fails on an export that already carries a different source; use detach first. Multiple values may be supplied separated by commas, or the option may be repeated. |
+| `--sources` \<source-type> | Attach this source to the export. Sources cannot be removed here; use detach. Valid value: audit. |
 | `--target` \<string>             | New destination target (host:port or URL) for the export.                                                                                                                                    |
 | `--verify-with-cluster-cacert`   | Verify the export's TLS certificate against the cluster's own CA certificate.                                                                                                                |
 
@@ -300,7 +300,7 @@ weka telemetry exports update splunk <export-id> [--allow-unverified-certificate
 Update an existing Syslog telemetry export's configuration.
 
 ```sh
-weka telemetry exports update syslog <export-id> [--allow-unverified-certificate] [--ca-cert <string>] [--clear-tls-settings] [--facility <syslog-facility>] [--mode <syslog-mode>] [--name <string>] [--rfc <syslog-rfc>] [--sources <source-type>…] [--target <string>] [--verify-with-cluster-cacert]
+weka telemetry exports update syslog <export-id> [--allow-unverified-certificate] [--ca-cert <string>] [--clear-tls-settings] [--facility <syslog-facility>] [--mode <syslog-mode>] [--name <string>] [--rfc <syslog-rfc>] [--sources <source-type>] [--target <string>] [--verify-with-cluster-cacert]
 ```
 
 | Parameter                        | Description                                                                                                                                                                                  |
@@ -313,6 +313,7 @@ weka telemetry exports update syslog <export-id> [--allow-unverified-certificate
 | `--mode` \<syslog-mode>          | New Syslog transport mode: tcp or udp. Valid values: tcp, udp. |
 | `--name` \<string>               | New name for the export.                                                                                                                                                                     |
 | `--rfc` \<syslog-rfc>            | New Syslog message framing: rfc5424 or rfc3164. Valid values: rfc5424, rfc3164. |
-| `--sources` \<source-type>… | Attach this source to the export. An export carries at most one source, so this fails on an export that already carries a different source; use detach first. Multiple values may be supplied separated by commas, or the option may be repeated. |
+| `--sources` \<source-type> | Attach this source to the export. Sources cannot be removed here; use detach. Valid value: audit. |
 | `--target` \<string>             | New destination target (host:port or URL) for the export.                                                                                                                                    |
 | `--verify-with-cluster-cacert`   | Verify the export's TLS certificate against the cluster's own CA certificate.                                                                                                                |
+

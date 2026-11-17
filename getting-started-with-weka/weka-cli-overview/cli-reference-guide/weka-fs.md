@@ -16,14 +16,14 @@ weka fs [--force-fresh] [--local] [--name <string>]
 | `--local` | Serve the listing from the container this command connects to, without redirecting to the cluster leader. Capacity information may be stale. |
 | `--name` &lt;string&gt; | Show only the named filesystem. |
 
-**Columns:** `uid`, `id`, `name`, `group`, `groupId`, `usedSSD`, `usedSSDD`, `usedSSDM`, `freeSSD`, `availableSSDM`, `availableSSD`, `usedTotal`, `usedTotalD`, `freeTotal`, `availableTotal`, `maxFiles`, `status`, `encrypted`, `stores`, `authRequired`, `thinProvisioned`, `thinProvisioningMinSSDBudget`, `thinProvisioningMaxSSDBudget`, `usedSSDWD`, `usedSSDRD`, `reductionRatio`, `pendingReduction`, `dataReduction`, `reducedProcessedSize`, `reducedSize`, `kmsKey`, `kmsNamespace`, `kmsRole`, `processedReductionRatio`, `audit`, `auditOpenClose`, `indexEnabled`, `permissions`, `richAclEnforcement`, `ownerGuid`, `maxThroughput`, `maxIops`, `s3Coexistence`, `prefThroughput`, `prefIops`
+**Columns:** `uid`, `id`, `name`, `group`, `groupId`, `usedSSD`, `usedSSDD`, `usedSSDM`, `freeSSD`, `availableSSDM`, `availableSSD`, `usedTotal`, `usedTotalD`, `freeTotal`, `availableTotal`, `maxFiles`, `status`, `encrypted`, `stores`, `authRequired`, `thinProvisioned`, `thinProvisioningMinSSDBudget`, `thinProvisioningMaxSSDBudget`, `usedSSDWD`, `usedSSDRD`, `reductionRatio`, `pendingReduction`, `dataReduction`, `reducedProcessedSize`, `reducedSize`, `kmsKey`, `kmsNamespace`, `kmsRole`, `processedReductionRatio`, `audit`, `auditOpenClose`, `auditOperations`, `indexEnabled`, `permissions`, `richAclEnforcement`, `ownerGuid`, `maxThroughput`, `maxIops`, `s3Coexistence`, `prefThroughput`, `prefIops`
 
 ## weka fs add
 
 Add a new filesystem with the specified parameters.
 
 ```sh
-weka fs add <name> <total-capacity> [--allow-no-kms] [--audit-enabled] [--auth-required] [--data-reduction] [--enable-weka-delete] [--enable-weka-delete-root-only] [--encrypted] [--fs-group <filesystem-group>] [--index-enabled] [--kms-key-identifier <string>] [--kms-namespace <string>] [--kms-role-id <string>] [--kms-secret-id <string>] [--max-iops <uint>] [--max-throughput <capacity>] [--obs-name <string>] [--pref-iops <uint>] [--pref-throughput <capacity>] [--rich-acl-enforcement] [--ssd-capacity <capacity>] [--thin-provision-max-ssd <capacity>] [--thin-provision-min-ssd <capacity>]
+weka fs add <name> <total-capacity> [--allow-no-kms] [--audit-enabled] [--auth-required] [--data-reduction] [--enable-weka-delete] [--enable-weka-delete-root-only] [--encrypted] [--fs-group <filesystem-group>] [--index-enabled] [--kms-key-identifier <string>] [--kms-namespace <string>] [--kms-role-id <string>] [--kms-secret-id <string>] [--max-iops <uint>] [--max-throughput <capacity>] [--obs-name <string>] [--pref-iops <uint>] [--pref-throughput <capacity>] [--rich-acl-enforcement] [--ssd-capacity <capacity>] [--thin-provision-max-ssd <capacity>] [--thin-provision-min-ssd <capacity>] [--weka-delete-gid <uint32>] [--weka-delete-uid <uint32>]
 ```
 
 | Parameter | Description |
@@ -52,6 +52,8 @@ weka fs add <name> <total-capacity> [--allow-no-kms] [--audit-enabled] [--auth-r
 | `--ssd-capacity` &lt;capacity&gt; | SSD capacity for the filesystem. |
 | `--thin-provision-max-ssd` &lt;capacity&gt; | Maximum SSD budget for thin provisioning. |
 | `--thin-provision-min-ssd` &lt;capacity&gt; | Minimum SSD budget for thin provisioning. |
+| `--weka-delete-gid` &lt;uint32&gt; | Besides root, the group ID whose members may move directories into .weka-delete. |
+| `--weka-delete-uid` &lt;uint32&gt; | Besides root, the user ID that may move directories into .weka-delete. |
 
 ## weka fs download
 
@@ -462,7 +464,7 @@ List replication pairs with their current state and progress, both the pairs thi
 weka fs replication
 ```
 
-**Columns:** `id`, `uid`, `state`, `role`, `source`, `link`, `link-id`, `target`, `interval`, `snapshots-to-keep`, `apply`, `access`, `copy`, `copy-paths`, `last-replication`, `current-status`, `last-error`, `last-error-time`
+**Columns:** `id`, `uid`, `state`, `role`, `source`, `link`, `link-id`, `target`, `interval`, `snapshots-to-keep`, `apply`, `access`, `copy`, `copy-paths`, `last-replication`, `last-replicated-snapshot`, `next-cycle`, `current-status`, `last-error`, `last-error-time`
 
 ### weka fs replication add
 
@@ -1186,7 +1188,7 @@ weka fs tier s3 update <name> [--access-key-id <string>] [--auth-method <s3-auth
 Update a filesystem's configuration.
 
 ```sh
-weka fs update <name> [--access <access>] [--audit-enabled] [--auth-required] [--data-reduction] [--enable-weka-delete] [--enable-weka-delete-root-only] [--event-log-enabled] [--event-log-max-age-seconds <uint>] [--event-log-max-size-bytes-per-fs-shard <uint>] [--force] [--fs-group <filesystem-group>] [--index-enabled] [--kms-key-identifier <string>] [--kms-namespace <string>] [--kms-role-id <string>] [--kms-secret-id <string>] [--max-iops <uint>] [--max-throughput <capacity>] [--new-name <filesystem>] [--pref-iops <uint>] [--pref-throughput <capacity>] [--remove-fs-group] [--rich-acl-enforcement] [--ssd-capacity <capacity>] [--thin-provision-max-ssd <capacity>] [--thin-provision-min-ssd <capacity>] [--total-capacity <capacity>] [--use-cluster-kms-key-identifier]
+weka fs update <name> [--access <access>] [--audit-enabled] [--auth-required] [--data-reduction] [--enable-weka-delete] [--enable-weka-delete-root-only] [--event-log-enabled] [--event-log-max-age-seconds <uint>] [--event-log-max-size-bytes-per-fs-shard <uint>] [--force] [--fs-group <filesystem-group>] [--index-enabled] [--kms-key-identifier <string>] [--kms-namespace <string>] [--kms-role-id <string>] [--kms-secret-id <string>] [--max-iops <uint>] [--max-throughput <capacity>] [--new-name <filesystem>] [--pref-iops <uint>] [--pref-throughput <capacity>] [--remove-fs-group] [--rich-acl-enforcement] [--ssd-capacity <capacity>] [--thin-provision-max-ssd <capacity>] [--thin-provision-min-ssd <capacity>] [--total-capacity <capacity>] [--use-cluster-kms-key-identifier] [--weka-delete-gid <uint32>] [--weka-delete-uid <uint32>]
 ```
 
 | Parameter | Description |
@@ -1220,3 +1222,6 @@ weka fs update <name> [--access <access>] [--audit-enabled] [--auth-required] [-
 | `--thin-provision-min-ssd` &lt;capacity&gt; | Minimum SSD budget for thin provisioning. |
 | `--total-capacity` &lt;capacity&gt; | New total capacity for the filesystem. |
 | `--use-cluster-kms-key-identifier` | Use the cluster KMS configuration for this filesystem, removing any custom KMS configuration. |
+| `--weka-delete-gid` &lt;uint32&gt; | Besides root, the group ID whose members may move directories into .weka-delete. 0 clears it. |
+| `--weka-delete-uid` &lt;uint32&gt; | Besides root, the user ID that may move directories into .weka-delete. 0 clears it. |
+

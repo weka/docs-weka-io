@@ -167,3 +167,54 @@ Manage per-filesystem audit settings.
 ```sh
 weka audit fs
 ```
+### weka audit fs disable
+
+Disable audit logging on a filesystem.
+
+```sh
+weka audit fs disable <name>
+```
+
+| Parameter | Description |
+| --------- | ----------- |
+| `name`\* | Name of the filesystem. |
+
+### weka audit fs enable
+
+Enable audit logging on a filesystem.
+
+```sh
+weka audit fs enable <name>
+```
+
+| Parameter | Description |
+| --------- | ----------- |
+| `name`\* | Name of the filesystem. |
+
+### weka audit fs set-operations
+
+Set which operations are audited on a filesystem. This replaces the operations set before.
+
+```sh
+weka audit fs set-operations <name> <operations>…
+```
+
+| Parameter | Description |
+| --------- | ----------- |
+| `name`\* | Name of the filesystem. |
+| `operations`*… | Operations to audit, or 'All', or 'None' to audit nothing. Valid values: open, create, read, modify, delete, rename, close, sessionmanagement, all, none. |
+
+### weka audit fs status
+
+Show the audit settings of each filesystem.
+
+```sh
+weka audit fs status [--name <filesystem>]
+```
+
+| Parameter | Description |
+| --------- | ----------- |
+| `--name` \<filesystem> | Show only this filesystem. |
+
+**Columns:** `uid`, `id`, `name`, `audit`, `audit_open_close`, `audit_operations`
+

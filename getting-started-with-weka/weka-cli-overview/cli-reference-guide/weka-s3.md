@@ -623,7 +623,7 @@ Show the S3 audit webhook configuration.
 weka s3 cluster audit-webhook show
 ```
 
-**Columns:** `enabled`, `endpoint`, `auth_token`
+**Columns:** `enabled`, `endpoint`, `auth_token`, `batch_mode`, `batch_size`, `batch_count`, `batch_time`
 
 ### weka s3 cluster container
 
