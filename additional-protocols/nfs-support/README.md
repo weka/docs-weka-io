@@ -22,6 +22,13 @@ The legacy NFS stack is no longer supported.
 
 Adhere to the following guidelines and requirements when deploying the NFS service.
 
+### **Servers that run the NFS service**
+
+On each server that runs the WEKA NFS service:
+
+* Stop and mask the operating system's `rpc-statd` and `rpc-statd-notify` services, and keep them masked after upgrades.
+* Do not mount NFS filesystems, WEKA or external, on the server.
+
 ### **Configuration filesystem**
 
 A persistent cluster-wide configuration filesystem is required for the protocol's internal operations using NFSv4 or Kerberos integration. See [#dedicated-filesystem-for-persistent-protocol-configurations-requirement](../additional-protocols-overview.md#dedicated-filesystem-for-persistent-protocol-configurations-requirement "mention").
