@@ -32,7 +32,13 @@ This topic covers management sign-in. For S3 access with OIDC, see [Configure S3
    * **GUI:** `https://<address>/auth/callback` for each address users open the GUI at. These are the origins you set with `--redirect-uris`, followed by `/auth/callback`.
    * **CLI:** `http://127.0.0.1/auth/callback`. The CLI uses a different port at each sign-in, and Entra ID ignores the port of a loopback redirect URI. Add this URI in the application manifest, in `replyUrlsWithType`. The **Redirect URIs** box in the Entra admin center accepts only `https` loopback addresses.
    * Sign-in with `--use-device-code` needs no redirect URI. Instead, in the application's **Authentication** settings, set **Allow public client flows** to **Yes**.
-3. With MFA required, the default, add the `amr` claim to the application's ID token: select **Token configuration > Add optional claim > ID > amr**. The cluster reads this claim to confirm that a sign-in was multi-factor.
+3. With MFA required, the default, add the `amr` claim to the application's ID token. In **Manifest**, set `optionalClaims` so that its `idToken` list carries the claim:
+
+   ```json
+   "optionalClaims": {"accessToken": [], "idToken": [{"name": "amr", "source": null, "essential": false, "additionalProperties": []}], "saml2Token": []}
+   ```
+
+   The cluster reads this claim to confirm that a sign-in was multi-factor.
 4. Set up how users receive their WEKA role. Use one method per connector:
    * **App roles:** Create app roles whose values are WEKA role names, and assign users or groups to them. The values are `ClusterAdmin`, `TenantAdmin`, `ReadOnly`, `Regular`, or `QuotaManager`. Matching ignores case.
    * **Group mapping:** Configure the application to include group claims in the token, then map each group to a WEKA role on the cluster. See [Map groups to roles](#map-groups-to-roles).
@@ -135,9 +141,12 @@ To sign in as a local user, pass the username: `weka user login <username>`.
 
 ### Sign in to the GUI
 
-{% hint style="danger" %}
-**INTERNAL, remove before publication. TBD (GUI team):** Add the GUI sign-in steps and screen captures for single sign-on.
-{% endhint %}
+1. On the sign-in screen, select **Sign in with SSO**.
+2. Sign in with your Entra ID account. At the first sign-in, Entra ID asks for consent to share your basic profile with the cluster.
+
+The GUI opens with the WEKA role granted by your Entra ID assignment.
+
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/sign-in-with-sso.png" alt="The GUI sign-in screen with the Sign in with SSO option"><figcaption><p>Sign in with SSO</p></figcaption></figure></div>
 
 ## Control how long an OIDC session stays valid
 
