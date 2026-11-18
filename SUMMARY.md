@@ -308,6 +308,7 @@
     * [Deploy Composable Clusters on Kubernetes using the CDM](kubernetes/weka-operator-deployments/cloud-deployment-manager-kubernetes-deployment-types/deploy-composable-clusters-on-kubernetes-using-the-cdm.md)
   * [Quick installation](kubernetes/weka-operator-deployments/quick-installation.md)
   * [WEKA Operator full deployment workflow](kubernetes/weka-operator-deployments/weka-operator-full-deployment-workflow.md)
+  * [Deploy WEKA Operator on OpenShift](kubernetes/weka-operator-deployments/weka-operator-on-openshift.md)
   * [Deploy WEKA on cloud-managed Kubernetes services](kubernetes/weka-operator-deployments/deploy-the-weka-client-on-amazon-eks.md)
   * [Migrate standalone CSI to WEKA Operator-embedded](kubernetes/weka-operator-deployments/migrate-standalone-csi-to-weka-operator-embedded.md)
   * [Networking with the WEKA Operator](kubernetes/weka-operator-deployments/networking-with-the-weka-operator.md)
