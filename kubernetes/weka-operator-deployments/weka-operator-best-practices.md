@@ -138,13 +138,18 @@ kubectl patch wekacluster <cluster-name> --type='merge' \
 
 Only reduce `gracefulDestroyDuration` to zero in non-production environments or when an immediate removal is intentional and confirmed.
 
-### Use rolling upgrade policy for WekaClient
+### Choose the WekaClient upgrade policy
 
-Set `upgradePolicy` to `rolling` on all WekaClient CRs. This replaces client pods one at a time, preserving availability during upgrades. The `all-at-once` policy updates all pods simultaneously and causes a full client outage. The `manual` policy requires explicit pod deletion for each update and is prone to operator error.
+The `upgradePolicy` type on a WekaClient CR controls how the operator replaces client pods when the WEKA image changes. With each of these policies, the operator replaces a client pod only when its node reports zero active mounts, so mounted workloads keep running during the upgrade. A pod on a node that still has active mounts waits until the mounts reach zero; drain the workloads that use the mounts to let the upgrade proceed on that node.
+
+* `all-at-once` (default): Upgrades all client pods in parallel, each as its node reaches zero active mounts. On a large client fleet, the upgrade completes in the time of the slowest node.
+* `rolling`: Upgrades one client pod at a time. The upgrade time grows with the number of clients.
+* `manual`: Replaces a pod only when you delete it.
 
 ```yaml
 spec:
-  upgradePolicy: rolling
+  upgradePolicy:
+    type: all-at-once
 ```
 
 ### Never force-delete WEKA pods
