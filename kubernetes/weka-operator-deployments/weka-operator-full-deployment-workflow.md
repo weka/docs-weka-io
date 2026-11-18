@@ -52,7 +52,7 @@ Replace all placeholders in your setup files with these values before proceeding
 
 Ensure the infrastructure meets the performance and resiliency requirements of the WEKA data plane. This step covers control plane configuration, node hardware and software requirements, HugePages, port requirements, and Kubelet CPU policy.
 
-#### Control plane high availability
+### Control plane high availability
 
 Configure the Kubernetes control plane for high availability to match WEKA resiliency. High availability depends on etcd quorum.
 
@@ -63,7 +63,7 @@ Configure the Kubernetes control plane for high availability to match WEKA resil
 Consider using an external etcd cluster or distributing control plane components across multiple failure domains. For more information, see the [Kubernetes HA topology guidance](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/ha-topology/).
 {% endhint %}
 
-#### Node hardware and software requirements
+### Node hardware and software requirements
 
 Verify that every node in the cluster meets these specifications:
 
@@ -71,7 +71,7 @@ Verify that every node in the cluster meets these specifications:
 * **Storage allocation:** Reserve approximately 20 GiB per WEKA container plus 10 GiB per allocated CPU core in `/opt/k8s-weka`. Do not use NFS or network-attached storage.
 * **Kernel headers:** Ensure kernel headers exactly match the running kernel version to allow driver compilation.
 
-#### Configure HugePages for Kubernetes worker nodes
+### Configure HugePages for Kubernetes worker nodes
 
 WEKA processes require dedicated HugePages memory. Configure HugePages on every worker node before deploying the WekaCluster. Nodes without HugePages configured will fail to schedule WEKA pods.
 
@@ -119,14 +119,14 @@ Step 3: Calculate HugePages:
 402,998 / 2 = 201,499 → round up to 201,500 HugePages
 ```
 
-**Apply HugePages settings**
+#### Apply HugePages settings
 
-**Before you begin:**
+**Before you begin**
 
 * Identify the number of drives and CPU cores allocated to WEKA on the server.
 * Ensure you have root or `sudo` permissions on the worker nodes.
 
-**Procedure:**
+**Procedure**
 
 1.  Check the current HugePages status on the server:
 
@@ -144,7 +144,7 @@ Step 3: Calculate HugePages:
     sudo sh -c 'echo "vm.nr_hugepages = <calculated-value>" >> /etc/sysctl.conf'
     ```
 
-#### Kubernetes port requirements
+### Kubernetes port requirements
 
 The WEKA Operator automatically allocates ports to prevent collisions in multi-cluster environments. Manual configuration is typically unnecessary unless specific infrastructure or policy requirements apply.
 
@@ -154,7 +154,7 @@ The WEKA Operator automatically allocates ports to prevent collisions in multi-c
 | WEKA Operator / WEKA (previous versions) | 35000              | 500 ports per cluster |
 | WEKA client connectivity                 | 45000              | Maximum: 65535        |
 
-**Reserve ports on each node**
+#### Reserve ports on each node
 
 To prevent the Linux kernel from assigning WEKA ports to other processes, add the following to `/etc/sysctl.d/99-weka.conf` on every node. For example:
 
@@ -166,7 +166,7 @@ The range 35000–37600 covers 2,600 ports, which supports up to 10 WekaCluster 
 
 For full kernel parameter configuration, see [Set custom kernel parameters](../../planning-and-installation/system-installation-on-bare-metal-servers/prepare-the-system/#configure-the-networking).
 
-#### Configure Kubelet requirements
+### Configure Kubelet requirements
 
 Enable the static CPU Manager policy on all worker nodes to give WEKA processes dedicated CPU cores. Without this, the Kubernetes scheduler can place other workloads on the same cores, causing contention and reducing I/O throughput.
 
@@ -261,7 +261,7 @@ systemctl restart kubelet
 
 [Control CPU Management Policies on the Node](https://kubernetes.io/docs/tasks/administer-cluster/cpu-management-policies/)
 
-#### Configure image pull secrets
+### Configure image pull secrets
 
 Set up Kubernetes secrets to enable secure image pulling from the WEKA container registry. These secrets must exist in every namespace where WEKA resources are deployed.
 
@@ -296,13 +296,13 @@ kubectl create secret docker-registry quay-io-robot-secret \
   --namespace=default
 ```
 
-#### Configure failure domains
+### Configure failure domains
 
 Group backend nodes into failure domains to ensure high availability and data protection. A failure domain represents a set of processes that share a common physical risk, such as a rack, power circuit, or network switch.
 
 The system distributes data and parity blocks from the same stripe across different failure domains. If an entire failure domain fails, the cluster reconstructs the missing data from the remaining domains.
 
-**Select a failure domain mode**
+#### Select a failure domain mode
 
 | Mode               | Function                                                           | Usage                                                                                         |
 | ------------------ | ------------------------------------------------------------------ | --------------------------------------------------------------------------------------------- |
@@ -313,7 +313,7 @@ The system distributes data and parity blocks from the same stripe across differ
 Prefer explicit mode when Kubernetes node labels can represent shared infrastructure boundaries. Explicit mode provides better failure protection by separating processes across known physical domains such as racks, power feeds, or switches. To use it, ensure the required topology labels are present on the nodes.
 {% endhint %}
 
-**Determine stripe width and domain count**
+#### Determine stripe width and domain count
 
 Coordinate the number of failure domains with the stripe width and protection level during cluster formation. Stripe width and protection levels are permanent once set.
 
@@ -324,11 +324,11 @@ Minimum healthy server requirements:
 | Stripe configuration | Minimum healthy server |
 | -------------------- | ---------------------- |
 | 5+2                  | 4                      |
-| 16+ 2                | 9                      |
+| 16+2                 | 9                      |
 | 5+4                  | 3                      |
 | 16+4                 | 5                      |
 
-**Map a single node label**
+#### Map a single node label
 
 1.  Label every backend node with a physical grouping value:
 
@@ -347,7 +347,7 @@ Minimum healthy server requirements:
     * `label`: The node label key identifying the failure domain.
     * `skew`: The permitted difference in container count between domains.
 
-**Use composite topology labels**
+#### Use composite topology labels
 
 Combine existing Kubernetes topology labels, such as zone and rack, into a compound failure domain identity.
 
@@ -370,7 +370,7 @@ Combine existing Kubernetes topology labels, such as zone and rack, into a compo
 
     The operator combines these values. For example, a node in zone `us-east-1a` on `rack-1` becomes failure domain `us-east-1a/rack-1`.
 
-**Verify the configuration**
+#### Verify the configuration
 
 Confirm the distribution of containers across the defined domains.
 
@@ -533,13 +533,9 @@ If outbound access to `drivers.weka.io` is available, use the pre-built driver s
 
 For architectural details on how driver distribution works, see [WEKA Operator driver management](weka-operator-driver-management.md).
 
-**Before you begin**
+**Local driver distribution components**
 
-* Ensure a WEKA-compatible image (`weka-in-container`) and a valid `imagePullSecret` are accessible.
-* Confirm that builder container versions match the target WEKA version.
-* For local distribution: ensure kernel headers matching the running kernel are installed on the build server. On Ubuntu, install `linux-headers-$(uname -r)`. On Rocky Linux, install `kernel-devel-$(uname -r)` and `kernel-headers-$(uname -r)`. Also confirm port 60002 is open for communication between the operator, Drivers-Builder, Drivers-Dist, and Drivers-Loader.
-
-**Local driver distribution components:** When using a local builder, the operator deploys three components:
+When using a local builder, the operator deploys three components:
 
 * **Drivers-Builder:** Compiles the kernel module for specific WEKA and kernel version combinations.
 * **Drivers-Dist:** An internal HTTP server that stores and serves compiled driver packages.
@@ -548,6 +544,12 @@ For architectural details on how driver distribution works, see [WEKA Operator d
 {% hint style="info" %}
 When configuring driver distribution manually, the following elements must be preserved exactly as shown in the configuration examples: ports, network modes, core configurations, and `spec.name`.
 {% endhint %}
+
+**Before you begin**
+
+* Ensure a WEKA-compatible image (`weka-in-container`) and a valid `imagePullSecret` are accessible.
+* Confirm that builder container versions match the target WEKA version.
+* For local distribution: ensure kernel headers matching the running kernel are installed on the build server. On Ubuntu, install `linux-headers-$(uname -r)`. On Rocky Linux, install `kernel-devel-$(uname -r)` and `kernel-headers-$(uname -r)`. Also confirm port 60002 is open for communication between the operator, Drivers-Builder, Drivers-Dist, and Drivers-Loader.
 
 **Procedure**
 
@@ -886,7 +888,7 @@ Review the [WekaCluster API reference](https://weka.github.io/weka-k8s-api/wekac
   * `containerCapacity`: Sets the capacity per drive container. Required when `shared: true` is set and `clusterCapacity` is not set.
   * `numDrives`: Assigns whole drives per drive container. Applies when `shared: false` is set. Optional, defaults to `1`.
 
-**Procedure**
+Procedure
 
 1. Create `weka-cluster.yaml`:
 
@@ -964,7 +966,7 @@ kubectl apply -f weka-cluster.yaml
 
 Create a Kubernetes Secret that stores the credentials WekaClient uses to join the WEKA cluster. This is required only when WekaClient and WekaCluster are not deployed in the same Kubernetes cluster.
 
-#### Before you begin
+**Before you begin**
 
 Obtain the `org`, `join-secret`, `password`, and `username` from your WEKA backend.
 
