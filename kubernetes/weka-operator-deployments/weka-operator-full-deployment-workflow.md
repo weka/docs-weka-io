@@ -1123,7 +1123,7 @@ For the full list of configurable fields, see [WekaClient parameters](https://we
 | `wekaSecretRef`           | Reference to the Kubernetes Secret containing cluster credentials.                                                                                                | —         |
 | `coresNum`                | Number of physical CPU cores to allocate to each container.                                                                                                       | 1         |
 | `cpuPolicy`               | Defines core allocation behavior: `auto`, `manual`, `shared`, `dedicated` or `dedicated_ht`                                                                       | `auto`    |
-| `upgradePolicy`           | Sets the upgrade strategy: `rolling`, `manual`, or `all-at-once`.                                                                                                 | `rolling` |
+| `upgradePolicy`           | Sets the upgrade strategy (`type`): `all-at-once`, `rolling`, `manual`, or `all-at-once-force`.                                                                   | `all-at-once` |
 | `gracefulDestroyDuration` | Pause duration for local data and drive allocations during pod deletion.                                                                                          | 24h       |
 
 </details>
