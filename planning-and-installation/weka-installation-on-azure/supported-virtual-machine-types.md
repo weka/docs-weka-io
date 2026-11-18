@@ -123,6 +123,7 @@ The following table shows the mapping for a few more VM sizes:
 
 | VM series  | VM size                                                                              |
 | ---------- | ------------------------------------------------------------------------------------ |
+| ND H100 v5 | Standard\_ND96isr\_H100\_v5                                                          |
 | NGads V620 | Standard\_NG8ads\_V620\_v1, Standard\_NG16ads\_V620\_v1, Standard\_NG32ads\_V620\_v1 |
 | NVadsA10   | Standard\_NVadsA10\_v5                                                               |
 

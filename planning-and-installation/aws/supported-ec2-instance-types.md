@@ -124,7 +124,7 @@ The following EC2 instance models can operate as **client** instances. The defau
 | P2                | p2.xlarge, p2.8xlarge, p2.16xlarge                                                                |
 | P3                | p3.2xlarge, p3.8xlarge, p3.16xlarge                                                               |
 | P4                | p4d.24xlarge, p4de.24xlarge                                                                       |
-| P5                | p5.48xlarge, p5e.48xlarge                                                                         |
+| P5                | p5.48xlarge, p5e.48xlarge, p5en.48xlarge                                                          |
 | P6                | p6-b200.48xlarge                                                                                  |
 | Trn1              | trn1.2xlarge, trn1.32xlarge , trn1n.32xlarge                                                      |
 
