@@ -75,15 +75,15 @@ On the first connection, the CLI establishes trust in the cluster TLS certificat
 
 | Operation                 | Command                                      |
 | ------------------------- | -------------------------------------------- |
-| Create a profile          | `weka profile add &#x3C;profile_name>`       |
+| Create a profile          | `weka profile add <profile_name>`       |
 | List profiles             | `weka profile list`                          |
-| Show a profile            | `weka profile show &#x3C;profile_name>`      |
-| Select the active profile | `weka profile select &#x3C;profile_name>`    |
-| Update a profile          | `weka profile update &#x3C;profile_name>`    |
-| Duplicate a profile       | `weka profile duplicate &#x3C;profile_name> &#x3C;new_profile_name>` |
-| Delete a profile          | `weka profile remove &#x3C;profile_name>`    |
-| Log out of a profile      | `weka profile logout &#x3C;profile_name>`    |
-| Purge a profile's saved data | `weka profile purge {certs \| cache \| history \| all} [&#x3C;profile_name>]` |
+| Show a profile            | `weka profile show <profile_name>`      |
+| Select the active profile | `weka profile select <profile_name>`    |
+| Update a profile          | `weka profile update <profile_name>`    |
+| Duplicate a profile       | `weka profile duplicate <profile_name> <new_profile_name>` |
+| Delete a profile          | `weka profile remove <profile_name>`    |
+| Log out of a profile      | `weka profile logout <profile_name>`    |
+| Purge a profile's saved data | `weka profile purge {certs \| cache \| history \| all} [<profile_name>]` |
 
 Profile settings are stored as editable JSON files and can be overridden using environment variables. On Linux, when no custom profile is selected, wekactl reuses an existing token created by the legacy weka CLI.
 
