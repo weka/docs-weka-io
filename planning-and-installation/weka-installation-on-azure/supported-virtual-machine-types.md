@@ -63,7 +63,7 @@ The following table shows the mapping for a few more VM sizes:
 
 ### GPU - accelerated compute
 
-<table><thead><tr><th width="143">VM series</th><th>VM size</th></tr></thead><tbody><tr><td>NGads V620</td><td>Standard_NG8ads_V620_v1, Standard_NG16ads_V620_v1, Standard_NG32ads_V620_v1</td></tr><tr><td>NVadsA10</td><td>Standard_NVadsA10_v5</td></tr></tbody></table>
+<table><thead><tr><th width="143">VM series</th><th>VM size</th></tr></thead><tbody><tr><td>ND H100 v5</td><td>Standard_ND96isr_H100_v5</td></tr><tr><td>NGads V620</td><td>Standard_NG8ads_V620_v1, Standard_NG16ads_V620_v1, Standard_NG32ads_V620_v1</td></tr><tr><td>NVadsA10</td><td>Standard_NVadsA10_v5</td></tr></tbody></table>
 
 **Related information**
 
