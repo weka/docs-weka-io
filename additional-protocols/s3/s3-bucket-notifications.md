@@ -90,7 +90,7 @@ weka s3 cluster notification-target add \
 | `type`        | Specifies the target type. Supported value: `kafka`.                           |
 | `name`        | Name for the target.                                                           |
 | `topic`       | Kafka topic name.                                                              |
-| `brokers`     | Comma-separated list of `&#x3C;IP or hostname>:&#x3C;port>` for Kafka brokers. |
+| `brokers`     | Comma-separated list of `<IP or hostname>:<port>` for Kafka brokers. |
 | `queue-limit` | Maximum queued notifications before dropping events.                           |
 | `tls-cert` | Name of the certificate the target uses for TLS. Required unless TLS is disabled. See [Manage TLS certificates for notification targets](#manage-tls-certificates-for-notification-targets). |
 | `tls` | Enables TLS. Default: enabled. To connect without TLS, pass `--tls=false`. |

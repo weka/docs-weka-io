@@ -81,7 +81,7 @@ weka-sign-drive virtual add <physical-uuid> \
 
 | Parameter | Description |
 | --- | --- |
-| `&#x3C;physical-uuid>` | Physical UUID identified in the previous step. |
+| `<physical-uuid>` | Physical UUID identified in the previous step. |
 | `--size` | Virtual drive size, in GB. Over-provisioning is supported. |
 | `--owner-cluster-guid` | Cluster GUID used when signing the physical drive.Default: all clusters if not specified. |
 | `--virtual-uuid` | Optional. Explicitly assigns a virtual UUID. If omitted, WEKA generates one automatically. |
@@ -179,8 +179,8 @@ weka cluster drive add <container-id> <virtual-uuid> [--pool <pool-name>]
 
 |  |  |
 | --- | --- |
-| `&#x3C;container-id>` | ID of the container to attach the virtual drive. |
-| `&#x3C;virtual-uuid>` | Virtual UUID created in the previous step. |
+| `<container-id>` | ID of the container to attach the virtual drive. |
+| `<virtual-uuid>` | Virtual UUID created in the previous step. |
 | `--pool` | Optional. Target storage pool (for example, `iubig` for large indirection unit pools). |
 
 **Examples**

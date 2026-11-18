@@ -111,9 +111,9 @@ Replace the placeholders with your values:
 
 | Placeholder | Value |
 | --- | --- |
-| `&#x3C;observe-host>` | Hostname from the cluster settings URL |
-| `&#x3C;base-url>` | Path portion of the endpoint URL from the token dialog |
-| `&#x3C;your-token>` | Authentication token from the token dialog |
+| `<observe-host>` | Hostname from the cluster settings URL |
+| `<base-url>` | Path portion of the endpoint URL from the token dialog |
+| `<your-token>` | Authentication token from the token dialog |
 
 ### Selective metric collection
 

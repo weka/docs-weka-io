@@ -123,9 +123,9 @@ Replace the placeholders with your values:
 
 | Placeholder | Value |
 | --- | --- |
-| `&#x3C;lwh-host>` | LWH hostname from the cluster settings URL |
-| `&#x3C;base-url>` | Path portion of the endpoint URL from the token dialog |
-| `&#x3C;your-token>` | Authentication token from the token dialog |
+| `<lwh-host>` | LWH hostname from the cluster settings URL |
+| `<base-url>` | Path portion of the endpoint URL from the token dialog |
+| `<your-token>` | Authentication token from the token dialog |
 
 ### Selective metric collection
 
