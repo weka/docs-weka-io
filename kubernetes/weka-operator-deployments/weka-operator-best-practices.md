@@ -140,11 +140,12 @@ Only reduce `gracefulDestroyDuration` to zero in non-production environments or 
 
 ### Choose the WekaClient upgrade policy
 
-The `upgradePolicy` type on a WekaClient CR controls how the operator replaces client pods when the WEKA image changes. With each of these policies, the operator replaces a client pod only when its node reports zero active mounts, so mounted workloads keep running during the upgrade. A pod on a node that still has active mounts waits until the mounts reach zero; drain the workloads that use the mounts to let the upgrade proceed on that node.
+The `upgradePolicy` type on a WekaClient CR controls how the operator replaces client pods when the WEKA image changes. With the `all-at-once`, `rolling`, and `manual` policies, the operator replaces a client pod only when its node reports zero active mounts, so mounted workloads keep running during the upgrade. A pod on a node that still has active mounts waits until the mounts reach zero; drain the workloads that use the mounts to let the upgrade proceed on that node.
 
 * `all-at-once` (default): Upgrades all client pods in parallel, each as its node reaches zero active mounts. On a large client fleet, the upgrade completes in the time of the slowest node.
 * `rolling`: Upgrades one client pod at a time. The upgrade time grows with the number of clients.
 * `manual`: Replaces a pod only when you delete it.
+* `all-at-once-force`: Upgrades all client pods immediately, without waiting for nodes to reach zero active mounts. This skips the graceful stop of the client containers and disrupts active mounts. Use only when explicitly instructed by the WEKA Customer Success Team.
 
 ```yaml
 spec:
