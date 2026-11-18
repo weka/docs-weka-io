@@ -17,11 +17,11 @@ description: >-
 
 Identify and record the credentials required to pull WEKA container images and the specific version tags for your deployment.
 
-#### Before you begin
+**Before you begin**
 
 Contact the WEKA Customer Success Team to receive your authorized registry credentials.
 
-#### Procedure
+**Procedure**
 
 1. Access [WEKA Operator page](https://get.weka.io/ui/operator) to identify the latest `WEKA_OPERATOR_VERSION` and `WEKA_IMAGE_VERSION_TAG`.
 2. Record the following credentials for your image pull secret:
@@ -42,7 +42,7 @@ Replace all placeholders in your setup files with these values before proceeding
 
 Ensure the infrastructure meets the performance and resiliency requirements of the WEKA data plane. This step covers control plane configuration, node hardware and software requirements, HugePages, port requirements, and Kubelet CPU policy.
 
-#### Control plane high availability
+### Control plane high availability
 
 Configure the Kubernetes control plane for high availability to match WEKA resiliency. High availability depends on etcd quorum.
 
@@ -53,7 +53,7 @@ Configure the Kubernetes control plane for high availability to match WEKA resil
 Consider using an external etcd cluster or distributing control plane components across multiple failure domains. For more information, see the [Kubernetes HA topology guidance](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/ha-topology/).
 {% endhint %}
 
-#### Node hardware and software requirements
+### Node hardware and software requirements
 
 Verify that every node in the cluster meets these specifications:
 
@@ -61,7 +61,7 @@ Verify that every node in the cluster meets these specifications:
 * **Storage allocation:** Reserve approximately 20 GiB per WEKA container plus 10 GiB per allocated CPU core in `/opt/k8s-weka`. Do not use NFS or network-attached storage.
 * **Kernel headers:** Ensure kernel headers exactly match the running kernel version to allow driver compilation.
 
-#### Configure HugePages for Kubernetes worker nodes
+### Configure HugePages for Kubernetes worker nodes
 
 WEKA processes require dedicated HugePages memory. Configure HugePages on every worker node before deploying the WekaCluster. Nodes without HugePages configured will fail to schedule WEKA pods.
 
@@ -103,14 +103,14 @@ Step 3: Calculate HugePages:
 402,998 / 2 = 201,499 → round up to 201,500 HugePages
 ```
 
-**Apply HugePages settings**
+#### Apply HugePages settings
 
-Before you begin:
+**Before you begin**
 
 * Identify the number of drives and CPU cores allocated to WEKA on the server.
 * Ensure you have root or `sudo` permissions on the worker nodes.
 
-Procedure:
+**Procedure**
 
 1.  Check the current HugePages status on the server:
 
@@ -128,13 +128,13 @@ Procedure:
     sudo sh -c 'echo "vm.nr_hugepages = <calculated-value>" >> /etc/sysctl.conf'
     ```
 
-#### Kubernetes port requirements
+### Kubernetes port requirements
 
 The WEKA Operator automatically allocates ports to prevent collisions in multi-cluster environments. Manual configuration is typically unnecessary unless specific infrastructure or policy requirements apply.
 
 <table><thead><tr><th width="273.39996337890625">Component</th><th width="144.39990234375">Default start port</th><th>Port range size</th></tr></thead><tbody><tr><td>WEKA Operator (v1.10+) / WEKA (v5.1.0+)</td><td>35000</td><td>260 ports per cluster</td></tr><tr><td>WEKA Operator / WEKA (previous versions)</td><td>35000</td><td>500 ports per cluster</td></tr><tr><td>WEKA client connectivity</td><td>45000</td><td>Maximum: 65535</td></tr></tbody></table>
 
-**Reserve ports on each node**
+#### Reserve ports on each node
 
 To prevent the Linux kernel from assigning WEKA ports to other processes, add the following to `/etc/sysctl.d/99-weka.conf` on every node. For example:
 
@@ -146,7 +146,7 @@ The range 35000–37600 covers 2,600 ports, which supports up to 10 WekaCluster 
 
 For full kernel parameter configuration, see [Set custom kernel parameters](../../planning-and-installation/bare-metal/setting-up-the-hosts/#configure-the-networking).
 
-#### Configure Kubelet requirements
+### Configure Kubelet requirements
 
 Enable the static CPU Manager policy on all worker nodes to give WEKA processes dedicated CPU cores. Without this, the Kubernetes scheduler can place other workloads on the same cores, causing contention and reducing I/O throughput.
 
@@ -234,7 +234,7 @@ systemctl restart kubelet
 
 [Control CPU Management Policies on the Node](https://kubernetes.io/docs/tasks/administer-cluster/cpu-management-policies/)
 
-#### Configure image pull secrets
+### Configure image pull secrets
 
 Set up Kubernetes secrets to enable secure image pulling from the WEKA container registry. These secrets must exist in every namespace where WEKA resources are deployed.
 
@@ -269,13 +269,13 @@ kubectl create secret docker-registry quay-io-robot-secret \
   --namespace=default
 ```
 
-#### Configure failure domains
+### Configure failure domains
 
 Group backend nodes into failure domains to ensure high availability and data protection. A failure domain represents a set of processes that share a common physical risk, such as a rack, power circuit, or network switch.
 
 The system distributes data and parity blocks from the same stripe across different failure domains. If an entire failure domain fails, the cluster reconstructs the missing data from the remaining domains.
 
-**Select a failure domain mode**
+#### Select a failure domain mode
 
 <table><thead><tr><th width="113">Mode</th><th width="320">Function</th><th>Usage</th></tr></thead><tbody><tr><td>Implicit (default)</td><td>Assigns every process as its own independent failure domain.</td><td>Deployments where infrastructure shared risks cannot be identified by Kubernetes node labels.</td></tr><tr><td>Explicit</td><td>Groups processes into named domains based on physical node labels.</td><td>Deployments where containers share a rack, switch, or power source.</td></tr></tbody></table>
 
@@ -283,7 +283,7 @@ The system distributes data and parity blocks from the same stripe across differ
 Prefer explicit mode when Kubernetes node labels can represent shared infrastructure boundaries. Explicit mode provides better failure protection by separating processes across known physical domains such as racks, power feeds, or switches. To use it, ensure the required topology labels are present on the nodes.
 {% endhint %}
 
-**Determine stripe width and domain count**
+#### Determine stripe width and domain count
 
 Coordinate the number of failure domains with the stripe width and protection level during cluster formation. Stripe width and protection levels are permanent once set.
 
@@ -294,11 +294,11 @@ Minimum healthy server requirements:
 | Stripe configuration | Minimum healthy server |
 | -------------------- | ---------------------- |
 | 5+2                  | 4                      |
-| 16+ 2                | 9                      |
+| 16+2                 | 9                      |
 | 5+4                  | 3                      |
 | 16+4                 | 5                      |
 
-**Map a single node label**
+#### Map a single node label
 
 1.  Label every backend node with a physical grouping value:
 
@@ -317,7 +317,7 @@ Minimum healthy server requirements:
     * `label`: The node label key identifying the failure domain.
     * `skew`: The permitted difference in container count between domains.
 
-**Use composite topology labels**
+#### Use composite topology labels
 
 Combine existing Kubernetes topology labels, such as zone and rack, into a compound failure domain identity.
 
@@ -340,7 +340,7 @@ Combine existing Kubernetes topology labels, such as zone and rack, into a compo
 
     The operator combines these values. For example, a node in zone `us-east-1a` on `rack-1` becomes failure domain `us-east-1a/rack-1`.
 
-**Verify the configuration**
+#### Verify the configuration
 
 Confirm the distribution of containers across the defined domains.
 
@@ -364,7 +364,7 @@ Confirm the distribution of containers across the defined domains.
 
 Manage the lifecycle of WEKA resources by installing the WEKA Operator. This process involves applying Custom Resource Definitions (CRDs) and deploying the operator controller with specific configurations for the Container Storage Interface (CSI) and drive types.
 
-#### Before you begin
+**Before you begin**
 
 * Ensure the `QUAY_SECRET_KEY` is created in the `weka-operator-system` namespace (completed in [step 2](weka-operator-full-deployment-workflow.md#id-2.-prepare-kubernetes-environment)).
 *   Install Helm on a local server, unless using a higher-level deployment tool such as Argo CD:
@@ -379,7 +379,7 @@ Manage the lifecycle of WEKA resources by installing the WEKA Operator. This pro
 
     <table><thead><tr><th width="218">Condition</th><th>Required flag</th></tr></thead><tbody><tr><td>Operator v1.7.0 and later</td><td><code>--set csi.installationEnabled=true</code></td></tr><tr><td>Operator v1.10 and later with AlloyFlash</td><td><code>--set driveSharing.driveTypesRatio='{tlc: 9, qlc: 1}'</code></td></tr><tr><td>Operator v1.10 and later with single drive type</td><td><code>--set driveSharing.driveTypesRatio='{qlc: 0}'</code></td></tr></tbody></table>
 
-#### Procedure
+**Procedure**
 
 1. Download and apply the CRDs so the Kubernetes API can recognize WEKA resources. Replace `<WEKA_OPERATOR_VERSION>` with your version:
 
@@ -444,12 +444,6 @@ If outbound access to `drivers.weka.io` is available, use the pre-built driver s
 
 For architectural details on how driver distribution works, see [WEKA Operator driver management](weka-operator-driver-management.md).
 
-#### Before you begin
-
-* Ensure a WEKA-compatible image (`weka-in-container`) and a valid `imagePullSecret` are accessible.
-* Confirm that builder container versions match the target WEKA version.
-* For local distribution: ensure kernel headers matching the running kernel are installed on the build server. On Ubuntu, install `linux-headers-$(uname -r)`. On Rocky Linux, install `kernel-devel-$(uname -r)` and `kernel-headers-$(uname -r)`. Also confirm port 60002 is open for communication between the operator, Drivers-Builder, Drivers-Dist, and Drivers-Loader.
-
 **Local driver distribution components**
 
 When using a local builder, the operator deploys three components:
@@ -461,6 +455,12 @@ When using a local builder, the operator deploys three components:
 {% hint style="info" %}
 When configuring driver distribution manually, the following elements must be preserved exactly as shown in the configuration examples: ports, network modes, core configurations, and `spec.name`.
 {% endhint %}
+
+**Before you begin**
+
+* Ensure a WEKA-compatible image (`weka-in-container`) and a valid `imagePullSecret` are accessible.
+* Confirm that builder container versions match the target WEKA version.
+* For local distribution: ensure kernel headers matching the running kernel are installed on the build server. On Ubuntu, install `linux-headers-$(uname -r)`. On Rocky Linux, install `kernel-devel-$(uname -r)` and `kernel-headers-$(uname -r)`. Also confirm port 60002 is open for communication between the operator, Drivers-Builder, Drivers-Dist, and Drivers-Loader.
 
 **Procedure**
 
@@ -728,7 +728,7 @@ For details on SSD Proxy operation and resource requirements,, see [Drive sharin
 {% endtab %}
 {% endtabs %}
 
-#### Procedure
+**Procedure**
 
 {% hint style="info" %}
 Review the [WekaPolicy API reference](https://weka.github.io/weka-k8s-api/wekapolicy/) for all available resource options.
@@ -776,7 +776,7 @@ Provision the WEKA cluster backend using the WekaCluster CR. This resource defin
 Review the [WekaCluster API reference](https://weka.github.io/weka-k8s-api/wekacluster/) for all available resource options.
 {% endhint %}
 
-#### Before you begin
+**Before you begin**
 
 * Verify that drives are signed and discovered ([step 5](weka-operator-full-deployment-workflow.md#id-5.-discover-and-sign-drives)).
 * Verify the driver distribution service is accessible. WEKA recommends the external service at `https://drivers.weka.io`.
@@ -785,7 +785,7 @@ Review the [WekaCluster API reference](https://weka.github.io/weka-k8s-api/wekac
   * `containerCapacity`: Sets the capacity per drive container. Required when `shared: true` is set and `clusterCapacity` is not set.
   * `numDrives`: Assigns whole drives per drive container. Applies when `shared: false` is set. Optional, defaults to `1`.
 
-#### Procedure
+Procedure
 
 1. Create `weka-cluster.yaml`:
 
@@ -863,11 +863,11 @@ kubectl apply -f weka-cluster.yaml
 
 Create a Kubernetes Secret that stores the credentials WekaClient uses to join the WEKA cluster. This is required only when WekaClient and WekaCluster are not deployed in the same Kubernetes cluster.
 
-#### Before you begin
+**Before you begin**
 
 Obtain the `org`, `join-secret`, `password`, and `username` from your WEKA backend.
 
-#### Procedure
+**Procedure**
 
 1. Encode each credential value to **base64**.
 
@@ -915,7 +915,7 @@ If you need WEKA clients on Kubernetes, deploy the WekaClient CR on the designat
 Review the [WekaClient API reference](https://weka.github.io/weka-k8s-api/wekaclient/) for all available resource options.
 {% endhint %}
 
-#### Before you begin
+**Before you begin**
 
 * Label every worker node intended to host WEKA client pods:
 
@@ -936,7 +936,7 @@ Ensure the label matches the `nodeSelector` property in the WekaClient CR.
 * Verify that the Kubernetes Secret (for example, `weka-cluster-dev`) exists in the `weka-operator-system` namespace and contains base64-encoded cluster credentials (`org`, `join-secret`, `password`, and `username`).
 * Identify whether you are using the external driver distribution service (`https://drivers.weka.io`) or a local service endpoint.
 
-#### Procedure
+**Procedure**
 
 1. Create `weka-client.yaml` using the connection type that matches your environment:\
    Both connection modes support the embedded CSI plugin.
@@ -1035,7 +1035,7 @@ Optionally, allocate a unique proxy subnet to each WEKA cluster when you deploy 
 
 Assign a non-overlapping subnet to every WEKA cluster so that each cluster keeps a dedicated address range and isolates its traffic from other tenants on the same Kubernetes nodes.
 
-### Before you begin
+**Before you begin**
 
 * Deploy the WEKA Operator on the target Kubernetes environment.
 * Identify every WEKA cluster already deployed on the same Kubernetes environment.
@@ -1044,7 +1044,7 @@ Assign a non-overlapping subnet to every WEKA cluster so that each cluster keeps
 **Important:** Assign a unique proxy subnet to each WEKA cluster on the same Kubernetes environment. This prevents overlapping address ranges and routing conflicts when you deploy additional clusters.
 {% endhint %}
 
-### Procedure
+**Procedure**
 
 1.  Record the proxy subnets already assigned to the existing WEKA clusters:
 
