@@ -54,10 +54,6 @@ Verify that the upgrade path from your source version to the target version is s
 
 <div data-with-frame="true"><figure><img src="../.gitbook/assets/check_upgrade_path_4.4.png" alt=""><figcaption><p>get.weka.io: Check upgrade path example</p></figcaption></figure></div>
 
-{% hint style="warning" %}
-Upgrading to version 4.4.7 on Azure deployments is not supported.
-{% endhint %}
-
 ## What is a non-disruptive upgrade (NDU)
 
 In MCB architecture, each container serves a single type of process, drive, frontend, or compute function. Therefore, upgrading one container at a time (rolling upgrade) is possible while the remaining containers continue serving the clients.
