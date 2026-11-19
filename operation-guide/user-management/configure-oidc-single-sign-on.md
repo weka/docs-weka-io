@@ -155,6 +155,8 @@ The cluster rechecks an OIDC user with Entra ID when the session's access token 
 
 The access token of an OIDC or LDAP user lasts at most the revalidation interval. Default: 5 minutes. To change it, see [Manage token expiration](../../security/manage-token-expiration.md).
 
+An OIDC user can refresh the signed-in session but cannot create a long-lived API token with `weka user generate-token`. For automation that needs a long-lived token, use a local user.
+
 {% hint style="info" %}
 The cluster contacts Entra ID when users sign in and when a session refreshes, so the provider reachability events appear at those moments.
 {% endhint %}
