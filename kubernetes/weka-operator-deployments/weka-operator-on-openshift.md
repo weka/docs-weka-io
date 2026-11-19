@@ -45,7 +45,7 @@ WEKA processes require dedicated HugePages memory. Configure HugePages on every 
 
 **Related topic**
 
-[Configure HugePages for Kubernetes worker nodes](https://app.gitbook.com/s/qDcZwR9zamxPsY03oTOq/kubernetes/weka-operator-deployments/weka-operator-full-deployment-workflow#configure-hugepages-for-kubernetes-worker-nodes) (calculate the required number of HugePages)
+[Configure HugePages for Kubernetes worker nodes](weka-operator-full-deployment-workflow.md#configure-hugepages-for-kubernetes-worker-nodes) (calculate the required number of HugePages)
 
 #### Apply HugePages settings using MachineConfigs
 
