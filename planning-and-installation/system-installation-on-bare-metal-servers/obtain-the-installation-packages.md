@@ -42,7 +42,7 @@ You can only sign in and download the packages if you are a registered user.
 
 1. Go to the [get.weka.io](https://get.weka.io/ui/dashboard) download site, and sign in with your registered account.
 
-<div data-with-frame="true"><figure><img src="../../.gitbook/assets/get.weka_dashboard.png" alt="get.weka.io dashboard showing the current release, Local WEKA Home, and the WEKA Operator, with a link to all release lines"><figcaption><p>get.weka.io dashboard</p></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/get.weka_dashboard.png" alt=""><figcaption><p>get.weka.io: Dashboard page</p></figcaption></figure></div>
 
 2. Download the required package:
    * Select the package from the dashboard.
@@ -50,9 +50,11 @@ You can only sign in and download the packages if you are a registered user.
 
 The download-link token is intentionally blurred in the image.
 
-<div data-with-frame="true"><figure><img src="../../.gitbook/assets/get.weka_release_lines (1).png" alt="Release Lines tab with release 6.0.1 selected, showing the curl, wget, and direct download options on the Download tab"><figcaption><p>Release Lines download page</p></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/get.weka_release_lines_6.1.0.png" alt="Release Lines tab with release 6.0.1 selected, showing the curl, wget, and direct download options on the Download tab"><figcaption><p>get.weka.io: Release Lines download page</p></figcaption></figure></div>
 
 3\. If you use WPA, download the WPA ISO image from the [WPA page](https://get.weka.io/ui/wpa/), and verify it against the MD5 checksum in the WPA release notes.
+
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/get.weka_wpa.png" alt=""><figcaption><p>get.weka.io: WPA page</p></figcaption></figure></div>
 
 ## What to do next?
 

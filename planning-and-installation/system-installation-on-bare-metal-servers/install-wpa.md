@@ -12,7 +12,7 @@ See the `cloud-init` config file on each WPA release page in [get.weka.io](https
 
 The WPA release cycle is designed to prioritize a secure installation experience. So new WPA images are released regularly and independently of the WEKA software release cycle. As such, WEKA software is intentionally not included in the WPA `iso`.&#x20;
 
-Please download and install your WEKA software release from [get.weka.io](https://get.weka.io) after the WPA installation has completed.<br>
+Download and install your WEKA software release from [get.weka.io](https://get.weka.io) after the WPA installation has completed.<br>
 
 **Before you begin**
 

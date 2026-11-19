@@ -49,6 +49,8 @@ Verify that the upgrade path from your source version to the target version is s
    * A warning indicates an additional requirement to complete before the upgrade, such as a client upgrade.
    * The path list indicates the recommended target version.
 
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/check_upgrade_path_6.0.png" alt=""><figcaption><p>get.weka.io: Dashboard - Upgrade Path page</p></figcaption></figure></div>
+
 ## Non-disruptive upgrade (NDU) overview
 
 In MCB architecture, each container serves a single process type: drive, compute, or frontend. This allows a rolling upgrade, upgrading one container at a time, while the remaining containers continue serving clients.
