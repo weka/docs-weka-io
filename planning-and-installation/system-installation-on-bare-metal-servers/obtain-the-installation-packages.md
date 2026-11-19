@@ -50,9 +50,11 @@ You can only sign in and download the packages if you are a registered user.
 
 The download-link token is intentionally blurred in the image.
 
-<div data-with-frame="true"><figure><img src="../../.gitbook/assets/get.weka_release_lines (1).png" alt="Release Lines tab with release 6.0.1 selected, showing the curl, wget, and direct download options on the Download tab"><figcaption><p>Release Lines download page</p></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/get.weka_release_lines_6.1.0.png" alt="Release Lines tab with release 6.0.1 selected, showing the curl, wget, and direct download options on the Download tab"><figcaption><p>Release Lines download page</p></figcaption></figure></div>
 
-3\. If you use WPA, download the WPA ISO image from the [WPA page](https://get.weka.io/ui/wpa/), and verify it against the MD5 checksum in the WPA release notes.
+3. If you use WPA, download the WPA ISO image from the [WPA page](https://get.weka.io/ui/wpa/), and verify it against the MD5 checksum in the WPA release notes.
+
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/get.weka_wpa.png" alt=""><figcaption><p>WPA download page</p></figcaption></figure></div>
 
 ## What to do next?
 

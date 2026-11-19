@@ -8,7 +8,7 @@ description: Upgrade your WEKA system with the latest version.
 
 Plan upgrades by Release Line.
 
-WEKA versions use the format **Major.Minor.Revision**. A Release Line is defined by the **Major** number, such as `4.x` or `5.x`. Revisions are cumulative within the same Release Line.
+WEKA versions use the format **Major.Minor.Revision**. A Release Line is defined by the **Major** number, such as `5.x` or `6.x`. Revisions are cumulative within the same Release Line.
 
 {% hint style="info" %}
 For upgrade planning, note the following mappings:
@@ -48,6 +48,8 @@ Verify that the upgrade path from your source version to the target version is s
    * **Direct Upgrade** indicates the path is supported.
    * A warning indicates an additional requirement to complete before the upgrade, such as a client upgrade.
    * The path list indicates the recommended target version.
+
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/check_upgrade_path_6.1.png" alt=""><figcaption><p>get.weka.io: Dashboard - Upgrade Path page</p></figcaption></figure></div>
 
 ## Non-disruptive upgrade (NDU) overview
 

@@ -53,7 +53,7 @@ Link the two clusters so they can authenticate each other and replicate filesyst
    2. Enter the **User Name** and **Password** of a cluster admin on it.
    3. Select **Next - Verify Peer Cluster Identity**.
 
-<div data-with-frame="true"><figure><img src="../../.gitbook/assets/Replication_link_step (1).png" alt="Create Replication Link wizard, Replication Link step, with the Management Address, User Name, and Password fields"><figcaption><p>Create Replication Link: Replication Link step</p></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src="../../.gitbook/assets/Replication_link_step.png" alt="Create Replication Link wizard, Replication Link step, with the Management Address, User Name, and Password fields"><figcaption><p>Create Replication Link: Replication Link step</p></figcaption></figure></div>
 
 4. Verify that the **SHA256 Fingerprint** matches the fingerprint of the remote cluster:
    1. Using a terminal, connect to the remote cluster.

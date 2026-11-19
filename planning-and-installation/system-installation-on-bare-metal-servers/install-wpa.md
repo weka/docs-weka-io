@@ -4,15 +4,15 @@ description: Install the WEKA Platform Appliance (WPA) on each bare metal server
 
 # Install WPA
 
-WPA is an operating system image based on Ubuntu 24.04 Server Minimal.&#x20;
+WPA is an operating system image based on Ubuntu 24.04 Server Minimal.
 
 The WPA `iso` does not need internet access during the installation – all included packages are set to their latest versions as of the WPA release date, and the Linux kernel package is pinned to the latest major+minor release line that is known to work with WEKA.
 
-See the `cloud-init` config file on each WPA release page in [get.weka.io](https://get.weka.io) for further details about the included packages and system settings.&#x20;
+See the `cloud-init` config file on each WPA release page in [get.weka.io](https://get.weka.io) for further details about the included packages and system settings.
 
-The WPA release cycle is designed to prioritize a secure installation experience. So new WPA images are released regularly and independently of the WEKA software release cycle. As such, WEKA software is intentionally not included in the WPA `iso`.&#x20;
+The WPA release cycle is designed to prioritize a secure installation experience. So new WPA images are released regularly and independently of the WEKA software release cycle. As such, WEKA software is intentionally not included in the WPA `iso`.
 
-Please download and install your WEKA software release from [get.weka.io](https://get.weka.io) after the WPA installation has completed.<br>
+Download and install your WEKA software release from [get.weka.io](https://get.weka.io) after the WPA installation has completed.<br>
 
 **Before you begin**
 
@@ -24,7 +24,7 @@ Please download and install your WEKA software release from [get.weka.io](https:
 * Make sure you can boot each server from the ISO image, through the server's BMC virtual media or from USB media.
 
 {% hint style="warning" %}
-WPA selects the slowest drive or pair of drives for the bootable operating system partition and the `/opt/weka` partition.&#x20;
+WPA selects the slowest drive or pair of drives for the bootable operating system partition and the `/opt/weka` partition.
 
 WPA installs the operating system on the first match from the following list of devices: a Dell BOSS device, a hardware RAID virtual disk, a SATA/M.2 drive or matching pair of dives, the smallest NVMe drive or smallest matching pair of NVMe drives.
 
@@ -39,8 +39,8 @@ Before you install, back up or disconnect any drive that holds data you need.
 2.  **Wait for the installation to complete:** The boot menu starts the automatic installation after 30 seconds. The installer partitions the drives, installs and configures the operating system, installs the required packages, and reboots the server.
 
     To follow the installation on a server without a monitor, open the BMC serial-over-LAN console (115200 baud).
-3. **Sign in to the server console:** The login credentials are provided on the WPA download page on [get.weka.io](https://get.weka.io). \
-   The WPA sets the host name to `weka-` followed by the last segment of the server's DMI serial number. \
+3. **Sign in to the server console:** The login credentials are provided on the WPA download page on [get.weka.io](https://get.weka.io).\
+   The WPA sets the host name to `weka-` followed by the last segment of the server's DMI serial number.\
    The WPA enables DHCP on the management interface but makes no further assumptions about the installation network — so each NIC will need to be configured for each server.
 4. Verify the installed WPA version:
 
