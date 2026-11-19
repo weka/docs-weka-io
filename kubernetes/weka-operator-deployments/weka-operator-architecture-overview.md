@@ -90,8 +90,6 @@ The WekaClient CR defines which nodes run WEKA client processes. The deployment 
 
 This diagram shows the separate-cluster deployment model. The WEKA Operator processes a WekaClient CR and deploys the WEKA Client and CSI Plugin DaemonSets across designated nodes that are co-located with user application pods. Application workloads and WEKA clients run in one Kubernetes cluster, while backend WEKA containers and NVMe storage run in a separate Kubernetes cluster.
 
-<div data-with-frame="true"><figure><img src="../../.gitbook/assets/WEKA_operator_client_deploy (1).png" alt=""><figcaption><p>WEKA Operator client deployment</p></figcaption></figure></div>
-
 ### Embedded CSI plugin
 
 Starting with Operator v1.7.0, the CSI plugin runs in embedded mode, managed directly by the operator as part of the WekaClient CR. This removes the need to install the WEKA CSI Plugin as a separate Helm chart and eliminates manual lifecycle management.

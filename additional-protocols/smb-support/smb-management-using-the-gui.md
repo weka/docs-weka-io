@@ -77,7 +77,7 @@ You can modify the encryption and IP settings according to your needs.
 
 2. In the Edit SMB Configuration dialog, do the following:
    * **Encryption:** Select one of the in-transit encryption enforcements: enabled, desired, or required.
-   * &#x20;**IPs:** List of virtual IPs (comma-separated) used as floating IPs for the SMB cluster. (Floating IPs are not supported for cloud installations.)
+   * **IPs:** List of virtual IPs (comma-separated) used as floating IPs for the SMB cluster. (Floating IPs are not supported for cloud installations.)
 
 <figure><img src="../../.gitbook/assets/wmng_edit_smb_configuration.png" alt="" width="375"><figcaption><p>Edit SMB configuration</p></figcaption></figure>
 
@@ -93,7 +93,7 @@ To enable the SMB cluster to use Active Directory to resolve the access of users
 
 <summary>Resolve the AD domain controllers</summary>
 
-Add the AD DNS configuration to every SMB protocol backend.&#x20;
+Add the AD DNS configuration to every SMB protocol backend.
 
 Follow these steps:
 
@@ -116,7 +116,7 @@ Replace `8.8.8.8` and `8.8.4.4` with the appropriate nameserver IP addresses for
 
 1. In the SMB Cluster Configuration, select **Join**.
 
-<figure><img src="../../.gitbook/assets/wmng_smb_join_ad_button (1).png" alt="" width="338"><figcaption><p>Join the SMB cluster in the Active Directory</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/wmng_smb_join_ad_button.png" alt="" width="338"><figcaption><p>Join the SMB cluster in the Active Directory</p></figcaption></figure>
 
 2. In the Join to Active Directory dialog, set the following properties:
    * **Username** and **Password**: A username and password of an account that has join privileges to the Active Directory domain. WEKA does not save these credentials. Instead, the SMB cluster creates a computer account for use.
@@ -206,9 +206,9 @@ Adding servers to the SMB cluster can provide several benefits and address vario
 
 ## Remove servers from the SMB cluster <a href="#delete-the-smb-cluster" id="delete-the-smb-cluster"></a>
 
-&#x20;If the SMB cluster has more servers than you need, you can remove the server.
+If the SMB cluster has more servers than you need, you can remove the server.
 
-The minimum required number of servers in an SMB cluster is three.&#x20;
+The minimum required number of servers in an SMB cluster is three.
 
 #### Procedure
 
@@ -252,7 +252,7 @@ Once the SMB cluster is created, you can create SMB shares (maximum of 1024). Ea
 **Before you begin**
 
 * Ensure the SMB cluster is joined to the Active Directory. For details, see [#join-the-smb-cluster-in-the-active-directory](smb-management-using-the-gui.md#join-the-smb-cluster-in-the-active-directory "mention").
-* Ensure the filesystem is already mounted and the directory you want to share is created in the filesystem. For details, see [mounting-filesystems](../../weka-filesystems-and-object-stores/mounting-filesystems/ "mention"); &#x20;
+* Ensure the filesystem is already mounted and the directory you want to share is created in the filesystem. For details, see [mounting-filesystems](../../weka-filesystems-and-object-stores/mounting-filesystems/ "mention");
 
 **Procedure**
 
@@ -277,7 +277,7 @@ Once the SMB cluster is created, you can create SMB shares (maximum of 1024). Ea
     * **Access Control Model:** Specifies the type of access control to use for the share. Options include POSIX, Windows, or Hybrid (default: POSIX). Hybrid ACL allows seamless interoperability between POSIX and Windows systems by exchanging permissions based on timestamps. The most recent permission, regardless of the system it originated from, takes precedence. Only applicable for SMB-W.
     * **Case Sensitivity**: Enables or disables case sensitivity for the specified SMB share (default: ON). When enabled, the share distinguishes between files with the same name but different capitalization. This option applies exclusively to the SMB-W cluster.
     * **ADS:** Enables using Alternate Data Streams (ADS) on a specified SMB share.\
-      Possible values: ON, OFF (default: ON).  For **macOS clients**, if ACLs are disabled (`acl=off`), set `enable-ADS` to `off`. For **Windows clients**, when enabled, ADS data is stored in the file’s extended attributes (XAttr), which consumes XAttr space.
+      Possible values: ON, OFF (default: ON). For **macOS clients**, if ACLs are disabled (`acl=off`), set `enable-ADS` to `off`. For **Windows clients**, when enabled, ADS data is stored in the file’s extended attributes (XAttr), which consumes XAttr space.
 3. Select **Save**.
 
 <figure><img src="../../.gitbook/assets/Add_SMB_share.png" alt=""><figcaption></figcaption></figure>

@@ -8,7 +8,7 @@ The Local WEKA Home interface provides comprehensive multi-cluster monitoring ac
 
 To view the cluster overview, select it from the list, or select the 3-dot icon on the right and select **Open in new tab**.
 
-<figure><img src="../../.gitbook/assets/clusters-page (1).png" alt=""><figcaption><p>Clusters page</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/clusters-page.png" alt=""><figcaption><p>Clusters page</p></figcaption></figure>
 
 **Clusters graphs view**
 
@@ -131,7 +131,7 @@ The Settings page displays a variety of panels containing information such as tr
 
 <figure><img src="../../.gitbook/assets/cluster-settings.png" alt=""><figcaption><p>Setting page</p></figcaption></figure>
 
-## Diagnostics&#x20;
+## Diagnostics
 
 The Diagnostics page displays the content of all diagnostic files uploaded from the cluster. Diagnostics are neatly organized in a file system tree structure for convenient navigation.
 

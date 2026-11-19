@@ -29,56 +29,34 @@ WEKA uses a structured versioning scheme to indicate the scope and type of chang
 
 ## Version compatibility guidelines
 
-* **Upgrade direction:** Upgrades must always progress from older to newer versions.
+* **Upgrade direction:** Always upgrade from older to newer versions.
+* **Release Line progression:** Upgrade across consecutive supported Release Lines. If a multi-hop path is required, complete one Release Line at a time.
 * **Compatibility basis:** A target version supports upgrades from source versions whose fixes it already includes, within the supported source range for that target version. A service pack on an older Release Line can include fixes that reach the newer Release Line only in a later service pack. In that case, upgrade to the later service pack.
-* **Major version upgrades:** Upgrades must follow consecutive order (for example, 4.2  → 4.3). LTS releases upgrade to Innovation, and Innovation releases upgrade to the next LTS.
-* **LTS upgrades:** Clusters and clients can be upgraded between consecutive LTS releases (for example, 4.2.6 and above may be upgraded to the latest minor release of 4.4).
-* **Client upgrades:** Clients are supported if they are at most one major version behind the backend. For example, 4.2 client → 4.4 backend target version.
-* **SCMC deployments:** The client-target-version parameter must be identical across all clusters and compatible with the target backend upgrade. See [mount-fs-from-scmc.md](../weka-filesystems-and-object-stores/mounting-filesystems/mount-fs-from-scmc.md "mention").
-* **Reference information:** For detailed source-to-target support per release, refer to the upgrade section at [get.weka.io](https://get.weka.io).
+* **Client upgrades:** Clients are supported if they are at most one Release Line behind the backend. In multi-hop upgrades, upgrade the clients before the cluster at each hop.
+* **SCMC deployments:** The `client-target-version` parameter must be identical across all clusters and compatible with the target backend version. See [Mount filesystems from Single Client to Multiple Clusters (SCMC)](../weka-filesystems-and-object-stores/mounting-filesystems/mount-fs-from-scmc.md).
+* **Reference information:** For exact supported source and target combinations, see the upgrade section at [get.weka.io](https://get.weka.io).
+
+#### Check the upgrade path
+
+Verify that the upgrade path from your source version to the target version is supported. The **Upgrade Path** checker on [get.weka.io](https://get.weka.io) validates the path and indicates additional requirements, such as upgrading clients before the backends.
+
+**Procedure**
+
+1. On [get.weka.io](https://get.weka.io), open the **Upgrade Path** checker.
+2. In the **From** box, select the source version.
+3. In the **To** box, select the target version.
+4. Select **Check Path**.
+5. Review the upgrade summary:
+   * **Direct Upgrade** indicates the path is supported.
+   * **2 Hops** indicates that the upgrade requires two sequential upgrades.
+   * A warning indicates an additional requirement to complete before the upgrade, such as a client upgrade.
+   * The path list indicates the recommended target version.
+
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/check_upgrade_path_4.4.png" alt=""><figcaption><p>get.weka.io: Check upgrade path example</p></figcaption></figure></div>
 
 {% hint style="warning" %}
 Upgrading to version 4.4.7 on Azure deployments is not supported.
 {% endhint %}
-
-### **Upgrade examples**
-
-<details>
-
-<summary>Target version: 4.4.9</summary>
-
-4.4.9.130 was release on August 20, 2025. The minimum required version to upgrade from is 4.2.1.
-
-<figure><img src="../.gitbook/assets/upgarde_compatibility_4.4.9.png" alt=""><figcaption></figcaption></figure>
-
-
-
-</details>
-
-<details>
-
-<summary>Target version: 4.4.2.113</summary>
-
-#### Supported upgrades
-
-```
-4.4.1     → 4.4.2.113    Maximum supported direct upgrade
-4.3.5.105 → 4.4.2.113    Maximum supported intermediate version
-4.2.12.92 → 4.4.2.113    Released: Aug 1, 2024 → Dec 10, 2024
-```
-
-#### Unsupported upgrades
-
-```
-4.2.17.77 → 4.4.2.113    Version not in supported range
-4.2.16    → 4.4.2.113    Version not in supported range
-4.2.15    → 4.4.2.113    Version not in supported range
-4.2.14    → 4.4.2.113    Version not in supported range
-```
-
-<figure><img src="../.gitbook/assets/get-weka-io-versions_4.4.png" alt=""><figcaption><p>Release example at get.weka.io</p></figcaption></figure>
-
-</details>
 
 ## What is a non-disruptive upgrade (NDU)
 
@@ -98,15 +76,15 @@ Once you run the upgrade command in `ndu` mode, the following occurs:
 4. Rolling upgrade of the **frontend** configured with backend mode and **protocol** containers (including frontend and protocol containers hosted on a dedicated protocol server).
 
 {% hint style="info" %}
-To review the frontend containers that will be upgraded, check their configuration mode by running the following command:  `$ weka cluster process --role frontend -o containerId,hostname,mode`
+To review the frontend containers that will be upgraded, check their configuration mode by running the following command: `$ weka cluster process --role frontend -o containerId,hostname,mode`
 
 Example output:
 
-`CONTAINER ID HOSTNAME          MODE`\
-`10           DataSphere-1      backend`\
-`13           DataSphere-2      backend`\
-`14           DataSphere-3      backend`\
-`16           DataSphere-6      client`
+`CONTAINER ID HOSTNAME MODE`\
+`10 DataSphere-1 backend`\
+`13 DataSphere-2 backend`\
+`14 DataSphere-3 backend`\
+`16 DataSphere-6 client`
 {% endhint %}
 
 <figure><img src="../.gitbook/assets/NDU_process_4.2.png" alt=""><figcaption><p>NDU process at a glance</p></figcaption></figure>
@@ -148,7 +126,7 @@ Ensure the environment meets the necessary prerequisites before proceeding with 
 
 <details>
 
-<summary>Sample list of the verification steps performed by the WEKA Upgrade Checker Tool </summary>
+<summary>Sample list of the verification steps performed by the WEKA Upgrade Checker Tool</summary>
 
 * [x] **Backend server Prerequisites and compatibility**:
   * Confirm that all backend servers meet the [prerequisites and compatibility](../planning-and-installation/prerequisites-and-compatibility.md) requirements of the target version. Address any discrepancies promptly.
@@ -215,17 +193,17 @@ Demo: WEKA Upgrade Checker
 
 {% hint style="info" %}
 * Prioritize running the WEKA Upgrade Checker **24 hours** before any scheduled upgrades. This step is critical to identify and address any potential issues proactively.
-* Ensure **passwordless SSH access** is set up on all backend servers. This is crucial for the seamless execution of the Python script while running the WEKA Upgrade Checker.&#x20;
+* Ensure **passwordless SSH access** is set up on all backend servers. This is crucial for the seamless execution of the Python script while running the WEKA Upgrade Checker.
 {% endhint %}
 
 #### **Procedure**
 
 1. **Log in to one of the backend servers as a root user:**
    * Access the server using the appropriate credentials.
-2. **Obtain the WEKA Upgrade Checker:** \
+2. **Obtain the WEKA Upgrade Checker:**\
    Choose one of the following methods:
    * **Method A:** Direct download
-     * Clone the WEKA Upgrade Checker GIT repository with the command: \
+     * Clone the WEKA Upgrade Checker GIT repository with the command:\
        `git clone https://github.com/weka/tools.git`
    * **Method B:** Update from existing tools repository
      * If you have previously downloaded the tools repository, navigate to the **tools** directory.
@@ -239,7 +217,7 @@ Demo: WEKA Upgrade Checker
     Or
 
     * Run the Python precompiled script:\
-      &#x20;`./weka_upgrade_checker --target-version <version>`
+      `./weka_upgrade_checker --target-version <version>`
 
     Replace `<version>` with your target version. For example `4.4.4`.\
     The tool scans the backend servers and verifies the upgrade prerequisites.
@@ -251,7 +229,7 @@ Demo: WEKA Upgrade Checker
 5. **Send the log file to the Customer Success Team:**
    * The `weka_upgrade_checker.log` is located in the same directory where you ran the tool. Share the latest log file with the Customer Success Team for further analysis.
 
-### 2. Prepare the cluster for upgrade&#x20;
+### 2. Prepare the cluster for upgrade
 
 Download the new WEKA version to one of the backend servers using one of the following methods depending on the cluster deployment:
 
@@ -289,7 +267,7 @@ Use this method if the cluster environment has connectivity to [get.weka.io](htt
 
 1. From the Public Releases on the [get.weka.io](https://get.weka.io/ui/releases/), select the required release.
 2. Select the **Install** tab.
-3. From the backend server, run the `curl` command line as shown in the following example.&#x20;
+3. From the backend server, run the `curl` command line as shown in the following example.
 
 <figure><img src="../.gitbook/assets/get-weka-io-curl.png" alt=""><figcaption><p>Example: Install tab</p></figcaption></figure>
 {% endtab %}
@@ -306,7 +284,7 @@ Use this method if the cluster environment does not have connectivity to [get.we
 
 ### 3. Prepare the backend servers for upgrade (optional)
 
-When working with many backend servers, preparing them separately from the upgrade process in advance is possible to minimize the total upgrade time. For a small number of backend servers, this step is not required.&#x20;
+When working with many backend servers, preparing them separately from the upgrade process in advance is possible to minimize the total upgrade time. For a small number of backend servers, this step is not required.
 
 The preparation phase prepares all the connected backend servers for the upgrade, which includes downloading the new version and getting it ready to be applied.
 
@@ -334,7 +312,7 @@ weka local run --container drives0 --in <new-version> upgrade
 
 * Before switching the cluster to the new software release, the upgrade command distributes the new release to all cluster servers. It makes the necessary preparations, such as compiling the new `wekafs` driver.
 * If a failure occurs during the preparation, such as a disconnection of a server or failure to build a driver, the upgrade process stops, and a summary message indicates the problematic server.
-*   If cleanup issues occur during a specific upgrade phase, rerun it with the relevant option:                &#x20;
+*   If cleanup issues occur during a specific upgrade phase, rerun it with the relevant option:
 
     ```bash
     --ndu-drives-phase
@@ -376,7 +354,7 @@ Learn the available methods for upgrading clients to a new software version.
 * **Hot upgrade:** It allows clients to remain mounted and operational throughout the client software update.
   * [**Local (on-client) trigger**](upgrading-weka-versions.md#upgrade-a-client-locally): An administrative action performed from the client itself to perform hot upgrade.
   * [**Remote trigger**](upgrading-weka-versions.md#upgrade-clients-in-batches-via-remote-trigger)**:** An administrative action performed from the backend servers to trigger hot upgrades on specific client(s).
-* **Remount-based upgrade:** An alternative method where a client automatically upgrades following a remount of all mounted wekafs on a client  or reboot.
+* **Remount-based upgrade:** An alternative method where a client automatically upgrades following a remount of all mounted wekafs on a client or reboot.
 * **Persistent client coordination:** A dedicated client acting as a protocol gateway manages containers with `allow-protocols true`. During upgrades, it coordinates with backend servers to maintain continuous protocol service availability.
 * **Multi-cluster clients:** Perform online upgrades locally for clients without unmounting filesystems.\
   Related topic: [mount-fs-from-scmc.md](../weka-filesystems-and-object-stores/mounting-filesystems/mount-fs-from-scmc.md "mention").

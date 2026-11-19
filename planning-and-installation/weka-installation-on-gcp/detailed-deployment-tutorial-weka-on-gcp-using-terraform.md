@@ -40,9 +40,9 @@ It is essential for the customer to understand their subscription structure for 
 
 ### User account privileges
 
-Ensure that the GCP IAM user has the permissions outlined in [Appendix A](https://app.gitbook.com/o/-L7Tp-Uy9BMSCSCx0MlK/s/lGKb8DZItQx3Jy6unw5f/~/changes/193/planning-and-installation/weka-installation-on-gcp/detailed-deployment-tutorial-weka-on-gcp-using-terraform#appendix-a-required-permissions-that-terraform-needs) to perform the necessary operations for a successful WEKA deployment on GCP using Terraform. The IAM user must be able to create, modify, and delete GCP resources as specified by the Terraform configuration files used in the WEKA deployment.
+Ensure that the GCP IAM user has the permissions outlined in [Appendix A](https://app.gitbook.com/s/lGKb8DZItQx3Jy6unw5f/planning-and-installation/weka-installation-on-gcp/detailed-deployment-tutorial-weka-on-gcp-using-terraform#appendix-a-required-permissions-that-terraform-needs) to perform the necessary operations for a successful WEKA deployment on GCP using Terraform. The IAM user must be able to create, modify, and delete GCP resources as specified by the Terraform configuration files used in the WEKA deployment.
 
-If the current IAM user lacks the permissions detailed in [Appendix A](https://app.gitbook.com/o/-L7Tp-Uy9BMSCSCx0MlK/s/lGKb8DZItQx3Jy6unw5f/~/changes/193/planning-and-installation/weka-installation-on-gcp/detailed-deployment-tutorial-weka-on-gcp-using-terraform#appendix-a-required-permissions-that-terraform-needs), either update the user's permissions or create a new IAM user with the required privileges.
+If the current IAM user lacks the permissions detailed in [Appendix A](https://app.gitbook.com/s/lGKb8DZItQx3Jy6unw5f/planning-and-installation/weka-installation-on-gcp/detailed-deployment-tutorial-weka-on-gcp-using-terraform#appendix-a-required-permissions-that-terraform-needs), either update the user's permissions or create a new IAM user with the required privileges.
 
 **Verify GCP IAM user permissions**
 
@@ -57,7 +57,7 @@ If the current IAM user lacks the permissions detailed in [Appendix A](https://a
 <figure><img src="../../.gitbook/assets/image (221).png" alt=""><figcaption></figcaption></figure>
 
 5. Click on the user's **Security insights** to review their permissions.
-6. Ensure that the user possesses the permissions listed in [Appendix A](https://app.gitbook.com/o/-L7Tp-Uy9BMSCSCx0MlK/s/lGKb8DZItQx3Jy6unw5f/~/changes/193/planning-and-installation/weka-installation-on-gcp/detailed-deployment-tutorial-weka-on-gcp-using-terraform#appendix-a-required-permissions-that-terraform-needs), which are necessary for managing GCP resources through Terraform.
+6. Ensure that the user possesses the permissions listed in [Appendix A](https://app.gitbook.com/s/lGKb8DZItQx3Jy6unw5f/planning-and-installation/weka-installation-on-gcp/detailed-deployment-tutorial-weka-on-gcp-using-terraform#appendix-a-required-permissions-that-terraform-needs), which are necessary for managing GCP resources through Terraform.
 
 <figure><img src="../../.gitbook/assets/image (222).png" alt=""><figcaption></figcaption></figure>
 
@@ -122,7 +122,7 @@ The WEKA user token provides access to the WEKA binaries and is used to access g
 1. In a web browser, navigate to [get.weka.io](https://get.weka.io/).
 2. Select the user's name located in the upper right-hand corner of the page.
 
-<figure><img src="../../.gitbook/assets/image (230).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (15).png" alt=""><figcaption></figcaption></figure>
 
 2. From the column on the left-hand side of the page, select **API Tokens**. The user’s API token is displayed. Note it for using it later in the installation process.
 
@@ -156,7 +156,7 @@ The [Terraform module package](https://registry.terraform.io/modules/weka/weka/g
 
 #### Organize the structure of the Terraform configuration files
 
-1. Create a directory specifically for the Terraform configuration files. \
+1. Create a directory specifically for the Terraform configuration files.\
    To maintain state information, it's essential to keep each Terraform deployment separate.\
    Other deployments can be executed by duplicating these instructions and naming the directory appropriately, such as **deploy1** or another unique identifier.
 

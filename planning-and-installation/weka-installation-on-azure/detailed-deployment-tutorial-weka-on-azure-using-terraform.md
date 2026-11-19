@@ -215,7 +215,7 @@ In a customer environment, it might be necessary to adapt these associations bas
 
 1. Search for **Virtual networks** in the Azure Portal and select it.
 
-<figure><img src="../../.gitbook/assets/image (58).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (47).png" alt=""><figcaption></figcaption></figure>
 
 2. Select the relevant virtual network from the list.
 
