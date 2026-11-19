@@ -42,8 +42,6 @@ For lifecycle details, see [Release support and commitments](../support/release-
 
 Verify that the upgrade path from your source version to the target version is supported. The **Upgrade Path** checker on [get.weka.io](https://get.weka.io) validates the path and indicates additional requirements, such as upgrading clients before the backends.
 
-<div data-with-frame="true"><figure><img src="../.gitbook/assets/check_upgrade_path.png" alt="" width="563"><figcaption><p>Check the upgrade path example</p></figcaption></figure></div>
-
 **Procedure**
 
 1. On [get.weka.io](https://get.weka.io), open the **Upgrade Path** checker.
@@ -55,6 +53,8 @@ Verify that the upgrade path from your source version to the target version is s
    * **2 Hops** indicates that the upgrade requires two sequential upgrades.
    * A warning indicates an additional requirement to complete before the upgrade, such as a client upgrade.
    * The path list indicates the recommended target version.
+
+<div data-with-frame="true"><figure><img src="../.gitbook/assets/check_upgrade_path_to_5.1.png" alt=""><figcaption><p>get.weka.io: Check upgrade path example</p></figcaption></figure></div>
 
 ## Non-disruptive upgrade (NDU) overview
 
