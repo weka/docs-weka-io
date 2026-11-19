@@ -15,7 +15,7 @@ The following procedures describe how the Tenant Admin (or a Cluster Admin for t
 Tenant Admins are responsible for the lifecycle of storage volumes and their associated policies within their tenant container.
 
 * **Create and manage filesystems:** Define and configure storage volumes that are strictly tenant-owned.
-* **Set filesystem-level policies:** Manage snapshots, data protection, and tiered storage settings for tenant-owned data.
+* **Set filesystem-level policies:** Manage snapshots, encryption, and QoS for tenant-owned data.
 
 For additional guidance on related topics, consult the standard procedures. These also pertain to a tenant context, including:
 
