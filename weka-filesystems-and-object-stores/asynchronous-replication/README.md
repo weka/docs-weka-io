@@ -123,7 +123,7 @@ In a fan-in topology, where several clusters replicate to one target, the target
 * Inode numbers on the target filesystem can differ from the source filesystem. They stay the same across replication cycles.
 * Rich ACL enforcement on the source filesystem does not carry over to the target filesystem.
 * A target filesystem with Data Catalog indexing enabled is not supported.
-* If you attach an object store to the target filesystem, use a full copy (`--copy-path full`). Only a full copy can place replicated data in the target's object store. A selective copy, metadata only (`--copy-path none`) or critical paths, brings data to the target's SSD only and is not supported on a tiered target.
+* Object stores are not supported on tiered target filesystems in a replication pair.
 * Failover is manual. The system does not promote the target filesystem automatically, and it does not fail back. To return to the original source cluster, see [Fail back to the original source cluster](manage-asynchronous-replication.md#fail-back-to-the-original-source-cluster).
 * The target cluster does not fail over automatically if its S3 endpoint becomes degraded.
 

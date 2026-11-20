@@ -10,10 +10,12 @@ Asynchronous replication sends metadata and data from the source cluster to the 
 
 ### Network parameters
 
-* **Round-trip time (RTT):** Keep RTT at 300 ms or less. RTT is supported up to 700 ms, but replication performs best at 300 ms or less.
-* **Bandwidth:** Provide 10 Gbps or more. Use a dedicated link, or a QoS class that guarantees bandwidth for replication traffic. See [Bandwidth sizing](network-requirements-for-asynchronous-replication.md#bandwidth-sizing).
+* **Round-trip time (RTT):**
+  * For a full data copy, keep RTT at 300 ms or less. Replication supports RTT up to 700 ms, but performs best at 300 ms or less.
+  * For selective copy paths or lazy loading, keep RTT at 100 ms or less.
+* **Bandwidth:** Provide at least 200 Mbps. Lower bandwidth is supported, but can reduce replication performance. Use a dedicated link or a QoS class that guarantees replication bandwidth. See [Bandwidth sizing](network-requirements-for-asynchronous-replication.md#bandwidth-sizing).
 * **Jitter:** Keep jitter below 10 ms. Jitter is the RTT variation between consecutive packets. High jitter reduces each connection's effective throughput.
-* **Packet loss:** Keep packet loss below 0.01%. Between 0.01% and 0.1%, replication runs with reduced throughput. Low packet loss helps cycles complete within the replication interval.
+* **Packet loss:** Keep packet loss below 5%. Higher packet loss reduces throughput and can prevent cycles from completing within the replication interval.
 
 The target always lags the source by at least the replication interval. See the Considerations in Asynchronous replication.
 
@@ -29,7 +31,7 @@ To estimate the data changed per interval, create a snapshot of the filesystem a
 
 A filesystem changes 100 GB during a 5-minute replication interval.
 
-Required bandwidth = 2 × 100 GB ÷ 300 s ≈ 667 MB/s ≈ 5.3 Gbps
+Required bandwidth = 2 × 100 GB ÷ 300 s ≈ 667 MB/s
 
 A 10 Gbps link carries this change rate with headroom for metadata, for retransmissions, and for the first replication cycle.
 
