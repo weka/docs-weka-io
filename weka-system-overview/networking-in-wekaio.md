@@ -127,17 +127,21 @@ Network High Availability (HA) in a WEKA cluster is designed to eliminate single
 
 To achieve HA, the WEKA system requires multiple network switches with servers connected to at least two interfaces of the same type. Dual connectivity is provided either through two independent interfaces or through Link Aggregation Control Protocol (LACP) in Ethernet environments (mode 4).
 
-**Interface configuration**
+**Non-LACP configuration**&#x20;
 
-* **Non-LACP configuration**: Each server uses two network interfaces for redundancy and bandwidth enhancement. This approach doubles the number of IP addresses required on backend containers and IO processes.
-*   **LACP configuration (Ethernet-only)**: LACP aggregates interfaces on a single Mellanox NIC for improved reliability and load balancing in Ethernet-only setups.
+Each server uses two network interfaces for redundancy and bandwidth enhancement. This approach doubles the number of IP addresses required on backend containers and IO processes.
 
-    Specifications and requirements:
+**LACP configuration (Ethernet-only)**:
+
+*   **Ports of one NIC:** LACP provides link failover. It also balances traffic between the ports on CX-6 DX, CX-7-ETH dual-port and CX-8 adapters. On other adapters, throughput is that of a single link. See [Networking](https://app.gitbook.com/s/qDcZwR9zamxPsY03oTOq/planning-and-installation/prerequisites-and-compatibility#networking) in Prerequisites and compatibility for the full list of supported adapters.
+
+    The following specifications and requirements apply to an LACP bond on a single NIC:
 
     * LACP is not supported with Virtual Functions (VFs).
     * NIC must be set to `HW_LAG` (IEEE 802.3ad) with `queue_affinity` enabled and hashing disabled.
     * At least two WEKA processes must use DPDK.
     * Switch must support IEEE 802.3ad in active/active mode.
+* **Ports of two different NICs:** LACP or a static bond works like HA with two interfaces, with one bond IP address. Both interfaces carry traffic, and the cluster keeps working if one link or NIC fails.
 
 **Failover and load balancing**
 
