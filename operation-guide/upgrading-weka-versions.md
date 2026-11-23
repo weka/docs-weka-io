@@ -340,6 +340,7 @@ weka local run --container drives0 --in <new-version> upgrade
     --ndu-drives-phase
     --ndu-frontends-phase
     --ndu-computes-phase
+    --ndu-dataserv-phase
     ```
 * If the container running the upgrade process uses a port other than the default (14000), include the option `--mgmt-port <existing-port>` to the command.
 
@@ -376,7 +377,7 @@ Learn the available methods for upgrading clients to a new software version.
 * **Hot upgrade:** Allows clients to remain mounted and operational throughout the client software update.
   * [**Local (on-client) trigger**](upgrading-weka-versions.md#upgrade-a-client-locally): An administrative action performed from the client itself to perform hot upgrade.
   * [**Remote trigger**](upgrading-weka-versions.md#upgrade-clients-in-batches-via-remote-trigger)**:** An administrative action performed from the backend servers to trigger hot upgrades on specific client(s).
-* **Remount-based upgrade:** An alternative method where a client automatically upgrades following a remount of all mounted wekafs on a client  or reboot.
+* **Remount-based upgrade:** An alternative method where a client automatically upgrades following a remount of all mounted wekafs on a client or reboot.
 * **Persistent client coordination:** A dedicated client acting as a protocol gateway manages containers with `allow-protocols true`. During upgrades, it coordinates with backend servers to maintain continuous protocol service availability.
 * **Multi-cluster clients:** Perform online upgrades locally for clients without unmounting filesystems.\
   Related topic: [mount-fs-from-scmc.md](../weka-filesystems-and-object-stores/mounting-filesystems/mount-fs-from-scmc.md "mention").
