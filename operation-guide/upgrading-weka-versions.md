@@ -314,6 +314,7 @@ weka local run --container drives0 --in <new-version> upgrade
     --ndu-drives-phase
     --ndu-frontends-phase
     --ndu-computes-phase
+    --ndu-dataserv-phase
     ```
 * If the container running the upgrade process uses a port other than the default (14000), include the option `--mgmt-port <existing-port>` to the command.
 
