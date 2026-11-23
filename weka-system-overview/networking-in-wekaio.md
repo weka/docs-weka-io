@@ -130,7 +130,9 @@ To achieve HA, the WEKA system requires multiple network switches with servers c
 **Interface configuration**
 
 * **Non-LACP configuration**: Each server uses two network interfaces for redundancy and bandwidth enhancement. This approach doubles the number of IP addresses required on backend containers and IO processes.
-* **LACP configuration (Ethernet-only)**: LACP aggregates interfaces on a single Mellanox NIC for improved reliability and load balancing in Ethernet-only setups. An LACP or static bond across ports on two different Mellanox NICs is handled like the non-LACP configuration, for redundancy and bandwidth, and uses the bond's single IP address.
+* **LACP configuration (Ethernet-only)**:
+  * **Ports of one NIC:** LACP provides link failover. It also balances traffic between the ports on CX-6 DX, CX-7-ETH dual-port and CX-8 adapters. On other adapters, throughput is that of a single link. See the LACP bullet in Prerequisites and compatibility for the full adapter list.
+  * **Ports of two different NICs:** LACP or a static bond works like HA with two interfaces, with one bond IP address. Both interfaces carry traffic, and the cluster keeps working if one link or NIC fails.
 * The following specifications and requirements apply to an LACP bond on a single NIC:
   * LACP is not supported with Virtual Functions (VFs).
   * NIC must be set to `HW_LAG` (IEEE 802.3ad) with `queue_affinity` enabled and hashing disabled.
