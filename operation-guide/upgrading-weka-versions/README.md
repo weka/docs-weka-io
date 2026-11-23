@@ -307,7 +307,7 @@ Before switching to the target version, the command distributes it to all server
 
 **Additional options**
 
-<table><thead><tr><th width="454">Scenario</th><th>Option</th></tr></thead><tbody><tr><td>Resume after a failure in the drives phase</td><td><code>--ndu-drives-phase</code></td></tr><tr><td>Resume after a failure in the frontends phase</td><td><code>--ndu-frontends-phase</code></td></tr><tr><td>Resume after a failure in the computes phase</td><td><code>--ndu-computes-phase</code></td></tr><tr><td>Upgrade process container uses a non-default port (default: 14000)</td><td><code>--mgmt-port &#x3C;port></code></td></tr></tbody></table>
+<table><thead><tr><th width="454">Scenario</th><th>Option</th></tr></thead><tbody><tr><td>Resume after a failure in the drives phase</td><td><code>--ndu-drives-phase</code></td></tr><tr><td>Resume after a failure in the frontends phase</td><td><code>--ndu-frontends-phase</code></td></tr><tr><td>Resume after a failure in the computes phase</td><td><code>--ndu-computes-phase</code></td></tr><tr><td>Resume after a failure in the data services phase</td><td><code>--ndu-dataserv-phase</code></td></tr><tr><td>Upgrade process container uses a non-default port (default: 14000)</td><td><code>--mgmt-port &#x3C;port></code></td></tr></tbody></table>
 
 ### 5. Verify LLQ and WC are enabled in AWS
 
