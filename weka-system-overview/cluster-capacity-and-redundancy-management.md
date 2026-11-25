@@ -42,6 +42,52 @@ Theoretically, this process can continue - subject to sufficient available SSD c
 
 In the event of serial server failures coupled with insufficient SSD capacity to complete rebuilds, the cluster attempts to **tier data** that currently resides on SSD out to its configured object stores. This is called [**backpressure mode**](#user-content-fn-2)[^2] where the tiering does not consider the age of the data (unlike normal, orderly tiering) but instead tiers data in an approximately random fashion. This process prioritizes data integrity by offloading data to an object store when SSD available capacity is critically low.
 
+#### Hot spare capacity
+
+WEKA clusters can be configured to proactively reserve a portion of the total storage space as virtual hot spare capacity to ensure that sufficient space is immediately available for data rebuilds in the event of component failures.
+
+The hot spare capacity represents the number of failure domains the system can afford to lose and still successfully perform a complete data rebuild, whilst maintaining the system's net capacity. All failure domains in the cluster actively contribute to data storage, and this hot spare capacity is evenly distributed among them.
+
+If not explicitly configured by the administrator, the hot spare value is automatically set to 1. While a higher hot spare count provides greater flexibility for IT maintenance and hardware replacements when the cluster is at capacity, it also necessitates additional hardware to achieve the same net usable capacity.
+
+The number of hot spares configured for a cluster is often represented as a third value in the stripe size calculation. For example, a cluster stripe size of 16 + 2 + 1 represents 16 data blocks, 2 parity blocks and 1 hot spare block per stripe. Unlike the other stripe size options, the hot spare configuration can be adjusted after cluster creation.
+
+#### WEKA cluster reserved capacity ratio
+
+After accounting for the capacity dedicated to data protection (parity) and hot spares, an additional **10 percent** of the remaining capacity is reserved for WEKA cluster internal use.
+
+#### SSD net storage capacity calculation
+
+The formula for calculating the SSD net storage capacity is:
+
+$$
+\text{Net} = \text{Raw} \times \frac{\text{FD} - \text{HS}}{\text{FD}} \times \frac{D}{D + P} \times (1 - R)
+$$
+
+Where:
+
+* **Net**: SSD net capacity
+* **Raw**: SSD raw capacity
+* **FD**: number of failure domains
+* **HS**: number of hot spares
+* **D**: number of data blocks per stripe
+* **P**: number of parity blocks per stripe (the protection level)
+* **R**: WEKA cluster reserved capacity ratio (0.1, which is 10 percent)
+
+**Examples**:
+
+**Scenario 1**: A homogeneous system of 10 servers, each with 1 terabyte of raw SSD capacity (total 10TB raw capacity). The system is configured with 1 hot spare and a protection scheme of 6+2 (6 data blocks, 2 parity blocks).
+
+$$
+\text{SSD net capacity} = 10\,\text{TB} \times \frac{10 - 1}{10} \times \frac{6}{6 + 2} \times (1 - 0.1) = 6.075\,\text{TB}
+$$
+
+**Scenario 2**: A homogeneous system of 20 servers, each with 1 terabyte of raw SSD capacity (total 20TB raw capacity). The system is configured with 2 hot spares and a protection scheme of 16+2 (16 data blocks, 2 parity blocks).
+
+$$
+\text{SSD net capacity} = 20\,\text{TB} \times \frac{20 - 2}{20} \times \frac{16}{16 + 2} \times (1 - 0.1) = 14.4\,\text{TB}
+$$
+
 ### Performance in a degraded state
 
 Data protection keeps the filesystem available while one or more servers, containers, or drives are out of service. During that time, the cluster serves the workload with the remaining resources, so performance follows the resources in service.
