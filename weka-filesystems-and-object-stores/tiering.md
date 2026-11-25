@@ -47,7 +47,7 @@ The tiering cue defines the wait time after a data write before the system copie
 
 Optimize storage efficiency and performance by aligning the tiering cue settings with specific workload patterns.
 
-* **Write-once workloads:** For data such as sensor captures or finished renders, set a short tiering cue. The minimum value is 10 seconds, and the default is 15 minutes. This setting facilitates rapid tiering to the object store.
+* **Write-once workloads:** For data such as sensor captures or finished renders, set a short tiering cue. The minimum value is 10 seconds. This setting facilitates rapid tiering to the object store.
 * **Active editing:** For data undergoing frequent modification, set a longer tiering cue, typically measured in days or weeks. This configuration ensures data remains on the high-performance tier until it stabilizes.
 
 ### Drive retention period
@@ -333,7 +333,7 @@ weka fs tier fetch <path> [--verbose]
 
 #### Batch fetching
 
-To fetch large directory trees efficiently, for example, combine the command with Unix tools to parallelize the operation.&#x20;
+To fetch large directory trees efficiently, for example, combine the command with Unix tools to parallelize the operation.
 
 ```bash
 find -L <directory_path> -type f -print0 | xargs -0 -r -n512 -P64 weka fs tier fetch -v

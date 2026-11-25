@@ -205,6 +205,7 @@
 * [User management](operation-guide/user-management/README.md)
   * [Manage users using the GUI](operation-guide/user-management/user-management.md)
   * [Manage users using the CLI](operation-guide/user-management/user-management-1.md)
+  * [Manage custom roles using the CLI](operation-guide/user-management/manage-custom-roles-using-the-cli.md)
 * [WEKA native multi-tenancy management](operation-guide/weka-native-multi-tenancy-management/README.md)
   * [Multi-tenancy cluster-level administration](operation-guide/weka-native-multi-tenancy-management/multi-tenancy-cluster-level-administration.md)
   * [Multi-tenancy tenant-level administration](operation-guide/weka-native-multi-tenancy-management/multi-tenancy-tenant-level-administration.md)
