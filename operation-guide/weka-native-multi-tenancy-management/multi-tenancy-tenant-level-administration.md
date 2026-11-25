@@ -56,6 +56,75 @@ Two of the tenant-visible alerts have DEBUG severity, so they are informational 
 | `FilesystemKMSError`                        | Filesystem KMS error                                   | Review the filesystem's KMS customization and the KMS configuration and connectivity.    |
 | `FilesystemsThinProvisioningReserveReached` | Filesystems thin provisioning capacity reserve reached | Create a new filesystem or expand the filesystem's capacity using the reserved capacity. |
 
+### Manage tenant privacy
+
+Prevent Cluster Admins from accessing a tenant's contents.
+
+By default, a Cluster Admin can assume a tenant and read or change its contents. When a tenant is private, the Cluster Admin cannot do either.
+
+A tenant's contents are its users, filesystems, S3 policies, events, and alerts.
+
+While a tenant is private:
+
+* A Cluster Admin cannot assume the tenant with `weka user assume-tenant`.
+* A Cluster Admin cannot read or change the tenant's contents with the `--tenant` option.
+* The tenant's contents are omitted from cross-tenant listings.
+* A Cluster Admin still manages the tenant's name, quotas, QoS, network spaces, and deletion.
+
+Enabling or disabling privacy, and denied attempts to assume the tenant, raise audit events that the tenant can see.
+
+{% hint style="warning" %}
+Only the Tenant Admin can disable privacy. A Cluster Admin can only enable it.
+{% endhint %}
+
+#### Enable tenant privacy
+
+Mark the tenant as private so that Cluster Admins cannot access its contents.
+
+**Procedure**
+
+1.  Run the following command:
+
+    ```bash
+    weka tenant security privacy enable
+    ```
+
+A Cluster Admin can also enable privacy by using the `--private` option on `weka tenant create` or `weka tenant update`.
+
+#### View the privacy state
+
+Check whether a tenant is private.
+
+**Procedure**
+
+1.  Run the following command:
+
+    ```bash
+    weka tenant security privacy show
+    ```
+
+Alternatively, run `weka tenant list` and check the **Private** column.
+
+#### Disable tenant privacy
+
+Restore Cluster Admin access to the tenant.
+
+**Before you begin**
+
+Sign in as the Tenant Admin. A Cluster Admin cannot disable privacy.
+
+**Procedure**
+
+1.  Run the following command:
+
+    ```bash
+    weka tenant security privacy disable
+    ```
+
+**Related topics**
+
+[Multi-tenancy cluster-level administration](https://docs.weka.io/operation-guide/weka-native-multi-tenancy-management/multi-tenancy-cluster-level-administration.md)
+
 ## Mount authentication for tenant filesystems
 
 The authentication process guarantees that only authorized users from a particular tenant can access their data. This approach enforces strict separation, blocking users from other tenants and even the Cluster Admin from accessing the filesystems of a specific tenant.
