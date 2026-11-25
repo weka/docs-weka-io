@@ -11,6 +11,10 @@ metaLinks:
 
 # Manage the system using the WEKA CLI
 
+{% hint style="info" %}
+Starting with WEKA 5.1.33, you can opt in to the new WEKA CLI (formerly wekactl) on a WEKA server. The legacy CLI described in this topic remains the default. See [New WEKA CLI (formerly wekactl) overview](../weka-cli-overview/README.md).
+{% endhint %}
+
 The WEKA CLI is installed on each WEKA server and is available through the `weka` command. It's possible to connect to any of the servers using `ssh` and running the `weka` command. The `weka` command displays a list of all top-level commands.
 
 ## Top-level commands

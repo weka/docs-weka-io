@@ -6,11 +6,11 @@ description: >-
 
 # Manage WEKA with new CLI
 
-Starting with WEKA 6.0, wekactl is the default CLI, and the `weka` command on a cluster server invokes it. The examples in this topic use `weka`.
+In WEKA 5.1, the legacy WEKA CLI remains the default `weka` command. Starting with WEKA 5.1.33, you can opt in to wekactl on a cluster server. The examples in this topic use `weka` and assume that you opted in. If you did not, run `/opt/weka/bin/wekactl` instead of `weka`.
 
 ## Before you begin
 
-* On a cluster server, no installation is required. wekactl ships inside the product.
+* On a cluster server running WEKA 5.1.33 or later, no installation is required. wekactl ships inside the product.
 * To manage clusters from a workstation that is not a cluster server, install the standalone binary. See [Install wekactl on a workstation](manage-weka-with-new-cli.md#install-wekactl-on-a-workstation).
 * To install a WEKA version using the CLI, a get.weka.io token is required.
 
@@ -18,23 +18,31 @@ Starting with WEKA 6.0, wekactl is the default CLI, and the `weka` command on a 
 wekactl detects the API version each cluster offers and falls back automatically, so a single binary manages any cluster in a supported Release Line. See [Release support and commitments](../../support/release-support-and-commitments.md).
 {% endhint %}
 
-## Access wekactl on a cluster server
+## Opt in to wekactl on a cluster server
 
-On any server running WEKA 6.0, the `weka` command invokes wekactl. The binary is also available directly at:
+On a server running WEKA 5.1.33 or later, wekactl is installed at:
 
 ```
 /opt/weka/bin/wekactl
 ```
 
-The legacy CLI binary remains available at `/opt/weka/bin/weka` alongside wekactl.
-
-To revert to the legacy CLI temporarily, set the following environment variable:
+You can run it directly. To make the `weka` command invoke wekactl instead of the legacy CLI, set the following environment variable:
 
 ```
-export WEKA_CLI_LEGACY=1
+export WEKA_CLI_WEKACTL=1
 ```
 
-The legacy CLI is a migration aid only. It receives no new features and is planned for removal in a future release. For details on behavior differences that affect existing scripts, see [Migrate from the legacy weka CLI to wekactl](manage-weka-with-new-cli.md).
+To keep the setting across sessions, add the line to your shell profile, for example `~/.bashrc`.
+
+To return to the legacy CLI, unset the variable:
+
+```
+unset WEKA_CLI_WEKACTL
+```
+
+To run the legacy CLI for a single session while `WEKA_CLI_WEKACTL` is set, set `WEKA_CLI_LEGACY=1` in that session. It takes precedence over `WEKA_CLI_WEKACTL`.
+
+Before you opt in on a production server, review the behavior differences that can affect existing scripts. See [Migrate from legacy WEKA CLI](migrate-from-legacy-weka-cli.md).
 
 ## Install wekactl on a workstation
 
@@ -60,16 +68,6 @@ wekactl
 Verify the SHA256 fingerprint against the cluster before accepting it. Accepting saves the certificate for all WEKA hosts used by this profile.
 
 Type `exit` to leave the shell and run commands directly. To add more clusters, see [Manage profiles](manage-weka-with-new-cli.md#manage-profiles).
-
-## Bootstrap a stateless client
-
-After installing the standalone `rpm` or `deb` package, run the standard mount command:
-
-```bash
-mount -t wekafs <backend>/<filesystem> <mount-point>
-```
-
-On the first connection, the CLI establishes trust in the cluster TLS certificate. In non-interactive contexts, such as a scripted or first-boot mount, the certificate is accepted and saved automatically, so the mount is not blocked on a prompt. See [Manage TLS certificates](manage-weka-with-new-cli.md#manage-tls-certificates).
 
 ## Manage profiles
 
