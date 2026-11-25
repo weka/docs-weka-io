@@ -16,14 +16,16 @@ Drives sharing enables multiple Drive IO processes on a single host to access th
 * **Improved data reduction performance:** Multiple Drive I/O processes can access the same device, increasing CPU parallelism for compression and decompression and improving effective IOPS utilization.
 * **Better Gen5 bandwidth utilization:** Gen5 NVMe drives can exceed 13 GB/s, while per-server network bandwidth is typically lower. Drives sharing enables multiple cores to drive a single device, helping saturate available bandwidth.
 * **Multi-tenancy and small-cluster scalability:** Sharing drives across containers or clusters enables smaller, granular capacity allocations, supporting layouts such as 16+2 even in smaller environments.
-* **Flexible capacity management:** Virtual drives can be created at arbitrary sizes, with support for over-provisioning. The total allocated virtual capacity can exceed the physical device capacity, enabling future growth planning.
+* **Flexible capacity management:** Virtual drives are created in whole 32 GiB pages, with support for over-provisioning. The total allocated virtual capacity can exceed the physical device capacity, enabling future growth planning.
 
 ### Key concepts
 
 * **Physical drive:** A physical NVMe device.
-* **Virtual drive:** A logical drive carved from a physical drive and presented to the cluster as an independent disk. Each physical drive supports up to 64 virtual drives.
+* **Virtual drive:** A logical drive carved from a physical drive and presented to the cluster as an independent disk. Each physical drive supports up to 64 virtual drives. A virtual drive is always a whole number of pages.
+* **Page:** The unit in which a physical drive is divided among virtual drives. A page is 32 GiB (256 chunks) and has at most one owner.
 * **Physical UUID:** The unique identifier written to the physical drive.
-* **Virtual UUID (VID/vUUID):** The unique identifier assigned to a virtual drive.
+* **Virtual UUID (VID/vUUID):** The unique identifier of a virtual drive. The system generates it, and you cannot choose it. The system never reuses the VID of a removed virtual drive.
+* **Label:** A name that you assign to a virtual drive when you add it. Adding a virtual drive with a label that already exists on the physical drive returns the existing virtual drive instead of creating another.
 * **SSD Proxy:** A dedicated container that owns physical NVMe devices and manages I/O routing and hardware queue allocation for virtual drives.
 * **Hardware queues:** NVMe I/O queue pairs allocated per virtual drive. By default, each VID uses four queues, with automatic fallback to one queue when hardware limits are reached.
 * **weka-sign-drive**: The command-line utility used to sign physical drives and create or manage virtual drives.
@@ -52,7 +54,7 @@ weka-sign-drive sign proxy /dev/nvmeXnY
 ```
 
 {% hint style="info" %}
-This is the only step that uses the device path (`/dev/nvmeXnY`). All subsequent operations reference drives using the UUIDs obtained from the  `weka-sign-drive list` command.
+This is the only step that uses the device path (`/dev/nvmeXnY`). All subsequent operations reference drives using the UUIDs obtained from the `weka-sign-drive list` command.
 {% endhint %}
 
 2. **Identify the physical UUID:** List drives and copy the physical UUID.
@@ -68,18 +70,18 @@ PHYSICAL UUID                         DEVICE       CAPACITY   NUM VIDS   STATUS
 a1b2c3d4-e5f6-7890-abcd-ef1234567890  nvme0n1      3.84 TB    0          Ready
 ```
 
-3. **Create virtual drives (VIDs):** Create one or more virtual drives on the signed physical device. This operation writes VID metadata to the drive header and does not require the SSD Proxy to be running.
+3. **Create virtual drives (VIDs):** Create one or more virtual drives on the signed physical device. This operation writes VID metadata to the drive header and does not require the SSD Proxy to be running. The command prints the VID it acted on. Keep the VID: you need it to add the virtual drive to the cluster. You cannot choose a VID: a command that supplies one is refused.
 
 ```bash
 weka-sign-drive virtual add <physical-uuid> \
   --size <size-in-gb> \
   [--owner-cluster-guid <cluster-guid>] \
-  [--virtual-uuid <vid>]
+  [--label <label>]
 ```
 
 **Parameters**
 
-<table><thead><tr><th width="217.33331298828125">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>&#x3C;physical-uuid></code></td><td>Physical UUID identified in the previous step. </td></tr><tr><td><code>--size</code></td><td>Virtual drive size, in GB. Over-provisioning is supported.</td></tr><tr><td><code>--owner-cluster-guid</code></td><td>Cluster GUID used when signing the physical drive.<br>Default: all clusters if not specified.</td></tr><tr><td><code>--virtual-uuid</code></td><td>Optional. Explicitly assigns a virtual UUID. If omitted, WEKA generates one automatically.</td></tr></tbody></table>
+<table><thead><tr><th width="217.33331298828125">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>&#x3C;physical-uuid></code></td><td>Physical UUID identified in the previous step.</td></tr><tr><td><code>--size</code></td><td>Virtual drive size, in GB. The system rounds the size down to whole 32 GiB pages and refuses a size under 32 GiB. Over-provisioning is supported.</td></tr><tr><td><code>--owner-cluster-guid</code></td><td>Cluster GUID used when signing the physical drive.<br>Default: all clusters if not specified.</td></tr><tr><td><code>--label</code></td><td>Optional. Names the virtual drive. If a live virtual drive with this label exists on the physical drive and belongs to your cluster, the command returns its VID and adds nothing. If the label belongs to a virtual drive of another cluster, the command is refused. If you omit the label, the system creates a virtual drive with a generated VID.</td></tr></tbody></table>
 
 **Example:** Create three 1 TB virtual drives on the same physical drive.
 
@@ -99,7 +101,7 @@ weka-sign-drive virtual add a1b2c3d4-e5f6-7890-abcd-ef1234567890 \
 
 {% hint style="warning" %}
 * If the device is accessible through the kernel, the command writes directly to the device. If the device is managed by the SSD Proxy, the operation is transparently routed through the proxy using JRPC.
-* Capacity is not enforced. The total size of virtual drives can exceed the physical drive capacity. Capacity planning and enforcement are the operator’s responsibility.
+* The total size of virtual drives can exceed the physical drive capacity only when you allow over-provisioning. Capacity planning is the operator’s responsibility.
 {% endhint %}
 
 4. **Verify the virtual drive configuration:** List all signed drives and VID counts.
@@ -168,7 +170,7 @@ weka cluster drive add <container-id> <virtual-uuid> [--pool <pool-name>]
 
 **Parameters**
 
-<table><thead><tr><th width="208"></th><th></th></tr></thead><tbody><tr><td><code>&#x3C;container-id></code></td><td>ID of the container to attach the virtual drive.</td></tr><tr><td><code>&#x3C;virtual-uuid></code></td><td>Virtual UUID created in the previous step.</td></tr><tr><td><code>--pool</code></td><td>Optional. Target storage pool (for example, <code>iubig</code> for large indirection unit pools).</td></tr></tbody></table>
+<table><thead><tr><th width="208"></th><th></th></tr></thead><tbody><tr><td><code>&#x3C;container-id></code></td><td>ID of the container to attach the virtual drive.</td></tr><tr><td><code>&#x3C;virtual-uuid></code></td><td>Virtual UUID returned by the add command in the previous step.</td></tr><tr><td><code>--pool</code></td><td>Optional. Target storage pool (for example, <code>iubig</code> for large indirection unit pools).</td></tr></tbody></table>
 
 **Examples**
 
@@ -192,7 +194,11 @@ The following provides guidelines for planning SSD Proxy resources and ensures v
   * Maximum: 64 VIDs per physical drive
 * **Capacity**
   * VID sizes can exceed physical drive capacity (over-provisioning allowed. Capacity management is the operator’s responsibility)
-  * Minimum VID size is 1 GB. However, the capacity ratio of SSD in the cluster must be 8:1 or less between the smallest and largest SSDs.
+  * Minimum VID size is 32 GiB (one page). The system rounds each size down to whole pages. However, the capacity ratio of SSD in the cluster must be 8:1 or less between the smallest and largest SSDs.
+  * The chunk table and bitmaps use space on the same physical drive. A physical drive that holds 64 virtual drives must be larger than 2 TiB.
+* **Not supported**
+  * Converting a drive between direct mode and SSD Proxy mode.
+  * Upgrading a shared drive that an earlier version formatted. See the upgrade procedure in this topic.
 
 #### Capacity planning
 
@@ -294,10 +300,12 @@ weka cluster drive
 weka cluster drive remove <drive-id>
 ```
 
-4. **Delete the virtual drive:** Remove the VID from the physical drive header.
+4. **Delete the virtual drive:** Remove the VID from the physical drive header. Identify the virtual drive by its VID or by its label. The command treats the value first as the VID of a live virtual drive. If no live virtual drive has that VID, the command treats the value as a label. A value that matches no drive is refused. The command prints the VID it removed.
 
 ```bash
 weka-sign-drive virtual remove <physical-uuid> --virtual-uuid <vid>
+weka-sign-drive virtual remove <physical-uuid> --label <label>
+
 ```
 
 **Example**
@@ -307,7 +315,47 @@ weka-sign-drive virtual remove a1b2c3d4-e5f6-7890-abcd-ef1234567890 \
     --virtual-uuid v1111111-2222-3333-4444-555555555555
 ```
 
+## Upgrade servers that use drives sharing
+
+Upgrade a server that uses drives sharing to a version with the V7 drive layout.
+
+Drives that the server uses directly, without the SSD Proxy, upgrade automatically the first time they open. Shared drives that an earlier version formatted cannot be upgraded in place. The SSD Proxy refuses them with the message "cannot be upgraded to V7; reformat it" and keeps serving its other drives. Remove these drives and sign them again.
+
+**Before you begin**
+
+* The cluster is healthy and fully protected.
+* Removing virtual drives starts a rebuild of their data. Plan the removal so that the cluster stays within its protection level.
+
+{% hint style="warning" %}
+Upgrading the SSD Proxy while virtual drives are in use fails those drives, and the cluster rebuilds their data. This upgrade is not non-disruptive for shared drives. Remove shared drives from the cluster before you upgrade.
+{% endhint %}
+
+**Procedure**
+
+1. **Remove the virtual drives from the cluster:** Deactivate and remove each virtual drive, as in steps 1 to 3 of Delete a virtual drive.
+2. **Delete the virtual drives from the physical drive:** Run step 4 of Delete a virtual drive for each virtual drive.
+3. **Upgrade the cluster:** Upgrade the cluster to the new version.
+4. **Sign the physical drive again:** On each server, sign the physical drive for the SSD Proxy, as in step 1 of Configure drives sharing.
+5. **Create the virtual drives:** Create them as in step 3 of Configure drives sharing. Use a label for each virtual drive.
+6. **Start the SSD Proxy:** Start the container, and confirm that the `ssdproxy` container reports `Running`.
+7. **Add the virtual drives to the cluster:** Add each virtual drive, as in step 7 of Configure drives sharing.
+8. **Verify the drives:** Confirm that all drives are `ACTIVE`.
+
+{% hint style="danger" %}
+INTERNAL (for Roi Illouz, remove before publishing): Please confirm the following for the upgrade procedure. (1) The order and limits for removing virtual drives, so that a server does not exceed the protection level. The ticket says only that shared drives are removed first and added back after reformatting. (2) The current sign command. The ticket tests use `weka-sign-drive sign proxy --virtual-drives <number>`, which this page does not document. (3) The release from which the V7 layout applies. The upgrade test (TestDriveSharingProxyUpgrade) has no minimum source version yet. (4) The test notes report no data loss when the SSD Proxy is upgraded under live shared drives on a protected cluster. Is that safe to state?
+{% endhint %}
+
 ## Advanced operations
+
+{% hint style="danger" %}
+INTERNAL (for Roi Illouz, remove before publishing): JRPC example 2 now uses `--label`, because the ticket says `ssd_proxy_add_virtual_drive` takes a label and refuses `virtualUuid`. Please confirm the exact method names and flags. This page uses hyphenated names such as `ssd-proxy-add-virtual-drive`. The ticket also lists `ssd_proxy_remove_virtual_drive(virtualUuid)` and `ssd_proxy_remove_label(physicalUuid, label)`. Should I add an example for remove by label?
+{% endhint %}
+
+{% hint style="danger" %}
+INTERNAL (for Roi Illouz, remove before publishing): Other open items. (1) Are `weka-sign-drive dump chunks --audit` and `--fix-ver-only` customer-facing? I left them out. `--audit` reads a kernel block device only, so it does not run on a drive that the proxy holds. (2) Node and proxy layout compatibility: the ticket says the node does not yet compare the drive layout with its own, so I documented nothing about it. (3) The WEKA Operator still adds virtual drives by `virtualUuid`, which this proxy refuses. It must read feature bit 17 (`ssd_proxy_vid_label_add`) and add by label. That belongs on the Operator pages, not here. (4) Commit 539d59f98fd (describe virtual drive naming by label in drive-signatures): does that repo doc cover any of this, and should this page stay consistent with it?
+{% endhint %}
+
+
 
 <details>
 
@@ -340,7 +388,7 @@ weka local run -- /weka/hostside/wapi \
   ssd-proxy-add-virtual-drive \
   --physicalUuid fb9236ec-6a85-47d5-a030-d5e254f6c753 \
   --clusterGuid 3d3bfbd8-b0f2-47a5-b634-6b8eacf8bdc6 \
-  --virtualUuid <vid-uuid>
+  --label <label>
 ```
 
 {% hint style="info" %}
@@ -526,5 +574,38 @@ weka local start ssdproxy
 # Confirm proxy visibility
 weka-sign-drive list --view proxy
 ```
+
+</details>
+
+<details>
+
+<summary>The SSD Proxy refuses a shared drive ("cannot be upgraded to V7; reformat it")</summary>
+
+**Cause**
+
+An earlier version formatted the drive as a shared drive. Shared drives cannot be upgraded in place. The SSD Proxy keeps serving its other drives.
+
+**Resolution**
+
+Remove the virtual drives of the drive from the cluster and from the physical drive, sign the physical drive again, and add the virtual drives. See Upgrade servers that use drives sharing.
+
+</details>
+
+<details>
+
+<summary>Adding a virtual drive is refused</summary>
+
+**Cause**
+
+One of the following applies:
+
+* The size is under 32 GiB.
+* The command supplies a VID. You cannot choose a VID.
+* The label belongs to a virtual drive of another cluster.
+* The new virtual drive would over-provision the physical drive, and over-provisioning is not allowed.
+
+**Resolution**
+
+Correct the command. Use `--label` to name a virtual drive.
 
 </details>
