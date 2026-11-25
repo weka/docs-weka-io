@@ -10,30 +10,6 @@ Manage the NFS service.
 weka nfs
 ```
 
-## weka nfs access
-
-Inspect which NFS exports a client reaches.
-
-```sh
-weka nfs access
-```
-
-### weka nfs access lookup
-
-Report every export an NFS client can mount, at what access level, and which entry grants it.
-
-```sh
-weka nfs access lookup <target> [--exact] [--host]
-```
-
-| Parameter | Description |
-| --------- | ----------- |
-| `target`\* | Hostname, IP address or subnet to look up. |
-| `--exact` | Treat only the name as spelled as a related name. |
-| `--host` | Treat only the same host, in either short or fully-qualified form, as a related name. |
-
-**Columns:** `target`, `kind`, `address`, `dns_name`, `match_mode`, `precedence`, `resolver_hostname`
-
 ## weka nfs client-group
 
 Manage NFS client groups.
@@ -61,16 +37,6 @@ weka nfs client-group add <name>
 | `name`\*  | Name of the NFS group to create. |
 
 **Columns:** `id`, `uid`, `name`, `rules`
-
-### weka nfs client-group case-report
-
-List DNS client-group rules that differ from another rule only by letter case, or that contain uppercase letters.
-
-```sh
-weka nfs client-group case-report
-```
-
-**Columns:** `client_group_id`, `client_group`, `rule_id`, `rule`, `kind`, `colliding_rule`
 
 ### weka nfs client-group remove
 
@@ -157,24 +123,12 @@ weka nfs debug-level list <what> [--full-list]
 
 **Columns:** `name`
 
-### weka nfs debug-level reset
-
-Clear persisted NFS debug levels. A component returns to the level persisted for all components, or to the default. Requires Cluster Admin role.
-
-```sh
-weka nfs debug-level reset [--nfs-components <strings>…]
-```
-
-| Parameter | Description |
-| --------- | ----------- |
-| `--nfs-components` &lt;strings&gt;… | Only reset these components. Multiple values may be supplied separated by commas, or the option may be repeated. |
-
 ### weka nfs debug-level set
 
 Set NFS debug level. A cluster-wide level persists across restarts and requires Cluster Admin role; with --transient or --nfs-hosts it applies only to the running servers and requires Tenant Admin role.
 
 ```sh
-weka nfs debug-level set <level> [--full-list] [--nfs-components <strings>…] [--nfs-hosts <container-ids>…] [--transient]
+weka nfs debug-level set <level> [--full-list] [--nfs-components <strings>…] [--nfs-hosts <container-ids>…]
 ```
 
 | Parameter | Description |
@@ -183,7 +137,6 @@ weka nfs debug-level set <level> [--full-list] [--nfs-components <strings>…] [
 | `--full-list` | Set log level for all components. |
 | `--nfs-components` &lt;strings&gt;… | List of component names. Multiple values may be supplied separated by commas, or the option may be repeated. |
 | `--nfs-hosts` &lt;container-ids&gt;… | Only apply to these containers. Multiple values may be supplied separated by commas, or the option may be repeated. |
-| `--transient` | Apply to the running NFS servers only, without persisting across restarts. |
 
 ### weka nfs debug-level show
 
@@ -199,7 +152,7 @@ weka nfs debug-level show [--full-list] [--nfs-components <strings>…] [--nfs-h
 | `--nfs-components` &lt;strings&gt;… | List of component names. Multiple values may be supplied separated by commas, or the option may be repeated. |
 | `--nfs-hosts` &lt;container-ids&gt;… | Only return from these containers. Multiple values may be supplied separated by commas, or the option may be repeated. |
 
-**Columns:** `container`, `debug_level`, `component`, `persisted`
+**Columns:** `container`, `debug_level`, `component`
 
 ## weka nfs global-config
 
@@ -214,7 +167,7 @@ weka nfs global-config
 Set NFS global config parameters.
 
 ```sh
-weka nfs global-config set [--acl <on-off>] [--config-fs <string>] [--default-acl-type <acl-type>] [--default-supported-versions <nfs-versions>…] [--direct-io <on-off>] [--enable-auth-types <nfs-auth-types>…] [--enable-multi-tenant <on-off>] [--extended-stats <on-off>] [--force] [--force-config-fs <on-off>] [--lockmgr-port <uint16>] [--max-client-connections <uint>] [--max-memory <capacity>] [--max-open-fds <uint>] [--mountd-port <uint16>] [--no-restart] [--notify-port <uint16>] [--statmon-port <uint16>]
+weka nfs global-config set [--acl <on-off>] [--config-fs <string>] [--default-acl-type <acl-type>] [--default-supported-versions <nfs-versions>…] [--direct-io <on-off>] [--enable-auth-types <nfs-auth-types>…] [--extended-stats <on-off>] [--force] [--force-config-fs <on-off>] [--lockmgr-port <uint16>] [--mountd-port <uint16>] [--no-restart] [--notify-port <uint16>] [--statmon-port <uint16>]
 ```
 
 | Parameter | Description |
@@ -225,14 +178,10 @@ weka nfs global-config set [--acl <on-off>] [--config-fs <string>] [--default-ac
 | `--default-supported-versions` &lt;nfs-versions&gt;… | NFS versions for new permissions. Multiple values may be supplied separated by commas, or the option may be repeated. Valid values: v3, v4. |
 | `--direct-io` &lt;on-off&gt; | Disable readcache and writecache. |
 | `--enable-auth-types` &lt;nfs-auth-types&gt;… | List of NFS authentication types. Multiple values may be supplied separated by commas, or the option may be repeated. Valid values: none, sys, krb5, krb5i, krb5p. |
-| `--enable-multi-tenant` &lt;on-off&gt; | Enable or disable NFS multi-tenant support (default: Off). |
 | `--extended-stats` &lt;on-off&gt; | Enable or disable extended stats. |
 | `-f`, `--force` | Force action. Perform this action without further confirmation. |
 | `--force-config-fs` &lt;on-off&gt; | Force config-fs update when locks are on. |
 | `--lockmgr-port` &lt;uint16&gt; | Port for NFS lock manager. Default 0 selects any available port. |
-| `--max-client-connections` &lt;uint&gt; | Maximum number of concurrent NFS client connections. 0 means auto-tune based on cluster size. |
-| `--max-memory` &lt;capacity&gt; | Override the NFS container's memory ceiling, in whole GiB (e.g. 32GiB). Left unset, the compiled default applies. On a running cluster, applies to each NFS-Ganesha container at its next start. |
-| `--max-open-fds` &lt;uint&gt; | Maximum number of files each NFS server may hold open. From WEKA 6.1, 0 restores the default of 500000; earlier releases require a value between 10000 and 10000000. The derived process descriptor limit (connections + open files + reserve) and the NFS server's file-cache thresholds both apply without a restart. |
 | `--mountd-port` &lt;uint16&gt; | Port number for mountd service. |
 | `--no-restart` | Prevent NFS-W containers from restarting when changes are applied. |
 | `--notify-port` &lt;uint16&gt; | Port for NFSv3 notification. Default 0 means any available port. |
@@ -246,7 +195,7 @@ Show NFS global configuration information.
 weka nfs global-config show
 ```
 
-**Columns:** `acl`, `config_fs`, `container_memory_ceiling`, `container_memory_ceiling_effective`, `default_acl_type`, `default_auth_types`, `default_supported_versions`, `direct_io`, `enabled_auth_types`, `enable_multi_tenant`, `extended_stats`, `grace_period`, `lease_lifetime`, `lock_recovery_period`, `lockmgr_port`, `locks`, `maxClientConnections`, `maxOpenFiles`, `fdRlimit`, `mountd_port`, `notify_port`, `statmon_port`, `supported_auth_types`
+**Columns:** `acl`, `config_fs`, `default_acl_type`, `default_auth_types`, `default_supported_versions`, `direct_io`, `enabled_auth_types`, `enable_multi_tenant`, `extended_stats`, `grace_period`, `lease_lifetime`, `lock_recovery_period`, `lockmgr_port`, `locks`, `maxClientConnections`, `maxOpenFiles`, `mountd_port`, `notify_port`, `statmon_port`, `supported_auth_types`
 
 ## weka nfs interface-group
 
@@ -327,21 +276,6 @@ weka nfs interface-group ip-range remove <name> <ips> [--force]
 | `ips`\*         | IP range to remove.                                             |
 | `-f`, `--force` | Force action. Perform this action without further confirmation. |
 
-### weka nfs interface-group ns-assignment
-
-List the currently assigned container for each namespace. Optionally filter by interface group name or tenant.
-
-```sh
-weka nfs interface-group ns-assignment [--name <string>] [--tenant <tenant>]
-```
-
-| Parameter            | Description                     |
-| -------------------- | ------------------------------- |
-| `--name` \<string>   | Filter by interface group name. |
-| `--tenant` \<tenant> | Filter by tenant name.          |
-
-**Columns:** `uid`, `netspace_id`, `tenant_id`, `container`, `hostname`, `vlan`, `fip_range`, `interface_group`
-
 ### weka nfs interface-group port
 
 Manage NFS interface group ports.
@@ -391,59 +325,6 @@ weka nfs interface-group remove <name> [--force]
 | --------------- | --------------------------------------------------------------- |
 | `name`\*        | Name of the NFS interface group to delete.                      |
 | `-f`, `--force` | Force action. Perform this action without further confirmation. |
-
-### weka nfs interface-group tenant
-
-List tenants assigned to NFS interface groups.
-
-```sh
-weka nfs interface-group tenant [--name <string>]
-```
-
-| Parameter          | Description                     |
-| ------------------ | ------------------------------- |
-| `--name` \<string> | Filter by interface group name. |
-
-**Columns:** `id`, `name`, `interface_group`
-
-#### weka nfs interface-group tenant add
-
-Assign a tenant to an NFS interface group. Fails if the tenant is already assigned to a different group; use "tenant move" to reassign.
-
-```sh
-weka nfs interface-group tenant add <name> <tenant>
-```
-
-| Parameter  | Description           |
-| ---------- | --------------------- |
-| `name`\*   | Interface group name. |
-| `tenant`\* | Tenant name or ID.    |
-
-#### weka nfs interface-group tenant delete
-
-Remove a tenant from its assigned NFS interface group.
-
-```sh
-weka nfs interface-group tenant delete <name> <tenant>
-```
-
-| Parameter  | Description           |
-| ---------- | --------------------- |
-| `name`\*   | Interface group name. |
-| `tenant`\* | Tenant name or ID.    |
-
-#### weka nfs interface-group tenant move
-
-Move a tenant from its current NFS interface group to a different one.
-
-```sh
-weka nfs interface-group tenant move <name> <tenant>
-```
-
-| Parameter  | Description               |
-| ---------- | ------------------------- |
-| `name`\*   | New interface group name. |
-| `tenant`\* | Tenant name or ID.        |
 
 ### weka nfs interface-group update
 
@@ -573,28 +454,12 @@ Manage NFS LDAP and AD configuration.
 weka nfs ldap
 ```
 
-### weka nfs ldap export-ad
-
-Export Active Directory LDAP configuration.
-
-```sh
-weka nfs ldap export-ad <server-name> <ldap-domain> <sssd-conf-file> <idmapd-conf-file> [<ca-cert-file>]
-```
-
-| Parameter | Description |
-| --------- | ----------- |
-| `server-name`* | AD server name. |
-| `ldap-domain`* | AD domain. |
-| `sssd-conf-file`* | Path to sssd configuration file. |
-| `idmapd-conf-file`* | Path to idmapd configuration file. |
-| `ca-cert-file` | Path to CA Certificate file. |
-
 ### weka nfs ldap export-openldap
 
 Export OpenLDAP configuration.
 
 ```sh
-weka nfs ldap export-openldap <server-name> <ldap-domain> <sssd-conf-file> <idmapd-conf-file> [<ca-cert-file>]
+weka nfs ldap export-openldap <server-name> <ldap-domain> <sssd-conf-file> <idmapd-conf-file>
 ```
 
 | Parameter | Description |
@@ -603,32 +468,13 @@ weka nfs ldap export-openldap <server-name> <ldap-domain> <sssd-conf-file> <idma
 | `ldap-domain`* | OpenLDAP domain. |
 | `sssd-conf-file`* | Path to sssd configuration file. |
 | `idmapd-conf-file`* | Path to idmapd configuration file. |
-| `ca-cert-file` | Path to CA Certificate file. |
-
-### weka nfs ldap import-ad
-
-Import Active Directory LDAP configuration.
-
-```sh
-weka nfs ldap import-ad <server-name> <ldap-domain> <sssd-conf-file> <idmapd-conf-file> [<ca-cert-file>] [--force] [--no-restart]
-```
-
-| Parameter | Description |
-| --------- | ----------- |
-| `server-name`* | AD server name. |
-| `ldap-domain`* | AD domain. |
-| `sssd-conf-file`* | Path to sssd configuration file. |
-| `idmapd-conf-file`* | Path to idmapd configuration file. |
-| `ca-cert-file` | Path to CA Certificate file. |
-| `--force` | Perform this action without further confirmation. |
-| `--no-restart` | Don't restart the NFS-W containers to apply changes. |
 
 ### weka nfs ldap import-openldap
 
 Import OpenLDAP configuration.
 
 ```sh
-weka nfs ldap import-openldap <server-name> <ldap-domain> <sssd-conf-file> <idmapd-conf-file> [<ca-cert-file>] [--force] [--no-restart] [--verify]
+weka nfs ldap import-openldap <server-name> <ldap-domain> <sssd-conf-file> <idmapd-conf-file> [--force] [--no-restart] [--verify]
 ```
 
 | Parameter | Description |
@@ -637,7 +483,6 @@ weka nfs ldap import-openldap <server-name> <ldap-domain> <sssd-conf-file> <idma
 | `ldap-domain`* | OpenLDAP domain. |
 | `sssd-conf-file`* | Path to sssd configuration file. |
 | `idmapd-conf-file`* | Path to idmapd configuration file. |
-| `ca-cert-file` | Path to CA Certificate file. |
 | `--force` | Perform this action without further confirmation. |
 | `--no-restart` | Don't restart the NFS-W containers to apply changes. |
 | `--verify` | Verify connectivity with the OpenLDAP server. |
@@ -730,123 +575,6 @@ weka nfs ldap show
 
 **Columns:** `ldap_server_type`, `ldap_domain`, `ldap_server`, `ldap_port`, `ldap_base_dn`, `ldap_reader_user_name`, `ldap_reader_user_password`, `ldap_generation_id`, `ldap_status`
 
-## weka nfs netgroup
-
-Manage NFS netgroups: named sets of hosts that client group rules can reference in place of individual addresses.
-
-```sh
-weka nfs netgroup
-```
-
-### weka nfs netgroup add
-
-Create an empty NFS netgroup.
-
-```sh
-weka nfs netgroup add <name>
-```
-
-| Parameter | Description |
-| --------- | ----------- |
-| `name`\* | Name of the netgroup to create. |
-
-**Columns:** `id`, `uid`, `name`, `member_count`, `unresolved`, `generation`
-
-### weka nfs netgroup list
-
-List NFS netgroups with their member counts and the number of client groups referencing each.
-
-```sh
-weka nfs netgroup list [--name <nfs-netgroup>]
-```
-
-| Parameter | Description |
-| --------- | ----------- |
-| `--name` \<nfs-netgroup> | Netgroup name to filter by. |
-
-**Columns:** `id`, `uid`, `name`, `member_count`, `unresolved`, `client_group_count`, `generation`
-
-### weka nfs netgroup member
-
-Add and remove the member hosts of an NFS netgroup.
-
-```sh
-weka nfs netgroup member
-```
-
-#### weka nfs netgroup member add
-
-Add member hosts to an NFS netgroup in one configuration commit. A host already in the netgroup is counted, not refused.
-
-```sh
-weka nfs netgroup member add <name> [--from-file <string>] [--hosts <hostnames>…]
-```
-
-| Parameter | Description |
-| --------- | ----------- |
-| `name`\* | Name of the netgroup. |
-| `--from-file` \<string> | Read the hostnames from a file: one per line, '#' comments and blank lines ignored. |
-| `--hosts` \<hostnames>… | Member hostnames, comma-separated or by repeating the flag. Multiple values may be supplied separated by commas, or the option may be repeated. |
-
-**Columns:** `netgroup`, `added`, `already_present`, `member_count`, `generation`
-
-#### weka nfs netgroup member remove
-
-Remove member hosts from an NFS netgroup in one configuration commit. A host the netgroup does not hold is reported, not refused.
-
-```sh
-weka nfs netgroup member remove <name> [--from-file <string>] [--hosts <hostnames>…]
-```
-
-| Parameter | Description |
-| --------- | ----------- |
-| `name`\* | Name of the netgroup. |
-| `--from-file` \<string> | Read the hostnames from a file: one per line, '#' comments and blank lines ignored. |
-| `--hosts` \<hostnames>… | Member hostnames, comma-separated or by repeating the flag. Multiple values may be supplied separated by commas, or the option may be repeated. |
-
-**Columns:** `netgroup`, `removed`, `not_found`, `member_count`, `generation`
-
-### weka nfs netgroup remove
-
-Remove an NFS netgroup and its members. A netgroup that a client group rule references cannot be removed.
-
-```sh
-weka nfs netgroup remove <name>
-```
-
-| Parameter | Description |
-| --------- | ----------- |
-| `name`\* | Name of the netgroup to remove. |
-
-### weka nfs netgroup rename
-
-Rename an NFS netgroup. Client group rules that reference it follow the new name.
-
-```sh
-weka nfs netgroup rename <name> <new-name>
-```
-
-| Parameter | Description |
-| --------- | ----------- |
-| `name`\* | Current netgroup name. |
-| `new-name`\* | New name for the netgroup. |
-
-**Columns:** `id`, `uid`, `name`, `member_count`, `unresolved`, `generation`
-
-### weka nfs netgroup show
-
-Show an NFS netgroup, its member hosts, and the client groups and exports that reference it.
-
-```sh
-weka nfs netgroup show <name>
-```
-
-| Parameter | Description |
-| --------- | ----------- |
-| `name`\* | Name of the netgroup to show. |
-
-**Columns:** `id`, `uid`, `name`, `member_count`, `unresolved`, `generation`
-
 ## weka nfs permission
 
 Manage NFS permissions.
@@ -932,20 +660,6 @@ weka nfs permission update <filesystem> <group> [--acl-type <acl-type>] [--anon-
 | `--squash` \<squash-mode>                | Permission squashing. The option 'all' can be used only on interface groups with --allow-manage-gids=on. Valid values: none, root, all.                                                            |
 | `--supported-versions` \<nfs-versions>…  | NFS versions for new permissions. Multiple values may be supplied separated by commas, or the option may be repeated. Valid values: v3, v4.                                                        |
 
-## weka nfs resource-usage
-
-Show NFS server resource usage per container.
-
-```sh
-weka nfs resource-usage [--container-id <container-id>]
-```
-
-| Parameter | Description |
-| --------- | ----------- |
-| `--container-id` &lt;container-id&gt; | Specify container ID. |
-
-**Columns:** `container`, `hostname`, `connections`, `max_connections`, `connections_percent`, `connections_state`, `connections_refused_rate`, `open_files`, `max_open_files`, `files_percent`, `files_state`, `memory_usage_bytes`, `memory_limit_bytes`, `memory_percent`, `memory_state`, `source`, `sample_age_secs`, `fd_state`, `pinned_fd_count`, `reapable_fd_count`, `open_state_count`, `fd_hwmark`, `fd_lwmark`, `process_fd_count`, `socket_fd_count`, `fd_rlimit`, `listeners`, `server_memory_total_bytes`
-
 ## weka nfs rules
 
 Manage NFS rules, or list with no arguments.
@@ -992,21 +706,6 @@ weka nfs rules add ip <name> <ip>
 
 **Columns:** `id`, `uid`, `type`, `rule`
 
-#### weka nfs rules add netgroup
-
-Add a netgroup rule to an NFS client group.
-
-```sh
-weka nfs rules add netgroup <name> <netgroup>
-```
-
-| Parameter | Description |
-| --------- | ----------- |
-| `name`\* | Name of the NFS client group in which to create the rule. |
-| `netgroup`\* | Name of the netgroup whose member hosts are granted access. |
-
-**Columns:** `id`, `uid`, `type`, `rule`
-
 ### weka nfs rules remove
 
 Remove NFS rules.
@@ -1041,15 +740,3 @@ weka nfs rules remove ip <name> <ip>
 | `name`\* | Name of the NFS client group from which to delete the rule. |
 | `ip`* | IPv4 address with a prefix length (e.g. 1.1.1.0/16). |
 
-#### weka nfs rules remove netgroup
-
-Remove a netgroup rule from an NFS client group.
-
-```sh
-weka nfs rules remove netgroup <name> <netgroup>
-```
-
-| Parameter | Description |
-| --------- | ----------- |
-| `name`\* | Name of the NFS client group from which to delete the rule. |
-| `netgroup`\* | Name of the netgroup whose rule to remove. |

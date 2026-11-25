@@ -205,7 +205,7 @@ weka user ldap update [--base-dn <string>] [--change-reader-password] [--cluster
 Logs a user into the cluster. If login is successful, the user credentials are saved to the user's profile.
 
 ```sh
-weka user login [<username>] [<password>] [--access-token-timeout <duration>] [--no-open] [--path <string>] [--refresh-token-timeout <duration>] [--tenant <string>] [--use-device-code]
+weka user login [<username>] [<password>] [--access-token-timeout <duration>] [--path <string>] [--refresh-token-timeout <duration>] [--tenant <string>]
 ```
 
 | Parameter | Description |
@@ -213,11 +213,9 @@ weka user login [<username>] [<password>] [--access-token-timeout <duration>] [-
 | `username` | Username of user for authentication. Can be supplied in the environment as 'WEKA_USERNAME'. Prompted for if not set. |
 | `password` | Password of the user to authenticate as. Can be supplied in the environment as 'WEKA_PASSWORD'. Prompted for if not set. |
 | `--access-token-timeout` &lt;duration&gt; | Duration until the access token expires. Defaults to the cluster setting. |
-| `--no-open` | During single sign-on, do not automatically open a browser; print the verification URL instead (plus a code, with --use-device-code). |
 | `-p`, `--path` &lt;string&gt; | The path where the login token will be saved. This path can also be specified using the WEKA_TOKEN environment variable. After logging in, use the WEKA_TOKEN environment variable to specify where the login token is located. Deprecated: Use of profiles is a better solution, or use the weka user generate-token command to create a suitable API token. |
 | `--refresh-token-timeout` &lt;duration&gt; | Duration until the refresh token expires. Defaults to the cluster setting. |
 | `-g`, `--tenant` &lt;string&gt; | Tenant where the user is located. |
-| `--use-device-code` | Sign in via the device-code flow (a URL and code to enter elsewhere) instead of the default browser-based sign-in, even if a username is given. |
 
 ## weka user logout
 
@@ -231,78 +229,9 @@ weka user logout [--all]
 | --------- | ---------------------------------------------------------------------------------- |
 | `--all`   | Log out of all profiles. If not specified, only the current profile is logged out. |
 
-## weka user oidc
-
-Manage OIDC (OpenID Connect) single sign-on for the calling tenant.
-
-```sh
-weka user oidc
-```
-
-### weka user oidc reset
-
-Remove the calling tenant's OIDC connector.
-
-```sh
-weka user oidc reset [--force]
-```
-
-| Parameter | Description |
-| --------- | ----------- |
-| `-f`, `--force` | Force action. Perform this action without further confirmation. |
-
-### weka user oidc rotate-seal-key
-
-Rotate the calling tenant's OIDC seal key, so its outstanding single sign-on sessions must re-authenticate at their next refresh.
-
-```sh
-weka user oidc rotate-seal-key [--force]
-```
-
-| Parameter | Description |
-| --------- | ----------- |
-| `-f`, `--force` | Force action. Perform this action without further confirmation. |
-
-### weka user oidc set
-
-Create or update the calling tenant's OIDC connector. An enabled connector takes over management login for the tenant; an LDAP configuration may stay enabled alongside it to serve the S3 user lifecycle.
-
-```sh
-weka user oidc set [--clear-client-secret] [--clear-redirect-uris] [--client-id <string>] [--client-secret <string>] [--cluster-admin-group <string>] [--enabled] [--groups-claim <string>] [--issuer <string>] [--quota-manager-group <string>] [--readonly-group <string>] [--redirect-uris <redirect-uri>…] [--regular-group <string>] [--require-mfa] [--role-claim <string>] [--tenant-admin-group <string>] [--vendor <oidc-vendor>]
-```
-
-| Parameter | Description |
-| --------- | ----------- |
-| `--clear-client-secret` | Clear a stored client secret, re-registering WEKA as a public client. Does the same as entering an empty value at the --client-secret prompt, without needing a terminal. |
-| `--clear-redirect-uris` | Remove every configured redirect origin, so the browser sign-in accepts any https origin again. |
-| `--client-id` &lt;string&gt; | OIDC client ID. Required to enable the connector. |
-| `--client-secret` &lt;string&gt; | Client secret issued by the identity provider, for an application registered as a confidential client. Omit it to register WEKA as a public client; pass an empty value to be prompted, where an empty entry clears a secret set earlier. It is never displayed again once stored. |
-| `--cluster-admin-group` &lt;string&gt; | Identity-provider group (object ID or name) assigned the ClusterAdmin role. Role resolution uses group mapping only when no role claim is set — clear it with --role-claim "" first, as the two cannot coexist. Pass an empty value to clear this entry. |
-| `--enabled` | Enable OIDC authentication for this tenant. Defaults to false when the connector is created. |
-| `--groups-claim` &lt;string&gt; | JWT claim holding the user's group identifiers, used with the role group mappings. Defaults to "groups"; pass an empty value to revert to the default. |
-| `--issuer` &lt;string&gt; | OIDC issuer URL. Required to enable the connector. |
-| `--quota-manager-group` &lt;string&gt; | Identity-provider group (object ID or name) assigned the QuotaManager role. Pass an empty value to clear this entry. |
-| `--readonly-group` &lt;string&gt; | Identity-provider group (object ID or name) assigned the ReadOnly role. Pass an empty value to clear this entry. |
-| `--redirect-uris` &lt;redirect-uri&gt;… | Origins (https://host[:port]) the browser sign-in may be started from and redirected back to; the cluster appends /auth/callback. Replaces the current list; use --clear-redirect-uris to accept any https origin again. Multiple values may be supplied separated by commas, or the option may be repeated. |
-| `--regular-group` &lt;string&gt; | Identity-provider group (object ID or name) assigned the Regular role. Pass an empty value to clear this entry. |
-| `--require-mfa` | Require the identity provider to attest multi-factor authentication. Defaults to true when the connector is created. |
-| `--role-claim` &lt;string&gt; | JWT claim name to map to a role. May be required to enable the connector. Pass an explicit empty value to clear it when moving the connector to group mapping. |
-| `--tenant-admin-group` &lt;string&gt; | Identity-provider group (object ID or name) assigned the TenantAdmin role. Pass an empty value to clear this entry. |
-| `--vendor` &lt;oidc-vendor&gt; | Identity provider vendor. Only `entra` is accepted when enabling the connector. Valid value: entra. |
-
-### weka user oidc show
-
-Display the calling tenant's OIDC connector configuration.
-
-```sh
-weka user oidc show
-```
-
-**Columns:** `enabled`, `vendor`, `issuer`, `client_id`, `role_claim`, `groups_claim`, `role_groups`, `require_mfa`, `redirect_uris`, `client_secret_set`
-
 ## weka user passwd
 
-Set a user's password. Admins can change the password for any user in their tenant.
+Set a user's password. Admins can change the password for any user in their tenant, and a cluster admin for a user of another tenant with --tenant.
 
 ```sh
 weka user passwd [<password>] [--current-password <string>] [--username <username>]

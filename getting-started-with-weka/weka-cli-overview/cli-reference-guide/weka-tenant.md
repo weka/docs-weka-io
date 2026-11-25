@@ -6,14 +6,14 @@ List tenants defined in the cluster. A private tenant has privacy enabled, so it
 weka tenant
 ```
 
-**Columns:** `uid`, `id`, `name`, `allocTotal`, `quotaTotal`, `pctAllocated`, `allocSSD`, `quotaSSD`, `pctAllocatedSSD`, `qos`, `enforceFsAuth`, `enforceNetspace`, `private`, `policyNames`, `policyIds`, `maxThroughput`, `maxIops`
+**Columns:** `uid`, `id`, `name`, `allocTotal`, `quotaTotal`, `pctAllocated`, `allocSSD`, `quotaSSD`, `pctAllocatedSSD`, `qos`, `enforceFsAuth`, `enforceNetspace`, `policyNames`, `policyIds`, `maxThroughput`, `maxIops`
 
 ## weka tenant add
 
 Create a new tenant in the cluster.
 
 ```sh
-weka tenant add <name> <username> [<password>] [--enforce-fs-authentication] [--enforce-mount-netspace-access] [--max-iops <uint>] [--max-throughput <capacity>] [--network-spaces <strings>…] [--private] [--ssd-quota <capacity>] [--total-quota <capacity>]
+weka tenant add <name> <username> [<password>] [--enforce-fs-authentication] [--enforce-mount-netspace-access] [--max-iops <uint>] [--max-throughput <capacity>] [--network-spaces <strings>…] [--ssd-quota <capacity>] [--total-quota <capacity>]
 ```
 
 | Parameter                         | Description                                                                                                                      |
@@ -26,7 +26,6 @@ weka tenant add <name> <username> [<password>] [--enforce-fs-authentication] [--
 | `--max-iops` \<uint>              | Limit I/O operations per second across all filesystems in the tenant. Requires cluster-admin role.                               |
 | `--max-throughput` \<capacity>    | Limit throughput per second across all filesystems in the tenant. Requires capacity units, for example 200GiB or 500GB. Requires cluster-admin role. |
 | `--network-spaces` \<strings>…    | Network space names to assign to the tenant. Multiple values may be supplied separated by commas, or the option may be repeated. |
-| `--private` | Enable tenant privacy so that its contents are hidden from everyone who is not a member of the tenant, including cluster administrators. Only the tenant's own administrator can disable this once it is set, with `weka tenant security privacy disable`. |
 | `--ssd-quota` \<capacity>         | SSD quota to allocate for the tenant.                                                                                            |
 | `--total-quota` \<capacity>       | Total quota to allocate for the tenant.                                                                                          |
 
@@ -198,40 +197,6 @@ weka tenant security policy set <tenant> <policies>…
 | `tenant`\*    | Name or ID of tenant to update.      |
 | `policies`\*… | Security policies to set for tenant. |
 
-### weka tenant security privacy
-
-Manage this tenant's privacy. Enabling it hides the tenant's contents from everyone who is not a member of the tenant, including cluster administrators. Only the tenant's own administrator can disable this once it is set.
-
-```sh
-weka tenant security privacy
-```
-
-#### weka tenant security privacy disable
-
-Disable tenant privacy: the tenant's contents become reachable again to cluster administrators and other holders of the `tenant.assume` action. Only the tenant's own administrator can run this.
-
-```sh
-weka tenant security privacy disable
-```
-
-#### weka tenant security privacy enable
-
-Enable tenant privacy so that its contents are hidden from everyone who is not a member of the tenant, including cluster administrators. Any assumed session already open in this tenant ends. Only the tenant's own administrator can disable this once it is set.
-
-```sh
-weka tenant security privacy enable
-```
-
-#### weka tenant security privacy show
-
-Show whether the current user's tenant is private.
-
-```sh
-weka tenant security privacy show
-```
-
-**Columns:** `id`, `name`, `private`
-
 ### weka tenant security revoke-tokens
 
 Revoke all API tokens issued for this tenant, forcing users to reauthenticate.
@@ -310,7 +275,7 @@ weka tenant stats [--accumulated] [--aggregate-by <grouping>] [--end-time <time>
 Update options for a tenant: authentication enforcement, QoS limits, quota, and name.
 
 ```sh
-weka tenant update <tenant> [--enforce-fs-authentication] [--enforce-mount-netspace-access] [--max-iops <uint>] [--max-throughput <capacity>] [--new-name <string>] [--private] [--ssd-quota <capacity>] [--total-quota <capacity>]
+weka tenant update <tenant> [--enforce-fs-authentication] [--enforce-mount-netspace-access] [--max-iops <uint>] [--max-throughput <capacity>] [--new-name <string>] [--ssd-quota <capacity>] [--total-quota <capacity>]
 ```
 
 | Parameter                         | Description                                                                                        |
@@ -321,6 +286,5 @@ weka tenant update <tenant> [--enforce-fs-authentication] [--enforce-mount-netsp
 | `--max-iops` \<uint>              | Limit I/O operations per second across all filesystems in the tenant. Requires cluster-admin role. |
 | `--max-throughput` \<capacity>    | Limit throughput per second across all filesystems in the tenant. Requires capacity units, for example 200GiB or 500GB. Requires cluster-admin role. |
 | `--new-name` \<string>            | Rename the tenant. Requires cluster-admin role.                                                    |
-| `--private` | Enable tenant privacy so that its contents are hidden from everyone who is not a member of the tenant, including cluster administrators. Only the tenant's own administrator can disable this once it is set, with `weka tenant security privacy disable`. |
 | `--ssd-quota` \<capacity>         | Set the SSD capacity quota for the tenant.                                                         |
 | `--total-quota` \<capacity>       | Set the total capacity quota for the tenant.                                                       |

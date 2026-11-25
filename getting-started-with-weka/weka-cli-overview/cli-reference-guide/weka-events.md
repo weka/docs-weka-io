@@ -46,7 +46,7 @@ weka events categories [--show-internal]
 List recent events that happened on the machine running this command.
 
 ```sh
-weka events local [--all] [--end-time <time>] [--next <string>] [--show-internal] [--start-time <time>] [--stem-mode] [--tenant <tenant>]
+weka events local [--all] [--end-time <time>] [--next <string>] [--show-internal] [--start-time <time>] [--stem-mode]
 ```
 
 | Parameter               | Description                                                                |
@@ -57,7 +57,6 @@ weka events local [--all] [--end-time <time>] [--next <string>] [--show-internal
 | `-i`, `--show-internal` | Show internal events.                                                      |
 | `--start-time` \<time>  | Include only events that occurred at or after this time.                   |
 | `--stem-mode`           | Show STEM mode events.                                                     |
-| `--tenant` \<tenant>    | Filter events by tenant name or ID.                                        |
 
 **Columns:** `timestamp`, `process`, `category`, `severity`, `type`, `entity`, `synopsis`, `description`
 

@@ -16,14 +16,14 @@ weka fs [--force-fresh] [--local] [--name <string>]
 | `--local` | Serve the listing from the container this command connects to, without redirecting to the cluster leader. Capacity information may be stale. |
 | `--name` &lt;string&gt; | Show only the named filesystem. |
 
-**Columns:** `uid`, `id`, `name`, `group`, `groupId`, `usedSSD`, `usedSSDD`, `usedSSDM`, `freeSSD`, `availableSSDM`, `availableSSD`, `usedTotal`, `usedTotalD`, `freeTotal`, `availableTotal`, `maxFiles`, `status`, `encrypted`, `stores`, `authRequired`, `thinProvisioned`, `thinProvisioningMinSSDBudget`, `thinProvisioningMaxSSDBudget`, `usedSSDWD`, `usedSSDRD`, `reductionRatio`, `pendingReduction`, `dataReduction`, `reducedProcessedSize`, `reducedSize`, `kmsKey`, `kmsNamespace`, `kmsRole`, `processedReductionRatio`, `audit`, `auditOpenClose`, `auditOperations`, `indexEnabled`, `permissions`, `richAclEnforcement`, `ownerGuid`, `maxThroughput`, `maxIops`, `s3Coexistence`, `prefThroughput`, `prefIops`
+**Columns:** `uid`, `id`, `name`, `group`, `groupId`, `usedSSD`, `usedSSDD`, `usedSSDM`, `freeSSD`, `availableSSDM`, `availableSSD`, `usedTotal`, `usedTotalD`, `freeTotal`, `availableTotal`, `maxFiles`, `status`, `encrypted`, `stores`, `authRequired`, `thinProvisioned`, `thinProvisioningMinSSDBudget`, `thinProvisioningMaxSSDBudget`, `usedSSDWD`, `usedSSDRD`, `reductionRatio`, `pendingReduction`, `dataReduction`, `reducedProcessedSize`, `reducedSize`, `kmsKey`, `kmsNamespace`, `kmsRole`, `processedReductionRatio`, `audit`, `auditOpenClose`, `auditOperations`, `indexEnabled`, `permissions`, `ownerGuid`, `maxThroughput`, `maxIops`
 
 ## weka fs add
 
 Add a new filesystem with the specified parameters.
 
 ```sh
-weka fs add <name> <total-capacity> [--allow-no-kms] [--audit-enabled] [--auth-required] [--data-reduction] [--enable-weka-delete] [--enable-weka-delete-root-only] [--encrypted] [--fs-group <filesystem-group>] [--index-enabled] [--kms-key-identifier <string>] [--kms-namespace <string>] [--kms-role-id <string>] [--kms-secret-id <string>] [--max-iops <uint>] [--max-throughput <capacity>] [--obs-name <string>] [--pref-iops <uint>] [--pref-throughput <capacity>] [--rich-acl-enforcement] [--ssd-capacity <capacity>] [--thin-provision-max-ssd <capacity>] [--thin-provision-min-ssd <capacity>] [--weka-delete-gid <uint32>] [--weka-delete-uid <uint32>]
+weka fs add <name> <total-capacity> [--allow-no-kms] [--audit-enabled] [--auth-required] [--data-reduction] [--encrypted] [--fs-group <filesystem-group>] [--index-enabled] [--kms-key-identifier <string>] [--kms-namespace <string>] [--kms-role-id <string>] [--kms-secret-id <string>] [--max-iops <uint>] [--max-throughput <capacity>] [--obs-name <string>] [--ssd-capacity <capacity>] [--thin-provision-max-ssd <capacity>] [--thin-provision-min-ssd <capacity>]
 ```
 
 | Parameter | Description |
@@ -34,8 +34,6 @@ weka fs add <name> <total-capacity> [--allow-no-kms] [--audit-enabled] [--auth-r
 | `--audit-enabled` | Enable filesystem auditing. |
 | `--auth-required` | Require the mounting user to be authenticated. Effective only in the root tenant; non-root users must always authenticate. |
 | `--data-reduction` | Enable data reduction. |
-| `--enable-weka-delete` | Enable weka-delete capability on the filesystem. |
-| `--enable-weka-delete-root-only` | Limit weka-delete capability to root user only. |
 | `--encrypted` | Create an encrypted filesystem. |
 | `--fs-group` &lt;filesystem-group&gt; | Filesystem group to create the filesystem in. |
 | `--index-enabled` | Enable catalog indexing for the filesystem. |
@@ -46,14 +44,9 @@ weka fs add <name> <total-capacity> [--allow-no-kms] [--audit-enabled] [--auth-r
 | `--max-iops` &lt;uint&gt; | Maximum filesystem IOPS. |
 | `--max-throughput` &lt;capacity&gt; | Maximum filesystem throughput per second. Requires capacity units, for example 1GiB or 500MB. |
 | `--obs-name` &lt;string&gt; | Object store bucket name. Mandatory for tiered filesystems. |
-| `--pref-iops` &lt;uint&gt; | Preferred filesystem IOPS. |
-| `--pref-throughput` &lt;capacity&gt; | Preferred filesystem throughput per second. Requires capacity units, for example 1GiB or 500MB. |
-| `--rich-acl-enforcement` | Require rich ACL enforcement on this filesystem. |
 | `--ssd-capacity` &lt;capacity&gt; | SSD capacity for the filesystem. |
 | `--thin-provision-max-ssd` &lt;capacity&gt; | Maximum SSD budget for thin provisioning. |
 | `--thin-provision-min-ssd` &lt;capacity&gt; | Minimum SSD budget for thin provisioning. |
-| `--weka-delete-gid` &lt;uint32&gt; | Besides root, the group ID whose members may move directories into .weka-delete. |
-| `--weka-delete-uid` &lt;uint32&gt; | Besides root, the user ID that may move directories into .weka-delete. |
 
 ## weka fs download
 
@@ -464,14 +457,14 @@ List replication pairs with their current state and progress, both the pairs thi
 weka fs replication
 ```
 
-**Columns:** `id`, `uid`, `state`, `role`, `source`, `link`, `link-id`, `target`, `interval`, `snapshots-to-keep`, `apply`, `access`, `copy`, `copy-paths`, `last-replication`, `last-replicated-snapshot`, `next-cycle`, `current-status`, `last-error`, `last-error-time`
+**Columns:** `id`, `uid`, `state`, `role`, `source`, `link`, `link-id`, `target`, `interval`, `snapshots-to-keep`, `apply`, `access`, `copy`, `copy-paths`, `last-replication`, `current-status`, `last-error`, `last-error-time`
 
 ### weka fs replication add
 
 Create a new replication pair between a local filesystem and a filesystem on a linked cluster.
 
 ```sh
-weka fs replication add --interval <duration> --source-filesystem <filesystem> --target-filesystem <filesystem> [--access-strategy <access-strategy>] [--apply-strategy <apply-strategy>] [--copy-path <path>…] [--link-id <cluster-link-id>] [--now] [--snapshots-to-keep <count>] [--target-total-capacity <capacity>]
+weka fs replication add --interval <duration> --source-filesystem <filesystem> --target-filesystem <filesystem> [--access-strategy <access-strategy>] [--apply-strategy <apply-strategy>] [--copy-path <path>…] [--now] [--snapshots-to-keep <count>] [--target-cluster <string>] [--target-total-capacity <capacity>]
 ```
 
 | Parameter | Description |
@@ -480,11 +473,11 @@ weka fs replication add --interval <duration> --source-filesystem <filesystem> -
 | `--source-filesystem` &lt;filesystem&gt;* | Name of the local source filesystem. |
 | `--target-filesystem` &lt;filesystem&gt;* | Name of the filesystem on the remote cluster. |
 | `--access-strategy` &lt;access-strategy&gt; | When users see the target filesystem: INSTANT_ACCESS (default) exposes the snapshot immediately and fetches data lazily; COPY_FIRST blocks the apply until --copy-path data is local. Valid values: instant_access, copy_first. |
-| `--apply-strategy` &lt;apply-strategy&gt; | When the snapshot becomes visible on the target. AUTOMATIC (the default, and the only value supported in this release) applies it as soon as the prerequisite phase finishes. Valid values: automatic, manual. |
+| `--apply-strategy` &lt;apply-strategy&gt; | When the snapshot becomes visible on the target. AUTOMATIC (the default, and the only value supported in this release) applies it as soon as the prerequisite phase finishes. Valid value: automatic. |
 | `--copy-path` &lt;path&gt;… | Eager-copy path. Keywords: 'full', 'all' or '/' for full copy; 'none' or 'null' for no eager copy. Default: no eager copy. Multiple values may be supplied separated by commas, or the option may be repeated. |
-| `--link-id` &lt;cluster-link-id&gt; | ID of the cluster link to replicate over, as shown by 'weka cluster link'. |
 | `--now` | Trigger the first replication cycle immediately instead of waiting one full interval. |
 | `--snapshots-to-keep` &lt;count&gt; | Number of snapshots to retain. Default: 3. Range: 2 to 25. |
+| `--target-cluster` &lt;string&gt; | Name of the configured cluster peer. |
 | `--target-total-capacity` &lt;capacity&gt; | Total capacity for the target filesystem (default: same as the source filesystem). A smaller target is allowed for partial or no eager copy (--copy-path); full copy requires at least the source size. |
 
 ### weka fs replication fetch
@@ -501,30 +494,6 @@ weka fs replication fetch <path> [--filesystem <filesystem>] [--snapshot <snapsh
 | `--filesystem` \<filesystem> | Filesystem name; the positional path is treated as FS-relative.                 |
 | `--snapshot` \<snapshot>     | Snapshot name; resolve path within this snapshot view instead of the live root. |
 
-### weka fs replication hydration
-
-Per-file replication hydration commands.
-
-```sh
-weka fs replication hydration
-```
-
-#### weka fs replication hydration status
-
-Show replication hydration status for a given file path: how much of the file is locally available and how much is still pending on the source cluster (lazy-data blocks not yet prefetched).
-
-```sh
-weka fs replication hydration status <path> [--filesystem <filesystem>] [--snapshot <snapshot>]
-```
-
-| Parameter                    | Description                                                                     |
-| ---------------------------- | ------------------------------------------------------------------------------- |
-| `path`\*                     | Path to get replication hydration status for.                                   |
-| `--filesystem` \<filesystem> | Filesystem name; the positional path is treated as FS-relative.                 |
-| `--snapshot` \<snapshot>     | Snapshot name; resolve path within this snapshot view instead of the live root. |
-
-**Columns:** `path`, `type`, `size`, `local`, `pending`, `progress`, `status`
-
 ### weka fs replication pause
 
 Pause an active replication pair.
@@ -537,27 +506,18 @@ weka fs replication pause <id>
 | --------- | -------------------- |
 | `id`\*    | Replication pair ID. |
 
-### weka fs replication release
-
-Asynchronously return a file's data blocks to lazy mode. The release runs in the background; use 'weka fs replication hydration status' to monitor progress.
-
-```sh
-weka fs replication release
-```
-
 ### weka fs replication remove
 
 Remove an existing replication pair.
 
 ```sh
-weka fs replication remove <id> [--force] [--local-only]
+weka fs replication remove <id> [--force]
 ```
 
 | Parameter | Description |
 | --------- | ----------- |
 | `id`* | Replication pair ID. |
 | `-f`, `--force` | Force action. Perform this action without further confirmation. |
-| `--local-only` | Remove the pair on this cluster only, leaving the remote cluster untouched. Use when the remote cluster is unreachable or gone; it is also the only way to remove an incoming pair. |
 
 ### weka fs replication resume
 
@@ -584,7 +544,7 @@ weka fs replication update <id> [--access-strategy <access-strategy>] [--add-cop
 | `id`* | Replication pair ID. |
 | `--access-strategy` &lt;access-strategy&gt; | When users see the target filesystem: INSTANT_ACCESS or COPY_FIRST. Valid values: instant_access, copy_first. |
 | `--add-copy-path` &lt;path&gt;… | Add a path to a PARTIAL copy set (repeatable). Multiple values may be supplied separated by commas, or the option may be repeated. |
-| `--apply-strategy` &lt;apply-strategy&gt; | When the snapshot becomes visible on the target. AUTOMATIC is the only value supported in this release. Valid values: automatic, manual. |
+| `--apply-strategy` &lt;apply-strategy&gt; | When the snapshot becomes visible on the target. AUTOMATIC is the only value supported in this release. Valid value: automatic. |
 | `--copy-path` &lt;path&gt;… | Replace the entire copy set. Keywords: 'full', 'all' or '/' for full copy; 'none' or 'null' to clear. Mutually exclusive with --add-copy-path/--remove-copy-path. Multiple values may be supplied separated by commas, or the option may be repeated. |
 | `--interval` &lt;duration&gt; | Replication interval (e.g. 5m, 1h). Range: 5 minutes to 30 days. |
 | `--remove-copy-path` &lt;path&gt;… | Remove a path from a PARTIAL copy set (repeatable). Multiple values may be supplied separated by commas, or the option may be repeated. |
@@ -1188,7 +1148,7 @@ weka fs tier s3 update <name> [--access-key-id <string>] [--auth-method <s3-auth
 Update a filesystem's configuration.
 
 ```sh
-weka fs update <name> [--access <access>] [--audit-enabled] [--auth-required] [--data-reduction] [--enable-weka-delete] [--enable-weka-delete-root-only] [--event-log-enabled] [--event-log-max-age-seconds <uint>] [--event-log-max-size-bytes-per-fs-shard <uint>] [--force] [--fs-group <filesystem-group>] [--index-enabled] [--kms-key-identifier <string>] [--kms-namespace <string>] [--kms-role-id <string>] [--kms-secret-id <string>] [--max-iops <uint>] [--max-throughput <capacity>] [--new-name <filesystem>] [--pref-iops <uint>] [--pref-throughput <capacity>] [--remove-fs-group] [--rich-acl-enforcement] [--ssd-capacity <capacity>] [--thin-provision-max-ssd <capacity>] [--thin-provision-min-ssd <capacity>] [--total-capacity <capacity>] [--use-cluster-kms-key-identifier] [--weka-delete-gid <uint32>] [--weka-delete-uid <uint32>]
+weka fs update <name> [--access <access>] [--audit-enabled] [--auth-required] [--data-reduction] [--event-log-enabled] [--event-log-max-age-seconds <uint>] [--event-log-max-size-bytes-per-fs-shard <uint>] [--force] [--fs-group <filesystem-group>] [--index-enabled] [--kms-key-identifier <string>] [--kms-namespace <string>] [--kms-role-id <string>] [--kms-secret-id <string>] [--max-iops <uint>] [--max-throughput <capacity>] [--new-name <filesystem>] [--remove-fs-group] [--ssd-capacity <capacity>] [--thin-provision-max-ssd <capacity>] [--thin-provision-min-ssd <capacity>] [--total-capacity <capacity>] [--use-cluster-kms-key-identifier]
 ```
 
 | Parameter | Description |
@@ -1198,8 +1158,6 @@ weka fs update <name> [--access <access>] [--audit-enabled] [--auth-required] [-
 | `--audit-enabled` | Enable filesystem auditing. |
 | `--auth-required` | Require the mounting user to be authenticated. Effective only in the root tenant; non-root users must always authenticate. |
 | `--data-reduction` | Enable data reduction. |
-| `--enable-weka-delete` | Enable weka-delete capability on the filesystem. |
-| `--enable-weka-delete-root-only` | Limit weka-delete capability to root user only. |
 | `--event-log-enabled` | Enable the reliable event-change log for the filesystem. |
 | `--event-log-max-age-seconds` &lt;uint&gt; | Set the maximum age in seconds before event-log records are trimmed (0 disables age trim). |
 | `--event-log-max-size-bytes-per-fs-shard` &lt;uint&gt; | Set the maximum on-disk event-log size in bytes per filesystem shard (minimum 1 MiB; smaller values, including 0, are rejected). |
@@ -1213,15 +1171,10 @@ weka fs update <name> [--access <access>] [--audit-enabled] [--auth-required] [-
 | `--max-iops` &lt;uint&gt; | Limit I/O operations per second. This affects how much CPU is used by the filesystem on cluster servers. |
 | `--max-throughput` &lt;capacity&gt; | Limit throughput per second. This affects how much bandwidth is available to the filesystem. Requires capacity units, for example 1GiB or 500MB. |
 | `--new-name` &lt;filesystem&gt; | Rename the filesystem. |
-| `--pref-iops` &lt;uint&gt; | Preferred I/O operations per second for the filesystem. |
-| `--pref-throughput` &lt;capacity&gt; | Preferred throughput per second for the filesystem. Requires capacity units, for example 1GiB or 500MB. |
 | `--remove-fs-group` | Reset the filesystem to have no group. |
-| `--rich-acl-enforcement` | Require rich ACL enforcement on this filesystem. |
 | `--ssd-capacity` &lt;capacity&gt; | New SSD capacity for the filesystem. |
 | `--thin-provision-max-ssd` &lt;capacity&gt; | Maximum SSD budget for thin provisioning. |
 | `--thin-provision-min-ssd` &lt;capacity&gt; | Minimum SSD budget for thin provisioning. |
 | `--total-capacity` &lt;capacity&gt; | New total capacity for the filesystem. |
 | `--use-cluster-kms-key-identifier` | Use the cluster KMS configuration for this filesystem, removing any custom KMS configuration. |
-| `--weka-delete-gid` &lt;uint32&gt; | Besides root, the group ID whose members may move directories into .weka-delete. 0 clears it. |
-| `--weka-delete-uid` &lt;uint32&gt; | Besides root, the user ID that may move directories into .weka-delete. 0 clears it. |
 

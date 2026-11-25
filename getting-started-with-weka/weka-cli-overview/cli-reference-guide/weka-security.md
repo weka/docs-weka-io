@@ -208,7 +208,7 @@ weka security kms set kmip <address> <key-identifier> --client-cert <string> --c
 | `--client-key` \<string>\*       | Path to the client key PEM file.                                                            |
 | `--ca-cert` \<string>            | Path to a CA certificate PEM file for the KMIP server.                                      |
 | `--convert-to-cluster-key-on-fs` | Convert all encrypted filesystems to use the cluster key.                                   |
-| `--network-space-id` \<uint16>   | Network space ID in which to run the KMS connector. Defaults to the host network namespace. |
+| `--network-space-id` \<uint16> | Network space ID in which to run the KMS connector. Defaults to the network space of the current KMS configuration. |
 
 #### weka security kms set vault
 
@@ -226,7 +226,7 @@ weka security kms set vault <address> <key-name> [--auth-path <string>] [--conve
 | `--convert-to-cluster-key-on-fs` | Convert all encrypted filesystems to use the cluster key.                                   |
 | `--kubernetes-role` \<string>    | Kubernetes role for Vault authentication.                                                   |
 | `--namespace` \<string>          | Namespace in the Vault.                                                                     |
-| `--network-space-id` \<uint16>   | Network space ID in which to run the KMS connector. Defaults to the host network namespace. |
+| `--network-space-id` \<uint16> | Network space ID in which to run the KMS connector. Defaults to the network space of the current KMS configuration. |
 | `--role-id` \<string>            | Role ID to access the KMS.                                                                  |
 | `--secret-id` \<string>          | Secret ID to access the KMS (required with --role-id).                                      |
 | `--token` \<string>              | API token to access the KMS.                                                                |

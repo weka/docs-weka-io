@@ -15,8 +15,14 @@ weka local
 Collect diagnostics from the local machine.
 
 ```sh
-weka local diags
+weka local diags [--collect-cluster-info] [--core-dump-limit <uint>] [--id <string>] [--output-dir <string>] [--tar]
 ```
+| Parameter | Description |
+| `-s`, `--collect-cluster-info` | Collect cluster-related information. Warning: use this flag on one container at a time to avoid straining the cluster. |
+| `-c`, `--core-dump-limit` \<uint> | Limit to processing this number of core dumps, if found. The default is 1. |
+| `-i`, `--id` \<string> | ID for this dump. If not given, a random ID is generated. |
+| `-d`, `--output-dir` \<string> | Directory to save the diags dump to. The default is /opt/weka/diags/local. |
+| `-t`, `--tar` | Create a TAR of all collected diags. |
 
 ## weka local disable
 
@@ -80,8 +86,12 @@ weka local enable [<container>…] [--type <strings>…]
 List local events. Does not require authentication and can be used when the cluster is not running.
 
 ```sh
-weka local events
+weka local events [--container-name <string>] [--path <string>]
 ```
+| Parameter | Description |
+| `--container-name` \<string> | Container whose events are listed (default: "default"). |
+| `--path` \<string> | Directory the local events are stored in. |
+**Columns:** `time`, `uuid`, `category`, `severity`, `permission`, `type`, `entity`, `process`, `parameters`, `hash`
 
 ## weka local exec
 

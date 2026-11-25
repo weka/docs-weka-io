@@ -95,7 +95,7 @@ weka cluster container [<container-ids>…] [--backends] [--clients] [--council]
 | `-l`, `--leadership`      | Only return containers that are part of the cluster leadership.                                                                |
 | `--local`                 | Get result from the local container.                                                                                           |
 
-**Columns:** `uid`, `id`, `hostname`, `container`, `machineId`, `compositeMachineId`, `chassisSerial`, `chassisLocation`, `ips`, `port`, `status`, `state`, `requestedAction`, `software`, `release`, `mode`, `fdName`, `fdId`, `fdType`, `cores`, `feCores`, `driveCores`, `coreIds`, `bw`, `scrubber_limit`, `dedicated`, `autoRemove`, `leadership`, `memory`, `uptime`, `failureText`, `failure`, `failureTime`, `failureCode`, `recentFailure`, `requestedActionFailureText`, `requestedActionFailure`, `requestedActionFailureTime`, `requestedActionFailureCode`, `addedTime`, `cloudProvider`, `availabilityZone`, `instanceType`, `instanceId`, `hypervisorType`, `osName`, `kernelName`, `kernelRelease`, `kernelVersion`, `architecture`, `tlsStrictnessLevel`, `hardwareMonitoring`
+**Columns:** `uid`, `id`, `hostname`, `container`, `machineId`, `compositeMachineId`, `ips`, `port`, `status`, `state`, `requestedAction`, `software`, `release`, `mode`, `fdName`, `fdId`, `fdType`, `cores`, `feCores`, `driveCores`, `coreIds`, `bw`, `scrubber_limit`, `dedicated`, `autoRemove`, `leadership`, `memory`, `uptime`, `failureText`, `failure`, `failureTime`, `failureCode`, `recentFailure`, `requestedActionFailureText`, `requestedActionFailure`, `requestedActionFailureTime`, `requestedActionFailureCode`, `addedTime`, `cloudProvider`, `availabilityZone`, `instanceType`, `instanceId`, `hypervisorType`, `osName`, `kernelName`, `kernelRelease`, `kernelVersion`, `architecture`, `tlsStrictnessLevel`, `hardwareMonitoring`
 
 ### weka cluster container activate
 
@@ -262,7 +262,7 @@ weka cluster container info-hw [<hostname>] [--info-type <info-types>…]
 | Parameter                    | Description                                                                                                                                                                          |
 | ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `hostname`                   | Containers to query, by hostname or IP. If none are supplied, all cluster containers are queried.                                                                                    |
-| `--info-type` \<info-types>… | Information types to query. Multiple values may be supplied separated by commas, or the option may be repeated. Valid values: version, osinfo, memory, cores, disks, eths, net, ips, components. |
+| `--info-type` \<info-types>… | Information types to query. Multiple values may be supplied separated by commas, or the option may be repeated. Valid values: version, osinfo, memory, cores, disks, eths, net, ips. |
 
 ### weka cluster container join-secret
 
@@ -692,7 +692,7 @@ weka cluster network-space [--tenant <string>]
 Add a new network space and corresponding VLAN and IP pool for backend cluster use.
 
 ```sh
-weka cluster network-space add <name> --range <ip-range> --vlan <uint16> [--fip-range <ip-range>] [--gateway <ip>] [--netmask <uint8>] [--wait]
+weka cluster network-space add <name> --range <ip-range> --vlan <uint16> [--gateway <ip>] [--netmask <uint8>] [--wait]
 ```
 
 | Parameter | Description |
@@ -700,7 +700,6 @@ weka cluster network-space add <name> --range <ip-range> --vlan <uint16> [--fip-
 | `name`* | Network space name. |
 | `--range` &lt;ip-range&gt;* | IP addresses in format IP1-IP2. |
 | `--vlan` &lt;uint16&gt;* | VLAN ID (1..4094). |
-| `--fip-range` &lt;ip-range&gt; | Floating IP address range for NFS multi-tenant assignment (format IP1-IP2). |
 | `--gateway` &lt;ip&gt; | Default gateway IP address for the network space. |
 | `--netmask` &lt;uint8&gt; | Subnet mask length in bits. |
 | `--wait` | Block until every backend applies and verifies the new network space, then exit. If any backend fails, the create is rolled back cluster-wide and the command exits non-zero. Waits as long as the cluster waits for its backends (no timeout; interruptible with Ctrl-C). |
@@ -804,13 +803,12 @@ weka cluster network-space show-usage [--backends] [--clients] [--id <netspace-i
 Update an existing network space's IP pool and VLAN configuration.
 
 ```sh
-weka cluster network-space update <netspace> [--fip-range <ip-range>] [--force] [--gateway <ip>] [--name <string>] [--netmask <uint8>] [--range <ip-range>] [--vlan <uint16>] [--wait]
+weka cluster network-space update <netspace> [--force] [--gateway <ip>] [--name <string>] [--netmask <uint8>] [--range <ip-range>] [--vlan <uint16>] [--wait]
 ```
 
 | Parameter | Description |
 | --------- | ----------- |
 | `netspace`* | Network space name or ID. |
-| `--fip-range` &lt;ip-range&gt; | Floating IP address range for NFS multi-tenant assignment (format IP1-IP2). |
 | `-f`, `--force` | Force operation even when clients are present. |
 | `--gateway` &lt;ip&gt; | Default gateway IP address for the network space. |
 | `--name` &lt;string&gt; | New name for the network space. |
@@ -818,66 +816,6 @@ weka cluster network-space update <netspace> [--fip-range <ip-range>] [--force] 
 | `--range` &lt;ip-range&gt; | IP addresses in format IP1-IP2. |
 | `--vlan` &lt;uint16&gt; | VLAN ID (1..4094). |
 | `--wait` | Block until every backend re-applies and verifies the updated network space, then exit. An update is a teardown-then-rebuild; if a backend fails it stays in-flight (no rollback) and the command exits non-zero. Waits as long as the cluster waits for its backends (no timeout; interruptible with Ctrl-C). |
-
-## weka cluster link
-
-List and manage links to remote clusters for cross-cluster replication. Both clusters need an S3 cluster configured. Per-filesystem replication pairs are managed under 'weka fs replication'.
-
-```sh
-weka cluster link [--link-id <cluster-link-id>] [--name <cluster-link>]
-```
-
-| Parameter | Description |
-| --------- | ----------- |
-| `--link-id` &lt;cluster-link-id&gt; | Show only the cluster link with this ID. |
-| `--name` &lt;cluster-link&gt; | Show only cluster links with this name. Names can repeat, so more than one link may match. |
-
-**Columns:** `id`, `uid`, `name`, `peer_guid`, `connection_status`, `mgmtIps`, `data_ips`, `data_port`
-
-### weka cluster link add
-
-Link this cluster to a remote one for cross-cluster replication. Creates the link on both clusters, and may be run from either. Both must have an S3 cluster and a cluster name set — the link is named after the cluster at the other end.
-
-```sh
-weka cluster link add --peer-host <hostname> --username <string> [--auto-accept-peer-cert] [--fingerprint <string>] [--password <string>] [--peer-port <port>]
-```
-
-| Parameter | Description |
-| --------- | ----------- |
-| `--peer-host` &lt;hostname&gt;* | Management hostname or IP of the cluster to link to. |
-| `--username` &lt;string&gt;* | Cluster admin username on the peer cluster. |
-| `--auto-accept-peer-cert` | Accept whatever TLS certificate the peer presents, without confirming its fingerprint. The certificate is still pinned and checked on every later connection. |
-| `--fingerprint` &lt;string&gt; | Expected SHA256 fingerprint of the peer's TLS certificate (64 hex digits), shown by 'weka security tls status' on the peer cluster. |
-| `--password` &lt;string&gt; | Password for --username. Alternatively use the WEKA_PEER_PASSWORD env variable or the interactive prompt. |
-| `--peer-port` &lt;port&gt; | Management API port of the peer cluster (default 14000). |
-
-### weka cluster link refresh
-
-Refresh a cluster link: both clusters re-read each other's replication configuration.
-
-```sh
-weka cluster link refresh <link-id> [--peer-host <hostname>] [--peer-port <port>]
-```
-
-| Parameter | Description |
-| --------- | ----------- |
-| `link-id`* | ID of the cluster link to refresh. |
-| `--peer-host` &lt;hostname&gt; | Management hostname or IP to reach the peer on for this run, when its recorded addresses no longer do. Not stored. |
-| `--peer-port` &lt;port&gt; | Management API port to reach the peer on for this run, when its recorded port no longer does. Not stored. |
-
-### weka cluster link remove
-
-Remove a cluster link. Both clusters drop the link, so it need only be run from one of them. Per-filesystem replication pairs using the link must be removed first.
-
-```sh
-weka cluster link remove <link-id> [--force] [--local-only]
-```
-
-| Parameter | Description |
-| --------- | ----------- |
-| `link-id`* | ID of the cluster link to remove. |
-| `-f`, `--force` | Force action. Perform this action without further confirmation. |
-| `--local-only` | Remove only this cluster's link, leaving the peer's in place. Use it to clear a link left on one side by a failed add, or when the peer is unreachable. |
 
 ## weka cluster process
 
@@ -914,7 +852,7 @@ weka cluster server [--roles <machine-roles>…]
 | --------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `--roles` \<machine-roles>… | Only return servers with these roles. Multiple values may be supplied separated by commas, or the option may be repeated. Valid values: backend, client, s3, nfs, smb. |
 
-**Columns:** `hostname`, `uid`, `ip`, `port`, `roles`, `deployment_mode`, `status`, `up_since`, `uptime`, `cores`, `memory`, `drives`, `processes`, `load`, `versions`, `architecture`, `chassis_serial`, `chassis_location`, `ready_for_maintenance`, `requested_action`
+**Columns:** `hostname`, `uid`, `ip`, `port`, `roles`, `deployment_mode`, `status`, `up_since`, `uptime`, `cores`, `memory`, `drives`, `processes`, `load`, `versions`, `architecture`, `ready_for_maintenance`, `requested_action`
 
 ### weka cluster server list
 
@@ -928,7 +866,7 @@ weka cluster server list [--roles <machine-roles>…]
 | --------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `--roles` \<machine-roles>… | Only return servers with these roles. Multiple values may be supplied separated by commas, or the option may be repeated. Valid values: backend, client, s3, nfs, smb. |
 
-**Columns:** `hostname`, `uid`, `ip`, `port`, `roles`, `deployment_mode`, `status`, `up_since`, `uptime`, `cores`, `memory`, `drives`, `processes`, `load`, `versions`, `architecture`, `chassis_serial`, `chassis_location`, `ready_for_maintenance`, `requested_action`
+**Columns:** `hostname`, `uid`, `ip`, `port`, `roles`, `deployment_mode`, `status`, `up_since`, `uptime`, `cores`, `memory`, `drives`, `processes`, `load`, `versions`, `architecture`, `ready_for_maintenance`, `requested_action`
 
 ### weka cluster server requested-action
 
@@ -949,7 +887,7 @@ weka cluster server requested-action <action> <servers>… [--timeout <duration>
 Show details for one cluster server.
 
 ```sh
-weka cluster server show <server> [--show-all] [--show-containers] [--show-drives] [--show-hardware] [--show-networks] [--show-processes]
+weka cluster server show <server> [--show-all] [--show-containers] [--show-drives] [--show-networks] [--show-processes]
 ```
 
 | Parameter           | Description                                                 |
@@ -958,11 +896,10 @@ weka cluster server show <server> [--show-all] [--show-containers] [--show-drive
 | `--show-all` | Include containers, processes, drives, network devices, and hardware components. |
 | `--show-containers` | Show container details.                                     |
 | `--show-drives`     | Show drive details.                                         |
-| `--show-hardware` | Show the hardware components the server reports, such as drives, memory modules, power supplies, and network adapters. |
 | `--show-networks`   | Show network device details.                                |
 | `--show-processes`  | Show process details.                                       |
 
-**Columns:** `hostname`, `uid`, `status`, `up_since`, `uptime`, `ip`, `port`, `roles`, `deployment_mode`, `load`, `memory`, `cores`, `drives`, `processes`, `versions`, `operating_system`, `architecture`, `platform`, `chassis_serial`, `chassis_location`, `processors`, `logical_cpus`, `nfs`, `s3`, `smb`, `ready_for_maintenance`, `requested_action`
+**Columns:** `hostname`, `uid`, `status`, `up_since`, `uptime`, `ip`, `port`, `roles`, `deployment_mode`, `load`, `memory`, `cores`, `drives`, `processes`, `versions`, `operating_system`, `architecture`, `platform`, `processors`, `logical_cpus`, `nfs`, `s3`, `smb`, `ready_for_maintenance`, `requested_action`
 
 ## weka cluster start-io
 
@@ -981,13 +918,12 @@ weka cluster start-io [--force]
 Show overall status of the cluster.
 
 ```sh
-weka cluster status [--detailed-capacity] [--no-wait]
+weka cluster status [--detailed-capacity]
 ```
 
 | Parameter | Description |
 | --------- | ----------- |
 | `--detailed-capacity` | Include capacity details including data reduction. |
-| `--no-wait` | Return partial status without waiting for leader election or bucket readiness. Not supported with machine-readable output formats or --detailed-capacity. Requires cluster version 6.1 or newer. |
 
 **Columns:** `build_options`, `cluster`, `leader_process`, `leadership_processes`, `deployment_mode`, `status`, `rebuild`, `init_error`, `protection`, `hot_spare`, `drive_storage`, `data_reduction_ratio`, `data_reduction_saved`, `cloud`, `license`, `io_status`, `link_layer`, `clients`, `reads`, `writes`, `operations`, `upgrade`, `data_upgrade`, `alerts`, `denied`, `reason`
 
