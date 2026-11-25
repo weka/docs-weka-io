@@ -24,7 +24,7 @@ A network space defines a cluster-level network boundary, including a VLAN ID an
 The system uses an internal proxy with a default NAT subnet of **198.18.0.0/16**. This range reduces the likelihood of IP address conflicts in customer environments. Each network namespace receives an IP address allocated from this range. To use a different internal IP range, contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md) to override the default.
 {% endhint %}
 
-#### **Before you begin**
+#### Before you begin
 
 * Ensure each server has an NVIDIA NIC.
 * Ensure the switch ports connected to WEKA backend servers are configured as trunk ports that carry all VLANs intended for use in network spaces.
@@ -37,7 +37,7 @@ The system uses an internal proxy with a default NAT subnet of **198.18.0.0/16**
   * Each VLAN is assigned to a single network space. Network spaces that use the same VLAN cannot share the same backends.
   * Use `weka cluster network-space show-usage` to inspect current IP allocation.
 
-#### **GUI procedure**
+#### GUI procedure
 
 1. From the menu, select **Manage > Tenants**.
 2.  Select the **Network Spaces** tab and select **Create**.
@@ -76,7 +76,7 @@ weka cluster network-space add <name> [--vlan vlan]
 
 Cluster administrators can update the network boundaries of an existing network space, such as changing the VLAN ID or adjusting the IP address pool. While you can modify networking parameters, the network space name remains fixed.
 
-#### **GUI procedure**
+#### GUI procedure
 
 1. From the menu, select **Manage > Tenants**.
 2. Select the **Network Spaces** tab.
@@ -111,7 +111,7 @@ weka cluster network-space update <id> [--name name]
 
 Removing a network space permanently deletes its configuration from the cluster. Before proceeding, ensure that the network space is no longer assigned to any active tenants.
 
-#### **GUI procedure**
+#### GUI procedure
 
 1. From the menu, select **Manage > Tenants**.
 2. Select the **Network Spaces** tab.
@@ -141,7 +141,7 @@ During creation, you can assign multiple network spaces to a single tenant. This
 * Support clients residing on different physical VLANs.
 * Provide redundant network paths for high availability.
 
-#### **GUI procedure**
+#### GUI procedure
 
 1. From the menu, select **Manage > Tenants**.
 2.  Select the **Tenants** tab and select **Create**.<br>
@@ -183,7 +183,7 @@ The CLI prompt requires the password after running the command.
 
 To modify an existing tenant's resource limits, security configuration, or S3 defaults, use the **Edit Tenant** dialog. While a cluster administrator can update quotas, network settings, and tenant-level S3 settings, the Tenant Name, Tenant Admin Username, and password fields are fixed and cannot be modified once the tenant is created.
 
-#### **GUI procedure**
+#### GUI procedure
 
 1. From the menu, select **Manage > Tenants**.
 2. Select the **Tenants** tab.
@@ -258,7 +258,7 @@ weka tenant update <tenant> [--enforce-fs-authentication enforce-fs-authenticati
 
 Deleting a tenant is a permanent action that removes the tenant and its associated configuration. Before proceeding, ensure that the tenant no longer contains active filesystems or S3 buckets.
 
-#### **GUI procedure**
+#### GUI procedure
 
 1. From the menu, select **Manage > Tenants**.
 2. Select the **Tenants** tab.
@@ -338,4 +338,53 @@ Ensure you are logged in with tenant administrator privileges.
 weka s3 cluster setup update [--default-fs-name default-fs-name]
                              [--anonymous-posix-uid anonymous-posix-uid]
                              [--anonymous-posix-gid anonymous-posix-gid]
+```
+
+## Act in a tenant's context
+
+Switch the GUI or the CLI session from the cluster view to a tenant's context to work within that tenant as a cluster admin.
+
+**Before you begin**
+
+* Ensure your user has the `tenant.assume` action.
+* Ensure the tenant is not private.
+
+{% hint style="warning" %}
+A private tenant cannot be assumed. Its contents, including filesystem data, are hidden from cluster admins.
+{% endhint %}
+
+#### GUI procedure
+
+1. In the header, select the **Tenant** selector, and then select the tenant.
+2.  In the confirmation message, select **Confirm**.
+
+    The selector highlights the tenant name, and the browser tab title shows it.
+
+{% hint style="info" %}
+The tenant scope applies only to the current tab. If it is unavailable or the session ends, the GUI returns to the cluster view and displays a message.&#x20;
+{% endhint %}
+
+#### CLI alternative
+
+Use the following command to act in a tenant with your own identity for the current session only. Specify the tenant by name or ID.
+
+```bash
+weka user assume-tenant <tenant>
+```
+
+### Return to the cluster scope
+
+Return from a tenant's context to the cluster view.
+
+#### GUI procedure
+
+1. In the header, select the **Tenant** selector.
+2. Select **Return to cluster scope**.
+
+#### CLI alternative
+
+Use the following command to drop the assumed tenant and return the session to the cluster scope:
+
+```bash
+weka user assume-tenant --revert
 ```
