@@ -855,11 +855,11 @@ Events:               <none>
 
 </details>
 
-3. Delete all client container pods to trigger the reconfiguration:
+4. Delete each client container resource to trigger reconfiguration:
 
 {% code overflow="wrap" %}
 ```bash
-kubectl delete wekacontainer <client-name>-<ip-address> -n weka-operator-system --force --grace-period=0
+kubectl delete wekacontainer <client-name>-<ip-address> -n weka-operator-system
 ```
 {% endcode %}
 
@@ -881,7 +881,7 @@ kubectl delete wekacontainer cluster-dev-clientsnew-18.201.248.101 -n weka-opera
 
 </details>
 
-4. Verify the client containers have restarted and rejoined the cluster:
+5. Verify the client containers have restarted and rejoined the cluster:
 
 ```bash
 kubectl get pods --all-namespaces
@@ -920,7 +920,7 @@ weka-operator-system   weka-operator-node-agent-zgz5w                      1/1  
 
 </details>
 
-5. Confirm the core increase in the WEKA cluster using the following commands :
+6. Confirm the core increase in the WEKA cluster using the following commands :
 
 ```bash
 weka cluster container
