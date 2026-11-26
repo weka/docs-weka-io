@@ -11,6 +11,7 @@ The system provides a RESTful API that allows you to automate operations and int
 You can access the REST API using one of the following methods:
 
 * **Direct access:** Use port 14000 and the URL `/api/v2`.
+* **Port 443:** When backend containers are opted in to port 443, use `https://<cluster name or IP>/api/v2` without a port number. See [weka-local.md](weka-cli-overview/cli-reference-guide/weka-local.md#weka-local-resources-listen-443 "mention").
 * **Through the cluster:** Browse to `https://<cluster name or IP>:14000/api/v2/docs`.
 * **OpenAPI definition from the cluster:** Browse to `https://<cluster name or IP>:14000/api/v2/docs/schema` to get the OpenAPI definition, in JSON, for the version the cluster runs. To generate client code that matches your cluster, use this definition.
 * **Through the GUI:** Select the three dots on the upper right menu and select **REST API**.
