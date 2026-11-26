@@ -2,10 +2,6 @@
 description: >-
   Manage hardware, scale clusters, and optimize resources to ensure system
   stability and performance.
-metaLinks:
-  alternates:
-    - >-
-      https://app.gitbook.com/s/0yXyIrnroN3zIG3qa4W3/kubernetes/weka-operator-day-2-operations
 ---
 
 # Monitor, scale, and maintain the cluster

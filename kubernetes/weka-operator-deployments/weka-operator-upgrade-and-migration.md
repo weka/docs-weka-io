@@ -11,7 +11,7 @@ description: >-
 
 Always perform the following three steps in order. The WEKA Operator must be upgraded before the cluster or client versions are changed. Upgrade-related bugs in the Operator are resolved first, and some WEKA versions require a minimum Operator version to interact correctly with the new software.
 
-<table><thead><tr><th width="78.2734375">Step</th><th width="287.71484375">Task</th><th>Description</th></tr></thead><tbody><tr><td>1</td><td><a href="weka-operator-upgrade-and-migration.md#id-1.-upgrade-the-weka-operator">Upgrade the WEKA Operator</a></td><td>Install the latest Operator version before making any version changes to the cluster or clients.</td></tr><tr><td>2</td><td><a href="weka-operator-upgrade-and-migration.md#id-2.-upgrade-the-weka-cluster-version">Upgrade the WEKA cluster version</a></td><td>Update the WEKA image on the WekaCluster CR.</td></tr><tr><td>3</td><td><a href="weka-operator-upgrade-and-migration.md#id-3.-upgrade-the-weka-client-version">Upgrade the WEKA client version</a></td><td>Update the WEKA image on the WekaClient CR.</td></tr></tbody></table>
+<table><thead><tr><th width="67.98046875">Step</th><th>Task</th><th>Description</th></tr></thead><tbody><tr><td>1</td><td><a href="weka-operator-upgrade-and-migration.md#id-1.-upgrade-the-weka-operator">Upgrade the WEKA Operator</a></td><td>Install the latest Operator version before making any version changes to the cluster or clients.</td></tr><tr><td>2</td><td><a href="weka-operator-upgrade-and-migration.md#id-2.-upgrade-the-weka-cluster-version">Upgrade the WEKA cluster version</a></td><td>Update the WEKA image on the WekaCluster CR.</td></tr><tr><td>3</td><td><a href="weka-operator-upgrade-and-migration.md#id-3.-upgrade-the-weka-client-version">Upgrade the WEKA client version</a></td><td>Update the WEKA image on the WekaClient CR.</td></tr></tbody></table>
 
 ***
 
@@ -19,13 +19,22 @@ Always perform the following three steps in order. The WEKA Operator must be upg
 
 The following procedures are independent of the upgrade sequence. Perform them as needed based on your environment.
 
-<table><thead><tr><th width="366">Procedure</th><th>Description</th></tr></thead><tbody><tr><td><a href="weka-operator-upgrade-and-migration.md#upgrade-the-ssdproxy-version">Upgrade the ssdproxy version</a></td><td>Apply independently of or aligned with the cluster version.</td></tr><tr><td><a href="weka-operator-upgrade-and-migration.md#migrate-a-weka-client-to-operator-controlled-management">Migrate a client to Operator-controlled management</a></td><td>Move a standalone WEKA client to Operator lifecycle management.</td></tr><tr><td><a href="weka-operator-upgrade-and-migration.md#delete-a-wekacluster">Delete a WekaCluster</a></td><td>Remove a cluster immediately or after the grace period expires.</td></tr></tbody></table>
+| Procedure                                                                                                                                            | Description                                                                              |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| [Upgrade the ssdproxy version](weka-operator-upgrade-and-migration.md#upgrade-the-ssdproxy-version)                                                  | Apply independently of or aligned with the cluster version.                              |
+| [Migrate a client to Operator-controlled management](weka-operator-upgrade-and-migration.md#migrate-a-weka-client-to-operator-controlled-management) | Move a standalone WEKA client to Operator lifecycle management.                          |
+| [Delete a WekaCluster](weka-operator-upgrade-and-migration.md#delete-a-wekacluster)                                                                  | Remove a cluster immediately or after the grace period expires.                          |
+| [Move node agent settings to a WekaPolicy](weka-operator-upgrade-and-migration.md#move-node-agent-settings-to-a-wekapolicy)                          | Required when upgrading to WEKA Operator v1.17.0 or later with custom node agent values. |
 
 ***
 
 ## 1. Upgrade the WEKA Operator
 
 Install the latest WEKA Operator version to ensure upgrade-related fixes are in place before the cluster or client versions are changed.
+
+{% hint style="warning" %}
+Starting with WEKA Operator v1.17.0, the operator creates the node agent DaemonSet. Helm no longer configures it. Before upgrading, move any node agent values from your Helm values file to a WekaPolicy. The v1.17.0 Helm chart fails if any `nodeAgent` value is set, so remove the `nodeAgent` block. If you run `helm upgrade` with `--reuse-values`, also pass `--set nodeAgent=null`.
+{% endhint %}
 
 **Procedure**
 
@@ -147,7 +156,10 @@ The Operator recreates the ssdproxy WekaContainer using the updated image.
 
 Move a standalone WEKA client running directly on a Kubernetes worker node to Operator lifecycle management. Choose the approach that matches your environment.
 
-<table><thead><tr><th width="215">Approach</th><th>When to use</th></tr></thead><tbody><tr><td><a href="weka-operator-upgrade-and-migration.md#migrate-with-container-name-override">Container name override</a></td><td>Preferred for minimal operational impact. Migrates the client without interrupting workloads. Requires quick manual action within a two-minute window.</td></tr><tr><td><a href="weka-operator-upgrade-and-migration.md#migrate-with-a-clean-installation">Clean installation</a></td><td>Use when a fresh environment without legacy components is preferred. Requires node eviction and causes a temporary disruption.</td></tr></tbody></table>
+| Approach                                                                                               | When to use                                                                                                                                            |
+| ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| [Container name override](weka-operator-upgrade-and-migration.md#migrate-with-container-name-override) | Preferred for minimal operational impact. Migrates the client without interrupting workloads. Requires quick manual action within a two-minute window. |
+| [Clean installation](weka-operator-upgrade-and-migration.md#migrate-with-a-clean-installation)         | Use when a fresh environment without legacy components is preferred. Requires node eviction and causes a temporary disruption.                         |
 
 ***
 
@@ -254,6 +266,66 @@ kubectl apply -f weka-client.yaml
 kubectl get wekaclients
 kubectl get pods --all-namespaces
 ```
+
+***
+
+## Move node agent settings to a WekaPolicy
+
+Starting with WEKA Operator v1.17.0, the node agent DaemonSet is configured in the configuration WekaPolicy instead of in Helm values. The operator creates and updates the node agent DaemonSet, and picks up policy changes within 30 seconds. The v1.17.0 Helm chart fails if any `nodeAgent` value is set, so remove these values from Helm before you upgrade, and add them to the WekaPolicy after the upgrade.
+
+| Helm value                       | WekaPolicy field (under `configurationPayload`) |
+| -------------------------------- | ----------------------------------------------- |
+| `nodeAgent.resources`            | `nodeAgent.resources`                           |
+| `nodeAgent.tolerations`          | `nodeAgent.tolerations`                         |
+| `nodeAgent.nodeSelector`         | `nodeAgent.nodeSelector`                        |
+| `nodeAgent.affinity`             | `nodeAgent.affinity`                            |
+| `nodeAgent.persistencePaths`     | `nodeAgent.persistencePath`                     |
+| `nodeAgent.kubeletPath`          | `nodeAgent.kubeletPath`                         |
+| `nodeAgent.devicePlugin.enabled` | `nodeAgent.devicePlugin.enabled`                |
+
+The Helm value `persistencePaths` is renamed to `persistencePath` (singular) in the WekaPolicy.
+
+**Before you begin**
+
+* WEKA Operator earlier than v1.17.0, with `nodeAgent` values in the Helm values file or in `--set` flags.
+* Access to the Helm values file of the operator release.
+
+**Procedure**
+
+1. Copy the `nodeAgent` values from your Helm values file.
+2. Remove the `nodeAgent` block from the Helm values file, and remove any `--set nodeAgent.*` flags from your Helm command.
+3. Upgrade the operator to v1.17.0. For details, see [Upgrade the WEKA Operator](weka-operator-upgrade-and-migration.md#id-1.-upgrade-the-weka-operator).
+4.  Add the copied values under `spec.payload.configurationPayload.nodeAgent` in the configuration WekaPolicy in the operator namespace:
+
+    ```yaml
+    apiVersion: weka.weka.io/v1alpha1
+    kind: WekaPolicy
+    metadata:
+      name: weka-operator-config
+      namespace: weka-operator-system
+    spec:
+      payload:
+        configurationPayload:
+          nodeAgent:
+            nodeSelector:
+              weka.io/supports-backends: "true"
+            devicePlugin:
+              enabled: true
+    ```
+
+    The operator accepts only one configuration WekaPolicy in its namespace. If a second one exists, the operator marks the policies Failed and stops applying configuration settings. If a configuration WekaPolicy already exists, add only the `nodeAgent` block to it, and keep its other settings. Applying a manifest that omits existing settings removes them from the policy. To find the policy, run `kubectl get wekapolicy -n weka-operator-system`.
+5.  Apply the policy:
+
+    ```bash
+    kubectl apply -f <policy-file>.yaml
+    ```
+6.  Verify that the node agent pods run on the expected nodes:
+
+    ```bash
+    kubectl get pods -n weka-operator-system -o wide | grep node-agent
+    ```
+
+    The node agent pods run only on the nodes that match the `nodeSelector` in the policy.
 
 ***
 
