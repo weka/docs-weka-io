@@ -2,10 +2,6 @@
 description: >-
   Deploy the WEKA operator on a cloud-managed Kubernetes service to mount WEKA
   filesystems from application pods running in a managed cluster.
-metaLinks:
-  alternates:
-    - >-
-      https://app.gitbook.com/s/0yXyIrnroN3zIG3qa4W3/kubernetes/weka-operator-deployments/deploy-the-weka-client-on-amazon-eks
 ---
 
 # Deploy WEKA on cloud-managed Kubernetes services
@@ -14,7 +10,7 @@ metaLinks:
 
 The following table describes the support levels for different cloud services:
 
-<table><thead><tr><th width="120">Cloud service</th><th width="110">Instance type</th><th width="133">WekaCluster (backends)</th><th width="127">WekaClient: UDP</th><th width="137">WekaClient: DPDK</th><th width="140">NIC provisioning for DPDK</th></tr></thead><tbody><tr><td>Amazon EKS</td><td>VM</td><td>Supported</td><td>Supported</td><td>Supported</td><td>Operator creates and attaches NICs automatically</td></tr><tr><td>Oracle OKE</td><td>Bare metal</td><td>Supported</td><td>Supported</td><td>Supported</td><td>Manual</td></tr><tr><td>Oracle OKE</td><td>VM</td><td>Not supported</td><td>Supported</td><td>Supported</td><td>Operator verifies required number of NICs</td></tr><tr><td>Google GKE</td><td>VM</td><td>Not supported</td><td>Supported</td><td>Not Supported</td><td></td></tr><tr><td>Azure AKS</td><td>VM</td><td>Not supported</td><td>Supported</td><td>Not Supported</td><td></td></tr></tbody></table>
+<table><thead><tr><th width="118.828125">Cloud service</th><th width="118.08984375">Instance type</th><th width="122.85546875">WekaCluster (backends)</th><th width="114.484375">WekaClient: UDP</th><th width="119.796875">WekaClient: DPDK</th><th>NIC provisioning for DPDK</th></tr></thead><tbody><tr><td>Amazon EKS</td><td>VM</td><td>Supported</td><td>Supported</td><td>Supported</td><td>Operator creates and attaches NICs automatically</td></tr><tr><td>Oracle OKE</td><td>Bare metal</td><td>Supported</td><td>Supported</td><td>Supported</td><td>Manual</td></tr><tr><td>Oracle OKE</td><td>VM</td><td>Not supported</td><td>Supported</td><td>Supported</td><td>Operator verifies required number of NICs</td></tr><tr><td>Google GKE</td><td>VM</td><td>Not supported</td><td>Supported</td><td>Not Supported</td><td></td></tr><tr><td>Azure AKS</td><td>VM</td><td>Not supported</td><td>Supported</td><td>Not Supported</td><td></td></tr></tbody></table>
 
 ## Prerequisites
 
@@ -250,12 +246,11 @@ On Amazon EKS, the operator creates and attaches NICs automatically. On Oracle O
 
 #### 4. Install the CSI plugin
 
-If embedded CSI is not enabled, complete the deployment by installing the WEKA CSI plugin. For details, see the [WEKA CSI Plugin](../../appendices/weka-csi-plugin/) topic.
+If embedded CSI is not enabled, complete the deployment by installing the WEKA CSI plugin. For details, see [WEKA CSI Plugin](../../appendices/weka-csi-plugin/).
 
 ## Deploy WekaCluster on Oracle OKE
 
 Oracle OKE with bare metal instances supports full WekaCluster deployment in addition to\
 WekaClient. The WEKA Operator manages the full lifecycle of both backend and client pods on Oracle OKE.
 
-You can use the [terraform-oci-oke](https://github.com/weka/terraform-oci-oke) module to provision\
-the Oracle OKE cluster before installing the WEKA Operator.
+You can use the [terraform-oci-oke](https://github.com/weka/terraform-oci-oke) module to provision the Oracle OKE cluster before installing the WEKA Operator.

@@ -18,7 +18,11 @@ Open [Cloud Deployment Manager](https://cloud.weka.io/) and sign in with your WE
 
 Choose how WEKA runs on your Kubernetes cluster before generating deployment artifacts. CDM supports three deployment types. Each type follows a separate deployment procedure.
 
-<table><thead><tr><th width="199">Deployment type</th><th>Description</th><th>When to use</th></tr></thead><tbody><tr><td><strong>Dedicated</strong></td><td>WEKA backends run on dedicated storage nodes. Clients connect from separate nodes.</td><td>Standard production layout with a clear separation between storage and workload nodes.</td></tr><tr><td><strong>Axon (converged)</strong></td><td>Co-locates WEKA backends with your workload or GPU nodes and adds a client configuration.</td><td>GPU or compute clusters where storage and workloads share the same nodes.</td></tr><tr><td><strong>Composable Clusters</strong></td><td>One WekaCluster per tenant over shared physical NVMe drives (through the SSD proxy), against a single shared sign-drives policy.</td><td>Multi-tenant environments where several WEKA clusters share the same physical drives.</td></tr></tbody></table>
+| Deployment type | Description | When to use |
+| --- | --- | --- |
+| **Dedicated** | WEKA backends run on dedicated storage nodes. Clients connect from separate nodes. | Standard production layout with a clear separation between storage and workload nodes. |
+| **Axon (converged)** | Co-locates WEKA backends with your workload or GPU nodes and adds a client configuration. | GPU or compute clusters where storage and workloads share the same nodes. |
+| **Composable Clusters** | One WekaCluster per tenant over shared physical NVMe drives (through the SSD proxy), against a single shared sign-drives policy. | Multi-tenant environments where several WEKA clusters share the same physical drives. |
 
 Select the required type from the deployment options in CDM.
 
