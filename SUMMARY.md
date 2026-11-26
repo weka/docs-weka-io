@@ -310,6 +310,8 @@
   * [WEKA Operator full deployment workflow](kubernetes/weka-operator-deployments/weka-operator-full-deployment-workflow.md)
   * [Deploy WEKA Operator on OpenShift](kubernetes/weka-operator-deployments/weka-operator-on-openshift.md)
   * [Deploy WEKA on cloud-managed Kubernetes services](kubernetes/weka-operator-deployments/deploy-the-weka-client-on-amazon-eks.md)
+  * [Deploy the WEKA Operator in an air-gapped environment](kubernetes/weka-operator-deployments/deploy-the-weka-operator-in-an-air-gapped-environment/README.md)
+    * [WEKA Operator container images](kubernetes/weka-operator-deployments/deploy-the-weka-operator-in-an-air-gapped-environment/weka-operator-container-images.md)
   * [Migrate standalone CSI to WEKA Operator-embedded](kubernetes/weka-operator-deployments/migrate-standalone-csi-to-weka-operator-embedded.md)
   * [Networking with the WEKA Operator](kubernetes/weka-operator-deployments/networking-with-the-weka-operator.md)
   * [Encryption with the WEKA Operator](kubernetes/weka-operator-deployments/encryption-with-the-weka-operator.md)

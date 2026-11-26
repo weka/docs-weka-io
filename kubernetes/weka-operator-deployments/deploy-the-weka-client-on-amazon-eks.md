@@ -10,13 +10,7 @@ description: >-
 
 The following table describes the support levels for different cloud services:
 
-| Cloud service | Instance type | WekaCluster (backends) | WekaClient: UDP | WekaClient: DPDK | NIC provisioning for DPDK                        |
-| ------------- | ------------- | ---------------------- | --------------- | ---------------- | ------------------------------------------------ |
-| Amazon EKS    | VM            | Supported              | Supported       | Supported        | Operator creates and attaches NICs automatically |
-| Oracle OKE    | Bare metal    | Supported              | Supported       | Supported        | Manual                                           |
-| Oracle OKE    | VM            | Not supported          | Supported       | Supported        | Operator verifies required number of NICs        |
-| Google GKE    | VM            | Not supported          | Supported       | Not Supported    |                                                  |
-| Azure AKS     | VM            | Not supported          | Supported       | Not Supported    |                                                  |
+<table><thead><tr><th width="118.828125">Cloud service</th><th width="118.08984375">Instance type</th><th width="122.85546875">WekaCluster (backends)</th><th width="114.484375">WekaClient: UDP</th><th width="119.796875">WekaClient: DPDK</th><th>NIC provisioning for DPDK</th></tr></thead><tbody><tr><td>Amazon EKS</td><td>VM</td><td>Supported</td><td>Supported</td><td>Supported</td><td>Operator creates and attaches NICs automatically</td></tr><tr><td>Oracle OKE</td><td>Bare metal</td><td>Supported</td><td>Supported</td><td>Supported</td><td>Manual</td></tr><tr><td>Oracle OKE</td><td>VM</td><td>Not supported</td><td>Supported</td><td>Supported</td><td>Operator verifies required number of NICs</td></tr><tr><td>Google GKE</td><td>VM</td><td>Not supported</td><td>Supported</td><td>Not Supported</td><td></td></tr><tr><td>Azure AKS</td><td>VM</td><td>Not supported</td><td>Supported</td><td>Not Supported</td><td></td></tr></tbody></table>
 
 ## Prerequisites
 
@@ -252,12 +246,11 @@ On Amazon EKS, the operator creates and attaches NICs automatically. On Oracle O
 
 #### 4. Install the CSI plugin
 
-If embedded CSI is not enabled, complete the deployment by installing the WEKA CSI plugin. For details, see the [WEKA CSI Plugin](../../appendices/weka-csi-plugin/) topic.
+If embedded CSI is not enabled, complete the deployment by installing the WEKA CSI plugin. For details, see [WEKA CSI Plugin](../../appendices/weka-csi-plugin/).
 
 ## Deploy WekaCluster on Oracle OKE
 
 Oracle OKE with bare metal instances supports full WekaCluster deployment in addition to\
 WekaClient. The WEKA Operator manages the full lifecycle of both backend and client pods on Oracle OKE.
 
-You can use the [terraform-oci-oke](https://github.com/weka/terraform-oci-oke) module to provision\
-the Oracle OKE cluster before installing the WEKA Operator.
+You can use the [terraform-oci-oke](https://github.com/weka/terraform-oci-oke) module to provision the Oracle OKE cluster before installing the WEKA Operator.
