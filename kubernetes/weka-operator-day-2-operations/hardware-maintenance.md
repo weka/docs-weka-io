@@ -1,3 +1,7 @@
+---
+description: Perform hardware maintenance for WEKA Operator deployments.
+---
+
 # Hardware maintenance
 
 Hardware maintenance operations ensure cluster reliability and performance through systematic component management and failure response procedures. These operations span from routine preventive maintenance to critical component replacements.
@@ -228,11 +232,11 @@ For a worker node in Axon topology, complete phases 1–5 for each node you want
 
 **Phase 1:** [#perform-standard-verification-steps](hardware-maintenance.md#perform-standard-verification-steps "mention").
 
-**Phase 2:** [**Cordon**](#user-content-fn-1)[^1] **and evict backend k8s nodes.**
+**Phase 2:** [**Cordon**](#user-content-fn-1)[^1] **and evict backend Kubernetes nodes.**
 
-To cordon and evict a node, run the following commands. Replace `<k8s_node_IP>` with the target k8s node's IP address.
+To cordon and evict a node, run the following commands. Replace `<k8s_node_IP>` with the target Kubernetes node's IP address.
 
-1. Cordon the backend k8s node:
+1. Cordon the backend Kubernetes node:
 
 ```
 kubectl cordon <k8s_node_ip>
@@ -245,7 +249,7 @@ kubectl cordon 18.201.176.181
 node/18.201.176.181 cordoned
 ```
 
-2. Evict the running pods ensuring data is removed. For example, drain[^2] the backend k8s node:
+2. Evict the running pods ensuring data is removed. For example, drain[^2] the backend Kubernetes node:
 
 ```
 kubectl drain <k8s_node_ip> --delete-emptydir-data --ignore-daemonsets --force
@@ -333,7 +337,7 @@ weka-operator-system   weka-operator-controller-manager-bcf48df44-phb75         
 **Phase 3: Ensure the WEKA containers are marked as drained.**
 
 1.  List the cluster backend containers.\
-    Run the following command to display the current status of all WEKA containers in the k8s nodes:
+    Run the following command to display the current status of all WEKA containers in the Kubernetes nodes:
 
     <pre><code><strong>weka cluster container
     </strong></code></pre>
@@ -370,8 +374,8 @@ HOST ID  HOSTNAME        CONTAINER                                     IPS      
 
 </details>
 
-**Phase 4: Force a reboot on all backend k8s nodes.**\
-Use the `reboot -f` command to force a reboot on each backend k8s node.
+**Phase 4: Force a reboot on all backend Kubernetes nodes.**\
+Use the `reboot -f` command to force a reboot on each backend Kubernetes node.
 
 Example:
 
@@ -382,9 +386,9 @@ Rebooting.
 
 After running this command, the container restarts immediately. Repeat for all k8's nodes one by one in your environment.
 
-**Phase 5: Uncordon the backend k8s node and verify WEKA cluster status.**
+**Phase 5: Uncordon the backend Kubernetes node and verify WEKA cluster status.**
 
-1. Uncordon the backend k8s node:
+1. Uncordon the backend Kubernetes node:
 
 ```
 kubectl uncordon <k8s_node_ip>
@@ -397,7 +401,7 @@ kubectl uncordon 18.201.176.181
 node/18.201.176.181 uncordoned
 ```
 
-2. Access the WEKA Operator in the backend k8s node:
+2. Access the WEKA Operator in the backend Kubernetes node:
 
 ```
 kubectl exec -it <weka_container_pod_name> -n weka-operator-system -- /bin/bash
@@ -425,7 +429,7 @@ DISK ID  UUID                                  HOSTNAME        NODE ID  SIZE    
 
 </details>
 
-4. [#perform-the-standard-verification-steps](hardware-maintenance.md#perform-the-standard-verification-steps "mention").
+4. [#perform-standard-verification-steps](hardware-maintenance.md#perform-standard-verification-steps "mention").
 
 Ensure all the pods, weka containers and the cluster is in a healthy state (`Fully Protected`) and IO operations are running (`STARTED`). Monitor the redistribution progress and alerts.
 
@@ -433,11 +437,11 @@ Ensure all the pods, weka containers and the cluster is in a healthy state (`Ful
 The following phases (6-8) do not apply to **Axon topology**.
 {% endhint %}
 
-**Phase 6: Cordon and drain all client k8s nodes.**
+**Phase 6: Cordon and drain all client Kubernetes nodes.**
 
-To cordon and drain a node, run the following commands. Replace `<k8s_node_IP>` with the target k8s node's IP address.
+To cordon and drain a node, run the following commands. Replace `<k8s_node_IP>` with the target Kubernetes node's IP address.
 
-1. Cordon the client k8s node to mark it as unschedulable:
+1. Cordon the client Kubernetes node to mark it as unschedulable:
 
 ```
 kubectl cordon <k8s_node_ip>
@@ -451,7 +455,7 @@ node/3.252.130.226 cordoned
 ```
 
 2. Evict the the workload.\
-   For example: Drain the client k8s node to evict running pods, ensuring data is removed:
+   For example: Drain the client Kubernetes node to evict running pods, ensuring data is removed:
 
 ```
 kubectl drain <k8s_node_ip> --delete-emptydir-data --ignore-daemonsets --force
@@ -470,7 +474,7 @@ evicting pod weka-operator-system/cluster-dev-clientsnew-3.252.130.226
 evicting pod default/csi-app-on-dir-api2
 pod/csi-app-on-dir-api2 evicted
 pod/cluster-dev-clientsnew-3.252.130.226 evicted
-node/3.252.130.226 drainedTBD
+node/3.252.130.226 drained
 
 $ kubectl get nodes
 NAME             STATUS                     ROLES                       AGE     VERSION
@@ -503,15 +507,15 @@ weka-operator-system   weka-operator-controller-manager-bcf48df44-lk6cx   0/2   
 </details>
 
 3. Force reboot all client nodes.\
-   Example for one client k8s node:
+   Example for one client Kubernetes node:
 
 ```
 sudo reboot -f
 Rebooting.
 ```
 
-4. After the client k8s nodes are up, uncordon the client k8s node.\
-   Example for one client k8s node:
+4. After the client Kubernetes nodes are up, uncordon the client Kubernetes node.\
+   Example for one client Kubernetes node:
 
 ```
 kubectl uncordon <k8s_node_ip>
@@ -566,14 +570,14 @@ weka-operator-system   weka-operator-controller-manager-bcf48df44-lk6cx   2/2   
 
 </details>
 
-**Phase 7: Force a reboot on all client k8s nodes.**\
-Use the `reboot -f` command to force a reboot on each client k8s node.
+**Phase 7: Force a reboot on all client Kubernetes nodes.**\
+Use the `reboot -f` command to force a reboot on each client Kubernetes node.
 
 {% hint style="warning" %}
 Restart only one backend container at a time. Ensure it reaches **Ready** status before moving on to the next.
 {% endhint %}
 
-Example for one client k8s node:
+Example for one client Kubernetes node:
 
 ```
 sudo reboot -f
@@ -582,9 +586,9 @@ Rebooting.
 
 After running this command, the client node restarts immediately. Repeat for all client nodes in your environment.
 
-**Phase 8: Uncordon all client k8s nodes.**
+**Phase 8: Uncordon all client Kubernetes nodes.**
 
-1. Once the client k8s nodes are back online, uncordon them to restore their availability for scheduling workloads. Example command for uncordoning a single client k8s node:
+1. Once the client Kubernetes nodes are back online, uncordon them to restore their availability for scheduling workloads. Example command for uncordoning a single client Kubernetes node:
 
 ```
 kubectl uncordon <k8s_node_ip>
@@ -601,7 +605,7 @@ node/3.252.130.226 uncordoned
 
 </details>
 
-2. Verify pod status across all k8s nodes to confirm that all pods are running as expected:
+2. Verify pod status across all Kubernetes nodes to confirm that all pods are running as expected:
 
 ```bash
 kubectl get pods --all-namespaces -o wide
@@ -619,7 +623,7 @@ See examples in [#perform-standard-verification-steps](hardware-maintenance.md#p
 
 ## Remove a rack or Kubernetes node
 
-Removing a rack or Kubernetes (k8s) node is necessary when you need to decommission hardware, replace failed components, or reconfigure your cluster. This procedure guides you through safely removing nodes without disrupting your system operations.
+Removing a rack or Kubernetes node is necessary when you need to decommission hardware, replace failed components, or reconfigure your cluster. This procedure guides you through safely removing nodes without disrupting your system operations.
 
 #### Before you begin
 
@@ -1214,7 +1218,7 @@ wekamanualoperation.weka.weka.io/sign-specific-drives created
     2. Check that new containers are running on the new node's IP.
     3. Validate cluster status using WEKA CLI.
 
-    For details, see [#verification-steps](hardware-maintenance.md#verification-steps "mention").
+    For details, see [#verification-steps](hardware-maintenance.md#perform-standard-verification-steps "mention").
 
 {% hint style="info" %}
 **Non-functional node replacement**:\
@@ -1628,7 +1632,7 @@ DISK ID  UUID                                  HOSTNAME         NODE ID  SIZE   
 4.  Confirm the container's integration with the WEKA cluster:
 
     ```bash
-    weka cluster host
+    weka cluster container
     ```
 
     Expected status: UP.

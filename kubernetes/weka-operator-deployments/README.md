@@ -3,10 +3,6 @@ description: >-
   Deploy WEKA on Kubernetes with the WEKA Operator. Choose the deployment model
   that fits your environment, verify version support, and continue to the right
   workflow.
-metaLinks:
-  alternates:
-    - >-
-      https://app.gitbook.com/s/0yXyIrnroN3zIG3qa4W3/kubernetes/weka-operator-deployments
 ---
 
 # WEKA Operator deployments
@@ -44,7 +40,22 @@ Choose the model that matches your infrastructure and operating boundary.
 
 Verify minimum version requirements before deployment or upgrade.
 
-<table><thead><tr><th width="205">Feature</th><th width="140">Operator (min. version)</th><th width="139">WEKA Cluster (min. version)</th><th>Notes</th></tr></thead><tbody><tr><td>S3</td><td>1.7</td><td>4.4</td><td>Supported.</td></tr><tr><td>NFS</td><td>1.10</td><td>5.1.0</td><td>Supported.</td></tr><tr><td>Audit</td><td>1.10</td><td>5.1.0</td><td>Supported.</td></tr><tr><td>SMB-W</td><td>1.11</td><td>5.1.20</td><td>Supported.</td></tr><tr><td>Data Services</td><td>1.13</td><td>5.1.20</td><td>Supported for <a data-footnote-ref href="#user-content-fn-1">quota coloring</a>.<br>Not supported for Data Catalog.</td></tr><tr><td>ssdproxy</td><td>1.12</td><td>5.1.30</td><td>Supported.<br>Share NVMe drives across multiple clusters.</td></tr><tr><td>AlloyFlash</td><td>1.14</td><td>5.1.30</td><td>Supported.<br>Enable mixed TLC and QLC drive deployments.</td></tr><tr><td>Cluster capacity sizing</td><td>1.14.2</td><td>5.1.0</td><td>Supported.<br>Size the cluster by target usable capacity with <code>dynamicTemplate.clusterCapacity</code>.</td></tr></tbody></table>
+| Feature                                   | Operator (min. version) | WEKA Cluster (min. version) | Notes                                                                                                       |
+| ----------------------------------------- | ----------------------- | --------------------------- | ----------------------------------------------------------------------------------------------------------- |
+| General support                           | 1.16                    | 6.0                         | WEKA 6.0 is supported with Operator 1.16 onwards                                                            |
+| S3                                        | 1.7                     | 4.4                         | Supported.                                                                                                  |
+| NFS                                       | 1.10                    | 5.1.0                       | Supported.                                                                                                  |
+| Audit                                     | 1.10                    | 5.1.0                       | Supported.                                                                                                  |
+| SMB-W                                     | 1.11                    | 5.1.20                      | Supported.                                                                                                  |
+| Data Services                             | 1.13                    | 5.1.20                      | Supported for quota coloring.Not supported for Data Catalog.                                                |
+| ssdproxy                                  | 1.12                    | 5.1.30                      | Supported.Share NVMe drives across multiple clusters.                                                       |
+| AlloyFlash                                | 1.14                    | 5.1.30                      | Supported.Enable mixed TLC and QLC drive deployments.                                                       |
+| Cluster capacity sizing                   | 1.14.2                  | 5.1.0                       | Supported.Size the cluster by target usable capacity with `dynamicTemplate.clusterCapacity`.                |
+| Operator configuration through WekaPolicy | 1.16.2                  | 6.0                         | Supported. Configure the embedded CSI plugin and driver builds with `configurationPayload` in a WekaPolicy. |
+| Automatic pod rotation                    | 1.17                    | ANY                         | Supported. Opt-in. See Cluster maintenance.                                                                 |
+| License from a Kubernetes Secret          | 1.17                    | ANY                         | Supported. Set `spec.licenseSecret` in the WekaCluster.                                                     |
+| Custom admin credentials Secret           | 1.17                    | ANY                         | Supported. Set `spec.adminCredentialsSecretRef.name` in the WekaCluster.                                    |
+| S3 DaemonSet mode                         | 1.17                    | 4.4                         | Supported. Set `dynamicTemplate.s3Containers: -1`. Requires act-as-daemonset mode.                          |
 
 ## How to use this guide
 
@@ -58,20 +69,18 @@ Use this guide to choose the right starting point for deployment and operations 
 
 [WekaCluster and WekaContainer lifecycle](wekacluster-and-wekacontainer-lifecycle.md)
 
-Kubernetes deployment types
-
 **Start a new deployment:**
 
-| Task                                                                                    | Topic                                                                                                          |
-| --------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| Generate deployment artifacts with a guided wizard (recommended for common deployments) | [Cloud Deployment Manager  Kubernetes deployment types](cloud-deployment-manager-kubernetes-deployment-types/) |
-| Minimal working cluster in five steps                                                   | [Quick installation](quick-installation.md)                                                                    |
-| Full deployment workflow end-to-end                                                     | [WEKA Operator full deployment workflow](weka-operator-full-deployment-workflow.md)                            |
-| Deploy on a cloud-managed Kubernetes service                                            | [Deploy WEKA on cloud-managed Kubernetes services](deploy-the-weka-client-on-amazon-eks.md)                    |
+| Task                                                                                    | Topic                                                                                                         |
+| --------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
+| Generate deployment artifacts with a guided wizard (recommended for common deployments) | [Cloud Deployment Manager Kubernetes deployment types](cloud-deployment-manager-kubernetes-deployment-types/) |
+| Minimal working cluster in five steps                                                   | [Quick installation](quick-installation.md)                                                                   |
+| Full deployment workflow end-to-end                                                     | [WEKA Operator full deployment workflow](weka-operator-full-deployment-workflow.md)                           |
+| Deploy on a cloud-managed Kubernetes service                                            | [Deploy WEKA on cloud-managed Kubernetes services](deploy-the-weka-client-on-amazon-eks.md)                   |
 
 **Go to a specific task:** Use these topics for focused configuration and migration work.
 
-<table data-search="false"><thead><tr><th>Task</th><th>Topic</th></tr></thead><tbody><tr><td>Manage drivers</td><td><a href="weka-operator-driver-management.md">WEKA Operator driver management</a></td></tr><tr><td>Configure networking</td><td><a href="networking-with-the-weka-operator.md">Networking with the WEKA Operator</a></td></tr><tr><td>Configure encryption at rest</td><td><a href="encryption-with-the-weka-operator.md">Encryption with the WEKA Operator</a></td></tr><tr><td>Configure protocols</td><td><a href="set-up-protocols-on-k8s-with-weka-operator.md">Set up protocols on K8s with WEKA Operator</a></td></tr><tr><td>Configure audit log export</td><td><a href="set-up-audit-logs-on-k8s-with-weka-operator.md">Set up audit logs on K8s with WEKA Operator</a></td></tr><tr><td>Manage credentials</td><td><a href="weka-operator-secrets-management.md">Weka Operator secrets management</a></td></tr><tr><td>Migrate from standalone CSI</td><td><a href="migrate-standalone-csi-to-weka-operator-embedded.md">Migrate standalone CSI to WEKA Operator-embedded</a></td></tr></tbody></table>
+<table data-search="false"><thead><tr><th>Task</th><th>Topic</th></tr></thead><tbody><tr><td>Manage drivers</td><td><a href="weka-operator-driver-management.md">WEKA Operator driver management</a></td></tr><tr><td>Configure networking</td><td><a href="networking-with-the-weka-operator.md">Networking with the WEKA Operator</a></td></tr><tr><td>Configure encryption at rest</td><td><a href="encryption-with-the-weka-operator.md">Encryption with the WEKA Operator</a></td></tr><tr><td>Configure protocols</td><td><a href="set-up-protocols-on-k8s-with-weka-operator.md">Set up protocols on Kubernetes with WEKA Operator</a></td></tr><tr><td>Configure audit log export</td><td><a href="set-up-audit-logs-on-k8s-with-weka-operator.md">Set up audit logs on Kubernetes with WEKA Operator</a></td></tr><tr><td>Manage credentials</td><td><a href="weka-operator-secrets-management.md">Weka Operator secrets management</a></td></tr><tr><td>Migrate from standalone CSI</td><td><a href="migrate-standalone-csi-to-weka-operator-embedded.md">Migrate standalone CSI to WEKA Operator-embedded</a></td></tr><tr><td>Configure embedded CSI and driver settings.</td><td><a href="weka-operator-full-deployment-workflow.md#id-3.1-configure-operator-wide-settings">Configure operator-wide settings</a></td></tr></tbody></table>
 
 **Operate and maintain after deployment:** Use these topics to upgrade, optimize, and troubleshoot the environment.
 
@@ -82,7 +91,3 @@ Kubernetes deployment types
 | Upgrade protocol containers              | [Upgrade protocol containers on the WEKA Operator](upgrade-protocol-containers-on-the-weka-operator.md) |
 | Production guidance                      | [WEKA Operator best practices](weka-operator-best-practices.md)                                         |
 | Diagnose issues                          | [Troubleshoot WEKA Operator deployments](troubleshoot-weka-operator-deployments.md)                     |
-
-[^1]: **What is quota coloring?**
-
-    During the procedure of setting or unsetting a directory quota, the Data Services container creates a background task referred to as `QUOTA_COLORING`. This task scans the entire directory tree and assigns the quota ID to each file and directory within the tree.
