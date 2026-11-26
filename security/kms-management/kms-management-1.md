@@ -16,6 +16,7 @@ Using the CLI, you can:
 * [View the KMS configuration](kms-management-1.md#view-the-kms-configuration)
 * [Remove the KMS configuration](kms-management-1.md#remove-the-kms-configuration)
 * [Rewrap filesystem keys](kms-management-1.md#rewrap-filesystem-keys)
+* [Migrate filesystems between KMS configurations](kms-management-1.md#migrate-filesystems-between-kms-configurations)
 * [Set up vault configuration](kms-management-1.md#set-up-vault-configuration)
 * [Obtain a certificate for a KMIP-based KMS](kms-management-1.md#obtain-a-certificate-for-a-kmip-based-kms)
 
@@ -167,6 +168,81 @@ WEKA does not automatically re-encrypt existing filesystem keys with the new KMS
 
 {% hint style="warning" %}
 Unlike HashiCorp Vault KMS, re-wrapping a KMIP-based KMS necessitates generating a new key within the KMS rather than rotating the existing one. Therefore, it is essential to retain the old key in the KMS to ensure the decryption of older Snap-to-Object snapshots.
+{% endhint %}
+
+## Migrate filesystems between KMS configurations
+
+**Commands:** `weka security kms set-migration-config`, `weka fs kms-switch-config`, `weka security kms finish-migration`, `weka security kms abort-migration`
+
+Use a migration to move encrypted filesystems from one KMS to another, one filesystem at a time, without downtime. Unlike `weka security kms set`, which rewraps every filesystem key in a single all-or-nothing operation, a migration lets you move, retry, or roll back each filesystem on its own.
+
+During a migration, each organization (the cluster-wide root organization or a tenant) has two KMS configurations:
+
+* **main:** The current KMS configuration.
+* **migration:** The temporary target configuration that you set for the migration.
+
+Each encrypted filesystem uses one of the two. To see which one, run `weka fs -v` and check the **KMS Config** column (`main` or `migration`). A migration works for any pair of KMS types, such as Vault to Vault, Vault to KMIP, or local encryption to Vault.
+
+**Before you begin**
+
+* All containers run WEKA 5.1.60 or later, and no upgrade is in progress. The migration commands are refused during an upgrade.
+* A tenant that has no KMS configuration of its own uses the cluster-wide configuration and migrates together with the root organization. You cannot run `set-migration-config` for such a tenant.
+* New filesystems, filesystems downloaded from a snapshot, and filesystems created by replication always start on the main configuration. Switch them to the migration configuration before you finish the migration.
+* Snapshot download and a new replica unwrap the filesystem key with the main configuration only.
+
+**Procedure**
+
+1.  Configure the migration target. In this example, `weka-master-key` is the transit key on the new Vault.
+
+    ```
+    weka security kms set-migration-config vault https://vault-new:8200 weka-master-key --role-id <role-id> --secret-id <secret-id>
+    ```
+
+    For a tenant, add `--tenant <tenant-name>`. If you omit `--tenant`, the command applies to the current user's tenant.
+2.  Move the filesystems one at a time:
+
+    ```
+    weka fs kms-switch-config fs1 --kms-config migration
+    weka fs kms-switch-config fs2 --kms-config migration --kms-key-identifier fs2-key
+    weka fs kms-switch-config fs3 --kms-config migration --kms-key-identifier fs3-key --kms-role-id <role-id> --kms-secret-id <secret-id>
+    ```
+
+    * Use `--kms-key-identifier` to give a filesystem its own key in the new Vault, and `--kms-role-id` and `--kms-secret-id` to give it its own credentials.
+    * KMIP has no per-filesystem keys. When you move a filesystem to a KMIP configuration, any filesystem-specific Vault key is dropped.
+    * The filesystem name is looked up in the organization of the user running the command. To switch a tenant filesystem, run the command as the tenant administrator, or as a cluster administrator working in the tenant context.
+3.  Check the **KMS Config** column to confirm the result:
+
+    ```
+    weka fs -v
+    ```
+4.  Finish the migration when every filesystem uses the migration configuration. The migration configuration becomes the new main configuration:
+
+    ```
+    weka security kms finish-migration
+    ```
+
+    For a tenant, add `--tenant <tenant-name>`.
+
+**Roll back a filesystem**
+
+To move a single filesystem back to the main configuration, switch it back and, if it has its own key, give its original key identifier:
+
+```
+weka fs kms-switch-config fs2 --kms-config main --kms-key-identifier fs2-old-key
+```
+
+**Abort a migration**
+
+To abort, switch every filesystem that you moved back to the main configuration, and then run:
+
+```
+weka security kms abort-migration
+```
+
+For a tenant, add `--tenant <tenant-name>`. The command removes the migration configuration and leaves the main configuration as it was.
+
+{% hint style="warning" %}
+While a migration configuration exists for an organization, even if no filesystem uses it yet, the commands `weka security kms set`, `weka security kms unset`, `weka security kms rewrap`, and `weka tenant chown fs` are refused for that organization until you run `finish-migration` or `abort-migration`.
 {% endhint %}
 
 ## Set up vault configuration
