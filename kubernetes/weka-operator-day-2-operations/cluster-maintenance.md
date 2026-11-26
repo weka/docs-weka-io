@@ -12,15 +12,16 @@ Version upgrades for the WEKA Operator, WekaCluster, and WekaClient are covered 
 
 **Tasks**
 
-| Task | Description |
-| --- | --- |
-| [Update WekaCluster configuration](cluster-maintenance.md#update-wekacluster-configuration) | Modify memory, tolerations, driver service, and image pull secret settings. |
-| [Update WekaClient configuration](cluster-maintenance.md#update-wekaclient-configuration) | Modify client-side memory, ports, cores, tolerations, and authentication settings. |
-| [Rotate pods after applying changes](cluster-maintenance.md#rotate-pods-after-applying-changes) | Restart all WekaContainer pods to apply updated configuration cluster-wide. |
-| [Rotate the WekaClient join token](cluster-maintenance.md#rotate-the-wekaclient-join-token) | Generate a new join token and update the Kubernetes secret before the current token expires. |
-| [Configure trace retention](cluster-maintenance.md#configure-trace-retention) | Set trace retention limits on a Kubernetes-managed WEKA cluster. |
-| [Pause and resume a cluster for maintenance](cluster-maintenance.md#pause-and-resume-a-cluster-for-maintenance) | Halt all cluster I/O gracefully for a planned maintenance window. |
-| [Cancel a cluster deletion](cluster-maintenance.md#cancel-a-cluster-deletion) | Recover a cluster before the graceful destroy period expires. |
+| Task                                                                                                            | Description                                                                                  |
+| --------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| [Update WekaCluster configuration](cluster-maintenance.md#update-wekacluster-configuration)                     | Modify memory, tolerations, driver service, and image pull secret settings.                  |
+| [Update WekaClient configuration](cluster-maintenance.md#update-wekaclient-configuration)                       | Modify client-side memory, ports, cores, tolerations, and authentication settings.           |
+| [Enable automatic pod rotation](cluster-maintenance.md#enable-automatic-pod-rotation)                           | Let the operator replace outdated backend pods automatically after a configuration change.   |
+| [Rotate pods manually](cluster-maintenance.md#rotate-pods-manually)                                             | Restart outdated WekaContainer pods when automatic pod rotation is disabled.                 |
+| [Rotate the WekaClient join token](cluster-maintenance.md#rotate-the-wekaclient-join-token)                     | Generate a new join token and update the Kubernetes secret before the current token expires. |
+| [Configure trace retention](cluster-maintenance.md#configure-trace-retention)                                   | Set trace retention limits on a Kubernetes-managed WEKA cluster.                             |
+| [Pause and resume a cluster for maintenance](cluster-maintenance.md#pause-and-resume-a-cluster-for-maintenance) | Halt all cluster I/O gracefully for a planned maintenance window.                            |
+| [Cancel a cluster deletion](cluster-maintenance.md#cancel-a-cluster-deletion)                                   | Recover a cluster before the graceful destroy period expires.                                |
 
 ***
 
@@ -89,7 +90,7 @@ imagePullSecret: "your-new-secret-name"
 kubectl apply -f weka-cluster.yaml
 ```
 
-3. If the rollout does not start automatically, see [Rotate pods after applying changes](cluster-maintenance.md#rotate-pods-after-applying-changes).
+3. If automatic pod rotation is enabled, the operator replaces the outdated pods. Otherwise, [rotate the pods manually](cluster-maintenance.md#rotate-pods-manually).
 4. Verify that the updated values are applied:
 
 ```bash
@@ -212,6 +213,45 @@ If pods do not restart or the new configuration is not applied, verify:
 
 ***
 
+#### Run clients on cordoned nodes
+
+Keep WEKA client pods running on a cordoned node, for example, so that a node held for validation can pass a storage health check. A cordon taints the node with `node.kubernetes.io/unschedulable:NoSchedule`, so by default the operator does not run client pods on cordoned nodes.
+
+The setting covers clients and the node-local pods they depend on: `drivers-loader`, `drivers-dist`, discovery, drivers-builder, and the operator maintenance pods. Backend containers never tolerate a cordon. The client `nodeSelector` and any other untolerated taint still keep a client off a node.
+
+**Before you begin**
+
+* WEKA Operator v1.17.0 or later.
+
+**Procedure**
+
+1.  Set `scheduling.tolerateCordon` to `true` under `spec.payload.configurationPayload` in the configuration WekaPolicy in the operator namespace:
+
+    ```yaml
+    apiVersion: weka.weka.io/v1alpha1
+    kind: WekaPolicy
+    metadata:
+      name: weka-operator-config
+      namespace: weka-operator-system
+    spec:
+      payload:
+        configurationPayload:
+          scheduling:
+            tolerateCordon: true
+    ```
+
+    The operator accepts only one configuration WekaPolicy in its namespace. If a second one exists, the operator marks the policies Failed and stops applying configuration settings. If a configuration WekaPolicy already exists, add only the `scheduling` block to it, and keep its other settings. Applying a manifest that omits existing settings removes them from the policy.
+2.  Apply the policy:
+
+    ```bash
+    kubectl apply -f <policy-file>.yaml
+    ```
+3.  Verify that the client pods run on the cordoned node:
+
+    ```bash
+    kubectl get pods -A -o wide --field-selector spec.nodeName=<node-name>
+    ```
+
 #### Update port configuration
 
 Migrate from explicit `port` and `agentPort` settings to a `portRange` configuration. This procedure involves deleting client pods to apply the change. Follow the force-delete guidance below before proceeding.
@@ -256,9 +296,83 @@ kubectl get pods --all-namespaces
 
 ***
 
-## Rotate pods after applying changes
+## Automatic pod rotation
 
-Restart all WekaContainer pods in sequence to apply updated cluster configuration across all containers.
+Some configuration changes apply only when a backend pod restarts. When one of these changes reaches a running backend container, the operator marks the container as outdated and records a `PodOutdated` warning event on the WekaContainer.
+
+* **Rotation enabled:** the operator replaces outdated pods one at a time. Before each replacement, it runs a cluster health check.
+* **Rotation disabled (default):** rotate the pods manually.
+
+**Scope:** drive, compute, S3, NFS, SMB-W, and data services containers of a WekaCluster.
+
+**WekaCluster changes that mark a container as outdated**
+
+| Area                    | Changes                                                                                                    |
+| ----------------------- | ---------------------------------------------------------------------------------------------------------- |
+| CPU                     | Core count, extra cores, CPU policy, core pinning                                                          |
+| Memory                  | Hugepages, additional memory, DPDK memory                                                                  |
+| Drives                  | Drives per container                                                                                       |
+| Network                 | Devices, subnets and selectors, management IPs, gateway and netmask, UDP mode, NIC and VF allocation, IPv6 |
+| NUMA                    | NUMA placement                                                                                             |
+| Traces                  | Capacity, free space, dumper settings                                                                      |
+| Container state storage | Adding a persistent volume                                                                                 |
+| Weka Home               | Name of the CA certificate Secret                                                                          |
+
+**Operator-wide changes that mark a container as outdated**
+
+| Area                  | Changes                              |
+| --------------------- | ------------------------------------ |
+| Telemetry and logging | Telemetry export, syslog             |
+| Host integration      | DNS policy, shared network namespace |
+| SMB-W                 | Shared memory size                   |
+
+## Enable automatic pod rotation
+
+Enable the operator to replace outdated backend pods automatically after a configuration change.
+
+{% hint style="info" %}
+The WekaPolicy sets the operator-wide default. To override it for one cluster, set `spec.overrides.podRotation` in the WekaCluster: `true` enables rotation, and `false` keeps the cluster in event-only mode. The cluster override takes precedence over the WekaPolicy.
+{% endhint %}
+
+**Before you begin**
+
+* WEKA Operator v1.17.0 or later.
+* The WekaCluster is in `Ready` state.
+
+**Procedure**
+
+1.  Set `podRotation.enabled` to `true` under `spec.payload.configurationPayload` in the configuration WekaPolicy in the operator namespace:
+
+    ```yaml
+    apiVersion: weka.weka.io/v1alpha1
+    kind: WekaPolicy
+    metadata:
+      name: weka-operator-config
+      namespace: weka-operator-system
+    spec:
+      payload:
+        configurationPayload:
+          podRotation:
+            enabled: true
+    ```
+
+    The operator accepts only one configuration WekaPolicy in its namespace. If a second one exists, the operator marks the policies Failed and stops applying configuration settings. If a configuration WekaPolicy already exists, for example for CSI or driver settings, add only the `podRotation` block to it, and keep its other settings. Applying a manifest that omits existing settings removes them from the policy.
+2.  Apply the policy:
+
+    ```bash
+    kubectl apply -f <policy-file>.yaml
+    ```
+3.  After the next WekaCluster change, verify that the operator replaces the outdated pods:
+
+    ```bash
+    kubectl get pods -n <namespace> -w
+    ```
+
+    The backend pods restart one at a time.
+
+## Rotate pods manually
+
+Restart all WekaContainer pods in sequence to apply updated cluster configuration across all containers. Use this procedure when automatic pod rotation is disabled and the operator reports outdated containers in Kubernetes events.
 
 {% hint style="info" %}
 Wait for each set of pods to return to `Running` before proceeding to the next set. Deleting all pod types simultaneously can cause a service disruption.
@@ -274,7 +388,13 @@ kubectl apply -f weka-cluster.yaml
 
 **Procedure**
 
-1. Delete compute pods:
+1. Identify the outdated containers in the Kubernetes events:
+
+```bash
+kubectl get events -n <namespace> --field-selector involvedObject.kind=WekaContainer,reason=PodOutdated
+```
+
+2. Delete compute pods:
 
 ```bash
 kubectl delete pod -n weka-operator-system cluster-dev-compute-*
@@ -284,25 +404,25 @@ kubectl delete pod -n weka-operator-system cluster-dev-compute-*
 Never force-delete WEKA pods. Force deletion removes the pod from the orchestration layer only, while the underlying container continues running untracked. See [#deletion-behavior](../weka-operator-deployments/wekacluster-and-wekacontainer-lifecycle.md#deletion-behavior "mention").
 {% endhint %}
 
-2. Wait for compute pods to reach `Running`, then delete drive pods:
+3. Wait for compute pods to reach `Running`, then delete drive pods:
 
 ```bash
 kubectl delete pod -n weka-operator-system cluster-dev-drive-*
 ```
 
-3. Wait for drive pods to reach `Running`, then delete S3 pods:
+4. Wait for drive pods to reach `Running`, then delete S3 pods:
 
 ```bash
 kubectl delete pod -n weka-operator-system cluster-dev-s3-*
 ```
 
-4. Wait for S3 pods to reach `Running`, then delete envoy pods:
+5. Wait for S3 pods to reach `Running`, then delete envoy pods:
 
 ```bash
 kubectl delete pod -n weka-operator-system cluster-dev-envoy-*
 ```
 
-5. Monitor pod status until all pods return to `Running`:
+6. Monitor pod status until all pods return to `Running`:
 
 ```bash
 kubectl get pods --all-namespaces -o wide
@@ -506,9 +626,9 @@ spec:
     maxCapacityPerIoNode: <value in GiB>
 ```
 
-| Field                  | Description                                                            | Required            |
-| ---------------------- | ---------------------------------------------------------------------- | ------------------- |
-| `ensureFreeSpace`      | Minimum free space, in GiB, to keep on the filesystem that backs `/opt/weka/traces` in each container. | Yes                 |
+| Field                  | Description                                                                                                                                                                                        | Required            |
+| ---------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------- |
+| `ensureFreeSpace`      | Minimum free space, in GiB, to keep on the filesystem that backs `/opt/weka/traces` in each container.                                                                                             | Yes                 |
 | `maxCapacityPerIoNode` | Trace capacity, in GiB, that the Operator allocates per process when setting the container's total trace capacity. The allocation covers the container's I/O processes and its management process. | No. Default: 10 GiB |
 
 2. Apply the updated configuration:
@@ -547,11 +667,11 @@ Run `weka cluster stop-io` manually before applying the pause. The Operator does
 
 **`spec.overrides.paused` values**
 
-| Value | Behavior |
-| --- | --- |
-| Field omitted | No propagation. The cluster does not enforce a pause state on containers. |
-| `true` | Containers are stopped in sequence. Cluster status changes to `Paused`. |
-| `false` | Containers that were paused by this field transition back to active. Containers in other states are not affected. |
+| Value         | Behavior                                                                                                          |
+| ------------- | ----------------------------------------------------------------------------------------------------------------- |
+| Field omitted | No propagation. The cluster does not enforce a pause state on containers.                                         |
+| `true`        | Containers are stopped in sequence. Cluster status changes to `Paused`.                                           |
+| `false`       | Containers that were paused by this field transition back to active. Containers in other states are not affected. |
 
 **Procedure: pause the cluster**
 
