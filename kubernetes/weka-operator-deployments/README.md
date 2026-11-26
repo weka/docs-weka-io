@@ -52,6 +52,10 @@ Verify minimum version requirements before deployment or upgrade.
 | AlloyFlash                                | 1.14                    | 5.1.30                      | Supported.Enable mixed TLC and QLC drive deployments.                                                       |
 | Cluster capacity sizing                   | 1.14.2                  | 5.1.0                       | Supported.Size the cluster by target usable capacity with `dynamicTemplate.clusterCapacity`.                |
 | Operator configuration through WekaPolicy | 1.16.2                  | 6.0                         | Supported. Configure the embedded CSI plugin and driver builds with `configurationPayload` in a WekaPolicy. |
+| Automatic pod rotation                    | 1.17                    | ANY                         | Supported. Opt-in. See Cluster maintenance.                                                                 |
+| License from a Kubernetes Secret          | 1.17                    | ANY                         | Supported. Set `spec.licenseSecret` in the WekaCluster.                                                     |
+| Custom admin credentials Secret           | 1.17                    | ANY                         | Supported. Set `spec.adminCredentialsSecretRef.name` in the WekaCluster.                                    |
+| S3 DaemonSet mode                         | 1.17                    | 4.4                         | Supported. Set `dynamicTemplate.s3Containers: -1`. Requires act-as-daemonset mode.                          |
 
 ## How to use this guide
 
