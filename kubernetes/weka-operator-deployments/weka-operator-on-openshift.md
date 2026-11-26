@@ -9,7 +9,7 @@ description: >-
 
 **Workflow**
 
-<table><thead><tr><th width="80">Step</th><th width="272">Task</th><th>Description</th></tr></thead><tbody><tr><td>1</td><td><a href="weka-operator-on-openshift.md#id-1.-obtain-setup-information">Obtain setup information</a></td><td>Collect registry credentials and version tags.</td></tr><tr><td>2</td><td><a href="weka-operator-on-openshift.md#id-2.-prepare-kubernetes-environment">Prepare OpenShift environment</a></td><td>Configure node requirements, HugePages, ports, Kubelet settings, image pull secrets, and failure domains.</td></tr><tr><td>3</td><td><a href="weka-operator-on-openshift.md#id-3.-install-the-weka-operator">Install WEKA Operator</a></td><td>Deploy the operator and set the required drive type configuration.</td></tr><tr><td>4</td><td><a href="weka-operator-on-openshift.md#id-4.-sign-and-discover-storage-drives">Sign and discover storage drives</a></td><td>Detect available drives and apply the required signing policy.</td></tr><tr><td>5</td><td><a href="weka-operator-on-openshift.md#id-6.-provision-weka-resources">Provision WEKA resources</a></td><td>Deploy the WekaCluster, create the optional client secret, and install the WekaClient when needed.</td></tr><tr><td>6</td><td><a href="weka-operator-on-openshift.md#id-7.-manage-the-weka-cluster-management-proxy">Manage the WEKA cluster management proxy</a></td><td>Optionally expose WEKA management endpoints through an operator-managed Service and Ingress.</td></tr><tr><td>7</td><td><a href="weka-operator-on-openshift.md#id-8.-assign-network-space-proxy-subnets-for-multiple-weka-clusters">Assign network space proxy subnets</a></td><td>Assign unique proxy subnets when multiple WEKA clusters share the same Kubernetes environment.</td></tr><tr><td>8</td><td><a href="weka-operator-on-openshift.md#id-9.-perform-post-deployment-storage-configuration-on-weka-client">Perform post-deployment storage configuration on WEKA client</a></td><td>Configure CSI behavior and storage provisioning for WEKA clients.</td></tr></tbody></table>
+<table><thead><tr><th width="80">Step</th><th width="272">Task</th><th>Description</th></tr></thead><tbody><tr><td>1</td><td><a href="weka-operator-on-openshift.md#id-1.-obtain-setup-information">Obtain setup information</a></td><td>Collect registry credentials and version tags.</td></tr><tr><td>2</td><td><a href="weka-operator-on-openshift.md#id-2.-prepare-openshift-environment">Prepare OpenShift environment</a></td><td>Configure node requirements, HugePages, ports, Kubelet settings, image pull secrets, and failure domains.</td></tr><tr><td>3</td><td><a href="weka-operator-on-openshift.md#id-3.-install-weka-operator">Install WEKA Operator</a></td><td>Deploy the operator and set the required drive type configuration.</td></tr><tr><td>4</td><td><a href="weka-operator-on-openshift.md#id-4.-sign-and-discover-storage-drives">Sign and discover storage drives</a></td><td>Detect available drives and apply the required signing policy.</td></tr><tr><td>5</td><td><a href="weka-operator-on-openshift.md#id-5.-provision-weka-resources">Provision WEKA resources</a></td><td>Deploy the WekaCluster, create the optional client secret, and install the WekaClient when needed.</td></tr><tr><td>6</td><td><a href="weka-operator-on-openshift.md#id-6.-manage-the-weka-cluster-management-proxy">Manage the WEKA cluster management proxy</a></td><td>Optionally expose WEKA management endpoints through an operator-managed Service and Ingress.</td></tr><tr><td>7</td><td><a href="weka-operator-on-openshift.md#id-7.-assign-network-space-proxy-subnets-for-multiple-weka-clusters">Assign network space proxy subnets</a></td><td>Assign unique proxy subnets when multiple WEKA clusters share the same Kubernetes environment.</td></tr><tr><td>8</td><td><a href="weka-operator-on-openshift.md#id-8.-perform-post-deployment-storage-configuration-on-weka-client">Perform post-deployment storage configuration on WEKA client</a></td><td>Configure CSI behavior and storage provisioning for WEKA clients.</td></tr></tbody></table>
 
 ***
 
@@ -182,7 +182,7 @@ The range 35000–37600 covers 2,600 ports, which supports up to 10 WekaCluster 
 
 **Related topic**
 
-[Set custom kernel parameters](../../planning-and-installation/bare-metal/setting-up-the-hosts/#configure-the-networking) (full kernel parameter configuration)
+[Set custom kernel parameters](../../planning-and-installation/system-installation-on-bare-metal-servers/prepare-the-system/#configure-the-networking) (full kernel parameter configuration)
 
 ### Configure Kubelet requirements
 
@@ -411,7 +411,7 @@ The installation flow matches the Kubernetes workflow. Use `oc` commands on Open
 
 **Before you begin**
 
-* Ensure the `QUAY_SECRET_KEY` is created in the `weka-operator-system` namespace (completed in [step 2](weka-operator-on-openshift.md#id-2.-prepare-kubernetes-environment)).
+* Ensure the `QUAY_SECRET_KEY` is created in the `weka-operator-system` namespace (completed in [step 2](weka-operator-on-openshift.md#id-2.-prepare-openshift-environment)).
 *   Install Helm on a local server, unless using a higher-level deployment tool such as Argo CD:
 
     ```bash
