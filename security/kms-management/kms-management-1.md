@@ -185,7 +185,7 @@ Each encrypted filesystem uses one of the two. To see which one, run `weka fs -v
 
 **Before you begin**
 
-* All containers run WEKA 5.1.60 or later, and no upgrade is in progress. The migration commands are refused during an upgrade.
+* No upgrade is in progress. The migration commands are refused during an upgrade.
 * A tenant that has no KMS configuration of its own uses the cluster-wide configuration and migrates together with the root organization. You cannot run `set-migration-config` for such a tenant.
 * New filesystems, filesystems downloaded from a snapshot, and filesystems created by replication always start on the main configuration. Switch them to the migration configuration before you finish the migration.
 * Snapshot download and a new replica unwrap the filesystem key with the main configuration only.
