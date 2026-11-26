@@ -126,7 +126,21 @@ All client containers on a host share one WEKA kernel driver. The driver is deco
 * **Upgrade a client:** A client upgrade replaces only the client container and keeps the loaded driver by default.
 * **Replace the driver:** Add `--force-driver` to `weka local upgrade`, or to the remote clients upgrade, to replace the driver during an upgrade. All client containers on the host drain while the driver is replaced.
 * **Declare the driver version:** Set a driver target version on each cluster. It names the WEKA version whose driver the clients of that cluster load. When several clusters declare different versions, the client loads the oldest declared version. When a cluster declares none, its clients use the version of their own client container.
-* **Validation:** The system rejects a driver target version that is incompatible with the client target version when you set it. A mount is refused when the frontend of its client container cannot drive the loaded driver.
+* **Validation:** The system rejects a driver target version that is incompatible with the client target version when you set it. A mount is refused when the client container cannot use the loaded driver.
+
+**Driver compatibility rules**
+
+* A client container can use the driver from its own WEKA release or from an earlier release, never from a later release.
+* Client containers on releases before 5.1.50 can use only the driver from their own release.
+* Drivers from releases before 5.1.32 cannot be used by any later release.
+* A driver target version must be compatible with the client target version of the cluster, and with every client container registered in the cluster, including stopped containers.
+
+**If a mount is refused because the host already runs a driver the cluster's clients cannot use**
+
+1. On the cluster whose client container loaded the driver, run `weka cluster driver-target-version set <version>`. Set `<version>` to the WEKA release of the cluster you want to mount.
+2. On the host, run `weka local upgrade --all --force-driver` to load that driver. All client containers on the host drain and restart.
+
+Alternatively, mount the filesystem on a different host.
 
 To declare the driver version, connect to each cluster and run the following command.
 
