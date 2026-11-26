@@ -148,6 +148,30 @@ Show the currently configured key management service settings.
 weka security kms
 ```
 
+### weka security kms abort-migration
+
+Abort a KMS migration. Clears the migration configuration and leaves the main configuration as it was. Switch every filesystem back to the main configuration first. The command is refused while a filesystem still uses the migration configuration.
+
+```sh
+weka security kms abort-migration [--tenant <string>]
+```
+
+| Parameter             | Description                                                                |
+| --------------------- | -------------------------------------------------------------------------- |
+| `--tenant` \<string> | Tenant to abort the migration for. Defaults to the current user's tenant.  |
+
+### weka security kms finish-migration
+
+Finish a KMS migration. The migration configuration becomes the main configuration. The command is refused while a filesystem still uses the main configuration that the migration replaces.
+
+```sh
+weka security kms finish-migration [--tenant <string>]
+```
+
+| Parameter             | Description                                                                 |
+| --------------------- | --------------------------------------------------------------------------- |
+| `--tenant` \<string> | Tenant to finish the migration for. Defaults to the current user's tenant.  |
+
 ### weka security kms reset
 
 Reset external KMS configurations. Fails if any encrypted filesystems rely on the KMS unless --force or --allow-downgrade is specified.
@@ -231,6 +255,52 @@ weka security kms set vault <address> <key-name> [--auth-path <string>] [--conve
 | `--secret-id` \<string>          | Secret ID to access the KMS (required with --role-id).                                      |
 | `--token` \<string>              | API token to access the KMS.                                                                |
 | `--transit-path` \<string>       | Custom transit path URL prefix.                                                             |
+
+### weka security kms set-migration-config
+
+Configure the temporary migration target for a KMS migration. Move filesystems to it one at a time with `weka fs kms-switch-config`.
+
+```sh
+weka security kms set-migration-config
+```
+
+#### weka security kms set-migration-config kmip
+
+Set an external KMIP service as the migration target.
+
+```sh
+weka security kms set-migration-config kmip <address> <key-identifier> --client-cert <string> --client-key <string> [--ca-cert <string>] [--tenant <string>]
+```
+
+| Parameter                   | Description                                                                         |
+| --------------------------- | ----------------------------------------------------------------------------------- |
+| `address`\*                 | Server address, usually a hostname:port or URL.                                     |
+| `key-identifier`\*          | Key UID to secure the filesystems with.                                             |
+| `--client-cert` \<string>\* | Path to the client certificate PEM file.                                            |
+| `--client-key` \<string>\*  | Path to the client key PEM file.                                                    |
+| `--ca-cert` \<string>       | Path to a CA certificate PEM file for the KMIP server.                              |
+| `--tenant` \<string>        | Tenant to configure. Defaults to the current user's tenant.                         |
+
+#### weka security kms set-migration-config vault
+
+Set an external HashiCorp Vault as the migration target.
+
+```sh
+weka security kms set-migration-config vault <address> <key-name> [--auth-path <string>] [--kubernetes-role <string>] [--namespace <string>] [--role-id <string>] [--secret-id <string>] [--tenant <string>] [--token <string>] [--transit-path <string>]
+```
+
+| Parameter                     | Description                                                                |
+| ----------------------------- | -------------------------------------------------------------------------- |
+| `address`\*                   | Server address, usually a hostname:port or URL.                            |
+| `key-name`\*                  | Key name to secure the filesystems.                                        |
+| `--auth-path` \<string>       | Custom auth path URL prefix.                                               |
+| `--kubernetes-role` \<string> | Kubernetes role for Vault authentication.                                  |
+| `--namespace` \<string>       | Namespace in the Vault.                                                    |
+| `--role-id` \<string>         | Role ID to access the KMS.                                                 |
+| `--secret-id` \<string>       | Secret ID to access the KMS (required with --role-id).                     |
+| `--tenant` \<string>          | Tenant to configure. Defaults to the current user's tenant.                |
+| `--token` \<string>           | API token to access the KMS.                                               |
+| `--transit-path` \<string>    | Custom transit path URL prefix.                                            |
 
 ## weka security lockout-config
 
