@@ -386,6 +386,27 @@ weka local resources join-secret <secret> [--container <container>] [--purge]
 | `-C`, `--container` \<container> | Container name.              |
 | `--purge`                        | Purge previous join secrets. |
 
+### weka local resources listen-443
+
+Serve the REST API and the GUI on port 443 in addition to the container's base port (14000 by default). Without the `--enable` flag, the command reports the staged setting, the cluster-wide override, and whether the container actually listens on port 443.
+
+```sh
+weka local resources listen-443 [--enable] [--container <container>]
+```
+
+| Parameter                        | Description                                                                          |
+| -------------------------------- | ------------------------------------------------------------------------------------ |
+| `--enable`                       | Opt this backend container in to serving the REST API and the GUI on port 443.       |
+| `-C`, `--container` \<container> | Container name.                                                                      |
+
+**Related information**
+
+* Run `weka local resources apply` for the change to take effect.
+* Port 443 is served only when both the container setting and the cluster-wide override `nginx_listen_443` (default `true`) allow it. To turn off port 443 on all containers, run `weka debug override add --key nginx_listen_443 --value false`.
+* Port 443 is one port for the whole server. Backend containers on the same server that opt in share it, and each one forwards requests to its own management node.
+* If another process already holds port 443, the container keeps serving its base port and raises the `APIServerExtraPortUnavailable` warning event.
+* Client containers never bind port 443. On Kubernetes, backend containers use the host network and stay off port 443 unless you opt them in, so they do not compete with an ingress controller or the OpenShift router.
+
 ### weka local resources management-ips
 
 Set the container's management IPs. Setting 2 IPs will enable highly-available networking mode.

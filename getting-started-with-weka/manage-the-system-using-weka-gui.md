@@ -80,6 +80,8 @@ The NeuralMesh GUI is a web application you can access using an already configur
 
 Make sure that port 14000 is open in the firewall of your organization.
 
+To browse without a port number, opt backend containers in to port 443. See [weka-local.md](weka-cli-overview/cli-reference-guide/weka-local.md#weka-local-resources-listen-443 "mention"). Make sure that port 443 is open in the firewall too.
+
 **Procedure**
 
 1. Go to `https://<NeuralMesh system or server name>:14000` in your browser.\
