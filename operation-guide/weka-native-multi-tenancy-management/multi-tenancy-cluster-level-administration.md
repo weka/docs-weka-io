@@ -450,3 +450,52 @@ weka alerts --tenant <tenant_name>
 **Related topic**
 
 [Alerts](../alerts/)
+
+## Act in a tenant's context
+
+Switch the GUI or the CLI session from the cluster view to a tenant's context to work within that tenant as a cluster admin.
+
+**Before you begin**
+
+* Ensure your user has the `tenant.assume` action.
+* Ensure the tenant is not private.
+
+{% hint style="warning" %}
+A private tenant cannot be assumed. Its contents, including filesystem data, are hidden from cluster admins.
+{% endhint %}
+
+#### GUI procedure
+
+1. In the header, select the **Tenant** selector, and then select the tenant.
+2.  In the confirmation message, select **Confirm**.
+
+    The selector highlights the tenant name, and the browser tab title shows it.
+
+{% hint style="info" %}
+The tenant scope applies only to the current tab. If it is unavailable or the session ends, the GUI returns to the cluster view and displays a message.&#x20;
+{% endhint %}
+
+#### CLI alternative
+
+Use the following command to act in a tenant with your own identity for the current session only. Specify the tenant by name or ID.
+
+```bash
+weka user assume-tenant <tenant>
+```
+
+### Return to the cluster scope
+
+Return from a tenant's context to the cluster view.
+
+#### GUI procedure
+
+1. In the header, select the **Tenant** selector.
+2. Select **Return to cluster scope**.
+
+#### CLI alternative
+
+Use the following command to drop the assumed tenant and return the session to the cluster scope:
+
+```bash
+weka user assume-tenant --revert
+```
