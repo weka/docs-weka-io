@@ -125,22 +125,6 @@ weka fs group update <name> [--new-name <filesystem-group>] [--ssd-retention <du
 | `--ssd-retention` \<duration>    | How long to keep an SSD copy of the data.               |
 | `--start-demote` \<duration>     | How long to wait before copying data to object storage. |
 
-## weka fs kms-switch-config
-
-Switch the KMS configuration that wraps the key of one filesystem during a KMS migration.
-
-```sh
-weka fs kms-switch-config <name> --kms-config <main|migration> [--kms-key-identifier <string>] [--kms-role-id <string>] [--kms-secret-id <string>]
-```
-
-| Parameter                        | Description                                                                                                             |
-| -------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
-| `name`\*                        | Name of filesystem for this operation.                                                                                  |
-| `--kms-config` \<string>\*      | KMS configuration to wrap the filesystem key with. Values: `main` or `migration`.                                       |
-| `--kms-key-identifier` \<string> | Key identifier for this filesystem in the target KMS. Omit it to use the key of the target configuration.               |
-| `--kms-role-id` \<string>        | Role ID to access the target KMS for this filesystem.                                                                   |
-| `--kms-secret-id` \<string>      | Secret ID to access the target KMS for this filesystem (required with --kms-role-id).                                   |
-
 ## weka fs kms-rewrap
 
 Rewrap the KMS encryption key for a filesystem.
