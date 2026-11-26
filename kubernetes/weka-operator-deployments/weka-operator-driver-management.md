@@ -99,7 +99,7 @@ Before the operator can initiate a local build, ensure the environment meets the
 
 * **Persistent storage for Drivers-Dist:** Provision sufficient storage, such as a PersistentVolumeClaim, for the Drivers-Dist service to cache driver packages.
 * **Network access:** Ensure port 60002 is open to allow communication between the operator, Drivers-Builder, Drivers-Dist, and Drivers-Loader.
-* **WekaPolicy:** Prepare a WekaPolicy resource that defines the build and distribution settings. See [Configure WekaPolicy for local driver builds](weka-operator-driver-management.md#configure-wekapolicy-for-local-driver-builds).
+* **WekaPolicy:** Prepare a WekaPolicy resource that defines the build and distribution settings. See [Manage driver distribution](weka-operator-full-deployment-workflow.md#id-4.-manage-driver-distribution).
 
 ### Configure driver builds for NixOS nodes
 
