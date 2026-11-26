@@ -2,15 +2,20 @@
 description: >-
   Explore WEKA’s multi-tenancy with composable clusters, ensuring full resource
   isolation and optimal performance through Kubernetes-driven deployment.
-metaLinks:
-  alternates:
-    - >-
-      https://app.gitbook.com/s/0yXyIrnroN3zIG3qa4W3/kubernetes/composable-clusters-for-multi-tenancy-in-kubernetes
 ---
 
 # Composable clusters for multi-tenancy in Kubernetes
 
 ## Overview
+
+{% hint style="info" %}
+**Two different multi-tenancy models exist. This page describes composable clusters.**
+
+* **Composable clusters**, described here, give each tenant its **own cluster** on shared hardware, with dedicated hosts, drives, cores, and memory. Isolation is physical resource partitioning.
+* **Native multi-tenancy** gives each tenant a logically isolated environment **inside a single cluster**, sharing CPU, memory, and drives, with isolation enforced through network spaces, quotas, and per-tenant QoS. See [weka-native-multi-tenancy-management](../operation-guide/weka-native-multi-tenancy-management/ "mention").
+
+Choose composable clusters when a tenant needs dedicated hardware, and native multi-tenancy otherwise. For the full comparison, see [Choose an isolation model](../operation-guide/weka-native-multi-tenancy-management/#choose-an-isolation-model).
+{% endhint %}
 
 WEKA enables multi-tenancy by allowing multiple cluster deployments to share the same hardware while maintaining full resource isolation. This is achieved through a Kubernetes Operator that facilitates the composition of resource sets (including hosts, drives, cores, and memory) into independent clusters.
 

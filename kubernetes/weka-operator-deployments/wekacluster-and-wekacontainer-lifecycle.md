@@ -75,7 +75,27 @@ Monitor WekaContainer status with:
 kubectl get wekacontainer -o wide --all-namespaces
 ```
 
-<table><thead><tr><th width="184">State</th><th>Meaning</th></tr></thead><tbody><tr><td><code>Init</code></td><td>The WekaContainer CR has been created. The operator has not yet scheduled a pod.</td></tr><tr><td><code>PodNotRunning</code></td><td>The pod has been scheduled but has not started. This includes image pull and node preparation.</td></tr><tr><td><code>PodRunning</code></td><td>The pod is running but the WEKA process has not started yet.</td></tr><tr><td><code>WaitForDrivers</code></td><td>The pod is running and waiting for the kernel driver to be loaded by the Drivers-Loader.</td></tr><tr><td><code>Starting</code></td><td>The kernel driver is loaded. The WEKA process is starting.</td></tr><tr><td><code>DrivesAdding</code></td><td>The container is joining the cluster and adding its drives.</td></tr><tr><td><code>Running</code></td><td>The WEKA process is running and healthy.</td></tr><tr><td><code>Degraded</code></td><td>The container is running but operating in a degraded state.</td></tr><tr><td><code>Unhealthy</code></td><td>The container is running but health checks are failing.</td></tr><tr><td><code>Error</code></td><td>The container has encountered an error. Check pod logs for details.</td></tr><tr><td><code>StoppingAttempt</code></td><td>The operator is attempting a graceful stop of the WEKA process.</td></tr><tr><td><code>Draining</code></td><td>The container is draining active mounts before shutdown. Applies to client containers during deletion.</td></tr><tr><td><code>Stopped</code></td><td>The WEKA process has stopped. The pod may still be running.</td></tr><tr><td><code>PodTerminating</code></td><td>The pod is terminating.</td></tr><tr><td><code>Paused</code></td><td>The container is paused as part of a cluster-level pause.</td></tr><tr><td><code>Destroying</code></td><td>The container is being removed without a deactivation step.</td></tr><tr><td><code>Deleting</code></td><td>The container is going through the full deactivation and deletion flow.</td></tr><tr><td><code>Completed</code></td><td>The container has finished its task. Applies to driver-builder and drive-signing containers only.</td></tr><tr><td><code>Building</code></td><td>The container is compiling a kernel driver. Applies to driver-builder containers only.</td></tr></tbody></table>
+| State | Meaning |
+| --- | --- |
+| `Init` | The WekaContainer CR has been created. The operator has not yet scheduled a pod. |
+| `PodNotRunning` | The pod has been scheduled but has not started. This includes image pull and node preparation. |
+| `PodRunning` | The pod is running but the WEKA process has not started yet. |
+| `WaitForDrivers` | The pod is running and waiting for the kernel driver to be loaded by the Drivers-Loader. |
+| `Starting` | The kernel driver is loaded. The WEKA process is starting. |
+| `DrivesAdding` | The container is joining the cluster and adding its drives. |
+| `Running` | The WEKA process is running and healthy. |
+| `Degraded` | The container is running but operating in a degraded state. |
+| `Unhealthy` | The container is running but health checks are failing. |
+| `Error` | The container has encountered an error. Check pod logs for details. |
+| `StoppingAttempt` | The operator is attempting a graceful stop of the WEKA process. |
+| `Draining` | The container is draining active mounts before shutdown. Applies to client containers during deletion. |
+| `Stopped` | The WEKA process has stopped. The pod may still be running. |
+| `PodTerminating` | The pod is terminating. |
+| `Paused` | The container is paused as part of a cluster-level pause. |
+| `Destroying` | The container is being removed without a deactivation step. |
+| `Deleting` | The container is going through the full deactivation and deletion flow. |
+| `Completed` | The container has finished its task. Applies to driver-builder and drive-signing containers only. |
+| `Building` | The container is compiling a kernel driver. Applies to driver-builder containers only. |
 
 **Normal deployment progression:**
 
@@ -87,7 +107,13 @@ kubectl get wekacontainer -o wide --all-namespaces
 
 ## Common stuck states
 
-<table><thead><tr><th width="301">Stuck state</th><th>Likely cause</th></tr></thead><tbody><tr><td>WekaContainer stays in <code>PodNotRunning</code></td><td>Node does not match <code>nodeSelector</code>, insufficient resources, or image pull failure. Run <code>kubectl describe pod</code> on the pending pod.</td></tr><tr><td>WekaContainer stays in <code>WaitForDrivers</code></td><td>Driver distribution service is unreachable, kernel headers are missing on the build server, or the <code>driversDistService</code> URL is misconfigured. Monitor the progress of the <code>weka-driver-loader</code> pod on the same node.</td></tr><tr><td>WekaCluster stays in <code>WaitForDrives</code></td><td>Drives have not been signed, the <code>sign-drives</code> WekaPolicy has not been applied, <code>nodeSelector</code> on the policy does not match the target nodes, or a drive failed to attach to a drive WekaContainer. Inspect the logs of the relevant WekaContainers.</td></tr><tr><td>WekaCluster never reaches <code>Ready</code> from <code>StartingIO</code></td><td>A container is stuck in <code>Error</code>, <code>Degraded</code>, or <code>Unhealthy</code>. Check individual WekaContainer status.</td></tr><tr><td>WekaClient containers stuck in <code>Draining</code></td><td>Active mounts are preventing shutdown. Do not force-delete pods in this state: the operator will recreate them on the same node and the underlying issue remains.</td></tr></tbody></table>
+| Stuck state | Likely cause |
+| --- | --- |
+| WekaContainer stays in `PodNotRunning` | Node does not match `nodeSelector`, insufficient resources, or image pull failure. Run `kubectl describe pod` on the pending pod. |
+| WekaContainer stays in `WaitForDrivers` | Driver distribution service is unreachable, kernel headers are missing on the build server, or the `driversDistService` URL is misconfigured. Monitor the progress of the `weka-driver-loader` pod on the same node. |
+| WekaCluster stays in `WaitForDrives` | Drives have not been signed, the `sign-drives` WekaPolicy has not been applied, `nodeSelector` on the policy does not match the target nodes, or a drive failed to attach to a drive WekaContainer. Inspect the logs of the relevant WekaContainers. |
+| WekaCluster never reaches `Ready` from `StartingIO` | A container is stuck in `Error`, `Degraded`, or `Unhealthy`. Check individual WekaContainer status. |
+| WekaClient containers stuck in `Draining` | Active mounts are preventing shutdown. Do not force-delete pods in this state: the operator will recreate them on the same node and the underlying issue remains. |
 
 {% hint style="info" %}
 Do not use `kubectl delete pod --force` on WEKA pods. Force-deleting a pod does not remove the underlying WekaContainer resource. The operator immediately recreates the pod on the same node. To move or remove a container, delete the WekaContainer resource instead.
